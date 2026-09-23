@@ -205,6 +205,9 @@
                         "variant": {
                           "solid": "false"
                         },
+                        "iconFills": [
+                          "{Color:icon/primary}"
+                        ],
                         "size": [
                           24,
                           24
@@ -605,14 +608,260 @@
               }
             },
             "added": [
-              "/TextStack",
-              "/TextStack/Breadcrumbs",
-              "/TextStack/Container",
-              "/TextStack/Container/Icon/Building",
-              "/TextStack/Container/Title",
-              "/TextStack/Container/Tag",
-              "/TextStack/Container/Icon/More",
-              "/TextStack/Description"
+              {
+                "path": "/TextStack",
+                "parent": "/",
+                "layer": {
+                  "name": "TextStack",
+                  "type": "FRAME",
+                  "size": [
+                    345,
+                    102
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 12,
+                    "pad": [
+                      16,
+                      0,
+                      16,
+                      0
+                    ],
+                    "align": "CENTER/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "paddingTop": "Spatial:stack/md",
+                    "paddingBottom": "Spatial:stack/md"
+                  }
+                }
+              },
+              {
+                "path": "/TextStack/Breadcrumbs",
+                "parent": "/TextStack",
+                "layer": {
+                  "name": "Breadcrumbs",
+                  "type": "INSTANCE",
+                  "main": "Breadcrumbs",
+                  "variant": {
+                    "items": "multiple"
+                  },
+                  "size": [
+                    156,
+                    12
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm"
+                  },
+                  "propRefs": {
+                    "visible": "hasBreadcrumbs#6186:29"
+                  }
+                }
+              },
+              {
+                "path": "/TextStack/Container",
+                "parent": "/TextStack",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    345,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/TextStack/Container/Icon/Building",
+                "parent": "/TextStack/Container",
+                "layer": {
+                  "name": "Icon/Building",
+                  "type": "INSTANCE",
+                  "main": "Icon/Building",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/lg"
+                  },
+                  "propRefs": {
+                    "visible": "hasIcon#6186:30"
+                  }
+                }
+              },
+              {
+                "path": "/TextStack/Container/Title",
+                "parent": "/TextStack/Container",
+                "layer": {
+                  "name": "Title",
+                  "type": "TEXT",
+                  "text": "Page Title",
+                  "textStyle": "title/md",
+                  "size": [
+                    109,
+                    17
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "page-title#6186:27"
+                  }
+                }
+              },
+              {
+                "path": "/TextStack/Container/Tag",
+                "parent": "/TextStack/Container",
+                "layer": {
+                  "name": "Tag",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Tag",
+                  "variant": {
+                    "status": "success",
+                    "type": "status",
+                    "invert": "false"
+                  },
+                  "size": [
+                    67,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      8
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/success/subtle}"
+                  ],
+                  "strokes": [
+                    "{Color:border/feedback/success/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  },
+                  "propRefs": {
+                    "visible": "hasTag#7709:0"
+                  }
+                }
+              },
+              {
+                "path": "/TextStack/Container/Icon/More",
+                "parent": "/TextStack/Container",
+                "layer": {
+                  "name": "Icon/More",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/More",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/tertiary/icon/default}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  },
+                  "propRefs": {
+                    "visible": "hasCTA#6940:0"
+                  }
+                }
+              },
+              {
+                "path": "/TextStack/Description",
+                "parent": "/TextStack",
+                "layer": {
+                  "name": "Description",
+                  "type": "TEXT",
+                  "text": "Supporting description text that explains the page context.",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    345,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  },
+                  "propRefs": {
+                    "visible": "hasDescription#6186:28"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container",
@@ -688,18 +937,439 @@
               }
             },
             "added": [
-              "/Container/Container",
-              "/Container/Container/TextStack",
-              "/Container/Container/TextStack/Breadcrumbs",
-              "/Container/Container/TextStack/Container",
-              "/Container/Container/TextStack/Container/Icon/Building",
-              "/Container/Container/TextStack/Container/Title",
-              "/Container/Container/TextStack/Container/Tag",
-              "/Container/Container/TextStack/Description",
-              "/Container/Container/CTA",
-              "/Container/Container/CTA/Button",
-              "/Container/Container/CTA/Button#2",
-              "/Container/Tabs"
+              {
+                "path": "/Container/Container",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    640,
+                    126
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/TextStack",
+                "parent": "/Container/Container",
+                "layer": {
+                  "name": "TextStack",
+                  "type": "FRAME",
+                  "size": [
+                    640,
+                    126
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      24,
+                      0,
+                      24,
+                      0
+                    ],
+                    "align": "CENTER/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/xl",
+                    "paddingBottom": "Spatial:inset/xl"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/TextStack/Breadcrumbs",
+                "parent": "/Container/Container/TextStack",
+                "layer": {
+                  "name": "Breadcrumbs",
+                  "type": "INSTANCE",
+                  "main": "Breadcrumbs",
+                  "variant": {
+                    "items": "multiple"
+                  },
+                  "size": [
+                    156,
+                    12
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm"
+                  },
+                  "propRefs": {
+                    "visible": "hasBreadcrumbs#6186:29"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/TextStack/Container",
+                "parent": "/Container/Container/TextStack",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    640,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/TextStack/Container/Icon/Building",
+                "parent": "/Container/Container/TextStack/Container",
+                "layer": {
+                  "name": "Icon/Building",
+                  "type": "INSTANCE",
+                  "main": "Icon/Building",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/lg"
+                  },
+                  "propRefs": {
+                    "visible": "hasIcon#6186:30"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/TextStack/Container/Title",
+                "parent": "/Container/Container/TextStack/Container",
+                "layer": {
+                  "name": "Title",
+                  "type": "TEXT",
+                  "text": "Page Title",
+                  "textStyle": "title/md",
+                  "size": [
+                    145,
+                    23
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "page-title#6186:27"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/TextStack/Container/Tag",
+                "parent": "/Container/Container/TextStack/Container",
+                "layer": {
+                  "name": "Tag",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Tag",
+                  "variant": {
+                    "status": "success",
+                    "type": "status",
+                    "invert": "false"
+                  },
+                  "size": [
+                    67,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      8
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/success/subtle}"
+                  ],
+                  "strokes": [
+                    "{Color:border/feedback/success/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  },
+                  "propRefs": {
+                    "visible": "hasTag#7709:0"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/TextStack/Description",
+                "parent": "/Container/Container/TextStack",
+                "layer": {
+                  "name": "Description",
+                  "type": "TEXT",
+                  "text": "Supporting description text that explains the page context.",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    640,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  },
+                  "propRefs": {
+                    "visible": "hasDescription#6186:28"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/CTA",
+                "parent": "/Container/Container",
+                "layer": {
+                  "name": "CTA",
+                  "type": "FRAME",
+                  "hidden": true,
+                  "size": [
+                    182,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  },
+                  "propRefs": {
+                    "visible": "hasCTA#6940:0"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/CTA/Button",
+                "parent": "/Container/Container/CTA",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "md",
+                    "prio": "secondary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    80,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/secondary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/secondary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  },
+                  "propRefs": {
+                    "visible": "hasSecondaryCTA#6940:4"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Container/CTA/Button#2",
+                "parent": "/Container/Container/CTA",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "md",
+                    "prio": "primary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    80,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/primary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/primary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  },
+                  "propRefs": {
+                    "visible": "hasPrimaryCTA#6940:8"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Tabs",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Tabs",
+                  "type": "INSTANCE",
+                  "main": "Tabs",
+                  "variant": {
+                    "size": "md"
+                  },
+                  "size": [
+                    640,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/HUG"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/none",
+                    "strokeBottomWeight": "Spatial:border/default"
+                  },
+                  "propRefs": {
+                    "visible": "hasTabs#6592:49"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container/TextStack",

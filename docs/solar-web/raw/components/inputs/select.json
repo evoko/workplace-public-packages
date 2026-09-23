@@ -228,6 +228,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -339,11 +342,198 @@
               }
             },
             "added": [
-              "/Dropdown Menu",
-              "/Dropdown Menu/Dropdown Item",
-              "/Dropdown Menu/Dropdown Item#2",
-              "/Dropdown Menu/Dropdown Item#3",
-              "/Dropdown Menu/Dropdown Item#4"
+              {
+                "path": "/Dropdown Menu",
+                "parent": "/",
+                "layer": {
+                  "name": "Dropdown Menu",
+                  "type": "FRAME",
+                  "size": [
+                    240,
+                    136
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/base}"
+                  ],
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/overlay",
+                  "vars": {
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    240,
+                    34
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item#2",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "md",
+                    "state": "hover"
+                  },
+                  "size": [
+                    240,
+                    34
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/hover}"
+                  ],
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item#3",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    240,
+                    34
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item#4",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "md",
+                    "state": "disabled"
+                  },
+                  "size": [
+                    240,
+                    34
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Helper text"
@@ -385,6 +575,11 @@
               "/Field/Placeholder": {
                 "fills": [
                   "{Color:text/disabled}"
+                ]
+              },
+              "/Field/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               },
               "/Helper text": {
@@ -693,11 +888,198 @@
               }
             },
             "added": [
-              "/Dropdown Menu",
-              "/Dropdown Menu/Dropdown Item",
-              "/Dropdown Menu/Dropdown Item#2",
-              "/Dropdown Menu/Dropdown Item#3",
-              "/Dropdown Menu/Dropdown Item#4"
+              {
+                "path": "/Dropdown Menu",
+                "parent": "/",
+                "layer": {
+                  "name": "Dropdown Menu",
+                  "type": "FRAME",
+                  "size": [
+                    200,
+                    128
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/base}"
+                  ],
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/overlay",
+                  "vars": {
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "sm",
+                    "state": "default"
+                  },
+                  "size": [
+                    200,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      8,
+                      12,
+                      8,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item#2",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "sm",
+                    "state": "hover"
+                  },
+                  "size": [
+                    200,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      8,
+                      12,
+                      8,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/hover}"
+                  ],
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item#3",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "sm",
+                    "state": "default"
+                  },
+                  "size": [
+                    200,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      8,
+                      12,
+                      8,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Dropdown Menu/Dropdown Item#4",
+                "parent": "/Dropdown Menu",
+                "layer": {
+                  "name": "Dropdown Item",
+                  "type": "INSTANCE",
+                  "main": "Dropdown Item",
+                  "variant": {
+                    "size": "sm",
+                    "state": "default"
+                  },
+                  "size": [
+                    200,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      8,
+                      12,
+                      8,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Helper text"
@@ -792,7 +1174,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Helper text": {
                 "textStyle": "helper/sm",

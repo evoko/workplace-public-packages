@@ -208,6 +208,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/tertiary}"
+                ],
                 "size": [
                   16,
                   16
@@ -248,6 +251,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/tertiary}"
+                ],
                 "size": [
                   16,
                   16
@@ -552,9 +558,19 @@
                 ],
                 "effectStyle": "shadow/focus/default"
               },
+              "/Field/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Field/Search...": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/Field/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               }
             }
@@ -629,7 +645,10 @@
               "/Field/Icon/None": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Field/Search...": {
                 "textStyle": "body/sm/regular",
@@ -648,7 +667,10 @@
               "/Field/Icon/None#2": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Helper text": {
                 "textStyle": "helper/sm",
@@ -680,9 +702,19 @@
           ],
           "overrides": {
             "changed": {
+              "/Field/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Field/Search...": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/Field/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               }
             }
@@ -753,7 +785,10 @@
               "/Field/Icon/None": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Field/Search...": {
                 "textStyle": "body/sm/regular",
@@ -772,7 +807,10 @@
               "/Field/Icon/None#2": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Helper text": {
                 "textStyle": "helper/sm",
@@ -820,9 +858,19 @@
                   "{Color:border/disabled}"
                 ]
               },
+              "/Field/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Field/Search...": {
                 "fills": [
                   "{Color:text/disabled}"
+                ]
+              },
+              "/Field/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               },
               "/Helper text": {
@@ -908,7 +956,10 @@
               "/Field/Icon/None": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Field/Search...": {
                 "textStyle": "body/sm/regular",
@@ -927,7 +978,10 @@
               "/Field/Icon/None#2": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Helper text": {
                 "textStyle": "helper/sm",
@@ -977,9 +1031,19 @@
                 ],
                 "effectStyle": "shadow/danger"
               },
+              "/Field/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
               "/Field/Search...": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/Field/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
                 ]
               },
               "/Helper text": {
@@ -1064,7 +1128,10 @@
               "/Field/Icon/None": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
               },
               "/Field/Search...": {
                 "textStyle": "body/sm/regular",
@@ -1083,7 +1150,10 @@
               "/Field/Icon/None#2": {
                 "vars": {
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
               },
               "/Helper text": {
                 "textStyle": "helper/sm",

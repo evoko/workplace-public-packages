@@ -90,6 +90,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               20,
               20
@@ -177,6 +180,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               16,
               16
@@ -470,6 +476,11 @@
           ],
           "overrides": {
             "changed": {
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Body/Label": {
                 "fills": [
                   "{Color:text/disabled}"
@@ -513,6 +524,11 @@
                   "paddingRight": "Spatial:stack/none",
                   "paddingBottom": "Spatial:inset/sm"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Body": {
                 "size": [
@@ -576,7 +592,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -629,7 +688,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -685,7 +787,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -744,7 +889,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -796,7 +984,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -851,7 +1082,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -907,7 +1181,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -966,7 +1283,50 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -1023,7 +1383,51 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "opacity": 0.20000000298023224,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -1083,7 +1487,51 @@
               }
             },
             "added": [
-              "/Leading"
+              {
+                "path": "/Leading",
+                "parent": "/",
+                "layer": {
+                  "name": "Leading",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "logo",
+                    "color": "neutral",
+                    "Shade": "Logo"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "IMAGE"
+                  ],
+                  "radius": 8,
+                  "opacity": 0.20000000298023224,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "visible": "hasAvatar#7739:40"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"

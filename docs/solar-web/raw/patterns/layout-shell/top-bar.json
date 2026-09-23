@@ -420,6 +420,9 @@
                     "variant": {
                       "solid": "false"
                     },
+                    "iconFills": [
+                      "{Color:icon/primary}"
+                    ],
                     "size": [
                       20,
                       20
@@ -494,6 +497,9 @@
                     "variant": {
                       "solid": "false"
                     },
+                    "iconFills": [
+                      "{Color:icon/primary}"
+                    ],
                     "size": [
                       20,
                       20
@@ -510,6 +516,9 @@
                     "variant": {
                       "solid": "false"
                     },
+                    "iconFills": [
+                      "{Color:icon/primary}"
+                    ],
                     "size": [
                       16,
                       16
@@ -637,7 +646,59 @@
               }
             },
             "added": [
-              "/Right Zone/Button"
+              {
+                "path": "/Right Zone/Button",
+                "parent": "/Right Zone",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "md",
+                    "prio": "primary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    80,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/primary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/primary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Right Zone/Container/Nav Item#3",
@@ -788,7 +849,59 @@
               }
             },
             "added": [
-              "/Right Zone/Button"
+              {
+                "path": "/Right Zone/Button",
+                "parent": "/Right Zone",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "md",
+                    "prio": "primary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    80,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/primary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/primary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Right Zone/Container/Nav Item#3",
@@ -850,8 +963,105 @@
               }
             },
             "added": [
-              "/Icon Button",
-              "/Avatar"
+              {
+                "path": "/Icon Button",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon Button",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "md",
+                    "shape": "square",
+                    "prio": "secondary",
+                    "state": "default"
+                  },
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/background}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Avatar",
+                "parent": "/",
+                "layer": {
+                  "name": "Avatar",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "text",
+                    "color": "purple",
+                    "Shade": "Light"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Primitives:color/purple/50}"
+                  ],
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/GlobalSearch",
@@ -941,7 +1151,55 @@
               }
             },
             "added": [
-              "/Avatar"
+              {
+                "path": "/Avatar",
+                "parent": "/",
+                "layer": {
+                  "name": "Avatar",
+                  "type": "INSTANCE",
+                  "main": "Avatar",
+                  "variant": {
+                    "size": "md",
+                    "type": "text",
+                    "color": "purple",
+                    "Shade": "Light"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Primitives:color/purple/50}"
+                  ],
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/GlobalSearch",
@@ -1142,9 +1400,81 @@
               }
             },
             "added": [
-              "/Label",
-              "/Divider",
-              "/Icon/More"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Biamp Designer",
+                  "textStyle": "display/xs/semibold",
+                  "size": [
+                    130,
+                    11
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Primitives:type/line-height/20",
+                    "fontFamily": "Primitives:type/font-family/montserrat",
+                    "fontSize": "Type:size/display/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Divider",
+                "parent": "/",
+                "layer": {
+                  "name": "Divider",
+                  "type": "INSTANCE",
+                  "main": "Divider",
+                  "variant": {
+                    "orientation": "vertical",
+                    "type": "full"
+                  },
+                  "size": [
+                    1,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  }
+                }
+              },
+              {
+                "path": "/Icon/More",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/More",
+                  "type": "INSTANCE",
+                  "main": "Icon/More",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Workplace"

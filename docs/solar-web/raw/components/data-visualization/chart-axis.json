@@ -427,9 +427,78 @@
               }
             },
             "added": [
-              "/Ticks/Tick#2/33",
-              "/Ticks/Tick#3/67",
-              "/Ticks/Tick#4/100"
+              {
+                "path": "/Ticks/Tick#2/33",
+                "parent": "/Ticks/Tick#2",
+                "layer": {
+                  "name": "33",
+                  "type": "TEXT",
+                  "text": "33",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    16,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#3/67",
+                "parent": "/Ticks/Tick#3",
+                "layer": {
+                  "name": "67",
+                  "type": "TEXT",
+                  "text": "67",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    15,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#4/100",
+                "parent": "/Ticks/Tick#4",
+                "layer": {
+                  "name": "100",
+                  "type": "TEXT",
+                  "text": "100",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    21,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Ticks/Tick#2/25",
@@ -558,10 +627,102 @@
               }
             },
             "added": [
-              "/Ticks/Tick/100",
-              "/Ticks/Tick#2/75",
-              "/Ticks/Tick#4/25",
-              "/Ticks/Tick#5/0"
+              {
+                "path": "/Ticks/Tick/100",
+                "parent": "/Ticks/Tick",
+                "layer": {
+                  "name": "100",
+                  "type": "TEXT",
+                  "text": "100",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    21,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#2/75",
+                "parent": "/Ticks/Tick#2",
+                "layer": {
+                  "name": "75",
+                  "type": "TEXT",
+                  "text": "75",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    14,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#4/25",
+                "parent": "/Ticks/Tick#4",
+                "layer": {
+                  "name": "25",
+                  "type": "TEXT",
+                  "text": "25",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    15,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#5/0",
+                "parent": "/Ticks/Tick#5",
+                "layer": {
+                  "name": "0",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    8,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Ticks/Tick/0",
@@ -672,10 +833,102 @@
               }
             },
             "added": [
-              "/Ticks/Tick/100",
-              "/Ticks/Tick#2/67",
-              "/Ticks/Tick#3/33",
-              "/Ticks/Tick#4/0"
+              {
+                "path": "/Ticks/Tick/100",
+                "parent": "/Ticks/Tick",
+                "layer": {
+                  "name": "100",
+                  "type": "TEXT",
+                  "text": "100",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    21,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#2/67",
+                "parent": "/Ticks/Tick#2",
+                "layer": {
+                  "name": "67",
+                  "type": "TEXT",
+                  "text": "67",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    15,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#3/33",
+                "parent": "/Ticks/Tick#3",
+                "layer": {
+                  "name": "33",
+                  "type": "TEXT",
+                  "text": "33",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    16,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Ticks/Tick#4/0",
+                "parent": "/Ticks/Tick#4",
+                "layer": {
+                  "name": "0",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    8,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Ticks/Tick/0",

@@ -112,6 +112,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -352,8 +355,49 @@
               }
             },
             "added": [
-              "/Icon/Icon/Progress",
-              "/Content/Skeleton"
+              {
+                "path": "/Icon/Icon/Progress",
+                "parent": "/Icon",
+                "layer": {
+                  "name": "Icon/Progress",
+                  "type": "INSTANCE",
+                  "main": "Icon/Progress",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "path": "/Content/Skeleton",
+                "parent": "/Content",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "size": [
+                    334,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/Icon/Device",
@@ -413,15 +457,284 @@
               }
             },
             "added": [
-              "/Headline",
-              "/Headline/Icon",
-              "/Headline/Icon/Icon/Device",
-              "/Headline/Content",
-              "/Headline/Content/Name",
-              "/Headline/Content/Count",
-              "/Headline/Tag",
-              "/Serial & Location",
-              "/Serial & Location/Dropdown"
+              {
+                "path": "/Headline",
+                "parent": "/",
+                "layer": {
+                  "name": "Headline",
+                  "type": "FRAME",
+                  "size": [
+                    560,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 16,
+                    "pad": [
+                      8,
+                      8,
+                      8,
+                      8
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/md",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingTop": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "paddingBottom": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Icon",
+                "parent": "/Headline",
+                "layer": {
+                  "name": "Icon",
+                  "type": "FRAME",
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/background}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Icon/Icon/Device",
+                "parent": "/Headline/Icon",
+                "layer": {
+                  "name": "Icon/Device",
+                  "type": "INSTANCE",
+                  "main": "Icon/Device",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "path": "/Headline/Content",
+                "parent": "/Headline",
+                "layer": {
+                  "name": "Content",
+                  "type": "FRAME",
+                  "size": [
+                    349,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Content/Name",
+                "parent": "/Headline/Content",
+                "layer": {
+                  "name": "Name",
+                  "type": "TEXT",
+                  "text": "Cambridge Qt X",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    103,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Content/Count",
+                "parent": "/Headline/Content",
+                "layer": {
+                  "name": "Count",
+                  "type": "TEXT",
+                  "text": "3 devices",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    62,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Tag",
+                "parent": "/Headline",
+                "layer": {
+                  "name": "Tag",
+                  "type": "INSTANCE",
+                  "main": "Tag",
+                  "variant": {
+                    "status": "success",
+                    "type": "text-only",
+                    "invert": "false"
+                  },
+                  "size": [
+                    123,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/success/subtle}"
+                  ],
+                  "strokes": [
+                    "{Color:border/feedback/success/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Serial & Location",
+                "parent": "/",
+                "layer": {
+                  "name": "Serial & Location",
+                  "type": "FRAME",
+                  "size": [
+                    560,
+                    64
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/background}"
+                  ],
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Serial & Location/Dropdown",
+                "parent": "/Serial & Location",
+                "layer": {
+                  "name": "Dropdown",
+                  "type": "INSTANCE",
+                  "main": "Dropdown",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    536,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon",
@@ -478,14 +791,216 @@
               }
             },
             "added": [
-              "/Headline",
-              "/Headline/Icon",
-              "/Headline/Icon/Icon/Progress",
-              "/Headline/Content",
-              "/Headline/Content/Row",
-              "/Headline/Content/Row/Name",
-              "/Headline/Content/Row/Count",
-              "/Headline/Content/Skeleton"
+              {
+                "path": "/Headline",
+                "parent": "/",
+                "layer": {
+                  "name": "Headline",
+                  "type": "FRAME",
+                  "size": [
+                    560,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 16,
+                    "pad": [
+                      8,
+                      8,
+                      8,
+                      8
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/md",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingTop": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "paddingBottom": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Icon",
+                "parent": "/Headline",
+                "layer": {
+                  "name": "Icon",
+                  "type": "FRAME",
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/background}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Icon/Icon/Progress",
+                "parent": "/Headline/Icon",
+                "layer": {
+                  "name": "Icon/Progress",
+                  "type": "INSTANCE",
+                  "main": "Icon/Progress",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "path": "/Headline/Content",
+                "parent": "/Headline",
+                "layer": {
+                  "name": "Content",
+                  "type": "FRAME",
+                  "size": [
+                    488,
+                    28
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Content/Row",
+                "parent": "/Headline/Content",
+                "layer": {
+                  "name": "Row",
+                  "type": "FRAME",
+                  "size": [
+                    488,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Content/Row/Name",
+                "parent": "/Headline/Content/Row",
+                "layer": {
+                  "name": "Name",
+                  "type": "TEXT",
+                  "text": "Cambridge Qt X",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    103,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Content/Row/Count",
+                "parent": "/Headline/Content/Row",
+                "layer": {
+                  "name": "Count",
+                  "type": "TEXT",
+                  "text": "3 devices",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    62,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Headline/Content/Skeleton",
+                "parent": "/Headline/Content",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "size": [
+                    334,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon",

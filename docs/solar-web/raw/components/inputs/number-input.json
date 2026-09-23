@@ -196,6 +196,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -237,6 +240,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -404,7 +410,31 @@
               }
             },
             "added": [
-              "/Field/LeadingIcon"
+              {
+                "path": "/Field/LeadingIcon",
+                "parent": "/Field",
+                "layer": {
+                  "name": "LeadingIcon",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs",
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ]
           }
         },
@@ -453,13 +483,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    44,
+                    40
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    28,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -546,13 +734,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    32
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -707,7 +1053,31 @@
               }
             },
             "added": [
-              "/Field/LeadingIcon"
+              {
+                "path": "/Field/LeadingIcon",
+                "parent": "/Field",
+                "layer": {
+                  "name": "LeadingIcon",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs",
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ]
           }
         },
@@ -764,13 +1134,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    44,
+                    40
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    28,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -865,13 +1393,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    32
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -1017,7 +1703,31 @@
               }
             },
             "added": [
-              "/Field/LeadingIcon"
+              {
+                "path": "/Field/LeadingIcon",
+                "parent": "/Field",
+                "layer": {
+                  "name": "LeadingIcon",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs",
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1069,13 +1779,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    44,
+                    40
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    28,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -1165,13 +2033,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    32
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -1215,9 +2241,19 @@
                   "{Color:border/disabled}"
                 ]
               },
+              "/Field/Decrement": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Field/0": {
                 "fills": [
                   "{Color:text/disabled}"
+                ]
+              },
+              "/Field/Increment": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               },
               "/Helper text": {
@@ -1227,7 +2263,30 @@
               }
             },
             "added": [
-              "/Field/LeadingIcon"
+              {
+                "path": "/Field/LeadingIcon",
+                "parent": "/Field",
+                "layer": {
+                  "name": "LeadingIcon",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/disabled}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1315,7 +2374,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Field/0": {
                 "textStyle": "body/sm/medium",
@@ -1338,7 +2400,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Helper text": {
                 "textStyle": "helper/sm",
@@ -1356,7 +2421,31 @@
               }
             },
             "added": [
-              "/Field/LeadingIcon"
+              {
+                "path": "/Field/LeadingIcon",
+                "parent": "/Field",
+                "layer": {
+                  "name": "LeadingIcon",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/disabled}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs",
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1422,13 +2511,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    44,
+                    40
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/disabled}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/disabled}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/disabled}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    28,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/disabled}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/disabled}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -1528,13 +2775,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    32
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/disabled}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/disabled}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/disabled}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/disabled}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/disabled}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -1598,7 +3003,30 @@
               }
             },
             "added": [
-              "/Field/LeadingIcon"
+              {
+                "path": "/Field/LeadingIcon",
+                "parent": "/Field",
+                "layer": {
+                  "name": "LeadingIcon",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1723,7 +3151,31 @@
               }
             },
             "added": [
-              "/Field/LeadingIcon"
+              {
+                "path": "/Field/LeadingIcon",
+                "parent": "/Field",
+                "layer": {
+                  "name": "LeadingIcon",
+                  "type": "INSTANCE",
+                  "hidden": true,
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs",
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1788,13 +3240,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    44,
+                    40
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    28,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    28,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",
@@ -1893,13 +3503,171 @@
               }
             },
             "added": [
-              "/Field/Value",
-              "/Field/Stepper",
-              "/Field/Stepper/Increment",
-              "/Field/Stepper/Increment/ChevronUp",
-              "/Field/Stepper/Divider",
-              "/Field/Stepper/Decrement",
-              "/Field/Stepper/Decrement/ChevronDown"
+              {
+                "path": "/Field/Value",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Value",
+                  "type": "TEXT",
+                  "text": "0",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    32
+                  ],
+                  "sizing": "FILL/FILL",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeLeftWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Increment",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Increment/ChevronUp",
+                "parent": "/Field/Stepper/Increment",
+                "layer": {
+                  "name": "ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Divider",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Divider",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement",
+                "parent": "/Field/Stepper",
+                "layer": {
+                  "name": "Decrement",
+                  "type": "FRAME",
+                  "size": [
+                    24,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Stepper/Decrement/ChevronDown",
+                "parent": "/Field/Stepper/Decrement",
+                "layer": {
+                  "name": "ChevronDown",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronDown",
+                  "variant": {
+                    "solid": "true"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Decrement",

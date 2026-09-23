@@ -395,10 +395,104 @@
               }
             },
             "added": [
-              "/Center Stack/Join an organization by entering its ID. The organization can then accept your request.",
-              "/Center Stack/Container#2",
-              "/Center Stack/Container#2/Icon/HelpCircle",
-              "/Center Stack/Container#2/We'll find the right Sign-in method for you."
+              {
+                "path": "/Center Stack/Join an organization by entering its ID. The organization can then accept your request.",
+                "parent": "/Center Stack",
+                "layer": {
+                  "name": "Join an organization by entering its ID. The organization can then accept your request.",
+                  "type": "TEXT",
+                  "text": "Join an organization by entering its ID. The organization can then accept your r",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    361,
+                    30
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Center Stack/Container#2",
+                "parent": "/Center Stack",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    254,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Center Stack/Container#2/Icon/HelpCircle",
+                "parent": "/Center Stack/Container#2",
+                "layer": {
+                  "name": "Icon/HelpCircle",
+                  "type": "INSTANCE",
+                  "main": "Icon/HelpCircle",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/tertiary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Center Stack/Container#2/We'll find the right Sign-in method for you.",
+                "parent": "/Center Stack/Container#2",
+                "layer": {
+                  "name": "We'll find the right Sign-in method for you.",
+                  "type": "TEXT",
+                  "text": "We'll find the right Sign-in method for you.",
+                  "textStyle": "body/sm/regular",
+                  "size": [
+                    230,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Center Stack/Ask to join an organization by entering the organization ID. Once sent, the organization will be able to accept your request."

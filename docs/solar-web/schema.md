@@ -61,7 +61,14 @@ values are in [../solar/tokens/css-contract.json](../solar/tokens/css-contract.j
     "/Label": { "fills": ["{Color:action/primary/text/hover}"] },
     "/Counter": { "variant": { "type": "inverted", "state": "hover" } },
   },
-  "added": ["/Spinner"], // layers that exist only in this variant
+  "added": [
+    // layers that exist only in this variant, with their own properties and their parent's path
+    {
+      "path": "/Spinner",
+      "parent": "/",
+      "layer": { "name": "Spinner", "type": "INSTANCE" },
+    },
+  ],
   "removed": ["/Icon/None#2"], // layers of the default variant that this variant lacks
 }
 ```
@@ -73,6 +80,23 @@ marks the second sibling of the same name). Values hold only the fields that dif
 `layout` only the changed sub-keys appear; `null` means the default had it and the variant
 does not. This is the input for generating per-variant styles: start from the default tree,
 apply `changed`, add and remove the listed layers.
+
+An added layer carries its properties in the same shape as a tree layer, without `children`
+(each child is an added path of its own), and its parent's path, because a path cannot be split
+to find it: layer names contain `/` themselves. Raw data fetched before 2026-09-23 has the path
+alone, which codegen refuses.
+
+An `INSTANCE` of an icon (`main` starting `Icon/`) records `iconFills`: the distinct fills of the
+vectors inside it, which the tree does not descend into. It is diffed like any other property,
+so a variant whose icon changes colour says so under `changed`. An icon with no painted vector
+(`Icon/Empty`, a placeholder) has none. The variant digest's `iconFills` is different: it also
+lists the icons inside composed children (Button Group's Buttons), which belong to those
+children, so it says which colours a variant shows, not which layer shows them.
+
+A colour bound to a variable carries no opacity suffix. For a bound paint REST reports the
+variable's own alpha as the paint's opacity, and the token already holds it: in all 1742 bound
+paints with an opacity, measured 2026-09-23, it equalled the token's alpha. Only an unbound
+colour's `a=` is its own.
 
 ### `Layout`
 

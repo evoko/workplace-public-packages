@@ -87,6 +87,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/secondary}"
+            ],
             "size": [
               16,
               16
@@ -123,6 +126,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/secondary}"
+            ],
             "size": [
               16,
               16
@@ -221,7 +227,16 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/Filter": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=hover, size=sm",
@@ -283,7 +298,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -309,9 +327,19 @@
           ],
           "overrides": {
             "changed": {
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Search": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/Icon/Filter": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               }
             }
@@ -353,7 +381,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search": {
                 "textStyle": "body/sm/regular",
@@ -376,7 +407,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -408,9 +442,19 @@
                 ],
                 "effectStyle": "shadow/focus/default"
               },
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Search": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/Icon/Filter": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               }
             }
@@ -456,7 +500,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search": {
                 "textStyle": "body/sm/regular",
@@ -479,7 +526,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -514,9 +564,19 @@
                 ],
                 "effectStyle": "shadow/danger"
               },
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Search": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/Icon/Filter": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               }
             }
@@ -563,7 +623,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search": {
                 "textStyle": "body/sm/regular",
@@ -586,7 +649,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -612,9 +678,19 @@
           ],
           "overrides": {
             "changed": {
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Search": {
                 "fills": [
                   "{Color:text/disabled}"
+                ]
+              },
+              "/Icon/Filter": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               }
             }
@@ -656,7 +732,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Search": {
                 "textStyle": "body/sm/regular",
@@ -679,7 +758,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               }
             }
           }
@@ -765,6 +847,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/tertiary}"
+            ],
             "size": [
               16,
               16
@@ -946,6 +1031,11 @@
                   "{Color:border/medium}"
                 ]
               },
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
               "/Search Workplace": {
                 "fills": [
                   "{Color:text/secondary}"
@@ -996,7 +1086,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
               },
               "/Search Workplace": {
                 "textStyle": "body/sm/regular",
@@ -1039,6 +1132,11 @@
               "/": {
                 "fills": [
                   "{Color:surface/base}"
+                ]
+              },
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               },
               "/Search Workplace": {
@@ -1088,7 +1186,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search Workplace": {
                 "textStyle": "body/sm/regular",
@@ -1137,6 +1238,11 @@
                   "{Color:border/feedback/focus/strong}"
                 ],
                 "effectStyle": "shadow/focus/default"
+              },
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search Workplace": {
                 "fills": [
@@ -1190,7 +1296,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search Workplace": {
                 "textStyle": "body/sm/regular",
@@ -1242,6 +1351,11 @@
                   "{Color:border/feedback/danger/strong}"
                 ],
                 "effectStyle": "shadow/danger"
+              },
+              "/Icon/Search": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search Workplace": {
                 "fills": [
@@ -1296,7 +1410,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Search Workplace": {
                 "textStyle": "body/sm/regular",

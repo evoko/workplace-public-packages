@@ -348,8 +348,82 @@
               }
             },
             "added": [
-              "/Events/Event#2",
-              "/Events/Event#3"
+              {
+                "path": "/Events/Event#2",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "green",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasEvent02#6713:6"
+                  }
+                }
+              },
+              {
+                "path": "/Events/Event#3",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "yellow",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasMoreEvents#6713:12"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Events/Event Chip",
@@ -391,8 +465,82 @@
               }
             },
             "added": [
-              "/Events/Event#2",
-              "/Events/Event#3"
+              {
+                "path": "/Events/Event#2",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "green",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasEvent02#6713:6"
+                  }
+                }
+              },
+              {
+                "path": "/Events/Event#3",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "yellow",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasMoreEvents#6713:12"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Events/Event Chip",
@@ -434,8 +582,82 @@
               }
             },
             "added": [
-              "/Events/Event#2",
-              "/Events/Event#3"
+              {
+                "path": "/Events/Event#2",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "green",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasEvent02#6713:6"
+                  }
+                }
+              },
+              {
+                "path": "/Events/Event#3",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "yellow",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasMoreEvents#6713:12"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Events/Event Chip",
@@ -486,8 +708,82 @@
               }
             },
             "added": [
-              "/Events/Event#2",
-              "/Events/Event#3"
+              {
+                "path": "/Events/Event#2",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "green",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasEvent02#6713:6"
+                  }
+                }
+              },
+              {
+                "path": "/Events/Event#3",
+                "parent": "/Events",
+                "layer": {
+                  "name": "Event",
+                  "type": "INSTANCE",
+                  "main": "Event Chip",
+                  "variant": {
+                    "category": "yellow",
+                    "style": "subtle"
+                  },
+                  "size": [
+                    144,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/none",
+                    "topRightRadius": "Spatial:radius/none",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "visible": "hasMoreEvents#6713:12"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Events/Event Chip",

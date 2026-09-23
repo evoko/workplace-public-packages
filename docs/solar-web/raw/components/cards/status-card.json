@@ -126,6 +126,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -613,6 +616,11 @@
               "/Title": {
                 "opacity": 0.20000000298023224
               },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Trend": {
                 "opacity": 0.20000000298023224
               }
@@ -647,6 +655,11 @@
                   "align": "MIN/CENTER"
                 },
                 "opacity": 0.20000000298023224
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Trend": {
                 "opacity": 0.20000000298023224
@@ -703,6 +716,11 @@
               "/Title": {
                 "opacity": 0.20000000298023224
               },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Trend": {
                 "opacity": 0.20000000298023224
               },
@@ -757,6 +775,11 @@
               "/Title": {
                 "opacity": 0.20000000298023224
               },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Trend": {
                 "opacity": 0.20000000298023224
               },
@@ -801,8 +824,52 @@
           "effect": "shadow/raised",
           "overrides": {
             "added": [
-              "/Skeleton",
-              "/Skeleton#2"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    62,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",
@@ -829,8 +896,52 @@
           "effect": "shadow/raised",
           "overrides": {
             "added": [
-              "/Skeleton",
-              "/Skeleton#2"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    62,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",
@@ -857,8 +968,52 @@
           "effect": "shadow/raised",
           "overrides": {
             "added": [
-              "/Skeleton",
-              "/Skeleton#2"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    62,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",
@@ -885,8 +1040,52 @@
           "effect": "shadow/raised",
           "overrides": {
             "added": [
-              "/Skeleton",
-              "/Skeleton#2"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    62,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",

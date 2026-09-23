@@ -89,6 +89,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               24,
               24
@@ -372,7 +375,42 @@
               }
             },
             "added": [
-              "/Trailing/Toggle"
+              {
+                "path": "/Trailing/Toggle",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Toggle",
+                  "type": "INSTANCE",
+                  "main": "Toggle",
+                  "variant": {
+                    "selected": "false",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    18
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -435,7 +473,42 @@
               }
             },
             "added": [
-              "/Trailing/Toggle"
+              {
+                "path": "/Trailing/Toggle",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Toggle",
+                  "type": "INSTANCE",
+                  "main": "Toggle",
+                  "variant": {
+                    "selected": "false",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    18
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -488,7 +561,38 @@
               }
             },
             "added": [
-              "/Trailing/Select"
+              {
+                "path": "/Trailing/Select",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Select",
+                  "type": "INSTANCE",
+                  "main": "Select",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    160,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -555,7 +659,38 @@
               }
             },
             "added": [
-              "/Trailing/Select"
+              {
+                "path": "/Trailing/Select",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Select",
+                  "type": "INSTANCE",
+                  "main": "Select",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    160,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -605,7 +740,56 @@
               }
             },
             "added": [
-              "/Trailing/Icon Button"
+              {
+                "path": "/Trailing/Icon Button",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Icon Button",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "md",
+                    "shape": "square",
+                    "prio": "secondary",
+                    "state": "default"
+                  },
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/secondary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -669,7 +853,56 @@
               }
             },
             "added": [
-              "/Trailing/Icon Button"
+              {
+                "path": "/Trailing/Icon Button",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Icon Button",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "md",
+                    "shape": "square",
+                    "prio": "secondary",
+                    "state": "default"
+                  },
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/secondary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -724,7 +957,37 @@
               }
             },
             "added": [
-              "/Trailing/Segmented Control"
+              {
+                "path": "/Trailing/Segmented Control",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Segmented Control",
+                  "type": "INSTANCE",
+                  "main": "Segmented Control",
+                  "variant": {
+                    "size": "md"
+                  },
+                  "size": [
+                    368,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -793,7 +1056,37 @@
               }
             },
             "added": [
-              "/Trailing/Segmented Control"
+              {
+                "path": "/Trailing/Segmented Control",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Segmented Control",
+                  "type": "INSTANCE",
+                  "main": "Segmented Control",
+                  "variant": {
+                    "size": "md"
+                  },
+                  "size": [
+                    368,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -939,7 +1232,59 @@
               }
             },
             "added": [
-              "/Trailing/Tag"
+              {
+                "path": "/Trailing/Tag",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Tag",
+                  "type": "INSTANCE",
+                  "main": "Tag",
+                  "variant": {
+                    "status": "neutral",
+                    "type": "text-only",
+                    "invert": "false"
+                  },
+                  "size": [
+                    55,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"
@@ -1003,7 +1348,59 @@
               }
             },
             "added": [
-              "/Trailing/Tag"
+              {
+                "path": "/Trailing/Tag",
+                "parent": "/Trailing",
+                "layer": {
+                  "name": "Tag",
+                  "type": "INSTANCE",
+                  "main": "Tag",
+                  "variant": {
+                    "status": "neutral",
+                    "type": "text-only",
+                    "invert": "false"
+                  },
+                  "size": [
+                    55,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Trailing/Button"

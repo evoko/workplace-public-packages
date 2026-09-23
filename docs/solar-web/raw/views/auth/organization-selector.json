@@ -449,8 +449,54 @@
               }
             },
             "added": [
-              "/Center Stack/Get started",
-              "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace."
+              {
+                "path": "/Center Stack/Get started",
+                "parent": "/Center Stack",
+                "layer": {
+                  "name": "Get started",
+                  "type": "TEXT",
+                  "text": "Get started",
+                  "textStyle": "title/sm",
+                  "size": [
+                    103,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/inverse}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace.",
+                "parent": "/Center Stack",
+                "layer": {
+                  "name": "To get started, join an organization, create one, or explore your personal Workplace.",
+                  "type": "TEXT",
+                  "text": "To get started, join an organization, create one, or explore your personal Workp",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    400,
+                    30
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Center Stack/Select organization",
@@ -541,8 +587,54 @@
               }
             },
             "added": [
-              "/Center Stack/Get started",
-              "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace."
+              {
+                "path": "/Center Stack/Get started",
+                "parent": "/Center Stack",
+                "layer": {
+                  "name": "Get started",
+                  "type": "TEXT",
+                  "text": "Get started",
+                  "textStyle": "title/sm",
+                  "size": [
+                    93,
+                    13
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/inverse}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace.",
+                "parent": "/Center Stack",
+                "layer": {
+                  "name": "To get started, join an organization, create one, or explore your personal Workplace.",
+                  "type": "TEXT",
+                  "text": "To get started, join an organization, create one, or explore your personal Workp",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    361,
+                    30
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Center Stack/Select organization",

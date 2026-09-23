@@ -292,6 +292,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/secondary}"
+            ],
             "size": [
               20,
               20

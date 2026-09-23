@@ -95,6 +95,17 @@ describe('renderFlutterComponent on Button', () => {
     }
   });
 
+  it('draws both icons from the leading one, and refuses if the trailing one differs', () => {
+    expect(dart).toContain("'iconLeading.color'");
+    const split = structuredClone(button);
+    split.style.iconTrailing.appearance[
+      'variant=primary, danger=false'
+    ].hover.color = { token: 'color.action.secondary.icon.hover' };
+    expect(() => renderFlutterComponent(split, tokens)).toThrow(
+      /draws iconLeading.color and iconTrailing.color with one property/,
+    );
+  });
+
   it('refuses a primitive colour, which a component must never use', () => {
     const bad = structuredClone(button);
     bad.style.root.base.background = { token: 'color.brand.red' };

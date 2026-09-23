@@ -382,6 +382,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               16,
               16
@@ -475,7 +478,16 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "direction=next, state=default",
@@ -577,7 +589,10 @@
           "overrides": {
             "changed": {
               "/Icon": {
-                "main": "Icon/ChevronRight"
+                "main": "Icon/ChevronRight",
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               }
             }
           }

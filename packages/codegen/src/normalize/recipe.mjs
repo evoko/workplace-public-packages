@@ -201,6 +201,11 @@ function cellsOf(layer, type, names, where) {
       put(`variant.${k}`, k === 'size' ? 'geometry' : 'paint', { keyword: v });
     put('width', 'geometry', extent(layer, 0, names, `${where}.width`));
     put('height', 'geometry', extent(layer, 1, names, `${where}.height`));
+    // An icon's colour, recorded on the icon itself (fetch-rest.mjs). One icon in two colours is a
+    // two-tone mark the recipe does not model, so it is left to the caller to report.
+    const distinct = [...new Set(layer.iconFills ?? [])];
+    if (distinct.length === 1)
+      put('color', 'paint', paint(distinct, names, `${where}.color`));
     return cells;
   }
 
@@ -308,34 +313,22 @@ export function deriveRecipe(
           type: layer.type ?? null,
         };
 
-  // Every variant's cells, once.
-  const unattributed = new Set();
+  // Every variant's cells, once, and per icon layer the variants whose colour cannot be one cell.
+  const unattributed = new Map();
+  const unattribute = (path, variant) =>
+    unattributed.set(path, (unattributed.get(path) ?? new Set()).add(variant));
   const cells = new Map(
     resolved.variants.map((v) => {
       const perLayer = new Map();
-      for (const [path, layer] of v.layers)
-        if (!layer.unresolved) {
-          const layerCells = cellsOf(
-            layer,
-            layers[path].type,
-            names,
-            `${component} ${path}`,
-          );
-          // The icons' colour, from the variant digest (see resolveVariants). The digest lists every
-          // icon's paint without saying which icon it belongs to, so it is a cell only where all
-          // the icons agree. Where they differ the colour cannot be attributed to a layer: no cell,
-          // and one finding for the component, rather than a guess or a failed build.
-          if (path === '/' && v.iconFills) {
-            const distinct = [...new Set(v.iconFills)];
-            if (distinct.length === 1)
-              layerCells.iconColor = {
-                cls: 'paint',
-                value: paint(distinct, names, `${component} /.iconColor`),
-              };
-            else unattributed.add(v.name);
-          }
-          perLayer.set(path, layerCells);
-        }
+      for (const [path, layer] of v.layers) {
+        perLayer.set(
+          path,
+          cellsOf(layer, layers[path].type, names, `${component} ${path}`),
+        );
+        // An icon's colour is read from the icon itself (cellsOf). An icon drawn in more than one
+        // colour is a two-tone mark one cell cannot hold: no cell, and a finding.
+        if (new Set(layer.iconFills ?? []).size > 1) unattribute(path, v.name);
+      }
       return [v.name, perLayer];
     }),
   );
@@ -542,18 +535,19 @@ export function deriveRecipe(
     deviations.push(d);
   }
 
-  if (unattributed.size)
+  for (const [path, variants] of [...unattributed].sort(([a], [b]) =>
+    a.localeCompare(b),
+  ))
     deviations.push({
       kind: 'unattributed',
       component,
-      layer: '/',
-      cell: 'iconColor',
-      variants: [...unattributed].map((variant) => ({ variant })),
-      token: `component.${component.toLowerCase()}.root.iconColor#unattributed`,
-      figmaValue: `icons in ${unattributed.size} variant${unattributed.size === 1 ? '' : 's'} have different colours`,
-      reason: `${component}'s icons do not all share one colour, and the fetcher does not descend into icon instances, so each colour cannot be tied to its icon. The recipe carries no icon colour for ${component}.`,
-      raise:
-        "No SOLAR action: the Web fetcher must record each icon instance's fill before the recipe can carry it.",
+      layer: path,
+      cell: 'color',
+      variants: [...variants].map((variant) => ({ variant })),
+      token: `component.${component.toLowerCase()}.${slug(path)}.color#unattributed`,
+      figmaValue: `the icon is drawn in more than one colour in ${variants.size} variant${variants.size === 1 ? '' : 's'}`,
+      reason: `${path} is drawn in more than one colour, and an icon's colour is one cell, so the recipe carries no colour for it. A SOLAR icon inherits one colour; a two-tone one is a logo, or a mark SOLAR should redraw.`,
+      raise: `Ask SOLAR whether ${path} is meant to be two-tone; if so it is not an icon.`,
     });
 
   // One finding per combination read from a substitute, across every cell that needed it.

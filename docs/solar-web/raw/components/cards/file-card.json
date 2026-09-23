@@ -115,6 +115,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/tertiary}"
+                ],
                 "size": [
                   24,
                   24
@@ -234,6 +237,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -307,9 +313,95 @@
               }
             },
             "added": [
-              "/Frame 1",
-              "/Frame 1/Icon/Plus",
-              "/New design"
+              {
+                "path": "/Frame 1",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame 1",
+                  "type": "FRAME",
+                  "size": [
+                    56,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/background}"
+                  ],
+                  "radius": 9999,
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 1/Icon/Plus",
+                "parent": "/Frame 1",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/tertiary}"
+                  ],
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/lg"
+                  }
+                }
+              },
+              {
+                "path": "/New design",
+                "parent": "/",
+                "layer": {
+                  "name": "New design",
+                  "type": "TEXT",
+                  "text": "New design",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    77,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#8273:112"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Thumbnail",

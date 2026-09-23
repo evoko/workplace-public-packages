@@ -97,15 +97,19 @@ describe('deriveRecipe on Button: the recipe', () => {
     });
   });
 
-  it('reads the icon colour from the variant digest, since icons are instances', () => {
-    expect(root.base.iconColor).toMatchObject({
-      token: 'color.action.primary.icon.default',
-    });
-    expect(appearance('primary').hover.iconColor).toMatchObject({
-      token: 'color.action.primary.icon.hover',
-    });
-    // Loading removes both icons, so there is no icon colour to state there.
-    expect(appearance('primary').loading ?? {}).not.toHaveProperty('iconColor');
+  it('reads each icon’s colour from the icon itself, not from the root', () => {
+    for (const icon of ['/Icon/None', '/Icon/None#2']) {
+      const at = recipe.style[icon];
+      expect(at.base.color).toMatchObject({
+        token: 'color.action.primary.icon.default',
+      });
+      expect(
+        at.appearance['prio=primary, danger=false'].hover.color,
+      ).toMatchObject({
+        token: 'color.action.primary.icon.hover',
+      });
+    }
+    expect(JSON.stringify(recipe.style['/'])).not.toContain('iconColor');
   });
 
   it('gives each size only what differs from the base', () => {
@@ -389,44 +393,50 @@ describe('deriveRecipe on a synthetic orthogonal component', () => {
   });
 });
 
-describe('deriveRecipe: the icon colour, from a digest that does not say which icon', () => {
+describe('deriveRecipe: an icon drawn in more than one colour', () => {
   const withIcons = (fills) => {
-    const set = structuredClone(buttonSet);
-    for (const v of set.variants) if (v.iconFills) v.iconFills = fills;
-    return deriveRecipe(resolveVariants(set), { names });
+    const resolved = resolveVariants(buttonSet);
+    for (const v of resolved.variants)
+      for (const [, layer] of v.layers)
+        if (layer.iconFills) layer.iconFills = fills;
+    return deriveRecipe(resolved, { names });
   };
 
-  it('is a cell when every icon shares one colour, repeated or not', () => {
+  it('is a cell when the icon’s vectors share one colour, repeated or not', () => {
     const r = withIcons([
       '{Color:action/primary/icon/default}',
       '{Color:action/primary/icon/default}',
     ]);
-    expect(r.style['/'].base.iconColor).toMatchObject({
+    expect(r.style['/Icon/None'].base.color).toMatchObject({
       token: 'color.action.primary.icon.default',
     });
     expect(r.deviations.some((d) => d.kind === 'unattributed')).toBe(false);
   });
 
-  it('is no cell and one finding when the icons differ, never a guess or a failed build', () => {
+  it('is no cell and one finding per icon, never a guess or a failed build', () => {
     const r = withIcons([
       '{Color:action/primary/icon/default}',
       '{Color:action/secondary/icon/default}',
     ]);
-    expect(r.style['/'].base).not.toHaveProperty('iconColor');
+    expect(r.style['/Icon/None'].base).not.toHaveProperty('color');
     const found = r.deviations.filter((d) => d.kind === 'unattributed');
-    expect(found).toHaveLength(1);
-    expect(found[0].token).toBe('component.button.root.iconColor#unattributed');
+    expect(found.map((d) => d.token)).toEqual([
+      'component.button.Icon/None#2.color#unattributed',
+      'component.button.Icon/None.color#unattributed',
+    ]);
   });
 });
 
 // A guard on the whole corpus, not only Button: a change that makes the recipe throw on a shape
-// it used to handle shows up here, where Button's own suite would stay green. The three sets that
-// do not derive today throw on shapes milestone 3b will model (per-side bindings, stacked paints).
+// it used to handle shows up here, where Button's own suite would stay green. The four sets that
+// do not derive throw on shapes the recipe does not model yet: a side bound to two variables
+// (Weekday Header, Popover), and a layer with two stacked paints (Insight Card, Dialog's image).
 describe('deriveRecipe over all of SOLAR Web', () => {
-  it('derives every set it derived before, and fails only on the three known shapes', async () => {
+  it('derives every set it derived before, and fails only on the four known shapes', async () => {
     const { readdirSync } = await import('node:fs');
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
+    const unattributed = [];
     let total = 0;
     for (const dir of readdirSync(root))
       for (const file of readdirSync(join(root, dir)))
@@ -435,7 +445,9 @@ describe('deriveRecipe over all of SOLAR Web', () => {
         ).componentSets) {
           total++;
           try {
-            deriveRecipe(resolveVariants(set), { names });
+            const r = deriveRecipe(resolveVariants(set), { names });
+            if (r.deviations.some((d) => d.kind === 'unattributed'))
+              unattributed.push(`${dir}/${set.name}`);
           } catch {
             failures.push(`${dir}/${set.name}`);
           }
@@ -443,8 +455,11 @@ describe('deriveRecipe over all of SOLAR Web', () => {
     expect(failures.sort()).toEqual([
       'calendar/Weekday Header',
       'cards/Insight Card',
+      'dialogs/Dialog',
       'overlays/Popover',
     ]);
+    // Every icon colour in SOLAR Web is one colour on one icon.
+    expect(unattributed).toEqual([]);
     expect(total).toBe(119);
   });
 });

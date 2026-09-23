@@ -89,6 +89,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:action/tertiary/icon/default}"
+            ],
             "size": [
               20,
               20
@@ -232,6 +235,11 @@
                   "{Color:action/tertiary/bg/hover}"
                 ]
               },
+              "/Icon/ArrowLeft": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:action/tertiary/text/hover}"
@@ -287,7 +295,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               },
               "/Label": {
                 "textStyle": "label/sm",
@@ -330,6 +341,11 @@
               "/": {
                 "fills": [
                   "{Color:action/tertiary/bg/active}"
+                ]
+              },
+              "/Icon/ArrowLeft": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
                 ]
               },
               "/Label": {
@@ -387,7 +403,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
               },
               "/Label": {
                 "textStyle": "label/sm",
@@ -430,6 +449,11 @@
               "/": {
                 "fills": [
                   "{Color:action/tertiary/bg/disabled}"
+                ]
+              },
+              "/Icon/ArrowLeft": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
                 ]
               },
               "/Label": {
@@ -487,7 +511,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
+                ]
               },
               "/Label": {
                 "textStyle": "label/sm",
@@ -620,7 +647,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "default"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Label"
@@ -676,7 +731,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "default"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Label"

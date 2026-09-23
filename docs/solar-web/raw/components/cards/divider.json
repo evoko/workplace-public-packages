@@ -131,8 +131,46 @@
               }
             },
             "added": [
-              "/Label",
-              "/Rule#2"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Or",
+                  "textStyle": "label/sm",
+                  "size": [
+                    14,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Rule#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Rule",
+                  "type": "RECTANGLE",
+                  "size": [
+                    141,
+                    1
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              }
             ]
           }
         },

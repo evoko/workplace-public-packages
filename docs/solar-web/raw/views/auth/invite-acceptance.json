@@ -229,6 +229,9 @@
                     "variant": {
                       "solid": "false"
                     },
+                    "iconFills": [
+                      "{Color:icon/tertiary}"
+                    ],
                     "size": [
                       16,
                       16

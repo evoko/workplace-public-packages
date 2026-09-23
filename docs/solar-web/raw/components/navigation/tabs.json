@@ -81,6 +81,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/secondary}"
+            ],
             "size": [
               16,
               16
@@ -123,6 +126,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/secondary}"
+            ],
             "size": [
               16,
               16
@@ -281,9 +287,19 @@
           ],
           "overrides": {
             "changed": {
+              "/LeadingIcon": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/TrailingIcon": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               }
             }
@@ -328,7 +344,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Label": {
                 "textStyle": "body/sm/medium",
@@ -352,7 +371,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -384,9 +406,19 @@
                   "strokeBottomWeight": "Spatial:border/strong"
                 }
               },
+              "/LeadingIcon": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/TrailingIcon": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               },
               "/Counter": {
@@ -451,7 +483,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Label": {
                 "textStyle": "body/sm/medium",
@@ -475,7 +510,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Counter": {
                 "variant": {
@@ -521,9 +559,19 @@
                   "strokeBottomWeight": "Spatial:border/strong"
                 }
               },
+              "/LeadingIcon": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/TrailingIcon": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               },
               "/Counter": {
@@ -590,7 +638,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Label": {
                 "textStyle": "body/sm/medium",
@@ -614,7 +665,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               },
               "/Counter": {
                 "variant": {
@@ -646,9 +700,19 @@
           ],
           "overrides": {
             "changed": {
+              "/LeadingIcon": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:text/disabled}"
+                ]
+              },
+              "/TrailingIcon": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               },
               "/Counter": {
@@ -705,7 +769,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Label": {
                 "textStyle": "body/sm/medium",
@@ -729,7 +796,10 @@
                 "vars": {
                   "height": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Counter": {
                 "variant": {

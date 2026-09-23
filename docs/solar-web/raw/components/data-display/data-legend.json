@@ -231,9 +231,93 @@
           ],
           "overrides": {
             "added": [
-              "/Item#3",
-              "/Item#3/StatusIndicator",
-              "/Item#3/Conversions"
+              {
+                "path": "/Item#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Item",
+                  "type": "FRAME",
+                  "size": [
+                    82,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/StatusIndicator",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "StatusIndicator",
+                  "type": "INSTANCE",
+                  "main": "StatusIndicator",
+                  "variant": {
+                    "type": "danger",
+                    "size": "xs"
+                  },
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/feedback/danger/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/Conversions",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "Conversions",
+                  "type": "TEXT",
+                  "text": "Conversions",
+                  "textStyle": "label/sm",
+                  "size": [
+                    70,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ]
           }
         },
@@ -248,12 +332,180 @@
           ],
           "overrides": {
             "added": [
-              "/Item#3",
-              "/Item#3/StatusIndicator",
-              "/Item#3/Conversions",
-              "/Item#4",
-              "/Item#4/StatusIndicator",
-              "/Item#4/Returns"
+              {
+                "path": "/Item#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Item",
+                  "type": "FRAME",
+                  "size": [
+                    82,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/StatusIndicator",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "StatusIndicator",
+                  "type": "INSTANCE",
+                  "main": "StatusIndicator",
+                  "variant": {
+                    "type": "danger",
+                    "size": "xs"
+                  },
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/feedback/danger/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/Conversions",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "Conversions",
+                  "type": "TEXT",
+                  "text": "Conversions",
+                  "textStyle": "label/sm",
+                  "size": [
+                    70,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Item#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Item",
+                  "type": "FRAME",
+                  "size": [
+                    56,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Item#4/StatusIndicator",
+                "parent": "/Item#4",
+                "layer": {
+                  "name": "StatusIndicator",
+                  "type": "INSTANCE",
+                  "main": "StatusIndicator",
+                  "variant": {
+                    "type": "info",
+                    "size": "xs"
+                  },
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/feedback/info/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Item#4/Returns",
+                "parent": "/Item#4",
+                "layer": {
+                  "name": "Returns",
+                  "type": "TEXT",
+                  "text": "Returns",
+                  "textStyle": "label/sm",
+                  "size": [
+                    44,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ]
           }
         },
@@ -302,9 +554,93 @@
               }
             },
             "added": [
-              "/Item#3",
-              "/Item#3/StatusIndicator",
-              "/Item#3/Conversions"
+              {
+                "path": "/Item#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Item",
+                  "type": "FRAME",
+                  "size": [
+                    82,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/StatusIndicator",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "StatusIndicator",
+                  "type": "INSTANCE",
+                  "main": "StatusIndicator",
+                  "variant": {
+                    "type": "danger",
+                    "size": "xs"
+                  },
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/feedback/danger/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/Conversions",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "Conversions",
+                  "type": "TEXT",
+                  "text": "Conversions",
+                  "textStyle": "label/sm",
+                  "size": [
+                    70,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ]
           }
         },
@@ -330,12 +666,180 @@
               }
             },
             "added": [
-              "/Item#3",
-              "/Item#3/StatusIndicator",
-              "/Item#3/Conversions",
-              "/Item#4",
-              "/Item#4/StatusIndicator",
-              "/Item#4/Returns"
+              {
+                "path": "/Item#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Item",
+                  "type": "FRAME",
+                  "size": [
+                    82,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/StatusIndicator",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "StatusIndicator",
+                  "type": "INSTANCE",
+                  "main": "StatusIndicator",
+                  "variant": {
+                    "type": "danger",
+                    "size": "xs"
+                  },
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/feedback/danger/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Item#3/Conversions",
+                "parent": "/Item#3",
+                "layer": {
+                  "name": "Conversions",
+                  "type": "TEXT",
+                  "text": "Conversions",
+                  "textStyle": "label/sm",
+                  "size": [
+                    70,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Item#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Item",
+                  "type": "FRAME",
+                  "size": [
+                    56,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Item#4/StatusIndicator",
+                "parent": "/Item#4",
+                "layer": {
+                  "name": "StatusIndicator",
+                  "type": "INSTANCE",
+                  "main": "StatusIndicator",
+                  "variant": {
+                    "type": "info",
+                    "size": "xs"
+                  },
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/feedback/info/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Item#4/Returns",
+                "parent": "/Item#4",
+                "layer": {
+                  "name": "Returns",
+                  "type": "TEXT",
+                  "text": "Returns",
+                  "textStyle": "label/sm",
+                  "size": [
+                    44,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ]
           }
         }

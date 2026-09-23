@@ -63,6 +63,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/inverse}"
+            ],
             "size": [
               16,
               16
@@ -103,7 +106,30 @@
           ],
           "overrides": {
             "added": [
-              "/Number"
+              {
+                "path": "/Number",
+                "parent": "/",
+                "layer": {
+                  "name": "Number",
+                  "type": "TEXT",
+                  "text": "1",
+                  "textStyle": "body/sm/semibold",
+                  "size": [
+                    6,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/inverse}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/600"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/Check"
@@ -138,7 +164,30 @@
               }
             },
             "added": [
-              "/Number"
+              {
+                "path": "/Number",
+                "parent": "/",
+                "layer": {
+                  "name": "Number",
+                  "type": "TEXT",
+                  "text": "2",
+                  "textStyle": "body/sm/semibold",
+                  "size": [
+                    8,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/600"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/Check"
@@ -173,7 +222,30 @@
               }
             },
             "added": [
-              "/Icon"
+              {
+                "path": "/Icon",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon",
+                  "type": "TEXT",
+                  "text": "!",
+                  "textStyle": "body/sm/semibold",
+                  "size": [
+                    4,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/600"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/Check"
@@ -330,8 +402,53 @@
               }
             },
             "added": [
-              "/Label",
-              "/Line"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "1. Step",
+                  "textStyle": "label/sm",
+                  "size": [
+                    37,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Line",
+                "parent": "/",
+                "layer": {
+                  "name": "Line",
+                  "type": "RECTANGLE",
+                  "size": [
+                    39,
+                    3
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/inverse}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Stepper Indicator",
@@ -381,8 +498,53 @@
               }
             },
             "added": [
-              "/Label",
-              "/Line"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "1. Step",
+                  "textStyle": "label/sm",
+                  "size": [
+                    37,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Line",
+                "parent": "/",
+                "layer": {
+                  "name": "Line",
+                  "type": "RECTANGLE",
+                  "size": [
+                    39,
+                    3
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/inverse}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Stepper Indicator",
@@ -439,8 +601,53 @@
               }
             },
             "added": [
-              "/Label",
-              "/Line"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "2. Step",
+                  "textStyle": "label/sm",
+                  "size": [
+                    39,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Line",
+                "parent": "/",
+                "layer": {
+                  "name": "Line",
+                  "type": "RECTANGLE",
+                  "size": [
+                    39,
+                    3
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Stepper Indicator",
@@ -502,8 +709,53 @@
               }
             },
             "added": [
-              "/Label",
-              "/Line"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "2. Step",
+                  "textStyle": "label/sm",
+                  "size": [
+                    39,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/feedback/danger}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Line",
+                "parent": "/",
+                "layer": {
+                  "name": "Line",
+                  "type": "RECTANGLE",
+                  "size": [
+                    39,
+                    3
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/feedback/danger/strong}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Stepper Indicator",
@@ -773,11 +1025,168 @@
               }
             },
             "added": [
-              "/Stepper Indicator",
-              "/Frame",
-              "/Stepper Indicator#2",
-              "/Frame#2",
-              "/Stepper Indicator#3"
+              {
+                "path": "/Stepper Indicator",
+                "parent": "/",
+                "layer": {
+                  "name": "Stepper Indicator",
+                  "type": "INSTANCE",
+                  "main": "Stepper Indicator",
+                  "variant": {
+                    "status": "completed"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/inverse}"
+                  ],
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Frame",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    131,
+                    2
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/inverse}"
+                  ]
+                }
+              },
+              {
+                "path": "/Stepper Indicator#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Stepper Indicator",
+                  "type": "INSTANCE",
+                  "main": "Stepper Indicator",
+                  "variant": {
+                    "status": "active"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/inverse}"
+                  ],
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    131,
+                    2
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Stepper Indicator#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Stepper Indicator",
+                  "type": "INSTANCE",
+                  "main": "Stepper Indicator",
+                  "variant": {
+                    "status": "upcoming"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/base}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Progress",
@@ -814,11 +1223,121 @@
               }
             },
             "added": [
-              "/Rectangle 1",
-              "/Rectangle 2",
-              "/Rectangle 3",
-              "/Rectangle 4",
-              "/Rectangle 5"
+              {
+                "path": "/Rectangle 1",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 1",
+                  "type": "RECTANGLE",
+                  "size": [
+                    64,
+                    4
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/inverse}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Rectangle 2",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 2",
+                  "type": "RECTANGLE",
+                  "size": [
+                    64,
+                    4
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Rectangle 3",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 3",
+                  "type": "RECTANGLE",
+                  "size": [
+                    64,
+                    4
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Rectangle 4",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 4",
+                  "type": "RECTANGLE",
+                  "size": [
+                    64,
+                    4
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Rectangle 5",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 5",
+                  "type": "RECTANGLE",
+                  "size": [
+                    64,
+                    4
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:border/subtle}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Progress",
@@ -858,11 +1377,171 @@
               }
             },
             "added": [
-              "/Step/complete/horizontal",
-              "/Step",
-              "/Step#2",
-              "/Step#3",
-              "/Step#4"
+              {
+                "path": "/Step/complete/horizontal",
+                "parent": "/",
+                "layer": {
+                  "name": "Step/complete/horizontal",
+                  "type": "INSTANCE",
+                  "main": "Step/complete/horizontal",
+                  "size": [
+                    64,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Step",
+                "parent": "/",
+                "layer": {
+                  "name": "Step",
+                  "type": "INSTANCE",
+                  "main": "Step",
+                  "variant": {
+                    "status": "upcoming",
+                    "type": "horizontal"
+                  },
+                  "size": [
+                    64,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Step#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Step",
+                  "type": "INSTANCE",
+                  "main": "Step",
+                  "variant": {
+                    "status": "upcoming",
+                    "type": "horizontal"
+                  },
+                  "size": [
+                    64,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  },
+                  "propRefs": {
+                    "visible": "showStep3#5888:26"
+                  }
+                }
+              },
+              {
+                "path": "/Step#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Step",
+                  "type": "INSTANCE",
+                  "main": "Step",
+                  "variant": {
+                    "status": "upcoming",
+                    "type": "horizontal"
+                  },
+                  "size": [
+                    64,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  },
+                  "propRefs": {
+                    "visible": "showStep4#5888:21"
+                  }
+                }
+              },
+              {
+                "path": "/Step#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Step",
+                  "type": "INSTANCE",
+                  "main": "Step",
+                  "variant": {
+                    "status": "upcoming",
+                    "type": "horizontal"
+                  },
+                  "size": [
+                    64,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  },
+                  "propRefs": {
+                    "visible": "showStep5#5888:16"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Progress",

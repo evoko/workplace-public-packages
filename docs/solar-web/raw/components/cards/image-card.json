@@ -360,9 +360,84 @@
               }
             },
             "added": [
-              "/IconCircle",
-              "/IconCircle/Icon/Plus",
-              "/Label"
+              {
+                "path": "/IconCircle",
+                "parent": "/",
+                "layer": {
+                  "name": "IconCircle",
+                  "type": "FRAME",
+                  "size": [
+                    44,
+                    44
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/background}"
+                  ],
+                  "radius": 9999,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/IconCircle/Icon/Plus",
+                "parent": "/IconCircle",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    22,
+                    22
+                  ],
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Create new",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    74,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Image",

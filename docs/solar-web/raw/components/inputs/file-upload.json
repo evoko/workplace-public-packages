@@ -177,6 +177,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/tertiary}"
+                ],
                 "size": [
                   20,
                   20
@@ -361,6 +364,11 @@
                   "{Color:border/feedback/danger/subtle}"
                 ]
               },
+              "/Field/Icon/File": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
               "/Field/FileName": {
                 "fills": [
                   "{Color:text/feedback/danger}"
@@ -399,6 +407,11 @@
                 ],
                 "strokes": null,
                 "strokeWeight": null
+              },
+              "/Field/Icon/File": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Field/FileName": {
                 "fills": [
@@ -453,6 +466,11 @@
                   "sizing": "FILL/FIXED"
                 }
               },
+              "/Field/Icon/File": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Field/FileName": {
                 "text": "Filename.jpg",
                 "size": [
@@ -465,8 +483,106 @@
               }
             },
             "added": [
-              "/Field/Icon Button",
-              "/Field/Icon Button#2"
+              {
+                "path": "/Field/Icon Button",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Icon Button",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "md",
+                    "shape": "square",
+                    "prio": "secondary",
+                    "state": "default"
+                  },
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/secondary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Field/Icon Button#2",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Icon Button",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "md",
+                    "shape": "square",
+                    "prio": "secondary",
+                    "state": "default"
+                  },
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/secondary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:border/feedback/danger/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Button"

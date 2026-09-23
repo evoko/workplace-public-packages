@@ -90,7 +90,21 @@
           ],
           "overrides": {
             "added": [
-              "/Segment#4"
+              {
+                "path": "/Segment#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/04/strong}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -106,10 +120,96 @@
           ],
           "overrides": {
             "added": [
-              "/Segment#4",
-              "/Center Label",
-              "/Center Label/100%",
-              "/Center Label/Total"
+              {
+                "path": "/Segment#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/04/strong}"
+                  ]
+                }
+              },
+              {
+                "path": "/Center Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Center Label",
+                  "type": "FRAME",
+                  "size": [
+                    51,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Center Label/100%",
+                "parent": "/Center Label",
+                "layer": {
+                  "name": "100%",
+                  "type": "TEXT",
+                  "text": "100%",
+                  "textStyle": "title/sm",
+                  "size": [
+                    51,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Center Label/Total",
+                "parent": "/Center Label",
+                "layer": {
+                  "name": "Total",
+                  "type": "TEXT",
+                  "text": "Total",
+                  "textStyle": "label/sm",
+                  "size": [
+                    28,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ]
           }
         },
@@ -121,9 +221,51 @@
           ],
           "overrides": {
             "added": [
-              "/Segment#4",
-              "/Segment#5",
-              "/Segment#6"
+              {
+                "path": "/Segment#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/04/strong}"
+                  ]
+                }
+              },
+              {
+                "path": "/Segment#5",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/05/strong}"
+                  ]
+                }
+              },
+              {
+                "path": "/Segment#6",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/06/strong}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -139,12 +281,126 @@
           ],
           "overrides": {
             "added": [
-              "/Segment#4",
-              "/Segment#5",
-              "/Segment#6",
-              "/Center Label",
-              "/Center Label/100%",
-              "/Center Label/Total"
+              {
+                "path": "/Segment#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/04/strong}"
+                  ]
+                }
+              },
+              {
+                "path": "/Segment#5",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/05/strong}"
+                  ]
+                }
+              },
+              {
+                "path": "/Segment#6",
+                "parent": "/",
+                "layer": {
+                  "name": "Segment",
+                  "type": "ELLIPSE",
+                  "size": [
+                    200,
+                    200
+                  ],
+                  "fills": [
+                    "{Color:data/category/06/strong}"
+                  ]
+                }
+              },
+              {
+                "path": "/Center Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Center Label",
+                  "type": "FRAME",
+                  "size": [
+                    51,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Center Label/100%",
+                "parent": "/Center Label",
+                "layer": {
+                  "name": "100%",
+                  "type": "TEXT",
+                  "text": "100%",
+                  "textStyle": "title/sm",
+                  "size": [
+                    51,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Center Label/Total",
+                "parent": "/Center Label",
+                "layer": {
+                  "name": "Total",
+                  "type": "TEXT",
+                  "text": "Total",
+                  "textStyle": "label/sm",
+                  "size": [
+                    28,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ]
           }
         },
@@ -160,9 +416,81 @@
           ],
           "overrides": {
             "added": [
-              "/Center Label",
-              "/Center Label/100%",
-              "/Center Label/Total"
+              {
+                "path": "/Center Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Center Label",
+                  "type": "FRAME",
+                  "size": [
+                    51,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Center Label/100%",
+                "parent": "/Center Label",
+                "layer": {
+                  "name": "100%",
+                  "type": "TEXT",
+                  "text": "100%",
+                  "textStyle": "title/sm",
+                  "size": [
+                    51,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Center Label/Total",
+                "parent": "/Center Label",
+                "layer": {
+                  "name": "Total",
+                  "type": "TEXT",
+                  "text": "Total",
+                  "textStyle": "label/sm",
+                  "size": [
+                    28,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ]
           }
         }

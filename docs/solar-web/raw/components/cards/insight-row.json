@@ -448,8 +448,40 @@
               }
             },
             "added": [
-              "/Content/Body/Skeleton",
-              "/Content/Body/Skeleton#2"
+              {
+                "path": "/Content/Body/Skeleton",
+                "parent": "/Content/Body",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    436,
+                    12
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6
+                }
+              },
+              {
+                "path": "/Content/Body/Skeleton#2",
+                "parent": "/Content/Body",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    140,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6
+                }
+              }
             ]
           }
         },
@@ -663,8 +695,40 @@
               }
             },
             "added": [
-              "/Content/Body/Skeleton",
-              "/Content/Body/Skeleton#2"
+              {
+                "path": "/Content/Body/Skeleton",
+                "parent": "/Content/Body",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    436,
+                    12
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6
+                }
+              },
+              {
+                "path": "/Content/Body/Skeleton#2",
+                "parent": "/Content/Body",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    140,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6
+                }
+              }
             ]
           }
         }

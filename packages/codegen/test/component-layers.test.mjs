@@ -166,10 +166,6 @@ describe('resolveVariants on Button', () => {
     );
   });
 
-  it('has nothing unresolved, because Button adds no layers', () => {
-    expect(button.variants.every((v) => v.unresolved.length === 0)).toBe(true);
-  });
-
   it('does not mutate its input', () => {
     const before = JSON.stringify(buttonSet);
     resolveVariants(buttonSet);
@@ -220,24 +216,61 @@ describe('resolveVariants on the diff rules', () => {
     });
   });
 
-  it('records an added layer as present and unresolved, never as an invented layer', () => {
-    const [, added] = resolveVariants(
+  it('resolves an added layer like any other, under its parent', () => {
+    const badge = { type: 'FRAME', fills: ['{Color:surface/primary}'] };
+    const [a, added] = resolveVariants(
       synthetic({
         tree: TREE,
         variants: [
           { variant: 'tone=a' },
-          { variant: 'tone=b', overrides: { added: ['/Badge'] } },
+          {
+            variant: 'tone=b',
+            overrides: {
+              added: [{ path: '/Label/Badge', parent: '/Label', layer: badge }],
+            },
+          },
         ],
       }),
     ).variants;
-    expect(added.layers.get('/Badge')).toEqual({ unresolved: 'added' });
-    expect(added.unresolved).toEqual(['/Badge']);
+    expect(added.layers.get('/Label/Badge')).toEqual(badge);
+    expect(added.parents.get('/Label/Badge')).toBe('/Label');
+    expect(a.layers.has('/Label/Badge')).toBe(false);
   });
 });
 
 describe('resolveVariants refuses data it cannot trust', () => {
   const base = (variants, extra) =>
     synthetic({ tree: TREE, variants, ...extra });
+
+  it('refuses an added layer recorded by path alone, or under a parent it lacks', () => {
+    expect(() =>
+      resolveVariants(
+        base([
+          { variant: 'tone=a' },
+          { variant: 'tone=b', overrides: { added: ['/Badge'] } },
+        ]),
+      ),
+    ).toThrow(/added layer without a path or properties/);
+    expect(() =>
+      resolveVariants(
+        base([
+          { variant: 'tone=a' },
+          {
+            variant: 'tone=b',
+            overrides: {
+              added: [
+                {
+                  path: '/Nope/Badge',
+                  parent: '/Nope',
+                  layer: { type: 'FRAME' },
+                },
+              ],
+            },
+          },
+        ]),
+      ),
+    ).toThrow(/adds \/Nope\/Badge under \/Nope, which it does not have/);
+  });
 
   it('a changed path the default tree does not have', () => {
     expect(() =>

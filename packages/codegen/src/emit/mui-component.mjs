@@ -171,7 +171,6 @@ function context(spec, tokens) {
       case 'borderColor':
         return paint('borderColor');
       case 'color':
-      case 'iconColor':
         return paint('color');
       case 'borderWidth':
         return entry.none
@@ -228,9 +227,6 @@ export function renderMuiComponent(spec, tokens) {
   for (const layer of Object.keys(spec.layers))
     if (!slots[layer])
       throw new Error(`${spec.component}: no MUI slot for layer ${layer}`);
-  const iconSlots = Object.entries(spec.slots)
-    .filter(([, s]) => s.type === 'icon')
-    .map(([name]) => slots[name]);
 
   const { declare } = context(spec, tokens);
   const styles = {
@@ -247,11 +243,7 @@ export function renderMuiComponent(spec, tokens) {
     for (const [cell, entry] of Object.entries(cells)) {
       const here = `${layer}.${at}.${cell}`;
       if (COMPOSITION(cell)) continue;
-      const decls = declare(cell, entry, here);
-      // The icons' colour is one cell on the root; MUI draws it on each icon slot.
-      if (cell === 'iconColor')
-        for (const sel of iconSlots) place(target, sel, decls, here);
-      else place(target, slots[layer], decls, here);
+      place(target, slots[layer], declare(cell, entry, here), here);
     }
   };
   const byState = (target, states, layer, at) => {

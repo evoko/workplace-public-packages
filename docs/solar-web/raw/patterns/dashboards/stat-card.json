@@ -125,6 +125,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ],
                 "size": [
                   16,
                   16
@@ -440,6 +443,11 @@
                   "{Color:text/disabled}"
                 ]
               },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Value": {
                 "fills": [
                   "{Color:text/disabled}"
@@ -494,6 +502,11 @@
                 "fills": [
                   "{Color:text/primary}"
                 ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -540,6 +553,11 @@
                 "sizing": "HUG/HUG",
                 "fills": [
                   "{Color:text/primary}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               },
               "/Trend/Trend Badge": {
@@ -596,6 +614,11 @@
                 "sizing": "HUG/HUG",
                 "fills": [
                   "{Color:text/disabled}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               },
               "/Value": {
@@ -667,6 +690,11 @@
                   "{Color:text/primary}"
                 ]
               },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Trend/Trend Badge": {
                 "variant": {
                   "type": "neutral",
@@ -723,6 +751,11 @@
                   "{Color:text/disabled}"
                 ]
               },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Value": {
                 "fills": [
                   "{Color:text/disabled}"
@@ -763,9 +796,75 @@
           "effect": "shadow/raised",
           "overrides": {
             "added": [
-              "/Skeleton",
-              "/Skeleton#2",
-              "/Skeleton#3"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    200,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    124,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",
@@ -794,9 +893,75 @@
           "effect": "shadow/raised",
           "overrides": {
             "added": [
-              "/Skeleton",
-              "/Skeleton#2",
-              "/Skeleton#3"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    200,
+                    24
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    124,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",
@@ -825,9 +990,75 @@
           "effect": "shadow/raised",
           "overrides": {
             "added": [
-              "/Skeleton",
-              "/Skeleton#2",
-              "/Skeleton#3"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    200,
+                    24
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    124,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",
@@ -1532,9 +1763,75 @@
               }
             },
             "added": [
-              "/Text/Skeleton",
-              "/Text/Skeleton#2",
-              "/Skeleton"
+              {
+                "path": "/Text/Skeleton",
+                "parent": "/Text",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Text/Skeleton#2",
+                "parent": "/Text",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    196,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Text/Title",
@@ -1572,9 +1869,75 @@
               }
             },
             "added": [
-              "/Text/Skeleton",
-              "/Text/Skeleton#2",
-              "/Skeleton"
+              {
+                "path": "/Text/Skeleton",
+                "parent": "/Text",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Text/Skeleton#2",
+                "parent": "/Text",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    196,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Text/Title",
@@ -1612,9 +1975,75 @@
               }
             },
             "added": [
-              "/Text/Skeleton",
-              "/Text/Skeleton#2",
-              "/Skeleton"
+              {
+                "path": "/Text/Skeleton",
+                "parent": "/Text",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    170,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Text/Skeleton#2",
+                "parent": "/Text",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    196,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    24,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Text/Title",

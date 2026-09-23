@@ -308,6 +308,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   24,
                   24
@@ -385,6 +388,11 @@
                 "fills": [
                   "{Color:icon/feedback/info}"
                 ]
+              },
+              "/action group/Icon/Close": {
+                "iconFills": [
+                  "{Color:surface/inverse}"
+                ]
               }
             }
           }
@@ -417,10 +425,61 @@
               }
             },
             "added": [
-              "/Checkmark-Outline--Streamline-Carbon",
-              "/Checkmark-Outline--Streamline-Carbon/Icon",
-              "/Checkmark-Outline--Streamline-Carbon/Icon#2",
-              "/Checkmark-Outline--Streamline-Carbon/_Transparent_Rectangle_"
+              {
+                "path": "/Checkmark-Outline--Streamline-Carbon",
+                "parent": "/",
+                "layer": {
+                  "name": "Checkmark-Outline--Streamline-Carbon",
+                  "type": "FRAME",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "path": "/Checkmark-Outline--Streamline-Carbon/Icon",
+                "parent": "/Checkmark-Outline--Streamline-Carbon",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    7
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ]
+                }
+              },
+              {
+                "path": "/Checkmark-Outline--Streamline-Carbon/Icon#2",
+                "parent": "/Checkmark-Outline--Streamline-Carbon",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    18,
+                    18
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ]
+                }
+              },
+              {
+                "path": "/Checkmark-Outline--Streamline-Carbon/_Transparent_Rectangle_",
+                "parent": "/Checkmark-Outline--Streamline-Carbon",
+                "layer": {
+                  "name": "_Transparent_Rectangle_",
+                  "type": "VECTOR",
+                  "size": [
+                    20,
+                    20
+                  ]
+                }
+              }
             ],
             "removed": [
               "/icon",
@@ -459,11 +518,76 @@
               }
             },
             "added": [
-              "/Warning-Alt--Streamline-Carbon",
-              "/Warning-Alt--Streamline-Carbon/Icon",
-              "/Warning-Alt--Streamline-Carbon/Icon#2",
-              "/Warning-Alt--Streamline-Carbon/Icon#3",
-              "/Warning-Alt--Streamline-Carbon/_Transparent_Rectangle_"
+              {
+                "path": "/Warning-Alt--Streamline-Carbon",
+                "parent": "/",
+                "layer": {
+                  "name": "Warning-Alt--Streamline-Carbon",
+                  "type": "FRAME",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "path": "/Warning-Alt--Streamline-Carbon/Icon",
+                "parent": "/Warning-Alt--Streamline-Carbon",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    2,
+                    2
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ]
+                }
+              },
+              {
+                "path": "/Warning-Alt--Streamline-Carbon/Icon#2",
+                "parent": "/Warning-Alt--Streamline-Carbon",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    6
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ]
+                }
+              },
+              {
+                "path": "/Warning-Alt--Streamline-Carbon/Icon#3",
+                "parent": "/Warning-Alt--Streamline-Carbon",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    18,
+                    17
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ]
+                }
+              },
+              {
+                "path": "/Warning-Alt--Streamline-Carbon/_Transparent_Rectangle_",
+                "parent": "/Warning-Alt--Streamline-Carbon",
+                "layer": {
+                  "name": "_Transparent_Rectangle_",
+                  "type": "VECTOR",
+                  "size": [
+                    20,
+                    20
+                  ]
+                }
+              }
             ],
             "removed": [
               "/icon",
@@ -502,10 +626,61 @@
               }
             },
             "added": [
-              "/Misuse-Outline--Streamline-Carbon",
-              "/Misuse-Outline--Streamline-Carbon/Icon",
-              "/Misuse-Outline--Streamline-Carbon/_Transparent_Rectangle_",
-              "/Misuse-Outline--Streamline-Carbon/Icon#2"
+              {
+                "path": "/Misuse-Outline--Streamline-Carbon",
+                "parent": "/",
+                "layer": {
+                  "name": "Misuse-Outline--Streamline-Carbon",
+                  "type": "FRAME",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "path": "/Misuse-Outline--Streamline-Carbon/Icon",
+                "parent": "/Misuse-Outline--Streamline-Carbon",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    18,
+                    18
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ]
+                }
+              },
+              {
+                "path": "/Misuse-Outline--Streamline-Carbon/_Transparent_Rectangle_",
+                "parent": "/Misuse-Outline--Streamline-Carbon",
+                "layer": {
+                  "name": "_Transparent_Rectangle_",
+                  "type": "VECTOR",
+                  "size": [
+                    20,
+                    20
+                  ]
+                }
+              },
+              {
+                "path": "/Misuse-Outline--Streamline-Carbon/Icon#2",
+                "parent": "/Misuse-Outline--Streamline-Carbon",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    9
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/icon",

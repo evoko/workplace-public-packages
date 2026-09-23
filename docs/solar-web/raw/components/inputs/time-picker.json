@@ -206,6 +206,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -763,6 +766,11 @@
                   "{Color:border/disabled}"
                 ]
               },
+              "/Field/Icon/Clock": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Field/Value": {
                 "fills": [
                   "{Color:text/disabled}"
@@ -852,7 +860,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Field/Value": {
                 "textStyle": "body/sm/regular",

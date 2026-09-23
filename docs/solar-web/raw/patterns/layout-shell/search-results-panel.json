@@ -826,8 +826,69 @@
               }
             },
             "added": [
-              "/EmptyBody",
-              "/EmptyBody/EmptyState"
+              {
+                "path": "/EmptyBody",
+                "parent": "/",
+                "layer": {
+                  "name": "EmptyBody",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    200
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/EmptyBody/EmptyState",
+                "parent": "/EmptyBody",
+                "layer": {
+                  "name": "EmptyState",
+                  "type": "INSTANCE",
+                  "main": "EmptyState",
+                  "size": [
+                    368,
+                    168
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/SearchHeader/FilterChips/Tag#2",
@@ -879,38 +940,785 @@
               }
             },
             "added": [
-              "/Frame",
-              "/Frame/Rectangle",
-              "/Frame/Frame",
-              "/Frame/Frame/Rectangle",
-              "/Frame/Frame/Rectangle#2",
-              "/Frame/Frame/Rectangle#3",
-              "/Frame#2",
-              "/Frame#2/Frame",
-              "/Frame#2/Frame/Rectangle",
-              "/Frame#2/Frame/Frame",
-              "/Frame#2/Frame/Frame/Rectangle",
-              "/Frame#2/Frame/Frame/Rectangle#2",
-              "/Frame#2/Frame#2",
-              "/Frame#2/Frame#2/Rectangle",
-              "/Frame#2/Frame#2/Frame",
-              "/Frame#2/Frame#2/Frame/Rectangle",
-              "/Frame#2/Frame#2/Frame/Rectangle#2",
-              "/Frame#2/Frame#3",
-              "/Frame#2/Frame#3/Rectangle",
-              "/Frame#2/Frame#3/Frame",
-              "/Frame#2/Frame#3/Frame/Rectangle",
-              "/Frame#2/Frame#3/Frame/Rectangle#2",
-              "/Frame#2/Frame#4",
-              "/Frame#2/Frame#4/Rectangle",
-              "/Frame#2/Frame#4/Frame",
-              "/Frame#2/Frame#4/Frame/Rectangle",
-              "/Frame#2/Frame#4/Frame/Rectangle#2",
-              "/Frame#2/Frame#5",
-              "/Frame#2/Frame#5/Rectangle",
-              "/Frame#2/Frame#5/Frame",
-              "/Frame#2/Frame#5/Frame/Rectangle",
-              "/Frame#2/Frame#5/Frame/Rectangle#2"
+              {
+                "path": "/Frame",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    116
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Rectangle",
+                "parent": "/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    368,
+                    44
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame",
+                "parent": "/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    248,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame/Rectangle",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    60,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame/Rectangle#2",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    80,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame/Rectangle#3",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    100,
+                    24
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    280
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      12,
+                      16,
+                      12,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame/Rectangle",
+                "parent": "/Frame#2/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 16
+                }
+              },
+              {
+                "path": "/Frame#2/Frame/Frame",
+                "parent": "/Frame#2/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    324,
+                    26
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame/Frame/Rectangle",
+                "parent": "/Frame#2/Frame/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    160,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame/Frame/Rectangle#2",
+                "parent": "/Frame#2/Frame/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    100,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#2",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      12,
+                      16,
+                      12,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#2/Rectangle",
+                "parent": "/Frame#2/Frame#2",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 16
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#2/Frame",
+                "parent": "/Frame#2/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    324,
+                    26
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#2/Frame/Rectangle",
+                "parent": "/Frame#2/Frame#2/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    160,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#2/Frame/Rectangle#2",
+                "parent": "/Frame#2/Frame#2/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    100,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#3",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      12,
+                      16,
+                      12,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#3/Rectangle",
+                "parent": "/Frame#2/Frame#3",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 16
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#3/Frame",
+                "parent": "/Frame#2/Frame#3",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    324,
+                    26
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#3/Frame/Rectangle",
+                "parent": "/Frame#2/Frame#3/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    160,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#3/Frame/Rectangle#2",
+                "parent": "/Frame#2/Frame#3/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    100,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#4",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      12,
+                      16,
+                      12,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#4/Rectangle",
+                "parent": "/Frame#2/Frame#4",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 16
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#4/Frame",
+                "parent": "/Frame#2/Frame#4",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    324,
+                    26
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#4/Frame/Rectangle",
+                "parent": "/Frame#2/Frame#4/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    160,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#4/Frame/Rectangle#2",
+                "parent": "/Frame#2/Frame#4/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    100,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#5",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    56
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 12,
+                    "pad": [
+                      12,
+                      16,
+                      12,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#5/Rectangle",
+                "parent": "/Frame#2/Frame#5",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 16
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#5/Frame",
+                "parent": "/Frame#2/Frame#5",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    324,
+                    26
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#5/Frame/Rectangle",
+                "parent": "/Frame#2/Frame#5/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    160,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Frame#5/Frame/Rectangle#2",
+                "parent": "/Frame#2/Frame#5/Frame",
+                "layer": {
+                  "name": "Rectangle",
+                  "type": "RECTANGLE",
+                  "size": [
+                    100,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              }
             ],
             "removed": [
               "/SearchHeader",
@@ -981,12 +1789,194 @@
               }
             },
             "added": [
-              "/Frame",
-              "/Frame/Frame",
-              "/Frame/Frame/Search",
-              "/Frame#2",
-              "/Frame#2/EmptyBody",
-              "/Frame#2/EmptyBody/EmptyState"
+              {
+                "path": "/Frame",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    76
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame",
+                "parent": "/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    368,
+                    44
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      12,
+                      0,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/base}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 4,
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame/Search",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Search",
+                  "type": "TEXT",
+                  "text": "Search",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    344,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    400,
+                    232
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/EmptyBody",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "EmptyBody",
+                  "type": "FRAME",
+                  "size": [
+                    368,
+                    200
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/EmptyBody/EmptyState",
+                "parent": "/Frame#2/EmptyBody",
+                "layer": {
+                  "name": "EmptyState",
+                  "type": "INSTANCE",
+                  "main": "EmptyState",
+                  "size": [
+                    336,
+                    168
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/SearchHeader",
@@ -1060,6 +2050,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/tertiary}"
+            ],
             "size": [
               20,
               20

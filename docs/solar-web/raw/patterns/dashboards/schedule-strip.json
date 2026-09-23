@@ -315,8 +315,54 @@
               }
             },
             "added": [
-              "/Container/Lunch Announcements",
-              "/Container/Mon-Fri · 12:00"
+              {
+                "path": "/Container/Lunch Announcements",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Lunch Announcements",
+                  "type": "TEXT",
+                  "text": "Lunch Announcements",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    149,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Mon-Fri · 12:00",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Mon-Fri · 12:00",
+                  "type": "TEXT",
+                  "text": "Mon-Fri · 12:00",
+                  "textStyle": "body/sm/regular",
+                  "size": [
+                    83,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container/Morning Music",
@@ -387,8 +433,54 @@
               }
             },
             "added": [
-              "/Container/Lunch Announcements",
-              "/Container/Mon-Fri · 12:00"
+              {
+                "path": "/Container/Lunch Announcements",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Lunch Announcements",
+                  "type": "TEXT",
+                  "text": "Lunch Announcements",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    149,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Mon-Fri · 12:00",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Mon-Fri · 12:00",
+                  "type": "TEXT",
+                  "text": "Mon-Fri · 12:00",
+                  "textStyle": "body/sm/regular",
+                  "size": [
+                    83,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container/Morning Music",
@@ -449,8 +541,54 @@
               }
             },
             "added": [
-              "/Container/Weekend Promotions",
-              "/Container/Sat 10:00"
+              {
+                "path": "/Container/Weekend Promotions",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Weekend Promotions",
+                  "type": "TEXT",
+                  "text": "Weekend Promotions",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    137,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Sat 10:00",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Sat 10:00",
+                  "type": "TEXT",
+                  "text": "Sat 10:00",
+                  "textStyle": "body/sm/regular",
+                  "size": [
+                    52,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container/Morning Music",
@@ -521,8 +659,54 @@
               }
             },
             "added": [
-              "/Container/Weekend Promotions",
-              "/Container/Sat 10:00"
+              {
+                "path": "/Container/Weekend Promotions",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Weekend Promotions",
+                  "type": "TEXT",
+                  "text": "Weekend Promotions",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    137,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Sat 10:00",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Sat 10:00",
+                  "type": "TEXT",
+                  "text": "Sat 10:00",
+                  "textStyle": "body/sm/regular",
+                  "size": [
+                    52,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container/Morning Music",
@@ -780,6 +964,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -1072,9 +1259,123 @@
               }
             },
             "added": [
-              "/Container/Skeleton",
-              "/Container/Skeleton#2",
-              "/content/Skeleton"
+              {
+                "path": "/Container/Skeleton",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    220,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Skeleton#2",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/HUG"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/content/Skeleton",
+                "parent": "/content",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    348,
+                    279
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container/Audio Schedule",
@@ -1133,7 +1434,38 @@
               }
             },
             "added": [
-              "/content/EmptyState"
+              {
+                "path": "/content/EmptyState",
+                "parent": "/content",
+                "layer": {
+                  "name": "EmptyState",
+                  "type": "INSTANCE",
+                  "main": "EmptyState",
+                  "size": [
+                    247,
+                    144
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/content/Schedule Entry",

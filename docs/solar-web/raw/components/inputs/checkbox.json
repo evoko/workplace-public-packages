@@ -171,7 +171,22 @@
               }
             },
             "added": [
-              "/Icon"
+              {
+                "path": "/Icon",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    7
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -211,7 +226,22 @@
               }
             },
             "added": [
-              "/Icon"
+              {
+                "path": "/Icon",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    7
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -250,7 +280,22 @@
               }
             },
             "added": [
-              "/Icon"
+              {
+                "path": "/Icon",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    7
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:action/primary/icon/disabled}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -289,7 +334,22 @@
               }
             },
             "added": [
-              "/Container"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    2
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -329,7 +389,22 @@
               }
             },
             "added": [
-              "/Container"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    2
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -368,7 +443,22 @@
               }
             },
             "added": [
-              "/Container"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    2
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:action/primary/icon/disabled}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -440,7 +530,22 @@
               }
             },
             "added": [
-              "/Icon"
+              {
+                "path": "/Icon",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    7
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -485,7 +590,22 @@
               }
             },
             "added": [
-              "/Container"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    2
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ]
           }
         }

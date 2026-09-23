@@ -102,6 +102,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ],
                 "size": [
                   16,
                   16
@@ -587,14 +590,218 @@
           ],
           "overrides": {
             "added": [
-              "/Body/SkeletonRow",
-              "/Body/SkeletonRow/SkeletonBar",
-              "/Body/SkeletonRow#2",
-              "/Body/SkeletonRow#2/SkeletonBar",
-              "/Body/SkeletonRow#3",
-              "/Body/SkeletonRow#3/SkeletonBar",
-              "/Body/SkeletonRow#4",
-              "/Body/SkeletonRow#4/SkeletonBar"
+              {
+                "path": "/Body/SkeletonRow",
+                "parent": "/Body",
+                "layer": {
+                  "name": "SkeletonRow",
+                  "type": "FRAME",
+                  "size": [
+                    288,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      4,
+                      16,
+                      4,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/2xs",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Body/SkeletonRow/SkeletonBar",
+                "parent": "/Body/SkeletonRow",
+                "layer": {
+                  "name": "SkeletonBar",
+                  "type": "RECTANGLE",
+                  "size": [
+                    140,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Body/SkeletonRow#2",
+                "parent": "/Body",
+                "layer": {
+                  "name": "SkeletonRow",
+                  "type": "FRAME",
+                  "size": [
+                    288,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      4,
+                      16,
+                      4,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/2xs",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Body/SkeletonRow#2/SkeletonBar",
+                "parent": "/Body/SkeletonRow#2",
+                "layer": {
+                  "name": "SkeletonBar",
+                  "type": "RECTANGLE",
+                  "size": [
+                    160,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Body/SkeletonRow#3",
+                "parent": "/Body",
+                "layer": {
+                  "name": "SkeletonRow",
+                  "type": "FRAME",
+                  "size": [
+                    288,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      4,
+                      16,
+                      4,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/2xs",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Body/SkeletonRow#3/SkeletonBar",
+                "parent": "/Body/SkeletonRow#3",
+                "layer": {
+                  "name": "SkeletonBar",
+                  "type": "RECTANGLE",
+                  "size": [
+                    180,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Body/SkeletonRow#4",
+                "parent": "/Body",
+                "layer": {
+                  "name": "SkeletonRow",
+                  "type": "FRAME",
+                  "size": [
+                    288,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      4,
+                      16,
+                      4,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/2xs",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Body/SkeletonRow#4/SkeletonBar",
+                "parent": "/Body/SkeletonRow#4",
+                "layer": {
+                  "name": "SkeletonBar",
+                  "type": "RECTANGLE",
+                  "size": [
+                    180,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Body/FilterRow",
@@ -638,8 +845,60 @@
               }
             },
             "added": [
-              "/Body/EmptyState",
-              "/Body/EmptyState/No options"
+              {
+                "path": "/Body/EmptyState",
+                "parent": "/Body",
+                "layer": {
+                  "name": "EmptyState",
+                  "type": "FRAME",
+                  "size": [
+                    288,
+                    42
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/Body/EmptyState/No options",
+                "parent": "/Body/EmptyState",
+                "layer": {
+                  "name": "No options",
+                  "type": "TEXT",
+                  "text": "No options",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    70,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Body/FilterRow",
@@ -859,6 +1118,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ],
                 "size": [
                   16,
                   16
@@ -1519,8 +1781,78 @@
               }
             },
             "added": [
-              "/content/FilterSection#3",
-              "/content/FilterSection#4"
+              {
+                "path": "/content/FilterSection#3",
+                "parent": "/content",
+                "layer": {
+                  "name": "FilterSection",
+                  "type": "INSTANCE",
+                  "main": "FilterSection",
+                  "variant": {
+                    "type": "checkbox-list",
+                    "state": "loading"
+                  },
+                  "size": [
+                    320,
+                    76
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeBottomWeight": "Spatial:border/default"
+                  }
+                }
+              },
+              {
+                "path": "/content/FilterSection#4",
+                "parent": "/content",
+                "layer": {
+                  "name": "FilterSection",
+                  "type": "INSTANCE",
+                  "main": "FilterSection",
+                  "variant": {
+                    "type": "checkbox-list",
+                    "state": "loading"
+                  },
+                  "size": [
+                    320,
+                    76
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "strokeBottomWeight": "Spatial:border/default"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/TitleGroup/SummaryCounter",
@@ -1582,8 +1914,60 @@
               }
             },
             "added": [
-              "/content/PanelEmptyState",
-              "/content/PanelEmptyState/No filters match this content"
+              {
+                "path": "/content/PanelEmptyState",
+                "parent": "/content",
+                "layer": {
+                  "name": "PanelEmptyState",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    42
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/content/PanelEmptyState/No filters match this content",
+                "parent": "/content/PanelEmptyState",
+                "layer": {
+                  "name": "No filters match this content",
+                  "type": "TEXT",
+                  "text": "No filters match this content",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    180,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/TitleGroup/SummaryCounter",

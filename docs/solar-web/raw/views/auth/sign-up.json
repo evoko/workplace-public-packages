@@ -290,7 +290,43 @@
               }
             },
             "added": [
-              "/FormSection"
+              {
+                "path": "/FormSection",
+                "parent": "/",
+                "layer": {
+                  "name": "FormSection",
+                  "type": "INSTANCE",
+                  "main": "FormSection",
+                  "size": [
+                    393,
+                    263
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 28,
+                    "pad": [
+                      0,
+                      16,
+                      0,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "strokes": [
+                    "{Color:border/surface}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/2xl",
+                    "paddingLeft": "Spatial:stack/md",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:stack/md",
+                    "paddingBottom": "Spatial:inset/none",
+                    "strokeBottomWeight": "Spatial:border/default"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Center Stack",

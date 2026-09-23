@@ -194,7 +194,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/success}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -232,7 +254,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/success}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -277,7 +322,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/success}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -365,7 +432,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -414,7 +503,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -470,7 +582,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -611,7 +745,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/warning}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -660,7 +816,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/warning}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -716,7 +895,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/warning}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -815,7 +1016,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -864,7 +1087,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -920,7 +1166,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1061,7 +1329,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/danger}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -1110,7 +1400,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/danger}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1166,7 +1479,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/danger}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1265,7 +1600,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -1314,7 +1671,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1370,7 +1750,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1511,7 +1913,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/info}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -1560,7 +1984,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/info}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1616,7 +2063,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/info}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1715,7 +2184,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -1764,7 +2255,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1820,7 +2334,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -1961,7 +2497,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/neutral}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -2010,7 +2568,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/neutral}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -2066,7 +2647,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/feedback/neutral}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -2165,7 +2768,29 @@
               }
             },
             "added": [
-              "/Icon/Plus"
+              {
+                "path": "/Icon/Plus",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Plus",
+                  "type": "INSTANCE",
+                  "main": "Icon/Plus",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator",
@@ -2214,7 +2839,30 @@
               }
             },
             "added": [
-              "/Icon/None"
+              {
+                "path": "/Icon/None",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/None",
+                  "type": "INSTANCE",
+                  "main": "Icon/None",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/sm",
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"
@@ -2270,7 +2918,29 @@
               }
             },
             "added": [
-              "/Icon/Close"
+              {
+                "path": "/Icon/Close",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/Close",
+                  "type": "INSTANCE",
+                  "main": "Icon/Close",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/StatusIndicator"

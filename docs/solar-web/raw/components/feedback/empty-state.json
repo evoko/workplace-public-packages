@@ -48,6 +48,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               24,
               24

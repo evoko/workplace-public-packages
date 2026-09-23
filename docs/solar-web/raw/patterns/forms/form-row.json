@@ -151,7 +151,38 @@
               }
             },
             "added": [
-              "/Text Input#3"
+              {
+                "path": "/Text Input#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Text Input",
+                  "type": "INSTANCE",
+                  "main": "Text Input",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    203,
+                    76
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              }
             ]
           }
         },
@@ -186,8 +217,70 @@
               }
             },
             "added": [
-              "/Text Input#3",
-              "/Text Input#4"
+              {
+                "path": "/Text Input#3",
+                "parent": "/",
+                "layer": {
+                  "name": "Text Input",
+                  "type": "INSTANCE",
+                  "main": "Text Input",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    148,
+                    76
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Text Input#4",
+                "parent": "/",
+                "layer": {
+                  "name": "Text Input",
+                  "type": "INSTANCE",
+                  "main": "Text Input",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    148,
+                    76
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              }
             ]
           }
         }

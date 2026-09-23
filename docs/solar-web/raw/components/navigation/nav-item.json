@@ -87,6 +87,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/secondary}"
+            ],
             "size": [
               20,
               20
@@ -145,7 +148,33 @@
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    126,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#2663:4"
+                  }
+                }
+              }
             ]
           }
         },
@@ -166,6 +195,11 @@
               "/": {
                 "fills": [
                   "{Color:surface/hover}"
+                ]
+              },
+              "/Icon/Home": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               }
             }
@@ -206,10 +240,41 @@
                   "paddingLeft": "Spatial:inset/sm",
                   "paddingRight": "Spatial:inset/sm"
                 }
+              },
+              "/Icon/Home": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    126,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#2663:4"
+                  }
+                }
+              }
             ]
           }
         },
@@ -235,7 +300,10 @@
               "/Icon/Home": {
                 "variant": {
                   "solid": "true"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -279,11 +347,40 @@
               "/Icon/Home": {
                 "variant": {
                   "solid": "true"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    126,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#2663:4"
+                  }
+                }
+              }
             ]
           }
         },
@@ -309,7 +406,10 @@
               "/Icon/Home": {
                 "variant": {
                   "solid": "true"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -353,11 +453,40 @@
               "/Icon/Home": {
                 "variant": {
                   "solid": "true"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    126,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#2663:4"
+                  }
+                }
+              }
             ]
           }
         }

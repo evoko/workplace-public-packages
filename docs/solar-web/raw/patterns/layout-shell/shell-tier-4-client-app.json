@@ -542,12 +542,223 @@
               }
             },
             "added": [
-              "/App Content/center",
-              "/App Content/center/Container",
-              "/App Content/center/Container#2",
-              "/App Content/center/Container#2/Container",
-              "/App Content/center/Container#2/Container#2",
-              "/App Content/center/Container#3"
+              {
+                "path": "/App Content/center",
+                "parent": "/App Content",
+                "layer": {
+                  "name": "center",
+                  "type": "SLOT",
+                  "size": [
+                    377,
+                    744
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs",
+                    "paddingLeft": "Spatial:stack/none",
+                    "paddingTop": "Spatial:stack/none",
+                    "paddingRight": "Spatial:stack/none",
+                    "paddingBottom": "Spatial:stack/none"
+                  },
+                  "propRefs": {
+                    "slotContentId": "center#6499:28"
+                  }
+                }
+              },
+              {
+                "path": "/App Content/center/Container",
+                "parent": "/App Content/center",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    377,
+                    243
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/raised}"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/none",
+                    "paddingLeft": "Spatial:stack/none",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:stack/none",
+                    "paddingBottom": "Spatial:inset/none",
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/App Content/center/Container#2",
+                "parent": "/App Content/center",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    377,
+                    243
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/App Content/center/Container#2/Container",
+                "parent": "/App Content/center/Container#2",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    185,
+                    243
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/raised}"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/none",
+                    "paddingLeft": "Spatial:stack/none",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:stack/none",
+                    "paddingBottom": "Spatial:inset/none",
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/App Content/center/Container#2/Container#2",
+                "parent": "/App Content/center/Container#2",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    185,
+                    243
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/raised}"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/none",
+                    "paddingLeft": "Spatial:stack/none",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:stack/none",
+                    "paddingBottom": "Spatial:inset/none",
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/App Content/center/Container#3",
+                "parent": "/App Content/center",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    377,
+                    243
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/raised}"
+                  ],
+                  "radius": 8,
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/none",
+                    "paddingLeft": "Spatial:inset/none",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/none",
+                    "paddingBottom": "Spatial:inset/none",
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              }
             ],
             "removed": [
               "/App Content/Sidebar",

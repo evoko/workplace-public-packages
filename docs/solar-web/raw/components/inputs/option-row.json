@@ -226,7 +226,42 @@
               }
             },
             "added": [
-              "/Toggle"
+              {
+                "path": "/Toggle",
+                "parent": "/",
+                "layer": {
+                  "name": "Toggle",
+                  "type": "INSTANCE",
+                  "main": "Toggle",
+                  "variant": {
+                    "selected": "false",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    18
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Control"

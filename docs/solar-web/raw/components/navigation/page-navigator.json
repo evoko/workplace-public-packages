@@ -80,6 +80,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:action/secondary/icon/default}"
+            ],
             "size": [
               20,
               20
@@ -161,6 +164,11 @@
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ]
+              },
+              "/Icon/ArrowLeft": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -193,6 +201,11 @@
                   "{Color:action/secondary/bg/active}"
                 ],
                 "effectStyle": null
+              },
+              "/Icon/ArrowLeft": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -256,6 +269,11 @@
                 ],
                 "effectStyle": null
               },
+              "/Icon/ArrowLeft": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:action/secondary/text/disabled}"
@@ -302,7 +320,29 @@
               }
             },
             "added": [
-              "/Icon/ArrowRight"
+              {
+                "path": "/Icon/ArrowRight",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/ArrowRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ArrowRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/secondary/icon/default}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/ArrowLeft"
@@ -350,7 +390,29 @@
               }
             },
             "added": [
-              "/Icon/ArrowRight"
+              {
+                "path": "/Icon/ArrowRight",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/ArrowRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ArrowRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/secondary/icon/hover}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/ArrowLeft"
@@ -398,7 +460,29 @@
               }
             },
             "added": [
-              "/Icon/ArrowRight"
+              {
+                "path": "/Icon/ArrowRight",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/ArrowRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ArrowRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/secondary/icon/active}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/ArrowLeft"
@@ -444,7 +528,29 @@
               }
             },
             "added": [
-              "/Icon/ArrowRight"
+              {
+                "path": "/Icon/ArrowRight",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/ArrowRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ArrowRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/secondary/icon/default}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/ArrowLeft"
@@ -498,7 +604,29 @@
               }
             },
             "added": [
-              "/Icon/ArrowRight"
+              {
+                "path": "/Icon/ArrowRight",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon/ArrowRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ArrowRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/secondary/icon/disabled}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/ArrowLeft"

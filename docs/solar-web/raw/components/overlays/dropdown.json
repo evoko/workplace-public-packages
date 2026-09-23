@@ -196,6 +196,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -235,6 +238,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -254,6 +260,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -592,7 +601,29 @@
               }
             },
             "added": [
-              "/Field/Icon/ChevronUp"
+              {
+                "path": "/Field/Icon/ChevronUp",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Icon/ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Icon/ChevronDown"
@@ -710,7 +741,29 @@
               }
             },
             "added": [
-              "/Field/Icon/ChevronUp"
+              {
+                "path": "/Field/Icon/ChevronUp",
+                "parent": "/Field",
+                "layer": {
+                  "name": "Icon/ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    12,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Field/Icon/ChevronDown"
@@ -749,9 +802,24 @@
                   "{Color:border/disabled}"
                 ]
               },
+              "/Field/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Field/Label": {
                 "fills": [
                   "{Color:text/disabled}"
+                ]
+              },
+              "/Field/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Field/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               },
               "/Helper text": {
@@ -843,7 +911,10 @@
                 "vars": {
                   "height": "Spatial:icon/sm",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Field/Label": {
                 "textStyle": "body/sm/medium",
@@ -868,7 +939,10 @@
                 "vars": {
                   "height": "Spatial:icon/sm",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Field/Icon/ChevronDown": {
                 "size": [
@@ -877,7 +951,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Helper text": {
                 "textStyle": "helper/sm",
@@ -1176,6 +1253,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               20,
               20
@@ -1644,6 +1724,11 @@
                   "{Color:border/subtle}"
                 ]
               },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Content/Label": {
                 "fills": [
                   "{Color:text/disabled}"
@@ -1708,7 +1793,10 @@
                 "vars": {
                   "height": "Spatial:icon/sm",
                   "itemSpacing": "Spatial:stack/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Content": {
                 "size": [

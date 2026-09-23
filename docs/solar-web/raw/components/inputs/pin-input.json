@@ -1148,7 +1148,30 @@
               }
             },
             "added": [
-              "/Cells/Field/|"
+              {
+                "path": "/Cells/Field/|",
+                "parent": "/Cells/Field",
+                "layer": {
+                  "name": "|",
+                  "type": "TEXT",
+                  "text": "|",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    5,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Cells/Field/0"
@@ -1388,7 +1411,30 @@
               }
             },
             "added": [
-              "/Cells/Field/|"
+              {
+                "path": "/Cells/Field/|",
+                "parent": "/Cells/Field",
+                "layer": {
+                  "name": "|",
+                  "type": "TEXT",
+                  "text": "|",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    5,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Cells/Field/0"
@@ -1419,12 +1465,150 @@
               }
             },
             "added": [
-              "/Cells/Field/1",
-              "/Cells/Field#2/2",
-              "/Cells/Field#3/3",
-              "/Cells/Field#4/4",
-              "/Cells/Field#5/5",
-              "/Cells/Field#6/6"
+              {
+                "path": "/Cells/Field/1",
+                "parent": "/Cells/Field",
+                "layer": {
+                  "name": "1",
+                  "type": "TEXT",
+                  "text": "1",
+                  "textStyle": "title/sm",
+                  "size": [
+                    10,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#2/2",
+                "parent": "/Cells/Field#2",
+                "layer": {
+                  "name": "2",
+                  "type": "TEXT",
+                  "text": "2",
+                  "textStyle": "title/sm",
+                  "size": [
+                    13,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#3/3",
+                "parent": "/Cells/Field#3",
+                "layer": {
+                  "name": "3",
+                  "type": "TEXT",
+                  "text": "3",
+                  "textStyle": "title/sm",
+                  "size": [
+                    13,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#4/4",
+                "parent": "/Cells/Field#4",
+                "layer": {
+                  "name": "4",
+                  "type": "TEXT",
+                  "text": "4",
+                  "textStyle": "title/sm",
+                  "size": [
+                    14,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#5/5",
+                "parent": "/Cells/Field#5",
+                "layer": {
+                  "name": "5",
+                  "type": "TEXT",
+                  "text": "5",
+                  "textStyle": "title/sm",
+                  "size": [
+                    13,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#6/6",
+                "parent": "/Cells/Field#6",
+                "layer": {
+                  "name": "6",
+                  "type": "TEXT",
+                  "text": "6",
+                  "textStyle": "title/sm",
+                  "size": [
+                    13,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Cells/Field/0",
@@ -1609,12 +1793,150 @@
               }
             },
             "added": [
-              "/Cells/Field/1",
-              "/Cells/Field#2/2",
-              "/Cells/Field#3/3",
-              "/Cells/Field#4/4",
-              "/Cells/Field#5/5",
-              "/Cells/Field#6/6"
+              {
+                "path": "/Cells/Field/1",
+                "parent": "/Cells/Field",
+                "layer": {
+                  "name": "1",
+                  "type": "TEXT",
+                  "text": "1",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    7,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#2/2",
+                "parent": "/Cells/Field#2",
+                "layer": {
+                  "name": "2",
+                  "type": "TEXT",
+                  "text": "2",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    9,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#3/3",
+                "parent": "/Cells/Field#3",
+                "layer": {
+                  "name": "3",
+                  "type": "TEXT",
+                  "text": "3",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#4/4",
+                "parent": "/Cells/Field#4",
+                "layer": {
+                  "name": "4",
+                  "type": "TEXT",
+                  "text": "4",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#5/5",
+                "parent": "/Cells/Field#5",
+                "layer": {
+                  "name": "5",
+                  "type": "TEXT",
+                  "text": "5",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    9,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Cells/Field#6/6",
+                "parent": "/Cells/Field#6",
+                "layer": {
+                  "name": "6",
+                  "type": "TEXT",
+                  "text": "6",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    9,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Cells/Field/0",
@@ -2133,7 +2455,30 @@
               }
             },
             "added": [
-              "/Code is incorrect or expired."
+              {
+                "path": "/Code is incorrect or expired.",
+                "parent": "/",
+                "layer": {
+                  "name": "Code is incorrect or expired.",
+                  "type": "TEXT",
+                  "text": "Code is incorrect or expired.",
+                  "textStyle": "helper/md",
+                  "size": [
+                    180,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/feedback/danger}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Helper text"
@@ -2410,7 +2755,30 @@
               }
             },
             "added": [
-              "/Code is incorrect or expired."
+              {
+                "path": "/Code is incorrect or expired.",
+                "parent": "/",
+                "layer": {
+                  "name": "Code is incorrect or expired.",
+                  "type": "TEXT",
+                  "text": "Code is incorrect or expired.",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    154,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/feedback/danger}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Helper text"

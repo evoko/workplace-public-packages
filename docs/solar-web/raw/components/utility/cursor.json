@@ -89,11 +89,85 @@
               }
             },
             "added": [
-              "/Imported Layers Copy 4",
-              "/Imported Layers Copy 4/Path",
-              "/Imported Layers Copy 4/Path#2",
-              "/Imported Layers Copy 4/Path#3",
-              "/Imported Layers Copy 4/Path#4"
+              {
+                "path": "/Imported Layers Copy 4",
+                "parent": "/",
+                "layer": {
+                  "name": "Imported Layers Copy 4",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    13,
+                    14
+                  ],
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokes": [
+                    "{Color:border/strong}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    13,
+                    14
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path#2",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path#3",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path#4",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -141,10 +215,70 @@
               }
             },
             "added": [
-              "/Oval 3",
-              "/Rectangle 8",
-              "/Rectangle 8/Path",
-              "/Rectangle 8/Path#2"
+              {
+                "path": "/Oval 3",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval 3",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/link/default}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Rectangle 8",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 8",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Primitives:color/blue/400}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 8/Path",
+                "parent": "/Rectangle 8",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 8/Path#2",
+                "parent": "/Rectangle 8",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -167,10 +301,70 @@
               }
             },
             "added": [
-              "/Oval 3",
-              "/Oval 3/Path",
-              "/Oval 3/Path#2",
-              "/Oval 3/Path#3"
+              {
+                "path": "/Oval 3",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval 3",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Oval 3/Path",
+                "parent": "/Oval 3",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    9
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval 3/Path#2",
+                "parent": "/Oval 3",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    9
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval 3/Path#3",
+                "parent": "/Oval 3",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -187,12 +381,100 @@
               }
             },
             "added": [
-              "/Rectangle 254",
-              "/Rectangle 254/Path",
-              "/Rectangle 254/Path#2",
-              "/Rectangle 254/Path#3",
-              "/Rectangle 254/Path#4",
-              "/Rectangle 254/Path#5"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    18,
+                    18
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#2",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    6,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#3",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    4,
+                    6
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#4",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    4,
+                    6
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#5",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    6,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -212,10 +494,70 @@
               }
             },
             "added": [
-              "/Rectangle 254",
-              "/Rectangle 254/Path",
-              "/Rectangle 254/Path#2",
-              "/Rectangle 254/Path#3"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    18,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#2",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    4,
+                    6
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#3",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    4,
+                    6
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -235,10 +577,70 @@
               }
             },
             "added": [
-              "/Rectangle 254",
-              "/Rectangle 254/Path",
-              "/Rectangle 254/Path#2",
-              "/Rectangle 254/Path#3"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    16,
+                    18
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    10
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#2",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    6,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 254/Path#3",
+                "parent": "/Rectangle 254",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    6,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -258,7 +660,25 @@
               }
             },
             "added": [
-              "/Rectangle 254"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "VECTOR",
+                  "size": [
+                    8,
+                    19
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -278,7 +698,25 @@
               }
             },
             "added": [
-              "/Rectangle 254"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "VECTOR",
+                  "size": [
+                    8,
+                    15
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -298,7 +736,25 @@
               }
             },
             "added": [
-              "/Rectangle 254"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -318,7 +774,25 @@
               }
             },
             "added": [
-              "/Rectangle 254"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "VECTOR",
+                  "size": [
+                    13,
+                    13
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -338,12 +812,100 @@
               }
             },
             "added": [
-              "/Path",
-              "/Path/Path",
-              "/Path/Path#2",
-              "/Path/Path#3",
-              "/Path/Path#4",
-              "/Path/Path#5"
+              {
+                "path": "/Path",
+                "parent": "/",
+                "layer": {
+                  "name": "Path",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    8,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Path/Path",
+                "parent": "/Path",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    2,
+                    14
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Path/Path#2",
+                "parent": "/Path",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    3,
+                    2
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Path/Path#3",
+                "parent": "/Path",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    3,
+                    2
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Path/Path#4",
+                "parent": "/Path",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    3,
+                    2
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Path/Path#5",
+                "parent": "/Path",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    3,
+                    2
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -363,10 +925,70 @@
               }
             },
             "added": [
-              "/Oval 38",
-              "/Oval 38/Path",
-              "/Oval 38/Path#2",
-              "/Oval 38/Path#3"
+              {
+                "path": "/Oval 38",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval 38",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Oval 38/Path",
+                "parent": "/Oval 38",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    9
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval 38/Path#2",
+                "parent": "/Oval 38",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    9
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval 38/Path#3",
+                "parent": "/Oval 38",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -386,13 +1008,115 @@
               }
             },
             "added": [
-              "/Oval 38",
-              "/Oval 38/Oval 38",
-              "/Oval 38/Rectangle 1",
-              "/Oval",
-              "/Oval/Oval",
-              "/Oval/Rectangle 2",
-              "/Oval/Rectangle 2#2"
+              {
+                "path": "/Oval 38",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval 38",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Oval 38/Oval 38",
+                "parent": "/Oval 38",
+                "layer": {
+                  "name": "Oval 38",
+                  "type": "VECTOR",
+                  "size": [
+                    14,
+                    14
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval 38/Rectangle 1",
+                "parent": "/Oval 38",
+                "layer": {
+                  "name": "Rectangle 1",
+                  "type": "RECTANGLE",
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval/Oval",
+                "parent": "/Oval",
+                "layer": {
+                  "name": "Oval",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval/Rectangle 2",
+                "parent": "/Oval",
+                "layer": {
+                  "name": "Rectangle 2",
+                  "type": "RECTANGLE",
+                  "size": [
+                    2,
+                    6
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval/Rectangle 2#2",
+                "parent": "/Oval",
+                "layer": {
+                  "name": "Rectangle 2",
+                  "type": "RECTANGLE",
+                  "size": [
+                    6,
+                    2
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -412,12 +1136,100 @@
               }
             },
             "added": [
-              "/Oval 38",
-              "/Oval 38/Oval 38",
-              "/Oval 38/Rectangle 1",
-              "/Oval",
-              "/Oval/Oval",
-              "/Oval/Rectangle 2"
+              {
+                "path": "/Oval 38",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval 38",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Oval 38/Oval 38",
+                "parent": "/Oval 38",
+                "layer": {
+                  "name": "Oval 38",
+                  "type": "VECTOR",
+                  "size": [
+                    14,
+                    14
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval 38/Rectangle 1",
+                "parent": "/Oval 38",
+                "layer": {
+                  "name": "Rectangle 1",
+                  "type": "RECTANGLE",
+                  "size": [
+                    8,
+                    8
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval/Oval",
+                "parent": "/Oval",
+                "layer": {
+                  "name": "Oval",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Oval/Rectangle 2",
+                "parent": "/Oval",
+                "layer": {
+                  "name": "Rectangle 2",
+                  "type": "RECTANGLE",
+                  "size": [
+                    6,
+                    2
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -437,7 +1249,25 @@
               }
             },
             "added": [
-              "/Rectangle 254"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "VECTOR",
+                  "size": [
+                    19,
+                    8
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -457,7 +1287,25 @@
               }
             },
             "added": [
-              "/Rectangle 254"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "VECTOR",
+                  "size": [
+                    13,
+                    13
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -477,7 +1325,25 @@
               }
             },
             "added": [
-              "/Rectangle 254"
+              {
+                "path": "/Rectangle 254",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 254",
+                  "type": "VECTOR",
+                  "size": [
+                    13,
+                    13
+                  ],
+                  "fills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -503,8 +1369,40 @@
               }
             },
             "added": [
-              "/Oval 3",
-              "/Rectangle 6"
+              {
+                "path": "/Oval 3",
+                "parent": "/",
+                "layer": {
+                  "name": "Oval 3",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Primitives:color/green/400}"
+                  ],
+                  "strokes": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Rectangle 6",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 6",
+                  "type": "VECTOR",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ]
           }
         },
@@ -521,11 +1419,85 @@
               }
             },
             "added": [
-              "/Imported Layers Copy 4",
-              "/Imported Layers Copy 4/Path",
-              "/Imported Layers Copy 4/Path#2",
-              "/Imported Layers Copy 4/Path#3",
-              "/Imported Layers Copy 4/Path#4"
+              {
+                "path": "/Imported Layers Copy 4",
+                "parent": "/",
+                "layer": {
+                  "name": "Imported Layers Copy 4",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    14,
+                    17
+                  ],
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokes": [
+                    "{Color:border/strong}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    14,
+                    17
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path#2",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path#3",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Imported Layers Copy 4/Path#4",
+                "parent": "/Imported Layers Copy 4",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    4
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"
@@ -545,26 +1517,310 @@
               }
             },
             "added": [
-              "/Rectangle 272",
-              "/Rectangle 272/Path",
-              "/Rectangle 272/Path#2",
-              "/Rectangle 272/Path#3",
-              "/Rectangle 272/Path#4",
-              "/Rectangle 272/Path#5",
-              "/Rectangle 272/Path#6",
-              "/Rectangle 272/Path#7",
-              "/Rectangle 272/Path#8",
-              "/Rectangle 272/Path#9",
-              "/Rectangle 272/Path#10",
-              "/Rectangle 272/Path#11",
-              "/Rectangle 272/Path#12",
-              "/Rectangle 272/Path#13",
-              "/Rectangle 272/Path#14",
-              "/Rectangle 272/Path#15",
-              "/Rectangle 272/Path#16",
-              "/Rectangle 272/Path#17",
-              "/Rectangle 272/Path#18",
-              "/Rectangle 272/Path#19"
+              {
+                "path": "/Rectangle 272",
+                "parent": "/",
+                "layer": {
+                  "name": "Rectangle 272",
+                  "type": "BOOLEAN_OPERATION",
+                  "size": [
+                    11,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "strokes": [
+                    "{Color:border/strong}"
+                  ],
+                  "strokeWeight": 1
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    12
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#2",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    11,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#3",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    11,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#4",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#5",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#6",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#7",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#8",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#9",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#10",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#11",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#12",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#13",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#14",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#15",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#16",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#17",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#18",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              },
+              {
+                "path": "/Rectangle 272/Path#19",
+                "parent": "/Rectangle 272",
+                "layer": {
+                  "name": "Path",
+                  "type": "VECTOR",
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/Rectangle 237"

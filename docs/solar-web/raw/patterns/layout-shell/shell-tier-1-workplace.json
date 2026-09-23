@@ -419,7 +419,53 @@
               }
             },
             "added": [
-              "/App Content/center"
+              {
+                "path": "/App Content/center",
+                "parent": "/App Content",
+                "layer": {
+                  "name": "center",
+                  "type": "SLOT",
+                  "size": [
+                    377,
+                    744
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/raised}"
+                  ],
+                  "radius": [
+                    8,
+                    8,
+                    0,
+                    0
+                  ],
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/none",
+                    "paddingLeft": "Spatial:stack/none",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:stack/none",
+                    "paddingBottom": "Spatial:inset/none",
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/none",
+                    "bottomRightRadius": "Spatial:radius/none"
+                  },
+                  "propRefs": {
+                    "slotContentId": "center#6498:10"
+                  }
+                }
+              }
             ],
             "removed": [
               "/App Content/Sidebar",

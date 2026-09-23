@@ -139,6 +139,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -179,6 +182,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -424,14 +430,76 @@
           ],
           "overrides": {
             "changed": {
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/secondary}"
                 ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
               }
             },
             "added": [
-              "/Button"
+              {
+                "path": "/Button",
+                "parent": "/",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "sm",
+                    "prio": "secondary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    64,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      8,
+                      0,
+                      8
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "strokes": [
+                    "{Color:action/secondary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  },
+                  "propRefs": {
+                    "visible": "showSecondaryCTA#3034:6"
+                  }
+                }
+              }
             ],
             "removed": [
               "/CTA",
@@ -471,14 +539,79 @@
                   "{Color:surface/feedback/danger/subtle}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/danger}"
                 ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
               }
             },
             "added": [
-              "/Button"
+              {
+                "path": "/Button",
+                "parent": "/",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "sm",
+                    "prio": "primary",
+                    "state": "default",
+                    "danger": "true"
+                  },
+                  "size": [
+                    64,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      8,
+                      0,
+                      8
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/primary/bg/danger/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/primary/border/danger/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  },
+                  "propRefs": {
+                    "visible": "showPrimaryCTA#3034:3"
+                  }
+                }
+              }
             ],
             "removed": [
               "/CTA",
@@ -541,14 +674,76 @@
                   "{Color:border/medium}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/secondary}"
                 ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
               }
             },
             "added": [
-              "/Button"
+              {
+                "path": "/Button",
+                "parent": "/",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "sm",
+                    "prio": "secondary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    64,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      8,
+                      0,
+                      8
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "strokes": [
+                    "{Color:action/secondary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  },
+                  "propRefs": {
+                    "visible": "showSecondaryCTA#3034:6"
+                  }
+                }
+              }
             ],
             "removed": [
               "/CTA",
@@ -592,14 +787,79 @@
                 ],
                 "effectStyle": "shadow/raised"
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/danger}"
                 ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
               }
             },
             "added": [
-              "/Button"
+              {
+                "path": "/Button",
+                "parent": "/",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "sm",
+                    "prio": "primary",
+                    "state": "default",
+                    "danger": "true"
+                  },
+                  "size": [
+                    64,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      8,
+                      0,
+                      8
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/primary/bg/danger/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/primary/border/danger/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  },
+                  "propRefs": {
+                    "visible": "showPrimaryCTA#3034:3"
+                  }
+                }
+              }
             ],
             "removed": [
               "/CTA",

@@ -54,14 +54,9 @@ export const solarButtonStyles = {
     paddingLeft: 'var(--solar-inset-sm)',
     height: '40px',
     '& .MuiButton-startIcon': {
-      color: 'var(--solar-color-action-primary-icon-default)',
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
-    },
-    '& .MuiButton-endIcon': {
       color: 'var(--solar-color-action-primary-icon-default)',
-      width: 'var(--solar-icon-sm)',
-      height: 'var(--solar-icon-sm)',
     },
     '& .MuiButton-loadingIndicator': {},
     color: 'var(--solar-color-action-primary-text-default)',
@@ -71,6 +66,11 @@ export const solarButtonStyles = {
     lineHeight: 'var(--solar-type-line-height-label-md)',
     letterSpacing: '-0.02em',
     textDecoration: 'none',
+    '& .MuiButton-endIcon': {
+      width: 'var(--solar-icon-sm)',
+      height: 'var(--solar-icon-sm)',
+      color: 'var(--solar-color-action-primary-icon-default)',
+    },
     '& .SolarButton-counter': {
       height: '20px',
     },
@@ -102,10 +102,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-hover)',
         },
+        color: 'var(--solar-color-action-primary-text-hover)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-primary-icon-hover)',
         },
-        color: 'var(--solar-color-action-primary-text-hover)',
       },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-primary-bg-active)',
@@ -113,10 +113,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-active)',
         },
+        color: 'var(--solar-color-action-primary-text-active)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-primary-icon-active)',
         },
-        color: 'var(--solar-color-action-primary-text-active)',
       },
       '&.Mui-disabled': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
@@ -124,32 +124,26 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
+        color: 'var(--solar-color-action-primary-text-disabled)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
-        color: 'var(--solar-color-action-primary-text-disabled)',
       },
       '&.MuiButton-loading': {},
     },
     'variant=primary, danger=true': {
       backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
       borderColor: 'var(--solar-color-action-primary-border-danger-default)',
-      '& .MuiButton-startIcon': {
-        color: 'var(--solar-color-action-primary-icon-danger-default)',
-      },
-      '& .MuiButton-endIcon': {
-        color: 'var(--solar-color-action-primary-icon-danger-default)',
-      },
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-danger-hover)',
         borderColor: 'var(--solar-color-action-primary-border-danger-hover)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-hover)',
         },
+        color: 'var(--solar-color-action-primary-text-danger-hover)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-hover)',
         },
-        color: 'var(--solar-color-action-primary-text-danger-hover)',
       },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-primary-bg-danger-active)',
@@ -157,10 +151,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-active)',
         },
+        color: 'var(--solar-color-action-primary-text-danger-active)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-active)',
         },
-        color: 'var(--solar-color-action-primary-text-danger-active)',
       },
       '&.Mui-focusVisible': {
         backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
@@ -168,10 +162,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-default)',
         },
+        color: 'var(--solar-color-action-primary-text-danger-default)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-default)',
         },
-        color: 'var(--solar-color-action-primary-text-danger-default)',
       },
       '&.MuiButton-loading': {
         backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
@@ -183,32 +177,32 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-disabled)',
         },
+        color: 'var(--solar-color-action-primary-text-danger-disabled)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-disabled)',
         },
-        color: 'var(--solar-color-action-primary-text-danger-disabled)',
+      },
+      '& .MuiButton-startIcon': {
+        color: 'var(--solar-color-action-primary-icon-danger-default)',
       },
       color: 'var(--solar-color-action-primary-text-danger-default)',
+      '& .MuiButton-endIcon': {
+        color: 'var(--solar-color-action-primary-icon-danger-default)',
+      },
     },
     'variant=secondary, danger=false': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       borderColor: 'var(--solar-color-action-secondary-border-default)',
-      '& .MuiButton-startIcon': {
-        color: 'var(--solar-color-action-secondary-icon-default)',
-      },
-      '& .MuiButton-endIcon': {
-        color: 'var(--solar-color-action-secondary-icon-default)',
-      },
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
         borderColor: 'var(--solar-color-action-secondary-border-hover)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
         },
+        color: 'var(--solar-color-action-secondary-text-hover)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
         },
-        color: 'var(--solar-color-action-secondary-text-hover)',
       },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
@@ -216,10 +210,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-active)',
         },
+        color: 'var(--solar-color-action-secondary-text-active)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-active)',
         },
-        color: 'var(--solar-color-action-secondary-text-active)',
       },
       '&.Mui-focusVisible': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
@@ -227,10 +221,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
+        color: 'var(--solar-color-action-secondary-text-default)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
-        color: 'var(--solar-color-action-secondary-text-default)',
       },
       '&.MuiButton-loading': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
@@ -242,32 +236,32 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
         },
+        color: 'var(--solar-color-action-secondary-text-disabled)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
         },
-        color: 'var(--solar-color-action-secondary-text-disabled)',
+      },
+      '& .MuiButton-startIcon': {
+        color: 'var(--solar-color-action-secondary-icon-default)',
       },
       color: 'var(--solar-color-action-secondary-text-default)',
+      '& .MuiButton-endIcon': {
+        color: 'var(--solar-color-action-secondary-icon-default)',
+      },
     },
     'variant=secondary, danger=true': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-danger-default)',
       borderColor: 'var(--solar-color-action-secondary-border-danger-default)',
-      '& .MuiButton-startIcon': {
-        color: 'var(--solar-color-action-secondary-icon-danger-default)',
-      },
-      '& .MuiButton-endIcon': {
-        color: 'var(--solar-color-action-secondary-icon-danger-default)',
-      },
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-danger-hover)',
         borderColor: 'var(--solar-color-action-secondary-border-danger-hover)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-hover)',
         },
+        color: 'var(--solar-color-action-secondary-text-danger-hover)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-hover)',
         },
-        color: 'var(--solar-color-action-secondary-text-danger-hover)',
       },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-danger-active)',
@@ -275,10 +269,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-active)',
         },
+        color: 'var(--solar-color-action-secondary-text-danger-active)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-active)',
         },
-        color: 'var(--solar-color-action-secondary-text-danger-active)',
       },
       '&.Mui-focusVisible': {
         backgroundColor:
@@ -288,10 +282,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-default)',
         },
+        color: 'var(--solar-color-action-secondary-text-danger-default)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-default)',
         },
-        color: 'var(--solar-color-action-secondary-text-danger-default)',
       },
       '&.MuiButton-loading': {
         backgroundColor:
@@ -306,32 +300,32 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-disabled)',
         },
+        color: 'var(--solar-color-action-secondary-text-danger-disabled)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-disabled)',
         },
-        color: 'var(--solar-color-action-secondary-text-danger-disabled)',
+      },
+      '& .MuiButton-startIcon': {
+        color: 'var(--solar-color-action-secondary-icon-danger-default)',
       },
       color: 'var(--solar-color-action-secondary-text-danger-default)',
+      '& .MuiButton-endIcon': {
+        color: 'var(--solar-color-action-secondary-icon-danger-default)',
+      },
     },
     'variant=tertiary, danger=false': {
       backgroundColor: 'transparent',
       borderColor: 'var(--solar-color-action-tertiary-border-default)',
-      '& .MuiButton-startIcon': {
-        color: 'var(--solar-color-action-tertiary-icon-default)',
-      },
-      '& .MuiButton-endIcon': {
-        color: 'var(--solar-color-action-tertiary-icon-default)',
-      },
       '&:hover': {
         backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-hover)',
         },
+        color: 'var(--solar-color-action-tertiary-text-hover)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-hover)',
         },
-        color: 'var(--solar-color-action-tertiary-text-hover)',
       },
       '&:active': {
         backgroundColor: 'transparent',
@@ -339,10 +333,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-active)',
         },
+        color: 'var(--solar-color-action-tertiary-text-active)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-active)',
         },
-        color: 'var(--solar-color-action-tertiary-text-active)',
       },
       '&.Mui-focusVisible': {
         backgroundColor: 'transparent',
@@ -350,10 +344,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-default)',
         },
+        color: 'var(--solar-color-action-tertiary-text-default)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-default)',
         },
-        color: 'var(--solar-color-action-tertiary-text-default)',
       },
       '&.MuiButton-loading': {
         backgroundColor: 'transparent',
@@ -365,32 +359,32 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-disabled)',
         },
+        color: 'var(--solar-color-action-tertiary-text-disabled)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-disabled)',
         },
-        color: 'var(--solar-color-action-tertiary-text-disabled)',
+      },
+      '& .MuiButton-startIcon': {
+        color: 'var(--solar-color-action-tertiary-icon-default)',
       },
       color: 'var(--solar-color-action-tertiary-text-default)',
+      '& .MuiButton-endIcon': {
+        color: 'var(--solar-color-action-tertiary-icon-default)',
+      },
     },
     'variant=tertiary, danger=true': {
       backgroundColor: 'transparent',
       borderColor: 'var(--solar-color-action-tertiary-border-default)',
-      '& .MuiButton-startIcon': {
-        color: 'var(--solar-color-action-tertiary-icon-danger-default)',
-      },
-      '& .MuiButton-endIcon': {
-        color: 'var(--solar-color-action-tertiary-icon-danger-default)',
-      },
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-tertiary-bg-danger-hover)',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-hover)',
         },
+        color: 'var(--solar-color-action-tertiary-text-danger-hover)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-hover)',
         },
-        color: 'var(--solar-color-action-tertiary-text-danger-hover)',
       },
       '&:active': {
         backgroundColor: 'transparent',
@@ -398,10 +392,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-active)',
         },
+        color: 'var(--solar-color-action-tertiary-text-danger-active)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-active)',
         },
-        color: 'var(--solar-color-action-tertiary-text-danger-active)',
       },
       '&.Mui-focusVisible': {
         backgroundColor: 'transparent',
@@ -409,10 +403,10 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-default)',
         },
+        color: 'var(--solar-color-action-tertiary-text-danger-default)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-default)',
         },
-        color: 'var(--solar-color-action-tertiary-text-danger-default)',
       },
       '&.MuiButton-loading': {
         backgroundColor: 'transparent',
@@ -424,12 +418,18 @@ export const solarButtonStyles = {
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-disabled)',
         },
+        color: 'var(--solar-color-action-tertiary-text-danger-disabled)',
         '& .MuiButton-endIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-disabled)',
         },
-        color: 'var(--solar-color-action-tertiary-text-danger-disabled)',
+      },
+      '& .MuiButton-startIcon': {
+        color: 'var(--solar-color-action-tertiary-icon-danger-default)',
       },
       color: 'var(--solar-color-action-tertiary-text-danger-default)',
+      '& .MuiButton-endIcon': {
+        color: 'var(--solar-color-action-tertiary-icon-danger-default)',
+      },
     },
   },
   combined: {

@@ -70,6 +70,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/link/default}"
+            ],
             "size": [
               24,
               24
@@ -109,6 +112,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/link/default}"
+            ],
             "size": [
               24,
               24
@@ -152,10 +158,20 @@
           ],
           "overrides": {
             "changed": {
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/link/hover}"
+                ]
+              },
               "/Label": {
                 "textStyle": "link/lg/hover",
                 "fills": [
                   "{Color:text/link/hover}"
+                ]
+              },
+              "/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/link/hover}"
                 ]
               }
             }
@@ -175,9 +191,19 @@
           ],
           "overrides": {
             "changed": {
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/link/active}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:text/link/active}"
+                ]
+              },
+              "/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/link/active}"
                 ]
               }
             }
@@ -201,9 +227,19 @@
               "/": {
                 "opacity": 0.5
               },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/link/disabled}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:text/link/disabled}"
+                ]
+              },
+              "/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/link/disabled}"
                 ]
               }
             }
@@ -289,7 +325,10 @@
                 ],
                 "vars": {
                   "width": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/hover}"
+                ]
               },
               "/Label": {
                 "textStyle": "link/md/hover",
@@ -312,7 +351,10 @@
                 ],
                 "vars": {
                   "width": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/hover}"
+                ]
               }
             }
           }
@@ -338,7 +380,10 @@
                 ],
                 "vars": {
                   "width": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/active}"
+                ]
               },
               "/Label": {
                 "textStyle": "link/md/default",
@@ -361,7 +406,10 @@
                 ],
                 "vars": {
                   "width": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/active}"
+                ]
               }
             }
           }
@@ -391,7 +439,10 @@
                 ],
                 "vars": {
                   "width": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/disabled}"
+                ]
               },
               "/Label": {
                 "textStyle": "link/md/default",
@@ -414,7 +465,10 @@
                 ],
                 "vars": {
                   "width": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/disabled}"
+                ]
               }
             }
           }
@@ -535,7 +589,10 @@
                 "vars": {
                   "width": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/hover}"
+                ]
               },
               "/Label": {
                 "textStyle": null,
@@ -559,7 +616,10 @@
                 "vars": {
                   "width": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/hover}"
+                ]
               }
             }
           }
@@ -586,7 +646,10 @@
                 "vars": {
                   "width": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/active}"
+                ]
               },
               "/Label": {
                 "textStyle": null,
@@ -610,7 +673,10 @@
                 "vars": {
                   "width": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/active}"
+                ]
               }
             }
           }
@@ -641,7 +707,10 @@
                 "vars": {
                   "width": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/disabled}"
+                ]
               },
               "/Label": {
                 "textStyle": null,
@@ -665,7 +734,10 @@
                 "vars": {
                   "width": "Spatial:icon/xs",
                   "itemSpacing": "Spatial:stack/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/link/disabled}"
+                ]
               }
             }
           }

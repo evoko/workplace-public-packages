@@ -69,7 +69,6 @@ abstract final class SolarButtonRecipe {
     'root.paddingLeft|base': 't:inset.sm',
     'root.width|base': 'k:HUG',
     'root.height|base': 'px:40',
-    'root.iconColor|base': 't:color.action.primary.icon.default',
     'root.radius|size|xl': 't:radius.none',
     'root.borderWidth|size|xl': 't:border.none',
     'root.align|size|xl': 'k:SPACE_BETWEEN/CENTER',
@@ -85,32 +84,22 @@ abstract final class SolarButtonRecipe {
         't:color.action.primary.bg.danger.default',
     'root.borderColor|appearance|variant=primary, danger=true|default':
         't:color.action.primary.border.danger.default',
-    'root.iconColor|appearance|variant=primary, danger=true|default':
-        't:color.action.primary.icon.danger.default',
     'root.background|appearance|variant=primary, danger=true|hover':
         't:color.action.primary.bg.danger.hover',
     'root.borderColor|appearance|variant=primary, danger=true|hover':
         't:color.action.primary.border.danger.hover',
-    'root.iconColor|appearance|variant=primary, danger=true|hover':
-        't:color.action.primary.icon.danger.hover',
     'root.background|appearance|variant=primary, danger=true|pressed':
         't:color.action.primary.bg.danger.active',
     'root.borderColor|appearance|variant=primary, danger=true|pressed':
         't:color.action.primary.border.danger.active',
-    'root.iconColor|appearance|variant=primary, danger=true|pressed':
-        't:color.action.primary.icon.danger.active',
     'root.background|appearance|variant=primary, danger=true|disabled':
         't:color.action.primary.bg.danger.disabled',
     'root.borderColor|appearance|variant=primary, danger=true|disabled':
         't:color.action.primary.border.danger.disabled',
-    'root.iconColor|appearance|variant=primary, danger=true|disabled':
-        't:color.action.primary.icon.danger.disabled',
     'root.background|appearance|variant=primary, danger=true|focus':
         't:color.action.primary.bg.danger.default',
     'root.borderColor|appearance|variant=primary, danger=true|focus':
         't:color.action.primary.border.danger.default',
-    'root.iconColor|appearance|variant=primary, danger=true|focus':
-        't:color.action.primary.icon.danger.default',
     'root.background|appearance|variant=primary, danger=true|loading':
         't:color.action.primary.bg.danger.default',
     'root.borderColor|appearance|variant=primary, danger=true|loading':
@@ -119,32 +108,22 @@ abstract final class SolarButtonRecipe {
         't:color.action.secondary.bg.default',
     'root.borderColor|appearance|variant=secondary, danger=false|default':
         't:color.action.secondary.border.default',
-    'root.iconColor|appearance|variant=secondary, danger=false|default':
-        't:color.action.secondary.icon.default',
     'root.background|appearance|variant=secondary, danger=false|hover':
         't:color.action.secondary.bg.hover',
     'root.borderColor|appearance|variant=secondary, danger=false|hover':
         't:color.action.secondary.border.hover',
-    'root.iconColor|appearance|variant=secondary, danger=false|hover':
-        't:color.action.secondary.icon.hover',
     'root.background|appearance|variant=secondary, danger=false|pressed':
         't:color.action.secondary.bg.active',
     'root.borderColor|appearance|variant=secondary, danger=false|pressed':
         't:color.action.secondary.border.active',
-    'root.iconColor|appearance|variant=secondary, danger=false|pressed':
-        't:color.action.secondary.icon.active',
     'root.background|appearance|variant=secondary, danger=false|disabled':
         'none',
     'root.borderColor|appearance|variant=secondary, danger=false|disabled':
         't:color.action.secondary.border.disabled',
-    'root.iconColor|appearance|variant=secondary, danger=false|disabled':
-        't:color.action.secondary.icon.disabled',
     'root.background|appearance|variant=secondary, danger=false|focus':
         't:color.action.secondary.bg.default',
     'root.borderColor|appearance|variant=secondary, danger=false|focus':
         't:color.action.secondary.border.default',
-    'root.iconColor|appearance|variant=secondary, danger=false|focus':
-        't:color.action.secondary.icon.default',
     'root.background|appearance|variant=secondary, danger=false|loading':
         't:color.action.secondary.bg.default',
     'root.borderColor|appearance|variant=secondary, danger=false|loading':
@@ -153,32 +132,22 @@ abstract final class SolarButtonRecipe {
         't:color.action.secondary.bg.danger.default',
     'root.borderColor|appearance|variant=secondary, danger=true|default':
         't:color.action.secondary.border.danger.default',
-    'root.iconColor|appearance|variant=secondary, danger=true|default':
-        't:color.action.secondary.icon.danger.default',
     'root.background|appearance|variant=secondary, danger=true|hover':
         't:color.action.secondary.bg.danger.hover',
     'root.borderColor|appearance|variant=secondary, danger=true|hover':
         't:color.action.secondary.border.danger.hover',
-    'root.iconColor|appearance|variant=secondary, danger=true|hover':
-        't:color.action.secondary.icon.danger.hover',
     'root.background|appearance|variant=secondary, danger=true|pressed':
         't:color.action.secondary.bg.danger.active',
     'root.borderColor|appearance|variant=secondary, danger=true|pressed':
         't:color.action.secondary.border.danger.active',
-    'root.iconColor|appearance|variant=secondary, danger=true|pressed':
-        't:color.action.secondary.icon.danger.active',
     'root.background|appearance|variant=secondary, danger=true|disabled':
         'none',
     'root.borderColor|appearance|variant=secondary, danger=true|disabled':
         't:color.action.secondary.border.danger.disabled',
-    'root.iconColor|appearance|variant=secondary, danger=true|disabled':
-        't:color.action.secondary.icon.danger.disabled',
     'root.background|appearance|variant=secondary, danger=true|focus':
         't:color.action.secondary.bg.danger.default',
     'root.borderColor|appearance|variant=secondary, danger=true|focus':
         't:color.action.secondary.border.danger.default',
-    'root.iconColor|appearance|variant=secondary, danger=true|focus':
-        't:color.action.secondary.icon.danger.default',
     'root.background|appearance|variant=secondary, danger=true|loading':
         't:color.action.secondary.bg.danger.default',
     'root.borderColor|appearance|variant=secondary, danger=true|loading':
@@ -186,58 +155,38 @@ abstract final class SolarButtonRecipe {
     'root.background|appearance|variant=tertiary, danger=false|default': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=false|default':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=false|default':
-        't:color.action.tertiary.icon.default',
     'root.background|appearance|variant=tertiary, danger=false|hover': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=false|hover':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=false|hover':
-        't:color.action.tertiary.icon.hover',
     'root.background|appearance|variant=tertiary, danger=false|pressed': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=false|pressed':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=false|pressed':
-        't:color.action.tertiary.icon.active',
     'root.background|appearance|variant=tertiary, danger=false|disabled':
         'none',
     'root.borderColor|appearance|variant=tertiary, danger=false|disabled':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=false|disabled':
-        't:color.action.tertiary.icon.disabled',
     'root.background|appearance|variant=tertiary, danger=false|focus': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=false|focus':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=false|focus':
-        't:color.action.tertiary.icon.default',
     'root.background|appearance|variant=tertiary, danger=false|loading': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=false|loading':
         't:color.action.tertiary.border.default',
     'root.background|appearance|variant=tertiary, danger=true|default': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=true|default':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=true|default':
-        't:color.action.tertiary.icon.danger.default',
     'root.background|appearance|variant=tertiary, danger=true|hover':
         't:color.action.tertiary.bg.danger.hover',
     'root.borderColor|appearance|variant=tertiary, danger=true|hover':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=true|hover':
-        't:color.action.tertiary.icon.danger.hover',
     'root.background|appearance|variant=tertiary, danger=true|pressed': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=true|pressed':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=true|pressed':
-        't:color.action.tertiary.icon.danger.active',
     'root.background|appearance|variant=tertiary, danger=true|disabled': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=true|disabled':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=true|disabled':
-        't:color.action.tertiary.icon.danger.disabled',
     'root.background|appearance|variant=tertiary, danger=true|focus': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=true|focus':
         't:color.action.tertiary.border.default',
-    'root.iconColor|appearance|variant=tertiary, danger=true|focus':
-        't:color.action.tertiary.icon.danger.default',
     'root.background|appearance|variant=tertiary, danger=true|loading': 'none',
     'root.borderColor|appearance|variant=tertiary, danger=true|loading':
         't:color.action.tertiary.border.default',
@@ -245,20 +194,14 @@ abstract final class SolarButtonRecipe {
         't:color.action.primary.bg.hover',
     'root.borderColor|appearance|variant=primary, danger=false|hover':
         't:color.action.primary.border.hover',
-    'root.iconColor|appearance|variant=primary, danger=false|hover':
-        't:color.action.primary.icon.hover',
     'root.background|appearance|variant=primary, danger=false|pressed':
         't:color.action.primary.bg.active',
     'root.borderColor|appearance|variant=primary, danger=false|pressed':
         't:color.action.primary.border.active',
-    'root.iconColor|appearance|variant=primary, danger=false|pressed':
-        't:color.action.primary.icon.active',
     'root.background|appearance|variant=primary, danger=false|disabled':
         't:color.action.primary.bg.disabled',
     'root.borderColor|appearance|variant=primary, danger=false|disabled':
         't:color.action.primary.border.disabled',
-    'root.iconColor|appearance|variant=primary, danger=false|disabled':
-        't:color.action.primary.icon.disabled',
     'root.shadow|combined|md|variant=tertiary, danger=false|default': 'none',
     'root.shadow|combined|md|variant=tertiary, danger=false|hover': 'none',
     'root.shadow|combined|md|variant=tertiary, danger=false|pressed': 'none',
@@ -350,6 +293,63 @@ abstract final class SolarButtonRecipe {
     'iconLeading.variant.solid|base': 'k:false',
     'iconLeading.width|base': 't:icon.sm',
     'iconLeading.height|base': 't:icon.sm',
+    'iconLeading.color|base': 't:color.action.primary.icon.default',
+    'iconLeading.color|appearance|variant=primary, danger=true|default':
+        't:color.action.primary.icon.danger.default',
+    'iconLeading.color|appearance|variant=primary, danger=true|hover':
+        't:color.action.primary.icon.danger.hover',
+    'iconLeading.color|appearance|variant=primary, danger=true|pressed':
+        't:color.action.primary.icon.danger.active',
+    'iconLeading.color|appearance|variant=primary, danger=true|disabled':
+        't:color.action.primary.icon.danger.disabled',
+    'iconLeading.color|appearance|variant=primary, danger=true|focus':
+        't:color.action.primary.icon.danger.default',
+    'iconLeading.color|appearance|variant=secondary, danger=false|default':
+        't:color.action.secondary.icon.default',
+    'iconLeading.color|appearance|variant=secondary, danger=false|hover':
+        't:color.action.secondary.icon.hover',
+    'iconLeading.color|appearance|variant=secondary, danger=false|pressed':
+        't:color.action.secondary.icon.active',
+    'iconLeading.color|appearance|variant=secondary, danger=false|disabled':
+        't:color.action.secondary.icon.disabled',
+    'iconLeading.color|appearance|variant=secondary, danger=false|focus':
+        't:color.action.secondary.icon.default',
+    'iconLeading.color|appearance|variant=secondary, danger=true|default':
+        't:color.action.secondary.icon.danger.default',
+    'iconLeading.color|appearance|variant=secondary, danger=true|hover':
+        't:color.action.secondary.icon.danger.hover',
+    'iconLeading.color|appearance|variant=secondary, danger=true|pressed':
+        't:color.action.secondary.icon.danger.active',
+    'iconLeading.color|appearance|variant=secondary, danger=true|disabled':
+        't:color.action.secondary.icon.danger.disabled',
+    'iconLeading.color|appearance|variant=secondary, danger=true|focus':
+        't:color.action.secondary.icon.danger.default',
+    'iconLeading.color|appearance|variant=tertiary, danger=false|default':
+        't:color.action.tertiary.icon.default',
+    'iconLeading.color|appearance|variant=tertiary, danger=false|hover':
+        't:color.action.tertiary.icon.hover',
+    'iconLeading.color|appearance|variant=tertiary, danger=false|pressed':
+        't:color.action.tertiary.icon.active',
+    'iconLeading.color|appearance|variant=tertiary, danger=false|disabled':
+        't:color.action.tertiary.icon.disabled',
+    'iconLeading.color|appearance|variant=tertiary, danger=false|focus':
+        't:color.action.tertiary.icon.default',
+    'iconLeading.color|appearance|variant=tertiary, danger=true|default':
+        't:color.action.tertiary.icon.danger.default',
+    'iconLeading.color|appearance|variant=tertiary, danger=true|hover':
+        't:color.action.tertiary.icon.danger.hover',
+    'iconLeading.color|appearance|variant=tertiary, danger=true|pressed':
+        't:color.action.tertiary.icon.danger.active',
+    'iconLeading.color|appearance|variant=tertiary, danger=true|disabled':
+        't:color.action.tertiary.icon.danger.disabled',
+    'iconLeading.color|appearance|variant=tertiary, danger=true|focus':
+        't:color.action.tertiary.icon.danger.default',
+    'iconLeading.color|appearance|variant=primary, danger=false|hover':
+        't:color.action.primary.icon.hover',
+    'iconLeading.color|appearance|variant=primary, danger=false|pressed':
+        't:color.action.primary.icon.active',
+    'iconLeading.color|appearance|variant=primary, danger=false|disabled':
+        't:color.action.primary.icon.disabled',
     'spinner.present|base': 'b:false',
     'spinner.component|base': 'k:Spinner',
     'spinner.variant.size|base': 'k:sm',
@@ -511,6 +511,63 @@ abstract final class SolarButtonRecipe {
     'iconTrailing.variant.solid|base': 'k:false',
     'iconTrailing.width|base': 't:icon.sm',
     'iconTrailing.height|base': 't:icon.sm',
+    'iconTrailing.color|base': 't:color.action.primary.icon.default',
+    'iconTrailing.color|appearance|variant=primary, danger=true|default':
+        't:color.action.primary.icon.danger.default',
+    'iconTrailing.color|appearance|variant=primary, danger=true|hover':
+        't:color.action.primary.icon.danger.hover',
+    'iconTrailing.color|appearance|variant=primary, danger=true|pressed':
+        't:color.action.primary.icon.danger.active',
+    'iconTrailing.color|appearance|variant=primary, danger=true|disabled':
+        't:color.action.primary.icon.danger.disabled',
+    'iconTrailing.color|appearance|variant=primary, danger=true|focus':
+        't:color.action.primary.icon.danger.default',
+    'iconTrailing.color|appearance|variant=secondary, danger=false|default':
+        't:color.action.secondary.icon.default',
+    'iconTrailing.color|appearance|variant=secondary, danger=false|hover':
+        't:color.action.secondary.icon.hover',
+    'iconTrailing.color|appearance|variant=secondary, danger=false|pressed':
+        't:color.action.secondary.icon.active',
+    'iconTrailing.color|appearance|variant=secondary, danger=false|disabled':
+        't:color.action.secondary.icon.disabled',
+    'iconTrailing.color|appearance|variant=secondary, danger=false|focus':
+        't:color.action.secondary.icon.default',
+    'iconTrailing.color|appearance|variant=secondary, danger=true|default':
+        't:color.action.secondary.icon.danger.default',
+    'iconTrailing.color|appearance|variant=secondary, danger=true|hover':
+        't:color.action.secondary.icon.danger.hover',
+    'iconTrailing.color|appearance|variant=secondary, danger=true|pressed':
+        't:color.action.secondary.icon.danger.active',
+    'iconTrailing.color|appearance|variant=secondary, danger=true|disabled':
+        't:color.action.secondary.icon.danger.disabled',
+    'iconTrailing.color|appearance|variant=secondary, danger=true|focus':
+        't:color.action.secondary.icon.danger.default',
+    'iconTrailing.color|appearance|variant=tertiary, danger=false|default':
+        't:color.action.tertiary.icon.default',
+    'iconTrailing.color|appearance|variant=tertiary, danger=false|hover':
+        't:color.action.tertiary.icon.hover',
+    'iconTrailing.color|appearance|variant=tertiary, danger=false|pressed':
+        't:color.action.tertiary.icon.active',
+    'iconTrailing.color|appearance|variant=tertiary, danger=false|disabled':
+        't:color.action.tertiary.icon.disabled',
+    'iconTrailing.color|appearance|variant=tertiary, danger=false|focus':
+        't:color.action.tertiary.icon.default',
+    'iconTrailing.color|appearance|variant=tertiary, danger=true|default':
+        't:color.action.tertiary.icon.danger.default',
+    'iconTrailing.color|appearance|variant=tertiary, danger=true|hover':
+        't:color.action.tertiary.icon.danger.hover',
+    'iconTrailing.color|appearance|variant=tertiary, danger=true|pressed':
+        't:color.action.tertiary.icon.danger.active',
+    'iconTrailing.color|appearance|variant=tertiary, danger=true|disabled':
+        't:color.action.tertiary.icon.danger.disabled',
+    'iconTrailing.color|appearance|variant=tertiary, danger=true|focus':
+        't:color.action.tertiary.icon.danger.default',
+    'iconTrailing.color|appearance|variant=primary, danger=false|hover':
+        't:color.action.primary.icon.hover',
+    'iconTrailing.color|appearance|variant=primary, danger=false|pressed':
+        't:color.action.primary.icon.active',
+    'iconTrailing.color|appearance|variant=primary, danger=false|disabled':
+        't:color.action.primary.icon.disabled',
     'counter.present|base': 'b:false',
     'counter.component|base': 'k:Counter',
     'counter.variant.type|base': 'k:inverted',
@@ -838,7 +895,7 @@ abstract final class SolarButtonRecipe {
     return ButtonStyle(
       backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
       foregroundColor: by((s) => color(t, 'label.color', p, s)),
-      iconColor: by((s) => color(t, 'root.iconColor', p, s)),
+      iconColor: by((s) => color(t, 'iconLeading.color', p, s)),
       iconSize: WidgetStatePropertyAll(dimension('iconLeading.width', p, none)),
       textStyle: by((s) => textStyle(t, 'label.typography', p, s)),
       padding: by((s) => EdgeInsetsDirectional.only(

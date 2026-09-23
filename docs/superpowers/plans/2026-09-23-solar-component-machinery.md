@@ -30,8 +30,8 @@ Run through today's pipeline, 2026-09-23:
 | Sparkline  | builds      | its one layer is a `VECTOR` line, which the recipe reads as a frame                      |
 
 And from 3a: 58 of SOLAR Web's 119 sets add layers the fetcher records by path alone; 31 have icons
-whose colours the variant digest cannot attribute to a layer; and a paint's opacity is dropped
-when the colour is bound to a variable.
+whose colours the variant digest cannot attribute to a layer; and a paint's opacity looked dropped
+when the colour is bound to a variable (it is not; see Task 1).
 
 ## Decisions taken (owner, 2026-09-23)
 
@@ -65,25 +65,61 @@ the new fields:
 - **Icon instances carry their fill.** An `INSTANCE` whose main component is an icon records the
   distinct fills of its vector descendants as `iconFills`, so the colour is tied to the icon that
   draws it rather than guessed from the variant digest.
-- **A bound paint keeps its opacity**, written `{Color:x} a=0.50` as an unbound one already is.
+- ~~**A bound paint keeps its opacity**~~ — dropped after measuring; see below.
 
 Then the owner runs one `npm run solar:sync`. Verify: the Button recipe is byte-identical except
 where the new data says otherwise; the count of sets with unresolved added layers drops from 58.
+
+**Done 2026-09-23, synced by the owner the same day**, and the sync wrote exactly what the harness
+predicted: every raw page byte for byte, `solar:rebuild` deterministic. Verified before any sync with an offline harness: a
+copy of the fetcher whose Figma client serves the REST responses cached by the last sync. Run
+unchanged, it reproduced all 146 committed raw pages byte for byte, and the docs built from them
+matched the committed docs, so the comparison is faithful. With the change:
+
+- **Added layers** carry `{path, parent, layer}`; the sets with unresolved added layers go from
+  58 to 0.
+- **Icon instances** carry `iconFills`, diffed per variant (525 new per-variant icon colours).
+  The sets whose icon colours cannot be attributed go from 31 to 0 (Task 2); the 15 the harness
+  first left were not two-tone icons but the digest fallback reading icons inside composed
+  children.
+- **Bound-paint opacity was dropped from the task after measuring it.** For a bound colour REST
+  reports the variable's own alpha as the paint's opacity: in all 1742 cases it equalled the
+  token's alpha, and not one differed. Writing it would have drawn secondary's 20% border at 4%.
+  3a's note that opacity was being lost was wrong; nothing was. `schema.md` says so.
+
+Button, rebuilt from the new data, draws exactly what it draws today (MUI styles identical apart
+from key order, which the selectors' specificity makes irrelevant); its icon colour now comes from
+the icon layer. Newly visible data brings one new unresolved variable (`6a3634305bfe…`, a radius on
+two pattern pages, Column Chooser and Search Results Panel) and makes Dialog stop deriving, on its
+image layer's two stacked paints — the 3b-2 shape. Task 2's reader changes were needed before the
+sync, because `solar:sync` runs codegen straight after the fetch; they are in and accept both the
+old and the new raw shape.
 
 ### Task 2: The resolver and recipe read the new data
 
 **Files:** modify `src/normalize/component-layers.mjs`, `src/normalize/recipe.mjs` and their
 tests.
 
-An added layer resolves like any other; `{unresolved: 'added'}` remains only for data fetched
-before Task 1. An icon's colour becomes a paint cell on the icon layer itself, replacing the
-root-level `iconColor` read from the digest, which stays only as the fallback for old data. A
-paint with opacity is `{token, opacity}`; the MUI emitter writes
-`color-mix(in srgb, var(--solar-…) 50%, transparent)` and the Flutter one `.withValues(alpha:)`.
+An added layer resolves like any other, under its recorded parent. An icon's colour is a paint cell
+on the icon layer itself, replacing the root-level `iconColor` read from the variant digest. The
+emitters follow: MUI styles each icon slot from its own cell, and Flutter, whose `ButtonStyle` has
+one `iconColor` and one `iconSize`, reads the leading icon and refuses a recipe where the trailing
+one differs. (Opacity was dropped with Task 1.)
 
-Tests: Button's recipe is unchanged; Checkbox's `/Icon` and Card's skeletons resolve; an icon's
-colour sits on the icon layer; the corpus guard's `unattributed` count falls to what the new data
-leaves.
+Tests: Button's recipe is unchanged; an added layer resolves under its parent; an icon's colour
+sits on the icon layer; the corpus guard's `unattributed` count falls to what the new data leaves.
+
+**Done 2026-09-23.** Both old-data paths were removed once the owner's sync landed, rather than
+kept as fallbacks: no pre-sync data is left and the fetcher cannot write it, and the digest fallback
+misfired on the new data. The digest also lists icons inside composed children, so a set whose own
+icons had no colour to record (Split Dialog's `Icon/Empty` placeholder) looked like old data and
+got a finding for its Buttons' colours; left in, it would also have given Alert a root icon colour
+that tints its StatusIndicator. Now codegen refuses a path-only added layer, and a multi-colour
+icon is a finding on that icon layer (none in SOLAR Web today). Across the corpus: 115 of 119 sets
+derive (the guard adds Dialog, on its image layer's two stacked paints), no set has an
+unattributed icon colour, and no recipe has a root `iconColor`. Button's generated MUI, Flutter and
+IR are identical to the sync's output. 405 tests, lint, typecheck and 56 Flutter tests pass; the
+new Flutter guard's test fails with the guard disabled.
 
 ### Task 3: Layer names that cannot collide
 
@@ -170,7 +206,7 @@ than the other platform.
 ## Done when
 
 - Text Input, Card, Dialog and Tabs build, and Checkbox's states are states.
-- The fetcher records added layers, icon colours and bound opacity, and Button is unchanged by it.
+- The fetcher records added layers and icon colours, and Button is unchanged by it.
 - `SolarButton` exists as a Flutter widget with the React component's props.
 - Every one of Button's 108 variants matches Figma on both platforms, or differs only where the
   overlay or an open finding says so, and CI enforces it.

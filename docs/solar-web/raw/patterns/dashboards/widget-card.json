@@ -215,6 +215,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -373,10 +376,162 @@
               }
             },
             "added": [
-              "/Header/Skeleton",
-              "/Header/Skeleton#2",
-              "/Skeleton",
-              "/Skeleton#2"
+              {
+                "path": "/Header/Skeleton",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    220,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Skeleton#2",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    328,
+                    64
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    220,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/Container",
@@ -428,9 +583,109 @@
               }
             },
             "added": [
-              "/Body",
-              "/Body/Something went wrong",
-              "/Body/Button"
+              {
+                "path": "/Body",
+                "parent": "/",
+                "layer": {
+                  "name": "Body",
+                  "type": "FRAME",
+                  "size": [
+                    328,
+                    96
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingTop": "Spatial:stack/none",
+                    "paddingBottom": "Spatial:stack/none"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Something went wrong",
+                "parent": "/Body",
+                "layer": {
+                  "name": "Something went wrong",
+                  "type": "TEXT",
+                  "text": "Something went wrong",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    147,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Button",
+                "parent": "/Body",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "sm",
+                    "prio": "secondary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    79,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      8,
+                      0,
+                      8
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "strokes": [
+                    "{Color:action/secondary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/body",
@@ -478,7 +733,38 @@
               }
             },
             "added": [
-              "/EmptyState"
+              {
+                "path": "/EmptyState",
+                "parent": "/",
+                "layer": {
+                  "name": "EmptyState",
+                  "type": "INSTANCE",
+                  "main": "EmptyState",
+                  "size": [
+                    328,
+                    96
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/body",
@@ -519,9 +805,80 @@
               }
             },
             "added": [
-              "/Header/Container#2",
-              "/Header/Container#2/Label",
-              "/Header/Container#2/Icon/ChevronRight"
+              {
+                "path": "/Header/Container#2",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    80,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Container#2/Label",
+                "parent": "/Header/Container#2",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "View All",
+                  "textStyle": "label/md",
+                  "size": [
+                    52,
+                    10
+                  ],
+                  "sizing": "FIXED/HUG",
+                  "fills": [
+                    "{Color:action/tertiary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Container#2/Icon/ChevronRight",
+                "parent": "/Header/Container#2",
+                "layer": {
+                  "name": "Icon/ChevronRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/Icon/More"
@@ -551,10 +908,162 @@
               }
             },
             "added": [
-              "/Header/Skeleton",
-              "/Header/Skeleton#2",
-              "/Skeleton",
-              "/Skeleton#2"
+              {
+                "path": "/Header/Skeleton",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    220,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Skeleton#2",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    328,
+                    64
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Skeleton#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "INSTANCE",
+                  "main": "Skeleton",
+                  "variant": {
+                    "type": "rectangular",
+                    "size": "md"
+                  },
+                  "size": [
+                    220,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/Container",
@@ -613,12 +1122,183 @@
               }
             },
             "added": [
-              "/Header/Container#2",
-              "/Header/Container#2/Label",
-              "/Header/Container#2/Icon/ChevronRight",
-              "/Body",
-              "/Body/Something went wrong",
-              "/Body/Button"
+              {
+                "path": "/Header/Container#2",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    80,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Container#2/Label",
+                "parent": "/Header/Container#2",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "View All",
+                  "textStyle": "label/md",
+                  "size": [
+                    52,
+                    10
+                  ],
+                  "sizing": "FIXED/HUG",
+                  "fills": [
+                    "{Color:action/tertiary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Container#2/Icon/ChevronRight",
+                "parent": "/Header/Container#2",
+                "layer": {
+                  "name": "Icon/ChevronRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              },
+              {
+                "path": "/Body",
+                "parent": "/",
+                "layer": {
+                  "name": "Body",
+                  "type": "FRAME",
+                  "size": [
+                    328,
+                    92
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingTop": "Spatial:stack/none",
+                    "paddingBottom": "Spatial:stack/none"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Something went wrong",
+                "parent": "/Body",
+                "layer": {
+                  "name": "Something went wrong",
+                  "type": "TEXT",
+                  "text": "Something went wrong",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    147,
+                    10
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Button",
+                "parent": "/Body",
+                "layer": {
+                  "name": "Button",
+                  "type": "INSTANCE",
+                  "main": "Button",
+                  "variant": {
+                    "size": "sm",
+                    "prio": "secondary",
+                    "state": "default",
+                    "danger": "false"
+                  },
+                  "size": [
+                    79,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      8,
+                      0,
+                      8
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/FIXED"
+                  },
+                  "strokes": [
+                    "{Color:action/secondary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 6,
+                  "effectStyle": "shadow/control",
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/xs",
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/Icon/More",
@@ -674,10 +1354,112 @@
               }
             },
             "added": [
-              "/Header/Container#2",
-              "/Header/Container#2/Label",
-              "/Header/Container#2/Icon/ChevronRight",
-              "/EmptyState"
+              {
+                "path": "/Header/Container#2",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    80,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Container#2/Label",
+                "parent": "/Header/Container#2",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "View All",
+                  "textStyle": "label/md",
+                  "size": [
+                    52,
+                    10
+                  ],
+                  "sizing": "FIXED/HUG",
+                  "fills": [
+                    "{Color:action/tertiary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Container#2/Icon/ChevronRight",
+                "parent": "/Header/Container#2",
+                "layer": {
+                  "name": "Icon/ChevronRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              },
+              {
+                "path": "/EmptyState",
+                "parent": "/",
+                "layer": {
+                  "name": "EmptyState",
+                  "type": "INSTANCE",
+                  "main": "EmptyState",
+                  "size": [
+                    328,
+                    96
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/Icon/More",
@@ -716,6 +1498,9 @@
         "variant": {
           "solid": "false"
         },
+        "iconFills": [
+          "{Color:action/tertiary/icon/default}"
+        ],
         "size": [
           16,
           16
@@ -853,6 +1638,9 @@
         "variant": {
           "solid": "false"
         },
+        "iconFills": [
+          "{Color:icon/secondary}"
+        ],
         "size": [
           16,
           16

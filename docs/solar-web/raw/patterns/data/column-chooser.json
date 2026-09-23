@@ -742,19 +742,340 @@
               }
             },
             "added": [
-              "/Header/TitleGroup/Skeleton",
-              "/Header/Skeleton",
-              "/content/Body",
-              "/content/Body/ColumnRow",
-              "/content/Body/ColumnRow/Skeleton",
-              "/content/Body/ColumnRow#2",
-              "/content/Body/ColumnRow#2/Skeleton",
-              "/content/Body/ColumnRow#3",
-              "/content/Body/ColumnRow#3/Skeleton",
-              "/content/Body/ColumnRow#4",
-              "/content/Body/ColumnRow#4/Skeleton",
-              "/content/Body/ColumnRow#5",
-              "/content/Body/ColumnRow#5/Skeleton"
+              {
+                "path": "/Header/TitleGroup/Skeleton",
+                "parent": "/Header/TitleGroup",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    212,
+                    12
+                  ],
+                  "sizing": "FILL/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/Header/Skeleton",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    64,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body",
+                "parent": "/content",
+                "layer": {
+                  "name": "Body",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    188
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      4,
+                      0,
+                      4,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "paddingTop": "Spatial:inset/2xs",
+                    "paddingBottom": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow",
+                "parent": "/content/Body",
+                "layer": {
+                  "name": "ColumnRow",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      16,
+                      0,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow/Skeleton",
+                "parent": "/content/Body/ColumnRow",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    230,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#2",
+                "parent": "/content/Body",
+                "layer": {
+                  "name": "ColumnRow",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      16,
+                      0,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#2/Skeleton",
+                "parent": "/content/Body/ColumnRow#2",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    210,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#3",
+                "parent": "/content/Body",
+                "layer": {
+                  "name": "ColumnRow",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      16,
+                      0,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#3/Skeleton",
+                "parent": "/content/Body/ColumnRow#3",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    234,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#4",
+                "parent": "/content/Body",
+                "layer": {
+                  "name": "ColumnRow",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      16,
+                      0,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#4/Skeleton",
+                "parent": "/content/Body/ColumnRow#4",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    201,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#5",
+                "parent": "/content/Body",
+                "layer": {
+                  "name": "ColumnRow",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      16,
+                      0,
+                      16
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/ColumnRow#5/Skeleton",
+                "parent": "/content/Body/ColumnRow#5",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "RECTANGLE",
+                  "size": [
+                    196,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 4,
+                  "vars": {
+                    "topLeftRadius": "unresolved:6a3634305bfe",
+                    "topRightRadius": "unresolved:6a3634305bfe",
+                    "bottomLeftRadius": "unresolved:6a3634305bfe",
+                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/TitleGroup/Title",
@@ -802,8 +1123,61 @@
           ],
           "overrides": {
             "added": [
-              "/content/Body",
-              "/content/Body/No columns match your search"
+              {
+                "path": "/content/Body",
+                "parent": "/content",
+                "layer": {
+                  "name": "Body",
+                  "type": "FRAME",
+                  "size": [
+                    296,
+                    568
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 4,
+                    "pad": [
+                      16,
+                      16,
+                      16,
+                      16
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FILL/FILL"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs",
+                    "paddingLeft": "Spatial:inset/md",
+                    "paddingTop": "Spatial:inset/md",
+                    "paddingRight": "Spatial:inset/md",
+                    "paddingBottom": "Spatial:inset/md"
+                  }
+                }
+              },
+              {
+                "path": "/content/Body/No columns match your search",
+                "parent": "/content/Body",
+                "layer": {
+                  "name": "No columns match your search",
+                  "type": "TEXT",
+                  "text": "No columns match your search",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    264,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/content/List",
@@ -878,6 +1252,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/tertiary}"
+            ],
             "size": [
               20,
               20

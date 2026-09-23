@@ -173,6 +173,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/feedback/success}"
+            ],
             "size": [
               12,
               12
@@ -249,6 +252,11 @@
                 "fills": [
                   "{Color:text/feedback/warning}"
                 ]
+              },
+              "/Icon/ChevronRight": {
+                "iconFills": [
+                  "{Color:icon/feedback/warning}"
+                ]
               }
             }
           }
@@ -291,6 +299,11 @@
               "/Action": {
                 "fills": [
                   "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Icon/ChevronRight": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
                 ]
               }
             }
@@ -335,6 +348,11 @@
                 "fills": [
                   "{Color:text/feedback/info}"
                 ]
+              },
+              "/Icon/ChevronRight": {
+                "iconFills": [
+                  "{Color:icon/feedback/info}"
+                ]
               }
             }
           }
@@ -377,6 +395,11 @@
               "/Action": {
                 "fills": [
                   "{Color:text/feedback/neutral}"
+                ]
+              },
+              "/Icon/ChevronRight": {
+                "iconFills": [
+                  "{Color:icon/feedback/neutral}"
                 ]
               }
             }

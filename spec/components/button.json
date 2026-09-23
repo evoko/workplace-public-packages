@@ -168,10 +168,6 @@
           "literal": 40,
           "from": "size=md, prio=primary, state=default, danger=false",
           "allowed": "Owner decision 2026-09-23: carry the fixed heights (40, 32, 48) as literals. SOLAR publishes no control height token; raised as a governance gap."
-        },
-        "iconColor": {
-          "token": "color.action.primary.icon.default",
-          "from": "size=md, prio=primary, state=default, danger=false"
         }
       },
       "size": {
@@ -238,10 +234,6 @@
             "borderColor": {
               "token": "color.action.primary.border.danger.default",
               "from": "size=md, prio=primary, state=default, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.danger.default",
-              "from": "size=md, prio=primary, state=default, danger=true"
             }
           },
           "hover": {
@@ -251,10 +243,6 @@
             },
             "borderColor": {
               "token": "color.action.primary.border.danger.hover",
-              "from": "size=md, prio=primary, state=hover, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.danger.hover",
               "from": "size=md, prio=primary, state=hover, danger=true"
             }
           },
@@ -266,10 +254,6 @@
             "borderColor": {
               "token": "color.action.primary.border.danger.active",
               "from": "size=md, prio=primary, state=pressed, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.danger.active",
-              "from": "size=md, prio=primary, state=pressed, danger=true"
             }
           },
           "disabled": {
@@ -280,10 +264,6 @@
             "borderColor": {
               "token": "color.action.primary.border.danger.disabled",
               "from": "size=md, prio=primary, state=disabled, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.danger.disabled",
-              "from": "size=md, prio=primary, state=disabled, danger=true"
             }
           },
           "focus": {
@@ -293,10 +273,6 @@
             },
             "borderColor": {
               "token": "color.action.primary.border.danger.default",
-              "from": "size=md, prio=primary, state=focus, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.danger.default",
               "from": "size=md, prio=primary, state=focus, danger=true"
             }
           },
@@ -320,10 +296,6 @@
             "borderColor": {
               "token": "color.action.secondary.border.default",
               "from": "size=md, prio=secondary, state=default, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.default",
-              "from": "size=md, prio=secondary, state=default, danger=false"
             }
           },
           "hover": {
@@ -333,10 +305,6 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.hover",
-              "from": "size=md, prio=secondary, state=hover, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.hover",
               "from": "size=md, prio=secondary, state=hover, danger=false"
             }
           },
@@ -348,10 +316,6 @@
             "borderColor": {
               "token": "color.action.secondary.border.active",
               "from": "size=md, prio=secondary, state=pressed, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.active",
-              "from": "size=md, prio=secondary, state=pressed, danger=false"
             }
           },
           "disabled": {
@@ -362,10 +326,6 @@
             "borderColor": {
               "token": "color.action.secondary.border.disabled",
               "from": "size=md, prio=secondary, state=disabled, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.disabled",
-              "from": "size=md, prio=secondary, state=disabled, danger=false"
             }
           },
           "focus": {
@@ -375,10 +335,6 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.default",
-              "from": "size=md, prio=secondary, state=focus, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.default",
               "from": "size=md, prio=secondary, state=focus, danger=false"
             }
           },
@@ -402,10 +358,6 @@
             "borderColor": {
               "token": "color.action.secondary.border.danger.default",
               "from": "size=md, prio=secondary, state=default, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.danger.default",
-              "from": "size=md, prio=secondary, state=default, danger=true"
             }
           },
           "hover": {
@@ -415,10 +367,6 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.danger.hover",
-              "from": "size=md, prio=secondary, state=hover, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.danger.hover",
               "from": "size=md, prio=secondary, state=hover, danger=true"
             }
           },
@@ -430,10 +378,6 @@
             "borderColor": {
               "token": "color.action.secondary.border.danger.active",
               "from": "size=md, prio=secondary, state=pressed, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.danger.active",
-              "from": "size=md, prio=secondary, state=pressed, danger=true"
             }
           },
           "disabled": {
@@ -444,10 +388,6 @@
             "borderColor": {
               "token": "color.action.secondary.border.danger.disabled",
               "from": "size=md, prio=secondary, state=disabled, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.danger.disabled",
-              "from": "size=md, prio=secondary, state=disabled, danger=true"
             }
           },
           "focus": {
@@ -457,10 +397,6 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.danger.default",
-              "from": "size=md, prio=secondary, state=focus, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.secondary.icon.danger.default",
               "from": "size=md, prio=secondary, state=focus, danger=true"
             }
           },
@@ -484,10 +420,6 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=default, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.default",
-              "from": "size=md, prio=tertiary, state=default, danger=false"
             }
           },
           "hover": {
@@ -497,10 +429,6 @@
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
-              "from": "size=md, prio=tertiary, state=hover, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.hover",
               "from": "size=md, prio=tertiary, state=hover, danger=false"
             }
           },
@@ -512,10 +440,6 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=pressed, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.active",
-              "from": "size=md, prio=tertiary, state=pressed, danger=false"
             }
           },
           "disabled": {
@@ -526,10 +450,6 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=disabled, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.disabled",
-              "from": "size=md, prio=tertiary, state=disabled, danger=false"
             }
           },
           "focus": {
@@ -539,10 +459,6 @@
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
-              "from": "size=md, prio=tertiary, state=focus, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.default",
               "from": "size=md, prio=tertiary, state=focus, danger=false"
             }
           },
@@ -566,10 +482,6 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=default, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.danger.default",
-              "from": "size=md, prio=tertiary, state=default, danger=true"
             }
           },
           "hover": {
@@ -579,10 +491,6 @@
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
-              "from": "size=md, prio=tertiary, state=hover, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.danger.hover",
               "from": "size=md, prio=tertiary, state=hover, danger=true"
             }
           },
@@ -594,10 +502,6 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=pressed, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.danger.active",
-              "from": "size=md, prio=tertiary, state=pressed, danger=true"
             }
           },
           "disabled": {
@@ -608,10 +512,6 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=disabled, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.danger.disabled",
-              "from": "size=md, prio=tertiary, state=disabled, danger=true"
             }
           },
           "focus": {
@@ -621,10 +521,6 @@
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
-              "from": "size=md, prio=tertiary, state=focus, danger=true"
-            },
-            "iconColor": {
-              "token": "color.action.tertiary.icon.danger.default",
               "from": "size=md, prio=tertiary, state=focus, danger=true"
             }
           },
@@ -648,10 +544,6 @@
             "borderColor": {
               "token": "color.action.primary.border.hover",
               "from": "size=md, prio=primary, state=hover, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.hover",
-              "from": "size=md, prio=primary, state=hover, danger=false"
             }
           },
           "pressed": {
@@ -662,10 +554,6 @@
             "borderColor": {
               "token": "color.action.primary.border.active",
               "from": "size=md, prio=primary, state=pressed, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.active",
-              "from": "size=md, prio=primary, state=pressed, danger=false"
             }
           },
           "disabled": {
@@ -675,10 +563,6 @@
             },
             "borderColor": {
               "token": "color.action.primary.border.disabled",
-              "from": "size=md, prio=primary, state=disabled, danger=false"
-            },
-            "iconColor": {
-              "token": "color.action.primary.icon.disabled",
               "from": "size=md, prio=primary, state=disabled, danger=false"
             }
           }
@@ -1159,10 +1043,195 @@
           "token": "icon.sm",
           "from": "overlay",
           "reason": "The icon is square and its width is already bound to icon.sm."
+        },
+        "color": {
+          "token": "color.action.primary.icon.default",
+          "from": "size=md, prio=primary, state=default, danger=false"
         }
       },
       "size": {},
-      "appearance": {}
+      "appearance": {
+        "variant=primary, danger=true": {
+          "default": {
+            "color": {
+              "token": "color.action.primary.icon.danger.default",
+              "from": "size=md, prio=primary, state=default, danger=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.primary.icon.danger.hover",
+              "from": "size=md, prio=primary, state=hover, danger=true"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.primary.icon.danger.active",
+              "from": "size=md, prio=primary, state=pressed, danger=true"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.primary.icon.danger.disabled",
+              "from": "size=md, prio=primary, state=disabled, danger=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.primary.icon.danger.default",
+              "from": "size=md, prio=primary, state=focus, danger=true"
+            }
+          }
+        },
+        "variant=secondary, danger=false": {
+          "default": {
+            "color": {
+              "token": "color.action.secondary.icon.default",
+              "from": "size=md, prio=secondary, state=default, danger=false"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.secondary.icon.hover",
+              "from": "size=md, prio=secondary, state=hover, danger=false"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.secondary.icon.active",
+              "from": "size=md, prio=secondary, state=pressed, danger=false"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.secondary.icon.disabled",
+              "from": "size=md, prio=secondary, state=disabled, danger=false"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.secondary.icon.default",
+              "from": "size=md, prio=secondary, state=focus, danger=false"
+            }
+          }
+        },
+        "variant=secondary, danger=true": {
+          "default": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.default",
+              "from": "size=md, prio=secondary, state=default, danger=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.hover",
+              "from": "size=md, prio=secondary, state=hover, danger=true"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.active",
+              "from": "size=md, prio=secondary, state=pressed, danger=true"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.disabled",
+              "from": "size=md, prio=secondary, state=disabled, danger=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.default",
+              "from": "size=md, prio=secondary, state=focus, danger=true"
+            }
+          }
+        },
+        "variant=tertiary, danger=false": {
+          "default": {
+            "color": {
+              "token": "color.action.tertiary.icon.default",
+              "from": "size=md, prio=tertiary, state=default, danger=false"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.tertiary.icon.hover",
+              "from": "size=md, prio=tertiary, state=hover, danger=false"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.tertiary.icon.active",
+              "from": "size=md, prio=tertiary, state=pressed, danger=false"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.tertiary.icon.disabled",
+              "from": "size=md, prio=tertiary, state=disabled, danger=false"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.tertiary.icon.default",
+              "from": "size=md, prio=tertiary, state=focus, danger=false"
+            }
+          }
+        },
+        "variant=tertiary, danger=true": {
+          "default": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.default",
+              "from": "size=md, prio=tertiary, state=default, danger=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.hover",
+              "from": "size=md, prio=tertiary, state=hover, danger=true"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.active",
+              "from": "size=md, prio=tertiary, state=pressed, danger=true"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.disabled",
+              "from": "size=md, prio=tertiary, state=disabled, danger=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.default",
+              "from": "size=md, prio=tertiary, state=focus, danger=true"
+            }
+          }
+        },
+        "variant=primary, danger=false": {
+          "hover": {
+            "color": {
+              "token": "color.action.primary.icon.hover",
+              "from": "size=md, prio=primary, state=hover, danger=false"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.primary.icon.active",
+              "from": "size=md, prio=primary, state=pressed, danger=false"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.primary.icon.disabled",
+              "from": "size=md, prio=primary, state=disabled, danger=false"
+            }
+          }
+        }
+      }
     },
     "spinner": {
       "base": {
@@ -1739,10 +1808,195 @@
           "token": "icon.sm",
           "from": "overlay",
           "reason": "The icon is square and its width is already bound to icon.sm."
+        },
+        "color": {
+          "token": "color.action.primary.icon.default",
+          "from": "size=md, prio=primary, state=default, danger=false"
         }
       },
       "size": {},
-      "appearance": {}
+      "appearance": {
+        "variant=primary, danger=true": {
+          "default": {
+            "color": {
+              "token": "color.action.primary.icon.danger.default",
+              "from": "size=md, prio=primary, state=default, danger=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.primary.icon.danger.hover",
+              "from": "size=md, prio=primary, state=hover, danger=true"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.primary.icon.danger.active",
+              "from": "size=md, prio=primary, state=pressed, danger=true"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.primary.icon.danger.disabled",
+              "from": "size=md, prio=primary, state=disabled, danger=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.primary.icon.danger.default",
+              "from": "size=md, prio=primary, state=focus, danger=true"
+            }
+          }
+        },
+        "variant=secondary, danger=false": {
+          "default": {
+            "color": {
+              "token": "color.action.secondary.icon.default",
+              "from": "size=md, prio=secondary, state=default, danger=false"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.secondary.icon.hover",
+              "from": "size=md, prio=secondary, state=hover, danger=false"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.secondary.icon.active",
+              "from": "size=md, prio=secondary, state=pressed, danger=false"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.secondary.icon.disabled",
+              "from": "size=md, prio=secondary, state=disabled, danger=false"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.secondary.icon.default",
+              "from": "size=md, prio=secondary, state=focus, danger=false"
+            }
+          }
+        },
+        "variant=secondary, danger=true": {
+          "default": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.default",
+              "from": "size=md, prio=secondary, state=default, danger=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.hover",
+              "from": "size=md, prio=secondary, state=hover, danger=true"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.active",
+              "from": "size=md, prio=secondary, state=pressed, danger=true"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.disabled",
+              "from": "size=md, prio=secondary, state=disabled, danger=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.secondary.icon.danger.default",
+              "from": "size=md, prio=secondary, state=focus, danger=true"
+            }
+          }
+        },
+        "variant=tertiary, danger=false": {
+          "default": {
+            "color": {
+              "token": "color.action.tertiary.icon.default",
+              "from": "size=md, prio=tertiary, state=default, danger=false"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.tertiary.icon.hover",
+              "from": "size=md, prio=tertiary, state=hover, danger=false"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.tertiary.icon.active",
+              "from": "size=md, prio=tertiary, state=pressed, danger=false"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.tertiary.icon.disabled",
+              "from": "size=md, prio=tertiary, state=disabled, danger=false"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.tertiary.icon.default",
+              "from": "size=md, prio=tertiary, state=focus, danger=false"
+            }
+          }
+        },
+        "variant=tertiary, danger=true": {
+          "default": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.default",
+              "from": "size=md, prio=tertiary, state=default, danger=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.hover",
+              "from": "size=md, prio=tertiary, state=hover, danger=true"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.active",
+              "from": "size=md, prio=tertiary, state=pressed, danger=true"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.disabled",
+              "from": "size=md, prio=tertiary, state=disabled, danger=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.action.tertiary.icon.danger.default",
+              "from": "size=md, prio=tertiary, state=focus, danger=true"
+            }
+          }
+        },
+        "variant=primary, danger=false": {
+          "hover": {
+            "color": {
+              "token": "color.action.primary.icon.hover",
+              "from": "size=md, prio=primary, state=hover, danger=false"
+            }
+          },
+          "pressed": {
+            "color": {
+              "token": "color.action.primary.icon.active",
+              "from": "size=md, prio=primary, state=pressed, danger=false"
+            }
+          },
+          "disabled": {
+            "color": {
+              "token": "color.action.primary.icon.disabled",
+              "from": "size=md, prio=primary, state=disabled, danger=false"
+            }
+          }
+        }
+      }
     },
     "counter": {
       "base": {

@@ -540,11 +540,153 @@
               }
             },
             "added": [
-              "/Body/Container",
-              "/Body/Container/left",
-              "/Body/Container/left/Primary panel",
-              "/Body/Container/left/Primary panel — main form, picker, or input area.",
-              "/Body/Container/Button Group"
+              {
+                "path": "/Body/Container",
+                "parent": "/Body",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    320,
+                    424
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Container/left",
+                "parent": "/Body/Container",
+                "layer": {
+                  "name": "left",
+                  "type": "SLOT",
+                  "size": [
+                    320,
+                    360
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 16,
+                    "pad": [
+                      20,
+                      20,
+                      20,
+                      20
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FILL"
+                  },
+                  "strokes": [
+                    "{Color:border/subtle}"
+                  ],
+                  "strokeWeight": "mixed",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/md",
+                    "paddingLeft": "Spatial:inset/lg",
+                    "paddingTop": "Spatial:inset/lg",
+                    "paddingRight": "Spatial:inset/lg",
+                    "paddingBottom": "Spatial:inset/lg",
+                    "strokeLeftWeight": "Spatial:border/default"
+                  },
+                  "propRefs": {
+                    "slotContentId": "left#6774:3"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Container/left/Primary panel",
+                "parent": "/Body/Container/left",
+                "layer": {
+                  "name": "Primary panel",
+                  "type": "TEXT",
+                  "text": "Primary panel",
+                  "textStyle": "title/xs",
+                  "size": [
+                    280,
+                    12
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/xs",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/xs",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Container/left/Primary panel — main form, picker, or input area.",
+                "parent": "/Body/Container/left",
+                "layer": {
+                  "name": "Primary panel — main form, picker, or input area.",
+                  "type": "TEXT",
+                  "text": "Primary panel — main form, picker, or input area.",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    280,
+                    30
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Body/Container/Button Group",
+                "parent": "/Body/Container",
+                "layer": {
+                  "name": "Button Group",
+                  "type": "INSTANCE",
+                  "main": "Button Group",
+                  "variant": {
+                    "orientation": "horizontal",
+                    "type": "regular"
+                  },
+                  "size": [
+                    320,
+                    64
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      12,
+                      12,
+                      12,
+                      12
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/sm",
+                    "paddingTop": "Spatial:inset/sm",
+                    "paddingRight": "Spatial:inset/sm",
+                    "paddingBottom": "Spatial:inset/sm"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Body/left",

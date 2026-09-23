@@ -433,10 +433,131 @@
               }
             },
             "added": [
-              "/left",
-              "/left/Frame 1",
-              "/left/Frame 1/Rectangle 1",
-              "/left/Segmented Control"
+              {
+                "path": "/left",
+                "parent": "/",
+                "layer": {
+                  "name": "left",
+                  "type": "SLOT",
+                  "size": [
+                    393,
+                    220
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      8,
+                      8,
+                      8
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/raised}"
+                  ],
+                  "radius": 8,
+                  "effectStyle": "shadow/overlay",
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/none",
+                    "paddingLeft": "Spatial:inset/xs",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/xs",
+                    "paddingBottom": "Spatial:inset/xs",
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  },
+                  "propRefs": {
+                    "slotContentId": "left#6499:18"
+                  }
+                }
+              },
+              {
+                "path": "/left/Frame 1",
+                "parent": "/left",
+                "layer": {
+                  "name": "Frame 1",
+                  "type": "FRAME",
+                  "size": [
+                    377,
+                    22
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      8,
+                      0,
+                      8,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "paddingTop": "Spatial:inset/xs",
+                    "paddingBottom": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/left/Frame 1/Rectangle 1",
+                "parent": "/left/Frame 1",
+                "layer": {
+                  "name": "Rectangle 1",
+                  "type": "RECTANGLE",
+                  "size": [
+                    54,
+                    6
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/left/Segmented Control",
+                "parent": "/left",
+                "layer": {
+                  "name": "Segmented Control",
+                  "type": "INSTANCE",
+                  "main": "Segmented Control",
+                  "variant": {
+                    "size": "md"
+                  },
+                  "size": [
+                    377,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/App Content/Page Content/left",

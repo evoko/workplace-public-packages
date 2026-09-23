@@ -376,10 +376,134 @@
               }
             },
             "added": [
-              "/image",
-              "/image/Icon Button",
-              "/content/Dialog Title",
-              "/content/Biamp delivers professional audio-visual solutions that help people connect, communicate, and collaborate more effectively across workplaces, venues, and public spaces."
+              {
+                "path": "/image",
+                "parent": "/",
+                "layer": {
+                  "name": "image",
+                  "type": "SLOT",
+                  "size": [
+                    480,
+                    279
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 20,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MAX/MIN",
+                    "sizing": "FILL/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}",
+                    "IMAGE"
+                  ],
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/lg"
+                  },
+                  "propRefs": {
+                    "visible": "show modal-image#5888:33",
+                    "slotContentId": "image#5888:32"
+                  }
+                }
+              },
+              {
+                "path": "/image/Icon Button",
+                "parent": "/image",
+                "layer": {
+                  "name": "Icon Button",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "md",
+                    "shape": "round",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    40,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/content/Dialog Title",
+                "parent": "/content",
+                "layer": {
+                  "name": "Dialog Title",
+                  "type": "TEXT",
+                  "text": "Dialog Title",
+                  "textStyle": "title/sm",
+                  "size": [
+                    102,
+                    15
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/title/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/title/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/content/Biamp delivers professional audio-visual solutions that help people connect, communicate, and collaborate more effectively across workplaces, venues, and public spaces.",
+                "parent": "/content",
+                "layer": {
+                  "name": "Biamp delivers professional audio-visual solutions that help people connect, communicate, and collaborate more effectively across workplaces, venues, and public spaces.",
+                  "type": "TEXT",
+                  "text": "Biamp delivers professional audio-visual solutions that help people connect, com",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    440,
+                    50
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header",
@@ -458,7 +582,41 @@
               }
             },
             "added": [
-              "/Header/Stepper"
+              {
+                "path": "/Header/Stepper",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Stepper",
+                  "type": "INSTANCE",
+                  "main": "Stepper",
+                  "variant": {
+                    "type": "line+text"
+                  },
+                  "size": [
+                    464,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
+                    "paddingLeft": "Spatial:inset/none",
+                    "paddingTop": "Spatial:inset/none",
+                    "paddingRight": "Spatial:inset/none",
+                    "paddingBottom": "Spatial:inset/none"
+                  }
+                }
+              }
             ]
           }
         }

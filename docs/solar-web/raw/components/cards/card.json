@@ -144,6 +144,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -210,6 +213,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   20,
                   20
@@ -381,9 +387,19 @@
                   "{Color:surface/feedback/danger/subtle}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
                 ]
               },
               "/Tag": {
@@ -427,9 +443,19 @@
                   "{Color:surface/feedback/warning/subtle}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/warning}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/warning}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/warning}"
                 ]
               },
               "/Tag": {
@@ -473,9 +499,19 @@
                   "{Color:surface/feedback/success/subtle}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/success}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/success}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/success}"
                 ]
               },
               "/Tag": {
@@ -553,9 +589,19 @@
                   "{Color:border/medium}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
                 ]
               },
               "/Tag": {
@@ -602,9 +648,19 @@
                   "{Color:border/medium}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/warning}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/warning}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/warning}"
                 ]
               },
               "/Tag": {
@@ -651,9 +707,19 @@
                   "{Color:border/medium}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/success}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/success}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/success}"
                 ]
               },
               "/Tag": {
@@ -695,6 +761,11 @@
             "changed": {
               "/": {
                 "opacity": 0.4000000059604645
+              },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Title/Title": {
                 "fills": [
@@ -748,10 +819,98 @@
               }
             },
             "added": [
-              "/Skeleton",
-              "/Content/Skeleton",
-              "/Content/Skeleton#2",
-              "/Content/Skeleton#3"
+              {
+                "path": "/Skeleton",
+                "parent": "/",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "size": [
+                    140,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Content/Skeleton",
+                "parent": "/Content",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "size": [
+                    260,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Content/Skeleton#2",
+                "parent": "/Content",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "size": [
+                    260,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Content/Skeleton#3",
+                "parent": "/Content",
+                "layer": {
+                  "name": "Skeleton",
+                  "type": "FRAME",
+                  "size": [
+                    200,
+                    12
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Title",
@@ -794,9 +953,19 @@
                   "{Color:border/medium}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/info}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/info}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/info}"
                 ]
               },
               "/Tag": {
@@ -840,9 +1009,19 @@
                   "{Color:surface/feedback/info/subtle}"
                 ]
               },
+              "/Title/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/feedback/info}"
+                ]
+              },
               "/Title/Title": {
                 "fills": [
                   "{Color:text/feedback/info}"
+                ]
+              },
+              "/Title/Icon/More": {
+                "iconFills": [
+                  "{Color:icon/feedback/info}"
                 ]
               },
               "/Tag": {

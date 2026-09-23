@@ -94,6 +94,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:action/primary/icon/default}"
+            ],
             "size": [
               20,
               20
@@ -146,6 +149,11 @@
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ]
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -172,6 +180,11 @@
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ]
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -197,6 +210,11 @@
               "/": {
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
+                ]
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
                 ]
               }
             }
@@ -245,7 +263,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -322,6 +368,11 @@
                   "paddingRight": "Spatial:inset/md",
                   "paddingBottom": "Spatial:inset/md"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -362,6 +413,11 @@
                   "paddingRight": "Spatial:inset/md",
                   "paddingBottom": "Spatial:inset/md"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -402,6 +458,11 @@
                   "paddingRight": "Spatial:inset/md",
                   "paddingBottom": "Spatial:inset/md"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -476,7 +537,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"
@@ -522,7 +611,33 @@
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/sm",
+                  "size": [
+                    31,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -565,10 +680,41 @@
                   "paddingRight": "Spatial:inset/lg",
                   "itemSpacing": "Spatial:stack/xs"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/sm",
+                  "size": [
+                    31,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -611,10 +757,41 @@
                   "paddingRight": "Spatial:inset/lg",
                   "itemSpacing": "Spatial:stack/xs"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/sm",
+                  "size": [
+                    31,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -657,10 +834,41 @@
                   "paddingRight": "Spatial:inset/lg",
                   "itemSpacing": "Spatial:stack/xs"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/sm",
+                  "size": [
+                    31,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/disabled}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -703,7 +911,33 @@
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/sm",
+                  "size": [
+                    31,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -742,8 +976,63 @@
               }
             },
             "added": [
-              "/Label",
-              "/Spinner"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "hidden": true,
+                  "text": "Label",
+                  "textStyle": "label/sm",
+                  "size": [
+                    60,
+                    9
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              },
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -799,7 +1088,33 @@
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    36,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -854,11 +1169,40 @@
                 "vars": {
                   "height": null,
                   "width": "Spatial:icon/lg"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    36,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -913,11 +1257,40 @@
                 "vars": {
                   "height": null,
                   "width": "Spatial:icon/lg"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    36,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -972,11 +1345,40 @@
                 "vars": {
                   "height": null,
                   "width": "Spatial:icon/lg"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    36,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/disabled}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1032,7 +1434,33 @@
               }
             },
             "added": [
-              "/Label"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    36,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1074,8 +1502,63 @@
               }
             },
             "added": [
-              "/Label",
-              "/Spinner"
+              {
+                "path": "/Label",
+                "parent": "/",
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "hidden": true,
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    72,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:action/primary/text/default}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  },
+                  "propRefs": {
+                    "characters": "label#4557:0"
+                  }
+                }
+              },
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Icon/None"

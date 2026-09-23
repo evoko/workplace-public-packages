@@ -104,7 +104,6 @@ function parseVariantName(name, axes) {
  *     layers: Map<string, object>,
  *     parents: Map<string, string | null>,
  *     removed: string[],
- *     unresolved: string[],
  *   }>,
  * }}
  */
@@ -164,20 +163,25 @@ export function resolveVariants(set) {
       applyChange(layers.get(path), change);
     }
 
-    // The fetcher records a layer that exists only in this variant by path alone, with none of
-    // its properties. It is kept as present -- a visible difference between variants -- and
-    // listed, so nothing downstream mistakes an unknown layer for an empty one.
-    const unresolved = [...(overrides.added ?? [])];
-    for (const path of unresolved) layers.set(path, { unresolved: 'added' });
+    // A layer that exists only in this variant, recorded with its properties and its parent
+    // (`{path, parent, layer}`), so it resolves like any other.
+    for (const added of overrides.added ?? []) {
+      if (!added?.path || !added.layer)
+        throw new Error(
+          `${raw.variant}: an added layer without a path or properties`,
+        );
+      layers.set(added.path, structuredClone(added.layer));
+      parents.set(added.path, added.parent ?? '/');
+    }
+    for (const added of overrides.added ?? [])
+      if (!layers.has(parents.get(added.path)))
+        throw new Error(
+          `${raw.variant}: adds ${added.path} under ${added.parent}, which it does not have`,
+        );
 
     // The root's size is not diffed (the fetcher keeps it on the variant itself), so it is
     // read from there; the default tree's own root size is the default variant's.
     if (raw.size) layers.get('/').size = [...raw.size];
-
-    // Icons are instances, and the fetcher does not descend into an instance, so their colour is
-    // in no layer: only in the variant's `iconFills` digest. It is carried through for the recipe
-    // to read as one cell, never merged into a layer.
-    const iconFills = raw.iconFills?.length ? [...raw.iconFills] : null;
 
     return {
       name: raw.variant,
@@ -185,8 +189,6 @@ export function resolveVariants(set) {
       layers,
       parents,
       removed,
-      unresolved,
-      iconFills,
     };
   });
 

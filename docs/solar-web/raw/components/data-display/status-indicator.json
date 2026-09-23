@@ -161,7 +161,28 @@
               }
             },
             "added": [
-              "/Union"
+              {
+                "path": "/Union",
+                "parent": "/",
+                "layer": {
+                  "name": "Union",
+                  "type": "VECTOR",
+                  "size": [
+                    20,
+                    17
+                  ],
+                  "fills": [
+                    "{Color:surface/feedback/warning/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "vars": {
+                    "strokeWeight": "Spatial:border/default"
+                  }
+                }
+              }
             ]
           }
         },
@@ -200,7 +221,28 @@
               }
             },
             "added": [
-              "/Union"
+              {
+                "path": "/Union",
+                "parent": "/",
+                "layer": {
+                  "name": "Union",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    14
+                  ],
+                  "fills": [
+                    "{Color:surface/feedback/warning/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "vars": {
+                    "strokeWeight": "Spatial:border/default"
+                  }
+                }
+              }
             ]
           }
         },
@@ -239,7 +281,28 @@
               }
             },
             "added": [
-              "/Container"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "VECTOR",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "fills": [
+                    "{Color:surface/feedback/danger/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "vars": {
+                    "strokeWeight": "Spatial:border/default"
+                  }
+                }
+              }
             ]
           }
         },
@@ -278,7 +341,28 @@
               }
             },
             "added": [
-              "/Container"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "VECTOR",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "fills": [
+                    "{Color:surface/feedback/danger/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "vars": {
+                    "strokeWeight": "Spatial:border/default"
+                  }
+                }
+              }
             ]
           }
         },
@@ -310,8 +394,65 @@
               }
             },
             "added": [
-              "/Frame 3",
-              "/Frame 3/inner-path"
+              {
+                "path": "/Frame 3",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame 3",
+                  "type": "FRAME",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/info/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 3/inner-path",
+                "parent": "/Frame 3",
+                "layer": {
+                  "name": "inner-path",
+                  "type": "VECTOR",
+                  "size": [
+                    5,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "effectStyle": "shadow/raised"
+                }
+              }
             ],
             "removed": [
               "/inner-path"
@@ -346,8 +487,65 @@
               }
             },
             "added": [
-              "/Frame 3",
-              "/Frame 3/inner-path"
+              {
+                "path": "/Frame 3",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame 3",
+                  "type": "FRAME",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/info/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 3/inner-path",
+                "parent": "/Frame 3",
+                "layer": {
+                  "name": "inner-path",
+                  "type": "VECTOR",
+                  "size": [
+                    4,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "effectStyle": "shadow/raised"
+                }
+              }
             ],
             "removed": [
               "/inner-path"
@@ -382,8 +580,65 @@
               }
             },
             "added": [
-              "/Container",
-              "/Container/inner-path"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Container/inner-path",
+                "parent": "/Container",
+                "layer": {
+                  "name": "inner-path",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    1
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "effectStyle": "shadow/raised"
+                }
+              }
             ],
             "removed": [
               "/inner-path"
@@ -418,8 +673,64 @@
               }
             },
             "added": [
-              "/Container",
-              "/Container/Icon"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ],
+                  "strokes": [
+                    "{unresolved:5f4e0e43eb89}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Icon",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    6,
+                    9
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/feedback/neutral}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/inner-path"
@@ -454,8 +765,64 @@
               }
             },
             "added": [
-              "/Container",
-              "/Container/Union"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Union",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Union",
+                  "type": "VECTOR",
+                  "size": [
+                    6,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/inner-path"
@@ -490,8 +857,65 @@
               }
             },
             "added": [
-              "/Container",
-              "/Container/inner-path"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/strong}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Container/inner-path",
+                "parent": "/Container",
+                "layer": {
+                  "name": "inner-path",
+                  "type": "VECTOR",
+                  "size": [
+                    9,
+                    1
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ],
+                  "effectStyle": "shadow/raised"
+                }
+              }
             ],
             "removed": [
               "/inner-path"
@@ -526,8 +950,64 @@
               }
             },
             "added": [
-              "/Container",
-              "/Container/Icon"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ],
+                  "strokes": [
+                    "{unresolved:5f4e0e43eb89}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Icon",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Icon",
+                  "type": "VECTOR",
+                  "size": [
+                    4,
+                    6
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/feedback/neutral}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/inner-path"
@@ -562,8 +1042,64 @@
               }
             },
             "added": [
-              "/Container",
-              "/Container/Union"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/muted}"
+                  ],
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 9999,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/pill",
+                    "topRightRadius": "Spatial:radius/pill",
+                    "bottomLeftRadius": "Spatial:radius/pill",
+                    "bottomRightRadius": "Spatial:radius/pill"
+                  }
+                }
+              },
+              {
+                "path": "/Container/Union",
+                "parent": "/Container",
+                "layer": {
+                  "name": "Union",
+                  "type": "VECTOR",
+                  "size": [
+                    5,
+                    6
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:icon/inverse}"
+                  ]
+                }
+              }
             ],
             "removed": [
               "/inner-path"

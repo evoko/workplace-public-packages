@@ -1077,10 +1077,129 @@
               }
             },
             "added": [
-              "/Frame 1",
-              "/Frame 1/Select",
-              "/Frame 1/Select#2",
-              "/Frame 1/Select#3"
+              {
+                "path": "/Frame 1",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame 1",
+                  "type": "FRAME",
+                  "size": [
+                    377,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 1/Select",
+                "parent": "/Frame 1",
+                "layer": {
+                  "name": "Select",
+                  "type": "INSTANCE",
+                  "main": "Select",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    120,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 1/Select#2",
+                "parent": "/Frame 1",
+                "layer": {
+                  "name": "Select",
+                  "type": "INSTANCE",
+                  "main": "Select",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    120,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 1/Select#3",
+                "parent": "/Frame 1",
+                "layer": {
+                  "name": "Select",
+                  "type": "INSTANCE",
+                  "main": "Select",
+                  "variant": {
+                    "size": "md",
+                    "state": "default"
+                  },
+                  "size": [
+                    120,
+                    40
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Container",

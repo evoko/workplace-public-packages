@@ -23,18 +23,22 @@ export function loadWebCatalog() {
   return JSON.parse(readFileSync(join(webDir, 'catalog.json'), 'utf8'));
 }
 
-/** The catalog entry and the raw component set for one component, by its Figma name. */
-export function loadComponent(catalog, name) {
+/**
+ * The catalog entry and the raw component set for one component, by its Figma name. `rawDir`
+ * reads the raw pages from elsewhere -- a test checking a fetcher change before it is synced.
+ */
+export function loadComponent(
+  catalog,
+  name,
+  { rawDir = join(webDir, 'raw') } = {},
+) {
   const entry = catalog.components.find(
     (c) => c.name === name && c.kind === 'set',
   );
   if (!entry)
     throw new Error(`the SOLAR Web catalog has no component named ${name}`);
   const page = JSON.parse(
-    readFileSync(
-      join(webDir, 'raw', entry.section, `${entry.slug}.json`),
-      'utf8',
-    ),
+    readFileSync(join(rawDir, entry.section, `${entry.slug}.json`), 'utf8'),
   );
   const set = page.componentSets.find((s) => s.name === name);
   if (!set)

@@ -131,6 +131,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -195,9 +198,80 @@
               }
             },
             "added": [
-              "/Header/Icon/ChevronUp",
-              "/Content",
-              "/Content/Content"
+              {
+                "path": "/Header/Icon/ChevronUp",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Icon/ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Content",
+                "parent": "/",
+                "layer": {
+                  "name": "Content",
+                  "type": "SLOT",
+                  "size": [
+                    288,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "propRefs": {
+                    "slotContentId": "Content#3188:48"
+                  }
+                }
+              },
+              {
+                "path": "/Content/Content",
+                "parent": "/Content",
+                "layer": {
+                  "name": "Content",
+                  "type": "TEXT",
+                  "text": "Expandable content area.",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    288,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/Icon/ChevronDown"
@@ -276,9 +350,80 @@
               }
             },
             "added": [
-              "/Header/Icon/ChevronUp",
-              "/Content",
-              "/Content/Content"
+              {
+                "path": "/Header/Icon/ChevronUp",
+                "parent": "/Header",
+                "layer": {
+                  "name": "Icon/ChevronUp",
+                  "type": "INSTANCE",
+                  "main": "Icon/ChevronUp",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/sm"
+                  }
+                }
+              },
+              {
+                "path": "/Content",
+                "parent": "/",
+                "layer": {
+                  "name": "Content",
+                  "type": "SLOT",
+                  "size": [
+                    288,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "propRefs": {
+                    "slotContentId": "Content#3188:48"
+                  }
+                }
+              },
+              {
+                "path": "/Content/Content",
+                "parent": "/Content",
+                "layer": {
+                  "name": "Content",
+                  "type": "TEXT",
+                  "text": "Expandable content area.",
+                  "textStyle": "body/md/regular",
+                  "size": [
+                    288,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Header/Icon/ChevronDown"

@@ -388,7 +388,30 @@
               }
             },
             "added": [
-              "/Time/Range"
+              {
+                "path": "/Time/Range",
+                "parent": "/Time",
+                "layer": {
+                  "name": "Range",
+                  "type": "TEXT",
+                  "text": "9:00 – 10:00",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    69,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Time/Start",
@@ -452,7 +475,30 @@
               }
             },
             "added": [
-              "/Time/Range"
+              {
+                "path": "/Time/Range",
+                "parent": "/Time",
+                "layer": {
+                  "name": "Range",
+                  "type": "TEXT",
+                  "text": "9:00 – 10:00",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    69,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Time/Start",
@@ -516,7 +562,30 @@
               }
             },
             "added": [
-              "/Time/Range"
+              {
+                "path": "/Time/Range",
+                "parent": "/Time",
+                "layer": {
+                  "name": "Range",
+                  "type": "TEXT",
+                  "text": "9:00 – 10:00",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    69,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Time/Start",

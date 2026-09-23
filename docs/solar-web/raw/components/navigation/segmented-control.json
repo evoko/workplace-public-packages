@@ -93,6 +93,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               16,
               16
@@ -133,6 +136,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               16,
               16
@@ -219,9 +225,19 @@
                 "strokeWeight": null,
                 "effectStyle": null
               },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
               "/Label": {
                 "fills": [
                   "{Color:text/secondary}"
+                ]
+              },
+              "/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
                 ]
               }
             }
@@ -426,7 +442,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
               },
               "/Label": {
                 "textStyle": "label/sm",
@@ -449,7 +468,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
               }
             }
           }

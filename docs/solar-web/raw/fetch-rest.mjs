@@ -191,6 +191,10 @@ function paints(arr) {
     if (p.type === 'SOLID') {
       const b = p.boundVariables && p.boundVariables.color;
       const op = p.opacity ?? 1;
+      // For a bound colour REST reports the variable's own alpha as the paint's opacity, so it is
+      // not written: the token already carries it, and writing it again would draw a 20% border at
+      // 4%. Measured 2026-09-23: in all 1742 bound paints with an opacity it equalled the token's
+      // alpha. Only an unbound colour's opacity is its own.
       r.push(
         b
           ? '{' + vname(b.id) + '}'
@@ -260,6 +264,16 @@ const variantOf = (n) => {
     if (v.type === 'VARIANT') o[k] = v.value;
   return Object.keys(o).length ? o : null;
 };
+// The node types that draw an icon's shape.
+const VECTOR_TYPES = new Set([
+  'VECTOR',
+  'BOOLEAN_OPERATION',
+  'ELLIPSE',
+  'RECTANGLE',
+  'LINE',
+  'STAR',
+  'REGULAR_POLYGON',
+]);
 function layer(n, parent, depth, maxDepth, ctx) {
   const o = { name: n.name, type: n.type };
   if (n.visible === false) o.hidden = true;
@@ -268,6 +282,16 @@ function layer(n, parent, depth, maxDepth, ctx) {
     if (m) o.main = m;
     const v = variantOf(n);
     if (v) o.variant = v;
+    // An icon's colour is on the vectors inside the instance, which the tree does not descend
+    // into. Recording it here ties each colour to the icon that draws it; the variant digest's
+    // iconFills lists every icon's colour without saying whose.
+    if (m && m.startsWith('Icon/')) {
+      const fills = new Set();
+      for (const [d] of walk(n))
+        if (d !== n && d.visible !== false && VECTOR_TYPES.has(d.type))
+          for (const f of paints(d.fills) || []) fills.add(f);
+      if (fills.size) o.iconFills = [...fills];
+    }
   }
   if (n.type === 'TEXT') {
     o.text = (n.characters || '').slice(0, 80);
@@ -406,26 +430,41 @@ const DIFF_KEYS = [
   'effectStyle',
   'opacity',
   'vars',
+  'iconFills',
 ];
-function flatten(tree, prefix = '', out = {}) {
-  out[prefix || '/'] = tree;
+// Paths name layers (`/Icon/None#2`), and layer names contain `/` themselves, so a path cannot be
+// split to find its parent. `parents` records it as the tree is walked.
+function flatten(tree, prefix = '', out = {}, parents = {}, parent = null) {
+  const path = prefix || '/';
+  out[path] = tree;
+  parents[path] = parent;
   const seen = {};
   for (const c of tree.children || []) {
     const k = (seen[c.name] = (seen[c.name] || 0) + 1);
-    flatten(c, prefix + '/' + c.name + (k > 1 ? '#' + k : ''), out);
+    flatten(
+      c,
+      prefix + '/' + c.name + (k > 1 ? '#' + k : ''),
+      out,
+      parents,
+      path,
+    );
   }
   return out;
 }
 function overrides(baseTree, varTree) {
   const a = flatten(baseTree),
-    b = flatten(varTree);
+    parents = {},
+    b = flatten(varTree, '', {}, parents);
   const changed = {},
     added = [],
     removed = [];
   for (const [path, bn] of Object.entries(b)) {
     const an = a[path];
     if (!an) {
-      added.push(path);
+      // The layer itself, not only its path: a layer that exists in this variant alone has no
+      // properties anywhere else. Its children are added paths of their own.
+      const { children: _children, ...own } = bn;
+      added.push({ path, parent: parents[path], layer: own });
       continue;
     }
     const diff = {};

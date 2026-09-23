@@ -174,6 +174,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:action/primary/icon/default}"
+                ],
                 "size": [
                   20,
                   20
@@ -243,6 +246,11 @@
               "/Divider": {
                 "fills": [
                   "{Color:border/medium}"
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
                 ]
               }
             }
@@ -408,7 +416,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -437,6 +448,11 @@
               "/": {
                 "fills": [
                   "{Color:action/primary/bg/hover}"
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
                 ]
               }
             }
@@ -482,6 +498,11 @@
                 "size": [
                   44,
                   40
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
                 ]
               }
             }
@@ -564,7 +585,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -652,7 +676,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -687,6 +714,11 @@
                 "size": [
                   44,
                   40
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
                 ]
               }
             }
@@ -726,6 +758,11 @@
               "/Divider": {
                 "fills": [
                   "{Color:border/medium}"
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
                 ]
               }
             }
@@ -805,7 +842,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -893,7 +933,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -927,6 +970,11 @@
               "/Action/Label": {
                 "fills": [
                   "{Color:action/primary/text/disabled}"
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
                 ]
               }
             }
@@ -969,6 +1017,11 @@
               "/Divider": {
                 "fills": [
                   "{Color:border/medium}"
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
                 ]
               }
             }
@@ -1054,7 +1107,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -1145,7 +1201,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
               }
             }
           }
@@ -1212,6 +1271,11 @@
               "/Divider": {
                 "fills": [
                   "{Color:border/medium}"
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
                 ]
               }
             }
@@ -1381,7 +1445,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -1442,7 +1509,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1512,10 +1607,43 @@
                 "layout": {
                   "sizing": "FIXED/FIXED"
                 }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "default"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1605,7 +1733,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1702,11 +1858,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "default"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         }

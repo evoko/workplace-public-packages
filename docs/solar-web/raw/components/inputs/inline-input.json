@@ -138,7 +138,51 @@
               }
             },
             "added": [
-              "/Icon Button"
+              {
+                "path": "/Icon Button",
+                "parent": "/",
+                "layer": {
+                  "name": "Icon Button",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "sm",
+                    "shape": "square",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ]
           }
         },
@@ -203,9 +247,120 @@
               }
             },
             "added": [
-              "/Frame 1",
-              "/Frame 1/Confirm",
-              "/Frame 1/Cancel"
+              {
+                "path": "/Frame 1",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame 1",
+                  "type": "FRAME",
+                  "size": [
+                    64,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 1/Confirm",
+                "parent": "/Frame 1",
+                "layer": {
+                  "name": "Confirm",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "sm",
+                    "shape": "square",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 1/Cancel",
+                "parent": "/Frame 1",
+                "layer": {
+                  "name": "Cancel",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "sm",
+                    "shape": "square",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ]
           }
         },
@@ -270,9 +425,120 @@
               }
             },
             "added": [
-              "/Frame 2",
-              "/Frame 2/Confirm",
-              "/Frame 2/Cancel"
+              {
+                "path": "/Frame 2",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame 2",
+                  "type": "FRAME",
+                  "size": [
+                    64,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 2/Confirm",
+                "parent": "/Frame 2",
+                "layer": {
+                  "name": "Confirm",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "sm",
+                    "shape": "square",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 2/Cancel",
+                "parent": "/Frame 2",
+                "layer": {
+                  "name": "Cancel",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "sm",
+                    "shape": "square",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ]
           }
         },
@@ -337,9 +603,120 @@
               }
             },
             "added": [
-              "/Frame 3",
-              "/Frame 3/Confirm",
-              "/Frame 3/Cancel"
+              {
+                "path": "/Frame 3",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame 3",
+                  "type": "FRAME",
+                  "size": [
+                    64,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 3/Confirm",
+                "parent": "/Frame 3",
+                "layer": {
+                  "name": "Confirm",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "sm",
+                    "shape": "square",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              },
+              {
+                "path": "/Frame 3/Cancel",
+                "parent": "/Frame 3",
+                "layer": {
+                  "name": "Cancel",
+                  "type": "INSTANCE",
+                  "main": "Icon Button",
+                  "variant": {
+                    "size": "sm",
+                    "shape": "square",
+                    "prio": "tertiary",
+                    "state": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
+                  "radius": 6,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/control",
+                    "topRightRadius": "Spatial:radius/control",
+                    "bottomLeftRadius": "Spatial:radius/control",
+                    "bottomRightRadius": "Spatial:radius/control"
+                  }
+                }
+              }
             ]
           }
         },

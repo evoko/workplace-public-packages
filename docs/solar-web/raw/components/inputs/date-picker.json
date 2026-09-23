@@ -643,6 +643,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ],
                 "size": [
                   16,
                   16
@@ -1200,6 +1203,11 @@
                   "{Color:border/disabled}"
                 ]
               },
+              "/Field/Icon/Calendar": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
               "/Field/Value": {
                 "fills": [
                   "{Color:text/disabled}"
@@ -1289,7 +1297,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/xs"
-                }
+                },
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
               },
               "/Field/Value": {
                 "textStyle": "body/sm/regular",
@@ -1691,6 +1702,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ],
                 "size": [
                   20,
                   20
@@ -1730,6 +1744,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ],
                 "size": [
                   20,
                   20
@@ -3159,102 +3176,3094 @@
               }
             },
             "added": [
-              "/Container",
-              "/Container/MonthHeader",
-              "/Container/MonthHeader/Icon/ArrowLeft",
-              "/Container/MonthHeader/MonthLabel",
-              "/Container/WeekdayRow",
-              "/Container/WeekdayRow/Weekday",
-              "/Container/WeekdayRow/Weekday#2",
-              "/Container/WeekdayRow/Weekday#3",
-              "/Container/WeekdayRow/Weekday#4",
-              "/Container/WeekdayRow/Weekday#5",
-              "/Container/WeekdayRow/Weekday#6",
-              "/Container/WeekdayRow/Weekday#7",
-              "/Container/DayGrid",
-              "/Container/DayGrid/Day Cell",
-              "/Container/DayGrid/Day Cell#2",
-              "/Container/DayGrid/Day Cell#3",
-              "/Container/DayGrid/Day Cell#4",
-              "/Container/DayGrid/Day Cell#5",
-              "/Container/DayGrid/Day Cell#6",
-              "/Container/DayGrid/Day Cell#7",
-              "/Container/DayGrid/Day Cell#8",
-              "/Container/DayGrid/Day Cell#9",
-              "/Container/DayGrid/Day Cell#10",
-              "/Container/DayGrid/Day Cell#11",
-              "/Container/DayGrid/Day Cell#12",
-              "/Container/DayGrid/Day Cell#13",
-              "/Container/DayGrid/Day Cell#14",
-              "/Container/DayGrid/Day Cell#15",
-              "/Container/DayGrid/Day Cell#16",
-              "/Container/DayGrid/Day Cell#17",
-              "/Container/DayGrid/Day Cell#18",
-              "/Container/DayGrid/Day Cell#19",
-              "/Container/DayGrid/Day Cell#20",
-              "/Container/DayGrid/Day Cell#21",
-              "/Container/DayGrid/Day Cell#22",
-              "/Container/DayGrid/Day Cell#23",
-              "/Container/DayGrid/Day Cell#24",
-              "/Container/DayGrid/Day Cell#25",
-              "/Container/DayGrid/Day Cell#26",
-              "/Container/DayGrid/Day Cell#27",
-              "/Container/DayGrid/Day Cell#28",
-              "/Container/DayGrid/Day Cell#29",
-              "/Container/DayGrid/Day Cell#30",
-              "/Container/DayGrid/Day Cell#31",
-              "/Container/DayGrid/Day Cell#32",
-              "/Container/DayGrid/Day Cell#33",
-              "/Container/DayGrid/Day Cell#34",
-              "/Container/DayGrid/Day Cell#35",
-              "/Container#2",
-              "/Container#2/MonthHeader",
-              "/Container#2/MonthHeader/Icon/ArrowRight",
-              "/Container#2/MonthHeader/MonthLabel",
-              "/Container#2/WeekdayRow",
-              "/Container#2/WeekdayRow/Weekday",
-              "/Container#2/WeekdayRow/Weekday#2",
-              "/Container#2/WeekdayRow/Weekday#3",
-              "/Container#2/WeekdayRow/Weekday#4",
-              "/Container#2/WeekdayRow/Weekday#5",
-              "/Container#2/WeekdayRow/Weekday#6",
-              "/Container#2/WeekdayRow/Weekday#7",
-              "/Container#2/DayGrid",
-              "/Container#2/DayGrid/Day Cell",
-              "/Container#2/DayGrid/Day Cell#2",
-              "/Container#2/DayGrid/Day Cell#3",
-              "/Container#2/DayGrid/Day Cell#4",
-              "/Container#2/DayGrid/Day Cell#5",
-              "/Container#2/DayGrid/Day Cell#6",
-              "/Container#2/DayGrid/Day Cell#7",
-              "/Container#2/DayGrid/Day Cell#8",
-              "/Container#2/DayGrid/Day Cell#9",
-              "/Container#2/DayGrid/Day Cell#10",
-              "/Container#2/DayGrid/Day Cell#11",
-              "/Container#2/DayGrid/Day Cell#12",
-              "/Container#2/DayGrid/Day Cell#13",
-              "/Container#2/DayGrid/Day Cell#14",
-              "/Container#2/DayGrid/Day Cell#15",
-              "/Container#2/DayGrid/Day Cell#16",
-              "/Container#2/DayGrid/Day Cell#17",
-              "/Container#2/DayGrid/Day Cell#18",
-              "/Container#2/DayGrid/Day Cell#19",
-              "/Container#2/DayGrid/Day Cell#20",
-              "/Container#2/DayGrid/Day Cell#21",
-              "/Container#2/DayGrid/Day Cell#22",
-              "/Container#2/DayGrid/Day Cell#23",
-              "/Container#2/DayGrid/Day Cell#24",
-              "/Container#2/DayGrid/Day Cell#25",
-              "/Container#2/DayGrid/Day Cell#26",
-              "/Container#2/DayGrid/Day Cell#27",
-              "/Container#2/DayGrid/Day Cell#28",
-              "/Container#2/DayGrid/Day Cell#29",
-              "/Container#2/DayGrid/Day Cell#30",
-              "/Container#2/DayGrid/Day Cell#31",
-              "/Container#2/DayGrid/Day Cell#32",
-              "/Container#2/DayGrid/Day Cell#33",
-              "/Container#2/DayGrid/Day Cell#34",
-              "/Container#2/DayGrid/Day Cell#35"
+              {
+                "path": "/Container",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    261
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 12,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Container/MonthHeader",
+                "parent": "/Container",
+                "layer": {
+                  "name": "MonthHeader",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/FIXED"
+                  }
+                }
+              },
+              {
+                "path": "/Container/MonthHeader/Icon/ArrowLeft",
+                "parent": "/Container/MonthHeader",
+                "layer": {
+                  "name": "Icon/ArrowLeft",
+                  "type": "INSTANCE",
+                  "main": "Icon/ArrowLeft",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/tertiary/icon/default}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              },
+              {
+                "path": "/Container/MonthHeader/MonthLabel",
+                "parent": "/Container/MonthHeader",
+                "layer": {
+                  "name": "MonthLabel",
+                  "type": "TEXT",
+                  "text": "April 2026",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    212,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow",
+                "parent": "/Container",
+                "layer": {
+                  "name": "WeekdayRow",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow/Weekday",
+                "parent": "/Container/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Mo",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow/Weekday#2",
+                "parent": "/Container/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Tu",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow/Weekday#3",
+                "parent": "/Container/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "We",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow/Weekday#4",
+                "parent": "/Container/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Th",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow/Weekday#5",
+                "parent": "/Container/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Fr",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow/Weekday#6",
+                "parent": "/Container/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Sa",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/WeekdayRow/Weekday#7",
+                "parent": "/Container/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Su",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid",
+                "parent": "/Container",
+                "layer": {
+                  "name": "DayGrid",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    196
+                  ],
+                  "layout": {
+                    "dir": "GRID",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "gridRowGap": "Spatial:inset/2xs",
+                    "gridColumnGap": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "disabled",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#2",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "disabled",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#3",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "today",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "strokes": [
+                    "{Color:border/medium}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": 8,
+                  "vars": {
+                    "strokeTopWeight": "Spatial:border/default",
+                    "strokeBottomWeight": "Spatial:border/default",
+                    "strokeLeftWeight": "Spatial:border/default",
+                    "strokeRightWeight": "Spatial:border/default",
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#4",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#5",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#6",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#7",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#8",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#9",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#10",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#11",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#12",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#13",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#14",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#15",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#16",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#17",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#18",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#19",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#20",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#21",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#22",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#23",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#24",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#25",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#26",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#27",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "start"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/primary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/primary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": [
+                    8,
+                    0,
+                    0,
+                    8
+                  ],
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#28",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#29",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#30",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#31",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#32",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#33",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#34",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container/DayGrid/Day Cell#35",
+                "parent": "/Container/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Container",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    261
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 12,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/MonthHeader",
+                "parent": "/Container#2",
+                "layer": {
+                  "name": "MonthHeader",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MAX/CENTER",
+                    "sizing": "FILL/FIXED"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/MonthHeader/Icon/ArrowRight",
+                "parent": "/Container#2/MonthHeader",
+                "layer": {
+                  "name": "Icon/ArrowRight",
+                  "type": "INSTANCE",
+                  "main": "Icon/ArrowRight",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:action/tertiary/icon/default}"
+                  ],
+                  "size": [
+                    20,
+                    20
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "height": "Spatial:icon/md"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/MonthHeader/MonthLabel",
+                "parent": "/Container#2/MonthHeader",
+                "layer": {
+                  "name": "MonthLabel",
+                  "type": "TEXT",
+                  "text": "May 2026",
+                  "textStyle": "body/md/medium",
+                  "size": [
+                    212,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow",
+                "parent": "/Container#2",
+                "layer": {
+                  "name": "WeekdayRow",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 4,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow/Weekday",
+                "parent": "/Container#2/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Mo",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow/Weekday#2",
+                "parent": "/Container#2/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Tu",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow/Weekday#3",
+                "parent": "/Container#2/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "We",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow/Weekday#4",
+                "parent": "/Container#2/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Th",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow/Weekday#5",
+                "parent": "/Container#2/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Fr",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow/Weekday#6",
+                "parent": "/Container#2/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Sa",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/WeekdayRow/Weekday#7",
+                "parent": "/Container#2/WeekdayRow",
+                "layer": {
+                  "name": "Weekday",
+                  "type": "TEXT",
+                  "text": "Su",
+                  "textStyle": "body/sm/medium",
+                  "size": [
+                    36,
+                    9
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/tertiary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/body/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/body/sm",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid",
+                "parent": "/Container#2",
+                "layer": {
+                  "name": "DayGrid",
+                  "type": "FRAME",
+                  "size": [
+                    276,
+                    196
+                  ],
+                  "layout": {
+                    "dir": "GRID",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "gridRowGap": "Spatial:inset/2xs",
+                    "gridColumnGap": "Spatial:inset/2xs"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#2",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#3",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#4",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#5",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#6",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#7",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#8",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#9",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#10",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#11",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#12",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#13",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#14",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#15",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#16",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "middle"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:surface/feedback/neutral/subtle}"
+                  ]
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#17",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "end"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "fills": [
+                    "{Color:action/primary/bg/default}"
+                  ],
+                  "strokes": [
+                    "{Color:action/primary/border/default}"
+                  ],
+                  "strokeWeight": 1,
+                  "radius": [
+                    0,
+                    8,
+                    8,
+                    0
+                  ],
+                  "vars": {
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#18",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#19",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#20",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#21",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#22",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#23",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#24",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#25",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#26",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#27",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#28",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#29",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#30",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#31",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#32",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "default",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#33",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "disabled",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#34",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "disabled",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              },
+              {
+                "path": "/Container#2/DayGrid/Day Cell#35",
+                "parent": "/Container#2/DayGrid",
+                "layer": {
+                  "name": "Day Cell",
+                  "type": "INSTANCE",
+                  "main": "Day Cell",
+                  "variant": {
+                    "state": "disabled",
+                    "range-role": "none"
+                  },
+                  "size": [
+                    36,
+                    36
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "FIXED/FIXED"
+                  },
+                  "radius": 8,
+                  "vars": {
+                    "topLeftRadius": "Spatial:radius/container",
+                    "topRightRadius": "Spatial:radius/container",
+                    "bottomLeftRadius": "Spatial:radius/container",
+                    "bottomRightRadius": "Spatial:radius/container"
+                  }
+                }
+              }
             ],
             "removed": [
               "/MonthHeader",

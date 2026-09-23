@@ -97,6 +97,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:action/primary/icon/default}"
+            ],
             "size": [
               12,
               12
@@ -148,6 +151,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -173,6 +181,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -199,6 +212,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": "shadow/focus/default"
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -224,6 +242,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -278,7 +301,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -340,6 +391,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -372,6 +428,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -405,6 +466,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -437,6 +503,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -507,7 +578,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -571,7 +670,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -605,7 +707,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -640,7 +745,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -674,7 +782,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -745,7 +856,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -823,7 +962,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -864,7 +1006,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -906,7 +1051,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -947,7 +1095,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -1032,7 +1183,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1096,7 +1275,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -1130,7 +1312,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -1164,7 +1349,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -1198,7 +1386,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -1269,7 +1460,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "lg",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1347,7 +1566,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -1388,7 +1610,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/hover}"
+                ]
               }
             }
           }
@@ -1429,7 +1654,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
               }
             }
           }
@@ -1470,7 +1698,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/disabled}"
+                ]
               }
             }
           }
@@ -1555,7 +1786,35 @@
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "lg",
+                    "style": "inverse"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1580,6 +1839,11 @@
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/default}"
+                ]
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
                 ]
               }
             }
@@ -1607,6 +1871,11 @@
                   "{Color:action/secondary/bg/hover}"
                 ],
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -1633,6 +1902,11 @@
                   "{Color:surface/active}"
                 ],
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -1660,6 +1934,11 @@
                   "{Color:action/secondary/bg/active}"
                 ],
                 "effectStyle": "shadow/focus/default"
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -1684,6 +1963,11 @@
                   "{Color:border/disabled}"
                 ],
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
               }
             }
           }
@@ -1711,6 +1995,11 @@
                   "{Color:action/secondary/bg/default}"
                 ],
                 "effectStyle": "shadow/focus/default"
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -1742,11 +2031,42 @@
                 ]
               },
               "/Icon/None": {
-                "hidden": true
+                "hidden": true,
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "default"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -1779,6 +2099,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -1812,6 +2137,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -1845,6 +2175,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -1879,6 +2214,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -1910,6 +2250,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
               }
             }
           }
@@ -1944,6 +2289,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -1982,11 +2332,42 @@
                 }
               },
               "/Icon/None": {
-                "hidden": true
+                "hidden": true,
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "default"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -2020,7 +2401,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -2055,7 +2439,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2090,7 +2477,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2126,7 +2516,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -2159,7 +2552,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
               }
             }
           }
@@ -2195,7 +2591,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -2234,11 +2633,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "default"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -2279,7 +2709,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -2321,7 +2754,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2363,7 +2799,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2406,7 +2845,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -2446,7 +2888,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
               }
             }
           }
@@ -2489,7 +2934,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -2535,11 +2983,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "default"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -2572,7 +3051,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -2606,7 +3088,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2640,7 +3125,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2674,7 +3162,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -2707,7 +3198,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
               }
             }
           }
@@ -2742,7 +3236,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -2780,11 +3277,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "lg",
+                    "style": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -2824,7 +3352,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -2865,7 +3396,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2906,7 +3440,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/hover}"
+                ]
               }
             }
           }
@@ -2947,7 +3484,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
               }
             }
           }
@@ -2987,7 +3527,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/disabled}"
+                ]
               }
             }
           }
@@ -3029,7 +3572,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             }
           }
@@ -3074,11 +3620,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "lg",
+                    "style": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -3103,6 +3680,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -3128,6 +3710,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3153,6 +3740,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3178,6 +3770,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
               }
             }
           }
@@ -3202,6 +3799,11 @@
                   "{Color:border/disabled}"
                 ],
                 "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
+                ]
               }
             }
           }
@@ -3228,6 +3830,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "effectStyle": "shadow/focus/default"
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -3258,11 +3865,42 @@
                 "effectStyle": null
               },
               "/Icon/None": {
-                "hidden": true
+                "hidden": true,
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "default"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -3294,6 +3932,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -3326,6 +3969,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3358,6 +4006,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3390,6 +4043,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
               }
             }
           }
@@ -3421,6 +4079,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
+                ]
               }
             }
           }
@@ -3454,6 +4117,11 @@
                   "bottomLeftRadius": "Spatial:radius/pill",
                   "bottomRightRadius": "Spatial:radius/pill"
                 }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -3491,11 +4159,42 @@
                 }
               },
               "/Icon/None": {
-                "hidden": true
+                "hidden": true,
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "sm",
+                    "style": "default"
+                  },
+                  "size": [
+                    16,
+                    16
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -3528,7 +4227,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -3562,7 +4264,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3596,7 +4301,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3630,7 +4338,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
               }
             }
           }
@@ -3663,7 +4374,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
+                ]
               }
             }
           }
@@ -3698,7 +4412,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -3736,11 +4453,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "default"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -3780,7 +4528,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -3821,7 +4572,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3862,7 +4616,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -3903,7 +4660,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
               }
             }
           }
@@ -3943,7 +4703,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
+                ]
               }
             }
           }
@@ -3985,7 +4748,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -4030,11 +4796,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/sm"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "md",
+                    "style": "default"
+                  },
+                  "size": [
+                    24,
+                    24
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -4067,7 +4864,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -4101,7 +4901,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -4135,7 +4938,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -4169,7 +4975,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
               }
             }
           }
@@ -4202,7 +5011,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
+                ]
               }
             }
           }
@@ -4237,7 +5049,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -4275,11 +5090,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "lg",
+                    "style": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         },
@@ -4319,7 +5165,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -4360,7 +5209,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -4401,7 +5253,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/hover}"
+                ]
               }
             }
           }
@@ -4442,7 +5297,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
               }
             }
           }
@@ -4482,7 +5340,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/disabled}"
+                ]
               }
             }
           }
@@ -4524,7 +5385,10 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             }
           }
@@ -4569,11 +5433,42 @@
                 ],
                 "vars": {
                   "height": "Spatial:icon/md"
-                }
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/default}"
+                ]
               }
             },
             "added": [
-              "/Spinner"
+              {
+                "path": "/Spinner",
+                "parent": "/",
+                "layer": {
+                  "name": "Spinner",
+                  "type": "INSTANCE",
+                  "main": "Spinner",
+                  "variant": {
+                    "size": "lg",
+                    "style": "default"
+                  },
+                  "size": [
+                    32,
+                    32
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "CENTER/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              }
             ]
           }
         }

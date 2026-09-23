@@ -70,6 +70,9 @@
             "variant": {
               "solid": "false"
             },
+            "iconFills": [
+              "{Color:icon/secondary}"
+            ],
             "size": [
               16,
               16
@@ -147,6 +150,11 @@
                   "{Color:surface/hover}"
                 ]
               },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              },
               "/Label": {
                 "sizing": "FILL/HUG",
                 "fills": [
@@ -206,6 +214,11 @@
                 },
                 "fills": [
                   "{Color:surface/active}"
+                ]
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/primary}"
                 ]
               },
               "/Label": {

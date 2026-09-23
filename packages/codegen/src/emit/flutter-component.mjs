@@ -62,8 +62,20 @@ export const FLUTTER_STYLE = {
     width: 'root.width',
     foreground: 'label.color',
     textStyle: 'label.typography',
-    iconColor: 'root.iconColor',
+    iconColor: 'iconLeading.color',
     iconSize: 'iconLeading.width',
+  },
+};
+
+/**
+ * Cells a ButtonStyle property draws for more than one layer: Flutter has one `iconColor` and one
+ * `iconSize` for both icons, where MUI styles each. Where the IR's two icons differ, the emitter
+ * refuses rather than drawing the trailing icon in the leading one's colour.
+ */
+export const FLUTTER_SHARED = {
+  Button: {
+    'iconLeading.color': 'iconTrailing.color',
+    'iconLeading.width': 'iconTrailing.width',
   },
 };
 
@@ -119,6 +131,20 @@ export function renderFlutterComponent(spec, tokens) {
       throw new Error(
         `${spec.component}: ${prop} reads ${cell}, which the IR does not have`,
       );
+  for (const [cell, other] of Object.entries(
+    FLUTTER_SHARED[spec.component] ?? {},
+  )) {
+    const of = (name) =>
+      Object.fromEntries(
+        Object.entries(cells)
+          .filter(([k]) => k.split('|')[0] === name)
+          .map(([k, v]) => [k.slice(name.length), v]),
+      );
+    if (JSON.stringify(of(cell)) !== JSON.stringify(of(other)))
+      throw new Error(
+        `${spec.component}: Flutter draws ${cell} and ${other} with one property, and the IR gives them different values`,
+      );
+  }
   // Every state the IR keys an entry by must be one the resolver can detect.
   for (const key of Object.keys(cells)) {
     const state = key.split('|').at(-1);

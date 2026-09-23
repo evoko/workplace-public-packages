@@ -97,6 +97,9 @@
                 "variant": {
                   "solid": "false"
                 },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ],
                 "size": [
                   24,
                   24
@@ -175,6 +178,11 @@
                 "strokes": [
                   "{Color:border/subtle}"
                 ]
+              },
+              "/Container/Icon/Plus": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }
@@ -202,6 +210,11 @@
             "changed": {
               "/": {
                 "effectStyle": "shadow/raised"
+              },
+              "/Container/Icon/Plus": {
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
               }
             }
           }

@@ -305,20 +305,320 @@
               }
             },
             "added": [
-              "/Frame/Frame",
-              "/Frame/Frame/Frame",
-              "/Frame/Frame/Series A",
-              "/Frame/Frame#2",
-              "/Frame/Frame#2/Frame",
-              "/Frame/Frame#2/Series B",
-              "/Plot/Line B",
-              "/Frame#2",
-              "/Frame#2/Jan",
-              "/Frame#2/Feb",
-              "/Frame#2/Mar",
-              "/Frame#2/Apr",
-              "/Frame#2/May",
-              "/Frame#2/Jun"
+              {
+                "path": "/Frame/Frame",
+                "parent": "/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    62,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 6,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame/Frame",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:data/category/06/strong}"
+                  ],
+                  "radius": 2
+                }
+              },
+              {
+                "path": "/Frame/Frame/Series A",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Series A",
+                  "type": "TEXT",
+                  "text": "Series A",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    46,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame#2",
+                "parent": "/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    61,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 6,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame#2/Frame",
+                "parent": "/Frame/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:data/category/02/strong}"
+                  ],
+                  "radius": 2
+                }
+              },
+              {
+                "path": "/Frame/Frame#2/Series B",
+                "parent": "/Frame/Frame#2",
+                "layer": {
+                  "name": "Series B",
+                  "type": "TEXT",
+                  "text": "Series B",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    45,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Plot/Line B",
+                "parent": "/Plot",
+                "layer": {
+                  "name": "Line B",
+                  "type": "VECTOR",
+                  "size": [
+                    600,
+                    176
+                  ],
+                  "strokes": [
+                    "{Color:data/category/02/strong}"
+                  ],
+                  "strokeWeight": 2
+                }
+              },
+              {
+                "path": "/Frame#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    600,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "SPACE_BETWEEN/CENTER",
+                    "sizing": "FILL/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Jan",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Jan",
+                  "type": "TEXT",
+                  "text": "Jan",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    20,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Feb",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Feb",
+                  "type": "TEXT",
+                  "text": "Feb",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    21,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Mar",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Mar",
+                  "type": "TEXT",
+                  "text": "Mar",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    22,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Apr",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Apr",
+                  "type": "TEXT",
+                  "text": "Apr",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    20,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/May",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "May",
+                  "type": "TEXT",
+                  "text": "May",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    24,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Jun",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Jun",
+                  "type": "TEXT",
+                  "text": "Jun",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    21,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Frame/Jan",
@@ -369,18 +669,272 @@
               }
             },
             "added": [
-              "/Frame/Frame",
-              "/Frame/Frame/Frame",
-              "/Frame/Frame/Series A",
-              "/Frame/Frame#2",
-              "/Frame/Frame#2/Frame",
-              "/Frame/Frame#2/Series B",
-              "/Plot/Line B",
-              "/Frame#2",
-              "/Frame#2/Jan",
-              "/Frame#2/Feb",
-              "/Frame#2/Mar",
-              "/Frame#2/Apr"
+              {
+                "path": "/Frame/Frame",
+                "parent": "/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    62,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 6,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame/Frame",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:data/category/06/strong}"
+                  ],
+                  "radius": 2
+                }
+              },
+              {
+                "path": "/Frame/Frame/Series A",
+                "parent": "/Frame/Frame",
+                "layer": {
+                  "name": "Series A",
+                  "type": "TEXT",
+                  "text": "Series A",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    46,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame#2",
+                "parent": "/Frame",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    61,
+                    10
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 6,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/CENTER",
+                    "sizing": "HUG/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame/Frame#2/Frame",
+                "parent": "/Frame/Frame#2",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    10,
+                    10
+                  ],
+                  "sizing": "FIXED/FIXED",
+                  "fills": [
+                    "{Color:data/category/02/strong}"
+                  ],
+                  "radius": 2
+                }
+              },
+              {
+                "path": "/Frame/Frame#2/Series B",
+                "parent": "/Frame/Frame#2",
+                "layer": {
+                  "name": "Series B",
+                  "type": "TEXT",
+                  "text": "Series B",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    45,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Plot/Line B",
+                "parent": "/Plot",
+                "layer": {
+                  "name": "Line B",
+                  "type": "VECTOR",
+                  "size": [
+                    343,
+                    136
+                  ],
+                  "strokes": [
+                    "{Color:data/category/02/strong}"
+                  ],
+                  "strokeWeight": 2
+                }
+              },
+              {
+                "path": "/Frame#2",
+                "parent": "/",
+                "layer": {
+                  "name": "Frame",
+                  "type": "FRAME",
+                  "size": [
+                    343,
+                    9
+                  ],
+                  "layout": {
+                    "dir": "HORIZONTAL",
+                    "gap": 0,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "SPACE_BETWEEN/CENTER",
+                    "sizing": "FILL/HUG"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Jan",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Jan",
+                  "type": "TEXT",
+                  "text": "Jan",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    20,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Feb",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Feb",
+                  "type": "TEXT",
+                  "text": "Feb",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    21,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Mar",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Mar",
+                  "type": "TEXT",
+                  "text": "Mar",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    22,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              },
+              {
+                "path": "/Frame#2/Apr",
+                "parent": "/Frame#2",
+                "layer": {
+                  "name": "Apr",
+                  "type": "TEXT",
+                  "text": "Apr",
+                  "textStyle": "helper/sm",
+                  "size": [
+                    20,
+                    9
+                  ],
+                  "sizing": "HUG/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/helper/sm",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/helper/sm",
+                    "fontStyle": "Primitives:type/font-weight/400"
+                  }
+                }
+              }
             ],
             "removed": [
               "/Frame/Jan",

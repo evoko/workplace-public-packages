@@ -295,6 +295,9 @@
                     "variant": {
                       "solid": "false"
                     },
+                    "iconFills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
                     "size": [
                       16,
                       16

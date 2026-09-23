@@ -186,6 +186,9 @@
                     "variant": {
                       "solid": "false"
                     },
+                    "iconFills": [
+                      "{Color:icon/inverse}"
+                    ],
                     "size": [
                       20,
                       20
