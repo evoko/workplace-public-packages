@@ -388,3 +388,63 @@ describe('deriveRecipe on a synthetic orthogonal component', () => {
     expect(d[0].reason).toMatch(/read from size=sm, tone=b, state=default/);
   });
 });
+
+describe('deriveRecipe: the icon colour, from a digest that does not say which icon', () => {
+  const withIcons = (fills) => {
+    const set = structuredClone(buttonSet);
+    for (const v of set.variants) if (v.iconFills) v.iconFills = fills;
+    return deriveRecipe(resolveVariants(set), { names });
+  };
+
+  it('is a cell when every icon shares one colour, repeated or not', () => {
+    const r = withIcons([
+      '{Color:action/primary/icon/default}',
+      '{Color:action/primary/icon/default}',
+    ]);
+    expect(r.style['/'].base.iconColor).toMatchObject({
+      token: 'color.action.primary.icon.default',
+    });
+    expect(r.deviations.some((d) => d.kind === 'unattributed')).toBe(false);
+  });
+
+  it('is no cell and one finding when the icons differ, never a guess or a failed build', () => {
+    const r = withIcons([
+      '{Color:action/primary/icon/default}',
+      '{Color:action/secondary/icon/default}',
+    ]);
+    expect(r.style['/'].base).not.toHaveProperty('iconColor');
+    const found = r.deviations.filter((d) => d.kind === 'unattributed');
+    expect(found).toHaveLength(1);
+    expect(found[0].token).toBe('component.button.root.iconColor#unattributed');
+  });
+});
+
+// A guard on the whole corpus, not only Button: a change that makes the recipe throw on a shape
+// it used to handle shows up here, where Button's own suite would stay green. The three sets that
+// do not derive today throw on shapes milestone 3b will model (per-side bindings, stacked paints).
+describe('deriveRecipe over all of SOLAR Web', () => {
+  it('derives every set it derived before, and fails only on the three known shapes', async () => {
+    const { readdirSync } = await import('node:fs');
+    const root = join(docsDir, 'solar-web', 'raw', 'components');
+    const failures = [];
+    let total = 0;
+    for (const dir of readdirSync(root))
+      for (const file of readdirSync(join(root, dir)))
+        for (const set of JSON.parse(
+          readFileSync(join(root, dir, file), 'utf8'),
+        ).componentSets) {
+          total++;
+          try {
+            deriveRecipe(resolveVariants(set), { names });
+          } catch {
+            failures.push(`${dir}/${set.name}`);
+          }
+        }
+    expect(failures.sort()).toEqual([
+      'calendar/Weekday Header',
+      'cards/Insight Card',
+      'overlays/Popover',
+    ]);
+    expect(total).toBe(119);
+  });
+});

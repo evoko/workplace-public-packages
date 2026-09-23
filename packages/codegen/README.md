@@ -9,9 +9,9 @@ One command does everything:
 npm run solar:codegen
 ```
 
-It reads the committed Figma data and writes two contracts — `spec/tokens.json` and
-`spec/icons.json` — then emits the tokens to four targets and the icons to three. It needs no
-Figma token and no network.
+It reads the committed Figma data and writes three contracts — `spec/tokens.json`,
+`spec/icons.json` and `spec/components/*.json` — then emits the tokens to four targets, the icons
+to three and each component's recipe to two. It needs no Figma token and no network.
 
 ## The one invariant
 
@@ -38,8 +38,8 @@ The four are independent emitters reading one normalized spec. They are **not** 
 each other: a Dart file is not a translation of a stylesheet, and pretending otherwise is how
 the two drift apart.
 
-`spec/deviations.md` lists the **17 places the code deliberately differs from what Figma says**:
-12 from the tokens, 1 from the MUI theme and 4 from the icons. It is the report SOLAR governance
+`spec/deviations.md` lists the **29 places code and Figma differ**: 14 from the tokens, 1 from the
+MUI theme, 3 from the icons and 11 from Button. It is the report SOLAR governance
 reads, so every entry names an action for them. The count is whatever the data triggers, not a
 list someone maintains: a rule fires only when its defect is present.
 
@@ -108,19 +108,82 @@ emitter asserts that is the _only_ variant it skipped, and the parity suite asse
 only divergence between the targets, so a second unrepresentable asset fails the build instead
 of disappearing.
 
+## Components
+
+A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, in four steps.
+
+1. **Resolve** (`src/normalize/component-layers.mjs`). Figma stores one full layer tree for the
+   default variant and, for every other variant, only a diff against it. Resolution reverses the
+   diff, so each variant is a map of layer path to that layer's properties, with each variable
+   binding kept beside the value it binds: `radius: 6` with `Spatial:radius/control`.
+2. **Derive the recipe** (`src/normalize/recipe.mjs`). SOLAR's model is that **geometry follows
+   size, paint follows appearance and state**. Each style cell — a background, a padding, a label's
+   type — is read from the one variant that holds every other axis at its default, in token names.
+   Then every other variant is checked against it, and a disagreement is recorded as a deviation
+   naming the variants, never averaged away: it is a Figma mistake or a real interaction between
+   axes, and only a person can say which. A value bound to no variable is recorded too.
+3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
+   demoted — hover, pressed and focus become platform states, disabled and loading stay props),
+   the slots from the layer tree's prop bindings, the layers by name, and the recipe.
+4. **Apply the overlay** (`src/normalize/overlay.mjs`, `spec/overlay/<name>.yaml`). The only place
+   judgement lives: the stock control to wrap, renames, a cell that follows more axes than the
+   model says, a raw value bound to the token of the same value, an allowed literal, an accepted
+   finding. Every rule needs a reason, and a rule that no longer matches the IR fails the build.
+
+Two emitters generate from the IR, and neither imports its framework:
+
+| Target    | Output                                                            | What it is                                                           |
+| --------- | ----------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `mui`     | `packages/styles/src/generated/mui/components/<name>.ts`          | style data for `sx` keyed by MUI's classes, and `solar<Name>Style()` |
+| `flutter` | `packages/solar_flutter/lib/src/generated/components/<name>.dart` | token names, a state resolver, and a `ButtonStyle` via `WidgetState` |
+
+Both resolve states in one order — disabled, loading, focus, pressed, hover — which the Flutter
+emitter imports from the MUI one reversed, because in CSS the later rule wins. What MUI draws that
+SOLAR does not (Button's 64px minimum width, its upper-case label) is undone by `MUI_RESETS` in the
+emitter, so a component looks right with or without the SOLAR MUI theme installed.
+
+**Recipe and shell.** The recipe is what a component looks like; it regenerates on every run and
+is never edited. The shell — `packages/components/src/<Name>.tsx`: props, slots, loading,
+accessibility — is written once by `npm run solar:scaffold <Name>` (`src/scaffold/`) and then owned
+by developers; the scaffolder refuses to overwrite it without `--force`, and it never runs in CI.
+The rule of thumb for where a change goes:
+
+> **The overlay for a decision about one component, the normalizer for a rule about the system,
+> the shell for behaviour.**
+
+**What Button's findings mean.** Button produced 11 findings (29 in the whole report). Eight
+carry an overlay decision and stay in the report beside it: five bind a raw value to the token of
+the same value (vertical padding, xl's gap, the icon heights), and three allow a literal SOLAR has
+no token for (the fixed heights, xl's width, the counter's height). Two more decisions removed
+findings outright, by declaring an axis interaction: tertiary hover's link style and xl's flat
+look are drawn as Figma draws them. Three findings are open and are genuine Figma defects:
+secondary loses its background at `sm`, the backgrounds change inconsistently at `xl`, and the
+`xl` disabled label uses the danger colour. They are in
+[the design review](../../docs/solar-review-for-design.md), section 7. Run over the whole corpus,
+116 of SOLAR Web's 119 component sets already derive a recipe; the three that do not throw on
+shapes the recipe does not model yet (per-side bindings, stacked paints), which is milestone 3b.
+
+[`test/component-parity.test.mjs`](test/component-parity.test.mjs) reads the generated TypeScript
+and Dart and the shell back from disk and proves the two platforms expose the same API, style the
+same states in the same order, and hold every IR entry at its own place.
+
 ## Layout
 
 ```
 bin/solar-codegen.mjs      the CLI: builds every stage, then emits, reports, prunes, formats
-src/stages/                one module per stage (tokens, icons): build() the spec, emit() it
+bin/solar-scaffold.mjs     writes a component's hand-owned shell, once
+src/stages/                one module per stage (tokens, icons, components): build(), emit()
+src/scaffold/              the shell templates
 src/normalize/             css-contract.json -> the DTCG spec, solar-icons/ -> the icon spec,
-                           the SVG reader, and the recorded deviations
+                           solar-web/ -> the component IR (layers, recipe, overlay), the SVG
+                           reader, and the recorded deviations
 src/emit/                  one file per emitter, plus the manifest entries and canonical values
 src/report/                spec/deviations.md
 src/util/                  paths, the docs/ write guard and pruning, sorting, naming, digests,
                            SVG markup scanning
 test/                      unit suites per module, token parity across four targets, icon
-                           parity across three, and the packaging checks
+                           parity across three, component parity across two, and the
+                           packaging checks
 ```
 
 Every stage is built before any is emitted, so a normalizer that throws stops the run before a
@@ -128,11 +191,11 @@ single target has been rewritten. A new stage is a module exporting `name`, `bui
 `emit(built)`, where `emit` returns `{counts, deviations}`, added to `STAGES` in the CLI.
 
 **Stale output is deleted.** After every stage has written, the CLI removes anything under the
-three generated directories (`packages/styles/src/generated`, `packages/assets/src/generated`,
-`packages/solar_flutter/lib/src/generated`) that the run did not write, and says so. Without it,
-an icon removed in Figma would keep its generated module forever, regenerating to the same bytes
-and invisible to CI. Nothing outside those directories is pruned, and `spec/` is excluded on
-purpose because `spec/overlay/` will hold hand-written files.
+generated directories (`packages/styles/src/generated`, `packages/assets/src/generated`,
+`packages/solar_flutter/lib/src/generated` and `spec/components`) that the run did not write, and
+says so. Without it, an icon removed in Figma would keep its generated module forever,
+regenerating to the same bytes and invisible to CI. Nothing outside those directories is pruned:
+`spec/overlay/` and the component shells are hand-written.
 
 ## Changing it
 
@@ -142,6 +205,12 @@ purpose because `spec/overlay/` will hold hand-written files.
   consistently and reported to SOLAR governance in `spec/deviations.md`. Do not edit `docs/`.
 - **A new token appeared in Figma** → nothing here; re-run `npm run solar:tokens`, and the
   normalizer picks it up. An unknown token _type_ fails loudly rather than guessing.
+- **A component looks wrong on one platform** → that platform's emitter, and its table
+  (`MUI_SLOTS`, `MUI_RESETS`, `FLUTTER_STYLE`).
+- **A component looks wrong, and Figma is right for it alone** → its overlay in `spec/overlay/`.
+- **A component behaves wrong** → its shell in `packages/components/src/`, which is yours.
+- **A new component** → add it to `COMPONENTS` in `src/stages/components.mjs`, give the emitters
+  its slot and style tables and the scaffolder a template, then `npm run solar:scaffold <Name>`.
 - **A new icon appeared in Figma** → nothing here either; re-run `npm run solar:icons`, and
   `src/normalize/icons.mjs` picks it up. An SVG feature the IR cannot represent — a gradient, a
   stroke, an arc — fails naming the file rather than being quietly dropped.

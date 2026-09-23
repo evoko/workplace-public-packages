@@ -11,7 +11,7 @@ system. V2 is work in progress and not yet published as `latest`.
 | [`@bwp-web/styles`](./packages/styles)         | Design tokens and theme              | V2 in progress |
 | [`@bwp-web/assets`](./packages/assets)         | Icons and static assets              | V2 in progress |
 | [`@bwp-web/canvas`](./packages/canvas)         | Interactive canvas editor and viewer | V2 in progress |
-| [`@bwp-web/components`](./packages/components) | React components                     | V2 in progress |
+| [`@bwp-web/components`](./packages/components) | SOLAR components for React, on MUI   | V2 in progress |
 | [`solar_flutter`](./packages/solar_flutter)    | SOLAR tokens and icons for Flutter   | V2 in progress |
 
 [`@bwp-web/codegen`](./packages/codegen) is the private build tool that generates the tokens and

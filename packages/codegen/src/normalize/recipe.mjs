@@ -309,6 +309,7 @@ export function deriveRecipe(
         };
 
   // Every variant's cells, once.
+  const unattributed = new Set();
   const cells = new Map(
     resolved.variants.map((v) => {
       const perLayer = new Map();
@@ -320,13 +321,19 @@ export function deriveRecipe(
             names,
             `${component} ${path}`,
           );
-          // The icons' colour, from the variant digest (see resolveVariants): one paint for every
-          // icon in the variant, or no cell at all where the variant has no icon.
-          if (path === '/' && v.iconFills)
-            layerCells.iconColor = {
-              cls: 'paint',
-              value: paint(v.iconFills, names, `${component} /.iconColor`),
-            };
+          // The icons' colour, from the variant digest (see resolveVariants). The digest lists every
+          // icon's paint without saying which icon it belongs to, so it is a cell only where all
+          // the icons agree. Where they differ the colour cannot be attributed to a layer: no cell,
+          // and one finding for the component, rather than a guess or a failed build.
+          if (path === '/' && v.iconFills) {
+            const distinct = [...new Set(v.iconFills)];
+            if (distinct.length === 1)
+              layerCells.iconColor = {
+                cls: 'paint',
+                value: paint(distinct, names, `${component} /.iconColor`),
+              };
+            else unattributed.add(v.name);
+          }
           perLayer.set(path, layerCells);
         }
       return [v.name, perLayer];
@@ -534,6 +541,20 @@ export function deriveRecipe(
     if (suggest.length) d.suggest = suggest;
     deviations.push(d);
   }
+
+  if (unattributed.size)
+    deviations.push({
+      kind: 'unattributed',
+      component,
+      layer: '/',
+      cell: 'iconColor',
+      variants: [...unattributed].map((variant) => ({ variant })),
+      token: `component.${component.toLowerCase()}.root.iconColor#unattributed`,
+      figmaValue: `icons in ${unattributed.size} variant${unattributed.size === 1 ? '' : 's'} have different colours`,
+      reason: `${component}'s icons do not all share one colour, and the fetcher does not descend into icon instances, so each colour cannot be tied to its icon. The recipe carries no icon colour for ${component}.`,
+      raise:
+        "No SOLAR action: the Web fetcher must record each icon instance's fill before the recipe can carry it.",
+    });
 
   // One finding per combination read from a substitute, across every cell that needed it.
   for (const entry of [...sparse].sort()) {

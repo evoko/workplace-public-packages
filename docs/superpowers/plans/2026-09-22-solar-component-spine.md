@@ -495,6 +495,23 @@ so a raw hex or px in a component recipe fails.
 
 ---
 
+**Done 2026-09-23.** `test/component-parity.test.mjs`, 15 assertions, reading the generated
+`button.ts`, `button.dart` and the shell `Button.tsx` back from disk and comparing them with the
+IR and with each other: the value unions and defaults; the props, with hover, pressed and focus
+kept out of both; the states each platform styles and the order they win in; the appearance
+combinations and sizes; every IR entry at its own key in Dart and at its own selector and
+property in the MUI styles (colour, shadow, radius and spacing, 100+ entries); the literals, only
+the overlay-allowed ones; no colour literal anywhere; and a shell prop and a Flutter presence
+answer for every slot.
+
+The first draft compared token *sets*, which a platform swapping hover for rest would still pass;
+it now compares entry by entry. Corrupting the artifacts directly — Dart hover swapped for
+pressed, MUI hover swapped for rest, tertiary dropped from the Dart enum, the MUI default size
+changed, Dart's hover and pressed precedence swapped, the shell's counter slot removed — fails
+the suite each time.
+
+---
+
 ### Task 9: CLI and wiring
 
 **Files:** modify `packages/codegen/bin/solar-codegen.mjs`, add `bin/solar-scaffold.mjs`, root
@@ -506,12 +523,30 @@ because scaffolding is a one-time human action and must never run in CI.
 
 Verify determinism by running twice and hashing, and confirm nothing is written under `docs/`.
 
+**Done in earlier tasks.** The component stage (`src/stages/components.mjs`) arrived in Task 3 and
+gained the MUI and Flutter emitters in Tasks 5 and 6; its deviations have been in
+`spec/deviations.md` since Task 3; `solar:scaffold` arrived with Task 7, outside `solar:codegen`
+and CI. Determinism has been checked after every task by rebuilding twice and comparing the
+tree, and the codegen job's `docs/` guard covers the new stage unchanged.
+
 ---
 
 ### Task 10: Documentation
 
 **Files:** modify `packages/codegen/README.md`, `docs/README.md`, `CLAUDE.md` and
 `packages/components/README.md`, which exists as a two-line placeholder.
+
+**Done 2026-09-23.** `packages/codegen/README.md` gains a Components section (resolve, derive,
+build, overlay; both emitters; recipe and shell; what Button's 11 findings mean);
+`docs/README.md` maps the component contract, the overlay, the recipes and the scaffolder;
+`CLAUDE.md` and `packages/components/README.md` say what exists. Button's findings: 8 decided in
+the report (5 bind, 3 allowLiteral), 2 removed by `follows`, 3 open Figma defects.
+
+**A regression this task caught.** Re-running Task 2's corpus check for the docs found only 85 of
+119 sets deriving, not 116: Task 5's icon colour cell threw wherever a component's icons differ
+in colour, which the variant digest cannot attribute to layers. It now emits no cell there and
+one `unattributed` finding per component (31 sets, fetcher work for 3b), and the corpus check is
+a test, so the next such regression fails the suite instead of waiting to be noticed.
 
 Say what a recipe is, where the boundary between generated recipe and owned shell sits, and the
 rule of thumb from the spec: **overlay for a decision about one component, normalizer for a rule
@@ -521,6 +556,9 @@ mean.
 ---
 
 ## Done when
+
+All met on 2026-09-23; milestone 3a is complete.
+
 
 - `spec/components/button.json` exists, is guarded, and carries the recipe in token names.
 - An MUI app and a Flutter app both render a SOLAR Button from the same spec, and the API parity
