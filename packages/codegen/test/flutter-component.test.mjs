@@ -114,3 +114,34 @@ describe('renderFlutterComponent on Button', () => {
     );
   });
 });
+
+describe('renderFlutterComponent on Spinner', () => {
+  const spinner = built.find((b) => b.spec.component === 'Spinner').spec;
+  const { dart: spinnerDart } = renderFlutterComponent(spinner, tokens);
+
+  it('escapes a value that is a Dart keyword and keys the recipe by Figma’s spelling', () => {
+    expect(spinnerDart).toContain("$default('default')");
+    expect(spinnerDart).toContain(
+      'this.variant = SolarSpinnerVariant.$default',
+    );
+    expect(spinnerDart).toContain(
+      "final combo = 'variant=${p.variant.figma}';",
+    );
+  });
+
+  it('tests no state it cannot be in, and builds no ButtonStyle', () => {
+    expect(spinnerDart).toContain(
+      'static const List<String> statePrecedence = <String>[];',
+    );
+    expect(spinnerDart).not.toContain('p.disabled');
+    expect(spinnerDart).not.toContain('ButtonStyle');
+  });
+
+  it('refuses a track and indicator of different widths, which one strokeWidth draws', () => {
+    const split = structuredClone(spinner);
+    split.style.track.base.borderWidth = { token: 'border.default' };
+    expect(() => renderFlutterComponent(split, tokens)).toThrow(
+      /indicator.borderWidth and track.borderWidth with one property/,
+    );
+  });
+});

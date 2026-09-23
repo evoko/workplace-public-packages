@@ -1,0 +1,62 @@
+# Hand-written decisions about SOLAR Spinner, applied over spec/components/spinner.json by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Addresses use Figma's axis names (style, not variant); `rename` is applied last.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Spinner
+
+base:
+  mui: CircularProgress
+  flutter: CircularProgressIndicator
+  reason: >-
+    Each platform's own indeterminate spinner, restyled by the recipe: size, stroke width, track
+    and indicator colours. Its motion stays the platform's, because Figma draws a still frame and
+    SOLAR has no token for a spinner's rotation. MUI draws the track with enableTrackSlot.
+
+rename:
+  style:
+    to: variant
+    reason: >-
+      `style` is React's inline-style prop, so a component cannot take it as a SOLAR prop.
+      `variant` is what Button calls its appearance axis too.
+
+bind:
+  root.paddingTop:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
+  root.paddingRight:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
+  root.paddingBottom:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
+  root.paddingLeft:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
+  root.gap:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token; the frame holds one child, so the gap draws nothing.
+
+set:
+  indicator.base.borderColor:
+    token: color.border.strong
+    reason: >-
+      Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width*
+      variable, which holds no colour; the recipe reports it as misbound. color.border.strong is
+      the colour of the same name, and the inverse style's indicator uses its inverse
+      (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle.
+      Raised with SOLAR to rebind.
+
+allowLiteral:
+  spinnerRing.width:
+    reason: >-
+      The ring is 16, 24 and 32 across and bound to nothing. SOLAR publishes no spinner size
+      token; carried as literals under the owner's decision for control heights (2026-09-23),
+      and raised as a governance gap.
+  spinnerRing.height:
+    reason: The ring is square; see spinnerRing.width.

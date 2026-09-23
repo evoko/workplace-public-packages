@@ -5,6 +5,8 @@
 /// widgets and the SVG path parser they use are hand written under `src/`.
 library;
 
+export 'src/components/solar_button.dart';
+export 'src/components/solar_spinner.dart';
 export 'src/generated/components/components.dart';
 export 'src/generated/icons.dart';
 export 'src/generated/logos.dart';

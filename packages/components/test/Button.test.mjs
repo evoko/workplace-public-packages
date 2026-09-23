@@ -97,6 +97,29 @@ describe('the SOLAR Button shell', () => {
     expect(loading.html).toContain('MuiButton-loadingIndicator');
   });
 
+  it('draws a loading button in its own colours, although MUI marks it disabled too', () => {
+    const { html, css } = render(h(Button, { loading: true }, 'Save'));
+    // MUI sets Mui-disabled on a loading button, so the disabled colours must exclude it.
+    expect(html).toMatch(/class="[^"]*Mui-disabled[^"]*MuiButton-loading/);
+    const rules = [...css.matchAll(/([^{}]+)\{([^}]*)\}/g)];
+    const disabledBg = rules.filter(([, , body]) =>
+      body.includes('--solar-color-action-primary-bg-disabled'),
+    );
+    expect(disabledBg.length).toBeGreaterThan(0);
+    for (const [, selector] of disabledBg)
+      expect(selector).toContain(':not(.MuiButton-loading)');
+  });
+
+  it('is disabled, with no spinner, when both disabled and loading', () => {
+    const { html } = render(
+      h(Button, { disabled: true, loading: true }, 'Save'),
+    );
+    const classes = /<button[^>]*class="([^"]*)"/.exec(html)[1].split(' ');
+    expect(classes).toContain('Mui-disabled');
+    expect(classes).not.toContain('MuiButton-loading');
+    expect(html).not.toContain('MuiButton-loadingIndicator');
+  });
+
   it('puts the icons in MUI’s slots and the counter in its own', () => {
     const { html } = render(
       h(

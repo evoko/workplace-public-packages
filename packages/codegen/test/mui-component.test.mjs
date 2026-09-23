@@ -2,6 +2,9 @@ import { describe, expect, it } from 'vitest';
 import * as stage from '../src/stages/components.mjs';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
 import { renderMuiComponent, MUI_SLOTS } from '../src/emit/mui-component.mjs';
+import { writeFileSync, mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { flattenSpec } from '../src/spec.mjs';
 
 const tokens = buildTokenSpec(loadContract()).spec;
@@ -119,20 +122,17 @@ describe('renderMuiComponent on Button: states', () => {
   });
 
   it('renders disabled and loading as the classes MUI sets for those props', () => {
-    expect(primary['&.Mui-disabled'].backgroundColor).toBe(
-      'var(--solar-color-action-primary-bg-disabled)',
-    );
+    expect(
+      primary['&.Mui-disabled:not(.MuiButton-loading)'].backgroundColor,
+    ).toBe('var(--solar-color-action-primary-bg-disabled)');
     expect(primary).toHaveProperty(['&.MuiButton-loading']);
   });
 
   it('puts disabled after hover, so it wins at equal specificity, as CSS order decides', () => {
     const keys = Object.keys(primary);
-    expect(keys.indexOf('&.Mui-disabled')).toBeGreaterThan(
-      keys.indexOf('&:hover'),
-    );
-    expect(keys.indexOf('&.Mui-disabled')).toBeGreaterThan(
-      keys.indexOf('&:active'),
-    );
+    const disabled = keys.indexOf('&.Mui-disabled:not(.MuiButton-loading)');
+    expect(disabled).toBeGreaterThan(keys.indexOf('&:hover'));
+    expect(disabled).toBeGreaterThan(keys.indexOf('&:active'));
   });
 
   it('says a missing background is transparent, rather than inheriting primary', () => {
@@ -201,5 +201,62 @@ describe('renderMuiComponent on Button: types and module', () => {
       /Button: no MUI slot for layer badge/,
     );
     expect(MUI_SLOTS.Button.root).toBe('&');
+  });
+});
+
+describe('renderMuiComponent on Spinner', () => {
+  const spinner = built.find((b) => b.spec.component === 'Spinner').spec;
+  const out = renderMuiComponent(spinner, tokens);
+
+  it('draws the ring as SVG strokes on CircularProgress, not as CSS borders', () => {
+    expect(out.styles.root['& .MuiCircularProgress-track']).toEqual({
+      fill: 'none',
+      stroke: 'var(--solar-color-border-subtle)',
+      strokeWidth: 'var(--solar-border-strong)',
+    });
+    expect(
+      out.styles.appearances['variant=inverse'][
+        '& .MuiCircularProgress-circle'
+      ],
+    ).toEqual({ stroke: 'var(--solar-color-border-inverse-strong)' });
+  });
+
+  it('sizes the box the progress fills', () => {
+    expect(out.styles.root.width).toBe('16px');
+    expect(out.styles.sizes.lg).toEqual({ width: '32px', height: '32px' });
+  });
+});
+
+describe('the generated compose lookup', () => {
+  // Loaded as the module a shell imports, so it is the artifact, not the emitter, under test.
+  const dir = mkdtempSync(join(tmpdir(), 'solar-compose-'));
+  const load = async () => {
+    const { ts: source } = renderMuiComponent(button, tokens);
+    const file = join(dir, 'button.ts');
+    writeFileSync(file, source);
+    return import(file);
+  };
+
+  it('says which Spinner a loading Button shows, by variant and size', async () => {
+    const { solarButtonCompose } = await load();
+    expect(solarButtonCompose({}, 'loading').spinner).toMatchObject({
+      present: true,
+      'variant.size': 'sm',
+      'variant.style': 'inverse',
+    });
+    expect(
+      solarButtonCompose({ variant: 'secondary' }, 'loading').spinner[
+        'variant.style'
+      ],
+    ).toBe('default');
+    expect(
+      solarButtonCompose({ size: 'xl' }, 'loading').spinner['variant.size'],
+    ).toBe('md');
+    // At rest the spinner is not drawn and the label is.
+    const rest = solarButtonCompose();
+    expect(rest.spinner.present).toBe(false);
+    expect(rest.label.present).toBe(true);
+    expect(solarButtonCompose({}, 'loading').label.present).toBe(false);
+    rmSync(dir, { recursive: true, force: true });
   });
 });

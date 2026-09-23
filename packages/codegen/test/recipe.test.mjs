@@ -427,6 +427,70 @@ describe('deriveRecipe: an icon drawn in more than one colour', () => {
   });
 });
 
+describe('deriveRecipe on Spinner: strokes', () => {
+  const spinnerSet = JSON.parse(
+    readFileSync(
+      join(
+        docsDir,
+        'solar-web',
+        'raw',
+        'components',
+        'feedback',
+        'spinner.json',
+      ),
+      'utf8',
+    ),
+  ).componentSets[0];
+  const r = deriveRecipe(resolveVariants(spinnerSet), { names });
+
+  it('reads a uniform stroke binding, not only per-side ones', () => {
+    expect(r.style['/SpinnerRing/Track'].base.borderWidth).toMatchObject({
+      token: 'border.strong',
+    });
+  });
+
+  it('reports a colour bound to a variable that is not a colour, and never paints it', () => {
+    const cell = r.style['/SpinnerRing/Indicator'].base.borderColor;
+    expect(cell).not.toHaveProperty('token');
+    expect(cell).toMatchObject({ misbound: true });
+    const d = r.deviations.find((x) => x.kind === 'misbound');
+    expect(d).toMatchObject({
+      token: 'component.spinner.SpinnerRing/Indicator.borderColor#misbound',
+      figmaValue: 'bound to Spatial:border/strong',
+    });
+  });
+
+  it('settles disagreeing bindings by the value Figma draws, where one names it', () => {
+    const layer = {
+      strokeWeight: 2,
+      vars: {
+        strokeWeight: 'Spatial:border/strong',
+        strokeTopWeight: 'Spatial:border/default',
+      },
+    };
+    const set = {
+      name: 'X',
+      defaultVariant: 'tone=a',
+      props: { tone: { type: 'VARIANT', default: 'a', options: ['a'] } },
+      defaultVariantTree: {
+        name: 'tone=a',
+        type: 'COMPONENT',
+        children: [{ name: 'Ring', type: 'FRAME', ...layer }],
+      },
+      variants: [{ variant: 'tone=a' }],
+    };
+    const x = deriveRecipe(resolveVariants(set), { names });
+    expect(x.style['/Ring'].base.borderWidth).toMatchObject({
+      token: 'border.strong',
+    });
+    // Drawn at a width neither names: still two values for one cell.
+    set.defaultVariantTree.children[0].strokeWeight = 3;
+    expect(() => deriveRecipe(resolveVariants(set), { names })).toThrow(
+      /binds Spatial:border\/strong and Spatial:border\/default/,
+    );
+  });
+});
+
 // A guard on the whole corpus, not only Button: a change that makes the recipe throw on a shape
 // it used to handle shows up here, where Button's own suite would stay green. The four sets that
 // do not derive throw on shapes the recipe does not model yet: a side bound to two variables

@@ -150,8 +150,9 @@ emitter, so a component looks right with or without the SOLAR MUI theme installe
 
 **Recipe and shell.** The recipe is what a component looks like; it regenerates on every run and
 is never edited. The shell — `packages/components/src/<Name>.tsx`: props, slots, loading,
-accessibility — is written once by `npm run solar:scaffold <Name>` (`src/scaffold/`) and then owned
-by developers; the scaffolder refuses to overwrite it without `--force`, and it never runs in CI.
+accessibility — is written once by `npm run solar:scaffold <Name>` (`src/scaffold/`), and its Flutter widget
+(`solar_flutter/lib/src/components/solar_<name>.dart`) by `npm run solar:scaffold -- --flutter <Name>`;
+both are then owned by developers; the scaffolder refuses to overwrite it without `--force`, and it never runs in CI.
 The rule of thumb for where a change goes:
 
 > **The overlay for a decision about one component, the normalizer for a rule about the system,
@@ -216,7 +217,9 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
 - **A component looks wrong, and Figma is right for it alone** → its overlay in `spec/overlay/`.
 - **A component behaves wrong** → its shell in `packages/components/src/`, which is yours.
 - **A new component** → add it to `COMPONENTS` in `src/stages/components.mjs`, give the emitters
-  its slot and style tables and the scaffolder a template, then `npm run solar:scaffold <Name>`.
+  its slot and style tables and the scaffolder a React and a Flutter template, then
+  `npm run solar:scaffold <Name>` and `npm run solar:scaffold -- --flutter <Name>`. A composed
+  child the shell draws (Button's Spinner) comes from the recipe's `compose` lookup, never by hand.
 - **A new icon appeared in Figma** → nothing here either; re-run `npm run solar:icons`, and
   `src/normalize/icons.mjs` picks it up. An SVG feature the IR cannot represent — a gradient, a
   stroke, an arc — fails naming the file rather than being quietly dropped.

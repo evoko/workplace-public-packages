@@ -9,7 +9,7 @@ except package names.
 The SOLAR Foundations reference is in [docs/solar/](docs/solar/README.md). SOLAR names
 `CLAUDE.md` as the agent instruction layer, so treat the rules below as hard.
 [docs/README.md](docs/README.md) maps the whole pipeline: inputs, scripts, outputs, and
-what is not built yet (Button is the only component so far).
+what is not built yet (Button and Spinner are the only components so far).
 CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
 and fails if the result differs from what is committed, and scans for credentials and
 unreviewed personal data. `npm run solar:sync` does the whole chain — fetch, docs, derived tokens, code — and
@@ -28,10 +28,11 @@ fix the normalizer in `packages/codegen/src/normalize/` for a systemic rule, or 
 emitter in `src/emit/` for a target-specific one. Never edit a generated file to keep a change,
 and never edit `docs/` to make code look right. Run the command and commit its output after
 touching that package. Decisions about one component go in its hand-written overlay,
-`spec/overlay/<component>.yaml` (Button has one): every rule needs a `reason`, and a rule that no
-longer matches the IR fails the build. A component's shell (`packages/components/src/<Name>.tsx`) is written once by
-`npm run solar:scaffold <Name>` and then hand-owned; its look is the generated recipe in
-`@bwp-web/styles/mui`, never values in the shell. The rest of the tweak loop the design spec describes
+`spec/overlay/<component>.yaml`: every rule needs a `reason`, and a rule that no
+longer matches the IR fails the build. A component's shell (`packages/components/src/<Name>.tsx`, and
+`solar_flutter`'s `lib/src/components/solar_<name>.dart`) is written once by
+`npm run solar:scaffold <Name>` (`-- --flutter` for the widget) and then hand-owned; its look is the
+generated recipe, never values in the shell. The rest of the tweak loop the design spec describes
 (`solar:explain`, the Storybook review surface) is **not built yet**.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
@@ -93,7 +94,7 @@ longer matches the IR fails the build. A component's shell (`packages/components
   the root. Each package builds ESM + CJS with tsup and emits types with tsc.
 - Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (the 341 SOLAR
   icons, the logos and the app icons, generated), `@bwp-web/canvas` (interactive canvas),
-  `@bwp-web/components` (SOLAR components for React, on MUI; Button so far), all at
+  `@bwp-web/components` (SOLAR components for React, on MUI; Button and Spinner so far), all at
   `2.0.0-alpha.0`; canvas is still an empty skeleton. Plus
   `@bwp-web/codegen` (private build tool) and `solar_flutter` (a Dart package, outside the npm
   workspace, formatted by `dart format` and pinned to the Flutter version in `solar.yml`).

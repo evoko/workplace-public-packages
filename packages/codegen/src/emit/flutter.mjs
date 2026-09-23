@@ -16,7 +16,7 @@ import {
 const OUT_DIR = join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated');
 
 // Dart reserved words a token's tail could collide with, e.g. border.default.
-const RESERVED = new Set(
+export const RESERVED = new Set(
   'assert break case catch class const continue default do else enum extends false final finally for if in is new null rethrow return super switch this throw true try var void while with'.split(
     ' ',
   ),

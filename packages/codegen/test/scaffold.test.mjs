@@ -3,7 +3,13 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import * as stage from '../src/stages/components.mjs';
-import { scaffold, TEMPLATES } from '../src/scaffold/index.mjs';
+import {
+  FLUTTER_TEMPLATES,
+  scaffold,
+  scaffoldFlutter,
+  TEMPLATES,
+} from '../src/scaffold/index.mjs';
+import { mkdirSync } from 'node:fs';
 
 const button = stage
   .build()
@@ -84,5 +90,46 @@ describe('the Button shell', () => {
     expect(shell).toContain(
       'solarButtonStyle({ size, variant, disabled, loading, danger })',
     );
+  });
+});
+
+describe('scaffoldFlutter', () => {
+  const freshLib = () => {
+    const lib = mkdtempSync(join(tmpdir(), 'solar-flutter-'));
+    scratch.push(lib);
+    mkdirSync(join(lib, 'src'), { recursive: true });
+    writeFileSync(
+      join(lib, 'solar_flutter.dart'),
+      "library;\n\nexport 'src/generated/tokens.dart';\nexport 'src/solar_icon.dart';\n",
+    );
+    return lib;
+  };
+
+  it('writes the widget once, and exports it from the library in order', () => {
+    const lib = freshLib();
+    expect(scaffoldFlutter(button, { lib }).status).toBe('written');
+    expect(scaffoldFlutter(button, { lib }).status).toBe('exists');
+    expect(readFileSync(join(lib, 'solar_flutter.dart'), 'utf8')).toBe(
+      "library;\n\nexport 'src/components/solar_button.dart';\nexport 'src/generated/tokens.dart';\nexport 'src/solar_icon.dart';\n",
+    );
+  });
+
+  it('gives the widget the IR’s props and slots, and no design value', () => {
+    const widget = FLUTTER_TEMPLATES.Button(button);
+    for (const prop of Object.keys(button.api))
+      expect(widget).toMatch(new RegExp(`this\\.${prop} = `));
+    for (const slot of ['iconLeading', 'iconTrailing', 'counter'])
+      expect(widget).toContain(`this.${slot},`);
+    expect(widget).toContain('style: SolarButtonRecipe.style(t, p)');
+    const code = widget.replace(/\/\/.*$/gm, '');
+    expect(code).not.toMatch(
+      /Color\(0x|Colors\.(?!transparent)|EdgeInsets|fontSize|(width|height|size):\s*\d/,
+    );
+  });
+
+  it('refuses a component with no widget template', () => {
+    expect(() =>
+      scaffoldFlutter({ ...button, component: 'Tabs' }, { lib: freshLib() }),
+    ).toThrow(/no Flutter widget template for Tabs/);
   });
 });

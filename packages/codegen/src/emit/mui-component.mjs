@@ -43,14 +43,22 @@ export const MUI_SLOTS = {
     // Not an MUI slot: the shell renders the counter itself, with this class (task 7).
     counter: '& .SolarButton-counter',
   },
+  // The shell sizes a box and lets CircularProgress fill it (size="100%"), since MUI writes the
+  // size prop as an inline style no recipe rule could beat.
+  Spinner: {
+    root: '&',
+    spinnerRing: '&',
+    track: '& .MuiCircularProgress-track',
+    indicator: '& .MuiCircularProgress-circle',
+  },
 };
 
 /**
- * The selector MUI's Button uses for each state. Platform states are pseudo-classes, except focus,
- * which MUI marks with a class only for keyboard focus (focus-visible). `disabled` and `loading`
- * are props, and MUI sets a class for each. Order matters: at equal specificity the later rule
- * wins, so disabled comes last and beats hover, as it does in CSS.
+ * Layers MUI draws as SVG shapes, where Figma's stroke is `stroke` and `stroke-width`, not a CSS
+ * border, and a fill is `fill`.
  */
+export const MUI_SVG_LAYERS = { Spinner: ['track', 'indicator'] };
+
 /**
  * MUI's own defaults that would otherwise show through the recipe. These are MUI knowledge, like
  * the slot table, so they live here and regenerate, rather than being copied into every hand-owned
@@ -72,15 +80,35 @@ export const MUI_RESETS = {
       height: '100%',
     },
   },
+  // CircularProgress draws in a 44-unit viewBox scaled to its box, so a stroke width in CSS pixels
+  // would scale with it; non-scaling-stroke keeps SOLAR's border width in screen pixels. MUI fades
+  // its track to 12% of the indicator's colour; SOLAR's track has a colour of its own.
+  Spinner: {
+    display: 'inline-flex',
+    '& .MuiCircularProgress-root': { display: 'block' },
+    '& .MuiCircularProgress-track, & .MuiCircularProgress-circle': {
+      vectorEffect: 'non-scaling-stroke',
+    },
+    '& .MuiCircularProgress-track': { opacity: '1' },
+  },
 };
 
+/**
+ * The selector MUI's Button uses for each state. Platform states are pseudo-classes, except focus,
+ * which MUI marks with a class only for keyboard focus (focus-visible). `disabled` and `loading`
+ * are props, and MUI sets a class for each. Order matters: at equal specificity the later rule
+ * wins, so disabled comes last and beats hover, as it does in CSS.
+ */
 export const STATE_SELECTORS = {
   default: null,
   hover: '&:hover',
   pressed: '&:active',
   focus: '&.Mui-focusVisible',
   loading: '&.MuiButton-loading',
-  disabled: '&.Mui-disabled',
+  // MUI disables a loading button too, so a loading one carries Mui-disabled as well; without the
+  // :not it would draw in the disabled colours. A button both disabled and loading is disabled:
+  // the shell does not pass loading to MUI then.
+  disabled: '&.Mui-disabled:not(.MuiButton-loading)',
 };
 
 const ALIGN = {
@@ -161,10 +189,29 @@ function context(spec, tokens) {
     throw new Error(`${where} ${at}: cannot size by ${entry.keyword}`);
   };
 
+  const svg = new Set(MUI_SVG_LAYERS[spec.component] ?? []);
+
   /** One IR cell as CSS declarations. */
-  const declare = (cell, entry, at) => {
+  const declare = (cell, entry, at, layer) => {
     const paint = (prop) =>
       entry.none ? { [prop]: 'transparent' } : { [prop]: ref(entry.token, at) };
+    if (svg.has(layer))
+      switch (cell) {
+        case 'background':
+          return entry.none ? { fill: 'none' } : paint('fill');
+        case 'borderColor':
+          return entry.none ? { stroke: 'none' } : paint('stroke');
+        case 'borderWidth':
+          return entry.none
+            ? { strokeWidth: '0' }
+            : { strokeWidth: ref(entry.token, at) };
+        // A shape has no box to round or shadow.
+        case 'radius':
+        case 'shadow':
+          if (!entry.none)
+            throw new Error(`${where} ${at}: an SVG shape cannot take ${cell}`);
+          return {};
+      }
     switch (cell) {
       case 'background':
         return paint('backgroundColor');
@@ -243,7 +290,7 @@ export function renderMuiComponent(spec, tokens) {
     for (const [cell, entry] of Object.entries(cells)) {
       const here = `${layer}.${at}.${cell}`;
       if (COMPOSITION(cell)) continue;
-      place(target, slots[layer], declare(cell, entry, here), here);
+      place(target, slots[layer], declare(cell, entry, here, layer), here);
     }
   };
   const byState = (target, states, layer, at) => {
@@ -300,7 +347,19 @@ export function renderMuiComponent(spec, tokens) {
       const p = pick(cells);
       if (Object.keys(p).length) (comp.size ??= {})[size] = p;
     }
-    if (Object.keys(comp.base).length || comp.appearance || comp.size)
+    for (const [size, byCombo] of Object.entries(s.combined ?? {}))
+      for (const [combo, states] of Object.entries(byCombo))
+        for (const [state, cells] of Object.entries(states)) {
+          const p = pick(cells);
+          if (Object.keys(p).length)
+            (((comp.combined ??= {})[size] ??= {})[combo] ??= {})[state] = p;
+        }
+    if (
+      Object.keys(comp.base).length ||
+      comp.appearance ||
+      comp.size ||
+      comp.combined
+    )
       composition[layer] = comp;
   }
 
@@ -330,10 +389,11 @@ export function renderMuiComponent(spec, tokens) {
     Object.entries(ordered(styles.combined)).map(([k, v]) => [k, ordered(v)]),
   );
 
-  // Every appearance combination the API allows must have an entry; the resolver indexes by it.
-  const appearanceAxes = Object.keys(styles.appearances)[0]
-    .split(', ')
-    .map((part) => part.split('=')[0]);
+  // The axes an appearance is keyed by, from any key: `variant=primary, danger=false`.
+  const appearanceAxes =
+    Object.keys(styles.appearances)[0]
+      ?.split(', ')
+      .map((part) => part.split('=')[0]) ?? [];
 
   const name = pascal(spec.component);
   const typeLines = [];
@@ -391,6 +451,19 @@ export function renderMuiComponent(spec, tokens) {
     (sizeProp
       ? `  const size = p.size as string;\n  return merge(s.reset, s.root, s.sizes[size], s.appearances[key], s.combined[size]?.[key]);\n`
       : `  return merge(s.reset, s.root, s.appearances[key]);\n`) +
+    `}\n\n` +
+    `type Parts = Record<string, string | boolean | null>;\n` +
+    `type Layered = {\n  base: Parts;\n  size?: Record<string, Parts>;\n  appearance?: Record<string, Record<string, Parts>>;\n  combined?: Record<string, Record<string, Record<string, Parts>>>;\n};\n\n` +
+    `/**\n * What the shell renders for one set of props in one state, by layer: whether it shows, and which\n * component and variant a composed child takes. The same precedence as the style: base, size,\n * appearance, then size and appearance together, each at rest and then in the state.\n */\n` +
+    `export function solar${name}Compose(\n  props: Solar${name}Props = {},\n  state: string = 'default',\n): Record<string, Parts> {\n` +
+    `  const p: Record<string, unknown> = { ...solar${name}Defaults };\n` +
+    `  for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;\n` +
+    `  const key = \`${key}\`;\n` +
+    `  const size = ${sizeProp ? 'p.size as string' : "''"};\n` +
+    `  const out: Record<string, Parts> = {};\n` +
+    `  for (const [layer, c] of Object.entries(solar${name}Composition as unknown as Record<string, Layered>)) {\n` +
+    `    const states = state === 'default' ? ['default'] : ['default', state];\n` +
+    `    out[layer] = Object.assign(\n      {},\n      c.base,\n      c.size?.[size],\n      ...states.flatMap((st) => [c.appearance?.[key]?.[st], c.combined?.[size]?.[key]?.[st]]),\n    );\n  }\n  return out;\n` +
     `}\n`;
 
   return {

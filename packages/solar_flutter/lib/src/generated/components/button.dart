@@ -663,7 +663,8 @@ abstract final class SolarButtonRecipe {
 
   static bool _holds(String state, SolarButtonProps p, Set<WidgetState> s) =>
       switch (state) {
-        'disabled' => p.disabled || s.contains(WidgetState.disabled),
+        'disabled' =>
+          p.disabled || (!p.loading && s.contains(WidgetState.disabled)),
         'loading' => p.loading,
         'focus' => s.contains(WidgetState.focused),
         'pressed' => s.contains(WidgetState.pressed),

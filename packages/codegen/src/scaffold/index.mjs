@@ -9,19 +9,20 @@
  * never part of `solar:codegen` or CI.
  */
 
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { packagesDir, repoRoot } from '../util/paths.mjs';
 
 export const componentsSrc = join(packagesDir, 'components', 'src');
+export const flutterLib = join(packagesDir, 'solar_flutter', 'lib');
 
 /** The MUI prop each slot type becomes; a slot type with no entry here cannot be scaffolded. */
 const MUI_SLOT_PROPS = { iconLeading: 'startIcon', iconTrailing: 'endIcon' };
 
 /**
- * The shell templates, by component. A template is a function of the IR, so prop and slot names
- * come from Figma rather than being retyped, but its structure is written for the one MUI control
- * it wraps.
+ * The React shell templates, by component. A template is a function of the IR, so prop and slot
+ * names come from Figma rather than being retyped, but its structure is written for the one MUI
+ * control it wraps.
  */
 export const TEMPLATES = {
   Button: (spec) => {
@@ -50,7 +51,14 @@ export const TEMPLATES = {
 
 import MuiButton, { type ButtonProps as MuiButtonProps } from '@mui/material/Button';
 import { forwardRef, type ReactNode } from 'react';
-import { solarButtonStyle, type SolarButtonProps } from '@bwp-web/styles/mui';
+import {
+  solarButtonCompose,
+  solarButtonStyle,
+  type SolarButtonProps,
+  type SolarSpinnerSize,
+  type SolarSpinnerVariant,
+} from '@bwp-web/styles/mui';
+import { Spinner } from './Spinner.js';
 
 export interface ButtonProps
   extends SolarButtonProps,
@@ -89,14 +97,25 @@ ${api.map((p) => `    ${p},`).join('\n')}
     // eslint-disable-next-line no-console -- a development-only accessibility warning, on purpose
     console.warn('SOLAR Button: an icon-only button needs an aria-label.');
 
+  // Which Spinner the loading state shows -- Figma picks its size and style per Button variant.
+  // Figma's \`style\` axis is the Spinner's \`variant\` prop.
+  const spinner = solarButtonCompose({ ${api.join(', ')} }, 'loading').spinner;
+
   return (
     <MuiButton
       ref={ref}
       {...rest}
       disabled={disabled}
-      loading={loading}
+      // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
+      loading={loading && !disabled}
       startIcon={iconLeading}
       endIcon={iconTrailing}
+      loadingIndicator={
+        <Spinner
+          size={spinner['variant.size'] as SolarSpinnerSize}
+          variant={spinner['variant.style'] as SolarSpinnerVariant}
+        />
+      }
       // SOLAR's states have their own colours; MUI's ripple and elevation would paint over them.
       disableRipple
       disableElevation
@@ -112,11 +131,309 @@ ${api.map((p) => `    ${p},`).join('\n')}
 });
 `;
   },
+
+  Spinner: (spec) => {
+    const api = Object.keys(spec.api);
+    return `/**
+ * SOLAR Spinner.
+ *
+ * Scaffolded once by \`npm run solar:scaffold Spinner\` from spec/components/spinner.json, and owned
+ * by developers from then on. Its look is the recipe, \`solarSpinnerStyle\` in
+ * \`@bwp-web/styles/mui\`: the ring's size, its stroke width, and the track and indicator colours.
+ *
+ * It wraps MUI's CircularProgress, which supplies the motion and the progressbar role. A box takes
+ * the recipe's size and the progress fills it, because MUI writes its own size prop as an inline
+ * style the recipe could not override. The app must load \`@bwp-web/styles/tokens.css\`.
+ */
+
+import Box from '@mui/material/Box';
+import CircularProgress, {
+  type CircularProgressProps,
+} from '@mui/material/CircularProgress';
+import { forwardRef } from 'react';
+import { solarSpinnerStyle, type SolarSpinnerProps } from '@bwp-web/styles/mui';
+
+export interface SpinnerProps
+  extends SolarSpinnerProps,
+    Omit<
+      CircularProgressProps,
+      | keyof SolarSpinnerProps
+      | 'color'
+      | 'thickness'
+      | 'value'
+      | 'enableTrackSlot'
+      | 'disableShrink'
+    > {}
+
+export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinner(
+  { ${api.join(', ')}, sx, ...rest },
+  ref,
+) {
+  return (
+    <Box
+      component="span"
+      ref={ref}
+      sx={[solarSpinnerStyle({ ${api.join(', ')} }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      <CircularProgress {...rest} size="100%" enableTrackSlot color="inherit" />
+    </Box>
+  );
+});
+`;
+  },
+};
+
+/** A Dart constructor parameter for one API prop, with the IR's default. */
+function dartParam(component, prop, def) {
+  if (def.type === 'boolean') return `this.${prop} = ${def.default}`;
+  const id = def.default === 'default' ? '$default' : def.default;
+  return `this.${prop} = Solar${component}${prop[0].toUpperCase()}${prop.slice(1)}.${id}`;
+}
+
+/** A Dart field for one API prop. */
+function dartField(component, prop, def) {
+  const type =
+    def.type === 'boolean'
+      ? 'bool'
+      : `Solar${component}${prop[0].toUpperCase()}${prop.slice(1)}`;
+  return `  final ${type} ${prop};`;
+}
+
+/**
+ * The Flutter widget templates, by component: the same props as the React shell, from the same
+ * IR, wrapping the Flutter control the overlay names, styled by the generated recipe.
+ */
+export const FLUTTER_TEMPLATES = {
+  Button: (spec) => {
+    const api = Object.entries(spec.api);
+    for (const required of ['iconLeading', 'iconTrailing', 'label', 'counter'])
+      if (!spec.slots[required])
+        throw new Error(`Button: the IR has no ${required} slot`);
+    return `/// SOLAR Button.
+///
+/// Scaffolded once by \`npm run solar:scaffold -- --flutter Button\` from spec/components/button.json,
+/// and owned by developers from then on: change it freely. What it looks like is not here. That is
+/// the recipe, [SolarButtonRecipe], which regenerates from Figma on every \`solar:codegen\`. This
+/// file is behaviour: the props, the slots, loading and accessibility, with the same props as the
+/// React Button.
+///
+/// It wraps Flutter's FilledButton, which supplies focus, keyboard activation, hover and press;
+/// [SolarButtonRecipe.style] restyles it.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/button.dart';
+import '../generated/components/spinner.dart';
+import 'solar_spinner.dart';
+import 'solar_theme_of.dart';
+
+class SolarButton extends StatelessWidget {
+  const SolarButton({
+    super.key,
+    required this.onPressed,
+    this.child,
+${api.map(([prop, def]) => `    ${dartParam('Button', prop, def)},`).join('\n')}
+    this.iconLeading,
+    this.iconTrailing,
+    this.counter,
+    this.semanticLabel,
+    this.focusNode,
+    this.autofocus = false,
+    this.statesController,
+  }) : assert(child != null || semanticLabel != null,
+            'SOLAR Button: an icon-only button needs a semanticLabel.');
+
+  /// Called when the button is tapped; null disables it, as for any Flutter button.
+  final VoidCallback? onPressed;
+
+  /// The label.
+  final Widget? child;
+
+${api.map(([prop, def]) => dartField('Button', prop, def)).join('\n')}
+
+  /// The icon before the label. It reinforces the action: a bin beside "Delete".
+  final Widget? iconLeading;
+
+  /// The icon after the label. It indicates direction: an arrow beside "Continue".
+  final Widget? iconTrailing;
+
+  /// A count shown after the label.
+  final Widget? counter;
+
+  /// The accessible name, required when there is no label.
+  final String? semanticLabel;
+
+  final FocusNode? focusNode;
+  final bool autofocus;
+  final WidgetStatesController? statesController;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
+    final busy = loading && !disabled;
+    final p = SolarButtonProps(
+${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).join('\n')}
+    );
+    const rest = <WidgetState>{};
+    bool shows(String layer) => SolarButtonRecipe.present(layer, p, rest);
+    final gap = SolarButtonRecipe.dimension('root.gap', p, rest) ?? 0;
+
+    final parts = <Widget>[
+      if (iconLeading != null) iconLeading!,
+      // Loading hides the label but keeps its room, as Figma does, so the button does not resize;
+      // a screen reader still reads it.
+      if (child != null)
+        Visibility(
+          visible: shows('label'),
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
+          maintainSemantics: true,
+          child: child!,
+        ),
+      if (counter != null) counter!,
+      if (iconTrailing != null) iconTrailing!,
+    ];
+    final content = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (final (i, part) in parts.indexed) ...[
+          if (i > 0) SizedBox(width: gap),
+          part,
+        ],
+      ],
+    );
+
+    Widget button = FilledButton(
+      onPressed: disabled || busy ? null : onPressed,
+      style: SolarButtonRecipe.style(t, p),
+      focusNode: focusNode,
+      autofocus: autofocus,
+      statesController: statesController,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          content,
+          if (shows('spinner'))
+            // Which Spinner, Figma picks per Button variant; its \`style\` axis is the Spinner's
+            // \`variant\` prop.
+            ExcludeSemantics(
+              child: SolarSpinner(
+                size: SolarSpinnerSize.values.byName(
+                    SolarButtonRecipe.lookup('spinner.variant.size', p, rest)!
+                        .substring(2)),
+                variant: SolarSpinnerVariant.values.firstWhere((v) =>
+                    'k:\${v.figma}' ==
+                    SolarButtonRecipe.lookup('spinner.variant.style', p, rest)),
+              ),
+            ),
+        ],
+      ),
+    );
+    if (semanticLabel != null) {
+      button = Semantics(label: semanticLabel, child: button);
+    }
+    return button;
+  }
+}
+`;
+  },
+
+  Spinner: (spec) => {
+    const api = Object.entries(spec.api);
+    return `/// SOLAR Spinner.
+///
+/// Scaffolded once by \`npm run solar:scaffold -- --flutter Spinner\` from
+/// spec/components/spinner.json, and owned by developers from then on. Its look is the recipe,
+/// [SolarSpinnerRecipe]: the ring's size, its stroke width, and the track and indicator colours.
+///
+/// It wraps Flutter's CircularProgressIndicator, which supplies the motion and the semantics.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/spinner.dart';
+import 'solar_theme_of.dart';
+
+class SolarSpinner extends StatelessWidget {
+  const SolarSpinner({
+    super.key,
+${api.map(([prop, def]) => `    ${dartParam('Spinner', prop, def)},`).join('\n')}
+    this.semanticsLabel,
+  });
+
+${api.map(([prop, def]) => dartField('Spinner', prop, def)).join('\n')}
+
+  /// What is loading, for a screen reader.
+  final String? semanticsLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarSpinnerProps(${api.map(([prop]) => `${prop}: ${prop}`).join(', ')});
+    const rest = <WidgetState>{};
+    return SizedBox.square(
+      dimension: SolarSpinnerRecipe.dimension('spinnerRing.width', p, rest),
+      child: CircularProgressIndicator(
+        // The ring inside its box, as the web draws it.
+        strokeAlign: CircularProgressIndicator.strokeAlignInside,
+        strokeWidth: SolarSpinnerRecipe.dimension('indicator.borderWidth', p, rest)!,
+        color: SolarSpinnerRecipe.color(t, 'indicator.borderColor', p, rest),
+        backgroundColor: SolarSpinnerRecipe.color(t, 'track.borderColor', p, rest),
+        semanticsLabel: semanticsLabel,
+      ),
+    );
+  }
+}
+`;
+  },
 };
 
 /** `Button` to `Button.tsx`. */
 export const shellFileOf = (component) =>
   `${component.replace(/[^A-Za-z0-9]/g, '')}.tsx`;
+
+/** `Button` to `solar_button.dart`. */
+export const flutterFileOf = (component) =>
+  `solar_${component.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.dart`;
+
+/**
+ * Writes the Flutter widget unless it exists, and exports it from the package library once.
+ *
+ * @returns {{status: 'written' | 'exists' | 'overwritten', file: string}}
+ */
+export function scaffoldFlutter(
+  spec,
+  { force = false, lib = flutterLib } = {},
+) {
+  const template = FLUTTER_TEMPLATES[spec.component];
+  if (!template)
+    throw new Error(`no Flutter widget template for ${spec.component}`);
+  const dir = join(lib, 'src', 'components');
+  const file = join(dir, flutterFileOf(spec.component));
+  const existed = existsSync(file);
+  const shown = relative(repoRoot, file);
+  if (existed && !force) return { status: 'exists', file: shown };
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(file, template(spec));
+
+  const library = join(lib, 'solar_flutter.dart');
+  const line = `export 'src/components/${flutterFileOf(spec.component)}';`;
+  const current = readFileSync(library, 'utf8');
+  if (!current.includes(line)) {
+    // Kept with the other exports, sorted, as \`dart format\` and the analyzer's directive ordering
+    // expect.
+    const lines = current.trimEnd().split('\n');
+    const exports = lines.filter((l) => l.startsWith('export '));
+    const first = lines.indexOf(exports[0]);
+    const sorted = [...exports, line].sort();
+    lines.splice(first, exports.length, ...sorted);
+    writeFileSync(library, `${lines.join('\n')}\n`);
+  }
+  return { status: existed ? 'overwritten' : 'written', file: shown };
+}
 
 /**
  * Writes the shell unless it exists. Returns what happened, so the CLI can say it and a test can

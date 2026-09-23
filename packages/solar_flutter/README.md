@@ -45,8 +45,27 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 
 ## Components
 
-`SolarButtonRecipe.style(theme, props)` is a `ButtonStyle` that makes a `FilledButton` draw SOLAR's
-Button, resolving hover, pressed, focus and disabled through `WidgetState`:
+`SolarButton` and `SolarSpinner` take the same props as the React components:
+
+```dart
+SolarButton(
+  variant: SolarButtonVariant.secondary,
+  size: SolarButtonSize.sm,
+  loading: saving,
+  onPressed: save,
+  child: const Text('Save changes'),
+)
+```
+
+Each is a widget scaffolded once (`npm run solar:scaffold -- --flutter <Name>`) and then hand-owned,
+styled by a generated recipe it never copies values from. They read the `SolarTheme` the app
+installed, or Light or Dark for the app's brightness if it installed none. An icon-only
+`SolarButton` needs a `semanticLabel`. While loading the label keeps its room and its semantics
+but is not drawn, and the spinner Figma picks for the variant shows; disabled wins over loading.
+
+The recipe can also style a stock control directly. `SolarButtonRecipe.style(theme, props)` is a
+`ButtonStyle` that makes a `FilledButton` draw SOLAR's Button, resolving hover, pressed, focus and
+disabled through `WidgetState`:
 
 ```dart
 FilledButton(
@@ -61,8 +80,9 @@ FilledButton(
 
 The recipe is generated from `spec/components/button.json` and regenerates on every run. The
 background and shadow are painted in `backgroundBuilder`, because `ButtonStyle` has no box shadow.
-Presence (the spinner while loading, the label hidden) is `SolarButtonRecipe.present`, for the
-widget that composes the button's content.
+Presence (the spinner while loading, the label hidden) is `SolarButtonRecipe.present`, and which
+Spinner is `SolarButtonRecipe.lookup('spinner.variant.size', …)`, for the widget that composes the
+button's content, as `SolarButton` does.
 
 ## Fonts
 

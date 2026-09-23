@@ -16,7 +16,7 @@ import { flattenSpec } from '../spec.mjs';
 import { pascal, quote } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
-import { dartName, STATIC_CLASS } from './flutter.mjs';
+import { dartName, RESERVED, STATIC_CLASS } from './flutter.mjs';
 import { STATE_SELECTORS } from './mui-component.mjs';
 
 const OUT_DIR = join(
@@ -39,7 +39,10 @@ export const STATE_PRECEDENCE = Object.keys(STATE_SELECTORS)
 
 /** How each state is detected: a WidgetState Flutter tracks, or a prop the platform cannot. */
 const STATE_TEST = {
-  disabled: 'p.disabled || s.contains(WidgetState.disabled)',
+  // A loading button has no onPressed, so Flutter marks it disabled too; as the MUI selector does,
+  // the disabled look then waits for the prop, and loading shows. Disabled and loading together
+  // is disabled, which the shell settles by passing loading only to an enabled button.
+  disabled: 'p.disabled || (!p.loading && s.contains(WidgetState.disabled))',
   loading: 'p.loading',
   focus: 's.contains(WidgetState.focused)',
   pressed: 's.contains(WidgetState.pressed)',
@@ -68,11 +71,14 @@ export const FLUTTER_STYLE = {
 };
 
 /**
- * Cells a ButtonStyle property draws for more than one layer: Flutter has one `iconColor` and one
- * `iconSize` for both icons, where MUI styles each. Where the IR's two icons differ, the emitter
- * refuses rather than drawing the trailing icon in the leading one's colour.
+ * Cells one Flutter property draws for more than one layer, where MUI styles each: ButtonStyle has
+ * one `iconColor` and one `iconSize` for both icons, CircularProgressIndicator one `strokeWidth`
+ * for its track and indicator. Where the IR's two differ, the emitter refuses rather than drawing
+ * one layer with the other's value.
  */
 export const FLUTTER_SHARED = {
+  // CircularProgressIndicator has one strokeWidth for its track and its indicator.
+  Spinner: { 'indicator.borderWidth': 'track.borderWidth' },
   Button: {
     'iconLeading.color': 'iconTrailing.color',
     'iconLeading.width': 'iconTrailing.width',
@@ -122,8 +128,9 @@ function flatten(spec) {
  * @returns {{dart: string, cells: Record<string, string>, file: string}}
  */
 export function renderFlutterComponent(spec, tokens) {
-  const table = FLUTTER_STYLE[spec.component];
-  if (!table) throw new Error(`${spec.component}: no Flutter style table`);
+  // A component with a style table gets a builder for its stock control's style (Button's
+  // ButtonStyle); one without gets the recipe alone, which its shell reads cell by cell.
+  const table = FLUTTER_STYLE[spec.component] ?? {};
   const cells = flatten(spec);
   const cellNames = new Set(Object.keys(cells).map((k) => k.split('|')[0]));
   for (const [prop, cell] of Object.entries(table))
@@ -193,6 +200,7 @@ export function renderFlutterComponent(spec, tokens) {
 
   const name = pascal(spec.component);
   const enums = [];
+  const spelled = new Set();
   const fields = [];
   const params = [];
   for (const [prop, def] of Object.entries(spec.api)) {
@@ -201,17 +209,36 @@ export function renderFlutterComponent(spec, tokens) {
       params.push(`    this.${prop} = ${def.default},`);
     } else {
       const type = `Solar${name}${pascal(prop)}`;
-      enums.push(`enum ${type} { ${def.values.join(', ')} }`);
+      // A value that is a Dart keyword (Spinner's `default`) is escaped with `$`, as token names
+      // are, and the enum then carries Figma's spelling, which the recipe's keys are written in.
+      const id = (v) => (RESERVED.has(v) ? `$${v}` : v);
+      if (def.values.some((v) => RESERVED.has(v))) {
+        spelled.add(prop);
+        enums.push(
+          `enum ${type} {\n${def.values.map((v) => `  ${id(v)}('${v}')`).join(',\n')};\n\n  const ${type}(this.figma);\n\n  /// The value as Figma spells it, which the recipe is keyed by.\n  final String figma;\n}`,
+        );
+      } else enums.push(`enum ${type} { ${def.values.join(', ')} }`);
       fields.push(`  final ${type} ${prop};`);
-      params.push(`    this.${prop} = ${type}.${def.default},`);
+      params.push(`    this.${prop} = ${type}.${id(def.default)},`);
     }
   }
-  const appearanceAxes = Object.keys(spec.style.root.appearance)[0]
-    .split(', ')
-    .map((part) => part.split('=')[0]);
+  const firstCombo = Object.values(spec.style)
+    .flatMap((st) => Object.keys(st.appearance))
+    .at(0);
+  const appearanceAxes =
+    firstCombo?.split(', ').map((part) => part.split('=')[0]) ?? [];
+  // The states this component can be in, in precedence order; a test of a prop the component
+  // does not have (a Spinner is never disabled) would not compile.
+  const holds = STATE_PRECEDENCE.filter((st) =>
+    ['disabled', 'loading'].includes(st)
+      ? st in spec.api
+      : spec.states.includes(st),
+  );
+  const sizeExpr = 'size' in spec.api ? 'p.size.name' : "''";
   const combo = appearanceAxes
     .map(
-      (a) => `${a}=\${p.${a}${spec.api[a].type === 'boolean' ? '' : '.name'}}`,
+      (a) =>
+        `${a}=\${p.${a}${spec.api[a].type === 'boolean' ? '' : spelled.has(a) ? '.figma' : '.name'}}`,
     )
     .join(', ');
   const cell = (key) => `'${table[key]}'`;
@@ -220,105 +247,31 @@ export function renderFlutterComponent(spec, tokens) {
     .map(([k, v]) => `    ${quote(k)}: ${quote(v)},`)
     .join('\n');
 
-  const dart = `// SOLAR ${spec.component} recipe for Flutter. Generated by @bwp-web/codegen from spec/components/${spec.component.toLowerCase()}.json. Do not edit.
-//
-// The recipe is data: token *names*, keyed by layer and cell and by the base, size, appearance
-// and combined sections of the IR. Values resolve against the ambient SolarTheme, so Light and
-// Dark switch with the theme and no colour here is a literal.
-
-import 'package:flutter/foundation.dart' show immutable;
-import 'package:flutter/material.dart'
-    show BorderRadius, BorderSide, BoxDecoration, BoxShadow, ButtonStyle, Color, Colors,
-        DecoratedBox, EdgeInsetsDirectional, NoSplash, RoundedRectangleBorder, Size, TextStyle,
-        VisualDensity, WidgetState, WidgetStateProperty, WidgetStatePropertyAll;
-
-import '../tokens.dart';
-
-${enums.join('\n\n')}
-
-/// The props a SOLAR ${spec.component} takes. Hover, pressed and focus are not here: they are
-/// platform states, tracked by Flutter as [WidgetState]s.
-@immutable
-class Solar${name}Props {
-  const Solar${name}Props({
-${params.join('\n')}
-  });
-
-${fields.join('\n')}
-}
-
-abstract final class Solar${name}Recipe {
-  /// Every IR entry, as \`<layer>.<cell>|<section>…\` to a token name (\`t:\`), a keyword (\`k:\`),
-  /// \`none\`, a presence (\`b:\`) or a literal the overlay allowed (\`px:\`).
-  static const Map<String, String> cells = {
-${entries}
-  };
-
-  /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
-  static const List<String> statePrecedence = [${STATE_PRECEDENCE.map((s) => `'${s}'`).join(', ')}];
-
-  static bool _holds(String state, Solar${name}Props p, Set<WidgetState> s) => switch (state) {
-${STATE_PRECEDENCE.map((st) => `        '${st}' => ${STATE_TEST[st]},`).join('\n')}
-        _ => false,
-      };
-
-  /// The entry for one cell under these props and states, by the IR's precedence: a state that
-  /// holds beats the resting value, the per-size-and-appearance entry beats the per-appearance
-  /// one, and the resting value falls back through appearance, size and base.
-  static String? lookup(String cell, Solar${name}Props p, Set<WidgetState> s) {
-    final combo = '${combo}';
-    final size = p.size.name;
-    for (final state in statePrecedence) {
-      if (!_holds(state, p, s)) continue;
-      final hit = cells['$cell|combined|$size|$combo|$state'] ??
-          cells['$cell|appearance|$combo|$state'];
-      if (hit != null) return hit;
-    }
-    return cells['$cell|combined|$size|$combo|default'] ??
-        cells['$cell|appearance|$combo|default'] ??
-        cells['$cell|size|$size'] ??
-        cells['$cell|base'];
-  }
-
-  static Color color(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) {
-    final c = t.colors;
-    return switch (lookup(cell, p, s)) {
-      'none' => Colors.transparent,
-${colors.join('\n')}
-      final v => throw StateError('$cell: no colour for $v'),
-    };
-  }
-
-  static List<BoxShadow> shadow(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) =>
-      switch (lookup(cell, p, s)) {
-        'none' || null => const <BoxShadow>[],
-${shadows.join('\n')}
-        final v => throw StateError('$cell: no shadow for $v'),
-      };
-
-  /// A length in logical pixels, or null where the IR says the layer hugs its content.
-  static double? dimension(String cell, Solar${name}Props p, Set<WidgetState> s) {
-    final v = lookup(cell, p, s);
-    if (v == null || v == 'k:HUG') return null;
-    if (v == 'k:FILL') return double.infinity;
-    if (v.startsWith('px:')) return double.parse(v.substring(3));
-    return switch (v) {
-${dimensions.join('\n')}
-      _ => throw StateError('$cell: no length for $v'),
-    };
-  }
-
-  static TextStyle? textStyle(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) =>
-      switch (lookup(cell, p, s)) {
-        'none' || null => null,
-${typography.join('\n')}
-        final v => throw StateError('$cell: no text style for $v'),
-      };
-
-  /// Whether a layer is drawn: the shell reads this, the style does not.
-  static bool present(String layer, Solar${name}Props p, Set<WidgetState> s) =>
-      lookup('$layer.present', p, s) != 'b:false';
-
+  const shown = [
+    'BoxShadow',
+    'Color',
+    'Colors',
+    'TextStyle',
+    'WidgetState',
+    ...(FLUTTER_STYLE[spec.component]
+      ? [
+          'BorderRadius',
+          'BorderSide',
+          'BoxDecoration',
+          'ButtonStyle',
+          'DecoratedBox',
+          'EdgeInsetsDirectional',
+          'NoSplash',
+          'RoundedRectangleBorder',
+          'Size',
+          'VisualDensity',
+          'WidgetStateProperty',
+          'WidgetStatePropertyAll',
+        ]
+      : []),
+  ].sort();
+  const builder = FLUTTER_STYLE[spec.component]
+    ? `
   static BorderSide _side(SolarTheme t, Solar${name}Props p, Set<WidgetState> s) {
     final width = lookup(${cell('borderWidth')}, p, s);
     if (width == null || width == 'none') return BorderSide.none;
@@ -372,7 +325,107 @@ ${typography.join('\n')}
       ),
     );
   }
+`
+    : '';
+
+  const dart = `// SOLAR ${spec.component} recipe for Flutter. Generated by @bwp-web/codegen from spec/components/${spec.component.toLowerCase()}.json. Do not edit.
+//
+// The recipe is data: token *names*, keyed by layer and cell and by the base, size, appearance
+// and combined sections of the IR. Values resolve against the ambient SolarTheme, so Light and
+// Dark switch with the theme and no colour here is a literal.
+
+import 'package:flutter/foundation.dart' show immutable;
+import 'package:flutter/material.dart'
+    show ${shown.join(', ')};
+
+import '../tokens.dart';
+
+${enums.join('\n\n')}
+
+/// The props a SOLAR ${spec.component} takes. Hover, pressed and focus are not here: they are
+/// platform states, tracked by Flutter as [WidgetState]s.
+@immutable
+class Solar${name}Props {
+  const Solar${name}Props({
+${params.join('\n')}
+  });
+
+${fields.join('\n')}
 }
+
+abstract final class Solar${name}Recipe {
+  /// Every IR entry, as \`<layer>.<cell>|<section>…\` to a token name (\`t:\`), a keyword (\`k:\`),
+  /// \`none\`, a presence (\`b:\`) or a literal the overlay allowed (\`px:\`).
+  static const Map<String, String> cells = {
+${entries}
+  };
+
+  /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
+  static const List<String> statePrecedence = ${holds.length ? '' : '<String>'}[${holds.map((s) => `'${s}'`).join(', ')}];
+
+  static bool _holds(String state, Solar${name}Props p, Set<WidgetState> s) => switch (state) {
+${holds.map((st) => `        '${st}' => ${st === 'disabled' && !('loading' in spec.api) ? 'p.disabled || s.contains(WidgetState.disabled)' : STATE_TEST[st]},`).join('\n')}
+        _ => false,
+      };
+
+  /// The entry for one cell under these props and states, by the IR's precedence: a state that
+  /// holds beats the resting value, the per-size-and-appearance entry beats the per-appearance
+  /// one, and the resting value falls back through appearance, size and base.
+  static String? lookup(String cell, Solar${name}Props p, Set<WidgetState> s) {
+    final combo = '${combo}';
+    final size = ${sizeExpr};
+    for (final state in statePrecedence) {
+      if (!_holds(state, p, s)) continue;
+      final hit = cells['$cell|combined|$size|$combo|$state'] ??
+          cells['$cell|appearance|$combo|$state'];
+      if (hit != null) return hit;
+    }
+    return cells['$cell|combined|$size|$combo|default'] ??
+        cells['$cell|appearance|$combo|default'] ??
+        cells['$cell|size|$size'] ??
+        cells['$cell|base'];
+  }
+
+  static Color color(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) {
+    final c = t.colors;
+    return switch (lookup(cell, p, s)) {
+      'none' => Colors.transparent,
+${colors.join('\n')}
+      final v => throw StateError('$cell: no colour for $v'),
+    };
+  }
+
+  static List<BoxShadow> shadow(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) =>
+      switch (lookup(cell, p, s)) {
+        'none' || null => const <BoxShadow>[],
+${shadows.join('\n')}
+        final v => throw StateError('$cell: no shadow for $v'),
+      };
+
+  /// A length in logical pixels, or null where the IR says the layer hugs its content.
+  static double? dimension(String cell, Solar${name}Props p, Set<WidgetState> s) {
+    final v = lookup(cell, p, s);
+    if (v == null || v == 'k:HUG') return null;
+    if (v == 'k:FILL') return double.infinity;
+    if (v.startsWith('px:')) return double.parse(v.substring(3));
+    return switch (v) {
+${dimensions.join('\n')}
+      _ => throw StateError('$cell: no length for $v'),
+    };
+  }
+
+  static TextStyle? textStyle(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) =>
+      switch (lookup(cell, p, s)) {
+        'none' || null => null,
+${typography.join('\n')}
+        final v => throw StateError('$cell: no text style for $v'),
+      };
+
+  /// Whether a layer is drawn: the shell reads this, the style does not.
+  static bool present(String layer, Solar${name}Props p, Set<WidgetState> s) =>
+      lookup('$layer.present', p, s) != 'b:false';
+
+${builder}}
 `;
   return {
     dart,

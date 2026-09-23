@@ -426,3 +426,76 @@ describe('component parity: every entry, in place', () => {
     expect(checked).toBeGreaterThan(100);
   });
 });
+
+// The widgets developers use, not the generated props classes alone: the React shell and the
+// Flutter widget are hand-owned after scaffolding, so either can drift from the IR, and this is
+// what notices.
+describe('component parity: the React and Flutter widgets', () => {
+  /** The names a React shell destructures from its props. */
+  function reactProps(source, name) {
+    const m = new RegExp(
+      `function ${name}\\(\\s*\\{([\\s\\S]*?)\\}\\s*,\\s*ref`,
+    ).exec(source);
+    if (!m) throw new Error(`${name}: no destructured props in the shell`);
+    return m[1]
+      .split(',')
+      .map((p) => p.trim())
+      .filter((p) => p && !p.startsWith('...'));
+  }
+
+  /** A Flutter widget's constructor parameters, as {name: default or null}. */
+  function dartParams(source, name) {
+    const m = new RegExp(`const Solar${name}\\(\\{([\\s\\S]*?)\\}\\)`).exec(
+      source,
+    );
+    if (!m) throw new Error(`Solar${name}: no constructor in the widget`);
+    return Object.fromEntries(
+      [...m[1].matchAll(/this\.(\w+)(?:\s*=\s*([^,\n]+))?/g)].map(
+        ([, param, def]) => [param, def?.trim() ?? null],
+      ),
+    );
+  }
+
+  for (const { spec } of built) {
+    const name = spec.component;
+    const react = reactProps(read('components', 'src', `${name}.tsx`), name);
+    const flutter = dartParams(
+      read(
+        'solar_flutter',
+        'lib',
+        'src',
+        'components',
+        `solar_${name.toLowerCase()}.dart`,
+      ),
+      name,
+    );
+
+    it(`${name}: both take every prop of the IR`, () => {
+      for (const prop of Object.keys(spec.api)) {
+        expect(react, `${prop} in React`).toContain(prop);
+        expect(flutter, `${prop} in Flutter`).toHaveProperty(prop);
+      }
+    });
+
+    it(`${name}: Flutter defaults to the IR's defaults`, () => {
+      for (const [prop, def] of Object.entries(spec.api)) {
+        const expected =
+          def.type === 'boolean'
+            ? String(def.default)
+            : new RegExp(`\\.\\$?${def.default}$`);
+        if (typeof expected === 'string')
+          expect(flutter[prop], prop).toBe(expected);
+        else expect(flutter[prop], prop).toMatch(expected);
+      }
+    });
+
+    it(`${name}: both take every slot, the label as their child`, () => {
+      for (const slot of Object.keys(spec.slots)) {
+        const [inReact, inFlutter] =
+          slot === 'label' ? ['children', 'child'] : [slot, slot];
+        expect(react, `${slot} in React`).toContain(inReact);
+        expect(flutter, `${slot} in Flutter`).toHaveProperty(inFlutter);
+      }
+    });
+  }
+});

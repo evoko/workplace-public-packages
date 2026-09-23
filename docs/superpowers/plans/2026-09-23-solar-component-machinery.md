@@ -13,7 +13,7 @@ answers.
 | Plan     | Covers                                                                                                |
 | -------- | ----------------------------------------------------------------------------------------------------- |
 | **3b-1** | Fetcher fixes, layer naming, boolean state axes, Flutter widget shells, visual parity against Figma — all on Button |
-| 3b-2     | Text Input, Checkbox, Tabs and Tab, Icon Button, Button Group, Tag, Card, Dialog, Sparkline           |
+| 3b-2     | Text Input, Checkbox, Tabs and Tab, Icon Button, Button Group, Tag, Card, Dialog, Sparkline (Spinner came with 3b-1 Task 5) |
 | 3c       | The developer loop: Storybook tweak panel, `explain`, `adopt`, `audit`                                |
 
 ## What measuring the six found
@@ -197,6 +197,43 @@ Checkbox: API `checked`, `disabled`, `mixed`; states `default`, `focus`, `hover`
 
 Tests: a widget test renders each variant; the parity suite compares the React shell's props with
 the Dart widget's constructor, not with the generated props class alone.
+
+**Done 2026-09-23, and grew by one component.** Building the loading state found two things.
+
+- **A 3a bug, fixed on both platforms.** MUI marks a loading button disabled, so on the web a
+  loading Button drew in SOLAR's *disabled* colours; Flutter, whose loading button has no
+  `onPressed`, would have too. The MUI disabled selector is now `&.Mui-disabled:not(.MuiButton-loading)`,
+  the Flutter disabled test waits for the prop while loading, and both shells pass `loading` only
+  to an enabled button, so disabled and loading together is disabled, as Figma's state order says.
+- **The spinner is a component of its own**, so by the owner's decision Spinner is generated now:
+  IR, overlay (`spec/overlay/spinner.yaml`), both recipes, and a shell on each platform, wrapping
+  MUI's CircularProgress (with its track) and Flutter's CircularProgressIndicator. Their motion is
+  the platform's; SOLAR has no token for a spinner's rotation. Figma's `style` axis is renamed
+  `variant`, since `style` is React's inline-style prop. Button's shells draw it in the variant Figma
+  picks per Button variant (inverse on primary, md at xl), through a new generated `compose` lookup
+  (MUI) and the recipe's `lookup` (Flutter), never by hand.
+
+Spinner needed four general fixes, each tested: the recipe reads a uniform `strokeWeight` binding
+(it read per-side ones only); bindings that disagree are settled by the value Figma draws when
+exactly one names it (Slider's Handle, bound `border/strong` and, stale, per side `border/default`,
+drawn at 2, which Slider and Slider Range now derive by); a paint bound to a variable that is not a
+colour is a `misbound` finding and never painted; and an enum value that is a Dart keyword
+(`default`) is escaped as token names are, the enum carrying Figma's spelling for the recipe's keys.
+The Flutter emitter now builds a `ButtonStyle` only for a component with a style table, and tests
+only the states a component can be in.
+
+Findings for SOLAR, all in the overlay with reasons: the default Spinner indicator's colour is
+bound to the *width* variable `Spatial:border/strong` (the overlay sets `color.border.strong`, the
+colour of the same name, whose inverse the inverse style uses); the ring sizes (16, 24, 32) and the
+root padding are unbound. MUI's ring radius is its own (20.2 of 22 units), so a 16px ring can lose
+up to 0.35px at its edge; the oracle compares colours, widths and boxes, not arc radii.
+
+`SolarButton` and `SolarSpinner` are in `solar_flutter/lib/src/components/`, scaffolded by
+`npm run solar:scaffold -- --flutter <Name>`, with a shared `solarThemeOf` that falls back to Light
+or Dark by brightness. The parity suite now compares each React shell's props and slots with its
+Flutter widget's constructor and defaults. 444 JS and 71 Flutter tests, lint, typecheck,
+`flutter analyze` and `dart format` pass; `solar:rebuild` is deterministic. Mutations caught:
+reverting either loading fix, a renamed Flutter slot, a wrong Flutter default.
 
 ### Task 6: The oracle — what Figma says each variant looks like
 

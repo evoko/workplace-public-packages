@@ -1,0 +1,141 @@
+/// SOLAR Button.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Button` from spec/components/button.json,
+/// and owned by developers from then on: change it freely. What it looks like is not here. That is
+/// the recipe, [SolarButtonRecipe], which regenerates from Figma on every `solar:codegen`. This
+/// file is behaviour: the props, the slots, loading and accessibility, with the same props as the
+/// React Button.
+///
+/// It wraps Flutter's FilledButton, which supplies focus, keyboard activation, hover and press;
+/// [SolarButtonRecipe.style] restyles it.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/button.dart';
+import '../generated/components/spinner.dart';
+import 'solar_spinner.dart';
+import 'solar_theme_of.dart';
+
+class SolarButton extends StatelessWidget {
+  const SolarButton({
+    super.key,
+    required this.onPressed,
+    this.child,
+    this.size = SolarButtonSize.md,
+    this.variant = SolarButtonVariant.primary,
+    this.disabled = false,
+    this.loading = false,
+    this.danger = false,
+    this.iconLeading,
+    this.iconTrailing,
+    this.counter,
+    this.semanticLabel,
+    this.focusNode,
+    this.autofocus = false,
+    this.statesController,
+  }) : assert(child != null || semanticLabel != null,
+            'SOLAR Button: an icon-only button needs a semanticLabel.');
+
+  /// Called when the button is tapped; null disables it, as for any Flutter button.
+  final VoidCallback? onPressed;
+
+  /// The label.
+  final Widget? child;
+
+  final SolarButtonSize size;
+  final SolarButtonVariant variant;
+  final bool disabled;
+  final bool loading;
+  final bool danger;
+
+  /// The icon before the label. It reinforces the action: a bin beside "Delete".
+  final Widget? iconLeading;
+
+  /// The icon after the label. It indicates direction: an arrow beside "Continue".
+  final Widget? iconTrailing;
+
+  /// A count shown after the label.
+  final Widget? counter;
+
+  /// The accessible name, required when there is no label.
+  final String? semanticLabel;
+
+  final FocusNode? focusNode;
+  final bool autofocus;
+  final WidgetStatesController? statesController;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
+    final busy = loading && !disabled;
+    final p = SolarButtonProps(
+      size: size,
+      variant: variant,
+      disabled: disabled,
+      loading: busy,
+      danger: danger,
+    );
+    const rest = <WidgetState>{};
+    bool shows(String layer) => SolarButtonRecipe.present(layer, p, rest);
+    final gap = SolarButtonRecipe.dimension('root.gap', p, rest) ?? 0;
+
+    final parts = <Widget>[
+      if (iconLeading != null) iconLeading!,
+      // Loading hides the label but keeps its room, as Figma does, so the button does not resize;
+      // a screen reader still reads it.
+      if (child != null)
+        Visibility(
+          visible: shows('label'),
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
+          maintainSemantics: true,
+          child: child!,
+        ),
+      if (counter != null) counter!,
+      if (iconTrailing != null) iconTrailing!,
+    ];
+    final content = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (final (i, part) in parts.indexed) ...[
+          if (i > 0) SizedBox(width: gap),
+          part,
+        ],
+      ],
+    );
+
+    Widget button = FilledButton(
+      onPressed: disabled || busy ? null : onPressed,
+      style: SolarButtonRecipe.style(t, p),
+      focusNode: focusNode,
+      autofocus: autofocus,
+      statesController: statesController,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          content,
+          if (shows('spinner'))
+            // Which Spinner, Figma picks per Button variant; its `style` axis is the Spinner's
+            // `variant` prop.
+            ExcludeSemantics(
+              child: SolarSpinner(
+                size: SolarSpinnerSize.values.byName(
+                    SolarButtonRecipe.lookup('spinner.variant.size', p, rest)!
+                        .substring(2)),
+                variant: SolarSpinnerVariant.values.firstWhere((v) =>
+                    'k:${v.figma}' ==
+                    SolarButtonRecipe.lookup('spinner.variant.style', p, rest)),
+              ),
+            ),
+        ],
+      ),
+    );
+    if (semanticLabel != null) {
+      button = Semantics(label: semanticLabel, child: button);
+    }
+    return button;
+  }
+}

@@ -118,7 +118,7 @@ export const solarButtonStyles = {
           color: 'var(--solar-color-action-primary-icon-active)',
         },
       },
-      '&.Mui-disabled': {
+      '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         borderColor: 'var(--solar-color-action-primary-border-disabled)',
         '& .MuiButton-startIcon': {
@@ -171,7 +171,7 @@ export const solarButtonStyles = {
         backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
         borderColor: 'var(--solar-color-action-primary-border-danger-default)',
       },
-      '&.Mui-disabled': {
+      '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'var(--solar-color-action-primary-bg-danger-disabled)',
         borderColor: 'var(--solar-color-action-primary-border-danger-disabled)',
         '& .MuiButton-startIcon': {
@@ -230,7 +230,7 @@ export const solarButtonStyles = {
         backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
         borderColor: 'var(--solar-color-action-secondary-border-default)',
       },
-      '&.Mui-disabled': {
+      '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-secondary-border-disabled)',
         '& .MuiButton-startIcon': {
@@ -293,7 +293,7 @@ export const solarButtonStyles = {
         borderColor:
           'var(--solar-color-action-secondary-border-danger-default)',
       },
-      '&.Mui-disabled': {
+      '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'transparent',
         borderColor:
           'var(--solar-color-action-secondary-border-danger-disabled)',
@@ -353,7 +353,7 @@ export const solarButtonStyles = {
         backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
       },
-      '&.Mui-disabled': {
+      '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
@@ -412,7 +412,7 @@ export const solarButtonStyles = {
         backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
       },
-      '&.Mui-disabled': {
+      '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
@@ -474,7 +474,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -492,7 +492,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -530,7 +530,7 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -571,7 +571,7 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -612,7 +612,7 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -653,7 +653,7 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -694,7 +694,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -742,7 +742,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -774,7 +774,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -792,7 +792,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -816,7 +816,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -834,7 +834,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -858,7 +858,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -876,7 +876,7 @@ export const solarButtonStyles = {
         '&.MuiButton-loading': {
           boxShadow: 'none',
         },
-        '&.Mui-disabled': {
+        '&.Mui-disabled:not(.MuiButton-loading)': {
           boxShadow: 'none',
         },
       },
@@ -1136,4 +1136,43 @@ export function solarButtonStyle(props: SolarButtonProps = {}): Style {
     s.appearances[key],
     s.combined[size]?.[key],
   );
+}
+
+type Parts = Record<string, string | boolean | null>;
+type Layered = {
+  base: Parts;
+  size?: Record<string, Parts>;
+  appearance?: Record<string, Record<string, Parts>>;
+  combined?: Record<string, Record<string, Record<string, Parts>>>;
+};
+
+/**
+ * What the shell renders for one set of props in one state, by layer: whether it shows, and which
+ * component and variant a composed child takes. The same precedence as the style: base, size,
+ * appearance, then size and appearance together, each at rest and then in the state.
+ */
+export function solarButtonCompose(
+  props: SolarButtonProps = {},
+  state: string = 'default',
+): Record<string, Parts> {
+  const p: Record<string, unknown> = { ...solarButtonDefaults };
+  for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
+  const key = `variant=${p.variant}, danger=${p.danger}`;
+  const size = p.size as string;
+  const out: Record<string, Parts> = {};
+  for (const [layer, c] of Object.entries(
+    solarButtonComposition as unknown as Record<string, Layered>,
+  )) {
+    const states = state === 'default' ? ['default'] : ['default', state];
+    out[layer] = Object.assign(
+      {},
+      c.base,
+      c.size?.[size],
+      ...states.flatMap((st) => [
+        c.appearance?.[key]?.[st],
+        c.combined?.[size]?.[key]?.[st],
+      ]),
+    );
+  }
+  return out;
 }

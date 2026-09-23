@@ -16,7 +16,14 @@ import MuiButton, {
   type ButtonProps as MuiButtonProps,
 } from '@mui/material/Button';
 import { forwardRef, type ReactNode } from 'react';
-import { solarButtonStyle, type SolarButtonProps } from '@bwp-web/styles/mui';
+import {
+  solarButtonCompose,
+  solarButtonStyle,
+  type SolarButtonProps,
+  type SolarSpinnerSize,
+  type SolarSpinnerVariant,
+} from '@bwp-web/styles/mui';
+import { Spinner } from './Spinner.js';
 
 export interface ButtonProps
   extends
@@ -65,14 +72,28 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       // eslint-disable-next-line no-console -- a development-only accessibility warning, on purpose
       console.warn('SOLAR Button: an icon-only button needs an aria-label.');
 
+    // Which Spinner the loading state shows -- Figma picks its size and style per Button variant.
+    // Figma's `style` axis is the Spinner's `variant` prop.
+    const spinner = solarButtonCompose(
+      { size, variant, disabled, loading, danger },
+      'loading',
+    ).spinner;
+
     return (
       <MuiButton
         ref={ref}
         {...rest}
         disabled={disabled}
-        loading={loading}
+        // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
+        loading={loading && !disabled}
         startIcon={iconLeading}
         endIcon={iconTrailing}
+        loadingIndicator={
+          <Spinner
+            size={spinner['variant.size'] as SolarSpinnerSize}
+            variant={spinner['variant.style'] as SolarSpinnerVariant}
+          />
+        }
         // SOLAR's states have their own colours; MUI's ripple and elevation would paint over them.
         disableRipple
         disableElevation

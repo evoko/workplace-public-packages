@@ -93,7 +93,10 @@ const CORNERS = [
   'bottomLeftRadius',
   'bottomRightRadius',
 ];
+// A uniform stroke is bound as `strokeWeight` (Spinner's ring), per side as the other four
+// (Button); both may be present, naming one variable.
 const STROKES = [
+  'strokeWeight',
   'strokeTopWeight',
   'strokeRightWeight',
   'strokeBottomWeight',
@@ -125,9 +128,15 @@ function bound(layer, keys, literal, names, where) {
   // stroke -- which is a statement, not a raw zero to report.
   if (literal === undefined && !keys.some((k) => layer.vars?.[k]))
     return { none: true };
-  const bindings = [
-    ...new Set(keys.map((k) => layer.vars?.[k]).filter(Boolean)),
-  ];
+  let bindings = [...new Set(keys.map((k) => layer.vars?.[k]).filter(Boolean))];
+  // Bindings that disagree are settled by the value Figma draws, where exactly one names it: Slider's
+  // Handle binds its stroke to border/strong and, stale, each side to border/default, and draws 2.
+  if (bindings.length > 1 && typeof literal === 'number') {
+    const drawn = bindings.filter(
+      (b) => names.value(names.variable(b)) === literal,
+    );
+    if (drawn.length === 1) bindings = drawn;
+  }
   if (bindings.length > 1)
     throw new Error(
       `${where}: binds ${bindings.join(' and ')} to one value; per-side values are not supported`,
@@ -149,6 +158,10 @@ function paint(paints, names, where) {
   const [p] = paints;
   const ref = /^\{(.+)\}$/.exec(p);
   if (!ref) return { literal: p };
+  // A paint bound to a variable that is not a colour (Spinner's indicator, bound to the spacing
+  // variable border/strong) cannot be drawn from that token: it is reported, never painted.
+  if (!ref[1].startsWith('Color:'))
+    return { literal: p, binding: ref[1], misbound: true };
   const token = names.variable(ref[1]);
   return token ? { token } : { literal: p, binding: ref[1] };
 }
@@ -453,7 +466,11 @@ export function deriveRecipe(
           !value.literal.startsWith('#')
         )
           continue;
-        const kind = value.binding ? 'unknown-token' : 'unbound';
+        const kind = value.misbound
+          ? 'misbound'
+          : value.binding
+            ? 'unknown-token'
+            : 'unbound';
         const k = `${path}|${cell}|${kind}`;
         if (!unboundSeen.has(k))
           unboundSeen.set(k, {
@@ -517,19 +534,23 @@ export function deriveRecipe(
       cell,
       token: `component.${component.toLowerCase()}.${slug(path)}.${cell}#${kind}`,
       figmaValue:
-        kind === 'unknown-token'
-          ? `bound to ${[...bindings].join(', ')}`
-          : `${literals.map(String).join(', ')}, bound to no variable`,
+        kind === 'unbound'
+          ? `${literals.map(String).join(', ')}, bound to no variable`
+          : `bound to ${[...bindings].join(', ')}`,
       reason:
-        kind === 'unknown-token'
-          ? `${cell} on ${path} is bound to a variable that is not a SOLAR token, so the recipe cannot name it.`
-          : `${cell} on ${path} is a literal in Figma, bound to no variable, so the recipe carries a raw value where it should name a token.`,
+        kind === 'misbound'
+          ? `${cell} on ${path} is a colour bound to ${[...bindings].join(', ')}, which is not a colour variable, so no colour can be read from it.`
+          : kind === 'unknown-token'
+            ? `${cell} on ${path} is bound to a variable that is not a SOLAR token, so the recipe cannot name it.`
+            : `${cell} on ${path} is a literal in Figma, bound to no variable, so the recipe carries a raw value where it should name a token.`,
       raise:
-        kind === 'unknown-token'
-          ? `Ask SOLAR to rebind ${component} ${path} ${cell} to a SOLAR token.`
-          : suggest.length
-            ? `Ask SOLAR to bind ${component} ${path} ${cell} to ${suggest.join(' or ')}, which has the same value.`
-            : `SOLAR has no ${label} token; ask SOLAR for one, or confirm ${literals.join(', ')} is intended.`,
+        kind === 'misbound'
+          ? `Ask SOLAR to rebind ${component} ${path} ${cell} to a colour token.`
+          : kind === 'unknown-token'
+            ? `Ask SOLAR to rebind ${component} ${path} ${cell} to a SOLAR token.`
+            : suggest.length
+              ? `Ask SOLAR to bind ${component} ${path} ${cell} to ${suggest.join(' or ')}, which has the same value.`
+              : `SOLAR has no ${label} token; ask SOLAR for one, or confirm ${literals.join(', ')} is intended.`,
     };
     if (suggest.length) d.suggest = suggest;
     deviations.push(d);

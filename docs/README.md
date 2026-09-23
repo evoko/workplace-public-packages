@@ -41,7 +41,8 @@ grammar.json                  │                                         │
         npm run solar:codegen → spec/tokens.json → css · mui · tailwind · flutter
                               → spec/icons.json  → react · svg · flutter
                               → spec/components/*.json (+ spec/overlay/*.yaml) → mui · flutter recipes
-        npm run solar:scaffold <Name> → packages/components/src/<Name>.tsx, once, then hand-owned
+        npm run solar:scaffold <Name>  → packages/components/src/<Name>.tsx, once, then hand-owned
+        npm run solar:scaffold -- --flutter <Name> → solar_flutter lib/src/components/solar_<name>.dart
 ```
 
 `npm run solar:sync` runs the REST columns end to end (`solar:foundations`, `solar:web`, then
@@ -143,8 +144,8 @@ geometry follows size and paint follows appearance and state, and every variant 
 recorded rather than averaged away. A hand-written overlay in `spec/overlay/` holds the decisions
 about one component, each with a reason. Two emitters generate from the IR: a recipe for MUI in
 `@bwp-web/styles/mui` and one for Flutter in `solar_flutter`. The component itself — props, slots,
-loading, accessibility — is a **shell**, scaffolded once by `solar:scaffold` and then owned by
-developers, so a design change reaches it through the recipe without touching behaviour.
+loading, accessibility — is a **shell**, one per platform (a React component, a Flutter widget),
+scaffolded once by `solar:scaffold` and then owned by developers, so a design change reaches it through the recipe without touching behaviour.
 
 No target is transpiled from another; agreement is proved instead by parity suites that compare
 every token in every mode, every icon variant's geometry, and every component recipe entry and API
