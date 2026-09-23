@@ -48,3 +48,72 @@ describe('published packages', () => {
     );
   });
 });
+
+describe('fonts', () => {
+  it('styles exports fonts.css, and it survives tree shaking like tokens.css', () => {
+    const { exports } = read('styles');
+    expect(exports['./fonts.css']).toBe('./dist/fonts.css');
+  });
+
+  it('fonts.css loads every family and weight a text style uses', async () => {
+    const { buildTokenSpec, loadContract } =
+      await import('../src/normalize/tokens.mjs');
+    const { flattenSpec } = await import('../src/spec.mjs');
+    const css = readFileSync(
+      join(packagesDir, 'styles', 'src', 'fonts.css'),
+      'utf8',
+    );
+    const used = new Set(
+      flattenSpec(buildTokenSpec(loadContract()).spec)
+        .filter((t) => t.type === 'typography')
+        .map((t) => `${t.value.fontFamily}|${t.value.fontWeight}`),
+    );
+    const pkg = {
+      Inter: 'inter',
+      Montserrat: 'montserrat',
+      'IBM Plex Mono': 'ibm-plex-mono',
+    };
+    for (const key of used) {
+      const [family, weight] = key.split('|');
+      expect(pkg[family], `${family} has no Fontsource package`).toBeDefined();
+      expect(css, key).toContain(
+        `@import '@fontsource/${pkg[family]}/${weight}.css';`,
+      );
+    }
+  });
+
+  it('solar_flutter bundles a file for every family and weight a text style uses', async () => {
+    const { buildTokenSpec, loadContract } =
+      await import('../src/normalize/tokens.mjs');
+    const { flattenSpec } = await import('../src/spec.mjs');
+    const { flutterFonts } = await import('../src/emit/fonts.mjs');
+    const { existsSync } = await import('node:fs');
+    const bundled = flutterFonts();
+    for (const t of flattenSpec(buildTokenSpec(loadContract()).spec).filter(
+      (x) => x.type === 'typography',
+    ))
+      expect(
+        bundled.get(t.value.fontFamily)?.has(t.value.fontWeight),
+        t.name,
+      ).toBe(true);
+    // Every declared asset is a file that exists, so a typo in the pubspec cannot pass.
+    const { parse } = await import('yaml');
+    const doc = parse(
+      readFileSync(join(packagesDir, 'solar_flutter', 'pubspec.yaml'), 'utf8'),
+    );
+    for (const f of doc.flutter.fonts)
+      for (const { asset } of f.fonts)
+        expect(
+          existsSync(join(packagesDir, 'solar_flutter', asset)),
+          asset,
+        ).toBe(true);
+  });
+
+  it('does not ship Gotham, which is commercially licensed', () => {
+    const fonts = readFileSync(
+      join(packagesDir, 'solar_flutter', 'pubspec.yaml'),
+      'utf8',
+    );
+    expect(fonts).not.toMatch(/gotham/i);
+  });
+});

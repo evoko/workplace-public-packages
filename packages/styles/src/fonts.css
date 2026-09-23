@@ -1,0 +1,19 @@
+/*
+ * SOLAR's fonts, at the weights its text styles use. Import once, beside tokens.css:
+ *
+ *   import '@bwp-web/styles/tokens.css';
+ *   import '@bwp-web/styles/fonts.css';
+ *
+ * Inter is the app font, Montserrat the display font (SOLAR's open substitute for Gotham, which is
+ * commercially licensed and not shipped), IBM Plex Mono the code font. All three are SIL OFL 1.1,
+ * served from Fontsource: one file per script, so a page downloads only the glyphs it uses. The
+ * font-family tokens name each with its fallback stack, so a font that fails to load degrades to
+ * SOLAR's named fallback and then to the system font, not to the browser's serif.
+ */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/montserrat/500.css';
+@import '@fontsource/montserrat/600.css';
+@import '@fontsource/ibm-plex-mono/500.css';

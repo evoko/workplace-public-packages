@@ -511,12 +511,14 @@
   --solar-type-line-height-code-lg: 20px;
   --solar-type-line-height-code-md: 16px;
   --solar-type-line-height-caption-xs: 14px;
-  --solar-type-font-family-gotham: Gotham;
-  --solar-type-font-family-montserrat: Montserrat;
-  --solar-type-font-family-inter: Inter;
-  --solar-type-font-family-opensans: 'Open Sans';
-  --solar-type-font-family-ibmplexmono: 'IBM Plex Mono';
-  --solar-type-font-family-robotomono: 'Roboto Mono';
+  --solar-type-font-family-gotham:
+    'Gotham', 'Montserrat', system-ui, sans-serif;
+  --solar-type-font-family-montserrat: 'Montserrat', system-ui, sans-serif;
+  --solar-type-font-family-inter: 'Inter', 'Open Sans', system-ui, sans-serif;
+  --solar-type-font-family-opensans: 'Open Sans', system-ui, sans-serif;
+  --solar-type-font-family-ibmplexmono:
+    'IBM Plex Mono', 'Roboto Mono', ui-monospace, monospace;
+  --solar-type-font-family-robotomono: 'Roboto Mono', ui-monospace, monospace;
   --solar-type-font-weight-100: 100;
   --solar-type-font-weight-200: 200;
   --solar-type-font-weight-300: 300;

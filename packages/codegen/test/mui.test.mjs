@@ -27,7 +27,7 @@ describe('renderMui', () => {
 
   it('exposes typography composites MUI can use directly', () => {
     expect(data.typography.desktop['label.md']).toMatchObject({
-      fontFamily: 'Inter',
+      fontFamily: '"Inter", "Open Sans", system-ui, sans-serif',
       fontWeight: 500,
       fontSize: '14px',
     });
@@ -108,7 +108,9 @@ describe('renderMui', () => {
   });
 
   it("gives MUI's own variants SOLAR type, so stock components are not Roboto", () => {
-    expect(data.muiTypography.fontFamily).toBe('Inter');
+    expect(data.muiTypography.fontFamily).toBe(
+      '"Inter", "Open Sans", system-ui, sans-serif',
+    );
     expect(data.muiTypography.body1).toEqual(
       data.responsiveTypography['body.md.regular'],
     );

@@ -7,6 +7,11 @@ import { shadowLayers } from './shadow.mjs';
 import { byCodeUnit } from '../util/sort.mjs';
 import { MOBILE_BOUNDARY_TOKEN } from './breakpoint.mjs';
 import { dartDecoration, featuresOf } from './text-features.mjs';
+import {
+  assertFlutterFont,
+  FLUTTER_FONT_PACKAGE,
+  flutterFonts,
+} from './fonts.mjs';
 
 const OUT_DIR = join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated');
 
@@ -102,10 +107,14 @@ export function renderFlutter(spec) {
     modal.set(cls, g);
   };
 
+  // Every family and weight a text style draws must be a file solar_flutter bundles; otherwise
+  // Flutter silently substitutes a system font.
+  const bundled = flutterFonts();
   const textStyle = (v) => {
+    assertFlutterFont(bundled, v.fontFamily, v.fontWeight, 'text style');
     const size = canonical.dimension(v.fontSize);
     return (
-      `TextStyle(fontFamily: '${v.fontFamily}', fontWeight: FontWeight.w${v.fontWeight}, ` +
+      `TextStyle(fontFamily: '${v.fontFamily}', package: '${FLUTTER_FONT_PACKAGE}', fontWeight: FontWeight.w${v.fontWeight}, ` +
       `fontSize: ${dbl(size)}, height: ${canonical.dimension(v.lineHeight) / size}, ` +
       `letterSpacing: ${dbl(letterSpacingPx(v.letterSpacing, size))}` +
       (dartDecoration(v) ? `, decoration: ${dartDecoration(v)}` : '') +

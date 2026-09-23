@@ -362,6 +362,20 @@ modify `packages/codegen/src/normalize/tokens.mjs` (stacks), `src/emit/flutter.m
   `flutter: fonts:` in the pubspec. The generated `TextStyle`s gain `package: 'solar_flutter'`,
   without which Flutter does not find a font bundled in a package.
 
+**Done 2026-09-23.** Fontsource 5.3.0 static packages rather than the variable ones, because the
+variable packages register the family as `Inter Variable` and SOLAR's tokens say `Inter`. The
+Flutter TTFs were downloaded from the releases above (Inter 4.1, Montserrat 7.222, IBM Plex
+Mono 2.5.0), licences checked as OFL 1.1, checksums in `packages/solar_flutter/fonts/README.md`;
+2.3 MB in all. The stacks live in `src/emit/fonts.mjs`, which also reads the pubspec's `fonts:`
+so the Flutter emitter fails if a text style uses a family or weight with no bundled file.
+Parity compares a stack by its first family. `solarFontPackage` is exported for styles built from
+`SolarFont` by hand.
+
+Verified beyond the suite: `import '@bwp-web/styles/fonts.css'` bundles under webpack 5 and
+esbuild (43 `@font-face`, 43 WOFF2 each); in headless Chrome all three families load and only the
+used weights are fetched; in `flutter test` each generated style resolves to
+`packages/solar_flutter/<family>` and the bundled file loaded under that key changes layout.
+
 Tests: `fonts.css` survives tree shaking (the packaging test); every font-family token ends in a
 generic family; every weight a text style uses has a file (web: the Fontsource weights; Flutter:
 a pubspec entry per family and weight); `flutter test` renders a Text in each family without

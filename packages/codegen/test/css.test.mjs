@@ -12,8 +12,19 @@ describe('cssLiteral', () => {
     expect(cssLiteral('cubicBezier', [0.42, 0, 1, 1])).toBe(
       'cubic-bezier(0.42, 0, 1, 1)',
     );
-    expect(cssLiteral('fontFamily', 'Open Sans')).toBe('"Open Sans"');
-    expect(cssLiteral('fontFamily', 'Inter')).toBe('Inter');
+    // A stack, never a bare name: a font that fails to load must not fall to the browser's serif.
+    expect(cssLiteral('fontFamily', 'Open Sans')).toBe(
+      '"Open Sans", system-ui, sans-serif',
+    );
+    expect(cssLiteral('fontFamily', 'Inter')).toBe(
+      '"Inter", "Open Sans", system-ui, sans-serif',
+    );
+    expect(cssLiteral('fontFamily', 'IBM Plex Mono')).toBe(
+      '"IBM Plex Mono", "Roboto Mono", ui-monospace, monospace',
+    );
+    expect(() => cssLiteral('fontFamily', 'Comic Sans')).toThrow(
+      /no web font stack for Comic Sans/,
+    );
     expect(cssLiteral('fontWeight', 600)).toBe('600');
   });
 });

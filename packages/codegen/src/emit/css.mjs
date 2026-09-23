@@ -5,6 +5,7 @@ import { writeGenerated } from '../util/write.mjs';
 import { entry } from './manifest.mjs';
 import { shadowLayers, shadowToCss } from './shadow.mjs';
 import { mobileMediaQuery } from './breakpoint.mjs';
+import { webFontStack } from './fonts.mjs';
 
 const OUT_DIR = join(packagesDir, 'styles', 'src', 'generated', 'css');
 const cssVar = (name) => `--solar-${name.replaceAll('.', '-')}`;
@@ -21,7 +22,7 @@ export function cssLiteral(type, value) {
     case 'fontWeight':
       return String(value);
     case 'fontFamily':
-      return /\s/.test(value) ? `"${value}"` : String(value);
+      return webFontStack(value);
     case 'cubicBezier':
       return `cubic-bezier(${value.join(', ')})`;
     default:

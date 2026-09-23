@@ -5,6 +5,7 @@ import { writeGenerated } from '../util/write.mjs';
 import { canonical, entry, letterSpacingEm } from './manifest.mjs';
 import { mobileMediaQuery } from './breakpoint.mjs';
 import { cssTextFeatures, featuresOf } from './text-features.mjs';
+import { webFontStack } from './fonts.mjs';
 import { shadowLayers, shadowToCss } from './shadow.mjs';
 
 const OUT_DIR = join(packagesDir, 'styles', 'src', 'generated', 'mui');
@@ -15,6 +16,7 @@ const literal = (type, value) => {
   if (type === 'duration')
     return typeof value === 'number' ? `${value}ms` : value;
   if (type === 'cubicBezier') return `cubic-bezier(${value.join(', ')})`;
+  if (type === 'fontFamily') return webFontStack(value);
   return value;
 };
 
@@ -26,6 +28,7 @@ const literal = (type, value) => {
  */
 const cssTextStyle = (v, features = {}) => ({
   ...v,
+  fontFamily: webFontStack(v.fontFamily),
   letterSpacing: `${letterSpacingEm(v.letterSpacing, canonical.dimension(v.fontSize))}em`,
   ...cssTextFeatures(features),
 });

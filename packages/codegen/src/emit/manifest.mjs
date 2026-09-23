@@ -48,7 +48,13 @@ export const canonical = {
     return n;
   },
   number: (v) => Number(v),
-  fontFamily: (v) => String(v).replace(/^["']|["']$/g, ''),
+  // The web targets emit a stack; the family is its first entry, and the fallbacks behind it are
+  // a web concern that Flutter, which names one bundled family, has no counterpart for.
+  fontFamily: (v) =>
+    String(v)
+      .split(',')[0]
+      .trim()
+      .replace(/^["']|["']$/g, ''),
   fontWeight: (v) => Number(v),
   // Accepts the spec's numeric array and the literals the targets emit, so a bad conversion
   // in one target is caught by the round trip instead of being echoed back unchecked.

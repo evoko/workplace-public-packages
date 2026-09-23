@@ -43,6 +43,20 @@ both are derived from the one `viewport.sm` token. `SolarTheme.light` and `Solar
 constants for the Desktop scale, for when the viewport does not matter. SOLAR changes only
 `display`, `title` and `code` between the two; body, label, caption and helper text stay put.
 
+## Fonts
+
+Inter, Montserrat and IBM Plex Mono ship inside the package, at the weights SOLAR's text styles
+use, so an app renders in them with no font setup of its own. The `SolarTypography` styles already
+name the package (`package: 'solar_flutter'`), which is how Flutter finds a font a package
+bundles. Building a style from a `SolarFont` family yourself, pass `solarFontPackage`:
+
+```dart
+TextStyle(fontFamily: SolarFont.fontFamilyInter, package: solarFontPackage)
+```
+
+All three are SIL OFL 1.1. Gotham, SOLAR's commercially licensed brand typeface, is not shipped
+and no text style uses it. Sources, licences and checksums are in [fonts/README.md](fonts/README.md).
+
 ## Icons
 
 341 SOLAR icons, each as two `SolarVector` constants — `chevronRightOutline` and

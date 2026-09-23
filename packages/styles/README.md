@@ -50,6 +50,23 @@ the document:
 <aside data-theme="dark">…</aside>
 ```
 
+## Fonts
+
+```ts
+import '@bwp-web/styles/fonts.css';
+```
+
+Loads Inter, Montserrat and IBM Plex Mono at the weights SOLAR's text styles use, from Fontsource
+(installed with this package, SIL OFL 1.1). Each is split per script, so a page downloads only the
+glyphs it uses. Gotham, SOLAR's commercially licensed brand typeface, is not shipped; SOLAR's
+display styles use Montserrat, its open substitute.
+
+The font-family tokens are stacks, not bare names: `--solar-type-font-family-inter` is
+`"Inter", "Open Sans", system-ui, sans-serif`, SOLAR's own named fallback then the system font. So
+a font that has not loaded, or an app that does not import `fonts.css`, degrades to a sans-serif
+rather than to the browser's default serif. `fonts.css` imports its files by package name, which
+webpack, Vite and esbuild resolve; a plain `<link>` to the file does not.
+
 ## Tailwind
 
 The preset points at the custom properties above, so `tokens.css` must be imported too; Light and
