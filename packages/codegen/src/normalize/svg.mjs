@@ -11,6 +11,8 @@
  * normalizer that knows which files are icons and which are logos.
  */
 
+import { fail, parseAttrs, tagPattern } from '../util/svg-markup.mjs';
+
 /**
  * The path commands the IR can represent. Absolute only: the whole corpus is absolute today,
  * and a relative command would shift the geometry of every later subpath if a target replayed
@@ -30,23 +32,10 @@ const ARITY = { M: 2, L: 2, C: 6, H: 1, V: 1, Z: 0 };
 // exists to prevent.
 const NAMED_COLORS = { white: '#ffffff', black: '#000000' };
 
-const TAG = /<(\/?)([a-zA-Z][\w:.-]*)((?:"[^"]*"|'[^']*'|[^>"'])*)>/g;
-const ATTR = /([a-zA-Z_:][\w:.-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
-
 // Sticky, so the scan can report the exact character it could not read rather than skipping it.
 const NUMBER = /[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/y;
 const LETTER = /[a-zA-Z]/y;
 const SEPARATOR = /[\s,]+/y;
-
-function fail(file, detail) {
-  throw new Error(`${file}: ${detail}`);
-}
-
-function parseAttrs(text) {
-  const attrs = {};
-  for (const m of text.matchAll(ATTR)) attrs[m[1]] = m[2] ?? m[3];
-  return attrs;
-}
 
 /**
  * Scans a `d` string and throws on anything outside `M L C H V Z`.
@@ -207,7 +196,7 @@ export function parseSvg(source, { file }) {
   let viewBox = null;
   const paths = [];
 
-  for (const [, closing, name, attrText] of text.matchAll(TAG)) {
+  for (const [, closing, name, attrText] of text.matchAll(tagPattern())) {
     if (name === 'svg') {
       if (closing) continue;
       if (viewBox) fail(file, 'more than one <svg> element');

@@ -23,11 +23,11 @@
 
 import { join } from 'node:path';
 import { packagesDir } from '../util/paths.mjs';
+import { geometryDigest, logoDigest } from '../util/digest.mjs';
+import { camel, pascal, quote } from '../util/naming.mjs';
 import { byCodeUnit } from '../util/sort.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { dartColor } from './flutter.mjs';
-import { geometryDigest } from './react-icons.mjs';
-import { logoDigest } from './react-logos.mjs';
 
 const OUT_DIR = join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated');
 
@@ -42,22 +42,7 @@ const HEADER =
  */
 export const OMITTED_VARIANTS = ['os-logo.teams'];
 
-const quote = (text) =>
-  `'${text.replaceAll('\\', '\\\\').replaceAll("'", "\\'")}'`;
-
 const dbl = (n) => (Number.isInteger(n) ? `${n}.0` : String(n));
-
-const pascal = (text) =>
-  text
-    .split(/[^a-zA-Z0-9]+/)
-    .filter(Boolean)
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join('');
-
-const camel = (text) => {
-  const name = pascal(text);
-  return name[0].toLowerCase() + name.slice(1);
-};
 
 /**
  * A Dart field name for one variant of one asset: `chevron-right` + `outline` becomes
@@ -219,23 +204,9 @@ export function renderFlutterIcons(spec) {
   };
 }
 
-export function emitFlutterIcons(spec, fileVersion) {
+export function emitFlutterIcons(spec) {
   const { icons, logos, manifest } = renderFlutterIcons(spec);
   writeGenerated(join(OUT_DIR, 'icons.dart'), icons);
   writeGenerated(join(OUT_DIR, 'logos.dart'), logos);
-  writeGenerated(
-    join(OUT_DIR, 'icons.manifest.json'),
-    JSON.stringify(
-      {
-        _note:
-          'Written by the SOLAR codegen. One entry per icon and logo variant; "constant" is the Dart field it was emitted as and "digest" is a SHA-256 of the canonical JSON of that variant\'s paths, which is what the parity suite compares across targets. The path data itself is not repeated here: it is 358 KB and already lives in icons.dart. "omitted" lists the variants this target does not carry.',
-        target: 'flutter',
-        fileVersion,
-        ...manifest,
-      },
-      null,
-      2,
-    ) + '\n',
-  );
   return Object.keys(manifest.icons).length;
 }

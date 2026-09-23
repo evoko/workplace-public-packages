@@ -91,8 +91,8 @@ jobs:
           cache: 'npm'
 
       # Needed only for `dart format`, which npm run solar:codegen shells out to. Without it the
-      # generator prints "dart format skipped" and leaves tokens.dart unformatted, which the
-      # determinism check below would then report as an 845-line diff.
+      # generator exits non-zero with "dart format FAILED" and leaves the generated Dart
+      # unformatted, which the determinism check below would report as a diff of hundreds of lines.
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -124,7 +124,7 @@ jobs:
             git --no-pager diff | head -n 300
             exit 1
           fi
-          echo "Generated code matches spec/tokens.json."
+          echo "Generated code matches spec/ and every target."
 
       # Runs here as well as in the CI workflow because this job has just rebuilt spec/, and
       # spec.test.mjs asserts the committed spec matches what the emitters were handed.

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
-import { renderMui } from '../src/emit/mui.mjs';
+import { MUI_PALETTE, renderMui } from '../src/emit/mui.mjs';
 
 const { spec } = buildTokenSpec(loadContract());
-const { ts, manifest, data } = renderMui(spec);
+const { ts, manifest, data, deviations } = renderMui(spec);
 
 describe('renderMui', () => {
   it('exposes every token per mode', () => {
@@ -71,8 +71,62 @@ describe('renderMui', () => {
     expect(ts).toContain('export const solarTokens');
     expect(ts).toContain('export const solarViewportTokens');
     expect(ts).toContain('export const solarResponsiveTypography');
-    expect(ts).toContain('typography: solarResponsiveTypography');
+    expect(ts).toContain(
+      'typography: { ...solarResponsiveTypography, ...solarMuiTypography }',
+    );
     expect(ts).toContain('export function createSolarThemeOptions');
+  });
+
+  it('paints MUI palette slots with SOLAR fills, never MUI defaults', () => {
+    expect(data.palette.light.primary.main).toBe(
+      data.tokens.light['color.action.primary.bg.default'],
+    );
+    expect(data.palette.dark.primary.main).toBe(
+      data.tokens.dark['color.action.primary.bg.default'],
+    );
+    // MUI paints error.main as a contained button's background, so it is the danger fill, not
+    // the danger text colour it used to be.
+    expect(data.palette.light.error.main).toBe(
+      data.tokens.light['color.action.primary.bg.danger.default'],
+    );
+    expect(data.palette.light.error.main).not.toBe(
+      data.tokens.light['color.text.feedback.danger'],
+    );
+    expect(ts).toContain('palette: { mode, ...solarMuiPalette[mode] }');
+  });
+
+  it('maps palette slots only to tokens that exist, and never to a text colour as a fill', () => {
+    const walk = (node, path) =>
+      Object.entries(node).flatMap(([k, v]) =>
+        typeof v === 'string' ? [[`${path}.${k}`, v]] : walk(v, `${path}.${k}`),
+      );
+    for (const [slot, name] of walk(MUI_PALETTE, 'palette')) {
+      expect(data.tokens.light, slot).toHaveProperty([name]);
+      if (slot.endsWith('.main'))
+        expect(name, slot).not.toMatch(/^color\.text\./);
+    }
+  });
+
+  it("gives MUI's own variants SOLAR type, so stock components are not Roboto", () => {
+    expect(data.muiTypography.fontFamily).toBe('Inter');
+    expect(data.muiTypography.body1).toEqual(
+      data.responsiveTypography['body.md.regular'],
+    );
+    expect(data.muiTypography.h1).toEqual(
+      data.responsiveTypography['display.lg'],
+    );
+    // A responsive style keeps its media query when it becomes an MUI variant.
+    expect(data.muiTypography.h4).toHaveProperty(
+      '@media (max-width: 767.98px)',
+    );
+    expect(data.muiTypography.button).toMatchObject({
+      fontSize: '14px',
+      textTransform: 'none',
+    });
+  });
+
+  it('reports the MUI mapping as a deviation, because SOLAR does not define it', () => {
+    expect(deviations.map((d) => d.token)).toEqual(['mui.theme']);
   });
 
   it('covers the same token names as the manifest', () => {

@@ -5,7 +5,15 @@
 //   docs/solar-web/token-usage.json      reverse index: token -> components that bind it
 //   docs/solar-web/INDEX.md              table of every page with links
 //   docs/solar-web/<section>/<slug>.md   one page per Figma page
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, statSync, rmSync } from 'node:fs';
+import {
+  readFileSync,
+  writeFileSync,
+  readdirSync,
+  mkdirSync,
+  existsSync,
+  statSync,
+  rmSync,
+} from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';

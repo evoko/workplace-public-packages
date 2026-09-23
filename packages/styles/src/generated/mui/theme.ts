@@ -2477,30 +2477,217 @@ export const solarZIndex = {
   tooltip: 600,
 } as const;
 
+// MUI's own palette slots and typography variants, resolved to SOLAR roles, so a stock MUI
+// component renders in SOLAR rather than in MUI's defaults. See spec/deviations.md, mui.theme.
+export const solarMuiPalette = {
+  light: {
+    primary: {
+      main: '#111111',
+      dark: '#333333',
+      contrastText: '#ffffff',
+    },
+    secondary: {
+      main: '#ffffff',
+      dark: '#f5f5f5',
+      contrastText: '#111111',
+    },
+    error: {
+      main: '#e0032d',
+      dark: '#f61d3c',
+      contrastText: '#ffffff',
+    },
+    warning: {
+      main: '#cf4700',
+      contrastText: '#ffffff',
+    },
+    info: {
+      main: '#08b8c9',
+      contrastText: '#ffffff',
+    },
+    success: {
+      main: '#009600',
+      contrastText: '#ffffff',
+    },
+    background: {
+      default: '#f5f5f5',
+      paper: '#ffffff',
+    },
+    text: {
+      primary: '#111111',
+      secondary: '#646464',
+      disabled: 'rgba(0, 0, 0, 0.2)',
+    },
+    action: {
+      disabled: 'rgba(0, 0, 0, 0.2)',
+      disabledBackground: '#e0e0e0',
+    },
+    divider: 'rgba(0, 0, 0, 0.1)',
+  },
+  dark: {
+    primary: {
+      main: '#f5f5f5',
+      dark: '#ffffff',
+      contrastText: '#111111',
+    },
+    secondary: {
+      main: '#111111',
+      dark: '#222222',
+      contrastText: '#f5f5f5',
+    },
+    error: {
+      main: '#e0032d',
+      dark: '#c00024',
+      contrastText: '#ffffff',
+    },
+    warning: {
+      main: '#fb5800',
+      contrastText: '#111111',
+    },
+    info: {
+      main: '#0ad4e6',
+      contrastText: '#111111',
+    },
+    success: {
+      main: '#00b600',
+      contrastText: '#111111',
+    },
+    background: {
+      default: '#111111',
+      paper: '#222222',
+    },
+    text: {
+      primary: '#f5f5f5',
+      secondary: '#a8a8a8',
+      disabled: 'rgba(255, 255, 255, 0.2)',
+    },
+    action: {
+      disabled: 'rgba(255, 255, 255, 0.2)',
+      disabledBackground: '#222222',
+    },
+    divider: 'rgba(255, 255, 255, 0.1)',
+  },
+} as const;
+
+export const solarMuiTypography = {
+  fontFamily: 'Inter',
+  h1: {
+    fontFamily: 'Montserrat',
+    fontWeight: 500,
+    fontSize: '56px',
+    lineHeight: '72px',
+    letterSpacing: '-0.03em',
+    '@media (max-width: 767.98px)': {
+      fontSize: '40px',
+      lineHeight: '52px',
+    },
+  },
+  h2: {
+    fontFamily: 'Montserrat',
+    fontWeight: 500,
+    fontSize: '40px',
+    lineHeight: '52px',
+    letterSpacing: '-0.03em',
+    '@media (max-width: 767.98px)': {
+      fontSize: '32px',
+      lineHeight: '40px',
+    },
+  },
+  h3: {
+    fontFamily: 'Montserrat',
+    fontWeight: 500,
+    fontSize: '32px',
+    lineHeight: '40px',
+    letterSpacing: '-0.03em',
+    '@media (max-width: 767.98px)': {
+      fontSize: '24px',
+      lineHeight: '32px',
+    },
+  },
+  h4: {
+    fontFamily: 'Inter',
+    fontWeight: 500,
+    fontSize: '40px',
+    lineHeight: '48px',
+    letterSpacing: '-0.03em',
+    '@media (max-width: 767.98px)': {
+      fontSize: '32px',
+      lineHeight: '40px',
+    },
+  },
+  h5: {
+    fontFamily: 'Inter',
+    fontWeight: 500,
+    fontSize: '32px',
+    lineHeight: '40px',
+    letterSpacing: '-0.03em',
+    '@media (max-width: 767.98px)': {
+      fontSize: '24px',
+      lineHeight: '32px',
+    },
+  },
+  h6: {
+    fontFamily: 'Inter',
+    fontWeight: 500,
+    fontSize: '20px',
+    lineHeight: '28px',
+    letterSpacing: '-0.03em',
+    '@media (max-width: 767.98px)': {
+      fontSize: '18px',
+      lineHeight: '24px',
+    },
+  },
+  subtitle1: {
+    fontFamily: 'Inter',
+    fontWeight: 500,
+    fontSize: '16px',
+    lineHeight: '24px',
+    letterSpacing: '-0.02em',
+  },
+  subtitle2: {
+    fontFamily: 'Inter',
+    fontWeight: 500,
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '-0.02286em',
+  },
+  body1: {
+    fontFamily: 'Inter',
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '-0.02286em',
+  },
+  body2: {
+    fontFamily: 'Inter',
+    fontWeight: 400,
+    fontSize: '12px',
+    lineHeight: '16px',
+    letterSpacing: '-0.02em',
+  },
+  button: {
+    fontFamily: 'Inter',
+    fontWeight: 500,
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '-0.02em',
+    textTransform: 'none',
+  },
+  caption: {
+    fontFamily: 'Inter',
+    fontWeight: 400,
+    fontSize: '10px',
+    lineHeight: '14px',
+    letterSpacing: '-0.02em',
+  },
+} as const;
+
 export type SolarMode = 'light' | 'dark';
 
 export function createSolarThemeOptions(mode: SolarMode) {
-  const t = solarTokens[mode];
   return {
-    palette: {
-      mode,
-      background: {
-        default: t['color.surface.background'],
-        paper: t['color.surface.base'],
-      },
-      text: {
-        primary: t['color.text.primary'],
-        secondary: t['color.text.secondary'],
-        disabled: t['color.text.disabled'],
-      },
-      divider: t['color.border.subtle'],
-      error: { main: t['color.text.feedback.danger'] },
-      warning: { main: t['color.text.feedback.warning'] },
-      info: { main: t['color.text.feedback.info'] },
-      success: { main: t['color.text.feedback.success'] },
-    },
-    shape: { borderRadius: parseFloat(t['radius.control']) },
+    palette: { mode, ...solarMuiPalette[mode] },
+    shape: { borderRadius: parseFloat(solarTokens[mode]['radius.control']) },
     zIndex: solarZIndex,
-    typography: solarResponsiveTypography,
+    typography: { ...solarResponsiveTypography, ...solarMuiTypography },
   };
 }

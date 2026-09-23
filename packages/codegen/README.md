@@ -38,16 +38,24 @@ The four are independent emitters reading one normalized spec. They are **not** 
 each other: a Dart file is not a translation of a stylesheet, and pretending otherwise is how
 the two drift apart.
 
-`spec/deviations.md` lists the **18 places the code deliberately differs from what Figma says**:
-13 from the tokens and 5 from the icons. It is the report SOLAR governance reads, so every entry
-names an action for them.
+`spec/deviations.md` lists the **17 places the code deliberately differs from what Figma says**:
+12 from the tokens, 1 from the MUI theme and 4 from the icons. It is the report SOLAR governance
+reads, so every entry names an action for them. The count is whatever the data triggers, not a
+list someone maintains: a rule fires only when its defect is present.
+
+The MUI row is the one decision SOLAR does not make at all. Stock MUI components read
+`palette.primary.main`, `body1`, `button` and so on, so `MUI_PALETTE` and `MUI_TYPOGRAPHY` in
+[`src/emit/mui.mjs`](src/emit/mui.mjs) map those names to the SOLAR roles used the same way —
+`action.*.bg` for the button fills, `surface.feedback.*.strong` for the feedback fills, display and
+title for `h1`–`h6`. A name in either table that is not a token fails the build.
 
 ## How the targets are kept in agreement
 
-Each emitter writes a `tokens.manifest.json` beside its output recording, per token,
+Each emitter's render function returns a manifest alongside its output recording, per token,
 `{emitted, normalized, modes}` — the literal it produced, that literal parsed back to a
-canonical form, and the same per mode. [`test/parity.test.mjs`](test/parity.test.mjs) then
-asserts across all four that they agree with each other **and** with the spec, in every mode.
+canonical form, and the same per mode. Manifests are held in memory, never written to disk.
+[`test/parity.test.mjs`](test/parity.test.mjs) asserts across all four that they agree with each
+other **and** with the spec, in every mode.
 Agreement alone is not enough: four targets can be uniformly wrong, so the spec is the oracle.
 
 Two subtleties worth knowing before changing an emitter:
@@ -77,6 +85,10 @@ than of three formatters happening to concur. [`test/icon-parity.test.mjs`](test
 proves it the hard way: it opens the generated TSX, the generated SVG and the generated Dart,
 extracts the geometry back out and compares it to the spec, never to a manifest.
 
+The app icons are raster, so their bytes are not in `spec/icons.json` — only a SHA-256 of each
+file. The logo emitter reads the PNG from `docs/` and refuses bytes that do not match, so a
+changed image changes the spec and the spec guard sees it.
+
 Two contracts make icons different from tokens, and each is asserted in both directions:
 
 - **No icon carries a colour.** Every icon in SOLAR is drawn `#111111`; the normalizer asserts
@@ -99,15 +111,28 @@ of disappearing.
 ## Layout
 
 ```
-bin/solar-codegen.mjs      the CLI
+bin/solar-codegen.mjs      the CLI: builds every stage, then emits, reports, prunes, formats
+src/stages/                one module per stage (tokens, icons): build() the spec, emit() it
 src/normalize/             css-contract.json -> the DTCG spec, solar-icons/ -> the icon spec,
                            the SVG reader, and the recorded deviations
-src/emit/                  one file per emitter, plus the shared manifest and canonical values
+src/emit/                  one file per emitter, plus the manifest entries and canonical values
 src/report/                spec/deviations.md
-src/util/                  paths, the docs/ write guard, deterministic sorting
-test/                      unit suites per module, plus token parity across four targets and
-                           icon parity across three
+src/util/                  paths, the docs/ write guard and pruning, sorting, naming, digests,
+                           SVG markup scanning
+test/                      unit suites per module, token parity across four targets, icon
+                           parity across three, and the packaging checks
 ```
+
+Every stage is built before any is emitted, so a normalizer that throws stops the run before a
+single target has been rewritten. A new stage is a module exporting `name`, `build()` and
+`emit(built)`, where `emit` returns `{counts, deviations}`, added to `STAGES` in the CLI.
+
+**Stale output is deleted.** After every stage has written, the CLI removes anything under the
+three generated directories (`packages/styles/src/generated`, `packages/assets/src/generated`,
+`packages/solar_flutter/lib/src/generated`) that the run did not write, and says so. Without it,
+an icon removed in Figma would keep its generated module forever, regenerating to the same bytes
+and invisible to CI. Nothing outside those directories is pruned, and `spec/` is excluded on
+purpose because `spec/overlay/` will hold hand-written files.
 
 ## Changing it
 

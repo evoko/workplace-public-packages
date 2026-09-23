@@ -81,6 +81,7 @@ are findings for the design review, not bugs in the generator.
 | What is the public API?                     | `prio` is renamed to `variant` in the overlay, matching the spec's own example. `size` and `danger` keep their names.                                                                                                           |
 | Wrap MUI or build our own?                  | Recorded per component in the overlay, not decided globally. Button starts as a wrap of MUI `Button` and Flutter `FilledButton`; if the recipe cannot express what SOLAR draws, the overlay flips it to bespoke and says why.    |
 | Where does the recipe live?                 | `spec/components/<name>.json`, beside `spec/tokens.json` and `spec/icons.json`, and guarded the same way — the committed file must equal what the emitters were handed.                                                          |
+| How does a web recipe reference a token?    | As `var(--solar-*)`, the way the Tailwind preset already does, never as a resolved literal. `tokens.css` is then the one runtime source: a `[data-theme='dark']` subtree re-themes an MUI Button with no JavaScript, and there is one dark-mode switch rather than MUI's `palette.mode` beside `data-theme`. The MUI *theme palette* stays literal, because MUI runs `alpha()` and `darken()` on it; the recipe does not go through the palette. |
 | Are shells generated?                       | Scaffolded **once**, then owned by developers forever. The recipe beside them regenerates every run. This is the boundary that lets a look change flow in without ever clobbering behaviour.                                     |
 
 ## Notes for whoever executes this
@@ -89,6 +90,17 @@ are findings for the design review, not bugs in the generator.
 - `docs/` is read-only to the generator. `writeGenerated` enforces it.
 - Node 22, Flutter pinned 3.24.4. Latest stable for anything new, with the milestone-1 caps.
 - Run `npm run solar:codegen` and commit its output after touching the generator.
+- The CLI is built from stage modules (`src/stages/`). The component stage in Task 9 is a third
+  module exporting `name`, `build()` and `emit()`, not new inline code in the CLI.
+- The CLI prunes whatever it did not write under the three generated directories. A component
+  output that moves or is renamed therefore disappears from its old path on the next run, which
+  is intended.
+- The MUI theme already fills MUI's palette slots and built-in variants from SOLAR (the
+  `mui.theme` deviation), so an unstyled MUI `Button` renders as SOLAR primary before Task 5
+  adds anything. The recipe overrides what differs; it does not have to replace MUI's defaults.
+- Flutter has `SolarTheme.resolve(brightness:, width:)`, which switches to the Mobile type scale
+  below `viewport.sm`. Task 6 reads the label style from the ambient `SolarTheme`, never from
+  `SolarTypography.desktop` directly, so Button follows the viewport on both platforms.
 
 ---
 
@@ -165,9 +177,12 @@ Writes `packages/styles/src/generated/mui/components/button.ts`: the recipe as p
 prop types, importing nothing from MUI, exactly as the token theme does. States render as the
 pseudo-selectors MUI's `styleOverrides` expects.
 
-Tests: every value is a token reference, never a literal — the same contract the token emitters
-hold; the three variants and three sizes are present; `disabled` and `loading` appear as props and
-`hover` does not.
+Every token reference is emitted as `var(--solar-…)`, per the decision above; a value in the recipe
+that is not one is a failure, not a fallback.
+
+Tests: every value is a `var(--solar-…)` reference naming a token that exists in `tokens.css`,
+never a literal — the same contract the token emitters hold; the three variants and three sizes
+are present; `disabled` and `loading` appear as props and `hover` does not.
 
 ---
 
@@ -229,8 +244,8 @@ Verify determinism by running twice and hashing, and confirm nothing is written 
 
 ### Task 10: Documentation
 
-**Files:** modify `packages/codegen/README.md`, `docs/README.md`, `CLAUDE.md`; create
-`packages/components/README.md`.
+**Files:** modify `packages/codegen/README.md`, `docs/README.md`, `CLAUDE.md` and
+`packages/components/README.md`, which exists as a two-line placeholder.
 
 Say what a recipe is, where the boundary between generated recipe and owned shell sits, and the
 rule of thumb from the spec: **overlay for a decision about one component, normalizer for a rule

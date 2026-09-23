@@ -200,6 +200,16 @@ describe('the raster app icons', () => {
     );
     expect(source).not.toContain('function');
   });
+
+  it('refuses a PNG whose bytes the spec did not record', () => {
+    // The bytes are read from docs/ at emit time, so without this a changed PNG would change the
+    // output while spec/icons.json, which the spec guard compares, stayed the same.
+    const tampered = structuredClone(spec);
+    tampered.logos['app-icon'].digests.workplace = '0'.repeat(64);
+    expect(() => renderReactLogos(tampered)).toThrow(
+      /workplace@2x\.png: the bytes do not match the digest/,
+    );
+  });
 });
 
 describe('renderReactLogos: manifest', () => {

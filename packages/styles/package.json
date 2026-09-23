@@ -22,7 +22,9 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "build": "tsup && tsc -p tsconfig.build.json && cp src/generated/css/tokens.css dist/tokens.css",
     "build:types": "tsc -p tsconfig.build.json",

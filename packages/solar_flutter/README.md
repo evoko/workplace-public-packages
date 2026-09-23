@@ -16,6 +16,33 @@ Everything in `lib/src/generated` is produced by `npm run solar:codegen` at the 
 root. Do not edit it. The types, the widgets and the SVG path parser beside it are hand written.
 See [the design spec](../../docs/superpowers/specs/2026-09-21-solar-docs-to-code-design.md).
 
+## Tokens
+
+Mode-varying tokens are instances, one per mode: `SolarColors.light` / `.dark`, `SolarShadows`
+the same, and `SolarType` / `SolarTypography` as `.desktop` / `.mobile`. Mode-invariant ones are
+`static const` fields — `SolarInset.md`, `SolarRadius.control`, `SolarMotion.durationFast`. The
+`SolarTheme` extension bundles the mode-varying sets so widgets read them from the ambient theme.
+
+```dart
+MaterialApp(
+  builder: (context, child) => Theme(
+    data: Theme.of(context).copyWith(extensions: [
+      SolarTheme.resolve(
+        brightness: Theme.of(context).brightness,
+        width: MediaQuery.sizeOf(context).width,
+      ),
+    ]),
+    child: child!,
+  ),
+)
+```
+
+**Follow the viewport with `SolarTheme.resolve`.** Below `SolarViewport.sm` (768) it picks the
+Mobile type scale, at the same width the web's `@media (max-width: 767.98px)` switches, because
+both are derived from the one `viewport.sm` token. `SolarTheme.light` and `SolarTheme.dark` are
+constants for the Desktop scale, for when the viewport does not matter. SOLAR changes only
+`display`, `title` and `code` between the two; body, label, caption and helper text stay put.
+
 ## Icons
 
 341 SOLAR icons, each as two `SolarVector` constants — `chevronRightOutline` and
@@ -43,8 +70,8 @@ SolarIcon(SolarIcons.deleteSolid, color: Theme.of(context).colorScheme.error)
 ```
 
 **Size** is the side of a square box and defaults to `SolarIconSize.lg` (24). The drawing is
-scaled to fit with its aspect ratio kept, which is what keeps `zone` — the one icon drawn on a
-`0 0 24 25` viewBox — letterboxed rather than squashed.
+scaled to fit with its aspect ratio kept, so an icon drawn off the 24 grid is letterboxed rather
+than squashed.
 
 **Semantics.** `semanticLabel` names the icon for assistive technology. Without one it is
 excluded from the semantics tree, which is right for an icon sitting beside a label that already

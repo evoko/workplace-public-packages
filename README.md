@@ -12,20 +12,32 @@ system. V2 is work in progress and not yet published as `latest`.
 | [`@bwp-web/assets`](./packages/assets)         | Icons and static assets              | V2 in progress |
 | [`@bwp-web/canvas`](./packages/canvas)         | Interactive canvas editor and viewer | V2 in progress |
 | [`@bwp-web/components`](./packages/components) | React components                     | V2 in progress |
+| [`solar_flutter`](./packages/solar_flutter)    | SOLAR tokens and icons for Flutter   | V2 in progress |
+
+[`@bwp-web/codegen`](./packages/codegen) is the private build tool that generates the tokens and
+icons in `@bwp-web/styles`, `@bwp-web/assets` and `solar_flutter` from the SOLAR data in `docs/`.
 
 ## Getting started
 
-Prerequisites: Node.js 20 or newer, npm 10.9.
+Prerequisites: Node.js 22 (pinned in `.nvmrc`), npm 10.9. The published packages support Node 20
+and newer; 22 is what builds the repository. Regenerating the Flutter output also needs the
+Flutter SDK pinned in [`.github/workflows/solar.yml`](./.github/workflows/solar.yml).
 
 ```bash
 npm install
 npm run build
 ```
 
-Other root scripts: `npm run lint`, `npm run typecheck`, `npm run format`,
-`npm run solar:sync` to refresh the SOLAR Foundations, Web and Icons references from Figma,
-and `npm run solar:tokens` to rebuild the derived Foundations token files. The whole SOLAR
-documentation and data pipeline is described in [docs/README.md](./docs/README.md).
+Other root scripts: `npm run lint`, `npm run typecheck`, `npm run format`, `npm run test`, and
+for SOLAR:
+
+| Script                  | Does                                                                     |
+| ----------------------- | ------------------------------------------------------------------------ |
+| `npm run solar:sync`    | fetch all three Figma files, then rebuild every doc, token file and code |
+| `npm run solar:rebuild` | the same without the fetch, from what is committed; no Figma token       |
+| `npm run solar:codegen` | only the code: `spec/` and every generated target                        |
+
+The whole SOLAR documentation and data pipeline is described in [docs/README.md](./docs/README.md).
 
 ## Design system
 

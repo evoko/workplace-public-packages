@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import { flattenSpec } from '../spec.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
-import { entry, writeManifest } from './manifest.mjs';
+import { entry } from './manifest.mjs';
 import { shadowLayers } from './shadow.mjs';
 
 const OUT_DIR = join(packagesDir, 'styles', 'src', 'generated', 'tailwind');
@@ -83,14 +83,8 @@ export function renderTailwind(spec) {
   return { ts, preset, manifest };
 }
 
-export function emitTailwind(spec, fileVersion) {
+export function emitTailwind(spec) {
   const { ts, manifest } = renderTailwind(spec);
   writeGenerated(join(OUT_DIR, 'preset.ts'), ts);
-  writeManifest({
-    target: 'tailwind',
-    dir: OUT_DIR,
-    entries: manifest,
-    fileVersion,
-  });
   return Object.keys(manifest).length;
 }

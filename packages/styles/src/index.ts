@@ -5,6 +5,8 @@ export {
   solarResponsiveTypography,
   solarShadows,
   solarZIndex,
+  solarMuiPalette,
+  solarMuiTypography,
   createSolarThemeOptions,
   type SolarMode,
 } from './generated/mui/theme.js';

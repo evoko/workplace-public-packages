@@ -2,12 +2,7 @@ import { join } from 'node:path';
 import { flattenSpec } from '../spec.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
-import {
-  canonical,
-  entry,
-  letterSpacingEm,
-  writeManifest,
-} from './manifest.mjs';
+import { canonical, entry, letterSpacingEm } from './manifest.mjs';
 import { mobileMediaQuery } from './breakpoint.mjs';
 import { shadowLayers, shadowToCss } from './shadow.mjs';
 
@@ -32,6 +27,108 @@ const cssTextStyle = (v) => ({
   ...v,
   letterSpacing: `${letterSpacingEm(v.letterSpacing, canonical.dimension(v.fontSize))}em`,
 });
+
+/**
+ * What MUI's own palette slots are painted with.
+ *
+ * Stock MUI components read `palette.primary.main` and friends, not SOLAR names, so without this
+ * every unstyled MUI component falls back to MUI's blue. MUI paints `main` as a *fill* -- a
+ * contained button's background -- and derives hover from `dark`, so each slot is mapped to the
+ * SOLAR role that is used the same way: `action.*.bg` for the buttons, `surface.feedback.*.strong`
+ * for the feedback fills, never a `text.*` colour. SOLAR does not define this mapping, so it is
+ * reported in spec/deviations.md. Literal values, not `var()`: MUI runs `alpha()` and `darken()`
+ * on its palette, which cannot parse a custom property.
+ */
+export const MUI_PALETTE = {
+  primary: {
+    main: 'color.action.primary.bg.default',
+    dark: 'color.action.primary.bg.hover',
+    contrastText: 'color.action.primary.text.default',
+  },
+  secondary: {
+    main: 'color.action.secondary.bg.default',
+    dark: 'color.action.secondary.bg.hover',
+    contrastText: 'color.action.secondary.text.default',
+  },
+  error: {
+    main: 'color.action.primary.bg.danger.default',
+    dark: 'color.action.primary.bg.danger.hover',
+    contrastText: 'color.action.primary.text.danger.default',
+  },
+  warning: {
+    main: 'color.surface.feedback.warning.strong',
+    contrastText: 'color.text.inverse',
+  },
+  info: {
+    main: 'color.surface.feedback.info.strong',
+    contrastText: 'color.text.inverse',
+  },
+  success: {
+    main: 'color.surface.feedback.success.strong',
+    contrastText: 'color.text.inverse',
+  },
+  background: {
+    default: 'color.surface.background',
+    paper: 'color.surface.base',
+  },
+  text: {
+    primary: 'color.text.primary',
+    secondary: 'color.text.secondary',
+    disabled: 'color.text.disabled',
+  },
+  action: {
+    disabled: 'color.text.disabled',
+    disabledBackground: 'color.action.primary.bg.disabled',
+  },
+  divider: 'color.border.subtle',
+};
+
+/**
+ * MUI's built-in typography variants, as SOLAR text styles.
+ *
+ * `Typography`, `Button` and every other stock component read these names, so leaving them at
+ * MUI's defaults ships Roboto at MUI's sizes. `overline` has no SOLAR counterpart and keeps MUI's
+ * shape in the SOLAR family. `button` drops MUI's uppercase: SOLAR labels are sentence case.
+ */
+export const MUI_TYPOGRAPHY = {
+  h1: 'display.lg',
+  h2: 'display.md',
+  h3: 'display.sm',
+  h4: 'title.lg',
+  h5: 'title.md',
+  h6: 'title.sm',
+  subtitle1: 'body.lg.medium',
+  subtitle2: 'body.md.medium',
+  body1: 'body.md.regular',
+  body2: 'body.sm.regular',
+  button: 'label.md',
+  caption: 'caption.xs',
+};
+
+/** The text style whose family is the document default. */
+const BODY_STYLE = 'body.md.regular';
+
+export const MUI_DEVIATION = {
+  token: 'mui.theme',
+  figmaValue: 'no mapping to MUI palette slots or typography variants',
+  reason:
+    'MUI components read palette.primary, body1, button and the like, which SOLAR does not name. The generated theme maps them to the SOLAR roles used the same way (MUI_PALETTE and MUI_TYPOGRAPHY in the MUI emitter): action.*.bg for primary, secondary and error, surface.feedback.*.strong for warning, info and success, display and title for h1 to h6, label.md for button. overline has no counterpart.',
+  raise:
+    'Ask SOLAR to confirm the mapping, or to publish one for MUI-based products.',
+};
+
+/** Resolves a table of token names against one mode's values, failing on a missing name. */
+function resolveTable(table, values, path = 'palette') {
+  return Object.fromEntries(
+    Object.entries(table).map(([key, name]) => {
+      if (typeof name !== 'string')
+        return [key, resolveTable(name, values, `${path}.${key}`)];
+      if (!(name in values))
+        throw new Error(`${path}.${key} maps to ${name}, which is not a token`);
+      return [key, values[name]];
+    }),
+  );
+}
 
 /** Only the declarations the Mobile mode actually changes. */
 const overrides = (desktop, mobile) =>
@@ -119,6 +216,23 @@ export function renderMui(spec) {
     manifest[t.name] = entry(t.type, light, light, modes);
   }
 
+  data.palette = {
+    light: resolveTable(MUI_PALETTE, data.tokens.light),
+    dark: resolveTable(MUI_PALETTE, data.tokens.dark),
+  };
+  data.muiTypography = {
+    fontFamily: data.typography.desktop[BODY_STYLE].fontFamily,
+  };
+  for (const [variant, style] of Object.entries(MUI_TYPOGRAPHY)) {
+    const value = data.responsiveTypography[style];
+    if (!value)
+      throw new Error(
+        `typography.${variant} maps to ${style}, which is not a text style`,
+      );
+    data.muiTypography[variant] =
+      variant === 'button' ? { ...value, textTransform: 'none' } : value;
+  }
+
   const ts =
     `// SOLAR design tokens for MUI. Generated by @bwp-web/codegen from spec/tokens.json. Do not edit.\n` +
     `// Plain data on purpose: this module imports nothing, so @bwp-web/styles stays dependency free.\n` +
@@ -135,37 +249,25 @@ export function renderMui(spec) {
     `export const solarResponsiveTypography = ${JSON.stringify(data.responsiveTypography, null, 2)} as const;\n\n` +
     `export const solarShadows = ${JSON.stringify(data.shadows, null, 2)} as const;\n\n` +
     `export const solarZIndex = ${JSON.stringify(data.zIndex, null, 2)} as const;\n\n` +
+    `// MUI's own palette slots and typography variants, resolved to SOLAR roles, so a stock MUI\n` +
+    `// component renders in SOLAR rather than in MUI's defaults. See spec/deviations.md, mui.theme.\n` +
+    `export const solarMuiPalette = ${JSON.stringify(data.palette, null, 2)} as const;\n\n` +
+    `export const solarMuiTypography = ${JSON.stringify(data.muiTypography, null, 2)} as const;\n\n` +
     `export type SolarMode = 'light' | 'dark';\n\n` +
     `export function createSolarThemeOptions(mode: SolarMode) {\n` +
-    `  const t = solarTokens[mode];\n` +
     `  return {\n` +
-    `    palette: {\n` +
-    `      mode,\n` +
-    `      background: { default: t['color.surface.background'], paper: t['color.surface.base'] },\n` +
-    `      text: { primary: t['color.text.primary'], secondary: t['color.text.secondary'], disabled: t['color.text.disabled'] },\n` +
-    `      divider: t['color.border.subtle'],\n` +
-    `      error: { main: t['color.text.feedback.danger'] },\n` +
-    `      warning: { main: t['color.text.feedback.warning'] },\n` +
-    `      info: { main: t['color.text.feedback.info'] },\n` +
-    `      success: { main: t['color.text.feedback.success'] },\n` +
-    `    },\n` +
-    `    shape: { borderRadius: parseFloat(t['radius.control']) },\n` +
+    `    palette: { mode, ...solarMuiPalette[mode] },\n` +
+    `    shape: { borderRadius: parseFloat(solarTokens[mode]['radius.control']) },\n` +
     `    zIndex: solarZIndex,\n` +
-    `    typography: solarResponsiveTypography,\n` +
+    `    typography: { ...solarResponsiveTypography, ...solarMuiTypography },\n` +
     `  };\n` +
     `}\n`;
 
-  return { ts, manifest, data };
+  return { ts, manifest, data, deviations: [{ ...MUI_DEVIATION }] };
 }
 
-export function emitMui(spec, fileVersion) {
-  const { ts, manifest } = renderMui(spec);
+export function emitMui(spec) {
+  const { ts, manifest, deviations } = renderMui(spec);
   writeGenerated(join(OUT_DIR, 'theme.ts'), ts);
-  writeManifest({
-    target: 'mui',
-    dir: OUT_DIR,
-    entries: manifest,
-    fileVersion,
-  });
-  return Object.keys(manifest).length;
+  return { count: Object.keys(manifest).length, deviations };
 }

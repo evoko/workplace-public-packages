@@ -115,11 +115,12 @@ one source rather than a fourth source.
 components, those SVG files and the Dart in `solar_flutter` from it. A parity suite proves all
 three carry the same geometry for every variant.
 
-Four things about the source are worth knowing, and all of them are recorded in
+Three things about the source are worth knowing, and all of them are recorded in
 [`spec/deviations.md`](../../spec/deviations.md) rather than patched in `docs/`:
 
 - Two Figma components are both named `Icon/Phone`; the Audio & DSP one is `IconPhoneAudioDsp`.
-- `Icon/Support` has no outline in Figma, so `IconSupport`'s outline is its solid.
-- `IconZone`'s outline is drawn on a `0 0 24 25` viewBox. It is carried verbatim and letterboxed
-  rather than cropped, so the drawing stays correct.
 - The Teams mark is gradient-filled. React and the raw SVG render it faithfully; Flutter omits it.
+- SOLAR has no logo size scale, so a logo's named size borrows the `icon.*` ladder.
+
+The missing `Icon/Support` outline and the off-grid `Icon/Zone` outline were both fixed in Figma on
+2026-09-22. The normalizer still handles either case if it recurs, and records it when it does.

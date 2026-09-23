@@ -81,6 +81,7 @@ function flattenIconSpec(spec) {
           name: `${section}.${key}.${variant}`,
           component: entry.component,
           file,
+          digest: entry.digests?.[variant] ?? null,
         });
     }
   }

@@ -9331,6 +9331,13 @@
         "tools": "logos/app-icon/tools@2x.png",
         "booking": "logos/app-icon/booking@2x.png",
         "command": "logos/app-icon/command@2x.png"
+      },
+      "digests": {
+        "workplace": "216bbd1fe68e7d97153427a38141b3748a152f7eedfddd4c55d0d275d15fb4b7",
+        "designer": "7ba8ab12419ea1bc04d9847d5dada14c42b1b019b614eb568adee4e2fcb4e170",
+        "tools": "f67710f6571e770f5096a6bee4e0b78e2f4429ec1c99ea8fa0f8a4dc586b0311",
+        "booking": "463ac131eb61fddbe32a7ff1aadf844886bce13c90c5600c12f8c088bcd349fd",
+        "command": "328c86ce642852eed4bee0180f6754f3be07563c6c963d3589e66c57539da128"
       }
     },
     "biamp-logo": {

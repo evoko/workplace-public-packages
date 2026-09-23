@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import { flattenSpec } from '../spec.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
-import { entry, writeManifest } from './manifest.mjs';
+import { entry } from './manifest.mjs';
 import { shadowLayers, shadowToCss } from './shadow.mjs';
 import { mobileMediaQuery } from './breakpoint.mjs';
 
@@ -87,14 +87,8 @@ export function renderCss(spec) {
   return { css, manifest };
 }
 
-export function emitCss(spec, fileVersion) {
+export function emitCss(spec) {
   const { css, manifest } = renderCss(spec);
   writeGenerated(join(OUT_DIR, 'tokens.css'), css);
-  writeManifest({
-    target: 'css',
-    dir: OUT_DIR,
-    entries: manifest,
-    fileVersion,
-  });
   return Object.keys(manifest).length;
 }

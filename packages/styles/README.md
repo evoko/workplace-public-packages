@@ -18,6 +18,15 @@ import { createSolarThemeOptions } from '@bwp-web/styles';
 const theme = createTheme(createSolarThemeOptions('light'));
 ```
 
+Stock MUI components render in SOLAR without any per-component work. The theme fills MUI's own
+palette slots and typography variants with SOLAR roles: `primary`, `secondary` and `error` from
+the `action.*.bg` fills, `warning`, `info` and `success` from `surface.feedback.*.strong`,
+`h1`–`h6` from display and title, `body1` from `body.md.regular`, and `button` from `label.md`
+without MUI's uppercase. SOLAR does not define this mapping, so it is the `mui.theme` row in
+[`spec/deviations.md`](../../spec/deviations.md). The resolved tables are exported as
+`solarMuiPalette` and `solarMuiTypography`. The palette holds literal colours rather than
+`var(--solar-*)`, because MUI runs `alpha()` and `darken()` on it.
+
 Typography carries both viewports: each text style holds its Desktop values with a nested
 `@media (max-width: 767.98px)` block for the Mobile ones, so `createTheme` switches at SOLAR's
 tablet boundary without any help from the app. Only `display`, `title` and `code` change size —
@@ -28,6 +37,10 @@ body, label, caption and helper text stay put, by design.
 ```ts
 import '@bwp-web/styles/tokens.css';
 ```
+
+The package lists `*.css` in `sideEffects`, so a bundler keeps this import. With
+`"sideEffects": false` webpack drops it silently in production builds, since nothing is imported
+from it; a test in `@bwp-web/codegen` fails if a stylesheet export ever goes unlisted again.
 
 Defines every token on `:root`, redefines the mode-varying ones under `[data-theme='dark']`, and
 overrides the type scale below the tablet boundary. Dark mode can scope to a subtree, not just
@@ -62,6 +75,8 @@ breakpoints, which are real pixel values because a media query cannot read a cus
 | `solarResponsiveTypography` | the same styles with the Mobile values nested as a media query        |
 | `solarShadows`              | the 9 effect styles, per theme mode                                   |
 | `solarZIndex`               | the 7-level layering ladder                                           |
+| `solarMuiPalette`           | MUI's palette slots, resolved to SOLAR colours, per theme mode        |
+| `solarMuiTypography`        | MUI's built-in variants (`h1`…`caption`), as SOLAR text styles        |
 
 `solarTokens` is keyed by theme alone, so it holds the Desktop value of anything that varies by
 viewport; `solarViewportTokens` is the override to apply below the breakpoint, mirroring what the

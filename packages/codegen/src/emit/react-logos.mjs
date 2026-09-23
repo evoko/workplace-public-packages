@@ -24,11 +24,13 @@
  *   asset-serving decision on the consumer's side.
  */
 
-import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { docsDir, packagesDir } from '../util/paths.mjs';
+import { logoDigest, sha256 } from '../util/digest.mjs';
+import { camel, pascal, quote } from '../util/naming.mjs';
 import { byCodeUnit } from '../util/sort.mjs';
+import { fail, parseAttrs, tagPattern } from '../util/svg-markup.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
 const OUT_DIR = join(packagesDir, 'assets', 'src', 'generated', 'logos');
@@ -57,22 +59,7 @@ const ROOT_ATTRIBUTES = new Set([
 
 const MIME = { '.png': 'image/png' };
 
-const TAG = /<(\/?)([a-zA-Z][\w:.-]*)((?:"[^"]*"|'[^']*'|[^>"'])*)>/g;
-const ATTR = /([a-zA-Z_:][\w:.-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
 const URL_REF = /url\(#([^)\s]+)\)/g;
-
-function fail(file, detail) {
-  throw new Error(`${file}: ${detail}`);
-}
-
-function parseAttrs(text) {
-  const attrs = {};
-  for (const m of text.matchAll(ATTR)) attrs[m[1]] = m[2] ?? m[3];
-  return attrs;
-}
-
-const quote = (text) =>
-  `'${text.replaceAll('\\', '\\\\').replaceAll("'", "\\'")}'`;
 
 // A JSX expression holding a template literal, written as source rather than evaluated.
 const template = (body) => '{`' + body + '`}';
@@ -82,43 +69,9 @@ const template = (body) => '{`' + body + '`}';
 const entry = (key, value) =>
   key === value ? `  ${key},\n` : `  ${quote(key)}: ${value},\n`;
 
-const pascal = (text) =>
-  text
-    .split(/[^a-zA-Z0-9]+/)
-    .filter(Boolean)
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join('');
-
-const camel = (text) => {
-  const name = pascal(text);
-  return name[0].toLowerCase() + name.slice(1);
-};
-
 // os-logo and biamp-logo already say "logo" in their component name, so the module is named
 // after the component rather than after the Figma set: os.tsx exports LogoOs.
 const moduleStem = (kebab) => kebab.replace(/-logo$/, '');
-
-const sha256 = (text) => createHash('sha256').update(text).digest('hex');
-
-/**
- * A stable fingerprint of one mark's artwork, for the parity suite in task 8.
- *
- * Deliberately not `geometryDigest` from the icon emitter. That one hashes `d` and `fillRule`
- * only, which is right for an icon: an icon has no colour of its own, so two icons with the same
- * outline are the same drawing. A logo's colours *are* the drawing -- the two Biamp wordmarks
- * differ in nothing else -- so the fill is part of the fingerprint here. Exported so the Flutter
- * emitter hashes the same canonical form rather than a second one that happens to agree.
- */
-export const logoDigest = (paths) =>
-  sha256(
-    JSON.stringify(
-      paths.map((p) => ({
-        d: p.d,
-        fillRule: p.fillRule ?? 'nonzero',
-        fill: p.fill,
-      })),
-    ),
-  );
 
 function rootViewBox(attrs, file) {
   for (const name of Object.keys(attrs)) {
@@ -218,7 +171,7 @@ export function svgToJsx(source, { file }) {
   let closed = false;
   let open = 0;
   let cursor = 0;
-  TAG.lastIndex = 0;
+  const TAG = tagPattern();
 
   for (let tag; (tag = TAG.exec(source));) {
     const between = source.slice(cursor, tag.index);
@@ -368,12 +321,24 @@ function vectorModule(set, logo) {
 }
 
 /**
- * One raster set, as base64 data URLs.
+ * One raster asset's bytes, checked against the digest the spec recorded.
  *
- * Read from docs/ rather than carried in spec/icons.json: the spec records the path because
- * 20 KB of base64 in a checked-in JSON file would be noise to every other target. docs/ is
- * read-only to the generator, and reading is what that means.
+ * Read from docs/ rather than carried in spec/icons.json, because 20 KB of base64 in a checked-in
+ * JSON file would be noise to every other target. The digest is what keeps that honest: without
+ * it a changed PNG would change this output while the spec, which the guard compares, stayed the
+ * same.
  */
+function rasterBytes(logo, slug) {
+  const file = logo.files[slug];
+  const bytes = readFileSync(join(docsDir, 'solar-icons', file));
+  if (sha256(bytes) !== logo.digests?.[slug])
+    throw new Error(
+      `${file}: the bytes do not match the digest in the icon spec; regenerate the spec`,
+    );
+  return bytes;
+}
+
+/** One raster set, as base64 data URLs. */
 function rasterModule(set, logo) {
   const slugs = Object.keys(logo.files).sort(byCodeUnit);
   const nameType = `${pascal(set)}Name`;
@@ -389,7 +354,7 @@ function rasterModule(set, logo) {
       throw new Error(`${path}: no known media type for a ${ext} asset`);
     urls.set(
       slug,
-      `data:${mime};base64,${readFileSync(join(docsDir, 'solar-icons', path)).toString('base64')}`,
+      `data:${mime};base64,${rasterBytes(logo, slug).toString('base64')}`,
     );
   }
 
@@ -444,14 +409,12 @@ export function renderReactLogos(spec) {
           Object.keys(logo.files)
             .sort(byCodeUnit)
             .map((slug) => {
-              const bytes = readFileSync(
-                join(docsDir, 'solar-icons', logo.files[slug]),
-              );
+              const bytes = rasterBytes(logo, slug);
               return [
                 slug,
                 {
                   bytes: bytes.length,
-                  digest: createHash('sha256').update(bytes).digest('hex'),
+                  digest: sha256(bytes),
                 },
               ];
             }),
@@ -510,23 +473,9 @@ export function renderReactLogos(spec) {
   return { modules, barrel, logos };
 }
 
-export function emitReactLogos(spec, fileVersion) {
-  const { modules, barrel, logos } = renderReactLogos(spec);
+export function emitReactLogos(spec) {
+  const { modules, barrel } = renderReactLogos(spec);
   for (const m of modules) writeGenerated(join(OUT_DIR, m.file), m.source);
   writeGenerated(join(OUT_DIR, 'index.ts'), barrel);
-  writeGenerated(
-    join(OUT_DIR, 'logos.manifest.json'),
-    JSON.stringify(
-      {
-        _note:
-          'Written by the SOLAR codegen. One entry per logo set; "digest" is a SHA-256 of the canonical JSON of that variant\'s paths, or of the raw SVG source for a variant the vector IR cannot represent, or of the file bytes for a raster asset. The app icons ship as base64 data URLs in app-icon.ts; the Teams variant of os-logo is the one asset Flutter does not carry.',
-        target: 'react',
-        fileVersion,
-        logos,
-      },
-      null,
-      2,
-    ) + '\n',
-  );
   return modules.length;
 }

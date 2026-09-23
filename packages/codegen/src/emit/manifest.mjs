@@ -1,6 +1,3 @@
-import { join } from 'node:path';
-import { writeGenerated } from '../util/write.mjs';
-
 // Alpha is quantized to 8 bits before rounding, because that is the most a target can carry:
 // Dart's Color(0xAARRGGBB) gives it one byte, so CSS's 0.05 and Dart's 0x0D are the same
 // colour and must not read as a parity failure.
@@ -108,29 +105,11 @@ export function letterSpacingEm(value, fontSizePx) {
 }
 
 /**
- * @param {{
- *   target: string,
- *   dir: string,
- *   entries: Record<string, {emitted: unknown, normalized: unknown, modes?: Record<string, unknown>}>,
- *   fileVersion: string,
- * }} args
- */
-export function writeManifest({ target, dir, entries, fileVersion }) {
-  const body = {
-    _note:
-      'Written by the SOLAR codegen. "emitted" is the literal this target produced; "normalized" is that literal parsed back to canonical form; "modes" carries the same canonical form per mode (light/dark or desktop/mobile) for the tokens that vary, and is absent for the ones that do not. The parity suite compares normalized and every mode across targets.',
-    target,
-    fileVersion,
-    tokens: entries,
-  };
-  return writeGenerated(
-    join(dir, 'tokens.manifest.json'),
-    JSON.stringify(body, null, 2) + '\n',
-  );
-}
-
-/**
- * Builds a manifest entry.
+ * Builds a manifest entry: one token as one target emitted it.
+ *
+ * A manifest is held in memory and handed to the parity suite by each render function; it is
+ * not written to disk. It is a claim about the output rather than the output, which is why parity
+ * also reads the generated files back (assertion 9 in parity.test.mjs).
  *
  * For scalar types the emitted literal is parsed back, so a bad conversion in one target is
  * caught. For the composite types (shadow, typography) the target's literal syntax differs too

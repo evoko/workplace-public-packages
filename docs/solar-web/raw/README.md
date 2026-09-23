@@ -22,13 +22,12 @@ node docs/solar-web/raw/fetch-rest.mjs --pages button,tabs
 node docs/solar-web/build-docs.mjs                     # then regenerate the docs
 ```
 
-**Legacy route (kept for reference):** before REST access existed, pages were extracted
-inside the Figma desktop app through the Figma MCP `use_figma` tool with
-[`_extractor.js`](_extractor.js) (one page per call) or [`_extractor2.js`](_extractor2.js)
-(many pages per call, compact payload), chunked at 14 KB and reassembled with
-[`_assemble.mjs`](_assemble.mjs) or [`_assemble2.mjs`](_assemble2.mjs). That route works on
-view-only files but routes every byte through a model; the REST route replaced it on
-2026-09-21 and produces the identical shape.
+**Retired route:** before REST access existed, pages were extracted inside the Figma desktop
+app through the Figma MCP `use_figma` tool, chunked and reassembled by `_extractor.js`,
+`_extractor2.js`, `_assemble.mjs` and `_assemble2.mjs`. It worked on view-only files but routed
+every byte through a model. The REST route replaced it on 2026-09-21 with the identical output
+shape, and the scripts were removed on 2026-09-23; they are in git history if a view-only file
+ever needs them again.
 
 These files are the machine-readable ground truth for the human docs one level up and
 for any design-to-code generator. Regenerate them rather than editing them.

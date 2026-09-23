@@ -11,6 +11,8 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { docsDir } from '../util/paths.mjs';
+import { sha256 } from '../util/digest.mjs';
+import { pascal } from '../util/naming.mjs';
 import { byCodeUnit } from '../util/sort.mjs';
 import { ICON_DEVIATIONS } from './deviations.mjs';
 import { parseSvg } from './svg.mjs';
@@ -57,13 +59,6 @@ export function readVector(source, { file }) {
 
 const loadVector = (file) =>
   readVector(readFileSync(join(iconsDir, file), 'utf8'), { file });
-
-const pascal = (text) =>
-  text
-    .split(/[^a-zA-Z0-9]+/)
-    .filter(Boolean)
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join('');
 
 /**
  * The component name is derived from the file stem, never taken from the catalog: two Figma
@@ -201,6 +196,15 @@ export function buildIconSpec(catalog) {
     if (entry.raster) {
       entry.files = Object.fromEntries(
         group.variants.map((v) => [slugOf(v.file), v.file]),
+      );
+      // The bytes stay in docs/ -- 20 KB of base64 would be noise in a checked-in spec -- but
+      // their digest does not. The emitter reads the file and refuses bytes that do not match,
+      // so a changed PNG changes spec/icons.json and the spec guard sees it, like any other asset.
+      entry.digests = Object.fromEntries(
+        Object.entries(entry.files).map(([slug, file]) => [
+          slug,
+          sha256(readFileSync(join(iconsDir, file))),
+        ]),
       );
     } else {
       entry.variants = {};

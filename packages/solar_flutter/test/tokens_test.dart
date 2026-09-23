@@ -55,4 +55,32 @@ void main() {
       lessThan(SolarTypography.desktop.displayLg.fontSize!),
     );
   });
+
+  group('SolarTheme.resolve', () {
+    test('switches to the Mobile scale below the sm boundary, as the web does',
+        () {
+      final narrow = SolarTheme.resolve(
+          brightness: Brightness.light, width: SolarViewport.sm - 1);
+      final wide = SolarTheme.resolve(
+          brightness: Brightness.light, width: SolarViewport.sm);
+      expect(narrow.typography.displayLg, SolarTypography.mobile.displayLg);
+      expect(narrow.typeScale.sizeDisplayLg, SolarType.mobile.sizeDisplayLg);
+      // The web query is max-width: 767.98px, so exactly 768 is already Desktop.
+      expect(wide.typography.displayLg, SolarTypography.desktop.displayLg);
+    });
+
+    test('takes its colours and shadows from the brightness alone', () {
+      final dark = SolarTheme.resolve(brightness: Brightness.dark, width: 320);
+      expect(dark.colors.surfaceBackground, SolarColors.dark.surfaceBackground);
+      expect(dark.shadows, SolarShadows.dark);
+      expect(dark.typography.displayLg, SolarTypography.mobile.displayLg);
+    });
+
+    test('at Desktop width matches the constant themes', () {
+      final light =
+          SolarTheme.resolve(brightness: Brightness.light, width: 1440);
+      expect(light.colors, SolarTheme.light.colors);
+      expect(light.typography, SolarTheme.light.typography);
+    });
+  });
 }

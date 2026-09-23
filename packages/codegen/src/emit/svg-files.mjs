@@ -86,10 +86,9 @@ export function renderSvgFiles(spec) {
   return files;
 }
 
-// fileVersion is accepted for signature parity with the other emitters, which record it in a
-// manifest. These files carry no header: an SVG is consumed by a browser, not read as source,
-// and a provenance comment would be bytes every consumer downloads and no consumer reads.
-export function emitSvgFiles(spec, _fileVersion) {
+// These files carry no header: an SVG is consumed by a browser, not read as source, and a
+// provenance comment would be bytes every consumer downloads and no consumer reads.
+export function emitSvgFiles(spec) {
   const files = renderSvgFiles(spec);
   for (const [file, contents] of files)
     writeGenerated(join(OUT_DIR, file), contents);

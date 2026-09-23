@@ -1,9 +1,16 @@
 import { afterAll, describe, expect, it } from 'vitest';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { repoRoot } from '../src/util/paths.mjs';
-import { writeGenerated } from '../src/util/write.mjs';
+import { pruneGenerated, writeGenerated } from '../src/util/write.mjs';
 
 // The guard only allows writes inside the repository, so the one positive test has to create a
 // real directory here. It cleans up after itself rather than leaving that to a manual step.
@@ -34,5 +41,35 @@ describe('writeGenerated', () => {
     const file = join(dir, 'nested', 'out.txt');
     writeGenerated(file, 'hello');
     expect(readFileSync(file, 'utf8')).toBe('hello');
+  });
+});
+
+describe('pruneGenerated', () => {
+  it('removes what this run did not write, and keeps what it did', () => {
+    const dir = mkdtempSync(join(repoRoot, 'packages', 'codegen', 'tmp-'));
+    scratch.push(dir);
+    writeGenerated(join(dir, 'kept.ts'), 'current');
+    // Left over from an earlier run: an icon that no longer exists in Figma.
+    mkdirSync(join(dir, 'gone'), { recursive: true });
+    writeFileSync(join(dir, 'gone', 'IconRetired.tsx'), 'stale');
+    writeFileSync(join(dir, 'stale.json'), 'stale');
+
+    const removed = pruneGenerated(dir);
+
+    expect(removed.map((p) => p.split('/').pop()).sort()).toEqual([
+      'IconRetired.tsx',
+      'stale.json',
+    ]);
+    expect(readFileSync(join(dir, 'kept.ts'), 'utf8')).toBe('current');
+    expect(
+      existsSync(join(dir, 'gone')),
+      'an emptied directory is removed',
+    ).toBe(false);
+  });
+
+  it('is held to the same guard as a write', () => {
+    expect(() => pruneGenerated(join(repoRoot, 'docs'))).toThrow(
+      /read-only to the generator/,
+    );
   });
 });
