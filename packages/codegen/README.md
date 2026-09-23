@@ -123,8 +123,14 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    naming the variants, never averaged away: it is a Figma mistake or a real interaction between
    axes, and only a person can say which. A value bound to no variable is recorded too.
 3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
-   demoted — hover, pressed and focus become platform states, disabled and loading stay props),
-   the slots from the layer tree's prop bindings, the layers by name, and the recipe.
+   demoted — hover, pressed and focus become platform states, disabled and loading stay props;
+   states drawn as `false/true` axes of their own, as Checkbox's are, are first folded into one
+   `state` axis, and a variant with two at once is read as the stronger and reported),
+   the slots from the layer tree's prop bindings (a frame one prop shows and the text inside it
+   another fills are one slot), the layers by name, and the recipe. A layer is named by its slot
+   or its own name; two that would share one are qualified by their parents until they differ
+   (`/Field/Label` is `fieldLabel` beside `/Label`), and repeated siblings keep Figma's order
+   (`tabItem`, `tabItem2`). Names depend on the set of paths alone, never on the order seen.
 4. **Apply the overlay** (`src/normalize/overlay.mjs`, `spec/overlay/<name>.yaml`). The only place
    judgement lives: the stock control to wrap, renames, a cell that follows more axes than the
    model says, a raw value bound to the token of the same value, an allowed literal, an accepted

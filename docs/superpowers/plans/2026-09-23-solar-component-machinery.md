@@ -132,6 +132,31 @@ qualified by its parent's (`fieldLabel` and `label`), and repeated siblings keep
 Tests: Text Input, Card, Dialog and Tabs build; Button's names are unchanged; qualifying is
 deterministic.
 
+**Done 2026-09-23.** Across SOLAR Web, sets whose IR builds went from 65 to 111 of 119; 52 had
+failed on a layer name. Two naming rules had to come with it, both about slots:
+
+- **A slot is named less its verb, `show …` as well as `has…`.** Text Input's props are
+  `show label`, `show leading icon`; they were becoming slots named `showLabel`.
+- **A frame one prop shows and the text inside it another fills are one slot** (`show label` on
+  `/Label`, `label` on `/Label/Label`), with `contentLayer` naming the filled layer. With the verb
+  stripped, nine input sets had two slots named `label`.
+
+A slot's layer is qualified like any other while the slot, and so the prop, keeps Figma's name
+(Card's `title` text, inside a frame also named Title, is the layer `titleTitle`). Repeated
+siblings are qualified as one series (`contentSkeleton`, `contentSkeleton2`). Dialog now passes
+naming and stops on its image layer's two stacked paints, the 3b-2 shape. Button's names and
+generated files are unchanged. A new corpus guard in `components.test.mjs` pins the eight sets
+that do not build, none of them in 3b-2:
+
+| Set                                  | Why                                                                     |
+| ------------------------------------ | ----------------------------------------------------------------------- |
+| Tree Item, Password Input, PIN Input | a layer named by a glyph: `•••`, `\|`, and `\|Label`, which reads as `Label` beside one |
+| Banner                               | one prop (`Show Buttons`) shows two sibling layers                      |
+| Weekday Header, Popover              | one side bound to two variables (recipe)                                |
+| Insight Card, Dialog                 | a layer with two stacked paints (recipe)                                |
+
+The glyph names are Figma findings: ask SOLAR to name those layers. 414 tests and lint pass.
+
 ### Task 4: States drawn as boolean axes
 
 **Files:** modify `src/normalize/recipe.mjs`, `src/normalize/components.mjs` and their tests.
@@ -145,6 +170,21 @@ platform states true at once (Checkbox's `disabled` and `hover` together) is rec
 
 Tests: Checkbox's API is `checked`, `mixed`, `disabled`; its states are `default`, `hover`, `focus`;
 its compound variant is one finding; Button, whose `state` axis is already one axis, is unchanged.
+
+**Done 2026-09-23.** `foldStateAxes` (`component-layers.mjs`) folds `disabled`, `loading`, `focus`,
+`pressed` and `hover` axes into one `state` axis before the IR is built, so the existing rule turns
+them into states and props. `active` was dropped from the list: no SOLAR Web set draws it. The
+compound variant is not dropped: Checkbox's only disabled mixed variant is also `hover=true`, so
+dropping it would lose the one drawing of that state. A platform shows the stronger state, in the
+order both emitters already apply them (`BOOLEAN_STATES` equals `STATE_PRECEDENCE`, held by a
+test), so it is read as `disabled` and reported once. It is dropped, and reported, only when
+another variant already draws the stronger state. Beside a `state` axis nothing is folded (Card's
+`loading` stays the prop it was); a platform state drawn both ways is refused.
+
+Checkbox: API `checked`, `disabled`, `mixed`; states `default`, `focus`, `hover`; one
+`compound-state` finding. Expandable Card, Image Card, Launch Card and Nav Item, which draw only
+`hover`, now have a `hover` state instead of a `hover` prop. Button's output is unchanged.
+420 tests pass; removing the fold, or reversing its precedence, fails them.
 
 ### Task 5: Flutter widget shells
 

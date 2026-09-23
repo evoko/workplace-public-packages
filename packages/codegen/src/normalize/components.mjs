@@ -13,7 +13,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { docsDir } from '../util/paths.mjs';
 import { camel } from '../util/naming.mjs';
-import { resolveVariants } from './component-layers.mjs';
+import { foldStateAxes, resolveVariants } from './component-layers.mjs';
 import { applyOverlay, followsOf } from './overlay.mjs';
 import { deriveRecipe } from './recipe.mjs';
 
@@ -71,7 +71,7 @@ const propName = (key) => key.replace(/#.*$/, '');
  */
 function slotsOf(resolved, set) {
   const defaults = resolved.variants.find((v) => v.name === set.defaultVariant);
-  const slots = {};
+  const found = {};
   for (const [path, layer] of defaults.layers) {
     const refs = layer.propRefs;
     if (!refs) continue;
@@ -81,32 +81,156 @@ function slotsOf(resolved, set) {
     if (refs.characters) props.content = propName(refs.characters);
     if (!props.visible && !props.content) continue;
 
-    // Named after the prop that shows it (`hasIconLeading` is `iconLeading`), else the one that
-    // fills it, so the name is Figma's and not invented here.
-    const name = props.visible?.startsWith('has')
-      ? camel(props.visible.slice(3))
+    // Named after the prop that shows it, less the verb (`hasIconLeading` is `iconLeading`,
+    // `show leading icon` is `leadingIcon`), else the one that fills it, so the name is Figma's
+    // and not invented here.
+    const shows = props.visible?.match(
+      /^(?:has|show)(?=[A-Z\s_-])[\s_-]*(.+)$/i,
+    );
+    const name = shows
+      ? camel(shows[1])
       : camel(props.content ?? props.visible);
-    if (slots[name])
+    const entry = { layer: path, props, refs, main: layer.main };
+    const other = found[name];
+    if (!other) {
+      found[name] = entry;
+      continue;
+    }
+    // One slot drawn by two layers: a frame one prop shows, and the text or instance inside it
+    // another prop fills (`show label` on `/Label`, `label` on `/Label/Label`), where the inner
+    // one is shown by the same prop or by none. The slot is the frame, since that is what appears
+    // and disappears; `contentLayer` says what is filled, when something is.
+    const [outer, inner] = within(path, other.layer, defaults.parents)
+      ? [other, entry]
+      : within(other.layer, path, defaults.parents)
+        ? [entry, other]
+        : [];
+    const merges =
+      outer &&
+      outer.props.visible &&
+      !outer.props.content &&
+      !outer.contentLayer &&
+      [undefined, outer.props.visible].includes(inner.props.visible);
+    if (!merges)
       throw new Error(`${set.name}: two slots are both named ${name}`);
+    found[name] = inner.props.content
+      ? {
+          ...inner,
+          layer: outer.layer,
+          props: { visible: outer.props.visible, content: inner.props.content },
+          contentLayer: inner.layer,
+        }
+      : outer;
+  }
 
-    const def = (p) =>
-      set.props[Object.keys(set.props).find((k) => propName(k) === p)];
-    const slot = { layer: path, props };
+  const def = (p) =>
+    set.props[Object.keys(set.props).find((k) => propName(k) === p)];
+  const slots = {};
+  for (const [
+    name,
+    { layer, props, refs, main, contentLayer },
+  ] of Object.entries(found)) {
+    const slot = { layer, props };
+    if (contentLayer) slot.contentLayer = contentLayer;
     if (refs.characters) {
       slot.type = 'text';
       slot.default = def(props.content)?.default ?? null;
     } else if (refs.mainComponent) {
       // An instance swap whose default is an icon is an icon slot; any other swap is a component.
-      slot.type = layer.main?.startsWith('Icon/') ? 'icon' : 'instance';
+      slot.type = main?.startsWith('Icon/') ? 'icon' : 'instance';
     } else {
       slot.type = 'component';
-      slot.component = layer.main ?? null;
+      slot.component = main ?? null;
     }
     slot.optional = Boolean(props.visible);
     slot.visible = props.visible ? def(props.visible)?.default !== false : true;
     slots[name] = slot;
   }
   return slots;
+}
+
+/** Whether `path` is inside `ancestor`, by the parents map (a path cannot be split for it). */
+function within(path, ancestor, parents) {
+  for (let p = parents.get(path); p; p = parents.get(p))
+    if (p === ancestor) return true;
+  return false;
+}
+
+/**
+ * The IR's name for every layer: `root` for the component, the slot's name for a layer a slot owns,
+ * else the layer's own name (`Tab Item#2`, Figma's second sibling of that name, is `tabItem2`).
+ * Paths stay beside the names, because a path is what ties a name back to Figma.
+ *
+ * Where two layers would share a name, each of them is qualified by its parent's own name, and
+ * then its grandparent's, until the names differ: `/Field/Label` is `fieldLabel` beside `/Label`,
+ * whose parent is the component and which keeps `label`. A slot's layer is qualified the same way,
+ * from the slot's name (Card's `title` text, inside a frame also named Title, is `titleTitle`);
+ * the slot itself, and so the prop, keeps Figma's name. Names come from the set of paths alone, never from the order they were seen, so
+ * a layer another variant adds cannot rename one that was already there.
+ *
+ * @param {Map<string, string | null>} parents every layer's path, to its parent's
+ * @param {Record<string, {layer: string}>} slots
+ * @returns {Map<string, string>} path to name
+ */
+export function namesOf(parents, slots, component) {
+  const bySlot = new Map(
+    Object.entries(slots).map(([name, s]) => [s.layer, name]),
+  );
+  // A path cannot be split to find a layer's own name, since names contain `/` themselves.
+  const own = (path) => {
+    const parent = parents.get(path);
+    return path.slice(parent === '/' ? 1 : parent.length + 1);
+  };
+  const chain = (path) => {
+    const names = [];
+    for (let p = path; p && p !== '/'; p = parents.get(p))
+      names.unshift(own(p));
+    return names;
+  };
+  // A path's name qualified by `depth` ancestors, or null once it has none left to add. A slot's
+  // layer starts from the slot's name.
+  const at = (path, depth) => {
+    if (path === '/') return depth ? null : 'root';
+    const names = chain(path);
+    if (depth >= names.length) return null;
+    const words = [
+      ...names.slice(-1 - depth, -1),
+      bySlot.get(path) ?? names.at(-1),
+    ].join(' ');
+    if (!/[a-zA-Z0-9]/.test(words))
+      throw new Error(
+        `${component}: layer ${path} has no letter or digit to name it by`,
+      );
+    return camel(words);
+  };
+
+  // Repeated siblings (`Skeleton`, `Skeleton#2`…) are one family and are qualified together, so
+  // they keep reading as a series.
+  const family = (path) =>
+    path === '/'
+      ? '/'
+      : `${parents.get(path)}\u0000${own(path).replace(/#\d+$/, '')}`;
+  const depth = new Map([...parents.keys()].map((p) => [family(p), 0]));
+  const name = (path) => at(path, depth.get(family(path)));
+  for (;;) {
+    const byName = new Map();
+    for (const path of parents.keys())
+      byName.set(name(path), [...(byName.get(name(path)) ?? []), path]);
+    const clashes = [...byName.values()].filter((group) => group.length > 1);
+    if (!clashes.length) break;
+    const move = new Set();
+    for (const group of clashes)
+      for (const path of group)
+        if (at(path, depth.get(family(path)) + 1) !== null)
+          move.add(family(path));
+    for (const f of move) depth.set(f, depth.get(f) + 1);
+    const moved = move.size > 0;
+    if (!moved)
+      throw new Error(
+        `${component}: layers ${clashes[0].join(' and ')} are all named ${name(clashes[0][0])}, and qualifying them cannot tell them apart`,
+      );
+  }
+  return new Map([...parents.keys()].map((p) => [p, name(p)]));
 }
 
 /** A false/true axis is a boolean prop in every target, whatever Figma calls it. */
@@ -127,33 +251,19 @@ export function buildComponentSpec(
   { entry, set },
   { names, fileVersion, overlay = null },
 ) {
-  const resolved = resolveVariants(set);
+  // Checkbox draws `hover` and `focus` as axes of their own; they are one state axis here.
+  const { resolved, findings: stateFindings } = foldStateAxes(
+    resolveVariants(set),
+  );
   const slots = slotsOf(resolved, set);
 
-  // Layer names: the slot that owns a layer, else the layer's own name, and `root` for the
-  // component. Paths stay beside them, because a path is what ties a name back to Figma. They
-  // are settled before the recipe, because the overlay's `follows` rules are written in them.
-  const paths = [];
+  // Settled before the recipe, because the overlay's `follows` rules are written in them.
+  const parents = new Map();
   const defaults = resolved.variants.find((v) => v.name === set.defaultVariant);
   for (const v of [defaults, ...resolved.variants])
     for (const path of v.layers.keys())
-      if (!paths.includes(path)) paths.push(path);
-  const bySlot = new Map(
-    Object.entries(slots).map(([name, s]) => [s.layer, name]),
-  );
-  const layerNames = new Map();
-  for (const path of paths) {
-    const name =
-      path === '/'
-        ? 'root'
-        : (bySlot.get(path) ??
-          camel(path.split('/').pop().replace(/#\d+$/, '')));
-    if ([...layerNames.values()].includes(name))
-      throw new Error(
-        `${set.name}: layers ${path} and another are both named ${name}`,
-      );
-    layerNames.set(path, name);
-  }
+      if (!parents.has(path)) parents.set(path, v.parents.get(path) ?? null);
+  const layerNames = namesOf(parents, slots, set.name);
   const pathOf = (name) =>
     [...layerNames].find(([, n]) => n === name)?.[0] ?? null;
 
@@ -219,7 +329,7 @@ export function buildComponentSpec(
   // Reported under the IR's layer names (`iconTrailing`, not `Icon/None#2`), which are what the
   // code and the design review use; the Figma path stays in `layer`.
   const lc = set.name.toLowerCase();
-  const deviations = recipe.deviations.map((d) => {
+  const deviations = [...stateFindings, ...recipe.deviations].map((d) => {
     const figma = d.layer === '/' ? 'root' : d.layer.slice(1);
     const prefix = `component.${lc}.${figma}.`;
     return d.token.startsWith(prefix)
