@@ -8,17 +8,20 @@ import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 import * as tokens from '../src/stages/tokens.mjs';
 import * as icons from '../src/stages/icons.mjs';
+import * as components from '../src/stages/components.mjs';
 import { writeDeviationsReport } from '../src/report/deviations.mjs';
 import { packagesDir, repoRoot } from '../src/util/paths.mjs';
 import { pruneGenerated } from '../src/util/write.mjs';
 
-const STAGES = [tokens, icons];
+const STAGES = [tokens, icons, components];
 
 // The directories the generator owns outright. After every stage has written, anything left in
 // them that this run did not write is stale -- an icon removed in Figma, an output a stage no
 // longer produces -- and is deleted rather than left committed and silently regenerating.
-// spec/ is not listed: spec/overlay/ will hold hand-written files beside the generated ones.
+// spec/ itself is not listed, because spec/overlay/ holds hand-written files beside the generated
+// ones; spec/components/ is, because every file in it is generated.
 const OWNED_DIRS = [
+  components.componentsDir,
   join(packagesDir, 'styles', 'src', 'generated'),
   join(packagesDir, 'assets', 'src', 'generated'),
   join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated'),

@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { buildIconSpec, loadIconCatalog } from '../src/normalize/icons.mjs';
@@ -6,6 +6,7 @@ import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
 import { EXT, flattenSpec, readSpec } from '../src/spec.mjs';
 import { specDir } from '../src/util/paths.mjs';
 import { byCodeUnit } from '../src/util/sort.mjs';
+import * as stage from '../src/stages/components.mjs';
 
 // spec/tokens.json is the contract every target is generated from, and it is committed so that
 // later milestones and outside consumers can read it without rebuilding. The emitters, though,
@@ -120,4 +121,29 @@ describe('the committed icon spec', () => {
         .length,
     );
   });
+});
+
+// spec/components/*.json is the third contract, with the same blind spot: the recipe emitters
+// run against the spec held in memory, so a stale file on disk would fail nothing else.
+describe('the committed component specs', () => {
+  const { built } = stage.build();
+
+  it('exist, one per generated component, and nothing else', () => {
+    expect(readdirSync(stage.componentsDir).sort()).toEqual(
+      stage.COMPONENTS.map(stage.fileOf).sort(),
+    );
+  });
+
+  for (const { spec } of built)
+    it(`${spec.component}: holds exactly the IR the emitters are handed`, () => {
+      const onDisk = JSON.parse(
+        readFileSync(
+          join(stage.componentsDir, stage.fileOf(spec.component)),
+          'utf8',
+        ),
+      );
+      const { $description, ...rest } = onDisk;
+      expect($description).toMatch(/Do not edit/);
+      expect(rest).toEqual(JSON.parse(JSON.stringify(spec)));
+    });
 });

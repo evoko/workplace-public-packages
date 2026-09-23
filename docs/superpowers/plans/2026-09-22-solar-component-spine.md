@@ -200,6 +200,29 @@ disagreements, so 3b needs the report grouped per component rather than one row 
 `slots`, `style`, `provenance`. Written to `spec/components/button.json` by the CLI in Task 9, and
 guarded by `spec.test.mjs` the way the token and icon specs are.
 
+**Done 2026-09-23**, with three changes from the text below:
+
+- The IR keeps Figma's axis name, so it is `api.prio`, not `api.variant`: renaming is the
+  overlay's job (Task 4), and baking it in here would leave the overlay nothing to state.
+- The component stage (`src/stages/components.mjs`) exists now rather than in Task 9, because
+  the spec guard needs `spec/components/button.json` on disk. It writes the IR, folds the 14
+  Button deviations into `spec/deviations.md` under the IR's layer names (`iconTrailing`, not
+  `Icon/None#2`), and `spec/components/` is pruned with the other generated directories. Tasks
+  5 and 6 add their emitters to it; Task 9 is left with `solar:scaffold`.
+- Slots come from the layer tree's `propRefs`, not the catalog's `slots` list, which names
+  both icon slots `Icon/None` and cannot tell leading from trailing.
+
+Button's IR: `api` is `size`, `prio`, `danger` (boolean), `disabled` and `loading` (booleans
+promoted from the state axis); `states` is `default, hover, pressed, focus`; four slots
+(`iconLeading`, `label`, `iconTrailing`, `counter`) driven by the seven Figma props; layers
+named `root`, `iconLeading`, `spinner`, `label`, `iconTrailing`, `counter`.
+
+**Figma contradicts itself here**, and the IR keeps both sides under `docs`: Button's own
+description says 96 variants, sizes `xs 28 / sm 36 / md 44 / lg 48`, and four states, while the
+set has 108 variants, sizes `md 40 / sm 32 / xl 48`, and six states. The variants win. The same
+description says focus is `shadow/focus/*` applied on `:focus-visible`, which agrees with
+demoting `focus` to a platform state.
+
 Tests: `api.variant` has the three prio values with `primary` as default; `api.size` is
 `md | sm | xl` defaulting to `md`; `states` excludes `disabled` and `loading`, which appear in
 `api` instead; `slots` names the seven from the catalog.
