@@ -878,7 +878,7 @@
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 197,
+              "gap": 16,
               "pad": [
                 0,
                 0,
@@ -887,6 +887,9 @@
               ],
               "align": "SPACE_BETWEEN/CENTER",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
             },
             "children": [
               {

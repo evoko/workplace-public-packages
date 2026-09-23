@@ -120,7 +120,8 @@ Default variant: `type=with label` · 4 variants · default size 350×41px
     fill `color.surface.muted` · itemSpacing `stack.xs` · radius `radius.control`
     - **Rectangle 2** · rectangle · FIXED/FIXED · 153×4  
       fill `color.surface.inverse` · radius `radius.control`
-  - **Steps** · frame · row gap 197 pad 0/0/0/0 FILL/HUG · 350×41
+  - **Steps** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 350×41  
+    itemSpacing `inset.md`
     - **Step** · instance of **Step** (status=complete, type=round) · column gap 8 pad 0/0/0/0 HUG/HUG · 26×41  
       itemSpacing `inset.xs`
     - **Step** · instance of **Step** (status=active, type=round) · column gap 8 pad 0/0/0/0 HUG/HUG · 26×41  
@@ -135,7 +136,7 @@ Default variant: `type=with label` · 4 variants · default size 350×41px
 | Fills      | `color.surface.inverse`, `color.surface.muted`                                            |
 | Text color | `color.text.inverse`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
 | Icon color | `color.icon.inverse`                                                                      |
-| Spacing    | `inset.xs`, `stack.xs`                                                                    |
+| Spacing    | `inset.md`, `inset.xs`, `stack.xs`                                                        |
 | Radius     | `radius.control`                                                                          |
 
 ### Composes
@@ -154,7 +155,6 @@ Default variant: `type=with label` · 4 variants · default size 350×41px
 ### Issues detected
 
 - Hard-coded paddingRight `225px` on layer _Progress_
-- Hard-coded gap `197px` on layer _Steps_
 
 ## Issues detected (page)
 

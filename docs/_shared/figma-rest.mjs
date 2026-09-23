@@ -55,8 +55,10 @@ export async function figmaGet(path, params = {}) {
 
 // Opens a file: reads its head (name, version, page list) and prepares a response cache
 // keyed by the file version, so an unchanged file costs no page requests and a changed
-// one is re-fetched automatically. `nodes(ids, cacheName)` is GET /v1/files/KEY/nodes
+// one is re-fetched automatically. `nodes(ids, cacheName, params)` is GET /v1/files/KEY/nodes
 // through that cache, with a small delay after each real request to stay under rate limits.
+// Extra query parameters (`{geometry: 'paths'}`) are part of the cache key, so a response
+// fetched without them is never served for a request that asks for them.
 export async function openFile(
   key,
   {
@@ -79,10 +81,14 @@ export async function openFile(
     version,
     cacheDir,
     pages: head.document.children,
-    async nodes(ids, cacheName) {
-      const f = join(cacheDir, cacheName + '.json');
+    async nodes(ids, cacheName, params = {}) {
+      const suffix = Object.entries(params)
+        .sort(([a], [b]) => (a < b ? -1 : 1))
+        .map(([k, v]) => `.${k}-${v}`)
+        .join('');
+      const f = join(cacheDir, cacheName + suffix + '.json');
       if (existsSync(f)) return JSON.parse(readFileSync(f, 'utf8'));
-      const resp = await figmaGet(`/v1/files/${key}/nodes`, { ids });
+      const resp = await figmaGet(`/v1/files/${key}/nodes`, { ids, ...params });
       writeFileSync(f, JSON.stringify(resp));
       await new Promise((r) => setTimeout(r, delayMs));
       return resp;

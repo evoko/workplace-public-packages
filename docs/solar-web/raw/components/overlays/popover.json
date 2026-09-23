@@ -155,6 +155,12 @@
             "sizing": "FIXED/FIXED",
             "fills": [
               "{Color:surface/raised}"
+            ],
+            "geometry": [
+              {
+                "path": "M0 0L10 0L0 10L0 0Z",
+                "windingRule": "NONZERO"
+              }
             ]
           }
         ]
@@ -254,6 +260,14 @@
           ],
           "overrides": {
             "changed": {
+              "/Tip": {
+                "geometry": [
+                  {
+                    "path": "M0 10L10 10L0 0L0 10Z",
+                    "windingRule": "NONZERO"
+                  }
+                ]
+              },
               "/Content": {
                 "size": [
                   240,
@@ -322,6 +336,14 @@
           ],
           "overrides": {
             "changed": {
+              "/Tip": {
+                "geometry": [
+                  {
+                    "path": "M0 10L10 10L0 0L0 10Z",
+                    "windingRule": "NONZERO"
+                  }
+                ]
+              },
               "/Content": {
                 "radius": [
                   0,
@@ -366,6 +388,14 @@
                   "topRightRadius": "Spatial:radius/none",
                   "bottomLeftRadius": "Spatial:radius/container"
                 }
+              },
+              "/Tip": {
+                "geometry": [
+                  {
+                    "path": "M0 0L0 10L10 0L0 0Z",
+                    "windingRule": "NONZERO"
+                  }
+                ]
               }
             }
           }
@@ -439,6 +469,14 @@
                   "lineHeight": "Type:line-height/body/sm",
                   "fontSize": "Type:size/body/sm"
                 }
+              },
+              "/Tip": {
+                "geometry": [
+                  {
+                    "path": "M0 0L0 10L10 0L0 0Z",
+                    "windingRule": "NONZERO"
+                  }
+                ]
               }
             }
           }
@@ -460,6 +498,14 @@
                 "layout": {
                   "dir": "HORIZONTAL"
                 }
+              },
+              "/Tip": {
+                "geometry": [
+                  {
+                    "path": "M10 0L10 10L0 0L10 0Z",
+                    "windingRule": "NONZERO"
+                  }
+                ]
               },
               "/Content": {
                 "size": [
@@ -533,6 +579,14 @@
                 "layout": {
                   "dir": "HORIZONTAL"
                 }
+              },
+              "/Tip": {
+                "geometry": [
+                  {
+                    "path": "M10 0L10 10L0 0L10 0Z",
+                    "windingRule": "NONZERO"
+                  }
+                ]
               },
               "/Content": {
                 "radius": [

@@ -274,6 +274,18 @@ const VECTOR_TYPES = new Set([
   'STAR',
   'REGULAR_POLYGON',
 ]);
+// The node types whose shape only a path describes.
+const GEOMETRY_TYPES = new Set([
+  'VECTOR',
+  'BOOLEAN_OPERATION',
+  'LINE',
+  'STAR',
+  'REGULAR_POLYGON',
+]);
+const geometry = (list) =>
+  list?.length
+    ? list.map((g) => ({ path: g.path, windingRule: g.windingRule }))
+    : null;
 function layer(n, parent, depth, maxDepth, ctx) {
   const o = { name: n.name, type: n.type };
   if (n.visible === false) o.hidden = true;
@@ -341,6 +353,14 @@ function layer(n, parent, depth, maxDepth, ctx) {
   const es = ctx.styleName(n.styles?.effect);
   if (es) o.effectStyle = es;
   if (n.opacity !== undefined && n.opacity < 1) o.opacity = n.opacity;
+  // A drawn shape's outline, in the layer's own coordinates, for the node types whose shape is not
+  // already described by their size and radius (a rectangle or an ellipse is).
+  if (GEOMETRY_TYPES.has(n.type)) {
+    const g = geometry(n.fillGeometry);
+    if (g) o.geometry = g;
+    const sg = s ? geometry(n.strokeGeometry) : null;
+    if (sg) o.strokeGeometry = sg;
+  }
   const b = bindings(n);
   if (Object.keys(b).length) o.vars = b;
   if (
@@ -431,6 +451,8 @@ const DIFF_KEYS = [
   'opacity',
   'vars',
   'iconFills',
+  'geometry',
+  'strokeGeometry',
 ];
 // Paths name layers (`/Icon/None#2`), and layer names contain `/` themselves, so a path cannot be
 // split to find its parent. `parents` records it as the tree is walked.
@@ -661,7 +683,9 @@ for (const p of todo) {
   }
   let resp;
   try {
-    resp = await file.nodes(p.id, p.slug);
+    // geometry=paths adds each vector's outline (fillGeometry, strokeGeometry), the only record of
+    // a drawn glyph's shape: Checkbox's tick, StatusIndicator's marks, Sparkline's sample line.
+    resp = await file.nodes(p.id, p.slug, { geometry: 'paths' });
   } catch (e) {
     console.log(`FAILED ${p.section}/${p.slug}: ${e.message}`);
     failed.push(p.section + '/' + p.slug);

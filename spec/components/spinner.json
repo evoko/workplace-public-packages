@@ -265,7 +265,7 @@
     "pageId": "2163:3681",
     "figmaNode": "4626:102",
     "defaultVariant": "size=sm, style=default",
-    "fileVersion": "2402397614979898462"
+    "fileVersion": "2402405917143022507"
   },
   "overlay": {
     "file": "spec/overlay/spinner.yaml",

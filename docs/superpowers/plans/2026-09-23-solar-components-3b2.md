@@ -42,7 +42,7 @@ sync of SOLAR Web version `2402397614979898462`, which changed only Icon Button 
 | Sparkline         | 6        | builds | 3 unbound                             | the line is data; its path geometry is Figma's sample              |
 | Stepper Indicator | 4        | builds | 8 unbound                             | number or tick by status                                           |
 | Step              | 8        | builds | 12 axis, 7 unbound                    | composes Stepper Indicator                                         |
-| Stepper           | 4        | builds | 22 axis, 32 unbound                   | 2–5 steps; four drawings by `type`                                 |
+| Stepper           | 4        | builds | 22 axis, 31 unbound                   | 2–5 steps; four drawings by `type`                                 |
 | Dialog            | 3        | fails  | —                                     | an image fill beside a colour (A2); portal, focus trap; composes Icon Button, Button Group, Stepper |
 
 Four machinery facts behind the table:
@@ -121,6 +121,23 @@ Taken by the plan, each open to the owner at review:
       for byte.
 - [ ] Document the field in `schema.md`. Stop for the owner's `npm run solar:sync`; then verify the
       Checkbox tick and dash, StatusIndicator's shapes and Sparkline's line all carry geometry.
+
+**Done 2026-09-23.** The owner's sync (SOLAR Web `2402405917143022507`) brought 137 fill outlines
+and the stroke outlines: Checkbox's tick and dash on the 8 variants that add them,
+StatusIndicator's marks (differing per type), Sparkline's line and Spinner's ring as
+`strokeGeometry`. Paths use Figma's own number format, scientific notation included, which
+`svg_path.dart` already parses. Nothing downstream moved: the generated code is unchanged (the
+specs changed only their file version), every check passes, and `catalog.json` grew 3%. The same
+revision fixed Stepper's 197px step gap (now `inset/md`). Before the sync: `nodes()` in `docs/_shared/figma-rest.mjs`
+takes extra query parameters and makes them part of the cache key, so a response cached without
+geometry is never served for a request that asks for it; the Web fetcher asks for
+`geometry=paths` and records `geometry` and `strokeGeometry` on vector-type layers (not rectangles
+or ellipses), diffed per variant. Offline, against the REST responses the owner's last sync cached
+(version `2402397614979898462`, which has no geometry): all 146 pages byte for byte as committed.
+With `fillGeometry` planted on Checkbox's tick and dash, every variant that adds them records its
+shape; planted per variant on StatusIndicator, a variant whose shape differs records it under
+`changed`, and one whose shape does not records nothing. `catalog.json` carries each variant's
+overrides, so it will grow with the geometry.
 
 ### Task A2: An overlay rule for state names, and image paints as content
 

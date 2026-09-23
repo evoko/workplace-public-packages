@@ -298,6 +298,12 @@
                     "{Color:border/medium}"
                   ],
                   "strokeWeight": 1,
+                  "strokeGeometry": [
+                    {
+                      "path": "M0 0L-0.5 0L-0.5 16L0 16L0.5 16L0.5 0L0 0ZM4 20L4 20.5L8 20.5L8 20L8 19.5L4 19.5L4 20ZM0 16L-0.5 16C-0.5 18.4853 1.51472 20.5 4 20.5L4 20L4 19.5C2.067 19.5 0.5 17.933 0.5 16L0 16Z",
+                      "windingRule": "NONZERO"
+                    }
+                  ],
                   "vars": {
                     "strokeWeight": "Spatial:border/default",
                     "topLeftRadius": "Spatial:radius/control",
@@ -339,6 +345,12 @@
                     "{Color:border/medium}"
                   ],
                   "strokeWeight": 1,
+                  "strokeGeometry": [
+                    {
+                      "path": "M0 20L-0.5 20L-0.5 20.5L0 20.5L0 20ZM0 0L-0.5 0L-0.5 20L0 20L0.5 20L0.5 0L0 0ZM0 20L0 20.5L8 20.5L8 20L8 19.5L0 19.5L0 20Z",
+                      "windingRule": "NONZERO"
+                    }
+                  ],
                   "vars": {
                     "strokeWeight": "Spatial:border/default"
                   }
@@ -358,6 +370,12 @@
                     "{Color:border/medium}"
                   ],
                   "strokeWeight": 1,
+                  "strokeGeometry": [
+                    {
+                      "path": "M0 0L-0.5 0L-0.5 20L0 20L0.5 20L0.5 0L0 0Z",
+                      "windingRule": "NONZERO"
+                    }
+                  ],
                   "vars": {
                     "strokeWeight": "Spatial:border/default"
                   }
@@ -395,6 +413,12 @@
                     "{Color:border/medium}"
                   ],
                   "strokeWeight": 1,
+                  "strokeGeometry": [
+                    {
+                      "path": "M0 0L-0.5 0L-0.5 40L0 40L0.5 40L0.5 0L0 0Z",
+                      "windingRule": "NONZERO"
+                    }
+                  ],
                   "vars": {
                     "strokeWeight": "Spatial:border/default"
                   }

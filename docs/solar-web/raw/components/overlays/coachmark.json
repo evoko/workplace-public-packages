@@ -323,6 +323,12 @@
                 "sizing": "FILL/FIXED",
                 "fills": [
                   "{Color:surface/feedback/info/strong}"
+                ],
+                "geometry": [
+                  {
+                    "path": "M100 0L100 1L0 1L0 0L100 0Z",
+                    "windingRule": "NONZERO"
+                  }
                 ]
               },
               {

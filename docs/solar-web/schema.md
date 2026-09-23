@@ -93,6 +93,14 @@ so a variant whose icon changes colour says so under `changed`. An icon with no 
 lists the icons inside composed children (Button Group's Buttons), which belong to those
 children, so it says which colours a variant shows, not which layer shows them.
 
+A `VECTOR`, `BOOLEAN_OPERATION`, `LINE`, `STAR` or `REGULAR_POLYGON` layer records its shape, the
+only place a drawn glyph's outline exists (Checkbox's tick and dash, StatusIndicator's marks,
+Sparkline's sample line): `geometry`, Figma's `fillGeometry`, and `strokeGeometry` when the layer
+has strokes, each a list of `{path, windingRule}` with SVG path data in the layer's own coordinates
+(its `size` is the box). A rectangle or an ellipse records none, since its size and radius
+describe it. Both are diffed per variant like any other property. The fetcher asks for them with
+`geometry=paths`; data fetched before 2026-09-23 has neither.
+
 A colour bound to a variable carries no opacity suffix. For a bound paint REST reports the
 variable's own alpha as the paint's opacity, and the token already holds it: in all 1742 bound
 paints with an opacity, measured 2026-09-23, it equalled the token's alpha. Only an unbound

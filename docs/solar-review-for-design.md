@@ -2,7 +2,7 @@
 
 **Prepared for:** the SOLAR design team
 **From:** the Biamp Workplace web team
-**Date:** 2026-09-23, second revision (after the afternoon's changes to all three files)
+**Date:** 2026-09-23, third revision (after the afternoon's changes to all three files)
 
 Everything below is something we think can be fixed or improved **in Figma**, read from the three
 SOLAR files as they stand now. This is a work list, not a critique — most items are small and
@@ -46,6 +46,8 @@ Since this morning's list:
   and the `.Component Description` frame.
 - **Icons:** the duplicate `Icon/Phone` on Audio & DSP is deleted. The icon file has **no findings
   left at all**.
+- **Stepper**'s 197px step gap is now 16px and bound to a variable — one of the two layout
+  accidents we flagged.
 - **Foundations:** Iconography now says one stroke weight across the set, not per size.
 
 ## Summary
@@ -53,7 +55,7 @@ Since this morning's list:
 | #                                                                     | What                                              | Count     | File        |
 | --------------------------------------------------------------------- | ------------------------------------------------- | --------- | ----------- |
 | [1](#1-components-with-no-description--24)                            | Components with no description                    | 24        | SOLAR Web   |
-| [2](#2-hard-coded-values--56-across-11-components)                    | Hard-coded values not bound to a variable         | 56 in 11  | SOLAR Web   |
+| [2](#2-hard-coded-values--55-across-11-components)                    | Hard-coded values not bound to a variable         | 55 in 11  | SOLAR Web   |
 | [3](#3-primitive-colours-used-directly--32-components)                | Components using primitive colours directly       | 32        | SOLAR Web   |
 | [4](#4-described-sizes-that-disagree-with-the-drawing--11-components) | Described sizes that disagree with the drawn ones | 11        | SOLAR Web   |
 | [5](#5-state-values-outside-the-standard-ladder--5)                   | State values outside the standard ladder          | 5         | SOLAR Web   |
@@ -65,7 +67,7 @@ Since this morning's list:
 
 **If you only do three things:** decide the control heights in section 4 (it touches eleven
 components and the touch-target question), replace the Breadcrumbs text on the 45 documentation
-cards in section 7, and bind Stepper's two layout accidents at the top of section 2.
+cards in section 7, and fix Stepper's last layout accident at the top of section 2.
 
 ---
 
@@ -103,28 +105,29 @@ what is left is three view groups and one utility frame.
 | Maintenance                 | **Maintenance**                       | 2        | [6593:38893](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6593-38893) |
 | Offline                     | **Offline**                           | 2        | [6593:38894](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6593-38894) |
 
-## 2. Hard-coded values — 56 across 11 components
+## 2. Hard-coded values — 55 across 11 components
 
 Paddings and gaps typed in as numbers rather than bound to a variable. They do not follow theme or
 density changes, and they are invisible unless you inspect the layer.
 
 The count went up only because the calendar views are now read in full: **Resource View** repeats
-the same five values across its header and resource rows, which is 46 of the 56. Nine components
+the same five values across its header and resource rows, which is 46 of the 55. Nine components
 are down to one or two values each.
 
-**53 of the 56 match a token exactly** and can be bound with no visual change. `inset.*` is padding
+**53 of the 55 match a token exactly** and can be bound with no visual change. `inset.*` is padding
 inside a container; `stack.*` is the gap between siblings, so auto-layout _gap_ binds to `stack.*`
 and _padding_ to `inset.*`, even though the two scales carry the same numbers.
 
-**Fix first — two layout accidents left** (TableFooter's, TableHeader's and Coachmark's are fixed):
+**Fix first — one layout accident left** (TableFooter's, TableHeader's, Coachmark's and Stepper's
+197px step gap are fixed):
 
 | Component   | Layer    | Property     | Value   | Open                                                                           |
 | ----------- | -------- | ------------ | ------- | ------------------------------------------------------------------------------ |
 | **Stepper** | Progress | paddingRight | `225px` | [5762:5846](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5762-5846) |
-| **Stepper** | Steps    | gap          | `197px` | [5762:5846](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5762-5846) |
 
-Neither has a token anywhere near (the scale stops at 40px). They look like widths that should
-follow from the number of steps rather than fixed spacing.
+It has no token anywhere near (the scale stops at 40px), and looks like a width that should follow
+from the number of steps rather than fixed spacing. A small note on the gap just fixed: it is bound
+to `inset/md`, a padding token; `stack/md` is the gap token of the same value.
 
 **Resource View** · views/calendar · 46 values · [open](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6827-2)
 
@@ -419,7 +422,7 @@ These are the ones we genuinely cannot answer:
 ---
 
 _Extracted from SOLAR Foundations `[v1--2026]` version `2402389239778582681`, SOLAR Web
-`[v1--2026]` version `2402397614979898462` and SOLAR Icons `[v2--2026]` version
+`[v1--2026]` version `2402405917143022507` and SOLAR Icons `[v2--2026]` version
 `2402400024423705866`, all read on 2026-09-23. Counts are computed from the files, not estimated,
 and each section was re-checked against this revision rather than carried over. Happy to walk
 through any of this live — and happy to be wrong on the judgement calls, where we may be missing

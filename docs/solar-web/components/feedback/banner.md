@@ -1,6 +1,6 @@
 # Banner
 
-> SOLAR Web · Figma page `↳ 🟠 Banner` (id `2797:1322`) · section `components/feedback` · raw data: [`raw/components/feedback/banner.json`](../../raw/components/feedback/banner.json)
+> SOLAR Web · Figma page `↳ 🟢 Banner` (id `2797:1322`) · section `components/feedback` · raw data: [`raw/components/feedback/banner.json`](../../raw/components/feedback/banner.json)
 
 ## Component set: Banner
 

@@ -62,6 +62,12 @@
             ],
             "fills": [
               "{Color:icon/primary}"
+            ],
+            "geometry": [
+              {
+                "path": "M5 0C2.24 0 0 2.24 0 5C0 7.76 2.24 10 5 10C7.76 10 10 7.76 10 5C10 2.24 7.76 0 5 0Z",
+                "windingRule": "NONZERO"
+              }
             ]
           }
         ]
