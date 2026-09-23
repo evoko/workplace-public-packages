@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
 import '../harness.dart';
 import 'spinner.dart';
 
-const buttonCase = VisualCase(build: buildButton, measure: measureButton);
+const buttonCase = VisualCase(
+  build: buildButton,
+  measure: measureButton,
+  layersAt: measureButtonAt,
+);
 
 /// Every oracle layer, measured from the pumped SolarButton.
-Layers measureButton(WidgetTester tester) {
-  final inButton = find.byType(FilledButton);
+Layers measureButton(WidgetTester tester) =>
+    measureButtonAt(tester, find.byType(SolarButton));
+
+/// Every oracle layer of the SolarButton at [at], alone or inside another widget (Button Group's).
+Layers measureButtonAt(WidgetTester tester, Finder at) {
+  Finder inside(Finder f) => find.descendant(of: at, matching: f);
+  final inButton = inside(find.byType(FilledButton));
   final faceFinder = find
       .descendant(of: inButton, matching: find.byType(DecoratedBox))
       .first;
@@ -32,10 +42,10 @@ Layers measureButton(WidgetTester tester) {
       .padding
       .resolve(TextDirection.ltr);
   final root = tester.getRect(faceFinder);
-  final lead = tester.getRect(find.byKey(const Key('lead')));
-  final label = tester.getRect(find.text('Label'));
+  final lead = tester.getRect(inside(find.byKey(const Key('lead'))));
+  final label = tester.getRect(inside(find.text('Label')));
   Map<String, Object?> icon(String key) {
-    final finder = find.byKey(Key(key));
+    final finder = inside(find.byKey(Key(key)));
     final painted = tester.widget<ColoredBox>(
       find.descendant(of: finder, matching: find.byType(ColoredBox)),
     );
@@ -44,9 +54,12 @@ Layers measureButton(WidgetTester tester) {
   }
 
   final visibility = tester.widget<Visibility>(
-    find.ancestor(of: find.text('Label'), matching: find.byType(Visibility)),
+    find.ancestor(
+      of: inside(find.text('Label')),
+      matching: find.byType(Visibility),
+    ),
   );
-  final spinners = find.byType(SolarSpinner);
+  final spinners = inside(find.byType(SolarSpinner));
 
   return {
     'root': {
@@ -66,7 +79,12 @@ Layers measureButton(WidgetTester tester) {
       'height': root.height,
     },
     'label': {
-      ...textValues(paintedText(tester, 'Label')),
+      ...textValues(
+        tester
+            .renderObject<RenderParagraph>(inside(find.text('Label')))
+            .text
+            .style!,
+      ),
       'drawn': visibility.visible,
     },
     'iconLeading': icon('lead'),
@@ -77,7 +95,7 @@ Layers measureButton(WidgetTester tester) {
           .getSize(
             find
                 .ancestor(
-                  of: find.byKey(const Key('counter')),
+                  of: inside(find.byKey(const Key('counter'))),
                   matching: find.byType(SizedBox),
                 )
                 .first,

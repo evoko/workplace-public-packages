@@ -128,6 +128,10 @@ export const MEASURED = [
   'background',
   'borderColor',
   'borderWidth',
+  'borderTopWidth',
+  'borderRightWidth',
+  'borderBottomWidth',
+  'borderLeftWidth',
   'radius',
   'shadow',
   'paddingTop',
@@ -158,11 +162,13 @@ export function compareLayer(expected, rendered, excused = []) {
   const gaps = [];
   for (const property of MEASURED) {
     if (!(property in expected)) continue;
-    // A border colour on no border is not drawn.
-    if (property === 'borderColor' && expected.borderWidth === 0) continue;
     const figma = expected[property];
     const got = rendered[property];
+    // An excused entry is a gap even where nothing is drawn, so every excuse is seen reached.
     const excuse = excused.find((e) => e.property === property);
+    if (!excuse && property === 'borderColor' && expected.borderWidth === 0)
+      // A border colour on no border is not drawn.
+      continue;
     if (excuse) {
       gaps.push({
         property,

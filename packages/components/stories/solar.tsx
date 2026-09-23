@@ -85,8 +85,17 @@ export function meta(component: string) {
       Object.entries(api).map(([p, a]) => [p, a.default]),
     ),
     argTypes: argTypesOf(component),
+    // The resting variant, with the controls' props: a case that draws what Figma nests (Button
+    // Group's Buttons) reads it from the variant's layers.
     render: (args: Record<string, unknown>) => (
-      <>{c.render({ figma: '', props: args, state: 'default' })}</>
+      <>
+        {c.render({
+          ...c.oracle.variants[0],
+          figma: '',
+          props: args,
+          state: 'default',
+        })}
+      </>
     ),
   } satisfies Meta;
 }

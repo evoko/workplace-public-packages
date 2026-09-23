@@ -413,6 +413,43 @@ Button. Check its description's sizes against the drawn ones, as Button's disagr
 area SOLAR asks for waits on its target-size token, as Button's does (the design review's first question, on control heights). The shell
 requires an accessible name (`aria-label` / `semanticLabel`), with no text fallback.
 
+**Done 2026-09-23.** 108 variants, every one matching Figma on both platforms; 10 findings, all
+decided, none open. The overlay (`spec/overlay/icon-button.yaml`): base IconButton on both, `prio`
+renamed `variant`, the `Icon/None` placeholder declared the `icon` slot, radius following
+`[size, shape]` (round is `radius.pill`), shadow and border width following `[size, prio, state]` as
+drawn (lg flat as Button's, a focus ring on press at sm and md, primary's border only at sm at rest),
+the invisible border colours at md and lg accepted, padding and gap bound to `inset.none`, the icon
+bound to `icon.xs`/`sm`/`md` (a new `bind` form, `tokens`, for a value that differs by size), and the
+32/40/48 heights allowed as Button's are. Shells: React types require `aria-label` or
+`aria-labelledby` (a union type, plus a development warning); Flutter requires `semanticLabel`.
+Machinery found and fixed on the way, every one silent before:
+
+- **A partial `follows` key.** A cell following some of the appearance axes (radius by shape, not
+  prio) was keyed `shape=round`, which neither emitter's lookup builds, so round would have lost its
+  radius. Now written under every full key; the MUI emitter refuses a partial key.
+- **A hidden child's variant.** Figma records no variant on a hidden instance, so the loading
+  Spinner's size was dropped. Now read from the first variant that draws the child.
+- **A weight with no stroke is no border.** Figma keeps a stroke's weight and binding after its paint
+  is removed; the recipe read that as a 1px border, the oracle (rightly) as none.
+- **Base-equal entries the lookup would miss.** An entry equal to the base was left out even where
+  the lookup finds another entry first (lg's borderless rest before the base's 1px), so disabled lg
+  secondary lost its border on both platforms. Now written wherever the lookup would differ.
+- **MUI's own state styles.** IconButton marks loading disabled and clears the background in its
+  disabled rule; `MUI_STATE_RESTATES` restates the recipe's resting value there.
+- **The ButtonStyle builder** emits only the properties a component's table names (no text style
+  here), and refuses a missing required one.
+- **Screen readers, Button too.** `Semantics(label:)` around a Flutter button makes a second node,
+  leaving the button unnamed; both shells and templates now use `MergeSemantics`, proven by a test
+  that fails on the old wrapper. The Icon Button spinner is excluded from semantics, as Button's is.
+- **Checks:** an excused entry on a borderless layer was skipped before it counted as reached; the
+  web gap and failure reports are named by slug; the parity suite reads shells by the scaffolder's
+  file names.
+
+Button's and Spinner's generated output is unchanged. For the designers (review, section 8): the
+disabled tertiary and lg secondary borders, the unbound padding and icon sizes, primary's border
+against Button's, the ring on press, and lg's flat look. 512 JS tests, 89 Flutter tests, both
+visual checks and both viewers pass.
+
 ### Task B2: Button Group
 
 Bespoke on both: a flex row or column of the caller's Buttons. Axes: orientation (horizontal,
@@ -420,6 +457,43 @@ vertical), type (regular, full-width, renamed `fullWidth: boolean`; Figma built 
 combinations, so vertical full-width is a `sparse` finding). The recipe gives the gap and the
 full-width stretch. Figma requires children to share prio and size; in development the shell warns
 when they do not, and it never rewrites a child's props.
+
+**Done 2026-09-23.** 3 variants, every one matching Figma on both platforms; 14 findings, 13 decided
+and one open by design: the full-width divider's sides are `unrecorded` until the owner's next sync.
+The overlay (`spec/overlay/button-group.yaml`): bespoke on both; `type` renamed `fullWidth`, a
+boolean (a new `rename` form, `values`); the layout (direction, alignment, gap, padding, each
+border side) following `[orientation, type]`; the full-width padding bound to `inset.none`; the
+three Figma Buttons styled together as the caller's children (`& > *`), their hidden examples' fixed
+widths `set` to fill (a new `set` form, `keyword`) and their heights left to the Button. The plan
+changed in two places, both on Figma's evidence: regular's buttons fill too (Figma draws them so,
+though its description says they size to content), and the development warning checks size only
+(Figma's own groups mix priorities, though its description forbids it); both are in the design
+review, section 8. The types refuse the vertical full-width group Figma does not draw
+(`ButtonGroupLayout`), and so does a Flutter assert.
+
+Machinery on the way:
+
+- **Per-side borders.** The fetcher recorded only `mixed` where a stroke's sides differ (89 layers
+  in SOLAR Web), so the divider could not be drawn. It now records `strokeWeights` (effective at the
+  owner's next `npm run solar:sync`); the recipe gives such a layer a cell per side, the oracle a
+  width per side, MUI `border{Side}Width`/`Style`, and both checks measure each side. Until the
+  sync, a side is drawn where Figma binds it (the top, to `border.default`), marked `inferred`, and
+  reported `unrecorded`, which the oracle excuses. Weekday Header, which failed on one side bound
+  to two variables, now derives and builds; both corpus guards moved with it.
+- **Composed children in any number.** A case marks where a layer is (`data-layer` on the web, a
+  keyed subtree in Flutter) when several layers share a selector; a child's box is compared with
+  the parent's entry, not the child's own (a Button fills a group, whatever its width alone);
+  Button's Flutter measuring is scoped (`layersAt`); builders take the whole oracle; excused entries
+  on layers the variant does not draw are not expected.
+- **Smaller fixes.** Case ids are `slug:index` (`button-` also matched `button-group-`); an oracle
+  keeps one excuse per property; `set` settles a raw-value finding once no raw value is left, and
+  the oracle excuses Figma's value there; a recipe with no size axis writes `const size`; the
+  Storybook Playground and the Widgetbook tiles start from the resting variant and scale a wide
+  widget down.
+
+Button's, Icon Button's and Spinner's generated output is unchanged. For the designers (review,
+section 8): the unbound full-width padding, the hidden buttons' leftover widths, and the two
+description-versus-drawing questions.
 
 **Pause for review.**
 

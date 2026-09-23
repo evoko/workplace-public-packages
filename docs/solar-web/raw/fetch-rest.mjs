@@ -342,10 +342,13 @@ function layer(n, parent, depth, maxDepth, ctx) {
   if (s) {
     o.strokes = s;
     const iw = n.individualStrokeWeights;
-    o.strokeWeight =
-      iw && new Set(Object.values(iw)).size > 1
-        ? 'mixed'
-        : (n.strokeWeight ?? (iw ? Object.values(iw)[0] : 0));
+    const mixed = iw && new Set(Object.values(iw)).size > 1;
+    o.strokeWeight = mixed
+      ? 'mixed'
+      : (n.strokeWeight ?? (iw ? Object.values(iw)[0] : 0));
+    // Where the sides differ, each one's weight, top, right, bottom, left: Button Group's divider
+    // is a top stroke only, which 'mixed' alone does not say.
+    if (mixed) o.strokeWeights = [iw.top, iw.right, iw.bottom, iw.left];
   }
   if (n.cornerRadius) o.radius = n.cornerRadius;
   else if (n.rectangleCornerRadii && n.rectangleCornerRadii.some((x) => x))
@@ -446,6 +449,7 @@ const DIFF_KEYS = [
   'fills',
   'strokes',
   'strokeWeight',
+  'strokeWeights',
   'radius',
   'effectStyle',
   'opacity',

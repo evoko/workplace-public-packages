@@ -10,14 +10,17 @@
  *
  *   component: Button
  *   base:         { mui, flutter, reason }              the stock control each target wraps
- *   rename:       { <axis>: { to, reason } }             Figma axis name to API name
+ *   rename:       { <axis>: { to, values?, reason } }    Figma axis name to API name; `values` maps
+ *                                                        each value too, and true/false makes it a boolean
  *   states:       { rename: { <value>: { to, reason } } }  a state value Figma spells otherwise
  *   slots:        { <layer>: { name, type, reason } }    a layer the caller fills, with no Figma prop
  *   derive:       { <axis>: { when: [{ value, given? }], reason } }  an axis that follows from
  *                                                        content (first match wins), not a prop
  *   follows:      { <layer>.<cell>: { axes, reason } }    a cell that follows other axes than its class
- *   bind:         { <layer>.<cell>: { literal, token, reason } }  a raw value to the token of that value
- *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none, reason } }  one entry, changed
+ *   bind:         { <layer>.<cell>: { literal, token, reason } }  a raw value to the token of that value,
+ *                 or { tokens: { <literal>: <token>, … }, reason } where the value differs by size
+ *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none | keyword, reason } }  one entry,
+ *                                                        changed
  *   allowLiteral: { <layer>.<cell>: { reason } }         a raw value there is no token for
  *   accept:       { <deviation token>: { reason } }      the code keeps its value; Figma's
  *                                                        difference is known and intended
@@ -41,10 +44,10 @@ export const overlayFileOf = (component) =>
 
 // Fields each section's rules may carry, beyond the reason every rule needs.
 const FIELDS = {
-  rename: ['to'],
+  rename: ['to', 'values'],
   follows: ['axes'],
-  bind: ['literal', 'token'],
-  set: ['token', 'none'],
+  bind: ['literal', 'token', 'tokens'],
+  set: ['token', 'none', 'keyword'],
   allowLiteral: [],
   accept: [],
   slots: ['name', 'type'],
@@ -100,6 +103,24 @@ export function parseOverlay(text, file) {
           fail(`${section}.${at}: unknown field ${key}`);
       if (typeof rule.reason !== 'string' || rule.reason.trim() === '')
         fail(`${section}.${at} has no reason`);
+    }
+  }
+  for (const [at, rule] of Object.entries(doc.bind ?? {})) {
+    const one = rule.literal !== undefined || rule.token !== undefined;
+    if (one === (rule.tokens !== undefined))
+      fail(`bind.${at}: give literal and token, or tokens, not both`);
+    if (
+      one &&
+      (typeof rule.literal !== 'number' || typeof rule.token !== 'string')
+    )
+      fail(`bind.${at}: literal must be a number and token a token name`);
+    if (rule.tokens !== undefined) {
+      const pairs = Object.entries(rule.tokens ?? {});
+      if (typeof rule.tokens !== 'object' || pairs.length === 0)
+        fail(`bind.${at}: tokens must map each literal to a token`);
+      for (const [literal, token] of pairs)
+        if (!Number.isFinite(Number(literal)) || typeof token !== 'string')
+          fail(`bind.${at}: tokens must map each literal to a token`);
     }
   }
   for (const [layer, rule] of Object.entries(doc.slots ?? {})) {
@@ -265,6 +286,15 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   for (const [axis, rule] of sorted('rename')) {
     if (!axes[axis])
       fail(`rename ${axis}: ${spec.component} has no axis ${axis}`);
+    if (rule.values) {
+      const options = axes[axis].options;
+      for (const v of options)
+        if (!(v in rule.values))
+          fail(`rename ${axis}: values gives nothing for ${v}`);
+      for (const v of Object.keys(rule.values))
+        if (!options.includes(v))
+          fail(`rename ${axis}: ${axis} has no value ${v}`);
+    }
     record('rename', axis, rule.reason);
   }
 
@@ -314,22 +344,29 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     record('follows', at, rule.reason);
 
   for (const [at, rule] of sorted('bind')) {
-    const value = names.value(rule.token);
-    if (value === null) fail(`bind ${at}: ${rule.token} is not a SOLAR token`);
-    if (value !== rule.literal)
-      fail(`bind ${at}: ${rule.token} is ${value}, not ${rule.literal}`);
+    const pairs = rule.tokens
+      ? Object.entries(rule.tokens).map(([l, t]) => [Number(l), t])
+      : [[rule.literal, rule.token]];
     const { layer, cell, entries } = cellEntries(at, 'bind');
-    let bound = 0;
-    for (const [holder, key] of entries)
-      if (holder[key].literal === rule.literal) {
-        holder[key] = {
-          token: rule.token,
-          from: 'overlay',
-          reason: rule.reason,
-        };
-        bound++;
-      }
-    if (bound === 0) fail(`bind ${at}: no literal ${rule.literal} to bind`);
+    for (const [literal, token] of pairs) {
+      const value = names.value(token);
+      if (value === null) fail(`bind ${at}: ${token} is not a SOLAR token`);
+      if (value !== literal)
+        fail(`bind ${at}: ${token} is ${value}, not ${literal}`);
+      let bound = 0;
+      for (const [holder, key] of entries)
+        if (holder[key].literal === literal) {
+          holder[key] = { token, from: 'overlay', reason: rule.reason };
+          bound++;
+        }
+      if (bound === 0) fail(`bind ${at}: no literal ${literal} to bind`);
+    }
+    // The finding is decided only when no raw value is left in the cell.
+    const left = entries
+      .map(([holder, key]) => holder[key].literal)
+      .filter((l) => l !== undefined);
+    if (left.length)
+      fail(`bind ${at}: leaves ${[...new Set(left)].join(', ')} unbound`);
     decide(`component.${lc}.${layer}.${cell}#unbound`, 'bind', rule.reason);
     record('bind', at, rule.reason);
   }
@@ -350,13 +387,24 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     if (!cell) fail(`set ${at}: names no cell`);
     if (rule.token !== undefined && !names.has(rule.token))
       fail(`set ${at}: ${rule.token} is not a SOLAR token`);
+    if (rule.keyword !== undefined && !['FILL', 'HUG'].includes(rule.keyword))
+      fail(`set ${at}: keyword must be FILL or HUG`);
     node[cell] =
       rule.token !== undefined
         ? { token: rule.token, from: 'overlay', reason: rule.reason }
-        : { none: true, from: 'overlay', reason: rule.reason };
-    // A cell set because Figma's value could not be read is that finding's decision.
+        : rule.keyword !== undefined
+          ? { keyword: rule.keyword, from: 'overlay', reason: rule.reason }
+          : { none: true, from: 'overlay', reason: rule.reason };
+    // A cell set because Figma's value could not be read is that finding's decision, and so is
+    // one set where Figma left a raw value, once no raw value is left anywhere in the cell.
     for (const kind of ['misbound', 'unknown-token'])
       decide(`component.${lc}.${layer}.${cell}#${kind}`, 'set', rule.reason);
+    if (
+      ![...entriesOf(s, cell)].some(
+        ([holder, key]) => holder[key].literal !== undefined,
+      )
+    )
+      decide(`component.${lc}.${layer}.${cell}#unbound`, 'set', rule.reason);
     record('set', at, rule.reason);
   }
 
@@ -387,15 +435,28 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   if (renames.length) {
     const respell = (key) =>
       renames.reduce(
-        (k, [from, { to }]) =>
-          k.replace(new RegExp(`(^|, )${from}=`, 'g'), `$1${to}=`),
+        (k, [from, { to, values }]) =>
+          k.replace(
+            new RegExp(`(^|, )${from}=([^,]+)`, 'g'),
+            (_, lead, value) => `${lead}${to}=${values?.[value] ?? value}`,
+          ),
         key,
       );
-    for (const [from, { to }] of renames) {
+    for (const [from, { to, values }] of renames) {
       if (!spec.api[from]) fail(`rename ${from}: the API has no ${from}`);
       if (spec.api[to]) fail(`rename ${from}: the API already has ${to}`);
+      // Figma's two-valued axis (Button Group's type: regular, full-width) as the boolean it is.
+      const renamed = (def) => {
+        if (!values) return def;
+        const mapped = def.values.map((v) => values[v]);
+        return [...mapped].sort().join() === 'false,true'
+          ? { type: 'boolean', default: values[def.default] === 'true' }
+          : { values: mapped, default: values[def.default] };
+      };
       spec.api = Object.fromEntries(
-        Object.entries(spec.api).map(([k, v]) => [k === from ? to : k, v]),
+        Object.entries(spec.api).map(([k, v]) =>
+          k === from ? [to, renamed(v)] : [k, v],
+        ),
       );
     }
     for (const s of Object.values(spec.style)) {

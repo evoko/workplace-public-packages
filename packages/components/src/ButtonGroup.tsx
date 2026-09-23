@@ -1,0 +1,69 @@
+/**
+ * SOLAR Button Group.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Button Group"` from spec/components/button-group.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, `solarButtonGroupStyle` in `@bwp-web/styles/mui`: the direction, the gap, the padding,
+ * the full-width bar's divider, and its buttons filling it. This file is behaviour.
+ *
+ * Bespoke: a box of the caller's Buttons, which it never changes. The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { Children, forwardRef, isValidElement, type ReactNode } from 'react';
+import {
+  solarButtonDefaults,
+  solarButtonGroupStyle,
+} from '@bwp-web/styles/mui';
+
+/** Figma draws a horizontal group regular or full-width, and a vertical one regular only. */
+export type ButtonGroupLayout =
+  | { orientation?: 'horizontal'; fullWidth?: boolean }
+  | { orientation: 'vertical'; fullWidth?: false };
+
+export type ButtonGroupProps = ButtonGroupLayout &
+  Omit<BoxProps, 'children'> & {
+    /** Two to five SOLAR Buttons, of one size. */
+    children: ReactNode;
+  };
+
+// Through globalThis, because `process` exists only where a bundler or Node provides it, and a
+// browser library should not need Node's types to say so.
+const DEV =
+  (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process?.env
+    ?.NODE_ENV !== 'production';
+
+export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
+  function ButtonGroup({ orientation, fullWidth, children, sx, ...rest }, ref) {
+    if (DEV) {
+      // SOLAR: the buttons of a group share one size. (Figma's description says one priority too,
+      // but every group it draws mixes secondary and primary, so only the size is checked.)
+      const sizes = new Set(
+        Children.toArray(children)
+          .filter(isValidElement)
+          .map(
+            (c) =>
+              (c.props as { size?: string }).size ?? solarButtonDefaults.size,
+          ),
+      );
+      if (sizes.size > 1)
+        // eslint-disable-next-line no-console -- a development-only design warning, on purpose
+        console.warn('SOLAR Button Group: its buttons should share one size.');
+    }
+
+    return (
+      <Box
+        ref={ref}
+        role="group"
+        {...rest}
+        sx={[
+          solarButtonGroupStyle({ orientation, fullWidth }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {children}
+      </Box>
+    );
+  },
+);

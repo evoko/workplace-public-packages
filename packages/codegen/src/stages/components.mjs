@@ -18,7 +18,7 @@ import { writeGenerated } from '../util/write.mjs';
 export const name = 'components';
 
 /** The components generated so far, by their Figma names. Milestone 3b adds the rest. */
-export const COMPONENTS = ['Button', 'Spinner'];
+export const COMPONENTS = ['Button', 'Spinner', 'Icon Button', 'Button Group'];
 
 export const componentsDir = join(specDir, 'components');
 export const verifyDir = join(specDir, 'verify');

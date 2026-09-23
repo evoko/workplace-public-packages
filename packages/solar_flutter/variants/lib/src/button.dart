@@ -5,7 +5,11 @@ import 'probes.dart';
 
 /// SolarButton in one oracle variant: its props from the oracle, both icons and a counter, so their
 /// colours are measured in every variant.
-Widget buildButton(Map<String, dynamic> v, WidgetStatesController states) {
+Widget buildButton(
+  Map<String, dynamic> v,
+  WidgetStatesController states, [
+  Map<String, dynamic>? _,
+]) {
   final props = v['props'] as Map<String, dynamic>;
   return SolarButton(
     onPressed: () {},

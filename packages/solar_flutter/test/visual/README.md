@@ -12,8 +12,12 @@ run by `flutter test` with the rest of the package.
   this directory adds the measuring. `cases/cases.dart` registers them, and every oracle under
   `spec/verify/` must have one, or the first test fails naming the file to add. The rest,
   `harness.dart`, is the same for every component.
-- **A composed child** (Button's spinner) is measured by the child's own case (`layersAt`) and
-  checked against the child's oracle, in the variant Figma picks for it.
+- **A composed child** (Button's spinner, Button Group's buttons) is measured by the child's own
+  case (`layersAt`, scoped to where the child is) and checked against the child's oracle, in the
+  variant Figma picks for it. Its box is the parent's to decide, so its root's width and height are
+  compared with the parent's entry for the layer instead. A builder that needs more than the
+  variant takes the whole oracle (Button Group builds the Buttons Figma nests, the prop-shown
+  tertiary among them). Excused entries on a layer the variant does not draw are not expected.
 
 - **States** are forced through a `WidgetStatesController` (hover, pressed, focus), as a user
   reaches them: a pressed widget is hovered too, as a pointer pressing it is and as the web check

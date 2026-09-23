@@ -24,9 +24,15 @@ npx playwright install chromium  # once, on a new machine
   proves the control carries it. A state that is a prop (disabled, loading) is set by the case's
   props. Transitions are switched off, so the end state is measured, not a frame.
 - **Where each layer is** comes from the emitter's own table (`MUI_SLOTS`), not a copy of it.
-- **A composed child** (Button's spinner, a layer the oracle names as another generated component)
-  is measured inside its slot and checked against its own oracle, layer by layer, in the variant
-  Figma picks for it.
+- **A composed child** (Button's spinner, Button Group's buttons: a layer the oracle names as
+  another generated component) is measured inside its slot and checked against its own oracle,
+  layer by layer, in the variant Figma picks for it. Its box is the parent's to decide (a Button
+  fills its group, whatever width it has alone), so its root's width and height are compared with
+  the parent's entry for the layer instead. Where the slot table styles several layers with one
+  selector (a group's buttons are all `& > *`), the case marks each layer's element with
+  `data-layer`, which the check measures in preference. Cases are `data-case="<slug>:<index>"`.
+- **Excused entries on a layer the variant does not draw** (a Button hidden in one group) cannot be
+  reached, so the count of gaps expected leaves them out.
 - **Comparing** (`compare.mjs`): colours in sRGB within one 8-bit step, lengths within half a
   pixel, shadows part by part, the first font family, letter spacing in pixels. A layer Figma
   hides in a variant (the label while loading, the spinner at rest) must not be drawn; a slot the

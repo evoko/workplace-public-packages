@@ -9,7 +9,7 @@ except package names.
 The SOLAR Foundations reference is in [docs/solar/](docs/solar/README.md). SOLAR names
 `CLAUDE.md` as the agent instruction layer, so treat the rules below as hard.
 [docs/README.md](docs/README.md) maps the whole pipeline: inputs, scripts, outputs, and
-what is not built yet (Button and Spinner are the only components so far).
+what is not built yet (Button, Icon Button, Button Group and Spinner are the components so far).
 CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
 and fails if the result differs from what is committed, and scans for credentials and
 unreviewed personal data. `npm run solar:sync` does the whole chain — fetch, docs, derived tokens, code — and
@@ -101,7 +101,8 @@ that saves an overlay rule) is **not built yet**.
   the root. Each package builds ESM + CJS with tsup and emits types with tsc.
 - Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (the 340 SOLAR
   icons, the logos and the app icons, generated), `@bwp-web/canvas` (interactive canvas),
-  `@bwp-web/components` (SOLAR components for React, on MUI; Button and Spinner so far), all at
+  `@bwp-web/components` (SOLAR components for React, on MUI; Button, Icon Button, Button Group and
+  Spinner so far), all at
   `2.0.0-alpha.0`; canvas is still an empty skeleton. Plus
   `@bwp-web/codegen` (private build tool) and `solar_flutter` (a Dart package, outside the npm
   workspace, formatted by `dart format` and pinned to the Flutter version in `solar.yml`).

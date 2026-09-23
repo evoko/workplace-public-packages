@@ -332,7 +332,7 @@ describe('a slot drawn by a frame and the text inside it', () => {
 // Banner left the list on 2026-09-23, when SOLAR split its one Show Buttons prop in two, and
 // Dialog when an image fill became content.
 describe('buildComponentSpec over all of SOLAR Web', () => {
-  it('builds every set but the six known ones', () => {
+  it('builds every set but the five known ones', () => {
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
     let total = 0;
@@ -349,8 +349,8 @@ describe('buildComponentSpec over all of SOLAR Web', () => {
           }
         }
     expect(total).toBe(119);
+    // Weekday Header builds since 3b-2 Task B2, which gave a border's sides cells of their own.
     expect(failures.sort()).toEqual([
-      'calendar/Weekday Header',
       'cards/Insight Card',
       'inputs/PIN Input',
       'inputs/Password Input',

@@ -5,5 +5,7 @@ library;
 
 export 'src/builders.dart';
 export 'src/button.dart';
+export 'src/button_group.dart';
+export 'src/icon_button.dart';
 export 'src/spinner.dart';
 export 'src/probes.dart';

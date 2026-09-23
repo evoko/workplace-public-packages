@@ -506,6 +506,8 @@ describe('deriveRecipe on Spinner: strokes', () => {
 
   it('settles disagreeing bindings by the value Figma draws, where one names it', () => {
     const layer = {
+      // A stroke to draw: a weight with no stroke paint is no border.
+      strokes: ['{Color:border/medium}'],
       strokeWeight: 2,
       vars: {
         strokeWeight: 'Spatial:border/strong',
@@ -541,7 +543,7 @@ describe('deriveRecipe on Spinner: strokes', () => {
 // (Weekday Header, Popover), and a layer with two stacked colours (Insight Card). Dialog left the
 // list when an image fill became content rather than a second paint.
 describe('deriveRecipe over all of SOLAR Web', () => {
-  it('derives every set it derived before, and fails only on the three known shapes', async () => {
+  it('derives every set it derived before, and fails only on the two known shapes', async () => {
     const { readdirSync } = await import('node:fs');
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
@@ -561,11 +563,9 @@ describe('deriveRecipe over all of SOLAR Web', () => {
             failures.push(`${dir}/${set.name}`);
           }
         }
-    expect(failures.sort()).toEqual([
-      'calendar/Weekday Header',
-      'cards/Insight Card',
-      'overlays/Popover',
-    ]);
+    // Weekday Header derives since 3b-2 Task B2: its one side bound to two variables is a side of
+    // its own now.
+    expect(failures.sort()).toEqual(['cards/Insight Card', 'overlays/Popover']);
     // Every icon colour in SOLAR Web is one colour on one icon.
     expect(unattributed).toEqual([]);
     expect(total).toBe(119);

@@ -52,19 +52,19 @@ Since this morning's list:
 
 ## Summary
 
-| #                                                                     | What                                              | Count     | File        |
-| --------------------------------------------------------------------- | ------------------------------------------------- | --------- | ----------- |
-| [1](#1-components-with-no-description--24)                            | Components with no description                    | 24        | SOLAR Web   |
-| [2](#2-hard-coded-values--55-across-11-components)                    | Hard-coded values not bound to a variable         | 55 in 11  | SOLAR Web   |
-| [3](#3-primitive-colours-used-directly--32-components)                | Components using primitive colours directly       | 32        | SOLAR Web   |
-| [4](#4-described-sizes-that-disagree-with-the-drawing--11-components) | Described sizes that disagree with the drawn ones | 11        | SOLAR Web   |
-| [5](#5-state-values-outside-the-standard-ladder--5)                   | State values outside the standard ladder          | 5         | SOLAR Web   |
-| [6](#6-variable-binding--3-wrong-bindings-5-unknown-variables)        | Wrong or unknown variable bindings                | 3 + 5     | SOLAR Web   |
-| [7](#7-documentation-cards-copied-from-breadcrumbs--45-pages)         | Documentation cards copied from Breadcrumbs       | 45 pages  | SOLAR Web   |
-| [8](#8-button-and-spinner-variant-by-variant)                         | Button and Spinner, variant by variant            | 4 + 3 + 2 | SOLAR Web   |
-| [9](#9-pages-that-still-contradict-the-variables--2)                  | Pages that still contradict the variables         | 2 + 2     | Foundations |
-| [10](#10-action-colours-below-the-contrast-floor--5)                  | Action colours below the contrast floor           | 5         | Foundations |
-| [11](#11-icons-and-logos)                                             | Icons and logos                                   | 0 + 2     | SOLAR Icons |
+| #                                                                      | What                                                              | Count             | File        |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------- | ----------- |
+| [1](#1-components-with-no-description--24)                             | Components with no description                                    | 24                | SOLAR Web   |
+| [2](#2-hard-coded-values--55-across-11-components)                     | Hard-coded values not bound to a variable                         | 55 in 11          | SOLAR Web   |
+| [3](#3-primitive-colours-used-directly--32-components)                 | Components using primitive colours directly                       | 32                | SOLAR Web   |
+| [4](#4-described-sizes-that-disagree-with-the-drawing--11-components)  | Described sizes that disagree with the drawn ones                 | 11                | SOLAR Web   |
+| [5](#5-state-values-outside-the-standard-ladder--5)                    | State values outside the standard ladder                          | 5                 | SOLAR Web   |
+| [6](#6-variable-binding--3-wrong-bindings-5-unknown-variables)         | Wrong or unknown variable bindings                                | 3 + 5             | SOLAR Web   |
+| [7](#7-documentation-cards-copied-from-breadcrumbs--45-pages)          | Documentation cards copied from Breadcrumbs                       | 45 pages          | SOLAR Web   |
+| [8](#8-button-spinner-icon-button-and-button-group-variant-by-variant) | Button, Spinner, Icon Button and Button Group, variant by variant | 4 + 3 + 2 + 5 + 4 | SOLAR Web   |
+| [9](#9-pages-that-still-contradict-the-variables--2)                   | Pages that still contradict the variables                         | 2 + 2             | Foundations |
+| [10](#10-action-colours-below-the-contrast-floor--5)                   | Action colours below the contrast floor                           | 5                 | Foundations |
+| [11](#11-icons-and-logos)                                              | Icons and logos                                                   | 0 + 2             | SOLAR Icons |
 
 **If you only do three things:** decide the control heights in section 4 (it touches eleven
 components and the touch-target question), replace the Breadcrumbs text on the 45 documentation
@@ -317,9 +317,9 @@ The full list with each page's link is in our generated
 
 ---
 
-## 8. Button and Spinner, variant by variant
+## 8. Button, Spinner, Icon Button and Button Group, variant by variant
 
-We generate these two components from their variants, reading every variant against the others.
+We generate these components from their variants, reading every variant against the others.
 SOLAR's model holds almost everywhere — **geometry follows `size`, colour follows `prio`, `state`
 and `danger`** — and these are the places where it does not. `xl` is `lg` now; nothing else about
 Button changed in this revision, so all of these still stand.
@@ -352,6 +352,49 @@ New on this list: we now generate Spinner too, because Button's loading state sh
 - **Fix:** the frame's padding and gap are `0` and bound to nothing; `inset/none` has the same value.
 - **⚠️ Decide:** the ring is 16, 24 and 32px across and bound to nothing. Should Spinner sizes be
   tokens, or follow the icon ladder (`icon/sm`, `icon/lg`, `icon/2xl` have the same values)?
+
+### Icon Button · [2995:443](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2995-443)
+
+New on this list: we now generate Icon Button. Its sizes are in section 4 (described 28/36/44,
+drawn 32/40/48).
+
+**Fix** — these look like accidents:
+
+| What                                                                                                                                                                                                                             | Variants                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **Disabled gains a border.** Tertiary has no border in any state but disabled, where it draws 1px `color/border/medium`; lg secondary is the same (no border at lg, but one when disabled).                                      | 8: `tertiary / disabled` at every size and shape; `lg / secondary / disabled` |
+| The frame's padding and gap are `0` and bound to nothing; `inset/none` has the same value. The icon is 12 / 16 / 20px wide, unbound; `icon/xs`, `icon/sm` and `icon/md` have the same values, and its height already binds them. | all                                                                           |
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                                                                                                                                                                                     | What we do meanwhile                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **Primary's border differs from Button's.** At sm, primary draws a grey 1px `color/border/medium` border at rest, in focus and while loading, and none on hover, press or disable; at md and lg it has none. Button's primary keeps `action/primary/border/default` (`#111111`) in every state at sm and md. Which is right? | We draw each variant as Figma does. |
+| **Pressing shows the focus ring.** Pressed primary and secondary at sm and md draw `shadow/focus/default`, where Button's pressed state keeps its control shadow. Is a ring on press intended?                                                                                                                               | We draw each variant as Figma does. |
+| **lg is flat**, as Button's lg is: no resting shadow, and secondary loses its border, keeping only the focus ring. The same question as Button's lg.                                                                                                                                                                         | We ship lg as drawn.                |
+
+The description asks for a 44 × 44 hit area around the smaller sizes; that waits on the same
+target-size token as section 4. Flutter already pads the tap target to 48 on its own.
+
+### Button Group · [2618:3237](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2618-3237)
+
+New on this list: we now generate Button Group. We build the three combinations you draw
+(horizontal regular, vertical regular, horizontal full-width) and, as the description says, no
+vertical full-width.
+
+**Fix** — tidying:
+
+| What                                                                                                                                                       | Variants                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| Full-width's padding is `0` and bound to nothing; `inset/none` has the same value.                                                                         | `horizontal / full-width`                    |
+| The hidden buttons keep a fixed width from before they were hidden (the tertiary 138px, the vertical group's third 431px), while every shown button fills. | `horizontal / regular`, `vertical / regular` |
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                      | What we do meanwhile                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **"Regular sizes to content"**, says the description, but regular's buttons are drawn filling the group in equal shares, as full-width's are. Which is meant? | We draw them filling, as drawn.               |
+| **"All children must share the same prio"**, says the description, but every variant mixes secondary and primary. Is it one _size_ that is meant?             | We warn (in development) on mixed sizes only. |
 
 # Part 2 · SOLAR Foundations
 

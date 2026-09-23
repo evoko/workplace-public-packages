@@ -28,6 +28,10 @@ const PROPERTIES_OF = {
   background: ['background'],
   borderColor: ['borderColor'],
   borderWidth: ['borderWidth'],
+  borderTopWidth: ['borderTopWidth'],
+  borderRightWidth: ['borderRightWidth'],
+  borderBottomWidth: ['borderBottomWidth'],
+  borderLeftWidth: ['borderLeftWidth'],
   radius: ['radius'],
   shadow: ['shadow'],
   color: ['color'],
@@ -196,7 +200,14 @@ export function buildOracle(
       };
     paint('background', layer.fills);
     paint('borderColor', layer.strokes);
-    out.borderWidth = layer.strokes?.length ? (layer.strokeWeight ?? 0) : 0;
+    // Sides of their own where the weights were recorded; `mixed` where they were not, which the
+    // recipe's `unrecorded` finding excuses until a sync records them.
+    if (layer.strokes?.length && layer.strokeWeights)
+      ['Top', 'Right', 'Bottom', 'Left'].forEach((side, i) => {
+        out[`border${side}Width`] = layer.strokeWeights[i];
+      });
+    else
+      out.borderWidth = layer.strokes?.length ? (layer.strokeWeight ?? 0) : 0;
     // A shape (Spinner's ring) has no box to round; a frame or rectangle does.
     if (!['ELLIPSE', 'VECTOR', 'LINE', 'STAR', 'POLYGON'].includes(layer.type))
       out.radius = layer.radius ?? 0;
@@ -220,6 +231,8 @@ export function buildOracle(
   const rename = Object.fromEntries(
     Object.entries(overlay?.rename ?? {}).map(([axis, r]) => [axis, r.to]),
   );
+  const renameValue = (axis, value) =>
+    overlay?.rename?.[axis]?.values?.[value] ?? value;
   const resolved = renameStates(
     foldStateAxes(resolveVariants(set)).resolved,
     overlay,
@@ -248,7 +261,8 @@ export function buildOracle(
       const prop = rename[axis] ?? axis;
       if (!(prop in spec.api))
         throw new Error(`${where}: axis ${axis} is not a prop of the IR`);
-      api[prop] = spec.api[prop].type === 'boolean' ? value === 'true' : value;
+      const v = renameValue(axis, value);
+      api[prop] = spec.api[prop].type === 'boolean' ? v === 'true' : v;
     }
     return { props: api, state, ...(content ? { content } : {}) };
   };
@@ -266,9 +280,13 @@ export function buildOracle(
           reason: d.decision.reason,
         }
       : { finding: d.token, decision: null, reason: d.reason };
-    if (d.kind === 'axis')
+    if (d.kind === 'axis' || d.kind === 'unrecorded')
       for (const { variant } of d.variants)
         excuses.push({ variant, layer, properties, why });
+    // A raw value an overlay `set` replaced (Button Group's hidden button, fixed at 138, set to
+    // fill): the code draws the decision, so Figma's value is excused wherever it appears.
+    if (d.kind === 'unbound' && d.decision?.rule === 'set')
+      excuses.push({ variant: null, layer, properties, why });
     // A value no colour can be read from, wherever it appears.
     if (d.kind === 'misbound' || d.kind === 'unknown-token')
       excuses.push({
@@ -294,6 +312,10 @@ export function buildOracle(
         for (const property of e.properties) {
           if (!(property in out)) continue;
           if (e.unresolvedOnly && !(property in unresolved)) continue;
+          // One excuse per property: two findings may cover it (a set value that also differs by
+          // axis), and the first found names it.
+          if (excused.some((x) => x.layer === name && x.property === property))
+            continue;
           excused.push({
             layer: name,
             property,

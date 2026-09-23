@@ -44,6 +44,21 @@ export const MUI_SLOTS = {
     // Not an MUI slot: the shell renders the counter itself, with this class (task 7).
     counter: '& .SolarButton-counter',
   },
+  // MUI renders the icon as its children; the shell wraps it in a box the recipe sizes, as Button's
+  // counter is, so the icon fills it. The loading indicator is MUI's slot, laid over the icon.
+  'Icon Button': {
+    root: '&',
+    icon: '& .SolarIconButton-icon',
+    spinner: '& .MuiIconButton-loadingIndicator',
+  },
+  // A flex box of the caller's Buttons. Figma draws example Buttons at three layers; whatever the
+  // caller passes, each is a child of the box, so the three are styled together.
+  'Button Group': {
+    root: '&',
+    tertiaryCTA: '& > *',
+    secondaryCTA: '& > *',
+    button3: '& > *',
+  },
   // The shell sizes a box and lets CircularProgress fill it (size="100%"), since MUI writes the
   // size prop as an inline style no recipe rule could beat.
   Spinner: {
@@ -81,6 +96,14 @@ export const MUI_RESETS = {
       height: '100%',
     },
   },
+  // The shell renders a Box, which is a block; Figma's auto layout is a flex box.
+  'Button Group': { display: 'flex' },
+  // MUI's icon button is a 24px glyph in a round, padded box, which the recipe replaces; the SOLAR
+  // icon fills the box the recipe sizes for it.
+  'Icon Button': {
+    '& .SolarIconButton-icon': { display: 'inline-flex' },
+    '& .SolarIconButton-icon > svg': { width: '100%', height: '100%' },
+  },
   // CircularProgress draws in a 44-unit viewBox scaled to its box, so a stroke width in CSS pixels
   // would scale with it; non-scaling-stroke keeps SOLAR's border width in screen pixels. MUI fades
   // its track to 12% of the indicator's colour; SOLAR's track has a colour of its own.
@@ -116,6 +139,15 @@ export const STATE_SELECTORS = {
     // :not it would draw in the disabled colours. A button both disabled and loading is disabled:
     // the shell does not pass loading to MUI then.
     disabled: '&.Mui-disabled:not(.MuiButton-loading)',
+  },
+  // MUI's IconButton marks its states as Button does, under its own name.
+  'Icon Button': {
+    default: null,
+    hover: '&:hover',
+    pressed: '&:active',
+    focus: '&.Mui-focusVisible',
+    loading: '&.MuiIconButton-loading',
+    disabled: '&.Mui-disabled:not(.MuiIconButton-loading)',
   },
 };
 
@@ -249,6 +281,20 @@ function context(spec, tokens) {
         return entry.none
           ? { borderStyle: 'none' }
           : { borderWidth: ref(entry.token, at), borderStyle: 'solid' };
+      // A side of its own (Button Group's divider): its width and style alone, over any uniform
+      // border the layer has elsewhere.
+      case 'borderTopWidth':
+      case 'borderRightWidth':
+      case 'borderBottomWidth':
+      case 'borderLeftWidth': {
+        const side = cell.slice('border'.length, -'Width'.length);
+        return entry.none
+          ? { [`border${side}Style`]: 'none' }
+          : {
+              ...length(entry, cell, at),
+              [`border${side}Style`]: 'solid',
+            };
+      }
       case 'radius':
         return {
           borderRadius: ref(entry.none ? 'radius.none' : entry.token, at),
@@ -290,6 +336,7 @@ function context(spec, tokens) {
  */
 export const OVERLAPS = {
   Button: { pressed: ['hover'], focus: ['hover', 'pressed'] },
+  'Icon Button': { pressed: ['hover'], focus: ['hover', 'pressed'] },
 };
 
 /**
@@ -378,6 +425,47 @@ export function restateOverlaps(spec) {
   return style;
 }
 
+/**
+ * What a base MUI control draws in a state by itself, over the recipe's resting value, by component
+ * and state: the cells the recipe must restate for that state where it has no entry of its own.
+ * MUI's IconButton marks a loading button disabled (it sets both classes), and its own
+ * \`.Mui-disabled\` rule clears the background at a specificity the recipe's resting background
+ * loses to, so a loading icon button would lose its fill. (MUI's Button draws no disabled
+ * background for the text variant the shell pins, so it needs no entry.)
+ */
+export const MUI_STATE_RESTATES = {
+  'Icon Button': { loading: ['root.background'] },
+};
+
+/** The style with each MUI_STATE_RESTATES cell restated at its resting value, marked `restates`. */
+function restateBase(spec, style) {
+  for (const [state, list] of Object.entries(
+    MUI_STATE_RESTATES[spec.component] ?? {},
+  ))
+    for (const at of list) {
+      const [layer, cell] = at.split('.');
+      const s = style[layer];
+      if (!s)
+        throw new Error(`${spec.component}: no layer ${layer} to restate`);
+      for (const combo of Object.keys(s.appearance)) {
+        const states = s.appearance[combo];
+        if (!states[state]?.[cell]) {
+          const rest = states.default?.[cell] ?? s.base[cell];
+          if (rest) (states[state] ??= {})[cell] = { ...rest, restates: 'mui' };
+        }
+        // A resting value per size comes later in the merge than the per-appearance one, so it is
+        // restated per size too.
+        for (const byCombo of Object.values(s.combined ?? {})) {
+          const own = byCombo[combo];
+          const rest = own?.default?.[cell];
+          if (rest && !own[state]?.[cell])
+            (own[state] ??= {})[cell] = { ...rest, restates: 'mui' };
+        }
+      }
+    }
+  return style;
+}
+
 /** Merges declarations under a selector; the same property twice with two values is an error. */
 function place(target, selector, decls, at) {
   const into = selector === '&' ? target : (target[selector] ??= {});
@@ -436,7 +524,9 @@ export function renderMuiComponent(spec, tokens) {
         );
   };
 
-  for (const [layer, s] of Object.entries(restateOverlaps(spec))) {
+  for (const [layer, s] of Object.entries(
+    restateBase(spec, restateOverlaps(spec)),
+  )) {
     render(styles.root, layer, s.base, 'base');
     for (const [size, cells] of Object.entries(s.size))
       render((styles.sizes[size] ??= {}), layer, cells, `size.${size}`);
@@ -535,6 +625,23 @@ export function renderMuiComponent(spec, tokens) {
     }
     defaults[prop] = def.default;
   }
+  // Every appearance key names the same axes, or a lookup would miss the ones that do not.
+  const keyAxes = (key) =>
+    key
+      .split(', ')
+      .map((part) => part.split('=')[0])
+      .join();
+  for (const key of [
+    ...Object.keys(styles.appearances),
+    ...Object.values(styles.combined).flatMap((c) => Object.keys(c)),
+  ])
+    if (
+      (key !== 'default' || appearanceAxes.length) &&
+      keyAxes(key) !== appearanceAxes.join()
+    )
+      throw new Error(
+        `${spec.component}: appearance key ${key} does not name ${appearanceAxes.join(', ')}`,
+      );
   for (const axis of appearanceAxes)
     if (!(axis in spec.api))
       throw new Error(

@@ -40,11 +40,8 @@ void main() {
       report('${fileOf(component)}-failures', failures);
       expect(failures, isEmpty, reason: failures.join('\n'));
       // Every excused entry was reached and measured.
-      final excused = (oracles[component]!['variants'] as List).fold<int>(
-        0,
-        (n, v) => n + ((v['excused'] as List?)?.length ?? 0),
-      );
-      expect(gaps, hasLength(excused));
+      // Every excused entry was reached and measured, but for a layer the variant does not draw.
+      expect(gaps, hasLength(reachableExcuses(oracles[component]!)));
     });
   }
 

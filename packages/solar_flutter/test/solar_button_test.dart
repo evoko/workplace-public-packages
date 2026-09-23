@@ -175,6 +175,35 @@ void main() {
       expect(find.byType(SolarSpinner), findsNothing);
     });
 
+    testWidgets(
+      'an icon-only button is one named node a screen reader can activate',
+      (tester) async {
+        // A Semantics label alone would be a second node, beside an unnamed button.
+        final handle = tester.ensureSemantics();
+        await pump(
+          tester,
+          SolarButton(
+            onPressed: () {},
+            semanticLabel: 'Delete',
+            iconLeading: const Icon(Icons.delete),
+          ),
+        );
+        expect(
+          tester.getSemantics(find.byType(SolarButton)),
+          matchesSemantics(
+            label: 'Delete',
+            isButton: true,
+            hasTapAction: true,
+            hasFocusAction: true,
+            hasEnabledState: true,
+            isEnabled: true,
+            isFocusable: true,
+          ),
+        );
+        handle.dispose();
+      },
+    );
+
     testWidgets('hover reads the recipe’s hover colour', (tester) async {
       final states = WidgetStatesController();
       await pump(

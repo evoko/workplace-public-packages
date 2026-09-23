@@ -41,12 +41,16 @@ const slug = (component) => component.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 const STILL =
   '*, *::before, *::after { transition: none !important; animation-play-state: paused !important; }';
 
-/** Where each layer is, from the emitter's own slot table: `&` is the component's root. */
+/**
+ * Where each layer is, from the emitter's own slot table: `&` is the component's root. A case may
+ * mark a layer's element with `data-layer` instead, where the slot table names several layers with
+ * one selector (Button Group's buttons are all `& > *`).
+ */
 function targets(component) {
   const svg = new Set(MUI_SVG_LAYERS[component] ?? []);
   return Object.entries(MUI_SLOTS[component]).map(([layer, selector]) => ({
     layer,
-    selector: selector === '&' ? null : selector.replace(/^& /, ''),
+    selector: selector === '&' ? null : selector.replace(/^&\s*/, ':scope '),
     svg: svg.has(layer),
   }));
 }
@@ -77,8 +81,10 @@ function measure(root, { list, composed }) {
   const px = (v) => v;
   const within = (at, targets) =>
     Object.fromEntries(targets.map((t) => [t.layer, one(at, t)]));
-  const one = (at, { selector, svg }) => {
-    const el = selector ? at.querySelector(selector) : at;
+  const one = (at, { layer, selector, svg }) => {
+    const el =
+      at.querySelector(`:scope [data-layer="${layer}"]`) ??
+      (selector ? at.querySelector(selector) : at);
     if (!el) return null;
     const cs = getComputedStyle(el);
     const box = el.getBoundingClientRect();
@@ -92,6 +98,14 @@ function measure(root, { list, composed }) {
           background: cs.backgroundColor,
           borderColor: cs.borderTopColor,
           borderWidth: cs.borderTopStyle === 'none' ? '0px' : cs.borderTopWidth,
+          ...Object.fromEntries(
+            ['Top', 'Right', 'Bottom', 'Left'].map((side) => [
+              `border${side}Width`,
+              cs[`border${side}Style`] === 'none'
+                ? '0px'
+                : cs[`border${side}Width`],
+            ]),
+          ),
           radius: cs.borderTopLeftRadius,
           shadow: cs.boxShadow,
           paddingTop: cs.paddingTop,
@@ -117,8 +131,10 @@ function measure(root, { list, composed }) {
   };
   const out = within(root, list);
   for (const [layer, c] of Object.entries(composed)) {
-    const slot = c.selector ? root.querySelector(c.selector) : root;
-    const child = slot?.firstElementChild;
+    // A child the case marks is the child itself; otherwise it is the first element in its slot.
+    const child =
+      root.querySelector(`:scope [data-layer="${layer}"]`) ??
+      (c.selector ? root.querySelector(c.selector) : root)?.firstElementChild;
     out[layer] = child ? { drawn: true, layers: within(child, c.list) } : null;
   }
   return out;
@@ -185,7 +201,7 @@ async function check(page, component, { only } = {}) {
   const gaps = [];
   for (const [i, variant] of oracle.variants.entries()) {
     if (only && !only.includes(variant.figma)) continue;
-    const kase = page.locator(`[data-case="${slug(component)}-${i}"]`);
+    const kase = page.locator(`[data-case="${slug(component)}:${i}"]`);
     // The component's root: Button's <button>, Spinner's box.
     const control = kase.locator(':scope > *').first();
     const leave = await reach(page, control, variant.state);
@@ -218,7 +234,19 @@ async function check(page, component, { only } = {}) {
         continue;
       }
       if (composed[layer]) {
-        if (!expected.hidden) checkChild(expected, got, (f) => fail(layer, f));
+        // Shown by a prop and hidden at rest (Button Group's tertiary): checked when rendered.
+        if (!expected.hidden || (byProp && got)) {
+          const excused = (variant.excused ?? []).filter(
+            (e) => e.layer === layer,
+          );
+          checkChild(
+            expected,
+            got,
+            excused,
+            (f) => fail(layer, f),
+            (g) => gaps.push({ variant: variant.figma, layer, ...g }),
+          );
+        }
         continue;
       }
       if (!got) {
@@ -251,13 +279,24 @@ function childVariant(oracle, wanted) {
 }
 
 /**
- * A composed child (Button's spinner) is the child component in the variant Figma picks; what that
- * variant looks like is the child's oracle, so the two are checked together, layer by layer. What
- * the child's oracle excuses is not compared: the child's own check reports it.
+ * A composed child (Button's spinner, Button Group's buttons) is the child component in the
+ * variant Figma picks; what that variant looks like is the child's oracle, so the two are checked
+ * together, layer by layer. What the child's oracle excuses is not compared: the child's own check
+ * reports it. Its box is the parent's to decide (a Button fills a group, whatever width it has
+ * alone), so the child's root is measured against the parent's width and height instead, with the
+ * parent's excuses.
  */
-function checkChild(expected, got, fail) {
+function checkChild(expected, got, excusedHere, fail, gap) {
   if (!got) return fail({ property: 'present', figma: true, rendered: false });
   const child = childVariant(oracles[expected.component], expected.variant);
+  const box = Object.fromEntries(
+    ['width', 'height']
+      .filter((p) => p in expected)
+      .map((p) => [p, expected[p]]),
+  );
+  const own = compareLayer(box, got.layers.root ?? {}, excusedHere);
+  own.failures.forEach(fail);
+  own.gaps.forEach(gap);
   for (const [layer, want] of Object.entries(child.layers)) {
     if (want.hidden) continue;
     const excused = (child.excused ?? []).filter((e) => e.layer === layer);
@@ -266,14 +305,31 @@ function checkChild(expected, got, fail) {
       fail({ property: `${layer}.present`, figma: true, rendered: false });
       continue;
     }
-    for (const f of compareLayer(want, measured, excused).failures)
+    const { width: _w, height: _h, ...rest } = want;
+    const expectedHere = layer === 'root' ? rest : want;
+    for (const f of compareLayer(expectedHere, measured, excused).failures)
       fail({ ...f, property: `${layer}.${f.property}` });
   }
 }
 
+/** The excused entries a check reaches: those on layers the variant draws, or a prop shows. */
+function reachableExcuses(oracle) {
+  const rest = oracle.variants[0].layers;
+  return oracle.variants.reduce(
+    (n, v) =>
+      n +
+      (v.excused ?? []).filter(
+        (e) =>
+          !v.layers[e.layer]?.hidden ||
+          (e.layer in oracle.slots && rest[e.layer]?.hidden),
+      ).length,
+    0,
+  );
+}
+
 const report = (component, gaps) =>
   writeFileSync(
-    out(`${component.toLowerCase()}-gaps.json`),
+    out(`${slug(component)}-gaps.json`),
     `${JSON.stringify(gaps, null, 2)}\n`,
   );
 
@@ -286,23 +342,19 @@ for (const component of COMPONENTS)
     // A component the codegen generates and the page does not render would pass by measuring
     // nothing.
     expect(
-      await page.locator(`[data-case^="${slug(component)}-"]`).count(),
+      await page.locator(`[data-case^="${slug(component)}:"]`).count(),
       `${component}: one case per oracle variant; register cases/${slug(component)}.tsx in cases/index.ts`,
     ).toBe(oracles[component].variants.length);
     const { failures, gaps } = await check(page, component);
     report(component, gaps);
     writeFileSync(
-      out(`${component.toLowerCase()}-failures.json`),
+      out(`${slug(component)}-failures.json`),
       `${JSON.stringify(failures, null, 2)}\n`,
     );
     expect(failures).toEqual([]);
     // Every excused entry was reached and measured.
-    expect(gaps).toHaveLength(
-      oracles[component].variants.reduce(
-        (n, v) => n + (v.excused?.length ?? 0),
-        0,
-      ),
-    );
+    // Every excused entry was reached and measured, but for a layer the variant does not draw.
+    expect(gaps).toHaveLength(reachableExcuses(oracles[component]));
   });
 
 test('a difference nobody decided on fails, naming the variant and the property', async ({
@@ -313,7 +365,7 @@ test('a difference nobody decided on fails, naming the variant and the property'
   const i = oracles.Button.variants.findIndex((v) => v.figma === hovered);
   // A recipe that drew secondary hover in the wrong colour.
   await page.addStyleTag({
-    content: `[data-case="button-${i}"] button:hover { background-color: rgb(255, 0, 0) !important; }`,
+    content: `[data-case="button:${i}"] button:hover { background-color: rgb(255, 0, 0) !important; }`,
   });
   const { failures } = await check(page, 'Button', { only: [hovered] });
   expect(failures).toEqual([
@@ -334,7 +386,7 @@ test('a composed child is checked against its own oracle, naming the layer insid
   const i = oracles.Button.variants.findIndex((v) => v.figma === loading);
   // A Button whose Spinner drew its track in the wrong colour.
   await page.addStyleTag({
-    content: `[data-case="button-${i}"] .MuiCircularProgress-track { stroke: rgb(255, 0, 0) !important; }`,
+    content: `[data-case="button:${i}"] .MuiCircularProgress-track { stroke: rgb(255, 0, 0) !important; }`,
   });
   const { failures } = await check(page, 'Button', { only: [loading] });
   expect(failures).toEqual([

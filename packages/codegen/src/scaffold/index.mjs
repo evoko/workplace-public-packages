@@ -137,6 +137,182 @@ ${api.map((p) => `    ${p},`).join('\n')}
 `;
   },
 
+  'Icon Button': (spec) => {
+    const api = Object.keys(spec.api);
+    if (spec.slots.icon?.type !== 'icon')
+      throw new Error('Icon Button: the IR has no icon slot');
+    return `/**
+ * SOLAR Icon Button.
+ *
+ * Scaffolded once by \`npm run solar:scaffold "Icon Button"\` from spec/components/icon-button.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, \`solarIconButtonStyle\` in \`@bwp-web/styles/mui\`, which regenerates from Figma on
+ * every \`solar:codegen\`. This file is behaviour: the props, the icon, loading, and accessibility.
+ *
+ * It wraps MUI's IconButton, which supplies focus handling, keyboard activation, the disabled and
+ * loading states and their classes; the recipe restyles it. The app must load
+ * \`@bwp-web/styles/tokens.css\`, since every recipe value is a \`var(--solar-*)\`.
+ */
+
+import MuiIconButton, {
+  type IconButtonProps as MuiIconButtonProps,
+} from '@mui/material/IconButton';
+import { forwardRef, type ReactNode } from 'react';
+import {
+  solarIconButtonCompose,
+  solarIconButtonStyle,
+  type SolarIconButtonProps,
+  type SolarSpinnerSize,
+  type SolarSpinnerVariant,
+} from '@bwp-web/styles/mui';
+import { Spinner } from './Spinner.js';
+
+interface IconButtonBase
+  extends SolarIconButtonProps,
+    Omit<
+      MuiIconButtonProps,
+      | keyof SolarIconButtonProps
+      | 'color'
+      | 'edge'
+      | 'children'
+      | 'loadingIndicator'
+      | 'aria-label'
+      | 'aria-labelledby'
+    > {
+  /** The icon, which is the whole of what the button says. */
+  icon: ReactNode;
+}
+
+/**
+ * An icon alone is not a name (SOLAR, and WCAG 4.1.2), so an icon button takes an \`aria-label\` or
+ * an \`aria-labelledby\`, and the types refuse one with neither.
+ */
+export type IconButtonProps = IconButtonBase &
+  (
+    | { 'aria-label': string; 'aria-labelledby'?: string }
+    | { 'aria-label'?: string; 'aria-labelledby': string }
+  );
+
+// Through globalThis, because \`process\` exists only where a bundler or Node provides it, and a
+// browser library should not need Node's types to say so.
+const DEV =
+  (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process?.env?.NODE_ENV !==
+  'production';
+
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton(
+  {
+${api.map((p) => `    ${p},`).join('\n')}
+    icon,
+    sx,
+    ...rest
+  },
+  ref,
+) {
+  // For JavaScript callers, whom the types do not reach.
+  if (DEV && !rest['aria-label'] && !rest['aria-labelledby'])
+    // eslint-disable-next-line no-console -- a development-only accessibility warning, on purpose
+    console.warn('SOLAR Icon Button: it needs an aria-label or aria-labelledby.');
+
+  // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
+  const busy = Boolean(loading && !disabled);
+  const props = { ${api.join(', ')} };
+  // What the loading state draws: which Spinner (Figma picks its size and style per variant; its
+  // \`style\` axis is the Spinner's \`variant\` prop), and whether the icon stays.
+  const whileLoading = solarIconButtonCompose(props, 'loading');
+  const spinner = whileLoading.spinner;
+  const showsIcon = !busy || whileLoading.icon.present !== false;
+
+  return (
+    <MuiIconButton
+      ref={ref}
+      {...rest}
+      disabled={disabled}
+      loading={busy}
+      loadingIndicator={
+        <Spinner
+          size={spinner['variant.size'] as SolarSpinnerSize}
+          variant={spinner['variant.style'] as SolarSpinnerVariant}
+        />
+      }
+      // SOLAR's states have their own colours; MUI's ripple would paint over them.
+      disableRipple
+      sx={[solarIconButtonStyle(props), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      {showsIcon && <span className="SolarIconButton-icon">{icon}</span>}
+    </MuiIconButton>
+  );
+});
+`;
+  },
+
+  'Button Group': (spec) => {
+    for (const axis of ['orientation', 'fullWidth'])
+      if (!spec.api[axis])
+        throw new Error(`Button Group: the IR has no ${axis}`);
+    return `/**
+ * SOLAR Button Group.
+ *
+ * Scaffolded once by \`npm run solar:scaffold "Button Group"\` from spec/components/button-group.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, \`solarButtonGroupStyle\` in \`@bwp-web/styles/mui\`: the direction, the gap, the padding,
+ * the full-width bar's divider, and its buttons filling it. This file is behaviour.
+ *
+ * Bespoke: a box of the caller's Buttons, which it never changes. The app must load
+ * \`@bwp-web/styles/tokens.css\`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { Children, forwardRef, isValidElement, type ReactNode } from 'react';
+import { solarButtonDefaults, solarButtonGroupStyle } from '@bwp-web/styles/mui';
+
+/** Figma draws a horizontal group regular or full-width, and a vertical one regular only. */
+export type ButtonGroupLayout =
+  | { orientation?: 'horizontal'; fullWidth?: boolean }
+  | { orientation: 'vertical'; fullWidth?: false };
+
+export type ButtonGroupProps = ButtonGroupLayout &
+  Omit<BoxProps, 'children'> & {
+    /** Two to five SOLAR Buttons, of one size. */
+    children: ReactNode;
+  };
+
+// Through globalThis, because \`process\` exists only where a bundler or Node provides it, and a
+// browser library should not need Node's types to say so.
+const DEV =
+  (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process?.env?.NODE_ENV !==
+  'production';
+
+export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(function ButtonGroup(
+  { orientation, fullWidth, children, sx, ...rest },
+  ref,
+) {
+  if (DEV) {
+    // SOLAR: the buttons of a group share one size. (Figma's description says one priority too,
+    // but every group it draws mixes secondary and primary, so only the size is checked.)
+    const sizes = new Set(
+      Children.toArray(children)
+        .filter(isValidElement)
+        .map((c) => (c.props as { size?: string }).size ?? solarButtonDefaults.size),
+    );
+    if (sizes.size > 1)
+      // eslint-disable-next-line no-console -- a development-only design warning, on purpose
+      console.warn('SOLAR Button Group: its buttons should share one size.');
+  }
+
+  return (
+    <Box
+      ref={ref}
+      role="group"
+      {...rest}
+      sx={[solarButtonGroupStyle({ orientation, fullWidth }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      {children}
+    </Box>
+  );
+});
+`;
+  },
+
   Spinner: (spec) => {
     const api = Object.keys(spec.api);
     return `/**
@@ -345,9 +521,228 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
       ),
     );
     if (semanticLabel != null) {
-      button = Semantics(label: semanticLabel, child: button);
+      // Merged, so the name and the button's own tap action are one node for a screen reader: a
+      // Semantics label alone makes a second node, and the button inside it stays unnamed.
+      button = MergeSemantics(
+        child: Semantics(label: semanticLabel, child: button),
+      );
     }
     return button;
+  }
+}
+`;
+  },
+
+  'Icon Button': (spec) => {
+    const api = Object.entries(spec.api);
+    if (spec.slots.icon?.type !== 'icon')
+      throw new Error('Icon Button: the IR has no icon slot');
+    return `/// SOLAR Icon Button.
+///
+/// Scaffolded once by \`npm run solar:scaffold -- --flutter "Icon Button"\` from
+/// spec/components/icon-button.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarIconButtonRecipe], which regenerates from
+/// Figma on every \`solar:codegen\`. This file is behaviour: the props, the icon, loading and
+/// accessibility, with the same props as the React IconButton.
+///
+/// It wraps Flutter's IconButton, which supplies focus, keyboard activation, hover and press;
+/// [SolarIconButtonRecipe.style] restyles it.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/icon_button.dart';
+import '../generated/components/spinner.dart';
+import 'solar_spinner.dart';
+import 'solar_theme_of.dart';
+
+class SolarIconButton extends StatelessWidget {
+  const SolarIconButton({
+    super.key,
+    required this.onPressed,
+    required this.icon,
+    required this.semanticLabel,
+${api.map(([prop, def]) => `    ${dartParam('IconButton', prop, def)},`).join('\n')}
+    this.focusNode,
+    this.autofocus = false,
+    this.statesController,
+  });
+
+  /// Called when the button is tapped; null disables it, as for any Flutter button.
+  final VoidCallback? onPressed;
+
+  /// The icon, which is the whole of what the button says.
+  final Widget icon;
+
+  /// The accessible name. An icon alone is not a name, so it is required.
+  final String semanticLabel;
+
+${api.map(([prop, def]) => dartField('IconButton', prop, def)).join('\n')}
+
+  final FocusNode? focusNode;
+  final bool autofocus;
+  final WidgetStatesController? statesController;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
+    final busy = loading && !disabled;
+    final p = SolarIconButtonProps(
+${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).join('\n')}
+    );
+    const rest = <WidgetState>{};
+    bool shows(String layer) => SolarIconButtonRecipe.present(layer, p, rest);
+
+    // Merged, so the name and the button's own tap action are one node for a screen reader: a
+    // Semantics label alone makes a second node, and the button inside it stays unnamed.
+    final Widget button = IconButton(
+        onPressed: disabled || busy ? null : onPressed,
+        style: SolarIconButtonRecipe.style(t, p),
+        focusNode: focusNode,
+        autofocus: autofocus,
+        statesController: statesController,
+        icon: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Loading hides the icon but keeps its room, as Figma does, so the button does not
+            // resize.
+            Visibility(
+              visible: shows('icon'),
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              child: icon,
+            ),
+            if (shows('spinner'))
+              // Which Spinner, Figma picks per variant; its \`style\` axis is the Spinner's
+              // \`variant\` prop.
+              ExcludeSemantics(
+                child: SolarSpinner(
+                size: SolarSpinnerSize.values.byName(
+                    SolarIconButtonRecipe.lookup('spinner.variant.size', p, rest)!
+                        .substring(2)),
+                variant: SolarSpinnerVariant.values.firstWhere((v) =>
+                    'k:\${v.figma}' ==
+                    SolarIconButtonRecipe.lookup('spinner.variant.style', p, rest)),
+              ),
+              ),
+          ],
+        ),
+      );
+    return MergeSemantics(
+      child: Semantics(label: semanticLabel, child: button),
+    );
+  }
+}
+`;
+  },
+
+  'Button Group': (spec) => {
+    const api = Object.entries(spec.api);
+    for (const axis of ['orientation', 'fullWidth'])
+      if (!spec.api[axis])
+        throw new Error(`Button Group: the IR has no ${axis}`);
+    return `/// SOLAR Button Group.
+///
+/// Scaffolded once by \`npm run solar:scaffold -- --flutter "Button Group"\` from
+/// spec/components/button-group.json, and owned by developers from then on: change it freely.
+/// What it looks like is not here. That is the recipe, [SolarButtonGroupRecipe]: the direction, the
+/// gap, the padding, the full-width bar's divider, and its buttons filling it, read cell by cell.
+///
+/// Bespoke: a row or column of the caller's buttons, which it never changes.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/button_group.dart';
+import 'solar_theme_of.dart';
+
+class SolarButtonGroup extends StatelessWidget {
+  const SolarButtonGroup({
+    super.key,
+    required this.children,
+${api.map(([prop, def]) => `    ${dartParam('ButtonGroup', prop, def)},`).join('\n')}
+  }) : assert(
+         !(orientation == SolarButtonGroupOrientation.vertical && fullWidth),
+         'SOLAR Button Group: Figma draws no vertical full-width group.',
+       );
+
+  /// Two to five SOLAR buttons, of one size.
+  final List<Widget> children;
+
+${api.map(([prop, def]) => dartField('ButtonGroup', prop, def)).join('\n')}
+
+  static const _main = {
+    'MIN': MainAxisAlignment.start,
+    'CENTER': MainAxisAlignment.center,
+    'MAX': MainAxisAlignment.end,
+    'SPACE_BETWEEN': MainAxisAlignment.spaceBetween,
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarButtonGroupProps(${api.map(([prop]) => `${prop}: ${prop}`).join(', ')});
+    const rest = <WidgetState>{};
+    String? at(String cell) => SolarButtonGroupRecipe.lookup(cell, p, rest);
+    double length(String cell) =>
+        SolarButtonGroupRecipe.dimension(cell, p, rest) ?? 0;
+
+    final horizontal = at('root.direction') == 'k:HORIZONTAL';
+    final main = _main[at('root.align')!.substring(2).split('/').first]!;
+    // A side of its own where the recipe has one (the full-width divider), else the uniform border.
+    final colour = SolarButtonGroupRecipe.color(t, 'root.borderColor', p, rest);
+    BorderSide side(String name) {
+      final cell = at('root.border\${name}Width') != null
+          ? 'root.border\${name}Width'
+          : 'root.borderWidth';
+      final v = at(cell);
+      if (v == null || v == 'none') return BorderSide.none;
+      return BorderSide(color: colour, width: length(cell));
+    }
+
+    // Every button fills the group, as Figma draws them: equal shares of a row, the full width of
+    // a column.
+    final fills = at('secondaryCTA.width') == 'k:FILL';
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      child: SizedBox(
+        width: at('root.width') == 'k:FILL' ? double.infinity : null,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(
+              top: side('Top'),
+              right: side('Right'),
+              bottom: side('Bottom'),
+              left: side('Left'),
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+              length('root.paddingLeft'),
+              length('root.paddingTop'),
+              length('root.paddingRight'),
+              length('root.paddingBottom'),
+            ),
+            child: Flex(
+              direction: horizontal ? Axis.horizontal : Axis.vertical,
+              mainAxisSize: horizontal ? MainAxisSize.max : MainAxisSize.min,
+              mainAxisAlignment: main,
+              crossAxisAlignment: !horizontal && fills
+                  ? CrossAxisAlignment.stretch
+                  : CrossAxisAlignment.center,
+              spacing: length('root.gap'),
+              children: [
+                for (final child in children)
+                  horizontal && fills ? Expanded(child: child) : child,
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 `;

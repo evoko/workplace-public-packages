@@ -126,6 +126,15 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    A vector's recorded outline is a `glyph`, Figma's path data checked against `M L C H V Z`, in a
    cell class of its own that follows every axis.
    A colour bound to a variable that is not a colour is `misbound`, reported and never painted.
+   A layer with no stroke paint has no border, whatever weight Figma keeps for it (it keeps the
+   weight and its binding after the paint is removed). A composed child the reference variant
+   hides records no variant, so which child it is (Icon Button's Spinner, drawn only while loading)
+   is read from the first variant that draws it. An entry equal to the base is left out only where
+   the lookup would still find the base, and one that follows some of the appearance axes is
+   written under every full appearance key, since the emitters look entries up by the full key.
+   A border whose sides differ (Button Group's divider) has a cell per side, `borderTopWidth` and
+   the rest, read from the weights the fetcher records per side; data fetched before it recorded
+   them draws a side where it is bound and reports the layer `unrecorded` until a sync.
 3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
    demoted — hover, pressed and focus become platform states, disabled and loading stay props;
    states drawn as `false/true` axes of their own, as Checkbox's are, are first folded into one
@@ -141,6 +150,12 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    model says, a raw value bound to the token of the same value, an allowed literal, an accepted
    finding. Every rule needs a reason, and a rule that no longer matches the IR fails the build. A state
    value Figma spells otherwise (`states.rename`) is renamed before the recipe, as `follows` is.
+   `bind` takes one literal and its token, or `tokens` mapping several (Icon Button's icon is
+   `{ 12: icon.xs, 16: icon.sm, 20: icon.md }`), each checked value for value; a bind that would leave a raw value in the cell fails.
+   `rename` may map values too, and one whose values become `true` and `false` makes the prop a
+   boolean (Button Group's `type: regular | full-width` is `fullWidth`). `set` takes a sizing
+   `keyword` (`FILL`, `HUG`) as well as a token or none, and settles a raw-value finding once no raw
+   value is left in the cell; the oracle then excuses Figma's value there, as for any decision.
 
 Two emitters generate from the IR, and neither imports its framework:
 
@@ -159,7 +174,11 @@ reads it reversed; the emitter refuses a table that orders the states the fold k
 than `BOOLEAN_STATES`. Flutter detects each state the same way for every component: a platform
 state is its `WidgetState`, a prop state its prop. What MUI draws that SOLAR does not (Button's 64px
 minimum width, its upper-case label) is undone by `MUI_RESETS` in the emitter, so a component looks
-right with or without the SOLAR MUI theme installed.
+right with or without the SOLAR MUI theme installed. What an MUI control draws by itself in a state
+is restated there at the recipe's value (`MUI_STATE_RESTATES`): IconButton marks a loading button
+disabled, and its own disabled rule would clear the background. On Flutter, the base control's
+style builder (`BUILDERS`) emits what the component's `FLUTTER_STYLE` table names: an icon button's
+`ButtonStyle` has no text style.
 
 States overlap where Figma's do not: a pointer pressing a button is over it, so a pressed button is
 hovered too, in CSS and in Flutter's `WidgetState`s alike. Both platforms blend per property, CSS by
@@ -179,7 +198,7 @@ The rule of thumb for where a change goes:
 > **The overlay for a decision about one component, the normalizer for a rule about the system,
 > the shell for behaviour.**
 
-**What Button's findings mean.** Button produced 11 findings (36 in the whole report, with Spinner's). Eight
+**What Button's findings mean.** Button produced 11 findings (46 in the whole report, with Spinner's and Icon Button's, whose ten are all decided). Eight
 carry an overlay decision and stay in the report beside it: five bind a raw value to the token of
 the same value (vertical padding, lg's gap, the icon heights), and three allow a literal SOLAR has
 no token for (the fixed heights, lg's width, the counter's height). Two more decisions removed
@@ -188,8 +207,9 @@ look are drawn as Figma draws them. Three findings are open and are genuine Figm
 secondary loses its background at `sm`, the backgrounds change inconsistently at `lg` (Figma's `xl` until 2026-09-23), and the
 `lg` disabled label uses the danger colour. They are in
 [the design review](../../docs/solar-review-for-design.md), section 8. Run over the whole corpus,
-115 of SOLAR Web's 119 component sets derive a recipe; the four that do not throw on shapes the
-recipe does not model yet (one side bound to two variables, stacked paints), which is milestone 3b-2.
+117 of SOLAR Web's 119 component sets derive a recipe (Dialog since 3b-2 Task A2, Weekday Header
+since B2 gave a border's sides cells of their own); Insight Card and Popover do not, on shapes the
+recipe does not model yet, and 114 build an IR.
 
 [`test/component-parity.test.mjs`](test/component-parity.test.mjs) reads the generated TypeScript
 and Dart and the shell back from disk and proves the two platforms expose the same API, style the

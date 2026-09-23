@@ -1,0 +1,119 @@
+# Hand-written decisions about SOLAR Button Group, applied over spec/components/button-group.json
+# by `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Addresses use Figma's axis names (type, not fullWidth); `rename` is applied last.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Button Group
+
+base:
+  reason: >-
+    Bespoke on both platforms: a flex row or column of the caller's Buttons. MUI's ButtonGroup
+    joins its buttons into one bordered control, which SOLAR does not draw, and Flutter has no
+    stock group; the recipe gives the layout directly.
+
+rename:
+  type:
+    to: fullWidth
+    values: { regular: 'false', full-width: 'true' }
+    reason: >-
+      Figma's type has two values, regular and full-width, which is a boolean; `fullWidth` is
+      the name MUI and most React libraries give it.
+
+follows:
+  root.direction:
+    axes: [orientation, type]
+    reason: What orientation is for, a row or a column.
+  root.align:
+    axes: [orientation, type]
+    reason: The alignment is per axis of the flex, so it turns with the orientation.
+  root.gap:
+    axes: [orientation, type]
+    reason: >-
+      Full-width joins its buttons edge to edge (gap 0) inside a divided bar; regular spaces them
+      by inset.xs.
+  root.paddingTop:
+    axes: [orientation, type]
+    reason: Full-width is flush (0); regular is padded by inset.sm.
+  root.paddingRight:
+    axes: [orientation, type]
+    reason: Full-width is flush (0); regular is padded by inset.sm.
+  root.paddingBottom:
+    axes: [orientation, type]
+    reason: Full-width is flush (0); regular is padded by inset.sm.
+  root.paddingLeft:
+    axes: [orientation, type]
+    reason: Full-width is flush (0); regular is padded by inset.sm.
+  root.borderTopWidth:
+    axes: [orientation, type]
+    reason: Full-width draws a divider along its top; regular has no border.
+  root.borderRightWidth:
+    axes: [orientation, type]
+    reason: Full-width draws a divider along its top; regular has no border.
+  root.borderBottomWidth:
+    axes: [orientation, type]
+    reason: Full-width draws a divider along its top; regular has no border.
+  root.borderLeftWidth:
+    axes: [orientation, type]
+    reason: Full-width draws a divider along its top; regular has no border.
+  tertiaryCTA.width:
+    axes: [orientation, type]
+    reason: The buttons fill the group in every variant; see the set rules for the hidden ones.
+  button3.width:
+    axes: [orientation, type]
+    reason: The buttons fill the group in every variant; see the set rules for the hidden ones.
+
+bind:
+  root.paddingTop:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
+  root.paddingRight:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
+  root.paddingBottom:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
+  root.paddingLeft:
+    literal: 0
+    token: inset.none
+    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
+
+set:
+  tertiaryCTA.base.width:
+    keyword: FILL
+    reason: >-
+      The buttons fill the group in every variant Figma draws. This one is hidden at rest (the
+      TertiaryCTA prop shows it) and keeps a fixed 138 from before it was hidden, which is not how
+      a shown button is drawn.
+  button3.appearance.orientation=vertical, type=regular.default.width:
+    keyword: FILL
+    reason: >-
+      As the tertiary one: hidden in the vertical group, where it keeps a fixed 431; every shown
+      button fills.
+  tertiaryCTA.base.height:
+    none: true
+    reason: >-
+      A child's height is the Button's own (40 at md, 48 at lg); the group decides its width, not
+      its height, so a caller's sm Buttons stay 32.
+  secondaryCTA.base.height:
+    none: true
+    reason: As the tertiary one, the Button's own height.
+  button3.base.height:
+    none: true
+    reason: As the tertiary one, the Button's own height.
+
+accept:
+  component.button group.tertiaryCTA.height@orientation=horizontal, type=full-width:
+    reason: >-
+      Figma's full-width example uses lg Buttons, 48 tall; the height is the Button's own, which
+      the group does not set.
+  component.button group.secondaryCTA.height@orientation=horizontal, type=full-width:
+    reason: As the tertiary one, the Button's own height.
+  component.button group.tertiaryCTA.variant.size@orientation=horizontal, type=full-width:
+    reason: >-
+      The buttons are the caller's, whose size the group never changes; Figma's full-width
+      example happens to use lg.
+  component.button group.secondaryCTA.variant.size@orientation=horizontal, type=full-width:
+    reason: As the tertiary one, the caller's size.

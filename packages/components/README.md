@@ -39,6 +39,52 @@ area to be padded in code but publishes no token for the target size, and the de
 Figma give 36px and 44px where the components are drawn 32px and 40px, so this is not done yet: it
 is the first question in [the design review](../../docs/solar-review-for-design.md).
 
+## Icon Button
+
+```tsx
+<IconButton icon={<IconDelete />} aria-label="Delete" variant="secondary" />
+```
+
+| Prop                  | Values                               | Default   |
+| --------------------- | ------------------------------------ | --------- |
+| `icon`                | the icon, required                   |           |
+| `aria-label`          | the accessible name, required        |           |
+| `variant`             | `primary` · `secondary` · `tertiary` | `primary` |
+| `size`                | `sm` · `md` · `lg` (32, 40, 48px)    | `sm`      |
+| `shape`               | `square` · `round`                   | `square`  |
+| `disabled`, `loading` | boolean                              | `false`   |
+
+MUI's IconButton, restyled by the recipe. An icon alone is not a name, so the types require an
+`aria-label` or an `aria-labelledby` (and in development it warns without one, for JavaScript
+callers). The icon fills a box the recipe sizes from the icon ladder. While loading, the icon gives
+way to the Spinner Figma picks for the variant; disabled wins over loading. Figma draws some
+variants inconsistently with Button (primary's border, a focus ring on press, disabled borders);
+they are drawn as Figma draws them and listed in [the design review](../../docs/solar-review-for-design.md),
+section 8. The 44px hit area waits on the same token as Button's.
+
+## Button Group
+
+```tsx
+<ButtonGroup fullWidth>
+  <Button variant="secondary" size="lg">
+    Cancel
+  </Button>
+  <Button size="lg">Save</Button>
+</ButtonGroup>
+```
+
+| Prop          | Values                                  | Default      |
+| ------------- | --------------------------------------- | ------------ |
+| `orientation` | `horizontal` · `vertical`               | `horizontal` |
+| `fullWidth`   | boolean: a flush bar with a top divider | `false`      |
+| `children`    | two to five Buttons, of one size        |              |
+
+A box of the caller's Buttons, which it never changes: each fills an equal share of a row, or the
+width of a column, and keeps its own height. Figma draws no vertical full-width group, so the types
+refuse `orientation="vertical"` with `fullWidth` (`ButtonGroupLayout`). In development it warns when
+its buttons mix sizes. Figma's description also asks for one priority, but every group it draws
+mixes secondary and primary, so that is not checked; the design review lists the disagreement.
+
 ## Spinner
 
 | Prop      | Values                | Default   |

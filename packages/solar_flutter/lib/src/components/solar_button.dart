@@ -151,7 +151,11 @@ class SolarButton extends StatelessWidget {
       ),
     );
     if (semanticLabel != null) {
-      button = Semantics(label: semanticLabel, child: button);
+      // Merged, so the name and the button's own tap action are one node for a screen reader: a
+      // Semantics label alone makes a second node, and the button inside it stays unnamed.
+      button = MergeSemantics(
+        child: Semantics(label: semanticLabel, child: button),
+      );
     }
     return button;
   }

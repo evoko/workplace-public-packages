@@ -115,6 +115,10 @@ const measured = [
   'background',
   'borderColor',
   'borderWidth',
+  'borderTopWidth',
+  'borderRightWidth',
+  'borderBottomWidth',
+  'borderLeftWidth',
   'radius',
   'shadow',
   'paddingTop',
@@ -178,11 +182,17 @@ void compareLayer(
 ) {
   for (final property in measured) {
     if (!expected.containsKey(property)) continue;
-    if (property == 'borderColor' && expected['borderWidth'] == 0) continue;
     final figma = expected[property];
+    // An excused entry is a gap even where nothing is drawn, so every excuse is seen reached.
     final excuse = excused.cast<Map<String, dynamic>>().where(
       (e) => e['layer'] == layer && e['property'] == property,
     );
+    // A border colour on no border is not drawn.
+    if (excuse.isEmpty &&
+        property == 'borderColor' &&
+        expected['borderWidth'] == 0) {
+      continue;
+    }
     if (excuse.isNotEmpty) {
       gaps.add(
         Difference(

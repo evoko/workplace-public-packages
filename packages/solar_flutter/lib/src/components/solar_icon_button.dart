@@ -1,0 +1,120 @@
+/// SOLAR Icon Button.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter "Icon Button"` from
+/// spec/components/icon-button.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarIconButtonRecipe], which regenerates from
+/// Figma on every `solar:codegen`. This file is behaviour: the props, the icon, loading and
+/// accessibility, with the same props as the React IconButton.
+///
+/// It wraps Flutter's IconButton, which supplies focus, keyboard activation, hover and press;
+/// [SolarIconButtonRecipe.style] restyles it.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/icon_button.dart';
+import '../generated/components/spinner.dart';
+import 'solar_spinner.dart';
+import 'solar_theme_of.dart';
+
+class SolarIconButton extends StatelessWidget {
+  const SolarIconButton({
+    super.key,
+    required this.onPressed,
+    required this.icon,
+    required this.semanticLabel,
+    this.size = SolarIconButtonSize.sm,
+    this.shape = SolarIconButtonShape.square,
+    this.variant = SolarIconButtonVariant.primary,
+    this.disabled = false,
+    this.loading = false,
+    this.focusNode,
+    this.autofocus = false,
+    this.statesController,
+  });
+
+  /// Called when the button is tapped; null disables it, as for any Flutter button.
+  final VoidCallback? onPressed;
+
+  /// The icon, which is the whole of what the button says.
+  final Widget icon;
+
+  /// The accessible name. An icon alone is not a name, so it is required.
+  final String semanticLabel;
+
+  final SolarIconButtonSize size;
+  final SolarIconButtonShape shape;
+  final SolarIconButtonVariant variant;
+  final bool disabled;
+  final bool loading;
+
+  final FocusNode? focusNode;
+  final bool autofocus;
+  final WidgetStatesController? statesController;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
+    final busy = loading && !disabled;
+    final p = SolarIconButtonProps(
+      size: size,
+      shape: shape,
+      variant: variant,
+      disabled: disabled,
+      loading: busy,
+    );
+    const rest = <WidgetState>{};
+    bool shows(String layer) => SolarIconButtonRecipe.present(layer, p, rest);
+
+    // Merged, so the name and the button's own tap action are one node for a screen reader: a
+    // Semantics label alone makes a second node, and the button inside it stays unnamed.
+    final Widget button = IconButton(
+      onPressed: disabled || busy ? null : onPressed,
+      style: SolarIconButtonRecipe.style(t, p),
+      focusNode: focusNode,
+      autofocus: autofocus,
+      statesController: statesController,
+      icon: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Loading hides the icon but keeps its room, as Figma does, so the button does not
+          // resize.
+          Visibility(
+            visible: shows('icon'),
+            maintainSize: true,
+            maintainAnimation: true,
+            maintainState: true,
+            child: icon,
+          ),
+          if (shows('spinner'))
+            // Which Spinner, Figma picks per variant; its `style` axis is the Spinner's
+            // `variant` prop.
+            ExcludeSemantics(
+              child: SolarSpinner(
+                size: SolarSpinnerSize.values.byName(
+                  SolarIconButtonRecipe.lookup(
+                    'spinner.variant.size',
+                    p,
+                    rest,
+                  )!.substring(2),
+                ),
+                variant: SolarSpinnerVariant.values.firstWhere(
+                  (v) =>
+                      'k:${v.figma}' ==
+                      SolarIconButtonRecipe.lookup(
+                        'spinner.variant.style',
+                        p,
+                        rest,
+                      ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+    return MergeSemantics(
+      child: Semantics(label: semanticLabel, child: button),
+    );
+  }
+}

@@ -6,6 +6,8 @@
 library;
 
 export 'src/components/solar_button.dart';
+export 'src/components/solar_button_group.dart';
+export 'src/components/solar_icon_button.dart';
 export 'src/components/solar_spinner.dart';
 export 'src/generated/components/components.dart';
 export 'src/generated/icons.dart';

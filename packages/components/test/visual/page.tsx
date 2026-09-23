@@ -16,7 +16,7 @@ function Page() {
         c.oracle.variants.map((v, i) => (
           <div
             key={`${component}-${i}`}
-            data-case={`${slug(component)}-${i}`}
+            data-case={`${slug(component)}:${i}`}
             style={{ padding: 8 }}
           >
             {c.render(v)}

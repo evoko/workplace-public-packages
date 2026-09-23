@@ -94,6 +94,25 @@ Map<String, dynamic> childVariant(
   throw StateError('${oracle['component']} has no variant $wanted');
 }
 
+/// The excused entries a check reaches: those on layers the variant draws, or a prop shows.
+int reachableExcuses(Map<String, dynamic> oracle) {
+  final variants = (oracle['variants'] as List).cast<Map<String, dynamic>>();
+  final rest = variants.first['layers'] as Map<String, dynamic>;
+  final slots = oracle['slots'] as Map;
+  var n = 0;
+  for (final v in variants) {
+    final layers = v['layers'] as Map<String, dynamic>;
+    for (final e in ((v['excused'] as List?) ?? const []).cast<Map>()) {
+      final layer = e['layer'] as String;
+      final hidden = (layers[layer] as Map?)?['hidden'] == true;
+      final byProp =
+          slots.containsKey(layer) && (rest[layer] as Map?)?['hidden'] == true;
+      if (!hidden || byProp) n++;
+    }
+  }
+  return n;
+}
+
 /// Every variant of [component] against its oracle, as failures and excused gaps. [oracles] is every
 /// component's oracle, the one checked and those of its composed children; [only] limits the check
 /// to some variants, for the self-checks.
@@ -114,7 +133,7 @@ Future<(List<Difference>, List<Difference>)> check(
     final name = v['figma'] as String;
     if (only != null && !only.contains(name)) continue;
     final states = WidgetStatesController();
-    await pump(tester, kase.build(v, states));
+    await pump(tester, kase.build(v, states, oracle));
     // As a user reaches it: a pressed control is hovered too, as the web check presses it.
     final forced = statesFor(v['state'] as String?);
     if (forced.isNotEmpty) {
@@ -146,7 +165,19 @@ Future<(List<Difference>, List<Difference>)> check(
       }
       final child = oracles[expected['component']];
       if (child != null) {
-        checkChild(name, layer, expected, got, child, failures);
+        // Shown by a prop and hidden at rest (Button Group's tertiary): checked when rendered.
+        if (expected['hidden'] != true || got['drawn'] == true) {
+          checkChild(
+            name,
+            layer,
+            expected,
+            got,
+            child,
+            excused,
+            failures,
+            gaps,
+          );
+        }
         continue;
       }
       compareLayer(name, layer, expected, got, excused, failures, gaps);
@@ -155,16 +186,21 @@ Future<(List<Difference>, List<Difference>)> check(
   return (failures, gaps);
 }
 
-/// A composed child (Button's spinner) is the child component in the variant Figma picks; what that
-/// variant looks like is the child's oracle, so the two are checked together, layer by layer. What
-/// the child's oracle excuses is not compared here: the child's own check reports it.
+/// A composed child (Button's spinner, Button Group's buttons) is the child component in the variant
+/// Figma picks; what that variant looks like is the child's oracle, so the two are checked
+/// together, layer by layer. What the child's oracle excuses is not compared here: the child's own
+/// check reports it. Its box is the parent's to decide (a Button fills a group, whatever width it
+/// has alone), so the child's root is measured against the parent's width and height instead, with
+/// the parent's excuses.
 void checkChild(
   String variant,
   String layer,
   Map<String, dynamic> expected,
   Map<String, Object?> got,
   Map<String, dynamic> oracle,
+  List<dynamic> excusedHere,
   List<Difference> failures,
+  List<Difference> gaps,
 ) {
   if (got['drawn'] != true) {
     failures.add(Difference(variant, layer, 'present', true, false));
@@ -175,11 +211,28 @@ void checkChild(
     expected['variant'] as Map<String, dynamic>,
   );
   final layers = got['layers']! as Layers;
+  compareLayer(
+    variant,
+    layer,
+    {
+      for (final p in ['width', 'height'])
+        if (expected.containsKey(p)) p: expected[p],
+    },
+    layers['root'] ?? const {},
+    excusedHere,
+    failures,
+    gaps,
+  );
   final excused = (want['excused'] as List?) ?? const [];
   for (final MapEntry(key: part, value: e)
       in (want['layers'] as Map<String, dynamic>).entries) {
-    final spec = e as Map<String, dynamic>;
+    final spec = {...e as Map<String, dynamic>};
     if (spec['hidden'] == true) continue;
+    if (part == 'root') {
+      spec
+        ..remove('width')
+        ..remove('height');
+    }
     final measured = layers[part];
     if (measured == null) {
       failures.add(Difference(variant, layer, '$part.present', true, false));

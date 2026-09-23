@@ -95,6 +95,23 @@ export const FLUTTER_STYLE = {
     iconColor: 'iconLeading.color',
     iconSize: 'iconLeading.width',
   },
+  // No label, so no text style: the icon takes the foreground.
+  'Icon Button': {
+    background: 'root.background',
+    shadow: 'root.shadow',
+    radius: 'root.radius',
+    borderColor: 'root.borderColor',
+    borderWidth: 'root.borderWidth',
+    paddingTop: 'root.paddingTop',
+    paddingRight: 'root.paddingRight',
+    paddingBottom: 'root.paddingBottom',
+    paddingLeft: 'root.paddingLeft',
+    height: 'root.height',
+    width: 'root.width',
+    foreground: 'icon.color',
+    iconColor: 'icon.color',
+    iconSize: 'icon.width',
+  },
 };
 
 /**
@@ -293,6 +310,28 @@ export function renderFlutterComponent(spec, tokens) {
     )
     .join(', ');
   const cell = (key) => `'${table[key]}'`;
+  // What a ButtonStyle needs from every component, and what only some have: an icon button has no
+  // label, so no text style.
+  const REQUIRED = [
+    'background',
+    'shadow',
+    'radius',
+    'borderColor',
+    'borderWidth',
+    'paddingTop',
+    'paddingRight',
+    'paddingBottom',
+    'paddingLeft',
+    'height',
+    'width',
+  ];
+  if (builderOf === 'ButtonStyle')
+    for (const key of REQUIRED)
+      if (!table[key])
+        throw new Error(
+          `${spec.component}: FLUTTER_STYLE names no cell for the ButtonStyle's ${key}`,
+        );
+  const optional = (key, line) => (table[key] ? line : '');
 
   const entries = Object.entries(cells)
     .map(([k, v]) => `    ${quote(k)}: ${quote(v)},`)
@@ -347,11 +386,23 @@ export function renderFlutterComponent(spec, tokens) {
     final height = dimension(${cell('height')}, p, none);
     return ButtonStyle(
       backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
-      foregroundColor: by((s) => color(t, ${cell('foreground')}, p, s)),
-      iconColor: by((s) => color(t, ${cell('iconColor')}, p, s)),
-      iconSize: WidgetStatePropertyAll(dimension(${cell('iconSize')}, p, none)),
-      textStyle: by((s) => textStyle(t, ${cell('textStyle')}, p, s)),
-      padding: by((s) => EdgeInsetsDirectional.only(
+${optional(
+  'foreground',
+  `      foregroundColor: by((s) => color(t, ${cell('foreground')}, p, s)),
+`,
+)}${optional(
+          'iconColor',
+          `      iconColor: by((s) => color(t, ${cell('iconColor')}, p, s)),
+`,
+        )}${optional(
+          'iconSize',
+          `      iconSize: WidgetStatePropertyAll(dimension(${cell('iconSize')}, p, none)),
+`,
+        )}${optional(
+          'textStyle',
+          `      textStyle: by((s) => textStyle(t, ${cell('textStyle')}, p, s)),
+`,
+        )}      padding: by((s) => EdgeInsetsDirectional.only(
             start: dimension(${cell('paddingLeft')}, p, s) ?? 0,
             end: dimension(${cell('paddingRight')}, p, s) ?? 0,
             top: dimension(${cell('paddingTop')}, p, s) ?? 0,
@@ -448,7 +499,7 @@ ${holds.map((st) => `        '${st}' => ${stateTest(spec, st)},`).join('\n')}
   /// one, and the resting value falls back through appearance, size and base.
   static String? lookup(String cell, Solar${name}Props p, Set<WidgetState> s) {
     final combo = '${combo}';
-    final size = ${sizeExpr};
+    ${'size' in spec.api ? 'final' : 'const'} size = ${sizeExpr};
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;
       final hit = cells['$cell|combined|$size|$combo|$state'] ??

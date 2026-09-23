@@ -11,11 +11,17 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { OVERLAPS, STATE_SELECTORS } from '../src/emit/mui-component.mjs';
+import {
+  MUI_SLOTS,
+  OVERLAPS,
+  STATE_SELECTORS,
+} from '../src/emit/mui-component.mjs';
 
 const SELECTORS = STATE_SELECTORS.Button;
 import { flattenSpec } from '../src/spec.mjs';
 import * as stage from '../src/stages/components.mjs';
+import { flutterFileOf, shellFileOf } from '../src/scaffold/index.mjs';
+import { pascal } from '../src/util/naming.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
 const { built, tokens } = stage.build();
@@ -474,27 +480,31 @@ describe('component parity: the React and Flutter widgets', () => {
   }
 
   for (const { spec } of built) {
-    const name = spec.component;
-    const react = reactProps(read('components', 'src', `${name}.tsx`), name);
+    // `Icon Button` is IconButton.tsx and solar_icon_button.dart, as the scaffolder names them.
+    const name = pascal(spec.component);
+    const react = reactProps(
+      read('components', 'src', shellFileOf(spec.component)),
+      name,
+    );
     const flutter = dartParams(
       read(
         'solar_flutter',
         'lib',
         'src',
         'components',
-        `solar_${name.toLowerCase()}.dart`,
+        flutterFileOf(spec.component),
       ),
       name,
     );
 
-    it(`${name}: both take every prop of the IR`, () => {
+    it(`${spec.component}: both take every prop of the IR`, () => {
       for (const prop of Object.keys(spec.api)) {
         expect(react, `${prop} in React`).toContain(prop);
         expect(flutter, `${prop} in Flutter`).toHaveProperty(prop);
       }
     });
 
-    it(`${name}: Flutter defaults to the IR's defaults`, () => {
+    it(`${spec.component}: Flutter defaults to the IR's defaults`, () => {
       for (const [prop, def] of Object.entries(spec.api)) {
         const expected =
           def.type === 'boolean'
@@ -506,10 +516,16 @@ describe('component parity: the React and Flutter widgets', () => {
       }
     });
 
-    it(`${name}: both take every slot, the label as their child`, () => {
+    it(`${spec.component}: both take every slot, the label as their child`, () => {
       for (const slot of Object.keys(spec.slots)) {
+        // The label is the child; a slot styled as one of the root's children (Button Group's
+        // example Buttons, all `& > *`) is one of the caller's children.
         const [inReact, inFlutter] =
-          slot === 'label' ? ['children', 'child'] : [slot, slot];
+          slot === 'label'
+            ? ['children', 'child']
+            : MUI_SLOTS[spec.component]?.[slot] === '& > *'
+              ? ['children', 'children']
+              : [slot, slot];
         expect(react, `${slot} in React`).toContain(inReact);
         expect(flutter, `${slot} in Flutter`).toHaveProperty(inFlutter);
       }

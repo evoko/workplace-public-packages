@@ -130,7 +130,14 @@ Widget playground(
   return Center(
     child: _Tile(
       build: builderOf(component),
-      variant: {'props': props, 'state': 'default'},
+      // The resting variant's layers too, for a builder that draws what Figma nests (Button Group's
+      // Buttons).
+      variant: {
+        'props': props,
+        'state': 'default',
+        'layers': variants.first['layers'],
+      },
+      oracle: oracle,
     ),
   );
 }
@@ -169,14 +176,21 @@ class Variants extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 56,
+                      // A wide widget (a Button Group) is scaled down to the tile, keeping its
+                      // proportions; a tall one grows the tile.
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 56),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: _Tile(
-                            key: ValueKey(v['figma']),
-                            build: builderOf(component),
-                            variant: v,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: _Tile(
+                              key: ValueKey(v['figma']),
+                              build: builderOf(component),
+                              variant: v,
+                              oracle: oracle,
+                            ),
                           ),
                         ),
                       ),
@@ -196,10 +210,16 @@ class Variants extends StatelessWidget {
 /// One widget in one variant, with a states controller of its own holding the variant's platform
 /// state (a pressed one hovered too).
 class _Tile extends StatefulWidget {
-  const _Tile({super.key, required this.build, required this.variant});
+  const _Tile({
+    super.key,
+    required this.build,
+    required this.variant,
+    required this.oracle,
+  });
 
   final VariantBuilder build;
   final Map<String, dynamic> variant;
+  final Map<String, dynamic> oracle;
 
   @override
   State<_Tile> createState() => _TileState();
@@ -217,5 +237,6 @@ class _TileState extends State<_Tile> {
   }
 
   @override
-  Widget build(BuildContext context) => widget.build(widget.variant, states);
+  Widget build(BuildContext context) =>
+      widget.build(widget.variant, states, widget.oracle);
 }

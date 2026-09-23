@@ -47,7 +47,9 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 
 ## Components
 
-`SolarButton` and `SolarSpinner` take the same props as the React components:
+`SolarButton`, `SolarIconButton`, `SolarButtonGroup` and `SolarSpinner` take the same props as the
+React components (a group takes its buttons as `children`, and asserts against the vertical
+full-width group Figma does not draw):
 
 ```dart
 SolarButton(
@@ -62,7 +64,8 @@ SolarButton(
 Each is a widget scaffolded once (`npm run solar:scaffold -- --flutter <Name>`) and then hand-owned,
 styled by a generated recipe it never copies values from. They read the `SolarTheme` the app
 installed, or Light or Dark for the app's brightness if it installed none. An icon-only
-`SolarButton` needs a `semanticLabel`. While loading the label keeps its room and its semantics
+`SolarButton` needs a `semanticLabel`, and `SolarIconButton` requires one; either way the name and
+the button's tap action are one node for a screen reader. While loading the label keeps its room and its semantics
 but is not drawn, and the spinner Figma picks for the variant shows; disabled wins over loading.
 
 The recipe can also style a stock control directly. `SolarButtonRecipe.style(theme, props)` is a

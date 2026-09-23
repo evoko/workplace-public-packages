@@ -378,3 +378,72 @@ describe('spec/overlay/button.yaml', () => {
     expect(loadOverlay('Tabs')).toBeNull();
   });
 });
+
+describe('the overlay forms 3b-2 wave B added', () => {
+  const on = (component, text) =>
+    buildComponentSpec(loadComponent(catalog, component), {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay: parseOverlay(`component: ${component}\n${text}`, 'test.yaml'),
+    });
+
+  it('binds several literals of one cell, and refuses one it would leave behind', () => {
+    const slot = 'slots:\n  iconNone: { name: icon, type: icon, reason: r }\n';
+    const { spec } = on(
+      'Icon Button',
+      `${slot}bind:\n  icon.width: { tokens: { 12: icon.xs, 16: icon.sm, 20: icon.md }, reason: r }\n`,
+    );
+    expect(spec.style.icon.size.lg.width.token).toBe('icon.md');
+    expect(() =>
+      on(
+        'Icon Button',
+        `${slot}bind:\n  icon.width: { tokens: { 12: icon.xs, 16: icon.sm }, reason: r }\n`,
+      ),
+    ).toThrow(/bind icon.width: leaves 20 unbound/);
+    expect(() =>
+      on(
+        'Icon Button',
+        `${slot}bind:\n  icon.width: { tokens: { 12: icon.sm }, reason: r }\n`,
+      ),
+    ).toThrow(/icon.sm is 16, not 12/);
+    expect(() =>
+      yaml(
+        'component: X\nbind:\n  a.b: { literal: 0, token: inset.none, tokens: { 0: inset.none }, reason: r }\n',
+      ),
+    ).toThrow(/give literal and token, or tokens, not both/);
+  });
+
+  it('renames a two-valued axis to a boolean, and refuses a value it does not map', () => {
+    const { spec } = on(
+      'Button Group',
+      "rename:\n  type: { to: fullWidth, values: { regular: 'false', full-width: 'true' }, reason: r }\n",
+    );
+    expect(spec.api.fullWidth).toEqual({ type: 'boolean', default: false });
+    expect(Object.keys(spec.style.root.appearance)).toContain(
+      'orientation=horizontal, fullWidth=true',
+    );
+    expect(() =>
+      on(
+        'Button Group',
+        "rename:\n  type: { to: fullWidth, values: { regular: 'false' }, reason: r }\n",
+      ),
+    ).toThrow(/rename type: values gives nothing for full-width/);
+  });
+
+  it('sets a sizing keyword, and only FILL or HUG', () => {
+    const { spec } = on(
+      'Button Group',
+      'set:\n  tertiaryCTA.base.width: { keyword: FILL, reason: r }\n',
+    );
+    expect(spec.style.tertiaryCTA.base.width).toMatchObject({
+      keyword: 'FILL',
+      from: 'overlay',
+    });
+    expect(() =>
+      on(
+        'Button Group',
+        'set:\n  tertiaryCTA.base.width: { keyword: GROW, reason: r }\n',
+      ),
+    ).toThrow(/keyword must be FILL or HUG/);
+  });
+});
