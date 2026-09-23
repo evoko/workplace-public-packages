@@ -3,57 +3,63 @@ import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
 import { renderTailwind } from '../src/emit/tailwind.mjs';
 
 const { spec } = buildTokenSpec(loadContract());
-const { ts, preset } = renderTailwind(spec);
+const { css, theme, utilities, manifest } = renderTailwind(spec);
+const has = (line) => expect(theme).toContain(`  ${line}`);
 
-describe('renderTailwind', () => {
-  it('maps colours to CSS variable references so dark mode keeps working', () => {
-    expect(preset.theme.extend.colors['surface-background']).toBe(
-      'var(--solar-color-surface-background)',
+describe('renderTailwind, for Tailwind CSS 4', () => {
+  it('is a stylesheet that brings tokens.css with it', () => {
+    expect(css).toContain("@import './tokens.css';");
+    expect(css).toContain('@theme inline {');
+    expect(css).not.toMatch(/export|require\(|module\./);
+  });
+
+  it('registers colours as references, so dark mode keeps switching with data-theme', () => {
+    has('--color-surface-background: var(--solar-color-surface-background);');
+  });
+
+  it('puts inset and stack on the spacing scale, and radius and shadow in their own', () => {
+    has('--spacing-inset-md: var(--solar-inset-md);');
+    has('--spacing-stack-lg: var(--solar-stack-lg);');
+    has('--radius-control: var(--solar-radius-control);');
+    has('--shadow-control: var(--solar-shadow-control);');
+  });
+
+  it('maps type sizes, font families and easings, but not the weights Tailwind already has', () => {
+    has('--text-display-lg: var(--solar-type-size-display-lg);');
+    has('--font-inter: var(--solar-type-font-family-inter);');
+    has('--ease-out: var(--solar-motion-ease-out);');
+    expect(css).not.toContain('--font-weight-');
+  });
+
+  it('uses real pixels for breakpoints, which media queries cannot read from a variable', () => {
+    has('--breakpoint-md: 1024px;');
+  });
+
+  it('makes utilities for the families Tailwind 4 has no namespace for', () => {
+    expect(utilities).toContain(
+      '@utility border-default {\n  border-width: var(--solar-border-default);\n}',
+    );
+    expect(utilities).toContain(
+      '@utility z-dialog {\n  z-index: var(--solar-z-dialog);\n}',
+    );
+    expect(utilities).toContain(
+      '@utility duration-fast {\n  --tw-duration: var(--solar-motion-duration-fast);\n  transition-duration: var(--solar-motion-duration-fast);\n}',
     );
   });
 
-  it('maps spacing, radius and border width', () => {
-    expect(preset.theme.extend.spacing['inset-md']).toBe(
-      'var(--solar-inset-md)',
-    );
-    expect(preset.theme.extend.borderRadius.control).toBe(
-      'var(--solar-radius-control)',
-    );
-    expect(preset.theme.extend.borderWidth.default).toBe(
-      'var(--solar-border-default)',
-    );
+  it('does not redefine a core utility that means something else', () => {
+    // Tailwind's border-none is border-style: none; SOLAR's border.none width is border-0.
+    expect(css).not.toContain('@utility border-none');
+    expect(manifest).not.toHaveProperty(['border.none']);
   });
 
-  it('maps breakpoints to screens using real pixel values, not variables', () => {
-    expect(preset.theme.extend.screens.md).toBe('1024px');
+  it('exposes the semantic layer only, apart from motion and the font families', () => {
+    expect(css).not.toContain('--color-brand-red:');
+    expect(Object.keys(manifest).length).toBeGreaterThan(300);
   });
 
-  it('exposes the font families, which Tailwind has no default for, but not the weights', () => {
-    expect(preset.theme.extend.fontFamily.inter).toBe(
-      'var(--solar-type-font-family-inter)',
-    );
-    expect(Object.keys(preset.theme.extend.fontFamily)).toHaveLength(6);
-    // SOLAR's 100 to 900 are exactly Tailwind's built-in scale, so they are not re-exported.
-    expect(preset.theme.extend.fontWeight).toBeUndefined();
-  });
-
-  it('maps durations and easings', () => {
-    expect(preset.theme.extend.transitionDuration.fast).toBe(
-      'var(--solar-motion-duration-fast)',
-    );
-    expect(preset.theme.extend.transitionTimingFunction.both).toBe(
-      'var(--solar-motion-ease-both)',
-    );
-  });
-
-  it('resolves shadow aliases rather than passing the composite string through', () => {
-    expect(preset.theme.extend.boxShadow.control).toBe(
-      'var(--solar-shadow-control)',
-    );
-  });
-
-  it('emits a module that imports nothing', () => {
-    expect(ts).not.toContain('import');
-    expect(ts).toContain('export const solarTailwindPreset');
+  it('registers every theme variable once', () => {
+    const names = theme.map((l) => l.trim().split(':')[0]);
+    expect(new Set(names).size).toBe(names.length);
   });
 });

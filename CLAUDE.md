@@ -19,7 +19,8 @@ never write a build timestamp into a generated file.
 
 `npm run solar:codegen` ([packages/codegen](packages/codegen/README.md)) turns the data under
 `docs/` into code in two stages. Tokens: `spec/tokens.json`, then CSS, an MUI theme and a
-Tailwind preset in `@bwp-web/styles`, and Dart in `solar_flutter`. Icons: `spec/icons.json` from
+Tailwind 4 stylesheet in `@bwp-web/styles`, each behind its own entry (`tokens.css`, `/mui`,
+`tailwind.css`) so an app loads only its own, and Dart in `solar_flutter`. Icons: `spec/icons.json` from
 `docs/solar-icons/`, then 341 React components and 687 standalone SVG files in `@bwp-web/assets`,
 and `SolarVector` constants in `solar_flutter`. **It must never write to `docs/`**, which is the
 Figma mirror; a write guard enforces this and CI re-checks it. When generated styling is wrong,

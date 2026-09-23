@@ -1,3 +1,21 @@
+/**
+ * Emits SOLAR for Tailwind CSS 4: a stylesheet, not a JavaScript preset.
+ *
+ * Tailwind 4 is configured in CSS. `@theme inline` registers each token in the namespace Tailwind
+ * builds utilities from (`--color-*` makes `bg-*`, `--spacing-*` makes `p-*`), and `inline` makes
+ * the utility use the value as written -- `var(--solar-…)` -- rather than a copy of it, so Light
+ * and Dark keep switching with `[data-theme]` and no Tailwind dark-mode setup is needed.
+ *
+ * Three families have no theme namespace in Tailwind 4 -- border widths, z-index and durations
+ * take bare values there -- so they are `@utility` rules instead. Breakpoints are real pixels,
+ * because a media query cannot read a custom property.
+ *
+ * The stylesheet imports tokens.css itself, so a Tailwind app needs one line:
+ *
+ *   @import 'tailwindcss';
+ *   @import '@bwp-web/styles/tailwind.css';
+ */
+
 import { join } from 'node:path';
 import { flattenSpec } from '../spec.mjs';
 import { packagesDir } from '../util/paths.mjs';
@@ -9,60 +27,75 @@ const OUT_DIR = join(packagesDir, 'styles', 'src', 'generated', 'tailwind');
 const ref = (name) => `var(--solar-${name.replaceAll('.', '-')})`;
 const key = (name, prefix) => name.replace(prefix, '').replaceAll('.', '-');
 
+// Tailwind exposes the semantic layer, so app code cannot reach for a raw palette value. Two
+// families are exceptions because SOLAR gives them no semantic layer at all: motion, and the font
+// families. Font weights are deliberately not exposed: SOLAR's 100 to 900 are exactly Tailwind's
+// built-in scale, so font-400 would only duplicate font-normal.
+const EXPOSED_PRIMITIVES = /^(motion\.|type\.font-family\.)/;
+
+/** SOLAR token families to Tailwind 4 theme namespaces. */
+const THEME = [
+  ['color.', 'color'],
+  ['inset.', 'spacing', ''],
+  ['stack.', 'spacing', ''],
+  ['radius.', 'radius'],
+  ['shadow.', 'shadow'],
+  ['type.size.', 'text'],
+  ['type.font-family.', 'font'],
+  ['motion.ease.', 'ease'],
+  ['layout.breakpoint.', 'breakpoint'],
+];
+
+/** Families with no namespace in Tailwind 4: each token becomes one `@utility`. */
+const UTILITIES = [
+  ['border.', 'border', (v) => `border-width: ${v};`],
+  ['z.', 'z', (v) => `z-index: ${v};`],
+  // Setting --tw-duration too, so it composes with Tailwind's own `transition` utilities.
+  [
+    'motion.duration.',
+    'duration',
+    (v) => `--tw-duration: ${v};\n  transition-duration: ${v};`,
+  ],
+];
+
+// Tailwind already has these utilities with a different meaning (`border-none` is
+// `border-style: none`), so SOLAR's token of the same name is not re-registered over them.
+// Tailwind's `border-0` is the same zero width.
+const CORE_UTILITIES = new Set(['border-none']);
+
 export function renderTailwind(spec) {
   const tokens = flattenSpec(spec);
   const index = new Map(tokens.map((t) => [t.name, t]));
-  const extend = {
-    colors: {},
-    spacing: {},
-    borderRadius: {},
-    borderWidth: {},
-    boxShadow: {},
-    fontSize: {},
-    fontFamily: {},
-    screens: {},
-    zIndex: {},
-    transitionDuration: {},
-    transitionTimingFunction: {},
-  };
+  const theme = [];
+  const utilities = [];
   const manifest = {};
 
   for (const t of tokens) {
     const n = t.name;
-    // Tailwind exposes the semantic layer, so app code cannot reach for a raw palette value.
-    // Two families are exceptions because SOLAR gives them no semantic layer at all: motion,
-    // and the font families, which Tailwind's own sans/serif/mono defaults know nothing about.
-    // Font weights are deliberately not exposed: SOLAR's 100 to 900 are exactly Tailwind's
-    // built-in scale, so font-400 would only duplicate font-normal.
-    const EXPOSED_PRIMITIVES = /^(motion\.|type\.font-family\.)/;
     if (t.ext.tier === 'primitive' && !EXPOSED_PRIMITIVES.test(n)) continue;
-    if (n.startsWith('color.')) extend.colors[key(n, 'color.')] = ref(n);
-    else if (n.startsWith('inset.') || n.startsWith('stack.'))
-      extend.spacing[key(n, '')] = ref(n);
-    else if (n.startsWith('radius.'))
-      extend.borderRadius[key(n, 'radius.')] = ref(n);
-    else if (n.startsWith('border.'))
-      extend.borderWidth[key(n, 'border.')] = ref(n);
-    else if (n.startsWith('shadow.'))
-      extend.boxShadow[key(n, 'shadow.')] = ref(n);
-    else if (n.startsWith('type.size.'))
-      extend.fontSize[key(n, 'type.size.')] = ref(n);
-    else if (n.startsWith('type.font-family.'))
-      extend.fontFamily[key(n, 'type.font-family.')] = ref(n);
-    else if (n.startsWith('z.')) extend.zIndex[key(n, 'z.')] = ref(n);
-    else if (n.startsWith('motion.duration.'))
-      extend.transitionDuration[key(n, 'motion.duration.')] = ref(n);
-    else if (n.startsWith('motion.ease.'))
-      extend.transitionTimingFunction[key(n, 'motion.ease.')] = ref(n);
-    // Media queries cannot read custom properties, so screens need real values.
-    else if (n.startsWith('layout.breakpoint.'))
-      extend.screens[key(n, 'layout.breakpoint.')] = t.value;
-    else continue;
 
-    // What the preset holds is a var() reference, except screens, which must be literal. The
+    const themed = THEME.find(([prefix]) => n.startsWith(prefix));
+    const utility =
+      !themed && UTILITIES.find(([prefix]) => n.startsWith(prefix));
+    if (!themed && !utility) continue;
+
+    // Media queries cannot read custom properties, so breakpoints are the real value.
+    const breakpoint = n.startsWith('layout.breakpoint.');
+    const emitted = breakpoint ? t.value : ref(n);
+
+    if (themed) {
+      const [prefix, namespace, strip = prefix] = themed;
+      theme.push(`  --${namespace}-${key(n, strip)}: ${emitted};`);
+    } else {
+      const [prefix, name, body] = utility;
+      const cls = `${name}-${key(n, prefix)}`;
+      if (CORE_UTILITIES.has(cls)) continue;
+      utilities.push(`@utility ${cls} {\n  ${body(emitted)}\n}`);
+    }
+
+    // What the stylesheet holds is a var() reference, except breakpoints, which are literal. The
     // resolved value is passed as the canonical input so parity can compare across targets;
     // shadows resolve their colour alias first, the same way CSS and Flutter do.
-    const emitted = n.startsWith('layout.breakpoint.') ? t.value : ref(n);
     manifest[n] =
       t.type === 'shadow'
         ? entry(
@@ -73,18 +106,19 @@ export function renderTailwind(spec) {
         : entry(t.type, emitted, t.modes?.light ?? t.modes?.desktop ?? t.value);
   }
 
-  const preset = { theme: { extend } };
-  const ts =
-    `// SOLAR Tailwind preset. Generated by @bwp-web/codegen from spec/tokens.json. Do not edit.\n` +
-    `// Values point at the CSS custom properties in tokens.css, so Light and Dark switch with\n` +
-    `// [data-theme]. Screens are real pixel values because media queries cannot read variables.\n\n` +
-    `export const solarTailwindPreset = ${JSON.stringify(preset, null, 2)} as const;\n`;
+  const css =
+    `/* SOLAR for Tailwind CSS 4. Generated by @bwp-web/codegen from spec/tokens.json. Do not edit. */\n` +
+    `/* Use after Tailwind:  @import 'tailwindcss';  @import '@bwp-web/styles/tailwind.css'; */\n\n` +
+    // Relative to the published file: dist/tailwind.css sits beside dist/tokens.css.
+    `@import './tokens.css';\n\n` +
+    `@theme inline {\n${theme.join('\n')}\n}\n\n` +
+    `${utilities.join('\n\n')}\n`;
 
-  return { ts, preset, manifest };
+  return { css, manifest, theme, utilities };
 }
 
 export function emitTailwind(spec) {
-  const { ts, manifest } = renderTailwind(spec);
-  writeGenerated(join(OUT_DIR, 'preset.ts'), ts);
+  const { css, manifest } = renderTailwind(spec);
+  writeGenerated(join(OUT_DIR, 'theme.css'), css);
   return Object.keys(manifest).length;
 }

@@ -6,17 +6,79 @@ Biamp SOLAR design tokens for the web, generated from the same spec as
 Everything under `src/generated/` is written by `npm run solar:codegen` at the repository root
 and must not be edited by hand. See [@bwp-web/codegen](../codegen/README.md).
 
-## MUI
+## Take only what you use
 
-`createSolarThemeOptions` returns plain `ThemeOptions`; this package imports nothing from MUI, so
-it stays dependency free.
+Each way of building a web app has its own entry, and none of them loads another's code:
+
+| You use        | Import                                                    | Brings no                 |
+| -------------- | --------------------------------------------------------- | ------------------------- |
+| plain CSS      | `@bwp-web/styles/tokens.css`                              | JavaScript, Tailwind, MUI |
+| Tailwind CSS 4 | `@bwp-web/styles/tailwind.css` (includes `tokens.css`)    | JavaScript, MUI           |
+| MUI            | `@bwp-web/styles/mui`, plus `@bwp-web/styles/tokens.css`  | Tailwind                  |
+| any JavaScript | `@bwp-web/styles`: the tokens as data, e.g. for CSS-in-JS | MUI, Tailwind             |
+| any of these   | `@bwp-web/styles/fonts.css` for SOLAR's fonts             |                           |
+
+The package has no peer dependencies, so a Tailwind or plain-CSS app never needs MUI or React.
+Flutter apps use [`solar_flutter`](../solar_flutter/README.md) instead, which needs nothing from npm.
+
+## Plain CSS
 
 ```ts
+import '@bwp-web/styles/tokens.css';
+```
+
+Defines every token on `:root`, redefines the mode-varying ones under `[data-theme='dark']`, and
+overrides the type scale below the tablet boundary. Dark mode can scope to a subtree, not just
+the document:
+
+```html
+<aside data-theme="dark">…</aside>
+```
+
+The package lists `*.css` in `sideEffects`, so a bundler keeps this import. With
+`"sideEffects": false` webpack drops it silently in production builds, since nothing is imported
+from it; a test in `@bwp-web/codegen` fails if a stylesheet export ever goes unlisted again.
+
+## Tailwind CSS 4
+
+```css
+@import 'tailwindcss';
+@import '@bwp-web/styles/tailwind.css';
+```
+
+Tailwind 4 is configured in CSS, so this is a stylesheet rather than a JavaScript preset. It brings
+`tokens.css` with it and registers SOLAR in Tailwind's theme with `@theme inline`, so every
+utility is a reference to a SOLAR custom property and Light and Dark follow `data-theme` with no
+Tailwind dark-mode variant:
+
+| Utility                                      | From                                |
+| -------------------------------------------- | ----------------------------------- |
+| `bg-surface-background`, `text-text-primary` | `color.*`                           |
+| `p-inset-md`, `gap-stack-lg`                 | `inset.*`, `stack.*`                |
+| `rounded-control`, `shadow-control`          | `radius.*`, `shadow.*`              |
+| `text-display-lg`, `font-inter`              | `type.size.*`, `type.font-family.*` |
+| `ease-out`, `duration-fast`                  | `motion.*`                          |
+| `border-default`, `z-dialog`                 | `border.*`, `z.*`                   |
+| `sm:` `md:` `lg:` `xl:`                      | SOLAR's breakpoints, in pixels      |
+
+It exposes the semantic layer only, so app code cannot reach for a raw palette value; the
+exceptions are `motion.*` and the font families, which SOLAR gives no semantic layer. Font weights
+are not re-registered, because SOLAR's 100 to 900 are Tailwind's own scale. SOLAR's `border.none`
+has no utility, because Tailwind's `border-none` already means `border-style: none`; use
+`border-0`.
+
+## MUI
+
+```ts
+import '@bwp-web/styles/tokens.css';
 import { createTheme } from '@mui/material/styles';
-import { createSolarThemeOptions } from '@bwp-web/styles';
+import { createSolarThemeOptions, solarButtonStyle } from '@bwp-web/styles/mui';
 
 const theme = createTheme(createSolarThemeOptions('light'));
 ```
+
+`createSolarThemeOptions` returns plain `ThemeOptions`; nothing here imports MUI, so this package
+does not depend on it.
 
 Stock MUI components render in SOLAR without any per-component work. The theme fills MUI's own
 palette slots and typography variants with SOLAR roles: `primary`, `secondary` and `error` from
@@ -27,28 +89,8 @@ without MUI's uppercase. SOLAR does not define this mapping, so it is the `mui.t
 `solarMuiPalette` and `solarMuiTypography`. The palette holds literal colours rather than
 `var(--solar-*)`, because MUI runs `alpha()` and `darken()` on it.
 
-Typography carries both viewports: each text style holds its Desktop values with a nested
-`@media (max-width: 767.98px)` block for the Mobile ones, so `createTheme` switches at SOLAR's
-tablet boundary without any help from the app. Only `display`, `title` and `code` change size —
-body, label, caption and helper text stay put, by design.
-
-## CSS custom properties
-
-```ts
-import '@bwp-web/styles/tokens.css';
-```
-
-The package lists `*.css` in `sideEffects`, so a bundler keeps this import. With
-`"sideEffects": false` webpack drops it silently in production builds, since nothing is imported
-from it; a test in `@bwp-web/codegen` fails if a stylesheet export ever goes unlisted again.
-
-Defines every token on `:root`, redefines the mode-varying ones under `[data-theme='dark']`, and
-overrides the type scale below the tablet boundary. Dark mode can scope to a subtree, not just
-the document:
-
-```html
-<aside data-theme="dark">…</aside>
-```
+The component recipes are here too: `solarButtonStyle(props)` is the complete style for one set of
+Button props, for `sx` or `styleOverrides.root`, with every value a `var(--solar-*)`.
 
 ## Fonts
 
@@ -67,33 +109,18 @@ a font that has not loaded, or an app that does not import `fonts.css`, degrades
 rather than to the browser's default serif. `fonts.css` imports its files by package name, which
 webpack, Vite and esbuild resolve; a plain `<link>` to the file does not.
 
-## Tailwind
+## Tokens as data
 
-The preset points at the custom properties above, so `tokens.css` must be imported too; Light and
-Dark then follow `data-theme` with no Tailwind dark-mode variant.
+`@bwp-web/styles` holds the tokens as JavaScript, for anything that styles from code:
 
-```ts
-import { solarTailwindPreset } from '@bwp-web/styles';
-
-export default { presets: [solarTailwindPreset], content: [...] };
-```
-
-It exposes the semantic layer only, so app code cannot reach for a raw palette value. The
-exceptions are `motion.*` and the font families, which SOLAR gives no semantic layer, and the
-breakpoints, which are real pixel values because a media query cannot read a custom property.
-
-## Raw tokens
-
-| Export                      | Holds                                                                 |
-| --------------------------- | --------------------------------------------------------------------- |
-| `solarTokens`               | every token by theme mode (`light`, `dark`), at its Desktop value     |
-| `solarViewportTokens`       | the type tokens that change with the viewport (`desktop`, `mobile`)   |
-| `solarTypography`           | the 47 text styles, per viewport, kept separate for non-MUI consumers |
-| `solarResponsiveTypography` | the same styles with the Mobile values nested as a media query        |
-| `solarShadows`              | the 9 effect styles, per theme mode                                   |
-| `solarZIndex`               | the 7-level layering ladder                                           |
-| `solarMuiPalette`           | MUI's palette slots, resolved to SOLAR colours, per theme mode        |
-| `solarMuiTypography`        | MUI's built-in variants (`h1`…`caption`), as SOLAR text styles        |
+| Export                      | Holds                                                               |
+| --------------------------- | ------------------------------------------------------------------- |
+| `solarTokens`               | every token by theme mode (`light`, `dark`), at its Desktop value   |
+| `solarViewportTokens`       | the type tokens that change with the viewport (`desktop`, `mobile`) |
+| `solarTypography`           | the 47 text styles, per viewport                                    |
+| `solarResponsiveTypography` | the same styles with the Mobile values nested as a media query      |
+| `solarShadows`              | the 9 effect styles, per theme mode                                 |
+| `solarZIndex`               | the 7-level layering ladder                                         |
 
 `solarTokens` is keyed by theme alone, so it holds the Desktop value of anything that varies by
 viewport; `solarViewportTokens` is the override to apply below the breakpoint, mirroring what the

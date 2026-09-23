@@ -420,6 +420,27 @@ rather than a literal.
 
 ---
 
+### Task 6b: One entry per audience, and Tailwind 4
+
+Added 2026-09-23 at the owner's request: Tailwind, plain-CSS, MUI and Flutter users each take one
+part of the design system, so each gets an entry that loads nothing of the others. Structure only;
+components stay on MUI and Flutter for now.
+
+**Done 2026-09-23.** `@bwp-web/styles` exports `.` (the tokens as framework-agnostic data,
+`generated/tokens.ts`), `./mui` (the MUI theme and the component recipes), `./tokens.css`,
+`./tailwind.css` and `./fonts.css`, built as separate tsup entries; the root is 316 bytes plus the
+shared token data and holds no MUI code. The Tailwind target is now **Tailwind 4 only** (owner):
+a stylesheet with `@theme inline`, `@utility` for the border widths, z-index and durations that
+Tailwind 4 has no namespace for, and `@import './tokens.css'` so one import does. SOLAR's
+`border.none` is not registered, because Tailwind's `border-none` is `border-style: none`.
+Verified by compiling a page with the Tailwind 4.3.3 CLI: every SOLAR utility resolves to its
+`var(--solar-*)`, `md:` switches at SOLAR's 1024px, and the dark block is present. The packaging
+suite asserts each entry stays within its audience.
+
+The component shell in Task 7 imports from `@bwp-web/styles/mui`.
+
+---
+
 ### Task 7: Scaffold the shell, once
 
 **Files:** create `packages/codegen/src/scaffold/`, its test, and `packages/components/src/Button.tsx`;

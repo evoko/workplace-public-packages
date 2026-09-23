@@ -117,3 +117,104 @@ describe('fonts', () => {
     expect(fonts).not.toMatch(/gotham/i);
   });
 });
+
+// A web app and a Flutter app each take one side of the design system, never both: the npm
+// packages must not carry or need anything Flutter, and solar_flutter must not need npm. The
+// generator is the only place the two meet, and it is private.
+describe('the web and Flutter packages are independent', () => {
+  it('no npm package publishes a Dart, pubspec or bundled font file', async () => {
+    const { execSync } = await import('node:child_process');
+    for (const pkg of PUBLISHED) {
+      const [{ files }] = JSON.parse(
+        execSync('npm pack --dry-run --json --ignore-scripts', {
+          cwd: join(packagesDir, pkg),
+          stdio: ['ignore', 'pipe', 'ignore'],
+        }).toString(),
+      );
+      const flutter = files
+        .map((f) => f.path)
+        .filter((p) => /\.dart$|pubspec|\.ttf$/i.test(p));
+      expect(flutter, pkg).toEqual([]);
+    }
+  }, 60_000);
+
+  it('no npm package depends on anything Flutter', () => {
+    for (const pkg of PUBLISHED) {
+      const p = read(pkg);
+      const deps = Object.keys({ ...p.dependencies, ...p.peerDependencies });
+      expect(
+        deps.filter((d) => /flutter|dart/i.test(d)),
+        pkg,
+      ).toEqual([]);
+    }
+  });
+
+  it('solar_flutter depends on Flutter alone, and is not an npm workspace', async () => {
+    const { existsSync } = await import('node:fs');
+    const { parse } = await import('yaml');
+    const doc = parse(
+      readFileSync(join(packagesDir, 'solar_flutter', 'pubspec.yaml'), 'utf8'),
+    );
+    expect(Object.keys(doc.dependencies)).toEqual(['flutter']);
+    expect(existsSync(join(packagesDir, 'solar_flutter', 'package.json'))).toBe(
+      false,
+    );
+  });
+});
+
+// Tailwind, plain-CSS, MUI and Flutter users each take one part. An entry that pulled in another
+// audience's code would make every consumer pay for all four.
+describe('each audience has its own entry', () => {
+  it('styles exposes one entry per audience', () => {
+    expect(Object.keys(read('styles').exports).sort()).toEqual(
+      ['.', './fonts.css', './mui', './tailwind.css', './tokens.css'].sort(),
+    );
+  });
+
+  it('the root entry is framework agnostic: no MUI theme and no component recipes', () => {
+    // The code, not the doc comment, which names the MUI entry to point readers at it.
+    const root = readFileSync(
+      join(packagesDir, 'styles', 'src', 'index.ts'),
+      'utf8',
+    ).replace(/\/\*[\s\S]*?\*\//g, '');
+    expect(root).not.toMatch(/mui|Mui|components/);
+    const data = readFileSync(
+      join(packagesDir, 'styles', 'src', 'generated', 'tokens.ts'),
+      'utf8',
+    );
+    expect(data).not.toMatch(/^import /m);
+    expect(data).not.toMatch(/solarMui|createSolarThemeOptions/);
+  });
+
+  it('the MUI entry carries the theme and the recipes, and imports nothing from MUI', () => {
+    const mui = readFileSync(
+      join(packagesDir, 'styles', 'src', 'mui.ts'),
+      'utf8',
+    );
+    expect(mui).toContain('createSolarThemeOptions');
+    expect(mui).toContain('./generated/mui/components/index.js');
+    expect(mui).not.toMatch(/from '@mui/);
+  });
+
+  it('the Tailwind entry is CSS alone, and brings the tokens with it', () => {
+    const tw = readFileSync(
+      join(packagesDir, 'styles', 'src', 'generated', 'tailwind', 'theme.css'),
+      'utf8',
+    );
+    expect(tw).toContain("@import './tokens.css';");
+    expect(tw).toContain('@theme inline');
+    const { build } = read('styles').scripts;
+    expect(build).toContain(
+      'cp src/generated/tailwind/theme.css dist/tailwind.css',
+    );
+    expect(build).toContain('cp src/generated/css/tokens.css dist/tokens.css');
+  });
+
+  it('styles depends on nothing any audience would not want, beyond the fonts', () => {
+    const p = read('styles');
+    expect(p.peerDependencies ?? {}).toEqual({});
+    expect(
+      Object.keys(p.dependencies).every((d) => d.startsWith('@fontsource/')),
+    ).toBe(true);
+  });
+});

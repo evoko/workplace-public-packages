@@ -1,7 +1,8 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  // One entry per audience, so an app that is not on MUI never loads the MUI theme.
+  entry: ['src/index.ts', 'src/mui.ts'],
   format: ['esm', 'cjs'],
   dts: false, // We use tsc for declarations (see build script)
   sourcemap: true,

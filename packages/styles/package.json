@@ -17,7 +17,18 @@
         "default": "./dist/index.cjs"
       }
     },
+    "./mui": {
+      "import": {
+        "types": "./dist/mui.d.ts",
+        "default": "./dist/mui.js"
+      },
+      "require": {
+        "types": "./dist/mui.d.ts",
+        "default": "./dist/mui.cjs"
+      }
+    },
     "./tokens.css": "./dist/tokens.css",
+    "./tailwind.css": "./dist/tailwind.css",
     "./fonts.css": "./dist/fonts.css"
   },
   "files": [
@@ -27,7 +38,7 @@
     "*.css"
   ],
   "scripts": {
-    "build": "tsup && tsc -p tsconfig.build.json && cp src/generated/css/tokens.css dist/tokens.css && cp src/fonts.css dist/fonts.css",
+    "build": "tsup && tsc -p tsconfig.build.json && cp src/generated/css/tokens.css dist/tokens.css && cp src/generated/tailwind/theme.css dist/tailwind.css && cp src/fonts.css dist/fonts.css",
     "build:types": "tsc -p tsconfig.build.json",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
