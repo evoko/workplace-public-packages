@@ -5,6 +5,7 @@
 /// widgets and the SVG path parser they use are hand written under `src/`.
 library;
 
+export 'src/generated/components/components.dart';
 export 'src/generated/icons.dart';
 export 'src/generated/logos.dart';
 export 'src/generated/tokens.dart';

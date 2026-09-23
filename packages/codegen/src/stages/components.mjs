@@ -10,6 +10,7 @@ import { loadOverlay } from '../normalize/overlay.mjs';
 import { tokenNames } from '../normalize/recipe.mjs';
 import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
+import { emitFlutterComponents } from '../emit/flutter-component.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
@@ -56,7 +57,11 @@ export function emit({ built, tokens }) {
     );
   const specs = built.map((b) => b.spec);
   return {
-    counts: { specs: built.length, mui: emitMuiComponents(specs, tokens) },
+    counts: {
+      specs: built.length,
+      mui: emitMuiComponents(specs, tokens),
+      flutter: emitFlutterComponents(specs, tokens),
+    },
     deviations: built.flatMap((b) => b.deviations),
   };
 }

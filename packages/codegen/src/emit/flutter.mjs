@@ -70,7 +70,7 @@ export const MODAL_CLASS = {
   typography: 'SolarTypography',
   shadow: 'SolarShadows',
 };
-const STATIC_CLASS = {
+export const STATIC_CLASS = {
   color: 'SolarPalette',
   type: 'SolarFont',
   inset: 'SolarInset',

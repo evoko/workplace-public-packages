@@ -43,6 +43,27 @@ both are derived from the one `viewport.sm` token. `SolarTheme.light` and `Solar
 constants for the Desktop scale, for when the viewport does not matter. SOLAR changes only
 `display`, `title` and `code` between the two; body, label, caption and helper text stay put.
 
+## Components
+
+`SolarButtonRecipe.style(theme, props)` is a `ButtonStyle` that makes a `FilledButton` draw SOLAR's
+Button, resolving hover, pressed, focus and disabled through `WidgetState`:
+
+```dart
+FilledButton(
+  style: SolarButtonRecipe.style(
+    Theme.of(context).extension<SolarTheme>()!,
+    const SolarButtonProps(variant: SolarButtonVariant.secondary, size: SolarButtonSize.sm),
+  ),
+  onPressed: save,
+  child: const Text('Save changes'),
+)
+```
+
+The recipe is generated from `spec/components/button.json` and regenerates on every run. The
+background and shadow are painted in `backgroundBuilder`, because `ButtonStyle` has no box shadow.
+Presence (the spinner while loading, the label hidden) is `SolarButtonRecipe.present`, for the
+widget that composes the button's content.
+
 ## Fonts
 
 Inter, Montserrat and IBM Plex Mono ship inside the package, at the weights SOLAR's text styles

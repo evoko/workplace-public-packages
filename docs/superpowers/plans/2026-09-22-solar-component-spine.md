@@ -392,6 +392,28 @@ Writes `packages/solar_flutter/lib/src/generated/components/button.dart`: the re
 structure plus a `WidgetStateProperty` resolver, so hover, pressed, focus and disabled resolve the
 way Flutter expects rather than through an if-ladder in the widget.
 
+**Done 2026-09-23.** `src/emit/flutter-component.mjs` writes
+`packages/solar_flutter/lib/src/generated/components/button.dart`: `SolarButtonVariant`,
+`SolarButtonSize`, `SolarButtonProps`, and `SolarButtonRecipe` — the IR as a `const` map of token
+*names*, a `lookup` applying the IR's precedence, typed converters (`color`, `shadow`,
+`dimension`, `textStyle`, `present`) whose switches reach the theme's `SolarColors`,
+`SolarShadows`, `SolarTypography` and the static `SolarInset`/`SolarRadius`/… fields, and
+`style(theme, props)`, a `ButtonStyle` for `FilledButton`. The state order is imported from the
+MUI emitter, reversed, so the two platforms cannot disagree about which state wins.
+
+`ButtonStyle` has elevation but no box shadow, and SOLAR draws both the control shadow and the
+focus ring as box shadows. Flutter 3.24's `backgroundBuilder` solves it without a wrapper: the
+background colour and the shadows are one `BoxDecoration`, with Material's own background
+transparent — one decoration, because a Flutter shadow paints under the whole box and would
+otherwise darken the face, which CSS never does. Material's overlay, splash and platform density
+are switched off, since every SOLAR state has explicit colours and sizes; the tap target stays
+padded to 48, as SOLAR's description asks for sm.
+
+Verified in `flutter test`: a real `FilledButton` with the style draws SOLAR primary with the
+control shadow and 6px radius in a 40px box, labelled in the bundled Inter; disabled beats hover;
+xl is flat but keeps its focus ring; tertiary hover underlines; dark resolves against the dark
+colours. Dropping the precedence reversal fails both the JS and the Dart suite.
+
 Tests, both sides: the resolver returns the hover background for `WidgetState.hovered`; disabled
 wins over hover when both are set, matching CSS specificity; every colour is a `SolarColors` field
 rather than a literal.
