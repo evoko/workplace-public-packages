@@ -1466,6 +1466,7 @@ export const solarTypography = {
       fontSize: '12px',
       lineHeight: '16px',
       letterSpacing: '0.08em',
+      textTransform: 'uppercase',
     },
     'body.lg.regular': {
       fontFamily: 'Inter',
@@ -1662,6 +1663,7 @@ export const solarTypography = {
       fontSize: '16px',
       lineHeight: '24px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.lg.hover': {
       fontFamily: 'Inter',
@@ -1669,6 +1671,7 @@ export const solarTypography = {
       fontSize: '16px',
       lineHeight: '24px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.md.default': {
       fontFamily: 'Inter',
@@ -1676,6 +1679,7 @@ export const solarTypography = {
       fontSize: '14px',
       lineHeight: '20px',
       letterSpacing: '-0.02286em',
+      textDecoration: 'underline',
     },
     'link.md.hover': {
       fontFamily: 'Inter',
@@ -1683,6 +1687,7 @@ export const solarTypography = {
       fontSize: '14px',
       lineHeight: '20px',
       letterSpacing: '-0.02286em',
+      textDecoration: 'underline',
     },
     'link.sm.default': {
       fontFamily: 'Inter',
@@ -1690,6 +1695,7 @@ export const solarTypography = {
       fontSize: '12px',
       lineHeight: '16px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.sm.hover': {
       fontFamily: 'Inter',
@@ -1697,6 +1703,7 @@ export const solarTypography = {
       fontSize: '12px',
       lineHeight: '16px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.xs.default': {
       fontFamily: 'Inter',
@@ -1704,6 +1711,7 @@ export const solarTypography = {
       fontSize: '10px',
       lineHeight: '14px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.xs.hover': {
       fontFamily: 'Inter',
@@ -1711,6 +1719,7 @@ export const solarTypography = {
       fontSize: '10px',
       lineHeight: '14px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.2xs.default': {
       fontFamily: 'Inter',
@@ -1718,6 +1727,7 @@ export const solarTypography = {
       fontSize: '8px',
       lineHeight: '12px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.2xs.hover': {
       fontFamily: 'Inter',
@@ -1725,6 +1735,7 @@ export const solarTypography = {
       fontSize: '8px',
       lineHeight: '12px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
   },
   mobile: {
@@ -1797,6 +1808,7 @@ export const solarTypography = {
       fontSize: '12px',
       lineHeight: '16px',
       letterSpacing: '0.08em',
+      textTransform: 'uppercase',
     },
     'body.lg.regular': {
       fontFamily: 'Inter',
@@ -1993,6 +2005,7 @@ export const solarTypography = {
       fontSize: '16px',
       lineHeight: '24px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.lg.hover': {
       fontFamily: 'Inter',
@@ -2000,6 +2013,7 @@ export const solarTypography = {
       fontSize: '16px',
       lineHeight: '24px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.md.default': {
       fontFamily: 'Inter',
@@ -2007,6 +2021,7 @@ export const solarTypography = {
       fontSize: '14px',
       lineHeight: '20px',
       letterSpacing: '-0.02286em',
+      textDecoration: 'underline',
     },
     'link.md.hover': {
       fontFamily: 'Inter',
@@ -2014,6 +2029,7 @@ export const solarTypography = {
       fontSize: '14px',
       lineHeight: '20px',
       letterSpacing: '-0.02286em',
+      textDecoration: 'underline',
     },
     'link.sm.default': {
       fontFamily: 'Inter',
@@ -2021,6 +2037,7 @@ export const solarTypography = {
       fontSize: '12px',
       lineHeight: '16px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.sm.hover': {
       fontFamily: 'Inter',
@@ -2028,6 +2045,7 @@ export const solarTypography = {
       fontSize: '12px',
       lineHeight: '16px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.xs.default': {
       fontFamily: 'Inter',
@@ -2035,6 +2053,7 @@ export const solarTypography = {
       fontSize: '10px',
       lineHeight: '14px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.xs.hover': {
       fontFamily: 'Inter',
@@ -2042,6 +2061,7 @@ export const solarTypography = {
       fontSize: '10px',
       lineHeight: '14px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.2xs.default': {
       fontFamily: 'Inter',
@@ -2049,6 +2069,7 @@ export const solarTypography = {
       fontSize: '8px',
       lineHeight: '12px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
     'link.2xs.hover': {
       fontFamily: 'Inter',
@@ -2056,6 +2077,7 @@ export const solarTypography = {
       fontSize: '8px',
       lineHeight: '12px',
       letterSpacing: '-0.02em',
+      textDecoration: 'underline',
     },
   },
 } as const;
@@ -2157,6 +2179,7 @@ export const solarResponsiveTypography = {
     fontSize: '12px',
     lineHeight: '16px',
     letterSpacing: '0.08em',
+    textTransform: 'uppercase',
   },
   'body.lg.regular': {
     fontFamily: 'Inter',
@@ -2359,6 +2382,7 @@ export const solarResponsiveTypography = {
     fontSize: '16px',
     lineHeight: '24px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
   'link.lg.hover': {
     fontFamily: 'Inter',
@@ -2366,6 +2390,7 @@ export const solarResponsiveTypography = {
     fontSize: '16px',
     lineHeight: '24px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
   'link.md.default': {
     fontFamily: 'Inter',
@@ -2373,6 +2398,7 @@ export const solarResponsiveTypography = {
     fontSize: '14px',
     lineHeight: '20px',
     letterSpacing: '-0.02286em',
+    textDecoration: 'underline',
   },
   'link.md.hover': {
     fontFamily: 'Inter',
@@ -2380,6 +2406,7 @@ export const solarResponsiveTypography = {
     fontSize: '14px',
     lineHeight: '20px',
     letterSpacing: '-0.02286em',
+    textDecoration: 'underline',
   },
   'link.sm.default': {
     fontFamily: 'Inter',
@@ -2387,6 +2414,7 @@ export const solarResponsiveTypography = {
     fontSize: '12px',
     lineHeight: '16px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
   'link.sm.hover': {
     fontFamily: 'Inter',
@@ -2394,6 +2422,7 @@ export const solarResponsiveTypography = {
     fontSize: '12px',
     lineHeight: '16px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
   'link.xs.default': {
     fontFamily: 'Inter',
@@ -2401,6 +2430,7 @@ export const solarResponsiveTypography = {
     fontSize: '10px',
     lineHeight: '14px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
   'link.xs.hover': {
     fontFamily: 'Inter',
@@ -2408,6 +2438,7 @@ export const solarResponsiveTypography = {
     fontSize: '10px',
     lineHeight: '14px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
   'link.2xs.default': {
     fontFamily: 'Inter',
@@ -2415,6 +2446,7 @@ export const solarResponsiveTypography = {
     fontSize: '8px',
     lineHeight: '12px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
   'link.2xs.hover': {
     fontFamily: 'Inter',
@@ -2422,6 +2454,7 @@ export const solarResponsiveTypography = {
     fontSize: '8px',
     lineHeight: '12px',
     letterSpacing: '-0.02em',
+    textDecoration: 'underline',
   },
 } as const;
 

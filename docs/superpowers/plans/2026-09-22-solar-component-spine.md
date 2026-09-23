@@ -330,6 +330,46 @@ are present; `disabled` and `loading` appear as props and `hover` does not.
 
 ---
 
+### Task 5b: Ship SOLAR's fonts
+
+Added 2026-09-23 at the owner's request: a consumer of the design system should not have to find
+and load the fonts themselves.
+
+The text styles use three families, all SIL OFL 1.1 and so free to bundle with the licence
+alongside: **Inter** 400/500/600/700 (40 styles), **Montserrat** 500/600 (the 5 display styles;
+SOLAR's open substitute for Gotham) and **IBM Plex Mono** 500 (the 2 code styles). **Gotham is
+not shipped**: it is commercially licensed and this repository and its packages are public, and
+no text style uses it. Open Sans and Roboto Mono are SOLAR's named fallbacks and are used by no
+style, so they appear only in the fallback stacks, not as files.
+
+**Files:** modify `packages/styles/package.json` and the build, add `packages/styles/src/fonts.css`;
+modify `packages/codegen/src/normalize/tokens.mjs` (stacks), `src/emit/flutter.mjs`
+(`package:`), `packages/solar_flutter/pubspec.yaml`; add `packages/solar_flutter/fonts/`.
+
+- **Web, no manual download:** `@fontsource-variable/inter`, `@fontsource-variable/montserrat`
+  and `@fontsource/ibm-plex-mono` (500) as dependencies of `@bwp-web/styles`, and a
+  `@bwp-web/styles/fonts.css` export that imports them, listed in `sideEffects` like
+  `tokens.css`. Fontsource ships WOFF2 per unicode range, so a page downloads only the scripts it
+  uses.
+- **Fallback stacks:** the font-family tokens are bare names today (`Inter`), so a font that
+  fails to load falls to the browser default, usually Times. Emit SOLAR's own stacks: Inter →
+  `"Open Sans"` → `system-ui, sans-serif`; Montserrat → `system-ui, sans-serif`; IBM Plex Mono →
+  `"Roboto Mono"` → `ui-monospace, monospace`.
+- **Flutter, one manual download by the owner:** TTFs, because Flutter cannot read WOFF2 —
+  Inter 4.1 static Regular/Medium/SemiBold/Bold (rsms/inter releases, `extras/ttf/`), Montserrat
+  Medium/SemiBold (JulietaUla/Montserrat, `fonts/ttf/`), IBM Plex Mono Medium (IBM/plex releases)
+  — each with its licence file, into `packages/solar_flutter/fonts/<family>/`, declared under
+  `flutter: fonts:` in the pubspec. The generated `TextStyle`s gain `package: 'solar_flutter'`,
+  without which Flutter does not find a font bundled in a package.
+
+Tests: `fonts.css` survives tree shaking (the packaging test); every font-family token ends in a
+generic family; every weight a text style uses has a file (web: the Fontsource weights; Flutter:
+a pubspec entry per family and weight); `flutter test` renders a Text in each family without
+falling back. Then compare a rendered label against Figma by eye once: Figma bundles its own Inter
+and the versions may differ.
+
+---
+
 ### Task 6: Flutter recipe emitter
 
 **Files:** create `packages/codegen/src/emit/flutter-component.mjs`, its test, and a Dart test.

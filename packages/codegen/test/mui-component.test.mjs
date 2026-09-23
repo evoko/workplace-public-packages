@@ -53,6 +53,7 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
       'center',
       'space-between',
       '100%',
+      'underline',
     ]);
     const allowed = new Set(['40px', '32px', '48px', '200px', '20px']);
     for (const [at, value] of leaves(styles)) {

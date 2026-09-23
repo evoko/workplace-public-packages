@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
 import { flattenSpec } from '../src/spec.mjs';
 import { canonical } from '../src/emit/manifest.mjs';
+import { featuresOf } from '../src/emit/text-features.mjs';
 import { renderCss } from '../src/emit/css.mjs';
 import { renderMui } from '../src/emit/mui.mjs';
 import { renderTailwind } from '../src/emit/tailwind.mjs';
@@ -32,11 +33,18 @@ const modeNames = (t) =>
       ? Object.keys(t.modes)
       : null;
 
-/** The spec value for one mode. `ext.modes` holds only the fields a text style overrides. */
+/**
+ * The spec value, for one mode or for the token as a whole. `ext.modes` holds only the fields a
+ * text style overrides, and decoration lives in the extensions because DTCG's typography
+ * composite has no field for it -- the oracle has to read it there too, or it would expect every
+ * link style to be plain while the targets correctly underline it.
+ */
 const specValue = (t, mode) =>
   t.type === 'typography'
-    ? { ...t.value, ...t.ext.modes[mode] }
-    : t.modes[mode];
+    ? { ...t.value, ...(mode ? t.ext.modes[mode] : {}), ...featuresOf(t.ext) }
+    : mode
+      ? t.modes[mode]
+      : t.value;
 
 const show = (v) => JSON.stringify(v);
 
@@ -189,7 +197,7 @@ describe('token parity', () => {
     const mismatches = [];
     for (const t of tokens) {
       if (t.type === 'shadow') continue;
-      const base = show(canonical[t.type](t.value));
+      const base = show(canonical[t.type](specValue(t)));
       for (const [target, m] of Object.entries(manifests)) {
         const e = m[t.name];
         if (!e) continue;

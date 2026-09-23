@@ -2,7 +2,7 @@
 
 **Prepared for:** the SOLAR design team
 **From:** the Biamp Workplace web team
-**Date:** 2026-09-22
+**Date:** 2026-09-23
 
 Everything below is something we think can be fixed or improved **in Figma**, read from the three
 SOLAR files as they stand after today's revision. This is a work list, not a critique — most items
@@ -35,11 +35,12 @@ we can see. Parts 2 and 3 cover their files completely.
 | [4](#4-descriptions-that-contradict-the-component-set--3-findings-on-1-component) | Descriptions that contradict the set        | 3 on Button | SOLAR Web   |
 | [5](#5-state-and-axis-naming--12)                                                 | State and axis naming inconsistencies       | 12          | SOLAR Web   |
 | [6](#6-variable-binding--1-local-duplicate-2-non-colour-bound-as-colour)          | Local duplicate and non-colour bindings     | 3           | SOLAR Web   |
-| [7](#7-pages-that-still-contradict-the-variables--2)                              | Pages that still contradict the variables   | 2           | Foundations |
-| [8](#8-icons--1-name-collision)                                                   | Icon fixes                                  | 1           | SOLAR Icons |
+| [7](#7-button-variant-by-variant--4-fixes-3-decisions)                            | Button, variant by variant                  | 4 + 3       | SOLAR Web   |
+| [8](#8-pages-that-still-contradict-the-variables--2)                              | Pages that still contradict the variables   | 2           | Foundations |
+| [9](#9-icons--1-name-collision)                                                   | Icon fixes                                  | 1           | SOLAR Icons |
 
 **If you only do three things:** the four layout accidents at the top of section 2, Button's
-description in section 4, and the icon name collision in section 8.
+description in section 4, and the icon name collision in section 9.
 
 ---
 
@@ -335,6 +336,31 @@ Only **Button** is left. Its description is out of date on three counts:
 
 ---
 
+## 7. Button, variant by variant — 4 fixes, 3 decisions
+
+New on 2026-09-23. We now generate Button from its 108 variants rather than from its description,
+which means reading every variant against the others. SOLAR's own model holds almost everywhere
+— **geometry follows `size`, colour follows `prio`, `state` and `danger`** — and these are the
+places where it does not. Each is either a slip or a deliberate interaction between axes; only you
+can say which. All are on the Button set, [2087:2544](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2087-2544).
+
+**Fix** — these look like accidents:
+
+| What                                                                                                                                                                                    | Variants                                                                            |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| The **secondary** button has no background at `sm`. md and xl carry `action/secondary/bg/*`; sm has none, so it is transparent on a grey surface.                                       | 8: `sm / secondary` in default, pressed, focus and loading, with and without danger |
+| The **xl disabled secondary** label uses `action/secondary/text/danger/disabled` although danger is off. Every other size uses `action/secondary/text/disabled`.                        | 1: `xl / secondary / disabled / danger=false`                                       |
+| Vertical padding is `0` but bound to nothing. `inset/none` has the same value.                                                                                                          | all                                                                                 |
+| xl's gap is `12` and bound to nothing (every other size binds an inset). `inset/sm` has the same value. The two icon slots are `16` tall, unbound; their width already binds `icon/sm`. | all xl; all                                                                         |
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                                                                                                                                                                                                                   | What we do meanwhile                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Is `xl` a different kind of button?** It is fixed at 200px wide, `space-between`, square (`radius/none`), borderless and has no resting shadow, though it keeps the focus ring. That reads like a full-width or menu button rather than a larger one. Also, tertiary gains a background only at xl, and secondary hover loses its background only at xl. | We ship `xl` exactly as drawn.                              |
+| **Tertiary hover switches the label to a link style** (`link/*/hover`, which is underlined). With danger it does not switch, and at xl it uses `link/md/default` — as does xl _secondary_ hover. Is the underline meant for tertiary hover everywhere?                                                                                                     | We reproduce each variant as drawn.                         |
+| **Heights have no token.** Button is 32 / 40 / 48px tall, xl is 200px wide and the counter badge 20px tall, all fixed and bound to nothing, and SOLAR publishes no control-size token. Would you add one (e.g. `control/height/sm…xl`)?                                                                                                                    | We carry these as raw pixel values, the only ones we allow. |
+
 # Part 2 · SOLAR Foundations
 
 Almost everything we raised here has been fixed. The spacing scale, the icon size ladder, the
@@ -346,7 +372,7 @@ too: the UX Copy page carries its own context block, the Lint Plugin page no lon
 UX-copy cards, the chapter numbering agrees with the table of contents, and the two empty slide
 frames are gone.
 
-## 7. Pages that still contradict the variables — 2
+## 8. Pages that still contradict the variables — 2
 
 | Where                                     | Says                                                       | Variables say                                                       | Fix                                                                 |
 | ----------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
@@ -372,7 +398,7 @@ size". The shipped components match the new scheme, so it is the older slides th
 every icon. The two unbound fills, the missing Support outline, the duplicate Support solid and
 Zone's off-grid frame are all fixed.
 
-## 8. Icons — 1 name collision
+## 9. Icons — 1 name collision
 
 | Icon      | Figma page    | What to fix                                                                             | Open                                                                           |
 | --------- | ------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -400,12 +426,15 @@ These are the ones we genuinely cannot answer:
    anywhere. Could the intended target size go in the component description?
 6. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
    Web rather than in Foundations. Should it move down a layer?
-7. **A logo size scale** — there is `icon.xs … icon.2xl` but no `logo.*`. Our logo components
+7. **Button, variant by variant** — the three questions in section 7: what `xl` is, whether
+   tertiary hover's underline applies everywhere, and a control-size token.
+8. **A logo size scale** — there is `icon.xs … icon.2xl` but no `logo.*`. Our logo components
    currently borrow the icon ladder, which works but is not what either scale means.
 
 ---
 
 _Extracted from SOLAR Foundations `[v1--2026]` version `2402047167094879156`, SOLAR Web
-`[v1--2026]` and SOLAR Icons `[v2--2026]` version `2402050745869349423`, all read on 2026-09-22.
+`[v1--2026]` version `2402320164351121127` and SOLAR Icons `[v2--2026]` version
+`2402050745869349423`, all read on 2026-09-23.
 Counts are computed from the files, not estimated. Happy to walk through any of this live — and
 happy to be wrong on the judgement calls, where we may be missing context._

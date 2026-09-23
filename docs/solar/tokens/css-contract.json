@@ -6439,7 +6439,9 @@
       "sizeVar": "--solar-type-size-display-lg",
       "lineHeightVar": "--solar-type-line-height-display-lg",
       "sizeMobile": 40,
-      "lineHeightMobile": 52
+      "lineHeightMobile": 52,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "display/md",
@@ -6451,7 +6453,9 @@
       "sizeVar": "--solar-type-size-display-md",
       "lineHeightVar": "--solar-type-line-height-display-md",
       "sizeMobile": 32,
-      "lineHeightMobile": 40
+      "lineHeightMobile": 40,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "display/sm",
@@ -6463,7 +6467,9 @@
       "sizeVar": "--solar-type-size-display-sm",
       "lineHeightVar": "--solar-type-line-height-display-sm",
       "sizeMobile": 24,
-      "lineHeightMobile": 32
+      "lineHeightMobile": 32,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "display/xs/medium",
@@ -6475,7 +6481,9 @@
       "sizeVar": "--solar-type-size-display-xs",
       "lineHeightVar": null,
       "sizeMobile": 16,
-      "lineHeightMobile": null
+      "lineHeightMobile": null,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "display/xs/semibold",
@@ -6487,7 +6495,9 @@
       "sizeVar": "--solar-type-size-display-xs",
       "lineHeightVar": null,
       "sizeMobile": 16,
-      "lineHeightMobile": null
+      "lineHeightMobile": null,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "title/lg",
@@ -6499,7 +6509,9 @@
       "sizeVar": "--solar-type-size-title-lg",
       "lineHeightVar": "--solar-type-line-height-title-lg",
       "sizeMobile": 32,
-      "lineHeightMobile": 40
+      "lineHeightMobile": 40,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "title/md",
@@ -6511,7 +6523,9 @@
       "sizeVar": "--solar-type-size-title-md",
       "lineHeightVar": "--solar-type-line-height-title-md",
       "sizeMobile": 24,
-      "lineHeightMobile": 32
+      "lineHeightMobile": 32,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "title/sm",
@@ -6523,7 +6537,9 @@
       "sizeVar": "--solar-type-size-title-sm",
       "lineHeightVar": "--solar-type-line-height-title-sm",
       "sizeMobile": 18,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "title/xs",
@@ -6535,7 +6551,9 @@
       "sizeVar": "--solar-type-size-title-xs",
       "lineHeightVar": "--solar-type-line-height-title-xs",
       "sizeMobile": 16,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "title/2xs",
@@ -6547,7 +6565,9 @@
       "sizeVar": "--solar-type-size-title-2xs",
       "lineHeightVar": "--solar-type-line-height-title-2xs",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "UPPER"
     },
     {
       "figma": "body/lg/regular",
@@ -6559,7 +6579,9 @@
       "sizeVar": "--solar-type-size-body-lg",
       "lineHeightVar": "--solar-type-line-height-body-lg",
       "sizeMobile": 16,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/lg/medium",
@@ -6571,7 +6593,9 @@
       "sizeVar": "--solar-type-size-body-lg",
       "lineHeightVar": "--solar-type-line-height-body-lg",
       "sizeMobile": 16,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/lg/semibold",
@@ -6583,7 +6607,9 @@
       "sizeVar": "--solar-type-size-body-lg",
       "lineHeightVar": "--solar-type-line-height-body-lg",
       "sizeMobile": 16,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/lg/bold",
@@ -6595,7 +6621,9 @@
       "sizeVar": "--solar-type-size-body-lg",
       "lineHeightVar": "--solar-type-line-height-body-lg",
       "sizeMobile": 16,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/md/regular",
@@ -6607,7 +6635,9 @@
       "sizeVar": "--solar-type-size-body-md",
       "lineHeightVar": "--solar-type-line-height-body-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/md/medium",
@@ -6619,7 +6649,9 @@
       "sizeVar": "--solar-type-size-body-md",
       "lineHeightVar": "--solar-type-line-height-body-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/md/semibold",
@@ -6631,7 +6663,9 @@
       "sizeVar": "--solar-type-size-body-md",
       "lineHeightVar": "--solar-type-line-height-body-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/md/bold",
@@ -6643,7 +6677,9 @@
       "sizeVar": "--solar-type-size-body-md",
       "lineHeightVar": "--solar-type-line-height-body-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/sm/regular",
@@ -6655,7 +6691,9 @@
       "sizeVar": "--solar-type-size-body-sm",
       "lineHeightVar": "--solar-type-line-height-body-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/sm/medium",
@@ -6667,7 +6705,9 @@
       "sizeVar": "--solar-type-size-body-sm",
       "lineHeightVar": "--solar-type-line-height-body-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/sm/semibold",
@@ -6679,7 +6719,9 @@
       "sizeVar": "--solar-type-size-body-sm",
       "lineHeightVar": "--solar-type-line-height-body-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/sm/bold",
@@ -6691,7 +6733,9 @@
       "sizeVar": "--solar-type-size-body-sm",
       "lineHeightVar": "--solar-type-line-height-body-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/xs/regular",
@@ -6703,7 +6747,9 @@
       "sizeVar": "--solar-type-size-body-xs",
       "lineHeightVar": "--solar-type-line-height-body-xs",
       "sizeMobile": 10,
-      "lineHeightMobile": 14
+      "lineHeightMobile": 14,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/xs/medium",
@@ -6715,7 +6761,9 @@
       "sizeVar": "--solar-type-size-body-xs",
       "lineHeightVar": "--solar-type-line-height-body-xs",
       "sizeMobile": 10,
-      "lineHeightMobile": 14
+      "lineHeightMobile": 14,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/xs/semibold",
@@ -6727,7 +6775,9 @@
       "sizeVar": "--solar-type-size-body-xs",
       "lineHeightVar": "--solar-type-line-height-body-xs",
       "sizeMobile": 10,
-      "lineHeightMobile": 14
+      "lineHeightMobile": 14,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/xs/bold",
@@ -6739,7 +6789,9 @@
       "sizeVar": "--solar-type-size-body-xs",
       "lineHeightVar": "--solar-type-line-height-body-xs",
       "sizeMobile": 10,
-      "lineHeightMobile": 14
+      "lineHeightMobile": 14,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/2xs/regular",
@@ -6751,7 +6803,9 @@
       "sizeVar": "--solar-type-size-body-2xs",
       "lineHeightVar": "--solar-type-line-height-body-2xs",
       "sizeMobile": 8,
-      "lineHeightMobile": 12
+      "lineHeightMobile": 12,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/2xs/medium",
@@ -6763,7 +6817,9 @@
       "sizeVar": "--solar-type-size-body-2xs",
       "lineHeightVar": "--solar-type-line-height-body-2xs",
       "sizeMobile": 8,
-      "lineHeightMobile": 12
+      "lineHeightMobile": 12,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/2xs/semibold",
@@ -6775,7 +6831,9 @@
       "sizeVar": "--solar-type-size-body-2xs",
       "lineHeightVar": "--solar-type-line-height-body-2xs",
       "sizeMobile": 8,
-      "lineHeightMobile": 12
+      "lineHeightMobile": 12,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "body/2xs/bold",
@@ -6787,7 +6845,9 @@
       "sizeVar": "--solar-type-size-body-2xs",
       "lineHeightVar": "--solar-type-line-height-body-2xs",
       "sizeMobile": 8,
-      "lineHeightMobile": 12
+      "lineHeightMobile": 12,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "label/md",
@@ -6799,7 +6859,9 @@
       "sizeVar": "--solar-type-size-label-md",
       "lineHeightVar": "--solar-type-line-height-label-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "label/sm",
@@ -6811,7 +6873,9 @@
       "sizeVar": "--solar-type-size-label-sm",
       "lineHeightVar": "--solar-type-line-height-label-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "helper/md",
@@ -6823,7 +6887,9 @@
       "sizeVar": "--solar-type-size-helper-md",
       "lineHeightVar": "--solar-type-line-height-helper-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "helper/sm",
@@ -6835,7 +6901,9 @@
       "sizeVar": "--solar-type-size-helper-sm",
       "lineHeightVar": "--solar-type-line-height-helper-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "code/lg",
@@ -6847,7 +6915,9 @@
       "sizeVar": "--solar-type-size-code-lg",
       "lineHeightVar": "--solar-type-line-height-code-lg",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "code/md",
@@ -6859,7 +6929,9 @@
       "sizeVar": "--solar-type-size-code-md",
       "lineHeightVar": "--solar-type-line-height-code-md",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "caption/xs",
@@ -6871,7 +6943,9 @@
       "sizeVar": "--solar-type-size-caption-xs",
       "lineHeightVar": "--solar-type-line-height-caption-xs",
       "sizeMobile": 10,
-      "lineHeightMobile": 14
+      "lineHeightMobile": 14,
+      "textDecoration": "NONE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/lg/default",
@@ -6883,7 +6957,9 @@
       "sizeVar": "--solar-type-size-body-lg",
       "lineHeightVar": "--solar-type-line-height-body-lg",
       "sizeMobile": 16,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/lg/hover",
@@ -6895,7 +6971,9 @@
       "sizeVar": "--solar-type-size-body-lg",
       "lineHeightVar": "--solar-type-line-height-body-lg",
       "sizeMobile": 16,
-      "lineHeightMobile": 24
+      "lineHeightMobile": 24,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/md/default",
@@ -6907,7 +6985,9 @@
       "sizeVar": "--solar-type-size-body-md",
       "lineHeightVar": "--solar-type-line-height-body-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/md/hover",
@@ -6919,7 +6999,9 @@
       "sizeVar": "--solar-type-size-body-md",
       "lineHeightVar": "--solar-type-line-height-body-md",
       "sizeMobile": 14,
-      "lineHeightMobile": 20
+      "lineHeightMobile": 20,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/sm/default",
@@ -6931,7 +7013,9 @@
       "sizeVar": "--solar-type-size-body-sm",
       "lineHeightVar": "--solar-type-line-height-body-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/sm/hover",
@@ -6943,7 +7027,9 @@
       "sizeVar": "--solar-type-size-body-sm",
       "lineHeightVar": "--solar-type-line-height-body-sm",
       "sizeMobile": 12,
-      "lineHeightMobile": 16
+      "lineHeightMobile": 16,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/xs/default",
@@ -6955,7 +7041,9 @@
       "sizeVar": "--solar-type-size-body-xs",
       "lineHeightVar": "--solar-type-line-height-body-xs",
       "sizeMobile": 10,
-      "lineHeightMobile": 14
+      "lineHeightMobile": 14,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/xs/hover",
@@ -6967,7 +7055,9 @@
       "sizeVar": "--solar-type-size-body-xs",
       "lineHeightVar": "--solar-type-line-height-body-xs",
       "sizeMobile": 10,
-      "lineHeightMobile": 14
+      "lineHeightMobile": 14,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/2xs/default",
@@ -6979,7 +7069,9 @@
       "sizeVar": "--solar-type-size-body-2xs",
       "lineHeightVar": "--solar-type-line-height-body-2xs",
       "sizeMobile": 8,
-      "lineHeightMobile": 12
+      "lineHeightMobile": 12,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     },
     {
       "figma": "link/2xs/hover",
@@ -6991,7 +7083,9 @@
       "sizeVar": "--solar-type-size-body-2xs",
       "lineHeightVar": "--solar-type-line-height-body-2xs",
       "sizeMobile": 8,
-      "lineHeightMobile": 12
+      "lineHeightMobile": 12,
+      "textDecoration": "UNDERLINE",
+      "textCase": "ORIGINAL"
     }
   ],
   "zIndex": {

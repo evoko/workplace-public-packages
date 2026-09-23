@@ -52,7 +52,10 @@ describe('text decoration and case, once the contract carries them', () => {
     expect(dart).toContain(
       'show BoxShadow, Color, FontWeight, Offset, TextDecoration, TextStyle;',
     );
-    const plain = renderFlutter(buildTokenSpec(loadContract()).spec).dart;
+    // A contract with no decoration anywhere, as before the 2026-09-23 sync read it.
+    const undecorated = structuredClone(loadContract());
+    for (const t of undecorated.textStyles) delete t.textDecoration;
+    const plain = renderFlutter(buildTokenSpec(undecorated).spec).dart;
     expect(plain).not.toContain('TextDecoration');
   });
 

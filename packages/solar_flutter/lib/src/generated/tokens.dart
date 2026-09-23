@@ -7,7 +7,7 @@ import 'package:flutter/animation.dart' show Cubic;
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter/material.dart' show ThemeExtension;
 import 'package:flutter/painting.dart'
-    show BoxShadow, Color, FontWeight, Offset, TextStyle;
+    show BoxShadow, Color, FontWeight, Offset, TextDecoration, TextStyle;
 
 @immutable
 class SolarColors {
@@ -1862,61 +1862,71 @@ class SolarTypography {
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
         height: 1.5,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkLgHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
         height: 1.5,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkMdDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
         height: 1.4285714285714286,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkMdHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
         height: 1.4285714285714286,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkSmDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
         height: 1.3333333333333333,
-        letterSpacing: -0.24),
+        letterSpacing: -0.24,
+        decoration: TextDecoration.underline),
     linkSmHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
         height: 1.3333333333333333,
-        letterSpacing: -0.24),
+        letterSpacing: -0.24,
+        decoration: TextDecoration.underline),
     linkXsDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 10.0,
         height: 1.4,
-        letterSpacing: -0.2),
+        letterSpacing: -0.2,
+        decoration: TextDecoration.underline),
     linkXsHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 10.0,
         height: 1.4,
-        letterSpacing: -0.2),
+        letterSpacing: -0.2,
+        decoration: TextDecoration.underline),
     link2xsDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 8.0,
         height: 1.5,
-        letterSpacing: -0.16),
+        letterSpacing: -0.16,
+        decoration: TextDecoration.underline),
     link2xsHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 8.0,
         height: 1.5,
-        letterSpacing: -0.16),
+        letterSpacing: -0.16,
+        decoration: TextDecoration.underline),
   );
 
   static const SolarTypography mobile = SolarTypography(
@@ -2147,61 +2157,71 @@ class SolarTypography {
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
         height: 1.5,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkLgHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
         height: 1.5,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkMdDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
         height: 1.4285714285714286,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkMdHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
         height: 1.4285714285714286,
-        letterSpacing: -0.32),
+        letterSpacing: -0.32,
+        decoration: TextDecoration.underline),
     linkSmDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
         height: 1.3333333333333333,
-        letterSpacing: -0.24),
+        letterSpacing: -0.24,
+        decoration: TextDecoration.underline),
     linkSmHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
         height: 1.3333333333333333,
-        letterSpacing: -0.24),
+        letterSpacing: -0.24,
+        decoration: TextDecoration.underline),
     linkXsDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 10.0,
         height: 1.4,
-        letterSpacing: -0.2),
+        letterSpacing: -0.2,
+        decoration: TextDecoration.underline),
     linkXsHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 10.0,
         height: 1.4,
-        letterSpacing: -0.2),
+        letterSpacing: -0.2,
+        decoration: TextDecoration.underline),
     link2xsDefault: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 8.0,
         height: 1.5,
-        letterSpacing: -0.16),
+        letterSpacing: -0.16,
+        decoration: TextDecoration.underline),
     link2xsHover: TextStyle(
         fontFamily: 'Inter',
         fontWeight: FontWeight.w500,
         fontSize: 8.0,
         height: 1.5,
-        letterSpacing: -0.16),
+        letterSpacing: -0.16,
+        decoration: TextDecoration.underline),
   );
 }
 

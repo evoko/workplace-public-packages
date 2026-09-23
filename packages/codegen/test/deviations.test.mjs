@@ -59,10 +59,12 @@ describe('renderDeviations', () => {
 
   it('names every deviating token exactly once', () => {
     const { deviations, md } = build();
-    // Task 12 was written against a stale count of 10; the contract on disk yields 13:
-    // nine font weights, motion.ease.both, color.border.inverse and the two
-    // typography.display.xs.* styles with no Mobile line height.
-    expect(deviations).toHaveLength(13);
+    // The contract on disk yields 14: nine font weights, motion.ease.both,
+    // color.border.inverse, the two typography.display.xs.* styles with no Mobile line
+    // height, and typography.title.2xs, whose upper case Flutter cannot apply (read from
+    // Figma for the first time by the 2026-09-23 sync).
+    expect(deviations).toHaveLength(14);
+    expect(deviations.map((d) => d.token)).toContain('typography.title.2xs');
     for (const d of deviations) {
       const hits = md
         .split('\n')
