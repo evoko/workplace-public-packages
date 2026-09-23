@@ -82,6 +82,9 @@ are findings for the design review, not bugs in the generator.
 | Wrap MUI or build our own?                  | Recorded per component in the overlay, not decided globally. Button starts as a wrap of MUI `Button` and Flutter `FilledButton`; if the recipe cannot express what SOLAR draws, the overlay flips it to bespoke and says why.    |
 | Where does the recipe live?                 | `spec/components/<name>.json`, beside `spec/tokens.json` and `spec/icons.json`, and guarded the same way — the committed file must equal what the emitters were handed.                                                          |
 | How does a web recipe reference a token?    | As `var(--solar-*)`, the way the Tailwind preset already does, never as a resolved literal. `tokens.css` is then the one runtime source: a `[data-theme='dark']` subtree re-themes an MUI Button with no JavaScript, and there is one dark-mode switch rather than MUI's `palette.mode` beside `data-theme`. The MUI *theme palette* stays literal, because MUI runs `alpha()` and `darken()` on it; the recipe does not go through the palette. |
+| Is Button `xl` a size?                      | Yes, kept as `size="xl"` as Figma has it (owner, 2026-09-23). Its fixed 200px width, square corners, no border and no shadow are recorded in the overlay as intentional, and raised with SOLAR to confirm. |
+| Tertiary hover's link style                 | Follow Figma exactly (owner, 2026-09-23), including `xl` using `link/md/default` and danger not switching. The overlay declares that `Label.typography` follows `prio`, `state` and `danger` as well as `size`, so the recipe reproduces every variant as drawn and those cells stop being deviations. The inconsistency is still raised with SOLAR. |
+| Heights with no token                       | Carried as literals (owner, 2026-09-23): the one explicit exemption from "every value is a token", listed in the overlay, each tied to its governance deviation. Task 8's parity rule allows exactly the overlay-listed literals and nothing else. |
 | Are shells generated?                       | Scaffolded **once**, then owned by developers forever. The recipe beside them regenerates every run. This is the boundary that lets a look change flow in without ever clobbering behaviour.                                     |
 
 ## Notes for whoever executes this
@@ -150,6 +153,42 @@ padding; `variant.primary.hover` reads the hover background; the `fills: null` a
 `secondary / sm` is reported as a deviation rather than silently winning; a synthetic orthogonal
 component produces no deviations.
 
+**Done 2026-09-23.** `deriveRecipe(resolved, {names, roles?})` in `src/normalize/recipe.mjs`.
+Each layer contributes style cells (`background`, `paddingLeft`, `typography`, `present`, …),
+each classed as geometry (follows the `size` role) or paint (follows `appearance` and `state`).
+Roles default by axis name and can be given explicitly, which is what the overlay will do. The
+recipe is `style[layer].base`, `.size[<v>]` and `.appearance[<combo>][<state>]`, each entry a
+`{token}`, `{keyword}`, `{none}` or `{literal}` with `from` naming the variant it was read from.
+A composed child contributes only its variant choice, presence and extent; its own padding and
+colour belong to its own recipe. Token names resolve only through the contract, never by
+spelling (`tokenNames`).
+
+Button produces **14 deviations**, and they are real:
+
+| Kind    | Finding                                                                                             |
+| ------- | --------------------------------------------------------------------------------------------------- |
+| axis    | `root.background` at `sm`: secondary loses its background in 8 variants                             |
+| axis    | `root.background` at `xl`: tertiary gains one, secondary hover loses one (9 variants)               |
+| axis    | `root.shadow` at `xl`: absent in all 20 primary and secondary variants — one finding, not twenty    |
+| axis    | `Label.color` at `xl`: secondary disabled borrows the _danger_ disabled colour (1 variant)          |
+| axis    | `Label.typography`: tertiary hover switches to a link style, and `xl` picks `link/md/default`       |
+| axis    | `Label.typography`: `xl` secondary hover uses `link/md/default` too                                 |
+| unbound | `root.height` 40/32/48 — SOLAR publishes **no control height token**, a governance gap              |
+| unbound | `root.paddingTop`/`paddingBottom` 0, which equals `inset.none` but is not bound to it               |
+| unbound | `root.gap` 12 and `root.width` 200 at `xl`                                                          |
+| unbound | the icon and counter heights (16, 20)                                                               |
+
+`xl` is a different kind of button rather than a larger one: fixed 200 wide, `SPACE_BETWEEN`,
+radius and border `none`, no shadow. That is why several `xl` findings are systematic, and it is
+a question for the design review before Task 4 decides what the overlay says about it.
+
+**Found for 3b**, from running it over the whole corpus: 116 of 119 sets derive. Three throw by
+design on shapes the recipe does not model yet — per-side border or radius bindings (Weekday
+Header, Popover) and two stacked paints (Insight Card). Thirteen sets have sparse variant
+matrices (Avatar has 114 of 540); a missing defining variant is read from the first one Figma
+does have and reported as `sparse`. The corpus yields about 1,300 unbound values and 950 axis
+disagreements, so 3b needs the report grouped per component rather than one row each.
+
 ---
 
 ### Task 3: The component IR
@@ -176,7 +215,13 @@ Loads and merges the hand-written overlay over the IR: `base`, `api.rename`, `st
 `deviations`. Merging is explicit and order-independent, and every overlay rule must name a
 `reason`, because an unexplained override is how a design system drifts.
 
-Tests: the `prio → variant` rename reaches the IR; an overlay style setter wins over the derived
+The overlay must also be able to say **which axes one cell follows** (`follows: [size, prio,
+state, danger]` on `Label.typography`), passed to `deriveRecipe` as a per-cell override of the
+role model, and **which literals are allowed** (Button's heights). Both carry a `reason`.
+
+Tests: the `prio → variant` rename reaches the IR; a `follows` override makes tertiary hover's
+link style a recipe entry rather than a deviation; a literal the overlay does not list still
+fails; an overlay style setter wins over the derived
 value and is marked as overlay-sourced in provenance; a rule without a reason fails loudly; an
 overlay naming a property the IR does not have fails rather than being ignored.
 
