@@ -34,8 +34,10 @@ class SolarButton extends StatelessWidget {
     this.focusNode,
     this.autofocus = false,
     this.statesController,
-  }) : assert(child != null || semanticLabel != null,
-            'SOLAR Button: an icon-only button needs a semanticLabel.');
+  }) : assert(
+         child != null || semanticLabel != null,
+         'SOLAR Button: an icon-only button needs a semanticLabel.',
+       );
 
   /// Called when the button is tapped; null disables it, as for any Flutter button.
   final VoidCallback? onPressed;
@@ -82,7 +84,7 @@ class SolarButton extends StatelessWidget {
     final gap = SolarButtonRecipe.dimension('root.gap', p, rest) ?? 0;
 
     final parts = <Widget>[
-      if (iconLeading != null) iconLeading!,
+      ?iconLeading,
       // Loading hides the label but keeps its room, as Figma does, so the button does not resize;
       // a screen reader still reads it.
       if (child != null)
@@ -100,7 +102,7 @@ class SolarButton extends StatelessWidget {
           height: SolarButtonRecipe.dimension('counter.height', p, rest),
           child: Center(widthFactor: 1, child: counter),
         ),
-      if (iconTrailing != null) iconTrailing!,
+      ?iconTrailing,
     ];
     final content = Row(
       mainAxisSize: MainAxisSize.min,
@@ -128,11 +130,21 @@ class SolarButton extends StatelessWidget {
             ExcludeSemantics(
               child: SolarSpinner(
                 size: SolarSpinnerSize.values.byName(
-                    SolarButtonRecipe.lookup('spinner.variant.size', p, rest)!
-                        .substring(2)),
-                variant: SolarSpinnerVariant.values.firstWhere((v) =>
-                    'k:${v.figma}' ==
-                    SolarButtonRecipe.lookup('spinner.variant.style', p, rest)),
+                  SolarButtonRecipe.lookup(
+                    'spinner.variant.size',
+                    p,
+                    rest,
+                  )!.substring(2),
+                ),
+                variant: SolarSpinnerVariant.values.firstWhere(
+                  (v) =>
+                      'k:${v.figma}' ==
+                      SolarButtonRecipe.lookup(
+                        'spinner.variant.style',
+                        p,
+                        rest,
+                      ),
+                ),
               ),
             ),
         ],

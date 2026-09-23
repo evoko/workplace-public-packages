@@ -3,6 +3,6 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["src"],
+  "include": ["src", "stories", ".storybook", "test/visual/cases"],
   "exclude": ["node_modules", "dist"]
 }

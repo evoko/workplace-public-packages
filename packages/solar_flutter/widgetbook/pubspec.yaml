@@ -1,0 +1,29 @@
+name: solar_widgetbook
+description: The review surface for solar_flutter's generated widgets. Not published.
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+  flutter: '>=3.47.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  solar_flutter:
+    path: ..
+  solar_flutter_variants:
+    path: ../variants
+  widgetbook: ^3.25.0
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+
+flutter:
+  # Widgetbook's own interface draws Material icons.
+  uses-material-design: true
+  # The oracles, what Figma draws for every variant, which the Variants use cases lay out. Copied
+  # from spec/verify/ by scripts/widgetbook.mjs on every run, since Flutter bundles no asset from
+  # outside the app; git-ignored.
+  assets:
+    - assets/verify/

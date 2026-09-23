@@ -7,6 +7,10 @@ import {
   FLUTTER_TEMPLATES,
   scaffold,
   scaffoldFlutter,
+  scaffoldStory,
+  storiesDir,
+  storyFileOf,
+  storyTemplate,
   TEMPLATES,
 } from '../src/scaffold/index.mjs';
 import { mkdirSync } from 'node:fs';
@@ -131,5 +135,28 @@ describe('scaffoldFlutter', () => {
     expect(() =>
       scaffoldFlutter({ ...button, component: 'Tabs' }, { lib: freshLib() }),
     ).toThrow(/no Flutter widget template for Tabs/);
+  });
+});
+
+describe('scaffoldStory', () => {
+  it('writes a story file that names the component, once', () => {
+    const dir = fresh();
+    expect(scaffoldStory(button, { dir }).status).toBe('written');
+    const file = join(dir, 'Button.stories.tsx');
+    expect(readFileSync(file, 'utf8')).toBe(storyTemplate('Button'));
+    writeFileSync(file, '// mine\n');
+    expect(scaffoldStory(button, { dir }).status).toBe('exists');
+    expect(readFileSync(file, 'utf8')).toBe('// mine\n');
+    expect(storyFileOf('Icon Button')).toBe('IconButton.stories.tsx');
+  });
+
+  it('has written one for every generated component', () => {
+    for (const component of stage.COMPONENTS) {
+      const story = readFileSync(
+        join(storiesDir, storyFileOf(component)),
+        'utf8',
+      );
+      expect(story, component).toContain(`title: 'SOLAR/${component}'`);
+    }
   });
 });

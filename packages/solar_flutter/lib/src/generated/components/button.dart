@@ -700,7 +700,7 @@ abstract final class SolarButtonRecipe {
     'loading',
     'focus',
     'pressed',
-    'hover'
+    'hover',
   ];
 
   static bool _holds(String state, SolarButtonProps p, Set<WidgetState> s) =>
@@ -722,7 +722,8 @@ abstract final class SolarButtonRecipe {
     final size = p.size.name;
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;
-      final hit = cells['$cell|combined|$size|$combo|$state'] ??
+      final hit =
+          cells['$cell|combined|$size|$combo|$state'] ??
           cells['$cell|appearance|$combo|$state'];
       if (hit != null) return hit;
     }
@@ -733,7 +734,11 @@ abstract final class SolarButtonRecipe {
   }
 
   static Color color(
-      SolarTheme t, String cell, SolarButtonProps p, Set<WidgetState> s) {
+    SolarTheme t,
+    String cell,
+    SolarButtonProps p,
+    Set<WidgetState> s,
+  ) {
     final c = t.colors;
     return switch (lookup(cell, p, s)) {
       'none' => Colors.transparent,
@@ -863,18 +868,24 @@ abstract final class SolarButtonRecipe {
   }
 
   static List<BoxShadow> shadow(
-          SolarTheme t, String cell, SolarButtonProps p, Set<WidgetState> s) =>
-      switch (lookup(cell, p, s)) {
-        'none' || null => const <BoxShadow>[],
-        't:shadow.control' => t.shadows.control,
-        't:shadow.focus.danger' => t.shadows.focusDanger,
-        't:shadow.focus.default' => t.shadows.focusDefault,
-        final v => throw StateError('$cell: no shadow for $v'),
-      };
+    SolarTheme t,
+    String cell,
+    SolarButtonProps p,
+    Set<WidgetState> s,
+  ) => switch (lookup(cell, p, s)) {
+    'none' || null => const <BoxShadow>[],
+    't:shadow.control' => t.shadows.control,
+    't:shadow.focus.danger' => t.shadows.focusDanger,
+    't:shadow.focus.default' => t.shadows.focusDefault,
+    final v => throw StateError('$cell: no shadow for $v'),
+  };
 
   /// A length in logical pixels, or null where the IR says the layer hugs its content.
   static double? dimension(
-      String cell, SolarButtonProps p, Set<WidgetState> s) {
+    String cell,
+    SolarButtonProps p,
+    Set<WidgetState> s,
+  ) {
     final v = lookup(cell, p, s);
     if (v == null || v == 'k:HUG') return null;
     if (v == 'k:FILL') return double.infinity;
@@ -894,28 +905,35 @@ abstract final class SolarButtonRecipe {
   }
 
   static TextStyle? textStyle(
-          SolarTheme t, String cell, SolarButtonProps p, Set<WidgetState> s) =>
-      switch (lookup(cell, p, s)) {
-        'none' || null => null,
-        't:typography.label.md' => t.typography.labelMd,
-        't:typography.label.sm' => t.typography.labelSm,
-        't:typography.link.md.default' => t.typography.linkMdDefault,
-        't:typography.link.md.hover' => t.typography.linkMdHover,
-        't:typography.link.sm.hover' => t.typography.linkSmHover,
-        final v => throw StateError('$cell: no text style for $v'),
-      };
+    SolarTheme t,
+    String cell,
+    SolarButtonProps p,
+    Set<WidgetState> s,
+  ) => switch (lookup(cell, p, s)) {
+    'none' || null => null,
+    't:typography.label.md' => t.typography.labelMd,
+    't:typography.label.sm' => t.typography.labelSm,
+    't:typography.link.md.default' => t.typography.linkMdDefault,
+    't:typography.link.md.hover' => t.typography.linkMdHover,
+    't:typography.link.sm.hover' => t.typography.linkSmHover,
+    final v => throw StateError('$cell: no text style for $v'),
+  };
 
   /// Whether a layer is drawn: the shell reads this, the style does not.
   static bool present(String layer, SolarButtonProps p, Set<WidgetState> s) =>
       lookup('$layer.present', p, s) != 'b:false';
 
   static BorderSide _side(
-      SolarTheme t, SolarButtonProps p, Set<WidgetState> s) {
+    SolarTheme t,
+    SolarButtonProps p,
+    Set<WidgetState> s,
+  ) {
     final width = lookup('root.borderWidth', p, s);
     if (width == null || width == 'none') return BorderSide.none;
     return BorderSide(
-        color: color(t, 'root.borderColor', p, s),
-        width: dimension('root.borderWidth', p, s)!);
+      color: color(t, 'root.borderColor', p, s),
+      width: dimension('root.borderWidth', p, s)!,
+    );
   }
 
   static BorderRadius _radius(SolarButtonProps p, Set<WidgetState> s) =>
@@ -928,8 +946,10 @@ abstract final class SolarButtonRecipe {
   /// box, so drawing it over a separately coloured Material would darken the button's face, which
   /// CSS never does. Material's own overlay, splash and density are switched off, because every
   /// SOLAR state has its own explicit colours and sizes.
-  static ButtonStyle style(SolarTheme t,
-      [SolarButtonProps p = const SolarButtonProps()]) {
+  static ButtonStyle style(
+    SolarTheme t, [
+    SolarButtonProps p = const SolarButtonProps(),
+  ]) {
     WidgetStateProperty<T> by<T>(T Function(Set<WidgetState> s) f) =>
         WidgetStateProperty.resolveWith(f);
     const none = <WidgetState>{};
@@ -941,12 +961,14 @@ abstract final class SolarButtonRecipe {
       iconColor: by((s) => color(t, 'iconLeading.color', p, s)),
       iconSize: WidgetStatePropertyAll(dimension('iconLeading.width', p, none)),
       textStyle: by((s) => textStyle(t, 'label.typography', p, s)),
-      padding: by((s) => EdgeInsetsDirectional.only(
-            start: dimension('root.paddingLeft', p, s) ?? 0,
-            end: dimension('root.paddingRight', p, s) ?? 0,
-            top: dimension('root.paddingTop', p, s) ?? 0,
-            bottom: dimension('root.paddingBottom', p, s) ?? 0,
-          )),
+      padding: by(
+        (s) => EdgeInsetsDirectional.only(
+          start: dimension('root.paddingLeft', p, s) ?? 0,
+          end: dimension('root.paddingRight', p, s) ?? 0,
+          top: dimension('root.paddingTop', p, s) ?? 0,
+          bottom: dimension('root.paddingBottom', p, s) ?? 0,
+        ),
+      ),
       minimumSize: WidgetStatePropertyAll(Size(width ?? 0, height ?? 0)),
       fixedSize: width == null
           ? null

@@ -26,36 +26,45 @@ void main() {
   test('the generated styles name the fonts this package bundles', () {
     // A TextStyle naming a package resolves its family to packages/<package>/<family>, which is
     // the key Flutter registers a package's pubspec fonts under.
-    expect(SolarTypography.desktop.labelMd.fontFamily,
-        'packages/solar_flutter/Inter');
-    expect(SolarTypography.desktop.displayLg.fontFamily,
-        'packages/solar_flutter/Montserrat');
-    expect(SolarTypography.desktop.codeMd.fontFamily,
-        'packages/solar_flutter/IBM Plex Mono');
+    expect(
+      SolarTypography.desktop.labelMd.fontFamily,
+      'packages/solar_flutter/Inter',
+    );
+    expect(
+      SolarTypography.desktop.displayLg.fontFamily,
+      'packages/solar_flutter/Montserrat',
+    );
+    expect(
+      SolarTypography.desktop.codeMd.fontFamily,
+      'packages/solar_flutter/IBM Plex Mono',
+    );
   });
 
-  test('each bundled font loads under that key and changes how text lays out',
-      () async {
-    const sample = 'Save changes 0123';
-    final cases = {
-      'packages/solar_flutter/Inter': (
-        SolarTypography.desktop.labelMd,
-        ['fonts/inter/Inter-Medium.ttf'],
-      ),
-      'packages/solar_flutter/Montserrat': (
-        SolarTypography.desktop.displaySm,
-        ['fonts/montserrat/Montserrat-Medium.ttf'],
-      ),
-      'packages/solar_flutter/IBM Plex Mono': (
-        SolarTypography.desktop.codeMd,
-        ['fonts/ibm-plex-mono/IBMPlexMono-Medium.ttf'],
-      ),
-    };
-    for (final MapEntry(key: family, value: (style, assets)) in cases.entries) {
-      // Before loading, the family is unknown and Flutter falls back to the test font.
-      final fallback = widthOf(sample, style);
-      await load(family, assets);
-      expect(widthOf(sample, style), isNot(fallback), reason: family);
-    }
-  });
+  test(
+    'each bundled font loads under that key and changes how text lays out',
+    () async {
+      const sample = 'Save changes 0123';
+      final cases = {
+        'packages/solar_flutter/Inter': (
+          SolarTypography.desktop.labelMd,
+          ['fonts/inter/Inter-Medium.ttf'],
+        ),
+        'packages/solar_flutter/Montserrat': (
+          SolarTypography.desktop.displaySm,
+          ['fonts/montserrat/Montserrat-Medium.ttf'],
+        ),
+        'packages/solar_flutter/IBM Plex Mono': (
+          SolarTypography.desktop.codeMd,
+          ['fonts/ibm-plex-mono/IBMPlexMono-Medium.ttf'],
+        ),
+      };
+      for (final MapEntry(key: family, value: (style, assets))
+          in cases.entries) {
+        // Before loading, the family is unknown and Flutter falls back to the test font.
+        final fallback = widthOf(sample, style);
+        await load(family, assets);
+        expect(widthOf(sample, style), isNot(fallback), reason: family);
+      }
+    },
+  );
 }

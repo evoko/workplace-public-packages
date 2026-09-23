@@ -1,0 +1,5 @@
+/* The canvas is a SOLAR page, so each theme is seen on its own background. */
+body {
+  background: var(--solar-color-surface-background);
+  color: var(--solar-color-text-primary);
+}

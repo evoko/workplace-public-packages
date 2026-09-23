@@ -127,10 +127,10 @@ class SolarVectorPainter extends CustomPainter {
 }
 
 Widget _labelled(String? semanticLabel, Widget child) => Semantics(
-      label: semanticLabel,
-      image: semanticLabel == null ? null : true,
-      child: ExcludeSemantics(child: child),
-    );
+  label: semanticLabel,
+  image: semanticLabel == null ? null : true,
+  child: ExcludeSemantics(child: child),
+);
 
 /// A SOLAR icon, drawn from its vector data.
 ///
@@ -179,7 +179,8 @@ class SolarIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double side = size ?? SolarIconSize.lg;
-    final Color resolved = color ??
+    final Color resolved =
+        color ??
         Theme.of(context).extension<SolarTheme>()?.colors.iconPrimary ??
         IconTheme.of(context).color ??
         const Color(0xFF000000);

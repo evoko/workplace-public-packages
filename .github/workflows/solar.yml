@@ -19,7 +19,7 @@ on:
 # in Dart 3.7, so an unpinned toolchain would reformat the file and fail that check on every run.
 # Raising this means reformatting locally on the same version and committing the result.
 env:
-  FLUTTER_VERSION: '3.24.4'
+  FLUTTER_VERSION: '3.47.5'
 
 jobs:
   generated-docs:
@@ -148,14 +148,22 @@ jobs:
           channel: stable
           cache: true
 
+      # The package, and beside it the variant builders its visual checks share with the Widgetbook
+      # app, and that app: three pubspecs, each resolved and analysed with its own dependencies.
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          flutter pub get
+          (cd variants && flutter pub get)
+          (cd widgetbook && flutter pub get)
 
       - name: Check formatting
-        run: dart format --output=none --set-exit-if-changed lib test
+        run: dart format --output=none --set-exit-if-changed lib test variants/lib widgetbook/lib
 
       - name: Analyze
-        run: flutter analyze
+        run: |
+          flutter analyze
+          (cd variants && flutter analyze)
+          (cd widgetbook && flutter analyze)
 
       # Includes the visual checks (test/visual/), which read the oracle from spec/verify/.
       - name: Test
@@ -168,6 +176,23 @@ jobs:
           name: flutter-visual
           path: packages/solar_flutter/build/visual/
           if-no-files-found: ignore
+
+      # The review surface: Widgetbook, built from the same oracles and builders, so a widget the
+      # checks measure is one a reviewer can look at, and the viewer cannot quietly break. The
+      # script copies the oracles in first, and needs Node alone, no npm install.
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build Widgetbook
+        run: node ../../scripts/widgetbook.mjs build
+
+      - name: Keep Widgetbook
+        uses: actions/upload-artifact@v4
+        with:
+          name: widgetbook
+          path: packages/solar_flutter/widgetbook/build/web/
 
   web-visual:
     name: Web components draw what Figma draws
@@ -205,3 +230,14 @@ jobs:
             packages/components/test/visual/.out/*.json
             packages/components/test-results/
           if-no-files-found: ignore
+
+      # The review surface: Storybook, built from the same cases and oracles, so a component the
+      # checks measure is one a reviewer can look at, and the viewer cannot quietly break.
+      - name: Build Storybook
+        run: npm run build-storybook -w @bwp-web/components
+
+      - name: Keep Storybook
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook
+          path: packages/components/storybook-static/

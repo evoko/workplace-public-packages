@@ -1,0 +1,19 @@
+name: solar_flutter_variants
+description: >-
+  How each generated solar_flutter widget is built in one oracle variant, with its slots filled by
+  probes. Shared by the visual checks and the Widgetbook app. Not published.
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+  flutter: '>=3.47.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  solar_flutter:
+    path: ..
+
+dev_dependencies:
+  flutter_lints: ^6.0.0

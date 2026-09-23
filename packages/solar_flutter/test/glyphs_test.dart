@@ -16,24 +16,36 @@ void main() {
   test('a layer’s glyph follows its props', () {
     const rest = <WidgetState>{};
     final sm = SolarSpinnerRecipe.glyph(
-        'indicator', const SolarSpinnerProps(size: SolarSpinnerSize.sm), rest);
+      'indicator',
+      const SolarSpinnerProps(size: SolarSpinnerSize.sm),
+      rest,
+    );
     final lg = SolarSpinnerRecipe.glyph(
-        'indicator', const SolarSpinnerProps(size: SolarSpinnerSize.lg), rest);
+      'indicator',
+      const SolarSpinnerProps(size: SolarSpinnerSize.lg),
+      rest,
+    );
     expect(sm, isNotNull);
     expect(lg!.width, greaterThan(sm!.width));
-    expect(SolarSpinnerRecipe.glyph('track', const SolarSpinnerProps(), rest),
-        isNull);
+    expect(
+      SolarSpinnerRecipe.glyph('track', const SolarSpinnerProps(), rest),
+      isNull,
+    );
   });
 
   testWidgets('a glyph paints with the icons’ painter', (tester) async {
     final glyph = SolarSpinnerRecipe.glyphs.first;
-    await tester.pumpWidget(Center(
-      child: CustomPaint(
-        size: const Size.square(24),
-        painter:
-            SolarVectorPainter(glyph.strokeVector, const Color(0xff000000)),
+    await tester.pumpWidget(
+      Center(
+        child: CustomPaint(
+          size: const Size.square(24),
+          painter: SolarVectorPainter(
+            glyph.strokeVector,
+            const Color(0xff000000),
+          ),
+        ),
       ),
-    ));
+    );
     expect(tester.takeException(), isNull);
   });
 }

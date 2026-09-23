@@ -107,7 +107,8 @@ abstract final class SolarSpinnerRecipe {
     final size = p.size.name;
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;
-      final hit = cells['$cell|combined|$size|$combo|$state'] ??
+      final hit =
+          cells['$cell|combined|$size|$combo|$state'] ??
           cells['$cell|appearance|$combo|$state'];
       if (hit != null) return hit;
     }
@@ -118,7 +119,11 @@ abstract final class SolarSpinnerRecipe {
   }
 
   static Color color(
-      SolarTheme t, String cell, SolarSpinnerProps p, Set<WidgetState> s) {
+    SolarTheme t,
+    String cell,
+    SolarSpinnerProps p,
+    Set<WidgetState> s,
+  ) {
     final c = t.colors;
     return switch (lookup(cell, p, s)) {
       'none' => Colors.transparent,
@@ -131,15 +136,22 @@ abstract final class SolarSpinnerRecipe {
   }
 
   static List<BoxShadow> shadow(
-          SolarTheme t, String cell, SolarSpinnerProps p, Set<WidgetState> s) =>
-      switch (lookup(cell, p, s)) {
-        'none' || null => const <BoxShadow>[],
-        final v => throw StateError('$cell: no shadow for $v'),
-      };
+    SolarTheme t,
+    String cell,
+    SolarSpinnerProps p,
+    Set<WidgetState> s,
+  ) => switch (lookup(cell, p, s)) {
+    'none' || null => const <BoxShadow>[],
+
+    final v => throw StateError('$cell: no shadow for $v'),
+  };
 
   /// A length in logical pixels, or null where the IR says the layer hugs its content.
   static double? dimension(
-      String cell, SolarSpinnerProps p, Set<WidgetState> s) {
+    String cell,
+    SolarSpinnerProps p,
+    Set<WidgetState> s,
+  ) {
     final v = lookup(cell, p, s);
     if (v == null || v == 'k:HUG') return null;
     if (v == 'k:FILL') return double.infinity;
@@ -152,11 +164,15 @@ abstract final class SolarSpinnerRecipe {
   }
 
   static TextStyle? textStyle(
-          SolarTheme t, String cell, SolarSpinnerProps p, Set<WidgetState> s) =>
-      switch (lookup(cell, p, s)) {
-        'none' || null => null,
-        final v => throw StateError('$cell: no text style for $v'),
-      };
+    SolarTheme t,
+    String cell,
+    SolarSpinnerProps p,
+    Set<WidgetState> s,
+  ) => switch (lookup(cell, p, s)) {
+    'none' || null => null,
+
+    final v => throw StateError('$cell: no text style for $v'),
+  };
 
   /// Whether a layer is drawn: the shell reads this, the style does not.
   static bool present(String layer, SolarSpinnerProps p, Set<WidgetState> s) =>
@@ -165,34 +181,43 @@ abstract final class SolarSpinnerRecipe {
   /// The shapes the layers draw themselves (a cell's `g:<n>` is the nth), Figma's path data.
   static const List<SolarGlyph> glyphs = <SolarGlyph>[
     SolarGlyph(
-        width: 7.0,
-        height: 5.0,
-        fill: <SolarVectorPath>[],
-        stroke: <SolarVectorPath>[
-          SolarVectorPath(
-              'M0 0L1.75211e-16 1C2.71563 1 5.0927 2.82398 5.79556 5.44709L6.76148 5.18827L7.72741 4.92945C6.79026 1.43198 3.62085 -1 -1.75211e-16 -1L0 0Z')
-        ]),
+      width: 7.0,
+      height: 5.0,
+      fill: <SolarVectorPath>[],
+      stroke: <SolarVectorPath>[
+        SolarVectorPath(
+          'M0 0L1.75211e-16 1C2.71563 1 5.0927 2.82398 5.79556 5.44709L6.76148 5.18827L7.72741 4.92945C6.79026 1.43198 3.62085 -1 -1.75211e-16 -1L0 0Z',
+        ),
+      ],
+    ),
     SolarGlyph(
-        width: 10.0,
-        height: 8.0,
-        fill: <SolarVectorPath>[],
-        stroke: <SolarVectorPath>[
-          SolarVectorPath(
-              'M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z')
-        ]),
+      width: 10.0,
+      height: 8.0,
+      fill: <SolarVectorPath>[],
+      stroke: <SolarVectorPath>[
+        SolarVectorPath(
+          'M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z',
+        ),
+      ],
+    ),
     SolarGlyph(
-        width: 14.0,
-        height: 11.0,
-        fill: <SolarVectorPath>[],
-        stroke: <SolarVectorPath>[
-          SolarVectorPath(
-              'M0 0L1.6917e-16 1C6.11018 1 11.4586 5.10397 13.04 11.0059L14.0059 10.7471L14.9719 10.4883C13.1561 3.71196 7.01539 -1 -1.6917e-16 -1L0 0Z')
-        ]),
+      width: 14.0,
+      height: 11.0,
+      fill: <SolarVectorPath>[],
+      stroke: <SolarVectorPath>[
+        SolarVectorPath(
+          'M0 0L1.6917e-16 1C6.11018 1 11.4586 5.10397 13.04 11.0059L14.0059 10.7471L14.9719 10.4883C13.1561 3.71196 7.01539 -1 -1.6917e-16 -1L0 0Z',
+        ),
+      ],
+    ),
   ];
 
   /// The shape a layer draws under these props and states, or null where it draws none.
   static SolarGlyph? glyph(
-      String layer, SolarSpinnerProps p, Set<WidgetState> s) {
+    String layer,
+    SolarSpinnerProps p,
+    Set<WidgetState> s,
+  ) {
     final v = lookup('$layer.glyph', p, s);
     return v != null && v.startsWith('g:')
         ? glyphs[int.parse(v.substring(2))]

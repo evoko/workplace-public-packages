@@ -7,14 +7,17 @@ run by `flutter test` with the rest of the package.
 
 - **Cases**: what is particular to a component is its case, `cases/<name>.dart` (a `VisualCase`):
   how to build the widget in one oracle variant, its slots filled with probes, and how to measure
-  each oracle layer from it. `cases/cases.dart` registers them, and every oracle under
+  each oracle layer from it. The building half lives in `../../variants/`
+  (`solar_flutter_variants`), shared with the Widgetbook app so both show a widget the same way;
+  this directory adds the measuring. `cases/cases.dart` registers them, and every oracle under
   `spec/verify/` must have one, or the first test fails naming the file to add. The rest,
   `harness.dart`, is the same for every component.
 - **A composed child** (Button's spinner) is measured by the child's own case (`layersAt`) and
   checked against the child's oracle, in the variant Figma picks for it.
 
-- **States** are forced through a `WidgetStatesController` (hover, pressed, focus); disabled and
-  loading are props. Each case gets a tree of its own, and is measured after its transitions have
+- **States** are forced through a `WidgetStatesController` (hover, pressed, focus), as a user
+  reaches them: a pressed widget is hovered too, as a pointer pressing it is and as the web check
+  presses it. Disabled and loading are props. Each case gets a tree of its own, and is measured after its transitions have
   run: Material animates its text style for 200ms, so a check that read the next frame would
   measure the previous variant, and a single long pump only starts the animation.
 - **What is painted** is read back from the widget tree: the face's `BoxDecoration` (colour,

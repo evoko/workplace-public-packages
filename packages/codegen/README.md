@@ -258,9 +258,10 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
   scaffolder a React and a Flutter template, then
   `npm run solar:scaffold <Name>` and `npm run solar:scaffold -- --flutter <Name>`. A composed
   child the shell draws (Button's Spinner) comes from the recipe's `compose` lookup, never by hand.
-  Last, a visual case on each platform (`packages/components/test/visual/cases/`,
-  `solar_flutter/test/visual/cases/`), registered, which both visual checks require of every
-  generated component.
+  Last, a visual case on each platform (`packages/components/test/visual/cases/`, and for Flutter a
+  builder in `solar_flutter/variants/` and a case in `solar_flutter/test/visual/cases/`),
+  registered, which both visual checks require of every generated component. The React scaffold
+  also writes the component's story file, and both review surfaces then show it with no more work.
 - **A new icon appeared in Figma** → nothing here either; re-run `npm run solar:icons`, and
   `src/normalize/icons.mjs` picks it up. An SVG feature the IR cannot represent — a gradient, a
   stroke, an arc — fails naming the file rather than being quietly dropped.

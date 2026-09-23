@@ -15,7 +15,8 @@ Wave A adds the machinery the components need and 3b-1 did not; waves B to F add
 each wave on the ones before it.
 
 **Tech stack:** Node 22 codegen (`packages/codegen`), React 19 + MUI 9.4 (`@bwp-web/components`),
-Flutter 3.24.4 (`solar_flutter`), Vitest, Playwright 1.63.
+Flutter 3.47.5 (`solar_flutter`, from Task A7; 3.24.4 before), Vitest, Playwright 1.63,
+Storybook 10.6.
 
 Design: [the docs-to-code spec](../specs/2026-09-21-solar-docs-to-code-design.md). Previous plan:
 [3b-1, the machinery](2026-09-23-solar-component-machinery.md), whose per-task notes explain every
@@ -89,7 +90,7 @@ Taken by the plan, each open to the owner at review:
 - `docs/` is read-only to the generator. A fetcher change (Task A1) reaches the data only through
   the owner's `npm run solar:sync`.
 - Run npm under Node 22: `export PATH=$HOME/.nvm/versions/node/v22.23.2/bin:$PATH`. Flutter is
-  3.24.4.
+  3.47.5 (3.24.4 until Task A7).
 - **Every overlay rule needs a reason, and a finding is decided or left open, never hidden.** An
   axis finding is either a real interaction (`follows`), a Figma mistake the code does not copy
   (left open: the oracle excuses it and the design review lists it), or known and intended
@@ -307,6 +308,73 @@ excused entries are left to the child's own check. A new self-check test on each
 wrong track colour on Button's Spinner and requires `spinner.track.borderColor` to be named. Not
 yet: glyphs are recorded in the oracle but not compared; Checkbox (C1) is the first component whose
 shell draws Figma's glyph, and adds the comparison.
+
+### Task A7: Review surfaces — Storybook and Widgetbook
+
+Added 2026-09-23 at the owner's request, before wave B, so each wave's review can look at the
+components rather than read reports. The design spec's §8 surfaces, as viewers; the §6 tweak panel
+(edit, then save an overlay rule), `solar:explain` and `--adopt` stay later work, to be designed
+against more components than Button.
+
+**Files:** create `packages/components/.storybook/`, `packages/components/stories/`,
+`packages/solar_flutter/widgetbook/`; modify `src/scaffold/index.mjs`, the visual cases (split so
+a viewer can build a variant without the measuring), `.github/workflows/solar.yml`,
+`packages/solar_flutter/pubspec.yaml`.
+
+- [ ] **Storybook 10.6** for `@bwp-web/components` (React + Vite, workspace packages from source
+      as the visual checks resolve them). Per component, from its visual case: a *Playground* whose
+      controls are the IR's API, and *Variants*, every oracle variant labelled with Figma's name,
+      its platform state forced (the pseudo-states addon for a pseudo-class, the state's class for a
+      class selector, from `STATE_SELECTORS`), and the Figma values beside each. Light and Dark by
+      `data-theme`, as tokens.css switches them. `npm run storybook`; CI builds it.
+- [ ] Every component in `COMPONENTS` has a story file, or a test fails naming it; the scaffolder
+      writes one with the shell.
+- [ ] **Flutter 3.24.4 to 3.47.5** (owner decision 2026-09-23: Widgetbook 3.25 needs 3.44), the
+      local SDK and the CI pin, then every check re-run and whatever the newer analyzer flags fixed.
+- [ ] **Widgetbook 3.25** as an app in `packages/solar_flutter/widgetbook/` (web), from the same
+      Flutter visual cases: per component a *Playground* with knobs for its props and *Variants*
+      with every oracle variant, its platform state forced; Light and Dark. CI builds it.
+- [ ] Not built: Figma renders beside the components (the mirror stores none), the tweak panel.
+
+**Done 2026-09-23.** Both viewers, and one SOLAR defect they found on their first run.
+
+- **Storybook 10.6** (`packages/components/.storybook/`, `stories/`; `npm run storybook`). Stories
+  are generic (`stories/solar.tsx`): a *Playground* whose controls come from the IR's API, and
+  *Variants*, every oracle variant rendered by its visual case, labelled with Figma's name, its
+  state forced (the pseudo-states addon for `:hover`/`:active`, the table's class for
+  `Mui-focusVisible`; pressed hovered too) and Figma's values folded under it. The codegen's data
+  (`COMPONENTS`, each IR's API, `STATE_SELECTORS`) reaches the browser as a Vite module
+  (`virtual:solar`) that `main.ts` serves. Storybook reads story files statically, so each
+  component's is a three-line literal; the scaffolder now writes it with the shell
+  (`scaffoldStory`), and a test fails for a generated component without one. Checked in the built
+  and the dev server: 108 Button tiles with hover, pressed, focus and the tertiary underline forced
+  as measured, and Dark switching the canvas. CI builds it and keeps the `storybook` artifact.
+- **Flutter 3.24.4 to 3.47.5**, which the owner chose so Widgetbook can be current: the CI pin,
+  `sdk >=3.13`, `flutter >=3.47`, `flutter_lints` 6. The new formatter's tall style reformatted
+  every Dart file, the generated ones through the codegen's own `dart format`; nothing but layout
+  changed, and two rebuilds are identical. The newer analyzer flagged 14 infos, all fixed
+  (null-aware elements in the Button shell and its template, `flagsCollection`, the 8-bit colour
+  getters in `compare.dart`), and one test compared a painter's `Color`s as doubles, now as ARGB.
+  The local SDK was replaced in place (the old one moved to `~/development/flutter-3.24.4`).
+- **Widgetbook 3.25** (`packages/solar_flutter/widgetbook/`, a web app; `npm run widgetbook`), the
+  same two use cases per component, knobs from the values the oracle draws. A Flutter app cannot
+  import another package's `test/`, so the variant builders and probes moved into a small shared
+  package, `packages/solar_flutter/variants/` (`solar_flutter_variants`), a dev dependency of
+  `solar_flutter` that depends on it in turn, which pub allows. Flutter bundles no asset from
+  outside the app, so `scripts/widgetbook.mjs` copies `spec/verify/` into a git-ignored
+  `assets/verify/` on every run. CI resolves, formats and analyses the three packages and builds the
+  app (the `widgetbook` artifact).
+- **Changed on the way:** the Flutter visual check presses as the web one does, hovered too
+  (`statesFor`), which is the case A5 fixed and now passes in the widget check itself;
+  `SpinnerProps` omits MUI's `ref?: Ref<unknown>`, which made spreading a `SpinnerProps` value into
+  `<Spinner>` a type error; the web case's counter probe is centred in its slot, as a Counter is.
+- **Found:** in Dark, `action/primary/icon/hover` and `icon/active` are white on a white and a
+  near-white background, so a primary button's icons vanish on hover. The visual checks run in Light
+  only. A scan of all 96 `action/*` colours against WCAG AA found three more, danger hover labels at
+  4.07 and 4.13 : 1. All five are in the design review, §10.
+
+491 tests, both visual checks, lint, typecheck, format, both viewer builds and the Flutter suite
+(81) pass on 3.47.5.
 
 **Pause for review.**
 

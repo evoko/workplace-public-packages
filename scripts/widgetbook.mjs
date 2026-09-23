@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+// Runs or builds solar_flutter's Widgetbook, the Flutter review surface.
+//
+//   npm run widgetbook                       serve it in Chrome, with hot reload
+//   node scripts/widgetbook.mjs build        build it for the web (CI), into widgetbook/build/web
+//
+// The app lays out the oracles, spec/verify/*.json. Flutter cannot bundle an asset from outside
+// the app's own directory, so they are copied into widgetbook/assets/verify/ first, on every run:
+// the copy is git-ignored and made fresh each time, so it cannot go stale, and a new component's
+// oracle is picked up with no change to the app.
+import { spawnSync } from 'node:child_process';
+import { copyFileSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const app = join(repoRoot, 'packages', 'solar_flutter', 'widgetbook');
+const from = join(repoRoot, 'spec', 'verify');
+const to = join(app, 'assets', 'verify');
+
+rmSync(to, { recursive: true, force: true });
+mkdirSync(to, { recursive: true });
+const oracles = readdirSync(from).filter((f) => f.endsWith('.json'));
+for (const f of oracles) copyFileSync(join(from, f), join(to, f));
+console.log(`widgetbook: ${oracles.length} oracles (${oracles.join(', ')})`);
+
+const flutter = (...args) => {
+  const r = spawnSync('flutter', args, { cwd: app, stdio: 'inherit' });
+  if (r.status !== 0) process.exit(r.status ?? 1);
+};
+flutter('pub', 'get');
+if (process.argv[2] === 'build') flutter('build', 'web');
+else flutter('run', '-d', 'chrome');

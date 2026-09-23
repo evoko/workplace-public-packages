@@ -4,8 +4,8 @@ version: 2.0.0-alpha.0
 publish_to: none
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
-  flutter: '>=3.22.0'
+  sdk: '>=3.13.0 <4.0.0'
+  flutter: '>=3.47.0'
 
 dependencies:
   flutter:
@@ -14,7 +14,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  # The variant builders the visual checks share with the Widgetbook app; it depends on this
+  # package in turn, which pub allows for a dev dependency.
+  solar_flutter_variants:
+    path: variants
+  flutter_lints: ^6.0.0
 
 # SOLAR's three families, at the weights its text styles use. A package's fonts are found only
 # when a TextStyle names the package, which the generated styles do (package: 'solar_flutter').

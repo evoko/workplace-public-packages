@@ -22,9 +22,12 @@ const String zoneOutlinePin =
     '2.29989Z';
 
 Matcher throwsFormatExceptionSaying(String fragment) => throwsA(
-      isA<FormatException>().having(
-          (FormatException e) => e.message, 'message', contains(fragment)),
-    );
+  isA<FormatException>().having(
+    (FormatException e) => e.message,
+    'message',
+    contains(fragment),
+  ),
+);
 
 void main() {
   group('geometry', () {
@@ -65,11 +68,13 @@ void main() {
       expect(path.contains(const Offset(5, 15)), isFalse);
     });
 
-    test('negative coordinates are read as numbers, not as separators only',
-        () {
-      final Path path = parseSvgPath('M-5 -4L6 7');
-      expect(path.getBounds(), const Rect.fromLTRB(-5, -4, 6, 7));
-    });
+    test(
+      'negative coordinates are read as numbers, not as separators only',
+      () {
+        final Path path = parseSvgPath('M-5 -4L6 7');
+        expect(path.getBounds(), const Rect.fromLTRB(-5, -4, 6, 7));
+      },
+    );
 
     test('scientific notation is read, as five corpus paths need', () {
       // 9.87904e-05 is a real value from the corpus; 1e1 is the exponent's positive form.
@@ -96,16 +101,26 @@ void main() {
     test('separators may be commas, repeated, or absent before a sign', () {
       // None of these three forms occurs in the corpus today; they are here because the
       // generator's validator accepts them and this parser must accept exactly as much.
-      expect(parseSvgPath('M0,0L10,10').getBounds(),
-          parseSvgPath('M0 0L10 10').getBounds());
-      expect(parseSvgPath('M0 0 L 10  10').getBounds(),
-          parseSvgPath('M0 0L10 10').getBounds());
-      expect(parseSvgPath('M0 0L10-10').getBounds(),
-          const Rect.fromLTRB(0, -10, 10, 0));
-      expect(parseSvgPath('M0 0L.5.5').getBounds(),
-          const Rect.fromLTRB(0, 0, 0.5, 0.5));
-      expect(parseSvgPath('M0 0L+10 +10').getBounds(),
-          const Rect.fromLTRB(0, 0, 10, 10));
+      expect(
+        parseSvgPath('M0,0L10,10').getBounds(),
+        parseSvgPath('M0 0L10 10').getBounds(),
+      );
+      expect(
+        parseSvgPath('M0 0 L 10  10').getBounds(),
+        parseSvgPath('M0 0L10 10').getBounds(),
+      );
+      expect(
+        parseSvgPath('M0 0L10-10').getBounds(),
+        const Rect.fromLTRB(0, -10, 10, 0),
+      );
+      expect(
+        parseSvgPath('M0 0L.5.5').getBounds(),
+        const Rect.fromLTRB(0, 0, 0.5, 0.5),
+      );
+      expect(
+        parseSvgPath('M0 0L+10 +10').getBounds(),
+        const Rect.fromLTRB(0, 0, 10, 10),
+      );
     });
   });
 

@@ -5,59 +5,84 @@ import 'package:solar_flutter/solar_flutter.dart';
 const light = SolarTheme.light;
 const primary = SolarButtonProps();
 
-Color background(SolarButtonProps p, Set<WidgetState> s,
-        [SolarTheme t = light]) =>
-    SolarButtonRecipe.color(t, 'root.background', p, s);
+Color background(
+  SolarButtonProps p,
+  Set<WidgetState> s, [
+  SolarTheme t = light,
+]) => SolarButtonRecipe.color(t, 'root.background', p, s);
 
 void main() {
   group('state resolution', () {
     test('resting and hover read their own backgrounds', () {
       expect(background(primary, {}), SolarColors.light.actionPrimaryBgDefault);
-      expect(background(primary, {WidgetState.hovered}),
-          SolarColors.light.actionPrimaryBgHover);
-      expect(background(primary, {WidgetState.pressed}),
-          SolarColors.light.actionPrimaryBgActive);
+      expect(
+        background(primary, {WidgetState.hovered}),
+        SolarColors.light.actionPrimaryBgHover,
+      );
+      expect(
+        background(primary, {WidgetState.pressed}),
+        SolarColors.light.actionPrimaryBgActive,
+      );
     });
 
     test(
-        'disabled wins over hover and pressed, as CSS order decides on the web',
-        () {
-      const states = {
-        WidgetState.hovered,
-        WidgetState.pressed,
-        WidgetState.disabled
-      };
-      expect(background(primary, states),
-          SolarColors.light.actionPrimaryBgDisabled);
-      // The prop alone disables too, for a shell that disables without removing onPressed.
-      expect(
-          background(
-              const SolarButtonProps(disabled: true), {WidgetState.hovered}),
-          SolarColors.light.actionPrimaryBgDisabled);
-    });
+      'disabled wins over hover and pressed, as CSS order decides on the web',
+      () {
+        const states = {
+          WidgetState.hovered,
+          WidgetState.pressed,
+          WidgetState.disabled,
+        };
+        expect(
+          background(primary, states),
+          SolarColors.light.actionPrimaryBgDisabled,
+        );
+        // The prop alone disables too, for a shell that disables without removing onPressed.
+        expect(
+          background(const SolarButtonProps(disabled: true), {
+            WidgetState.hovered,
+          }),
+          SolarColors.light.actionPrimaryBgDisabled,
+        );
+      },
+    );
 
     test('the precedence is the MUI recipe’s, read backwards', () {
-      expect(SolarButtonRecipe.statePrecedence,
-          ['disabled', 'loading', 'focus', 'pressed', 'hover']);
+      expect(SolarButtonRecipe.statePrecedence, [
+        'disabled',
+        'loading',
+        'focus',
+        'pressed',
+        'hover',
+      ]);
     });
 
     test('a missing background is transparent, not the Material default', () {
       expect(
-          background(
-              const SolarButtonProps(variant: SolarButtonVariant.tertiary), {}),
-          Colors.transparent);
+        background(
+          const SolarButtonProps(variant: SolarButtonVariant.tertiary),
+          {},
+        ),
+        Colors.transparent,
+      );
     });
 
     test('danger switches the colour set', () {
-      expect(background(const SolarButtonProps(danger: true), {}),
-          SolarColors.light.actionPrimaryBgDangerDefault);
+      expect(
+        background(const SolarButtonProps(danger: true), {}),
+        SolarColors.light.actionPrimaryBgDangerDefault,
+      );
     });
 
-    test('dark resolves against the dark colours, with no change to the recipe',
-        () {
-      expect(background(primary, {}, SolarTheme.dark),
-          SolarColors.dark.actionPrimaryBgDefault);
-    });
+    test(
+      'dark resolves against the dark colours, with no change to the recipe',
+      () {
+        expect(
+          background(primary, {}, SolarTheme.dark),
+          SolarColors.dark.actionPrimaryBgDefault,
+        );
+      },
+    );
   });
 
   group('the recipe, per size', () {
@@ -67,37 +92,48 @@ void main() {
     test('md is the base, sm and lg override it in tokens', () {
       expect(dim('root.paddingLeft', primary), SolarInset.sm);
       expect(
-          dim('root.paddingLeft',
-              const SolarButtonProps(size: SolarButtonSize.sm)),
-          SolarInset.xs);
+        dim(
+          'root.paddingLeft',
+          const SolarButtonProps(size: SolarButtonSize.sm),
+        ),
+        SolarInset.xs,
+      );
       expect(dim('root.radius', primary), SolarRadius.control);
       expect(
-          dim('root.radius', const SolarButtonProps(size: SolarButtonSize.lg)),
-          SolarRadius.none);
+        dim('root.radius', const SolarButtonProps(size: SolarButtonSize.lg)),
+        SolarRadius.none,
+      );
     });
 
     test(
-        'heights are the literals the overlay allowed, and md hugs its content',
-        () {
-      expect(dim('root.height', primary), 40);
-      expect(
+      'heights are the literals the overlay allowed, and md hugs its content',
+      () {
+        expect(dim('root.height', primary), 40);
+        expect(
           dim('root.height', const SolarButtonProps(size: SolarButtonSize.sm)),
-          32);
-      expect(dim('root.width', primary), isNull);
-      expect(
+          32,
+        );
+        expect(dim('root.width', primary), isNull);
+        expect(
           dim('root.width', const SolarButtonProps(size: SolarButtonSize.lg)),
-          200);
-    });
+          200,
+        );
+      },
+    );
 
     test('lg is flat as Figma draws it, but keeps its focus ring', () {
       const lg = SolarButtonProps(size: SolarButtonSize.lg);
       expect(SolarButtonRecipe.shadow(light, 'root.shadow', lg, {}), isEmpty);
       expect(
-          SolarButtonRecipe.shadow(
-              light, 'root.shadow', lg, {WidgetState.focused}),
-          SolarShadows.light.focusDefault);
-      expect(SolarButtonRecipe.shadow(light, 'root.shadow', primary, {}),
-          SolarShadows.light.control);
+        SolarButtonRecipe.shadow(light, 'root.shadow', lg, {
+          WidgetState.focused,
+        }),
+        SolarShadows.light.focusDefault,
+      );
+      expect(
+        SolarButtonRecipe.shadow(light, 'root.shadow', primary, {}),
+        SolarShadows.light.control,
+      );
     });
   });
 
@@ -107,33 +143,48 @@ void main() {
 
     test('tertiary hover underlines it, and rest does not', () {
       const tertiary = SolarButtonProps(variant: SolarButtonVariant.tertiary);
-      expect(label(tertiary, {WidgetState.hovered})?.decoration,
-          TextDecoration.underline);
+      expect(
+        label(tertiary, {WidgetState.hovered})?.decoration,
+        TextDecoration.underline,
+      );
       expect(label(tertiary, {})?.decoration, isNot(TextDecoration.underline));
-      expect(label(primary, {WidgetState.hovered}),
-          SolarTypography.desktop.labelMd);
+      expect(
+        label(primary, {WidgetState.hovered}),
+        SolarTypography.desktop.labelMd,
+      );
     });
 
-    test('a pointer pressing tertiary is over it too, and the underline goes',
-        () {
-      // Figma's pressed tertiary is not underlined. A mouse press is hovered and pressed at once,
-      // so hover's underline must not show through the state that has no typography of its own.
-      const tertiary = SolarButtonProps(variant: SolarButtonVariant.tertiary);
-      expect(label(tertiary, {WidgetState.hovered, WidgetState.pressed}),
-          SolarTypography.desktop.labelMd);
-      expect(
-          label(tertiary, {WidgetState.hovered, WidgetState.focused})
-              ?.decoration,
-          isNot(TextDecoration.underline));
-    });
+    test(
+      'a pointer pressing tertiary is over it too, and the underline goes',
+      () {
+        // Figma's pressed tertiary is not underlined. A mouse press is hovered and pressed at once,
+        // so hover's underline must not show through the state that has no typography of its own.
+        const tertiary = SolarButtonProps(variant: SolarButtonVariant.tertiary);
+        expect(
+          label(tertiary, {WidgetState.hovered, WidgetState.pressed}),
+          SolarTypography.desktop.labelMd,
+        );
+        expect(
+          label(tertiary, {
+            WidgetState.hovered,
+            WidgetState.focused,
+          })?.decoration,
+          isNot(TextDecoration.underline),
+        );
+      },
+    );
   });
 
   group('states that hold together', () {
-    test('a focused primary under the pointer keeps focus’s resting colours',
-        () {
-      expect(background(primary, {WidgetState.hovered, WidgetState.focused}),
-          SolarColors.light.actionPrimaryBgDefault);
-    });
+    test(
+      'a focused primary under the pointer keeps focus’s resting colours',
+      () {
+        expect(
+          background(primary, {WidgetState.hovered, WidgetState.focused}),
+          SolarColors.light.actionPrimaryBgDefault,
+        );
+      },
+    );
 
     test('loading hides the label and shows the spinner', () {
       const loading = SolarButtonProps(loading: true);
@@ -143,38 +194,49 @@ void main() {
     });
   });
 
-  testWidgets('a FilledButton styled by the recipe draws SOLAR primary at 40px',
-      (tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: FilledButton(
-            style: SolarButtonRecipe.style(light),
-            onPressed: () {},
-            child: const Text('Save'),
+  testWidgets(
+    'a FilledButton styled by the recipe draws SOLAR primary at 40px',
+    (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: FilledButton(
+                style: SolarButtonRecipe.style(light),
+                onPressed: () {},
+                child: const Text('Save'),
+              ),
+            ),
           ),
         ),
-      ),
-    ));
-    final box = tester.widget<DecoratedBox>(find
-        .descendant(
-          of: find.byType(FilledButton),
-          matching: find.byType(DecoratedBox),
-        )
-        .first);
-    final decoration = box.decoration as BoxDecoration;
-    expect(decoration.color, SolarColors.light.actionPrimaryBgDefault);
-    expect(decoration.boxShadow, SolarShadows.light.control);
-    expect(decoration.borderRadius, BorderRadius.circular(SolarRadius.control));
-    // The drawn box is 40 tall; Material still pads the hit area to 48, as SOLAR asks for sm.
-    expect(tester.getSize(find.byWidget(box)).height, 40);
-    final text = tester.widget<DefaultTextStyle>(find
-        .descendant(
-          of: find.byType(FilledButton),
-          matching: find.byType(DefaultTextStyle),
-        )
-        .last);
-    expect(text.style.color, SolarColors.light.actionPrimaryTextDefault);
-    expect(text.style.fontFamily, 'packages/solar_flutter/Inter');
-  });
+      );
+      final box = tester.widget<DecoratedBox>(
+        find
+            .descendant(
+              of: find.byType(FilledButton),
+              matching: find.byType(DecoratedBox),
+            )
+            .first,
+      );
+      final decoration = box.decoration as BoxDecoration;
+      expect(decoration.color, SolarColors.light.actionPrimaryBgDefault);
+      expect(decoration.boxShadow, SolarShadows.light.control);
+      expect(
+        decoration.borderRadius,
+        BorderRadius.circular(SolarRadius.control),
+      );
+      // The drawn box is 40 tall; Material still pads the hit area to 48, as SOLAR asks for sm.
+      expect(tester.getSize(find.byWidget(box)).height, 40);
+      final text = tester.widget<DefaultTextStyle>(
+        find
+            .descendant(
+              of: find.byType(FilledButton),
+              matching: find.byType(DefaultTextStyle),
+            )
+            .last,
+      );
+      expect(text.style.color, SolarColors.light.actionPrimaryTextDefault);
+      expect(text.style.fontFamily, 'packages/solar_flutter/Inter');
+    },
+  );
 }

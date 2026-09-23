@@ -14,6 +14,7 @@ import { join, relative } from 'node:path';
 import { packagesDir, repoRoot } from '../util/paths.mjs';
 
 export const componentsSrc = join(packagesDir, 'components', 'src');
+export const storiesDir = join(packagesDir, 'components', 'stories');
 export const flutterLib = join(packagesDir, 'solar_flutter', 'lib');
 
 /** The MUI prop each slot type becomes; a slot type with no entry here cannot be scaffolded. */
@@ -167,6 +168,8 @@ export interface SpinnerProps
       | 'value'
       | 'enableTrackSlot'
       | 'disableShrink'
+      // MUI types it Ref<unknown>; the component's own ref, a <span>, comes from forwardRef.
+      | 'ref'
     > {}
 
 export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinner(
@@ -285,7 +288,7 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
     final gap = SolarButtonRecipe.dimension('root.gap', p, rest) ?? 0;
 
     final parts = <Widget>[
-      if (iconLeading != null) iconLeading!,
+      ?iconLeading,
       // Loading hides the label but keeps its room, as Figma does, so the button does not resize;
       // a screen reader still reads it.
       if (child != null)
@@ -303,7 +306,7 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
           height: SolarButtonRecipe.dimension('counter.height', p, rest),
           child: Center(widthFactor: 1, child: counter),
         ),
-      if (iconTrailing != null) iconTrailing!,
+      ?iconTrailing,
     ];
     final content = Row(
       mainAxisSize: MainAxisSize.min,
@@ -441,6 +444,40 @@ export function scaffoldFlutter(
     lines.splice(first, exports.length, ...sorted);
     writeFileSync(library, `${lines.join('\n')}\n`);
   }
+  return { status: existed ? 'overwritten' : 'written', file: shown };
+}
+
+/**
+ * A component's Storybook file. Its stories are generic (`stories/solar.tsx`, from the component's
+ * visual case and IR), so the file only names the component; Storybook reads a story file
+ * statically, which is why its default export is an object literal rather than a call.
+ */
+export const storyTemplate = (component) =>
+  `import type { Meta, StoryObj } from '@storybook/react-vite';
+import { meta, playground, variants } from './solar.js';
+
+// Storybook reads a story file statically, so the default export is an object literal here.
+export default { title: 'SOLAR/${component}', ...meta('${component}') } satisfies Meta;
+export const Playground: StoryObj = playground('${component}');
+export const Variants: StoryObj = variants('${component}');
+`;
+
+/** \`Button\` to \`Button.stories.tsx\`. */
+export const storyFileOf = (component) =>
+  shellFileOf(component).replace(/\.tsx$/, '.stories.tsx');
+
+/**
+ * Writes the component's story file unless it exists; like the shell, it is then hand-owned.
+ *
+ * @returns {{status: 'written' | 'exists' | 'overwritten', file: string}}
+ */
+export function scaffoldStory(spec, { force = false, dir = storiesDir } = {}) {
+  const file = join(dir, storyFileOf(spec.component));
+  const existed = existsSync(file);
+  const shown = relative(repoRoot, file);
+  if (existed && !force) return { status: 'exists', file: shown };
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(file, storyTemplate(spec.component));
   return { status: existed ? 'overwritten' : 'written', file: shown };
 }
 

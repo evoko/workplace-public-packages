@@ -56,6 +56,10 @@ Give it an `aria-label` saying what is loading.
 its state as a user would, and compares what the browser computes with what Figma draws
 (`spec/verify/`). See [test/visual/README.md](test/visual/README.md).
 
+To look at them instead, `npm run storybook` from the repository root: every Figma variant of
+every component, its state forced, in Light and Dark, beside a playground with a control per prop.
+It is built from the same cases and oracles as the check. See [stories/README.md](stories/README.md).
+
 ## Generated look, owned behaviour
 
 A component here is two parts, with a hard line between them:

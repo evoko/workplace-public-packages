@@ -36,11 +36,18 @@ class SolarSpinner extends StatelessWidget {
       child: CircularProgressIndicator(
         // The ring inside its box, as the web draws it.
         strokeAlign: CircularProgressIndicator.strokeAlignInside,
-        strokeWidth:
-            SolarSpinnerRecipe.dimension('indicator.borderWidth', p, rest)!,
+        strokeWidth: SolarSpinnerRecipe.dimension(
+          'indicator.borderWidth',
+          p,
+          rest,
+        )!,
         color: SolarSpinnerRecipe.color(t, 'indicator.borderColor', p, rest),
-        backgroundColor:
-            SolarSpinnerRecipe.color(t, 'track.borderColor', p, rest),
+        backgroundColor: SolarSpinnerRecipe.color(
+          t,
+          'track.borderColor',
+          p,
+          rest,
+        ),
         semanticsLabel: semanticsLabel,
       ),
     );

@@ -13,6 +13,8 @@
     "format:fix": "turbo run format -- --write",
     "test": "turbo run test",
     "test:visual": "npm run test:visual -w @bwp-web/components",
+    "storybook": "npm run storybook -w @bwp-web/components",
+    "widgetbook": "node scripts/widgetbook.mjs",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
     "solar:sync": "node scripts/solar-sync.mjs",
     "solar:foundations": "node docs/solar/raw/fetch-rest.mjs && node docs/solar/build-docs.mjs",

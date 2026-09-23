@@ -45,8 +45,11 @@ class RecordingCanvas implements Canvas {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-RecordingCanvas record(SolarVector vector, Size size,
-    {Color color = const Color(0xFFFF0000)}) {
+RecordingCanvas record(
+  SolarVector vector,
+  Size size, {
+  Color color = const Color(0xFFFF0000),
+}) {
   final RecordingCanvas canvas = RecordingCanvas();
   SolarVectorPainter(vector, color).paint(canvas, size);
   return canvas;
@@ -108,8 +111,10 @@ Map<String, SolarVector> readGeneratedIcons() {
 
 /// The one [CustomPaint] this package put in the tree, named rather than indexed: the test
 /// harness has painters of its own and `.first`/`.last` would be a guess about their order.
-Finder solarPaint() => find.byWidgetPredicate((Widget widget) =>
-    widget is CustomPaint && widget.painter is SolarVectorPainter);
+Finder solarPaint() => find.byWidgetPredicate(
+  (Widget widget) =>
+      widget is CustomPaint && widget.painter is SolarVectorPainter,
+);
 
 SolarVectorPainter painterIn(WidgetTester tester) => tester
     .widgetList<CustomPaint>(find.byType(CustomPaint))
@@ -124,8 +129,10 @@ void main() {
     test('is all 680 variants of all 340 icons', () {
       expect(generated, hasLength(680));
       expect(
-        generated.values
-            .fold<int>(0, (int n, SolarVector v) => n + v.paths.length),
+        generated.values.fold<int>(
+          0,
+          (int n, SolarVector v) => n + v.paths.length,
+        ),
         790,
       );
       // The constants the widgets are documented with really exist and really are constants.
@@ -137,8 +144,9 @@ void main() {
       // 2026-09-22; that the painter still fits a vector that is not square is covered by
       // SolarVectorPainter's own test, which builds one.
       expect(
-        generated.values
-            .where((SolarVector v) => v.width != 24 || v.height != 24),
+        generated.values.where(
+          (SolarVector v) => v.width != 24 || v.height != 24,
+        ),
         isEmpty,
       );
     });
@@ -151,8 +159,10 @@ void main() {
       final Canvas canvas = Canvas(recorder);
       for (final MapEntry<String, SolarVector> icon in generated.entries) {
         expect(
-          () => SolarVectorPainter(icon.value, const Color(0xFF111111))
-              .paint(canvas, const Size(24, 24)),
+          () => SolarVectorPainter(
+            icon.value,
+            const Color(0xFF111111),
+          ).paint(canvas, const Size(24, 24)),
           returnsNormally,
           reason: icon.key,
         );
@@ -169,8 +179,8 @@ void main() {
     });
 
     test('names no colour: an icon inherits one', () {
-      final String source =
-          File('lib/src/generated/icons.dart').readAsStringSync();
+      final String source = File('lib/src/generated/icons.dart')
+          .readAsStringSync();
       expect(source, isNot(contains('#111111')));
       expect(source, isNot(contains('Color(')));
     });
@@ -200,55 +210,62 @@ void main() {
       expect(nonZero.contains(const Offset(5, 5)), isTrue);
     });
 
-    test('fits a non-square vector into a square box rather than stretching it',
-        () {
-      // SolarIcons.zoneOutline was drawn on a 0 0 24 25 viewBox and was the one real asset that
-      // needed this, until SOLAR redrew Icon/Zone on the grid on 2026-09-22. SVG letterboxes an
-      // off-grid drawing for free through the default preserveAspectRatio, so Flutter has to as
-      // well or the two platforms draw the same icon differently. The case is built here so it
-      // stays covered while no generated icon exercises it.
-      const SolarVector tall = SolarVector(
-        width: 24,
-        height: 25,
-        paths: <SolarVectorPath>[SolarVectorPath('M0 0H24V25H0Z')],
-      );
-      final RecordingCanvas fitted = record(tall, const Size(24, 24));
-      expect(fitted.scales, <double>[24 / 25]);
-      expect(fitted.translations.single.dx,
-          closeTo((24 - 24 * (24 / 25)) / 2, 1e-9));
-      expect(fitted.translations.single.dy, 0);
+    test(
+      'fits a non-square vector into a square box rather than stretching it',
+      () {
+        // SolarIcons.zoneOutline was drawn on a 0 0 24 25 viewBox and was the one real asset that
+        // needed this, until SOLAR redrew Icon/Zone on the grid on 2026-09-22. SVG letterboxes an
+        // off-grid drawing for free through the default preserveAspectRatio, so Flutter has to as
+        // well or the two platforms draw the same icon differently. The case is built here so it
+        // stays covered while no generated icon exercises it.
+        const SolarVector tall = SolarVector(
+          width: 24,
+          height: 25,
+          paths: <SolarVectorPath>[SolarVectorPath('M0 0H24V25H0Z')],
+        );
+        final RecordingCanvas fitted = record(tall, const Size(24, 24));
+        expect(fitted.scales, <double>[24 / 25]);
+        expect(
+          fitted.translations.single.dx,
+          closeTo((24 - 24 * (24 / 25)) / 2, 1e-9),
+        );
+        expect(fitted.translations.single.dy, 0);
 
-      // A square vector in a square box is scaled by 1 and not offset at all, which is every
-      // generated icon today.
-      final RecordingCanvas square =
-          record(SolarIcons.zoneSolid, const Size(24, 24));
-      expect(square.scales, <double>[1.0]);
-      expect(square.translations, <Offset>[Offset.zero]);
-    });
+        // A square vector in a square box is scaled by 1 and not offset at all, which is every
+        // generated icon today.
+        final RecordingCanvas square = record(
+          SolarIcons.zoneSolid,
+          const Size(24, 24),
+        );
+        expect(square.scales, <double>[1.0]);
+        expect(square.translations, <Offset>[Offset.zero]);
+      },
+    );
 
     test('scales a 36 x 12 wordmark by its height and centres it', () {
-      final RecordingCanvas biamp =
-          record(SolarLogos.biampDarkSm, const Size(72, 24));
+      final RecordingCanvas biamp = record(
+        SolarLogos.biampDarkSm,
+        const Size(72, 24),
+      );
       expect(biamp.scales, <double>[2.0]);
       expect(biamp.translations, <Offset>[Offset.zero]);
     });
 
     test(
-        'draws every logo path in its own colour and ignores the widget colour',
-        () {
-      final RecordingCanvas google = record(
-        SolarLogos.osGoogle,
-        const Size(32, 32),
-        color: const Color(0xFFFF0000),
-      );
-      expect(google.colors, <Color>[
-        const Color(0xFFFFC107),
-        const Color(0xFFFF3D00),
-        const Color(0xFF4CAF50),
-        const Color(0xFF1976D2),
-      ]);
-      expect(google.colors, isNot(contains(const Color(0xFFFF0000))));
-    });
+      'draws every logo path in its own colour and ignores the widget colour',
+      () {
+        final RecordingCanvas google = record(
+          SolarLogos.osGoogle,
+          const Size(32, 32),
+          color: const Color(0xFFFF0000),
+        );
+        // As 32-bit ARGB: a Color compares its components as doubles, and one read back from a
+        // Paint can differ from the constant in the last bits while being the same colour.
+        final argb = google.colors.map((c) => c.toARGB32()).toList();
+        expect(argb, <int>[0xFFFFC107, 0xFFFF3D00, 0xFF4CAF50, 0xFF1976D2]);
+        expect(argb, isNot(contains(0xFFFF0000)));
+      },
+    );
 
     test('draws every icon path in the colour it was given', () {
       final RecordingCanvas icon = record(
@@ -271,8 +288,9 @@ void main() {
       expect(SolarIconSize.lg, 24.0);
     });
 
-    testWidgets('takes the ambient SolarTheme icon colour',
-        (WidgetTester tester) async {
+    testWidgets('takes the ambient SolarTheme icon colour', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Theme(
           data: ThemeData(
@@ -284,8 +302,9 @@ void main() {
       expect(painterIn(tester).color, SolarColors.light.iconPrimary);
     });
 
-    testWidgets('prefers an explicit colour to the theme',
-        (WidgetTester tester) async {
+    testWidgets('prefers an explicit colour to the theme', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Theme(
           data: ThemeData(
@@ -300,8 +319,9 @@ void main() {
       expect(painterIn(tester).color, const Color(0xFF00FF00));
     });
 
-    testWidgets('falls back to the IconTheme when SOLAR is not installed',
-        (WidgetTester tester) async {
+    testWidgets('falls back to the IconTheme when SOLAR is not installed', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const IconTheme(
           data: IconThemeData(color: Color(0xFF0000FF)),
@@ -311,8 +331,9 @@ void main() {
       expect(painterIn(tester).color, const Color(0xFF0000FF));
     });
 
-    testWidgets('is an image with a name when it is given one',
-        (WidgetTester tester) async {
+    testWidgets('is an image with a name when it is given one', (
+      WidgetTester tester,
+    ) async {
       final SemanticsHandle handle = tester.ensureSemantics();
       await tester.pumpWidget(
         const Directionality(
@@ -327,12 +348,13 @@ void main() {
       );
       final SemanticsNode node = tester.getSemantics(find.byType(SolarIcon));
       expect(node.label, 'Next');
-      expect(node.hasFlag(SemanticsFlag.isImage), isTrue);
+      expect(node.getSemanticsData().flagsCollection.isImage, isTrue);
       handle.dispose();
     });
 
-    testWidgets('is invisible to assistive technology without a name',
-        (WidgetTester tester) async {
+    testWidgets('is invisible to assistive technology without a name', (
+      WidgetTester tester,
+    ) async {
       // Decoration beside a label that already says what it means, so it is taken out of the
       // tree entirely rather than announced as an unnamed image.
       final SemanticsHandle handle = tester.ensureSemantics();
@@ -341,14 +363,15 @@ void main() {
       );
       final SemanticsNode node = tester.getSemantics(find.byType(SolarIcon));
       expect(node.label, isEmpty);
-      expect(node.hasFlag(SemanticsFlag.isImage), isFalse);
+      expect(node.getSemanticsData().flagsCollection.isImage, isFalse);
       handle.dispose();
     });
   });
 
   group('SolarLogo', () {
-    testWidgets('sizes by height and keeps the wordmark ratio',
-        (WidgetTester tester) async {
+    testWidgets('sizes by height and keeps the wordmark ratio', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Center(child: SolarLogo(SolarLogos.biampDarkSm, size: 24)),
       );
@@ -361,8 +384,10 @@ void main() {
       // assert that on, so the constructor itself is read.
       final String source = File('lib/src/solar_icon.dart').readAsStringSync();
       final int start = source.indexOf('const SolarLogo(this.logo');
-      final String constructor =
-          source.substring(start, source.indexOf('});', start));
+      final String constructor = source.substring(
+        start,
+        source.indexOf('});', start),
+      );
       expect(constructor, contains('semanticLabel'));
       expect(constructor, isNot(contains('color')));
     });

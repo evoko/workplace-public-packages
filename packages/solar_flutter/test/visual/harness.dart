@@ -9,7 +9,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
+import 'package:solar_flutter_variants/solar_flutter_variants.dart';
+
 import 'compare.dart';
+
+export 'package:solar_flutter_variants/solar_flutter_variants.dart';
 
 /// What a case measures: each oracle layer's painted values.
 typedef Layers = Map<String, Map<String, Object?>>;
@@ -18,11 +22,8 @@ typedef Layers = Map<String, Map<String, Object?>>;
 class VisualCase {
   const VisualCase({required this.build, required this.measure, this.layersAt});
 
-  /// The widget in one oracle variant: its props from the oracle (the prop states, disabled and
-  /// loading, among them), every slot filled with a probe, and [states] as its states controller,
-  /// through which the harness forces the platform state.
-  final Widget Function(
-      Map<String, dynamic> variant, WidgetStatesController states) build;
+  /// The widget in one oracle variant (`builders/`, shared with the Widgetbook app).
+  final VariantBuilder build;
 
   /// Every oracle layer, measured from the pumped widget.
   final Layers Function(WidgetTester tester) measure;
@@ -62,51 +63,27 @@ Future<void> settle(WidgetTester tester) async {
   await tester.pump(const Duration(seconds: 1));
 }
 
-/// A stand-in icon that paints what the control's IconTheme gives it, so the colour and size an
-/// icon would take are what is measured.
-class IconProbe extends StatelessWidget {
-  const IconProbe({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = IconTheme.of(context);
-    return SizedBox.square(
-      dimension: theme.size,
-      child: ColoredBox(color: theme.color!),
-    );
-  }
-}
-
-/// The enum value an oracle names: by its Dart name, or by [figma] where the value is escaped.
-T enumNamed<T extends Enum>(List<T> values, String name,
-        [String Function(T)? figma]) =>
-    values.firstWhere((v) => v.name == name || figma?.call(v) == name);
-
-/// The platform states, as Flutter tracks them.
-const platformStates = {
-  'hover': WidgetState.hovered,
-  'pressed': WidgetState.pressed,
-  'focus': WidgetState.focused,
-};
-
 /// The painted text style of the paragraph showing [text].
 TextStyle paintedText(WidgetTester tester, String text) =>
     tester.renderObject<RenderParagraph>(find.text(text)).text.style!;
 
 Map<String, Object?> textValues(TextStyle s) => {
-      'color': s.color,
-      'fontFamily': s.fontFamily,
-      'fontWeight': s.fontWeight,
-      'fontSize': s.fontSize,
-      'lineHeight': s.height! * s.fontSize!,
-      'letterSpacing': s.letterSpacing ?? 0,
-      'textDecoration':
-          s.decoration == TextDecoration.underline ? 'underline' : 'none',
-    };
+  'color': s.color,
+  'fontFamily': s.fontFamily,
+  'fontWeight': s.fontWeight,
+  'fontSize': s.fontSize,
+  'lineHeight': s.height! * s.fontSize!,
+  'letterSpacing': s.letterSpacing ?? 0,
+  'textDecoration': s.decoration == TextDecoration.underline
+      ? 'underline'
+      : 'none',
+};
 
 /// The child oracle's variant a parent's layer names: every axis it gives, by Figma's spelling.
 Map<String, dynamic> childVariant(
-    Map<String, dynamic> oracle, Map<String, dynamic> wanted) {
+  Map<String, dynamic> oracle,
+  Map<String, dynamic> wanted,
+) {
   for (final v in (oracle['variants'] as List).cast<Map<String, dynamic>>()) {
     final axes = {
       for (final part in (v['figma'] as String).split(', '))
@@ -138,9 +115,12 @@ Future<(List<Difference>, List<Difference>)> check(
     if (only != null && !only.contains(name)) continue;
     final states = WidgetStatesController();
     await pump(tester, kase.build(v, states));
-    final state = platformStates[v['state']];
-    if (state != null) {
-      states.update(state, true);
+    // As a user reaches it: a pressed control is hovered too, as the web check presses it.
+    final forced = statesFor(v['state'] as String?);
+    if (forced.isNotEmpty) {
+      for (final state in forced) {
+        states.update(state, true);
+      }
       await settle(tester);
     }
     final painted = kase.measure(tester);
@@ -155,7 +135,8 @@ Future<(List<Difference>, List<Difference>)> check(
       }
       // Shown by a prop (hidden at rest in Figma): measured whenever rendered. Hidden only in this
       // variant: the state removes it, so it must not be drawn.
-      final byProp = (oracle['slots'] as Map).containsKey(layer) &&
+      final byProp =
+          (oracle['slots'] as Map).containsKey(layer) &&
           (atRest[layer] as Map<String, dynamic>)['hidden'] == true;
       if (expected['hidden'] == true && !byProp) {
         if (got['drawn'] == true) {
@@ -178,18 +159,21 @@ Future<(List<Difference>, List<Difference>)> check(
 /// variant looks like is the child's oracle, so the two are checked together, layer by layer. What
 /// the child's oracle excuses is not compared here: the child's own check reports it.
 void checkChild(
-    String variant,
-    String layer,
-    Map<String, dynamic> expected,
-    Map<String, Object?> got,
-    Map<String, dynamic> oracle,
-    List<Difference> failures) {
+  String variant,
+  String layer,
+  Map<String, dynamic> expected,
+  Map<String, Object?> got,
+  Map<String, dynamic> oracle,
+  List<Difference> failures,
+) {
   if (got['drawn'] != true) {
     failures.add(Difference(variant, layer, 'present', true, false));
     return;
   }
-  final want =
-      childVariant(oracle, expected['variant'] as Map<String, dynamic>);
+  final want = childVariant(
+    oracle,
+    expected['variant'] as Map<String, dynamic>,
+  );
   final layers = got['layers']! as Layers;
   final excused = (want['excused'] as List?) ?? const [];
   for (final MapEntry(key: part, value: e)
@@ -204,8 +188,9 @@ void checkChild(
     final own = <Difference>[];
     compareLayer(variant, part, spec, measured, excused, own, <Difference>[]);
     for (final d in own) {
-      failures.add(Difference(
-          variant, layer, '$part.${d.property}', d.figma, d.painted));
+      failures.add(
+        Difference(variant, layer, '$part.${d.property}', d.figma, d.painted),
+      );
     }
   }
 }

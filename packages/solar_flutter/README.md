@@ -12,6 +12,8 @@ Consume it by git dependency:
           path: packages/solar_flutter
           ref: v2-SOLAR
 
+It needs Flutter 3.47 or later (Dart 3.13), the version CI pins in `.github/workflows/solar.yml`.
+
 Everything in `lib/src/generated` is produced by `npm run solar:codegen` at the repository
 root. Do not edit it. The types, the widgets and the SVG path parser beside it are hand written.
 See [the design spec](../../docs/superpowers/specs/2026-09-21-solar-docs-to-code-design.md).
@@ -90,7 +92,11 @@ A shape a component draws itself (Spinner's ring, and in later components Checkb
 `Solar<Name>Recipe.glyph(layer, props, states)` and drawn by `SolarVectorPainter`, as the icons are.
 
 Every variant of both widgets is checked against what Figma draws (`spec/verify/`) by
-`flutter test`: see [test/visual/README.md](test/visual/README.md).
+`flutter test`: see [test/visual/README.md](test/visual/README.md). To look at them instead,
+`npm run widgetbook` from the repository root: every Figma variant with its state forced, in Light
+and Dark, and a playground with a knob per prop ([widgetbook/README.md](widgetbook/README.md)). How
+a widget is built in one variant is shared by both, in the small `variants/` package
+(`solar_flutter_variants`), a dev dependency only.
 
 ## Fonts
 

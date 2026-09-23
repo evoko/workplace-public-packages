@@ -36,8 +36,11 @@ generated recipe, never values in the shell. Every variant is checked on both pl
 what Figma draws: `spec/verify/<name>.json` (the oracle, generated beside the IR, never from the
 recipe) and the visual checks (`npm run test:visual` for React in Chromium, `flutter test` for the
 widgets). A difference fails unless the oracle excuses it with an open finding or an overlay
-decision; never loosen a check or edit the oracle to make one pass. The rest of the tweak loop the
-design spec describes (`solar:explain`, the Storybook review surface) is **not built yet**.
+decision; never loosen a check or edit the oracle to make one pass. To look at the components,
+`npm run storybook` (React) and `npm run widgetbook` (Flutter) show every Figma variant with its
+state forced, in Light and Dark, built from the same cases and oracles; they are viewers, not
+checks. The rest of the tweak loop the design spec describes (`solar:explain`, the tweak panel
+that saves an overlay rule) is **not built yet**.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type

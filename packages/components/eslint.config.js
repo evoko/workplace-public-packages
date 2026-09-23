@@ -4,8 +4,16 @@ import globals from 'globals';
 
 /** @type {import('typescript-eslint').Config} */
 export default [
-  // The visual checks' bundled page and Playwright's reports are generated, like dist/.
-  { ignores: ['test/visual/.out/', 'test-results/', 'playwright-report/'] },
+  // The visual checks' bundled page, Playwright's reports and the built Storybook are generated,
+  // like dist/.
+  {
+    ignores: [
+      'test/visual/.out/',
+      'test-results/',
+      'playwright-report/',
+      'storybook-static/',
+    ],
+  },
   ...baseConfig,
   ...reactConfig,
   {

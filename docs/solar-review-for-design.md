@@ -63,11 +63,13 @@ Since this morning's list:
 | [7](#7-documentation-cards-copied-from-breadcrumbs--45-pages)         | Documentation cards copied from Breadcrumbs       | 45 pages  | SOLAR Web   |
 | [8](#8-button-and-spinner-variant-by-variant)                         | Button and Spinner, variant by variant            | 4 + 3 + 2 | SOLAR Web   |
 | [9](#9-pages-that-still-contradict-the-variables--2)                  | Pages that still contradict the variables         | 2 + 2     | Foundations |
-| [10](#10-icons-and-logos)                                             | Icons and logos                                   | 0 + 2     | SOLAR Icons |
+| [10](#10-action-colours-below-the-contrast-floor--5)                  | Action colours below the contrast floor           | 5         | Foundations |
+| [11](#11-icons-and-logos)                                             | Icons and logos                                   | 0 + 2     | SOLAR Icons |
 
 **If you only do three things:** decide the control heights in section 4 (it touches eleven
 components and the touch-target question), replace the Breadcrumbs text on the 45 documentation
-cards in section 7, and fix Stepper's last layout accident at the top of section 2.
+cards in section 7, and fix Stepper's last layout accident at the top of section 2. **And one
+quick fix that users would see:** in Dark, a primary button's icons disappear on hover (section 10).
 
 ---
 
@@ -379,9 +381,30 @@ state. We have followed the variables.
   checklist that masters use the primitive. (It makes no difference to us: icons take their
   colour where they are used.)
 
+## 10. Action colours below the contrast floor — 5
+
+New in this revision, found when we first looked at Button in Dark in our component gallery. We
+then checked every one of the 96 `action/*` colour variables the same way: each `icon` and `text`
+colour against the `bg` of the same role and state, in both modes, laid over
+`surface/background` where the background is see-through. The floor is WCAG 2.1 AA, which SOLAR
+names as its own: 3:1 for an icon, 4.5:1 for text at the label sizes. Disabled colours are exempt.
+
+| Variable                             | Mode  | Colour    | On                                 | Colour    | Contrast | Fix                                                                |
+| ------------------------------------ | ----- | --------- | ---------------------------------- | --------- | -------- | ------------------------------------------------------------------ |
+| `action/primary/icon/hover`          | Dark  | `#ffffff` | `action/primary/bg/hover`          | `#ffffff` | 1.00 : 1 | **Fix:** `{color/neutral/900}`, as `action/primary/text/hover` is  |
+| `action/primary/icon/active`         | Dark  | `#ffffff` | `action/primary/bg/active`         | `#f5f5f5` | 1.09 : 1 | **Fix:** `{color/neutral/900}`, as `action/primary/text/active` is |
+| `action/primary/text/danger/hover`   | Light | `#ffffff` | `action/primary/bg/danger/hover`   | `#f61d3c` | 4.07 : 1 | ⚠️ Decide: a darker hover red, or accept for the hover state       |
+| `action/secondary/text/danger/hover` | Light | `#e0032d` | `action/secondary/bg/danger/hover` | `#ffe4df` | 4.13 : 1 | ⚠️ Decide: as above                                                |
+| `action/tertiary/text/danger/hover`  | Light | `#e0032d` | `action/tertiary/bg/danger/hover`  | `#ffe4df` | 4.13 : 1 | ⚠️ Decide: as above                                                |
+
+The first two are clearly mistakes: in Dark, a primary button's icons are white on its white
+hover background, so they vanish, and nearly vanish when pressed. Every other mode and state of
+`action/primary/icon/*` follows `action/primary/text/*`, and these two do not. The three danger
+hovers miss 4.5:1 narrowly; a hover state is transient, but the floor has no exception for it.
+
 # Part 3 · SOLAR Icons
 
-## 10. Icons and logos
+## 11. Icons and logos
 
 **340 icons, and no findings.** No strokes, no clipping masks, one fill per icon, 24 × 24 frames
 throughout, and both variants drawn for every icon. The name collision is gone with the Audio & DSP
@@ -415,7 +438,7 @@ These are the ones we genuinely cannot answer:
 7. **Action states** — `active` in the variables, `pressed` on the pages. Section 9.
 8. **Icon master colour** — semantic token or primitive? Section 9.
 9. **Spinner sizes** — tokens, or the icon ladder? Section 8.
-10. **Logos** — a flat Teams mark, and a `logo.*` size scale. Section 10.
+10. **Logos** — a flat Teams mark, and a `logo.*` size scale. Section 11.
 11. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
     Web rather than in Foundations. Should it move down a layer?
 

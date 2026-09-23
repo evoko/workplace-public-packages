@@ -28,6 +28,8 @@ export interface SpinnerProps
       | 'value'
       | 'enableTrackSlot'
       | 'disableShrink'
+      // MUI types it Ref<unknown>; the component's own ref, a <span>, comes from forwardRef.
+      | 'ref'
     > {}
 
 export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(

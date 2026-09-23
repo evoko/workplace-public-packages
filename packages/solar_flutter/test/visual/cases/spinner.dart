@@ -6,8 +6,9 @@ import '../harness.dart';
 
 /// SolarSpinner's layers where it is drawn, alone or inside another component.
 Layers spinnerLayers(WidgetTester tester, Finder at) {
-  final ring = tester.widget<CircularProgressIndicator>(find.descendant(
-      of: at, matching: find.byType(CircularProgressIndicator)));
+  final ring = tester.widget<CircularProgressIndicator>(
+    find.descendant(of: at, matching: find.byType(CircularProgressIndicator)),
+  );
   final size = tester.getSize(at);
   return {
     // SolarSpinner draws no frame of its own: the root is Figma's transparent, borderless auto
@@ -43,15 +44,12 @@ Layers spinnerLayers(WidgetTester tester, Finder at) {
   };
 }
 
-final spinnerCase = VisualCase(
-  build: (v, _) {
-    final props = v['props'] as Map<String, dynamic>;
-    return SolarSpinner(
-      size: enumNamed(SolarSpinnerSize.values, props['size'] as String),
-      variant: enumNamed(SolarSpinnerVariant.values, props['variant'] as String,
-          (v) => v.figma),
-    );
-  },
-  measure: (tester) => spinnerLayers(tester, find.byType(SolarSpinner)),
+/// A pumped SolarSpinner's layers.
+Layers measureSpinner(WidgetTester tester) =>
+    spinnerLayers(tester, find.byType(SolarSpinner));
+
+const spinnerCase = VisualCase(
+  build: buildSpinner,
+  measure: measureSpinner,
   layersAt: spinnerLayers,
 );

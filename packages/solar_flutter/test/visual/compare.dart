@@ -20,13 +20,16 @@ Color oracleColour(String value) {
   return Color((alpha << 24) | rgb);
 }
 
+/// A colour component in 0..1 as the 8-bit step it rounds to.
+int _eight(double c) => (c * 255.0).round().clamp(0, 255);
+
 /// Two colours agree within one 8-bit step; two clear colours agree whatever their RGB.
 bool sameColour(Color a, Color b) {
-  if (a.alpha <= 1 && b.alpha <= 1) return true;
-  return (a.red - b.red).abs() <= 1 &&
-      (a.green - b.green).abs() <= 1 &&
-      (a.blue - b.blue).abs() <= 1 &&
-      (a.alpha - b.alpha).abs() <= 3;
+  if (_eight(a.a) <= 1 && _eight(b.a) <= 1) return true;
+  return (_eight(a.r) - _eight(b.r)).abs() <= 1 &&
+      (_eight(a.g) - _eight(b.g)).abs() <= 1 &&
+      (_eight(a.b) - _eight(b.b)).abs() <= 1 &&
+      (_eight(a.a) - _eight(b.a)).abs() <= 3;
 }
 
 /// A CSS box-shadow list, as the oracle spells it (`0px 1px 1px 0px rgba(0, 0, 0, 0.05)`).
@@ -56,8 +59,12 @@ List<BoxShadow> oracleShadows(String value) {
             .map((t) => double.parse(t.replaceFirst('px', '')))
             .toList();
         return BoxShadow(
-          color: Color.fromRGBO(int.parse(c[0]), int.parse(c[1]),
-              int.parse(c[2]), c.length > 3 ? double.parse(c[3]) : 1),
+          color: Color.fromRGBO(
+            int.parse(c[0]),
+            int.parse(c[1]),
+            int.parse(c[2]),
+            c.length > 3 ? double.parse(c[3]) : 1,
+          ),
           offset: Offset(lengths[0], lengths[1]),
           blurRadius: lengths[2],
           spreadRadius: lengths.length > 3 ? lengths[3] : 0,
@@ -73,7 +80,7 @@ bool _sameShadows(List<BoxShadow> a, List<BoxShadow> b) =>
         (a[i].offset - b[i].offset).distance <= 0.5 &&
             (a[i].blurRadius - b[i].blurRadius).abs() <= 0.5 &&
             (a[i].spreadRadius - b[i].spreadRadius).abs() <= 0.5 &&
-            sameColour(a[i].color, b[i].color)
+            sameColour(a[i].color, b[i].color),
     ].every((ok) => ok);
 
 /// Whether a painted value is what the oracle expects for a property.
@@ -86,7 +93,9 @@ bool agrees(String property, Object? figma, Object? painted) {
       return sameColour(oracleColour(figma! as String), painted as Color);
     case 'shadow':
       return _sameShadows(
-          oracleShadows(figma! as String), painted as List<BoxShadow>);
+        oracleShadows(figma! as String),
+        painted as List<BoxShadow>,
+      );
     case 'fontFamily':
       // Flutter names a package's font `packages/<package>/<family>`.
       return (painted as String).split('/').last == figma;
@@ -126,8 +135,14 @@ const measured = [
 
 /// One difference: a failure, or an excused gap when [finding] is set.
 class Difference {
-  Difference(this.variant, this.layer, this.property, this.figma, this.painted,
-      [this.finding]);
+  Difference(
+    this.variant,
+    this.layer,
+    this.property,
+    this.figma,
+    this.painted, [
+    this.finding,
+  ]);
 
   final String variant;
   final String layer;
@@ -137,13 +152,13 @@ class Difference {
   final String? finding;
 
   Map<String, Object?> toJson() => {
-        'variant': variant,
-        'layer': layer,
-        'property': property,
-        'figma': figma,
-        'painted': '$painted',
-        if (finding != null) 'finding': finding,
-      };
+    'variant': variant,
+    'layer': layer,
+    'property': property,
+    'figma': figma,
+    'painted': '$painted',
+    if (finding != null) 'finding': finding,
+  };
 
   @override
   String toString() =>
@@ -165,17 +180,26 @@ void compareLayer(
     if (!expected.containsKey(property)) continue;
     if (property == 'borderColor' && expected['borderWidth'] == 0) continue;
     final figma = expected[property];
-    final excuse = excused
-        .cast<Map<String, dynamic>>()
-        .where((e) => e['layer'] == layer && e['property'] == property);
+    final excuse = excused.cast<Map<String, dynamic>>().where(
+      (e) => e['layer'] == layer && e['property'] == property,
+    );
     if (excuse.isNotEmpty) {
-      gaps.add(Difference(variant, layer, property, figma, painted[property],
-          excuse.first['finding'] as String));
+      gaps.add(
+        Difference(
+          variant,
+          layer,
+          property,
+          figma,
+          painted[property],
+          excuse.first['finding'] as String,
+        ),
+      );
       continue;
     }
     if (!agrees(property, figma, painted[property])) {
-      failures
-          .add(Difference(variant, layer, property, figma, painted[property]));
+      failures.add(
+        Difference(variant, layer, property, figma, painted[property]),
+      );
     }
   }
 }
@@ -183,6 +207,8 @@ void compareLayer(
 /// Writes a report beside the build output, where CI can keep it.
 void report(String name, List<Difference> differences) {
   final file = File('build/visual/$name.json')..createSync(recursive: true);
-  file.writeAsStringSync(const JsonEncoder.withIndent('  ')
-      .convert(differences.map((d) => d.toJson()).toList()));
+  file.writeAsStringSync(
+    const JsonEncoder.withIndent('  ')
+        .convert(differences.map((d) => d.toJson()).toList()),
+  );
 }
