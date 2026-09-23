@@ -226,6 +226,9 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       rule.token !== undefined
         ? { token: rule.token, from: 'overlay', reason: rule.reason }
         : { none: true, from: 'overlay', reason: rule.reason };
+    // A cell set because Figma's value could not be read is that finding's decision.
+    for (const kind of ['misbound', 'unknown-token'])
+      decide(`component.${lc}.${layer}.${cell}#${kind}`, 'set', rule.reason);
     record('set', at, rule.reason);
   }
 

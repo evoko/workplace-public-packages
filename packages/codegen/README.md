@@ -158,7 +158,7 @@ The rule of thumb for where a change goes:
 > **The overlay for a decision about one component, the normalizer for a rule about the system,
 > the shell for behaviour.**
 
-**What Button's findings mean.** Button produced 11 findings (29 in the whole report). Eight
+**What Button's findings mean.** Button produced 11 findings (37 in the whole report, with Spinner's). Eight
 carry an overlay decision and stay in the report beside it: five bind a raw value to the token of
 the same value (vertical padding, xl's gap, the icon heights), and three allow a literal SOLAR has
 no token for (the fixed heights, xl's width, the counter's height). Two more decisions removed
@@ -167,12 +167,24 @@ look are drawn as Figma draws them. Three findings are open and are genuine Figm
 secondary loses its background at `sm`, the backgrounds change inconsistently at `xl`, and the
 `xl` disabled label uses the danger colour. They are in
 [the design review](../../docs/solar-review-for-design.md), section 7. Run over the whole corpus,
-116 of SOLAR Web's 119 component sets already derive a recipe; the three that do not throw on
-shapes the recipe does not model yet (per-side bindings, stacked paints), which is milestone 3b.
+115 of SOLAR Web's 119 component sets derive a recipe; the four that do not throw on shapes the
+recipe does not model yet (one side bound to two variables, stacked paints), which is milestone 3b-2.
 
 [`test/component-parity.test.mjs`](test/component-parity.test.mjs) reads the generated TypeScript
 and Dart and the shell back from disk and proves the two platforms expose the same API, style the
 same states in the same order, and hold every IR entry at its own place.
+
+**The oracle** (`src/verify/oracle.mjs`, written to `spec/verify/<name>.json`) is what Figma draws
+for every variant, measured independently of the recipe: per layer, the background, text or icon
+colour, border colour and width, radius, padding and gap, the text style's parts, the shadow, and a
+box size where Figma fixes one, resolved to Light and Desktop. It reads the resolved Figma layers
+and uses the IR only for its layer names and API, so a wrong recipe shows as a difference rather
+than agreeing with itself; a test scrambles the recipe and checks the oracle does not move. Where
+the code is known to differ, the entry keeps Figma's value and is marked `excused` with the
+finding and its decision, if any: Button's three open findings excuse 18 entries, and Spinner's
+unreadable indicator colour is excused by its overlay `set`. The visual checks (milestone 3b-1,
+tasks 7 and 8) render both platforms and compare every entry that is not excused. It is Figma,
+not the other platform, because two platforms agreeing on a mistake would pass a cross-check.
 
 ## Layout
 
@@ -199,7 +211,7 @@ single target has been rewritten. A new stage is a module exporting `name`, `bui
 
 **Stale output is deleted.** After every stage has written, the CLI removes anything under the
 generated directories (`packages/styles/src/generated`, `packages/assets/src/generated`,
-`packages/solar_flutter/lib/src/generated` and `spec/components`) that the run did not write, and
+`packages/solar_flutter/lib/src/generated`, `spec/components` and `spec/verify`) that the run did not write, and
 says so. Without it, an icon removed in Figma would keep its generated module forever,
 regenerating to the same bytes and invisible to CI. Nothing outside those directories is pruned:
 `spec/overlay/` and the component shells are hand-written.

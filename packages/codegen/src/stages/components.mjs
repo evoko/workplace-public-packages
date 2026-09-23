@@ -11,6 +11,7 @@ import { tokenNames } from '../normalize/recipe.mjs';
 import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { emitFlutterComponents } from '../emit/flutter-component.mjs';
+import { buildOracle } from '../verify/oracle.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
@@ -20,6 +21,7 @@ export const name = 'components';
 export const COMPONENTS = ['Button', 'Spinner'];
 
 export const componentsDir = join(specDir, 'components');
+export const verifyDir = join(specDir, 'verify');
 
 /** `Button` to `button.json`, `Icon Button` to `icon-button.json`. */
 export const fileOf = (component) =>
@@ -32,13 +34,23 @@ export function build() {
   // The recipe emitters resolve a text style into its parts and check every custom property they
   // name exists, so they need the token spec as well as the component IR.
   const tokens = buildTokenSpec(contract).spec;
-  const built = COMPONENTS.map((component) =>
-    buildComponentSpec(loadComponent(catalog, component), {
+  const built = COMPONENTS.map((component) => {
+    const loaded = loadComponent(catalog, component);
+    const overlay = loadOverlay(component);
+    const { spec, deviations } = buildComponentSpec(loaded, {
       names,
       fileVersion: catalog.fileVersion,
-      overlay: loadOverlay(component),
-    }),
-  );
+      overlay,
+    });
+    // Beside the IR, never from it: the oracle reads the Figma set, and the IR only for names.
+    const oracle = buildOracle(loaded.set, spec, deviations, {
+      tokens,
+      names,
+      overlay,
+      fileVersion: catalog.fileVersion,
+    });
+    return { spec, deviations, oracle };
+  });
   return { built, tokens };
 }
 
@@ -55,10 +67,16 @@ export function emit({ built, tokens }) {
         2,
       ) + '\n',
     );
+  for (const { spec, oracle } of built)
+    writeGenerated(
+      join(verifyDir, fileOf(spec.component)),
+      JSON.stringify(oracle, null, 2) + '\n',
+    );
   const specs = built.map((b) => b.spec);
   return {
     counts: {
       specs: built.length,
+      oracles: built.length,
       mui: emitMuiComponents(specs, tokens),
       flutter: emitFlutterComponents(specs, tokens),
     },

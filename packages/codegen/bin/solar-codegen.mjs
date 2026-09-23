@@ -22,6 +22,7 @@ const STAGES = [tokens, icons, components];
 // ones; spec/components/ is, because every file in it is generated.
 const OWNED_DIRS = [
   components.componentsDir,
+  components.verifyDir,
   join(packagesDir, 'styles', 'src', 'generated'),
   join(packagesDir, 'assets', 'src', 'generated'),
   join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated'),
