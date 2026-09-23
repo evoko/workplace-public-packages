@@ -118,6 +118,19 @@ tree's value; `vars` survives resolution.
 
 Run: `npx vitest run packages/codegen/test/component-layers.test.mjs`
 
+**Done 2026-09-23.** Resolution inverts the fetcher's diff rule for rule, and it throws on
+anything it cannot trust: a changed or removed path the default tree lacks, a variant name that
+is not one value per axis, a duplicate combination, a default variant with overrides, or a
+truncated set. Paths come from walking the tree, never from splitting a string, because layer
+names contain `/` themselves (`Icon/None`). Run over the whole corpus, all 119 component sets
+resolve without an error.
+
+**Found for 3b:** 58 of those 119 sets have variants that _add_ a layer, and the fetcher records
+an added layer by path alone, with none of its properties (`overrides.added`). They resolve as
+`{unresolved: 'added'}` and are listed per variant, so nothing mistakes an unknown layer for an
+empty one; Button has none. Before 3b the Web fetcher must carry an added layer's subtree, which
+needs one `solar:sync` after the change.
+
 ---
 
 ### Task 2: Classify axes and derive the recipe
