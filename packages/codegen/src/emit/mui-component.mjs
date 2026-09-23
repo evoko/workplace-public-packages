@@ -51,6 +51,29 @@ export const MUI_SLOTS = {
  * are props, and MUI sets a class for each. Order matters: at equal specificity the later rule
  * wins, so disabled comes last and beats hover, as it does in CSS.
  */
+/**
+ * MUI's own defaults that would otherwise show through the recipe. These are MUI knowledge, like
+ * the slot table, so they live here and regenerate, rather than being copied into every hand-owned
+ * shell. Each undoes something MUI draws that SOLAR does not: Button's 64px minimum width (SOLAR
+ * buttons hug their label), its upper-case label (SOLAR labels are sentence case, and MUI's
+ * default theme upper-cases them), the margins MUI puts around the icons (SOLAR spaces them with
+ * the gap), and MUI's icon font size (the SOLAR icon fills its slot, which the recipe sizes). So a
+ * component looks right whether or not the app installed the SOLAR MUI theme.
+ */
+export const MUI_RESETS = {
+  Button: {
+    // Not '0': MUI's sx reads a sizing value of 1 or less as a fraction, so '0' becomes '0%'.
+    minWidth: 'auto',
+    textTransform: 'none',
+    '& .MuiButton-startIcon': { margin: '0' },
+    '& .MuiButton-endIcon': { margin: '0' },
+    '& .MuiButton-startIcon > svg, & .MuiButton-endIcon > svg': {
+      width: '100%',
+      height: '100%',
+    },
+  },
+};
+
 export const STATE_SELECTORS = {
   default: null,
   hover: '&:hover',
@@ -210,7 +233,13 @@ export function renderMuiComponent(spec, tokens) {
     .map(([name]) => slots[name]);
 
   const { declare } = context(spec, tokens);
-  const styles = { root: {}, sizes: {}, appearances: {}, combined: {} };
+  const styles = {
+    reset: structuredClone(MUI_RESETS[spec.component] ?? {}),
+    root: {},
+    sizes: {},
+    appearances: {},
+    combined: {},
+  };
   const composition = {};
 
   /** Every cell of one style block (one size, one state …) into a target object. */
@@ -360,13 +389,16 @@ export function renderMuiComponent(spec, tokens) {
     `}\n\n` +
     `/** The complete style for one set of props, for \`sx\` or \`styleOverrides.root\`. */\n` +
     `export function solar${name}Style(props: Solar${name}Props = {}): Style {\n` +
-    `  const p = { ...solar${name}Defaults, ...props };\n` +
+    // A prop passed as undefined means "not set", and must not overwrite its default: a shell
+    // that forwards every prop it destructured passes undefined for each one the caller left out.
+    `  const p: Record<string, unknown> = { ...solar${name}Defaults };\n` +
+    `  for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;\n` +
     `  const key = \`${key}\`;\n` +
     `  const s = solar${name}Styles as unknown as {\n` +
-    `    root: Style;\n    sizes: Record<string, Style>;\n    appearances: Record<string, Style>;\n    combined: Record<string, Record<string, Style>>;\n  };\n` +
+    `    reset: Style;\n    root: Style;\n    sizes: Record<string, Style>;\n    appearances: Record<string, Style>;\n    combined: Record<string, Record<string, Style>>;\n  };\n` +
     (sizeProp
-      ? `  return merge(s.root, s.sizes[p.size], s.appearances[key], s.combined[p.size]?.[key]);\n`
-      : `  return merge(s.root, s.appearances[key]);\n`) +
+      ? `  const size = p.size as string;\n  return merge(s.reset, s.root, s.sizes[size], s.appearances[key], s.combined[size]?.[key]);\n`
+      : `  return merge(s.reset, s.root, s.appearances[key]);\n`) +
     `}\n`;
 
   return {

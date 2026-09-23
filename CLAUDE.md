@@ -29,7 +29,9 @@ emitter in `src/emit/` for a target-specific one. Never edit a generated file to
 and never edit `docs/` to make code look right. Run the command and commit its output after
 touching that package. Decisions about one component go in its hand-written overlay,
 `spec/overlay/<component>.yaml` (Button has one): every rule needs a `reason`, and a rule that no
-longer matches the IR fails the build. The rest of the tweak loop the design spec describes
+longer matches the IR fails the build. A component's shell (`packages/components/src/<Name>.tsx`) is written once by
+`npm run solar:scaffold <Name>` and then hand-owned; its look is the generated recipe in
+`@bwp-web/styles/mui`, never values in the shell. The rest of the tweak loop the design spec describes
 (`solar:explain`, the Storybook review surface) is **not built yet**.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the

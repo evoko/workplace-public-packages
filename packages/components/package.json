@@ -33,8 +33,17 @@
   },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.4.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
     "prettier": "^3.9.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3"
   },
@@ -43,5 +52,12 @@
     "type": "git",
     "url": "https://github.com/evoko/workplace-public-packages.git",
     "directory": "packages/components"
+  },
+  "dependencies": {
+    "@bwp-web/styles": "^2.0.0-alpha.0"
+  },
+  "peerDependencies": {
+    "@mui/material": "^9.0.0",
+    "react": ">=18"
   }
 }

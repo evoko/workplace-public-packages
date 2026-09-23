@@ -56,7 +56,11 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
       'underline',
     ]);
     const allowed = new Set(['40px', '32px', '48px', '200px', '20px']);
-    for (const [at, value] of leaves(styles)) {
+    // The MUI resets are the one place a bare 0 or 100% appears: they undo MUI's own defaults.
+    const { reset, ...recipe } = styles;
+    for (const [, value] of leaves(reset))
+      expect(['0', '100%', 'none', 'auto']).toContain(value);
+    for (const [at, value] of leaves(recipe)) {
       const ok =
         /^var\(--solar-[a-z0-9-]+\)$/.test(value) ||
         KEYWORDS.has(value) ||
@@ -77,6 +81,12 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
     expect(styles.root.boxShadow).toBe('var(--solar-shadow-control)');
     for (const [combo, style] of Object.entries(styles.combined.xl))
       expect(style.boxShadow, combo).toBe('none');
+  });
+
+  it('undoes the MUI defaults SOLAR does not draw, before anything else applies', () => {
+    expect(styles.reset.minWidth).toBe('auto');
+    expect(styles.reset['& .MuiButton-startIcon']).toEqual({ margin: '0' });
+    expect(ts).toMatch(/return merge\(\s*s\.reset,/);
   });
 
   it('has every variant with and without danger', () => {
@@ -162,6 +172,11 @@ describe('renderMuiComponent on Button: types and module', () => {
     expect(ts).toMatch(/loading\?: boolean;/);
     expect(ts).not.toMatch(/hover\?:/);
     expect(ts).not.toMatch(/from '@mui/);
+  });
+
+  it('resolves props left undefined to their defaults, as a forwarding shell passes them', () => {
+    expect(ts).toContain('if (v !== undefined) p[k] = v;');
+    expect(ts).not.toContain('...props };');
   });
 
   it('exports the defaults and a pure style resolver', () => {

@@ -23,6 +23,20 @@ export const solarButtonDefaults = {
 
 /** Style by layer and state: `root` is the base, then per size, per appearance, and per size and appearance together. */
 export const solarButtonStyles = {
+  reset: {
+    minWidth: 'auto',
+    textTransform: 'none',
+    '& .MuiButton-startIcon': {
+      margin: '0',
+    },
+    '& .MuiButton-endIcon': {
+      margin: '0',
+    },
+    '& .MuiButton-startIcon > svg, & .MuiButton-endIcon > svg': {
+      width: '100%',
+      height: '100%',
+    },
+  },
   root: {
     backgroundColor: 'var(--solar-color-action-primary-bg-default)',
     borderColor: 'var(--solar-color-action-primary-border-default)',
@@ -1104,18 +1118,22 @@ function merge(...styles: (Style | undefined)[]): Style {
 
 /** The complete style for one set of props, for `sx` or `styleOverrides.root`. */
 export function solarButtonStyle(props: SolarButtonProps = {}): Style {
-  const p = { ...solarButtonDefaults, ...props };
+  const p: Record<string, unknown> = { ...solarButtonDefaults };
+  for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
   const key = `variant=${p.variant}, danger=${p.danger}`;
   const s = solarButtonStyles as unknown as {
+    reset: Style;
     root: Style;
     sizes: Record<string, Style>;
     appearances: Record<string, Style>;
     combined: Record<string, Record<string, Style>>;
   };
+  const size = p.size as string;
   return merge(
+    s.reset,
     s.root,
-    s.sizes[p.size],
+    s.sizes[size],
     s.appearances[key],
-    s.combined[p.size]?.[key],
+    s.combined[size]?.[key],
   );
 }

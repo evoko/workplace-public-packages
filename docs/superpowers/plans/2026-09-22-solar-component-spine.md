@@ -454,6 +454,31 @@ typecheck and `"react": ">=18"` as the one peer dependency.
 to overwrite an existing file** unless `--force` is passed. The shell holds behaviour: prop
 plumbing, the loading spinner, slot rendering, accessibility.
 
+**Done 2026-09-23.** `src/scaffold/index.mjs`, `bin/solar-scaffold.mjs` and the root
+`solar:scaffold` script (Task 9's CLI half, done here because scaffolding needs it). The shell
+wraps MUI's Button: `variant`, `size`, `danger`, `disabled`, `loading` from the IR's API, the icon
+slots as `startIcon`/`endIcon`, the counter in its own span, ripple and elevation off, `sx` on top
+of the recipe, and a development warning for an icon-only button with no name. `@bwp-web/components`
+takes React and MUI 9 as peers and `@bwp-web/styles` as its one dependency; its build is 1.25 KB.
+
+What MUI draws that SOLAR does not — the 64px minimum width, the upper-case label, the icon
+margins and icon size — is undone by `MUI_RESETS` in the MUI emitter, not in the shell: it is MUI
+knowledge like the slot table, it regenerates, and it means a component looks right whether or not
+the app installed the SOLAR theme. `minWidth` is `'auto'`, not `'0'`, because MUI's `sx` reads a
+sizing value of 1 or less as a fraction.
+
+**A real bug the browser render caught:** the shell forwards every prop it destructured, so an
+unset one arrives as `undefined`, and the generated resolver's `{ ...defaults, ...props }` let that
+erase the default. Tertiary, disabled and small secondary all rendered as primary. The unit tests
+had only passed fully specified props, and the SSR test only checked that a token appeared, not
+that it won. The resolver now ignores `undefined`, and the shell test asserts the winning
+declaration with props left out; reintroducing the spread fails it. Rendered in Chrome with no
+SOLAR theme installed, the built package now draws primary, transparent tertiary, white small
+secondary and grey disabled correctly.
+
+Not done, deliberately: the 44px touch target for `sm`. SOLAR asks for it but publishes no target
+token, so it waits on the design review's question 5.
+
 Tests: scaffolding twice does not clobber; the generated shell typechecks; it imports the recipe
 rather than inlining any value.
 
