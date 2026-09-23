@@ -247,7 +247,7 @@
               "sizing": "FILL/FILL"
             },
             "fills": [
-              "#ffffff"
+              "{Color:surface/base}"
             ],
             "children": [
               {

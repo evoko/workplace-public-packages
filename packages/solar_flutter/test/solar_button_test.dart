@@ -69,7 +69,7 @@ void main() {
       for (final (size, height) in [
         (SolarButtonSize.sm, 32.0),
         (SolarButtonSize.md, 40.0),
-        (SolarButtonSize.xl, 48.0),
+        (SolarButtonSize.lg, 48.0),
       ]) {
         await pump(
           tester,
@@ -116,7 +116,7 @@ void main() {
       expect(pressed, isFalse);
     });
 
-    testWidgets('secondary loading shows the default spinner, xl the md one',
+    testWidgets('secondary loading shows the default spinner, lg the md one',
         (tester) async {
       await pump(
         tester,
@@ -134,7 +134,7 @@ void main() {
         SolarButton(
           onPressed: () {},
           loading: true,
-          size: SolarButtonSize.xl,
+          size: SolarButtonSize.lg,
           child: const Text('Save'),
         ),
       );

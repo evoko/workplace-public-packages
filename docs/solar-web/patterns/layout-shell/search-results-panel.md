@@ -4,19 +4,20 @@
 
 ## Component set: SearchResultsPanel
 
-Global search results: GlobalSearch field with filter Tags, then results grouped by category with a See all Link per group. 4 variants: state (default, empty, no-results, ghost). empty is before a query; no-results is after a query with zero hits; ghost is loading. Rows are ResultRow instances; the panel announces the result count on each change.
+Global search results: GlobalSearch field with filter Tags, then results grouped by category with a See all Link per group. 4 variants: state (default, empty, no-results) × ghost (false, true), shipped as the used combinations. empty is before a query; no-results is after a query with zero hits; ghost=true is loading. Rows are ResultRow instances; the panel announces the result count on each change.
 
 ### Props
 
-| Prop    | Type    | Options / default                        |
-| ------- | ------- | ---------------------------------------- |
-| `state` | variant | no-results · empty · ghost · **default** |
+| Prop    | Type    | Options / default                |
+| ------- | ------- | -------------------------------- |
+| `state` | variant | no-results · empty · **default** |
+| `ghost` | variant | **false** · true                 |
 
-Default variant: `state=default` · 4 variants · default size 400×470px
+Default variant: `state=default, ghost=false` · 4 variants · default size 400×470px
 
 ### Anatomy (default variant)
 
-- **state=default** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 400×470  
+- **state=default, ghost=false** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 400×470  
   fill `color.surface.overlay` · effect `shadow/dialog` · strokeWeight `border.default` · radius `radius.dialog`
   - **SearchHeader** · frame · column gap 12 pad 12/12/12/12 FILL/HUG · 400×100  
     fill `color.surface.base` · stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.sm` · strokeWeight `border.default`
@@ -81,16 +82,16 @@ Default variant: `state=default` · 4 variants · default size 400×470px
 
 ### Variant matrix
 
-| state      | size    | fill                    | stroke | effect          | text                                                                                                                                                                                 | icon                                                                                                                                      |
-| ---------- | ------- | ----------------------- | ------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| default    | 400×470 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.inverse`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`<br>`color.text.link.default`                   | `color.icon.primary`<br>`color.icon.feedback.info`<br>`color.icon.feedback.neutral`<br>`color.icon.link.default`<br>`color.icon.tertiary` |
-| no-results | 400×300 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.inverse`<br>`color.text.feedback.info`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                                             |
-| ghost      | 400×396 | `color.surface.overlay` |        | `shadow/dialog` |                                                                                                                                                                                      |                                                                                                                                           |
-| empty      | 400×308 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.tertiary`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                              | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                                             |
+| state      | ghost | size    | fill                    | stroke | effect          | text                                                                                                                                                                                 | icon                                                                                                                                      |
+| ---------- | ----- | ------- | ----------------------- | ------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| default    | false | 400×470 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.inverse`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`<br>`color.text.link.default`                   | `color.icon.primary`<br>`color.icon.feedback.info`<br>`color.icon.feedback.neutral`<br>`color.icon.link.default`<br>`color.icon.tertiary` |
+| no-results | false | 400×300 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.inverse`<br>`color.text.feedback.info`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                                             |
+| default    | true  | 400×396 | `color.surface.overlay` |        | `shadow/dialog` |                                                                                                                                                                                      |                                                                                                                                           |
+| empty      | false | 400×308 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.tertiary`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                              | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                                             |
 
 ### Issues detected
 
-- State axis uses non-standard value(s): no-results, ghost.
+- State axis uses non-standard value(s): no-results.
 - Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
 - Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
 

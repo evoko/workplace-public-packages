@@ -18,7 +18,7 @@ Composed Month View pattern. Wires up Calendar Toolbar (top), Weekday Header row
       - **Weekday Header Row** · frame · row gap 0 pad 0/0/0/0 FILL/FIXED · 1240×36
       - **Day Grid** · frame · grid gap 0 pad 0/0/0/0 FILL/HUG · 1240×600
 
-Instance census (tree capped at depth 3): Event Chip ×105, Icon/Repeat ×105, Day Cell ×35, Icon/None ×17, Weekday Header ×7, Segmented Control Item ×6, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
+Instance census (tree capped at depth 3): Event Chip ×105, Icon/Repeat ×105, Day Cell ×35, Icon/None ×13, Weekday Header ×7, Segmented Control Item ×4, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
 
 ### Tokens used
 

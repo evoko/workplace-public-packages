@@ -30,7 +30,9 @@ export const DEVIATIONS = [
 // The icon corpus has its own defects. They are a separate export because DEVIATIONS is the
 // lookup applyDeviation walks per token value, and these are not token values: buildIconSpec
 // records them when the catalog actually triggers them. The record shape is the same, so both
-// sets render as rows of the one spec/deviations.md table.
+// sets render as rows of the one spec/deviations.md table. icon.phone, icon.support and icon.zone
+// are fixed in Figma (2026-09-22 and 2026-09-23) and no longer trigger; they stay so the same defect
+// returning is recognised and reported rather than stopping the build.
 export const ICON_DEVIATIONS = [
   {
     token: 'icon.phone',

@@ -5,7 +5,7 @@
     {
       "name": "Context Menu Item",
       "id": "3451:31",
-      "description": "Single row inside a Context Menu. States: default, hover, focus (keyboard), disabled, destructive (for irreversible actions like Delete). Pair with optional leading icon and a trailing keyboard shortcut (Kbd). Destructive styling uses color.text.feedback.danger — reserve for true destructive actions, not every secondary action. Submenus are not supported — keep to a single nesting level.",
+      "description": "Single row inside a Context Menu. 5 variants: state (default, hover, focus, disabled) × destructive (false, true), shipped as the used combinations. destructive=true is for irreversible actions like Delete and uses color.text.feedback.danger — reserve it for true destructive actions, not every secondary action. Pair with an optional leading icon and a trailing keyboard shortcut (Kbd). Submenus are not supported — keep to a single nesting level.",
       "docLinks": [],
       "variantCount": 5,
       "props": {
@@ -36,15 +36,22 @@
             "default",
             "hover",
             "focus",
-            "disabled",
-            "destructive"
+            "disabled"
+          ]
+        },
+        "destructive": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "state=default",
+      "defaultVariant": "state=default, destructive=false",
       "defaultVariantNodeCount": 6,
       "defaultVariantTree": {
-        "name": "state=default",
+        "name": "state=default, destructive=false",
         "type": "COMPONENT",
         "size": [
           200,
@@ -166,7 +173,7 @@
       },
       "variants": [
         {
-          "variant": "state=default",
+          "variant": "state=default, destructive=false",
           "size": [
             200,
             36
@@ -183,7 +190,7 @@
           ]
         },
         {
-          "variant": "state=hover",
+          "variant": "state=hover, destructive=false",
           "size": [
             200,
             36
@@ -209,7 +216,7 @@
           }
         },
         {
-          "variant": "state=focus",
+          "variant": "state=focus, destructive=false",
           "size": [
             200,
             36
@@ -235,7 +242,7 @@
           }
         },
         {
-          "variant": "state=disabled",
+          "variant": "state=disabled, destructive=false",
           "size": [
             200,
             36
@@ -272,7 +279,7 @@
           }
         },
         {
-          "variant": "state=destructive",
+          "variant": "state=default, destructive=true",
           "size": [
             200,
             36
@@ -399,7 +406,8 @@
                 "type": "INSTANCE",
                 "main": "Context Menu Item",
                 "variant": {
-                  "state": "default"
+                  "state": "default",
+                  "destructive": "false"
                 },
                 "size": [
                   200,
@@ -428,7 +436,8 @@
                 "type": "INSTANCE",
                 "main": "Context Menu Item",
                 "variant": {
-                  "state": "default"
+                  "state": "default",
+                  "destructive": "false"
                 },
                 "size": [
                   200,
@@ -457,7 +466,8 @@
                 "type": "INSTANCE",
                 "main": "Context Menu Item",
                 "variant": {
-                  "state": "default"
+                  "state": "default",
+                  "destructive": "false"
                 },
                 "size": [
                   200,
@@ -486,7 +496,8 @@
                 "type": "INSTANCE",
                 "main": "Context Menu Item",
                 "variant": {
-                  "state": "default"
+                  "state": "default",
+                  "destructive": "false"
                 },
                 "size": [
                   200,
@@ -515,7 +526,8 @@
                 "type": "INSTANCE",
                 "main": "Context Menu Item",
                 "variant": {
-                  "state": "default"
+                  "state": "default",
+                  "destructive": "false"
                 },
                 "size": [
                   200,
@@ -544,7 +556,8 @@
                 "type": "INSTANCE",
                 "main": "Context Menu Item",
                 "variant": {
-                  "state": "default"
+                  "state": "default",
+                  "destructive": "false"
                 },
                 "size": [
                   200,
@@ -598,7 +611,8 @@
                 "type": "INSTANCE",
                 "main": "Context Menu Item",
                 "variant": {
-                  "state": "destructive"
+                  "state": "default",
+                  "destructive": "true"
                 },
                 "size": [
                   200,

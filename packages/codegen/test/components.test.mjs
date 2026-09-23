@@ -29,7 +29,7 @@ const { spec, deviations } = buildComponentSpec(
 describe('buildComponentSpec on Button: the public API', () => {
   it('keeps the size and appearance axes as props, with their defaults', () => {
     expect(spec.api.size).toEqual({
-      values: ['md', 'sm', 'xl'],
+      values: ['md', 'sm', 'lg'],
       default: 'md',
     });
     // Figma's name; the overlay renames prio to variant (task 4).
@@ -173,9 +173,10 @@ describe('buildComponentSpec on Button: provenance and findings', () => {
 
   it('keeps Figma’s own description and the issues it contradicts itself with', () => {
     expect(spec.docs.description).toMatch(/^Triggers an action/);
-    expect(spec.docs.figmaIssues).toContain(
-      'Description says 96 variants; the set has 108.',
-    );
+    // SOLAR corrected the variant count in the description on 2026-09-23, so there is no
+    // contradiction left for the catalog to record.
+    expect(spec.docs.description).toContain('Variants (108)');
+    expect(spec.docs.figmaIssues).toEqual([]);
   });
 
   it('returns the recipe deviations beside the spec, not inside it', () => {
@@ -324,10 +325,10 @@ describe('a slot drawn by a frame and the text inside it', () => {
 });
 
 // Which sets build an IR at all. A change that makes one stop building shows here; the ones
-// left fail on shapes named in the plan: Figma layers named by a glyph, a prop that shows
-// two sibling layers, and the recipe's four.
+// left fail on shapes named in the plan: Figma layers named by a glyph, and the recipe's four.
+// Banner left the list on 2026-09-23, when SOLAR split its one Show Buttons prop in two.
 describe('buildComponentSpec over all of SOLAR Web', () => {
-  it('builds every set but the eight known ones', () => {
+  it('builds every set but the seven known ones', () => {
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
     let total = 0;
@@ -348,7 +349,6 @@ describe('buildComponentSpec over all of SOLAR Web', () => {
       'calendar/Weekday Header',
       'cards/Insight Card',
       'dialogs/Dialog',
-      'feedback/Banner',
       'inputs/PIN Input',
       'inputs/Password Input',
       'navigation/Tree Item',

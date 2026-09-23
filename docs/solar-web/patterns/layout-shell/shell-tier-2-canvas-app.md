@@ -4,23 +4,23 @@
 
 ## Component set: Layout / Canvas
 
-Shell Tier 2: Top Bar over a two-column canvas area (left panel, center canvas), no Sidebar. 2 variants: breakpoint (Desktop, Mobile). Props: left, center (slots). Use for editor and canvas products such as Designer where the tool panels replace app navigation; mobile stacks the panel above the canvas.
+Shell Tier 2: Top Bar over a two-column canvas area (left panel, center canvas), no Sidebar. 2 variants: breakpoint (desktop, mobile). Props: left, center (slots). Use for editor and canvas products such as Designer where the tool panels replace app navigation; mobile stacks the panel above the canvas.
 
 ### Props
 
 | Prop         | Type    | Options / default         |
 | ------------ | ------- | ------------------------- |
-| `breakpoint` | variant | **Desktop** · Mobile      |
+| `breakpoint` | variant | **desktop** · mobile      |
 | `left`       | slot    | default `[object Object]` |
 | `center`     | slot    | default `[object Object]` |
 
-Default variant: `breakpoint=Desktop` · 2 variants · default size 1440×800px
+Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Anatomy (default variant)
 
-- **breakpoint=Desktop** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 1440×800  
+- **breakpoint=desktop** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 1440×800  
   fill `color.surface.background` · width `viewport.lg`
-  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=false, isLoggedIn=True) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
+  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=false, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
     fill `color.surface.background` · padding `stack.md`
   - **App Content** · frame · row gap 0 pad 0/8/8/8 FILL/FIXED · 1440×744  
     padding `inset.xs`
@@ -66,8 +66,8 @@ Default variant: `breakpoint=Desktop` · 2 variants · default size 1440×800px
 
 | breakpoint | size     | fill                       | stroke | effect | text                                                                                                                                                | icon                                                                    |
 | ---------- | -------- | -------------------------- | ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Desktop    | 1440×800 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.purple.700`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.tertiary`<br>`color.icon.secondary` |
-| Mobile     | 393×800  | `color.surface.background` |        |        | `color.text.primary`<br>`color.purple.700`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                  | `color.icon.primary`<br>`color.icon.secondary`                          |
+| desktop    | 1440×800 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.purple.700`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.tertiary`<br>`color.icon.secondary` |
+| mobile     | 393×800  | `color.surface.background` |        |        | `color.text.primary`<br>`color.purple.700`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                  | `color.icon.primary`<br>`color.icon.secondary`                          |
 
 ### Issues detected
 

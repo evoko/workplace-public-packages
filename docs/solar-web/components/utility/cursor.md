@@ -4,19 +4,19 @@
 
 ## Component set: Cursor
 
-Custom pointer glyphs for canvas and authoring surfaces — the Spatial and Flow editors — where the native cursor cannot express the active tool. 22 variants: Type (Default, Default White, Pointer, Text, Move, Grabbing, Crosshair, Copy, Not Allowed, Unavailable, Progress, Hourglass, Zoom In, Zoom Out, Resize N, NS, EW, NE SW, NW SE, Col, Row, X). Glyphs bind icon/primary with an icon/inverse outline so they read on light and dark. Non-interactive: the cursor mirrors state set elsewhere and is never the only signal. Standard UI keeps native cursors.
+Custom pointer glyphs for canvas and authoring surfaces — the Spatial and Flow editors — where the native cursor cannot express the active tool. 22 variants: type (Default, Default White, Pointer, Text, Move, Grabbing, Crosshair, Copy, Not Allowed, Unavailable, Progress, Hourglass, Zoom In, Zoom Out, Resize N, NS, EW, NE SW, NW SE, Col, Row, X). Glyphs bind icon/primary with an icon/inverse outline so they read on light and dark. Non-interactive: the cursor mirrors state set elsewhere and is never the only signal. Standard UI keeps native cursors.
 
 ### Props
 
 | Prop   | Type    | Options / default                                                                                                                                                                                                                                        |
 | ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Type` | variant | Copy · Crosshair · **Default** · Default White · Grabbing · Hourglass · Move · Not Allowed · Pointer · Progress · Resize Col · Resize EW · Resize N · Resize NE SW · Resize NS · Resize NW SE · Resize Row · Text · Unavailable · Zoom In · Zoom Out · X |
+| `type` | variant | Copy · Crosshair · **Default** · Default White · Grabbing · Hourglass · Move · Not Allowed · Pointer · Progress · Resize Col · Resize EW · Resize N · Resize NE SW · Resize NS · Resize NW SE · Resize Row · Text · Unavailable · Zoom In · Zoom Out · X |
 
-Default variant: `Type=Default` · 22 variants · default size 12×14px
+Default variant: `type=Default` · 22 variants · default size 12×14px
 
 ### Anatomy (default variant)
 
-- **Type=Default** · component · 12×14  
+- **type=Default** · component · 12×14  
   effect `shadow/raised`
   - **Rectangle 237** · vector · 12×14  
     fill `color.icon.primary` · stroke `color.icon.inverse` 1px
@@ -31,7 +31,7 @@ Default variant: `Type=Default` · 22 variants · default size 12×14px
 
 ### Variant matrix
 
-| Type          | size  | fill | stroke | effect          | text | icon |
+| type          | size  | fill | stroke | effect          | text | icon |
 | ------------- | ----- | ---- | ------ | --------------- | ---- | ---- |
 | Default       | 12×14 |      |        | `shadow/raised` |      |      |
 | Grabbing      | 13×14 |      |        |                 |      |      |

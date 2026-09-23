@@ -4,20 +4,20 @@
 
 ## Component set: Option Row
 
-A selection control paired with a label and optional supporting text. Variant picks the control: Checkbox for independent on/off within a set, Radio button for exactly one of a mutually exclusive set, Toggle for a setting that applies immediately. A row carries one control — never two at once. Only three variants, because interaction state and selection live on the nested control instance: set hover, focus, disabled, checked and mixed there rather than multiplying them across this set. hasSupportingText hides the second line. The whole row is the click target, and the control aligns to the label's first line so supporting text that wraps never pulls it out of line. Row width is fixed so long text wraps instead of stretching the row. Radio button rows must share a group. For the large tappable treatment with an icon use Option Card.
+A selection control paired with a label and optional supporting text. 3 variants: control (checkbox, radio, toggle). checkbox for independent on/off within a set, radio for exactly one of a mutually exclusive set, toggle for a setting that applies immediately. A row carries one control — never two at once. Only three variants, because interaction state and selection live on the nested control instance: set hover, focus, disabled, checked and mixed there rather than multiplying them across this set. hasSupportingText hides the second line. The whole row is the click target, and the control aligns to the first line of the label so supporting text that wraps never pulls it out of line. Row width is fixed so long text wraps instead of stretching the row. radio rows must share a group. For the large tappable treatment with an icon use Option Card.
 
 ### Props
 
-| Prop                | Type    | Options / default                    |
-| ------------------- | ------- | ------------------------------------ |
-| `Variant`           | variant | Radio button · **Checkbox** · Toggle |
-| `hasSupportingText` | boolean | default `true`                       |
+| Prop                | Type    | Options / default             |
+| ------------------- | ------- | ----------------------------- |
+| `control`           | variant | **checkbox** · radio · toggle |
+| `hasSupportingText` | boolean | default `true`                |
 
-Default variant: `Variant=Checkbox` · 3 variants · default size 320×51px
+Default variant: `control=checkbox` · 3 variants · default size 320×51px
 
 ### Anatomy (default variant)
 
-- **Variant=Checkbox** · component · row gap 8 pad 12/0/12/0 FIXED/HUG · 320×51  
+- **control=checkbox** · component · row gap 8 pad 12/0/12/0 FIXED/HUG · 320×51  
   itemSpacing `inset.xs` · padding `inset.sm`
   - **Control** · instance of **Checkbox** (checked=false, disabled=false, hover=false, mixed=false, focus=false) · FIXED/FIXED · 16×16  
     stroke `color.border.medium` 1px · strokeWeight `border.default` · radius `radius.control`
@@ -52,11 +52,11 @@ Default variant: `Variant=Checkbox` · 3 variants · default size 320×51px
 
 ### Variant matrix
 
-| Variant      | size   | fill | stroke | effect | text                                           | icon |
-| ------------ | ------ | ---- | ------ | ------ | ---------------------------------------------- | ---- |
-| Checkbox     | 320×51 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
-| Radio button | 320×51 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
-| Toggle       | 320×51 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
+| control  | size   | fill | stroke | effect | text                                           | icon |
+| -------- | ------ | ---- | ------ | ------ | ---------------------------------------------- | ---- |
+| checkbox | 320×51 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
+| radio    | 320×51 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
+| toggle   | 320×51 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
 
 ## Component: Options List
 
@@ -73,9 +73,9 @@ Vertical stack of Option Rows that share one question — the fieldset around a 
 - **Options List** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 320×102
   - **Content** · slot · column gap 0 pad 0/0/0/0 FILL/HUG · 320×102  
     prop slotContentId←Content
-    - **Option Row** · instance of **Option Row** (Variant=Checkbox) · row gap 8 pad 12/0/12/0 FILL/HUG · 320×51  
+    - **Option Row** · instance of **Option Row** (control=checkbox) · row gap 8 pad 12/0/12/0 FILL/HUG · 320×51  
       itemSpacing `inset.xs` · padding `inset.sm`
-    - **Option Row** · instance of **Option Row** (Variant=Checkbox) · row gap 8 pad 12/0/12/0 FILL/HUG · 320×51  
+    - **Option Row** · instance of **Option Row** (control=checkbox) · row gap 8 pad 12/0/12/0 FILL/HUG · 320×51  
       itemSpacing `inset.xs` · padding `inset.sm`
 
 ### Tokens used

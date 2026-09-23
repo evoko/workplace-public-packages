@@ -29,7 +29,8 @@ Default variant: `series=single` · 2 variants · default size 77×50px
   fill `color.surface.raised` · stroke `color.border.subtle` 1px · effect `shadow/overlay` · itemSpacing `stack.xs` · padding `inset.sm` · radius `radius.control`
   - **Date** · text `body/sm/semibold` "Jan 2026" · HUG/HUG · 53×9  
     fill `color.text.primary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.600`
-  - **Frame** · frame · row gap 6 pad 0/0/0/0 HUG/HUG · 47×9
+  - **Frame** · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 45×9  
+    itemSpacing `inset.2xs`
     - **StatusIndicator** · instance of **StatusIndicator** (type=success, size=xs) · FIXED/FIXED · 8×8  
       fill `color.surface.feedback.success.strong` · stroke `color.border.medium` 1px · strokeWeight `border.default` · radius `radius.pill`
     - **Value** · text `body/sm/medium` "60.4k" · HUG/HUG · 33×9  
@@ -42,7 +43,7 @@ Default variant: `series=single` · 2 variants · default size 77×50px
 | Fills           | `color.surface.feedback.success.strong`, `color.surface.raised`                                                           |
 | Strokes         | `color.border.medium`, `color.border.subtle`                                                                              |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                                              |
-| Spacing         | `inset.sm`, `stack.xs`                                                                                                    |
+| Spacing         | `inset.2xs`, `inset.sm`, `stack.xs`                                                                                       |
 | Radius          | `radius.control`, `radius.pill`                                                                                           |
 | Border width    | `border.default`                                                                                                          |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.font-weight.600`, `type.line-height.body.sm`, `type.size.body.sm` |
@@ -59,10 +60,6 @@ Default variant: `series=single` · 2 variants · default size 77×50px
 | ------ | ------ | ---------------------- | --------------------- | ---------------- | ---------------------------------------------- | ---- |
 | single | 77×50  | `color.surface.raised` | `color.border.subtle` | `shadow/overlay` | `color.text.primary`                           |      |
 | multi  | 156×84 | `color.surface.raised` | `color.border.subtle` | `shadow/overlay` | `color.text.primary`<br>`color.text.secondary` |      |
-
-### Issues detected
-
-- Hard-coded gap `6px` on layer _Frame_
 
 ## Documentation card
 

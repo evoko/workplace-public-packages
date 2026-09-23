@@ -205,8 +205,8 @@ describe('deriveRecipe on Button: deviations', () => {
     expect(recipe.style['/'].size.sm).not.toHaveProperty('background');
   });
 
-  it('reports the xl shadow as one systematic finding, not twenty', () => {
-    const d = deviation('/', 'shadow', { size: 'xl' });
+  it('reports the lg shadow as one systematic finding, not twenty', () => {
+    const d = deviation('/', 'shadow', { size: 'lg' });
     expect(d.variants).toHaveLength(20);
     expect(d.variants.every((v) => v.found.none)).toBe(true);
     expect(
@@ -214,11 +214,11 @@ describe('deriveRecipe on Button: deviations', () => {
     ).toHaveLength(1);
   });
 
-  it('pins the one xl disabled label that borrows the danger colour', () => {
-    const d = deviation('/Label', 'color', { size: 'xl' });
+  it('pins the one lg disabled label that borrows the danger colour', () => {
+    const d = deviation('/Label', 'color', { size: 'lg' });
     expect(d.variants).toEqual([
       {
-        variant: 'size=xl, prio=secondary, state=disabled, danger=false',
+        variant: 'size=lg, prio=secondary, state=disabled, danger=false',
         expected: expect.objectContaining({
           token: 'color.action.secondary.text.disabled',
         }),
@@ -231,7 +231,7 @@ describe('deriveRecipe on Button: deviations', () => {
 
   it('reports the tertiary hover underline as a disagreement for a human, not a rule', () => {
     // Grouped by the three axes typography should not follow. All three sizes switch to a link
-    // style there, and xl picks a different one (link/md/default, not hover), which is exactly
+    // style there, and lg picks a different one (link/md/default, not hover), which is exactly
     // the inconsistency a human has to rule on.
     const d = deviation('/Label', 'typography', {
       prio: 'tertiary',
@@ -248,7 +248,7 @@ describe('deriveRecipe on Button: deviations', () => {
         'typography.link.sm.hover',
       ],
       [
-        'size=xl, prio=tertiary, state=hover, danger=false',
+        'size=lg, prio=tertiary, state=hover, danger=false',
         'typography.link.md.default',
       ],
     ]);

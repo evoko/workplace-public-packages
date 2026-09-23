@@ -372,6 +372,11 @@ component sets whose IR builds: 65 to 111 of 119; whose recipe derives: 115.
 
 ## 3b-2, scoped here, planned after this one
 
+Planned: [3b-2, the components](2026-09-23-solar-components-3b2.md). Measuring grew it to
+fourteen components: Stepper, Step and Stepper Indicator by the owner's decision (Dialog's
+wizard), and StatusIndicator, which Tag cannot look like SOLAR without. The table below is the
+scope as it stood before that measurement.
+
 Ten components on the machinery above, each with its overlay, its emitter tables, its React and
 Flutter shells, and API and visual parity:
 

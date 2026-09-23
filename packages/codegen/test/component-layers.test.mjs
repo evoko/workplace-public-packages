@@ -54,7 +54,7 @@ describe('resolveVariants on Button', () => {
   it('resolves all 108 variants over the four axes', () => {
     expect(button.variants).toHaveLength(108);
     expect(button.axes).toEqual({
-      size: { default: 'md', options: ['md', 'sm', 'xl'] },
+      size: { default: 'md', options: ['md', 'sm', 'lg'] },
       prio: {
         default: 'primary',
         options: ['primary', 'secondary', 'tertiary'],
@@ -126,7 +126,7 @@ describe('resolveVariants on Button', () => {
   });
 
   it('carries a cleared fill through as absent rather than correcting it', () => {
-    // secondary / default / false has no background at sm while md and xl do. That is a
+    // secondary / default / false has no background at sm while md and lg do. That is a
     // finding for the recipe stage to report; resolution must not paper over it.
     const sm = find({
       size: 'sm',
@@ -158,10 +158,10 @@ describe('resolveVariants on Button', () => {
   });
 
   it('takes the root size from the variant, where the fetcher keeps it', () => {
-    expect(find({ ...DEFAULT, size: 'xl' }).layers.get('/').size).toEqual(
+    expect(find({ ...DEFAULT, size: 'lg' }).layers.get('/').size).toEqual(
       buttonSet.variants.find(
         (v) =>
-          v.variant === 'size=xl, prio=primary, state=default, danger=false',
+          v.variant === 'size=lg, prio=primary, state=default, danger=false',
       ).size,
     );
   });

@@ -4,20 +4,20 @@
 
 ## Component set: Sidebar
 
-Primary app navigation rail: a Menu slot of Nav Items, a collapse toggle and the Biamp logo at the foot. 2 variants: expanded (False, True). Collapsed shows icons only with labels as tooltips; expanded shows icon and label. Props: Menu (slot). Generic primitive only: Sidebar/Workplace and Sidebar/Chatter assemblies live in the product files.
+Primary app navigation rail: a Menu slot of Nav Items, a collapse toggle and the Biamp logo at the foot. 2 variants: expanded (false, true). Collapsed shows icons only with labels as tooltips; expanded shows icon and label. Props: Menu (slot). Generic primitive only: Sidebar/Workplace and Sidebar/Chatter assemblies live in the product files.
 
 ### Props
 
 | Prop       | Type    | Options / default         |
 | ---------- | ------- | ------------------------- |
-| `expanded` | variant | **False** · True          |
+| `expanded` | variant | **false** · true          |
 | `Menu`     | slot    | default `[object Object]` |
 
-Default variant: `expanded=False` · 2 variants · default size 64×744px
+Default variant: `expanded=false` · 2 variants · default size 64×744px
 
 ### Anatomy (default variant)
 
-- **expanded=False** · component · column gap 4 pad 0/0/8/0 FIXED/FIXED · 64×744  
+- **expanded=false** · component · column gap 4 pad 0/0/8/0 FIXED/FIXED · 64×744  
   itemSpacing `stack.2xs` · padding `stack.none`, `inset.none`, `inset.xs` · radius `radius.none`
   - **Menu** · slot · column gap 4 pad 0/0/0/0 HUG/FILL · 40×677  
     itemSpacing `stack.2xs` · prop slotContentId←Menu
@@ -68,8 +68,8 @@ Default variant: `expanded=False` · 2 variants · default size 64×744px
 
 | expanded | size    | fill | stroke | effect | text                                           | icon                                                                |
 | -------- | ------- | ---- | ------ | ------ | ---------------------------------------------- | ------------------------------------------------------------------- |
-| False    | 64×744  |      |        |        |                                                | `color.icon.primary`<br>`color.icon.secondary`<br>`color.brand.red` |
-| True     | 198×744 |      |        |        | `color.text.primary`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.secondary`<br>`color.brand.red` |
+| false    | 64×744  |      |        |        |                                                | `color.icon.primary`<br>`color.icon.secondary`<br>`color.brand.red` |
+| true     | 198×744 |      |        |        | `color.text.primary`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.secondary`<br>`color.brand.red` |
 
 ### Issues detected
 

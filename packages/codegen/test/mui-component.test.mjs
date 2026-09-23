@@ -79,15 +79,15 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
   });
 
   it('has the three sizes, with md as the base', () => {
-    expect(Object.keys(styles.sizes)).toEqual(['sm', 'xl']);
+    expect(Object.keys(styles.sizes)).toEqual(['sm', 'lg']);
     expect(styles.sizes.sm.paddingLeft).toBe('var(--solar-inset-xs)');
-    expect(styles.sizes.xl.borderRadius).toBe('var(--solar-radius-none)');
-    expect(styles.sizes.xl.justifyContent).toBe('space-between');
+    expect(styles.sizes.lg.borderRadius).toBe('var(--solar-radius-none)');
+    expect(styles.sizes.lg.justifyContent).toBe('space-between');
   });
 
-  it('draws xl flat, as Figma does: no appearance of xl inherits the base shadow', () => {
+  it('draws lg flat, as Figma does: no appearance of lg inherits the base shadow', () => {
     expect(styles.root.boxShadow).toBe('var(--solar-shadow-control)');
-    for (const [combo, style] of Object.entries(styles.combined.xl))
+    for (const [combo, style] of Object.entries(styles.combined.lg))
       expect(style.boxShadow, combo).toBe('none');
   });
 
@@ -119,7 +119,7 @@ describe('renderMuiComponent on Button: states', () => {
     expect(primary['&:active'].backgroundColor).toBe(
       'var(--solar-color-action-primary-bg-active)',
     );
-    // The shadow follows size too (xl is flat), so it sits in the per-size section.
+    // The shadow follows size too (lg is flat), so it sits in the per-size section.
     expect(
       styles.combined.md['variant=primary, danger=false']['&.Mui-focusVisible']
         .boxShadow,
@@ -171,7 +171,7 @@ describe('renderMuiComponent on Button: types and module', () => {
     expect(ts).toContain(
       "export type SolarButtonVariant = 'primary' | 'secondary' | 'tertiary';",
     );
-    expect(ts).toContain("export type SolarButtonSize = 'md' | 'sm' | 'xl';");
+    expect(ts).toContain("export type SolarButtonSize = 'md' | 'sm' | 'lg';");
     expect(ts).toMatch(/danger\?: boolean;/);
     expect(ts).toMatch(/disabled\?: boolean;/);
     expect(ts).toMatch(/loading\?: boolean;/);
@@ -255,7 +255,7 @@ describe('the generated compose lookup', () => {
       ],
     ).toBe('default');
     expect(
-      solarButtonCompose({ size: 'xl' }, 'loading').spinner['variant.size'],
+      solarButtonCompose({ size: 'lg' }, 'loading').spinner['variant.size'],
     ).toBe('md');
     // At rest the spinner is not drawn and the label is.
     const rest = solarButtonCompose();

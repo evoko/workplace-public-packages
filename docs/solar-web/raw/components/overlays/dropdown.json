@@ -1839,7 +1839,7 @@
       "docLinks": [],
       "variantCount": 2,
       "props": {
-        "Size": {
+        "size": {
           "type": "VARIANT",
           "default": "md",
           "options": [
@@ -1848,10 +1848,10 @@
           ]
         }
       },
-      "defaultVariant": "Size=md",
+      "defaultVariant": "size=md",
       "defaultVariantNodeCount": 1,
       "defaultVariantTree": {
-        "name": "Size=md",
+        "name": "size=md",
         "type": "COMPONENT",
         "size": [
           240,
@@ -1904,7 +1904,7 @@
       },
       "variants": [
         {
-          "variant": "Size=md",
+          "variant": "size=md",
           "size": [
             240,
             34
@@ -1918,7 +1918,7 @@
           "hidden": []
         },
         {
-          "variant": "Size=sm",
+          "variant": "size=sm",
           "size": [
             160,
             25
@@ -2066,7 +2066,7 @@
                 "type": "INSTANCE",
                 "main": "Dropdown Group Label",
                 "variant": {
-                  "Size": "md"
+                  "size": "md"
                 },
                 "size": [
                   240,
@@ -2348,7 +2348,7 @@
               },
               "/Content/Dropdown Group Label": {
                 "variant": {
-                  "Size": "sm"
+                  "size": "sm"
                 },
                 "size": [
                   160,

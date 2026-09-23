@@ -45,7 +45,13 @@
           "{Primitives:color/neutral/100}"
         ],
         "strokeWeight": 1,
-        "radius": 16,
+        "radius": 12,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
         "children": [
           {
             "name": "Header",
@@ -144,15 +150,15 @@
                     "type": "FRAME",
                     "size": [
                       35,
-                      22
+                      18
                     ],
                     "layout": {
                       "dir": "HORIZONTAL",
                       "gap": 8,
                       "pad": [
-                        6,
+                        4,
                         8,
-                        6,
+                        4,
                         8
                       ],
                       "align": "CENTER/CENTER",
@@ -165,7 +171,9 @@
                     "vars": {
                       "itemSpacing": "Spatial:inset/xs",
                       "paddingLeft": "Spatial:inset/xs",
+                      "paddingTop": "Spatial:inset/2xs",
                       "paddingRight": "Spatial:inset/xs",
+                      "paddingBottom": "Spatial:inset/2xs",
                       "topLeftRadius": "Spatial:radius/control",
                       "topRightRadius": "Spatial:radius/control",
                       "bottomLeftRadius": "Spatial:radius/control",
@@ -221,9 +229,9 @@
                   "dir": "VERTICAL",
                   "gap": 20,
                   "pad": [
-                    32,
+                    28,
                     40,
-                    32,
+                    28,
                     40
                   ],
                   "align": "CENTER/MIN",
@@ -236,7 +244,9 @@
                 "vars": {
                   "itemSpacing": "Spatial:inset/lg",
                   "paddingLeft": "unresolved:8fd955719573",
-                  "paddingRight": "unresolved:8fd955719573"
+                  "paddingTop": "Spatial:inset/2xl",
+                  "paddingRight": "unresolved:8fd955719573",
+                  "paddingBottom": "Spatial:inset/2xl"
                 },
                 "children": [
                   {

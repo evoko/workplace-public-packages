@@ -103,7 +103,7 @@ and no text style uses it. Sources, licences and checksums are in [fonts/README.
 
 ## Icons
 
-341 SOLAR icons, each as two `SolarVector` constants — `chevronRightOutline` and
+340 SOLAR icons, each as two `SolarVector` constants — `chevronRightOutline` and
 `chevronRightSolid` — on `SolarIcons`, drawn by the `SolarIcon` widget.
 
 ```dart

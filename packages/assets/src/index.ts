@@ -4,7 +4,7 @@
  * A pure re-export and nothing else. The package is marked `sideEffects: false` and every icon
  * is its own module behind the generated barrel, so a consumer who imports one icon bundles one
  * icon: adding a statement with an effect here, or re-exporting through a wrapper, would undo
- * that for all 341.
+ * that for all 340.
  *
  * Raw SVG is not reached through this entry point. It ships as files under `./svg/*`, so a
  * sprite build or a CSS `mask-image` can name one without pulling in React.

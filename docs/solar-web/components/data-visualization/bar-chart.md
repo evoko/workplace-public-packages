@@ -203,8 +203,8 @@ Default variant: `segments=2, orientation=vertical` · 6 variants · default siz
 
 ### Anatomy (default variant)
 
-- **segments=2, orientation=vertical** · component · column gap 2 pad 0/0/0/0 FIXED/FIXED · 32×80  
-  radius `radius.control`
+- **segments=2, orientation=vertical** · component · column gap 4 pad 0/0/0/0 FIXED/FIXED · 32×80  
+  itemSpacing `inset.2xs` · radius `radius.control`
   - **color=feedback-warning-medium** · instance of **Bar** (color=feedback-warning-medium) · FILL/FIXED · 32×32  
     fill `color.surface.feedback.warning.medium` · radius `radius.none`
   - **color=feedback-neutral-subtle** · instance of **Bar** (color=feedback-neutral-subtle) · FILL/FIXED · 32×48  
@@ -212,10 +212,11 @@ Default variant: `segments=2, orientation=vertical` · 6 variants · default siz
 
 ### Tokens used
 
-| Role   | Tokens                                                                           |
-| ------ | -------------------------------------------------------------------------------- |
-| Fills  | `color.surface.feedback.neutral.subtle`, `color.surface.feedback.warning.medium` |
-| Radius | `radius.control`, `radius.none`                                                  |
+| Role    | Tokens                                                                           |
+| ------- | -------------------------------------------------------------------------------- |
+| Fills   | `color.surface.feedback.neutral.subtle`, `color.surface.feedback.warning.medium` |
+| Spacing | `inset.2xs`                                                                      |
+| Radius  | `radius.control`, `radius.none`                                                  |
 
 ### Composes
 
@@ -231,10 +232,6 @@ Default variant: `segments=2, orientation=vertical` · 6 variants · default siz
 | 3        | horizontal  | 80×32 |      |        |        |      |      |
 | 4        | vertical    | 32×80 |      |        |        |      |      |
 | 4        | horizontal  | 80×32 |      |        |        |      |      |
-
-### Issues detected
-
-- Hard-coded gap `2px` on layer _segments=2, orientation=vertical_
 
 ## Documentation card
 

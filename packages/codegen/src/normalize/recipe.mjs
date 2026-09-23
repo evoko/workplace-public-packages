@@ -445,8 +445,8 @@ export function deriveRecipe(
           same(expected, found)
         )
           continue;
-        // Grouped by where the variant sits on the axes this cell should not follow: twenty xl
-        // variants without a shadow are one finding about xl, not twenty.
+        // Grouped by where the variant sits on the axes this cell should not follow: twenty lg
+        // variants without a shadow are one finding about lg, not twenty.
         const where = coordinate(v.props, others);
         const g = `${cell}|${JSON.stringify(where)}`;
         if (!groups.has(g))

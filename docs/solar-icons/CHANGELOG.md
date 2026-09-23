@@ -1,6 +1,6 @@
 # SOLAR Icons — Figma changelog
 
-Verbatim from the file's Changelog page (contributor column omitted). Source: Figma file `SOLAR Icons [v2--2026]` (key `f0slPVSjDnXgdyPmWOSVOw`), version `2402050745869349423`, last modified 2026-09-22, fetched 2026-09-23.
+Verbatim from the file's Changelog page (contributor column omitted). Source: Figma file `SOLAR Icons [v2--2026]` (key `f0slPVSjDnXgdyPmWOSVOw`), version `2402400024423705866`, last modified 2026-09-23, fetched 2026-09-23.
 
 SOLAR maintains a clear record of what changes in each release, including what was updated, who contributed the change, and when it was introduced. This ensures transparency, traceability, and predictable evolution of the design system.
 
@@ -15,6 +15,7 @@ For more information about Semantic Versioning, visit semver.org.
 
 | Component                    | Change | Date       | Description                                                              |
 | ---------------------------- | ------ | ---------- | ------------------------------------------------------------------------ |
+| Icon/Phone                   | MAJOR  | 2026-09-23 | Deleted the duplicate set on Audio & DSP; Communication copy remains.    |
 | Icons — artwork fills ×7     | PATCH  | 2026-09-09 | Drew missing glyphs: Empty, CoverageToggle, LogicBlock, 4 Device marks.  |
 | Icons — Control Designer ×42 | MINOR  | 2026-09-09 | Added 42 icons ported from Control Designer; full list in icon registry. |
 | Unconfigured                 | MINOR  | 2026-09-09 | Added slashed-gear unconfigured status icon (Settings gear + off slash). |

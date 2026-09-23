@@ -5,7 +5,7 @@
     {
       "name": "Button",
       "id": "2087:2544",
-      "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (96):\n• size — xs (28px) | sm (36px) | md (44px, default) | lg (48px)\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nFocus is not a variant — apply the shared effect style shadow/focus/default (or shadow/focus/danger on danger buttons) to the current state on :focus-visible.\n\nSizing: sm renders below the 44px WCAG touch target — pad the hit area in code. xs is reserved for ultra-dense contexts where the row or toolbar itself is the target.\n\nLabels: write as actions — \"Save changes\" not \"OK\", \"Delete project\" not \"Yes\". 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Never place two primary buttons side by side. Tertiary should not stand alone as the sole action.",
+      "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (108):\n• size — sm (36px) | md (44px, default) | lg (48px)\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | focus | loading | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nfocus carries the shared effect style shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission.\n\nSizing: sm renders below the 44px WCAG touch target — pad the hit area in code or reserve it for dense tables and toolbars. There is no xs or xl size; size=xl was renamed lg on 2026-09-23.\n\nLabels: write as actions — “Save changes” not “OK”, “Delete project” not “Yes”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Never place two primary buttons side by side. Tertiary should not stand alone as the sole action.",
       "docLinks": [],
       "variantCount": 108,
       "props": {
@@ -43,7 +43,7 @@
           "options": [
             "md",
             "sm",
-            "xl"
+            "lg"
           ]
         },
         "prio": {
@@ -1030,7 +1030,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=default, danger=false",
+          "variant": "size=lg, prio=primary, state=default, danger=false",
           "size": [
             200,
             48
@@ -1100,7 +1100,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=default, danger=true",
+          "variant": "size=lg, prio=primary, state=default, danger=true",
           "size": [
             200,
             48
@@ -1189,7 +1189,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=default, danger=false",
+          "variant": "size=lg, prio=secondary, state=default, danger=false",
           "size": [
             200,
             48
@@ -1294,7 +1294,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=default, danger=true",
+          "variant": "size=lg, prio=secondary, state=default, danger=true",
           "size": [
             200,
             48
@@ -1399,7 +1399,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=default, danger=false",
+          "variant": "size=lg, prio=tertiary, state=default, danger=false",
           "size": [
             200,
             48
@@ -1504,7 +1504,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=default, danger=true",
+          "variant": "size=lg, prio=tertiary, state=default, danger=true",
           "size": [
             200,
             48
@@ -2470,7 +2470,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=hover, danger=false",
+          "variant": "size=lg, prio=primary, state=hover, danger=false",
           "size": [
             200,
             48
@@ -2568,7 +2568,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=hover, danger=true",
+          "variant": "size=lg, prio=primary, state=hover, danger=true",
           "size": [
             200,
             48
@@ -2666,7 +2666,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=hover, danger=false",
+          "variant": "size=lg, prio=secondary, state=hover, danger=false",
           "size": [
             200,
             48
@@ -2771,7 +2771,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=hover, danger=true",
+          "variant": "size=lg, prio=secondary, state=hover, danger=true",
           "size": [
             200,
             48
@@ -2876,7 +2876,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=hover, danger=false",
+          "variant": "size=lg, prio=tertiary, state=hover, danger=false",
           "size": [
             200,
             48
@@ -2981,7 +2981,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=hover, danger=true",
+          "variant": "size=lg, prio=tertiary, state=hover, danger=true",
           "size": [
             200,
             48
@@ -3922,7 +3922,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=pressed, danger=false",
+          "variant": "size=lg, prio=primary, state=pressed, danger=false",
           "size": [
             200,
             48
@@ -4020,7 +4020,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=pressed, danger=true",
+          "variant": "size=lg, prio=primary, state=pressed, danger=true",
           "size": [
             200,
             48
@@ -4118,7 +4118,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=pressed, danger=false",
+          "variant": "size=lg, prio=secondary, state=pressed, danger=false",
           "size": [
             200,
             48
@@ -4223,7 +4223,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=pressed, danger=true",
+          "variant": "size=lg, prio=secondary, state=pressed, danger=true",
           "size": [
             200,
             48
@@ -4328,7 +4328,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=pressed, danger=false",
+          "variant": "size=lg, prio=tertiary, state=pressed, danger=false",
           "size": [
             200,
             48
@@ -4433,7 +4433,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=pressed, danger=true",
+          "variant": "size=lg, prio=tertiary, state=pressed, danger=true",
           "size": [
             200,
             48
@@ -5364,7 +5364,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=disabled, danger=false",
+          "variant": "size=lg, prio=primary, state=disabled, danger=false",
           "size": [
             200,
             48
@@ -5462,7 +5462,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=disabled, danger=true",
+          "variant": "size=lg, prio=primary, state=disabled, danger=true",
           "size": [
             200,
             48
@@ -5560,7 +5560,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=disabled, danger=false",
+          "variant": "size=lg, prio=secondary, state=disabled, danger=false",
           "size": [
             200,
             48
@@ -5660,7 +5660,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=disabled, danger=true",
+          "variant": "size=lg, prio=secondary, state=disabled, danger=true",
           "size": [
             200,
             48
@@ -5760,7 +5760,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=disabled, danger=false",
+          "variant": "size=lg, prio=tertiary, state=disabled, danger=false",
           "size": [
             200,
             48
@@ -5860,7 +5860,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=disabled, danger=true",
+          "variant": "size=lg, prio=tertiary, state=disabled, danger=true",
           "size": [
             200,
             48
@@ -6732,7 +6732,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=focus, danger=false",
+          "variant": "size=lg, prio=primary, state=focus, danger=false",
           "size": [
             200,
             48
@@ -6803,7 +6803,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=focus, danger=true",
+          "variant": "size=lg, prio=primary, state=focus, danger=true",
           "size": [
             200,
             48
@@ -6893,7 +6893,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=focus, danger=false",
+          "variant": "size=lg, prio=secondary, state=focus, danger=false",
           "size": [
             200,
             48
@@ -6999,7 +6999,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=focus, danger=true",
+          "variant": "size=lg, prio=secondary, state=focus, danger=true",
           "size": [
             200,
             48
@@ -7105,7 +7105,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=focus, danger=false",
+          "variant": "size=lg, prio=tertiary, state=focus, danger=false",
           "size": [
             200,
             48
@@ -7211,7 +7211,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=focus, danger=true",
+          "variant": "size=lg, prio=tertiary, state=focus, danger=true",
           "size": [
             200,
             48
@@ -7793,7 +7793,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=loading, danger=false",
+          "variant": "size=lg, prio=primary, state=loading, danger=false",
           "size": [
             200,
             48
@@ -7857,7 +7857,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=primary, state=loading, danger=true",
+          "variant": "size=lg, prio=primary, state=loading, danger=true",
           "size": [
             200,
             48
@@ -7927,7 +7927,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=loading, danger=false",
+          "variant": "size=lg, prio=secondary, state=loading, danger=false",
           "size": [
             200,
             48
@@ -7997,7 +7997,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=secondary, state=loading, danger=true",
+          "variant": "size=lg, prio=secondary, state=loading, danger=true",
           "size": [
             200,
             48
@@ -8067,7 +8067,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=loading, danger=false",
+          "variant": "size=lg, prio=tertiary, state=loading, danger=false",
           "size": [
             200,
             48
@@ -8137,7 +8137,7 @@
           }
         },
         {
-          "variant": "size=xl, prio=tertiary, state=loading, danger=true",
+          "variant": "size=lg, prio=tertiary, state=loading, danger=true",
           "size": [
             200,
             48

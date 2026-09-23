@@ -25,13 +25,14 @@ follows:
     axes: [size, prio, state, danger]
     reason: >-
       Owner decision 2026-09-23: follow Figma exactly. Tertiary hover switches the label to a
-      link style (and xl to link/md/default, and danger does not switch), so the label type
+      link style (and lg to link/md/default, and danger does not switch), so the label type
       depends on every axis. Still raised with SOLAR as inconsistent.
 
   root.shadow:
     axes: [size, prio, state, danger]
     reason: >-
-      Owner decision 2026-09-23: xl stays a size, with its look as Figma draws it. xl is flat by
+      Owner decision 2026-09-23: lg (named xl in Figma until SOLAR renamed it that day) stays a
+      size, with its look as Figma draws it. lg is flat by
       design (no shadow, square, borderless, fixed width), so the shadow depends on size as well
       as on the paint axes. Raised with SOLAR to confirm.
 
@@ -48,7 +49,7 @@ bind:
     literal: 12
     token: inset.sm
     reason: >-
-      Same value, governed token. Only xl leaves its gap unbound; every other size binds an
+      Same value, governed token. Only lg leaves its gap unbound; every other size binds an
       inset token.
   iconLeading.height:
     literal: 16
@@ -66,7 +67,7 @@ allowLiteral:
       no control height token; raised as a governance gap.
   root.width:
     reason: >-
-      xl is fixed at 200 wide and SOLAR publishes no control width token. Treated like the
+      lg is fixed at 200 wide and SOLAR publishes no control width token. Treated like the
       heights under the same decision; raised as a governance gap.
   counter.height:
     reason: >-

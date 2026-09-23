@@ -29,7 +29,7 @@ Default variant: `density=default, state=default` · 3 variants · default size 
 
 - **density=default, state=default** · component · row gap 12 pad 12/12/12/12 FILL/HUG · 520×56  
   fill `color.surface.base` · stroke `color.border.subtle` 1px · itemSpacing `stack.sm` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.container`
-  - **Leading** · instance of **Avatar** (size=md, type=text, color=neutral, Shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
+  - **Leading** · instance of **Avatar** (size=md, type=text, color=neutral, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
     fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill` · prop mainComponent←Leading
   - **Content** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 358×27  
     itemSpacing `inset.xs`

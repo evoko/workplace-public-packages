@@ -21,7 +21,7 @@
       - **Mini Month Row** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1240×189  
         itemSpacing `inset.md`
 
-Instance census (tree capped at depth 3): Icon/None ×17, Segmented Control Item ×6, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
+Instance census (tree capped at depth 3): Icon/None ×13, Segmented Control Item ×4, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
 
 ### Tokens used
 

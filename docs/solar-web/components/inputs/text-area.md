@@ -4,26 +4,26 @@
 
 ## Component set: Text Area
 
-Multi-line text field for long-form input. 14 variants: size (sm, md) × state (default, hover, focused, filled, disabled, error, error-focused). NOTE: state names `focused` / `error-focused` diverge from SOLAR's locked `focus` vocab — flagged for rename. Resize handle bottom-right. Use when expected input exceeds ~2 lines (descriptions, notes, feedback). For rich formatting switch to a rich-text editor component.
+Multi-line text field for long-form input. 12 variants: size (sm, md) × state (default, hover, focus, filled, disabled, error). focus carries shadow/focus/default; error carries the danger border and shadow/danger and pairs with helper text. Resize handle bottom-right. Use when expected input exceeds ~2 lines (descriptions, notes, feedback). For rich formatting switch to a rich-text editor component.
 
 ### Props
 
-| Prop              | Type    | Options / default                                                 |
-| ----------------- | ------- | ----------------------------------------------------------------- |
-| `size`            | variant | **md** · sm                                                       |
-| `state`           | variant | **default** · hover · focused · filled · disabled · error · focus |
-| `hasLabel`        | boolean | default `true`                                                    |
-| `hasHelper`       | boolean | default `true`                                                    |
-| `mandatory`       | boolean | default `true`                                                    |
-| `hasCharCount`    | boolean | default `true`                                                    |
-| `label`           | text    | default `Label`                                                   |
-| `helper`          | text    | default `Helper text`                                             |
-| `character count` | text    | default `0/500`                                                   |
-| `hasCTA`          | boolean | default `true`                                                    |
-| `hasAttachment`   | boolean | default `true`                                                    |
-| `hasFooter`       | boolean | default `true`                                                    |
+| Prop              | Type    | Options / default                                       |
+| ----------------- | ------- | ------------------------------------------------------- |
+| `size`            | variant | **md** · sm                                             |
+| `state`           | variant | **default** · hover · filled · disabled · error · focus |
+| `hasLabel`        | boolean | default `true`                                          |
+| `hasHelper`       | boolean | default `true`                                          |
+| `mandatory`       | boolean | default `true`                                          |
+| `hasCharCount`    | boolean | default `true`                                          |
+| `label`           | text    | default `Label`                                         |
+| `helper`          | text    | default `Helper text`                                   |
+| `character count` | text    | default `0/500`                                         |
+| `hasCTA`          | boolean | default `true`                                          |
+| `hasAttachment`   | boolean | default `true`                                          |
+| `hasFooter`       | boolean | default `true`                                          |
 
-Default variant: `size=md, state=default` · 14 variants · default size 280×156px
+Default variant: `size=md, state=default` · 12 variants · default size 280×156px
 
 ### Anatomy (default variant)
 
@@ -92,8 +92,6 @@ Default variant: `size=md, state=default` · 14 variants · default size 280×15
 | sm   | default  | 200×134 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
 | md   | hover    | 280×156 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
 | sm   | hover    | 200×134 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
-| md   | focused  | 280×156 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
-| sm   | focused  | 200×134 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
 | md   | filled   | 280×156 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
 | sm   | filled   | 200×134 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
 | md   | disabled | 280×156 |      |        |                        | `color.text.disabled`                                                                                 | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.disabled` |
@@ -102,10 +100,6 @@ Default variant: `size=md, state=default` · 14 variants · default size 280×15
 | sm   | error    | 200×134 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                                                  | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
 | md   | focus    | 280×156 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
 | sm   | focus    | 200×134 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
-
-### Issues detected
-
-- State axis has both `focus` and `focused`.
 
 ## Documentation card
 

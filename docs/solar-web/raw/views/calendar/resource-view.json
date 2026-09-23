@@ -8,7 +8,7 @@
       "id": "6827:2",
       "description": "",
       "props": {},
-      "nodeCount": 305,
+      "nodeCount": 293,
       "tree": {
         "name": "Resource View",
         "type": "COMPONENT",
@@ -148,7 +148,607 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Corner",
+                        "type": "FRAME",
+                        "size": [
+                          220,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            16,
+                            8,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FIXED/HUG"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md"
+                        },
+                        "children": [
+                          {
+                            "name": "Resources Header",
+                            "type": "TEXT",
+                            "text": "Resources",
+                            "textStyle": "body/sm/semibold",
+                            "size": [
+                              60,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/body/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/body/sm",
+                              "fontStyle": "Primitives:type/font-weight/600"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "8 AM",
+                            "textStyle": "label/sm",
+                            "size": [
+                              30,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "9",
+                            "textStyle": "label/sm",
+                            "size": [
+                              8,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "10",
+                            "textStyle": "label/sm",
+                            "size": [
+                              14,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "11",
+                            "textStyle": "label/sm",
+                            "size": [
+                              12,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "12 PM",
+                            "textStyle": "label/sm",
+                            "size": [
+                              34,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "1",
+                            "textStyle": "label/sm",
+                            "size": [
+                              6,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "2",
+                            "textStyle": "label/sm",
+                            "size": [
+                              8,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "3",
+                            "textStyle": "label/sm",
+                            "size": [
+                              8,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "4",
+                            "textStyle": "label/sm",
+                            "size": [
+                              8,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "5",
+                            "textStyle": "label/sm",
+                            "size": [
+                              8,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "6",
+                            "textStyle": "label/sm",
+                            "size": [
+                              8,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hour Cell",
+                        "type": "FRAME",
+                        "size": [
+                          85,
+                          25
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            8,
+                            0,
+                            8,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Hour Label",
+                            "type": "TEXT",
+                            "text": "7",
+                            "textStyle": "label/sm",
+                            "size": [
+                              7,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Resource Row",
@@ -172,7 +772,351 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Resource Label",
+                        "type": "FRAME",
+                        "size": [
+                          220,
+                          56
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 12,
+                          "pad": [
+                            8,
+                            16,
+                            8,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FIXED/FIXED"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md"
+                        },
+                        "children": [
+                          {
+                            "name": "Avatar",
+                            "type": "INSTANCE",
+                            "main": "Avatar",
+                            "variant": {
+                              "size": "md",
+                              "type": "text",
+                              "color": "neutral",
+                              "shade": "Light"
+                            },
+                            "size": [
+                              32,
+                              32
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Primitives:color/neutral/50}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": 1,
+                            "radius": 9999,
+                            "vars": {
+                              "strokeTopWeight": "Spatial:border/default",
+                              "strokeBottomWeight": "Spatial:border/default",
+                              "strokeLeftWeight": "Spatial:border/default",
+                              "strokeRightWeight": "Spatial:border/default",
+                              "topLeftRadius": "Spatial:radius/pill",
+                              "topRightRadius": "Spatial:radius/pill",
+                              "bottomLeftRadius": "Spatial:radius/pill",
+                              "bottomRightRadius": "Spatial:radius/pill"
+                            }
+                          },
+                          {
+                            "name": "Frame",
+                            "type": "FRAME",
+                            "size": [
+                              112,
+                              26
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 8,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "HUG/HUG"
+                            },
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/xs"
+                            },
+                            "children": [
+                              {
+                                "name": "Resource Name",
+                                "type": "TEXT",
+                                "text": "Conference Room A",
+                                "textStyle": "body/sm/semibold",
+                                "size": [
+                                  112,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/primary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/body/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/body/sm",
+                                  "fontStyle": "Primitives:type/font-weight/600"
+                                }
+                              },
+                              {
+                                "name": "Resource Details",
+                                "type": "TEXT",
+                                "text": "Room · 12 seats",
+                                "textStyle": "label/sm",
+                                "size": [
+                                  87,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/secondary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/label/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/label/sm",
+                                  "fontStyle": "Primitives:type/font-weight/500"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Lane",
+                        "type": "FRAME",
+                        "size": [
+                          1020,
+                          56
+                        ],
+                        "sizing": "FILL/FIXED",
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "blue",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              81,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/06/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "red",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              166,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/01/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Resource Row",
@@ -196,7 +1140,351 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Resource Label",
+                        "type": "FRAME",
+                        "size": [
+                          220,
+                          56
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 12,
+                          "pad": [
+                            8,
+                            16,
+                            8,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FIXED/FIXED"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md"
+                        },
+                        "children": [
+                          {
+                            "name": "Avatar",
+                            "type": "INSTANCE",
+                            "main": "Avatar",
+                            "variant": {
+                              "size": "md",
+                              "type": "text",
+                              "color": "neutral",
+                              "shade": "Light"
+                            },
+                            "size": [
+                              32,
+                              32
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Primitives:color/neutral/50}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": 1,
+                            "radius": 9999,
+                            "vars": {
+                              "strokeTopWeight": "Spatial:border/default",
+                              "strokeBottomWeight": "Spatial:border/default",
+                              "strokeLeftWeight": "Spatial:border/default",
+                              "strokeRightWeight": "Spatial:border/default",
+                              "topLeftRadius": "Spatial:radius/pill",
+                              "topRightRadius": "Spatial:radius/pill",
+                              "bottomLeftRadius": "Spatial:radius/pill",
+                              "bottomRightRadius": "Spatial:radius/pill"
+                            }
+                          },
+                          {
+                            "name": "Frame",
+                            "type": "FRAME",
+                            "size": [
+                              111,
+                              26
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 8,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "HUG/HUG"
+                            },
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/xs"
+                            },
+                            "children": [
+                              {
+                                "name": "Resource Name",
+                                "type": "TEXT",
+                                "text": "Conference Room B",
+                                "textStyle": "body/sm/semibold",
+                                "size": [
+                                  111,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/primary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/body/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/body/sm",
+                                  "fontStyle": "Primitives:type/font-weight/600"
+                                }
+                              },
+                              {
+                                "name": "Resource Details",
+                                "type": "TEXT",
+                                "text": "Room · 8 seats",
+                                "textStyle": "label/sm",
+                                "size": [
+                                  82,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/secondary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/label/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/label/sm",
+                                  "fontStyle": "Primitives:type/font-weight/500"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Lane",
+                        "type": "FRAME",
+                        "size": [
+                          1020,
+                          56
+                        ],
+                        "sizing": "FILL/FIXED",
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "green",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              166,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/04/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "orange",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              81,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/02/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Resource Row",
@@ -220,7 +1508,351 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Resource Label",
+                        "type": "FRAME",
+                        "size": [
+                          220,
+                          56
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 12,
+                          "pad": [
+                            8,
+                            16,
+                            8,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FIXED/FIXED"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md"
+                        },
+                        "children": [
+                          {
+                            "name": "Avatar",
+                            "type": "INSTANCE",
+                            "main": "Avatar",
+                            "variant": {
+                              "size": "md",
+                              "type": "text",
+                              "color": "neutral",
+                              "shade": "Light"
+                            },
+                            "size": [
+                              32,
+                              32
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Primitives:color/neutral/50}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": 1,
+                            "radius": 9999,
+                            "vars": {
+                              "strokeTopWeight": "Spatial:border/default",
+                              "strokeBottomWeight": "Spatial:border/default",
+                              "strokeLeftWeight": "Spatial:border/default",
+                              "strokeRightWeight": "Spatial:border/default",
+                              "topLeftRadius": "Spatial:radius/pill",
+                              "topRightRadius": "Spatial:radius/pill",
+                              "bottomLeftRadius": "Spatial:radius/pill",
+                              "bottomRightRadius": "Spatial:radius/pill"
+                            }
+                          },
+                          {
+                            "name": "Frame",
+                            "type": "FRAME",
+                            "size": [
+                              84,
+                              26
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 8,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "HUG/HUG"
+                            },
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/xs"
+                            },
+                            "children": [
+                              {
+                                "name": "Resource Name",
+                                "type": "TEXT",
+                                "text": "Huddle Room 1",
+                                "textStyle": "body/sm/semibold",
+                                "size": [
+                                  84,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/primary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/body/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/body/sm",
+                                  "fontStyle": "Primitives:type/font-weight/600"
+                                }
+                              },
+                              {
+                                "name": "Resource Details",
+                                "type": "TEXT",
+                                "text": "Room · 4 seats",
+                                "textStyle": "label/sm",
+                                "size": [
+                                  82,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/secondary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/label/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/label/sm",
+                                  "fontStyle": "Primitives:type/font-weight/500"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Lane",
+                        "type": "FRAME",
+                        "size": [
+                          1020,
+                          56
+                        ],
+                        "sizing": "FILL/FIXED",
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "purple",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              81,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/07/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "purple",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              39,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/07/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Resource Row",
@@ -244,7 +1876,351 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Resource Label",
+                        "type": "FRAME",
+                        "size": [
+                          220,
+                          56
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 12,
+                          "pad": [
+                            8,
+                            16,
+                            8,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FIXED/FIXED"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md"
+                        },
+                        "children": [
+                          {
+                            "name": "Avatar",
+                            "type": "INSTANCE",
+                            "main": "Avatar",
+                            "variant": {
+                              "size": "md",
+                              "type": "text",
+                              "color": "neutral",
+                              "shade": "Light"
+                            },
+                            "size": [
+                              32,
+                              32
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Primitives:color/neutral/50}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": 1,
+                            "radius": 9999,
+                            "vars": {
+                              "strokeTopWeight": "Spatial:border/default",
+                              "strokeBottomWeight": "Spatial:border/default",
+                              "strokeLeftWeight": "Spatial:border/default",
+                              "strokeRightWeight": "Spatial:border/default",
+                              "topLeftRadius": "Spatial:radius/pill",
+                              "topRightRadius": "Spatial:radius/pill",
+                              "bottomLeftRadius": "Spatial:radius/pill",
+                              "bottomRightRadius": "Spatial:radius/pill"
+                            }
+                          },
+                          {
+                            "name": "Frame",
+                            "type": "FRAME",
+                            "size": [
+                              93,
+                              26
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 8,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "HUG/HUG"
+                            },
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/xs"
+                            },
+                            "children": [
+                              {
+                                "name": "Resource Name",
+                                "type": "TEXT",
+                                "text": "Lab Camera 4K",
+                                "textStyle": "body/sm/semibold",
+                                "size": [
+                                  86,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/primary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/body/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/body/sm",
+                                  "fontStyle": "Primitives:type/font-weight/600"
+                                }
+                              },
+                              {
+                                "name": "Resource Details",
+                                "type": "TEXT",
+                                "text": "Device · Studio 2",
+                                "textStyle": "label/sm",
+                                "size": [
+                                  93,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/secondary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/label/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/label/sm",
+                                  "fontStyle": "Primitives:type/font-weight/500"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Lane",
+                        "type": "FRAME",
+                        "size": [
+                          1020,
+                          56
+                        ],
+                        "sizing": "FILL/FIXED",
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "yellow",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              209,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/03/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "yellow",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              251,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/03/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Resource Row",
@@ -268,7 +2244,316 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Resource Label",
+                        "type": "FRAME",
+                        "size": [
+                          220,
+                          56
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 12,
+                          "pad": [
+                            8,
+                            16,
+                            8,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FIXED/FIXED"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md"
+                        },
+                        "children": [
+                          {
+                            "name": "Avatar",
+                            "type": "INSTANCE",
+                            "main": "Avatar",
+                            "variant": {
+                              "size": "md",
+                              "type": "text",
+                              "color": "neutral",
+                              "shade": "Light"
+                            },
+                            "size": [
+                              32,
+                              32
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Primitives:color/neutral/50}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": 1,
+                            "radius": 9999,
+                            "vars": {
+                              "strokeTopWeight": "Spatial:border/default",
+                              "strokeBottomWeight": "Spatial:border/default",
+                              "strokeLeftWeight": "Spatial:border/default",
+                              "strokeRightWeight": "Spatial:border/default",
+                              "topLeftRadius": "Spatial:radius/pill",
+                              "topRightRadius": "Spatial:radius/pill",
+                              "bottomLeftRadius": "Spatial:radius/pill",
+                              "bottomRightRadius": "Spatial:radius/pill"
+                            }
+                          },
+                          {
+                            "name": "Frame",
+                            "type": "FRAME",
+                            "size": [
+                              100,
+                              26
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 8,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "HUG/HUG"
+                            },
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/xs"
+                            },
+                            "children": [
+                              {
+                                "name": "Resource Name",
+                                "type": "TEXT",
+                                "text": "Projector – Atrium",
+                                "textStyle": "body/sm/semibold",
+                                "size": [
+                                  100,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/primary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/body/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/body/sm",
+                                  "fontStyle": "Primitives:type/font-weight/600"
+                                }
+                              },
+                              {
+                                "name": "Resource Details",
+                                "type": "TEXT",
+                                "text": "Device · Lobby",
+                                "textStyle": "label/sm",
+                                "size": [
+                                  82,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/secondary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/label/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/label/sm",
+                                  "fontStyle": "Primitives:type/font-weight/500"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Lane",
+                        "type": "FRAME",
+                        "size": [
+                          1020,
+                          56
+                        ],
+                        "sizing": "FILL/FIXED",
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "turquoise",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              421,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/05/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Resource Row",
@@ -292,7 +2577,386 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Resource Label",
+                        "type": "FRAME",
+                        "size": [
+                          220,
+                          56
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 12,
+                          "pad": [
+                            8,
+                            16,
+                            8,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FIXED/FIXED"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md"
+                        },
+                        "children": [
+                          {
+                            "name": "Avatar",
+                            "type": "INSTANCE",
+                            "main": "Avatar",
+                            "variant": {
+                              "size": "md",
+                              "type": "text",
+                              "color": "neutral",
+                              "shade": "Light"
+                            },
+                            "size": [
+                              32,
+                              32
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Primitives:color/neutral/50}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": 1,
+                            "radius": 9999,
+                            "vars": {
+                              "strokeTopWeight": "Spatial:border/default",
+                              "strokeBottomWeight": "Spatial:border/default",
+                              "strokeLeftWeight": "Spatial:border/default",
+                              "strokeRightWeight": "Spatial:border/default",
+                              "topLeftRadius": "Spatial:radius/pill",
+                              "topRightRadius": "Spatial:radius/pill",
+                              "bottomLeftRadius": "Spatial:radius/pill",
+                              "bottomRightRadius": "Spatial:radius/pill"
+                            }
+                          },
+                          {
+                            "name": "Frame",
+                            "type": "FRAME",
+                            "size": [
+                              87,
+                              26
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 8,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "HUG/HUG"
+                            },
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/xs"
+                            },
+                            "children": [
+                              {
+                                "name": "Resource Name",
+                                "type": "TEXT",
+                                "text": "Designer",
+                                "textStyle": "body/sm/semibold",
+                                "size": [
+                                  51,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/primary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/body/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/body/sm",
+                                  "fontStyle": "Primitives:type/font-weight/600"
+                                }
+                              },
+                              {
+                                "name": "Resource Details",
+                                "type": "TEXT",
+                                "text": "Person · Design",
+                                "textStyle": "label/sm",
+                                "size": [
+                                  87,
+                                  9
+                                ],
+                                "sizing": "HUG/HUG",
+                                "fills": [
+                                  "{Color:text/secondary}"
+                                ],
+                                "vars": {
+                                  "lineHeight": "Type:line-height/label/sm",
+                                  "fontFamily": "Primitives:type/font-family/inter",
+                                  "fontSize": "Type:size/label/sm",
+                                  "fontStyle": "Primitives:type/font-weight/500"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Lane",
+                        "type": "FRAME",
+                        "size": [
+                          1020,
+                          56
+                        ],
+                        "sizing": "FILL/FIXED",
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle",
+                            "type": "RECTANGLE",
+                            "size": [
+                              1,
+                              56
+                            ],
+                            "fills": [
+                              "{Color:border/subtle}"
+                            ]
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "blue",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              39,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/06/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "red",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              166,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/01/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "yellow",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              81,
+                              44
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/03/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Now Indicator",
@@ -311,20 +2975,6 @@
             ]
           }
         ]
-      },
-      "census": {
-        "Calendar Toolbar": 1,
-        "Icon Button": 2,
-        "Icon/None": 17,
-        "Button": 2,
-        "Spinner": 2,
-        "Counter": 2,
-        "Segmented Control": 1,
-        "Segmented Control Item": 6,
-        "Icon/Plus": 1,
-        "Avatar": 6,
-        "Event Chip": 12,
-        "Icon/Repeat": 12
       }
     }
   ],

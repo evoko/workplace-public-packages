@@ -17,7 +17,7 @@ Vertical in-page navigation: Section Nav Group Headers with their Section Nav It
 - **Section Nav** · component · column gap 16 pad 12/12/12/12 FIXED/HUG · 221×416  
   fill `color.surface.base` · stroke `color.border.subtle` mixedpx · itemSpacing `stack.md` · padding `inset.sm` · strokeWeight `border.default`
   - **Items** · slot · column gap 4 pad 0/0/0/0 FILL/HUG · 197×392  
-    fill `#ffffff` ⚠️ hard-coded · itemSpacing `inset.2xs` · prop slotContentId←Items
+    fill `color.surface.base` · itemSpacing `inset.2xs` · prop slotContentId←Items
     - **Section Nav Group Header** · instance of **Section Nav Group Header** · row gap 0 pad 0/8/0/8 FILL/FIXED · 197×32  
       padding `inset.xs`
     - **Section Nav Item** · instance of **Section Nav Item** (state=selected) · row gap 8 pad 0/8/0/8 FILL/FIXED · 197×32  
@@ -61,10 +61,6 @@ Vertical in-page navigation: Section Nav Group Headers with their Section Nav It
 
 - Section Nav Group Header
 - Section Nav Item
-
-### Issues detected
-
-- Hard-coded fill `#ffffff` on layer _Items_
 
 ## Documentation card
 

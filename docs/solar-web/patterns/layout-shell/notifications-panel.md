@@ -106,7 +106,7 @@ Panel that lists user notifications — system alerts, @mentions, assignment cha
         fill `color.surface.feedback.success.subtle` · stroke `color.border.feedback.success.subtle` 1px · itemSpacing `inset.xs` · padding `inset.xs`, `inset.none`, `inset.sm` · strokeWeight `border.default` · radius `radius.pill`
     - **Mark all as read** · text `body/md/medium` "Mark all as read" · HUG/HUG · 101×10  
       fill `color.text.link.default` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
-  - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
+  - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
     fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
   - **Today** · slot · column gap 0 pad 0/0/0/0 FILL/HUG · 380×196  
     prop slotContentId←Today
@@ -114,7 +114,7 @@ Panel that lists user notifications — system alerts, @mentions, assignment cha
       fill `color.surface.raised` · stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md`, `inset.lg` · strokeWeight `border.default`
     - **Notification Item** · instance of **Notification Item** (read=true) · row gap 12 pad 16/16/20/16 FILL/HUG · 380×98  
       fill `color.surface.raised` · stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md`, `inset.lg` · strokeWeight `border.default`
-  - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
+  - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
     fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
   - **Earlier this week** · slot · column gap 0 pad 0/0/0/0 FILL/HUG · 380×294  
     prop slotContentId←Earlier this week

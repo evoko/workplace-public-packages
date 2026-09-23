@@ -32,7 +32,7 @@ Default variant: `cta=full-width` · 2 variants · default size 640×480px
       - **Icon Button** · instance of **Icon Button** (size=md, shape=round, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
         fill `color.action.tertiary.bg.default` · strokeWeight `border.default` · radius `radius.pill`
   - **Body** · frame · row gap 0 pad 0/0/0/0 FILL/FILL · 640×376  
-    fill `#ffffff` ⚠️ hard-coded
+    fill `color.surface.base`
     - **left** · slot · column gap 16 pad 20/20/20/20 FILL/FILL · 320×376  
       itemSpacing `stack.md` · padding `inset.lg` · prop slotContentId←left
       - **Title** · text `title/xs` "Section title" · FILL/HUG · 280×12  
@@ -54,7 +54,7 @@ Default variant: `cta=full-width` · 2 variants · default size 640×480px
 
 | Role            | Tokens                                                                                                                                                                                                                          |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.tertiary.bg.default`, `color.surface.dialog`                                                                                                                                                                      |
+| Fills           | `color.action.tertiary.bg.default`, `color.surface.base`, `color.surface.dialog`                                                                                                                                                |
 | Strokes         | `color.border.subtle`                                                                                                                                                                                                           |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`, `color.text.feedback.info`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary`               |
 | Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.tertiary`                                                                                         |
@@ -86,10 +86,6 @@ Default variant: `cta=full-width` · 2 variants · default size 640×480px
 | ---------- | ------- | ---------------------- | ------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | full-width | 640×480 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.action.tertiary.icon.default`<br>`color.icon.tertiary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 | regular    | 640×480 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.tertiary.text.default`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default`                | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                          |
-
-### Issues detected
-
-- Hard-coded fill `#ffffff` on layer _Body_
 
 ## Documentation card
 

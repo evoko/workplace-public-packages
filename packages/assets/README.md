@@ -1,7 +1,7 @@
 # @bwp-web/assets
 
 The SOLAR icon set and brand marks for React, generated from the same spec as
-[`solar_flutter`](../solar_flutter/README.md): 341 icons in outline and solid, the Biamp and OS
+[`solar_flutter`](../solar_flutter/README.md): 340 icons in outline and solid, the Biamp and OS
 logos, and the five app icons.
 
 Everything under `src/generated/` is written by `npm run solar:codegen` at the repository root
@@ -92,14 +92,14 @@ import { appIconWorkplace, appIcons, type AppIconName } from '@bwp-web/assets';
 
 ## Raw SVG files
 
-The same 687 drawings also ship as standalone files, for an `<img>`, a sprite build or a CSS
+The same 685 drawings also ship as standalone files, for an `<img>`, a sprite build or a CSS
 `mask-image` — no React involved.
 
 ```ts
 import chevronRight from '@bwp-web/assets/svg/icons/chevron-right-outline.svg';
 ```
 
-The `./svg/*` export resolves `svg/icons/<stem>-<outline|solid>.svg` for the 682 icon variants
+The `./svg/*` export resolves `svg/icons/<stem>-<outline|solid>.svg` for the 680 icon variants
 and `svg/logos/<set>-<variant>.svg` for the 5 marks; what your build does with the file — an
 asset import like the one above, a copy step, a sprite — is its own business. Each file carries
 a `width` and `height` taken from its viewBox, so it has an intrinsic size for an `<img>`. Icon
@@ -115,10 +115,9 @@ one source rather than a fourth source.
 components, those SVG files and the Dart in `solar_flutter` from it. A parity suite proves all
 three carry the same geometry for every variant.
 
-Three things about the source are worth knowing, and all of them are recorded in
+Two things about the source are worth knowing, and both are recorded in
 [`spec/deviations.md`](../../spec/deviations.md) rather than patched in `docs/`:
 
-- Two Figma components are both named `Icon/Phone`; the Audio & DSP one is `IconPhoneAudioDsp`.
 - The Teams mark is gradient-filled. React and the raw SVG render it faithfully; Flutter omits it.
 - SOLAR has no logo size scale, so a logo's named size borrows the `icon.*` ladder.
 

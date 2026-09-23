@@ -8,7 +8,7 @@
       "id": "6822:119",
       "description": "",
       "props": {},
-      "nodeCount": 307,
+      "nodeCount": 295,
       "tree": {
         "name": "Day View",
         "type": "COMPONENT",
@@ -199,7 +199,149 @@
                       "topRightRadius": "Spatial:radius/container",
                       "bottomLeftRadius": "Spatial:radius/container",
                       "bottomRightRadius": "Spatial:radius/container"
-                    }
+                    },
+                    "children": [
+                      {
+                        "name": "Up Next",
+                        "type": "TEXT",
+                        "text": "Up Next",
+                        "textStyle": "title/xs",
+                        "size": [
+                          59,
+                          12
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/primary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/title/xs",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/title/xs",
+                          "fontStyle": "Primitives:type/font-weight/500"
+                        }
+                      },
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "selected",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          268,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/active}"
+                        ],
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      },
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "default",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          268,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/base}"
+                        ],
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      },
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "default",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          268,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/base}"
+                        ],
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      }
+                    ]
                   }
                 ]
               },
@@ -259,7 +401,84 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "children": [
+                      {
+                        "name": "Frame",
+                        "type": "FRAME",
+                        "size": [
+                          60,
+                          36
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "children": []
+                      },
+                      {
+                        "name": "Frame",
+                        "type": "FRAME",
+                        "size": [
+                          608,
+                          36
+                        ],
+                        "layout": {
+                          "dir": "VERTICAL",
+                          "gap": 0,
+                          "pad": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Weekday Header",
+                            "type": "INSTANCE",
+                            "main": "Weekday Header",
+                            "variant": {
+                              "emphasis": "today"
+                            },
+                            "size": [
+                              608,
+                              36
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                12,
+                                12,
+                                12,
+                                12
+                              ],
+                              "align": "CENTER/CENTER",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "strokes": [
+                              "{Color:border/surface}"
+                            ],
+                            "strokeWeight": "mixed",
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingTop": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm",
+                              "paddingBottom": "Spatial:inset/sm",
+                              "strokeBottomWeight": "Spatial:border/none",
+                              "strokeLeftWeight": "Spatial:border/default"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "All-Day Strip",
@@ -287,7 +506,118 @@
                     "vars": {
                       "paddingTop": "Spatial:inset/2xs",
                       "paddingBottom": "Spatial:inset/2xs"
-                    }
+                    },
+                    "children": [
+                      {
+                        "name": "Frame",
+                        "type": "FRAME",
+                        "size": [
+                          60,
+                          17
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 0,
+                          "pad": [
+                            4,
+                            8,
+                            4,
+                            8
+                          ],
+                          "align": "CENTER/CENTER",
+                          "sizing": "FIXED/HUG"
+                        },
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/2xs",
+                          "paddingRight": "Spatial:inset/xs",
+                          "paddingBottom": "Spatial:inset/2xs"
+                        },
+                        "children": [
+                          {
+                            "name": "All day",
+                            "type": "TEXT",
+                            "text": "All day",
+                            "textStyle": "label/sm",
+                            "size": [
+                              38,
+                              9
+                            ],
+                            "sizing": "HUG/HUG",
+                            "fills": [
+                              "{Color:text/secondary}"
+                            ],
+                            "vars": {
+                              "lineHeight": "Type:line-height/label/sm",
+                              "fontFamily": "Primitives:type/font-family/inter",
+                              "fontSize": "Type:size/label/sm",
+                              "fontStyle": "Primitives:type/font-weight/500"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Frame",
+                        "type": "FRAME",
+                        "size": [
+                          608,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "VERTICAL",
+                          "gap": 2,
+                          "pad": [
+                            0,
+                            4,
+                            0,
+                            4
+                          ],
+                          "align": "CENTER/MIN",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "paddingLeft": "Spatial:inset/2xs",
+                          "paddingRight": "Spatial:inset/2xs"
+                        },
+                        "children": [
+                          {
+                            "name": "All-Day Bar",
+                            "type": "INSTANCE",
+                            "main": "All-Day Bar",
+                            "variant": {
+                              "style": "subtle",
+                              "span": "single"
+                            },
+                            "size": [
+                              600,
+                              22
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/none",
+                              "topRightRadius": "Spatial:radius/none",
+                              "bottomLeftRadius": "Spatial:radius/none",
+                              "bottomRightRadius": "Spatial:radius/none"
+                            }
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "name": "Time Grid Row",
@@ -307,36 +637,967 @@
                       ],
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
-                    }
+                    },
+                    "children": [
+                      {
+                        "name": "Time Axis",
+                        "type": "FRAME",
+                        "size": [
+                          60,
+                          576
+                        ],
+                        "layout": {
+                          "dir": "VERTICAL",
+                          "gap": 0,
+                          "pad": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "align": "MIN/MIN",
+                          "sizing": "FIXED/FILL"
+                        },
+                        "children": [
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "now",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          },
+                          {
+                            "name": "Time Axis Label",
+                            "type": "INSTANCE",
+                            "main": "Time Axis Label",
+                            "variant": {
+                              "emphasis": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              60,
+                              48
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                12,
+                                0,
+                                12
+                              ],
+                              "align": "CENTER/MIN",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "vars": {
+                              "paddingLeft": "Spatial:inset/sm",
+                              "paddingRight": "Spatial:inset/sm"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Day Col",
+                        "type": "FRAME",
+                        "size": [
+                          608,
+                          576
+                        ],
+                        "sizing": "FILL/FIXED",
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "children": [
+                          {
+                            "name": "Slot Stack",
+                            "type": "FRAME",
+                            "size": [
+                              884,
+                              576
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "children": [
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              },
+                              {
+                                "name": "Time Slot",
+                                "type": "INSTANCE",
+                                "main": "Time Slot",
+                                "variant": {
+                                  "state": "default",
+                                  "density": "comfortable"
+                                },
+                                "size": [
+                                  884,
+                                  48
+                                ],
+                                "sizing": "FILL/FIXED",
+                                "fills": [
+                                  "{Color:surface/base}"
+                                ],
+                                "strokes": [
+                                  "{Color:border/subtle}"
+                                ],
+                                "strokeWeight": "mixed",
+                                "vars": {
+                                  "strokeTopWeight": "Spatial:border/default",
+                                  "strokeLeftWeight": "Spatial:border/default"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "blue",
+                              "style": "solid"
+                            },
+                            "size": [
+                              868,
+                              22
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/06/strong}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "purple",
+                              "style": "subtle"
+                            },
+                            "size": [
+                              868,
+                              46
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/none",
+                              "topRightRadius": "Spatial:radius/none",
+                              "bottomLeftRadius": "Spatial:radius/none",
+                              "bottomRightRadius": "Spatial:radius/none"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "yellow",
+                              "style": "subtle"
+                            },
+                            "size": [
+                              868,
+                              46
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/none",
+                              "topRightRadius": "Spatial:radius/none",
+                              "bottomLeftRadius": "Spatial:radius/none",
+                              "bottomRightRadius": "Spatial:radius/none"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "red",
+                              "style": "solid"
+                            },
+                            "size": [
+                              868,
+                              94
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/01/strong}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "blue",
+                              "style": "subtle"
+                            },
+                            "size": [
+                              868,
+                              46
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/none",
+                              "topRightRadius": "Spatial:radius/none",
+                              "bottomLeftRadius": "Spatial:radius/none",
+                              "bottomRightRadius": "Spatial:radius/none"
+                            }
+                          },
+                          {
+                            "name": "Event Chip",
+                            "type": "INSTANCE",
+                            "main": "Event Chip",
+                            "variant": {
+                              "category": "purple",
+                              "style": "tinted"
+                            },
+                            "size": [
+                              868,
+                              46
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/MIN",
+                              "sizing": "FIXED/FIXED"
+                            },
+                            "fills": [
+                              "{Color:data/category/07/subtle}"
+                            ],
+                            "radius": 6,
+                            "vars": {
+                              "topLeftRadius": "Spatial:radius/control",
+                              "topRightRadius": "Spatial:radius/control",
+                              "bottomLeftRadius": "Spatial:radius/control",
+                              "bottomRightRadius": "Spatial:radius/control"
+                            }
+                          },
+                          {
+                            "name": "Now Indicator",
+                            "type": "RECTANGLE",
+                            "size": [
+                              884,
+                              2
+                            ],
+                            "fills": [
+                              "{Color:action/primary/bg/default}"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               }
             ]
           }
         ]
-      },
-      "census": {
-        "Calendar Toolbar": 1,
-        "Icon Button": 2,
-        "Icon/None": 17,
-        "Button": 2,
-        "Spinner": 2,
-        "Counter": 2,
-        "Segmented Control": 1,
-        "Segmented Control Item": 6,
-        "Icon/Plus": 1,
-        "Date Picker Open": 1,
-        "Icon/ArrowLeft": 1,
-        "Icon/ArrowRight": 1,
-        "Day Cell": 35,
-        "Agenda Row": 3,
-        "Avatar": 3,
-        "Weekday Header": 1,
-        "All-Day Bar": 1,
-        "Time Axis Label": 12,
-        "Time Slot": 12,
-        "Event Chip": 6,
-        "Icon/Repeat": 6
       }
     }
   ],

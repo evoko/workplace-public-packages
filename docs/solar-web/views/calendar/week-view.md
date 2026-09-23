@@ -20,7 +20,7 @@
         stroke `color.border.subtle` mixedpx · padding `inset.2xs`
       - **Time Grid Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×484
 
-Instance census (tree capped at depth 3): Time Slot ×70, Icon/None ×17, Event Chip ×12, Icon/Repeat ×12, Time Axis Label ×10, Weekday Header ×7, Segmented Control Item ×6, All-Day Bar ×4, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
+Instance census (tree capped at depth 3): Time Slot ×70, Icon/None ×13, Event Chip ×12, Icon/Repeat ×12, Time Axis Label ×10, Weekday Header ×7, Segmented Control Item ×4, All-Day Bar ×4, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
 
 ### Tokens used
 

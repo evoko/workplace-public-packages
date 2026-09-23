@@ -64,7 +64,7 @@ void main() {
     double? dim(String cell, SolarButtonProps p) =>
         SolarButtonRecipe.dimension(cell, p, const {});
 
-    test('md is the base, sm and xl override it in tokens', () {
+    test('md is the base, sm and lg override it in tokens', () {
       expect(dim('root.paddingLeft', primary), SolarInset.sm);
       expect(
           dim('root.paddingLeft',
@@ -72,7 +72,7 @@ void main() {
           SolarInset.xs);
       expect(dim('root.radius', primary), SolarRadius.control);
       expect(
-          dim('root.radius', const SolarButtonProps(size: SolarButtonSize.xl)),
+          dim('root.radius', const SolarButtonProps(size: SolarButtonSize.lg)),
           SolarRadius.none);
     });
 
@@ -85,16 +85,16 @@ void main() {
           32);
       expect(dim('root.width', primary), isNull);
       expect(
-          dim('root.width', const SolarButtonProps(size: SolarButtonSize.xl)),
+          dim('root.width', const SolarButtonProps(size: SolarButtonSize.lg)),
           200);
     });
 
-    test('xl is flat as Figma draws it, but keeps its focus ring', () {
-      const xl = SolarButtonProps(size: SolarButtonSize.xl);
-      expect(SolarButtonRecipe.shadow(light, 'root.shadow', xl, {}), isEmpty);
+    test('lg is flat as Figma draws it, but keeps its focus ring', () {
+      const lg = SolarButtonProps(size: SolarButtonSize.lg);
+      expect(SolarButtonRecipe.shadow(light, 'root.shadow', lg, {}), isEmpty);
       expect(
           SolarButtonRecipe.shadow(
-              light, 'root.shadow', xl, {WidgetState.focused}),
+              light, 'root.shadow', lg, {WidgetState.focused}),
           SolarShadows.light.focusDefault);
       expect(SolarButtonRecipe.shadow(light, 'root.shadow', primary, {}),
           SolarShadows.light.control);

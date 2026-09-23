@@ -123,7 +123,7 @@ follows:
       token: 'typography.link.md.hover',
     });
     expect(
-      spec.style.label.combined.xl['prio=tertiary, danger=false'].hover
+      spec.style.label.combined.lg['prio=tertiary, danger=false'].hover
         .typography,
     ).toMatchObject({ token: 'typography.link.md.default' });
     expect(
@@ -180,10 +180,10 @@ bind:
       yaml(`
 component: Button
 set:
-  root.size.xl.shadow: { token: shadow.control, reason: test }
+  root.size.lg.shadow: { token: shadow.control, reason: test }
 `),
     );
-    expect(spec.style.root.size.xl.shadow).toEqual({
+    expect(spec.style.root.size.lg.shadow).toEqual({
       token: 'shadow.control',
       from: 'overlay',
       reason: 'test',
@@ -214,15 +214,15 @@ allowLiteral:
       yaml(`
 component: Button
 accept:
-  component.button.root.shadow@size=xl: { reason: xl is flat by design }
+  component.button.root.shadow@size=lg: { reason: lg is flat by design }
 `),
     );
     const d = deviations.find(
-      (x) => x.token === 'component.button.root.shadow@size=xl',
+      (x) => x.token === 'component.button.root.shadow@size=lg',
     );
     expect(d.decision).toEqual({
       rule: 'accept',
-      reason: 'xl is flat by design',
+      reason: 'lg is flat by design',
     });
   });
 
@@ -335,8 +335,8 @@ describe('spec/overlay/button.yaml', () => {
       'danger',
     ]);
     expect(overlay.allowLiteral).toHaveProperty(['root.height']);
-    // xl is flat as Figma draws it, so the shadow follows size too; `accept` would have kept
-    // the base shadow on xl, which is the opposite of the decision.
+    // lg is flat as Figma draws it, so the shadow follows size too; `accept` would have kept
+    // the base shadow on lg, which is the opposite of the decision.
     expect(overlay.follows['root.shadow'].axes).toEqual([
       'size',
       'prio',

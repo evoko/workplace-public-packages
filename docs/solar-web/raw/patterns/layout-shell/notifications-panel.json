@@ -740,7 +740,7 @@
             "type": "INSTANCE",
             "main": "Dropdown Group Label",
             "variant": {
-              "Size": "md"
+              "size": "md"
             },
             "size": [
               380,
@@ -877,7 +877,7 @@
             "type": "INSTANCE",
             "main": "Dropdown Group Label",
             "variant": {
-              "Size": "md"
+              "size": "md"
             },
             "size": [
               380,

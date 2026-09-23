@@ -62,8 +62,8 @@ const loadVector = (file) =>
 
 /**
  * The component name is derived from the file stem, never taken from the catalog: two Figma
- * components are both named `Icon/Phone`, so `catalog.component` is not unique while the stem
- * is. The catalog name is consulted only for its letters' case, and only when it spells the
+ * components can share a name across pages (two `Icon/Phone`s did until 2026-09-23), so
+ * `catalog.component` need not be unique while the stem is. The catalog name is consulted only for its letters' case, and only when it spells the
  * derived name -- the stem is lowercase, so `usb` alone cannot know it is `IconUSB`.
  */
 function componentName(prefix, stem, catalogName) {

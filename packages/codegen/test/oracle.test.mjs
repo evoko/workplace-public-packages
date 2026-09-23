@@ -55,10 +55,10 @@ describe('the Button oracle', () => {
       letterSpacing: -0.28,
       textDecoration: 'none',
     });
-    // The label's width follows its text, so there is none to expect; xl is fixed at 200.
+    // The label's width follows its text, so there is none to expect; lg is fixed at 200.
     expect(rest.layers.root).not.toHaveProperty('width');
     expect(
-      variant('size=xl, prio=primary, state=default, danger=false').layers.root
+      variant('size=lg, prio=primary, state=default, danger=false').layers.root
         .width,
     ).toBe(200);
     expect(

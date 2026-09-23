@@ -624,7 +624,7 @@
             "type": "INSTANCE",
             "main": "Button",
             "variant": {
-              "size": "xl",
+              "size": "lg",
               "prio": "primary",
               "state": "default",
               "danger": "false"

@@ -47,11 +47,13 @@ const render = (props) =>
   );
 
 describe('renderReactIcons: modules', () => {
-  it('writes one module per icon and a barrel exporting all 341', () => {
-    expect(modules).toHaveLength(341);
-    expect(new Set(exported).size).toBe(341);
+  it('writes one module per icon and a barrel exporting all 340', () => {
+    expect(modules).toHaveLength(340);
+    expect(new Set(exported).size).toBe(340);
     expect(exported).toContain('IconUSB');
-    expect(exported).toContain('IconPhoneAudioDsp');
+    // One Icon/Phone since 2026-09-23, when SOLAR deleted the Audio & DSP duplicate.
+    expect(exported).toContain('IconPhone');
+    expect(exported).not.toContain('IconPhoneAudioDsp');
   });
 
   it('drops the source colour from every module', () => {
@@ -102,10 +104,10 @@ describe('renderReactIcons: modules', () => {
 });
 
 describe('renderReactIcons: manifest', () => {
-  it('fingerprints both variants of all 341 icons', () => {
+  it('fingerprints both variants of all 340 icons', () => {
     const entries = Object.values(icons);
-    expect(entries).toHaveLength(341);
-    expect(entries.flatMap((i) => Object.values(i.variants))).toHaveLength(682);
+    expect(entries).toHaveLength(340);
+    expect(entries.flatMap((i) => Object.values(i.variants))).toHaveLength(680);
   });
 
   it('gives different geometry different digests', () => {

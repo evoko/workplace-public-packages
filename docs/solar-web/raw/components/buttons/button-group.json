@@ -389,7 +389,7 @@
               "/Button": {
                 "hidden": null,
                 "variant": {
-                  "size": "xl",
+                  "size": "lg",
                   "prio": "secondary",
                   "state": "default",
                   "danger": "false"
@@ -433,7 +433,7 @@
               },
               "/Button#2": {
                 "variant": {
-                  "size": "xl",
+                  "size": "lg",
                   "prio": "primary",
                   "state": "default",
                   "danger": "false"

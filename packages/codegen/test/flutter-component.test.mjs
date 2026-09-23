@@ -80,7 +80,7 @@ describe('renderFlutterComponent on Button', () => {
     expect(dart).toContain(
       'enum SolarButtonVariant { primary, secondary, tertiary }',
     );
-    expect(dart).toContain('enum SolarButtonSize { md, sm, xl }');
+    expect(dart).toContain('enum SolarButtonSize { md, sm, lg }');
   });
 
   it('refuses a style table naming a cell the IR does not have', () => {

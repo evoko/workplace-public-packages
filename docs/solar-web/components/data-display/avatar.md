@@ -4,7 +4,7 @@
 
 ## Component set: Avatar
 
-User/entity avatar showing initials, photo, or company logo. Color axis provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark toggle inverts colors for dark surfaces and inverse cards. Photo and Logo are content-aware content modes. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.
+User/entity avatar showing initials, photo, or company logo. 114 variants: size (xs, sm, md, lg) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark shade inverts colors for dark surfaces and inverse cards; Image and Logo are the content modes for photo and logo. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.
 
 ### Props
 
@@ -13,13 +13,13 @@ User/entity avatar showing initials, photo, or company logo. Color axis provides
 | `size`  | variant | **lg** · md · sm · xs                                                          |
 | `type`  | variant | **text** · photo · logo                                                        |
 | `color` | variant | **neutral** · red · orange · yellow · green · turquoise · blue · purple · pink |
-| `Shade` | variant | Logo · Dark · **Light** · Medium · Image                                       |
+| `shade` | variant | Logo · Dark · **Light** · Medium · Image                                       |
 
-Default variant: `size=lg, type=text, color=neutral, Shade=Light` · 114 variants · default size 44×44px
+Default variant: `size=lg, type=text, color=neutral, shade=Light` · 114 variants · default size 44×44px
 
 ### Anatomy (default variant)
 
-- **size=lg, type=text, color=neutral, Shade=Light** · component · column gap 0 pad 0/0/0/0 FIXED/FIXED · 44×44  
+- **size=lg, type=text, color=neutral, shade=Light** · component · column gap 0 pad 0/0/0/0 FIXED/FIXED · 44×44  
   fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
   - **DS** · text `body/lg/medium` "DS" · HUG/HUG · 22×12  
     fill `color.neutral.700` · lineHeight `type.line-height.body.lg` · fontFamily `type.font-family.inter` · fontSize `type.size.body.lg` · fontStyle `type.font-weight.500`
@@ -38,7 +38,7 @@ Default variant: `size=lg, type=text, color=neutral, Shade=Light` · 114 variant
 
 ### Variant matrix
 
-| size | type  | color     | Shade  | size  | fill                  | stroke                | effect | text                  | icon |
+| size | type  | color     | shade  | size  | fill                  | stroke                | effect | text                  | icon |
 | ---- | ----- | --------- | ------ | ----- | --------------------- | --------------------- | ------ | --------------------- | ---- |
 | lg   | text  | neutral   | Light  | 44×44 | `color.neutral.50`    | `color.border.subtle` |        | `color.neutral.700`   |      |
 | md   | text  | neutral   | Light  | 32×32 | `color.neutral.50`    | `color.border.subtle` |        | `color.neutral.700`   |      |

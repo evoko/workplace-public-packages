@@ -17,9 +17,9 @@ Default variant: `feedback=neutral` · 5 variants · default size 200×6px
 ### Anatomy (default variant)
 
 - **feedback=neutral** · component · FIXED/FIXED · 200×6  
-  fill `color.surface.muted` · itemSpacing `inset.xs`
+  fill `color.surface.muted` · itemSpacing `inset.xs` · radius `radius.pill`
   - **Indicator** · rectangle · 80×6  
-    fill `color.action.primary.bg.default`
+    fill `color.action.primary.bg.default` · radius `radius.pill`
 
 ### Tokens used
 
@@ -27,6 +27,7 @@ Default variant: `feedback=neutral` · 5 variants · default size 200×6px
 | ------- | -------------------------------------------------------- |
 | Fills   | `color.action.primary.bg.default`, `color.surface.muted` |
 | Spacing | `inset.xs`                                               |
+| Radius  | `radius.pill`                                            |
 
 ### Variant matrix
 
@@ -37,11 +38,6 @@ Default variant: `feedback=neutral` · 5 variants · default size 200×6px
 | success  | 200×6 | `color.surface.muted` |        |        |      |      |
 | warning  | 200×6 | `color.surface.muted` |        |        |      |      |
 | danger   | 200×6 | `color.surface.muted` |        |        |      |      |
-
-### Issues detected
-
-- Hard-coded radius `9999px` on layer _feedback=neutral_
-- Hard-coded radius `9999px` on layer _Indicator_
 
 ## Documentation card
 

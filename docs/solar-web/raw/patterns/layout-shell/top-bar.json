@@ -5,7 +5,7 @@
     {
       "name": "Top Bar",
       "id": "5888:18620",
-      "description": "App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and account Avatar. 6 variants: breakpoint (desktop, mobile) × hasSidebar (true, false) × isLoggedIn (True, False), shipped as the used combinations only. Props: hasTenantSwitcher, hasSearchField, hasNotifications (booleans). It is the banner landmark; the app name links home and the search opens Search Results Panel.",
+      "description": "App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and account Avatar. 6 variants: breakpoint (desktop, mobile) × hasSidebar (true, false) × isLoggedIn (true, false), shipped as the used combinations only. Props: hasTenantSwitcher, hasSearchField, hasNotifications (booleans). It is the banner landmark; the app name links home and the search opens Search Results Panel.",
       "docLinks": [],
       "variantCount": 6,
       "props": {
@@ -39,17 +39,17 @@
         },
         "isLoggedIn": {
           "type": "VARIANT",
-          "default": "True",
+          "default": "true",
           "options": [
-            "True",
-            "False"
+            "true",
+            "false"
           ]
         }
       },
-      "defaultVariant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=True",
+      "defaultVariant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=true",
       "defaultVariantNodeCount": 34,
       "defaultVariantTree": {
-        "name": "breakpoint=desktop, hasSidebar=true, isLoggedIn=True",
+        "name": "breakpoint=desktop, hasSidebar=true, isLoggedIn=true",
         "type": "COMPONENT",
         "size": [
           1440,
@@ -440,7 +440,7 @@
                       "size": "sm",
                       "type": "logo",
                       "color": "neutral",
-                      "Shade": "Logo"
+                      "shade": "Logo"
                     },
                     "size": [
                       24,
@@ -538,7 +538,7 @@
                   "size": "md",
                   "type": "text",
                   "color": "purple",
-                  "Shade": "Light"
+                  "shade": "Light"
                 },
                 "size": [
                   32,
@@ -581,7 +581,7 @@
       },
       "variants": [
         {
-          "variant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=True",
+          "variant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=true",
           "size": [
             1440,
             56
@@ -605,7 +605,7 @@
           ]
         },
         {
-          "variant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=False",
+          "variant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=false",
           "size": [
             1440,
             56
@@ -714,7 +714,7 @@
           }
         },
         {
-          "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=True",
+          "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=true",
           "size": [
             1440,
             56
@@ -773,7 +773,7 @@
           }
         },
         {
-          "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=False",
+          "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=false",
           "size": [
             1440,
             56
@@ -917,7 +917,7 @@
           }
         },
         {
-          "variant": "breakpoint=mobile, hasSidebar=true, isLoggedIn=False",
+          "variant": "breakpoint=mobile, hasSidebar=true, isLoggedIn=false",
           "size": [
             393,
             56
@@ -1024,7 +1024,7 @@
                     "size": "md",
                     "type": "text",
                     "color": "purple",
-                    "Shade": "Light"
+                    "shade": "Light"
                   },
                   "size": [
                     32,
@@ -1082,7 +1082,7 @@
           }
         },
         {
-          "variant": "breakpoint=mobile, hasSidebar=false, isLoggedIn=False",
+          "variant": "breakpoint=mobile, hasSidebar=false, isLoggedIn=false",
           "size": [
             393,
             56
@@ -1162,7 +1162,7 @@
                     "size": "md",
                     "type": "text",
                     "color": "purple",
-                    "Shade": "Light"
+                    "shade": "Light"
                   },
                   "size": [
                     32,

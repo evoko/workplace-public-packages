@@ -21,9 +21,10 @@ Default variant: `state=default` · 5 variants · default size 160×120px
 
 - **state=default** · component · column gap 8 pad 8/8/8/8 FIXED/FIXED · 160×120  
   fill `color.surface.base` · stroke `color.border.surface` mixedpx · itemSpacing `stack.xs` · padding `inset.xs` · strokeWeight `border.default`
-  - **Day Num Row** · frame · row gap 0 pad 0/2/0/2 FILL/HUG · 144×24
-    - **Day Num Pill** · frame · row gap 0 pad 0/6/0/6 FIXED/FIXED · 24×24  
-      radius `radius.pill`
+  - **Day Num Row** · frame · row gap 0 pad 0/4/0/4 FILL/HUG · 144×24  
+    padding `inset.2xs`
+    - **Day Num Pill** · frame · row gap 0 pad 0/4/0/4 FIXED/FIXED · 24×24  
+      padding `inset.2xs` · radius `radius.pill`
       - **Day Num** · text `body/sm/medium` "15" · HUG/HUG · 13×9  
         fill `color.text.primary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.500`
   - **Events** · frame · column gap 4 pad 0/0/0/0 FILL/HUG · 144×74  
@@ -74,10 +75,6 @@ Default variant: `state=default` · 5 variants · default size 160×120px
 ### Issues detected
 
 - State axis uses non-standard value(s): other-month, today, today-column.
-- Hard-coded paddingRight `2px` on layer _Day Num Row_
-- Hard-coded paddingLeft `2px` on layer _Day Num Row_
-- Hard-coded paddingRight `6px` on layer _Day Num Row › Day Num Pill_
-- Hard-coded paddingLeft `6px` on layer _Day Num Row › Day Num Pill_
 
 ## Issues detected (page)
 

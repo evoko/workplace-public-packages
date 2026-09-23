@@ -70,15 +70,15 @@ Two subtleties worth knowing before changing an emitter:
 
 ## Icons
 
-`spec/icons.json` is the second contract, built from `docs/solar-icons/`: 341 icon sets in
+`spec/icons.json` is the second contract, built from `docs/solar-icons/`: 340 icon sets in
 outline and solid, 3 logo sets, each variant reduced to `{viewBox, paths}` and each path to its
 `d` string and fill rule. Three targets are emitted from it.
 
 | Target    | Output                                                              | Covers                                            |
 | --------- | ------------------------------------------------------------------- | ------------------------------------------------- |
-| `react`   | `packages/assets/src/generated/icons/`, `.../logos/`                | 341 icon components, 2 logo components, 5 rasters |
-| `svg`     | `packages/assets/src/generated/svg/`                                | 687 standalone files: 682 icon variants, 5 marks  |
-| `flutter` | `packages/solar_flutter/lib/src/generated/icons.dart`, `logos.dart` | 682 icon and 4 logo `SolarVector` constants       |
+| `react`   | `packages/assets/src/generated/icons/`, `.../logos/`                | 340 icon components, 2 logo components, 5 rasters |
+| `svg`     | `packages/assets/src/generated/svg/`                                | 685 standalone files: 680 icon variants, 5 marks  |
+| `flutter` | `packages/solar_flutter/lib/src/generated/icons.dart`, `logos.dart` | 680 icon and 4 logo `SolarVector` constants       |
 
 The path data reaches all three byte for byte, so agreement is a property of the data rather
 than of three formatters happening to concur. [`test/icon-parity.test.mjs`](test/icon-parity.test.mjs)
@@ -162,15 +162,15 @@ The rule of thumb for where a change goes:
 > **The overlay for a decision about one component, the normalizer for a rule about the system,
 > the shell for behaviour.**
 
-**What Button's findings mean.** Button produced 11 findings (37 in the whole report, with Spinner's). Eight
+**What Button's findings mean.** Button produced 11 findings (36 in the whole report, with Spinner's). Eight
 carry an overlay decision and stay in the report beside it: five bind a raw value to the token of
-the same value (vertical padding, xl's gap, the icon heights), and three allow a literal SOLAR has
-no token for (the fixed heights, xl's width, the counter's height). Two more decisions removed
-findings outright, by declaring an axis interaction: tertiary hover's link style and xl's flat
+the same value (vertical padding, lg's gap, the icon heights), and three allow a literal SOLAR has
+no token for (the fixed heights, lg's width, the counter's height). Two more decisions removed
+findings outright, by declaring an axis interaction: tertiary hover's link style and lg's flat
 look are drawn as Figma draws them. Three findings are open and are genuine Figma defects:
-secondary loses its background at `sm`, the backgrounds change inconsistently at `xl`, and the
-`xl` disabled label uses the danger colour. They are in
-[the design review](../../docs/solar-review-for-design.md), section 7. Run over the whole corpus,
+secondary loses its background at `sm`, the backgrounds change inconsistently at `lg` (Figma's `xl` until 2026-09-23), and the
+`lg` disabled label uses the danger colour. They are in
+[the design review](../../docs/solar-review-for-design.md), section 8. Run over the whole corpus,
 115 of SOLAR Web's 119 component sets derive a recipe; the four that do not throw on shapes the
 recipe does not model yet (one side bound to two variables, stacked paints), which is milestone 3b-2.
 

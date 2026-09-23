@@ -13,7 +13,7 @@
           "default": "October 5 – 11, 2026"
         }
       },
-      "nodeCount": 76,
+      "nodeCount": 64,
       "tree": {
         "name": "Calendar Toolbar",
         "type": "COMPONENT",
@@ -249,7 +249,7 @@
             "name": "Right",
             "type": "FRAME",
             "size": [
-              407,
+              300,
               32
             ],
             "layout": {
@@ -276,7 +276,7 @@
                   "size": "sm"
                 },
                 "size": [
-                  295,
+                  188,
                   32
                 ],
                 "layout": {
@@ -301,7 +301,7 @@
                 "main": "Button",
                 "variant": {
                   "size": "sm",
-                  "prio": "primary",
+                  "prio": "secondary",
                   "state": "default",
                   "danger": "false"
                 },
@@ -321,11 +321,8 @@
                   "align": "CENTER/CENTER",
                   "sizing": "HUG/FIXED"
                 },
-                "fills": [
-                  "{Color:action/primary/bg/default}"
-                ],
                 "strokes": [
-                  "{Color:action/primary/border/default}"
+                  "{Color:action/secondary/border/default}"
                 ],
                 "strokeWeight": 1,
                 "radius": 6,

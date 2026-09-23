@@ -13,7 +13,7 @@
  * much silently reads the solid block as the outline one and every variant looks wrong -- or,
  * worse, a pattern that captures too little drops a path and the icon looks *right*. Both are
  * guarded: every block's end is anchored, every extractor counts what it read against what the
- * text declares, and the inventory assertion pins the totals (341 modules, 682 variants) before
+ * text declares, and the inventory assertion pins the totals (340 modules, 680 variants) before
  * any geometry is compared.
  */
 
@@ -226,7 +226,7 @@ beforeAll(() => {
     .filter((path) => !existsSync(path))
     .map(rel);
   // Nothing below can read a file that is not there. The first assertion reports the whole list
-  // with the command to fix it, which is more use than 682 ENOENTs from a fresh clone.
+  // with the command to fix it, which is more use than 680 ENOENTs from a fresh clone.
   if (missing.length) return;
 
   react = new Map();
@@ -324,8 +324,8 @@ describe('icon parity', () => {
   });
 
   it('the inventory is total and one-to-one across the three targets', () => {
-    expect(stems.length).toBe(341);
-    expect(variants.length).toBe(682);
+    expect(stems.length).toBe(340);
+    expect(variants.length).toBe(680);
 
     expect(differences('react', [...react.keys()], stems)).toEqual([]);
     const illFormed = [...react]
@@ -351,11 +351,11 @@ describe('icon parity', () => {
       ),
     ).toEqual([]);
 
-    // The counts the extraction itself is sanity-checked against: 341 modules each yielding two
-    // geometries, 682 files, 682 constants.
-    expect(react.size).toBe(341);
-    expect(svg.size).toBe(682);
-    expect(dart.vectors.size).toBe(682);
+    // The counts the extraction itself is sanity-checked against: 340 modules each yielding two
+    // geometries, 680 files, 680 constants.
+    expect(react.size).toBe(340);
+    expect(svg.size).toBe(680);
+    expect(dart.vectors.size).toBe(680);
   });
 
   it('React, the raw SVG, Dart and the spec draw the same geometry for every icon variant', () => {

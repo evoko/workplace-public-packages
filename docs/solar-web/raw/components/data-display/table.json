@@ -3139,7 +3139,7 @@
                     "size": "sm",
                     "type": "text",
                     "color": "neutral",
-                    "Shade": "Light"
+                    "shade": "Light"
                   },
                   "size": [
                     24,
@@ -4725,7 +4725,7 @@
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 242,
+              "gap": 16,
               "pad": [
                 0,
                 0,
@@ -4734,6 +4734,9 @@
               ],
               "align": "SPACE_BETWEEN/CENTER",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
             },
             "children": [
               {
@@ -5128,7 +5131,7 @@
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 692,
+              "gap": 16,
               "pad": [
                 0,
                 0,
@@ -5137,6 +5140,9 @@
               ],
               "align": "SPACE_BETWEEN/CENTER",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
             },
             "children": [
               {

@@ -28,19 +28,19 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
       stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
     - **Range** · text `title/xs` "October 5 – 11, 2026" · HUG/HUG · 148×12  
       fill `color.text.primary` · lineHeight `type.line-height.title.xs` · fontFamily `type.font-family.inter` · fontSize `type.size.title.xs` · fontStyle `type.font-weight.500` · prop characters←range
-  - **Right** · frame · row gap 12 pad 0/0/0/0 HUG/HUG · 407×32  
+  - **Right** · frame · row gap 12 pad 0/0/0/0 HUG/HUG · 300×32  
     itemSpacing `inset.sm`
-    - **View Switcher** · instance of **Segmented Control** (size=sm) · column gap 8 pad 0/0/0/0 HUG/HUG · 295×32  
+    - **View Switcher** · instance of **Segmented Control** (size=sm) · column gap 8 pad 0/0/0/0 HUG/HUG · 188×32  
       itemSpacing `inset.xs`
-    - **New Event** · instance of **Button** (size=sm, prio=primary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 100×32  
-      fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
+    - **New Event** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 100×32  
+      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
 
 ### Tokens used
 
 | Role            | Tokens                                                                                              |
 | --------------- | --------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.primary.bg.default`, `color.action.tertiary.bg.default`, `color.surface.base`         |
-| Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`                      |
+| Fills           | `color.action.tertiary.bg.default`, `color.surface.base`                                            |
+| Strokes         | `color.action.secondary.border.default`                                                             |
 | Text color      | `color.text.primary`                                                                                |
 | Spacing         | `inset.2xs`, `inset.md`, `inset.sm`, `inset.xs`                                                     |
 | Radius          | `radius.control`                                                                                    |

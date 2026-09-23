@@ -5,7 +5,7 @@
     {
       "name": "Insight Row",
       "id": "6905:61",
-      "description": "Single-line insight for a feed or panel — severity icon, title, meta and an optional action. 10 variants: severity (success, danger, warning, info, ghost) × state (default, hover). ghost is the empty placeholder row. Props: Title, Meta (text), showAction + action (instance swap). Stack rows in a List; for the same content as a standalone card use Insight Card.",
+      "description": "Single-line insight for a feed or panel — severity icon, title, meta and an optional action. 10 variants: severity (success, danger, warning, info) × state (default, hover) plus ghost=true placeholders. ghost is the empty placeholder row. Props: Title, Meta (text), showAction + action (instance swap). Stack rows in a List; for the same content as a standalone card use Insight Card.",
       "docLinks": [],
       "variantCount": 10,
       "props": {
@@ -32,8 +32,7 @@
             "success",
             "danger",
             "warning",
-            "info",
-            "ghost"
+            "info"
           ]
         },
         "state": {
@@ -43,12 +42,20 @@
             "default",
             "hover"
           ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
         }
       },
-      "defaultVariant": "severity=success, state=default",
+      "defaultVariant": "severity=success, state=default, ghost=false",
       "defaultVariantNodeCount": 17,
       "defaultVariantTree": {
-        "name": "severity=success, state=default",
+        "name": "severity=success, state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           480,
@@ -263,7 +270,7 @@
       },
       "variants": [
         {
-          "variant": "severity=success, state=default",
+          "variant": "severity=success, state=default, ghost=false",
           "size": [
             480,
             64
@@ -291,7 +298,7 @@
           ]
         },
         {
-          "variant": "severity=danger, state=default",
+          "variant": "severity=danger, state=default, ghost=false",
           "size": [
             480,
             64
@@ -323,7 +330,7 @@
           }
         },
         {
-          "variant": "severity=warning, state=default",
+          "variant": "severity=warning, state=default, ghost=false",
           "size": [
             480,
             64
@@ -355,7 +362,7 @@
           }
         },
         {
-          "variant": "severity=info, state=default",
+          "variant": "severity=info, state=default, ghost=false",
           "size": [
             480,
             64
@@ -387,7 +394,7 @@
           }
         },
         {
-          "variant": "severity=ghost, state=default",
+          "variant": "severity=info, state=default, ghost=true",
           "size": [
             480,
             64
@@ -486,7 +493,7 @@
           }
         },
         {
-          "variant": "severity=success, state=hover",
+          "variant": "severity=success, state=hover, ghost=false",
           "size": [
             480,
             64
@@ -518,7 +525,7 @@
           }
         },
         {
-          "variant": "severity=danger, state=hover",
+          "variant": "severity=danger, state=hover, ghost=false",
           "size": [
             480,
             64
@@ -555,7 +562,7 @@
           }
         },
         {
-          "variant": "severity=warning, state=hover",
+          "variant": "severity=warning, state=hover, ghost=false",
           "size": [
             480,
             64
@@ -592,7 +599,7 @@
           }
         },
         {
-          "variant": "severity=info, state=hover",
+          "variant": "severity=info, state=hover, ghost=false",
           "size": [
             480,
             64
@@ -629,7 +636,7 @@
           }
         },
         {
-          "variant": "severity=ghost, state=hover",
+          "variant": "severity=info, state=hover, ghost=true",
           "size": [
             480,
             64

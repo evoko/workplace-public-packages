@@ -5,7 +5,7 @@
     {
       "name": "Alert",
       "id": "2762:706",
-      "description": "Alert — callout message with semantic variants (default/info/success/warning/danger) and style options (filled/outlined). Toggle title, action button, and close button via boolean properties.",
+      "description": "Alert — callout message for in-page feedback. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Toggle title, action button, and close button via boolean properties. For a single-line top-of-page message use Banner; for the compact form use Alert Small.",
       "docLinks": [],
       "variantCount": 10,
       "props": {
@@ -33,7 +33,7 @@
           "type": "BOOLEAN",
           "default": true
         },
-        "Variant": {
+        "type": {
           "type": "VARIANT",
           "default": "success",
           "options": [
@@ -44,7 +44,7 @@
             "danger"
           ]
         },
-        "Style": {
+        "style": {
           "type": "VARIANT",
           "default": "filled",
           "options": [
@@ -53,10 +53,10 @@
           ]
         }
       },
-      "defaultVariant": "Variant=success, Style=filled",
+      "defaultVariant": "type=success, style=filled",
       "defaultVariantNodeCount": 6,
       "defaultVariantTree": {
-        "name": "Variant=success, Style=filled",
+        "name": "type=success, style=filled",
         "type": "COMPONENT",
         "size": [
           466,
@@ -246,7 +246,7 @@
       },
       "variants": [
         {
-          "variant": "Variant=success, Style=filled",
+          "variant": "type=success, style=filled",
           "size": [
             466,
             74
@@ -268,7 +268,7 @@
           "hidden": []
         },
         {
-          "variant": "Variant=success, Style=outlined",
+          "variant": "type=success, style=outlined",
           "size": [
             466,
             74
@@ -301,7 +301,7 @@
           }
         },
         {
-          "variant": "Variant=warning, Style=filled",
+          "variant": "type=warning, style=filled",
           "size": [
             466,
             74
@@ -368,7 +368,7 @@
           }
         },
         {
-          "variant": "Variant=warning, Style=outlined",
+          "variant": "type=warning, style=outlined",
           "size": [
             466,
             74
@@ -435,7 +435,7 @@
           }
         },
         {
-          "variant": "Variant=danger, Style=filled",
+          "variant": "type=danger, style=filled",
           "size": [
             466,
             74
@@ -502,7 +502,7 @@
           }
         },
         {
-          "variant": "Variant=danger, Style=outlined",
+          "variant": "type=danger, style=outlined",
           "size": [
             466,
             74
@@ -569,7 +569,7 @@
           }
         },
         {
-          "variant": "Variant=info, Style=filled",
+          "variant": "type=info, style=filled",
           "size": [
             466,
             74
@@ -635,7 +635,7 @@
           }
         },
         {
-          "variant": "Variant=info, Style=outlined",
+          "variant": "type=info, style=outlined",
           "size": [
             466,
             74
@@ -701,7 +701,7 @@
           }
         },
         {
-          "variant": "Variant=default, Style=filled",
+          "variant": "type=default, style=filled",
           "size": [
             466,
             74
@@ -766,7 +766,7 @@
           }
         },
         {
-          "variant": "Variant=default, Style=outlined",
+          "variant": "type=default, style=outlined",
           "size": [
             466,
             74
@@ -835,7 +835,7 @@
     {
       "name": "Alert Small",
       "id": "9080:29141",
-      "description": "Alert — callout message with semantic variants (default/info/success/warning/danger) and style options (filled/outlined). Toggle title, action button, and close button via boolean properties.",
+      "description": "Alert Small — compact callout message. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Toggle title, action button, and close button via boolean properties. Use inside cards and panels where the full Alert is too tall.",
       "docLinks": [],
       "variantCount": 10,
       "props": {
@@ -863,7 +863,7 @@
           "type": "BOOLEAN",
           "default": true
         },
-        "Variant": {
+        "type": {
           "type": "VARIANT",
           "default": "success",
           "options": [
@@ -874,7 +874,7 @@
             "danger"
           ]
         },
-        "Style": {
+        "style": {
           "type": "VARIANT",
           "default": "filled",
           "options": [
@@ -883,10 +883,10 @@
           ]
         }
       },
-      "defaultVariant": "Variant=success, Style=filled",
+      "defaultVariant": "type=success, style=filled",
       "defaultVariantNodeCount": 6,
       "defaultVariantTree": {
-        "name": "Variant=success, Style=filled",
+        "name": "type=success, style=filled",
         "type": "COMPONENT",
         "size": [
           466,
@@ -1075,7 +1075,7 @@
       },
       "variants": [
         {
-          "variant": "Variant=success, Style=filled",
+          "variant": "type=success, style=filled",
           "size": [
             466,
             60
@@ -1096,7 +1096,7 @@
           "hidden": []
         },
         {
-          "variant": "Variant=success, Style=outlined",
+          "variant": "type=success, style=outlined",
           "size": [
             466,
             60
@@ -1128,7 +1128,7 @@
           }
         },
         {
-          "variant": "Variant=warning, Style=filled",
+          "variant": "type=warning, style=filled",
           "size": [
             466,
             60
@@ -1194,7 +1194,7 @@
           }
         },
         {
-          "variant": "Variant=warning, Style=outlined",
+          "variant": "type=warning, style=outlined",
           "size": [
             466,
             60
@@ -1260,7 +1260,7 @@
           }
         },
         {
-          "variant": "Variant=danger, Style=filled",
+          "variant": "type=danger, style=filled",
           "size": [
             466,
             60
@@ -1326,7 +1326,7 @@
           }
         },
         {
-          "variant": "Variant=danger, Style=outlined",
+          "variant": "type=danger, style=outlined",
           "size": [
             466,
             60
@@ -1392,7 +1392,7 @@
           }
         },
         {
-          "variant": "Variant=info, Style=filled",
+          "variant": "type=info, style=filled",
           "size": [
             466,
             60
@@ -1457,7 +1457,7 @@
           }
         },
         {
-          "variant": "Variant=info, Style=outlined",
+          "variant": "type=info, style=outlined",
           "size": [
             466,
             60
@@ -1522,7 +1522,7 @@
           }
         },
         {
-          "variant": "Variant=default, Style=filled",
+          "variant": "type=default, style=filled",
           "size": [
             466,
             60
@@ -1586,7 +1586,7 @@
           }
         },
         {
-          "variant": "Variant=default, Style=outlined",
+          "variant": "type=default, style=outlined",
           "size": [
             466,
             60

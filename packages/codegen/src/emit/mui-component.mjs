@@ -453,7 +453,7 @@ export function renderMuiComponent(spec, tokens) {
       composition[layer] = comp;
   }
 
-  // Keys in the API's own order -- sizes md, sm, xl; variants primary, secondary, tertiary -- not
+  // Keys in the API's own order -- sizes md, sm, lg; variants primary, secondary, tertiary -- not
   // in whatever order the layers first mentioned them.
   const rank = (key) =>
     key.split(', ').map((part) => {

@@ -34,7 +34,7 @@ Default variant: `state=default, density=comfortable` · 6 variants · default s
       fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.600` · prop characters←title
     - **Meta** · text `body/sm/regular` "Conference room A · 6 attendees" · FILL/FIXED · 404×9  
       fill `color.text.secondary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.400`
-  - **Attendee** · instance of **Avatar** (size=md, type=text, color=purple, Shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
+  - **Attendee** · instance of **Avatar** (size=md, type=text, color=purple, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
     fill `color.purple.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
 
 ### Tokens used

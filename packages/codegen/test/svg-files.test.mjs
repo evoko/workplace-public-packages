@@ -36,8 +36,8 @@ const synthetic = (variants) => ({
 
 describe('renderSvgFiles: the files', () => {
   it('writes one file per icon variant and per vector logo', () => {
-    expect(files.size).toBe(687);
-    expect(under('icons')).toHaveLength(682);
+    expect(files.size).toBe(685);
+    expect(under('icons')).toHaveLength(680);
     expect(under('logos')).toHaveLength(5);
     // The app icons are raster and ship as PNGs, so no logo file is written for them.
     expect(under('logos').sort()).toEqual([
@@ -171,6 +171,6 @@ describe('renderSvgFiles: the round trip', () => {
       checked += 1;
     }
     expect(mismatched).toEqual([]);
-    expect(checked).toBe(686);
+    expect(checked).toBe(684);
   });
 });

@@ -221,7 +221,7 @@
               "size": "md",
               "type": "text",
               "color": "purple",
-              "Shade": "Light"
+              "shade": "Light"
             },
             "size": [
               32,

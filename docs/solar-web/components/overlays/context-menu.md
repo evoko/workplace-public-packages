@@ -4,24 +4,25 @@
 
 ## Component set: Context Menu Item
 
-Single row inside a Context Menu. States: default, hover, focus (keyboard), disabled, destructive (for irreversible actions like Delete). Pair with optional leading icon and a trailing keyboard shortcut (Kbd). Destructive styling uses color.text.feedback.danger — reserve for true destructive actions, not every secondary action. Submenus are not supported — keep to a single nesting level.
+Single row inside a Context Menu. 5 variants: state (default, hover, focus, disabled) × destructive (false, true), shipped as the used combinations. destructive=true is for irreversible actions like Delete and uses color.text.feedback.danger — reserve it for true destructive actions, not every secondary action. Pair with an optional leading icon and a trailing keyboard shortcut (Kbd). Submenus are not supported — keep to a single nesting level.
 
 ### Props
 
-| Prop               | Type    | Options / default                                    |
-| ------------------ | ------- | ---------------------------------------------------- |
-| `state`            | variant | **default** · hover · focus · disabled · destructive |
-| `label`            | text    | default `Action`                                     |
-| `shortcut`         | text    | default `⌘K`                                         |
-| `showLeadingIcon`  | boolean | default `true`                                       |
-| `show shortcut`    | boolean | default `true`                                       |
-| `showTrailingIcon` | boolean | default `false`                                      |
+| Prop               | Type    | Options / default                      |
+| ------------------ | ------- | -------------------------------------- |
+| `state`            | variant | **default** · hover · focus · disabled |
+| `destructive`      | variant | **false** · true                       |
+| `label`            | text    | default `Action`                       |
+| `shortcut`         | text    | default `⌘K`                           |
+| `showLeadingIcon`  | boolean | default `true`                         |
+| `show shortcut`    | boolean | default `true`                         |
+| `showTrailingIcon` | boolean | default `false`                        |
 
-Default variant: `state=default` · 5 variants · default size 200×36px
+Default variant: `state=default, destructive=false` · 5 variants · default size 200×36px
 
 ### Anatomy (default variant)
 
-- **state=default** · component · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+- **state=default, destructive=false** · component · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
   itemSpacing `stack.sm` · padding `inset.sm`
   - **LeadingIcon** · instance of **Icon/None** (solid=false) · FIXED/FIXED · 16×16  
     itemSpacing `stack.xs` · height `icon.sm` · prop visible←showLeadingIcon
@@ -60,17 +61,13 @@ Default variant: `state=default` · 5 variants · default size 200×36px
 
 ### Variant matrix
 
-| state       | size   | fill                  | stroke | effect | text                                          | icon                         |
-| ----------- | ------ | --------------------- | ------ | ------ | --------------------------------------------- | ---------------------------- |
-| default     | 200×36 |                       |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
-| hover       | 200×36 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
-| focus       | 200×36 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
-| disabled    | 200×36 |                       |        |        | `color.text.disabled`                         | `color.icon.disabled`        |
-| destructive | 200×36 |                       |        |        | `color.text.feedback.danger`                  | `color.icon.feedback.danger` |
-
-### Issues detected
-
-- State axis uses non-standard value(s): destructive.
+| state    | destructive | size   | fill                  | stroke | effect | text                                          | icon                         |
+| -------- | ----------- | ------ | --------------------- | ------ | ------ | --------------------------------------------- | ---------------------------- |
+| default  | false       | 200×36 |                       |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
+| hover    | false       | 200×36 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
+| focus    | false       | 200×36 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
+| disabled | false       | 200×36 |                       |        |        | `color.text.disabled`                         | `color.icon.disabled`        |
+| default  | true        | 200×36 |                       |        |        | `color.text.feedback.danger`                  | `color.icon.feedback.danger` |
 
 ## Component: Context Menu
 
@@ -88,20 +85,20 @@ Floating menu triggered by right-click or long-press. Anchored to the pointer po
   fill `color.surface.dialog` · stroke `color.border.subtle` 1px · effect `shadow/dialog` · padding `inset.none` · strokeWeight `border.default` · radius `radius.container`
   - **Content** · slot · column gap 0 pad 0/0/0/0 HUG/HUG · 200×253  
     prop slotContentId←Content
-    - **Context Menu Item** · instance of **Context Menu Item** (state=default) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+    - **Context Menu Item** · instance of **Context Menu Item** (state=default, destructive=false) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
       itemSpacing `stack.sm` · padding `inset.sm`
-    - **Context Menu Item** · instance of **Context Menu Item** (state=default) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+    - **Context Menu Item** · instance of **Context Menu Item** (state=default, destructive=false) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
       itemSpacing `stack.sm` · padding `inset.sm`
-    - **Context Menu Item** · instance of **Context Menu Item** (state=default) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+    - **Context Menu Item** · instance of **Context Menu Item** (state=default, destructive=false) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
       itemSpacing `stack.sm` · padding `inset.sm`
-    - **Context Menu Item** · instance of **Context Menu Item** (state=default) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+    - **Context Menu Item** · instance of **Context Menu Item** (state=default, destructive=false) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
       itemSpacing `stack.sm` · padding `inset.sm`
-    - **Context Menu Item** · instance of **Context Menu Item** (state=default) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+    - **Context Menu Item** · instance of **Context Menu Item** (state=default, destructive=false) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
       itemSpacing `stack.sm` · padding `inset.sm`
-    - **Context Menu Item** · instance of **Context Menu Item** (state=default) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+    - **Context Menu Item** · instance of **Context Menu Item** (state=default, destructive=false) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
       itemSpacing `stack.sm` · padding `inset.sm`
     - **Divider** · instance of **Divider** (orientation=horizontal, type=full) · row gap 0 pad 0/0/0/0 FILL/FIXED · 200×1
-    - **Context Menu Item** · instance of **Context Menu Item** (state=destructive) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
+    - **Context Menu Item** · instance of **Context Menu Item** (state=default, destructive=true) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 200×36  
       itemSpacing `stack.sm` · padding `inset.sm`
 
 ### Tokens used

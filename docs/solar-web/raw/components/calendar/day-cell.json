@@ -83,12 +83,16 @@
               "gap": 0,
               "pad": [
                 0,
-                2,
+                4,
                 0,
-                2
+                4
               ],
               "align": "MIN/CENTER",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/2xs",
+              "paddingRight": "Spatial:inset/2xs"
             },
             "children": [
               {
@@ -103,15 +107,17 @@
                   "gap": 0,
                   "pad": [
                     0,
-                    6,
+                    4,
                     0,
-                    6
+                    4
                   ],
                   "align": "CENTER/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "radius": 9999,
                 "vars": {
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/2xs",
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
                   "bottomLeftRadius": "Spatial:radius/pill",

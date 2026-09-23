@@ -4,14 +4,14 @@
 
 ## Component set: Alert
 
-Alert — callout message with semantic variants (default/info/success/warning/danger) and style options (filled/outlined). Toggle title, action button, and close button via boolean properties.
+Alert — callout message for in-page feedback. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Toggle title, action button, and close button via boolean properties. For a single-line top-of-page message use Banner; for the compact form use Alert Small.
 
 ### Props
 
 | Prop               | Type    | Options / default                                                  |
 | ------------------ | ------- | ------------------------------------------------------------------ |
-| `Variant`          | variant | default · info · **success** · warning · danger                    |
-| `Style`            | variant | **filled** · outlined                                              |
+| `type`             | variant | default · info · **success** · warning · danger                    |
+| `style`            | variant | **filled** · outlined                                              |
 | `Show title`       | boolean | default `true`                                                     |
 | `Show action`      | boolean | default `true`                                                     |
 | `Action`           | text    | default `Action`                                                   |
@@ -19,11 +19,11 @@ Alert — callout message with semantic variants (default/info/success/warning/d
 | `Label`            | text    | default `Label`                                                    |
 | `Show description` | boolean | default `true`                                                     |
 
-Default variant: `Variant=success, Style=filled` · 10 variants · default size 466×74px
+Default variant: `type=success, style=filled` · 10 variants · default size 466×74px
 
 ### Anatomy (default variant)
 
-- **Variant=success, Style=filled** · component · row gap 12 pad 16/16/16/16 FIXED/HUG · 466×74  
+- **type=success, style=filled** · component · row gap 12 pad 16/16/16/16 FIXED/HUG · 466×74  
   fill `color.surface.feedback.success.subtle` · stroke `color.border.feedback.success.subtle` 1px · effect `shadow/dialog` · itemSpacing `inset.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
   - **StatusIndicator** · instance of **StatusIndicator** (type=success, size=md) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 20×20  
     fill `color.surface.feedback.success.strong` · stroke `color.border.medium` 1px · itemSpacing `stack.none` · strokeWeight `border.default` · radius `radius.pill`
@@ -68,7 +68,7 @@ Default variant: `Variant=success, Style=filled` · 10 variants · default size 
 
 ### Variant matrix
 
-| Variant | Style    | size   | fill                                    | stroke                                 | effect          | text                                                  | icon                                                            |
+| type    | style    | size   | fill                                    | stroke                                 | effect          | text                                                  | icon                                                            |
 | ------- | -------- | ------ | --------------------------------------- | -------------------------------------- | --------------- | ----------------------------------------------------- | --------------------------------------------------------------- |
 | success | filled   | 466×74 | `color.surface.feedback.success.subtle` | `color.border.feedback.success.subtle` | `shadow/dialog` | `color.text.feedback.success`<br>`color.text.primary` | `color.icon.inverse`                                            |
 | success | outlined | 466×74 | `color.surface.base`                    | `color.border.subtle`                  | `shadow/dialog` | `color.text.feedback.success`<br>`color.text.primary` | `color.icon.inverse`                                            |
@@ -83,14 +83,14 @@ Default variant: `Variant=success, Style=filled` · 10 variants · default size 
 
 ## Component set: Alert Small
 
-Alert — callout message with semantic variants (default/info/success/warning/danger) and style options (filled/outlined). Toggle title, action button, and close button via boolean properties.
+Alert Small — compact callout message. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Toggle title, action button, and close button via boolean properties. Use inside cards and panels where the full Alert is too tall.
 
 ### Props
 
 | Prop               | Type    | Options / default                                                  |
 | ------------------ | ------- | ------------------------------------------------------------------ |
-| `Variant`          | variant | default · info · **success** · warning · danger                    |
-| `Style`            | variant | **filled** · outlined                                              |
+| `type`             | variant | default · info · **success** · warning · danger                    |
+| `style`            | variant | **filled** · outlined                                              |
 | `Show title`       | boolean | default `true`                                                     |
 | `Show action`      | boolean | default `true`                                                     |
 | `Action`           | text    | default `Action`                                                   |
@@ -98,11 +98,11 @@ Alert — callout message with semantic variants (default/info/success/warning/d
 | `Label`            | text    | default `Label`                                                    |
 | `Show description` | boolean | default `true`                                                     |
 
-Default variant: `Variant=success, Style=filled` · 10 variants · default size 466×60px
+Default variant: `type=success, style=filled` · 10 variants · default size 466×60px
 
 ### Anatomy (default variant)
 
-- **Variant=success, Style=filled** · component · row gap 12 pad 12/12/12/12 FIXED/HUG · 466×60  
+- **type=success, style=filled** · component · row gap 12 pad 12/12/12/12 FIXED/HUG · 466×60  
   fill `color.surface.feedback.success.subtle` · stroke `color.border.feedback.success.subtle` 1px · itemSpacing `inset.sm` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.container`
   - **StatusIndicator** · instance of **StatusIndicator** (type=success, size=sm) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 16×16  
     fill `color.surface.feedback.success.strong` · stroke `color.border.medium` 1px · itemSpacing `stack.none` · strokeWeight `border.default` · radius `radius.pill`
@@ -146,7 +146,7 @@ Default variant: `Variant=success, Style=filled` · 10 variants · default size 
 
 ### Variant matrix
 
-| Variant | Style    | size   | fill                                    | stroke                                 | effect | text                                                  | icon                                                            |
+| type    | style    | size   | fill                                    | stroke                                 | effect | text                                                  | icon                                                            |
 | ------- | -------- | ------ | --------------------------------------- | -------------------------------------- | ------ | ----------------------------------------------------- | --------------------------------------------------------------- |
 | success | filled   | 466×60 | `color.surface.feedback.success.subtle` | `color.border.feedback.success.subtle` |        | `color.text.feedback.success`<br>`color.text.primary` | `color.icon.inverse`                                            |
 | success | outlined | 466×60 | `color.surface.base`                    | `color.border.subtle`                  |        | `color.text.feedback.success`<br>`color.text.primary` | `color.icon.inverse`                                            |

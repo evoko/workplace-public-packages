@@ -13,7 +13,7 @@
 ### Anatomy (default variant)
 
 - **.Component Description** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 1280×1074  
-  fill `color.mono.white` · stroke `color.neutral.100` 1px
+  fill `color.mono.white` · stroke `color.neutral.100` 1px · radius `radius.dialog`
   - **Header** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 1280×168  
     stroke `color.neutral.100` mixedpx
     - **Container** · frame · row gap 0 pad 0/40/0/40 FILL/FIXED · 1280×72  
@@ -22,14 +22,14 @@
         fill `color.neutral.900` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.600`
       - **Biamp Design System** · text `body/md/semibold` "Biamp Design System" · FILL/HUG · 854×10  
         fill `color.neutral.900` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.600`
-      - **Version** · frame · row gap 8 pad 6/8/6/8 HUG/HUG · 35×22  
-        fill `color.neutral.900` · itemSpacing `inset.xs` · padding `inset.xs` · radius `radius.control`
+      - **Version** · frame · row gap 8 pad 4/8/4/8 HUG/HUG · 35×18  
+        fill `color.neutral.900` · itemSpacing `inset.xs` · padding `inset.xs`, `inset.2xs` · radius `radius.control`
         - **1.0** · text `body/md/semibold` "1.0" · HUG/HUG · 19×10  
           fill `color.neutral.100` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.600`
       - ~~**Description**~~ (hidden by default) · text "Description" · FIXED/FIXED · 108×15  
         fill `color.neutral.700`
-    - **.Subheader** · frame · column gap 20 pad 32/40/32/40 FILL/FIXED · 1280×96  
-      stroke `color.neutral.900` mixedpx · itemSpacing `inset.lg` · padding `8fd955719573`
+    - **.Subheader** · frame · column gap 20 pad 28/40/28/40 FILL/FIXED · 1280×96  
+      stroke `color.neutral.900` mixedpx · itemSpacing `inset.lg` · padding `8fd955719573`, `inset.2xl`
       - **Component name** · text `title/lg` "Component name" · HUG/HUG · 325×29  
         fill `color.neutral.900` · lineHeight `e8eb718f4e2f` · fontFamily `type.font-family.inter` · fontSize `e8cce36e4d83` · fontStyle `type.font-weight.500`
       - ~~**Subheadline**~~ (hidden by default) · text "Subheadline" · FIXED/FIXED · 79×10  
@@ -84,8 +84,8 @@
 | Fills           | `color.mono.white`, `color.neutral.900`                                                                                                                                                                      |
 | Strokes         | `color.neutral.100`, `color.neutral.900`                                                                                                                                                                     |
 | Text color      | `color.neutral.100`, `color.neutral.400`, `color.neutral.700`, `color.neutral.900`, `color.red.500`                                                                                                          |
-| Spacing         | `inset.lg`, `inset.xl`, `inset.xs`, `stack.2xl`, `stack.lg`, `8fd955719573`                                                                                                                                  |
-| Radius          | `radius.control`                                                                                                                                                                                             |
+| Spacing         | `inset.2xl`, `inset.2xs`, `inset.lg`, `inset.xl`, `inset.xs`, `stack.2xl`, `stack.lg`, `8fd955719573`                                                                                                        |
+| Radius          | `radius.control`, `radius.dialog`                                                                                                                                                                            |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.font-weight.600`, `type.line-height.body.md`, `type.line-height.title.sm`, `type.size.body.md`, `type.size.title.sm`, `e8cce36e4d83`, `e8eb718f4e2f` |
 | Text styles     | `body/md/semibold`, `title/lg`, `title/sm`                                                                                                                                                                   |
 | Other           | `textRangeFills={Primitives:color/green/500}`, `textRangeFills={Primitives:color/neutral/900}`                                                                                                               |
@@ -100,8 +100,3 @@
 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.mono.white`, `color.neutral.900`, `color.neutral.100`, `color.neutral.400`, `color.neutral.700`, `color.red.500`.
-- Hard-coded radius `16px` on layer _.Component Description_
-- Hard-coded paddingTop `6px` on layer _Header › Container › Version_
-- Hard-coded paddingBottom `6px` on layer _Header › Container › Version_
-- Hard-coded paddingTop `32px` on layer _Header › .Subheader_
-- Hard-coded paddingBottom `32px` on layer _Header › .Subheader_

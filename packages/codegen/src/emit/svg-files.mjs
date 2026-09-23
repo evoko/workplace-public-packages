@@ -21,7 +21,7 @@ const OUT_DIR = join(packagesDir, 'assets', 'src', 'generated', 'svg');
  * Nothing is escaped, because nothing here can carry markup: `checkPathData` has already
  * rejected every character in `d` outside numbers, separators and `M L C H V Z`, and a fill is
  * a validated `#rrggbb`. `fill-rule` is written only for `evenodd`; `nonzero` is SVG's default
- * and spelling it out would add 682 attributes that say nothing.
+ * and spelling it out would add 680 attributes that say nothing.
  */
 const pathElement = (path, fill) =>
   `<path d="${path.d}"` +

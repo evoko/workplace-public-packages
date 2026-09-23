@@ -54,7 +54,7 @@ RecordingCanvas record(SolarVector vector, Size size,
 
 /// Every vector in the generated `icons.dart`, read back from the file.
 ///
-/// Dart has no reflection, so there is no way to walk 682 static fields by name -- and adding a
+/// Dart has no reflection, so there is no way to walk 680 static fields by name -- and adding a
 /// `Map<String, SolarVector>` to the library to make one possible is exactly what the emitter
 /// refuses to do, because a map would retain all 358 KB of path data in every build that touched
 /// the class. Reading the generated source instead keeps the "every icon paints" assertion over
@@ -121,12 +121,12 @@ void main() {
   final Map<String, SolarVector> generated = readGeneratedIcons();
 
   group('the generated set', () {
-    test('is all 682 variants of all 341 icons', () {
-      expect(generated, hasLength(682));
+    test('is all 680 variants of all 340 icons', () {
+      expect(generated, hasLength(680));
       expect(
         generated.values
             .fold<int>(0, (int n, SolarVector v) => n + v.paths.length),
-        792,
+        790,
       );
       // The constants the widgets are documented with really exist and really are constants.
       expect(SolarIcons.chevronRightOutline.paths, hasLength(1));
@@ -143,7 +143,7 @@ void main() {
       );
     });
 
-    test('every one of the 682 paints without throwing', () {
+    test('every one of the 680 paints without throwing', () {
       // The whole set, not a sample: a path string that the Dart parser cannot replay would be
       // an icon that throws inside an app, and there is no reason to find that out one icon at
       // a time. Painting is what proves it, because parsing happens inside the painter.

@@ -4,7 +4,7 @@
 
 ## Component set: Top Bar
 
-App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and account Avatar. 6 variants: breakpoint (desktop, mobile) × hasSidebar (true, false) × isLoggedIn (True, False), shipped as the used combinations only. Props: hasTenantSwitcher, hasSearchField, hasNotifications (booleans). It is the banner landmark; the app name links home and the search opens Search Results Panel.
+App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and account Avatar. 6 variants: breakpoint (desktop, mobile) × hasSidebar (true, false) × isLoggedIn (true, false), shipped as the used combinations only. Props: hasTenantSwitcher, hasSearchField, hasNotifications (booleans). It is the banner landmark; the app name links home and the search opens Search Results Panel.
 
 ### Props
 
@@ -12,16 +12,16 @@ App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and
 | ------------------- | ------- | -------------------- |
 | `breakpoint`        | variant | mobile · **desktop** |
 | `hasSidebar`        | variant | false · **true**     |
-| `isLoggedIn`        | variant | **True** · False     |
+| `isLoggedIn`        | variant | **true** · false     |
 | `hasTenantSwitcher` | boolean | default `true`       |
 | `hasSearchField`    | boolean | default `true`       |
 | `hasNotifications`  | boolean | default `true`       |
 
-Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=True` · 6 variants · default size 1440×56px
+Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=true` · 6 variants · default size 1440×56px
 
 ### Anatomy (default variant)
 
-- **breakpoint=desktop, hasSidebar=true, isLoggedIn=True** · component · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
+- **breakpoint=desktop, hasSidebar=true, isLoggedIn=true** · component · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
   fill `color.surface.background` · padding `stack.md`
   - **App Name** · instance of **App Name** (type=vertical) · row gap 12 pad 0/0/0/0 HUG/HUG · 131×32  
     itemSpacing `inset.sm` · padding `inset.none` · radius `radius.control`
@@ -43,7 +43,7 @@ Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=True` · 6 var
       fill `color.surface.background` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs`, `inset.none`, `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasTenantSwitcher
       - ~~**Icon/None**~~ (hidden by default) · instance of **Icon/None** (solid=false) · FIXED/FIXED · 20×20  
         height `icon.md`
-      - **Avatar** · instance of **Avatar** (size=sm, type=logo, color=neutral, Shade=Logo) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 24×24  
+      - **Avatar** · instance of **Avatar** (size=sm, type=logo, color=neutral, shade=Logo) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 24×24  
         fill `IMAGE` ⚠️ hard-coded · radius `radius.control`
       - **Label** · text `body/md/medium` "Acme Hospitality" · HUG/HUG · 109×10  
         fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
@@ -51,7 +51,7 @@ Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=True` · 6 var
         height `icon.md`
       - **Icon/ChevronDown** · instance of **Icon/ChevronDown** (solid=false) · FIXED/FIXED · 16×16  
         height `icon.sm`
-    - **Avatar** · instance of **Avatar** (size=md, type=text, color=purple, Shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
+    - **Avatar** · instance of **Avatar** (size=md, type=text, color=purple, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
       fill `color.purple.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
 
 ### Tokens used
@@ -91,17 +91,17 @@ Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=True` · 6 var
 
 | breakpoint | hasSidebar | isLoggedIn | size    | fill                       | stroke | effect | text                                                                                                                                                  | icon                                                                                                           |
 | ---------- | ---------- | ---------- | ------- | -------------------------- | ------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| desktop    | true       | True       | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.purple.700`                                                           | `color.icon.tertiary`<br>`color.icon.secondary`<br>`color.icon.primary`                                        |
-| desktop    | true       | False      | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.tertiary`<br>`color.icon.secondary`<br>`color.action.primary.icon.default`                         |
-| desktop    | false      | True       | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.purple.700`                                                           | `color.icon.primary`<br>`color.icon.tertiary`<br>`color.icon.secondary`                                        |
-| desktop    | false      | False      | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.icon.tertiary`<br>`color.icon.secondary`<br>`color.action.primary.icon.default` |
-| mobile     | true       | False      | 393×56  | `color.surface.background` |        |        | `color.text.primary`<br>`color.purple.700`                                                                                                            | `color.action.secondary.icon.default`                                                                          |
-| mobile     | false      | False      | 393×56  | `color.surface.background` |        |        | `color.text.primary`<br>`color.purple.700`                                                                                                            | `color.icon.primary`                                                                                           |
+| desktop    | true       | true       | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.purple.700`                                                           | `color.icon.tertiary`<br>`color.icon.secondary`<br>`color.icon.primary`                                        |
+| desktop    | true       | false      | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.tertiary`<br>`color.icon.secondary`<br>`color.action.primary.icon.default`                         |
+| desktop    | false      | true       | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.purple.700`                                                           | `color.icon.primary`<br>`color.icon.tertiary`<br>`color.icon.secondary`                                        |
+| desktop    | false      | false      | 1440×56 | `color.surface.background` |        |        | `color.text.primary`<br>`color.text.tertiary`<br>`color.text.inverse`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.icon.tertiary`<br>`color.icon.secondary`<br>`color.action.primary.icon.default` |
+| mobile     | true       | false      | 393×56  | `color.surface.background` |        |        | `color.text.primary`<br>`color.purple.700`                                                                                                            | `color.action.secondary.icon.default`                                                                          |
+| mobile     | false      | false      | 393×56  | `color.surface.background` |        |        | `color.text.primary`<br>`color.purple.700`                                                                                                            | `color.icon.primary`                                                                                           |
 
 ### Issues detected
 
 - Primitive color bound directly (CLR-002): `color.purple.50`, `color.purple.700`.
-- Hard-coded gap `12px` on layer _breakpoint=desktop, hasSidebar=true, isLoggedIn=True_
+- Hard-coded gap `12px` on layer _breakpoint=desktop, hasSidebar=true, isLoggedIn=true_
 
 ## Component set: App Name
 

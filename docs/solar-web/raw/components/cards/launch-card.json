@@ -635,7 +635,7 @@
             ],
             "layout": {
               "dir": "VERTICAL",
-              "gap": 18,
+              "gap": 16,
               "pad": [
                 0,
                 0,
@@ -645,17 +645,20 @@
               "align": "SPACE_BETWEEN/MIN",
               "sizing": "FILL/FIXED"
             },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
+            },
             "children": [
               {
                 "name": "Content",
                 "type": "FRAME",
                 "size": [
                   391,
-                  357
+                  347
                 ],
                 "layout": {
                   "dir": "VERTICAL",
-                  "gap": 18,
+                  "gap": 16,
                   "pad": [
                     0,
                     0,
@@ -664,6 +667,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -675,7 +681,7 @@
                     ],
                     "layout": {
                       "dir": "HORIZONTAL",
-                      "gap": 18,
+                      "gap": 16,
                       "pad": [
                         0,
                         0,
@@ -684,6 +690,9 @@
                       ],
                       "align": "SPACE_BETWEEN/CENTER",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/md"
                     },
                     "children": [
                       {
@@ -793,11 +802,11 @@
                     "type": "FRAME",
                     "size": [
                       391,
-                      266
+                      260
                     ],
                     "layout": {
                       "dir": "VERTICAL",
-                      "gap": 18,
+                      "gap": 16,
                       "pad": [
                         0,
                         0,
@@ -806,6 +815,9 @@
                       ],
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/md"
                     },
                     "children": [
                       {

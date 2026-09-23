@@ -5,7 +5,7 @@
     {
       "name": "SearchResultsPanel",
       "id": "7258:3327",
-      "description": "Global search results: GlobalSearch field with filter Tags, then results grouped by category with a See all Link per group. 4 variants: state (default, empty, no-results, ghost). empty is before a query; no-results is after a query with zero hits; ghost is loading. Rows are ResultRow instances; the panel announces the result count on each change.",
+      "description": "Global search results: GlobalSearch field with filter Tags, then results grouped by category with a See all Link per group. 4 variants: state (default, empty, no-results) × ghost (false, true), shipped as the used combinations. empty is before a query; no-results is after a query with zero hits; ghost=true is loading. Rows are ResultRow instances; the panel announces the result count on each change.",
       "docLinks": [],
       "variantCount": 4,
       "props": {
@@ -15,15 +15,22 @@
           "options": [
             "no-results",
             "empty",
-            "ghost",
             "default"
+          ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "state=default",
+      "defaultVariant": "state=default, ghost=false",
       "defaultVariantNodeCount": 73,
       "defaultVariantTree": {
-        "name": "state=default",
+        "name": "state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           400,
@@ -702,7 +709,7 @@
       },
       "variants": [
         {
-          "variant": "state=default",
+          "variant": "state=default, ghost=false",
           "size": [
             400,
             470
@@ -731,7 +738,7 @@
           ]
         },
         {
-          "variant": "state=no-results",
+          "variant": "state=no-results, ghost=false",
           "size": [
             400,
             300
@@ -910,7 +917,7 @@
           }
         },
         {
-          "variant": "state=ghost",
+          "variant": "state=default, ghost=true",
           "size": [
             400,
             396
@@ -1744,7 +1751,7 @@
           }
         },
         {
-          "variant": "state=empty",
+          "variant": "state=empty, ghost=false",
           "size": [
             400,
             308

@@ -5,7 +5,7 @@
     {
       "name": "Insight Card",
       "id": "3151:2",
-      "description": "Displays alerts, faults, or status information with a severity icon, count, and description. Used on dashboards for monitoring.",
+      "description": "Displays alerts, faults, or status information with a severity icon, count, and description. 15 variants: severity (danger, warning, info, success) × state (default, hover, selected) plus ghost=true placeholders. ghost is the loading skeleton. Used on dashboards for monitoring; for a single-line version use Insight Row.",
       "docLinks": [],
       "variantCount": 15,
       "props": {
@@ -16,8 +16,7 @@
             "danger",
             "warning",
             "info",
-            "success",
-            "ghost"
+            "success"
           ]
         },
         "state": {
@@ -28,12 +27,20 @@
             "hover",
             "selected"
           ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
         }
       },
-      "defaultVariant": "severity=success, state=default",
+      "defaultVariant": "severity=success, state=default, ghost=false",
       "defaultVariantNodeCount": 8,
       "defaultVariantTree": {
-        "name": "severity=success, state=default",
+        "name": "severity=success, state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           320,
@@ -241,7 +248,7 @@
       },
       "variants": [
         {
-          "variant": "severity=success, state=default",
+          "variant": "severity=success, state=default, ghost=false",
           "size": [
             320,
             68
@@ -264,7 +271,7 @@
           "hidden": []
         },
         {
-          "variant": "severity=danger, state=default",
+          "variant": "severity=danger, state=default, ghost=false",
           "size": [
             320,
             68
@@ -324,7 +331,7 @@
           }
         },
         {
-          "variant": "severity=warning, state=default",
+          "variant": "severity=warning, state=default, ghost=false",
           "size": [
             320,
             68
@@ -384,7 +391,7 @@
           }
         },
         {
-          "variant": "severity=info, state=default",
+          "variant": "severity=info, state=default, ghost=false",
           "size": [
             320,
             68
@@ -443,7 +450,7 @@
           }
         },
         {
-          "variant": "severity=ghost, state=default",
+          "variant": "severity=info, state=default, ghost=true",
           "size": [
             320,
             68
@@ -526,7 +533,7 @@
           }
         },
         {
-          "variant": "severity=success, state=hover",
+          "variant": "severity=success, state=hover, ghost=false",
           "size": [
             320,
             68
@@ -557,7 +564,7 @@
           }
         },
         {
-          "variant": "severity=danger, state=hover",
+          "variant": "severity=danger, state=hover, ghost=false",
           "size": [
             320,
             68
@@ -622,7 +629,7 @@
           }
         },
         {
-          "variant": "severity=warning, state=hover",
+          "variant": "severity=warning, state=hover, ghost=false",
           "size": [
             320,
             68
@@ -687,7 +694,7 @@
           }
         },
         {
-          "variant": "severity=info, state=hover",
+          "variant": "severity=info, state=hover, ghost=false",
           "size": [
             320,
             68
@@ -751,7 +758,7 @@
           }
         },
         {
-          "variant": "severity=ghost, state=hover",
+          "variant": "severity=info, state=hover, ghost=true",
           "size": [
             320,
             68
@@ -839,7 +846,7 @@
           }
         },
         {
-          "variant": "severity=success, state=selected",
+          "variant": "severity=success, state=selected, ghost=false",
           "size": [
             320,
             68
@@ -872,7 +879,7 @@
           }
         },
         {
-          "variant": "severity=danger, state=selected",
+          "variant": "severity=danger, state=selected, ghost=false",
           "size": [
             320,
             68
@@ -939,7 +946,7 @@
           }
         },
         {
-          "variant": "severity=warning, state=selected",
+          "variant": "severity=warning, state=selected, ghost=false",
           "size": [
             320,
             68
@@ -1006,7 +1013,7 @@
           }
         },
         {
-          "variant": "severity=info, state=selected",
+          "variant": "severity=info, state=selected, ghost=false",
           "size": [
             320,
             68
@@ -1072,7 +1079,7 @@
           }
         },
         {
-          "variant": "severity=ghost, state=selected",
+          "variant": "severity=info, state=selected, ghost=true",
           "size": [
             320,
             68
@@ -1166,7 +1173,7 @@
     {
       "name": "Insight Card Small",
       "id": "9240:30553",
-      "description": "Displays alerts, faults, or status information with a severity icon, count, and description. Used on dashboards for monitoring.",
+      "description": "Compact alert or fault tile with a severity icon, count, and description. 10 variants: severity (danger, warning, info, success) × state (default, hover) plus ghost=true placeholders. ghost is the loading skeleton. Use in dense dashboard grids; for the full card use Insight Card.",
       "docLinks": [],
       "variantCount": 10,
       "props": {
@@ -1177,8 +1184,7 @@
             "danger",
             "warning",
             "info",
-            "success",
-            "ghost"
+            "success"
           ]
         },
         "state": {
@@ -1188,12 +1194,20 @@
             "default",
             "hover"
           ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
         }
       },
-      "defaultVariant": "severity=success, state=default",
+      "defaultVariant": "severity=success, state=default, ghost=false",
       "defaultVariantNodeCount": 6,
       "defaultVariantTree": {
-        "name": "severity=success, state=default",
+        "name": "severity=success, state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           320,
@@ -1382,7 +1396,7 @@
       },
       "variants": [
         {
-          "variant": "severity=success, state=default",
+          "variant": "severity=success, state=default, ghost=false",
           "size": [
             320,
             56
@@ -1404,7 +1418,7 @@
           "hidden": []
         },
         {
-          "variant": "severity=danger, state=default",
+          "variant": "severity=danger, state=default, ghost=false",
           "size": [
             320,
             56
@@ -1490,7 +1504,7 @@
           }
         },
         {
-          "variant": "severity=warning, state=default",
+          "variant": "severity=warning, state=default, ghost=false",
           "size": [
             320,
             56
@@ -1576,7 +1590,7 @@
           }
         },
         {
-          "variant": "severity=info, state=default",
+          "variant": "severity=info, state=default, ghost=false",
           "size": [
             320,
             56
@@ -1661,7 +1675,7 @@
           }
         },
         {
-          "variant": "severity=ghost, state=default",
+          "variant": "severity=info, state=default, ghost=true",
           "size": [
             320,
             56
@@ -1774,7 +1788,7 @@
           }
         },
         {
-          "variant": "severity=success, state=hover",
+          "variant": "severity=success, state=hover, ghost=false",
           "size": [
             320,
             56
@@ -1893,7 +1907,7 @@
           }
         },
         {
-          "variant": "severity=danger, state=hover",
+          "variant": "severity=danger, state=hover, ghost=false",
           "size": [
             320,
             56
@@ -1986,7 +2000,7 @@
           }
         },
         {
-          "variant": "severity=warning, state=hover",
+          "variant": "severity=warning, state=hover, ghost=false",
           "size": [
             320,
             56
@@ -2079,7 +2093,7 @@
           }
         },
         {
-          "variant": "severity=info, state=hover",
+          "variant": "severity=info, state=hover, ghost=false",
           "size": [
             320,
             56
@@ -2171,7 +2185,7 @@
           }
         },
         {
-          "variant": "severity=ghost, state=hover",
+          "variant": "severity=info, state=hover, ghost=true",
           "size": [
             320,
             56

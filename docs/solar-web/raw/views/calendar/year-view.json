@@ -8,7 +8,7 @@
       "id": "6829:2",
       "description": "",
       "props": {},
-      "nodeCount": 1378,
+      "nodeCount": 1366,
       "tree": {
         "name": "Year View",
         "type": "COMPONENT",
@@ -190,12 +190,12 @@
       "census": {
         "Calendar Toolbar": 1,
         "Icon Button": 2,
-        "Icon/None": 17,
+        "Icon/None": 13,
         "Button": 2,
         "Spinner": 2,
         "Counter": 2,
         "Segmented Control": 1,
-        "Segmented Control Item": 6,
+        "Segmented Control Item": 4,
         "Icon/Plus": 1
       }
     }

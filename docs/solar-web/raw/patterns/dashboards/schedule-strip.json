@@ -837,7 +837,7 @@
     {
       "name": "Schedule Strip",
       "id": "6593:41547",
-      "description": "Titled panel that lists a sequence of Schedule Entry rows with an overflow menu in the header. 3 variants: state (default, empty, ghost). default holds entries in the content slot; empty is the no-schedule message; ghost is the loading skeleton. Props: content (slot). Keep entries in chronological order; the strip does not sort.",
+      "description": "Titled panel that lists a sequence of Schedule Entry rows with an overflow menu in the header. 3 variants: state (default, empty) × ghost (false, true), shipped as the used combinations. default holds entries in the content slot; empty is the no-schedule message; ghost=true is the loading skeleton. Props: content (slot). Keep entries in chronological order; the strip does not sort.",
       "docLinks": [],
       "variantCount": 3,
       "props": {
@@ -855,15 +855,22 @@
           "default": "default",
           "options": [
             "empty",
-            "default",
-            "ghost"
+            "default"
+          ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "state=default",
+      "defaultVariant": "state=default, ghost=false",
       "defaultVariantNodeCount": 50,
       "defaultVariantTree": {
-        "name": "state=default",
+        "name": "state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           380,
@@ -1192,7 +1199,7 @@
       },
       "variants": [
         {
-          "variant": "state=default",
+          "variant": "state=default, ghost=false",
           "size": [
             380,
             343
@@ -1220,7 +1227,7 @@
           "hidden": []
         },
         {
-          "variant": "state=ghost",
+          "variant": "state=default, ghost=true",
           "size": [
             380,
             343
@@ -1389,7 +1396,7 @@
           }
         },
         {
-          "variant": "state=empty",
+          "variant": "state=empty, ghost=false",
           "size": [
             380,
             343

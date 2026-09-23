@@ -551,47 +551,6 @@
       "fileStem": "zone-group"
     },
     {
-      "name": "Phone",
-      "figmaName": "Icon/Phone",
-      "kebab": "phone",
-      "setId": "5317:662",
-      "description": "Phone. Related: call, telephone, dial, VoIP, handset",
-      "size": [
-        24,
-        24
-      ],
-      "variants": {
-        "outline": {
-          "id": "5317:658",
-          "size": [
-            24,
-            24
-          ],
-          "leaves": 1,
-          "fills": [
-            "Primitives:color/neutral/900"
-          ],
-          "file": "svg/outline/phone--audio-dsp.svg"
-        },
-        "solid": {
-          "id": "5317:660",
-          "size": [
-            24,
-            24
-          ],
-          "leaves": 1,
-          "fills": [
-            "Primitives:color/neutral/900"
-          ],
-          "file": "svg/solid/phone--audio-dsp.svg"
-        }
-      },
-      "issues": [
-        "Name collision: \"Icon/Phone\" also exists on page communication; exported as phone--audio-dsp"
-      ],
-      "fileStem": "phone--audio-dsp"
-    },
-    {
       "name": "Microphone",
       "figmaName": "Icon/Microphone",
       "kebab": "microphone",

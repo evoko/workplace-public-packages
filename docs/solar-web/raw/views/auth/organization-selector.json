@@ -67,7 +67,7 @@
             "variant": {
               "breakpoint": "desktop",
               "hasSidebar": "true",
-              "isLoggedIn": "True"
+              "isLoggedIn": "true"
             },
             "size": [
               1440,
@@ -353,7 +353,7 @@
                 "variant": {
                   "breakpoint": "mobile",
                   "hasSidebar": "true",
-                  "isLoggedIn": "False"
+                  "isLoggedIn": "false"
                 },
                 "size": [
                   393,
@@ -553,7 +553,7 @@
                 "variant": {
                   "breakpoint": "mobile",
                   "hasSidebar": "true",
-                  "isLoggedIn": "False"
+                  "isLoggedIn": "false"
                 },
                 "size": [
                   393,

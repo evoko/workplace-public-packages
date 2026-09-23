@@ -1,95 +1,86 @@
 # Banner
 
-> SOLAR Web · Figma page `↳ 🟢 Banner` (id `2797:1322`) · section `components/feedback` · raw data: [`raw/components/feedback/banner.json`](../../raw/components/feedback/banner.json)
+> SOLAR Web · Figma page `↳ 🟠 Banner` (id `2797:1322`) · section `components/feedback` · raw data: [`raw/components/feedback/banner.json`](../../raw/components/feedback/banner.json)
 
 ## Component set: Banner
 
-Banner — a bold, full-width notification for top-of-page messages. High-priority alternative to the subtle alert component. Single line with truncation, optional action link and close button. Inspired by Atlassian Design System.
+Banner — a bold, full-width notification for page- or app-wide messages. High-priority alternative to Alert. Single line with truncation; offer at most one action (a Button or the text action) plus an optional close icon. The close icon and text action are drawn without a container — implement each with a ≥44×44px touch area (see Accessibility).
 
 ### Props
 
-| Prop              | Type    | Options / default                                                  |
-| ----------------- | ------- | ------------------------------------------------------------------ |
-| `Variant`         | variant | **default** · info · success · warning · danger                    |
-| `Show Action`     | boolean | default `true`                                                     |
-| `Description`     | text    | default `Lorem ipsum dolor sit amet, consectetur adipiscing elit.` |
-| `Action`          | text    | default `Action`                                                   |
-| `Show Buttons`    | boolean | default `true`                                                     |
-| `Show Icon/Close` | boolean | default `true`                                                     |
+| Prop                    | Type    | Options / default                                                  |
+| ----------------------- | ------- | ------------------------------------------------------------------ |
+| `type`                  | variant | **neutral** · info · success · warning · danger                    |
+| `Show Action`           | boolean | default `true`                                                     |
+| `Description`           | text    | default `Lorem ipsum dolor sit amet, consectetur adipiscing elit.` |
+| `Action`                | text    | default `Action`                                                   |
+| `Show Close`            | boolean | default `true`                                                     |
+| `Show Primary Button`   | boolean | default `false`                                                    |
+| `Show Secondary Button` | boolean | default `false`                                                    |
 
-Default variant: `Variant=default` · 5 variants · default size 458×44px
+Default variant: `type=neutral` · 5 variants · default size 458×44px
 
 ### Anatomy (default variant)
 
-- **Variant=default** · component · row gap 12 pad 12/12/12/12 FIXED/FIXED · 458×44  
+- **type=neutral** · component · row gap 12 pad 12/12/12/12 FIXED/FIXED · 458×44  
   fill `color.surface.feedback.neutral.medium` · itemSpacing `inset.sm` · padding `inset.sm`
-  - **icon** · frame · FIXED/FIXED · 20×20
-    - **Union** · boolean_operation · 5×10  
-      fill `color.icon.primary`
-      - **Icon** · vector · 5×6  
-        fill `color.icon.primary`
-      - **Icon** · vector · 2×2  
-        fill `color.icon.primary`
-    - **Icon** · vector · 18×18  
-      fill `color.icon.primary`
-  - **message** · text `body/md/regular` "Lorem ipsum dolor sit amet, consectetur adipiscing elit." · FILL/HUG · 172×10  
-    fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400` · prop characters←Description
-  - **action group** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 218×32  
+  - **Icon/Info** · instance of **Icon/Info** (solid=false) · FIXED/FIXED · 20×20  
+    width `icon.md`
+  - **message** · text `body/md/medium` "Lorem ipsum dolor sit amet, consectetur adipiscing elit." · FILL/HUG · 322×10  
+    fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500` · prop characters←Description
+  - **action group** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 36×9  
     itemSpacing `inset.xs`
-    - **Button** · instance of **Button** (size=sm, prio=primary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 64×32  
-      fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control` · prop visible←Show Buttons
-    - **Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 64×32  
-      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control` · prop visible←Show Buttons
-    - **action** · text `body/md/medium` "Action" · HUG/HUG · 42×10  
-      fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500` · prop visible←Show Action, characters←Action
-    - **Icon/Close** · instance of **Icon/Close** (solid=false) · FIXED/FIXED · 24×24  
-      width `icon.lg` · prop visible←Show Icon/Close
+    - ~~**Button**~~ (hidden by default) · instance of **Button** (size=sm, prio=primary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 64×32  
+      fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control` · prop visible←Show Primary Button
+    - ~~**Button**~~ (hidden by default) · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 64×32  
+      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control` · prop visible←Show Secondary Button
+    - **Label** · text `link/sm/default` "Action" · HUG/HUG · 36×9  
+      fill `color.action.secondary.text.default` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.500` · prop visible←Show Action, characters←Action
+  - **Icon/Close** · instance of **Icon/Close** (solid=false) · FIXED/FIXED · 20×20  
+    width `icon.md` · prop visible←Show Close
 
 ### Tokens used
 
-| Role            | Tokens                                                                                                                                                                                                                           |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.primary.bg.default`, `color.surface.feedback.danger.strong`, `color.surface.feedback.neutral.medium`, `color.surface.feedback.success.medium`, `color.surface.feedback.warning.medium`, `color.alpha.turquoise-50` |
-| Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`                                                                                                                                                   |
-| Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.primary`                                                                                                                                 |
-| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.icon.primary`, `color.surface.inverse`                                                                                                        |
-| Spacing         | `inset.sm`, `inset.xs`                                                                                                                                                                                                           |
-| Radius          | `radius.control`                                                                                                                                                                                                                 |
-| Border width    | `border.default`                                                                                                                                                                                                                 |
-| Sizes           | `icon.lg`                                                                                                                                                                                                                        |
-| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.size.body.md`                                                                                                        |
-| Effects         | `shadow/control`                                                                                                                                                                                                                 |
-| Text styles     | `body/md/medium`, `body/md/regular`                                                                                                                                                                                              |
+| Role            | Tokens                                                                                                                                                                                                                                     |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Fills           | `color.action.primary.bg.default`, `color.surface.feedback.danger.medium`, `color.surface.feedback.info.medium`, `color.surface.feedback.neutral.medium`, `color.surface.feedback.success.medium`, `color.surface.feedback.warning.medium` |
+| Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`                                                                                                                                                             |
+| Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.primary`                                                                                                                                           |
+| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.icon.primary`                                                                                                                                           |
+| Spacing         | `inset.sm`, `inset.xs`                                                                                                                                                                                                                     |
+| Radius          | `radius.control`                                                                                                                                                                                                                           |
+| Border width    | `border.default`                                                                                                                                                                                                                           |
+| Sizes           | `icon.md`                                                                                                                                                                                                                                  |
+| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.body.sm`, `type.size.body.md`, `type.size.body.sm`                                                                                         |
+| Effects         | `shadow/control`                                                                                                                                                                                                                           |
+| Text styles     | `body/md/medium`, `link/sm/default`                                                                                                                                                                                                        |
 
 ### Slots and prop-controlled layers
 
-| Layer                     | Controlled property | Prop              |
-| ------------------------- | ------------------- | ----------------- |
-| message                   | characters          | `Description`     |
-| action group › Button     | visible             | `Show Buttons`    |
-| action group › Button     | visible             | `Show Buttons`    |
-| action group › action     | visible             | `Show Action`     |
-| action group › action     | characters          | `Action`          |
-| action group › Icon/Close | visible             | `Show Icon/Close` |
+| Layer                 | Controlled property | Prop                    |
+| --------------------- | ------------------- | ----------------------- |
+| message               | characters          | `Description`           |
+| action group › Button | visible             | `Show Primary Button`   |
+| action group › Button | visible             | `Show Secondary Button` |
+| action group › Label  | visible             | `Show Action`           |
+| action group › Label  | characters          | `Action`                |
+| Icon/Close            | visible             | `Show Close`            |
 
 ### Composes
 
 - Button
 - Icon/Close
+- Icon/Info
 
 ### Variant matrix
 
-| Variant | size   | fill                                    | stroke | effect | text                                                                                                 | icon                                                                                                    |
-| ------- | ------ | --------------------------------------- | ------ | ------ | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| default | 458×44 | `color.surface.feedback.neutral.medium` |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.icon.primary`    |
-| info    | 458×44 | `color.alpha.turquoise-50`              |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.surface.inverse` |
-| success | 458×44 | `color.surface.feedback.success.medium` |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.icon.primary`    |
-| warning | 458×44 | `color.surface.feedback.warning.medium` |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.icon.primary`    |
-| danger  | 458×44 | `color.surface.feedback.danger.strong`  |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.icon.primary`    |
-
-### Issues detected
-
-- Primitive color bound directly (CLR-002): `color.alpha.turquoise-50`.
+| type    | size   | fill                                    | stroke | effect | text                                                                                                 | icon                                                                                                 |
+| ------- | ------ | --------------------------------------- | ------ | ------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| neutral | 458×44 | `color.surface.feedback.neutral.medium` |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default`<br>`color.action.secondary.icon.default` |
+| info    | 458×44 | `color.surface.feedback.info.medium`    |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default`<br>`color.action.secondary.icon.default` |
+| success | 458×44 | `color.surface.feedback.success.medium` |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default`<br>`color.action.secondary.icon.default` |
+| warning | 458×44 | `color.surface.feedback.warning.medium` |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default`<br>`color.action.secondary.icon.default` |
+| danger  | 458×44 | `color.surface.feedback.danger.medium`  |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default`<br>`color.action.secondary.icon.default` |
 
 ## Documentation card
 
@@ -99,17 +90,18 @@ Bold full-width notification for top-of-page or top-of-app messages. High-priori
 
 **Variants**
 
-default Neutral announcement.  
+neutral Neutral announcement.  
 info Feature release, maintenance notice.  
 success Global confirmation (rare — usually Toast fits better).  
 warning Degraded service or approaching limit.  
-danger Outage, billing issue, blocked state.
+danger Outage, billing issue, blocked state.  
+All types use the feedback 'medium' surface with text/primary + icon/primary.
 
 **Labels & Content**
 
 Single line with truncation at narrow widths.  
-One optional action link (right-aligned).  
-One optional close button.  
+At most one action: a primary or secondary Button, or the text action.  
+Optional close icon — use when the message can be dismissed.  
 Write as a statement, not a question: 'Scheduled maintenance Friday 10pm PT'.
 
 **Rules**
@@ -123,3 +115,12 @@ Write as a statement, not a question: 'Scheduled maintenance Friday 10pm PT'.
 - DON'T: Use for inline form validation
 - DON'T: Hide critical banners behind a collapse
 - DON'T: Use success banners for transient outcomes
+
+**Accessibility**
+
+role="status" for info/success/neutral; role="alert" for warning/danger (announced immediately).  
+Touch area: the close icon (20px) and the text action are drawn bare — each needs a ≥44×44px hit area, centred on the element and spanning the full 44px banner height.  
+Close is a `<button>` with aria-label="Dismiss"; the text action is a `<button>` or `<a>` by behaviour. Both show a :focus-visible ring (shadow.focus.default) around the touch area.  
+On dismiss, move focus to the next logical element.  
+Keyboard: Tab reaches the action, then Close; Enter/Space activates.  
+Type is never conveyed by colour alone — each type carries its own icon.

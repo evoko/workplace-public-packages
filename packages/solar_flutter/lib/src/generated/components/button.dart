@@ -27,7 +27,7 @@ import 'package:flutter/material.dart'
 
 import '../tokens.dart';
 
-enum SolarButtonSize { md, sm, xl }
+enum SolarButtonSize { md, sm, lg }
 
 enum SolarButtonVariant { primary, secondary, tertiary }
 
@@ -69,14 +69,14 @@ abstract final class SolarButtonRecipe {
     'root.paddingLeft|base': 't:inset.sm',
     'root.width|base': 'k:HUG',
     'root.height|base': 'px:40',
-    'root.radius|size|xl': 't:radius.none',
-    'root.borderWidth|size|xl': 't:border.none',
-    'root.align|size|xl': 'k:SPACE_BETWEEN/CENTER',
-    'root.gap|size|xl': 't:inset.sm',
-    'root.paddingRight|size|xl': 't:inset.lg',
-    'root.paddingLeft|size|xl': 't:inset.lg',
-    'root.width|size|xl': 'px:200',
-    'root.height|size|xl': 'px:48',
+    'root.radius|size|lg': 't:radius.none',
+    'root.borderWidth|size|lg': 't:border.none',
+    'root.align|size|lg': 'k:SPACE_BETWEEN/CENTER',
+    'root.gap|size|lg': 't:inset.sm',
+    'root.paddingRight|size|lg': 't:inset.lg',
+    'root.paddingLeft|size|lg': 't:inset.lg',
+    'root.width|size|lg': 'px:200',
+    'root.height|size|lg': 'px:48',
     'root.paddingRight|size|sm': 't:inset.xs',
     'root.paddingLeft|size|sm': 't:inset.xs',
     'root.height|size|sm': 'px:32',
@@ -246,48 +246,48 @@ abstract final class SolarButtonRecipe {
         't:shadow.focus.default',
     'root.shadow|combined|sm|variant=secondary, danger=true|focus':
         't:shadow.focus.danger',
-    'root.shadow|combined|xl|variant=primary, danger=false|default': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=false|hover': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=false|pressed': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=false|disabled': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=false|focus':
+    'root.shadow|combined|lg|variant=primary, danger=false|default': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=false|hover': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=false|pressed': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=false|disabled': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=false|focus':
         't:shadow.focus.default',
-    'root.shadow|combined|xl|variant=primary, danger=false|loading': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=true|default': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=true|hover': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=true|pressed': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=true|disabled': 'none',
-    'root.shadow|combined|xl|variant=primary, danger=true|focus':
+    'root.shadow|combined|lg|variant=primary, danger=false|loading': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=true|default': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=true|hover': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=true|pressed': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=true|disabled': 'none',
+    'root.shadow|combined|lg|variant=primary, danger=true|focus':
         't:shadow.focus.danger',
-    'root.shadow|combined|xl|variant=primary, danger=true|loading': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=false|default': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=false|hover': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=false|pressed': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=false|disabled': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=false|focus':
+    'root.shadow|combined|lg|variant=primary, danger=true|loading': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=false|default': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=false|hover': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=false|pressed': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=false|disabled': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=false|focus':
         't:shadow.focus.default',
-    'root.shadow|combined|xl|variant=secondary, danger=false|loading': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=true|default': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=true|hover': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=true|pressed': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=true|disabled': 'none',
-    'root.shadow|combined|xl|variant=secondary, danger=true|focus':
+    'root.shadow|combined|lg|variant=secondary, danger=false|loading': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=true|default': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=true|hover': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=true|pressed': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=true|disabled': 'none',
+    'root.shadow|combined|lg|variant=secondary, danger=true|focus':
         't:shadow.focus.danger',
-    'root.shadow|combined|xl|variant=secondary, danger=true|loading': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=false|default': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=false|hover': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=false|pressed': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=false|disabled': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=false|focus':
+    'root.shadow|combined|lg|variant=secondary, danger=true|loading': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=false|default': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=false|hover': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=false|pressed': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=false|disabled': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=false|focus':
         't:shadow.focus.default',
-    'root.shadow|combined|xl|variant=tertiary, danger=false|loading': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=true|default': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=true|hover': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=true|pressed': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=true|disabled': 'none',
-    'root.shadow|combined|xl|variant=tertiary, danger=true|focus':
+    'root.shadow|combined|lg|variant=tertiary, danger=false|loading': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=true|default': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=true|hover': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=true|pressed': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=true|disabled': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=true|focus':
         't:shadow.focus.danger',
-    'root.shadow|combined|xl|variant=tertiary, danger=true|loading': 'none',
+    'root.shadow|combined|lg|variant=tertiary, danger=true|loading': 'none',
     'iconLeading.present|base': 'b:false',
     'iconLeading.component|base': 'k:Icon/None',
     'iconLeading.variant.solid|base': 'k:false',
@@ -356,7 +356,7 @@ abstract final class SolarButtonRecipe {
     'spinner.variant.style|base': 'k:default',
     'spinner.width|base': 'k:HUG',
     'spinner.height|base': 'k:HUG',
-    'spinner.variant.size|size|xl': 'k:md',
+    'spinner.variant.size|size|lg': 'k:md',
     'spinner.present|appearance|variant=primary, danger=false|loading':
         'b:true',
     'spinner.variant.style|appearance|variant=primary, danger=false|loading':
@@ -502,9 +502,9 @@ abstract final class SolarButtonRecipe {
         't:typography.label.sm',
     'label.typography|combined|md|variant=tertiary, danger=false|hover':
         't:typography.link.md.hover',
-    'label.typography|combined|xl|variant=secondary, danger=false|hover':
+    'label.typography|combined|lg|variant=secondary, danger=false|hover':
         't:typography.link.md.default',
-    'label.typography|combined|xl|variant=tertiary, danger=false|hover':
+    'label.typography|combined|lg|variant=tertiary, danger=false|hover':
         't:typography.link.md.default',
     'iconTrailing.present|base': 'b:false',
     'iconTrailing.component|base': 'k:Icon/None',

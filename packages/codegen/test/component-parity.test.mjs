@@ -69,7 +69,7 @@ function tsProps(source) {
   );
 }
 
-/** `enum SolarButtonSize { md, sm, xl }` as ['md', 'sm', 'xl']. */
+/** `enum SolarButtonSize { md, sm, lg }` as ['md', 'sm', 'lg']. */
 function dartEnum(source, name) {
   const m = new RegExp(`enum ${name} \\{([^}]*)\\}`).exec(source);
   if (!m) throw new Error(`enum ${name} not found in the Dart artifact`);

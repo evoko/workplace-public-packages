@@ -8,7 +8,7 @@
       "id": "6811:17",
       "description": "",
       "props": {},
-      "nodeCount": 387,
+      "nodeCount": 375,
       "tree": {
         "name": "Week View",
         "type": "COMPONENT",
@@ -209,12 +209,12 @@
       "census": {
         "Calendar Toolbar": 1,
         "Icon Button": 2,
-        "Icon/None": 17,
+        "Icon/None": 13,
         "Button": 2,
         "Spinner": 2,
         "Counter": 2,
         "Segmented Control": 1,
-        "Segmented Control Item": 6,
+        "Segmented Control Item": 4,
         "Icon/Plus": 1,
         "Weekday Header": 7,
         "All-Day Bar": 4,

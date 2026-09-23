@@ -12,7 +12,7 @@ Topbar dropdown for account and session actions: profile, preferences, organizat
   fill `color.surface.overlay` · effect `shadow/dialog` · strokeWeight `border.default` · radius `radius.dialog`
   - **Identity** · frame · row gap 12 pad 16/16/16/16 FILL/HUG · 280×64  
     itemSpacing `stack.sm` · padding `inset.md`
-    - **Avatar** · instance of **Avatar** (size=md, type=text, color=purple, Shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
+    - **Avatar** · instance of **Avatar** (size=md, type=text, color=purple, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
       fill `color.purple.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
     - **Content** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 204×30  
       itemSpacing `stack.xs`

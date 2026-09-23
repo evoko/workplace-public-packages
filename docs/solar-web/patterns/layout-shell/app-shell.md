@@ -27,11 +27,11 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 - **breakpoint=desktop** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 1440×800  
   fill `color.surface.background` · width `viewport.lg`
-  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=True) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
+  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
     fill `color.surface.background` · padding `stack.md`
   - **App Content** · frame · row gap 0 pad 0/8/0/0 FILL/FIXED · 1440×744  
     padding `inset.xs`
-    - **Sidebar** · instance of **Sidebar** (expanded=False) · column gap 4 pad 0/0/8/0 FIXED/FILL · 64×744  
+    - **Sidebar** · instance of **Sidebar** (expanded=false) · column gap 4 pad 0/0/8/0 FIXED/FILL · 64×744  
       itemSpacing `stack.2xs` · padding `stack.none`, `inset.none`, `inset.xs` · radius `radius.none`
     - **Page Content** · frame · row gap 8 pad 0/0/0/0 FILL/FILL · 1368×744  
       itemSpacing `stack.xs` · layoutGrids `grid.columns.lg,Space:stack.x-sm`

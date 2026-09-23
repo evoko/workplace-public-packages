@@ -5,11 +5,11 @@
     {
       "name": "Cursor",
       "id": "8871:436",
-      "description": "Custom pointer glyphs for canvas and authoring surfaces — the Spatial and Flow editors — where the native cursor cannot express the active tool. 22 variants: Type (Default, Default White, Pointer, Text, Move, Grabbing, Crosshair, Copy, Not Allowed, Unavailable, Progress, Hourglass, Zoom In, Zoom Out, Resize N, NS, EW, NE SW, NW SE, Col, Row, X). Glyphs bind icon/primary with an icon/inverse outline so they read on light and dark. Non-interactive: the cursor mirrors state set elsewhere and is never the only signal. Standard UI keeps native cursors.",
+      "description": "Custom pointer glyphs for canvas and authoring surfaces — the Spatial and Flow editors — where the native cursor cannot express the active tool. 22 variants: type (Default, Default White, Pointer, Text, Move, Grabbing, Crosshair, Copy, Not Allowed, Unavailable, Progress, Hourglass, Zoom In, Zoom Out, Resize N, NS, EW, NE SW, NW SE, Col, Row, X). Glyphs bind icon/primary with an icon/inverse outline so they read on light and dark. Non-interactive: the cursor mirrors state set elsewhere and is never the only signal. Standard UI keeps native cursors.",
       "docLinks": [],
       "variantCount": 22,
       "props": {
-        "Type": {
+        "type": {
           "type": "VARIANT",
           "default": "Default",
           "options": [
@@ -38,10 +38,10 @@
           ]
         }
       },
-      "defaultVariant": "Type=Default",
+      "defaultVariant": "type=Default",
       "defaultVariantNodeCount": 1,
       "defaultVariantTree": {
-        "name": "Type=Default",
+        "name": "type=Default",
         "type": "COMPONENT",
         "size": [
           12,
@@ -68,7 +68,7 @@
       },
       "variants": [
         {
-          "variant": "Type=Default",
+          "variant": "type=Default",
           "size": [
             12,
             14
@@ -77,7 +77,7 @@
           "hidden": []
         },
         {
-          "variant": "Type=Grabbing",
+          "variant": "type=Grabbing",
           "size": [
             13,
             14
@@ -175,7 +175,7 @@
           }
         },
         {
-          "variant": "Type=Default White",
+          "variant": "type=Default White",
           "size": [
             13,
             14
@@ -197,7 +197,7 @@
           }
         },
         {
-          "variant": "Type=Progress",
+          "variant": "type=Progress",
           "size": [
             22,
             24
@@ -283,7 +283,7 @@
           }
         },
         {
-          "variant": "Type=Not Allowed",
+          "variant": "type=Not Allowed",
           "size": [
             21,
             24
@@ -369,7 +369,7 @@
           }
         },
         {
-          "variant": "Type=Move",
+          "variant": "type=Move",
           "size": [
             18,
             18
@@ -482,7 +482,7 @@
           }
         },
         {
-          "variant": "Type=Resize Col",
+          "variant": "type=Resize Col",
           "size": [
             18,
             16
@@ -565,7 +565,7 @@
           }
         },
         {
-          "variant": "Type=Resize Row",
+          "variant": "type=Resize Row",
           "size": [
             16,
             18
@@ -648,7 +648,7 @@
           }
         },
         {
-          "variant": "Type=Resize NS",
+          "variant": "type=Resize NS",
           "size": [
             8,
             19
@@ -686,7 +686,7 @@
           }
         },
         {
-          "variant": "Type=Resize N",
+          "variant": "type=Resize N",
           "size": [
             8,
             15
@@ -724,7 +724,7 @@
           }
         },
         {
-          "variant": "Type=Crosshair",
+          "variant": "type=Crosshair",
           "size": [
             16,
             16
@@ -762,7 +762,7 @@
           }
         },
         {
-          "variant": "Type=X",
+          "variant": "type=X",
           "size": [
             16,
             16
@@ -800,7 +800,7 @@
           }
         },
         {
-          "variant": "Type=Text",
+          "variant": "type=Text",
           "size": [
             8,
             16
@@ -913,7 +913,7 @@
           }
         },
         {
-          "variant": "Type=Unavailable",
+          "variant": "type=Unavailable",
           "size": [
             16,
             16
@@ -996,7 +996,7 @@
           }
         },
         {
-          "variant": "Type=Zoom In",
+          "variant": "type=Zoom In",
           "size": [
             16,
             16
@@ -1124,7 +1124,7 @@
           }
         },
         {
-          "variant": "Type=Zoom Out",
+          "variant": "type=Zoom Out",
           "size": [
             16,
             16
@@ -1237,7 +1237,7 @@
           }
         },
         {
-          "variant": "Type=Resize EW",
+          "variant": "type=Resize EW",
           "size": [
             19,
             8
@@ -1275,7 +1275,7 @@
           }
         },
         {
-          "variant": "Type=Resize NW SE",
+          "variant": "type=Resize NW SE",
           "size": [
             13,
             13
@@ -1313,7 +1313,7 @@
           }
         },
         {
-          "variant": "Type=Resize NE SW",
+          "variant": "type=Resize NE SW",
           "size": [
             13,
             13
@@ -1351,7 +1351,7 @@
           }
         },
         {
-          "variant": "Type=Copy",
+          "variant": "type=Copy",
           "size": [
             21,
             24
@@ -1407,7 +1407,7 @@
           }
         },
         {
-          "variant": "Type=Pointer",
+          "variant": "type=Pointer",
           "size": [
             14,
             17
@@ -1505,7 +1505,7 @@
           }
         },
         {
-          "variant": "Type=Hourglass",
+          "variant": "type=Hourglass",
           "size": [
             11,
             16

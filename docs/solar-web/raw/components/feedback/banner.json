@@ -1,11 +1,11 @@
 {
-  "page": "↳ 🟢 Banner",
+  "page": "↳ 🟠 Banner",
   "pageId": "2797:1322",
   "componentSets": [
     {
       "name": "Banner",
       "id": "2764:627",
-      "description": "Banner — a bold, full-width notification for top-of-page messages. High-priority alternative to the subtle alert component. Single line with truncation, optional action link and close button. Inspired by Atlassian Design System.",
+      "description": "Banner — a bold, full-width notification for page- or app-wide messages. High-priority alternative to Alert. Single line with truncation; offer at most one action (a Button or the text action) plus an optional close icon. The close icon and text action are drawn without a container — implement each with a ≥44×44px touch area (see Accessibility).",
       "docLinks": [],
       "variantCount": 5,
       "props": {
@@ -21,19 +21,23 @@
           "type": "TEXT",
           "default": "Action"
         },
-        "Show Buttons#10577:12": {
+        "Show Close#10577:18": {
           "type": "BOOLEAN",
           "default": true
         },
-        "Show Icon/Close#10577:18": {
+        "Show Primary Button#10942:0": {
           "type": "BOOLEAN",
-          "default": true
+          "default": false
         },
-        "Variant": {
+        "Show Secondary Button#10942:6": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "type": {
           "type": "VARIANT",
-          "default": "default",
+          "default": "neutral",
           "options": [
-            "default",
+            "neutral",
             "info",
             "success",
             "warning",
@@ -41,10 +45,10 @@
           ]
         }
       },
-      "defaultVariant": "Variant=default",
-      "defaultVariantNodeCount": 34,
+      "defaultVariant": "type=neutral",
+      "defaultVariantNodeCount": 31,
       "defaultVariantTree": {
-        "name": "Variant=default",
+        "name": "type=neutral",
         "type": "COMPONENT",
         "size": [
           458,
@@ -74,69 +78,31 @@
         },
         "children": [
           {
-            "name": "icon",
-            "type": "FRAME",
+            "name": "Icon/Info",
+            "type": "INSTANCE",
+            "main": "Icon/Info",
+            "variant": {
+              "solid": "false"
+            },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
             "size": [
               20,
               20
             ],
             "sizing": "FIXED/FIXED",
-            "children": [
-              {
-                "name": "Union",
-                "type": "BOOLEAN_OPERATION",
-                "size": [
-                  5,
-                  10
-                ],
-                "fills": [
-                  "{Color:icon/primary}"
-                ],
-                "children": [
-                  {
-                    "name": "Icon",
-                    "type": "VECTOR",
-                    "size": [
-                      5,
-                      6
-                    ],
-                    "fills": [
-                      "{Color:icon/primary}"
-                    ]
-                  },
-                  {
-                    "name": "Icon",
-                    "type": "VECTOR",
-                    "size": [
-                      2,
-                      2
-                    ],
-                    "fills": [
-                      "{Color:icon/primary}"
-                    ]
-                  }
-                ]
-              },
-              {
-                "name": "Icon",
-                "type": "VECTOR",
-                "size": [
-                  18,
-                  18
-                ],
-                "fills": [
-                  "{Color:icon/primary}"
-                ]
-              }
-            ]
+            "vars": {
+              "width": "Spatial:icon/md"
+            }
           },
           {
             "name": "message",
             "type": "TEXT",
             "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "textStyle": "body/md/regular",
+            "textStyle": "body/md/medium",
             "size": [
-              172,
+              322,
               10
             ],
             "sizing": "FILL/HUG",
@@ -147,7 +113,7 @@
               "lineHeight": "Type:line-height/body/md",
               "fontFamily": "Primitives:type/font-family/inter",
               "fontSize": "Type:size/body/md",
-              "fontStyle": "Primitives:type/font-weight/400"
+              "fontStyle": "Primitives:type/font-weight/500"
             },
             "propRefs": {
               "characters": "Description#2781:57"
@@ -157,8 +123,8 @@
             "name": "action group",
             "type": "FRAME",
             "size": [
-              218,
-              32
+              36,
+              9
             ],
             "layout": {
               "dir": "HORIZONTAL",
@@ -179,6 +145,7 @@
               {
                 "name": "Button",
                 "type": "INSTANCE",
+                "hidden": true,
                 "main": "Button",
                 "variant": {
                   "size": "sm",
@@ -225,12 +192,13 @@
                   "bottomRightRadius": "Spatial:radius/control"
                 },
                 "propRefs": {
-                  "visible": "Show Buttons#10577:12"
+                  "visible": "Show Primary Button#10942:0"
                 }
               },
               {
                 "name": "Button",
                 "type": "INSTANCE",
+                "hidden": true,
                 "main": "Button",
                 "variant": {
                   "size": "sm",
@@ -274,62 +242,62 @@
                   "bottomRightRadius": "Spatial:radius/control"
                 },
                 "propRefs": {
-                  "visible": "Show Buttons#10577:12"
+                  "visible": "Show Secondary Button#10942:6"
                 }
               },
               {
-                "name": "action",
+                "name": "Label",
                 "type": "TEXT",
                 "text": "Action",
-                "textStyle": "body/md/medium",
+                "textStyle": "link/sm/default",
                 "size": [
-                  42,
-                  10
+                  36,
+                  9
                 ],
                 "sizing": "HUG/HUG",
                 "fills": [
-                  "{Color:text/primary}"
+                  "{Color:action/secondary/text/default}"
                 ],
                 "vars": {
-                  "lineHeight": "Type:line-height/body/md",
+                  "lineHeight": "Type:line-height/body/sm",
                   "fontFamily": "Primitives:type/font-family/inter",
-                  "fontSize": "Type:size/body/md",
+                  "fontSize": "Type:size/body/sm",
                   "fontStyle": "Primitives:type/font-weight/500"
                 },
                 "propRefs": {
                   "visible": "Show Action#2764:0",
                   "characters": "Action#2781:63"
                 }
-              },
-              {
-                "name": "Icon/Close",
-                "type": "INSTANCE",
-                "main": "Icon/Close",
-                "variant": {
-                  "solid": "false"
-                },
-                "iconFills": [
-                  "{Color:icon/primary}"
-                ],
-                "size": [
-                  24,
-                  24
-                ],
-                "sizing": "FIXED/FIXED",
-                "vars": {
-                  "width": "Spatial:icon/lg"
-                },
-                "propRefs": {
-                  "visible": "Show Icon/Close#10577:18"
-                }
               }
             ]
+          },
+          {
+            "name": "Icon/Close",
+            "type": "INSTANCE",
+            "main": "Icon/Close",
+            "variant": {
+              "solid": "false"
+            },
+            "iconFills": [
+              "{Color:icon/primary}"
+            ],
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "width": "Spatial:icon/md"
+            },
+            "propRefs": {
+              "visible": "Show Close#10577:18"
+            }
           }
         ]
       },
       "variants": [
         {
-          "variant": "Variant=default",
+          "variant": "type=neutral",
           "size": [
             458,
             44
@@ -343,24 +311,25 @@
             "{Color:action/secondary/text/default}"
           ],
           "iconFills": [
+            "{Color:icon/primary}",
             "{Color:action/primary/icon/default}",
-            "{Color:action/secondary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:action/secondary/icon/default}"
           ],
           "hidden": [
+            "Button",
             "Counter",
             "Icon/None",
             "Spinner"
           ]
         },
         {
-          "variant": "Variant=info",
+          "variant": "type=info",
           "size": [
             458,
             44
           ],
           "fills": [
-            "{Primitives:color/alpha/turquoise-50}"
+            "{Color:surface/feedback/info/medium}"
           ],
           "textFills": [
             "{Color:text/primary}",
@@ -368,37 +337,22 @@
             "{Color:action/secondary/text/default}"
           ],
           "iconFills": [
+            "{Color:icon/primary}",
             "{Color:action/primary/icon/default}",
-            "{Color:action/secondary/icon/default}",
-            "{Color:surface/inverse}"
+            "{Color:action/secondary/icon/default}"
           ],
           "overrides": {
             "changed": {
               "/": {
                 "fills": [
-                  "{Primitives:color/alpha/turquoise-50}"
-                ]
-              },
-              "/icon/Union/Icon": {
-                "fills": [
-                  "{Color:icon/feedback/info}"
-                ]
-              },
-              "/icon/Union/Icon#2": {
-                "fills": [
-                  "{Color:icon/feedback/info}"
-                ]
-              },
-              "/action group/Icon/Close": {
-                "iconFills": [
-                  "{Color:surface/inverse}"
+                  "{Color:surface/feedback/info/medium}"
                 ]
               }
             }
           }
         },
         {
-          "variant": "Variant=success",
+          "variant": "type=success",
           "size": [
             458,
             44
@@ -412,9 +366,9 @@
             "{Color:action/secondary/text/default}"
           ],
           "iconFills": [
+            "{Color:icon/primary}",
             "{Color:action/primary/icon/default}",
-            "{Color:action/secondary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:action/secondary/icon/default}"
           ],
           "overrides": {
             "changed": {
@@ -426,72 +380,36 @@
             },
             "added": [
               {
-                "path": "/Checkmark-Outline--Streamline-Carbon",
+                "path": "/Icon/Success",
                 "parent": "/",
                 "layer": {
-                  "name": "Checkmark-Outline--Streamline-Carbon",
-                  "type": "FRAME",
+                  "name": "Icon/Success",
+                  "type": "INSTANCE",
+                  "main": "Icon/Success",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
                   "size": [
                     20,
                     20
                   ],
-                  "sizing": "FIXED/FIXED"
-                }
-              },
-              {
-                "path": "/Checkmark-Outline--Streamline-Carbon/Icon",
-                "parent": "/Checkmark-Outline--Streamline-Carbon",
-                "layer": {
-                  "name": "Icon",
-                  "type": "VECTOR",
-                  "size": [
-                    9,
-                    7
-                  ],
-                  "fills": [
-                    "{Color:icon/primary}"
-                  ]
-                }
-              },
-              {
-                "path": "/Checkmark-Outline--Streamline-Carbon/Icon#2",
-                "parent": "/Checkmark-Outline--Streamline-Carbon",
-                "layer": {
-                  "name": "Icon",
-                  "type": "VECTOR",
-                  "size": [
-                    18,
-                    18
-                  ],
-                  "fills": [
-                    "{Color:icon/primary}"
-                  ]
-                }
-              },
-              {
-                "path": "/Checkmark-Outline--Streamline-Carbon/_Transparent_Rectangle_",
-                "parent": "/Checkmark-Outline--Streamline-Carbon",
-                "layer": {
-                  "name": "_Transparent_Rectangle_",
-                  "type": "VECTOR",
-                  "size": [
-                    20,
-                    20
-                  ]
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
                 }
               }
             ],
             "removed": [
-              "/icon",
-              "/icon/Union",
-              "/icon/Union/Icon",
-              "/icon/Union/Icon#2",
-              "/icon/Icon"
+              "/Icon/Info"
             ]
           }
         },
         {
-          "variant": "Variant=warning",
+          "variant": "type=warning",
           "size": [
             458,
             44
@@ -505,9 +423,9 @@
             "{Color:action/secondary/text/default}"
           ],
           "iconFills": [
+            "{Color:icon/primary}",
             "{Color:action/primary/icon/default}",
-            "{Color:action/secondary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:action/secondary/icon/default}"
           ],
           "overrides": {
             "changed": {
@@ -519,93 +437,42 @@
             },
             "added": [
               {
-                "path": "/Warning-Alt--Streamline-Carbon",
+                "path": "/Icon/Warning",
                 "parent": "/",
                 "layer": {
-                  "name": "Warning-Alt--Streamline-Carbon",
-                  "type": "FRAME",
+                  "name": "Icon/Warning",
+                  "type": "INSTANCE",
+                  "main": "Icon/Warning",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
                   "size": [
                     20,
                     20
                   ],
-                  "sizing": "FIXED/FIXED"
-                }
-              },
-              {
-                "path": "/Warning-Alt--Streamline-Carbon/Icon",
-                "parent": "/Warning-Alt--Streamline-Carbon",
-                "layer": {
-                  "name": "Icon",
-                  "type": "VECTOR",
-                  "size": [
-                    2,
-                    2
-                  ],
-                  "fills": [
-                    "{Color:icon/primary}"
-                  ]
-                }
-              },
-              {
-                "path": "/Warning-Alt--Streamline-Carbon/Icon#2",
-                "parent": "/Warning-Alt--Streamline-Carbon",
-                "layer": {
-                  "name": "Icon",
-                  "type": "VECTOR",
-                  "size": [
-                    1,
-                    6
-                  ],
-                  "fills": [
-                    "{Color:icon/primary}"
-                  ]
-                }
-              },
-              {
-                "path": "/Warning-Alt--Streamline-Carbon/Icon#3",
-                "parent": "/Warning-Alt--Streamline-Carbon",
-                "layer": {
-                  "name": "Icon",
-                  "type": "VECTOR",
-                  "size": [
-                    18,
-                    17
-                  ],
-                  "fills": [
-                    "{Color:icon/primary}"
-                  ]
-                }
-              },
-              {
-                "path": "/Warning-Alt--Streamline-Carbon/_Transparent_Rectangle_",
-                "parent": "/Warning-Alt--Streamline-Carbon",
-                "layer": {
-                  "name": "_Transparent_Rectangle_",
-                  "type": "VECTOR",
-                  "size": [
-                    20,
-                    20
-                  ]
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
                 }
               }
             ],
             "removed": [
-              "/icon",
-              "/icon/Union",
-              "/icon/Union/Icon",
-              "/icon/Union/Icon#2",
-              "/icon/Icon"
+              "/Icon/Info"
             ]
           }
         },
         {
-          "variant": "Variant=danger",
+          "variant": "type=danger",
           "size": [
             458,
             44
           ],
           "fills": [
-            "{Color:surface/feedback/danger/strong}"
+            "{Color:surface/feedback/danger/medium}"
           ],
           "textFills": [
             "{Color:text/primary}",
@@ -613,81 +480,45 @@
             "{Color:action/secondary/text/default}"
           ],
           "iconFills": [
+            "{Color:icon/primary}",
             "{Color:action/primary/icon/default}",
-            "{Color:action/secondary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:action/secondary/icon/default}"
           ],
           "overrides": {
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:surface/feedback/danger/strong}"
+                  "{Color:surface/feedback/danger/medium}"
                 ]
               }
             },
             "added": [
               {
-                "path": "/Misuse-Outline--Streamline-Carbon",
+                "path": "/Icon/Danger",
                 "parent": "/",
                 "layer": {
-                  "name": "Misuse-Outline--Streamline-Carbon",
-                  "type": "FRAME",
+                  "name": "Icon/Danger",
+                  "type": "INSTANCE",
+                  "main": "Icon/Danger",
+                  "variant": {
+                    "solid": "false"
+                  },
+                  "iconFills": [
+                    "{Color:icon/primary}"
+                  ],
                   "size": [
                     20,
                     20
                   ],
-                  "sizing": "FIXED/FIXED"
-                }
-              },
-              {
-                "path": "/Misuse-Outline--Streamline-Carbon/Icon",
-                "parent": "/Misuse-Outline--Streamline-Carbon",
-                "layer": {
-                  "name": "Icon",
-                  "type": "VECTOR",
-                  "size": [
-                    18,
-                    18
-                  ],
-                  "fills": [
-                    "{Color:icon/primary}"
-                  ]
-                }
-              },
-              {
-                "path": "/Misuse-Outline--Streamline-Carbon/_Transparent_Rectangle_",
-                "parent": "/Misuse-Outline--Streamline-Carbon",
-                "layer": {
-                  "name": "_Transparent_Rectangle_",
-                  "type": "VECTOR",
-                  "size": [
-                    20,
-                    20
-                  ]
-                }
-              },
-              {
-                "path": "/Misuse-Outline--Streamline-Carbon/Icon#2",
-                "parent": "/Misuse-Outline--Streamline-Carbon",
-                "layer": {
-                  "name": "Icon",
-                  "type": "VECTOR",
-                  "size": [
-                    9,
-                    9
-                  ],
-                  "fills": [
-                    "{Color:icon/primary}"
-                  ]
+                  "sizing": "FIXED/FIXED",
+                  "vars": {
+                    "width": "Spatial:icon/md"
+                  }
                 }
               }
             ],
             "removed": [
-              "/icon",
-              "/icon/Union",
-              "/icon/Union/Icon",
-              "/icon/Union/Icon#2",
-              "/icon/Icon"
+              "/Icon/Info"
             ]
           }
         }
@@ -704,12 +535,14 @@
     "Description",
     "Bold full-width notification for top-of-page or top-of-app messages. High-priority alternative to Alert for announcements, outages, or global states.",
     "Variants",
-    "default   Neutral announcement.\ninfo      Feature release, maintenance notice.\nsuccess   Global confirmation (rare — usually Toast fits better).\nwarning   Degraded service or approaching limit.\ndanger    Outage, billing issue, blocked state.",
+    "neutral   Neutral announcement.\ninfo      Feature release, maintenance notice.\nsuccess   Global confirmation (rare — usually Toast fits better).\nwarning   Degraded service or approaching limit.\ndanger    Outage, billing issue, blocked state.\nAll types use the feedback 'medium' surface with text/primary + icon/primary.",
     "Labels & Content",
-    "Single line with truncation at narrow widths.\nOne optional action link (right-aligned).\nOne optional close button.\nWrite as a statement, not a question: 'Scheduled maintenance Friday 10pm PT'.",
+    "Single line with truncation at narrow widths.\nAt most one action: a primary or secondary Button, or the text action.\nOptional close icon — use when the message can be dismissed.\nWrite as a statement, not a question: 'Scheduled maintenance Friday 10pm PT'.",
     "Rules",
     "DO   Pin to the top of the page or app shell\nDO   Use for global or page-wide states\nDO   Keep to a single line\nDO   Offer exactly one action at most",
-    "DON'T   Stack multiple banners\nDON'T   Use for inline form validation\nDON'T   Hide critical banners behind a collapse\nDON'T   Use success banners for transient outcomes"
+    "DON'T   Stack multiple banners\nDON'T   Use for inline form validation\nDON'T   Hide critical banners behind a collapse\nDON'T   Use success banners for transient outcomes",
+    "Accessibility",
+    "role=\"status\" for info/success/neutral; role=\"alert\" for warning/danger (announced immediately).\nTouch area: the close icon (20px) and the text action are drawn bare — each needs a ≥44×44px hit area, centred on the element and spanning the full 44px banner height.\nClose is a <button> with aria-label=\"Dismiss\"; the text action is a <button> or <a> by behaviour. Both show a :focus-visible ring (shadow.focus.default) around the touch area.\nOn dismiss, move focus to the next logical element.\nKeyboard: Tab reaches the action, then Close; Enter/Space activates.\nType is never conveyed by colour alone — each type carries its own icon."
   ],
   "pageContext": null
 }

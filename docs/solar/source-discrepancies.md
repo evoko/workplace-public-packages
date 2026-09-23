@@ -11,7 +11,9 @@ raised with the SOLAR core team (the design lead) through governance.
 
 ## Status
 
-Checked against Foundations file version `2402047167094879156` (last modified 2026-09-22).
+Checked against Foundations file version `2402389239778582681` (last modified 2026-09-23). That
+revision changed one sentence (Iconography now gives one stroke weight across the set, as the
+chapter already did) and neither conflict below.
 
 **Two conflicts remain.** The 2026-09-22 revision resolved 25 of the 26 previously recorded here
 and all 6 structural quirks, and introduced one new one. In most cases the pages now state the
@@ -32,6 +34,12 @@ first.
 The action-state set is the one thing this revision made worse rather than better. The States page
 context separately says "the variant value is pressed, never active", which contradicts the 96
 action colour variables. The chapters follow the variables and flag it.
+
+Two unfinished edits on the Iconography page are not conflicts with the variables but are worth
+knowing: the Outline vs Solid and Icon Library slides and the Gatekeeper checklist still describe
+the old scheme (a `/Solid` suffix, size variants, "Sourced from Remix at every size"), and the
+checklist asks for icon fills bound to `color.icon.*` while every icon master binds the primitive
+`color/neutral/900`. [09-iconography.md](09-iconography.md) follows the shipped icons.
 
 ## Resolved in the 2026-09-22 revision
 

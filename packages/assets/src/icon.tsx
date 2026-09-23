@@ -5,7 +5,7 @@ import { useId, type SVGProps } from 'react';
  *
  * Hand written, not generated: the generated modules are recipes -- geometry and a name -- and
  * everything that is behaviour rather than data lives here, so accessibility is decided once
- * instead of 341 times. Only `src/generated/**` is machine owned.
+ * instead of 340 times. Only `src/generated/**` is machine owned.
  */
 
 /** The SOLAR `icon.*` steps: 12, 16, 20, 24, 28 and 32px. */

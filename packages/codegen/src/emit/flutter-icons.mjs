@@ -49,7 +49,7 @@ const dbl = (n) => (Number.isInteger(n) ? `${n}.0` : String(n));
  * `chevronRightOutline`.
  *
  * No `$` escaping, unlike the token emitter: a token tail can be `2xs` or `default`, but every
- * one of the 682 icon names is a stem followed by `Outline` or `Solid`, so none can start with
+ * one of the 680 icon names is a stem followed by `Outline` or `Solid`, so none can start with
  * a digit and none can be a reserved word. That is asserted rather than assumed.
  */
 export function dartVariantName(stem, variant) {

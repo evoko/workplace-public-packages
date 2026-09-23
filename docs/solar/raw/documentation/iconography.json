@@ -449,7 +449,7 @@
         {
           "t": "p",
           "text": "12 px (xs) — tight inline usage: status badges, meta labels, dense table cells. Minimum usable size.\n16 px (sm) — compact controls: badges, inputs, menu items. Inline with body text.\n20 px (md) — default UI size across most SOLAR surfaces: buttons, toolbars, list items, nav items.\n24 px (lg) — prominent placement: section headers, card actions, top-bar icons. Matches the authoring grid.\n28 px (xl) — large controls and feature callouts. Not yet used by a component.\n32 px (2xl) — empty states, onboarding, hero placements. Not yet used by a component.",
-          "style": "16/600"
+          "style": "Body/Body M/Regular"
         }
       ]
     },
@@ -535,7 +535,7 @@
         },
         {
           "t": "p",
-          "text": "Outline icons use a consistent stroke weight per size. All segments are straight or follow perfect arcs — no bezier drift. Angles move in 15° increments. Integer pixel measurements on every vertex and endpoint. Strokes are expanded to filled paths before export.",
+          "text": "Outline icons use a consistent stroke weight across the set. All segments are straight or follow perfect arcs — no bezier drift. Angles move in 15° increments. Integer pixel measurements on every vertex and endpoint. Strokes are expanded to filled paths before export.",
           "style": "Body/Body M/Regular"
         },
         {
@@ -1065,7 +1065,7 @@
         "© 2026 Biamp",
         "[Confidential]",
         "Stroke weight, terminators, and angle rules are shared across the set so icons feel cohesive. Legibility is checked at 12 px, the smallest rendered size.",
-        "Outline icons use a consistent stroke weight per size. All segments are straight or follow perfect arcs — no bezier drift. Angles move in 15° increments. Integer pixel measurements on every vertex and endpoint. Strokes are expanded to filled paths before export.",
+        "Outline icons use a consistent stroke weight across the set. All segments are straight or follow perfect arcs — no bezier drift. Angles move in 15° increments. Integer pixel measurements on every vertex and endpoint. Strokes are expanded to filled paths before export.",
         "Rules",
         "Stroke weight: one baseline weight across the set — glyphs are not redrawn per size.\nTerminators: round caps and round joins on all outline glyphs.\nAngles move in 15° steps. Arcs follow perfect circles; no ad-hoc curves.\nMeasurements are integer pixels on every vertex, except at the outside-of-stroke grid-alignment boundary.\nAll strokes are expanded to filled paths before the icon enters the library.",
         "Pixel alignment · outside of stroke sits on the grid",

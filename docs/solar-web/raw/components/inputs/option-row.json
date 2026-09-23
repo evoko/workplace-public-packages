@@ -5,7 +5,7 @@
     {
       "name": "Option Row",
       "id": "10102:10994",
-      "description": "A selection control paired with a label and optional supporting text. Variant picks the control: Checkbox for independent on/off within a set, Radio button for exactly one of a mutually exclusive set, Toggle for a setting that applies immediately. A row carries one control — never two at once. Only three variants, because interaction state and selection live on the nested control instance: set hover, focus, disabled, checked and mixed there rather than multiplying them across this set. hasSupportingText hides the second line. The whole row is the click target, and the control aligns to the label's first line so supporting text that wraps never pulls it out of line. Row width is fixed so long text wraps instead of stretching the row. Radio button rows must share a group. For the large tappable treatment with an icon use Option Card.",
+      "description": "A selection control paired with a label and optional supporting text. 3 variants: control (checkbox, radio, toggle). checkbox for independent on/off within a set, radio for exactly one of a mutually exclusive set, toggle for a setting that applies immediately. A row carries one control — never two at once. Only three variants, because interaction state and selection live on the nested control instance: set hover, focus, disabled, checked and mixed there rather than multiplying them across this set. hasSupportingText hides the second line. The whole row is the click target, and the control aligns to the first line of the label so supporting text that wraps never pulls it out of line. Row width is fixed so long text wraps instead of stretching the row. radio rows must share a group. For the large tappable treatment with an icon use Option Card.",
       "docLinks": [],
       "variantCount": 3,
       "props": {
@@ -13,20 +13,20 @@
           "type": "BOOLEAN",
           "default": true
         },
-        "Variant": {
+        "control": {
           "type": "VARIANT",
-          "default": "Checkbox",
+          "default": "checkbox",
           "options": [
-            "Radio button",
-            "Checkbox",
-            "Toggle"
+            "checkbox",
+            "radio",
+            "toggle"
           ]
         }
       },
-      "defaultVariant": "Variant=Checkbox",
+      "defaultVariant": "control=checkbox",
       "defaultVariantNodeCount": 4,
       "defaultVariantTree": {
-        "name": "Variant=Checkbox",
+        "name": "control=checkbox",
         "type": "COMPONENT",
         "size": [
           320,
@@ -154,7 +154,7 @@
       },
       "variants": [
         {
-          "variant": "Variant=Checkbox",
+          "variant": "control=checkbox",
           "size": [
             320,
             51
@@ -166,7 +166,7 @@
           "hidden": []
         },
         {
-          "variant": "Variant=Radio button",
+          "variant": "control=radio",
           "size": [
             320,
             51
@@ -195,7 +195,7 @@
           }
         },
         {
-          "variant": "Variant=Toggle",
+          "variant": "control=toggle",
           "size": [
             320,
             51
@@ -336,7 +336,7 @@
                 "type": "INSTANCE",
                 "main": "Option Row",
                 "variant": {
-                  "Variant": "Checkbox"
+                  "control": "checkbox"
                 },
                 "size": [
                   320,
@@ -365,7 +365,7 @@
                 "type": "INSTANCE",
                 "main": "Option Row",
                 "variant": {
-                  "Variant": "Checkbox"
+                  "control": "checkbox"
                 },
                 "size": [
                   320,

@@ -103,7 +103,7 @@
               "size": "md",
               "type": "text",
               "color": "neutral",
-              "Shade": "Light"
+              "shade": "Light"
             },
             "size": [
               32,

@@ -19,9 +19,9 @@ const everyIconPath = function* () {
 };
 
 describe('buildIconSpec: icons', () => {
-  it('carries all 341 sets under distinct component names', () => {
-    expect(icons).toHaveLength(341);
-    expect(new Set(icons.map((i) => i.component)).size).toBe(341);
+  it('carries all 340 sets under distinct component names', () => {
+    expect(icons).toHaveLength(340);
+    expect(new Set(icons.map((i) => i.component)).size).toBe(340);
   });
 
   it('keeps the catalog metadata beside the geometry', () => {
@@ -33,7 +33,7 @@ describe('buildIconSpec: icons', () => {
     });
   });
 
-  it('draws all 341 outlines from their own file', () => {
+  it('draws all 340 outlines from their own file', () => {
     // Icon/Support shipped its solid drawing in both variant slots and no outline until SOLAR
     // drew the missing one on 2026-09-22; it was the only icon that reached the fallback, which
     // is now exercised synthetically below. Not a geometry comparison: 80 sets are drawn
@@ -43,7 +43,7 @@ describe('buildIconSpec: icons', () => {
     expect(missing.map((i) => i.fileStem)).toEqual([]);
     expect(
       catalog.icons.filter((i) => i.variants.outline && i.variants.solid),
-    ).toHaveLength(341);
+    ).toHaveLength(340);
     expect(icons.every((i) => i.variants.outline && i.variants.solid)).toBe(
       true,
     );
@@ -55,10 +55,12 @@ describe('buildIconSpec: icons', () => {
     expect(tokens).not.toContain('icon.support');
   });
 
-  it('separates the two Icon/Phone components by file stem', () => {
+  it('names every icon from its Figma name, which are unique again', () => {
+    // SOLAR deleted the Audio & DSP duplicate of Icon/Phone on 2026-09-23, so no icon needs its
+    // file stem to tell it apart and the collision finding is gone.
     expect(spec.icons.phone.component).toBe('IconPhone');
-    expect(spec.icons['phone--audio-dsp'].component).toBe('IconPhoneAudioDsp');
-    expect(tokens).toContain('icon.phone');
+    expect(spec.icons).not.toHaveProperty(['phone--audio-dsp']);
+    expect(tokens).not.toContain('icon.phone');
   });
 
   it('keeps the acronyms the catalog spells out', () => {
@@ -220,10 +222,10 @@ describe('buildIconSpec: logos', () => {
 });
 
 describe('buildIconSpec: totals', () => {
-  // The corpus is 687 SVG files: 682 icon files (341 outline, 341 solid) and 5 logo files, one
+  // The corpus is 685 SVG files: 680 icon files (340 outline, 340 solid) and 5 logo files, one
   // of which is teams.svg. Since SOLAR drew the missing Support outline on 2026-09-22 nothing
-  // is cloned, so the spec holds exactly the variants and paths that were parsed: 686 files and
-  // 812 paths, teams excluded from both because it has no IR.
+  // is cloned, so the spec holds exactly the variants and paths that were parsed: 684 files and
+  // 810 paths, teams excluded from both because it has no IR.
   it('matches the measured corpus', () => {
     let variants = 0;
     let paths = 0;
@@ -232,8 +234,8 @@ describe('buildIconSpec: totals', () => {
         variants += 1;
         paths += variant.paths.length;
       }
-    expect(variants).toBe(682);
-    expect(paths).toBe(792);
+    expect(variants).toBe(680);
+    expect(paths).toBe(790);
 
     for (const logo of Object.values(spec.logos)) {
       if (logo.raster) continue;
@@ -243,8 +245,8 @@ describe('buildIconSpec: totals', () => {
         paths += variant.paths.length;
       }
     }
-    expect(variants).toBe(686);
-    expect(paths).toBe(812);
+    expect(variants).toBe(684);
+    expect(paths).toBe(810);
   });
 
   it('records one deviation per source defect and no others', () => {
@@ -253,7 +255,7 @@ describe('buildIconSpec: totals', () => {
     // icon.support and icon.zone were both recorded here until SOLAR fixed the two icons on
     // 2026-09-22; they stay in ICON_DEVIATIONS as the registry entries the fallback and the
     // off-grid paths look up, and are reported only when the data triggers them again.
-    expect(tokens).toEqual(['icon.phone', 'logo.size', 'logo.os-logo.teams']);
+    expect(tokens).toEqual(['logo.size', 'logo.os-logo.teams']);
     for (const d of deviations) {
       expect(ICON_DEVIATIONS).toContainEqual(d);
       expect(d.raise.length, d.token).toBeGreaterThan(20);

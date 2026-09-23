@@ -17,7 +17,7 @@ Default variant: `breakpoint=desktop, filled=True` · 4 variants · default size
 
 - **breakpoint=desktop, filled=True** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
   fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
-  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=True) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
+  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
     padding `stack.md`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×592  
     itemSpacing `stack.lg`

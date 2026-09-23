@@ -20,7 +20,7 @@
  *
  * `accept` and `follows` are not interchangeable. `accept` leaves the recipe as derived and only
  * records that the Figma variants differing from it are known. When the Figma variant is the
- * one that is right -- xl is meant to be flat -- the cell must `follow` that axis instead, so the
+ * one that is right -- lg is meant to be flat -- the cell must `follow` that axis instead, so the
  * code draws what Figma draws.
  */
 

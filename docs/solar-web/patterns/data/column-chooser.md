@@ -55,7 +55,7 @@ Default variant: `state=default` · 3 variants · default size 320×720px
         itemSpacing `inset.xs`
       - **ColumnRow** · instance of **ColumnRow** (selected=false, hover=false) · row gap 8 pad 0/0/0/0 FIXED/FIXED · 296×44  
         itemSpacing `inset.xs`
-  - **Button** · instance of **Button** (size=xl, prio=primary, state=default, danger=false) · row gap 12 pad 0/20/0/20 FILL/FIXED · 320×48  
+  - **Button** · instance of **Button** (size=lg, prio=primary, state=default, danger=false) · row gap 12 pad 0/20/0/20 FILL/FIXED · 320×48  
     fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 0px · padding `inset.lg` · strokeWeight `border.none` · radius `radius.none`
 
 ### Tokens used

@@ -64,20 +64,21 @@ Default variant: `type=playing, state=default` · 8 variants · default size 348
 
 ## Component set: Schedule Strip
 
-Titled panel that lists a sequence of Schedule Entry rows with an overflow menu in the header. 3 variants: state (default, empty, ghost). default holds entries in the content slot; empty is the no-schedule message; ghost is the loading skeleton. Props: content (slot). Keep entries in chronological order; the strip does not sort.
+Titled panel that lists a sequence of Schedule Entry rows with an overflow menu in the header. 3 variants: state (default, empty) × ghost (false, true), shipped as the used combinations. default holds entries in the content slot; empty is the no-schedule message; ghost=true is the loading skeleton. Props: content (slot). Keep entries in chronological order; the strip does not sort.
 
 ### Props
 
-| Prop      | Type    | Options / default           |
-| --------- | ------- | --------------------------- |
-| `state`   | variant | empty · **default** · ghost |
-| `content` | slot    | default `[object Object]`   |
+| Prop      | Type    | Options / default         |
+| --------- | ------- | ------------------------- |
+| `state`   | variant | empty · **default**       |
+| `ghost`   | variant | **false** · true          |
+| `content` | slot    | default `[object Object]` |
 
-Default variant: `state=default` · 3 variants · default size 380×343px
+Default variant: `state=default, ghost=false` · 3 variants · default size 380×343px
 
 ### Anatomy (default variant)
 
-- **state=default** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 380×343  
+- **state=default, ghost=false** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 380×343  
   fill `color.surface.raised` · stroke `color.border.subtle` 1px · effect `shadow/raised` · itemSpacing `stack.none` · padding `stack.none`, `inset.none` · strokeWeight `border.default` · radius `radius.container`
   - **Container** · frame · row gap 8 pad 16/16/16/16 FILL/HUG · 380×48  
     stroke `color.border.surface` mixedpx · padding `inset.md` · strokeWeight `border.default`
@@ -127,15 +128,14 @@ Default variant: `state=default` · 3 variants · default size 380×343px
 
 ### Variant matrix
 
-| state   | size    | fill                   | stroke                | effect          | text                                                                                                                                           | icon                                                                                                                 |
-| ------- | ------- | ---------------------- | --------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| default | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.success`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral` | `color.icon.primary`<br>`color.icon.feedback.success`<br>`color.icon.feedback.info`<br>`color.icon.feedback.neutral` |
-| ghost   | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` |                                                                                                                                                |                                                                                                                      |
-| empty   | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                 | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                        |
+| state   | ghost | size    | fill                   | stroke                | effect          | text                                                                                                                                           | icon                                                                                                                 |
+| ------- | ----- | ------- | ---------------------- | --------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| default | false | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.success`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral` | `color.icon.primary`<br>`color.icon.feedback.success`<br>`color.icon.feedback.info`<br>`color.icon.feedback.neutral` |
+| default | true  | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` |                                                                                                                                                |                                                                                                                      |
+| empty   | false | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                 | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                        |
 
 ### Issues detected
 
-- State axis uses non-standard value(s): ghost.
 - Hard-coded gap `8px` on layer _Container_
 
 ## Documentation card

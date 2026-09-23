@@ -5,7 +5,7 @@
     {
       "name": "Sidebar",
       "id": "2666:781",
-      "description": "Primary app navigation rail: a Menu slot of Nav Items, a collapse toggle and the Biamp logo at the foot. 2 variants: expanded (False, True). Collapsed shows icons only with labels as tooltips; expanded shows icon and label. Props: Menu (slot). Generic primitive only: Sidebar/Workplace and Sidebar/Chatter assemblies live in the product files.",
+      "description": "Primary app navigation rail: a Menu slot of Nav Items, a collapse toggle and the Biamp logo at the foot. 2 variants: expanded (false, true). Collapsed shows icons only with labels as tooltips; expanded shows icon and label. Props: Menu (slot). Generic primitive only: Sidebar/Workplace and Sidebar/Chatter assemblies live in the product files.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -20,17 +20,17 @@
         },
         "expanded": {
           "type": "VARIANT",
-          "default": "False",
+          "default": "false",
           "options": [
-            "False",
-            "True"
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "expanded=False",
+      "defaultVariant": "expanded=false",
       "defaultVariantNodeCount": 32,
       "defaultVariantTree": {
-        "name": "expanded=False",
+        "name": "expanded=false",
         "type": "COMPONENT",
         "size": [
           64,
@@ -428,7 +428,7 @@
       },
       "variants": [
         {
-          "variant": "expanded=False",
+          "variant": "expanded=false",
           "size": [
             64,
             744
@@ -441,7 +441,7 @@
           "hidden": []
         },
         {
-          "variant": "expanded=True",
+          "variant": "expanded=true",
           "size": [
             198,
             744

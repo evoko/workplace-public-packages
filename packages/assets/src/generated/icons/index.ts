@@ -226,7 +226,6 @@ export { IconPause } from './pause.js';
 export { IconPeakIndicator } from './peak-indicator.js';
 export { IconPhantom48V } from './phantom48-v.js';
 export { IconPhone } from './phone.js';
-export { IconPhoneAudioDsp } from './phone--audio-dsp.js';
 export { IconPhoneBooth } from './phone-booth.js';
 export { IconPin } from './pin.js';
 export { IconPlay } from './play.js';

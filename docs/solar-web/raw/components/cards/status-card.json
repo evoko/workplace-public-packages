@@ -5,7 +5,7 @@
     {
       "name": "Status Card",
       "id": "3763:676",
-      "description": "Compact card that reports the status of one thing — a device, service or job — with a feedback-coloured indicator, title and value. 16 variants: status (success, neutral, danger, warning) × state (default, hover, disabled, ghost). ghost is the skeleton placeholder while data loads. Status is conveyed by icon + label, not colour alone. For KPI numbers use Stat Card; for an actionable alert use Insight Card.",
+      "description": "Compact card that reports the status of one thing — a device, service or job — with a feedback-coloured indicator, title and value. 16 variants: status (success, neutral, danger, warning) × state (default, hover, disabled) plus ghost=true per status. ghost is the skeleton placeholder while data loads. Status is conveyed by icon + label, not colour alone. For KPI numbers use Stat Card; for an actionable alert use Insight Card.",
       "docLinks": [],
       "variantCount": 16,
       "props": {
@@ -25,15 +25,22 @@
           "options": [
             "default",
             "hover",
-            "disabled",
-            "ghost"
+            "disabled"
+          ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "status=success, state=default",
+      "defaultVariant": "status=success, state=default, ghost=false",
       "defaultVariantNodeCount": 8,
       "defaultVariantTree": {
-        "name": "status=success, state=default",
+        "name": "status=success, state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           240,
@@ -233,7 +240,7 @@
       },
       "variants": [
         {
-          "variant": "status=success, state=default",
+          "variant": "status=success, state=default, ghost=false",
           "size": [
             240,
             84
@@ -255,7 +262,7 @@
           "hidden": []
         },
         {
-          "variant": "status=warning, state=default",
+          "variant": "status=warning, state=default, ghost=false",
           "size": [
             240,
             84
@@ -304,7 +311,7 @@
           }
         },
         {
-          "variant": "status=danger, state=default",
+          "variant": "status=danger, state=default, ghost=false",
           "size": [
             240,
             84
@@ -353,7 +360,7 @@
           }
         },
         {
-          "variant": "status=neutral, state=default",
+          "variant": "status=neutral, state=default, ghost=false",
           "size": [
             240,
             84
@@ -401,7 +408,7 @@
           }
         },
         {
-          "variant": "status=success, state=hover",
+          "variant": "status=success, state=hover, ghost=false",
           "size": [
             240,
             84
@@ -431,7 +438,7 @@
           }
         },
         {
-          "variant": "status=warning, state=hover",
+          "variant": "status=warning, state=hover, ghost=false",
           "size": [
             240,
             84
@@ -485,7 +492,7 @@
           }
         },
         {
-          "variant": "status=danger, state=hover",
+          "variant": "status=danger, state=hover, ghost=false",
           "size": [
             240,
             84
@@ -539,7 +546,7 @@
           }
         },
         {
-          "variant": "status=neutral, state=hover",
+          "variant": "status=neutral, state=hover, ghost=false",
           "size": [
             240,
             84
@@ -592,7 +599,7 @@
           }
         },
         {
-          "variant": "status=success, state=disabled",
+          "variant": "status=success, state=disabled, ghost=false",
           "size": [
             240,
             84
@@ -628,7 +635,7 @@
           }
         },
         {
-          "variant": "status=warning, state=disabled",
+          "variant": "status=warning, state=disabled, ghost=false",
           "size": [
             240,
             84
@@ -691,7 +698,7 @@
           }
         },
         {
-          "variant": "status=danger, state=disabled",
+          "variant": "status=danger, state=disabled, ghost=false",
           "size": [
             240,
             84
@@ -751,7 +758,7 @@
           }
         },
         {
-          "variant": "status=neutral, state=disabled",
+          "variant": "status=neutral, state=disabled, ghost=false",
           "size": [
             240,
             84
@@ -810,7 +817,7 @@
           }
         },
         {
-          "variant": "status=success, state=ghost",
+          "variant": "status=success, state=default, ghost=true",
           "size": [
             240,
             80
@@ -882,7 +889,7 @@
           }
         },
         {
-          "variant": "status=warning, state=ghost",
+          "variant": "status=warning, state=default, ghost=true",
           "size": [
             240,
             80
@@ -954,7 +961,7 @@
           }
         },
         {
-          "variant": "status=danger, state=ghost",
+          "variant": "status=danger, state=default, ghost=true",
           "size": [
             240,
             80
@@ -1026,7 +1033,7 @@
           }
         },
         {
-          "variant": "status=neutral, state=ghost",
+          "variant": "status=neutral, state=default, ghost=true",
           "size": [
             240,
             80

@@ -84,12 +84,12 @@
             "name": "Frame",
             "type": "FRAME",
             "size": [
-              47,
+              45,
               9
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 6,
+              "gap": 4,
               "pad": [
                 0,
                 0,
@@ -98,6 +98,9 @@
               ],
               "align": "MIN/CENTER",
               "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
             },
             "children": [
               {
@@ -203,6 +206,9 @@
                   "gap": 16,
                   "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 }
               }
             },
@@ -214,12 +220,12 @@
                   "name": "Frame",
                   "type": "FRAME",
                   "size": [
-                    83,
+                    81,
                     9
                   ],
                   "layout": {
                     "dir": "HORIZONTAL",
-                    "gap": 6,
+                    "gap": 4,
                     "pad": [
                       0,
                       0,
@@ -228,6 +234,9 @@
                     ],
                     "align": "MIN/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs"
                   }
                 }
               },
@@ -312,6 +321,9 @@
                     ],
                     "align": "SPACE_BETWEEN/CENTER",
                     "sizing": "FIXED/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/md"
                   }
                 }
               },
@@ -322,12 +334,12 @@
                   "name": "Frame",
                   "type": "FRAME",
                   "size": [
-                    91,
+                    89,
                     9
                   ],
                   "layout": {
                     "dir": "HORIZONTAL",
-                    "gap": 6,
+                    "gap": 4,
                     "pad": [
                       0,
                       0,
@@ -336,6 +348,9 @@
                     ],
                     "align": "MIN/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs"
                   }
                 }
               },
@@ -444,6 +459,9 @@
                     ],
                     "align": "SPACE_BETWEEN/CENTER",
                     "sizing": "FIXED/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/md"
                   }
                 }
               },
@@ -454,12 +472,12 @@
                   "name": "Frame",
                   "type": "FRAME",
                   "size": [
-                    84,
+                    82,
                     9
                   ],
                   "layout": {
                     "dir": "HORIZONTAL",
-                    "gap": 6,
+                    "gap": 4,
                     "pad": [
                       0,
                       0,
@@ -468,6 +486,9 @@
                     ],
                     "align": "MIN/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/2xs"
                   }
                 }
               },

@@ -299,9 +299,9 @@ describe('the whole icon corpus', () => {
     }
   }
 
-  it('holds 687 SVG files carrying 825 <path> elements', () => {
-    expect(files).toHaveLength(687);
-    expect(rawPaths).toBe(825);
+  it('holds 685 SVG files carrying 823 <path> elements', () => {
+    expect(files).toHaveLength(685);
+    expect(rawPaths).toBe(823);
   });
 
   it('parses every file except teams.svg', () => {
@@ -309,13 +309,13 @@ describe('the whole icon corpus', () => {
     expect(failed.get('logos/os-logo/teams.svg')).toMatch(
       /path is filled by a reference \(url\(#paint0_radial_6196_626\)\)/,
     );
-    expect(parsed.size).toBe(686);
+    expect(parsed.size).toBe(684);
   });
 
-  it('yields 812 paths, 75 of them evenodd', () => {
+  it('yields 810 paths, 75 of them evenodd', () => {
     const paths = [...parsed.values()].flatMap((icon) => icon.paths);
-    // 825 in the files minus the 13 in teams.svg, which is the one file the IR cannot hold.
-    expect(paths).toHaveLength(812);
+    // 823 in the files minus the 13 in teams.svg, which is the one file the IR cannot hold.
+    expect(paths).toHaveLength(810);
     expect(paths.filter((p) => p.fillRule === 'evenodd')).toHaveLength(75);
   });
 
@@ -329,7 +329,7 @@ describe('the whole icon corpus', () => {
       .map(([file]) => file);
     expect(offGrid).toEqual([]);
     expect([...parsed.keys()].filter((f) => f.startsWith('svg/'))).toHaveLength(
-      682,
+      680,
     );
   });
 

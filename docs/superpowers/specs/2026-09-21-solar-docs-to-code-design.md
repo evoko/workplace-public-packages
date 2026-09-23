@@ -118,7 +118,7 @@ One file per component. It carries the public contract and the style recipe.
       "values": ["primary", "secondary", "tertiary"],
       "default": "primary",
     },
-    "size": { "values": ["sm", "md", "xl"], "default": "md" },
+    "size": { "values": ["sm", "md", "lg"], "default": "md" },
     "danger": { "type": "boolean", "default": false },
   },
   "states": ["default", "hover", "active", "focus", "disabled", "loading"],

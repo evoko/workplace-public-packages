@@ -5,9 +5,9 @@
     {
       "name": "Text Area",
       "id": "3888:128",
-      "description": "Multi-line text field for long-form input. 14 variants: size (sm, md) × state (default, hover, focused, filled, disabled, error, error-focused). NOTE: state names `focused` / `error-focused` diverge from SOLAR's locked `focus` vocab — flagged for rename. Resize handle bottom-right. Use when expected input exceeds ~2 lines (descriptions, notes, feedback). For rich formatting switch to a rich-text editor component.",
+      "description": "Multi-line text field for long-form input. 12 variants: size (sm, md) × state (default, hover, focus, filled, disabled, error). focus carries shadow/focus/default; error carries the danger border and shadow/danger and pairs with helper text. Resize handle bottom-right. Use when expected input exceeds ~2 lines (descriptions, notes, feedback). For rich formatting switch to a rich-text editor component.",
       "docLinks": [],
-      "variantCount": 14,
+      "variantCount": 12,
       "props": {
         "hasLabel#7033:0": {
           "type": "BOOLEAN",
@@ -63,7 +63,6 @@
           "options": [
             "default",
             "hover",
-            "focused",
             "filled",
             "disabled",
             "error",
@@ -607,169 +606,6 @@
                   "lineHeight": "Type:line-height/body/sm",
                   "fontSize": "Type:size/body/sm"
                 }
-              },
-              "/Footer": {
-                "size": [
-                  200,
-                  9
-                ]
-              },
-              "/Footer/Helper text": {
-                "textStyle": "helper/sm",
-                "size": [
-                  166,
-                  9
-                ],
-                "vars": {
-                  "lineHeight": "Type:line-height/helper/sm",
-                  "fontSize": "Type:size/helper/sm"
-                }
-              },
-              "/Footer/CharCount": {
-                "textStyle": "body/sm/regular",
-                "size": [
-                  34,
-                  9
-                ],
-                "vars": {
-                  "lineHeight": "Type:line-height/body/sm",
-                  "fontSize": "Type:size/body/sm"
-                }
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=md, state=focused",
-          "size": [
-            280,
-            156
-          ],
-          "textFills": [
-            "{Color:text/primary}",
-            "{Color:text/feedback/info}",
-            "{Color:text/secondary}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/default}",
-            "{Color:action/secondary/icon/default}"
-          ],
-          "overrides": {
-            "changed": {
-              "/Field": {
-                "strokes": [
-                  "{Color:border/feedback/focus/strong}"
-                ],
-                "effectStyle": "shadow/focus/default"
-              },
-              "/Field/Enter text...": {
-                "fills": [
-                  "{Color:text/primary}"
-                ]
-              },
-              "/Field/Icon Button": {
-                "variant": {
-                  "size": "sm",
-                  "shape": "square",
-                  "prio": "primary",
-                  "state": "default"
-                },
-                "fills": [
-                  "{Color:action/primary/bg/default}"
-                ],
-                "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=sm, state=focused",
-          "size": [
-            200,
-            134
-          ],
-          "textFills": [
-            "{Color:text/primary}",
-            "{Color:text/feedback/info}",
-            "{Color:text/secondary}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/default}",
-            "{Color:action/secondary/icon/default}"
-          ],
-          "overrides": {
-            "changed": {
-              "/Label": {
-                "size": [
-                  42,
-                  9
-                ]
-              },
-              "/Label/Label": {
-                "textStyle": "label/sm",
-                "size": [
-                  31,
-                  9
-                ],
-                "vars": {
-                  "lineHeight": "Type:line-height/label/sm",
-                  "fontSize": "Type:size/label/sm"
-                }
-              },
-              "/Label/*": {
-                "textStyle": "label/sm",
-                "size": [
-                  7,
-                  9
-                ],
-                "vars": {
-                  "lineHeight": "Type:line-height/label/sm",
-                  "fontSize": "Type:size/label/sm"
-                }
-              },
-              "/Field": {
-                "size": [
-                  200,
-                  100
-                ],
-                "strokes": [
-                  "{Color:border/feedback/focus/strong}"
-                ],
-                "effectStyle": "shadow/focus/default"
-              },
-              "/Field/Enter text...": {
-                "textStyle": "body/sm/regular",
-                "size": [
-                  176,
-                  76
-                ],
-                "fills": [
-                  "{Color:text/primary}"
-                ],
-                "vars": {
-                  "lineHeight": "Type:line-height/body/sm",
-                  "fontSize": "Type:size/body/sm"
-                }
-              },
-              "/Field/Icon Button": {
-                "variant": {
-                  "size": "sm",
-                  "shape": "square",
-                  "prio": "primary",
-                  "state": "default"
-                },
-                "fills": [
-                  "{Color:action/primary/bg/default}"
-                ],
-                "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
               },
               "/Footer": {
                 "size": [

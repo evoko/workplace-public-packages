@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-22
-  figmaVersion: '2402047167094879156'
+  reviewed: 2026-09-23
+  figmaVersion: '2402389239778582681'
   sources:
-    documentation/iconography: 5332d7846a42
+    documentation/iconography: 5b3c541fe140
 ---
 
 # 09 · Iconography

@@ -5,9 +5,9 @@
     {
       "name": "Icon Button",
       "id": "2995:443",
-      "description": "Icon-only action button. 126 variants: size (sm 28px, md 36px, lg 44px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, active, pressed, disabled, focus, loading). NOTE: `active` duplicates `pressed` and is scheduled for removal (→ 108 variants). Mirrors the Button priority/size/state system using SOLAR action tokens. Always expand hit area to 44×44 via invisible padding when the visible size is smaller (WCAG 2.5.5). An icon-only control must carry an aria-label — the icon alone is not a name.",
+      "description": "Icon-only action button. 108 variants: size (sm 28px, md 36px, lg 44px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, pressed, focus, loading, disabled). Mirrors the Button priority/size/state system using SOLAR action tokens; the duplicate state=active was removed on 2026-09-23 — use pressed. Always expand the hit area to 44×44 via invisible padding when the visible size is smaller (WCAG 2.5.5). An icon-only control must carry an aria-label — the icon alone is not a name.",
       "docLinks": [],
-      "variantCount": 126,
+      "variantCount": 108,
       "props": {
         "size": {
           "type": "VARIANT",
@@ -41,7 +41,6 @@
           "options": [
             "default",
             "hover",
-            "active",
             "pressed",
             "disabled",
             "focus",
@@ -147,36 +146,6 @@
               "/": {
                 "fills": [
                   "{Color:action/primary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "iconFills": [
-                  "{Color:action/primary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=sm, shape=square, prio=primary, state=active",
-          "size": [
-            32,
-            32
-          ],
-          "fills": [
-            "{Color:action/primary/bg/active}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:action/primary/bg/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,
@@ -380,43 +349,6 @@
               "/": {
                 "fills": [
                   "{Color:action/primary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "iconFills": [
-                  "{Color:action/primary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=sm, shape=round, prio=primary, state=active",
-          "size": [
-            32,
-            32
-          ],
-          "fills": [
-            "{Color:action/primary/bg/active}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:action/primary/bg/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,
@@ -679,43 +611,6 @@
           }
         },
         {
-          "variant": "size=md, shape=square, prio=primary, state=active",
-          "size": [
-            40,
-            40
-          ],
-          "fills": [
-            "{Color:action/primary/bg/active}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:action/primary/bg/active}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "size": [
-                  16,
-                  16
-                ],
-                "vars": {
-                  "height": "Spatial:icon/sm"
-                },
-                "iconFills": [
-                  "{Color:action/primary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=md, shape=square, prio=primary, state=pressed",
           "size": [
             40,
@@ -943,50 +838,6 @@
               "/": {
                 "fills": [
                   "{Color:action/primary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "size": [
-                  16,
-                  16
-                ],
-                "vars": {
-                  "height": "Spatial:icon/sm"
-                },
-                "iconFills": [
-                  "{Color:action/primary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=md, shape=round, prio=primary, state=active",
-          "size": [
-            40,
-            40
-          ],
-          "fills": [
-            "{Color:action/primary/bg/active}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:action/primary/bg/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,
@@ -1284,43 +1135,6 @@
           }
         },
         {
-          "variant": "size=lg, shape=square, prio=primary, state=active",
-          "size": [
-            48,
-            48
-          ],
-          "fills": [
-            "{Color:action/primary/bg/active}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:action/primary/bg/active}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "size": [
-                  20,
-                  20
-                ],
-                "vars": {
-                  "height": "Spatial:icon/md"
-                },
-                "iconFills": [
-                  "{Color:action/primary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=lg, shape=square, prio=primary, state=pressed",
           "size": [
             48,
@@ -1547,50 +1361,6 @@
               "/": {
                 "fills": [
                   "{Color:action/primary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "size": [
-                  20,
-                  20
-                ],
-                "vars": {
-                  "height": "Spatial:icon/md"
-                },
-                "iconFills": [
-                  "{Color:action/primary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=lg, shape=round, prio=primary, state=active",
-          "size": [
-            48,
-            48
-          ],
-          "fills": [
-            "{Color:action/primary/bg/active}"
-          ],
-          "iconFills": [
-            "{Color:action/primary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:action/primary/bg/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,
@@ -1881,37 +1651,6 @@
           }
         },
         {
-          "variant": "size=sm, shape=square, prio=secondary, state=active",
-          "size": [
-            32,
-            32
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "strokes": [
-            "{Color:border/medium}"
-          ],
-          "iconFills": [
-            "{Color:action/secondary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
-                ],
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "iconFills": [
-                  "{Color:action/secondary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=sm, shape=square, prio=secondary, state=pressed",
           "size": [
             32,
@@ -2128,44 +1867,6 @@
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
-                ],
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "iconFills": [
-                  "{Color:action/secondary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=sm, shape=round, prio=secondary, state=active",
-          "size": [
-            32,
-            32
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "strokes": [
-            "{Color:border/medium}"
-          ],
-          "iconFills": [
-            "{Color:action/secondary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
                 ],
                 "radius": 9999,
                 "effectStyle": null,
@@ -2448,44 +2149,6 @@
           }
         },
         {
-          "variant": "size=md, shape=square, prio=secondary, state=active",
-          "size": [
-            40,
-            40
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "strokes": [
-            "{Color:border/medium}"
-          ],
-          "iconFills": [
-            "{Color:action/secondary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
-                ],
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "size": [
-                  16,
-                  16
-                ],
-                "vars": {
-                  "height": "Spatial:icon/sm"
-                },
-                "iconFills": [
-                  "{Color:action/secondary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=md, shape=square, prio=secondary, state=pressed",
           "size": [
             40,
@@ -2737,51 +2400,6 @@
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
-                ],
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "size": [
-                  16,
-                  16
-                ],
-                "vars": {
-                  "height": "Spatial:icon/sm"
-                },
-                "iconFills": [
-                  "{Color:action/secondary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=md, shape=round, prio=secondary, state=active",
-          "size": [
-            40,
-            40
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "strokes": [
-            "{Color:border/medium}"
-          ],
-          "iconFills": [
-            "{Color:action/secondary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
                 ],
                 "radius": 9999,
                 "effectStyle": null,
@@ -3097,43 +2715,6 @@
           }
         },
         {
-          "variant": "size=lg, shape=square, prio=secondary, state=active",
-          "size": [
-            48,
-            48
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/secondary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "size": [
-                  20,
-                  20
-                ],
-                "vars": {
-                  "height": "Spatial:icon/md"
-                },
-                "iconFills": [
-                  "{Color:action/secondary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=lg, shape=square, prio=secondary, state=pressed",
           "size": [
             48,
@@ -3377,50 +2958,6 @@
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "size": [
-                  20,
-                  20
-                ],
-                "vars": {
-                  "height": "Spatial:icon/md"
-                },
-                "iconFills": [
-                  "{Color:action/secondary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=lg, shape=round, prio=secondary, state=active",
-          "size": [
-            48,
-            48
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/secondary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,
@@ -3720,36 +3257,6 @@
           }
         },
         {
-          "variant": "size=sm, shape=square, prio=tertiary, state=active",
-          "size": [
-            32,
-            32
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/tertiary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "iconFills": [
-                  "{Color:action/tertiary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=sm, shape=square, prio=tertiary, state=pressed",
           "size": [
             32,
@@ -3958,43 +3465,6 @@
               "/": {
                 "fills": [
                   "{Color:action/tertiary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "iconFills": [
-                  "{Color:action/tertiary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=sm, shape=round, prio=tertiary, state=active",
-          "size": [
-            32,
-            32
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/tertiary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,
@@ -4273,43 +3743,6 @@
           }
         },
         {
-          "variant": "size=md, shape=square, prio=tertiary, state=active",
-          "size": [
-            40,
-            40
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/tertiary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "size": [
-                  16,
-                  16
-                ],
-                "vars": {
-                  "height": "Spatial:icon/sm"
-                },
-                "iconFills": [
-                  "{Color:action/tertiary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=md, shape=square, prio=tertiary, state=pressed",
           "size": [
             40,
@@ -4553,50 +3986,6 @@
               "/": {
                 "fills": [
                   "{Color:action/tertiary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "size": [
-                  16,
-                  16
-                ],
-                "vars": {
-                  "height": "Spatial:icon/sm"
-                },
-                "iconFills": [
-                  "{Color:action/tertiary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=md, shape=round, prio=tertiary, state=active",
-          "size": [
-            40,
-            40
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/tertiary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,
@@ -4910,43 +4299,6 @@
           }
         },
         {
-          "variant": "size=lg, shape=square, prio=tertiary, state=active",
-          "size": [
-            48,
-            48
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/tertiary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
-              "/Icon/None": {
-                "size": [
-                  20,
-                  20
-                ],
-                "vars": {
-                  "height": "Spatial:icon/md"
-                },
-                "iconFills": [
-                  "{Color:action/tertiary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
           "variant": "size=lg, shape=square, prio=tertiary, state=pressed",
           "size": [
             48,
@@ -5190,50 +4542,6 @@
               "/": {
                 "fills": [
                   "{Color:action/tertiary/bg/hover}"
-                ],
-                "strokes": null,
-                "strokeWeight": null,
-                "radius": 9999,
-                "effectStyle": null,
-                "vars": {
-                  "topLeftRadius": "Spatial:radius/pill",
-                  "topRightRadius": "Spatial:radius/pill",
-                  "bottomLeftRadius": "Spatial:radius/pill",
-                  "bottomRightRadius": "Spatial:radius/pill"
-                }
-              },
-              "/Icon/None": {
-                "size": [
-                  20,
-                  20
-                ],
-                "vars": {
-                  "height": "Spatial:icon/md"
-                },
-                "iconFills": [
-                  "{Color:action/tertiary/icon/hover}"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "variant": "size=lg, shape=round, prio=tertiary, state=active",
-          "size": [
-            48,
-            48
-          ],
-          "fills": [
-            "{Color:surface/active}"
-          ],
-          "iconFills": [
-            "{Color:action/tertiary/icon/hover}"
-          ],
-          "overrides": {
-            "changed": {
-              "/": {
-                "fills": [
-                  "{Color:surface/active}"
                 ],
                 "strokes": null,
                 "strokeWeight": null,

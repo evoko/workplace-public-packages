@@ -101,16 +101,20 @@ Expanded app detail layout: image slot, app identity, intro + feature copy, Open
   fill `color.surface.raised` · itemSpacing `inset.2xl` · padding `inset.lg` · radius `radius.dialog`
   - **Image** · frame · FIXED/FIXED · 520×420  
     fill `IMAGE` ⚠️ hard-coded · itemSpacing `stack.lg` · radius `radius.container`
-  - **Text** · frame · column gap 18 pad 0/0/0/0 FILL/FIXED · 391×420
-    - **Content** · frame · column gap 18 pad 0/0/0/0 FILL/HUG · 391×357
-      - **Headline** · frame · row gap 18 pad 0/0/0/0 FILL/HUG · 391×40
+  - **Text** · frame · column gap 16 pad 0/0/0/0 FILL/FIXED · 391×420  
+    itemSpacing `inset.md`
+    - **Content** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 391×347  
+      itemSpacing `inset.md`
+      - **Headline** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 391×40  
+        itemSpacing `inset.md`
         - **App Icon** · instance of **App Icon** (App=Workplace) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
           fill `IMAGE` ⚠️ hard-coded · itemSpacing `spatial.scale.0` · padding `spatial.scale.0` · radius `spatial.border-radius.md`
         - **Favourite** · instance of **Icon Button** (size=md, shape=round, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
           fill `color.action.tertiary.bg.default` · strokeWeight `border.default` · radius `radius.pill`
       - **App name** · text `title/sm` "App name" · HUG/HUG · 93×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
-      - **Body copy** · frame · column gap 18 pad 0/0/0/0 FILL/HUG · 391×266
+      - **Body copy** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 391×260  
+        itemSpacing `inset.md`
         - **Intro** · text `body/sm/regular` "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam orci ipsum, pul" · FILL/HUG · 391×41  
           fill `color.text.primary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.400`
         - **Feature** · text `body/sm/regular` "Feature example 01 Curabitur suscipit mollis dolor vitae venenatis. Sed sagittis" · FILL/HUG · 391×57  
@@ -129,7 +133,7 @@ Expanded app detail layout: image slot, app identity, intro + feature copy, Open
 | Fills           | `color.action.primary.bg.default`, `color.action.tertiary.bg.default`, `color.surface.raised`                                                                                                        |
 | Strokes         | `color.action.primary.border.default`                                                                                                                                                                |
 | Text color      | `color.text.primary`                                                                                                                                                                                 |
-| Spacing         | `spatial.scale.0`, `inset.2xl`, `inset.lg`, `inset.sm`, `inset.xs`, `stack.lg`                                                                                                                       |
+| Spacing         | `spatial.scale.0`, `inset.2xl`, `inset.lg`, `inset.md`, `inset.sm`, `inset.xs`, `stack.lg`                                                                                                           |
 | Radius          | `spatial.border-radius.md`, `radius.container`, `radius.control`, `radius.dialog`, `radius.pill`                                                                                                     |
 | Border width    | `border.default`                                                                                                                                                                                     |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.font-weight.600`, `type.line-height.body.sm`, `type.line-height.title.sm`, `type.size.body.sm`, `type.size.title.sm` |
@@ -141,13 +145,6 @@ Expanded app detail layout: image slot, app identity, intro + feature copy, Open
 - App Icon
 - Button
 - Icon Button
-
-### Issues detected
-
-- Hard-coded gap `18px` on layer _Text_
-- Hard-coded gap `18px` on layer _Text › Content_
-- Hard-coded gap `18px` on layer _Text › Content › Headline_
-- Hard-coded gap `18px` on layer _Text › Content › Body copy_
 
 ## Documentation card
 

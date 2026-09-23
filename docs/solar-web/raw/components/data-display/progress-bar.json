@@ -36,7 +36,11 @@
         ],
         "radius": 9999,
         "vars": {
-          "itemSpacing": "Spatial:inset/xs"
+          "itemSpacing": "Spatial:inset/xs",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
         },
         "children": [
           {
@@ -49,7 +53,13 @@
             "fills": [
               "{Color:action/primary/bg/default}"
             ],
-            "radius": 9999
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
           }
         ]
       },

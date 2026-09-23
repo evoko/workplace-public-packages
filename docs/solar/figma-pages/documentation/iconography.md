@@ -1,6 +1,6 @@
 # Iconography
 
-> Verbatim text of the Figma page `Iconography` (id `763:53729`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `5332d7846a42`. Curated chapter: [09-iconography.md](../../09-iconography.md).
+> Verbatim text of the Figma page `Iconography` (id `763:53729`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `5b3c541fe140`. Curated chapter: [09-iconography.md](../../09-iconography.md).
 
 ## Slide 1
 
@@ -70,7 +70,7 @@ Canvas = full icon size · Live area (dashed) = 20×20 inset · Keylines guide o
 
 #### Stroke weight, terminators, and angle rules are shared across the set so icons feel cohesive. Legibility is checked at 12 px, the smallest rendered size.
 
-Outline icons use a consistent stroke weight per size. All segments are straight or follow perfect arcs — no bezier drift. Angles move in 15° increments. Integer pixel measurements on every vertex and endpoint. Strokes are expanded to filled paths before export.
+Outline icons use a consistent stroke weight across the set. All segments are straight or follow perfect arcs — no bezier drift. Angles move in 15° increments. Integer pixel measurements on every vertex and endpoint. Strokes are expanded to filled paths before export.
 
 ##### Rules
 

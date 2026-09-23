@@ -2,7 +2,7 @@
 // Plain data on purpose: this module imports nothing, so @bwp-web/styles stays dependency free.
 // Every value is a var(--solar-*) reference into tokens.css, which must be loaded.
 
-export type SolarButtonSize = 'md' | 'sm' | 'xl';
+export type SolarButtonSize = 'md' | 'sm' | 'lg';
 export type SolarButtonVariant = 'primary' | 'secondary' | 'tertiary';
 
 export interface SolarButtonProps {
@@ -81,7 +81,7 @@ export const solarButtonStyles = {
       paddingLeft: 'var(--solar-inset-xs)',
       height: '32px',
     },
-    xl: {
+    lg: {
       borderRadius: 'var(--solar-radius-none)',
       borderWidth: 'var(--solar-border-none)',
       borderStyle: 'solid',
@@ -789,7 +789,7 @@ export const solarButtonStyles = {
         textDecoration: 'none',
       },
     },
-    xl: {
+    lg: {
       'variant=primary, danger=false': {
         boxShadow: 'none',
         '&:hover': {
@@ -1003,7 +1003,7 @@ export const solarButtonComposition = {
       },
     },
     size: {
-      xl: {
+      lg: {
         'variant.size': 'md',
       },
     },

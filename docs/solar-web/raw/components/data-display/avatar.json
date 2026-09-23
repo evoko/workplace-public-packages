@@ -5,7 +5,7 @@
     {
       "name": "Avatar",
       "id": "2578:1831",
-      "description": "User/entity avatar showing initials, photo, or company logo. Color axis provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark toggle inverts colors for dark surfaces and inverse cards. Photo and Logo are content-aware content modes. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.",
+      "description": "User/entity avatar showing initials, photo, or company logo. 114 variants: size (xs, sm, md, lg) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark shade inverts colors for dark surfaces and inverse cards; Image and Logo are the content modes for photo and logo. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.",
       "docLinks": [],
       "variantCount": 114,
       "props": {
@@ -43,7 +43,7 @@
             "pink"
           ]
         },
-        "Shade": {
+        "shade": {
           "type": "VARIANT",
           "default": "Light",
           "options": [
@@ -55,10 +55,10 @@
           ]
         }
       },
-      "defaultVariant": "size=lg, type=text, color=neutral, Shade=Light",
+      "defaultVariant": "size=lg, type=text, color=neutral, shade=Light",
       "defaultVariantNodeCount": 1,
       "defaultVariantTree": {
-        "name": "size=lg, type=text, color=neutral, Shade=Light",
+        "name": "size=lg, type=text, color=neutral, shade=Light",
         "type": "COMPONENT",
         "size": [
           44,
@@ -119,7 +119,7 @@
       },
       "variants": [
         {
-          "variant": "size=lg, type=text, color=neutral, Shade=Light",
+          "variant": "size=lg, type=text, color=neutral, shade=Light",
           "size": [
             44,
             44
@@ -136,7 +136,7 @@
           "hidden": []
         },
         {
-          "variant": "size=md, type=text, color=neutral, Shade=Light",
+          "variant": "size=md, type=text, color=neutral, shade=Light",
           "size": [
             32,
             32
@@ -168,7 +168,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=neutral, Shade=Light",
+          "variant": "size=sm, type=text, color=neutral, shade=Light",
           "size": [
             24,
             24
@@ -200,7 +200,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=neutral, Shade=Light",
+          "variant": "size=xs, type=text, color=neutral, shade=Light",
           "size": [
             16,
             16
@@ -232,7 +232,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=neutral, Shade=Dark",
+          "variant": "size=lg, type=text, color=neutral, shade=Dark",
           "size": [
             44,
             44
@@ -262,7 +262,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=neutral, Shade=Medium",
+          "variant": "size=lg, type=text, color=neutral, shade=Medium",
           "size": [
             44,
             44
@@ -292,7 +292,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=neutral, Shade=Dark",
+          "variant": "size=md, type=text, color=neutral, shade=Dark",
           "size": [
             32,
             32
@@ -332,7 +332,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=neutral, Shade=Medium",
+          "variant": "size=md, type=text, color=neutral, shade=Medium",
           "size": [
             32,
             32
@@ -372,7 +372,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=neutral, Shade=Dark",
+          "variant": "size=sm, type=text, color=neutral, shade=Dark",
           "size": [
             24,
             24
@@ -412,7 +412,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=neutral, Shade=Medium",
+          "variant": "size=sm, type=text, color=neutral, shade=Medium",
           "size": [
             24,
             24
@@ -452,7 +452,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=neutral, Shade=Dark",
+          "variant": "size=xs, type=text, color=neutral, shade=Dark",
           "size": [
             16,
             16
@@ -492,7 +492,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=neutral, Shade=Medium",
+          "variant": "size=xs, type=text, color=neutral, shade=Medium",
           "size": [
             16,
             16
@@ -532,7 +532,7 @@
           }
         },
         {
-          "variant": "size=lg, type=photo, color=neutral, Shade=Image",
+          "variant": "size=lg, type=photo, color=neutral, shade=Image",
           "size": [
             44,
             44
@@ -563,7 +563,7 @@
           }
         },
         {
-          "variant": "size=md, type=photo, color=neutral, Shade=Image",
+          "variant": "size=md, type=photo, color=neutral, shade=Image",
           "size": [
             32,
             32
@@ -594,7 +594,7 @@
           }
         },
         {
-          "variant": "size=sm, type=photo, color=neutral, Shade=Image",
+          "variant": "size=sm, type=photo, color=neutral, shade=Image",
           "size": [
             24,
             24
@@ -625,7 +625,7 @@
           }
         },
         {
-          "variant": "size=xs, type=photo, color=neutral, Shade=Image",
+          "variant": "size=xs, type=photo, color=neutral, shade=Image",
           "size": [
             16,
             16
@@ -656,7 +656,7 @@
           }
         },
         {
-          "variant": "size=md, type=logo, color=neutral, Shade=Logo",
+          "variant": "size=md, type=logo, color=neutral, shade=Logo",
           "size": [
             32,
             32
@@ -694,7 +694,7 @@
           }
         },
         {
-          "variant": "size=sm, type=logo, color=neutral, Shade=Logo",
+          "variant": "size=sm, type=logo, color=neutral, shade=Logo",
           "size": [
             24,
             24
@@ -732,7 +732,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=red, Shade=Light",
+          "variant": "size=lg, type=text, color=red, shade=Light",
           "size": [
             44,
             44
@@ -762,7 +762,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=red, Shade=Light",
+          "variant": "size=md, type=text, color=red, shade=Light",
           "size": [
             32,
             32
@@ -802,7 +802,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=red, Shade=Light",
+          "variant": "size=sm, type=text, color=red, shade=Light",
           "size": [
             24,
             24
@@ -842,7 +842,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=red, Shade=Light",
+          "variant": "size=xs, type=text, color=red, shade=Light",
           "size": [
             16,
             16
@@ -882,7 +882,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=red, Shade=Dark",
+          "variant": "size=lg, type=text, color=red, shade=Dark",
           "size": [
             44,
             44
@@ -912,7 +912,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=red, Shade=Medium",
+          "variant": "size=lg, type=text, color=red, shade=Medium",
           "size": [
             44,
             44
@@ -942,7 +942,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=red, Shade=Dark",
+          "variant": "size=md, type=text, color=red, shade=Dark",
           "size": [
             32,
             32
@@ -982,7 +982,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=red, Shade=Medium",
+          "variant": "size=md, type=text, color=red, shade=Medium",
           "size": [
             32,
             32
@@ -1022,7 +1022,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=red, Shade=Dark",
+          "variant": "size=sm, type=text, color=red, shade=Dark",
           "size": [
             24,
             24
@@ -1062,7 +1062,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=red, Shade=Medium",
+          "variant": "size=sm, type=text, color=red, shade=Medium",
           "size": [
             24,
             24
@@ -1102,7 +1102,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=red, Shade=Dark",
+          "variant": "size=xs, type=text, color=red, shade=Dark",
           "size": [
             16,
             16
@@ -1142,7 +1142,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=red, Shade=Medium",
+          "variant": "size=xs, type=text, color=red, shade=Medium",
           "size": [
             16,
             16
@@ -1182,7 +1182,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=orange, Shade=Light",
+          "variant": "size=lg, type=text, color=orange, shade=Light",
           "size": [
             44,
             44
@@ -1212,7 +1212,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=orange, Shade=Light",
+          "variant": "size=md, type=text, color=orange, shade=Light",
           "size": [
             32,
             32
@@ -1252,7 +1252,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=orange, Shade=Light",
+          "variant": "size=sm, type=text, color=orange, shade=Light",
           "size": [
             24,
             24
@@ -1292,7 +1292,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=orange, Shade=Light",
+          "variant": "size=xs, type=text, color=orange, shade=Light",
           "size": [
             16,
             16
@@ -1332,7 +1332,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=orange, Shade=Dark",
+          "variant": "size=lg, type=text, color=orange, shade=Dark",
           "size": [
             44,
             44
@@ -1362,7 +1362,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=orange, Shade=Medium",
+          "variant": "size=lg, type=text, color=orange, shade=Medium",
           "size": [
             44,
             44
@@ -1392,7 +1392,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=orange, Shade=Dark",
+          "variant": "size=md, type=text, color=orange, shade=Dark",
           "size": [
             32,
             32
@@ -1432,7 +1432,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=orange, Shade=Medium",
+          "variant": "size=md, type=text, color=orange, shade=Medium",
           "size": [
             32,
             32
@@ -1472,7 +1472,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=orange, Shade=Dark",
+          "variant": "size=sm, type=text, color=orange, shade=Dark",
           "size": [
             24,
             24
@@ -1512,7 +1512,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=orange, Shade=Medium",
+          "variant": "size=sm, type=text, color=orange, shade=Medium",
           "size": [
             24,
             24
@@ -1552,7 +1552,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=orange, Shade=Dark",
+          "variant": "size=xs, type=text, color=orange, shade=Dark",
           "size": [
             16,
             16
@@ -1592,7 +1592,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=orange, Shade=Medium",
+          "variant": "size=xs, type=text, color=orange, shade=Medium",
           "size": [
             16,
             16
@@ -1632,7 +1632,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=yellow, Shade=Light",
+          "variant": "size=lg, type=text, color=yellow, shade=Light",
           "size": [
             44,
             44
@@ -1662,7 +1662,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=yellow, Shade=Light",
+          "variant": "size=md, type=text, color=yellow, shade=Light",
           "size": [
             32,
             32
@@ -1702,7 +1702,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=yellow, Shade=Light",
+          "variant": "size=sm, type=text, color=yellow, shade=Light",
           "size": [
             24,
             24
@@ -1742,7 +1742,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=yellow, Shade=Light",
+          "variant": "size=xs, type=text, color=yellow, shade=Light",
           "size": [
             16,
             16
@@ -1782,7 +1782,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=yellow, Shade=Dark",
+          "variant": "size=lg, type=text, color=yellow, shade=Dark",
           "size": [
             44,
             44
@@ -1812,7 +1812,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=yellow, Shade=Medium",
+          "variant": "size=lg, type=text, color=yellow, shade=Medium",
           "size": [
             44,
             44
@@ -1842,7 +1842,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=yellow, Shade=Dark",
+          "variant": "size=md, type=text, color=yellow, shade=Dark",
           "size": [
             32,
             32
@@ -1882,7 +1882,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=yellow, Shade=Medium",
+          "variant": "size=md, type=text, color=yellow, shade=Medium",
           "size": [
             32,
             32
@@ -1922,7 +1922,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=yellow, Shade=Dark",
+          "variant": "size=sm, type=text, color=yellow, shade=Dark",
           "size": [
             24,
             24
@@ -1962,7 +1962,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=yellow, Shade=Medium",
+          "variant": "size=sm, type=text, color=yellow, shade=Medium",
           "size": [
             24,
             24
@@ -2002,7 +2002,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=yellow, Shade=Dark",
+          "variant": "size=xs, type=text, color=yellow, shade=Dark",
           "size": [
             16,
             16
@@ -2042,7 +2042,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=yellow, Shade=Medium",
+          "variant": "size=xs, type=text, color=yellow, shade=Medium",
           "size": [
             16,
             16
@@ -2082,7 +2082,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=green, Shade=Light",
+          "variant": "size=lg, type=text, color=green, shade=Light",
           "size": [
             44,
             44
@@ -2112,7 +2112,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=green, Shade=Light",
+          "variant": "size=md, type=text, color=green, shade=Light",
           "size": [
             32,
             32
@@ -2152,7 +2152,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=green, Shade=Light",
+          "variant": "size=sm, type=text, color=green, shade=Light",
           "size": [
             24,
             24
@@ -2192,7 +2192,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=green, Shade=Light",
+          "variant": "size=xs, type=text, color=green, shade=Light",
           "size": [
             16,
             16
@@ -2232,7 +2232,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=green, Shade=Dark",
+          "variant": "size=lg, type=text, color=green, shade=Dark",
           "size": [
             44,
             44
@@ -2262,7 +2262,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=green, Shade=Medium",
+          "variant": "size=lg, type=text, color=green, shade=Medium",
           "size": [
             44,
             44
@@ -2292,7 +2292,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=green, Shade=Dark",
+          "variant": "size=md, type=text, color=green, shade=Dark",
           "size": [
             32,
             32
@@ -2332,7 +2332,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=green, Shade=Medium",
+          "variant": "size=md, type=text, color=green, shade=Medium",
           "size": [
             32,
             32
@@ -2372,7 +2372,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=green, Shade=Dark",
+          "variant": "size=sm, type=text, color=green, shade=Dark",
           "size": [
             24,
             24
@@ -2412,7 +2412,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=green, Shade=Medium",
+          "variant": "size=sm, type=text, color=green, shade=Medium",
           "size": [
             24,
             24
@@ -2452,7 +2452,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=green, Shade=Dark",
+          "variant": "size=xs, type=text, color=green, shade=Dark",
           "size": [
             16,
             16
@@ -2492,7 +2492,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=green, Shade=Medium",
+          "variant": "size=xs, type=text, color=green, shade=Medium",
           "size": [
             16,
             16
@@ -2532,7 +2532,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=turquoise, Shade=Light",
+          "variant": "size=lg, type=text, color=turquoise, shade=Light",
           "size": [
             44,
             44
@@ -2562,7 +2562,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=turquoise, Shade=Light",
+          "variant": "size=md, type=text, color=turquoise, shade=Light",
           "size": [
             32,
             32
@@ -2602,7 +2602,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=turquoise, Shade=Light",
+          "variant": "size=sm, type=text, color=turquoise, shade=Light",
           "size": [
             24,
             24
@@ -2642,7 +2642,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=turquoise, Shade=Light",
+          "variant": "size=xs, type=text, color=turquoise, shade=Light",
           "size": [
             16,
             16
@@ -2682,7 +2682,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=turquoise, Shade=Dark",
+          "variant": "size=lg, type=text, color=turquoise, shade=Dark",
           "size": [
             44,
             44
@@ -2712,7 +2712,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=turquoise, Shade=Medium",
+          "variant": "size=lg, type=text, color=turquoise, shade=Medium",
           "size": [
             44,
             44
@@ -2742,7 +2742,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=turquoise, Shade=Dark",
+          "variant": "size=md, type=text, color=turquoise, shade=Dark",
           "size": [
             32,
             32
@@ -2782,7 +2782,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=turquoise, Shade=Medium",
+          "variant": "size=md, type=text, color=turquoise, shade=Medium",
           "size": [
             32,
             32
@@ -2822,7 +2822,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=turquoise, Shade=Dark",
+          "variant": "size=sm, type=text, color=turquoise, shade=Dark",
           "size": [
             24,
             24
@@ -2862,7 +2862,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=turquoise, Shade=Medium",
+          "variant": "size=sm, type=text, color=turquoise, shade=Medium",
           "size": [
             24,
             24
@@ -2902,7 +2902,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=turquoise, Shade=Dark",
+          "variant": "size=xs, type=text, color=turquoise, shade=Dark",
           "size": [
             16,
             16
@@ -2942,7 +2942,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=turquoise, Shade=Medium",
+          "variant": "size=xs, type=text, color=turquoise, shade=Medium",
           "size": [
             16,
             16
@@ -2982,7 +2982,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=blue, Shade=Light",
+          "variant": "size=lg, type=text, color=blue, shade=Light",
           "size": [
             44,
             44
@@ -3012,7 +3012,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=blue, Shade=Light",
+          "variant": "size=md, type=text, color=blue, shade=Light",
           "size": [
             32,
             32
@@ -3052,7 +3052,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=blue, Shade=Light",
+          "variant": "size=sm, type=text, color=blue, shade=Light",
           "size": [
             24,
             24
@@ -3092,7 +3092,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=blue, Shade=Light",
+          "variant": "size=xs, type=text, color=blue, shade=Light",
           "size": [
             16,
             16
@@ -3132,7 +3132,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=blue, Shade=Dark",
+          "variant": "size=lg, type=text, color=blue, shade=Dark",
           "size": [
             44,
             44
@@ -3162,7 +3162,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=blue, Shade=Medium",
+          "variant": "size=lg, type=text, color=blue, shade=Medium",
           "size": [
             44,
             44
@@ -3192,7 +3192,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=blue, Shade=Dark",
+          "variant": "size=md, type=text, color=blue, shade=Dark",
           "size": [
             32,
             32
@@ -3232,7 +3232,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=blue, Shade=Medium",
+          "variant": "size=md, type=text, color=blue, shade=Medium",
           "size": [
             32,
             32
@@ -3272,7 +3272,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=blue, Shade=Dark",
+          "variant": "size=sm, type=text, color=blue, shade=Dark",
           "size": [
             24,
             24
@@ -3312,7 +3312,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=blue, Shade=Medium",
+          "variant": "size=sm, type=text, color=blue, shade=Medium",
           "size": [
             24,
             24
@@ -3352,7 +3352,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=blue, Shade=Dark",
+          "variant": "size=xs, type=text, color=blue, shade=Dark",
           "size": [
             16,
             16
@@ -3392,7 +3392,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=blue, Shade=Medium",
+          "variant": "size=xs, type=text, color=blue, shade=Medium",
           "size": [
             16,
             16
@@ -3432,7 +3432,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=purple, Shade=Light",
+          "variant": "size=lg, type=text, color=purple, shade=Light",
           "size": [
             44,
             44
@@ -3462,7 +3462,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=purple, Shade=Light",
+          "variant": "size=md, type=text, color=purple, shade=Light",
           "size": [
             32,
             32
@@ -3502,7 +3502,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=purple, Shade=Light",
+          "variant": "size=sm, type=text, color=purple, shade=Light",
           "size": [
             24,
             24
@@ -3542,7 +3542,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=purple, Shade=Light",
+          "variant": "size=xs, type=text, color=purple, shade=Light",
           "size": [
             16,
             16
@@ -3582,7 +3582,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=purple, Shade=Dark",
+          "variant": "size=lg, type=text, color=purple, shade=Dark",
           "size": [
             44,
             44
@@ -3612,7 +3612,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=purple, Shade=Medium",
+          "variant": "size=lg, type=text, color=purple, shade=Medium",
           "size": [
             44,
             44
@@ -3642,7 +3642,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=purple, Shade=Dark",
+          "variant": "size=md, type=text, color=purple, shade=Dark",
           "size": [
             32,
             32
@@ -3682,7 +3682,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=purple, Shade=Medium",
+          "variant": "size=md, type=text, color=purple, shade=Medium",
           "size": [
             32,
             32
@@ -3722,7 +3722,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=purple, Shade=Dark",
+          "variant": "size=sm, type=text, color=purple, shade=Dark",
           "size": [
             24,
             24
@@ -3762,7 +3762,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=purple, Shade=Medium",
+          "variant": "size=sm, type=text, color=purple, shade=Medium",
           "size": [
             24,
             24
@@ -3802,7 +3802,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=purple, Shade=Dark",
+          "variant": "size=xs, type=text, color=purple, shade=Dark",
           "size": [
             16,
             16
@@ -3842,7 +3842,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=purple, Shade=Medium",
+          "variant": "size=xs, type=text, color=purple, shade=Medium",
           "size": [
             16,
             16
@@ -3882,7 +3882,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=pink, Shade=Light",
+          "variant": "size=lg, type=text, color=pink, shade=Light",
           "size": [
             44,
             44
@@ -3912,7 +3912,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=pink, Shade=Light",
+          "variant": "size=md, type=text, color=pink, shade=Light",
           "size": [
             32,
             32
@@ -3952,7 +3952,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=pink, Shade=Light",
+          "variant": "size=sm, type=text, color=pink, shade=Light",
           "size": [
             24,
             24
@@ -3992,7 +3992,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=pink, Shade=Light",
+          "variant": "size=xs, type=text, color=pink, shade=Light",
           "size": [
             16,
             16
@@ -4032,7 +4032,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=pink, Shade=Dark",
+          "variant": "size=lg, type=text, color=pink, shade=Dark",
           "size": [
             44,
             44
@@ -4062,7 +4062,7 @@
           }
         },
         {
-          "variant": "size=lg, type=text, color=pink, Shade=Medium",
+          "variant": "size=lg, type=text, color=pink, shade=Medium",
           "size": [
             44,
             44
@@ -4092,7 +4092,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=pink, Shade=Dark",
+          "variant": "size=md, type=text, color=pink, shade=Dark",
           "size": [
             32,
             32
@@ -4132,7 +4132,7 @@
           }
         },
         {
-          "variant": "size=md, type=text, color=pink, Shade=Medium",
+          "variant": "size=md, type=text, color=pink, shade=Medium",
           "size": [
             32,
             32
@@ -4172,7 +4172,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=pink, Shade=Dark",
+          "variant": "size=sm, type=text, color=pink, shade=Dark",
           "size": [
             24,
             24
@@ -4212,7 +4212,7 @@
           }
         },
         {
-          "variant": "size=sm, type=text, color=pink, Shade=Medium",
+          "variant": "size=sm, type=text, color=pink, shade=Medium",
           "size": [
             24,
             24
@@ -4252,7 +4252,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=pink, Shade=Dark",
+          "variant": "size=xs, type=text, color=pink, shade=Dark",
           "size": [
             16,
             16
@@ -4292,7 +4292,7 @@
           }
         },
         {
-          "variant": "size=xs, type=text, color=pink, Shade=Medium",
+          "variant": "size=xs, type=text, color=pink, shade=Medium",
           "size": [
             16,
             16

@@ -63,9 +63,9 @@ describe('the SOLAR Spinner shell', () => {
     );
     expect(secondary.css).toContain('var(--solar-color-border-strong)');
     expect(secondary.css).not.toContain('inverse');
-    // xl shows the md spinner.
+    // lg shows the md spinner.
     expect(
-      render(h(Button, { loading: true, size: 'xl' }, 'Save')).css,
+      render(h(Button, { loading: true, size: 'lg' }, 'Save')).css,
     ).toContain('width:24px;height:24px');
   });
 });

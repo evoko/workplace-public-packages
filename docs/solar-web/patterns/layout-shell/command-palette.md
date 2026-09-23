@@ -69,7 +69,7 @@ Keyboard-first dialog for finding and running commands: search field with a Kbd 
       fill `color.surface.feedback.neutral.strong` · stroke `color.border.subtle` 1px · itemSpacing `inset.none` · padding `inset.2xs` · strokeWeight `border.default` · radius `radius.control`
   - **Results** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 640×516  
     fill `color.surface.dialog` · itemSpacing `stack.none` · padding `inset.none`
-    - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 640×34  
+    - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 640×34  
       fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
     - **Command Item** · instance of **Command Item** (state=default) · row gap 12 pad 12/12/12/12 FILL/FIXED · 640×56  
       itemSpacing `stack.sm` · padding `inset.sm` · radius `radius.control`
@@ -81,7 +81,7 @@ Keyboard-first dialog for finding and running commands: search field with a Kbd 
       itemSpacing `stack.sm` · padding `inset.sm` · radius `radius.control`
     - **Command Item** · instance of **Command Item** (state=default) · row gap 12 pad 12/12/12/12 FILL/FIXED · 640×56  
       itemSpacing `stack.sm` · padding `inset.sm` · radius `radius.control`
-    - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 640×34  
+    - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 640×34  
       fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
     - **Command Item** · instance of **Command Item** (state=default) · row gap 12 pad 12/12/12/12 FILL/FIXED · 640×56  
       itemSpacing `stack.sm` · padding `inset.sm` · radius `radius.control`

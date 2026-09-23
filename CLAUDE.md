@@ -21,7 +21,7 @@ never write a build timestamp into a generated file.
 `docs/` into code in two stages. Tokens: `spec/tokens.json`, then CSS, an MUI theme and a
 Tailwind 4 stylesheet in `@bwp-web/styles`, each behind its own entry (`tokens.css`, `/mui`,
 `tailwind.css`) so an app loads only its own, and Dart in `solar_flutter`. Icons: `spec/icons.json` from
-`docs/solar-icons/`, then 341 React components and 687 standalone SVG files in `@bwp-web/assets`,
+`docs/solar-icons/`, then 340 React components and 685 standalone SVG files in `@bwp-web/assets`,
 and `SolarVector` constants in `solar_flutter`. **It must never write to `docs/`**, which is the
 Figma mirror; a write guard enforces this and CI re-checks it. When generated styling is wrong,
 fix the normalizer in `packages/codegen/src/normalize/` for a systemic rule, or the single
@@ -96,7 +96,7 @@ design spec describes (`solar:explain`, the Storybook review surface) is **not b
 
 - Monorepo: npm workspaces + Turbo. `npm run build`, `lint`, `typecheck`, `format` from
   the root. Each package builds ESM + CJS with tsup and emits types with tsc.
-- Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (the 341 SOLAR
+- Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (the 340 SOLAR
   icons, the logos and the app icons, generated), `@bwp-web/canvas` (interactive canvas),
   `@bwp-web/components` (SOLAR components for React, on MUI; Button and Spinner so far), all at
   `2.0.0-alpha.0`; canvas is still an empty skeleton. Plus

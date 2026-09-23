@@ -1,6 +1,6 @@
 # Coachmark
 
-> SOLAR Web · Figma page `↳ 🟠 Coachmark` (id `10785:28`) · section `components/overlays` · raw data: [`raw/components/overlays/coachmark.json`](../../raw/components/overlays/coachmark.json)
+> SOLAR Web · Figma page `↳ 🟢 Coachmark` (id `10785:28`) · section `components/overlays` · raw data: [`raw/components/overlays/coachmark.json`](../../raw/components/overlays/coachmark.json)
 
 ## Component set: Node End
 
@@ -83,7 +83,8 @@ Default variant: `side=right` · 2 variants · default size 320×171px
       fill `color.text.tertiary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
     - **Button Group** · instance of **Button Group** (orientation=horizontal, type=regular) · row gap 8 pad 0/0/0/0 FILL/HUG · 288×40  
       itemSpacing `inset.xs`
-  - **Connector** · frame · row gap 122 pad 0/0/0/0 FIXED/FIXED · 100×6
+  - **Connector** · frame · row gap 16 pad 0/0/0/0 FIXED/FIXED · 100×6  
+    itemSpacing `inset.md`
     - **Line** · vector · FILL/FIXED · 100×1  
       fill `color.surface.feedback.info.strong`
     - **Origin Dot** · ellipse · FIXED/FIXED · 6×6  
@@ -116,10 +117,6 @@ Default variant: `side=right` · 2 variants · default size 320×171px
 | ----- | ------- | ---- | ------ | ------ | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | right | 320×171 |      |        |        | `color.text.inverse`<br>`color.text.tertiary`<br>`color.action.tertiary.text.default`<br>`color.action.primary.text.default` | `color.icon.inverse`<br>`color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default` |
 | left  | 320×171 |      |        |        | `color.text.inverse`<br>`color.text.tertiary`<br>`color.action.tertiary.text.default`<br>`color.action.primary.text.default` | `color.icon.inverse`<br>`color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default` |
-
-### Issues detected
-
-- Hard-coded gap `122px` on layer _Connector_
 
 ## Documentation card
 

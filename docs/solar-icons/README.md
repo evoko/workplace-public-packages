@@ -41,7 +41,8 @@ file `SOLAR Icons [v2--2026]` (key `f0slPVSjDnXgdyPmWOSVOw`), built so that
 - **Variants.** Treat `outline` as the default and `solid` as a boolean prop, matching the
   Figma axis. An icon with a missing variant is listed in `issues.md`; do not synthesise it.
 - **Collisions.** When two pages define the same icon name, the second export is suffixed with
-  its page slug (`phone--audio-dsp`) and flagged. Resolve upstream rather than in code.
+  its page slug (as `phone--audio-dsp` was, until SOLAR removed the duplicate on 2026-09-23)
+  and flagged. Resolve upstream rather than in code.
 - **Logos are not icons.** They keep their own colours and aspect ratios and must never be
   recoloured.
 

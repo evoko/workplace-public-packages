@@ -5,7 +5,7 @@
     {
       "name": "Stat Card",
       "id": "6579:25711",
-      "description": "Displays a key metric with label, large value, and optional trend indicator. Used on dashboards and KPI displays.",
+      "description": "Displays a key metric with label, large value, and optional trend indicator. 12 variants: trend (up, down, neutral) × state (default, hover, disabled) plus ghost=true per trend. ghost is the loading skeleton. Used on dashboards and KPI displays; for the compact tile use Stat Card Small.",
       "docLinks": [],
       "variantCount": 12,
       "props": {
@@ -24,15 +24,22 @@
           "options": [
             "disabled",
             "hover",
-            "default",
-            "ghost"
+            "default"
+          ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "trend=up, state=default",
+      "defaultVariant": "trend=up, state=default, ghost=false",
       "defaultVariantNodeCount": 10,
       "defaultVariantTree": {
-        "name": "trend=up, state=default",
+        "name": "trend=up, state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           240,
@@ -272,7 +279,7 @@
       },
       "variants": [
         {
-          "variant": "trend=up, state=default",
+          "variant": "trend=up, state=default, ghost=false",
           "size": [
             240,
             127
@@ -297,7 +304,7 @@
           "hidden": []
         },
         {
-          "variant": "trend=down, state=default",
+          "variant": "trend=down, state=default, ghost=false",
           "size": [
             240,
             127
@@ -351,7 +358,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=default",
+          "variant": "trend=neutral, state=default, ghost=false",
           "size": [
             240,
             127
@@ -405,7 +412,7 @@
           }
         },
         {
-          "variant": "trend=up, state=disabled",
+          "variant": "trend=up, state=disabled, ghost=false",
           "size": [
             240,
             127
@@ -460,7 +467,7 @@
           }
         },
         {
-          "variant": "trend=up, state=hover",
+          "variant": "trend=up, state=hover, ghost=false",
           "size": [
             240,
             127
@@ -512,7 +519,7 @@
           }
         },
         {
-          "variant": "trend=down, state=hover",
+          "variant": "trend=down, state=hover, ghost=false",
           "size": [
             240,
             127
@@ -578,7 +585,7 @@
           }
         },
         {
-          "variant": "trend=down, state=disabled",
+          "variant": "trend=down, state=disabled, ghost=false",
           "size": [
             240,
             127
@@ -647,7 +654,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=hover",
+          "variant": "trend=neutral, state=hover, ghost=false",
           "size": [
             240,
             127
@@ -713,7 +720,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=disabled",
+          "variant": "trend=neutral, state=disabled, ghost=false",
           "size": [
             240,
             127
@@ -782,7 +789,7 @@
           }
         },
         {
-          "variant": "trend=up, state=ghost",
+          "variant": "trend=up, state=default, ghost=true",
           "size": [
             240,
             120
@@ -879,7 +886,7 @@
           }
         },
         {
-          "variant": "trend=down, state=ghost",
+          "variant": "trend=down, state=default, ghost=true",
           "size": [
             240,
             120
@@ -976,7 +983,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=ghost",
+          "variant": "trend=neutral, state=default, ghost=true",
           "size": [
             240,
             120
@@ -1077,7 +1084,7 @@
     {
       "name": "Stat Card Small",
       "id": "9059:28778",
-      "description": "Displays a key metric with label, large value, and optional trend indicator. Used on dashboards and KPI displays.",
+      "description": "Compact key metric with label, value, and optional trend indicator. 12 variants: trend (up, down, neutral) × state (default, hover, disabled) plus ghost=true per trend. ghost is the loading skeleton. Use in dense dashboard grids; for the full tile use Stat Card.",
       "docLinks": [],
       "variantCount": 12,
       "props": {
@@ -1096,15 +1103,22 @@
           "options": [
             "disabled",
             "hover",
-            "default",
-            "ghost"
+            "default"
+          ]
+        },
+        "ghost": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "trend=up, state=default",
+      "defaultVariant": "trend=up, state=default, ghost=false",
       "defaultVariantNodeCount": 8,
       "defaultVariantTree": {
-        "name": "trend=up, state=default",
+        "name": "trend=up, state=default, ghost=false",
         "type": "COMPONENT",
         "size": [
           318,
@@ -1330,7 +1344,7 @@
       },
       "variants": [
         {
-          "variant": "trend=up, state=default",
+          "variant": "trend=up, state=default, ghost=false",
           "size": [
             318,
             64
@@ -1353,7 +1367,7 @@
           "hidden": []
         },
         {
-          "variant": "trend=down, state=default",
+          "variant": "trend=down, state=default, ghost=false",
           "size": [
             318,
             64
@@ -1393,7 +1407,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=default",
+          "variant": "trend=neutral, state=default, ghost=false",
           "size": [
             318,
             64
@@ -1438,7 +1452,7 @@
           }
         },
         {
-          "variant": "trend=up, state=disabled",
+          "variant": "trend=up, state=disabled, ghost=false",
           "size": [
             318,
             64
@@ -1481,7 +1495,7 @@
           }
         },
         {
-          "variant": "trend=up, state=hover",
+          "variant": "trend=up, state=hover, ghost=false",
           "size": [
             318,
             64
@@ -1521,7 +1535,7 @@
           }
         },
         {
-          "variant": "trend=down, state=hover",
+          "variant": "trend=down, state=hover, ghost=false",
           "size": [
             318,
             64
@@ -1575,7 +1589,7 @@
           }
         },
         {
-          "variant": "trend=down, state=disabled",
+          "variant": "trend=down, state=disabled, ghost=false",
           "size": [
             318,
             64
@@ -1627,7 +1641,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=hover",
+          "variant": "trend=neutral, state=hover, ghost=false",
           "size": [
             318,
             64
@@ -1681,7 +1695,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=disabled",
+          "variant": "trend=neutral, state=disabled, ghost=false",
           "size": [
             318,
             64
@@ -1738,7 +1752,7 @@
           }
         },
         {
-          "variant": "trend=up, state=ghost",
+          "variant": "trend=up, state=default, ghost=true",
           "size": [
             318,
             72
@@ -1844,7 +1858,7 @@
           }
         },
         {
-          "variant": "trend=down, state=ghost",
+          "variant": "trend=down, state=default, ghost=true",
           "size": [
             318,
             72
@@ -1950,7 +1964,7 @@
           }
         },
         {
-          "variant": "trend=neutral, state=ghost",
+          "variant": "trend=neutral, state=default, ghost=true",
           "size": [
             318,
             72

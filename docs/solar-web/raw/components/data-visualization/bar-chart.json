@@ -11018,7 +11018,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 2,
+          "gap": 4,
           "pad": [
             0,
             0,
@@ -11030,6 +11030,7 @@
         },
         "radius": 6,
         "vars": {
+          "itemSpacing": "Spatial:inset/2xs",
           "topLeftRadius": "Spatial:radius/control",
           "topRightRadius": "Spatial:radius/control",
           "bottomLeftRadius": "Spatial:radius/control",
@@ -11102,7 +11103,11 @@
               "/": {
                 "layout": {
                   "dir": "HORIZONTAL",
+                  "gap": 2,
                   "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": null
                 }
               },
               "/color=feedback-warning-medium": {
@@ -11126,6 +11131,14 @@
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "layout": {
+                  "gap": 2
+                },
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
               "/color=feedback-warning-medium": {
                 "size": [
                   32,
@@ -11180,7 +11193,11 @@
               "/": {
                 "layout": {
                   "dir": "HORIZONTAL",
+                  "gap": 2,
                   "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": null
                 }
               },
               "/color=feedback-warning-medium": {
@@ -11236,6 +11253,14 @@
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "layout": {
+                  "gap": 2
+                },
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
               "/color=feedback-warning-medium": {
                 "size": [
                   32,
@@ -11316,7 +11341,11 @@
               "/": {
                 "layout": {
                   "dir": "HORIZONTAL",
+                  "gap": 2,
                   "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": null
                 }
               },
               "/color=feedback-warning-medium": {

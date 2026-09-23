@@ -79,9 +79,9 @@ token JSON on the left is refreshed deliberately, never by the sync.
 | [solar-web/INDEX.md](solar-web/INDEX.md), [issues.md](solar-web/issues.md), per-page `.md`                                 | `build-docs.mjs`             | Humans and agents reading about one component                                              | [solar-web/README.md](solar-web/README.md#reading-a-component-page)         |
 | `solar/raw/_meta.json`, `solar-web/raw/_meta.json`                                                                         | the fetchers                 | Provenance: file version, date, failed pages, unresolved variable ids                      | [solar-web/README.md](solar-web/README.md#keeping-it-in-sync-with-figma)    |
 | [`spec/tokens.json`](../spec/tokens.json)                                                                                  | `solar:codegen`              | The DTCG contract the four token targets are generated from: 710 tokens with their modes   | [packages/codegen/README.md](../packages/codegen/README.md)                 |
-| [`spec/icons.json`](../spec/icons.json)                                                                                    | `solar:codegen`              | The drawing contract the three icon targets are generated from: 341 icon sets, 3 logo sets | same                                                                        |
+| [`spec/icons.json`](../spec/icons.json)                                                                                    | `solar:codegen`              | The drawing contract the three icon targets are generated from: 340 icon sets, 3 logo sets | same                                                                        |
 | `packages/styles/src/generated/`, `packages/solar_flutter/lib/src/generated/tokens.dart`                                   | `solar:codegen`              | Apps: the tokens as CSS, an MUI theme, a Tailwind 4 stylesheet and Dart constants          | [packages/styles/README.md](../packages/styles/README.md)                   |
-| `packages/assets/src/generated/`, `packages/solar_flutter/lib/src/generated/icons.dart`                                    | `solar:codegen`              | Apps: 341 React icon components, 687 standalone SVG files and the Dart vectors             | [packages/assets/README.md](../packages/assets/README.md)                   |
+| `packages/assets/src/generated/`, `packages/solar_flutter/lib/src/generated/icons.dart`                                    | `solar:codegen`              | Apps: 340 React icon components, 685 standalone SVG files and the Dart vectors             | [packages/assets/README.md](../packages/assets/README.md)                   |
 | [`spec/components/`](../spec/components/)                                                                                  | `solar:codegen`              | The component contract: API, platform states, slots and style recipe in token names        | [packages/codegen/README.md](../packages/codegen/README.md#components)      |
 | [`spec/verify/`](../spec/verify/)                                                                                          | `solar:codegen`              | The oracle: what Figma draws for every variant, the visual checks' expectations            | [packages/codegen/README.md](../packages/codegen/README.md#components)      |
 | [`spec/overlay/`](../spec/overlay/)                                                                                        | hand-written, reviewed       | The decisions about one component: base, renames, axis interactions, allowed literals      | same                                                                        |
@@ -130,9 +130,9 @@ contract of 710 tokens. Four emitters generate from that one file: CSS custom pr
 theme and a Tailwind 4 stylesheet into [`@bwp-web/styles`](../packages/styles/README.md), and Dart
 constants into [`solar_flutter`](../packages/solar_flutter/README.md).
 
-**Icons.** `docs/solar-icons/` becomes `spec/icons.json`, the drawing data for 341 icon sets and
+**Icons.** `docs/solar-icons/` becomes `spec/icons.json`, the drawing data for 340 icon sets and
 3 logo sets — a viewBox and path strings per variant, and nothing else. Three emitters generate
-from it: React components and 687 standalone SVG files into
+from it: React components and 685 standalone SVG files into
 [`@bwp-web/assets`](../packages/assets/README.md), and `SolarVector` constants into
 `solar_flutter`. An icon carries **no** colour — it inherits one from `color.icon.*`, through
 `currentColor` on the web and the widget's colour in Flutter — while a logo always carries its

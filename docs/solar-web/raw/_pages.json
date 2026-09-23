@@ -393,7 +393,7 @@
       "slug": "banner",
       "id": "2797:1322",
       "title": "Banner",
-      "status": "done"
+      "status": "draft"
     },
     {
       "section": "components/feedback",
@@ -1274,13 +1274,13 @@
       "slug": "coachmark",
       "id": "10785:28",
       "title": "Coachmark",
-      "status": "draft"
+      "status": "done"
     }
   ],
   "lastSync": {
     "file": "OGvmMNnywH7JWDyEhOzjcc",
-    "version": "2402320164351121127",
-    "lastModified": "2026-09-22T17:50:33Z",
+    "version": "2402397614979898462",
+    "lastModified": "2026-09-23T12:30:22Z",
     "date": "2026-09-23"
   }
 }

@@ -4,20 +4,21 @@
 
 ## Component set: Status Card
 
-Compact card that reports the status of one thing — a device, service or job — with a feedback-coloured indicator, title and value. 16 variants: status (success, neutral, danger, warning) × state (default, hover, disabled, ghost). ghost is the skeleton placeholder while data loads. Status is conveyed by icon + label, not colour alone. For KPI numbers use Stat Card; for an actionable alert use Insight Card.
+Compact card that reports the status of one thing — a device, service or job — with a feedback-coloured indicator, title and value. 16 variants: status (success, neutral, danger, warning) × state (default, hover, disabled) plus ghost=true per status. ghost is the skeleton placeholder while data loads. Status is conveyed by icon + label, not colour alone. For KPI numbers use Stat Card; for an actionable alert use Insight Card.
 
 ### Props
 
 | Prop     | Type    | Options / default                        |
 | -------- | ------- | ---------------------------------------- |
 | `status` | variant | **success** · neutral · danger · warning |
-| `state`  | variant | **default** · hover · disabled · ghost   |
+| `state`  | variant | **default** · hover · disabled           |
+| `ghost`  | variant | **false** · true                         |
 
-Default variant: `status=success, state=default` · 16 variants · default size 240×84px
+Default variant: `status=success, state=default, ghost=false` · 16 variants · default size 240×84px
 
 ### Anatomy (default variant)
 
-- **status=success, state=default** · component · column gap 12 pad 16/16/16/16 FIXED/HUG · 240×84  
+- **status=success, state=default, ghost=false** · component · column gap 12 pad 16/16/16/16 FIXED/HUG · 240×84  
   fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/raised` · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
   - **Title** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 208×20  
     itemSpacing `stack.md`
@@ -55,28 +56,24 @@ Default variant: `status=success, state=default` · 16 variants · default size 
 
 ### Variant matrix
 
-| status  | state    | size   | fill                 | stroke                | effect          | text                 | icon                                                                                     |
-| ------- | -------- | ------ | -------------------- | --------------------- | --------------- | -------------------- | ---------------------------------------------------------------------------------------- |
-| success | default  | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
-| warning | default  | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.warning.strong`<br>`color.icon.inverse`  |
-| danger  | default  | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.danger.strong`<br>`color.icon.inverse`   |
-| neutral | default  | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
-| success | hover    | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
-| warning | hover    | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.warning.strong`<br>`color.icon.inverse`  |
-| danger  | hover    | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.danger.strong`<br>`color.icon.inverse`   |
-| neutral | hover    | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
-| success | disabled | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.icon.inverse`                                            |
-| warning | disabled | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.surface.feedback.warning.strong`<br>`color.icon.inverse` |
-| danger  | disabled | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.surface.feedback.danger.strong`<br>`color.icon.inverse`  |
-| neutral | disabled | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.icon.inverse`                                            |
-| success | ghost    | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
-| warning | ghost    | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
-| danger  | ghost    | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
-| neutral | ghost    | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
-
-### Issues detected
-
-- State axis uses non-standard value(s): ghost.
+| status  | state    | ghost | size   | fill                 | stroke                | effect          | text                 | icon                                                                                     |
+| ------- | -------- | ----- | ------ | -------------------- | --------------------- | --------------- | -------------------- | ---------------------------------------------------------------------------------------- |
+| success | default  | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
+| warning | default  | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.warning.strong`<br>`color.icon.inverse`  |
+| danger  | default  | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.danger.strong`<br>`color.icon.inverse`   |
+| neutral | default  | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
+| success | hover    | false | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
+| warning | hover    | false | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.warning.strong`<br>`color.icon.inverse`  |
+| danger  | hover    | false | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.surface.feedback.danger.strong`<br>`color.icon.inverse`   |
+| neutral | hover    | false | 240×84 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`<br>`color.icon.inverse`                                             |
+| success | disabled | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.icon.inverse`                                            |
+| warning | disabled | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.surface.feedback.warning.strong`<br>`color.icon.inverse` |
+| danger  | disabled | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.surface.feedback.danger.strong`<br>`color.icon.inverse`  |
+| neutral | disabled | false | 240×84 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary` | `color.icon.disabled`<br>`color.icon.inverse`                                            |
+| success | default  | true  | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
+| warning | default  | true  | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
+| danger  | default  | true  | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
+| neutral | default  | true  | 240×80 | `color.surface.base` | `color.border.subtle` | `shadow/raised` |                      |                                                                                          |
 
 ## Issues detected (page)
 

@@ -9,7 +9,7 @@
       "docLinks": [],
       "variantCount": 2,
       "props": {
-        "Breakpoint": {
+        "breakpoint": {
           "type": "VARIANT",
           "default": "desktop",
           "options": [
@@ -18,10 +18,10 @@
           ]
         }
       },
-      "defaultVariant": "Breakpoint=desktop",
+      "defaultVariant": "breakpoint=desktop",
       "defaultVariantNodeCount": 85,
       "defaultVariantTree": {
-        "name": "Breakpoint=desktop",
+        "name": "breakpoint=desktop",
         "type": "COMPONENT",
         "size": [
           1440,
@@ -59,7 +59,7 @@
             "variant": {
               "breakpoint": "desktop",
               "hasSidebar": "true",
-              "isLoggedIn": "True"
+              "isLoggedIn": "true"
             },
             "size": [
               1440,
@@ -258,7 +258,7 @@
       },
       "variants": [
         {
-          "variant": "Breakpoint=desktop",
+          "variant": "breakpoint=desktop",
           "size": [
             1440,
             800
@@ -298,7 +298,7 @@
           ]
         },
         {
-          "variant": "Breakpoint=mobile",
+          "variant": "breakpoint=mobile",
           "size": [
             393,
             800
@@ -355,7 +355,7 @@
                 "variant": {
                   "breakpoint": "mobile",
                   "hasSidebar": "true",
-                  "isLoggedIn": "False"
+                  "isLoggedIn": "false"
                 },
                 "size": [
                   393,
@@ -508,7 +508,7 @@
       "docLinks": [],
       "variantCount": 2,
       "props": {
-        "Breakpoint": {
+        "breakpoint": {
           "type": "VARIANT",
           "default": "desktop",
           "options": [
@@ -517,10 +517,10 @@
           ]
         }
       },
-      "defaultVariant": "Breakpoint=desktop",
+      "defaultVariant": "breakpoint=desktop",
       "defaultVariantNodeCount": 102,
       "defaultVariantTree": {
-        "name": "Breakpoint=desktop",
+        "name": "breakpoint=desktop",
         "type": "COMPONENT",
         "size": [
           1440,
@@ -558,7 +558,7 @@
             "variant": {
               "breakpoint": "desktop",
               "hasSidebar": "true",
-              "isLoggedIn": "True"
+              "isLoggedIn": "true"
             },
             "size": [
               1440,
@@ -757,7 +757,7 @@
       },
       "variants": [
         {
-          "variant": "Breakpoint=desktop",
+          "variant": "breakpoint=desktop",
           "size": [
             1440,
             800
@@ -797,7 +797,7 @@
           ]
         },
         {
-          "variant": "Breakpoint=mobile",
+          "variant": "breakpoint=mobile",
           "size": [
             393,
             800
@@ -856,7 +856,7 @@
                 "variant": {
                   "breakpoint": "mobile",
                   "hasSidebar": "true",
-                  "isLoggedIn": "False"
+                  "isLoggedIn": "false"
                 },
                 "size": [
                   393,

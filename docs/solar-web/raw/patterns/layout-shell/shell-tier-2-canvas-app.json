@@ -5,7 +5,7 @@
     {
       "name": "Layout / Canvas",
       "id": "6499:6448",
-      "description": "Shell Tier 2: Top Bar over a two-column canvas area (left panel, center canvas), no Sidebar. 2 variants: breakpoint (Desktop, Mobile). Props: left, center (slots). Use for editor and canvas products such as Designer where the tool panels replace app navigation; mobile stacks the panel above the canvas.",
+      "description": "Shell Tier 2: Top Bar over a two-column canvas area (left panel, center canvas), no Sidebar. 2 variants: breakpoint (desktop, mobile). Props: left, center (slots). Use for editor and canvas products such as Designer where the tool panels replace app navigation; mobile stacks the panel above the canvas.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -29,17 +29,17 @@
         },
         "breakpoint": {
           "type": "VARIANT",
-          "default": "Desktop",
+          "default": "desktop",
           "options": [
-            "Desktop",
-            "Mobile"
+            "desktop",
+            "mobile"
           ]
         }
       },
-      "defaultVariant": "breakpoint=Desktop",
+      "defaultVariant": "breakpoint=desktop",
       "defaultVariantNodeCount": 86,
       "defaultVariantTree": {
-        "name": "breakpoint=Desktop",
+        "name": "breakpoint=desktop",
         "type": "COMPONENT",
         "size": [
           1440,
@@ -71,7 +71,7 @@
             "variant": {
               "breakpoint": "desktop",
               "hasSidebar": "false",
-              "isLoggedIn": "True"
+              "isLoggedIn": "true"
             },
             "size": [
               1440,
@@ -300,7 +300,7 @@
       },
       "variants": [
         {
-          "variant": "breakpoint=Desktop",
+          "variant": "breakpoint=desktop",
           "size": [
             1440,
             800
@@ -329,7 +329,7 @@
           ]
         },
         {
-          "variant": "breakpoint=Mobile",
+          "variant": "breakpoint=mobile",
           "size": [
             393,
             800
@@ -363,7 +363,7 @@
                 "variant": {
                   "breakpoint": "mobile",
                   "hasSidebar": "false",
-                  "isLoggedIn": "False"
+                  "isLoggedIn": "false"
                 },
                 "size": [
                   393,

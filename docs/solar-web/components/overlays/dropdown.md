@@ -169,13 +169,13 @@ Non-interactive section header inside a Dropdown Menu. Groups related items (e.g
 
 | Prop   | Type    | Options / default |
 | ------ | ------- | ----------------- |
-| `Size` | variant | sm · **md**       |
+| `size` | variant | sm · **md**       |
 
-Default variant: `Size=md` · 2 variants · default size 240×34px
+Default variant: `size=md` · 2 variants · default size 240×34px
 
 ### Anatomy (default variant)
 
-- **Size=md** · component · row gap 8 pad 12/12/12/12 FIXED/HUG · 240×34  
+- **size=md** · component · row gap 8 pad 12/12/12/12 FIXED/HUG · 240×34  
   fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
   - **Group Label** · text `body/md/medium` "Group Label" · HUG/HUG · 78×10  
     fill `color.text.secondary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
@@ -192,7 +192,7 @@ Default variant: `Size=md` · 2 variants · default size 240×34px
 
 ### Variant matrix
 
-| Size | size   | fill                       | stroke | effect | text                   | icon |
+| size | size   | fill                       | stroke | effect | text                   | icon |
 | ---- | ------ | -------------------------- | ------ | ------ | ---------------------- | ---- |
 | md   | 240×34 | `color.surface.background` |        |        | `color.text.secondary` |      |
 | sm   | 160×25 | `color.surface.background` |        |        | `color.text.secondary` |      |
@@ -216,7 +216,7 @@ Default variant: `size=md` · 2 variants · default size 240×238px
   fill `color.surface.overlay` · stroke `color.border.medium` 1px · effect `shadow/overlay` · padding `inset.none` · strokeWeight `border.default` · radius `radius.container`
   - **Content** · slot · column gap 0 pad 0/0/0/0 HUG/HUG · 240×238  
     itemSpacing `inset.none` · prop slotContentId←Content
-    - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FIXED/HUG · 240×34  
+    - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FIXED/HUG · 240×34  
       fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
     - **Dropdown Item** · instance of **Dropdown Item** (size=md, state=default) · row gap 8 pad 12/12/12/12 FIXED/HUG · 240×34  
       itemSpacing `inset.xs` · padding `inset.sm`

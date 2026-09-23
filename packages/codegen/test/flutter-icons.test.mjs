@@ -39,8 +39,8 @@ const iconConstants = constants(icons);
 const logoConstants = constants(logos);
 
 describe('renderFlutterIcons: icons.dart', () => {
-  it('emits one static const per variant, 682 of them, all named apart', () => {
-    expect(iconConstants.size).toBe(682);
+  it('emits one static const per variant, 680 of them, all named apart', () => {
+    expect(iconConstants.size).toBe(680);
     expect(iconConstants.has('chevronRightOutline')).toBe(true);
     expect(iconConstants.has('chevronRightSolid')).toBe(true);
     // Every name is a plain Dart field: no `$` escaping is needed, unlike the token emitter,

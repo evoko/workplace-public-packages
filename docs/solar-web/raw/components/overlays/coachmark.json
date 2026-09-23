@@ -1,5 +1,5 @@
 {
-  "page": "↳ 🟠 Coachmark",
+  "page": "↳ 🟢 Coachmark",
   "pageId": "10785:28",
   "componentSets": [
     {
@@ -299,7 +299,7 @@
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 122,
+              "gap": 16,
               "pad": [
                 0,
                 0,
@@ -308,6 +308,9 @@
               ],
               "align": "MIN/CENTER",
               "sizing": "FIXED/FIXED"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
             },
             "children": [
               {

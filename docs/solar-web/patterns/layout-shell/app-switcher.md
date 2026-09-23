@@ -66,7 +66,7 @@ Panel listing the Biamp product suite, grouped into Web, Config and Desktop app 
 
 - **App switcher** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 380×530  
   fill `color.surface.overlay` · stroke `color.border.subtle` 1px · effect `shadow/dialog` · strokeWeight `border.default` · radius `radius.dialog`
-  - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
+  - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
     fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
   - **Web Apps** · slot · column gap 0 pad 0/0/0/0 FILL/HUG · 380×128  
     prop slotContentId←Web Apps
@@ -74,7 +74,7 @@ Panel listing the Biamp product suite, grouped into Web, Config and Desktop app 
       stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.none`
     - **AppSwitcherItem** · instance of **AppSwitcherItem** · row gap 12 pad 16/16/16/16 FIXED/HUG · 380×64  
       stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.none`
-  - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
+  - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
     fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
   - **Config Apps** · slot · column gap 0 pad 0/0/0/0 FILL/HUG · 380×128  
     prop slotContentId←Config Apps
@@ -82,7 +82,7 @@ Panel listing the Biamp product suite, grouped into Web, Config and Desktop app 
       stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.none`
     - **AppSwitcherItem** · instance of **AppSwitcherItem** · row gap 12 pad 16/16/16/16 FIXED/HUG · 380×64  
       stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.none`
-  - **Dropdown Group Label** · instance of **Dropdown Group Label** (Size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
+  - **Dropdown Group Label** · instance of **Dropdown Group Label** (size=md) · row gap 8 pad 12/12/12/12 FILL/HUG · 380×34  
     fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`
   - **Desktop apps** · slot · column gap 0 pad 0/0/0/0 FILL/HUG · 380×128  
     stroke `color.border.subtle` mixedpx · prop slotContentId←Desktop apps

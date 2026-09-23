@@ -22,7 +22,7 @@ MUI components match them.
 | Prop                          | Values                                | Default   |
 | ----------------------------- | ------------------------------------- | --------- |
 | `variant`                     | `primary` · `secondary` · `tertiary`  | `primary` |
-| `size`                        | `md` · `sm` · `xl`                    | `md`      |
+| `size`                        | `md` · `sm` · `lg`                    | `md`      |
 | `danger`                      | boolean, for destructive actions only | `false`   |
 | `disabled`, `loading`         | boolean                               | `false`   |
 | `iconLeading`, `iconTrailing` | an icon, e.g. from `@bwp-web/assets`  |           |
@@ -34,9 +34,10 @@ the label is hidden but keeps its room, and the SOLAR Spinner shows in the varia
 passes through, and `sx` applies on top of the recipe. An icon-only button needs an
 `aria-label`; in development the component warns when one is missing.
 
-`sm` is drawn 32px tall, below the 44px WCAG touch target. SOLAR asks for the hit area to be padded
-in code but publishes no token for the target size, so this is not done yet: it is question 5 in
-[the design review](../../docs/solar-review-for-design.md).
+`sm` is drawn 32px tall and `md` 40px, below the 44px WCAG touch target. SOLAR asks for the hit
+area to be padded in code but publishes no token for the target size, and the descriptions in
+Figma give 36px and 44px where the components are drawn 32px and 40px, so this is not done yet: it
+is the first question in [the design review](../../docs/solar-review-for-design.md).
 
 ## Spinner
 

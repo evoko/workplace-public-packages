@@ -8,15 +8,15 @@
 
 | Prop         | Type    | Options / default    |
 | ------------ | ------- | -------------------- |
-| `Breakpoint` | variant | **desktop** · mobile |
+| `breakpoint` | variant | **desktop** · mobile |
 
-Default variant: `Breakpoint=desktop` · 2 variants · default size 1440×800px
+Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Anatomy (default variant)
 
-- **Breakpoint=desktop** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
+- **breakpoint=desktop** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
   fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
-  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=True) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
+  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
     padding `stack.md`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×227  
     itemSpacing `stack.lg`
@@ -56,7 +56,7 @@ Default variant: `Breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Variant matrix
 
-| Breakpoint | size     | fill                                                                      | stroke | effect | text                                                                                                                                                                                                                                              | icon                                                                                                                                                                                                                        |
+| breakpoint | size     | fill                                                                      | stroke | effect | text                                                                                                                                                                                                                                              | icon                                                                                                                                                                                                                        |
 | ---------- | -------- | ------------------------------------------------------------------------- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | desktop    | 1440×800 | `color.surface.inverse`<br>`IMAGE` ⚠️ hard-coded<br>`IMAGE` ⚠️ hard-coded |        |        | `color.text.inverse`<br>`color.text.tertiary`<br>`color.text.primary`<br>`color.purple.700`<br>`color.text.feedback.info`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                         | `color.icon.tertiary`<br>`color.icon.secondary`<br>`color.icon.inverse`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`<br>`color.brand.white`<br>`color.brand.red` |
 | mobile     | 393×800  | `color.surface.inverse`<br>`IMAGE` ⚠️ hard-coded<br>`IMAGE` ⚠️ hard-coded |        |        | `color.text.inverse`<br>`color.purple.700`<br>`color.text.tertiary`<br>`color.text.primary`<br>`color.text.feedback.info`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default`<br>`color.action.tertiary.text.default` | `color.action.secondary.icon.default`<br>`color.icon.tertiary`<br>`color.action.primary.icon.default`<br>`color.action.tertiary.icon.default`<br>`color.brand.white`<br>`color.brand.red`                                   |
@@ -72,15 +72,15 @@ Default variant: `Breakpoint=desktop` · 2 variants · default size 1440×800px
 
 | Prop         | Type    | Options / default    |
 | ------------ | ------- | -------------------- |
-| `Breakpoint` | variant | **desktop** · mobile |
+| `breakpoint` | variant | **desktop** · mobile |
 
-Default variant: `Breakpoint=desktop` · 2 variants · default size 1440×800px
+Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Anatomy (default variant)
 
-- **Breakpoint=desktop** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
+- **breakpoint=desktop** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
   fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
-  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=True) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
+  - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
     padding `stack.md`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×325  
     itemSpacing `stack.lg`
@@ -120,7 +120,7 @@ Default variant: `Breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Variant matrix
 
-| Breakpoint | size     | fill                                                                      | stroke | effect | text                                                                                                                                                                                                                                                                               | icon                                                                                                                                                                                                                        |
+| breakpoint | size     | fill                                                                      | stroke | effect | text                                                                                                                                                                                                                                                                               | icon                                                                                                                                                                                                                        |
 | ---------- | -------- | ------------------------------------------------------------------------- | ------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | desktop    | 1440×800 | `color.surface.inverse`<br>`IMAGE` ⚠️ hard-coded<br>`IMAGE` ⚠️ hard-coded |        |        | `color.text.inverse`<br>`color.text.tertiary`<br>`color.text.primary`<br>`color.purple.700`<br>`color.text.feedback.info`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                                          | `color.icon.tertiary`<br>`color.icon.secondary`<br>`color.icon.inverse`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`<br>`color.brand.white`<br>`color.brand.red` |
 | mobile     | 393×800  | `color.surface.inverse`<br>`IMAGE` ⚠️ hard-coded<br>`IMAGE` ⚠️ hard-coded |        |        | `color.text.inverse`<br>`color.purple.700`<br>`color.text.tertiary`<br>`color.text.primary`<br>`color.text.feedback.info`<br>`text.primary` (Color(local))<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default`<br>`color.action.tertiary.text.default` | `color.action.secondary.icon.default`<br>`color.icon.primary`<br>`color.icon.tertiary`<br>`color.action.primary.icon.default`<br>`color.action.tertiary.icon.default`<br>`color.brand.white`<br>`color.brand.red`           |

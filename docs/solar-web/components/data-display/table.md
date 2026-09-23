@@ -295,7 +295,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 
 - **breakpoint=desktop** · component · row gap 0 pad 8/0/8/0 FILL/HUG · 1020×56  
   padding `stack.none`, `inset.xs`
-  - **Container** · frame · row gap 242 pad 0/0/0/0 FILL/HUG · 1020×40
+  - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1020×40  
+    itemSpacing `inset.md`
     - **Container** · frame · row gap 12 pad 0/0/0/0 HUG/HUG · 168×40  
       itemSpacing `inset.sm`
       - **Dropdown** · instance of **Dropdown** (size=md, state=default) · column gap 8 pad 0/0/0/0 HUG/HUG · 65×40  
@@ -315,7 +316,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 | Strokes         | `color.action.primary.border.default`                                                                                    |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.primary`, `color.text.secondary` |
 | Icon color      | `color.action.primary.icon.default`, `color.icon.primary`                                                                |
-| Spacing         | `inset.sm`, `inset.xs`, `stack.none`, `stack.xs`                                                                         |
+| Spacing         | `inset.md`, `inset.sm`, `inset.xs`, `stack.none`, `stack.xs`                                                             |
 | Radius          | `radius.control`                                                                                                         |
 | Border width    | `border.default`                                                                                                         |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.line-height.body.md`, `type.size.body.md`                        |
@@ -341,10 +342,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 | desktop    | 1020×56 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default` |
 | mobile     | 377×56  |      |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`                                          | `color.icon.primary`<br>`color.action.primary.icon.default` |
 
-### Issues detected
-
-- Hard-coded gap `242px` on layer _Container_
-
 ## Component set: TableHeader
 
 Toolbar strip above Table — title and count, search, and an Actions slot for filters and bulk actions. 2 variants: breakpoint (desktop, mobile); mobile stacks the actions under the title. Part of the Data Table pattern; for a page-level title use Page Header.
@@ -362,7 +359,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 
 - **breakpoint=desktop** · component · row gap 0 pad 8/0/8/0 FILL/HUG · 1020×56  
   padding `stack.none`, `inset.xs` · strokeWeight `border.default`
-  - **Container** · frame · row gap 692 pad 0/0/0/0 FILL/HUG · 1020×40
+  - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1020×40  
+    itemSpacing `inset.md`
     - **SearchField** · instance of **SearchField** (state=default, size=md) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 240×40  
       fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `inset.sm` · padding `inset.sm`, `inset.none` · strokeWeight `border.default` · radius `radius.control`
     - **Segmented Control** · instance of **Segmented Control** (size=md) · column gap 8 pad 0/0/0/0 HUG/HUG · 128×40  
@@ -384,7 +382,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 | Strokes      | `color.border.medium`, `color.border.subtle`                                        |
 | Text color   | `color.text.feedback.info`, `color.text.primary`, `color.text.secondary`            |
 | Icon color   | `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary` |
-| Spacing      | `inset.none`, `inset.sm`, `inset.xs`, `stack.none`, `stack.xs`                      |
+| Spacing      | `inset.md`, `inset.none`, `inset.sm`, `inset.xs`, `stack.none`, `stack.xs`          |
 | Radius       | `radius.control`                                                                    |
 | Border width | `border.default`                                                                    |
 | Effects      | `shadow/control`                                                                    |
@@ -407,10 +405,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 | ---------- | ------- | ---- | ------ | ------ | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | desktop    | 1020×56 |      |        |        | `color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.primary` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default` |
 | mobile     | 377×56  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default` |
-
-### Issues detected
-
-- Hard-coded gap `692px` on layer _Container_
 
 ## Issues detected (page)
 
