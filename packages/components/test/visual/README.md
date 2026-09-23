@@ -20,9 +20,10 @@ npx playwright install chromium  # once, on a new machine
 - **Where each layer is** comes from the emitter's own table (`MUI_SLOTS`), not a copy of it.
 - **Comparing** (`compare.mjs`): colours in sRGB within one 8-bit step, lengths within half a
   pixel, shadows part by part, the first font family, letter spacing in pixels. A layer Figma
-  hides in one state (the label while loading) must not be drawn; one hidden by a prop at rest
-  (the icons) is measured whenever it is rendered. Button's spinner is checked against the
+  hides in a variant (the label while loading, the spinner at rest) must not be drawn; a slot the
+  oracle lists as shown by a prop, hidden at rest (the icons), is measured whenever rendered. Button's spinner is checked against the
   Spinner oracle, in the variant Figma picks.
+- **Flutter** has the same check, `packages/solar_flutter/test/visual/`, against the same oracle.
 - **Excused entries** (an open finding, an overlay decision) are not compared. They go to the gap
   report, `.out/<name>-gaps.json`, beside `.out/<name>-failures.json`, so the difference stays in
   view.

@@ -6,6 +6,12 @@
     "color": "light",
     "type": "desktop"
   },
+  "slots": {
+    "iconLeading": "hasIconLeading",
+    "label": "hasLabel",
+    "iconTrailing": "hasIconTrailing",
+    "counter": "hasCounter"
+  },
   "variants": [
     {
       "figma": "size=md, prio=primary, state=default, danger=false",

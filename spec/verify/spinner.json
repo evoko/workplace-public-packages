@@ -6,6 +6,7 @@
     "color": "light",
     "type": "desktop"
   },
+  "slots": {},
   "variants": [
     {
       "figma": "size=sm, style=default",

@@ -168,7 +168,8 @@ async function check(page, component, { only } = {}) {
       const got = rendered[layer];
       // Shown by a prop (hidden at rest in Figma): measured whenever it is rendered. Hidden only
       // in this variant: the state removes it, so it must not be drawn.
-      const byProp = oracle.variants[0].layers[layer]?.hidden;
+      const byProp =
+        layer in oracle.slots && oracle.variants[0].layers[layer]?.hidden;
       if (expected.hidden && !byProp) {
         const drawn =
           layer === 'label'

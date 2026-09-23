@@ -94,7 +94,12 @@ class SolarButton extends StatelessWidget {
           maintainSemantics: true,
           child: child!,
         ),
-      if (counter != null) counter!,
+      // The counter's height is the recipe's; the badge inside it is the caller's.
+      if (counter != null)
+        SizedBox(
+          height: SolarButtonRecipe.dimension('counter.height', p, rest),
+          child: Center(widthFactor: 1, child: counter),
+        ),
       if (iconTrailing != null) iconTrailing!,
     ];
     final content = Row(

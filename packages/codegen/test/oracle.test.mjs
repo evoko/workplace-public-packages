@@ -77,6 +77,17 @@ describe('the Button oracle', () => {
     });
   });
 
+  it('names the layers a prop shows, so a hidden slot is not mistaken for a hidden state', () => {
+    expect(oracle.slots).toEqual({
+      iconLeading: 'hasIconLeading',
+      label: 'hasLabel',
+      iconTrailing: 'hasIconTrailing',
+      counter: 'hasCounter',
+    });
+    // The spinner is shown by the loading state, not by a prop.
+    expect(oracle.slots).not.toHaveProperty('spinner');
+  });
+
   it('excuses the secondary sm background as an open finding, with Figma’s value', () => {
     expect(
       variant('size=sm, prio=secondary, state=default, danger=false').excused,

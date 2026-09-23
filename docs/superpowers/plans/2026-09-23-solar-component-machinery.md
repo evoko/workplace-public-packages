@@ -305,6 +305,29 @@ A widget test per variant pumps `SolarButton`, forces the state with a `WidgetSt
 and reads the painted decoration, text style and size. Native widget tests, not Flutter web, as
 the spec says. Compared with the same oracle.
 
+**Done 2026-09-23.** `packages/solar_flutter/test/visual/`, run by `flutter test` with the rest of
+the package. All 108 Button and 6 Spinner variants match Figma, with the same 18 and 3 excused
+entries as the web, reported to `build/visual/`. Read back from the widget tree: the face's
+decoration, the Material shape's side, FilledButton's content padding, the label's painted
+paragraph, the colour and size the button's IconTheme gives an icon (a probe stands in for it),
+the laid-out gap, the counter slot's box, and the progress indicator's colours and stroke.
+
+What the first runs found:
+
+- **A Flutter shell gap:** the counter was not sized by the recipe, so it was as tall as its text
+  (16 at `sm`, where Figma draws 20). `SolarButton` now sizes the counter slot from
+  `counter.height`, as MUI does; the template has it too.
+- **Two checker mistakes, fixed on both platforms.** Material animates its text style for 200ms,
+  so the first version measured the previous variant; each case now gets a tree of its own and is
+  measured past its transitions (one frame to start them, one after they end). And "hidden at
+  rest" was taken to mean "shown by a prop", so the spinner, which the loading state shows, was
+  expected on every variant; the oracle now lists its slots (`slots`), and a hidden layer that is
+  not a slot must not be drawn -- which the web check had not been checking.
+
+Proven: a one-token break in the generated Dart fails exactly the two variants that draw it, and
+undoing the counter fix fails the check. 462 JS tests and every Flutter test pass; `flutter
+analyze` and `dart format` are clean.
+
 ### Task 9: CI and documentation
 
 **Files:** modify `.github/workflows/solar.yml`, the codegen, components and Flutter READMEs,

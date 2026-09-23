@@ -294,6 +294,13 @@ export function buildOracle(
     component: spec.component,
     fileVersion,
     mode: { color: 'light', type: 'desktop' },
+    // The layers a prop shows or hides (a slot), by the prop: a slot hidden at rest is drawn when
+    // its prop says so, where any other layer Figma hides in a variant must not be drawn there.
+    slots: Object.fromEntries(
+      Object.entries(spec.slots)
+        .filter(([, s]) => s.props.visible)
+        .map(([, s]) => [nameOf.get(s.layer), s.props.visible]),
+    ),
     variants,
   };
 }
