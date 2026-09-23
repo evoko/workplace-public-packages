@@ -124,7 +124,11 @@ const cssVar = (token) => `var(--solar-${token.replaceAll('.', '-')})`;
 
 /** Cells that decide composition rather than style; the shell reads them, not CSS. */
 const COMPOSITION = (cell) =>
-  cell === 'present' || cell === 'component' || cell.startsWith('variant.');
+  cell === 'present' ||
+  cell === 'component' ||
+  cell === 'image' ||
+  cell === 'glyph' ||
+  cell.startsWith('variant.');
 
 function context(spec, tokens) {
   const all = flattenSpec(tokens);
@@ -424,7 +428,7 @@ export function renderMuiComponent(spec, tokens) {
       Object.fromEntries(
         Object.entries(cells)
           .filter(([c]) => COMPOSITION(c))
-          .map(([c, e]) => [c, e.keyword ?? e.value ?? null]),
+          .map(([c, e]) => [c, e.glyph ?? e.keyword ?? e.value ?? null]),
       );
     comp.base = pick(s.base);
     for (const [combo, states] of Object.entries(s.appearance))

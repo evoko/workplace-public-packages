@@ -13,6 +13,8 @@
  * Values bound to no variable, or to one that is not a SOLAR token, are recorded the same way.
  */
 
+import { checkPathData } from './svg.mjs';
+
 // ---------------------------------------------------------------------------------------------
 // Figma names to SOLAR token names
 
@@ -81,8 +83,38 @@ function roleOf(axis, given) {
   return role;
 }
 
-// Which roles each class of cell follows.
-const FOLLOWS = { geometry: ['size'], paint: ['appearance', 'state'] };
+// Which roles each class of cell follows. A drawn shape follows every axis: a glyph legitimately
+// changes with size (Spinner's ring), appearance (StatusIndicator's type) and state (Checkbox's
+// tick appears when checked), so no axis is a finding for it.
+const FOLLOWS = {
+  geometry: ['size'],
+  paint: ['appearance', 'state'],
+  shape: ['size', 'appearance', 'state'],
+};
+
+/**
+ * A layer's drawn shape as a glyph: its box, and the outlines Figma records, the fill's and the
+ * stroke's, each a filled region (a stroke's geometry is the stroke's own outline, painted in the
+ * stroke colour). Paths reach every target byte for byte, so each is checked against the
+ * commands every target draws.
+ */
+function glyphOf(layer, where) {
+  if (!layer.geometry && !layer.strokeGeometry) return undefined;
+  const paths = (list, part) =>
+    (list ?? []).map((g) => {
+      checkPathData(g.path, { file: `${where} ${part}` });
+      return { d: g.path, evenOdd: g.windingRule === 'EVENODD' };
+    });
+  const [width, height] = layer.size ?? [0, 0];
+  return {
+    glyph: {
+      width,
+      height,
+      fill: paths(layer.geometry, 'fill'),
+      stroke: paths(layer.strokeGeometry, 'stroke'),
+    },
+  };
+}
 
 // ---------------------------------------------------------------------------------------------
 // Style cells: what one layer contributes, as token references
@@ -158,11 +190,12 @@ function paint(paints, names, where) {
   const [p] = paints;
   const ref = /^\{(.+)\}$/.exec(p);
   if (!ref) return { literal: p };
-  // A paint bound to a variable that is not a colour (Spinner's indicator, bound to the spacing
-  // variable border/strong) cannot be drawn from that token: it is reported, never painted.
-  if (!ref[1].startsWith('Color:'))
-    return { literal: p, binding: ref[1], misbound: true };
   const token = names.variable(ref[1]);
+  // A paint bound to a variable that is not a colour (Spinner's indicator, bound to the spacing
+  // variable border/strong) cannot be drawn from that token: it is reported, never painted. A
+  // primitive colour is still a colour (Avatar's palette); using one is a different finding.
+  if (token && !token.startsWith('color.'))
+    return { literal: p, binding: ref[1], misbound: true };
   return token ? { token } : { literal: p, binding: ref[1] };
 }
 
@@ -228,7 +261,18 @@ function cellsOf(layer, type, names, where) {
     return cells;
   }
 
-  put('background', 'paint', paint(layer.fills, names, `${where}.background`));
+  // An image fill is content -- the picture a slot shows (Dialog's header image) -- not design: the
+  // layer records that it carries one, and the paint beside it is the background, drawn where the
+  // picture does not cover.
+  put('glyph', 'shape', glyphOf(layer, `${where}.glyph`));
+  const content = (layer.fills ?? []).filter((f) => f !== 'IMAGE');
+  if (content.length !== (layer.fills ?? []).length)
+    put('image', 'paint', { value: true });
+  put(
+    'background',
+    'paint',
+    paint(layer.fills && content, names, `${where}.background`),
+  );
   put(
     'borderColor',
     'paint',

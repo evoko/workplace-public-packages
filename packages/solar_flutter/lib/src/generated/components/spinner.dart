@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter/material.dart'
     show BoxShadow, Color, Colors, TextStyle, WidgetState;
 
+import '../../solar_glyph.dart';
+import '../../solar_icon.dart' show SolarVectorPath;
 import '../tokens.dart';
 
 enum SolarSpinnerSize { sm, md, lg }
@@ -75,6 +77,7 @@ abstract final class SolarSpinnerRecipe {
     'track.borderColor|appearance|variant=inverse|default':
         't:color.border.inverse.subtle',
     'indicator.present|base': 'b:true',
+    'indicator.glyph|base': 'g:0',
     'indicator.background|base': 'none',
     'indicator.borderColor|base': 't:color.border.strong',
     'indicator.shadow|base': 'none',
@@ -82,6 +85,10 @@ abstract final class SolarSpinnerRecipe {
     'indicator.borderWidth|base': 't:border.strong',
     'indicator.borderColor|appearance|variant=inverse|default':
         't:color.border.inverse.strong',
+    'indicator.glyph|combined|md|variant=default|default': 'g:1',
+    'indicator.glyph|combined|md|variant=inverse|default': 'g:1',
+    'indicator.glyph|combined|lg|variant=default|default': 'g:2',
+    'indicator.glyph|combined|lg|variant=inverse|default': 'g:2',
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
@@ -154,4 +161,41 @@ abstract final class SolarSpinnerRecipe {
   /// Whether a layer is drawn: the shell reads this, the style does not.
   static bool present(String layer, SolarSpinnerProps p, Set<WidgetState> s) =>
       lookup('$layer.present', p, s) != 'b:false';
+
+  /// The shapes the layers draw themselves (a cell's `g:<n>` is the nth), Figma's path data.
+  static const List<SolarGlyph> glyphs = <SolarGlyph>[
+    SolarGlyph(
+        width: 7.0,
+        height: 5.0,
+        fill: <SolarVectorPath>[],
+        stroke: <SolarVectorPath>[
+          SolarVectorPath(
+              'M0 0L1.75211e-16 1C2.71563 1 5.0927 2.82398 5.79556 5.44709L6.76148 5.18827L7.72741 4.92945C6.79026 1.43198 3.62085 -1 -1.75211e-16 -1L0 0Z')
+        ]),
+    SolarGlyph(
+        width: 10.0,
+        height: 8.0,
+        fill: <SolarVectorPath>[],
+        stroke: <SolarVectorPath>[
+          SolarVectorPath(
+              'M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z')
+        ]),
+    SolarGlyph(
+        width: 14.0,
+        height: 11.0,
+        fill: <SolarVectorPath>[],
+        stroke: <SolarVectorPath>[
+          SolarVectorPath(
+              'M0 0L1.6917e-16 1C6.11018 1 11.4586 5.10397 13.04 11.0059L14.0059 10.7471L14.9719 10.4883C13.1561 3.71196 7.01539 -1 -1.6917e-16 -1L0 0Z')
+        ]),
+  ];
+
+  /// The shape a layer draws under these props and states, or null where it draws none.
+  static SolarGlyph? glyph(
+      String layer, SolarSpinnerProps p, Set<WidgetState> s) {
+    final v = lookup('$layer.glyph', p, s);
+    return v != null && v.startsWith('g:')
+        ? glyphs[int.parse(v.substring(2))]
+        : null;
+  }
 }

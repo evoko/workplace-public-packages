@@ -145,3 +145,25 @@ describe('renderFlutterComponent on Spinner', () => {
     );
   });
 });
+
+describe('renderFlutterComponent: glyphs', () => {
+  const spinner = built.find((b) => b.spec.component === 'Spinner').spec;
+  const { dart: sd, cells: sc } = renderFlutterComponent(spinner, tokens);
+
+  it('lists each distinct glyph once and keys the cells by its index', () => {
+    const glyphs = sd.match(/SolarGlyph\(/g).length;
+    const refs = new Set(Object.values(sc).filter((v) => v.startsWith('g:')));
+    expect(refs.size).toBe(glyphs);
+    expect(sd).toContain("import '../../solar_glyph.dart';");
+    expect(sd).toContain('static SolarGlyph? glyph(');
+  });
+
+  it('carries Figma’s path data byte for byte', () => {
+    const d = spinner.style.indicator.base.glyph.glyph.stroke[0].d;
+    expect(sd).toContain(d.slice(0, 60));
+  });
+
+  it('adds nothing to a component that draws no glyph', () => {
+    expect(dart).not.toContain('SolarGlyph');
+  });
+});

@@ -14,7 +14,7 @@ import { join } from 'node:path';
 import { docsDir } from '../util/paths.mjs';
 import { camel } from '../util/naming.mjs';
 import { foldStateAxes, resolveVariants } from './component-layers.mjs';
-import { applyOverlay, followsOf } from './overlay.mjs';
+import { applyOverlay, followsOf, renameStates } from './overlay.mjs';
 import { deriveRecipe } from './recipe.mjs';
 
 const webDir = join(docsDir, 'solar-web');
@@ -71,14 +71,26 @@ const propName = (key) => key.replace(/#.*$/, '');
  */
 function slotsOf(resolved, set) {
   const defaults = resolved.variants.find((v) => v.name === set.defaultVariant);
+  // Every layer any variant has, the default's first: a slot can exist only in some variants
+  // (Dialog's image, only in type=image).
+  const layers = new Map();
+  const parents = new Map();
+  for (const v of [defaults, ...resolved.variants])
+    for (const [path, layer] of v.layers)
+      if (!layers.has(path)) {
+        layers.set(path, layer);
+        parents.set(path, v.parents.get(path) ?? null);
+      }
   const found = {};
-  for (const [path, layer] of defaults.layers) {
+  for (const [path, layer] of layers) {
     const refs = layer.propRefs;
     if (!refs) continue;
     const props = {};
     if (refs.visible) props.visible = propName(refs.visible);
     if (refs.mainComponent) props.content = propName(refs.mainComponent);
     if (refs.characters) props.content = propName(refs.characters);
+    // A Figma slot (Tabs' strip, Card's content, Dialog's image): the caller's content.
+    if (refs.slotContentId) props.content = propName(refs.slotContentId);
     if (!props.visible && !props.content) continue;
 
     // Named after the prop that shows it, less the verb (`hasIconLeading` is `iconLeading`,
@@ -90,7 +102,13 @@ function slotsOf(resolved, set) {
     const name = shows
       ? camel(shows[1])
       : camel(props.content ?? props.visible);
-    const entry = { layer: path, props, refs, main: layer.main };
+    const entry = {
+      layer: path,
+      props,
+      refs,
+      main: layer.main,
+      nodeType: layer.type,
+    };
     const other = found[name];
     if (!other) {
       found[name] = entry;
@@ -100,13 +118,22 @@ function slotsOf(resolved, set) {
     // another prop fills (`show label` on `/Label`, `label` on `/Label/Label`), where the inner
     // one is shown by the same prop or by none. The slot is the frame, since that is what appears
     // and disappears; `contentLayer` says what is filled, when something is.
-    const [outer, inner] = within(path, other.layer, defaults.parents)
+    const [outer, inner] = within(path, other.layer, parents)
       ? [other, entry]
-      : within(other.layer, path, defaults.parents)
+      : within(other.layer, path, parents)
         ? [entry, other]
         : [];
+    // One slot drawn by several layers the same props drive, neither inside the other: a layer
+    // that moves by variant (Tree Item's chevron is ChevronRight collapsed and ChevronDown
+    // expanded) or two drawn together (Day Cell's two "more events" chips). The first in layer
+    // order is the slot's layer, the rest its alternates; each keeps its own style.
+    if (!outer) {
+      if (JSON.stringify(entry.props) !== JSON.stringify(other.props))
+        throw new Error(`${set.name}: two slots are both named ${name}`);
+      other.alternates = [...(other.alternates ?? []), path];
+      continue;
+    }
     const merges =
-      outer &&
       outer.props.visible &&
       !outer.props.content &&
       !outer.contentLayer &&
@@ -128,9 +155,10 @@ function slotsOf(resolved, set) {
   const slots = {};
   for (const [
     name,
-    { layer, props, refs, main, contentLayer },
+    { layer, props, refs, main, nodeType, contentLayer, alternates },
   ] of Object.entries(found)) {
     const slot = { layer, props };
+    if (alternates) slot.alternates = alternates;
     if (contentLayer) slot.contentLayer = contentLayer;
     if (refs.characters) {
       slot.type = 'text';
@@ -138,6 +166,15 @@ function slotsOf(resolved, set) {
     } else if (refs.mainComponent) {
       // An instance swap whose default is an icon is an icon slot; any other swap is a component.
       slot.type = main?.startsWith('Icon/') ? 'icon' : 'instance';
+    } else if (refs.slotContentId) {
+      slot.type = 'content';
+    } else if (main?.startsWith('Icon/')) {
+      // An icon a boolean shows, with no swap to fill it (Text Input's): still the caller's icon.
+      slot.type = 'icon';
+    } else if (nodeType === 'TEXT') {
+      // Text a boolean shows with no text prop (Text Input's mandatory `*`, Card's helper).
+      slot.type = 'text';
+      slot.default = null;
     } else {
       slot.type = 'component';
       slot.component = main ?? null;
@@ -147,6 +184,49 @@ function slotsOf(resolved, set) {
     slots[name] = slot;
   }
   return slots;
+}
+
+/**
+ * The slots an overlay declares (`slots: { <layer>: { name, type, reason } }`): a layer the caller
+ * fills although Figma drives it with no prop -- Icon Button's icon, Tag's parts. Several layers
+ * may draw one slot, in different variants (Tag's icon sits in one layer for icon-only and another
+ * for icon+text): the first, in layer order, is the slot's `layer` and the rest its `alternates`.
+ * A rule naming a layer the IR does not have, or a slot Figma already defines, fails.
+ */
+function declareSlots(slots, overlay, layerNames) {
+  const rules = Object.entries(overlay?.slots ?? {});
+  if (!rules.length) return slots;
+  const where = overlay.file;
+  const pathOf = new Map([...layerNames].map(([path, name]) => [name, path]));
+  const order = [...layerNames.keys()];
+  const out = { ...slots };
+  const declared = {};
+  for (const [layer, rule] of rules) {
+    const path = pathOf.get(layer);
+    if (!path)
+      throw new Error(`${where}: slots.${layer}: the IR has no layer ${layer}`);
+    if (slots[rule.name])
+      throw new Error(
+        `${where}: slots.${layer}: ${rule.name} is already a Figma slot`,
+      );
+    (declared[rule.name] ??= []).push(path);
+  }
+  for (const [name, paths] of Object.entries(declared)) {
+    const [layer, ...alternates] = paths.sort(
+      (a, b) => order.indexOf(a) - order.indexOf(b),
+    );
+    const rule = overlay.slots[layerNames.get(layer)];
+    out[name] = {
+      layer,
+      ...(alternates.length ? { alternates } : {}),
+      props: {},
+      type: rule.type,
+      optional: true,
+      visible: true,
+      declared: rule.reason,
+    };
+  }
+  return out;
 }
 
 /** Whether `path` is inside `ancestor`, by the parents map (a path cannot be split for it). */
@@ -252,17 +332,23 @@ export function buildComponentSpec(
   { names, fileVersion, overlay = null },
 ) {
   // Checkbox draws `hover` and `focus` as axes of their own; they are one state axis here.
-  const { resolved, findings: stateFindings } = foldStateAxes(
-    resolveVariants(set),
-  );
-  const slots = slotsOf(resolved, set);
-
+  const folded = foldStateAxes(resolveVariants(set));
+  const stateFindings = folded.findings;
+  // Then a state value Figma spells otherwise (Text Input's `pressed` is its focus state).
+  const resolved = renameStates(folded.resolved, overlay);
   // Settled before the recipe, because the overlay's `follows` rules are written in them.
   const parents = new Map();
   const defaults = resolved.variants.find((v) => v.name === set.defaultVariant);
   for (const v of [defaults, ...resolved.variants])
     for (const path of v.layers.keys())
       if (!parents.has(path)) parents.set(path, v.parents.get(path) ?? null);
+  // Figma's slots, then the ones the overlay declares where Figma records no prop, addressed by
+  // the layer names Figma's slots alone give.
+  const slots = declareSlots(
+    slotsOf(resolved, set),
+    overlay,
+    namesOf(parents, slotsOf(resolved, set), set.name),
+  );
   const layerNames = namesOf(parents, slots, set.name);
   const pathOf = (name) =>
     [...layerNames].find(([, n]) => n === name)?.[0] ?? null;

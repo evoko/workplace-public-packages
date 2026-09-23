@@ -460,6 +460,50 @@ describe('deriveRecipe on Spinner: strokes', () => {
     });
   });
 
+  it('does not call a primitive colour misbound: it is a colour, used where a semantic one belongs', () => {
+    const avatar = JSON.parse(
+      readFileSync(
+        join(
+          docsDir,
+          'solar-web',
+          'raw',
+          'components',
+          'data-display',
+          'avatar.json',
+        ),
+        'utf8',
+      ),
+    ).componentSets.find((s) => s.name === 'Avatar');
+    const a = deriveRecipe(resolveVariants(avatar), { names });
+    expect(a.deviations.some((d) => d.kind === 'misbound')).toBe(false);
+  });
+
+  it('refuses a glyph whose path a target cannot draw, naming the layer', () => {
+    const set = {
+      name: 'X',
+      defaultVariant: 'tone=a',
+      props: { tone: { type: 'VARIANT', default: 'a', options: ['a'] } },
+      defaultVariantTree: {
+        name: 'tone=a',
+        type: 'COMPONENT',
+        children: [
+          {
+            name: 'Mark',
+            type: 'VECTOR',
+            size: [10, 10],
+            geometry: [
+              { path: 'M0 0 A5 5 0 0 1 10 10', windingRule: 'NONZERO' },
+            ],
+          },
+        ],
+      },
+      variants: [{ variant: 'tone=a' }],
+    };
+    expect(() => deriveRecipe(resolveVariants(set), { names })).toThrow(
+      /X \/Mark.glyph fill/,
+    );
+  });
+
   it('settles disagreeing bindings by the value Figma draws, where one names it', () => {
     const layer = {
       strokeWeight: 2,
@@ -492,11 +536,12 @@ describe('deriveRecipe on Spinner: strokes', () => {
 });
 
 // A guard on the whole corpus, not only Button: a change that makes the recipe throw on a shape
-// it used to handle shows up here, where Button's own suite would stay green. The four sets that
+// it used to handle shows up here, where Button's own suite would stay green. The three sets that
 // do not derive throw on shapes the recipe does not model yet: a side bound to two variables
-// (Weekday Header, Popover), and a layer with two stacked paints (Insight Card, Dialog's image).
+// (Weekday Header, Popover), and a layer with two stacked colours (Insight Card). Dialog left the
+// list when an image fill became content rather than a second paint.
 describe('deriveRecipe over all of SOLAR Web', () => {
-  it('derives every set it derived before, and fails only on the four known shapes', async () => {
+  it('derives every set it derived before, and fails only on the three known shapes', async () => {
     const { readdirSync } = await import('node:fs');
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
@@ -519,7 +564,6 @@ describe('deriveRecipe over all of SOLAR Web', () => {
     expect(failures.sort()).toEqual([
       'calendar/Weekday Header',
       'cards/Insight Card',
-      'dialogs/Dialog',
       'overlays/Popover',
     ]);
     // Every icon colour in SOLAR Web is one colour on one icon.

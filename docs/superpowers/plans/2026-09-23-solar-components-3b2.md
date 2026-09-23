@@ -33,7 +33,7 @@ sync of SOLAR Web version `2402397614979898462`, which changed only Icon Button 
 | Icon Button       | 108      | builds | 21 axis, 8 unbound                    | icon content slot (A3); Spinner, as Button                         |
 | Button Group      | 3        | builds | 15 axis, 9 unbound                    | layout only; composes Button                                       |
 | Checkbox          | 12       | builds | 1 compound-state, 10 unbound          | glyph geometry (A1, A4); its own MUI state classes (A5)            |
-| StatusIndicator   | 21       | builds | 22 axis, 30 unbound, 2 misbound       | glyph geometry (A1, A4); composed by Tag                           |
+| StatusIndicator   | 21       | builds | 22 axis, 30 unbound, 2 unknown-token  | glyph geometry (A1, A4); composed by Tag                           |
 | Tag               | 45       | builds | 110 axis, 7 unbound                   | `type` follows from content (A3); composes StatusIndicator         |
 | Text Input        | 12       | builds | 10 axis, 12 unbound                   | `pressed` renamed `focus` (A2); `filled` from the value; icon slots |
 | Tab Item          | 10       | builds | 2 axis, 4 unbound, 1 misbound         | its own MUI state classes (A5); `selected` a prop                  |
@@ -43,7 +43,7 @@ sync of SOLAR Web version `2402397614979898462`, which changed only Icon Button 
 | Stepper Indicator | 4        | builds | 8 unbound                             | number or tick by status                                           |
 | Step              | 8        | builds | 12 axis, 7 unbound                    | composes Stepper Indicator                                         |
 | Stepper           | 4        | builds | 22 axis, 31 unbound                   | 2–5 steps; four drawings by `type`                                 |
-| Dialog            | 3        | fails  | —                                     | an image fill beside a colour (A2); portal, focus trap; composes Icon Button, Button Group, Stepper |
+| Dialog            | 3        | builds | 13 axis, 28 unbound (since A2)        | portal, focus trap; composes Icon Button, Button Group, Stepper    |
 
 Four machinery facts behind the table:
 
@@ -153,6 +153,20 @@ overrides, so it will grow with the geometry.
 - [ ] Tests: each rule on a synthetic set and on its real component; a stale rule fails; Dialog
       builds, and its image layer's background is `color.surface.muted`.
 
+**Done 2026-09-23.** `states: { rename: { <value>: { to, reason } } }` in the overlay, applied by
+`renameStates` to the resolved variants before the recipe (and by the oracle, so both see one
+state name), as `follows` is; the variants keep their Figma names, so provenance still points at
+what Figma draws. It refuses a value the axis lacks and a target the axis already has. An `IMAGE`
+fill is content: the layer gets an `image` composition cell and the colour beside it is its
+background, in the recipe and in the oracle. Dialog now derives and builds (the recipe guard is
+down to three sets, the IR guard to six); Avatar, Launch Card and List, which also carry images,
+derive as before. Found on the way, and fixed: the `misbound` rule from 3b-1 Task 5 treated any
+variable outside the `Color` collection as not a colour, so a primitive colour (Avatar's palette)
+was misreported. It now asks whether the variable is a `color.*` token; corpus-wide exactly two
+paints are misbound, Spinner's and Tab Item's, the two Figma's own checks flag, and StatusIndicator's
+two are unknown variables, as the design review lists them. Generated code unchanged; 467 tests
+pass; skipping the rename or painting the image fails them.
+
 ### Task A3: Slots — icons shown by a boolean, content slots, and structure that follows from content
 
 **Files:** modify `src/normalize/components.mjs`, `src/normalize/overlay.mjs` and their tests.
@@ -169,6 +183,31 @@ overrides, so it will grow with the geometry.
 - [ ] Tests: Text Input's icon slots are icons; Icon Button has an `icon` slot; Tag's API has no
       `type` and each of its five types is reachable by content.
 
+**Done 2026-09-23**, with three rules the plan had not foreseen, all found by the corpus:
+
+- **Figma's own slots are content slots.** A `SLOT` layer carries a `slotContentId` prop reference
+  (Tabs' strip, Card's content, Dialog's image and content, and 18 more), so these need no
+  overlay rule; Task A3's `content` section was not needed for them.
+- **Slots are read from every variant**, the default's first, so a slot only some variants have is
+  found (Dialog's image, only in `type=image`; its layer is now named `modalImage`).
+- **The layers one prop drives are one slot**, the first in layer order its `layer` and the rest
+  `alternates`, whether the layer moves by variant (Tree Item's chevron, Action Card's button,
+  Split Dialog's `left`) or two are drawn together (Day Cell's two "more events" chips). Reading
+  every variant surfaced these as name clashes; without the rule four sets would have stopped
+  building.
+
+And the planned ones: a boolean-shown `Icon/` instance is an `icon` slot and a boolean-shown text
+layer a `text` slot (Text Input's icons and `*`, Card's helper); the overlay's `slots: { <layer>:
+{ name, type, reason } }` declares a slot Figma records no prop for, several layers may declare one
+slot (Tag's icon is `/Icon/Plus` for icon-only and `/Icon/None` for icon+text); `derive: { <axis>:
+{ when: [{ value, given }], reason } }` takes an axis out of the API and records, first match
+wins, which filled slots give each value, and the oracle reaches such a variant by `content` (the
+slots to fill) instead of a prop. Checked on a draft Tag overlay (API `status`, `invert`; all 45
+variants reachable) and Icon Button's `icon`. Not yet: the emitters do not read `derived`, so Tag
+cannot be emitted until C3 teaches them to resolve the axis from content. The IR guard is unchanged
+(113 of 119 build); Button's output unchanged; 475 tests pass; mutations of `derive` and of the
+Figma-slot rule fail them.
+
 ### Task A4: Glyph layers in both recipes
 
 **Files:** modify `src/normalize/recipe.mjs`, `src/emit/mui-component.mjs`,
@@ -182,6 +221,21 @@ overrides, so it will grow with the geometry.
       is Figma's (the path data rendered, compared as data, not pixels).
 - [ ] Tests: Checkbox's tick and dash reach both recipes; a glyph Flutter's parser cannot read
       fails the build naming the layer.
+
+**Done 2026-09-23.** A layer with geometry gets a `glyph` cell: its box (the layer's size) and
+two lists of `{d, evenOdd}`, the fill's outline and the stroke's (Figma's stroke geometry is the
+stroke's own outline, so both are filled when drawn, in the fill and the stroke colour). Its class
+is a new one, `shape`, which follows every axis, because a drawn shape legitimately changes with
+size (Spinner's ring), appearance (StatusIndicator's type) and state (Checkbox's tick appears when
+checked); demoting it to `paint` makes Spinner report findings, which a test catches. Every path is
+checked by the icons' validator (`checkPathData`, `M L C H V Z`) and names the layer when it
+fails. SOLAR Web's 184 geometry paths use only `M L C Z`, so `svg_path.dart` needed no extension.
+MUI carries the glyph in the composition data as SVG path data; Flutter as `SolarGlyph` (a new
+hand-written class in `lib/src/solar_glyph.dart`, reusing `SolarVectorPath` and drawn by
+`SolarVectorPainter`), one entry per distinct drawing, with `Solar<Name>Recipe.glyph(layer, props,
+states)`. The oracle records each drawn glyph's path data. Spinner's ring is the first glyph to
+ship (its generated files grew); Checkbox's tick and dash are ready for C1. 481 tests and the
+Flutter suite pass, including a test that every generated glyph parses and paints.
 
 ### Task A5: Emitter tables per base control
 

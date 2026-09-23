@@ -20,6 +20,7 @@ import {
   resolveVariants,
 } from '../normalize/component-layers.mjs';
 import { PLATFORM_STATES } from '../normalize/components.mjs';
+import { renameStates } from '../normalize/overlay.mjs';
 import { featuresOf } from '../emit/text-features.mjs';
 
 /** Each IR cell a finding can name, as the oracle properties it covers. */
@@ -101,6 +102,8 @@ export function buildOracle(
 
   /** A paint list as one colour, `transparent`, or null when no colour can be read from it. */
   const colour = (paints, at) => {
+    // An image fill is the slot's content; the colour beside it is the background.
+    paints = paints?.filter((p) => p !== 'IMAGE');
     if (!paints || paints.length === 0) return { value: 'transparent' };
     if (paints.length > 1)
       throw new Error(`${where} ${at}: ${paints.length} paints`);
@@ -184,6 +187,13 @@ export function buildOracle(
       box();
       return { out, unresolved };
     }
+    if (layer.fills?.includes('IMAGE')) out.image = true;
+    // The shape drawn, as Figma's path data, compared as data by the visual checks.
+    if (layer.geometry || layer.strokeGeometry)
+      out.glyph = {
+        fill: (layer.geometry ?? []).map((g) => g.path),
+        stroke: (layer.strokeGeometry ?? []).map((g) => g.path),
+      };
     paint('background', layer.fills);
     paint('borderColor', layer.strokes);
     out.borderWidth = layer.strokes?.length ? (layer.strokeWeight ?? 0) : 0;
@@ -210,14 +220,26 @@ export function buildOracle(
   const rename = Object.fromEntries(
     Object.entries(overlay?.rename ?? {}).map(([axis, r]) => [axis, r.to]),
   );
-  const { resolved } = foldStateAxes(resolveVariants(set));
+  const resolved = renameStates(
+    foldStateAxes(resolveVariants(set)).resolved,
+    overlay,
+  );
   const defaults = Object.fromEntries(
     Object.entries(spec.api).map(([p, d]) => [p, d.default]),
   );
+  const derived = overlay?.derive ?? {};
   const reach = (props) => {
     const api = { ...defaults };
     let state = 'default';
+    let content;
     for (const [axis, value] of Object.entries(props)) {
+      // An axis the overlay derives from content is reached by filling those slots.
+      if (derived[axis]) {
+        content = [
+          ...(derived[axis].when.find((w) => w.value === value).given ?? []),
+        ];
+        continue;
+      }
       if (axis === 'state') {
         if (PLATFORM_STATES.has(value)) state = value;
         else api[value] = true;
@@ -228,7 +250,7 @@ export function buildOracle(
         throw new Error(`${where}: axis ${axis} is not a prop of the IR`);
       api[prop] = spec.api[prop].type === 'boolean' ? value === 'true' : value;
     }
-    return { props: api, state };
+    return { props: api, state, ...(content ? { content } : {}) };
   };
 
   // Findings that excuse a difference, by variant and property, from the findings alone.

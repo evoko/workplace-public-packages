@@ -11,6 +11,10 @@
  *   component: Button
  *   base:         { mui, flutter, reason }              the stock control each target wraps
  *   rename:       { <axis>: { to, reason } }             Figma axis name to API name
+ *   states:       { rename: { <value>: { to, reason } } }  a state value Figma spells otherwise
+ *   slots:        { <layer>: { name, type, reason } }    a layer the caller fills, with no Figma prop
+ *   derive:       { <axis>: { when: [{ value, given? }], reason } }  an axis that follows from
+ *                                                        content (first match wins), not a prop
  *   follows:      { <layer>.<cell>: { axes, reason } }    a cell that follows other axes than its class
  *   bind:         { <layer>.<cell>: { literal, token, reason } }  a raw value to the token of that value
  *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none, reason } }  one entry, changed
@@ -43,8 +47,17 @@ const FIELDS = {
   set: ['token', 'none'],
   allowLiteral: [],
   accept: [],
+  slots: ['name', 'type'],
+  derive: ['when'],
 };
-const SECTIONS = ['base', ...Object.keys(FIELDS)];
+const SECTIONS = ['base', 'states', ...Object.keys(FIELDS)];
+const SLOT_TYPES = new Set([
+  'icon',
+  'text',
+  'component',
+  'content',
+  'instance',
+]);
 
 /** Parses and validates overlay text. The structure is checked here; the IR is checked on apply. */
 export function parseOverlay(text, file) {
@@ -63,6 +76,21 @@ export function parseOverlay(text, file) {
         fail(`base: unknown field ${key}`);
     if (!doc.base.reason) fail('base has no reason');
   }
+  if (doc.states !== undefined) {
+    for (const key of Object.keys(doc.states))
+      if (key !== 'rename') fail(`states: unknown section ${key}`);
+    for (const [value, rule] of Object.entries(doc.states.rename ?? {})) {
+      if (!rule || typeof rule !== 'object')
+        fail(`states.rename.${value} is not a rule`);
+      for (const key of Object.keys(rule))
+        if (!['to', 'reason'].includes(key))
+          fail(`states.rename.${value}: unknown field ${key}`);
+      if (typeof rule.to !== 'string' || !rule.to)
+        fail(`states.rename.${value} names no value to rename to`);
+      if (typeof rule.reason !== 'string' || rule.reason.trim() === '')
+        fail(`states.rename.${value} has no reason`);
+    }
+  }
   for (const [section, fields] of Object.entries(FIELDS)) {
     for (const [at, rule] of Object.entries(doc[section] ?? {})) {
       if (!rule || typeof rule !== 'object')
@@ -72,6 +100,22 @@ export function parseOverlay(text, file) {
           fail(`${section}.${at}: unknown field ${key}`);
       if (typeof rule.reason !== 'string' || rule.reason.trim() === '')
         fail(`${section}.${at} has no reason`);
+    }
+  }
+  for (const [layer, rule] of Object.entries(doc.slots ?? {})) {
+    if (typeof rule.name !== 'string' || !rule.name)
+      fail(`slots.${layer} names no slot`);
+    if (!SLOT_TYPES.has(rule.type))
+      fail(`slots.${layer}: type must be one of ${[...SLOT_TYPES].join(', ')}`);
+  }
+  for (const [axis, rule] of Object.entries(doc.derive ?? {})) {
+    if (!Array.isArray(rule.when) || rule.when.length === 0)
+      fail(`derive.${axis} has no when list`);
+    for (const w of rule.when) {
+      if (!w || typeof w.value !== 'string')
+        fail(`derive.${axis}: every when entry needs a value`);
+      if (w.given !== undefined && !Array.isArray(w.given))
+        fail(`derive.${axis}.${w.value}: given must be a list of slots`);
     }
   }
   return { ...doc, file };
@@ -126,7 +170,49 @@ export function followsOf(overlay, pathOf) {
 }
 
 /**
- * Applies everything but `follows` to a built IR and its deviations.
+ * Renames state values (`pressed` to `focus` on Text Input, whose Figma description says its
+ * `pressed` is the focused state). Applied to the resolved variants, before the recipe is derived,
+ * as `follows` is, because the recipe keys every state entry by its value; the variants keep
+ * their Figma names, so findings still point at what Figma draws. A rule for a value the state axis
+ * does not have, or onto one it already has, fails.
+ */
+export function renameStates(resolved, overlay) {
+  const rules = Object.entries(overlay?.states?.rename ?? {});
+  if (!rules.length) return resolved;
+  const axis = resolved.axes.state;
+  const where = overlay.file;
+  if (!axis)
+    throw new Error(
+      `${where}: states.rename, but ${resolved.name} has no state axis`,
+    );
+  const to = new Map();
+  for (const [value, rule] of rules) {
+    if (!axis.options.includes(value))
+      throw new Error(
+        `${where}: states.rename.${value}: the state axis has no ${value}`,
+      );
+    if (axis.options.includes(rule.to))
+      throw new Error(
+        `${where}: states.rename.${value}: the state axis already has ${rule.to}`,
+      );
+    to.set(value, rule.to);
+  }
+  const name = (v) => to.get(v) ?? v;
+  return {
+    ...resolved,
+    axes: {
+      ...resolved.axes,
+      state: { default: name(axis.default), options: axis.options.map(name) },
+    },
+    variants: resolved.variants.map((v) => ({
+      ...v,
+      props: { ...v.props, state: name(v.props.state) },
+    })),
+  };
+}
+
+/**
+ * Applies everything but `follows` and `states` to a built IR and its deviations.
  *
  * @returns {{spec: object, deviations: object[]}} new objects; the inputs are not mutated
  */
@@ -180,6 +266,48 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     if (!axes[axis])
       fail(`rename ${axis}: ${spec.component} has no axis ${axis}`);
     record('rename', axis, rule.reason);
+  }
+
+  for (const [value, rule] of Object.entries(overlay.states?.rename ?? {}).sort(
+    ([a], [b]) => (a < b ? -1 : 1),
+  ))
+    record('states.rename', `${value} → ${rule.to}`, rule.reason);
+
+  // Slots were declared before the layers were named (see declareSlots); here they are recorded.
+  for (const [at, rule] of sorted('slots'))
+    record('slots', `${at} → ${rule.name}`, rule.reason);
+
+  // An axis that follows from the content the caller gives, not a prop: Tag's `type` is which of
+  // its parts show. The recipe keeps the axis, keyed as Figma draws it; the API loses it, and
+  // `derived` says which value each combination of filled slots gives, first match wins.
+  for (const [axis, rule] of sorted('derive')) {
+    if (!axes[axis])
+      fail(`derive ${axis}: ${spec.component} has no axis ${axis}`);
+    const values = rule.when.map((w) => w.value);
+    const options = axes[axis].options;
+    for (const v of options)
+      if (values.filter((x) => x === v).length !== 1)
+        fail(`derive ${axis}: ${v} must appear once in when`);
+    for (const v of values)
+      if (!options.includes(v))
+        fail(`derive ${axis}: ${axis} has no value ${v}`);
+    for (const w of rule.when)
+      for (const slot of w.given ?? [])
+        if (!spec.slots[slot])
+          fail(
+            `derive ${axis}.${w.value}: ${spec.component} has no slot ${slot}`,
+          );
+    // `rename` applies last, so the API is still keyed by Figma's axis name here.
+    delete spec.api[axis];
+    (spec.derived ??= {})[axis] = {
+      values: [...options],
+      when: rule.when.map((w) => ({
+        value: w.value,
+        given: [...(w.given ?? [])],
+      })),
+      reason: rule.reason,
+    };
+    record('derive', axis, rule.reason);
   }
 
   for (const [at, rule] of sorted('follows'))

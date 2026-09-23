@@ -84,6 +84,10 @@ Presence (the spinner while loading, the label hidden) is `SolarButtonRecipe.pre
 Spinner is `SolarButtonRecipe.lookup('spinner.variant.size', …)`, for the widget that composes the
 button's content, as `SolarButton` does.
 
+A shape a component draws itself (Spinner's ring, and in later components Checkbox's tick) is a
+`SolarGlyph`: Figma's path data for the fill and for the stroke's outline, read from the recipe with
+`Solar<Name>Recipe.glyph(layer, props, states)` and drawn by `SolarVectorPainter`, as the icons are.
+
 Every variant of both widgets is checked against what Figma draws (`spec/verify/`) by
 `flutter test`: see [test/visual/README.md](test/visual/README.md).
 

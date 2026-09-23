@@ -47,6 +47,18 @@ rename:
     ).toThrow(/test.yaml: rename.prio has no reason/);
   });
 
+  it('checks a state rename has a target and a reason, and nothing else', () => {
+    expect(() =>
+      yaml('component: X\nstates:\n  rename:\n    pressed: { reason: r }\n'),
+    ).toThrow(/states.rename.pressed names no value to rename to/);
+    expect(() =>
+      yaml('component: X\nstates:\n  rename:\n    pressed: { to: focus }\n'),
+    ).toThrow(/states.rename.pressed has no reason/);
+    expect(() =>
+      yaml('component: X\nstates:\n  drop:\n    active: { reason: r }\n'),
+    ).toThrow(/states: unknown section drop/);
+  });
+
   it('refuses a key it does not know, rather than ignoring it', () => {
     expect(() => yaml('component: Button\nrenames: {}\n')).toThrow(
       /test.yaml: unknown section renames/,

@@ -76,7 +76,16 @@ export const solarSpinnerStyles = {
       },
     },
   },
-  combined: {},
+  combined: {
+    md: {
+      'variant=default': {},
+      'variant=inverse': {},
+    },
+    lg: {
+      'variant=default': {},
+      'variant=inverse': {},
+    },
+  },
 } as const;
 
 /** What the shell renders rather than styles: which layers show, and which variant each child takes. */
@@ -99,6 +108,83 @@ export const solarSpinnerComposition = {
   indicator: {
     base: {
       present: true,
+      glyph: {
+        width: 7,
+        height: 5,
+        fill: [],
+        stroke: [
+          {
+            d: 'M0 0L1.75211e-16 1C2.71563 1 5.0927 2.82398 5.79556 5.44709L6.76148 5.18827L7.72741 4.92945C6.79026 1.43198 3.62085 -1 -1.75211e-16 -1L0 0Z',
+            evenOdd: false,
+          },
+        ],
+      },
+    },
+    combined: {
+      md: {
+        'variant=default': {
+          default: {
+            glyph: {
+              width: 10,
+              height: 8,
+              fill: [],
+              stroke: [
+                {
+                  d: 'M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z',
+                  evenOdd: false,
+                },
+              ],
+            },
+          },
+        },
+        'variant=inverse': {
+          default: {
+            glyph: {
+              width: 10,
+              height: 8,
+              fill: [],
+              stroke: [
+                {
+                  d: 'M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z',
+                  evenOdd: false,
+                },
+              ],
+            },
+          },
+        },
+      },
+      lg: {
+        'variant=default': {
+          default: {
+            glyph: {
+              width: 14,
+              height: 11,
+              fill: [],
+              stroke: [
+                {
+                  d: 'M0 0L1.6917e-16 1C6.11018 1 11.4586 5.10397 13.04 11.0059L14.0059 10.7471L14.9719 10.4883C13.1561 3.71196 7.01539 -1 -1.6917e-16 -1L0 0Z',
+                  evenOdd: false,
+                },
+              ],
+            },
+          },
+        },
+        'variant=inverse': {
+          default: {
+            glyph: {
+              width: 14,
+              height: 11,
+              fill: [],
+              stroke: [
+                {
+                  d: 'M0 0L1.6917e-16 1C6.11018 1 11.4586 5.10397 13.04 11.0059L14.0059 10.7471L14.9719 10.4883C13.1561 3.71196 7.01539 -1 -1.6917e-16 -1L0 0Z',
+                  evenOdd: false,
+                },
+              ],
+            },
+          },
+        },
+      },
     },
   },
 } as const;

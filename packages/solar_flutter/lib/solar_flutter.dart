@@ -12,4 +12,5 @@ export 'src/generated/icons.dart';
 export 'src/generated/logos.dart';
 export 'src/generated/tokens.dart';
 export 'src/solar_fonts.dart';
+export 'src/solar_glyph.dart';
 export 'src/solar_icon.dart';

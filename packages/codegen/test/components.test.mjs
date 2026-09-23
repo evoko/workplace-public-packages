@@ -8,6 +8,9 @@ import {
   namesOf,
 } from '../src/normalize/components.mjs';
 import { docsDir } from '../src/util/paths.mjs';
+import { parseOverlay } from '../src/normalize/overlay.mjs';
+import { buildOracle } from '../src/verify/oracle.mjs';
+import { buildTokenSpec } from '../src/normalize/tokens.mjs';
 import {
   BOOLEAN_STATES,
   foldStateAxes,
@@ -326,9 +329,10 @@ describe('a slot drawn by a frame and the text inside it', () => {
 
 // Which sets build an IR at all. A change that makes one stop building shows here; the ones
 // left fail on shapes named in the plan: Figma layers named by a glyph, and the recipe's four.
-// Banner left the list on 2026-09-23, when SOLAR split its one Show Buttons prop in two.
+// Banner left the list on 2026-09-23, when SOLAR split its one Show Buttons prop in two, and
+// Dialog when an image fill became content.
 describe('buildComponentSpec over all of SOLAR Web', () => {
-  it('builds every set but the seven known ones', () => {
+  it('builds every set but the six known ones', () => {
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
     let total = 0;
@@ -348,7 +352,6 @@ describe('buildComponentSpec over all of SOLAR Web', () => {
     expect(failures.sort()).toEqual([
       'calendar/Weekday Header',
       'cards/Insight Card',
-      'dialogs/Dialog',
       'inputs/PIN Input',
       'inputs/Password Input',
       'navigation/Tree Item',
@@ -444,5 +447,236 @@ describe('states drawn as false/true axes', () => {
 
   it('resolves two states in the order both emitters apply them', () => {
     expect(BOOLEAN_STATES).toEqual(STATE_PRECEDENCE);
+  });
+});
+
+describe('a state value Figma spells otherwise', () => {
+  const overlay = (rename) => ({
+    component: 'Text Input',
+    file: 'spec/overlay/text-input.yaml',
+    states: { rename },
+  });
+  const input = (rules) =>
+    buildComponentSpec(loadComponent(catalog, 'Text Input'), {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay: overlay(rules),
+    });
+
+  it('is renamed before the recipe, so the state and every entry under it take the new name', () => {
+    const { spec: ir } = input({
+      pressed: { to: 'focus', reason: 'Figma: pressed is the focused state' },
+    });
+    expect(ir.states).toEqual(['default', 'hover', 'focus']);
+    expect(JSON.stringify(ir.style)).not.toMatch(/"pressed"/);
+    expect(ir.overlay.rules).toContainEqual(
+      expect.objectContaining({ rule: 'states.rename', at: 'pressed → focus' }),
+    );
+    // The provenance still names the Figma variant it was read from.
+    expect(JSON.stringify(ir.style)).toContain('state=pressed');
+  });
+
+  it('refuses a value the state axis does not have, or one it already has', () => {
+    expect(() => input({ active: { to: 'focus', reason: 'r' } })).toThrow(
+      /states.rename.active: the state axis has no active/,
+    );
+    expect(() => input({ pressed: { to: 'hover', reason: 'r' } })).toThrow(
+      /states.rename.pressed: the state axis already has hover/,
+    );
+  });
+});
+
+describe('an image fill', () => {
+  const dialog = build('Dialog');
+
+  it('is content: the layer says it holds an image, and the colour beside it is its background', () => {
+    // The image layer is the `modalImage` slot, named for the prop that shows it.
+    expect(dialog.slots.modalImage).toMatchObject({
+      layer: '/image',
+      type: 'content',
+    });
+    const image = dialog.style.modalImage.appearance['type=image'].default;
+    expect(image.image).toMatchObject({ value: true });
+    expect(image.background).toMatchObject({ token: 'color.surface.muted' });
+  });
+});
+
+describe('slots from Figma', () => {
+  it('makes an icon a boolean shows an icon slot, and text it shows a text slot', () => {
+    const { slots } = build('Text Input');
+    expect(slots.leadingIcon.type).toBe('icon');
+    expect(slots.trailingIcon.type).toBe('icon');
+    expect(slots.mandatory.type).toBe('text');
+  });
+
+  it('makes a Figma slot a content slot, wherever a variant has it', () => {
+    expect(build('Card').slots.content).toMatchObject({ type: 'content' });
+    expect(build('Tabs').slots.tabs).toMatchObject({ type: 'content' });
+    // Only type=image has the image slot.
+    expect(build('Dialog').slots.modalImage).toMatchObject({
+      type: 'content',
+      optional: true,
+    });
+  });
+
+  it('makes the layers one prop drives one slot, the first its layer and the rest alternates', () => {
+    // The calendar's Day Cell: the inputs page has a set of the same name.
+    const dayCell = JSON.parse(
+      readFileSync(
+        join(
+          docsDir,
+          'solar-web',
+          'raw',
+          'components',
+          'calendar',
+          'day-cell.json',
+        ),
+        'utf8',
+      ),
+    ).componentSets.find((s) => s.name === 'Day Cell');
+    const { spec: day } = buildComponentSpec(
+      { entry: {}, set: dayCell },
+      { names, fileVersion: 'x' },
+    );
+    expect(day.slots.moreEvents).toMatchObject({
+      layer: '/Events/Event',
+      alternates: ['/Events/Event#3'],
+    });
+    const card = buildComponentSpec(loadComponent(catalog, 'Action Card'), {
+      names,
+      fileVersion: catalog.fileVersion,
+    }).spec;
+    expect(card.slots.secondaryCTA.alternates).toHaveLength(1);
+  });
+});
+
+describe('slots and axes the overlay decides', () => {
+  const tokens = buildTokenSpec(loadContract()).spec;
+  const with_ = (name, yaml) => {
+    const overlay = parseOverlay(`component: ${name}\n${yaml}`, 'test.yaml');
+    const loaded = loadComponent(catalog, name);
+    const built = buildComponentSpec(loaded, {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay,
+    });
+    return { ...built, loaded, overlay };
+  };
+  const TAG = `
+slots:
+  label: { name: label, type: text, reason: r }
+  statusIndicator: { name: indicator, type: component, reason: r }
+  iconNone: { name: icon, type: icon, reason: r }
+  iconPlus: { name: icon, type: icon, reason: r }
+  iconClose: { name: close, type: icon, reason: r }
+derive:
+  type:
+    reason: follows from content
+    when:
+      - { value: closable, given: [label, close] }
+      - { value: status, given: [label, indicator] }
+      - { value: icon+text, given: [label, icon] }
+      - { value: icon-only, given: [icon] }
+      - { value: text-only, given: [label] }
+`;
+
+  it('declares a layer the caller fills where Figma records no prop', () => {
+    const { spec: ib } = with_(
+      'Icon Button',
+      'slots:\n  iconNone: { name: icon, type: icon, reason: the caller gives the icon }\n',
+    );
+    expect(ib.slots.icon).toMatchObject({ layer: '/Icon/None', type: 'icon' });
+    expect(ib.layers).toHaveProperty('icon');
+    expect(ib.overlay.rules).toContainEqual(
+      expect.objectContaining({ rule: 'slots', at: 'iconNone → icon' }),
+    );
+  });
+
+  it('takes a structural axis out of the API and says which content gives each value', () => {
+    const { spec: tag } = with_('Tag', TAG);
+    expect(Object.keys(tag.api)).toEqual(['status', 'invert']);
+    expect(tag.slots.icon).toMatchObject({
+      layer: '/Icon/Plus',
+      alternates: ['/Icon/None'],
+    });
+    expect(tag.derived.type.when[0]).toEqual({
+      value: 'closable',
+      given: ['label', 'close'],
+    });
+    // The recipe keeps the axis, keyed as Figma draws it.
+    expect(JSON.stringify(tag.style)).toContain('type=icon-only');
+  });
+
+  it('reaches each derived value in the oracle by the content that gives it', () => {
+    const { spec: tag, deviations, loaded, overlay } = with_('Tag', TAG);
+    const oracle = buildOracle(loaded.set, tag, deviations, {
+      tokens,
+      names,
+      overlay,
+      fileVersion: 'x',
+    });
+    const v = oracle.variants.find(
+      (x) => x.figma === 'status=danger, type=icon-only, invert=true',
+    );
+    expect(v.props).toEqual({ status: 'danger', invert: true });
+    expect(v.content).toEqual(['icon']);
+  });
+
+  it('refuses a slot on a layer the IR lacks, or one Figma already defines', () => {
+    expect(() =>
+      with_(
+        'Icon Button',
+        'slots:\n  nope: { name: icon, type: icon, reason: r }\n',
+      ),
+    ).toThrow(/slots.nope: the IR has no layer nope/);
+    expect(() =>
+      with_(
+        'Button',
+        'slots:\n  spinner: { name: label, type: text, reason: r }\n',
+      ),
+    ).toThrow(/label is already a Figma slot/);
+  });
+
+  it('refuses a derived axis that leaves a value out or names a slot that does not exist', () => {
+    expect(() =>
+      with_(
+        'Tag',
+        TAG.replace('      - { value: text-only, given: [label] }\n', ''),
+      ),
+    ).toThrow(/text-only must appear once in when/);
+    expect(() => with_('Tag', TAG.replace('[icon]', '[glyph]'))).toThrow(
+      /icon-only: Tag has no slot glyph/,
+    );
+  });
+});
+
+describe('glyphs: shapes a component draws itself', () => {
+  it('carries Checkbox’s tick and dash as Figma’s paths, under the looks that draw them', () => {
+    const { style } = build('Checkbox');
+    const tick =
+      style.icon.appearance['checked=true, mixed=false'].default.glyph;
+    expect(tick.glyph).toMatchObject({ width: 10, height: 7 });
+    expect(tick.glyph.fill[0].d).toMatch(/^M3\.61008 4\.85961C/);
+    expect(tick.glyph.stroke).toEqual([]);
+    const dash =
+      style.container.appearance['checked=true, mixed=true'].default.glyph;
+    expect(dash.glyph).toMatchObject({ width: 10, height: 2 });
+  });
+
+  it('follows every axis, so a shape that changes with size or state is no finding', () => {
+    const { spec, deviations } = buildComponentSpec(
+      loadComponent(catalog, 'Spinner'),
+      {
+        names,
+        fileVersion: catalog.fileVersion,
+      },
+    );
+    // The ring's stroke outline differs per size.
+    const sizes = Object.keys(spec.style.indicator.combined ?? {});
+    expect(sizes.length).toBeGreaterThan(0);
+    expect(spec.style.indicator.base.glyph.glyph.stroke.length).toBeGreaterThan(
+      0,
+    );
+    expect(deviations.some((d) => d.cell === 'glyph')).toBe(false);
   });
 });
