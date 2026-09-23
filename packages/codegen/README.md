@@ -186,8 +186,10 @@ and uses the IR only for its layer names and API, so a wrong recipe shows as a d
 than agreeing with itself; a test scrambles the recipe and checks the oracle does not move. Where
 the code is known to differ, the entry keeps Figma's value and is marked `excused` with the
 finding and its decision, if any: Button's three open findings excuse 18 entries, and Spinner's
-unreadable indicator colour is excused by its overlay `set`. The visual checks (milestone 3b-1,
-tasks 7 and 8) render both platforms and compare every entry that is not excused. It is Figma,
+unreadable indicator colour is excused by its overlay `set`. It also lists each component's
+slots, so a check can tell a layer a prop hides from one a state removes. The visual checks
+(`packages/components/test/visual/`, `packages/solar_flutter/test/visual/`) render both platforms
+and compare every entry that is not excused. It is Figma,
 not the other platform, because two platforms agreeing on a mistake would pass a cross-check.
 
 ## Layout
@@ -196,12 +198,13 @@ not the other platform, because two platforms agreeing on a mistake would pass a
 bin/solar-codegen.mjs      the CLI: builds every stage, then emits, reports, prunes, formats
 bin/solar-scaffold.mjs     writes a component's hand-owned shell, once
 src/stages/                one module per stage (tokens, icons, components): build(), emit()
-src/scaffold/              the shell templates
+src/scaffold/              the React and Flutter shell templates, written once
 src/normalize/             css-contract.json -> the DTCG spec, solar-icons/ -> the icon spec,
                            solar-web/ -> the component IR (layers, recipe, overlay), the SVG
                            reader, and the recorded deviations
 src/emit/                  one file per emitter, plus the manifest entries and canonical values
 src/report/                spec/deviations.md
+src/verify/                the oracle, spec/verify/<name>.json
 src/util/                  paths, the docs/ write guard and pruning, sorting, naming, digests,
                            SVG markup scanning
 test/                      unit suites per module, token parity across four targets, icon

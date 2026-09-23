@@ -337,15 +337,38 @@ The web visual job installs Playwright's Chromium; the Flutter job runs the new 
 a mismatch the oracle does not excuse. The docs say what the oracle is, and why it is Figma rather
 than the other platform.
 
+**Done 2026-09-23.** `solar.yml` gains a `web-visual` job (Node 22, `npm ci`, `playwright install
+--with-deps chromium`, `npm run test:visual`); the Flutter job's `flutter test` already runs the
+Flutter visual checks, which read `spec/verify/` from the checkout. Both keep their failure and gap
+reports as artifacts, uploaded even when the check fails. `docs/README.md` (what exists, the
+pipeline, the CI table), the codegen, components and Flutter READMEs and `CLAUDE.md` describe the
+oracle, the visual checks and Spinner; `CLAUDE.md` adds the rule that a visual failure is fixed in
+the code or excused by a finding or an overlay decision, never by loosening the check or editing
+the oracle.
+
+## 3b-1 result
+
+Every one of Button's 108 variants, and Spinner's 6, matches Figma on both platforms, or differs
+only where an open finding or the overlay says so (18 and 3 entries, in the gap reports), and CI
+enforces it. On the way, 3b-1 found five real bugs in what 3a shipped, all of which the
+recipe-level parity suites had passed. Building the loading state found two (Task 5): a loading
+Button drawn in disabled colours on the web, and the same waiting to happen in Flutter. The visual
+checks found three (Tasks 7 and 8): hover and pressed losing the control shadow on the web,
+tertiary pressed keeping hover's underline on the web, and the Flutter counter unsized. SOLAR Web
+component sets whose IR builds: 65 to 111 of 119; whose recipe derives: 115.
+
 ---
 
 ## Done when
 
-- Text Input, Card, Dialog and Tabs build, and Checkbox's states are states.
-- The fetcher records added layers and icon colours, and Button is unchanged by it.
-- `SolarButton` exists as a Flutter widget with the React component's props.
+- Text Input, Card, Dialog and Tabs build, and Checkbox's states are states. **Met but for
+  Dialog**, which now passes naming and stops on its image layer's two stacked paints: a recipe
+  shape, and 3b-2 work.
+- The fetcher records added layers and icon colours, and Button is unchanged by it. **Met.**
+- `SolarButton` exists as a Flutter widget with the React component's props. **Met**, with
+  `SolarSpinner`, and the parity suite compares the two platforms' widgets.
 - Every one of Button's 108 variants matches Figma on both platforms, or differs only where the
-  overlay or an open finding says so, and CI enforces it.
+  overlay or an open finding says so, and CI enforces it. **Met**, for Spinner's 6 too.
 
 ## 3b-2, scoped here, planned after this one
 

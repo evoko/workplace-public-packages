@@ -84,6 +84,9 @@ Presence (the spinner while loading, the label hidden) is `SolarButtonRecipe.pre
 Spinner is `SolarButtonRecipe.lookup('spinner.variant.size', …)`, for the widget that composes the
 button's content, as `SolarButton` does.
 
+Every variant of both widgets is checked against what Figma draws (`spec/verify/`) by
+`flutter test`: see [test/visual/README.md](test/visual/README.md).
+
 ## Fonts
 
 Inter, Montserrat and IBM Plex Mono ship inside the package, at the weights SOLAR's text styles

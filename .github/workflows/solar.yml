@@ -157,5 +157,51 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
+      # Includes the visual checks (test/visual/), which read the oracle from spec/verify/.
       - name: Test
         run: flutter test
+
+      - name: Keep the visual reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-visual
+          path: packages/solar_flutter/build/visual/
+          if-no-files-found: ignore
+
+  web-visual:
+    name: Web components draw what Figma draws
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Chromium for the pinned Playwright, with the system libraries it needs on the runner.
+      - name: Install Playwright's Chromium
+        working-directory: packages/components
+        run: npx playwright install --with-deps chromium
+
+      # Every variant of every component rendered by the real React component, each state reached
+      # as a user reaches it, measured against spec/verify/. Fails on any difference the oracle
+      # does not excuse; the excused ones go to the gap report kept below.
+      - name: Run the visual checks
+        run: npm run test:visual
+
+      - name: Keep the visual reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-visual
+          path: |
+            packages/components/test/visual/.out/*.json
+            packages/components/test-results/
+          if-no-files-found: ignore

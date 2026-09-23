@@ -32,8 +32,12 @@ touching that package. Decisions about one component go in its hand-written over
 longer matches the IR fails the build. A component's shell (`packages/components/src/<Name>.tsx`, and
 `solar_flutter`'s `lib/src/components/solar_<name>.dart`) is written once by
 `npm run solar:scaffold <Name>` (`-- --flutter` for the widget) and then hand-owned; its look is the
-generated recipe, never values in the shell. The rest of the tweak loop the design spec describes
-(`solar:explain`, the Storybook review surface) is **not built yet**.
+generated recipe, never values in the shell. Every variant is checked on both platforms against
+what Figma draws: `spec/verify/<name>.json` (the oracle, generated beside the IR, never from the
+recipe) and the visual checks (`npm run test:visual` for React in Chromium, `flutter test` for the
+widgets). A difference fails unless the oracle excuses it with an open finding or an overlay
+decision; never loosen a check or edit the oracle to make one pass. The rest of the tweak loop the
+design spec describes (`solar:explain`, the Storybook review surface) is **not built yet**.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type
