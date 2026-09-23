@@ -313,11 +313,22 @@ export function deriveRecipe(
     resolved.variants.map((v) => {
       const perLayer = new Map();
       for (const [path, layer] of v.layers)
-        if (!layer.unresolved)
-          perLayer.set(
-            path,
-            cellsOf(layer, layers[path].type, names, `${component} ${path}`),
+        if (!layer.unresolved) {
+          const layerCells = cellsOf(
+            layer,
+            layers[path].type,
+            names,
+            `${component} ${path}`,
           );
+          // The icons' colour, from the variant digest (see resolveVariants): one paint for every
+          // icon in the variant, or no cell at all where the variant has no icon.
+          if (path === '/' && v.iconFills)
+            layerCells.iconColor = {
+              cls: 'paint',
+              value: paint(v.iconFills, names, `${component} /.iconColor`),
+            };
+          perLayer.set(path, layerCells);
+        }
       return [v.name, perLayer];
     }),
   );

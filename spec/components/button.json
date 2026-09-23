@@ -168,6 +168,10 @@
           "literal": 40,
           "from": "size=md, prio=primary, state=default, danger=false",
           "allowed": "Owner decision 2026-09-23: carry the fixed heights (40, 32, 48) as literals. SOLAR publishes no control height token; raised as a governance gap."
+        },
+        "iconColor": {
+          "token": "color.action.primary.icon.default",
+          "from": "size=md, prio=primary, state=default, danger=false"
         }
       },
       "size": {
@@ -234,6 +238,10 @@
             "borderColor": {
               "token": "color.action.primary.border.danger.default",
               "from": "size=md, prio=primary, state=default, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.primary.icon.danger.default",
+              "from": "size=md, prio=primary, state=default, danger=true"
             }
           },
           "hover": {
@@ -243,6 +251,10 @@
             },
             "borderColor": {
               "token": "color.action.primary.border.danger.hover",
+              "from": "size=md, prio=primary, state=hover, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.primary.icon.danger.hover",
               "from": "size=md, prio=primary, state=hover, danger=true"
             }
           },
@@ -254,6 +266,10 @@
             "borderColor": {
               "token": "color.action.primary.border.danger.active",
               "from": "size=md, prio=primary, state=pressed, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.primary.icon.danger.active",
+              "from": "size=md, prio=primary, state=pressed, danger=true"
             }
           },
           "disabled": {
@@ -263,6 +279,10 @@
             },
             "borderColor": {
               "token": "color.action.primary.border.danger.disabled",
+              "from": "size=md, prio=primary, state=disabled, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.primary.icon.danger.disabled",
               "from": "size=md, prio=primary, state=disabled, danger=true"
             }
           },
@@ -275,8 +295,8 @@
               "token": "color.action.primary.border.danger.default",
               "from": "size=md, prio=primary, state=focus, danger=true"
             },
-            "shadow": {
-              "token": "shadow.focus.danger",
+            "iconColor": {
+              "token": "color.action.primary.icon.danger.default",
               "from": "size=md, prio=primary, state=focus, danger=true"
             }
           },
@@ -300,6 +320,10 @@
             "borderColor": {
               "token": "color.action.secondary.border.default",
               "from": "size=md, prio=secondary, state=default, danger=false"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.default",
+              "from": "size=md, prio=secondary, state=default, danger=false"
             }
           },
           "hover": {
@@ -309,6 +333,10 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.hover",
+              "from": "size=md, prio=secondary, state=hover, danger=false"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.hover",
               "from": "size=md, prio=secondary, state=hover, danger=false"
             }
           },
@@ -320,6 +348,10 @@
             "borderColor": {
               "token": "color.action.secondary.border.active",
               "from": "size=md, prio=secondary, state=pressed, danger=false"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.active",
+              "from": "size=md, prio=secondary, state=pressed, danger=false"
             }
           },
           "disabled": {
@@ -329,6 +361,10 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.disabled",
+              "from": "size=md, prio=secondary, state=disabled, danger=false"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.disabled",
               "from": "size=md, prio=secondary, state=disabled, danger=false"
             }
           },
@@ -341,8 +377,8 @@
               "token": "color.action.secondary.border.default",
               "from": "size=md, prio=secondary, state=focus, danger=false"
             },
-            "shadow": {
-              "token": "shadow.focus.default",
+            "iconColor": {
+              "token": "color.action.secondary.icon.default",
               "from": "size=md, prio=secondary, state=focus, danger=false"
             }
           },
@@ -366,6 +402,10 @@
             "borderColor": {
               "token": "color.action.secondary.border.danger.default",
               "from": "size=md, prio=secondary, state=default, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.danger.default",
+              "from": "size=md, prio=secondary, state=default, danger=true"
             }
           },
           "hover": {
@@ -375,6 +415,10 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.danger.hover",
+              "from": "size=md, prio=secondary, state=hover, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.danger.hover",
               "from": "size=md, prio=secondary, state=hover, danger=true"
             }
           },
@@ -386,6 +430,10 @@
             "borderColor": {
               "token": "color.action.secondary.border.danger.active",
               "from": "size=md, prio=secondary, state=pressed, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.danger.active",
+              "from": "size=md, prio=secondary, state=pressed, danger=true"
             }
           },
           "disabled": {
@@ -395,6 +443,10 @@
             },
             "borderColor": {
               "token": "color.action.secondary.border.danger.disabled",
+              "from": "size=md, prio=secondary, state=disabled, danger=true"
+            },
+            "iconColor": {
+              "token": "color.action.secondary.icon.danger.disabled",
               "from": "size=md, prio=secondary, state=disabled, danger=true"
             }
           },
@@ -407,8 +459,8 @@
               "token": "color.action.secondary.border.danger.default",
               "from": "size=md, prio=secondary, state=focus, danger=true"
             },
-            "shadow": {
-              "token": "shadow.focus.danger",
+            "iconColor": {
+              "token": "color.action.secondary.icon.danger.default",
               "from": "size=md, prio=secondary, state=focus, danger=true"
             }
           },
@@ -433,8 +485,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=default, danger=false"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.default",
               "from": "size=md, prio=tertiary, state=default, danger=false"
             }
           },
@@ -447,8 +499,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=hover, danger=false"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.hover",
               "from": "size=md, prio=tertiary, state=hover, danger=false"
             }
           },
@@ -461,8 +513,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=pressed, danger=false"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.active",
               "from": "size=md, prio=tertiary, state=pressed, danger=false"
             }
           },
@@ -475,8 +527,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=disabled, danger=false"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.disabled",
               "from": "size=md, prio=tertiary, state=disabled, danger=false"
             }
           },
@@ -489,8 +541,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=focus, danger=false"
             },
-            "shadow": {
-              "token": "shadow.focus.default",
+            "iconColor": {
+              "token": "color.action.tertiary.icon.default",
               "from": "size=md, prio=tertiary, state=focus, danger=false"
             }
           },
@@ -501,10 +553,6 @@
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
-              "from": "size=md, prio=tertiary, state=loading, danger=false"
-            },
-            "shadow": {
-              "none": true,
               "from": "size=md, prio=tertiary, state=loading, danger=false"
             }
           }
@@ -519,8 +567,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=default, danger=true"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.danger.default",
               "from": "size=md, prio=tertiary, state=default, danger=true"
             }
           },
@@ -533,8 +581,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=hover, danger=true"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.danger.hover",
               "from": "size=md, prio=tertiary, state=hover, danger=true"
             }
           },
@@ -547,8 +595,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=pressed, danger=true"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.danger.active",
               "from": "size=md, prio=tertiary, state=pressed, danger=true"
             }
           },
@@ -561,8 +609,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=disabled, danger=true"
             },
-            "shadow": {
-              "none": true,
+            "iconColor": {
+              "token": "color.action.tertiary.icon.danger.disabled",
               "from": "size=md, prio=tertiary, state=disabled, danger=true"
             }
           },
@@ -575,8 +623,8 @@
               "token": "color.action.tertiary.border.default",
               "from": "size=md, prio=tertiary, state=focus, danger=true"
             },
-            "shadow": {
-              "token": "shadow.focus.danger",
+            "iconColor": {
+              "token": "color.action.tertiary.icon.danger.default",
               "from": "size=md, prio=tertiary, state=focus, danger=true"
             }
           },
@@ -587,10 +635,6 @@
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
-              "from": "size=md, prio=tertiary, state=loading, danger=true"
-            },
-            "shadow": {
-              "none": true,
               "from": "size=md, prio=tertiary, state=loading, danger=true"
             }
           }
@@ -604,6 +648,10 @@
             "borderColor": {
               "token": "color.action.primary.border.hover",
               "from": "size=md, prio=primary, state=hover, danger=false"
+            },
+            "iconColor": {
+              "token": "color.action.primary.icon.hover",
+              "from": "size=md, prio=primary, state=hover, danger=false"
             }
           },
           "pressed": {
@@ -613,6 +661,10 @@
             },
             "borderColor": {
               "token": "color.action.primary.border.active",
+              "from": "size=md, prio=primary, state=pressed, danger=false"
+            },
+            "iconColor": {
+              "token": "color.action.primary.icon.active",
               "from": "size=md, prio=primary, state=pressed, danger=false"
             }
           },
@@ -624,12 +676,462 @@
             "borderColor": {
               "token": "color.action.primary.border.disabled",
               "from": "size=md, prio=primary, state=disabled, danger=false"
+            },
+            "iconColor": {
+              "token": "color.action.primary.icon.disabled",
+              "from": "size=md, prio=primary, state=disabled, danger=false"
+            }
+          }
+        }
+      },
+      "combined": {
+        "md": {
+          "variant=tertiary, danger=false": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=default, danger=false"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=hover, danger=false"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=pressed, danger=false"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=disabled, danger=false"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=md, prio=tertiary, state=focus, danger=false"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=loading, danger=false"
+              }
             }
           },
-          "focus": {
-            "shadow": {
-              "token": "shadow.focus.default",
-              "from": "size=md, prio=primary, state=focus, danger=false"
+          "variant=tertiary, danger=true": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=default, danger=true"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=hover, danger=true"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=pressed, danger=true"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=disabled, danger=true"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=md, prio=tertiary, state=focus, danger=true"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=md, prio=tertiary, state=loading, danger=true"
+              }
+            }
+          },
+          "variant=primary, danger=false": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=md, prio=primary, state=focus, danger=false"
+              }
+            }
+          },
+          "variant=primary, danger=true": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=md, prio=primary, state=focus, danger=true"
+              }
+            }
+          },
+          "variant=secondary, danger=false": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=md, prio=secondary, state=focus, danger=false"
+              }
+            }
+          },
+          "variant=secondary, danger=true": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=md, prio=secondary, state=focus, danger=true"
+              }
+            }
+          }
+        },
+        "sm": {
+          "variant=tertiary, danger=false": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=default, danger=false"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=hover, danger=false"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=pressed, danger=false"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=disabled, danger=false"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=sm, prio=tertiary, state=focus, danger=false"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=loading, danger=false"
+              }
+            }
+          },
+          "variant=tertiary, danger=true": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=default, danger=true"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=hover, danger=true"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=pressed, danger=true"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=disabled, danger=true"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=sm, prio=tertiary, state=focus, danger=true"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=sm, prio=tertiary, state=loading, danger=true"
+              }
+            }
+          },
+          "variant=primary, danger=false": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=sm, prio=primary, state=focus, danger=false"
+              }
+            }
+          },
+          "variant=primary, danger=true": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=sm, prio=primary, state=focus, danger=true"
+              }
+            }
+          },
+          "variant=secondary, danger=false": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=sm, prio=secondary, state=focus, danger=false"
+              }
+            }
+          },
+          "variant=secondary, danger=true": {
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=sm, prio=secondary, state=focus, danger=true"
+              }
+            }
+          }
+        },
+        "xl": {
+          "variant=primary, danger=false": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=default, danger=false"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=hover, danger=false"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=pressed, danger=false"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=disabled, danger=false"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=xl, prio=primary, state=focus, danger=false"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=loading, danger=false"
+              }
+            }
+          },
+          "variant=primary, danger=true": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=default, danger=true"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=hover, danger=true"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=pressed, danger=true"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=disabled, danger=true"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=xl, prio=primary, state=focus, danger=true"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=primary, state=loading, danger=true"
+              }
+            }
+          },
+          "variant=secondary, danger=false": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=default, danger=false"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=hover, danger=false"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=pressed, danger=false"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=disabled, danger=false"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=xl, prio=secondary, state=focus, danger=false"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=loading, danger=false"
+              }
+            }
+          },
+          "variant=secondary, danger=true": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=default, danger=true"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=hover, danger=true"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=pressed, danger=true"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=disabled, danger=true"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=xl, prio=secondary, state=focus, danger=true"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=secondary, state=loading, danger=true"
+              }
+            }
+          },
+          "variant=tertiary, danger=false": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=default, danger=false"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=hover, danger=false"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=pressed, danger=false"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=disabled, danger=false"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.default",
+                "from": "size=xl, prio=tertiary, state=focus, danger=false"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=loading, danger=false"
+              }
+            }
+          },
+          "variant=tertiary, danger=true": {
+            "default": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=default, danger=true"
+              }
+            },
+            "hover": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=hover, danger=true"
+              }
+            },
+            "pressed": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=pressed, danger=true"
+              }
+            },
+            "disabled": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=disabled, danger=true"
+              }
+            },
+            "focus": {
+              "shadow": {
+                "token": "shadow.focus.danger",
+                "from": "size=xl, prio=tertiary, state=focus, danger=true"
+              }
+            },
+            "loading": {
+              "shadow": {
+                "none": true,
+                "from": "size=xl, prio=tertiary, state=loading, danger=true"
+              }
             }
           }
         }
@@ -1525,6 +2027,11 @@
         "reason": "Owner decision 2026-09-23: follow Figma exactly. Tertiary hover switches the label to a link style (and xl to link/md/default, and danger does not switch), so the label type depends on every axis. Still raised with SOLAR as inconsistent."
       },
       {
+        "rule": "follows",
+        "at": "root.shadow",
+        "reason": "Owner decision 2026-09-23: xl stays a size, with its look as Figma draws it. xl is flat by design (no shadow, square, borderless, fixed width), so the shadow depends on size as well as on the paint axes. Raised with SOLAR to confirm."
+      },
+      {
         "rule": "bind",
         "at": "iconLeading.height",
         "reason": "The icon is square and its width is already bound to icon.sm."
@@ -1563,11 +2070,6 @@
         "rule": "allowLiteral",
         "at": "root.width",
         "reason": "xl is fixed at 200 wide and SOLAR publishes no control width token. Treated like the heights under the same decision; raised as a governance gap."
-      },
-      {
-        "rule": "accept",
-        "at": "component.button.root.shadow@size=xl",
-        "reason": "Owner decision 2026-09-23: xl stays a size, with its look as Figma draws it. xl is flat by design (no shadow, square, borderless, fixed width); raised with SOLAR to confirm."
       }
     ]
   }

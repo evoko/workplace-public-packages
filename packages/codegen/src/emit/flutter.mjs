@@ -6,6 +6,7 @@ import { canonical, entry } from './manifest.mjs';
 import { shadowLayers } from './shadow.mjs';
 import { byCodeUnit } from '../util/sort.mjs';
 import { MOBILE_BOUNDARY_TOKEN } from './breakpoint.mjs';
+import { dartDecoration, featuresOf } from './text-features.mjs';
 
 const OUT_DIR = join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated');
 
@@ -106,7 +107,9 @@ export function renderFlutter(spec) {
     return (
       `TextStyle(fontFamily: '${v.fontFamily}', fontWeight: FontWeight.w${v.fontWeight}, ` +
       `fontSize: ${dbl(size)}, height: ${canonical.dimension(v.lineHeight) / size}, ` +
-      `letterSpacing: ${dbl(letterSpacingPx(v.letterSpacing, size))})`
+      `letterSpacing: ${dbl(letterSpacingPx(v.letterSpacing, size))}` +
+      (dartDecoration(v) ? `, decoration: ${dartDecoration(v)}` : '') +
+      ')'
     );
   };
   const boxShadows = (layers) =>
@@ -140,8 +143,8 @@ export function renderFlutter(spec) {
         );
       } else if (t.type === 'typography') {
         const perMode = {
-          desktop: { ...t.value, ...t.ext.modes.desktop },
-          mobile: { ...t.value, ...t.ext.modes.mobile },
+          desktop: { ...t.value, ...t.ext.modes.desktop, ...featuresOf(t.ext) },
+          mobile: { ...t.value, ...t.ext.modes.mobile, ...featuresOf(t.ext) },
         };
         addModal(cls, modes, 'TextStyle', field, {
           desktop: textStyle(perMode.desktop),
@@ -288,10 +291,16 @@ export function renderFlutter(spec) {
     `import 'package:flutter/animation.dart' show Cubic;\n` +
     `import 'package:flutter/foundation.dart' show immutable;\n` +
     `import 'package:flutter/material.dart' show ThemeExtension;\n` +
-    `import 'package:flutter/painting.dart'\n    show BoxShadow, Color, FontWeight, Offset, TextStyle;\n\n`;
+    `import 'package:flutter/painting.dart'\n    show BoxShadow, Color, FontWeight, Offset, __TEXT_DECORATION__TextStyle;\n\n`;
 
+  const body = modalClasses + '\n' + staticClasses + '\n' + theme;
+  // Shown only when a style is decorated: an unused shown name is an analyzer warning.
   return {
-    dart: header + modalClasses + '\n' + staticClasses + '\n' + theme,
+    dart:
+      header.replace(
+        '__TEXT_DECORATION__',
+        body.includes('TextDecoration.') ? 'TextDecoration, ' : '',
+      ) + body,
     manifest,
   };
 }

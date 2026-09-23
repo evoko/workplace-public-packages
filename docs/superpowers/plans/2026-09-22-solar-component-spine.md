@@ -278,6 +278,52 @@ pseudo-selectors MUI's `styleOverrides` expects.
 Every token reference is emitted as `var(--solar-…)`, per the decision above; a value in the recipe
 that is not one is a failure, not a fallback.
 
+**Done 2026-09-23.** `src/emit/mui-component.mjs` writes
+`packages/styles/src/generated/mui/components/button.ts`, exported from `@bwp-web/styles`:
+`SolarButtonProps` and the value unions, `solarButtonDefaults`, `solarButtonStyles` (`root`,
+`sizes`, `appearances`, `combined`), `solarButtonComposition` (what the shell renders rather
+than styles: presence and child variants), and `solarButtonStyle(props)`, a pure resolver for
+`sx` or `styleOverrides.root`. `MUI_SLOTS` places each IR layer in MUI's DOM and
+`STATE_SELECTORS` maps states to MUI's classes, with disabled last so it wins at equal
+specificity. A text style expands into the custom properties it is made of.
+
+**Verified by rendering, not just by the suite:** real MUI 9 Buttons given
+`sx={solarButtonStyle(…)}`, measured in headless Chrome with `tokens.css` loaded. Primary is
+`#111111` on white text, 6px radius, 40px tall, 12px padding, Inter 14px with the control
+shadow; `sm` is 32px with 8px padding; `xl` is 200px wide, square and flat but keeps a 2px focus
+ring; tertiary is transparent; disabled is `#e0e0e0`; and inside a `[data-theme='dark']`
+subtree primary flips to `#f5f5f5` with no JavaScript.
+
+**That render caught a Task 4 mistake.** The xl decision was first written as `accept` of the
+xl shadow deviation, and `accept` keeps the recipe's value, so xl rendered _with_ a shadow —
+the opposite of the decision. It is now `follows: root.shadow` over all four axes, so xl draws
+what Figma draws. The two rules are documented as not interchangeable. Figma draws xl's focus
+ring, so following it keeps the WCAG focus floor.
+
+The icon colour is not in the layer tree (icons are instances, and the fetcher does not descend
+into one), so the recipe reads it from each variant's `iconFills` digest as a root-level
+`iconColor` cell, which MUI draws on both icon slots. It throws if a variant ever has more than
+one icon paint.
+
+**A data gap this surfaced, and the owner's decision cannot be fully honoured until it is
+closed:** no text style in our data carries `textDecoration`. Neither the Foundations capture
+(`capture-variables.js`) nor the Web fetcher records it, so `link/md/hover` differs from
+`label/md` only by 0.04px of letter spacing, and the underline — the visible part of tertiary
+hover's link style — is lost. Nothing is invented in its place.
+
+**Fix coded 2026-09-23, awaiting one `solar:sync`.** Fixed at the source, per the owner, so every
+consumer of `typography.link.*` gets it, not only the Button recipe. The Foundations fetcher now
+reads each text style's own node over REST into `docs/solar/raw/text-styles.json`
+(`textDecoration`, `textCase`, and the sizes to cross-check); `capture-variables.js` records the
+two properties from now on; `build-derived.mjs` merges them into `css-contract.json` and stops
+if the two sources disagree. The spec carries them under the typography token's `$extensions`;
+the MUI theme, the Button recipe (explicit `text-decoration: none` at rest, so leaving hover
+undoes it), Flutter (`decoration: TextDecoration.underline`) and parity all read them, through
+one mapping in `src/emit/text-features.mjs`. A text case Flutter cannot apply is recorded as a
+deviation when the data uses one. Until the sync writes the file, everything is inert and the
+generated output is byte-identical; `test/text-features.test.mjs` proves the path on a
+synthetic contract.
+
 Tests: every value is a `var(--solar-…)` reference naming a token that exists in `tokens.css`,
 never a literal — the same contract the token emitters hold; the three variants and three sizes
 are present; `disabled` and `loading` appear as props and `hover` does not.

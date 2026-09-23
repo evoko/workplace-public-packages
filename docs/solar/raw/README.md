@@ -11,6 +11,14 @@ version, and turns each page into its text in reading order. No model or agent i
 running it twice on an unchanged file produces no diff. It needs a Figma personal access
 token with `file_content:read` in `$FIGMA_TOKEN` or `~/.config/figma/token`.
 
+The same run also reads every text style's definition into [`text-styles.json`](text-styles.json):
+its `textDecoration` and `textCase`, which the Plugin API token capture did not record, plus font,
+size, line height and letter spacing to cross-check it. Style ids come from the published styles
+(`GET /v1/files/{key}/styles`), falling back to the file's own style map; each style's node then
+carries its full type style. `tokens/build-derived.mjs` merges the decoration and case into
+`css-contract.json`. Without this, `link/md/hover` was indistinguishable from `label/md`: the
+underline that makes it a link was lost.
+
 ```bash
 npm run solar:foundations                          # fetch + rebuild ../figma-pages/
 node docs/solar/raw/fetch-rest.mjs --pages tokens,color   # a subset

@@ -97,6 +97,17 @@ describe('deriveRecipe on Button: the recipe', () => {
     });
   });
 
+  it('reads the icon colour from the variant digest, since icons are instances', () => {
+    expect(root.base.iconColor).toMatchObject({
+      token: 'color.action.primary.icon.default',
+    });
+    expect(appearance('primary').hover.iconColor).toMatchObject({
+      token: 'color.action.primary.icon.hover',
+    });
+    // Loading removes both icons, so there is no icon colour to state there.
+    expect(appearance('primary').loading ?? {}).not.toHaveProperty('iconColor');
+  });
+
   it('gives each size only what differs from the base', () => {
     expect(root.size.sm.paddingLeft).toMatchObject({ token: 'inset.xs' });
     expect(root.size.sm).not.toHaveProperty('radius');

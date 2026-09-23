@@ -335,8 +335,13 @@ describe('spec/overlay/button.yaml', () => {
       'danger',
     ]);
     expect(overlay.allowLiteral).toHaveProperty(['root.height']);
-    expect(overlay.accept).toHaveProperty([
-      'component.button.root.shadow@size=xl',
+    // xl is flat as Figma draws it, so the shadow follows size too; `accept` would have kept
+    // the base shadow on xl, which is the opposite of the decision.
+    expect(overlay.follows['root.shadow'].axes).toEqual([
+      'size',
+      'prio',
+      'state',
+      'danger',
     ]);
     expect(overlay.base).toMatchObject({
       mui: 'Button',

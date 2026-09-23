@@ -129,7 +129,7 @@ const lh = (x) =>
       : round(x.value);
 const textStyles = {
   _format:
-    'name: [family, style, size px (Desktop mode), line-height px, letter-spacing]. Letter spacing is % of font size unless suffixed px. Sizes and line heights are bound to the Type collection and switch with the Desktop/Mobile mode.',
+    'name: [family, style, size px (Desktop mode), line-height px, letter-spacing, text decoration, text case]. Letter spacing is % of font size unless suffixed px. Sizes and line heights are bound to the Type collection and switch with the Desktop/Mobile mode. Decoration is NONE | UNDERLINE | STRIKETHROUGH and case is ORIGINAL | UPPER | LOWER | TITLE | SMALL_CAPS | SMALL_CAPS_FORCED; captures made before 2026-09-23 have only the first five.',
 };
 const tstyles = await figma.getLocalTextStylesAsync();
 for (const s of tstyles)
@@ -139,6 +139,8 @@ for (const s of tstyles)
     round(s.fontSize),
     lh(s.lineHeight),
     ls(s.letterSpacing),
+    s.textDecoration,
+    s.textCase,
   ];
 
 // ---- effect styles: name -> drop-shadow layers ----

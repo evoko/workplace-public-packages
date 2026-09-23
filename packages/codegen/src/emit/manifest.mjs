@@ -1,3 +1,5 @@
+import { canonicalDecoration } from './text-features.mjs';
+
 // Alpha is quantized to 8 bits before rounding, because that is the most a target can carry:
 // Dart's Color(0xAARRGGBB) gives it one byte, so CSS's 0.05 and Dart's 0x0D are the same
 // colour and must not read as a parity failure.
@@ -78,6 +80,7 @@ export const canonical = {
       fontSize,
       lineHeight: canonical.dimension(t.lineHeight),
       letterSpacing: letterSpacingEm(t.letterSpacing, fontSize),
+      textDecoration: canonicalDecoration(t.textDecoration),
     });
   },
 };

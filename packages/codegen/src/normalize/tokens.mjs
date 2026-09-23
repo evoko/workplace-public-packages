@@ -133,6 +133,15 @@ export function buildTokenSpec(contract) {
         raise: `Ask SOLAR to add the missing Type variable for ${t.figma}.`,
       });
     }
+    // Flutter's TextStyle has no text case: a Flutter consumer has to transform the string itself.
+    if (t.textCase !== undefined && t.textCase !== 'ORIGINAL')
+      record({
+        token: doc,
+        figmaValue: `text case ${t.textCase}`,
+        reason:
+          'Flutter TextStyle has no text case, so the Flutter target cannot apply it; a Flutter widget using this style has to transform its string. The web targets apply it as text-transform or font-variant-caps.',
+        raise: null,
+      });
     setPath(spec, doc, {
       $type: 'typography',
       $value: {
@@ -148,6 +157,11 @@ export function buildTokenSpec(contract) {
           figma: t.figma,
           sizeToken: t.sizeVar,
           lineHeightToken: t.lineHeightVar,
+          // Figma enums, not in DTCG's typography composite; absent until the contract has them.
+          ...(t.textDecoration !== undefined && {
+            textDecoration: t.textDecoration,
+          }),
+          ...(t.textCase !== undefined && { textCase: t.textCase }),
           modes: {
             desktop: {
               fontSize: px(t.sizeDesktop),

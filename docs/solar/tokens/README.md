@@ -20,15 +20,15 @@ SOLAR core team's automated Figma → JSON export replaces it (pipeline stage 2 
 
 ## Shape of the file
 
-| Key            | What it holds                                                                                                                                                 |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`       | File key, export date, collection ids, mode names, counts                                                                                                     |
-| `primitives`   | The Primitives collection (265 variables, single mode) grouped by path prefix. Hex strings, or `{hex, a}` for alphas. Scales are arrays or `{index: px}` maps |
-| `color`        | The Color collection (287 variables). `name: [lightAlias, darkAlias, scopes]`. Aliases point into `primitives`                                                |
-| `spatial`      | The Spatial collection (34 variables). `name: [alias, resolvedPx, scopes]`                                                                                    |
-| `type`         | The Type collection (41 variables). `name: [desktopPx, mobilePx]`                                                                                             |
-| `textStyles`   | 60 local text styles. `name: [family, style, sizePx, lineHeightPx, letterSpacing]` at Desktop mode                                                            |
-| `effectStyles` | 9 local effect styles as ordered drop-shadow layers with the bound shadow color variable and its Light-mode rgba                                              |
+| Key            | What it holds                                                                                                                                                      |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `source`       | File key, export date, collection ids, mode names, counts                                                                                                          |
+| `primitives`   | The Primitives collection (265 variables, single mode) grouped by path prefix. Hex strings, or `{hex, a}` for alphas. Scales are arrays or `{index: px}` maps      |
+| `color`        | The Color collection (287 variables). `name: [lightAlias, darkAlias, scopes]`. Aliases point into `primitives`                                                     |
+| `spatial`      | The Spatial collection (34 variables). `name: [alias, resolvedPx, scopes]`                                                                                         |
+| `type`         | The Type collection (41 variables). `name: [desktopPx, mobilePx]`                                                                                                  |
+| `textStyles`   | 60 local text styles. `name: [family, style, sizePx, lineHeightPx, letterSpacing, decoration, case]` at Desktop mode; captures before 2026-09-23 lack the last two |
+| `effectStyles` | 9 local effect styles as ordered drop-shadow layers with the bound shadow color variable and its Light-mode rgba                                                   |
 
 Counts were checked against Figma after writing: 265 / 287 / 34 / 41 / 60 / 9.
 
@@ -142,7 +142,12 @@ fields depend on the collection:
 `EffectStyle` adds `light` and `dark` as ready-to-use `box-shadow` strings plus `layers[]`
 (`x, y, blur, spread, colorVar`). `TextStyle` has `figma`, `fontFamily`, `fontWeight`,
 `sizeDesktop`, `lineHeightDesktop`, `letterSpacing`, `sizeMobile`, `lineHeightMobile`, and
-`sizeVar`/`lineHeightVar` naming the Type-collection CSS properties it should reference.
+`sizeVar`/`lineHeightVar` naming the Type-collection CSS properties it should reference. Once
+either source carries them it also has `textDecoration` (`NONE`, `UNDERLINE`, `STRIKETHROUGH`) and
+`textCase` (`ORIGINAL`, `UPPER`, `LOWER`, `TITLE`, `SMALL_CAPS`, `SMALL_CAPS_FORCED`), Figma's own
+enums. The Plugin API capture records them from 2026-09-23 on; before that they come only from
+the REST read in [`../raw/text-styles.json`](../raw/README.md), written by `solar:sync`. When both
+sources carry a value they must agree, or the build stops and names the style.
 `zIndex` is not a Figma variable; it is the seven-level ladder from the Agentic Reference.
 
 ### `reference.css`

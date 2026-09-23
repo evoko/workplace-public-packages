@@ -22,6 +22,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import {
+  figmaGet,
   openFile,
   slugify,
   statusOf,
@@ -377,7 +378,89 @@ for (const p of todo) {
   );
   n++;
 }
-writeMeta(here, file, { pages: n, failed });
+// ---------- text styles ----------
+// The Plugin API capture (tokens/capture-variables.js) records each text style's font, size,
+// line height and letter spacing, but not its decoration or case: link/md/hover and label/md
+// were indistinguishable, and the underline that makes a link a link was lost. Text styles are
+// not variables, so REST can read them with the file_content:read scope this fetcher already
+// uses. Each style's own node carries its full TypeStyle. build-derived.mjs merges the result.
+let textStyles = 0;
+if (!PAGES) {
+  try {
+    textStyles = await fetchTextStyles();
+  } catch (e) {
+    console.log(`FAILED text styles: ${e.message}`);
+    failed.push('text-styles');
+  }
+}
+
+async function fetchTextStyles() {
+  // Published styles first (the library view); the file's own style map as a fallback.
+  let meta = [];
+  try {
+    const pub = await figmaGet(`/v1/files/${FILE}/styles`);
+    meta = (pub.meta?.styles ?? [])
+      .filter((st) => st.style_type === 'TEXT')
+      .map((st) => ({ id: st.node_id, name: st.name }));
+  } catch (e) {
+    console.log(
+      `text styles: published styles unavailable (${e.message}); using the file map`,
+    );
+  }
+  if (meta.length === 0)
+    meta = Object.entries(file.head.styles ?? {})
+      .filter(([, st]) => st.styleType === 'TEXT')
+      .map(([id, st]) => ({ id, name: st.name }));
+  if (meta.length === 0) throw new Error('the file lists no text styles');
+
+  const styles = {};
+  const BATCH = 40;
+  for (let i = 0; i < meta.length; i += BATCH) {
+    const batch = meta.slice(i, i + BATCH);
+    const resp = await file.nodes(
+      batch.map((m) => m.id).join(','),
+      `text-styles-${i / BATCH}`,
+    );
+    for (const m of batch) {
+      const st = resp.nodes?.[m.id]?.document?.style;
+      if (!st) throw new Error(`no style node for ${m.name} (${m.id})`);
+      // REST omits a property at its default; they are written out so a missing one is visible.
+      styles[m.name] = {
+        textDecoration: st.textDecoration ?? 'NONE',
+        textCase: st.textCase ?? 'ORIGINAL',
+        fontFamily: st.fontFamily ?? null,
+        fontWeight: st.fontWeight ?? null,
+        fontSize: st.fontSize ?? null,
+        lineHeightPx: st.lineHeightPx ?? null,
+        letterSpacing: st.letterSpacing ?? 0,
+      };
+    }
+  }
+  const sorted = Object.fromEntries(
+    Object.entries(styles).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)),
+  );
+  writeFileSync(
+    join(here, 'text-styles.json'),
+    JSON.stringify(
+      {
+        _note:
+          'Text style definitions read over REST by fetch-rest.mjs, for the properties the Plugin API capture does not record: textDecoration (NONE | UNDERLINE | STRIKETHROUGH) and textCase (ORIGINAL | UPPER | LOWER | TITLE | SMALL_CAPS | SMALL_CAPS_FORCED). Font, size, line height and letter spacing (px) are kept to cross-check the capture. Merged into css-contract.json by tokens/build-derived.mjs.',
+        file: FILE,
+        version,
+        styles: sorted,
+      },
+      null,
+      2,
+    ) + '\n',
+  );
+  const decorated = Object.values(sorted).filter(
+    (st) => st.textDecoration !== 'NONE',
+  ).length;
+  console.log(`OK text styles: ${meta.length} (${decorated} decorated)`);
+  return meta.length;
+}
+
+writeMeta(here, file, { pages: n, textStyles, failed });
 console.log(
   `done: ${n} pages, file version ${version}${failed.length ? `, ${failed.length} FAILED (re-run to retry: ${failed.join(', ')})` : ''}`,
 );

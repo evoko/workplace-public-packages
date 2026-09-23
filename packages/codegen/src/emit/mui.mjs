@@ -4,6 +4,7 @@ import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { canonical, entry, letterSpacingEm } from './manifest.mjs';
 import { mobileMediaQuery } from './breakpoint.mjs';
+import { cssTextFeatures, featuresOf } from './text-features.mjs';
 import { shadowLayers, shadowToCss } from './shadow.mjs';
 
 const OUT_DIR = join(packagesDir, 'styles', 'src', 'generated', 'mui');
@@ -23,9 +24,10 @@ const literal = (type, value) => {
  * emitted in em: the same quantity, and the one unit that stays correct when the Mobile scale
  * changes the font size underneath it.
  */
-const cssTextStyle = (v) => ({
+const cssTextStyle = (v, features = {}) => ({
   ...v,
   letterSpacing: `${letterSpacingEm(v.letterSpacing, canonical.dimension(v.fontSize))}em`,
+  ...cssTextFeatures(features),
 });
 
 /**
@@ -160,8 +162,15 @@ export function renderMui(spec) {
       // The Type collection switches size and line height between Desktop and Mobile, so both
       // are emitted. Dropping mobile here would lose an axis only the CSS media query has.
       const key = t.name.replace(/^typography\./, '');
-      const desktop = cssTextStyle({ ...t.value, ...t.ext.modes.desktop });
-      const mobile = cssTextStyle({ ...t.value, ...t.ext.modes.mobile });
+      const features = featuresOf(t.ext);
+      const desktop = cssTextStyle(
+        { ...t.value, ...t.ext.modes.desktop },
+        features,
+      );
+      const mobile = cssTextStyle(
+        { ...t.value, ...t.ext.modes.mobile },
+        features,
+      );
       data.typography.desktop[key] = desktop;
       data.typography.mobile[key] = mobile;
 

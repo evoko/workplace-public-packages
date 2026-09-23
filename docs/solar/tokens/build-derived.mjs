@@ -163,11 +163,30 @@ for (const [name, layers] of Object.entries(inv.effectStyles).filter(
     layers,
   });
 }
+// Decoration and case, which the Plugin API capture did not record before 2026-09-23, come from
+// the REST read of the text styles (../raw/text-styles.json, written by solar:sync). Either
+// source may carry them; when both do they are two readings of one file and must agree.
+const restStylesPath = join(here, '..', 'raw', 'text-styles.json');
+const restStyles = existsSync(restStylesPath)
+  ? JSON.parse(readFileSync(restStylesPath, 'utf8')).styles
+  : null;
+const styleProperty = (name, captured, key) => {
+  const rest = restStyles?.[name]?.[key];
+  if (captured !== undefined && rest !== undefined && captured !== rest)
+    throw new Error(
+      `text style ${name}: the capture says ${key} ${captured}, the REST read says ${rest}`,
+    );
+  return captured ?? rest;
+};
+
 // text styles as composites
 const textStyles = [];
-for (const [name, [family, style, size, lh, ls]] of Object.entries(
-  inv.textStyles,
-).filter(([k]) => !k.startsWith('_') && !k.startsWith('.'))) {
+for (const [
+  name,
+  [family, style, size, lh, ls, decoration, textCase],
+] of Object.entries(inv.textStyles).filter(
+  ([k]) => !k.startsWith('_') && !k.startsWith('.'),
+)) {
   const weight = {
     Thin: 100,
     'Extra Light': 200,
@@ -187,6 +206,8 @@ for (const [name, [family, style, size, lh, ls]] of Object.entries(
   const sizeVar = role === 'link' ? `size/body/${sz}` : `size/${role}/${sz}`;
   const lhVar =
     role === 'link' ? `line-height/body/${sz}` : `line-height/${role}/${sz}`;
+  const textDecoration = styleProperty(name, decoration, 'textDecoration');
+  const caseValue = styleProperty(name, textCase, 'textCase');
   textStyles.push({
     figma: name,
     fontFamily: family,
@@ -202,7 +223,15 @@ for (const [name, [family, style, size, lh, ls]] of Object.entries(
       : null,
     sizeMobile: inv.type[sizeVar] ? inv.type[sizeVar][1] : null,
     lineHeightMobile: inv.type[lhVar] ? inv.type[lhVar][1] : null,
+    // Figma's own enums (UNDERLINE, UPPER …); each target maps them. Absent until a source has
+    // them, so a contract built from an older capture alone is unchanged.
+    ...(textDecoration !== undefined && { textDecoration }),
+    ...(caseValue !== undefined && { textCase: caseValue }),
   });
+  if (restStyles && !restStyles[name])
+    console.warn(
+      `text style ${name} is in the capture but not in the REST read`,
+    );
 }
 
 const contract = {

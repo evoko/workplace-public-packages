@@ -8,7 +8,8 @@ import {
 } from '../normalize/components.mjs';
 import { loadOverlay } from '../normalize/overlay.mjs';
 import { tokenNames } from '../normalize/recipe.mjs';
-import { loadContract } from '../normalize/tokens.mjs';
+import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
+import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
@@ -25,7 +26,11 @@ export const fileOf = (component) =>
 
 export function build() {
   const catalog = loadWebCatalog();
-  const names = tokenNames(loadContract());
+  const contract = loadContract();
+  const names = tokenNames(contract);
+  // The recipe emitters resolve a text style into its parts and check every custom property they
+  // name exists, so they need the token spec as well as the component IR.
+  const tokens = buildTokenSpec(contract).spec;
   const built = COMPONENTS.map((component) =>
     buildComponentSpec(loadComponent(catalog, component), {
       names,
@@ -33,10 +38,10 @@ export function build() {
       overlay: loadOverlay(component),
     }),
   );
-  return { built };
+  return { built, tokens };
 }
 
-export function emit({ built }) {
+export function emit({ built, tokens }) {
   for (const { spec } of built)
     writeGenerated(
       join(componentsDir, fileOf(spec.component)),
@@ -49,8 +54,9 @@ export function emit({ built }) {
         2,
       ) + '\n',
     );
+  const specs = built.map((b) => b.spec);
   return {
-    counts: { specs: built.length },
+    counts: { specs: built.length, mui: emitMuiComponents(specs, tokens) },
     deviations: built.flatMap((b) => b.deviations),
   };
 }

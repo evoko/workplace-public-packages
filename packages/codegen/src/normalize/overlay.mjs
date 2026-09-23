@@ -15,7 +15,13 @@
  *   bind:         { <layer>.<cell>: { literal, token, reason } }  a raw value to the token of that value
  *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none, reason } }  one entry, changed
  *   allowLiteral: { <layer>.<cell>: { reason } }         a raw value there is no token for
- *   accept:       { <deviation token>: { reason } }      a finding that is intended
+ *   accept:       { <deviation token>: { reason } }      the code keeps its value; Figma's
+ *                                                        difference is known and intended
+ *
+ * `accept` and `follows` are not interchangeable. `accept` leaves the recipe as derived and only
+ * records that the Figma variants differing from it are known. When the Figma variant is the
+ * one that is right -- xl is meant to be flat -- the cell must `follow` that axis instead, so the
+ * code draws what Figma draws.
  */
 
 import { existsSync, readFileSync } from 'node:fs';

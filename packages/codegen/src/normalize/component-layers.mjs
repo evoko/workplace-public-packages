@@ -174,7 +174,20 @@ export function resolveVariants(set) {
     // read from there; the default tree's own root size is the default variant's.
     if (raw.size) layers.get('/').size = [...raw.size];
 
-    return { name: raw.variant, props, layers, parents, removed, unresolved };
+    // Icons are instances, and the fetcher does not descend into an instance, so their colour is
+    // in no layer: only in the variant's `iconFills` digest. It is carried through for the recipe
+    // to read as one cell, never merged into a layer.
+    const iconFills = raw.iconFills?.length ? [...raw.iconFills] : null;
+
+    return {
+      name: raw.variant,
+      props,
+      layers,
+      parents,
+      removed,
+      unresolved,
+      iconFills,
+    };
   });
 
   if (
