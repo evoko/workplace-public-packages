@@ -242,6 +242,23 @@ The overlay must also be able to say **which axes one cell follows** (`follows: 
 state, danger]` on `Label.typography`), passed to `deriveRecipe` as a per-cell override of the
 role model, and **which literals are allowed** (Button's heights). Both carry a `reason`.
 
+**Done 2026-09-23.** `src/normalize/overlay.mjs` and `spec/overlay/button.yaml`. Sections:
+`base`, `rename`, `follows`, `bind` (a literal to the token of the same value, refused if the
+values differ), `set` (one entry at an explicit address), `allowLiteral` and `accept` (a named
+deviation). Addresses use Figma's axis names and `rename` applies last, which is what makes the
+result order-independent. `follows` is applied before the recipe is derived, the rest after; a
+cell that follows `size` and the paint axes lands in a new `combined` section of the recipe.
+A decided deviation stays in `spec/deviations.md` with the ruling beside it. The parser is
+`yaml` 2.9.1, which rejects a duplicated rule.
+
+Button's overlay carries the three owner decisions, the plan's base (`Button` / `FilledButton`)
+and rename, plus four rules taken on the owner's behalf and flagged for review: `bind` vertical
+padding 0 to `inset.none`, xl's gap 12 to `inset.sm` and the icon heights 16 to `icon.sm` (all
+same-value); and `allowLiteral` for xl's fixed width 200 and the counter height 20, by analogy
+with the height decision. Button now reports 12 findings, 9 of them decided. The three left open
+are genuine Figma defects: secondary losing its background at sm, the mixed background changes
+at xl, and the xl disabled label borrowing the danger colour.
+
 Tests: the `prio → variant` rename reaches the IR; a `follows` override makes tertiary hover's
 link style a recipe entry rather than a deviation; a literal the overlay does not list still
 fails; an overlay style setter wins over the derived

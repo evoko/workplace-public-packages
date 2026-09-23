@@ -5,6 +5,13 @@ import { byCodeUnit } from '../util/sort.mjs';
 
 const cell = (value) => String(value).replaceAll('|', '\\|');
 
+// A finding the overlay has ruled on stays in the report -- a decision to differ from Figma must
+// stay visible -- with the ruling beside what is still asked of SOLAR.
+const action = (d) =>
+  d.decision
+    ? `**Decided (${d.decision.rule}):** ${d.decision.reason} ${d.raise ?? ''}`.trim()
+    : (d.raise ?? 'no action');
+
 /**
  * Renders the governance report as markdown. Kept separate from the write so it can be
  * asserted on without touching spec/.
@@ -18,7 +25,7 @@ export function renderDeviations(deviations, fileVersion) {
   const rows = unique
     .map(
       (d) =>
-        `| \`${d.token}\` | ${cell(d.figmaValue)} | ${cell(d.reason)} | ${cell(d.raise ?? 'no action')} |`,
+        `| \`${d.token}\` | ${cell(d.figmaValue)} | ${cell(d.reason)} | ${cell(action(d))} |`,
     )
     .join('\n');
   return (

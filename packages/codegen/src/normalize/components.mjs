@@ -14,6 +14,7 @@ import { join } from 'node:path';
 import { docsDir } from '../util/paths.mjs';
 import { camel } from '../util/naming.mjs';
 import { resolveVariants } from './component-layers.mjs';
+import { applyOverlay, followsOf } from './overlay.mjs';
 import { deriveRecipe } from './recipe.mjs';
 
 const webDir = join(docsDir, 'solar-web');
@@ -112,11 +113,50 @@ const isBoolean = (axis) =>
 
 /**
  * @param {{entry: object, set: object}} component from loadComponent
- * @param {{names: ReturnType<import('./recipe.mjs').tokenNames>, fileVersion: string}} options
+ * @param {{
+ *   names: ReturnType<import('./recipe.mjs').tokenNames>,
+ *   fileVersion: string,
+ *   overlay?: object | null,
+ * }} options `overlay` from loadOverlay; null builds the IR as Figma has it
  */
-export function buildComponentSpec({ entry, set }, { names, fileVersion }) {
+export function buildComponentSpec(
+  { entry, set },
+  { names, fileVersion, overlay = null },
+) {
   const resolved = resolveVariants(set);
-  const recipe = deriveRecipe(resolved, { names });
+  const slots = slotsOf(resolved, set);
+
+  // Layer names: the slot that owns a layer, else the layer's own name, and `root` for the
+  // component. Paths stay beside them, because a path is what ties a name back to Figma. They
+  // are settled before the recipe, because the overlay's `follows` rules are written in them.
+  const paths = [];
+  const defaults = resolved.variants.find((v) => v.name === set.defaultVariant);
+  for (const v of [defaults, ...resolved.variants])
+    for (const path of v.layers.keys())
+      if (!paths.includes(path)) paths.push(path);
+  const bySlot = new Map(
+    Object.entries(slots).map(([name, s]) => [s.layer, name]),
+  );
+  const layerNames = new Map();
+  for (const path of paths) {
+    const name =
+      path === '/'
+        ? 'root'
+        : (bySlot.get(path) ??
+          camel(path.split('/').pop().replace(/#\d+$/, '')));
+    if ([...layerNames.values()].includes(name))
+      throw new Error(
+        `${set.name}: layers ${path} and another are both named ${name}`,
+      );
+    layerNames.set(path, name);
+  }
+  const pathOf = (name) =>
+    [...layerNames].find(([, n]) => n === name)?.[0] ?? null;
+
+  const recipe = deriveRecipe(resolved, {
+    names,
+    follows: followsOf(overlay, pathOf),
+  });
 
   const api = {};
   const states = [];
@@ -129,27 +169,6 @@ export function buildComponentSpec({ entry, set }, { names, fileVersion }) {
     } else if (isBoolean(def))
       api[axis] = { type: 'boolean', default: def.default === 'true' };
     else api[axis] = { values: [...def.options], default: def.default };
-  }
-
-  const slots = slotsOf(resolved, set);
-
-  // Layer names: the slot that owns a layer, else the layer's own name, and `root` for the
-  // component. Paths stay beside them, because a path is what ties a name back to Figma.
-  const bySlot = new Map(
-    Object.entries(slots).map(([name, s]) => [s.layer, name]),
-  );
-  const layerNames = new Map();
-  for (const path of Object.keys(recipe.layers)) {
-    const name =
-      path === '/'
-        ? 'root'
-        : (bySlot.get(path) ??
-          camel(path.split('/').pop().replace(/#\d+$/, '')));
-    if ([...layerNames.values()].includes(name))
-      throw new Error(
-        `${set.name}: layers ${path} and another are both named ${name}`,
-      );
-    layerNames.set(path, name);
   }
 
   const layers = {};
@@ -165,45 +184,47 @@ export function buildComponentSpec({ entry, set }, { names, fileVersion }) {
     style[name] = {
       base: s.base,
       size: s.size,
-      // Keyed `prio=primary, danger=false`, as Figma spells the combination; the overlay's
-      // renames reach these keys too (task 4).
+      // Keyed `prio=primary, danger=false`, as Figma spells the combination; an overlay rename
+      // respells these keys too.
       appearance: s.appearance,
+      ...(s.combined ? { combined: s.combined } : {}),
     };
   }
 
-  return {
-    spec: {
-      component: set.name,
-      base: { mui: null, flutter: null },
-      api,
-      states,
-      slots,
-      layers,
-      style,
-      docs: {
-        description: entry.description ?? null,
-        figmaIssues: [...(entry.issues ?? [])],
-      },
-      provenance: {
-        page: entry.section,
-        pageId: entry.pageId,
-        figmaNode: entry.nodeId,
-        defaultVariant: set.defaultVariant,
-        fileVersion,
-      },
+  const spec = {
+    component: set.name,
+    base: { mui: null, flutter: null },
+    api,
+    states,
+    slots,
+    layers,
+    style,
+    docs: {
+      description: entry.description ?? null,
+      figmaIssues: [...(entry.issues ?? [])],
     },
-    // Reported under the IR's layer names (`iconTrailing`, not `Icon/None#2`), which are what the
-    // code and the design review use; the Figma path stays in `layer`.
-    deviations: recipe.deviations.map((d) => {
-      const lc = set.name.toLowerCase();
-      const figma = d.layer === '/' ? 'root' : d.layer.slice(1);
-      const prefix = `component.${lc}.${figma}.`;
-      return d.token.startsWith(prefix)
-        ? {
-            ...d,
-            token: `component.${lc}.${layerNames.get(d.layer)}.${d.token.slice(prefix.length)}`,
-          }
-        : d;
-    }),
+    provenance: {
+      page: entry.section,
+      pageId: entry.pageId,
+      figmaNode: entry.nodeId,
+      defaultVariant: set.defaultVariant,
+      fileVersion,
+    },
   };
+
+  // Reported under the IR's layer names (`iconTrailing`, not `Icon/None#2`), which are what the
+  // code and the design review use; the Figma path stays in `layer`.
+  const lc = set.name.toLowerCase();
+  const deviations = recipe.deviations.map((d) => {
+    const figma = d.layer === '/' ? 'root' : d.layer.slice(1);
+    const prefix = `component.${lc}.${figma}.`;
+    return d.token.startsWith(prefix)
+      ? {
+          ...d,
+          token: `component.${lc}.${layerNames.get(d.layer)}.${d.token.slice(prefix.length)}`,
+        }
+      : d;
+  });
+
+  return applyOverlay(spec, deviations, overlay, { names, axes: recipe.axes });
 }

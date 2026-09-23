@@ -40,8 +40,17 @@ export function tokenNames(contract) {
       typeof raw === 'number' ? raw : Number(String(raw).replace(/px$/, ''));
     if (Number.isFinite(n)) pixels.set(v.doc, n);
   }
+  const all = new Set([
+    ...variables.values(),
+    ...[...textStyles].map((f) => `typography.${f.replaceAll('/', '.')}`),
+    ...effectStyles.values(),
+  ]);
   return {
     variable: (name) => variables.get(name) ?? null,
+    /** Whether a doc name is a SOLAR token at all. */
+    has: (doc) => all.has(doc),
+    /** A dimension token's value in pixels, or null for anything else. */
+    value: (doc) => pixels.get(doc) ?? null,
     textStyle: (name) =>
       textStyles.has(name) ? `typography.${name.replaceAll('/', '.')}` : null,
     effectStyle: (name) => effectStyles.get(name) ?? null,
@@ -267,7 +276,10 @@ const describe = (v) =>
  * @param {ReturnType<import('./component-layers.mjs').resolveVariants>} resolved
  * @param {{names: ReturnType<typeof tokenNames>, roles?: Record<string, string>}} options
  */
-export function deriveRecipe(resolved, { names, roles } = {}) {
+export function deriveRecipe(
+  resolved,
+  { names, roles, follows: cellFollows = {} } = {},
+) {
   if (!names)
     throw new Error(
       'deriveRecipe needs the token names (tokenNames(contract))',
@@ -331,7 +343,18 @@ export function deriveRecipe(resolved, { names, roles } = {}) {
     const groups = new Map();
 
     for (const [cell, cls] of classes) {
-      const follows = byRole(FOLLOWS[cls]);
+      // The overlay may say one cell follows other axes than its class does (Button's label
+      // type follows prio, state and danger as well as size, by the owner's decision).
+      const override = cellFollows[path]?.[cell];
+      if (override)
+        for (const a of override)
+          if (!axes[a])
+            throw new Error(
+              `${path}.${cell}: follows ${a}, which is not an axis`,
+            );
+      const follows = override
+        ? axisNames.filter((a) => override.includes(a))
+        : byRole(FOLLOWS[cls]);
       const others = axisNames.filter((a) => !follows.includes(a));
       // The reference variant for each combination of the followed axes: that combination, with
       // every other axis at its default. A sparse set may not have that variant at all (Avatar
@@ -373,18 +396,22 @@ export function deriveRecipe(resolved, { names, roles } = {}) {
           // where it differs from the base.
           if (expected === undefined || same(expected, base)) continue;
           const at = { ...expected, from: v.name };
-          if (cls === 'geometry') {
-            const k = follows.map((a) => v.props[a]).join(', ');
-            (entry.size[k] ??= {})[cell] = at;
-          } else {
-            const appearanceAxes = follows.filter(
-              (a) => axes[a].role === 'appearance',
-            );
-            const stateAxes = follows.filter((a) => axes[a].role === 'state');
-            const k = keyOf(v.props, appearanceAxes) || 'default';
-            const s = stateAxes.map((a) => v.props[a]).join(', ') || 'default';
-            ((entry.appearance[k] ??= {})[s] ??= {})[cell] = at;
-          }
+          const sizeAxes = follows.filter((a) => axes[a].role === 'size');
+          const appearanceAxes = follows.filter(
+            (a) => axes[a].role === 'appearance',
+          );
+          const stateAxes = follows.filter((a) => axes[a].role === 'state');
+          const sizeKey = sizeAxes.map((a) => v.props[a]).join(', ');
+          const k = keyOf(v.props, appearanceAxes) || 'default';
+          const s = stateAxes.map((a) => v.props[a]).join(', ') || 'default';
+          if (sizeAxes.length && (appearanceAxes.length || stateAxes.length))
+            // A cell that follows size *and* the paint axes -- only ever by an overlay decision --
+            // needs every combination, so it gets its own section rather than two half-answers.
+            ((((entry.combined ??= {})[sizeKey] ??= {})[k] ??= {})[s] ??= {})[
+              cell
+            ] = at;
+          else if (sizeAxes.length) (entry.size[sizeKey] ??= {})[cell] = at;
+          else ((entry.appearance[k] ??= {})[s] ??= {})[cell] = at;
           continue;
         }
         const found = read(v, path, cell);

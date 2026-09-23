@@ -58,7 +58,7 @@ jobs:
         run: >
           npx prettier --check
           "docs/**/*.md" "docs/**/*.mjs" "docs/**/*.js" "docs/**/*.json"
-          "scripts/**/*.mjs" "scripts/**/*.json"
+          "scripts/**/*.mjs" "scripts/**/*.json" "spec/overlay/**/*.yaml"
           "packages/solar_flutter/**/*.md"
           README.md CLAUDE.md package.json
 
