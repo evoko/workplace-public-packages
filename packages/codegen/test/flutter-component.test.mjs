@@ -3,9 +3,13 @@ import * as stage from '../src/stages/components.mjs';
 import {
   FLUTTER_STYLE,
   renderFlutterComponent,
-  STATE_PRECEDENCE,
+  statePrecedence,
+  stateTest,
 } from '../src/emit/flutter-component.mjs';
-import { STATE_SELECTORS } from '../src/emit/mui-component.mjs';
+import {
+  restateOverlaps,
+  STATE_SELECTORS,
+} from '../src/emit/mui-component.mjs';
 
 const { built, tokens } = stage.build();
 const button = built.find((b) => b.spec.component === 'Button').spec;
@@ -29,7 +33,7 @@ describe('renderFlutterComponent on Button', () => {
       expect(expr).toMatch(/^c\.[a-zA-Z0-9$]+$/);
   });
 
-  it('carries every IR entry, so nothing a web target draws is missing here', () => {
+  it('carries every IR entry and every overlap restated, so nothing a web target draws is missing here', () => {
     const count = (s) =>
       Object.values(s.base).length +
       Object.values(s.size).reduce((n, c) => n + Object.keys(c).length, 0) +
@@ -49,7 +53,7 @@ describe('renderFlutterComponent on Button', () => {
           ),
         0,
       );
-    const expected = Object.values(button.style).reduce(
+    const expected = Object.values(restateOverlaps(button)).reduce(
       (n, s) => n + count(s),
       0,
     );
@@ -57,15 +61,15 @@ describe('renderFlutterComponent on Button', () => {
   });
 
   it('resolves states in the MUI cascade order, reversed', () => {
-    expect(STATE_PRECEDENCE).toEqual([
+    expect(statePrecedence('Button')).toEqual([
       'disabled',
       'loading',
       'focus',
       'pressed',
       'hover',
     ]);
-    expect([...STATE_PRECEDENCE].reverse()).toEqual(
-      Object.keys(STATE_SELECTORS).filter((s) => s !== 'default'),
+    expect([...statePrecedence('Button')].reverse()).toEqual(
+      Object.keys(STATE_SELECTORS.Button).filter((s) => s !== 'default'),
     );
     expect(dart).toContain(
       "static const List<String> statePrecedence = ['disabled', 'loading', 'focus', 'pressed', 'hover'];",
@@ -142,6 +146,93 @@ describe('renderFlutterComponent on Spinner', () => {
     split.style.track.base.borderWidth = { token: 'border.default' };
     expect(() => renderFlutterComponent(split, tokens)).toThrow(
       /indicator.borderWidth and track.borderWidth with one property/,
+    );
+  });
+});
+
+describe('renderFlutterComponent: states that hold together', () => {
+  it('restates what an overlapping state would show through, as the MUI recipe does', () => {
+    // A mouse press is hovered and pressed at once; Figma's pressed tertiary is not underlined.
+    expect(
+      cells[
+        'label.typography|combined|md|variant=tertiary, danger=false|pressed'
+      ],
+    ).toBe('t:typography.label.md');
+    const restated = [];
+    for (const [layer, s] of Object.entries(restateOverlaps(button)))
+      for (const [size, byCombo] of Object.entries(s.combined ?? {}))
+        for (const [combo, states] of Object.entries(byCombo))
+          for (const [state, c] of Object.entries(states))
+            for (const [cell, e] of Object.entries(c))
+              if (e.restates)
+                restated.push(
+                  `${layer}.${cell}|combined|${size}|${combo}|${state}`,
+                );
+    expect(restated.length).toBeGreaterThan(0);
+    for (const key of restated) expect(cells).toHaveProperty([key]);
+  });
+});
+
+describe('renderFlutterComponent: states and builders, per component', () => {
+  const spinner = built.find((b) => b.spec.component === 'Spinner').spec;
+  const synthetic = {
+    component: 'X',
+    states: ['default', 'hover', 'focus'],
+    api: {
+      selected: { type: 'boolean', default: false },
+      disabled: { type: 'boolean', default: false },
+    },
+  };
+
+  it('detects a platform state by its WidgetState and a prop state by its prop', () => {
+    expect(stateTest(synthetic, 'hover')).toBe(
+      's.contains(WidgetState.hovered)',
+    );
+    expect(stateTest(synthetic, 'focus')).toBe(
+      's.contains(WidgetState.focused)',
+    );
+    expect(stateTest(synthetic, 'selected')).toBe('p.selected');
+    expect(stateTest(synthetic, 'disabled')).toBe(
+      'p.disabled || s.contains(WidgetState.disabled)',
+    );
+    // Button's loading has no handler either, so its disabled look waits for the prop.
+    expect(stateTest(button, 'disabled')).toBe(
+      'p.disabled || (!p.loading && s.contains(WidgetState.disabled))',
+    );
+    // Pressed is a platform state only where the component draws it.
+    expect(() => stateTest(synthetic, 'pressed')).toThrow(
+      /X: no Flutter test for state pressed/,
+    );
+  });
+
+  it('refuses a state it cannot detect, or cannot place in the order', () => {
+    const copy = structuredClone(button);
+    copy.style.root.appearance['variant=primary, danger=false'].selected = {
+      background: { token: 'color.action.primary.bg.hover' },
+    };
+    expect(() => renderFlutterComponent(copy, tokens)).toThrow(
+      /Button: no Flutter test for state selected/,
+    );
+    copy.api.selected = { type: 'boolean', default: false };
+    expect(() => renderFlutterComponent(copy, tokens)).toThrow(
+      /Button: state selected has no place in the state order/,
+    );
+  });
+
+  it('builds the style object the base control takes, and none for one that takes none', () => {
+    expect(dart).toContain('A [ButtonStyle] for a FilledButton');
+    const { dart: spinnerDart } = renderFlutterComponent(spinner, tokens);
+    expect(spinnerDart).not.toContain('ButtonStyle');
+    const asIconButton = { ...spinner, base: { flutter: 'IconButton' } };
+    expect(() => renderFlutterComponent(asIconButton, tokens)).toThrow(
+      /Spinner: IconButton takes a ButtonStyle, and FLUTTER_STYLE has no table for it/,
+    );
+    const asSpinner = {
+      ...button,
+      base: { flutter: 'CircularProgressIndicator' },
+    };
+    expect(() => renderFlutterComponent(asSpinner, tokens)).toThrow(
+      /Button: FLUTTER_STYLE has a table, and its base CircularProgressIndicator has no style builder/,
     );
   });
 });

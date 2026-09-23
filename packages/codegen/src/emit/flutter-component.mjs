@@ -7,8 +7,9 @@
  * Names rather than values, because the values switch with Light and Dark: a colour is a field of
  * the ambient `SolarTheme`'s `SolarColors`, reached through a generated switch, never a literal.
  *
- * What is Flutter-specific lives here: which IR cell drives which `ButtonStyle` property
- * (`FLUTTER_STYLE`), and how a state maps to a `WidgetState`.
+ * What is Flutter-specific lives here: which style builder each base control takes (`BUILDERS`),
+ * which IR cell drives which of its properties (`FLUTTER_STYLE`), and how each state is detected
+ * (`stateTest`).
  */
 
 import { join } from 'node:path';
@@ -17,7 +18,7 @@ import { pascal, quote } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { dartName, RESERVED, STATIC_CLASS } from './flutter.mjs';
-import { STATE_SELECTORS } from './mui-component.mjs';
+import { restateOverlaps, stateSelectors } from './mui-component.mjs';
 
 const OUT_DIR = join(
   packagesDir,
@@ -29,27 +30,53 @@ const OUT_DIR = join(
 );
 
 /**
- * Which state wins when several hold, highest first. It is the MUI recipe's cascade order read
- * backwards -- there the later rule wins at equal specificity -- so the two platforms cannot
- * disagree about whether disabled beats hover.
+ * Which state wins when several hold, highest first, for one component. It is the MUI recipe's
+ * cascade order read backwards -- there the later rule wins at equal specificity -- so the two
+ * platforms cannot disagree about whether disabled beats hover.
  */
-export const STATE_PRECEDENCE = Object.keys(STATE_SELECTORS)
-  .filter((s) => s !== 'default')
-  .reverse();
+export const statePrecedence = (component) =>
+  Object.keys(stateSelectors(component))
+    .filter((s) => s !== 'default')
+    .reverse();
 
-/** How each state is detected: a WidgetState Flutter tracks, or a prop the platform cannot. */
-const STATE_TEST = {
-  // A loading button has no onPressed, so Flutter marks it disabled too; as the MUI selector does,
-  // the disabled look then waits for the prop, and loading shows. Disabled and loading together
-  // is disabled, which the shell settles by passing loading only to an enabled button.
-  disabled: 'p.disabled || (!p.loading && s.contains(WidgetState.disabled))',
-  loading: 'p.loading',
-  focus: 's.contains(WidgetState.focused)',
-  pressed: 's.contains(WidgetState.pressed)',
-  hover: 's.contains(WidgetState.hovered)',
+/** The `WidgetState` Flutter tracks for each platform state. */
+const WIDGET_STATE = { hover: 'hovered', pressed: 'pressed', focus: 'focused' };
+
+/**
+ * How a state is detected, the same for every component, since Flutter tracks the same
+ * `WidgetState`s whatever the control (MUI's classes are what differ, `STATE_SELECTORS`): a
+ * platform state is its `WidgetState`, a state that is a prop is the prop, and `disabled` is also
+ * what Flutter marks a control with no handler. A loading control has none either, so where there
+ * is a `loading` prop the disabled look waits for the prop and loading shows, as the MUI selector
+ * does; disabled and loading together is disabled, which the shell settles by passing loading only
+ * to an enabled control.
+ */
+export function stateTest(spec, state) {
+  if (WIDGET_STATE[state] && spec.states.includes(state))
+    return `s.contains(WidgetState.${WIDGET_STATE[state]})`;
+  if (spec.api[state]?.type !== 'boolean')
+    throw new Error(`${spec.component}: no Flutter test for state ${state}`);
+  if (state !== 'disabled') return `p.${state}`;
+  return spec.api.loading?.type === 'boolean'
+    ? 'p.disabled || (!p.loading && s.contains(WidgetState.disabled))'
+    : 'p.disabled || s.contains(WidgetState.disabled)';
+}
+
+/**
+ * The style builder each base control takes, by its Flutter name. Button's and Icon Button's
+ * stock controls both take a `ButtonStyle`; a bespoke widget, or one whose stock control has no
+ * style object to build (CircularProgressIndicator), reads the recipe cell by cell instead.
+ */
+export const BUILDERS = {
+  FilledButton: 'ButtonStyle',
+  IconButton: 'ButtonStyle',
 };
 
-/** Which IR cell each ButtonStyle property is read from. A cell the IR lacks is an error. */
+/**
+ * Which IR cell each property of the base control's style is read from, by component. A cell the IR
+ * lacks is an error, and so is a table for a base with no builder, or a base with a builder and no
+ * table.
+ */
 export const FLUTTER_STYLE = {
   Button: {
     background: 'root.background',
@@ -137,11 +164,22 @@ function flatten(spec, glyphs = []) {
  * @returns {{dart: string, cells: Record<string, string>, file: string}}
  */
 export function renderFlutterComponent(spec, tokens) {
-  // A component with a style table gets a builder for its stock control's style (Button's
+  // A component whose base control takes a style object gets a builder for it (Button's
   // ButtonStyle); one without gets the recipe alone, which its shell reads cell by cell.
+  const builderOf = BUILDERS[spec.base?.flutter] ?? null;
+  if (builderOf && !FLUTTER_STYLE[spec.component])
+    throw new Error(
+      `${spec.component}: ${spec.base.flutter} takes a ${builderOf}, and FLUTTER_STYLE has no table for it`,
+    );
+  if (!builderOf && FLUTTER_STYLE[spec.component])
+    throw new Error(
+      `${spec.component}: FLUTTER_STYLE has a table, and its base ${spec.base?.flutter ?? '(none)'} has no style builder`,
+    );
   const table = FLUTTER_STYLE[spec.component] ?? {};
   const glyphs = [];
-  const cells = flatten(spec, glyphs);
+  // Read through the overlaps, as the MUI recipe is: a pressed control is hovered too, and each
+  // cell is looked up in the strongest state that has it.
+  const cells = flatten({ ...spec, style: restateOverlaps(spec) }, glyphs);
   const cellNames = new Set(Object.keys(cells).map((k) => k.split('|')[0]));
   for (const [prop, cell] of Object.entries(table))
     if (!cellNames.has(cell))
@@ -162,14 +200,19 @@ export function renderFlutterComponent(spec, tokens) {
         `${spec.component}: Flutter draws ${cell} and ${other} with one property, and the IR gives them different values`,
       );
   }
-  // Every state the IR keys an entry by must be one the resolver can detect.
+  // Every state the IR keys an entry by must be one the resolver can detect, and one it resolves in
+  // the component's order.
+  const precedence = statePrecedence(spec.component);
   for (const key of Object.keys(cells)) {
     const state = key.split('|').at(-1);
     if (key.includes('|appearance|') || key.includes('|combined|'))
-      if (state !== 'default' && !STATE_TEST[state])
-        throw new Error(
-          `${spec.component}: no Flutter test for state ${state}`,
-        );
+      if (state !== 'default') {
+        stateTest(spec, state);
+        if (!precedence.includes(state))
+          throw new Error(
+            `${spec.component}: state ${state} has no place in the state order (STATE_SELECTORS)`,
+          );
+      }
   }
 
   // Token names to Dart expressions, for exactly the tokens the recipe uses.
@@ -239,10 +282,8 @@ export function renderFlutterComponent(spec, tokens) {
     firstCombo?.split(', ').map((part) => part.split('=')[0]) ?? [];
   // The states this component can be in, in precedence order; a test of a prop the component
   // does not have (a Spinner is never disabled) would not compile.
-  const holds = STATE_PRECEDENCE.filter((st) =>
-    ['disabled', 'loading'].includes(st)
-      ? st in spec.api
-      : spec.states.includes(st),
+  const holds = precedence.filter(
+    (st) => spec.api[st]?.type === 'boolean' || spec.states.includes(st),
   );
   const sizeExpr = 'size' in spec.api ? 'p.size.name' : "''";
   const combo = appearanceAxes
@@ -263,7 +304,7 @@ export function renderFlutterComponent(spec, tokens) {
     'Colors',
     'TextStyle',
     'WidgetState',
-    ...(FLUTTER_STYLE[spec.component]
+    ...(builderOf === 'ButtonStyle'
       ? [
           'BorderRadius',
           'BorderSide',
@@ -280,8 +321,9 @@ export function renderFlutterComponent(spec, tokens) {
         ]
       : []),
   ].sort();
-  const builder = FLUTTER_STYLE[spec.component]
-    ? `
+  const builder =
+    builderOf === 'ButtonStyle'
+      ? `
   static BorderSide _side(SolarTheme t, Solar${name}Props p, Set<WidgetState> s) {
     final width = lookup(${cell('borderWidth')}, p, s);
     if (width == null || width == 'none') return BorderSide.none;
@@ -291,7 +333,7 @@ export function renderFlutterComponent(spec, tokens) {
   static BorderRadius _radius(Solar${name}Props p, Set<WidgetState> s) =>
       BorderRadius.circular(dimension(${cell('radius')}, p, s) ?? 0);
 
-  /// A [ButtonStyle] for a FilledButton that draws SOLAR's ${spec.component}.
+  /// A [ButtonStyle] for a ${spec.base.flutter} that draws SOLAR's ${spec.component}.
   ///
   /// The background and the shadows are painted by one [BoxDecoration] in [ButtonStyle.backgroundBuilder]:
   /// ButtonStyle has elevation but no box shadows, and a Flutter shadow paints under the whole
@@ -336,7 +378,7 @@ export function renderFlutterComponent(spec, tokens) {
     );
   }
 `
-    : '';
+      : '';
 
   // The shapes the component draws itself, Figma's path data byte for byte.
   const pathDart = (p) =>
@@ -397,7 +439,7 @@ ${entries}
   static const List<String> statePrecedence = ${holds.length ? '' : '<String>'}[${holds.map((s) => `'${s}'`).join(', ')}];
 
   static bool _holds(String state, Solar${name}Props p, Set<WidgetState> s) => switch (state) {
-${holds.map((st) => `        '${st}' => ${st === 'disabled' && !('loading' in spec.api) ? 'p.disabled || s.contains(WidgetState.disabled)' : STATE_TEST[st]},`).join('\n')}
+${holds.map((st) => `        '${st}' => ${stateTest(spec, st)},`).join('\n')}
         _ => false,
       };
 

@@ -65,7 +65,8 @@ but is not drawn, and the spinner Figma picks for the variant shows; disabled wi
 
 The recipe can also style a stock control directly. `SolarButtonRecipe.style(theme, props)` is a
 `ButtonStyle` that makes a `FilledButton` draw SOLAR's Button, resolving hover, pressed, focus and
-disabled through `WidgetState`:
+disabled through `WidgetState`, including states that hold together (a mouse press is hovered and
+pressed at once, and draws Figma's pressed look):
 
 ```dart
 FilledButton(

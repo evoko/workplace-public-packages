@@ -11,22 +11,31 @@ npx playwright install chromium  # once, on a new machine
   straight from the Figma layers and independently of the recipe (see the codegen README,
   _Components_). Not the other platform: two platforms that agree on a mistake would pass a
   cross-check.
-- **What is measured** is `page.tsx`, one case per oracle variant, rendered by the real `Button`
-  and `Spinner` with `tokens.css` and `fonts.css`, bundled by esbuild from sources (`build.mjs`).
-  Each Button shows both icons and a counter, so their colours are measured too.
+- **What is measured** is `page.tsx`, one case per oracle variant of every component, rendered by
+  the real components with `tokens.css` and `fonts.css`, bundled by esbuild from sources
+  (`build.mjs`). How a component is rendered is its case module, `cases/<name>.tsx`: its props from
+  the oracle and every slot filled with a probe (each Button shows both icons and a counter, so
+  their colours are measured too). `cases/index.ts` registers them, and every component in the
+  codegen's `COMPONENTS` must have one: a component with no cases fails its check, naming the file
+  to add.
 - **States** are reached as a user reaches them: the pointer over the control for hover, held down
   for pressed, keyboard focus for focus. MUI then sets its own classes, so the recipe is tested
-  through them. Transitions are switched off, so the end state is measured, not a frame.
+  through them; where the component's `STATE_SELECTORS` marks focus with a class, the check first
+  proves the control carries it. A state that is a prop (disabled, loading) is set by the case's
+  props. Transitions are switched off, so the end state is measured, not a frame.
 - **Where each layer is** comes from the emitter's own table (`MUI_SLOTS`), not a copy of it.
+- **A composed child** (Button's spinner, a layer the oracle names as another generated component)
+  is measured inside its slot and checked against its own oracle, layer by layer, in the variant
+  Figma picks for it.
 - **Comparing** (`compare.mjs`): colours in sRGB within one 8-bit step, lengths within half a
   pixel, shadows part by part, the first font family, letter spacing in pixels. A layer Figma
   hides in a variant (the label while loading, the spinner at rest) must not be drawn; a slot the
-  oracle lists as shown by a prop, hidden at rest (the icons), is measured whenever rendered. Button's spinner is checked against the
-  Spinner oracle, in the variant Figma picks.
+  oracle lists as shown by a prop, hidden at rest (the icons), is measured whenever rendered.
 - **Flutter** has the same check, `packages/solar_flutter/test/visual/`, against the same oracle.
 - **Excused entries** (an open finding, an overlay decision) are not compared. They go to the gap
   report, `.out/<name>-gaps.json`, beside `.out/<name>-failures.json`, so the difference stays in
   view.
 
-The last test injects a wrong colour into one variant and requires the check to name that variant
-and property, so a comparison that silently stopped comparing would fail too.
+The last two tests inject a wrong colour, one into a variant and one into Button's Spinner, and
+require the check to name the variant and the property, so a comparison that silently stopped
+comparing would fail too.

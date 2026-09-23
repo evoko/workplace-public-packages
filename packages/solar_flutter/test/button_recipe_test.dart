@@ -114,6 +114,27 @@ void main() {
           SolarTypography.desktop.labelMd);
     });
 
+    test('a pointer pressing tertiary is over it too, and the underline goes',
+        () {
+      // Figma's pressed tertiary is not underlined. A mouse press is hovered and pressed at once,
+      // so hover's underline must not show through the state that has no typography of its own.
+      const tertiary = SolarButtonProps(variant: SolarButtonVariant.tertiary);
+      expect(label(tertiary, {WidgetState.hovered, WidgetState.pressed}),
+          SolarTypography.desktop.labelMd);
+      expect(
+          label(tertiary, {WidgetState.hovered, WidgetState.focused})
+              ?.decoration,
+          isNot(TextDecoration.underline));
+    });
+  });
+
+  group('states that hold together', () {
+    test('a focused primary under the pointer keeps focus’s resting colours',
+        () {
+      expect(background(primary, {WidgetState.hovered, WidgetState.focused}),
+          SolarColors.light.actionPrimaryBgDefault);
+    });
+
     test('loading hides the label and shows the spinner', () {
       const loading = SolarButtonProps(loading: true);
       expect(SolarButtonRecipe.present('label', loading, {}), isFalse);

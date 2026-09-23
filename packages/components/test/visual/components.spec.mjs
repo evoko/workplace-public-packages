@@ -3,7 +3,12 @@
  * component in Chromium, measured with getComputedStyle, and compared with what Figma draws
  * (spec/verify/<name>.json). A state is reached the way a user reaches it -- the pointer over the
  * control, the button held down, focus by keyboard -- so MUI sets its own classes and the recipe is
- * tested through them, not around them.
+ * tested through them, not around them. A state that is a prop (disabled, loading) is the case's
+ * props, from the oracle.
+ *
+ * Generic over the components: how each is rendered is its case module (`cases/`), where each layer
+ * is comes from the emitter's slot table, and a composed child (Button's Spinner) is checked against
+ * its own oracle, in the variant the parent's oracle names.
  *
  * An entry the oracle excuses (an open finding, an overlay decision) is not compared; it is written
  * to the gap report instead, `.out/<name>-gaps.json`, so the difference stays visible.
@@ -15,7 +20,9 @@ import { expect, test } from '@playwright/test';
 import {
   MUI_SLOTS,
   MUI_SVG_LAYERS,
+  STATE_SELECTORS,
 } from '../../../codegen/src/emit/mui-component.mjs';
+import { COMPONENTS, fileOf } from '../../../codegen/src/stages/components.mjs';
 import { compareLayer, matches } from './compare.mjs';
 
 const repo = (path) =>
@@ -23,10 +30,12 @@ const repo = (path) =>
 const load = (path) => JSON.parse(readFileSync(repo(path), 'utf8'));
 const out = (path) => fileURLToPath(new URL(`.out/${path}`, import.meta.url));
 
-const oracles = {
-  Button: load('spec/verify/button.json'),
-  Spinner: load('spec/verify/spinner.json'),
-};
+const oracles = Object.fromEntries(
+  COMPONENTS.map((c) => [c, load(`spec/verify/${fileOf(c)}`)]),
+);
+
+/** As `cases/index.ts` spells a component in `data-case`. */
+const slug = (component) => component.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
 // Measuring, not animating: the recipe's end state, not a frame of MUI's transition to it.
 const STILL =
@@ -42,55 +51,77 @@ function targets(component) {
   }));
 }
 
-/** Runs in the page: the computed values of each target inside `root`. */
-function measure(root, list) {
+/**
+ * The layers of `component` that are other generated components (Button's spinner), with where the
+ * child's layers are: its root is the first element in the parent's slot.
+ */
+function children(component) {
+  const oracle = oracles[component];
+  const out = {};
+  for (const v of oracle.variants)
+    for (const [layer, e] of Object.entries(v.layers))
+      if (e.component && oracles[e.component])
+        out[layer] = {
+          component: e.component,
+          selector: targets(component).find((t) => t.layer === layer).selector,
+          list: targets(e.component),
+        };
+  return out;
+}
+
+/**
+ * Runs in the page: the computed values of each target inside `root`, and of each composed child's
+ * targets inside the child, under `children`.
+ */
+function measure(root, { list, composed }) {
   const px = (v) => v;
-  return Object.fromEntries(
-    list.map(({ layer, selector, svg }) => {
-      const el = selector ? root.querySelector(selector) : root;
-      if (!el) return [layer, null];
-      const cs = getComputedStyle(el);
-      const box = el.getBoundingClientRect();
-      const values = svg
-        ? {
-            background: cs.fill,
-            borderColor: cs.stroke,
-            borderWidth: cs.strokeWidth,
-          }
-        : {
-            background: cs.backgroundColor,
-            borderColor: cs.borderTopColor,
-            borderWidth:
-              cs.borderTopStyle === 'none' ? '0px' : cs.borderTopWidth,
-            radius: cs.borderTopLeftRadius,
-            shadow: cs.boxShadow,
-            paddingTop: cs.paddingTop,
-            paddingRight: cs.paddingRight,
-            paddingBottom: cs.paddingBottom,
-            paddingLeft: cs.paddingLeft,
-            gap: cs.columnGap,
-          };
-      return [
-        layer,
-        {
-          ...values,
-          color: cs.color,
-          fontFamily: cs.fontFamily,
-          fontWeight: cs.fontWeight,
-          fontSize: px(cs.fontSize),
-          lineHeight: cs.lineHeight,
-          letterSpacing: cs.letterSpacing,
-          textDecoration: cs.textDecorationLine,
-          width: box.width,
-          height: box.height,
-          drawn:
-            box.width > 0 &&
-            cs.visibility !== 'hidden' &&
-            cs.display !== 'none',
-        },
-      ];
-    }),
-  );
+  const within = (at, targets) =>
+    Object.fromEntries(targets.map((t) => [t.layer, one(at, t)]));
+  const one = (at, { selector, svg }) => {
+    const el = selector ? at.querySelector(selector) : at;
+    if (!el) return null;
+    const cs = getComputedStyle(el);
+    const box = el.getBoundingClientRect();
+    const values = svg
+      ? {
+          background: cs.fill,
+          borderColor: cs.stroke,
+          borderWidth: cs.strokeWidth,
+        }
+      : {
+          background: cs.backgroundColor,
+          borderColor: cs.borderTopColor,
+          borderWidth: cs.borderTopStyle === 'none' ? '0px' : cs.borderTopWidth,
+          radius: cs.borderTopLeftRadius,
+          shadow: cs.boxShadow,
+          paddingTop: cs.paddingTop,
+          paddingRight: cs.paddingRight,
+          paddingBottom: cs.paddingBottom,
+          paddingLeft: cs.paddingLeft,
+          gap: cs.columnGap,
+        };
+    return {
+      ...values,
+      color: cs.color,
+      fontFamily: cs.fontFamily,
+      fontWeight: cs.fontWeight,
+      fontSize: px(cs.fontSize),
+      lineHeight: cs.lineHeight,
+      letterSpacing: cs.letterSpacing,
+      textDecoration: cs.textDecorationLine,
+      width: box.width,
+      height: box.height,
+      drawn:
+        box.width > 0 && cs.visibility !== 'hidden' && cs.display !== 'none',
+    };
+  };
+  const out = within(root, list);
+  for (const [layer, c] of Object.entries(composed)) {
+    const slot = c.selector ? root.querySelector(c.selector) : root;
+    const child = slot?.firstElementChild;
+    out[layer] = child ? { drawn: true, layers: within(child, c.list) } : null;
+  }
+  return out;
 }
 
 /** Puts the control into a platform state as a user would. Returns how to leave it. */
@@ -145,21 +176,24 @@ async function open(page) {
 async function check(page, component, { only } = {}) {
   const oracle = oracles[component];
   const list = targets(component);
+  const composed = children(component);
+  // Where the table marks focus with a class (MUI's focus-visible), the state is proven reached.
+  const focusClass = /^&\.([\w-]+)/.exec(
+    STATE_SELECTORS[component]?.focus ?? '',
+  )?.[1];
   const failures = [];
   const gaps = [];
   for (const [i, variant] of oracle.variants.entries()) {
     if (only && !only.includes(variant.figma)) continue;
-    const kase = page.locator(`[data-case="${component.toLowerCase()}-${i}"]`);
+    const kase = page.locator(`[data-case="${slug(component)}-${i}"]`);
     // The component's root: Button's <button>, Spinner's box.
     const control = kase.locator(':scope > *').first();
     const leave = await reach(page, control, variant.state);
-    if (variant.state === 'focus')
+    if (variant.state === 'focus' && focusClass)
       await expect(control, `${variant.figma}: keyboard focus`).toHaveClass(
-        /Mui-focusVisible/,
+        new RegExp(focusClass),
       );
-    const rendered = await control.evaluate(measure, list);
-    const composed =
-      component === 'Button' ? await measureSpinner(control) : null;
+    const rendered = await control.evaluate(measure, { list, composed });
     await leave();
 
     const fail = (layer, f) =>
@@ -171,17 +205,20 @@ async function check(page, component, { only } = {}) {
       const byProp =
         layer in oracle.slots && oracle.variants[0].layers[layer]?.hidden;
       if (expected.hidden && !byProp) {
-        const drawn =
-          layer === 'label'
-            ? got && !matches('color', 'transparent', got.color)
-            : Boolean(got?.drawn);
+        // A text layer MUI renders in the root itself (Button's label) is hidden by its colour.
+        const inRoot =
+          layer !== 'root' &&
+          !composed[layer] &&
+          list.find((t) => t.layer === layer)?.selector === null;
+        const drawn = inRoot
+          ? got && !matches('color', 'transparent', got.color)
+          : Boolean(got?.drawn);
         if (drawn)
           fail(layer, { property: 'hidden', figma: true, rendered: false });
         continue;
       }
-      if (layer === 'spinner') {
-        if (!expected.hidden)
-          checkSpinner(expected, composed, (f) => fail(layer, f));
+      if (composed[layer]) {
+        if (!expected.hidden) checkChild(expected, got, (f) => fail(layer, f));
         continue;
       }
       if (!got) {
@@ -198,42 +235,39 @@ async function check(page, component, { only } = {}) {
   return { failures, gaps };
 }
 
-/** The Spinner a loading Button draws: its ring's box and its two strokes. */
-async function measureSpinner(control) {
-  return control.evaluate((root) => {
-    const box = root.querySelector('.MuiButton-loadingIndicator .MuiBox-root');
-    if (!box) return null;
-    const stroke = (sel) => getComputedStyle(box.querySelector(sel)).stroke;
-    const r = box.getBoundingClientRect();
-    return {
-      width: r.width,
-      height: r.height,
-      track: stroke('.MuiCircularProgress-track'),
-      indicator: stroke('.MuiCircularProgress-circle'),
-    };
+/** The child oracle's variant a parent's layer names: every axis it gives, by Figma's spelling. */
+function childVariant(oracle, wanted) {
+  const found = oracle.variants.find((v) => {
+    const axes = Object.fromEntries(
+      v.figma.split(', ').map((p) => p.split('=')),
+    );
+    return Object.entries(wanted).every(([a, value]) => axes[a] === value);
   });
+  if (!found)
+    throw new Error(
+      `${oracle.component} has no variant ${JSON.stringify(wanted)}`,
+    );
+  return found;
 }
 
 /**
- * Button's spinner is a Spinner in the variant Figma picks; what that variant looks like is the
- * Spinner oracle's, so the two oracles are checked together.
+ * A composed child (Button's spinner) is the child component in the variant Figma picks; what that
+ * variant looks like is the child's oracle, so the two are checked together, layer by layer. What
+ * the child's oracle excuses is not compared: the child's own check reports it.
  */
-function checkSpinner(expected, got, fail) {
+function checkChild(expected, got, fail) {
   if (!got) return fail({ property: 'present', figma: true, rendered: false });
-  const { size, style } = expected.variant;
-  const spinner = oracles.Spinner.variants.find(
-    (v) => v.figma === `size=${size}, style=${style}`,
-  );
-  const ring = spinner.layers.spinnerRing;
-  for (const property of ['width', 'height'])
-    if (!matches(property, ring[property], got[property]))
-      fail({ property, figma: ring[property], rendered: got[property] });
-  for (const layer of ['track', 'indicator']) {
-    const figma = spinner.layers[layer].borderColor;
-    // Unreadable in Figma (the default indicator); the Spinner check reports that gap.
-    if (figma === null) continue;
-    if (!matches('color', figma, got[layer]))
-      fail({ property: `${layer}.stroke`, figma, rendered: got[layer] });
+  const child = childVariant(oracles[expected.component], expected.variant);
+  for (const [layer, want] of Object.entries(child.layers)) {
+    if (want.hidden) continue;
+    const excused = (child.excused ?? []).filter((e) => e.layer === layer);
+    const measured = got.layers[layer];
+    if (!measured) {
+      fail({ property: `${layer}.present`, figma: true, rendered: false });
+      continue;
+    }
+    for (const f of compareLayer(want, measured, excused).failures)
+      fail({ ...f, property: `${layer}.${f.property}` });
   }
 }
 
@@ -243,12 +277,18 @@ const report = (component, gaps) =>
     `${JSON.stringify(gaps, null, 2)}\n`,
   );
 
-for (const component of Object.keys(oracles))
+for (const component of COMPONENTS)
   test(`${component} draws what Figma draws, in every variant`, async ({
     page,
   }) => {
     test.setTimeout(120_000);
     await open(page);
+    // A component the codegen generates and the page does not render would pass by measuring
+    // nothing.
+    expect(
+      await page.locator(`[data-case^="${slug(component)}-"]`).count(),
+      `${component}: one case per oracle variant; register cases/${slug(component)}.tsx in cases/index.ts`,
+    ).toBe(oracles[component].variants.length);
     const { failures, gaps } = await check(page, component);
     report(component, gaps);
     writeFileSync(
@@ -281,6 +321,27 @@ test('a difference nobody decided on fails, naming the variant and the property'
       variant: hovered,
       layer: 'root',
       property: 'background',
+      rendered: 'rgb(255, 0, 0)',
+    }),
+  ]);
+});
+
+test('a composed child is checked against its own oracle, naming the layer inside it', async ({
+  page,
+}) => {
+  await open(page);
+  const loading = 'size=md, prio=primary, state=loading, danger=false';
+  const i = oracles.Button.variants.findIndex((v) => v.figma === loading);
+  // A Button whose Spinner drew its track in the wrong colour.
+  await page.addStyleTag({
+    content: `[data-case="button-${i}"] .MuiCircularProgress-track { stroke: rgb(255, 0, 0) !important; }`,
+  });
+  const { failures } = await check(page, 'Button', { only: [loading] });
+  expect(failures).toEqual([
+    expect.objectContaining({
+      variant: loading,
+      layer: 'spinner',
+      property: 'track.borderColor',
       rendered: 'rgb(255, 0, 0)',
     }),
   ]);

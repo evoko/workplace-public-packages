@@ -144,19 +144,30 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
 
 Two emitters generate from the IR, and neither imports its framework:
 
-| Target    | Output                                                            | What it is                                                           |
-| --------- | ----------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `mui`     | `packages/styles/src/generated/mui/components/<name>.ts`          | style data for `sx` keyed by MUI's classes, and `solar<Name>Style()` |
-| `flutter` | `packages/solar_flutter/lib/src/generated/components/<name>.dart` | token names, a state resolver, and a `ButtonStyle` via `WidgetState` |
+| Target    | Output                                                            | What it is                                                                                            |
+| --------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `mui`     | `packages/styles/src/generated/mui/components/<name>.ts`          | style data for `sx` keyed by MUI's classes, and `solar<Name>Style()`                                  |
+| `flutter` | `packages/solar_flutter/lib/src/generated/components/<name>.dart` | token names, a state resolver, and the base control's style object (`ButtonStyle`) where it takes one |
 
-Both resolve states in one order — disabled, loading, focus, pressed, hover — which the Flutter
-emitter imports from the MUI one reversed, because in CSS the later rule wins. What MUI draws that
-SOLAR does not (Button's 64px minimum width, its upper-case label) is undone by `MUI_RESETS` in the
-emitter, so a component looks right with or without the SOLAR MUI theme installed. CSS states
-overlap where Figma's do not — a pressed button is hovered too — so the emitter restates, in each
-later state, whatever an earlier one it overlaps (`OVERLAPS`) sets and it does not: tertiary
-pressed is not underlined although tertiary hover is. Flutter resolves one state at a time and
-needs no such step.
+Each component says how its states are marked, in the MUI emitter's `STATE_SELECTORS` (keyed like
+`MUI_SLOTS`): the pseudo-class or the class MUI sets (`Mui-focusVisible`, `Mui-disabled`,
+`MuiButton-loading`), or, where MUI has none, a class the shell sets (`Solar<Name>-<state>`). A
+component with no table has no states, and a state the IR styles that its table lacks fails the
+build. The table's order is the order both platforms resolve two states in — for Button disabled,
+loading, focus, pressed, hover, strongest last in CSS, where the later rule wins — and Flutter
+reads it reversed; the emitter refuses a table that orders the states the fold knows otherwise
+than `BOOLEAN_STATES`. Flutter detects each state the same way for every component: a platform
+state is its `WidgetState`, a prop state its prop. What MUI draws that SOLAR does not (Button's 64px
+minimum width, its upper-case label) is undone by `MUI_RESETS` in the emitter, so a component looks
+right with or without the SOLAR MUI theme installed.
+
+States overlap where Figma's do not: a pointer pressing a button is over it, so a pressed button is
+hovered too, in CSS and in Flutter's `WidgetState`s alike. Both platforms blend per property, CSS by
+the cascade and Flutter by reading each cell from the strongest state that has one, so both emitters
+read the style through `restateOverlaps`, which restates in each later state whatever an earlier
+one it overlaps (`OVERLAPS`, per component) sets and it does not: tertiary pressed is not
+underlined although tertiary hover is. Flutter was missing this until 3b-2 Task A5, and drew
+hover's underline on a mouse press, and hover's colours on a focused primary under the pointer.
 
 **Recipe and shell.** The recipe is what a component looks like; it regenerates on every run and
 is never edited. The shell — `packages/components/src/<Name>.tsx`: props, slots, loading,
@@ -238,13 +249,18 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
 - **A new token appeared in Figma** → nothing here; re-run `npm run solar:tokens`, and the
   normalizer picks it up. An unknown token _type_ fails loudly rather than guessing.
 - **A component looks wrong on one platform** → that platform's emitter, and its table
-  (`MUI_SLOTS`, `MUI_RESETS`, `FLUTTER_STYLE`).
+  (`MUI_SLOTS`, `MUI_RESETS`, `STATE_SELECTORS`, `FLUTTER_STYLE`).
 - **A component looks wrong, and Figma is right for it alone** → its overlay in `spec/overlay/`.
 - **A component behaves wrong** → its shell in `packages/components/src/`, which is yours.
 - **A new component** → add it to `COMPONENTS` in `src/stages/components.mjs`, give the emitters
-  its slot and style tables and the scaffolder a React and a Flutter template, then
+  its slot, state and style tables (`MUI_SLOTS`, `STATE_SELECTORS` and `OVERLAPS` where it has
+  states, and `FLUTTER_STYLE` where its Flutter base takes a style object, `BUILDERS`) and the
+  scaffolder a React and a Flutter template, then
   `npm run solar:scaffold <Name>` and `npm run solar:scaffold -- --flutter <Name>`. A composed
   child the shell draws (Button's Spinner) comes from the recipe's `compose` lookup, never by hand.
+  Last, a visual case on each platform (`packages/components/test/visual/cases/`,
+  `solar_flutter/test/visual/cases/`), registered, which both visual checks require of every
+  generated component.
 - **A new icon appeared in Figma** → nothing here either; re-run `npm run solar:icons`, and
   `src/normalize/icons.mjs` picks it up. An SVG feature the IR cannot represent — a gradient, a
   stroke, an arc — fails naming the file rather than being quietly dropped.

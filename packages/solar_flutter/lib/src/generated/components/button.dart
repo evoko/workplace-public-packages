@@ -218,6 +218,10 @@ abstract final class SolarButtonRecipe {
     'root.shadow|combined|md|variant=tertiary, danger=true|loading': 'none',
     'root.shadow|combined|md|variant=primary, danger=false|focus':
         't:shadow.focus.default',
+    'root.background|combined|md|variant=primary, danger=false|focus':
+        't:color.action.primary.bg.default',
+    'root.borderColor|combined|md|variant=primary, danger=false|focus':
+        't:color.action.primary.border.default',
     'root.shadow|combined|md|variant=primary, danger=true|focus':
         't:shadow.focus.danger',
     'root.shadow|combined|md|variant=secondary, danger=false|focus':
@@ -240,6 +244,10 @@ abstract final class SolarButtonRecipe {
     'root.shadow|combined|sm|variant=tertiary, danger=true|loading': 'none',
     'root.shadow|combined|sm|variant=primary, danger=false|focus':
         't:shadow.focus.default',
+    'root.background|combined|sm|variant=primary, danger=false|focus':
+        't:color.action.primary.bg.default',
+    'root.borderColor|combined|sm|variant=primary, danger=false|focus':
+        't:color.action.primary.border.default',
     'root.shadow|combined|sm|variant=primary, danger=true|focus':
         't:shadow.focus.danger',
     'root.shadow|combined|sm|variant=secondary, danger=false|focus':
@@ -252,6 +260,10 @@ abstract final class SolarButtonRecipe {
     'root.shadow|combined|lg|variant=primary, danger=false|disabled': 'none',
     'root.shadow|combined|lg|variant=primary, danger=false|focus':
         't:shadow.focus.default',
+    'root.background|combined|lg|variant=primary, danger=false|focus':
+        't:color.action.primary.bg.default',
+    'root.borderColor|combined|lg|variant=primary, danger=false|focus':
+        't:color.action.primary.border.default',
     'root.shadow|combined|lg|variant=primary, danger=false|loading': 'none',
     'root.shadow|combined|lg|variant=primary, danger=true|default': 'none',
     'root.shadow|combined|lg|variant=primary, danger=true|hover': 'none',
@@ -350,6 +362,12 @@ abstract final class SolarButtonRecipe {
         't:color.action.primary.icon.active',
     'iconLeading.color|appearance|variant=primary, danger=false|disabled':
         't:color.action.primary.icon.disabled',
+    'iconLeading.color|combined|md|variant=primary, danger=false|focus':
+        't:color.action.primary.icon.default',
+    'iconLeading.color|combined|sm|variant=primary, danger=false|focus':
+        't:color.action.primary.icon.default',
+    'iconLeading.color|combined|lg|variant=primary, danger=false|focus':
+        't:color.action.primary.icon.default',
     'spinner.present|base': 'b:false',
     'spinner.component|base': 'k:Spinner',
     'spinner.variant.size|base': 'k:sm',
@@ -450,6 +468,8 @@ abstract final class SolarButtonRecipe {
         't:typography.label.sm',
     'label.typography|combined|sm|variant=primary, danger=false|focus':
         't:typography.label.sm',
+    'label.color|combined|sm|variant=primary, danger=false|focus':
+        't:color.action.primary.text.default',
     'label.typography|combined|sm|variant=primary, danger=true|default':
         't:typography.label.sm',
     'label.typography|combined|sm|variant=primary, danger=true|hover':
@@ -502,10 +522,26 @@ abstract final class SolarButtonRecipe {
         't:typography.label.sm',
     'label.typography|combined|md|variant=tertiary, danger=false|hover':
         't:typography.link.md.hover',
+    'label.typography|combined|md|variant=tertiary, danger=false|pressed':
+        't:typography.label.md',
+    'label.typography|combined|md|variant=tertiary, danger=false|focus':
+        't:typography.label.md',
+    'label.color|combined|md|variant=primary, danger=false|focus':
+        't:color.action.primary.text.default',
     'label.typography|combined|lg|variant=secondary, danger=false|hover':
         't:typography.link.md.default',
+    'label.typography|combined|lg|variant=secondary, danger=false|pressed':
+        't:typography.label.md',
+    'label.typography|combined|lg|variant=secondary, danger=false|focus':
+        't:typography.label.md',
     'label.typography|combined|lg|variant=tertiary, danger=false|hover':
         't:typography.link.md.default',
+    'label.typography|combined|lg|variant=tertiary, danger=false|pressed':
+        't:typography.label.md',
+    'label.typography|combined|lg|variant=tertiary, danger=false|focus':
+        't:typography.label.md',
+    'label.color|combined|lg|variant=primary, danger=false|focus':
+        't:color.action.primary.text.default',
     'iconTrailing.present|base': 'b:false',
     'iconTrailing.component|base': 'k:Icon/None',
     'iconTrailing.variant.solid|base': 'k:false',
@@ -568,6 +604,12 @@ abstract final class SolarButtonRecipe {
         't:color.action.primary.icon.active',
     'iconTrailing.color|appearance|variant=primary, danger=false|disabled':
         't:color.action.primary.icon.disabled',
+    'iconTrailing.color|combined|md|variant=primary, danger=false|focus':
+        't:color.action.primary.icon.default',
+    'iconTrailing.color|combined|sm|variant=primary, danger=false|focus':
+        't:color.action.primary.icon.default',
+    'iconTrailing.color|combined|lg|variant=primary, danger=false|focus':
+        't:color.action.primary.icon.default',
     'counter.present|base': 'b:false',
     'counter.component|base': 'k:Counter',
     'counter.variant.type|base': 'k:inverted',

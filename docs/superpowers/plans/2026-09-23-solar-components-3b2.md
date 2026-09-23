@@ -252,6 +252,26 @@ Flutter suite pass, including a test that every generated glyph parses and paint
 - [ ] Tests: Button's generated files are byte-identical; a component with a state and no selector
       fails the build.
 
+**Done 2026-09-23**, with one bug found and fixed. `STATE_SELECTORS` and `OVERLAPS` are keyed by
+component (Button's entries as before; Spinner has none, so no states); `stateSelectors(component)`
+refuses a table that orders the states the fold knows otherwise than `BOOLEAN_STATES`, and a state
+the IR styles that the table lacks fails the build on both platforms. A state MUI marks with no
+class of its own (Text Input's `filled`) takes one the shell sets, `&.Solar<Name>-<state>`, the
+counter's convention. Flutter's precedence is `statePrecedence(component)`, the table reversed.
+Flutter's state tests needed no table: `WidgetState`s are the same whatever the control, so
+`stateTest` is one rule (a platform state its `WidgetState`, a prop state its prop, `disabled` also
+Flutter's own, and loading-aware where there is a `loading` prop, as Button's was). The style
+builder is chosen by the Flutter base (`BUILDERS`: `FilledButton` and `IconButton` take a
+`ButtonStyle`); a `FLUTTER_STYLE` table for a base with no builder, or a builder with no table,
+fails. **The bug:** the README said Flutter "resolves one state at a time and needs no" overlap
+restating. It does not: its lookup reads each cell from the strongest state that has one, and a
+mouse press is hovered and pressed at once, so a tertiary md or lg Button kept hover's underline
+while pressed, and a focused primary under the pointer drew hover's background, border, label and
+icon colours. The Flutter emitter now reads the style through `restateOverlaps` too, which added
+21 entries to `button.dart`, exactly the ones MUI already restated. The MUI and Spinner output is
+byte-identical. 489 tests and the Flutter suite pass, including two Dart tests that fail against the
+old recipe.
+
 ### Task A6: The visual checks for any component
 
 **Files:** modify `packages/components/test/visual/page.tsx`, `components.spec.mjs`,
@@ -266,6 +286,27 @@ component under both `test/visual/cases/`.
 - [ ] A component in `COMPONENTS` with no registry entry fails the check, so a new component
       cannot go unmeasured.
 - [ ] Tests: Button and Spinner pass unchanged; the self-check tests still name a planted break.
+
+**Done 2026-09-23.** A case module per component on both platforms: `packages/components/test/visual/cases/<name>.tsx`
+(a `VisualCase`: the oracle, and how to render one variant, its props from the oracle and its slots
+filled with probes), registered in `cases/index.ts`; `solar_flutter/test/visual/cases/<name>.dart`
+(how to build the widget with a states controller, and how to measure each oracle layer),
+registered in `cases/cases.dart`, with the generic loop in `harness.dart`. The web check runs for
+every component in `COMPONENTS` and fails when the page renders no cases for one; the Flutter check
+reads every oracle under `spec/verify/` and fails when one has no case, naming the file to add.
+Both proven by unregistering Spinner. The rest is generic: platform states are reached as before
+(web) or forced through the case's states controller (Flutter), prop states are the oracle's props,
+where the web layers are is `MUI_SLOTS`, the focus proof is the component's `STATE_SELECTORS` focus
+class where it has one, and a layer MUI draws in the root itself is hidden by its colour, not by
+name. **Composed children are generic too.** A layer the oracle names as another generated component
+(Button's spinner) is measured in its slot, on the web as the slot's first element and in Flutter by
+the child's own case (`layersAt`), then checked layer by layer against the child's oracle in the
+variant Figma picks. That replaces the hand-written spinner check, which compared the ring's size and
+two stroke colours; the whole Spinner is now compared inside Button, and still agrees. The child's
+excused entries are left to the child's own check. A new self-check test on each platform plants a
+wrong track colour on Button's Spinner and requires `spinner.track.borderColor` to be named. Not
+yet: glyphs are recorded in the oracle but not compared; Checkbox (C1) is the first component whose
+shell draws Figma's glyph, and adds the comparison.
 
 **Pause for review.**
 

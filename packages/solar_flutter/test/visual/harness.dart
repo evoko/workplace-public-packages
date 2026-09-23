@@ -1,0 +1,211 @@
+// The generic half of the Flutter visual checks: pumping one oracle variant of any component,
+// forcing its platform state, and comparing every layer with the oracle -- a composed child against
+// its own oracle. What is particular to a component is its case, under cases/.
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:solar_flutter/solar_flutter.dart';
+
+import 'compare.dart';
+
+/// What a case measures: each oracle layer's painted values.
+typedef Layers = Map<String, Map<String, Object?>>;
+
+/// How the checks render and measure one component.
+class VisualCase {
+  const VisualCase({required this.build, required this.measure, this.layersAt});
+
+  /// The widget in one oracle variant: its props from the oracle (the prop states, disabled and
+  /// loading, among them), every slot filled with a probe, and [states] as its states controller,
+  /// through which the harness forces the platform state.
+  final Widget Function(
+      Map<String, dynamic> variant, WidgetStatesController states) build;
+
+  /// Every oracle layer, measured from the pumped widget.
+  final Layers Function(WidgetTester tester) measure;
+
+  /// This component's layers where another draws it (Button's spinner), found at [at].
+  final Layers Function(WidgetTester tester, Finder at)? layersAt;
+}
+
+/// Every oracle the codegen generated, by component: one per component it generates.
+Map<String, Map<String, dynamic>> loadOracles() {
+  final out = <String, Map<String, dynamic>>{};
+  for (final f in Directory('../../spec/verify').listSync().whereType<File>()) {
+    if (!f.path.endsWith('.json')) continue;
+    final o = loadOracle(f.uri.pathSegments.last.replaceAll('.json', ''));
+    out[o['component'] as String] = o;
+  }
+  return out;
+}
+
+/// Each case in a tree of its own (a new key), so nothing animates from the previous one.
+Future<void> pump(WidgetTester tester, Widget child) async {
+  await tester.pumpWidget(
+    MaterialApp(
+      key: UniqueKey(),
+      theme: ThemeData(extensions: const [SolarTheme.light]),
+      home: Scaffold(body: Center(child: child)),
+    ),
+  );
+  await settle(tester);
+}
+
+/// Past every transition -- Material animates its text style for 200ms -- to the state's end
+/// value: one frame to start the animation, one after it has ended. Not pumpAndSettle: a loading
+/// button's spinner never settles.
+Future<void> settle(WidgetTester tester) async {
+  await tester.pump();
+  await tester.pump(const Duration(seconds: 1));
+}
+
+/// A stand-in icon that paints what the control's IconTheme gives it, so the colour and size an
+/// icon would take are what is measured.
+class IconProbe extends StatelessWidget {
+  const IconProbe({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = IconTheme.of(context);
+    return SizedBox.square(
+      dimension: theme.size,
+      child: ColoredBox(color: theme.color!),
+    );
+  }
+}
+
+/// The enum value an oracle names: by its Dart name, or by [figma] where the value is escaped.
+T enumNamed<T extends Enum>(List<T> values, String name,
+        [String Function(T)? figma]) =>
+    values.firstWhere((v) => v.name == name || figma?.call(v) == name);
+
+/// The platform states, as Flutter tracks them.
+const platformStates = {
+  'hover': WidgetState.hovered,
+  'pressed': WidgetState.pressed,
+  'focus': WidgetState.focused,
+};
+
+/// The painted text style of the paragraph showing [text].
+TextStyle paintedText(WidgetTester tester, String text) =>
+    tester.renderObject<RenderParagraph>(find.text(text)).text.style!;
+
+Map<String, Object?> textValues(TextStyle s) => {
+      'color': s.color,
+      'fontFamily': s.fontFamily,
+      'fontWeight': s.fontWeight,
+      'fontSize': s.fontSize,
+      'lineHeight': s.height! * s.fontSize!,
+      'letterSpacing': s.letterSpacing ?? 0,
+      'textDecoration':
+          s.decoration == TextDecoration.underline ? 'underline' : 'none',
+    };
+
+/// The child oracle's variant a parent's layer names: every axis it gives, by Figma's spelling.
+Map<String, dynamic> childVariant(
+    Map<String, dynamic> oracle, Map<String, dynamic> wanted) {
+  for (final v in (oracle['variants'] as List).cast<Map<String, dynamic>>()) {
+    final axes = {
+      for (final part in (v['figma'] as String).split(', '))
+        part.split('=')[0]: part.split('=')[1],
+    };
+    if (wanted.entries.every((e) => axes[e.key] == e.value)) return v;
+  }
+  throw StateError('${oracle['component']} has no variant $wanted');
+}
+
+/// Every variant of [component] against its oracle, as failures and excused gaps. [oracles] is every
+/// component's oracle, the one checked and those of its composed children; [only] limits the check
+/// to some variants, for the self-checks.
+Future<(List<Difference>, List<Difference>)> check(
+  WidgetTester tester,
+  String component,
+  Map<String, VisualCase> cases,
+  Map<String, Map<String, dynamic>> oracles, {
+  Set<String>? only,
+}) async {
+  final oracle = oracles[component]!;
+  final kase = cases[component]!;
+  final failures = <Difference>[];
+  final gaps = <Difference>[];
+  final variants = (oracle['variants'] as List).cast<Map<String, dynamic>>();
+  final atRest = variants.first['layers'] as Map<String, dynamic>;
+  for (final v in variants) {
+    final name = v['figma'] as String;
+    if (only != null && !only.contains(name)) continue;
+    final states = WidgetStatesController();
+    await pump(tester, kase.build(v, states));
+    final state = platformStates[v['state']];
+    if (state != null) {
+      states.update(state, true);
+      await settle(tester);
+    }
+    final painted = kase.measure(tester);
+    final excused = (v['excused'] as List?) ?? const [];
+    for (final MapEntry(key: layer, value: e)
+        in (v['layers'] as Map<String, dynamic>).entries) {
+      final expected = e as Map<String, dynamic>;
+      final got = painted[layer];
+      if (got == null) {
+        failures.add(Difference(name, layer, 'present', true, false));
+        continue;
+      }
+      // Shown by a prop (hidden at rest in Figma): measured whenever rendered. Hidden only in this
+      // variant: the state removes it, so it must not be drawn.
+      final byProp = (oracle['slots'] as Map).containsKey(layer) &&
+          (atRest[layer] as Map<String, dynamic>)['hidden'] == true;
+      if (expected['hidden'] == true && !byProp) {
+        if (got['drawn'] == true) {
+          failures.add(Difference(name, layer, 'hidden', true, false));
+        }
+        continue;
+      }
+      final child = oracles[expected['component']];
+      if (child != null) {
+        checkChild(name, layer, expected, got, child, failures);
+        continue;
+      }
+      compareLayer(name, layer, expected, got, excused, failures, gaps);
+    }
+  }
+  return (failures, gaps);
+}
+
+/// A composed child (Button's spinner) is the child component in the variant Figma picks; what that
+/// variant looks like is the child's oracle, so the two are checked together, layer by layer. What
+/// the child's oracle excuses is not compared here: the child's own check reports it.
+void checkChild(
+    String variant,
+    String layer,
+    Map<String, dynamic> expected,
+    Map<String, Object?> got,
+    Map<String, dynamic> oracle,
+    List<Difference> failures) {
+  if (got['drawn'] != true) {
+    failures.add(Difference(variant, layer, 'present', true, false));
+    return;
+  }
+  final want =
+      childVariant(oracle, expected['variant'] as Map<String, dynamic>);
+  final layers = got['layers']! as Layers;
+  final excused = (want['excused'] as List?) ?? const [];
+  for (final MapEntry(key: part, value: e)
+      in (want['layers'] as Map<String, dynamic>).entries) {
+    final spec = e as Map<String, dynamic>;
+    if (spec['hidden'] == true) continue;
+    final measured = layers[part];
+    if (measured == null) {
+      failures.add(Difference(variant, layer, '$part.present', true, false));
+      continue;
+    }
+    final own = <Difference>[];
+    compareLayer(variant, part, spec, measured, excused, own, <Difference>[]);
+    for (final d in own) {
+      failures.add(Difference(
+          variant, layer, '$part.${d.property}', d.figma, d.painted));
+    }
+  }
+}

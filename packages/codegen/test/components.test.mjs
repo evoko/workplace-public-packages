@@ -15,7 +15,7 @@ import {
   BOOLEAN_STATES,
   foldStateAxes,
 } from '../src/normalize/component-layers.mjs';
-import { STATE_PRECEDENCE } from '../src/emit/flutter-component.mjs';
+import { statePrecedence } from '../src/emit/flutter-component.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 
@@ -446,7 +446,7 @@ describe('states drawn as false/true axes', () => {
   });
 
   it('resolves two states in the order both emitters apply them', () => {
-    expect(BOOLEAN_STATES).toEqual(STATE_PRECEDENCE);
+    expect(BOOLEAN_STATES).toEqual(statePrecedence('Button'));
   });
 });
 

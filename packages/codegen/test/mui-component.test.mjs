@@ -5,7 +5,10 @@ import {
   renderMuiComponent,
   restateOverlaps,
   MUI_SLOTS,
+  MUI_SVG_LAYERS,
   OVERLAPS,
+  STATE_SELECTORS,
+  stateSelectors,
 } from '../src/emit/mui-component.mjs';
 import { writeFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -293,7 +296,8 @@ describe('states that overlap in CSS', () => {
             for (const [cell, e] of Object.entries(cells))
               if (e.restates) all.push({ layer, cell, state, by: e.restates });
     expect(all.length).toBeGreaterThan(0);
-    for (const { state, by } of all) expect(OVERLAPS[state]).toContain(by);
+    for (const { state, by } of all)
+      expect(OVERLAPS.Button[state]).toContain(by);
     // A disabled or loading MUI button takes no pointer and no focus: nothing to restate there.
     expect(all.some((x) => ['disabled', 'loading'].includes(x.state))).toBe(
       false,
@@ -302,5 +306,64 @@ describe('states that overlap in CSS', () => {
 
   it('leaves the IR itself as it was', () => {
     expect(JSON.stringify(button.style)).not.toContain('restates');
+  });
+});
+
+describe('state selectors, per component', () => {
+  const spinner = built.find((b) => b.spec.component === 'Spinner').spec;
+  const paint = { token: 'color.action.primary.bg.hover' };
+  /** A copy of a spec whose first layer with an appearance draws one more state there. */
+  const withState = (spec, state) => {
+    const copy = structuredClone(spec);
+    const [layer, s] = Object.entries(copy.style).find(
+      ([, x]) => Object.keys(x.appearance).length,
+    );
+    const combo = Object.keys(s.appearance)[0];
+    s.appearance[combo][state] = { background: paint };
+    return { copy, combo, layer };
+  };
+
+  it('styles a state by the component’s own table', () => {
+    const { copy, combo, layer } = withState(spinner, 'hover');
+    STATE_SELECTORS.Spinner = { default: null, hover: '&.SolarSpinner-hover' };
+    try {
+      const { styles: s } = renderMuiComponent(copy, tokens);
+      const at = MUI_SLOTS.Spinner[layer];
+      const node = s.appearances[combo]['&.SolarSpinner-hover'];
+      // An SVG layer takes its background as a fill.
+      expect(at === '&' ? node : node[at]).toMatchObject({
+        [MUI_SVG_LAYERS.Spinner.includes(layer) ? 'fill' : 'backgroundColor']:
+          'var(--solar-color-action-primary-bg-hover)',
+      });
+    } finally {
+      delete STATE_SELECTORS.Spinner;
+    }
+  });
+
+  it('refuses a state the component has no selector for, rather than leaving it unstyled', () => {
+    expect(() =>
+      renderMuiComponent(withState(spinner, 'hover').copy, tokens),
+    ).toThrow(/Spinner \w+: no MUI selector for state hover/);
+    expect(() =>
+      renderMuiComponent(withState(button, 'selected').copy, tokens),
+    ).toThrow(/Button root: no MUI selector for state selected/);
+  });
+
+  it('refuses a table that would let a weaker state win', () => {
+    const saved = STATE_SELECTORS.Button;
+    const { disabled, ...rest } = saved;
+    STATE_SELECTORS.Button = { default: null, disabled, ...rest };
+    try {
+      expect(() => stateSelectors('Button')).toThrow(
+        /Button: states must be ordered hover, pressed, focus, loading, disabled, weakest first/,
+      );
+    } finally {
+      STATE_SELECTORS.Button = saved;
+    }
+  });
+
+  it('gives a component with no table no states, and no overlaps', () => {
+    expect(stateSelectors('Spinner')).toEqual({ default: null });
+    expect(restateOverlaps(spinner)).toEqual(spinner.style);
   });
 });

@@ -7,8 +7,8 @@
  * JavaScript. The only exceptions are CSS keywords (`transparent`, `none`, `center`), letter
  * spacing derived from a text style token, and the literals the overlay explicitly allowed.
  *
- * What is MUI-specific lives here and nowhere else: which element of MUI's Button each IR layer
- * is (`MUI_SLOTS`), and which class MUI sets for each state (`STATE_SELECTORS`).
+ * What is MUI-specific lives here and nowhere else: which element of the MUI control each IR layer
+ * is (`MUI_SLOTS`), and which class MUI sets for each state (`STATE_SELECTORS`), per component.
  */
 
 import { join } from 'node:path';
@@ -16,6 +16,7 @@ import { flattenSpec } from '../spec.mjs';
 import { pascal } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
+import { BOOLEAN_STATES } from '../normalize/component-layers.mjs';
 import { canonical, letterSpacingEm } from './manifest.mjs';
 import { cssTextFeatures, featuresOf } from './text-features.mjs';
 
@@ -94,22 +95,43 @@ export const MUI_RESETS = {
 };
 
 /**
- * The selector MUI's Button uses for each state. Platform states are pseudo-classes, except focus,
- * which MUI marks with a class only for keyboard focus (focus-visible). `disabled` and `loading`
- * are props, and MUI sets a class for each. Order matters: at equal specificity the later rule
- * wins, so disabled comes last and beats hover, as it does in CSS.
+ * The selector each component's MUI control is in for each state, keyed like `MUI_SLOTS`. Platform
+ * states are pseudo-classes or the class MUI sets for them; a state that is a prop (`disabled`,
+ * `loading`, and Text Input's `error`) is the class MUI sets for the prop, or, where MUI has none,
+ * one the shell sets (`&.Solar<Name>-<state>`), as it does for the counter. Order matters: at equal
+ * specificity the later rule wins, so the stronger state comes later, as `BOOLEAN_STATES` orders
+ * them, and Flutter resolves them in the same order reversed (`statePrecedence`). A component with
+ * no table has no states; a state the IR keys an entry by and the table lacks is an error, so none
+ * can go unstyled.
  */
 export const STATE_SELECTORS = {
-  default: null,
-  hover: '&:hover',
-  pressed: '&:active',
-  focus: '&.Mui-focusVisible',
-  loading: '&.MuiButton-loading',
-  // MUI disables a loading button too, so a loading one carries Mui-disabled as well; without the
-  // :not it would draw in the disabled colours. A button both disabled and loading is disabled:
-  // the shell does not pass loading to MUI then.
-  disabled: '&.Mui-disabled:not(.MuiButton-loading)',
+  Button: {
+    default: null,
+    hover: '&:hover',
+    pressed: '&:active',
+    // MUI marks focus with a class only for keyboard focus (focus-visible).
+    focus: '&.Mui-focusVisible',
+    loading: '&.MuiButton-loading',
+    // MUI disables a loading button too, so a loading one carries Mui-disabled as well; without the
+    // :not it would draw in the disabled colours. A button both disabled and loading is disabled:
+    // the shell does not pass loading to MUI then.
+    disabled: '&.Mui-disabled:not(.MuiButton-loading)',
+  },
 };
+
+/** One component's state table: `{ default: null }` for a component with no states. */
+export function stateSelectors(component) {
+  const table = STATE_SELECTORS[component] ?? { default: null };
+  // The states the fold knows must keep its order, which is the order a platform resolves two at
+  // once; a table that put hover after disabled would let hover win.
+  const known = Object.keys(table).filter((s) => BOOLEAN_STATES.includes(s));
+  const want = BOOLEAN_STATES.filter((s) => known.includes(s)).reverse();
+  if (known.join() !== want.join())
+    throw new Error(
+      `${component}: states must be ordered ${want.join(', ')}, weakest first, not ${known.join(', ')}`,
+    );
+  return table;
+}
 
 const ALIGN = {
   MIN: 'flex-start',
@@ -260,24 +282,31 @@ function context(spec, tokens) {
 }
 
 /**
- * CSS states overlap where Figma's do not (`OVERLAPS`): a pressed button is hovered too.
- * Figma draws each state alone, and the IR lists only what a state changes, so a property hover
- * sets and pressed does not would stay hover's while pressed (tertiary's underline). Each state
- * therefore restates every cell an earlier one in the cascade sets, with its own value where it
- * has one and the resting value otherwise -- per size, since the resting value can depend on it --
- * which is what Flutter's one-state-at-a-time lookup draws. Returns the style with those entries
- * added, marked `restates`.
+ * Which earlier states in the cascade can hold at the same time as each state, per component, on
+ * both platforms: a pointer that presses a control is over it, so a pressed button is hovered too
+ * (in CSS and in Flutter's `WidgetState`s alike), and a focused one may be hovered or pressed. A
+ * disabled or loading Button (MUI marks loading disabled) takes no pointer and cannot keep focus,
+ * so it overlaps nothing. A component with no entry has no overlapping states.
  */
-/**
- * Which earlier states in the cascade can hold at the same time as each state, in MUI. A pressed
- * button is hovered; a focused one may be hovered or pressed. A disabled or loading one (MUI marks
- * loading disabled) takes no pointer events and cannot keep focus, so it overlaps nothing.
- */
-export const OVERLAPS = { pressed: ['hover'], focus: ['hover', 'pressed'] };
+export const OVERLAPS = {
+  Button: { pressed: ['hover'], focus: ['hover', 'pressed'] },
+};
 
+/**
+ * Where states overlap (`OVERLAPS`) and Figma draws each alone, a property an earlier state sets
+ * and a later one does not would stay the earlier one's: the IR lists only what a state changes, so
+ * a pressed tertiary Button, hovered too, would keep hover's underline. Both platforms blend that
+ * way -- CSS by the cascade, Flutter by looking each cell up in the strongest state that has it --
+ * and both emitters read the style through this. Each state restates every cell an earlier one sets,
+ * with its own value where it has one and the resting value otherwise, per size, since the resting
+ * value can depend on it. Returns the style with those entries added, marked `restates`.
+ */
 export function restateOverlaps(spec) {
   const style = structuredClone(spec.style);
-  const states = Object.keys(STATE_SELECTORS).filter((s) => s !== 'default');
+  const overlaps = OVERLAPS[spec.component] ?? {};
+  const states = Object.keys(stateSelectors(spec.component)).filter(
+    (s) => s !== 'default',
+  );
   const sizes = spec.api.size?.values ?? null;
   for (const s of Object.values(style)) {
     const combos = new Set([
@@ -292,7 +321,7 @@ export function restateOverlaps(spec) {
         s.size[size]?.[cell] ??
         s.base[cell];
       states.forEach((state) => {
-        const earlier = OVERLAPS[state] ?? [];
+        const earlier = overlaps[state] ?? [];
         const cells = new Set(
           earlier.flatMap((e) => [
             ...Object.keys(s.appearance[combo]?.[e] ?? {}),
@@ -370,6 +399,7 @@ export function renderMuiComponent(spec, tokens) {
       throw new Error(`${spec.component}: no MUI slot for layer ${layer}`);
 
   const { declare } = context(spec, tokens);
+  const selectors = stateSelectors(spec.component);
   const styles = {
     reset: structuredClone(MUI_RESETS[spec.component] ?? {}),
     root: {},
@@ -388,10 +418,10 @@ export function renderMuiComponent(spec, tokens) {
     }
   };
   const byState = (target, states, layer, at) => {
-    for (const state of Object.keys(STATE_SELECTORS)) {
+    for (const state of Object.keys(selectors)) {
       const cells = states[state];
       if (!cells) continue;
-      const sel = STATE_SELECTORS[state];
+      const sel = selectors[state];
       render(
         sel ? (target[sel] ??= {}) : target,
         layer,
@@ -400,7 +430,7 @@ export function renderMuiComponent(spec, tokens) {
       );
     }
     for (const state of Object.keys(states))
-      if (!(state in STATE_SELECTORS))
+      if (!(state in selectors))
         throw new Error(
           `${spec.component} ${layer}: no MUI selector for state ${state}`,
         );

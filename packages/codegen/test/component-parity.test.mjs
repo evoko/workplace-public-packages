@@ -11,7 +11,9 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { STATE_SELECTORS } from '../src/emit/mui-component.mjs';
+import { OVERLAPS, STATE_SELECTORS } from '../src/emit/mui-component.mjs';
+
+const SELECTORS = STATE_SELECTORS.Button;
 import { flattenSpec } from '../src/spec.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
@@ -162,7 +164,7 @@ describe('component parity: the API', () => {
 describe('component parity: states and appearances', () => {
   // MUI's selectors mapped back to the state they stand for.
   const bySelector = new Map(
-    Object.entries(STATE_SELECTORS)
+    Object.entries(SELECTORS)
       .filter(([, sel]) => sel)
       .map(([state, sel]) => [sel, state]),
   );
@@ -198,9 +200,7 @@ describe('component parity: states and appearances', () => {
       .exec(dart)[1]
       .match(/'(\w+)'/g)
       .map((s) => s.slice(1, -1));
-    const cssOrder = Object.keys(STATE_SELECTORS).filter(
-      (s) => s !== 'default',
-    );
+    const cssOrder = Object.keys(SELECTORS).filter((s) => s !== 'default');
     expect(order).toEqual([...cssOrder].reverse());
   });
 
@@ -360,7 +360,7 @@ describe('component parity: every entry, in place', () => {
     return out;
   }
 
-  it('Flutter holds each IR entry at its own key, with its own value', () => {
+  it('Flutter holds each IR entry at its own key, with its own value, and adds only restated overlaps', () => {
     const encode = (e) =>
       e.token
         ? `t:${e.token}`
@@ -378,7 +378,24 @@ describe('component parity: every entry, in place', () => {
         .join('|');
       expect(cells[key], key).toBe(encode(e));
     }
-    expect(Object.keys(cells)).toHaveLength(all.length);
+    // Beyond the IR, only what a state overlapping another restates (a pressed tertiary is hovered
+    // too), each with the value MUI holds under that state's selector.
+    const own = new Set(
+      all.map(({ layer, cell, section, size, combo, state }) =>
+        [`${layer}.${cell}`, section, size, combo, state]
+          .filter((x) => x !== undefined)
+          .join('|'),
+      ),
+    );
+    const extra = Object.keys(cells).filter((k) => !own.has(k));
+    expect(extra.length).toBeGreaterThan(0);
+    for (const key of extra) {
+      const [, section, size, combo, state] = key.split('|');
+      expect(section, key).toBe('combined');
+      expect(Object.keys(OVERLAPS.Button)).toContain(state);
+      const node = muiStyles.combined[size][combo][SELECTORS[state]];
+      expect(node, key).toBeDefined();
+    }
   });
 
   // The cells whose CSS property is one-to-one, on the layers MUI draws at the root.
@@ -392,7 +409,7 @@ describe('component parity: every entry, in place', () => {
     paddingLeft: ['paddingLeft', null],
     paddingRight: ['paddingRight', null],
   };
-  const selectorOf = new Map(Object.entries(STATE_SELECTORS));
+  const selectorOf = new Map(Object.entries(SELECTORS));
 
   it('MUI holds each colour, shadow, radius and spacing entry at its selector, with its value', () => {
     let checked = 0;

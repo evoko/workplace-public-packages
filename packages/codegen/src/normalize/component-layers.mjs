@@ -207,7 +207,8 @@ export function resolveVariants(set) {
 /**
  * States Figma draws as `false/true` axes, strongest first. It is the order a platform resolves
  * two at once -- a disabled control shows no hover -- and the order both emitters apply them in
- * (`STATE_PRECEDENCE`, reversed `STATE_SELECTORS`); a test holds the three together.
+ * (each component's `STATE_SELECTORS`, and its Flutter `statePrecedence`, which is that reversed);
+ * the MUI emitter refuses a table that orders these otherwise.
  */
 export const BOOLEAN_STATES = [
   'disabled',
