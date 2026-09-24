@@ -282,6 +282,13 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
   builder in `solar_flutter/variants/` and a case in `solar_flutter/test/visual/cases/`),
   registered, which both visual checks require of every generated component. The React scaffold
   also writes the component's story file, and both review surfaces then show it with no more work.
+- **Choosing which components come next** → `npm run solar:triage` (`bin/solar-triage.mjs`,
+  `src/report/triage.mjs`). It builds every SOLAR Web component's IR in memory and prints, per
+  component: whether it builds (and why not), its API, states and slots, what it composes and at
+  which level, the features it needs (`glyph`, `image`, `text`, per-side `sides`), and its findings
+  before any overlay, split into axis, zero-inset, boundable to a token, and no token. `-- --json`
+  gives the rows, `-- --all` adds patterns and views. It writes nothing and is not part of
+  `solar:codegen`.
 - **A new icon appeared in Figma** → nothing here either; re-run `npm run solar:icons`, and
   `src/normalize/icons.mjs` picks it up. An SVG feature the IR cannot represent — a gradient, a
   stroke, an arc — fails naming the file rather than being quietly dropped.

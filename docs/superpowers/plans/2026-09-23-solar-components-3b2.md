@@ -506,6 +506,13 @@ keeps the fallback for data without weights covered.
 
 **Pause for review.**
 
+> **Waves C to F are superseded (owner, 2026-09-24)** by
+> [Milestone 4, the library family by family](2026-09-24-solar-library-families.md), which builds
+> every component in SOLAR Web's components section. Their components and decisions are carried
+> into its families: Checkbox is F3's pioneer, StatusIndicator F1's, Tag F4's, Text Input F5's, Tab
+> Item and Tabs F8's, Card F10's, the Stepper parts are in F9, Dialog is F12's pioneer and Sparkline
+> F14's. The task text below is kept as the record of what was planned.
+
 ## Wave C — glyphs and labels
 
 ### Task C1: Checkbox

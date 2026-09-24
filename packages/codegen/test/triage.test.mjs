@@ -1,0 +1,98 @@
+/**
+ * The planning survey (`npm run solar:triage`): what it reports about the corpus, and how it
+ * counts findings. Its numbers move with Figma, so these pin its shape and a few facts the plan
+ * leans on, not the totals.
+ */
+
+import { describe, expect, it } from 'vitest';
+import { loadWebCatalog } from '../src/normalize/components.mjs';
+import { tokenNames } from '../src/normalize/recipe.mjs';
+import { loadContract } from '../src/normalize/tokens.mjs';
+import { COMPONENTS } from '../src/stages/components.mjs';
+import {
+  classify,
+  levels,
+  renderTriage,
+  triage,
+} from '../src/report/triage.mjs';
+
+const catalog = loadWebCatalog();
+const rows = triage(catalog, {
+  names: tokenNames(loadContract()),
+  done: new Set(COMPONENTS),
+});
+const row = (name) => rows.find((r) => r.name === name);
+
+describe('the triage of SOLAR Web', () => {
+  it('surveys the components section, sets and standalone ones, marking the generated ones', () => {
+    expect(rows.every((r) => r.section.startsWith('components/'))).toBe(true);
+    expect(rows.filter((r) => r.kind === 'set')).toHaveLength(119);
+    expect(
+      rows
+        .filter((r) => r.done)
+        .map((r) => r.name)
+        .sort(),
+    ).toEqual([...COMPONENTS].sort());
+  });
+
+  it('reports why a set does not build, and that standalone components have no axes yet', () => {
+    expect(row('Popover')).toMatchObject({ builds: false });
+    expect(row('Popover').error).toContain('per-side');
+    for (const r of rows.filter((r) => r.kind === 'standalone'))
+      expect(r.error, r.name).toContain('has no variant axes');
+  });
+
+  it('knows what each composes, and orders the levels by it', () => {
+    expect(row('Button Group').composes).toEqual(['Button']);
+    expect(row('Button').level).toBe(1);
+    expect(row('Button Group').level).toBe(2);
+    // Icons are instances too, but not components of the catalog.
+    expect(row('Card').composes).toEqual(['Tag']);
+  });
+
+  it('describes what a set is made of', () => {
+    expect(row('Checkbox').features).toContain('glyph');
+    expect(row('Tabs').features).toContain('sides');
+    // Button Group's divider has sides too, but without its overlay the recipe drops them
+    // unreported: the gap milestone 4's Task M2 closes, which will make this `sides` as well.
+    expect(row('Button Group').features).not.toContain('sides');
+    expect(row('Card').slots).toMatchObject({ content: 1, component: 1 });
+  });
+
+  it('renders a row per component under the totals', () => {
+    const md = renderTriage(rows, { fileVersion: catalog.fileVersion });
+    expect(md).toContain(`\`${catalog.fileVersion}\``);
+    expect(md.match(/^\| (?!Component|---)/gm)).toHaveLength(rows.length);
+    expect(md).toContain('| **Button** (done) |');
+  });
+});
+
+describe('counting findings', () => {
+  it('tells a zero inset from a boundable value and a governance gap', () => {
+    const unbound = (cell, figmaValue, suggest) => ({
+      kind: 'unbound',
+      cell,
+      figmaValue,
+      suggest,
+    });
+    expect(
+      classify(unbound('gap', '0, bound to no variable', ['inset.none'])),
+    ).toBe('zeroInset');
+    expect(
+      classify(unbound('width', '20, bound to no variable', ['icon.md'])),
+    ).toBe('boundable');
+    expect(classify(unbound('height', '36, bound to no variable', []))).toBe(
+      'noToken',
+    );
+    expect(classify({ kind: 'axis' })).toBe('axis');
+  });
+
+  it('stops at a cycle instead of following it', () => {
+    const [a, b] = levels([
+      { name: 'A', composes: ['B'] },
+      { name: 'B', composes: ['A'] },
+    ]);
+    expect(a.level).toBe(Infinity);
+    expect(b.level).toBe(Infinity);
+  });
+});
