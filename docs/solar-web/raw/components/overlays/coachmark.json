@@ -36,6 +36,10 @@
               6,
               6
             ],
+            "position": [
+              3,
+              3
+            ],
             "fills": [
               "{Color:surface/feedback/info/strong}"
             ],
@@ -47,6 +51,10 @@
             "size": [
               6,
               6
+            ],
+            "position": [
+              3,
+              3
             ],
             "fills": [
               "{Color:surface/feedback/info/strong}"
@@ -75,6 +83,10 @@
                 "size": [
                   14,
                   14
+                ],
+                "position": [
+                  -1,
+                  -1
                 ]
               }
             }
@@ -207,6 +219,10 @@
                       41,
                       15
                     ],
+                    "position": [
+                      124,
+                      2.5
+                    ],
                     "sizing": "FIXED/FIXED",
                     "fills": [
                       "{Color:text/inverse}"
@@ -297,6 +313,10 @@
               100,
               6
             ],
+            "position": [
+              320,
+              83
+            ],
             "layout": {
               "dir": "HORIZONTAL",
               "gap": 16,
@@ -338,6 +358,10 @@
                   6,
                   6
                 ],
+                "position": [
+                  -3,
+                  0
+                ],
                 "sizing": "FIXED/FIXED",
                 "fills": [
                   "{Color:surface/feedback/info/strong}"
@@ -353,6 +377,10 @@
                 "size": [
                   12,
                   12
+                ],
+                "position": [
+                  94,
+                  -3
                 ],
                 "sizing": "FIXED/FIXED"
               }
@@ -408,6 +436,22 @@
                 "size": [
                   100,
                   7
+                ],
+                "position": [
+                  -100,
+                  82
+                ]
+              },
+              "/Connector/Origin Dot": {
+                "position": [
+                  97,
+                  1
+                ]
+              },
+              "/Connector/Node End": {
+                "position": [
+                  -6,
+                  -2
                 ]
               }
             }
@@ -423,8 +467,8 @@
     "Biamp Design System",
     "1.0",
     "Coachmark",
-    "Description",
-    "Anchored step card for a guided product tour. The card carries the copy for one step; a connector runs from its edge to the element the step is about, so the user can see exactly what is being described. Use it for first-run tours, feature announcements tied to a specific control, and progressive disclosure of a multi-step workflow.",
+    "Usage",
+    "Anchored step card for a guided product tour. The card carries one step of copy; a connector runs from its edge to the element the step is about. Choose the side that points toward the target without the card covering it. Anatomy: Card (320px, surface/inverse, 16px padding, 20px gap) · Header = Title 20px text/inverse + Icon/Close · Body 12px text/inverse · Counter 14px text/tertiary · Button Group (regular, 8px gap) with two equal-width md secondary Buttons · Connector = Line + Origin Dot + Node End terminator, all surface/feedback/info/strong. Do not use for: hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog). A tour must always be skippable. Content: keep tours to 3–6 steps, one idea per step. Disable Back on step 1 and relabel Next to &quot;Done&quot; on the last step. The Counter intentionally uses text/tertiary — it is the one de-emphasised token that inverts opposite to the surface. text/secondary fails at 3.19:1 / 2.18:1; do not swap it. Esc dismisses the tour. The Connector is decorative.",
     "Anatomy",
     "Card                320px, surface/inverse, 16px padding, 20px gap, shared shadow effect style.\nHeader           Title (20px, text/inverse, centred) + Icon/Close glyph on the trailing edge.\nBody               12px, text/inverse, centred — the copy for this step.\nCounter          14px, text/tertiary, centred — position in the tour.\nButton Group  Regular, 8px gap, two equal-width md secondary Buttons.\nConnector      Line (100px) + Origin Dot at the card edge + a Node End terminator,\n                       all surface/feedback/info/strong.",
     "Variants",
@@ -434,8 +478,8 @@
     "Accessibility",
     "Role       role=\"dialog\" aria-modal=\"false\", aria-labelledby on the Title.\nFocus     Move focus to the card on every step change; keep Tab order inside it.\nSR          Announce step changes via aria-live=\"polite\"; the Counter reads \"Step 1 of 6\".\nKeys      Esc dismisses the tour. Back, Next and close are real buttons, not divs.\nTarget    The Connector is decorative.",
     "Rules",
-    "DO   Point the connector at the element the step describes\nDO   Keep the tour to 3–6 steps, one idea per step\nDO   Disable Back on step 1 and label the last action \"Done\"\nDO   Let Esc and the close glyph exit the whole tour",
-    "DON'T   Use a Coachmark for a hover hint — that's Tooltip\nDON'T   Block the UI behind a scrim — a tour is not a Dialog\nDON'T   Let the card cover the element it is pointing at\nDON'T   Make a coachmark the only route to a feature"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   use for: hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog)."
   ],
   "pageContext": null
 }

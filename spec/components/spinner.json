@@ -75,29 +75,29 @@
           "from": "size=sm, style=default"
         },
         "gap": {
-          "token": "inset.none",
+          "token": "stack.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial chapter). Decided once here, as the paddings are."
         },
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "width": {
           "keyword": "HUG",
@@ -357,7 +357,7 @@
     "pageId": "2163:3681",
     "figmaNode": "4626:102",
     "defaultVariant": "size=sm, style=default",
-    "fileVersion": "2402412754718078809"
+    "fileVersion": "2402690438319512660"
   },
   "overlay": {
     "file": "spec/overlay/spinner.yaml",
@@ -389,8 +389,15 @@
       },
       {
         "rule": "bind",
-        "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft, root.gap",
-        "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "at": "root.gap",
+        "reason": "Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial chapter). Decided once here, as the paddings are.",
+        "from": "spec/overlay/defaults.yaml",
+        "default": "zero-gaps"
+      },
+      {
+        "rule": "bind",
+        "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

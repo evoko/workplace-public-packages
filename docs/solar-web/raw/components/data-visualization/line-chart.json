@@ -67,6 +67,10 @@
                   600,
                   204
                 ],
+                "position": [
+                  0,
+                  0
+                ],
                 "strokes": [
                   "{Color:data/category/06/strong}"
                 ],
@@ -463,6 +467,10 @@
                     600,
                     176
                   ],
+                  "position": [
+                    0,
+                    0
+                  ],
                   "strokes": [
                     "{Color:data/category/02/strong}"
                   ],
@@ -838,6 +846,10 @@
                   "size": [
                     343,
                     136
+                  ],
+                  "position": [
+                    0,
+                    0
                   ],
                   "strokes": [
                     "{Color:data/category/02/strong}"

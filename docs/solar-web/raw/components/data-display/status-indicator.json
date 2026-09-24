@@ -169,6 +169,10 @@
                   2,
                   9
                 ],
+                "position": [
+                  9,
+                  6
+                ],
                 "sizing": null,
                 "geometry": [
                   {
@@ -188,6 +192,10 @@
                   "size": [
                     20,
                     17
+                  ],
+                  "position": [
+                    0,
+                    1.44
                   ],
                   "fills": [
                     "{Color:surface/feedback/warning/strong}"
@@ -247,6 +255,10 @@
                   2,
                   7
                 ],
+                "position": [
+                  7.2,
+                  4.8
+                ],
                 "sizing": null,
                 "geometry": [
                   {
@@ -266,6 +278,10 @@
                   "size": [
                     16,
                     14
+                  ],
+                  "position": [
+                    0,
+                    1
                   ],
                   "fills": [
                     "{Color:surface/feedback/warning/strong}"
@@ -325,6 +341,10 @@
                   10,
                   10
                 ],
+                "position": [
+                  5,
+                  5
+                ],
                 "sizing": null,
                 "geometry": [
                   {
@@ -344,6 +364,10 @@
                   "size": [
                     20,
                     20
+                  ],
+                  "position": [
+                    0,
+                    0
                   ],
                   "fills": [
                     "{Color:surface/feedback/danger/strong}"
@@ -403,6 +427,10 @@
                   8,
                   8
                 ],
+                "position": [
+                  4,
+                  4
+                ],
                 "sizing": null,
                 "geometry": [
                   {
@@ -422,6 +450,10 @@
                   "size": [
                     16,
                     16
+                  ],
+                  "position": [
+                    0,
+                    0
                   ],
                   "fills": [
                     "{Color:surface/feedback/danger/strong}"
@@ -487,6 +519,10 @@
                   "size": [
                     20,
                     20
+                  ],
+                  "position": [
+                    0,
+                    0
                   ],
                   "layout": {
                     "dir": "HORIZONTAL",
@@ -587,6 +623,10 @@
                     16,
                     16
                   ],
+                  "position": [
+                    0,
+                    0
+                  ],
                   "layout": {
                     "dir": "HORIZONTAL",
                     "gap": 0,
@@ -685,6 +725,10 @@
                   "size": [
                     20,
                     20
+                  ],
+                  "position": [
+                    0,
+                    0
                   ],
                   "layout": {
                     "dir": "VERTICAL",
@@ -785,6 +829,10 @@
                     20,
                     20
                   ],
+                  "position": [
+                    0,
+                    0
+                  ],
                   "layout": {
                     "dir": "VERTICAL",
                     "gap": 0,
@@ -883,6 +931,10 @@
                     20,
                     20
                   ],
+                  "position": [
+                    0,
+                    0
+                  ],
                   "layout": {
                     "dir": "VERTICAL",
                     "gap": 0,
@@ -980,6 +1032,10 @@
                   "size": [
                     16,
                     16
+                  ],
+                  "position": [
+                    0,
+                    0
                   ],
                   "layout": {
                     "dir": "VERTICAL",
@@ -1080,6 +1136,10 @@
                     16,
                     16
                   ],
+                  "position": [
+                    0,
+                    0
+                  ],
                   "layout": {
                     "dir": "VERTICAL",
                     "gap": 0,
@@ -1177,6 +1237,10 @@
                   "size": [
                     16,
                     16
+                  ],
+                  "position": [
+                    0,
+                    0
                   ],
                   "layout": {
                     "dir": "VERTICAL",

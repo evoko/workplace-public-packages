@@ -128,7 +128,7 @@ Default variant: `state=default` · 3 variants · default size 320×720px
       - **SectionHeading** · text `body/sm/medium` "Tags" · HUG/HUG · 27×9  
         fill `color.text.secondary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.500`
       - **TagCluster** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 288×56  
-        itemSpacing `stack.xs`
+        itemSpacing `stack.xs` · counterAxisSpacing `inset.xs`
         - **Tag** · instance of **Tag** (status=neutral, type=status, invert=false) · row gap 8 pad 0/12/0/8 HUG/FIXED · 76×24  
           fill `color.surface.feedback.neutral.subtle` · stroke `color.border.medium` 1px · itemSpacing `inset.xs` · padding `inset.xs`, `inset.none`, `inset.sm` · strokeWeight `border.default` · radius `radius.pill`
         - **Tag** · instance of **Tag** (status=neutral, type=status, invert=false) · row gap 8 pad 0/12/0/8 HUG/FIXED · 62×24  
@@ -185,13 +185,15 @@ Default variant: `state=default` · 3 variants · default size 320×720px
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**FilterPanel**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+**Usage**
+
+FilterPanel chassis. Staged-apply (apply-button) is the canonical default per hardening review §4.1. Section children take Expanded:Boolean as a component property. Slot-based composition — consumers drop FilterSection (or any) instances into the Sections region.
 
 **Anatomy**
 

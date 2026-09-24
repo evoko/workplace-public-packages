@@ -449,6 +449,10 @@
                     393,
                     220
                   ],
+                  "position": [
+                    0,
+                    580
+                  ],
                   "layout": {
                     "dir": "VERTICAL",
                     "gap": 0,
@@ -505,6 +509,7 @@
                     "sizing": "FILL/HUG"
                   },
                   "vars": {
+                    "itemSpacing": "Spatial:inset/xs",
                     "paddingTop": "Spatial:inset/xs",
                     "paddingBottom": "Spatial:inset/xs"
                   }

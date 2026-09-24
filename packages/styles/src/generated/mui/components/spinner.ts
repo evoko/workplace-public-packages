@@ -38,7 +38,7 @@ export const solarSpinnerStyles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 'var(--solar-inset-none)',
+    gap: 'var(--solar-stack-none)',
     paddingTop: 'var(--solar-inset-none)',
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',

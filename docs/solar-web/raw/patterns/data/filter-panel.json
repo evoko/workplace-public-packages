@@ -1383,7 +1383,8 @@
                       "sizing": "FILL/HUG"
                     },
                     "vars": {
-                      "itemSpacing": "Spatial:stack/xs"
+                      "itemSpacing": "Spatial:stack/xs",
+                      "counterAxisSpacing": "Spatial:inset/xs"
                     },
                     "children": [
                       {
@@ -2044,9 +2045,9 @@
     "SOLAR®",
     "Biamp Design System",
     "1.0",
-    "Filter Panel",
-    "Description",
-    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "FilterPanel",
+    "Usage",
+    "FilterPanel chassis. Staged-apply (apply-button) is the canonical default per hardening review §4.1. Section children take Expanded:Boolean as a component property. Slot-based composition — consumers drop FilterSection (or any) instances into the Sections region.",
     "Anatomy",
     "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
     "States",

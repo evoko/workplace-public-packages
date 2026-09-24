@@ -1653,8 +1653,8 @@
     "Biamp Design System",
     "1.0",
     "Sidebar Locations",
-    "Description",
-    "Location tree sidebar: organization header with count and quick actions, search, and a Tree Navigation Panel of campuses, buildings, floors and spaces. Covers empty, filled, searching, no-results and inline-rename states.",
+    "Usage",
+    "Location tree sidebar composing SearchField, Counter and Tree Navigation Panel; states: empty, filled, search, no-results, rename. Migrated from Chatter Config 2026-09-01.",
     "Anatomy",
     "324×744 panel on surface/raised with radius/container and inset/md padding. Org Title row (title/sm name, Counter, HelpCircle + Plus icons), SearchField (md, hasFilter), then Tree Navigation Panel or Empty State depending on state.",
     "States",
@@ -1662,8 +1662,8 @@
     "Usage",
     "Keep the org name to one line; the Counter reflects total locations.\nPlus creates a location; HelpCircle opens location help.\nUse the no-results state for unmatched queries, never a blank panel.",
     "Rules",
-    "DO   Scope the tree to the active organization\nDO   Keep hierarchy: campus → building → floor → space\nDO   Preserve selection when search clears",
-    "DON’T   Mix devices into the location tree\nDON’T   Hide the search below the fold\nDON’T   Use for app navigation (use Sidebar)"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

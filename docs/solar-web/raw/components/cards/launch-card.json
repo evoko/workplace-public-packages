@@ -129,6 +129,10 @@
                   32,
                   32
                 ],
+                "position": [
+                  292,
+                  16
+                ],
                 "layout": {
                   "dir": "HORIZONTAL",
                   "gap": 0,
@@ -974,8 +978,8 @@
     "Biamp Design System",
     "1.0",
     "Launch Card",
-    "Description",
-    "App tile for launch surfaces: cover image with favourite action, App Icon and name, short description and a Button Group. The page also carries Launch Card Full Screen, the expanded detail layout with feature copy.",
+    "Usage",
+    "App launch tile: cover image + favourite, App Icon, name, description, Open/Learn more actions; access=false swaps in Request access. Companion Launch Card Full Screen on the same page. Migrated from Chatter Config 2026-09-01.",
     "Anatomy",
     "340×325 card on surface/dialog with radius/dialog. Image area (surface/muted) with a round tertiary Icon Button favourite on color/alpha/white-60; content with App Icon + title/xs name, body/sm description, Button Group. Full Screen: 979×460 surface/raised, image slot left, intro + three feature paragraphs and a md Open button right.",
     "Variants & props",
@@ -983,8 +987,8 @@
     "Usage",
     "Use access=false for apps outside the user’s license.\nKeep descriptions to two lines.\nUse Full Screen for the app detail overlay, not in grids.",
     "Rules",
-    "DO   Use official product names and App Icons\nDO   Keep Open as the only primary action\nDO   Show Request access when access=false",
-    "DON’T   Show two primary buttons\nDON’T   Hide the Learn more path\nDON’T   Use for non-app content (use Card)"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

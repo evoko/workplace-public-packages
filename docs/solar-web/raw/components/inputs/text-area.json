@@ -246,6 +246,10 @@
                   32,
                   32
                 ],
+                "position": [
+                  240,
+                  80
+                ],
                 "layout": {
                   "dir": "HORIZONTAL",
                   "gap": 0,
@@ -289,6 +293,10 @@
                 "size": [
                   32,
                   32
+                ],
+                "position": [
+                  8,
+                  80
                 ],
                 "layout": {
                   "dir": "HORIZONTAL",
@@ -484,6 +492,18 @@
                   "fontSize": "Type:size/body/sm"
                 }
               },
+              "/Field/Icon Button": {
+                "position": [
+                  160,
+                  60
+                ]
+              },
+              "/Field/Icon Button#2": {
+                "position": [
+                  8,
+                  60
+                ]
+              },
               "/Footer": {
                 "size": [
                   200,
@@ -606,6 +626,18 @@
                   "lineHeight": "Type:line-height/body/sm",
                   "fontSize": "Type:size/body/sm"
                 }
+              },
+              "/Field/Icon Button": {
+                "position": [
+                  160,
+                  60
+                ]
+              },
+              "/Field/Icon Button#2": {
+                "position": [
+                  8,
+                  60
+                ]
               },
               "/Footer": {
                 "size": [
@@ -751,6 +783,10 @@
                   "prio": "primary",
                   "state": "default"
                 },
+                "position": [
+                  160,
+                  60
+                ],
                 "fills": [
                   "{Color:action/primary/bg/default}"
                 ],
@@ -759,6 +795,12 @@
                 ],
                 "strokeWeight": 1,
                 "effectStyle": "shadow/control"
+              },
+              "/Field/Icon Button#2": {
+                "position": [
+                  8,
+                  60
+                ]
               },
               "/Footer": {
                 "size": [
@@ -930,6 +972,12 @@
                   "fontSize": "Type:size/body/sm"
                 }
               },
+              "/Field/Icon Button": {
+                "position": [
+                  160,
+                  60
+                ]
+              },
               "/Field/Icon Button#2": {
                 "variant": {
                   "size": "sm",
@@ -937,6 +985,10 @@
                   "prio": "secondary",
                   "state": "disabled"
                 },
+                "position": [
+                  8,
+                  60
+                ],
                 "fills": null,
                 "strokes": [
                   "{Color:border/disabled}"
@@ -1127,6 +1179,10 @@
                   "prio": "primary",
                   "state": "default"
                 },
+                "position": [
+                  160,
+                  60
+                ],
                 "fills": [
                   "{Color:action/primary/bg/default}"
                 ],
@@ -1135,6 +1191,12 @@
                 ],
                 "strokeWeight": 1,
                 "effectStyle": "shadow/control"
+              },
+              "/Field/Icon Button#2": {
+                "position": [
+                  8,
+                  60
+                ]
               },
               "/Footer": {
                 "size": [
@@ -1298,6 +1360,10 @@
                   "prio": "primary",
                   "state": "default"
                 },
+                "position": [
+                  160,
+                  60
+                ],
                 "fills": [
                   "{Color:action/primary/bg/default}"
                 ],
@@ -1306,6 +1372,12 @@
                 ],
                 "strokeWeight": 1,
                 "effectStyle": "shadow/control"
+              },
+              "/Field/Icon Button#2": {
+                "position": [
+                  8,
+                  60
+                ]
               },
               "/Footer": {
                 "size": [

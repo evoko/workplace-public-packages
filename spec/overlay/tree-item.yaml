@@ -11,5 +11,5 @@ layerNames:
     reason: >-
       A second label, added only in state=edit, whose text is `|Label`: the row's label as the
       inline input of a rename, with the caret drawn into its text. Its name and the label's reduce
-      to one; this names what it is. Whether rename is meant to be a variant goes to the design
-      review with Tree Item's family (F8).
+      to one; this names what it is. `edit` stays one of Tree Item's states, as SOLAR draws it
+      (design team, 2026-09-24).

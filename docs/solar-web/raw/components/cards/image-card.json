@@ -207,6 +207,10 @@
                   3,
                   14
                 ],
+                "position": [
+                  181,
+                  25
+                ],
                 "sizing": "FIXED/FIXED",
                 "fills": [
                   "{Color:icon/secondary}"
@@ -465,8 +469,8 @@
     "Biamp Design System",
     "1.0",
     "Image Card",
-    "Description",
-    "Selectable thumbnail tile with a title and metadata line. Used for visual entities such as floor plans and maps; the empty variant is a dashed create-new tile.",
+    "Usage",
+    "Migrated from Chatter Config 2026-09-01.",
     "Anatomy",
     "200×190 card on surface/base with radius/container and shadow/raised. Image area (surface/background + image fill) hosting a Checkbox when selectable; text area with label/md title, body/sm metadata and a more-menu glyph in icon/secondary.",
     "Variants & props",
@@ -474,8 +478,8 @@
     "Usage",
     "Show the checkbox only on hover or when selected.\nKeep titles to one line; metadata to one short line.\nUse the create-new tile as the last item of a grid.",
     "Rules",
-    "DO   Keep one aspect ratio across a grid\nDO   Use real content thumbnails when available\nDO   Route actions through the more menu",
-    "DON’T   Mix filled and empty tiles mid-grid\nDON’T   Put buttons inside the image area\nDON’T   Use for list layouts (use Interactive Card)"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

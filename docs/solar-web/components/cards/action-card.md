@@ -114,13 +114,13 @@ Default variant: `status=default, state=default, layout=vertical` · 6 variants 
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+ROLE: composition of Card. The single interactive composition of Card. Whole-surface click affordance for onboarding checklists, empty-state CTAs, and feature promos. ANATOMY Card surface + fixed Body anatomy: leading Icon (instance swap, 24px) → Title → Description → CTA row (Button Group instance swap). COMPOSITION CONTRACT Action Card is (taxonomy-intent) a Card instance with clickable=true pinned. Current build is a detached copy of Card, not a Card instance — graduation to a true Card instance requires owner call (see Open Items). Downstream consumers instance Action Card, not Card + manual content. IS NOT • Not a generic clickable Card wrapper — if a consumer needs a bespoke clickable body (Device Card, Billing Card), use Card with clickable=true directly. • Action Card is specifically the icon-title-description-CTA pattern. • Not a Button-in-a-Card — the surface itself is the control. • Not a list-row — that’s List.
 
 **Anatomy**
 

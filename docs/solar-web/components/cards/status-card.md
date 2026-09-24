@@ -77,13 +77,13 @@ Default variant: `status=success, state=default, ghost=false` · 16 variants · 
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+Compact card that reports the status of one thing — a device, service or job — with a feedback-coloured indicator, title and value. Status is conveyed by icon + label, not colour alone.
 
 **Anatomy**
 

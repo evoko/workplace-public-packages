@@ -62,6 +62,10 @@
               160,
               0
             ],
+            "position": [
+              0,
+              24
+            ],
             "strokes": [
               "{Color:border/subtle}"
             ],
@@ -148,7 +152,17 @@
           ],
           "strokes": [
             "{Color:border/subtle}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Half-hour rule": {
+                "position": [
+                  0,
+                  16
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=hover, density=compact",
@@ -167,6 +181,12 @@
               "/": {
                 "fills": [
                   "{Color:surface/hover}"
+                ]
+              },
+              "/Half-hour rule": {
+                "position": [
+                  0,
+                  16
                 ]
               }
             }
@@ -193,6 +213,12 @@
                 "strokes": [
                   "{Color:border/feedback/focus/strong}"
                 ]
+              },
+              "/Half-hour rule": {
+                "position": [
+                  0,
+                  16
+                ]
               }
             }
           }
@@ -207,8 +233,8 @@
     "Biamp Design System",
     "1.0",
     "Time Slot",
-    "Description",
-    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Usage",
+    "Empty cell used to tile the Week and Day time grids. Top + left borders so cells visually compose into a grid. Half-hour rule indicates the 30-minute split. Selected state shows a focus-bound border for click-to-create-event.",
     "Anatomy",
     "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
     "States",

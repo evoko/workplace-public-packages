@@ -37,13 +37,13 @@ Instance census (tree capped at depth 3): Event Chip ×105, Icon/Repeat ×105, D
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+Composed Month View pattern. Wires up Calendar Toolbar (top), Weekday Header row (7 cells with today emphasis on the current weekday), and a 5-week × 7-day grid of Day Cell instances. Demonstrates: default emphasis, today (filled inverse pill), today-column (light info bg running down the today column), other-month (dimmed), plus all three Event Chip styles (subtle/tinted/solid) across the data/category palette. Use as a copy-detach starting point for any Calendar / Scheduling view — instance the component into a VIEWS page, then detach to populate with real events.
 
 **Anatomy**
 

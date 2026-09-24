@@ -18,7 +18,7 @@ and the gallery cannot drift from what is checked:
   oracle says that variant looks like.
 - **Light and Dark** from the toolbar: `data-theme` on the page, which tokens.css switches, as in
   an app. The visual checks measure Light only, so Dark is where this surface sees what they
-  cannot. (It found SOLAR's first Dark defect this way: `docs/solar-review-for-design.md`, section 10.)
+  cannot. (It found SOLAR's first Dark defect this way: `docs/solar-review-for-design.md`, section 8, action colours.)
 
 `stories/solar.tsx` builds both stories for any component. A component's story file only names it,
 and `npm run solar:scaffold <Name>` writes it with the shell; a codegen test fails for a generated

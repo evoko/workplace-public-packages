@@ -158,7 +158,7 @@ Default variant: `type=with label` · 4 variants · default size 350×41px
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Description and Accessibility sections hold the Breadcrumbs page's text; they do not describe this component.
 
 ## Documentation card
 

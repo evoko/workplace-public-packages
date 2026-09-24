@@ -162,9 +162,9 @@ Uses: Icon/Map ×1, Icon/Building ×1, Icon/Section ×1, Icon/Floor ×1, Icon/Ar
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Location tree sidebar: organization header with count and quick actions, search, and a Tree Navigation Panel of campuses, buildings, floors and spaces. Covers empty, filled, searching, no-results and inline-rename states.
+Location tree sidebar composing SearchField, Counter and Tree Navigation Panel; states: empty, filled, search, no-results, rename. Migrated from Chatter Config 2026-09-01.
 
 **Anatomy**
 
@@ -186,10 +186,6 @@ Use the no-results state for unmatched queries, never a blank panel.
 
 **Rules**
 
-- DO: Scope the tree to the active organization
-- DO: Keep hierarchy: campus → building → floor → space
-- DO: Preserve selection when search clears
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-DON’T Mix devices into the location tree  
-DON’T Hide the search below the fold  
-DON’T Use for app navigation (use Sidebar)
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

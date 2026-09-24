@@ -148,9 +148,9 @@ Expanded app detail layout: image slot, app identity, intro + feature copy, Open
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-App tile for launch surfaces: cover image with favourite action, App Icon and name, short description and a Button Group. The page also carries Launch Card Full Screen, the expanded detail layout with feature copy.
+App launch tile: cover image + favourite, App Icon, name, description, Open/Learn more actions; access=false swaps in Request access. Companion Launch Card Full Screen on the same page. Migrated from Chatter Config 2026-09-01.
 
 **Anatomy**
 
@@ -170,10 +170,6 @@ Use Full Screen for the app detail overlay, not in grids.
 
 **Rules**
 
-- DO: Use official product names and App Icons
-- DO: Keep Open as the only primary action
-- DO: Show Request access when access=false
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-DON’T Show two primary buttons  
-DON’T Hide the Learn more path  
-DON’T Use for non-app content (use Card)
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

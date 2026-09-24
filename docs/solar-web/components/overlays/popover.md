@@ -59,13 +59,13 @@ Default variant: `placement=top, size=md` · 8 variants · default size 320×100
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+Anchored overlay with an arrow for rich content — a title, body text and optionally controls — opened from a trigger. Uses shadow/overlay at the overlay z level; dismisses on Esc or outside click; focus moves into it only when it contains controls.
 
 **Anatomy**
 

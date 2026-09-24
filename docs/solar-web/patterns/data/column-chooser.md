@@ -149,13 +149,13 @@ Default variant: `selected=true, hover=false` · 4 variants · default size 296�
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+Panel for showing, hiding and reordering DataTable columns: title with a Counter, search, a draggable ColumnRow list and a footer Button. Changes apply live; the footer resets to the table default.
 
 **Anatomy**
 

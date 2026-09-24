@@ -45,13 +45,15 @@ Default variant: `columns=2` · 3 variants · default size 640×76px
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**FormRow**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+**Usage**
+
+FormRow arranges 2, 3, or 4 form controls (TextInput, Select, etc.) in a single horizontal row with equal-width columns and a consistent gap (stack/md). Slots default to TextInput; swap per column for any other control. Collapses to stacked controls under ~640px viewport. Draft — authored by Claude.
 
 **Anatomy**
 

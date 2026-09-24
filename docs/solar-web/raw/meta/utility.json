@@ -223,6 +223,10 @@
                       108,
                       15
                     ],
+                    "position": [
+                      24,
+                      145
+                    ],
                     "sizing": "FIXED/FIXED",
                     "fills": [
                       "{Primitives:color/neutral/700}"

@@ -93,27 +93,27 @@
         "gap": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial chapter). Decided once here, as the paddings are."
         },
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "width": {
           "literal": 32,
@@ -123,7 +123,7 @@
         "height": {
           "literal": 32,
           "from": "size=sm, shape=square, prio=primary, state=default",
-          "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 4)."
+          "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 3, described sizes)."
         }
       },
       "size": {
@@ -136,7 +136,7 @@
           "height": {
             "literal": 40,
             "from": "size=md, shape=square, prio=primary, state=default",
-            "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 4)."
+            "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 3, described sizes)."
           }
         },
         "lg": {
@@ -148,7 +148,7 @@
           "height": {
             "literal": 48,
             "from": "size=lg, shape=square, prio=primary, state=default",
-            "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 4)."
+            "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 3, described sizes)."
           }
         }
       },
@@ -1784,7 +1784,7 @@
     "pageId": "2163:3670",
     "figmaNode": "2995:443",
     "defaultVariant": "size=sm, shape=square, prio=primary, state=default",
-    "fileVersion": "2402412754718078809"
+    "fileVersion": "2402690438319512660"
   },
   "overlay": {
     "file": "spec/overlay/icon-button.yaml",
@@ -1822,7 +1822,7 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 4)."
+        "reason": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the design review lists (section 3, described sizes)."
       },
       {
         "rule": "allowLiteral",
@@ -1846,8 +1846,15 @@
       },
       {
         "rule": "bind",
-        "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft, root.gap",
-        "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "at": "root.gap",
+        "reason": "Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial chapter). Decided once here, as the paddings are.",
+        "from": "spec/overlay/defaults.yaml",
+        "default": "zero-gaps"
+      },
+      {
+        "rule": "bind",
+        "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

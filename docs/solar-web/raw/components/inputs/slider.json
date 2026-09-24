@@ -41,6 +41,10 @@
               320,
               4
             ],
+            "position": [
+              0,
+              8
+            ],
             "fills": [
               "{Color:surface/muted}"
             ],
@@ -59,6 +63,10 @@
               160,
               4
             ],
+            "position": [
+              0,
+              8
+            ],
             "fills": [
               "{Color:action/primary/bg/default}"
             ],
@@ -76,6 +84,10 @@
             "size": [
               16,
               16
+            ],
+            "position": [
+              150,
+              2
             ],
             "fills": [
               "{Color:surface/base}"
@@ -153,6 +165,10 @@
                 "size": [
                   14,
                   14
+                ],
+                "position": [
+                  151,
+                  3
                 ],
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
@@ -236,6 +252,10 @@
               320,
               4
             ],
+            "position": [
+              0,
+              8
+            ],
             "fills": [
               "{Color:surface/muted}"
             ],
@@ -254,6 +274,10 @@
               160,
               4
             ],
+            "position": [
+              80,
+              8
+            ],
             "fills": [
               "{Color:action/primary/bg/default}"
             ],
@@ -271,6 +295,10 @@
             "size": [
               16,
               16
+            ],
+            "position": [
+              70,
+              2
             ],
             "fills": [
               "{Color:surface/base}"
@@ -294,6 +322,10 @@
             "size": [
               16,
               16
+            ],
+            "position": [
+              230,
+              2
             ],
             "fills": [
               "{Color:surface/base}"
@@ -394,6 +426,10 @@
                   14,
                   14
                 ],
+                "position": [
+                  71,
+                  3
+                ],
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
@@ -410,6 +446,10 @@
                 "size": [
                   14,
                   14
+                ],
+                "position": [
+                  231,
+                  3
                 ],
                 "fills": [
                   "{Color:action/primary/bg/disabled}"

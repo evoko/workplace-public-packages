@@ -474,6 +474,10 @@ describe('the shared defaults (spec/overlay/defaults.yaml)', () => {
       literal: 0,
       token: 'inset.none',
     });
+    expect(defaults.bind['zero-gaps'].token).toEqual({
+      HORIZONTAL: 'inset.none',
+      VERTICAL: 'stack.none',
+    });
     const { spec, deviations } = withDefaults(null);
     expect(spec.style.root.base.paddingTop).toMatchObject({
       token: 'inset.none',
@@ -534,7 +538,35 @@ allowLiteral:
       (d) => d.token === 'component..tree indent.root.gap#unbound',
     );
     expect(gap.literals).toEqual([0]);
-    expect(gap.decision).toMatchObject({ default: 'zero-insets' });
+    expect(gap.decision).toMatchObject({ default: 'zero-gaps' });
+  });
+
+  it('binds a zero gap to its direction’s none: a vertical one’s is stack.none', () => {
+    // Spinner's root is a vertical auto layout; Icon Button's is horizontal.
+    const on = (name) =>
+      buildComponentSpec(loadComponent(catalog, name), {
+        names,
+        fileVersion: catalog.fileVersion,
+        overlay: loadOverlay(name),
+        defaults,
+      }).spec.style.root.base.gap;
+    expect(on('Spinner')).toMatchObject({ token: 'stack.none' });
+    expect(on('Icon Button')).toMatchObject({ token: 'inset.none' });
+  });
+
+  it('leaves a gap whose layout it names no token for (a grid) to its component', () => {
+    const picker = buildComponentSpec(
+      loadComponent(catalog, 'Date Picker Open'),
+      { names, fileVersion: catalog.fileVersion, defaults },
+    );
+    const grid = picker.spec.style.dayGrid.base;
+    expect(grid.direction).toMatchObject({ keyword: 'GRID' });
+    expect(grid.gap).toMatchObject({ literal: 0 });
+    expect(
+      picker.deviations.find(
+        (d) => d.token === 'component.date picker open.dayGrid.gap#unbound',
+      ).decision,
+    ).toBeUndefined();
   });
 
   it('leaves open a finding that holds another raw value besides 0', () => {

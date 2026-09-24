@@ -103,9 +103,9 @@ Default variant: `selected=false, drag=false` · 3 variants · default size 423�
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Selectable, draggable list-row card. Combines a drag handle, a selection control (toggle, radio or checkbox) and headline/description text, with optional hover actions. Use in orderable or multi-select lists.
+Migrated from Chatter Config 2026-09-01.
 
 **Anatomy**
 
@@ -125,10 +125,6 @@ Reveal Actions on hover or selection, not by default.
 
 **Rules**
 
-- DO: Use one selection control per row
-- DO: Pair drag=true with showDragHandle
-- DO: Keep headline to a single line
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-DON’T Show toggle, radio and checkbox together  
-DON’T Use as a static display card (use Card)  
-DON’T Put more than three hover actions in a row
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

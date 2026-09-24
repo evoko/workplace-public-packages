@@ -63,9 +63,9 @@ Default variant: `filled=true, selected=true, hover=false` · 4 variants · defa
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Selectable thumbnail tile with a title and metadata line. Used for visual entities such as floor plans and maps; the empty variant is a dashed create-new tile.
+Migrated from Chatter Config 2026-09-01.
 
 **Anatomy**
 
@@ -85,10 +85,6 @@ Use the create-new tile as the last item of a grid.
 
 **Rules**
 
-- DO: Keep one aspect ratio across a grid
-- DO: Use real content thumbnails when available
-- DO: Route actions through the more menu
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-DON’T Mix filled and empty tiles mid-grid  
-DON’T Put buttons inside the image area  
-DON’T Use for list layouts (use Interactive Card)
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

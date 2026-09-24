@@ -183,9 +183,12 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    `keyword` (`FILL`, `HUG`) as well as a token or none, and settles a raw-value finding once no raw
    value is left in the cell; the oracle then excuses Figma's value there, as for any decision.
    Then the **shared defaults** (`spec/overlay/defaults.yaml`, `applyDefaults`), decisions that
-   hold for every component, each with a reason. There is one: `zero-insets` binds a padding or gap
-   Figma leaves unbound at `0` to `inset.none`, in every layer, and decides the finding once every
-   raw value Figma left in that cell is `0`, even one only a variant the recipe does not keep draws.
+   hold for every component, each with a reason. There are two: `zero-insets` binds a padding Figma
+   leaves unbound at `0` to `inset.none`, and `zero-gaps` a gap to the none of its layout's
+   direction, `inset.none` horizontal and `stack.none` vertical, as SOLAR binds gaps (a GRID's gap
+   has no rule, and is left to its component). Each works in every layer and decides the finding
+   once every raw value Figma left in that cell is `0`, even one only a variant the recipe does
+   not keep draws.
    A cell the component's own `bind`, `set` or `allowLiteral` names is left to it, and a default
    that finds nothing to do in a component is not an error. Its decisions are recorded among the
    IR's rules with `from: spec/overlay/defaults.yaml`, and the deviations report names them.
@@ -239,7 +242,7 @@ findings outright, by declaring an axis interaction: tertiary hover's link style
 look are drawn as Figma draws them. Three findings are open and are genuine Figma defects:
 secondary loses its background at `sm`, the backgrounds change inconsistently at `lg` (Figma's `xl` until 2026-09-23), and the
 `lg` disabled label uses the danger colour. They are in
-[the design review](../../docs/solar-review-for-design.md), section 8. Run over the whole corpus,
+[the design review](../../docs/solar-review-for-design.md), section 6 (the four components variant by variant). Run over the whole corpus,
 every one of SOLAR Web's 132 components derives a recipe and builds an IR: the 119 sets and the
 13 standalone components (milestone 4's Task M4), since Task M5 gave stacked paints, corners of
 their own and overlay-named layers a rule. PIN Input, Password Input and Tree Item build with the

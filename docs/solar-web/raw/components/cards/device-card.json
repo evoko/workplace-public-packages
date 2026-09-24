@@ -1023,8 +1023,8 @@
     "Biamp Design System",
     "1.0",
     "Device Card",
-    "Description",
-    "Row card for a device or device batch: icon tile, name and details, status tag. The batch type adds a firmware dropdown strip; loading states swap details for a skeleton.",
+    "Usage",
+    "Migrated from Chatter Config 2026-09-01.",
     "Anatomy",
     "surface/base card with radius/container and border/subtle. Icon tile (surface/background, SOLAR Icons Device/Progress glyph), name body/md/medium + details body/md/regular, status Tag, hidden ‘Try again’ Button (hasButton), and for type=batch a surface/background strip with a md Dropdown.",
     "Variants & props",
@@ -1032,8 +1032,8 @@
     "Usage",
     "Use the status Tag for device health, not free text.\nShow hasButton only on failure states.\nKeep detail lines to model · serial · location.",
     "Rules",
-    "DO   Use Tag statuses for health states\nDO   Use loading while a device is being polled\nDO   Keep one device family per batch card",
-    "DON’T   Mix single and batch layouts in one card\nDON’T   Hardcode status colors on the card\nDON’T   Use for non-device entities"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

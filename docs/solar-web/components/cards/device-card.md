@@ -72,9 +72,9 @@ Default variant: `state=default, type=single` · 4 variants · default size 560�
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Row card for a device or device batch: icon tile, name and details, status tag. The batch type adds a firmware dropdown strip; loading states swap details for a skeleton.
+Migrated from Chatter Config 2026-09-01.
 
 **Anatomy**
 
@@ -94,10 +94,6 @@ Keep detail lines to model · serial · location.
 
 **Rules**
 
-- DO: Use Tag statuses for health states
-- DO: Use loading while a device is being polled
-- DO: Keep one device family per batch card
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-DON’T Mix single and batch layouts in one card  
-DON’T Hardcode status colors on the card  
-DON’T Use for non-device entities
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

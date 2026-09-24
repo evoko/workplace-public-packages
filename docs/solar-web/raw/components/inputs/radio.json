@@ -60,6 +60,10 @@
               10,
               10
             ],
+            "position": [
+              4,
+              4
+            ],
             "fills": [
               "{Color:icon/primary}"
             ],

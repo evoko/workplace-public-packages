@@ -1119,6 +1119,10 @@
                               884,
                               576
                             ],
+                            "position": [
+                              0,
+                              0
+                            ],
                             "layout": {
                               "dir": "VERTICAL",
                               "gap": 0,
@@ -1518,6 +1522,10 @@
                               868,
                               22
                             ],
+                            "position": [
+                              8,
+                              49
+                            ],
                             "layout": {
                               "dir": "HORIZONTAL",
                               "gap": 0,
@@ -1553,6 +1561,10 @@
                               868,
                               46
                             ],
+                            "position": [
+                              8,
+                              97
+                            ],
                             "layout": {
                               "dir": "HORIZONTAL",
                               "gap": 0,
@@ -1584,6 +1596,10 @@
                               868,
                               46
                             ],
+                            "position": [
+                              8,
+                              217
+                            ],
                             "layout": {
                               "dir": "HORIZONTAL",
                               "gap": 0,
@@ -1614,6 +1630,10 @@
                             "size": [
                               868,
                               94
+                            ],
+                            "position": [
+                              8,
+                              289
                             ],
                             "layout": {
                               "dir": "HORIZONTAL",
@@ -1650,6 +1670,10 @@
                               868,
                               46
                             ],
+                            "position": [
+                              8,
+                              385
+                            ],
                             "layout": {
                               "dir": "HORIZONTAL",
                               "gap": 0,
@@ -1681,6 +1705,10 @@
                               868,
                               46
                             ],
+                            "position": [
+                              8,
+                              481
+                            ],
                             "layout": {
                               "dir": "HORIZONTAL",
                               "gap": 0,
@@ -1710,6 +1738,10 @@
                             "size": [
                               884,
                               2
+                            ],
+                            "position": [
+                              0,
+                              96
                             ],
                             "fills": [
                               "{Color:action/primary/bg/default}"

@@ -352,6 +352,10 @@
                     240,
                     136
                   ],
+                  "position": [
+                    0,
+                    62
+                  ],
                   "layout": {
                     "dir": "VERTICAL",
                     "gap": 0,
@@ -897,6 +901,10 @@
                   "size": [
                     200,
                     128
+                  ],
+                  "position": [
+                    0,
+                    53
                   ],
                   "layout": {
                     "dir": "VERTICAL",

@@ -56,13 +56,13 @@ Default variant: `state=default, expanded=false` · 6 variants · default size 4
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+Accordion item — a single collapsible section used within an accordion group. Supports 3 sizes (lg/md/sm), 5 states (default/hover/focus/disabled/skeleton), 2 chevron alignments (start/end), flush mode, and expanded/collapsed states. Based on IBM Carbon v11 Accordion, adapted for SOLAR design system.
 
 **Anatomy**
 

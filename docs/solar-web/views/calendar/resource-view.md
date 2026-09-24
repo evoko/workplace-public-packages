@@ -17,61 +17,61 @@
       - **Header Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×25  
         fill `color.surface.background` · stroke `color.border.subtle` mixedpx
         - **Corner** · frame · row gap 0 pad 8/16/8/16 FIXED/HUG · 220×25  
-          padding `inset.md`
+          padding `inset.md`, `inset.xs`
           - **Resources Header** · text `body/sm/semibold` "Resources" · HUG/HUG · 60×9  
             fill `color.text.secondary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.600`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "8 AM" · HUG/HUG · 30×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "9" · HUG/HUG · 8×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "10" · HUG/HUG · 14×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "11" · HUG/HUG · 12×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "12 PM" · HUG/HUG · 34×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "1" · HUG/HUG · 6×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "2" · HUG/HUG · 8×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "3" · HUG/HUG · 8×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "4" · HUG/HUG · 8×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "5" · HUG/HUG · 8×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "6" · HUG/HUG · 8×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
         - **Hour Cell** · frame · row gap 0 pad 8/0/8/0 FILL/HUG · 85×25  
-          stroke `color.border.subtle` mixedpx
+          stroke `color.border.subtle` mixedpx · padding `inset.xs`
           - **Hour Label** · text `label/sm` "7" · HUG/HUG · 7×9  
             fill `color.text.secondary` · lineHeight `type.line-height.label.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.label.sm` · fontStyle `type.font-weight.500`
       - **Resource Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×56  
         stroke `color.border.subtle` mixedpx
         - **Resource Label** · frame · row gap 12 pad 8/16/8/16 FIXED/FIXED · 220×56  
-          padding `inset.md`
+          itemSpacing `inset.sm` · padding `inset.md`, `inset.xs`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
           - **Frame** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 112×26  
@@ -111,7 +111,7 @@
       - **Resource Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×56  
         stroke `color.border.subtle` mixedpx
         - **Resource Label** · frame · row gap 12 pad 8/16/8/16 FIXED/FIXED · 220×56  
-          padding `inset.md`
+          itemSpacing `inset.sm` · padding `inset.md`, `inset.xs`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
           - **Frame** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 111×26  
@@ -151,7 +151,7 @@
       - **Resource Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×56  
         stroke `color.border.subtle` mixedpx
         - **Resource Label** · frame · row gap 12 pad 8/16/8/16 FIXED/FIXED · 220×56  
-          padding `inset.md`
+          itemSpacing `inset.sm` · padding `inset.md`, `inset.xs`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
           - **Frame** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 84×26  
@@ -191,7 +191,7 @@
       - **Resource Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×56  
         stroke `color.border.subtle` mixedpx
         - **Resource Label** · frame · row gap 12 pad 8/16/8/16 FIXED/FIXED · 220×56  
-          padding `inset.md`
+          itemSpacing `inset.sm` · padding `inset.md`, `inset.xs`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
           - **Frame** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 93×26  
@@ -231,7 +231,7 @@
       - **Resource Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×56  
         stroke `color.border.subtle` mixedpx
         - **Resource Label** · frame · row gap 12 pad 8/16/8/16 FIXED/FIXED · 220×56  
-          padding `inset.md`
+          itemSpacing `inset.sm` · padding `inset.md`, `inset.xs`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
           - **Frame** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 100×26  
@@ -269,7 +269,7 @@
       - **Resource Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×56  
         stroke `color.border.subtle` mixedpx
         - **Resource Label** · frame · row gap 12 pad 8/16/8/16 FIXED/FIXED · 220×56  
-          padding `inset.md`
+          itemSpacing `inset.sm` · padding `inset.md`, `inset.xs`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
           - **Frame** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 87×26  
@@ -318,7 +318,7 @@
 | Fills           | `color.action.primary.bg.default`, `color.border.subtle`, `color.data.category.01.subtle`, `color.data.category.02.subtle`, `color.data.category.03.subtle`, `color.data.category.04.subtle`, `color.data.category.05.subtle`, `color.data.category.06.subtle`, `color.data.category.07.subtle`, `color.surface.background`, `color.surface.base`, `color.neutral.50` |
 | Strokes         | `color.border.subtle`                                                                                                                                                                                                                                                                                                                                                 |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                                                                                                                                                                                                                                                                                          |
-| Spacing         | `inset.lg`, `inset.md`, `inset.sm`, `stack.xs`                                                                                                                                                                                                                                                                                                                        |
+| Spacing         | `inset.lg`, `inset.md`, `inset.sm`, `inset.xs`, `stack.xs`                                                                                                                                                                                                                                                                                                            |
 | Radius          | `radius.container`, `radius.control`, `radius.pill`                                                                                                                                                                                                                                                                                                                   |
 | Border width    | `border.default`                                                                                                                                                                                                                                                                                                                                                      |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.font-weight.600`, `type.line-height.body.sm`, `type.line-height.label.sm`, `type.size.body.sm`, `type.size.label.sm`                                                                                                                                                                                          |
@@ -334,50 +334,6 @@
 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.neutral.50`.
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Corner_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Corner_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Header Row › Hour Cell_
-- Hard-coded gap `12px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded gap `12px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded gap `12px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded gap `12px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded gap `12px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded gap `12px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingTop `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
-- Hard-coded paddingBottom `8px` on layer _Calendar Body › Calendar Surface › Resource Row › Resource Label_
 
 ## Documentation card
 

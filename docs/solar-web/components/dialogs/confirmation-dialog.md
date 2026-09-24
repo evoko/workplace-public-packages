@@ -80,13 +80,15 @@ Uses: Nav Item ×13, Icon/None ×6, Icon/Home ×2, Avatar ×2, Button ×2, Spinn
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**ConfirmationDialog**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+**Usage**
+
+Confirmation dialog for actions needing explicit approval. ’default’ for safe actions, ’danger’ for destructive actions. Uses real Button component instances.
 
 **Anatomy**
 

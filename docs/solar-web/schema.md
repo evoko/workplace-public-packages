@@ -75,7 +75,7 @@ values are in [../solar/tokens/css-contract.json](../solar/tokens/css-contract.j
 
 Keys of `changed` are layer paths in the default variant's tree (`/` is the root; `#2`
 marks the second sibling of the same name). Values hold only the fields that differ:
-`hidden`, `text`, `textStyle`, `main`, `variant`, `size`, `layout`, `sizing`, `fills`,
+`hidden`, `text`, `textStyle`, `main`, `variant`, `size`, `position`, `layout`, `sizing`, `fills`,
 `strokes`, `strokeWeight`, `strokeWeights`, `radius`, `effectStyle`, `opacity`, `vars`. For `vars` and
 `layout` only the changed sub-keys appear; `null` means the default had it and the variant
 does not. This is the input for generating per-variant styles: start from the default tree,
@@ -91,6 +91,12 @@ the four weights, top, right, bottom and left (Button Group's full-width bar dra
 its top only). Each side's variable binding is under `vars`
 (`strokeTopWeight`…). Data fetched before 2026-09-23 has `mixed` alone; codegen then draws a side
 where it is bound and reports the layer as `unrecorded` until a sync records the weights.
+
+A layer its parent's auto layout does not place, a child of a frame with no auto layout or one
+positioned absolutely inside one, has `position`: its top-left, `[x, y]` in pixels to the
+hundredth, relative to its parent's, from the two bounding boxes (StatusIndicator's `!` inside its
+triangle, a Toggle's knob). A layer auto layout places has none: its place follows from the
+layout. Data fetched before 2026-09-24 has no positions.
 
 An `INSTANCE` of an icon (`main` starting `Icon/`) records `iconFills`: the distinct fills of the
 vectors inside it, which the tree does not descend into. It is diffed like any other property,

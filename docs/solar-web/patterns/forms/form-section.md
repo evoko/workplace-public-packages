@@ -66,13 +66,15 @@ Titled group of FormRows: optional section header (title and description), optio
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**FormSection**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+**Usage**
+
+Titled group of FormRows: optional section header (title and description), optional CTA Button and the SectionFields slot. Single component. Stack sections with stack/xl inside a form; each section renders as a fieldset with the title as its legend.
 
 **Anatomy**
 

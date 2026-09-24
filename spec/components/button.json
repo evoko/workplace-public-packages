@@ -145,7 +145,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingRight": {
           "token": "inset.sm",
@@ -154,7 +154,7 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingLeft": {
           "token": "inset.sm",
@@ -2256,7 +2256,7 @@
     "pageId": "2049:578",
     "figmaNode": "2087:2544",
     "defaultVariant": "size=md, prio=primary, state=default, danger=false",
-    "fileVersion": "2402412754718078809"
+    "fileVersion": "2402690438319512660"
   },
   "overlay": {
     "file": "spec/overlay/button.yaml",
@@ -2314,7 +2314,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingBottom",
-        "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

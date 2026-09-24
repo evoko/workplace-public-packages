@@ -628,20 +628,33 @@ for (const p of pages) {
         );
     }
   }
-  const boiler =
-    p.slug !== 'breadcrumbs' &&
-    (d.docText || []).some((t) =>
-      /aria-label="Breadcrumb"|breadcrumb trail/i.test(decode(t)),
-    );
-  if (boiler) {
+  // The card sections (a heading, then its text) that still hold the Breadcrumbs page's text: since
+  // the 2026-09-24 sync most pages have their own Usage text and keep Breadcrumbs' Accessibility.
+  const copied =
+    p.slug === 'breadcrumbs'
+      ? []
+      : [
+          ...new Set(
+            (d.docText || [])
+              .map((t, i) => [t, i])
+              .filter(([t]) =>
+                /aria-label="Breadcrumb"|breadcrumb trail|user's location within a navigational hierarchy/i.test(
+                  decode(t),
+                ),
+              )
+              .map(([, i]) => decode((d.docText || [])[i - 1] ?? 'card')),
+          ),
+        ];
+  if (copied.length) {
+    const which = `${copied.join(' and ')} section${copied.length > 1 ? 's' : ''}`;
     md.push(
-      '## Issues detected (page)\n\n- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.\n',
+      `## Issues detected (page)\n\n- The documentation card's ${which} hold${copied.length > 1 ? '' : 's'} the Breadcrumbs page's text; ${copied.length > 1 ? 'they do' : 'it does'} not describe this component.\n`,
     );
     pageIssues.push({
       slug: p.slug,
       section: p.section,
       title: p.title,
-      finding: 'Documentation card is Breadcrumbs boilerplate.',
+      finding: `Documentation card's ${which}: Breadcrumbs boilerplate.`,
     });
   }
   const dt = docTextMd(d.docText, p.title);

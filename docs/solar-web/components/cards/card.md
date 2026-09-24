@@ -133,13 +133,13 @@ Default variant: `state=default, status=none, loading=false` · 12 variants · d
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+ROLE: primitive (the surface primitive for the card family). Renders the raised surface, border, radius, shadow, and slot structure. All card-family compositions bind to Card, not to raw tokens. ANATOMY Vertical auto-layout frame with slots governed by visibility booleans. TAXONOMY NOTE (2026-04-21) Taxonomy contract specifies surface/raised, shadow/raised, padding inset/md. Current bindings preserve the prior ground-truth build and are out of sync; re-point requires owner call — do not silently migrate consumers. PICKING RULES • Need a raised surface that holds arbitrary content → Card. • Need the whole surface clickable with icon+title+description+CTA anatomy → Action Card. • Need a semantic grouping inside a larger surface → Container. • Need a KPI: label + number + optional unit + optional trend → Stat Value (inside any surface). • Need dashboard widget chrome with overflow + time range + loading/empty/error → Widget Card. • Need the canonical dashboard KPI tile → Metric Tile. HOVER / PRESSED RENDER CONTRACT Hover and pressed render at runtime as an alpha overlay via ::before, not a fill swap. Figma approximates the composited appearance; the code contract is the overlay. This composes cleanly over Media slot images and status=danger|warning|success border overrides. IS NOT • Not a layout region — that’s Container. • Not a dashboard widget — that’s Widget Card. • Not the content inside — that’s Stat Value. • Not a whole-surface link — Action Card sets clickable=true and pins Body anatomy. • Card never renders a numeric KPI, overflow menu, Time Range Selector, or sparkline directly.
 
 **Anatomy**
 

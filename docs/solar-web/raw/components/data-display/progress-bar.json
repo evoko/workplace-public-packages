@@ -50,6 +50,10 @@
               80,
               6
             ],
+            "position": [
+              0,
+              0
+            ],
             "fills": [
               "{Color:action/primary/bg/default}"
             ],

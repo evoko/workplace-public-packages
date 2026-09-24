@@ -95,7 +95,16 @@ Tag's 110 axis findings are expected to go when `type` follows from content.
 | Charts              | **A chart library, themed by SOLAR, with SOLAR parts.** Bar Chart, Line Chart, Donut Chart and Bar Stack are drawn by a library whose theme is generated from their recipes. Sparkline, Data Legend and Chart Tooltip are generated components checked against Figma. |
 | Calendar            | **Styled parts only.** Each part is a component checked against Figma. Date logic and the assembled Month, Week and Day views (patterns and views) are later work, or the apps'.                            |
 | Review cadence      | **One pause per family**, after its pioneer and its batch.                                                                                                                                                  |
-| Shared defaults     | **Zero insets only.** An unbound 0 padding or gap is `inset.none`. Every other decision stays in the component's own overlay.                                                                               |
+| Shared defaults     | **Zero insets only.** An unbound 0 padding or gap is `inset.none`. Every other decision stays in the component's own overlay. Refined 2026-09-24: a zero gap is the none of its direction's family, `inset.none` horizontal and `stack.none` vertical, as SOLAR binds gaps. |
+
+From the design team (via the owner, 2026-09-24), each applied where it lands:
+
+| Question                         | Decision                                                                                                                                                                                         |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Stepper's 225px padding          | **Figma presentation only.** It makes the stepper look right on the Figma page; the code does not reproduce it. Stepper's progress width follows its step count (F9), and the finding is decided in its overlay, not raised with SOLAR. |
+| Components with no description   | **Not a concern.** They belong to pages not in use (the views and the documentation frame), which this plan does not build. The design review now leaves the views out.                       |
+| Avatar's colours                 | **Any colour the user picks.** Avatar is not a palette: Figma's `color` × `shade` variants are samples. The API takes a colour, and Avatar's primitives, in Avatar or an Avatar inside another component, are not findings (F1). |
+| State values outside the ladder  | **Fine as they are.** `edit`, `today`, `other-month`, `today-column`, `no-results`, `search`, `rename` stay SOLAR's states. The IR already makes a state value that is not a platform state a boolean prop, so Tree Item has `edit` and a Day Cell `today`. |
 
 Carried over from 3b-2 (owner, 2026-09-23), unchanged: Tag's `type` follows from content (no `type`
 prop); Sparkline takes `data: number[]` and derives its trend; the wizard Stepper is generated, with
@@ -302,6 +311,8 @@ component's overlay. `buildComponentSpec` takes `defaults`; the stage and the tr
   - the four built components have 3, 0, 0 and 0 open findings.
 - **Design review:** the four per-component "padding is 0" fixes became one item in section 2,
   and the counts in "At a glance" moved with them.
+- **Refined 2026-09-24** (F1's sync note): the gap is a rule of its own, `zero-gaps`, whose token
+  follows the layout's direction.
 - **Checks:** 557 JS tests (8 new for the defaults), both visual checks, 94 Flutter tests, and
   two identical rebuilds.
 
@@ -612,7 +623,13 @@ Non-interactive, level 0, and composed by most later families.
 - **Members:**
   - bespoke on both: Counter, Kbd, Timestamp, Trend Badge (glyph), Node End, RowExpand (glyph),
     `.Tree Indent` (depth), Cursor (glyph);
-  - Avatar: MUI `Avatar`. 114 of Figma's combinations are drawn, and the one `sparse` finding is
+  - Avatar: MUI `Avatar`. **Its colour is the caller's, any colour** (design team, 2026-09-24):
+    the API takes a colour value (a CSS colour on the web, a `Color` in Flutter), not an enum of
+    Figma's `color` × `shade` samples, and the recipe carries no palette. Its primitive-colour
+    findings are decided by that, and so are the Avatars' fills inside Agenda Row, Event Row,
+    Column Item, Profile Dropdown and Top Bar. How the initials' colour follows (picked with it,
+    or derived for 4.5:1 contrast) is asked in the design review's decisions; until SOLAR answers,
+    derive it for contrast. The 114 drawn combinations are samples, and the one `sparse` finding is
     Figma's; image content comes from A2;
   - Divider: MUI `Divider`, Flutter `Divider`;
   - Skeleton: MUI `Skeleton`, bespoke in Flutter;
@@ -620,6 +637,45 @@ Non-interactive, level 0, and composed by most later families.
 - **Expect:** M2's findings on StatusIndicator's inner path and on `.Tree Indent`'s layout. Figma
   gives Counter hover and pressed states because it is clickable inside a Button; the shell makes it
   interactive only when given `onClick`.
+
+**Started 2026-09-24: a data gap first.** StatusIndicator draws each type differently: the disc
+is the root for `success`, a vector for `warning` (a triangle) and `danger`, and a child frame for
+the rest. Where a frame has no auto layout, its children sit at positions the fetcher did not
+record, so the `!` inside the triangle could not be placed. 13 components in the Components
+section have children placed by position: Cursor, Slider, Slider Range, Toggle, StatusIndicator,
+Sparkline, Spinner, Time Slot, Radio, ProgressBar, RowExpand, Node End and Donut Chart.
+
+- **The fetcher now records `position`,** `[x, y]` relative to the parent, for any layer its
+  parent's auto layout does not place (`docs/solar-web/raw/fetch-rest.mjs`, documented in
+  `docs/solar-web/schema.md`). Roots get none.
+- **The data arrived with the owner's sync of 2026-09-24** (SOLAR Web `2402690438319512660`):
+  291 positions on 31 raw pages, and no other change the fetcher made. Figma itself changed some
+  documentation cards (see below), Resource View's paddings, and a few bindings; Foundations and
+  Icons did not change. Generated code did not move, beyond its recorded file version.
+- **Then, as machinery:** the recipe gives a placed layer `x` and `y` cells, the oracle records
+  them, both checks measure them, and both emitters and the shells place such a layer.
+
+**What the sync of 2026-09-24 changed, and what followed:**
+
+- **Documentation cards:** 43 pages' Usage text now describes their own component; Nav Item and
+  Stepper keep Breadcrumbs' Description. All 45 keep Breadcrumbs' Accessibility section.
+  `docs/solar-web/build-docs.mjs` now names the copied section on each page in `issues.md`.
+- **Bindings:** Resource View's 44 hard-coded paddings and gaps are bound. Date Picker Open, Insight
+  Row, Filter Panel and one shell pattern gained bindings, closing 4 findings in the triage.
+- **The zero-gap default** now picks `inset.none` or `stack.none` by the layout's direction, as
+  SOLAR binds gaps (the Foundations agent reference: horizontal auto-layout gaps bind to
+  `inset.*`). Spinner's vertical root now uses `stack.none`, the one change in generated code
+  (the same 0px). A direction the rule names no token for, Date Picker Open's GRID, is left to
+  its component: that zero stays open.
+- **The design review** (`docs/solar-review-for-design.md`) was rewritten with the sync and the
+  design team's notes above:
+  - it covers the Components and Patterns sections only, so no view or documentation frame
+    finding is listed;
+  - it no longer lists Stepper's padding, Avatar's and the logo's colours, or the extra state
+    values;
+  - its gap suggestions are `inset.*`, since every hard-coded gap is horizontal;
+  - StatusIndicator's unknown variable is corrected to a border colour;
+  - it asks one new question, how Avatar's initials take their colour.
 
 ### F2: Buttons
 
@@ -726,7 +782,10 @@ surface and the rows.
     - Stepper Indicator draws the number, or Figma's tick or error mark;
     - Step composes the indicator, the label and the line;
     - Stepper takes 2–5 `steps` from Figma's `showStep3–5` booleans, with `aria-current="step"` on
-      the active one. Expect its unbound widths to follow the step count, not a token.
+      the active one. Expect its unbound widths to follow the step count, not a token. The
+      progress bar's 225px right padding is Figma presentation only (design team, 2026-09-24):
+      decide it in the overlay as not reproduced, with that reason. Its gaps bound to `inset.*`
+      are right, being horizontal.
 
 ### F10: Cards
 

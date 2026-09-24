@@ -6,10 +6,19 @@
 
 bind:
   zero-insets:
-    cells: [paddingTop, paddingRight, paddingBottom, paddingLeft, gap]
+    cells: [paddingTop, paddingRight, paddingBottom, paddingLeft]
     literal: 0
     token: inset.none
     reason: >-
-      Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token
+      Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token
       for no inset. It is the one answer in every component, so it is decided once here and raised
       with SOLAR once, as a whole, not per component.
+  zero-gaps:
+    cells: [gap]
+    literal: 0
+    token: { HORIZONTAL: inset.none, VERTICAL: stack.none }
+    reason: >-
+      Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and
+      SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap
+      is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial
+      chapter). Decided once here, as the paddings are.

@@ -190,8 +190,8 @@
     "Biamp Design System",
     "1.0",
     "Split Dropdown",
-    "Description",
-    "Two-zone container: a plain top content area and a tinted lower strip, divided by the container border. Used to pair a primary control with supporting details (e.g. a device row above its firmware selector).",
+    "Usage",
+    "Two-zone slot container: plain top area + tinted lower strip. Pairs a primary control with supporting details. Migrated from Chatter Config 2026-09-01.",
     "Anatomy",
     "radius/container shell with border/subtle. Top area (inset/md · inset/sm padding) with a Top Content area; lower strip on surface/background (inset/sm padding) with a Lower Content area.",
     "Content areas",
@@ -199,8 +199,8 @@
     "Usage",
     "Put the primary object or control on top.\nUse the lower strip for secondary settings or metadata.\nKeep both zones single-purpose.",
     "Rules",
-    "DO   Keep the lower strip on surface/background\nDO   Fill zones through the content slots\nDO   Let height hug the content",
-    "DON’T   Nest another split container inside\nDON’T   Recolor the zones per feature\nDON’T   Use as a dialog (use Dialog / Split Dialog)"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

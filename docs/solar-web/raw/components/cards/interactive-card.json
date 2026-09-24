@@ -683,8 +683,8 @@
     "Biamp Design System",
     "1.0",
     "Interactive Card",
-    "Description",
-    "Selectable, draggable list-row card. Combines a drag handle, a selection control (toggle, radio or checkbox) and headline/description text, with optional hover actions. Use in orderable or multi-select lists.",
+    "Usage",
+    "Migrated from Chatter Config 2026-09-01.",
     "Anatomy",
     "DragHandle, Toggle, Radio and Checkbox instances (show one per use case via the boolean props), Text block (Headline body/md/semibold + Description body/md/regular), hidden Actions row of three sm Icon Buttons (play, edit, delete — delete carries danger styling).",
     "Variants & props",
@@ -692,8 +692,8 @@
     "Usage",
     "Show exactly one selection control per list — hide the others with the booleans.\nUse drag=true only for the row being dragged.\nReveal Actions on hover or selection, not by default.",
     "Rules",
-    "DO   Use one selection control per row\nDO   Pair drag=true with showDragHandle\nDO   Keep headline to a single line",
-    "DON’T   Show toggle, radio and checkbox together\nDON’T   Use as a static display card (use Card)\nDON’T   Put more than three hover actions in a row"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

@@ -43,13 +43,13 @@ Default variant: `state=default, density=comfortable` · 6 variants · default s
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+Empty cell used to tile the Week and Day time grids. Top + left borders so cells visually compose into a grid. Half-hour rule indicates the 30-minute split. Selected state shows a focus-bound border for click-to-create-event.
 
 **Anatomy**
 

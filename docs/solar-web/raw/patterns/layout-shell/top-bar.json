@@ -123,6 +123,10 @@
               320,
               40
             ],
+            "position": [
+              560,
+              8
+            ],
             "layout": {
               "dir": "HORIZONTAL",
               "gap": 12,
@@ -1607,8 +1611,8 @@
     "Biamp Design System",
     "1.0",
     "Top Bar",
-    "Description",
-    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Usage",
+    "App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and account Avatar.",
     "Anatomy",
     "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
     "States",

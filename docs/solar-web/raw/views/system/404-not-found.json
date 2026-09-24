@@ -126,6 +126,10 @@
                       79,
                       79
                     ],
+                    "position": [
+                      8.41,
+                      8.42
+                    ],
                     "fills": [
                       "{Color:icon/inverse}"
                     ],
@@ -367,8 +371,8 @@
     "Biamp Design System",
     "1.0",
     "404 Not Found",
-    "Description",
-    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Usage",
+    "View template. Its written description is scheduled with the other view pages; until then this card documents the structure below. Compose it from the listed primitives and patterns — do not detach.",
     "Anatomy",
     "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
     "States",

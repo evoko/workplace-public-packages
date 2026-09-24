@@ -181,7 +181,8 @@ export function loadOverlay(component) {
  * One section so far:
  *
  *   bind: { <name>: { cells: [<cell>, …], literal, token, reason } }   in every layer, a raw
- *         value in one of `cells` to the token of that value
+ *         value in one of `cells` to the token of that value; `token` may be a map by the layer's
+ *         auto-layout direction, `{ HORIZONTAL: inset.none, VERTICAL: stack.none }`, for a gap
  *
  * Unlike a component's rule, a default that finds nothing to do in one component is not an error:
  * it is written for all of them.
@@ -208,8 +209,21 @@ export function parseDefaults(text, file) {
       !rule.cells.every((c) => typeof c === 'string' && c)
     )
       fail(`bind.${name}: cells must list the cells it binds`);
-    if (typeof rule.literal !== 'number' || typeof rule.token !== 'string')
-      fail(`bind.${name}: literal must be a number and token a token name`);
+    const byDirection =
+      rule.token &&
+      typeof rule.token === 'object' &&
+      Object.keys(rule.token).length > 0 &&
+      Object.entries(rule.token).every(
+        ([dir, t]) =>
+          ['HORIZONTAL', 'VERTICAL'].includes(dir) && typeof t === 'string',
+      );
+    if (
+      typeof rule.literal !== 'number' ||
+      (typeof rule.token !== 'string' && !byDirection)
+    )
+      fail(
+        `bind.${name}: literal must be a number, and token a token name or one per direction (HORIZONTAL, VERTICAL)`,
+      );
   }
   return { bind: doc.bind ?? {}, file };
 }
@@ -251,15 +265,27 @@ export function applyDefaults(ir, deviationsIn, defaults, { names, overlay }) {
   for (const [name, rule] of Object.entries(defaults.bind).sort(([a], [b]) =>
     a < b ? -1 : 1,
   )) {
-    const value = names.value(rule.token);
-    if (value === null)
-      throw new Error(
-        `${defaults.file}: bind.${name}: ${rule.token} is not a SOLAR token`,
-      );
-    if (value !== rule.literal)
-      throw new Error(
-        `${defaults.file}: bind.${name}: ${rule.token} is ${value}, not ${rule.literal}`,
-      );
+    const tokens =
+      typeof rule.token === 'string' ? [rule.token] : Object.values(rule.token);
+    for (const token of tokens) {
+      const value = names.value(token);
+      if (value === null)
+        throw new Error(
+          `${defaults.file}: bind.${name}: ${token} is not a SOLAR token`,
+        );
+      if (value !== rule.literal)
+        throw new Error(
+          `${defaults.file}: bind.${name}: ${token} is ${value}, not ${rule.literal}`,
+        );
+    }
+    // The token for one entry: the rule's, or the one for the direction of the layout the entry
+    // is in (its own, or the layer's resting one). A direction the rule names no token for (a
+    // GRID layout: SOLAR says nothing of a grid's gap) is left to the component: no default.
+    const tokenFor = (s, holder) =>
+      typeof rule.token === 'string'
+        ? rule.token
+        : (rule.token[holder.direction?.keyword ?? s.base.direction?.keyword] ??
+          null);
     const at = [];
     for (const [layer, s] of Object.entries(spec.style))
       for (const cell of rule.cells) {
@@ -268,11 +294,9 @@ export function applyDefaults(ir, deviationsIn, defaults, { names, overlay }) {
         let bound = 0;
         for (const [holder, key] of entries)
           if (holder[key].literal === rule.literal && !holder[key].allowed) {
-            holder[key] = {
-              token: rule.token,
-              from: 'defaults',
-              reason: rule.reason,
-            };
+            const token = tokenFor(s, holder);
+            if (!token) continue;
+            holder[key] = { token, from: 'defaults', reason: rule.reason };
             bound++;
           }
         // The finding is Figma's raw values in the cell, wherever it drew them: a 0 only a
@@ -284,7 +308,16 @@ export function applyDefaults(ir, deviationsIn, defaults, { names, overlay }) {
             x.token === `component.${lc}.${layer}.${cell}#unbound` &&
             !x.decision,
         );
+        // A rule by direction answers only a layer whose every direction it names. A variant with
+        // no auto layout (direction none) has no gap to answer.
+        const directions = [...entriesOf(s, 'direction')]
+          .map(([holder, key]) => holder[key].keyword)
+          .filter(Boolean);
+        const named =
+          typeof rule.token === 'string' ||
+          directions.every((dir) => dir in rule.token);
         const answers =
+          named &&
           d?.literals?.length > 0 &&
           d.literals.every((l) => l === rule.literal) &&
           entries.every(([holder, key]) => holder[key].literal === undefined);

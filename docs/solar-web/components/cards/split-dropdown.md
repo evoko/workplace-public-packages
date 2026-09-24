@@ -45,9 +45,9 @@ Two-zone slot container: plain top area + tinted lower strip. Pairs a primary co
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Two-zone container: a plain top content area and a tinted lower strip, divided by the container border. Used to pair a primary control with supporting details (e.g. a device row above its firmware selector).
+Two-zone slot container: plain top area + tinted lower strip. Pairs a primary control with supporting details. Migrated from Chatter Config 2026-09-01.
 
 **Anatomy**
 
@@ -65,10 +65,6 @@ Keep both zones single-purpose.
 
 **Rules**
 
-- DO: Keep the lower strip on surface/background
-- DO: Fill zones through the content slots
-- DO: Let height hug the content
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-DON’T Nest another split container inside  
-DON’T Recolor the zones per feature  
-DON’T Use as a dialog (use Dialog / Split Dialog)
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

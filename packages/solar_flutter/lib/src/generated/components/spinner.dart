@@ -49,7 +49,7 @@ abstract final class SolarSpinnerRecipe {
     'root.borderWidth|base': 'none',
     'root.direction|base': 'k:VERTICAL',
     'root.align|base': 'k:CENTER/CENTER',
-    'root.gap|base': 't:inset.none',
+    'root.gap|base': 't:stack.none',
     'root.paddingTop|base': 't:inset.none',
     'root.paddingRight|base': 't:inset.none',
     'root.paddingBottom|base': 't:inset.none',
@@ -159,6 +159,7 @@ abstract final class SolarSpinnerRecipe {
     return switch (v) {
       't:border.strong' => SolarBorder.strong,
       't:inset.none' => SolarInset.none,
+      't:stack.none' => SolarStack.none,
       _ => throw StateError('$cell: no length for $v'),
     };
   }

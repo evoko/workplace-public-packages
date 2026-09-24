@@ -78,13 +78,13 @@ Default variant: `state=default` · 5 variants · default size 160×120px
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+Month-grid day cell. Holds the date number and a stack of Event Chip instances. Comfortable density shows up to 3 chips at md size; compact uses 2 chips at sm size. Today emphasis shows a filled pill around the date.
 
 **Anatomy**
 

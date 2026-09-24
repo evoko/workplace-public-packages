@@ -54,13 +54,15 @@ Placeholder for a view with nothing to show — icon, title, description and an 
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**EmptyState**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+**Usage**
+
+Placeholder for a view with nothing to show — icon, title, description and an optional call to action. The copy carries the meaning: say why it is empty and what to do next (first use, no results, error).
 
 **Anatomy**
 

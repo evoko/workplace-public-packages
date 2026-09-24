@@ -311,6 +311,24 @@ function layer(n, parent, depth, maxDepth, ctx) {
     if (ts) o.textStyle = ts;
   }
   o.size = box(n);
+  // Where a layer sits in its parent, where the parent's auto layout does not place it: a child of
+  // a frame with no auto layout (StatusIndicator's `!` inside its triangle, a Toggle's knob) or one
+  // positioned absolutely inside one. Its top-left, from the bounding boxes, relative to the
+  // parent's, to the hundredth. A tree's own root (depth 0) is placed on its page or in its set,
+  // which says nothing about the component.
+  const placed =
+    depth > 0 &&
+    parent &&
+    (!parent.layoutMode ||
+      parent.layoutMode === 'NONE' ||
+      n.layoutPositioning === 'ABSOLUTE');
+  if (placed && n.absoluteBoundingBox && parent.absoluteBoundingBox) {
+    const at = (a, b) => Math.round((a - b) * 100) / 100;
+    o.position = [
+      at(n.absoluteBoundingBox.x, parent.absoluteBoundingBox.x),
+      at(n.absoluteBoundingBox.y, parent.absoluteBoundingBox.y),
+    ];
+  }
   const hasLayout = n.layoutMode && n.layoutMode !== 'NONE';
   if (hasLayout)
     o.layout = {
@@ -444,6 +462,7 @@ const DIFF_KEYS = [
   'main',
   'variant',
   'size',
+  'position',
   'layout',
   'sizing',
   'fills',

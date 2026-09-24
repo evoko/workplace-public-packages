@@ -63,6 +63,10 @@
               12,
               12
             ],
+            "position": [
+              3,
+              3
+            ],
             "fills": [
               "{Color:action/primary/icon/default}"
             ],
@@ -161,6 +165,12 @@
                 "fills": [
                   "{Color:action/primary/bg/default}"
                 ]
+              },
+              "/Thumb": {
+                "position": [
+                  17,
+                  3
+                ]
               }
             }
           }
@@ -188,6 +198,10 @@
                 ]
               },
               "/Thumb": {
+                "position": [
+                  17,
+                  3
+                ],
                 "strokes": [
                   "{Color:border/medium}"
                 ]
@@ -215,6 +229,10 @@
                 ]
               },
               "/Thumb": {
+                "position": [
+                  17,
+                  3
+                ],
                 "fills": [
                   "{Color:action/primary/icon/disabled}"
                 ],

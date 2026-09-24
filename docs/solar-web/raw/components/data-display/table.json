@@ -294,6 +294,10 @@
                     8,
                     20
                   ],
+                  "position": [
+                    8,
+                    0
+                  ],
                   "strokes": [
                     "{Color:border/medium}"
                   ],
@@ -341,6 +345,10 @@
                     8,
                     20
                   ],
+                  "position": [
+                    8.25,
+                    0
+                  ],
                   "strokes": [
                     "{Color:border/medium}"
                   ],
@@ -364,6 +372,10 @@
                   "type": "VECTOR",
                   "size": [
                     0,
+                    20
+                  ],
+                  "position": [
+                    8.25,
                     20
                   ],
                   "strokes": [
@@ -408,6 +420,10 @@
                   "size": [
                     0,
                     40
+                  ],
+                  "position": [
+                    8.25,
+                    0
                   ],
                   "strokes": [
                     "{Color:border/medium}"
@@ -4277,6 +4293,10 @@
                     32,
                     640
                   ],
+                  "position": [
+                    329,
+                    0
+                  ],
                   "sizing": "FIXED/FIXED",
                   "fills": [
                     "GRADIENT_LINEAR"
@@ -4480,6 +4500,10 @@
                   "size": [
                     32,
                     640
+                  ],
+                  "position": [
+                    329,
+                    0
                   ],
                   "sizing": "FIXED/FIXED",
                   "fills": [
@@ -4686,6 +4710,10 @@
                   "size": [
                     38,
                     640
+                  ],
+                  "position": [
+                    323,
+                    0
                   ],
                   "sizing": "FIXED/FIXED",
                   "fills": [
@@ -5705,8 +5733,8 @@
     "Biamp Design System",
     "1.0",
     "Table",
-    "Description",
-    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Usage",
+    "Data table chassis — header row plus a Rows slot of Row instances.",
     "Anatomy",
     "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
     "States",

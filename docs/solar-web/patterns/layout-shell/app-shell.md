@@ -82,13 +82,15 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**AppShell**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+**Usage**
+
+App-level chrome scaffold: Top Bar + Sidebar + Page Content slot. Slot contract: the content area accepts any Page Layout pattern (e.g., Page Layout / Three Column, Page Layout / Single Column). This keeps chrome and content layout as separate concerns.
 
 **Anatomy**
 

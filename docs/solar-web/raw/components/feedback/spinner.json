@@ -65,6 +65,10 @@
                   16,
                   16
                 ],
+                "position": [
+                  0,
+                  0
+                ],
                 "strokes": [
                   "{Color:border/subtle}"
                 ],
@@ -79,6 +83,10 @@
                 "size": [
                   7,
                   5
+                ],
+                "position": [
+                  8,
+                  1
                 ],
                 "strokes": [
                   "{Spatial:border/strong}"
@@ -132,6 +140,10 @@
                   10,
                   8
                 ],
+                "position": [
+                  12,
+                  1.25
+                ],
                 "strokeGeometry": [
                   {
                     "path": "M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z",
@@ -166,6 +178,10 @@
                 "size": [
                   14,
                   11
+                ],
+                "position": [
+                  16,
+                  1.5
                 ],
                 "strokeGeometry": [
                   {
@@ -226,6 +242,10 @@
                   10,
                   8
                 ],
+                "position": [
+                  12,
+                  1.25
+                ],
                 "strokes": [
                   "{Color:border/inverse/strong}"
                 ],
@@ -267,6 +287,10 @@
                   14,
                   11
                 ],
+                "position": [
+                  16,
+                  1.5
+                ],
                 "strokes": [
                   "{Color:border/inverse/strong}"
                 ],
@@ -290,8 +314,8 @@
     "Biamp Design System",
     "1.0",
     "Spinner",
-    "Description",
-    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Usage",
+    "Circular indeterminate loading indicator. Non-interactive.",
     "Anatomy",
     "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
     "States",

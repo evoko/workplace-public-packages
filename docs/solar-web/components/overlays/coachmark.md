@@ -120,9 +120,9 @@ Default variant: `side=right` · 2 variants · default size 320×171px
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Anchored step card for a guided product tour. The card carries the copy for one step; a connector runs from its edge to the element the step is about, so the user can see exactly what is being described. Use it for first-run tours, feature announcements tied to a specific control, and progressive disclosure of a multi-step workflow.
+Anchored step card for a guided product tour. The card carries one step of copy; a connector runs from its edge to the element the step is about. Choose the side that points toward the target without the card covering it. Anatomy: Card (320px, surface/inverse, 16px padding, 20px gap) · Header = Title 20px text/inverse + Icon/Close · Body 12px text/inverse · Counter 14px text/tertiary · Button Group (regular, 8px gap) with two equal-width md secondary Buttons · Connector = Line + Origin Dot + Node End terminator, all surface/feedback/info/strong. Do not use for: hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog). A tour must always be skippable. Content: keep tours to 3–6 steps, one idea per step. Disable Back on step 1 and relabel Next to "Done" on the last step. The Counter intentionally uses text/tertiary — it is the one de-emphasised token that inverts opposite to the surface. text/secondary fails at 3.19:1 / 2.18:1; do not swap it. Esc dismisses the tour. The Connector is decorative.
 
 **Anatomy**
 
@@ -157,12 +157,6 @@ Target The Connector is decorative.
 
 **Rules**
 
-- DO: Point the connector at the element the step describes
-- DO: Keep the tour to 3–6 steps, one idea per step
-- DO: Disable Back on step 1 and label the last action "Done"
-- DO: Let Esc and the close glyph exit the whole tour
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-- DON'T: Use a Coachmark for a hover hint — that's Tooltip
-- DON'T: Block the UI behind a scrim — a tour is not a Dialog
-- DON'T: Let the card cover the element it is pointing at
-- DON'T: Make a coachmark the only route to a feature
+- DON'T: use for: hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog).

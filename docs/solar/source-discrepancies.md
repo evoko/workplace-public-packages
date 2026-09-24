@@ -47,7 +47,7 @@ settle: in Dark, `action/primary/icon/hover` and `action/primary/icon/active` ar
 while the primary backgrounds they sit on are white and `color/neutral/50`, and every other mode and
 state of `action/primary/icon/*` follows `action/primary/text/*` (`color/neutral/900` in Dark). The
 code follows the variables, so a primary button's icons vanish on hover in Dark until SOLAR fixes
-them; do not patch the colour in a component. It is in the design review (section 10), with three
+them; do not patch the colour in a component. It is in the design review (section 8, action colours), with three
 danger-hover labels just under the WCAG AA text contrast.
 
 ## Resolved in the 2026-09-22 revision

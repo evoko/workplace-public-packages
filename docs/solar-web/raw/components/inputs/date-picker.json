@@ -3197,6 +3197,9 @@
                     ],
                     "align": "MIN/MIN",
                     "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/sm"
                   }
                 }
               },
@@ -3258,6 +3261,10 @@
                   "size": [
                     212,
                     10
+                  ],
+                  "position": [
+                    32,
+                    11
                   ],
                   "sizing": "FIXED/FIXED",
                   "fills": [
@@ -4761,6 +4768,9 @@
                     ],
                     "align": "MIN/MIN",
                     "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/sm"
                   }
                 }
               },
@@ -4822,6 +4832,10 @@
                   "size": [
                     212,
                     10
+                  ],
+                  "position": [
+                    32,
+                    11
                   ],
                   "sizing": "FIXED/FIXED",
                   "fills": [

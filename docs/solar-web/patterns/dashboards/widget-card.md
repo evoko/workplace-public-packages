@@ -153,13 +153,13 @@ Uses: Icon/More ×1
 
 ## Issues detected (page)
 
-- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+ROLE: composition of Card. Dashboard widget chrome. A Card composition with opinionated header (Title + optional overflow menu + optional control slot for Time Range Selector), body slot, and first-class loading / error / empty states. ANATOMY Outer COMPONENT wraps an inner Surface FRAME that carries all card tokens (surface/base, border/subtle, radius/container, border/default weight, shadow/raised effect style, padding inset/lg). Inside Surface: WidgetHeader (Title + Trailing(Control + Overflow)) → Body → Footer. Applied via --solar-card-padding in code, not a fork. May override: padding (inset.lg), Header content (fixed WidgetHeader), state vocabulary (loading|error|empty). STATE DELEGATIONS • loading → Skeleton (rectangular, md) • empty → EmptyState (size=sm) • error → inline error block (message + Button instance) BUILD NOTE (2026-04-21) Outer COMPONENT uses an inner Surface FRAME because Figma’s Plugin API silently drops scalar bindings (padding/radius/strokeWeight/itemSpacing) when applied directly to a COMPONENT root node. Taxonomy intent (Widget Card as a Card INSTANCE) is blocked on Card exposing a content-accepting slot — flagged on the handoff.
 
 **Anatomy**
 

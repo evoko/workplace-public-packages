@@ -105,8 +105,10 @@ Know these before designing anything on top of `catalog.json`:
   the Web file's local `Layout` collection, absent from `figma-variables.json`. They are
   captured in [tokens/layout-variables.json](tokens/layout-variables.json) and folded into
   `css-contract.json` and `reference.css` as `layout.*` / `--solar-layout-*` by `solar:tokens`.
-- **46 pages carry the boilerplate documentation card** ("Breadcrumbs" text left from the
-  template). Their `docText` is not about the component; `issues.md` flags them.
+- **45 pages keep Breadcrumbs text in their documentation card** (left from the template). Since
+  the 2026-09-24 sync it is only their Accessibility section, except Nav Item and Stepper, whose
+  Description is Breadcrumbs' too; the rest of each card describes its own component. `issues.md`
+  names the section on each page.
 - **Values are never resolved here.** Every token reference is a name; resolve it through
   `css-contract.json`. The Web file's own rendering is not a source for values.
 - **Coverage is per Figma page**, tracked in `raw/_pages.json`. Pages the Figma team hides

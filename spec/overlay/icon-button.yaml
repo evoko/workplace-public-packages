@@ -70,6 +70,6 @@ allowLiteral:
     reason: >-
       As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
       governance gap). Drawn 32, 40 and 48; the description's 28, 36 and 44 disagree, which the
-      design review lists (section 4).
+      design review lists (section 3, described sizes).
   root.width:
     reason: An icon button is square, so its width is its height, under the same decision.

@@ -824,6 +824,10 @@
               313,
               4
             ],
+            "position": [
+              19,
+              10
+            ],
             "layout": {
               "dir": "VERTICAL",
               "gap": 8,
