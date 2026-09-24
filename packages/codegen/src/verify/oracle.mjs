@@ -21,6 +21,7 @@ import {
 } from '../normalize/component-layers.mjs';
 import { PLATFORM_STATES } from '../normalize/components.mjs';
 import { renameStates } from '../normalize/overlay.mjs';
+import { drawnPaint } from '../normalize/paints.mjs';
 import { featuresOf } from '../emit/text-features.mjs';
 
 /** Each IR cell a finding can name, as the oracle properties it covers. */
@@ -33,6 +34,10 @@ const PROPERTIES_OF = {
   borderBottomWidth: ['borderBottomWidth'],
   borderLeftWidth: ['borderLeftWidth'],
   radius: ['radius'],
+  radiusTopLeft: ['radiusTopLeft'],
+  radiusTopRight: ['radiusTopRight'],
+  radiusBottomRight: ['radiusBottomRight'],
+  radiusBottomLeft: ['radiusBottomLeft'],
   shadow: ['shadow'],
   color: ['color'],
   gap: ['gap'],
@@ -109,10 +114,10 @@ export function buildOracle(
     // An image fill is the slot's content; the colour beside it is the background.
     paints = paints?.filter((p) => p !== 'IMAGE');
     if (!paints || paints.length === 0) return { value: 'transparent' };
-    if (paints.length > 1)
-      throw new Error(`${where} ${at}: ${paints.length} paints`);
-    const ref = /^\{(.+)\}$/.exec(paints[0]);
-    if (!ref) return { value: hex(paints[0]) };
+    // What Figma draws of a stack: the top paint, where it covers the rest.
+    const { paint } = drawnPaint(paints, names, `${where} ${at}`);
+    const ref = /^\{(.+)\}$/.exec(paint);
+    if (!ref) return { value: hex(paint) };
     const doc = names.variable(ref[1]);
     const token = doc && byName.get(doc);
     if (!token || token.type !== 'color')
@@ -209,8 +214,19 @@ export function buildOracle(
     else
       out.borderWidth = layer.strokes?.length ? (layer.strokeWeight ?? 0) : 0;
     // A shape (Spinner's ring) has no box to round; a frame or rectangle does.
-    if (!['ELLIPSE', 'VECTOR', 'LINE', 'STAR', 'POLYGON'].includes(layer.type))
-      out.radius = layer.radius ?? 0;
+    if (
+      !['ELLIPSE', 'VECTOR', 'LINE', 'STAR', 'POLYGON'].includes(layer.type)
+    ) {
+      // Corners of their own where they differ, clockwise from the top left as Figma records them.
+      const r = layer.radius ?? 0;
+      if (Array.isArray(r) && new Set(r).size > 1)
+        ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'].forEach(
+          (corner, i) => {
+            out[`radius${corner}`] = r[i];
+          },
+        );
+      else out.radius = Array.isArray(r) ? r[0] : r;
+    }
     if (path === '/') out.shadow = shadow(layer.effectStyle);
     if (layer.layout) {
       const [top, right, bottom, left] = layer.layout.pad ?? [0, 0, 0, 0];

@@ -3,9 +3,12 @@
 // shared defaults and its own overlay, where it has one, have decided theirs. Read-only: it
 // builds each IR in memory and writes nothing, so it is never part of solar:codegen and is not
 // held to CI's rebuild check.
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { buildComponentSpec } from '../normalize/components.mjs';
+import {
+  addressOf,
+  buildComponentSpec,
+  componentOf,
+} from '../normalize/components.mjs';
 import { docsDir } from '../util/paths.mjs';
 import { byCodeUnit } from '../util/sort.mjs';
 
@@ -50,23 +53,27 @@ export function classify(d) {
 }
 
 /**
- * One row of the survey. `known` is every component name in the catalog, so a composed child is
- * told from an icon instance. `defaults` and `overlay` decide what they decide, as in the build:
+ * One row of the survey, named by the component's address. `resolve` turns a composed child's
+ * Figma name into a component's address, or null for an icon instance. `defaults` and `overlay` decide what they decide, as in the build:
  * those findings are counted as `decided`, and the rest by their class.
  */
 export function triageEntry(
   entry,
   set,
-  { names, known, done, defaults = null, overlay = null },
+  { names, resolve, address, done, defaults = null, overlay = null },
 ) {
   const row = {
-    name: entry.name,
+    name: address,
     section: entry.section,
     kind: entry.kind === 'set' ? 'set' : 'standalone',
     variants: entry.variantCount,
-    done: done.has(entry.name),
-    composes: [...new Set(entry.composes ?? [])]
-      .filter((n) => known.has(n) && n !== entry.name)
+    done: done.has(address),
+    composes: [
+      ...new Set(
+        (entry.composes ?? []).map((n) => resolve(n, entry)).filter(Boolean),
+      ),
+    ]
+      .filter((a) => a !== address)
       .sort(byCodeUnit),
     builds: true,
     error: null,
@@ -130,8 +137,7 @@ export function levels(rows) {
 
 /**
  * Surveys the catalog's entries under `scope` (a section prefix: `components/` by default; ''
- * for patterns and views too). A standalone component, one Figma drew with no variants, is
- * offered to the pipeline as it stands, which today refuses it.
+ * for patterns and views too), sets and standalone components alike.
  */
 export function triage(
   catalog,
@@ -144,33 +150,29 @@ export function triage(
     rawDir = join(docsDir, 'solar-web', 'raw'),
   },
 ) {
-  const known = new Set(catalog.components.map((c) => c.name));
+  // A composed child by its Figma name: the one component of that name, or, where two share it, the
+  // one in the composer's own section (Date Picker Open composes the date picker's Day Cell, not
+  // the calendar's). An icon instance is no component.
+  const resolve = (name, from) => {
+    const all = catalog.components.filter(
+      (c) => c.name === name && (c.kind === 'set' || c.kind === 'component'),
+    );
+    const pick =
+      all.length === 1 ? all[0] : all.find((c) => c.section === from.section);
+    return pick ? addressOf(catalog, pick) : null;
+  };
   const rows = [];
   for (const entry of catalog.components) {
     if (!entry.section.startsWith(scope)) continue;
-    const page = JSON.parse(
-      readFileSync(join(rawDir, entry.section, `${entry.slug}.json`), 'utf8'),
-    );
-    const set =
-      entry.kind === 'set'
-        ? page.componentSets.find((s) => s.name === entry.name)
-        : (() => {
-            const c = page.components.find((x) => x.name === entry.name);
-            return {
-              name: c.name,
-              props: c.props,
-              defaultVariant: null,
-              defaultVariantTree: c.tree,
-              variants: [],
-            };
-          })();
+    const set = componentOf(entry, { rawDir });
     rows.push(
       triageEntry(entry, set, {
         names,
-        known,
+        resolve,
+        address: addressOf(catalog, entry),
         done,
         defaults,
-        overlay: overlayOf(entry.name),
+        overlay: overlayOf(addressOf(catalog, entry)),
       }),
     );
   }

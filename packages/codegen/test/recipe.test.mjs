@@ -543,7 +543,7 @@ describe('deriveRecipe on Spinner: strokes', () => {
 // (Weekday Header, Popover), and a layer with two stacked colours (Insight Card). Dialog left the
 // list when an image fill became content rather than a second paint.
 describe('deriveRecipe over all of SOLAR Web', () => {
-  it('derives every set it derived before, and fails only on the two known shapes', async () => {
+  it('derives every set', async () => {
     const { readdirSync } = await import('node:fs');
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
@@ -563,9 +563,9 @@ describe('deriveRecipe over all of SOLAR Web', () => {
             failures.push(`${dir}/${set.name}`);
           }
         }
-    // Weekday Header derives since 3b-2 Task B2: its one side bound to two variables is a side of
-    // its own now.
-    expect(failures.sort()).toEqual(['cards/Insight Card', 'overlays/Popover']);
+    // Every one, since milestone 4's Task M5: Insight Card's stacked paints are the top one, and
+    // Popover's corners cells of their own (Weekday Header's sides since 3b-2 Task B2).
+    expect(failures.sort()).toEqual([]);
     // Every icon colour in SOLAR Web is one colour on one icon.
     expect(unattributed).toEqual([]);
     expect(total).toBe(119);
@@ -714,5 +714,124 @@ describe('deriveRecipe: a cell one variant has and another lacks', () => {
     const r = derive({}, { name: 'Box' });
     expect(r.deviations).toEqual([]);
     expect(r.style['/Box'].base).not.toHaveProperty('gap');
+  });
+});
+
+describe('deriveRecipe over SOLAR Web’s standalone components', () => {
+  it('derives every one, all in the base, with nothing that differs across an axis', async () => {
+    const { componentOf, loadWebCatalog } =
+      await import('../src/normalize/components.mjs');
+    const catalog = loadWebCatalog();
+    const standalone = catalog.components.filter(
+      (c) => c.kind === 'component' && c.section.startsWith('components/'),
+    );
+    expect(standalone).toHaveLength(13);
+    for (const entry of standalone) {
+      const r = deriveRecipe(resolveVariants(componentOf(entry)), { names });
+      expect(r.axes, entry.name).toEqual({});
+      for (const s of Object.values(r.style)) {
+        expect(s.appearance, entry.name).toEqual({});
+        expect(s.size, entry.name).toEqual({});
+      }
+      expect(r.deviations.filter((d) => d.kind === 'axis')).toEqual([]);
+    }
+  });
+});
+
+describe('deriveRecipe: corners of their own', () => {
+  // Popover's content: a square corner where its arrow meets it, bound corner by corner.
+  const set = (radius, vars, second) => ({
+    name: 'Tip',
+    defaultVariant: 'side=a',
+    props: { side: { type: 'VARIANT', default: 'a', options: ['a', 'b'] } },
+    defaultVariantTree: {
+      name: 'side=a',
+      type: 'COMPONENT',
+      children: [
+        { name: 'Body', type: 'FRAME', size: [100, 40], radius, vars },
+      ],
+    },
+    variants: [
+      { variant: 'side=a' },
+      {
+        variant: 'side=b',
+        ...(second ? { overrides: { changed: { '/Body': second } } } : {}),
+      },
+    ],
+  });
+  const corners = {
+    topLeftRadius: 'Spatial:radius/container',
+    topRightRadius: 'Spatial:radius/container',
+    bottomRightRadius: 'Spatial:radius/container',
+    bottomLeftRadius: 'Spatial:radius/none',
+  };
+
+  it('gives each corner a cell, clockwise from the top left, from its own binding', () => {
+    const r = deriveRecipe(resolveVariants(set([8, 8, 8, 0], corners)), {
+      names,
+    });
+    const body = r.style['/Body'].base;
+    expect(body).not.toHaveProperty('radius');
+    expect(body.radiusTopLeft).toMatchObject({ token: 'radius.container' });
+    expect(body.radiusBottomRight).toMatchObject({ token: 'radius.container' });
+    expect(body.radiusBottomLeft).toMatchObject({ token: 'radius.none' });
+  });
+
+  it('reads corners that agree, in value and binding, as one radius', () => {
+    const same = Object.fromEntries(
+      Object.keys(corners).map((k) => [k, 'Spatial:radius/container']),
+    );
+    const r = deriveRecipe(resolveVariants(set([8, 8, 8, 8], same)), { names });
+    expect(r.style['/Body'].base.radius).toMatchObject({
+      token: 'radius.container',
+    });
+  });
+
+  it('reads one radius as that radius on every corner, where another variant has corners', () => {
+    const r = deriveRecipe(
+      resolveVariants(
+        set(
+          8,
+          {
+            topLeftRadius: 'Spatial:radius/container',
+            topRightRadius: 'Spatial:radius/container',
+            bottomLeftRadius: 'Spatial:radius/container',
+            bottomRightRadius: 'Spatial:radius/container',
+          },
+          {
+            radius: [8, 8, 8, 0],
+            vars: corners,
+          },
+        ),
+      ),
+      { names },
+    );
+    const body = r.style['/Body'];
+    expect(body.base).not.toHaveProperty('radius');
+    expect(body.base.radiusBottomLeft).toMatchObject({
+      token: 'radius.container',
+    });
+    // side=b squares one corner: geometry across an appearance axis, so a finding.
+    expect(
+      r.deviations.filter(
+        (d) => d.kind === 'axis' && d.cell === 'radiusBottomLeft',
+      ),
+    ).toHaveLength(1);
+  });
+});
+
+describe('deriveRecipe: a cell painted twice', () => {
+  it('draws the top paint and reports the one it covers (Insight Card’s selected card)', async () => {
+    const { loadComponent, loadWebCatalog } =
+      await import('../src/normalize/components.mjs');
+    const { set } = loadComponent(loadWebCatalog(), 'Insight Card');
+    const r = deriveRecipe(resolveVariants(set), { names });
+    const covered = r.deviations.filter((d) => d.kind === 'covered');
+    expect(covered).toHaveLength(1);
+    expect(covered[0]).toMatchObject({
+      layer: '/',
+      cell: 'background',
+      figmaValue: 'surface/background over surface/base in 5 variants',
+    });
   });
 });

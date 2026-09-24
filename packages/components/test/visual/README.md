@@ -15,9 +15,10 @@ npx playwright install chromium  # once, on a new machine
   the real components with `tokens.css` and `fonts.css`, bundled by esbuild from sources
   (`build.mjs`). How a component is rendered is its case module, `cases/<name>.tsx`: its props from
   the oracle and every slot filled with a probe (each Button shows both icons and a counter, so
-  their colours are measured too). `cases/index.ts` registers them, and every component in the
-  codegen's `COMPONENTS` must have one: a component with no cases fails its check, naming the file
-  to add.
+  their colours are measured too). `cases/registry.generated.ts` registers them, written by
+  `solar:codegen` from the codegen's component list, and every component must have one: a
+  component with no case file fails the typecheck, and one with no cases fails its check, naming
+  the file to add.
 - **States** are reached as a user reaches them: the pointer over the control for hover, held down
   for pressed, keyboard focus for focus. MUI then sets its own classes, so the recipe is tested
   through them; where the component's `STATE_SELECTORS` marks focus with a class, the check first

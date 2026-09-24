@@ -19,8 +19,8 @@ A viewer for `solar_flutter`'s generated widgets, the twin of the React Storyboo
 
 How a widget is built in a variant lives in `../variants/` (`solar_flutter_variants`), a small
 package shared with the visual checks in `../test/visual/`, so both show a widget the same way. A
-component appears here once its builder is registered there and its oracle exists; the visual
-checks already require both.
+component appears here once its builder exists there (`solar:codegen` registers it, in
+`variants/lib/src/registry.dart`) and its oracle does; the visual checks already require both.
 
 The oracles are copied into `assets/verify/` (git-ignored) by `scripts/widgetbook.mjs` on every run,
 because Flutter bundles no asset from outside the app. Run it through the script, not a bare

@@ -116,6 +116,19 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    default variant and, for every other variant, only a diff against it. Resolution reverses the
    diff, so each variant is a map of layer path to that layer's properties, with each variable
    binding kept beside the value it binds: `radius: 6` with `Spatial:radius/control`.
+   A component is addressed by its Figma name, or `<section>/<name>` where two share one: Figma
+   has two `Day Cell`s, `calendar/Day Cell` and `inputs/Day Cell`, and a bare `Day Cell` is an
+   error naming both. Its overlay is `spec/overlay/<address>.yaml` (`calendar-day-cell.yaml`), and
+   its `codeName` rule (`Calendar Day Cell`, `Date Picker Day Cell`) is its name from the recipe
+   on: its files, its classes and its findings' tokens. Figma's name stays in the IR's
+   `provenance.figmaName`, and the stage refuses two components generated under one name.
+   Layer names come from Figma's, or a slot's; a layer Figma names by a glyph (PIN Input's `|`)
+   or two whose names reduce to one (Tree Item's `Label` and `|Label`) fail the build until the
+   overlay names them (`layerNames`, by Figma path; a slot's layer keeps its slot's name).
+   A standalone component, one Figma drew with no variants (Drawer, Scrim, Pagination, 13 in all),
+   is loaded by `componentOf` as the set of its one variant, named `''`, with no axes: its recipe is
+   all base, it has no axis findings, and its oracle has one variant. A real set with no axes is
+   still refused, as a fetch gone wrong.
 2. **Derive the recipe** (`src/normalize/recipe.mjs`). SOLAR's model is that **geometry follows
    size, paint follows appearance and state**. Each style cell — a background, a padding, a label's
    type — is read from the one variant that holds every other axis at its default, in token names.
@@ -132,6 +145,13 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    is read from the first variant that draws it. An entry equal to the base is left out only where
    the lookup would still find the base, and one that follows some of the appearance axes is
    written under every full appearance key, since the emitters look entries up by the full key.
+   A stack of paints (`src/normalize/paints.mjs`, which the oracle reads the same way) is its top
+   paint where that one is an opaque colour, since it covers the rest; the covered paint is a
+   `covered` finding for SOLAR (Insight Card's selected card, `surface/background` over
+   `surface/base`), and a translucent top fails the build. A radius whose corners differ
+   (Popover's square corner by its arrow) has a cell per corner, clockwise from the top left as
+   Figma records them, `radiusTopLeft` and the rest, each from its own binding; the MUI recipe
+   writes `border<Corner>Radius`, the oracle a radius per corner, and both checks measure each.
    A border whose sides differ (Button Group's divider) has a cell per side, `borderTopWidth` and
    the rest, read from the weights the fetcher records per side; data fetched before it recorded
    them draws a side where it is bound and reports the layer `unrecorded` until a sync.
@@ -220,9 +240,10 @@ look are drawn as Figma draws them. Three findings are open and are genuine Figm
 secondary loses its background at `sm`, the backgrounds change inconsistently at `lg` (Figma's `xl` until 2026-09-23), and the
 `lg` disabled label uses the danger colour. They are in
 [the design review](../../docs/solar-review-for-design.md), section 8. Run over the whole corpus,
-117 of SOLAR Web's 119 component sets derive a recipe (Dialog since 3b-2 Task A2, Weekday Header
-since B2 gave a border's sides cells of their own); Insight Card and Popover do not, on shapes the
-recipe does not model yet, and 114 build an IR.
+every one of SOLAR Web's 132 components derives a recipe and builds an IR: the 119 sets and the
+13 standalone components (milestone 4's Task M4), since Task M5 gave stacked paints, corners of
+their own and overlay-named layers a rule. PIN Input, Password Input and Tree Item build with the
+overlays that name their glyph-named layers.
 
 [`test/component-parity.test.mjs`](test/component-parity.test.mjs) reads the generated TypeScript
 and Dart and the shell back from disk and proves the two platforms expose the same API, style the
@@ -281,20 +302,36 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
   consistently and reported to SOLAR governance in `spec/deviations.md`. Do not edit `docs/`.
 - **A new token appeared in Figma** → nothing here; re-run `npm run solar:tokens`, and the
   normalizer picks it up. An unknown token _type_ fails loudly rather than guessing.
-- **A component looks wrong on one platform** → that platform's emitter, and its table
-  (`MUI_SLOTS`, `MUI_RESETS`, `STATE_SELECTORS`, `FLUTTER_STYLE`).
+- **A component looks wrong on one platform** → that platform's emitter, or the component's own
+  tables in its descriptor, `src/components/<name>.mjs` (`mui.slots`, `resets`, `states`,
+  `flutter.style`…), which the emitters read as `MUI_SLOTS`, `MUI_RESETS`, `STATE_SELECTORS` and
+  `FLUTTER_STYLE`.
 - **A component looks wrong, and Figma is right for it alone** → its overlay in `spec/overlay/`.
 - **A component behaves wrong** → its shell in `packages/components/src/`, which is yours.
-- **A new component** → add it to `COMPONENTS` in `src/stages/components.mjs`, give the emitters
-  its slot, state and style tables (`MUI_SLOTS`, `STATE_SELECTORS` and `OVERLAPS` where it has
-  states, and `FLUTTER_STYLE` where its Flutter base takes a style object, `BUILDERS`) and the
-  scaffolder a React and a Flutter template, then
-  `npm run solar:scaffold <Name>` and `npm run solar:scaffold -- --flutter <Name>`. A composed
-  child the shell draws (Button's Spinner) comes from the recipe's `compose` lookup, never by hand.
-  Last, a visual case on each platform (`packages/components/test/visual/cases/`, and for Flutter a
-  builder in `solar_flutter/variants/` and a case in `solar_flutter/test/visual/cases/`),
-  registered, which both visual checks require of every generated component. The React scaffold
-  also writes the component's story file, and both review surfaces then show it with no more work.
+- **A new component** → new files only; no list is edited by hand.
+  1. Its descriptor, `src/components/<name>.mjs`. The index finds it, and `COMPONENTS` is the
+     descriptors found. It holds the component's `name` (and its `address`, where that differs),
+     its MUI tables (`slots`, and `resets`, `svgLayers`, `states`, `overlaps`, `restates` as it
+     needs them), its Flutter tables (`style` where its base takes a style object, `BUILDERS`, and
+     `shared`), and its two shell templates, `templates.react` and `templates.flutter`. Shared
+     template helpers are in `src/scaffold/helpers.mjs`.
+  2. Its overlay, `spec/overlay/<address>.yaml`.
+  3. `npm run solar:codegen`, which also writes every list the component is in, from the
+     descriptors (`src/emit/registries.mjs`): both packages' barrels of shells
+     (`packages/components/src/components.generated.ts`, `solar_flutter`'s
+     `lib/src/components/components.dart`), the web case registry
+     (`test/visual/cases/registry.generated.ts`), the Flutter one (`test/visual/cases/cases.dart`)
+     and the variant builders' (`variants/lib/src/registry.dart`, and its library).
+  4. `npm run solar:scaffold <Name>` and `npm run solar:scaffold -- --flutter <Name>`, for the
+     shells and the story.
+  5. A visual case on each platform, in the files the registries name:
+     `packages/components/test/visual/cases/<slug>.tsx`, a builder in `solar_flutter/variants/lib/src/`
+     and a case in `solar_flutter/test/visual/cases/`. Until they exist, the typecheck and
+     `flutter analyze` fail on the registries naming them.
+
+  A composed child the shell draws (Button's Spinner) comes from the recipe's `compose` lookup,
+  never by hand. Both review surfaces then show the component with no more work.
+
 - **Choosing which components come next** → `npm run solar:triage` (`bin/solar-triage.mjs`,
   `src/report/triage.mjs`). It builds every SOLAR Web component's IR in memory and prints, per
   component: whether it builds (and why not), its API, states and slots, what it composes and at

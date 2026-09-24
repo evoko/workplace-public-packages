@@ -1,14 +1,12 @@
 /// Biamp SOLAR for Flutter.
 ///
 /// Everything under `src/generated` is written by `npm run solar:codegen` from
-/// `spec/tokens.json` and `spec/icons.json`. Do not edit those files by hand. The types, the
-/// widgets and the SVG path parser they use are hand written under `src/`.
+/// `spec/tokens.json` and `spec/icons.json`, and so is `src/components/components.dart`, the list of
+/// widgets. Do not edit those files by hand. The types, the widgets and the SVG path parser they use
+/// are hand written under `src/`.
 library;
 
-export 'src/components/solar_button.dart';
-export 'src/components/solar_button_group.dart';
-export 'src/components/solar_icon_button.dart';
-export 'src/components/solar_spinner.dart';
+export 'src/components/components.dart';
 export 'src/generated/components/components.dart';
 export 'src/generated/icons.dart';
 export 'src/generated/logos.dart';

@@ -8,11 +8,16 @@
  * are written in: sections apply in one fixed order, and every address is spelled in Figma's axis
  * names, with `rename` applied last.
  *
- *   component: Button
+ *   component: Button                                    its address: the Figma name, or
+ *                                                        `<section>/<name>` where two share it
+ *   codeName:     { name, reason }                       the component's name in code, where its
+ *                                                        Figma name is two components'
  *   base:         { mui, flutter, reason }              the stock control each target wraps
  *   rename:       { <axis>: { to, values?, reason } }    Figma axis name to API name; `values` maps
  *                                                        each value too, and true/false makes it a boolean
  *   states:       { rename: { <value>: { to, reason } } }  a state value Figma spells otherwise
+ *   layerNames:   { <Figma path>: { name, reason } }     a layer's IR name, where Figma's cannot give one
+ *                                                        (a glyph for a name, or two that reduce to one)
  *   slots:        { <layer>: { name, type, reason } }    a layer the caller fills, with no Figma prop
  *   derive:       { <axis>: { when: [{ value, given? }], reason } }  an axis that follows from
  *                                                        content (first match wins), not a prop
@@ -52,8 +57,9 @@ const FIELDS = {
   accept: [],
   slots: ['name', 'type'],
   derive: ['when'],
+  layerNames: ['name'],
 };
-const SECTIONS = ['base', 'states', ...Object.keys(FIELDS)];
+const SECTIONS = ['codeName', 'base', 'states', ...Object.keys(FIELDS)];
 const SLOT_TYPES = new Set([
   'icon',
   'text',
@@ -73,6 +79,17 @@ export function parseOverlay(text, file) {
     if (key !== 'component' && !SECTIONS.includes(key))
       fail(`unknown section ${key}`);
 
+  if (doc.codeName !== undefined) {
+    for (const key of Object.keys(doc.codeName ?? {}))
+      if (!['name', 'reason'].includes(key))
+        fail(`codeName: unknown field ${key}`);
+    if (
+      typeof doc.codeName?.name !== 'string' ||
+      !/^[A-Z][a-zA-Z0-9]*( [A-Z0-9][a-zA-Z0-9]*)*$/.test(doc.codeName.name)
+    )
+      fail('codeName: name must be capitalised words, as a Figma name is');
+    if (!doc.codeName.reason) fail('codeName has no reason');
+  }
   if (doc.base !== undefined) {
     for (const key of Object.keys(doc.base))
       if (!['mui', 'flutter', 'reason'].includes(key))
@@ -122,6 +139,15 @@ export function parseOverlay(text, file) {
         if (!Number.isFinite(Number(literal)) || typeof token !== 'string')
           fail(`bind.${at}: tokens must map each literal to a token`);
     }
+  }
+  for (const [path, rule] of Object.entries(doc.layerNames ?? {})) {
+    if (!path.startsWith('/'))
+      fail(`layerNames.${path}: address a layer by its Figma path, from /`);
+    if (
+      typeof rule.name !== 'string' ||
+      !/^[a-zA-Z][a-zA-Z0-9 ]*$/.test(rule.name)
+    )
+      fail(`layerNames.${path}: name must be words of letters and digits`);
   }
   for (const [layer, rule] of Object.entries(doc.slots ?? {})) {
     if (typeof rule.name !== 'string' || !rule.name)
@@ -380,7 +406,14 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   const fail = (detail) => {
     throw new Error(`${file}: ${detail}`);
   };
-  if (overlay.component !== spec.component)
+  // Addressed by the Figma name, its section-qualified address, or the code name it gives.
+  const figmaName = spec.provenance?.figmaName ?? spec.component;
+  const section = (spec.provenance?.page ?? '').replace(/^components\//, '');
+  if (
+    ![spec.component, figmaName, `${section}/${figmaName}`].includes(
+      overlay.component,
+    )
+  )
     throw new Error(
       `${file} is for ${overlay.component}, not ${spec.component}`,
     );
@@ -406,6 +439,13 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   };
   const sorted = (section) =>
     Object.entries(overlay[section] ?? {}).sort(([a], [b]) => (a < b ? -1 : 1));
+
+  if (overlay.codeName)
+    record(
+      'codeName',
+      `${figmaName} → ${spec.component}`,
+      overlay.codeName.reason,
+    );
 
   if (overlay.base) {
     spec.base = {
@@ -436,6 +476,10 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     ([a], [b]) => (a < b ? -1 : 1),
   ))
     record('states.rename', `${value} → ${rule.to}`, rule.reason);
+
+  // Layer names were given before the layers were named (see namesOf); here they are recorded.
+  for (const [path, rule] of sorted('layerNames'))
+    record('layerNames', `${path} → ${rule.name}`, rule.reason);
 
   // Slots were declared before the layers were named (see declareSlots); here they are recorded.
   for (const [at, rule] of sorted('slots'))

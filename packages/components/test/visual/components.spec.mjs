@@ -107,6 +107,11 @@ function measure(root, { list, composed }) {
             ]),
           ),
           radius: cs.borderTopLeftRadius,
+          ...Object.fromEntries(
+            ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'].map(
+              (corner) => [`radius${corner}`, cs[`border${corner}Radius`]],
+            ),
+          ),
           shadow: cs.boxShadow,
           paddingTop: cs.paddingTop,
           paddingRight: cs.paddingRight,

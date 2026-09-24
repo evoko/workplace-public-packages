@@ -76,3 +76,25 @@ describe('the visual comparison', () => {
     ]);
   });
 });
+
+describe('corners of their own', () => {
+  it('measures each corner Figma records, and names the one that differs', () => {
+    // Popover's content: square at the bottom left, where its arrow meets it.
+    const figma = {
+      radiusTopLeft: 8,
+      radiusTopRight: 8,
+      radiusBottomRight: 8,
+      radiusBottomLeft: 0,
+    };
+    const drawn = {
+      radiusTopLeft: '8px',
+      radiusTopRight: '8px',
+      radiusBottomRight: '8px',
+      radiusBottomLeft: '0px',
+    };
+    expect(compareLayer(figma, drawn).failures).toEqual([]);
+    expect(
+      compareLayer(figma, { ...drawn, radiusBottomLeft: '8px' }).failures,
+    ).toEqual([{ property: 'radiusBottomLeft', figma: 0, rendered: '8px' }]);
+  });
+});

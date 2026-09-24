@@ -285,3 +285,26 @@ describe('renderFlutterComponent: a layer with no auto-layout in a variant', () 
     expect(at('direction')).toBe('none');
   });
 });
+
+describe('renderFlutterComponent: a component with no axes', () => {
+  it('writes a recipe of base cells alone, and a props class with nothing in it', async () => {
+    const { buildComponentSpec, loadComponent, loadWebCatalog } =
+      await import('../src/normalize/components.mjs');
+    const { loadDefaults } = await import('../src/normalize/overlay.mjs');
+    const { tokenNames } = await import('../src/normalize/recipe.mjs');
+    const { loadContract } = await import('../src/normalize/tokens.mjs');
+    const catalog = loadWebCatalog();
+    const { spec } = buildComponentSpec(loadComponent(catalog, 'Scrim'), {
+      names: tokenNames(loadContract()),
+      fileVersion: catalog.fileVersion,
+      defaults: loadDefaults(),
+    });
+    const { cells, dart } = renderFlutterComponent(spec, tokens);
+    expect(Object.keys(cells).length).toBeGreaterThan(0);
+    expect(Object.keys(cells).every((k) => k.endsWith('|base'))).toBe(true);
+    // Dart refuses empty braces for named parameters, and a constant key must be const, so both
+    // are written for a component with nothing to take.
+    expect(dart).toContain('const SolarScrimProps();');
+    expect(dart).toContain("const combo = '';");
+  });
+});

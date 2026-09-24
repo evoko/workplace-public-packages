@@ -1,0 +1,12 @@
+# Hand-written decisions about SOLAR's calendar Day Cell (components/calendar), applied over its IR
+# by `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails
+# the build. Format: packages/codegen/src/normalize/overlay.mjs. The component's other decisions
+# come with its family, F13 of the milestone 4 plan.
+
+component: calendar/Day Cell
+
+codeName:
+  name: Calendar Day Cell
+  reason: >-
+    Figma names two components Day Cell: this one, a day of the calendar views, and the date
+    picker's. Code needs one name each; the section says which this is.

@@ -62,22 +62,29 @@ function applyChange(layer, change) {
   }
 }
 
-/** The VARIANT-type props of a set: its axes, with their options in Figma's order. */
+/**
+ * The VARIANT-type props of a set: its axes, with their options in Figma's order. A standalone
+ * component (one Figma drew with no variants, loaded as a set of one by `componentOf`) has none;
+ * a set with none is a fetch gone wrong.
+ */
 function axesOf(set) {
   const axes = {};
   for (const [name, def] of Object.entries(set.props ?? {})) {
     if (def.type !== 'VARIANT') continue;
     axes[name] = { default: def.default, options: [...def.options] };
   }
-  if (Object.keys(axes).length === 0)
+  if (Object.keys(axes).length === 0 && !set.standalone)
     throw new Error(`${set.name}: has no variant axes`);
   return axes;
 }
 
-/** `size=md, prio=primary` to `{size: 'md', prio: 'primary'}`, checked against the axes. */
+/**
+ * `size=md, prio=primary` to `{size: 'md', prio: 'primary'}`, checked against the axes. The one
+ * variant of a component with no axes is named `''`.
+ */
 function parseVariantName(name, axes) {
   const props = {};
-  for (const part of name.split(',')) {
+  for (const part of name === '' ? [] : name.split(',')) {
     const [key, value] = part.split('=').map((s) => s.trim());
     props[key] = value;
   }

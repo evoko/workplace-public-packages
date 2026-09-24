@@ -595,3 +595,90 @@ allowLiteral:
     expect(again.spec).toEqual(spec);
   });
 });
+
+describe('layerNames', () => {
+  it('addresses a layer by its Figma path and names it in words', () => {
+    expect(() =>
+      yaml(`
+component: X
+layerNames:
+  Cells/Field:
+    name: caret
+    reason: r
+`),
+    ).toThrow(/address a layer by its Figma path, from \//);
+    expect(() =>
+      yaml(`
+component: X
+layerNames:
+  /Field/|:
+    name: "|"
+    reason: r
+`),
+    ).toThrow(/name must be words of letters and digits/);
+  });
+
+  it('fails where the component has no such layer, as every rule does', () => {
+    expect(() =>
+      build(
+        yaml(`
+component: Button
+layerNames:
+  /Nowhere:
+    name: ghost
+    reason: r
+`),
+      ),
+    ).toThrow(/layerNames \/Nowhere: the component has no such layer/);
+  });
+
+  it('gives the layer its name, and refuses a slot’s layer, whose name is the slot’s', () => {
+    const group = loadComponent(catalog, 'Button Group');
+    const on = (text) =>
+      buildComponentSpec(group, {
+        names,
+        fileVersion: catalog.fileVersion,
+        overlay: yaml(`component: Button Group\n${text}`),
+      });
+    const { spec } = on(`layerNames:
+  /Button#3:
+    name: third button
+    reason: r
+`);
+    expect(spec.layers.thirdButton).toMatchObject({ path: '/Button#3' });
+    expect(() =>
+      on(`layerNames:
+  /Button#2:
+    name: other
+    reason: r
+`),
+    ).toThrow(/the layer is slot secondaryCTA's, whose name is the slot's/);
+  });
+});
+
+describe('codeName', () => {
+  it('is capitalised words with a reason', () => {
+    expect(() =>
+      yaml(`component: X\ncodeName:\n  name: dayCell\n  reason: r\n`),
+    ).toThrow(/codeName: name must be capitalised words/);
+    expect(() => yaml(`component: X\ncodeName:\n  name: Day Cell\n`)).toThrow(
+      /codeName has no reason/,
+    );
+  });
+
+  it('is for the component its address names, and no other', () => {
+    const picker = loadComponent(catalog, 'inputs/Day Cell');
+    const on = (component) =>
+      buildComponentSpec(picker, {
+        names,
+        fileVersion: 'x',
+        overlay: yaml(
+          `component: ${component}\ncodeName:\n  name: Date Picker Day Cell\n  reason: r\n`,
+        ),
+      });
+    expect(on('inputs/Day Cell').spec.component).toBe('Date Picker Day Cell');
+    expect(() => on('calendar/Day Cell')).toThrow(
+      /is for calendar\/Day Cell, not Date Picker Day Cell/,
+    );
+  });
+});

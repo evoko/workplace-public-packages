@@ -6,19 +6,24 @@ import {
   loadComponent,
   loadWebCatalog,
 } from '../normalize/components.mjs';
+import { DESCRIPTORS } from '../components/index.mjs';
 import { loadDefaults, loadOverlay } from '../normalize/overlay.mjs';
 import { tokenNames } from '../normalize/recipe.mjs';
 import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { emitFlutterComponents } from '../emit/flutter-component.mjs';
+import { emitRegistries } from '../emit/registries.mjs';
 import { buildOracle } from '../verify/oracle.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
 export const name = 'components';
 
-/** The components generated so far, by their Figma names. Milestone 3b adds the rest. */
-export const COMPONENTS = ['Button', 'Spinner', 'Icon Button', 'Button Group'];
+/**
+ * The components generated so far, by their addresses: the Figma name, or `<section>/<name>` where
+ * two components share it (see findEntry). Milestone 4 adds the rest.
+ */
+export const COMPONENTS = DESCRIPTORS.map((d) => d.address ?? d.name);
 
 export const componentsDir = join(specDir, 'components');
 export const verifyDir = join(specDir, 'verify');
@@ -53,7 +58,29 @@ export function build() {
     });
     return { spec, deviations, oracle };
   });
+  // Every file and class is named after the component, so two by one name would overwrite each
+  // other: a Figma name two components share needs an overlay codeName for each.
+  assertDistinct(built.map((b) => b.spec.component));
+  // A descriptor's tables are looked up by the name the component is built under.
+  DESCRIPTORS.forEach((d, i) => {
+    if (built[i].spec.component !== d.name)
+      throw new Error(
+        `src/components: the descriptor ${d.name} builds as ${built[i].spec.component}; its name must be the component's name in code`,
+      );
+  });
   return { built, tokens };
+}
+
+/** Refuses two components generated under one name, naming it. */
+export function assertDistinct(names) {
+  const seen = new Set();
+  for (const name of names) {
+    if (seen.has(name))
+      throw new Error(
+        `two components are generated as ${name}; give each an overlay codeName`,
+      );
+    seen.add(name);
+  }
 }
 
 export function emit({ built, tokens }) {
@@ -81,6 +108,7 @@ export function emit({ built, tokens }) {
       oracles: built.length,
       mui: emitMuiComponents(specs, tokens),
       flutter: emitFlutterComponents(specs, tokens),
+      registries: emitRegistries(specs.map((s) => s.component)),
     },
     deviations: built.flatMap((b) => b.deviations),
   };

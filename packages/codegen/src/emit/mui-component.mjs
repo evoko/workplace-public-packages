@@ -19,6 +19,7 @@ import { writeGenerated } from '../util/write.mjs';
 import { BOOLEAN_STATES } from '../normalize/component-layers.mjs';
 import { canonical, letterSpacingEm } from './manifest.mjs';
 import { cssTextFeatures, featuresOf } from './text-features.mjs';
+import { table as descriptorTable } from '../components/index.mjs';
 
 const OUT_DIR = join(
   packagesDir,
@@ -34,46 +35,13 @@ const OUT_DIR = join(
  * the label text in the root, and the icons and spinner in its own named slots. A layer the IR
  * has and this table does not is an error, so a new Figma layer cannot go unstyled unnoticed.
  */
-export const MUI_SLOTS = {
-  Button: {
-    root: '&',
-    label: '&',
-    iconLeading: '& .MuiButton-startIcon',
-    iconTrailing: '& .MuiButton-endIcon',
-    spinner: '& .MuiButton-loadingIndicator',
-    // Not an MUI slot: the shell renders the counter itself, with this class (task 7).
-    counter: '& .SolarButton-counter',
-  },
-  // MUI renders the icon as its children; the shell wraps it in a box the recipe sizes, as Button's
-  // counter is, so the icon fills it. The loading indicator is MUI's slot, laid over the icon.
-  'Icon Button': {
-    root: '&',
-    icon: '& .SolarIconButton-icon',
-    spinner: '& .MuiIconButton-loadingIndicator',
-  },
-  // A flex box of the caller's Buttons. Figma draws example Buttons at three layers; whatever the
-  // caller passes, each is a child of the box, so the three are styled together.
-  'Button Group': {
-    root: '&',
-    tertiaryCTA: '& > *',
-    secondaryCTA: '& > *',
-    button3: '& > *',
-  },
-  // The shell sizes a box and lets CircularProgress fill it (size="100%"), since MUI writes the
-  // size prop as an inline style no recipe rule could beat.
-  Spinner: {
-    root: '&',
-    spinnerRing: '&',
-    track: '& .MuiCircularProgress-track',
-    indicator: '& .MuiCircularProgress-circle',
-  },
-};
+export const MUI_SLOTS = descriptorTable('mui', 'slots');
 
 /**
  * Layers MUI draws as SVG shapes, where Figma's stroke is `stroke` and `stroke-width`, not a CSS
  * border, and a fill is `fill`.
  */
-export const MUI_SVG_LAYERS = { Spinner: ['track', 'indicator'] };
+export const MUI_SVG_LAYERS = descriptorTable('mui', 'svgLayers');
 
 /**
  * MUI's own defaults that would otherwise show through the recipe. These are MUI knowledge, like
@@ -84,38 +52,7 @@ export const MUI_SVG_LAYERS = { Spinner: ['track', 'indicator'] };
  * the gap), and MUI's icon font size (the SOLAR icon fills its slot, which the recipe sizes). So a
  * component looks right whether or not the app installed the SOLAR MUI theme.
  */
-export const MUI_RESETS = {
-  Button: {
-    // Not '0': MUI's sx reads a sizing value of 1 or less as a fraction, so '0' becomes '0%'.
-    minWidth: 'auto',
-    textTransform: 'none',
-    '& .MuiButton-startIcon': { margin: '0' },
-    '& .MuiButton-endIcon': { margin: '0' },
-    '& .MuiButton-startIcon > svg, & .MuiButton-endIcon > svg': {
-      width: '100%',
-      height: '100%',
-    },
-  },
-  // The shell renders a Box, which is a block; Figma's auto layout is a flex box.
-  'Button Group': { display: 'flex' },
-  // MUI's icon button is a 24px glyph in a round, padded box, which the recipe replaces; the SOLAR
-  // icon fills the box the recipe sizes for it.
-  'Icon Button': {
-    '& .SolarIconButton-icon': { display: 'inline-flex' },
-    '& .SolarIconButton-icon > svg': { width: '100%', height: '100%' },
-  },
-  // CircularProgress draws in a 44-unit viewBox scaled to its box, so a stroke width in CSS pixels
-  // would scale with it; non-scaling-stroke keeps SOLAR's border width in screen pixels. MUI fades
-  // its track to 12% of the indicator's colour; SOLAR's track has a colour of its own.
-  Spinner: {
-    display: 'inline-flex',
-    '& .MuiCircularProgress-root': { display: 'block' },
-    '& .MuiCircularProgress-track, & .MuiCircularProgress-circle': {
-      vectorEffect: 'non-scaling-stroke',
-    },
-    '& .MuiCircularProgress-track': { opacity: '1' },
-  },
-};
+export const MUI_RESETS = descriptorTable('mui', 'resets');
 
 /**
  * The selector each component's MUI control is in for each state, keyed like `MUI_SLOTS`. Platform
@@ -127,29 +64,7 @@ export const MUI_RESETS = {
  * no table has no states; a state the IR keys an entry by and the table lacks is an error, so none
  * can go unstyled.
  */
-export const STATE_SELECTORS = {
-  Button: {
-    default: null,
-    hover: '&:hover',
-    pressed: '&:active',
-    // MUI marks focus with a class only for keyboard focus (focus-visible).
-    focus: '&.Mui-focusVisible',
-    loading: '&.MuiButton-loading',
-    // MUI disables a loading button too, so a loading one carries Mui-disabled as well; without the
-    // :not it would draw in the disabled colours. A button both disabled and loading is disabled:
-    // the shell does not pass loading to MUI then.
-    disabled: '&.Mui-disabled:not(.MuiButton-loading)',
-  },
-  // MUI's IconButton marks its states as Button does, under its own name.
-  'Icon Button': {
-    default: null,
-    hover: '&:hover',
-    pressed: '&:active',
-    focus: '&.Mui-focusVisible',
-    loading: '&.MuiIconButton-loading',
-    disabled: '&.Mui-disabled:not(.MuiIconButton-loading)',
-  },
-};
+export const STATE_SELECTORS = descriptorTable('mui', 'states');
 
 /** One component's state table: `{ default: null }` for a component with no states. */
 export function stateSelectors(component) {
@@ -265,6 +180,10 @@ function context(spec, tokens) {
             : { strokeWidth: ref(entry.token, at) };
         // A shape has no box to round or shadow.
         case 'radius':
+        case 'radiusTopLeft':
+        case 'radiusTopRight':
+        case 'radiusBottomRight':
+        case 'radiusBottomLeft':
         case 'shadow':
           if (!entry.none)
             throw new Error(`${where} ${at}: an SVG shape cannot take ${cell}`);
@@ -299,6 +218,16 @@ function context(spec, tokens) {
         return {
           borderRadius: ref(entry.none ? 'radius.none' : entry.token, at),
         };
+      // A corner of its own (Popover's square corner by its arrow), over any uniform radius.
+      case 'radiusTopLeft':
+      case 'radiusTopRight':
+      case 'radiusBottomRight':
+      case 'radiusBottomLeft': {
+        const prop = `border${cell.slice('radius'.length)}Radius`;
+        return entry.none || entry.token
+          ? { [prop]: ref(entry.none ? 'radius.none' : entry.token, at) }
+          : length(entry, prop, at);
+      }
       case 'shadow':
         return { boxShadow: entry.none ? 'none' : ref(entry.token, at) };
       // A layer with no auto-layout in this variant (the recipe writes it `none`) has no gap or
@@ -342,10 +271,7 @@ function context(spec, tokens) {
  * disabled or loading Button (MUI marks loading disabled) takes no pointer and cannot keep focus,
  * so it overlaps nothing. A component with no entry has no overlapping states.
  */
-export const OVERLAPS = {
-  Button: { pressed: ['hover'], focus: ['hover', 'pressed'] },
-  'Icon Button': { pressed: ['hover'], focus: ['hover', 'pressed'] },
-};
+export const OVERLAPS = descriptorTable('mui', 'overlaps');
 
 /**
  * Where states overlap (`OVERLAPS`) and Figma draws each alone, a property an earlier state sets
@@ -441,9 +367,7 @@ export function restateOverlaps(spec) {
  * loses to, so a loading icon button would lose its fill. (MUI's Button draws no disabled
  * background for the text variant the shell pins, so it needs no entry.)
  */
-export const MUI_STATE_RESTATES = {
-  'Icon Button': { loading: ['root.background'] },
-};
+export const MUI_STATE_RESTATES = descriptorTable('mui', 'restates');
 
 /** The style with each MUI_STATE_RESTATES cell restated at its resting value, marked `restates`. */
 function restateBase(spec, style) {

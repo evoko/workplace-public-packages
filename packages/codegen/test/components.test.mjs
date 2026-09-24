@@ -2,13 +2,19 @@ import { describe, expect, it } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
+  addressOf,
   buildComponentSpec,
+  componentOf,
   loadComponent,
   loadWebCatalog,
   namesOf,
 } from '../src/normalize/components.mjs';
 import { docsDir } from '../src/util/paths.mjs';
-import { parseOverlay } from '../src/normalize/overlay.mjs';
+import {
+  loadDefaults,
+  loadOverlay,
+  parseOverlay,
+} from '../src/normalize/overlay.mjs';
 import { buildOracle } from '../src/verify/oracle.mjs';
 import { buildTokenSpec } from '../src/normalize/tokens.mjs';
 import {
@@ -16,6 +22,7 @@ import {
   foldStateAxes,
 } from '../src/normalize/component-layers.mjs';
 import { statePrecedence } from '../src/emit/flutter-component.mjs';
+import { assertDistinct } from '../src/stages/components.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 
@@ -327,12 +334,11 @@ describe('a slot drawn by a frame and the text inside it', () => {
   });
 });
 
-// Which sets build an IR at all. A change that makes one stop building shows here; the ones
-// left fail on shapes named in the plan: Figma layers named by a glyph, and the recipe's four.
-// Banner left the list on 2026-09-23, when SOLAR split its one Show Buttons prop in two, and
-// Dialog when an image fill became content.
+// Which sets build an IR at all: every one, since milestone 4's Task M5, with the overlays that
+// name what Figma names by a glyph (PIN Input's `|`, Password Input's bullets, Tree Item's
+// `|Label`). A change that makes one stop building shows here.
 describe('buildComponentSpec over all of SOLAR Web', () => {
-  it('builds every set but the five known ones', () => {
+  it('builds every set', () => {
     const root = join(docsDir, 'solar-web', 'raw', 'components');
     const failures = [];
     let total = 0;
@@ -343,20 +349,118 @@ describe('buildComponentSpec over all of SOLAR Web', () => {
         ).componentSets) {
           total++;
           try {
-            buildComponentSpec({ entry: {}, set }, { names, fileVersion: 'x' });
-          } catch {
-            failures.push(`${dir}/${set.name}`);
+            buildComponentSpec(
+              { entry: {}, set },
+              {
+                names,
+                fileVersion: 'x',
+                overlay: loadOverlay(set.name),
+                defaults: loadDefaults(),
+              },
+            );
+          } catch (e) {
+            failures.push(`${dir}/${set.name}: ${e.message}`);
           }
         }
     expect(total).toBe(119);
-    // Weekday Header builds since 3b-2 Task B2, which gave a border's sides cells of their own.
-    expect(failures.sort()).toEqual([
-      'cards/Insight Card',
-      'inputs/PIN Input',
-      'inputs/Password Input',
-      'navigation/Tree Item',
-      'overlays/Popover',
-    ]);
+    expect(failures).toEqual([]);
+  });
+
+  it('names a layer Figma names by a glyph only through an overlay', () => {
+    const pin = loadComponent(catalog, 'PIN Input');
+    expect(() => buildComponentSpec(pin, { names, fileVersion: 'x' })).toThrow(
+      /no letter or digit to name it by; name it with an overlay layerNames rule/,
+    );
+    const { spec } = buildComponentSpec(pin, {
+      names,
+      fileVersion: 'x',
+      overlay: loadOverlay('PIN Input'),
+    });
+    expect(spec.layers.caret).toMatchObject({ path: '/Cells/Field/|' });
+    expect(spec.overlay.rules).toContainEqual(
+      expect.objectContaining({
+        rule: 'layerNames',
+        at: '/Cells/Field/| → caret',
+      }),
+    );
+  });
+});
+
+describe('the oracle of a layer whose corners differ', () => {
+  it('holds each corner Figma records, clockwise from the top left', () => {
+    const loaded = loadComponent(catalog, 'Popover');
+    const { spec, deviations } = buildComponentSpec(loaded, {
+      names,
+      fileVersion: catalog.fileVersion,
+    });
+    const oracle = buildOracle(loaded.set, spec, deviations, {
+      tokens: buildTokenSpec(loadContract()).spec,
+      names,
+      overlay: null,
+      fileVersion: catalog.fileVersion,
+    });
+    const top = oracle.variants.find(
+      (v) => v.figma === 'placement=top, size=md',
+    ).layers.content;
+    expect(top).toMatchObject({
+      radiusTopLeft: 8,
+      radiusTopRight: 8,
+      radiusBottomRight: 8,
+      radiusBottomLeft: 0,
+    });
+    expect(top).not.toHaveProperty('radius');
+  });
+});
+
+describe('standalone components', () => {
+  const standalone = catalog.components.filter(
+    (c) => c.kind === 'component' && c.section.startsWith('components/'),
+  );
+
+  it('are thirteen, and every one builds an IR and an oracle of one variant', () => {
+    expect(standalone).toHaveLength(13);
+    const tokens = buildTokenSpec(loadContract()).spec;
+    for (const entry of standalone) {
+      const set = componentOf(entry);
+      const { spec, deviations } = buildComponentSpec(
+        { entry, set },
+        { names, fileVersion: catalog.fileVersion },
+      );
+      expect(spec.api, entry.name).toEqual({});
+      expect(spec.states, entry.name).toEqual([]);
+      // No axes, so nothing can differ across one: its findings are raw values only.
+      expect(
+        deviations.filter((d) => d.kind === 'axis'),
+        entry.name,
+      ).toEqual([]);
+      const oracle = buildOracle(set, spec, deviations, {
+        tokens,
+        names,
+        overlay: null,
+        fileVersion: catalog.fileVersion,
+      });
+      expect(oracle.variants, entry.name).toHaveLength(1);
+      expect(oracle.variants[0].props, entry.name).toEqual({});
+    }
+  });
+
+  it('take their props as slots: Drawer’s title, content and the footer its hasCTA shows', () => {
+    const { spec } = buildComponentSpec(loadComponent(catalog, 'Drawer'), {
+      names,
+      fileVersion: catalog.fileVersion,
+    });
+    expect(spec.slots.title).toMatchObject({
+      type: 'text',
+      default: 'Drawer Title',
+    });
+    expect(spec.slots.content).toMatchObject({ type: 'content' });
+    expect(spec.slots.cta).toMatchObject({
+      type: 'component',
+      component: 'Button Group',
+      props: { visible: 'hasCTA' },
+    });
+    expect(spec.provenance.defaultVariant).toBe('');
+    expect(Object.keys(spec.style.root.appearance)).toEqual([]);
   });
 });
 
@@ -678,5 +782,58 @@ describe('glyphs: shapes a component draws itself', () => {
       0,
     );
     expect(deviations.some((d) => d.cell === 'glyph')).toBe(false);
+  });
+});
+
+// Two sets Figma names Day Cell, since milestone 4's Task M6: each is addressed by its section and
+// named for code by its overlay.
+describe('components named alike', () => {
+  it('refuses a bare name two components share, naming both, and finds each by its section', () => {
+    expect(() => loadComponent(catalog, 'Day Cell')).toThrow(
+      /Day Cell is the name of inputs\/Day Cell and calendar\/Day Cell/,
+    );
+    expect(loadComponent(catalog, 'calendar/Day Cell').entry.variantCount).toBe(
+      5,
+    );
+    expect(loadComponent(catalog, 'inputs/Day Cell').entry.variantCount).toBe(
+      13,
+    );
+    const [calendar] = catalog.components.filter(
+      (c) => c.name === 'Day Cell' && c.section === 'components/calendar',
+    );
+    expect(addressOf(catalog, calendar)).toBe('calendar/Day Cell');
+    // An unshared name is its own address.
+    expect(addressOf(catalog, loadComponent(catalog, 'Button').entry)).toBe(
+      'Button',
+    );
+  });
+
+  it('builds each under its overlay’s code name, which its findings’ tokens carry', () => {
+    const on = (address) =>
+      buildComponentSpec(loadComponent(catalog, address), {
+        names,
+        fileVersion: 'x',
+        overlay: loadOverlay(address),
+      });
+    const calendar = on('calendar/Day Cell');
+    const picker = on('inputs/Day Cell');
+    expect(calendar.spec.component).toBe('Calendar Day Cell');
+    expect(picker.spec.component).toBe('Date Picker Day Cell');
+    expect(calendar.spec.provenance.figmaName).toBe('Day Cell');
+    expect(
+      picker.deviations.every((d) =>
+        d.token.startsWith('component.date picker day cell.'),
+      ),
+    ).toBe(true);
+    expect(calendar.spec.overlay.rules[0]).toMatchObject({
+      rule: 'codeName',
+      at: 'Day Cell → Calendar Day Cell',
+    });
+  });
+
+  it('refuses two components generated under one name', () => {
+    expect(() => assertDistinct(['Day Cell', 'Button', 'Day Cell'])).toThrow(
+      /two components are generated as Day Cell; give each an overlay codeName/,
+    );
   });
 });

@@ -13,6 +13,7 @@
  * Values bound to no variable, or to one that is not a SOLAR token, are recorded the same way.
  */
 
+import { drawnPaint } from './paints.mjs';
 import { checkPathData } from './svg.mjs';
 
 // ---------------------------------------------------------------------------------------------
@@ -42,6 +43,22 @@ export function tokenNames(contract) {
       typeof raw === 'number' ? raw : Number(String(raw).replace(/px$/, ''));
     if (Number.isFinite(n)) pixels.set(v.doc, n);
   }
+  // A colour's alpha in every mode it has: `#rrggbb` is opaque, `rgba(…, a)` is `a`.
+  const alphaOf = (v) => {
+    const rgba = /^rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)$/.exec(
+      String(v).trim(),
+    );
+    if (rgba) return Number(rgba[1]);
+    return /^#[0-9a-f]{6}$/i.test(String(v)) ? 1 : null;
+  };
+  const opaque = new Set(
+    contract.variables
+      .filter((v) => {
+        const values = [v.value, v.light, v.dark].filter((x) => x != null);
+        return values.length > 0 && values.every((x) => alphaOf(x) === 1);
+      })
+      .map((v) => v.doc),
+  );
   const all = new Set([
     ...variables.values(),
     ...[...textStyles].map((f) => `typography.${f.replaceAll('/', '.')}`),
@@ -51,6 +68,8 @@ export function tokenNames(contract) {
     variable: (name) => variables.get(name) ?? null,
     /** Whether a doc name is a SOLAR token at all. */
     has: (doc) => all.has(doc),
+    /** Whether a colour token is opaque in every mode, so a paint of it covers what is under it. */
+    opaque: (doc) => opaque.has(doc),
     /** A dimension token's value in pixels, or null for anything else. */
     value: (doc) => pixels.get(doc) ?? null,
     textStyle: (name) =>
@@ -135,6 +154,20 @@ const STROKES = [
   'strokeLeftWeight',
 ];
 const PADDING = ['Top', 'Right', 'Bottom', 'Left'];
+// A layer's corners, clockwise from the top left, as Figma's `rectangleCornerRadii` lists them:
+// their variable bindings, and the cells a layer whose corners differ has.
+const CORNER_KEYS = [
+  'topLeftRadius',
+  'topRightRadius',
+  'bottomRightRadius',
+  'bottomLeftRadius',
+];
+const CORNER_CELLS = [
+  'radiusTopLeft',
+  'radiusTopRight',
+  'radiusBottomRight',
+  'radiusBottomLeft',
+];
 
 // The token families a literal of each cell would come from, for the suggestions attached to an
 // unbound value, and what to call a missing family when there is none.
@@ -145,6 +178,10 @@ const FAMILIES = {
   paddingBottom: ['inset'],
   paddingLeft: ['inset'],
   radius: ['radius'],
+  radiusTopLeft: ['radius'],
+  radiusTopRight: ['radius'],
+  radiusBottomRight: ['radius'],
+  radiusBottomLeft: ['radius'],
   borderWidth: ['border'],
   borderTopWidth: ['border'],
   borderRightWidth: ['border'],
@@ -185,13 +222,11 @@ function bound(layer, keys, literal, names, where) {
 }
 
 /** A fills or strokes array as one paint. */
-function paint(paints, names, where) {
+function paint(paints, names, where, onCovered) {
   if (!paints || paints.length === 0) return { none: true };
-  if (paints.length > 1)
-    throw new Error(
-      `${where}: ${paints.length} paints; the recipe carries one per cell`,
-    );
-  const [p] = paints;
+  // A stack is the paint on top when that one covers the rest; what it covers is reported.
+  const { paint: p, covered } = drawnPaint(paints, names, where);
+  if (covered.length) onCovered?.(covered, p);
   const ref = /^\{(.+)\}$/.exec(p);
   if (!ref) return { literal: p };
   const token = names.variable(ref[1]);
@@ -234,7 +269,7 @@ function extent(layer, i, names, where) {
  * which of its variants, and how big -- because its own padding, colour and radius are its own
  * recipe's, and repeating them here would report every change of child variant as a deviation.
  */
-function cellsOf(layer, type, names, where) {
+function cellsOf(layer, type, names, where, onCovered) {
   const cells = {};
   const put = (name, cls, value) => {
     if (value !== undefined) cells[name] = { cls, value };
@@ -255,12 +290,24 @@ function cellsOf(layer, type, names, where) {
     // two-tone mark the recipe does not model, so it is left to the caller to report.
     const distinct = [...new Set(layer.iconFills ?? [])];
     if (distinct.length === 1)
-      put('color', 'paint', paint(distinct, names, `${where}.color`));
+      put(
+        'color',
+        'paint',
+        paint(distinct, names, `${where}.color`, (c, p) =>
+          onCovered?.('color', c, p),
+        ),
+      );
     return cells;
   }
 
   if (type === 'TEXT') {
-    put('color', 'paint', paint(layer.fills, names, `${where}.color`));
+    put(
+      'color',
+      'paint',
+      paint(layer.fills, names, `${where}.color`, (c, p) =>
+        onCovered?.('color', c, p),
+      ),
+    );
     put('typography', 'geometry', style(layer.textStyle, names.textStyle));
     return cells;
   }
@@ -275,21 +322,47 @@ function cellsOf(layer, type, names, where) {
   put(
     'background',
     'paint',
-    paint(layer.fills && content, names, `${where}.background`),
+    paint(layer.fills && content, names, `${where}.background`, (c, p) =>
+      onCovered?.('background', c, p),
+    ),
   );
   put(
     'borderColor',
     'paint',
-    paint(layer.strokes, names, `${where}.borderColor`),
+    paint(layer.strokes, names, `${where}.borderColor`, (c, p) =>
+      onCovered?.('borderColor', c, p),
+    ),
   );
   put('shadow', 'paint', style(layer.effectStyle, names.effectStyle));
   if (layer.opacity !== undefined)
     put('opacity', 'paint', { literal: layer.opacity });
-  put(
-    'radius',
-    'geometry',
-    bound(layer, CORNERS, layer.radius, names, `${where}.radius`),
+  // Corners of their own (Popover's content has a square corner by its arrow): one cell per
+  // corner, clockwise from the top left as Figma records them, each from its own binding. Corners
+  // that agree, in value and binding, are one radius.
+  const corners = Array.isArray(layer.radius) ? layer.radius : null;
+  const cornerBindings = new Set(
+    CORNER_KEYS.map((k) => layer.vars?.[k]).filter(Boolean),
   );
+  if (corners && (new Set(corners).size > 1 || cornerBindings.size > 1))
+    CORNER_KEYS.forEach((key, i) =>
+      put(
+        CORNER_CELLS[i],
+        'geometry',
+        bound(layer, [key], corners[i], names, `${where}.${CORNER_CELLS[i]}`),
+      ),
+    );
+  else
+    put(
+      'radius',
+      'geometry',
+      bound(
+        layer,
+        CORNERS,
+        corners ? corners[0] : layer.radius,
+        names,
+        `${where}.radius`,
+      ),
+    );
   // No stroke paint is no border, whatever weight Figma keeps: it keeps a stroke's weight, and its
   // variable binding, after the paint is removed (Icon Button's primary loses its border on hover
   // and at md, still bound to border.default). The oracle reads it the same way.
@@ -367,7 +440,8 @@ const SIDE_CELLS = PADDING.map((side) => `border${side}Width`);
  *   draw as no flex, and no gap or padding (`inset.none`);
  * - no recorded sizing is the size the layer is drawn at, bound as any size is;
  * - one border width where another variant has a width per side (Tab Item) is that width on
- *   every side, so the sides are compared side by side.
+ *   every side, so the sides are compared side by side, and one radius where another variant has
+ *   one per corner is that radius on every corner.
  *
  * A layer whose variants all agree on which cells they have is left as it is. What this does not
  * fill, the comparison reports as a finding rather than skipping it.
@@ -379,6 +453,7 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
       drawn.flatMap((v) => Object.keys(cells.get(v.name).get(path) ?? {})),
     );
     const sides = SIDE_CELLS.some((c) => has.has(c));
+    const corners = CORNER_CELLS.some((c) => has.has(c));
     for (const v of drawn) {
       const own = cells.get(v.name).get(path);
       if (!own) continue;
@@ -386,9 +461,18 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
         for (const c of SIDE_CELLS) own[c] = { ...own.borderWidth };
         delete own.borderWidth;
       }
+      if (corners && own.radius) {
+        for (const c of CORNER_CELLS) own[c] = { ...own.radius };
+        delete own.radius;
+      }
       const layer = v.layers.get(path);
       for (const c of has) {
-        if (own[c] || (sides && c === 'borderWidth')) continue;
+        if (
+          own[c] ||
+          (sides && c === 'borderWidth') ||
+          (corners && c === 'radius')
+        )
+          continue;
         if (LAYOUT_CELLS.includes(c))
           own[c] = { cls: 'geometry', value: { none: true } };
         else if ((c === 'width' || c === 'height') && layer.size) {
@@ -416,6 +500,8 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const coordinate = (props, axes) =>
   Object.fromEntries(axes.map((a) => [a, props[a]]));
 const keyOf = (props, axes) => axes.map((a) => `${a}=${props[a]}`).join(', ');
+/** `{Color:surface/base}` as Figma shows it, `surface/base`. */
+const figmaPaint = (p) => p.replace(/^\{[^:]+:(.+)\}$/, '$1');
 const slug = (layer) => (layer === '/' ? 'root' : layer.slice(1));
 const describe = (v) =>
   v === undefined
@@ -467,6 +553,8 @@ export function deriveRecipe(
   const unattributed = new Map();
   // Layers whose sides differ, in variants fetched before the per-side weights were recorded.
   const unrecorded = new Map();
+  // Cells Figma paints twice, the top paint covering the rest (Insight Card's selected card).
+  const covered = new Map();
   const unattribute = (path, variant) =>
     unattributed.set(path, (unattributed.get(path) ?? new Set()).add(variant));
   const cells = new Map(
@@ -475,7 +563,18 @@ export function deriveRecipe(
       for (const [path, layer] of v.layers) {
         perLayer.set(
           path,
-          cellsOf(layer, layers[path].type, names, `${component} ${path}`),
+          cellsOf(
+            layer,
+            layers[path].type,
+            names,
+            `${component} ${path}`,
+            (cell, under, top) => {
+              const k = `${path}|${cell}`;
+              if (!covered.has(k))
+                covered.set(k, { path, cell, top, under, variants: new Set() });
+              covered.get(k).variants.add(v.name);
+            },
+          ),
         );
         // An icon's colour is read from the icon itself (cellsOf). An icon drawn in more than one
         // colour is a two-tone mark one cell cannot hold: no cell, and a finding.
@@ -802,6 +901,21 @@ export function deriveRecipe(
       figmaValue: `the icon is drawn in more than one colour in ${variants.size} variant${variants.size === 1 ? '' : 's'}`,
       reason: `${path} is drawn in more than one colour, and an icon's colour is one cell, so the recipe carries no colour for it. A SOLAR icon inherits one colour; a two-tone one is a logo, or a mark SOLAR should redraw.`,
       raise: `Ask SOLAR whether ${path} is meant to be two-tone; if so it is not an icon.`,
+    });
+
+  for (const { path, cell, top, under, variants } of [...covered.values()].sort(
+    (a, b) => a.path.localeCompare(b.path) || a.cell.localeCompare(b.cell),
+  ))
+    deviations.push({
+      kind: 'covered',
+      component,
+      layer: path,
+      cell,
+      variants: [...variants].map((variant) => ({ variant })),
+      token: `component.${component.toLowerCase()}.${slug(path)}.${cell}#covered`,
+      figmaValue: `${figmaPaint(top)} over ${under.map(figmaPaint).join(', ')} in ${variants.size} variant${variants.size === 1 ? '' : 's'}`,
+      reason: `${cell} on ${path} is painted twice, and the top paint is opaque, so only it is ever seen; the recipe draws it. The paint under it is left over.`,
+      raise: `Ask SOLAR to remove the covered ${under.map(figmaPaint).join(', ')} from ${component} ${path} ${cell}.`,
     });
 
   for (const [path, variants] of [...unrecorded].sort(([a], [b]) =>

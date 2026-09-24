@@ -395,3 +395,46 @@ describe('a layer with no auto-layout in a variant', () => {
     expect(vertical).not.toHaveProperty('justifyContent');
   });
 });
+
+describe('a component with no axes (Scrim, one Figma drew with no variants)', () => {
+  it('renders its recipe as the root style alone', async () => {
+    const { buildComponentSpec, loadComponent, loadWebCatalog } =
+      await import('../src/normalize/components.mjs');
+    const { loadDefaults } = await import('../src/normalize/overlay.mjs');
+    const { tokenNames } = await import('../src/normalize/recipe.mjs');
+    const catalog = loadWebCatalog();
+    const { spec } = buildComponentSpec(loadComponent(catalog, 'Scrim'), {
+      names: tokenNames(loadContract()),
+      fileVersion: catalog.fileVersion,
+      defaults: loadDefaults(),
+    });
+    // A stand-in for the slot table Scrim's own task will write.
+    MUI_SLOTS.Scrim = { root: '&' };
+    try {
+      const { styles } = renderMuiComponent(spec, tokens);
+      expect(styles.root.backgroundColor).toMatch(/^var\(--solar-color-/);
+      expect(styles.appearances).toEqual({});
+    } finally {
+      delete MUI_SLOTS.Scrim;
+    }
+  });
+});
+
+describe('corners of their own', () => {
+  it('writes each as its own border radius, and a none corner as radius.none', () => {
+    const group = structuredClone(
+      built.find((b) => b.spec.component === 'Button Group').spec,
+    );
+    group.style.root.appearance[
+      'orientation=vertical, fullWidth=false'
+    ].default = {
+      radiusTopLeft: { token: 'radius.container' },
+      radiusBottomLeft: { none: true },
+    };
+    const vertical = renderMuiComponent(group, tokens).styles.appearances[
+      'orientation=vertical, fullWidth=false'
+    ];
+    expect(vertical.borderTopLeftRadius).toBe('var(--solar-radius-container)');
+    expect(vertical.borderBottomLeftRadius).toBe('var(--solar-radius-none)');
+  });
+});

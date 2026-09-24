@@ -6,6 +6,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { loadWebCatalog } from '../src/normalize/components.mjs';
+import { loadDefaults, loadOverlay } from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 import { COMPONENTS } from '../src/stages/components.mjs';
@@ -20,6 +21,8 @@ const catalog = loadWebCatalog();
 const rows = triage(catalog, {
   names: tokenNames(loadContract()),
   done: new Set(COMPONENTS),
+  defaults: loadDefaults(),
+  overlayOf: loadOverlay,
 });
 const row = (name) => rows.find((r) => r.name === name);
 
@@ -35,11 +38,26 @@ describe('the triage of SOLAR Web', () => {
     ).toEqual([...COMPONENTS].sort());
   });
 
-  it('reports why a set does not build, and that standalone components have no axes yet', () => {
-    expect(row('Popover')).toMatchObject({ builds: false });
-    expect(row('Popover').error).toContain('per-side');
-    for (const r of rows.filter((r) => r.kind === 'standalone'))
-      expect(r.error, r.name).toContain('has no variant axes');
+  it('builds every component, sets and standalone ones, since milestone 4’s Task M5', () => {
+    expect(rows.filter((r) => !r.builds)).toEqual([]);
+  });
+
+  it('reports why a component does not build', () => {
+    // Without its overlay, PIN Input's caret, a layer named `|`, has no name.
+    const [pin] = triage(
+      {
+        ...catalog,
+        components: catalog.components.filter((c) => c.name === 'PIN Input'),
+      },
+      { names: tokenNames(loadContract()), done: new Set() },
+    );
+    expect(pin.builds).toBe(false);
+    expect(pin.error).toContain('no letter or digit to name it by');
+  });
+
+  it('counts what the defaults and a built component’s overlay decide apart', () => {
+    expect(row('Button').findings.decided).toBeGreaterThan(0);
+    expect(row('Icon Button').findings.axis ?? 0).toBe(0);
   });
 
   it('knows what each composes, and orders the levels by it', () => {
@@ -48,6 +66,9 @@ describe('the triage of SOLAR Web', () => {
     expect(row('Button Group').level).toBe(2);
     // Icons are instances too, but not components of the catalog.
     expect(row('Card').composes).toEqual(['Tag']);
+    // A shared name resolves to the composer's own section: the date picker's Day Cell.
+    expect(row('Date Picker Open').composes).toEqual(['inputs/Day Cell']);
+    expect(row('calendar/Day Cell').composes).toEqual(['Event Chip']);
   });
 
   it('describes what a set is made of', () => {

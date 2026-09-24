@@ -337,6 +337,34 @@ component's overlay. `buildComponentSpec` takes `defaults`; the stage and the tr
 - **Tests:** Drawer's IR (title and content slots, `hasCTA`), a synthetic one-variant set, and both
   corpus guards moved to include them.
 
+**Done 2026-09-24.** As measured:
+
+- **Loading:** `componentOf(entry)` in `src/normalize/components.mjs` reads one catalog entry's
+  raw data. A standalone component becomes the set of its one variant: `standalone: true`, named
+  `''`, its tree as the default variant's. `loadComponent` and the triage both go through it, and
+  the triage's own adapter is gone.
+- **Resolving:** `axesOf` accepts no axes for a standalone component only (a real set with none
+  still fails), and `parseVariantName` reads `''` as no props.
+- **Two Flutter emitter fixes,** found by writing all 13 recipes to a scratch file and running
+  `flutter analyze`:
+  - an empty props class wrote `({ })`, which Dart refuses; it is now `const Solar<Name>Props();`;
+  - the combination key was `final` where it is constant. Pagination, whose recipe names no
+    colour, also left the colour switch's `final c` unused.
+
+  The MUI recipes of all 13, with stand-in slot tables, typecheck. Both scratch outputs were
+  removed.
+- **Naming:** `camel` lower-cases a leading acronym whole. Drawer's `hasCTA` slot was `cTA`, and is
+  now `cta`; `TertiaryCTA` stays `tertiaryCTA`. No icon, logo or built component name changed.
+- **Corpus:** all 13 build an IR and a one-variant oracle, with no axis findings. `npm run
+  solar:triage` now gives 127 of 132 building; the 5 left are M5's. Both corpus guards, the
+  standalone ones and the sets, pin it.
+- **Generated output of the four built components:** unchanged.
+- **Tests:** a standalone set resolving and a set without axes refused; `camel`'s acronyms; all 13
+  building with oracles; Drawer's slots (`title`, `content`, `cta` for its Button Group); the recipe
+  guard; and the MUI and Flutter recipes of Scrim.
+- **Checks:** 566 JS tests, both visual checks, 94 Flutter tests, lint, typecheck, format, and two
+  identical rebuilds.
+
 ### Task M5: The four shapes that do not build
 
 Each is a small rule of its own, with a synthetic test:
@@ -363,6 +391,54 @@ Each is a small rule of its own, with a synthetic test:
 
 Both corpus guards move: after M4 and M5, all 132 build, or the plan says which don't and why.
 
+**Done 2026-09-24.** All 132 components in the Components section now build: the triage reports
+none left.
+
+- **`layerNames`**, a new overlay rule (`src/normalize/overlay.mjs`), gives a layer its name by
+  Figma path, with a reason. `namesOf` treats it as the layer's own word, as a slot's name is, so
+  names are still qualified where they clash.
+  - A path the component lacks fails, and so does a slot's layer, whose name is the slot's.
+  - The two naming errors now say to add such a rule.
+  - Three overlays use it: `spec/overlay/pin-input.yaml` (`/Cells/Field/|`, the caret a focused
+    cell draws, is `caret`), `password-input.yaml` (the nine bullets are `maskedValue`), and
+    `tree-item.yaml` (`/|Label`, added only in `state=edit`, is the rename input,
+    `renameInput`). Each holds that rule alone; the rest waits for its family.
+  - The plan's guess that Tree Item's `|` was a caret glyph was wrong: it is a second text layer
+    whose text starts with a drawn caret.
+- **Stacked paints** (`src/normalize/paints.mjs`, `drawnPaint`), read the same way by the recipe
+  and the oracle:
+  - A stack is its top paint (Figma lists paints bottom first, and the fetcher drops hidden ones)
+    where that paint is an opaque colour, which `names.opaque` knows from the contract in every
+    mode.
+  - What the top paint covers is a new finding kind, `covered`. Insight Card's selected card
+    draws `surface/background` over `surface/base` in 5 variants, and SOLAR is asked to remove the
+    covered paint.
+  - A translucent top still fails the build.
+- **Corners of their own.** No fetcher change was needed: it already records
+  `rectangleCornerRadii` as `radius: [tl, tr, br, bl]`.
+  - Where corners differ in value or binding, the recipe gives a cell per corner,
+    `radiusTopLeft` and the rest. Where another variant of the layer has corners, one radius is
+    read as that radius on every corner, as M2 does for borders.
+  - The MUI recipe writes `border<Corner>Radius`, and a `none` corner is `radius.none`.
+  - The oracle holds a radius per corner.
+  - Both checks list the four corners, and the web check measures them (`border<Corner>Radius`).
+    Flutter's cases measure what their component draws, and fail on any property they lack.
+  - Popover's square corner follows `placement`, as its arrow does. That is 6 axis findings,
+    which Popover's family decides with `follows`.
+- **Corpus guards:** both now expect every set to derive and build, the IR guard with each set's
+  overlay and the defaults. The triage builds 132 of 132.
+- **Generated output and oracles of the four built components:** unchanged.
+- **Tests:**
+  - `test/paints.test.mjs`: one paint, an opaque top, a translucent top refused;
+  - corners in the recipe (per corner, agreeing corners as one, one radius spread where another
+    variant has corners), the MUI emitter, Popover's oracle and the web comparison;
+  - Insight Card's `covered` finding;
+  - `layerNames` parsing, a missing path, a slot's layer, and PIN Input with and without its
+    overlay;
+  - the triage building everything.
+- **Checks:** 582 JS tests, both visual checks, 94 Flutter tests, Flutter analyze and format,
+  lint, typecheck, format, and two identical rebuilds.
+
 ### Task M6: Components named alike
 
 `COMPONENTS`, `loadComponent`, the IR's file name and the code names all key on Figma's name, and
@@ -372,6 +448,32 @@ name is an error that names both. The overlay's `component` line takes the same 
 `codeName` rule, with a reason, gives the code name (`CalendarDayCell`, `DatePickerDayCell`), from which the file names
 follow. The triage resolves `composes` through the same address, so Date Picker Open composes the
 date picker's Day Cell, not the calendar's.
+
+**Done 2026-09-24.**
+
+- **Addresses:** a component is addressed by its Figma name, or by `<section>/<name>` where two
+  share it (`findEntry`, `addressOf` in `src/normalize/components.mjs`).
+  - A bare `Day Cell` is an error naming `inputs/Day Cell` and `calendar/Day Cell`.
+  - The whole address is matched against `section/name`, not split, since some view pages have a
+    `/` in their Figma names.
+  - `COMPONENTS`, `loadComponent` and `loadOverlay` take addresses, so a Day Cell's overlay is
+    `spec/overlay/calendar-day-cell.yaml` or `inputs-day-cell.yaml`.
+- **`codeName`:** a new overlay rule renames the component before the recipe is derived, so its
+  files, classes and findings' tokens follow the new name, and `provenance.figmaName` keeps
+  Figma's.
+  - The overlay's `component` line may be the Figma name, the address or the code name; another
+    component's fails.
+  - The two overlays give `Calendar Day Cell` and `Date Picker Day Cell`, the names the plan took.
+- **The stage** refuses two components generated under one name (`assertDistinct`), since their
+  files would overwrite each other.
+- **The triage** names rows by address and resolves a composed child's name within the composer's
+  section where two share it. Date Picker Open now composes `inputs/Day Cell` and sits at level
+  1, not 2, and the plan's one ordering warning (F7 needing F13's Day Cell) is gone.
+- **Generated output of the four built components:** unchanged.
+- **Tests:** addresses and the ambiguous bare name, both Day Cells under their code names, the
+  duplicate guard, `codeName` parsing and addressing, and the triage's resolution.
+- **Checks:** 587 JS tests, both visual checks, 94 Flutter tests, lint, typecheck, format, and two
+  identical rebuilds.
 
 ### Task M7: A component in files of its own
 
@@ -406,6 +508,51 @@ After M7, a family member touches only its own files:
 - its web case and Flutter builder and case.
 
 So members can be built in parallel, and the coordinator adds nothing but review.
+
+**Done 2026-09-24.** A component is now its own files, and adding one edits no list.
+
+- **Descriptors:** `packages/codegen/src/components/<name>.mjs`, one per component
+  (`button.mjs`, `button-group.mjs`, `icon-button.mjs`, `spinner.mjs`).
+  - Each holds the component's `name` (and `address` where that differs), its MUI tables
+    (`slots`, `resets`, `svgLayers`, `states`, `overlaps`, `restates`), its Flutter tables
+    (`style`, `shared`) and its two shell templates.
+  - `src/components/index.mjs` finds them by listing the directory, so `COMPONENTS` is the
+    descriptors found.
+  - The emitters keep their exported names (`MUI_SLOTS`, `STATE_SELECTORS`, `FLUTTER_STYLE`,
+    `TEMPLATES`…) as views built from the descriptors, so no caller changed.
+  - The templates moved verbatim, and the helpers they share are in `src/scaffold/helpers.mjs`.
+    The scaffolder went from 903 lines to 126.
+- **The registries and barrels are generated,** the choice the plan left open, by
+  `src/emit/registries.mjs` on every `solar:codegen`:
+  - `packages/components/src/components.generated.ts`, which the hand-owned `index.ts` re-exports;
+  - `solar_flutter`'s `lib/src/components/components.dart`, which `solar_flutter.dart` exports;
+  - the web cases' `test/visual/cases/registry.generated.ts`, which `cases/index.ts` re-exports;
+  - the Flutter cases' `test/visual/cases/cases.dart`;
+  - the variant builders' `variants/lib/src/registry.dart`, and their library.
+
+  Generated because the scaffolder's line-by-line edits of the barrels would race when members
+  are built in parallel. The generated lists are sorted and hand-readable, and CI's rebuild check
+  holds them to the component list. A file they name that does not exist fails the typecheck or
+  `flutter analyze`. The scaffolder no longer edits either barrel.
+- **The stage** checks each descriptor's name is the name its component builds under.
+- **Acceptance:**
+  - The four components' React, Flutter and story templates, MUI recipes and Flutter recipes,
+    rendered before and after into a scratch directory, are byte for byte identical.
+  - The one generated change is order: the two recipe barrels (`mui/components/index.ts`,
+    `generated/components/components.dart`) list components sorted, not in the old `COMPONENTS`
+    order.
+- **Tests:** `test/descriptors.test.mjs` (every file found, sorted, and read by the emitters and
+  the scaffolder), `test/registries.test.mjs` (the lists, their order, and that what is committed
+  is what the stage writes), and the scaffold tests, which now prove the barrels are left alone.
+- **Checks:** 592 JS tests, both visual checks, 94 Flutter tests, analysis of all three Flutter
+  packages, Dart format, lint, typecheck, format, both viewers, and two identical rebuilds.
+
+After M7, a family member is these files, and nothing shared:
+
+- `src/components/<name>.mjs`;
+- `spec/overlay/<address>.yaml`;
+- its two shells, its story, and its tests;
+- its web case, and its Flutter builder and case.
 
 **Pause for review** after M2 to M7, before F1.
 

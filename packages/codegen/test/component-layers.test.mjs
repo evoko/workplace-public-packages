@@ -334,3 +334,39 @@ describe('resolveVariants refuses data it cannot trust', () => {
     ).toThrow(/Synthetic: the fetcher truncated its variants/);
   });
 });
+
+describe('resolveVariants: a component Figma drew with no variants', () => {
+  const tree = {
+    name: 'Scrim',
+    type: 'COMPONENT',
+    fills: ['{Color:surface/scrim}'],
+    children: [],
+  };
+
+  it('resolves a standalone component as one variant, named empty, with no axes', () => {
+    const r = resolveVariants({
+      name: 'Scrim',
+      standalone: true,
+      props: {},
+      defaultVariant: '',
+      defaultVariantTree: tree,
+      variants: [{ variant: '' }],
+    });
+    expect(r.axes).toEqual({});
+    expect(r.variants).toHaveLength(1);
+    expect(r.variants[0]).toMatchObject({ name: '', props: {} });
+    expect(r.variants[0].layers.has('/')).toBe(true);
+  });
+
+  it('still refuses a component set with no axes, which is a fetch gone wrong', () => {
+    expect(() =>
+      resolveVariants({
+        name: 'Broken',
+        props: {},
+        defaultVariant: '',
+        defaultVariantTree: tree,
+        variants: [{ variant: '' }],
+      }),
+    ).toThrow(/Broken: has no variant axes/);
+  });
+});

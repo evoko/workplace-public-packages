@@ -29,28 +29,80 @@ export function loadWebCatalog() {
 }
 
 /**
- * The catalog entry and the raw component set for one component, by its Figma name. `rawDir`
- * reads the raw pages from elsewhere -- a test checking a fetcher change before it is synced.
+ * The raw component set for one catalog entry. A standalone component -- one Figma drew with no
+ * variants (Drawer, Scrim, Pagination) -- is the set of its one variant, named `''`, with no
+ * axes, so it resolves and derives as any set does. `rawDir` reads the raw pages from elsewhere --
+ * a test checking a fetcher change before it is synced.
  */
-export function loadComponent(
-  catalog,
-  name,
-  { rawDir = join(webDir, 'raw') } = {},
-) {
-  const entry = catalog.components.find(
-    (c) => c.name === name && c.kind === 'set',
-  );
-  if (!entry)
-    throw new Error(`the SOLAR Web catalog has no component named ${name}`);
+export function componentOf(entry, { rawDir = join(webDir, 'raw') } = {}) {
   const page = JSON.parse(
     readFileSync(join(rawDir, entry.section, `${entry.slug}.json`), 'utf8'),
   );
-  const set = page.componentSets.find((s) => s.name === name);
-  if (!set)
+  if (entry.kind === 'set') {
+    const set = page.componentSets.find((s) => s.name === entry.name);
+    if (!set)
+      throw new Error(
+        `${entry.section}/${entry.slug}.json has no component set ${entry.name}`,
+      );
+    return set;
+  }
+  const one = (page.components ?? []).find((c) => c.name === entry.name);
+  if (!one)
     throw new Error(
-      `${entry.section}/${entry.slug}.json has no component set ${name}`,
+      `${entry.section}/${entry.slug}.json has no component ${entry.name}`,
     );
-  return { entry, set };
+  return {
+    name: one.name,
+    id: one.id,
+    description: one.description,
+    props: one.props,
+    standalone: true,
+    defaultVariant: '',
+    defaultVariantTree: one.tree,
+    variants: [{ variant: '' }],
+  };
+}
+
+/** A catalog entry's section without the `components/` every component's has: `calendar`. */
+const sectionOf = (entry) => entry.section.replace(/^components\//, '');
+
+/**
+ * A component's address: its Figma name, or `<section>/<name>` where the name alone is two
+ * components' (`calendar/Day Cell`, `inputs/Day Cell`).
+ */
+export const addressOf = (catalog, entry) =>
+  catalog.components.filter(
+    (c) =>
+      c.name === entry.name && (c.kind === 'set' || c.kind === 'component'),
+  ).length > 1
+    ? `${sectionOf(entry)}/${entry.name}`
+    : entry.name;
+
+/**
+ * The catalog entry for one component, by its address. A bare name two components share is an
+ * error naming both, never a guess.
+ */
+export function findEntry(catalog, address) {
+  const components = catalog.components.filter(
+    (c) => c.kind === 'set' || c.kind === 'component',
+  );
+  // By name first, then by `<section>/<name>`: a view's Figma name may itself hold a `/`.
+  let found = components.filter((c) => c.name === address);
+  if (found.length === 0)
+    found = components.filter((c) => `${sectionOf(c)}/${c.name}` === address);
+  if (found.length === 0)
+    throw new Error(`the SOLAR Web catalog has no component named ${address}`);
+  if (found.length > 1)
+    throw new Error(
+      `${address} is the name of ${found.map((c) => `${sectionOf(c)}/${c.name}`).join(' and ')}; address it by one of those`,
+    );
+  return found[0];
+}
+
+/** The catalog entry and the raw component set for one component, by its address. */
+export function loadComponent(catalog, address, { rawDir } = {}) {
+  const entry = findEntry(catalog, address);
+  return { entry, set: componentOf(entry, { rawDir }) };
 }
 
 /**
@@ -257,10 +309,24 @@ function within(path, ancestor, parents) {
  * @param {Record<string, {layer: string}>} slots
  * @returns {Map<string, string>} path to name
  */
-export function namesOf(parents, slots, component) {
+export function namesOf(parents, slots, component, given = {}) {
   const bySlot = new Map(
     Object.entries(slots).map(([name, s]) => [s.layer, name]),
   );
+  // A name the overlay gives (`layerNames`) is the layer's own word, as a slot's is: for a layer
+  // Figma names by a glyph (PIN Input's `|`) or two whose names reduce to one (Tree Item's `Label`
+  // and `|Label`).
+  for (const [path, name] of Object.entries(given)) {
+    if (!parents.has(path))
+      throw new Error(
+        `${component}: layerNames ${path}: the component has no such layer`,
+      );
+    if (bySlot.has(path))
+      throw new Error(
+        `${component}: layerNames ${path}: the layer is slot ${bySlot.get(path)}'s, whose name is the slot's`,
+      );
+    bySlot.set(path, name);
+  }
   // A path cannot be split to find a layer's own name, since names contain `/` themselves.
   const own = (path) => {
     const parent = parents.get(path);
@@ -284,7 +350,7 @@ export function namesOf(parents, slots, component) {
     ].join(' ');
     if (!/[a-zA-Z0-9]/.test(words))
       throw new Error(
-        `${component}: layer ${path} has no letter or digit to name it by`,
+        `${component}: layer ${path} has no letter or digit to name it by; name it with an overlay layerNames rule`,
       );
     return camel(words);
   };
@@ -312,7 +378,7 @@ export function namesOf(parents, slots, component) {
     const moved = move.size > 0;
     if (!moved)
       throw new Error(
-        `${component}: layers ${clashes[0].join(' and ')} are all named ${name(clashes[0][0])}, and qualifying them cannot tell them apart`,
+        `${component}: layers ${clashes[0].join(' and ')} are all named ${name(clashes[0][0])}, and qualifying them cannot tell them apart; name one with an overlay layerNames rule`,
       );
   }
   return new Map([...parents.keys()].map((p) => [p, name(p)]));
@@ -335,9 +401,14 @@ const isBoolean = (axis) =>
  *   IR as Figma has it
  */
 export function buildComponentSpec(
-  { entry, set },
+  { entry, set: figmaSet },
   { names, fileVersion, overlay = null, defaults = null },
 ) {
+  // The overlay's code name, where Figma's name is two components' (the calendar's and the date
+  // picker's Day Cell), is the component's name from here on: its files, its code and its
+  // findings' tokens. Figma's stays in the provenance.
+  const codeName = overlay?.codeName?.name;
+  const set = codeName ? { ...figmaSet, name: codeName } : figmaSet;
   // Checkbox draws `hover` and `focus` as axes of their own; they are one state axis here.
   const folded = foldStateAxes(resolveVariants(set));
   const stateFindings = folded.findings;
@@ -353,12 +424,18 @@ export function buildComponentSpec(
       if (!parents.has(path)) parents.set(path, v.parents.get(path) ?? null);
   // Figma's slots, then the ones the overlay declares where Figma records no prop, addressed by
   // the layer names Figma's slots alone give.
+  const given = Object.fromEntries(
+    Object.entries(overlay?.layerNames ?? {}).map(([path, r]) => [
+      path,
+      r.name,
+    ]),
+  );
   const slots = declareSlots(
     slotsOf(resolved, set),
     overlay,
-    namesOf(parents, slotsOf(resolved, set), set.name),
+    namesOf(parents, slotsOf(resolved, set), set.name, given),
   );
-  const layerNames = namesOf(parents, slots, set.name);
+  const layerNames = namesOf(parents, slots, set.name, given);
   const pathOf = (name) =>
     [...layerNames].find(([, n]) => n === name)?.[0] ?? null;
 
@@ -413,6 +490,7 @@ export function buildComponentSpec(
       figmaIssues: [...(entry.issues ?? [])],
     },
     provenance: {
+      ...(codeName ? { figmaName: figmaSet.name } : {}),
       page: entry.section,
       pageId: entry.pageId,
       figmaNode: entry.nodeId,

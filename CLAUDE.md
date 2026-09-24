@@ -24,9 +24,10 @@ Tailwind 4 stylesheet in `@bwp-web/styles`, each behind its own entry (`tokens.c
 `docs/solar-icons/`, then 340 React components and 685 standalone SVG files in `@bwp-web/assets`,
 and `SolarVector` constants in `solar_flutter`. **It must never write to `docs/`**, which is the
 Figma mirror; a write guard enforces this and CI re-checks it. When generated styling is wrong,
-fix the normalizer in `packages/codegen/src/normalize/` for a systemic rule, or the single
-emitter in `src/emit/` for a target-specific one. Never edit a generated file to keep a change,
-and never edit `docs/` to make code look right. Run the command and commit its output after
+fix the normalizer in `packages/codegen/src/normalize/` for a systemic rule, the single
+emitter in `src/emit/` for a target-specific one, or the component's descriptor in
+`src/components/<name>.mjs` (its MUI and Flutter tables and shell templates) for one component.
+Never edit a generated file to keep a change, and never edit `docs/` to make code look right. Run the command and commit its output after
 touching that package. Decisions about one component go in its hand-written overlay,
 `spec/overlay/<component>.yaml`: every rule needs a `reason`, and a rule that no
 longer matches the IR fails the build. A decision that holds for every component (an unbound `0`

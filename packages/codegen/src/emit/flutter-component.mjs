@@ -13,6 +13,7 @@
  */
 
 import { join } from 'node:path';
+import { table as descriptorTable } from '../components/index.mjs';
 import { flattenSpec } from '../spec.mjs';
 import { pascal, quote } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
@@ -77,42 +78,7 @@ export const BUILDERS = {
  * lacks is an error, and so is a table for a base with no builder, or a base with a builder and no
  * table.
  */
-export const FLUTTER_STYLE = {
-  Button: {
-    background: 'root.background',
-    shadow: 'root.shadow',
-    radius: 'root.radius',
-    borderColor: 'root.borderColor',
-    borderWidth: 'root.borderWidth',
-    paddingTop: 'root.paddingTop',
-    paddingRight: 'root.paddingRight',
-    paddingBottom: 'root.paddingBottom',
-    paddingLeft: 'root.paddingLeft',
-    height: 'root.height',
-    width: 'root.width',
-    foreground: 'label.color',
-    textStyle: 'label.typography',
-    iconColor: 'iconLeading.color',
-    iconSize: 'iconLeading.width',
-  },
-  // No label, so no text style: the icon takes the foreground.
-  'Icon Button': {
-    background: 'root.background',
-    shadow: 'root.shadow',
-    radius: 'root.radius',
-    borderColor: 'root.borderColor',
-    borderWidth: 'root.borderWidth',
-    paddingTop: 'root.paddingTop',
-    paddingRight: 'root.paddingRight',
-    paddingBottom: 'root.paddingBottom',
-    paddingLeft: 'root.paddingLeft',
-    height: 'root.height',
-    width: 'root.width',
-    foreground: 'icon.color',
-    iconColor: 'icon.color',
-    iconSize: 'icon.width',
-  },
-};
+export const FLUTTER_STYLE = descriptorTable('flutter', 'style');
 
 /**
  * Cells one Flutter property draws for more than one layer, where MUI styles each: ButtonStyle has
@@ -120,14 +86,7 @@ export const FLUTTER_STYLE = {
  * for its track and indicator. Where the IR's two differ, the emitter refuses rather than drawing
  * one layer with the other's value.
  */
-export const FLUTTER_SHARED = {
-  // CircularProgressIndicator has one strokeWidth for its track and its indicator.
-  Spinner: { 'indicator.borderWidth': 'track.borderWidth' },
-  Button: {
-    'iconLeading.color': 'iconTrailing.color',
-    'iconLeading.width': 'iconTrailing.width',
-  },
-};
+export const FLUTTER_SHARED = descriptorTable('flutter', 'shared');
 
 /** One IR entry as the string the Dart map holds. */
 function encode(entry, at) {
@@ -479,11 +438,13 @@ ${enums.join('\n\n')}
 /// platform states, tracked by Flutter as [WidgetState]s.
 @immutable
 class Solar${name}Props {
-  const Solar${name}Props({
-${params.join('\n')}
-  });
-
-${fields.join('\n')}
+${
+  // A component with no props (Scrim, drawn with no variants) has an empty constructor: Dart
+  // refuses empty braces for named parameters.
+  params.length
+    ? `  const Solar${name}Props({\n${params.join('\n')}\n  });\n\n${fields.join('\n')}`
+    : `  const Solar${name}Props();`
+}
 }
 
 abstract final class Solar${name}Recipe {
@@ -505,7 +466,7 @@ ${holds.map((st) => `        '${st}' => ${stateTest(spec, st)},`).join('\n')}
   /// holds beats the resting value, the per-size-and-appearance entry beats the per-appearance
   /// one, and the resting value falls back through appearance, size and base.
   static String? lookup(String cell, Solar${name}Props p, Set<WidgetState> s) {
-    final combo = '${combo}';
+    ${combo ? 'final' : 'const'} combo = '${combo}';
     ${'size' in spec.api ? 'final' : 'const'} size = ${sizeExpr};
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;
@@ -520,8 +481,7 @@ ${holds.map((st) => `        '${st}' => ${stateTest(spec, st)},`).join('\n')}
   }
 
   static Color color(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) {
-    final c = t.colors;
-    return switch (lookup(cell, p, s)) {
+${colors.length ? '    final c = t.colors;\n' : ''}    return switch (lookup(cell, p, s)) {
       'none' => Colors.transparent,
 ${colors.join('\n')}
       final v => throw StateError('$cell: no colour for $v'),

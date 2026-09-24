@@ -54,18 +54,12 @@ describe('scaffold', () => {
     expect(readFileSync(join(dir, 'Button.tsx'), 'utf8')).toBe(shell);
   });
 
-  it('exports the shell from the package entry, once, keeping what is there', () => {
+  it('leaves the package entry alone: its list of components is generated (solar:codegen)', () => {
     const dir = fresh();
     writeFileSync(join(dir, 'index.ts'), "export * from './Other.js';\n");
     scaffold(button, { dir });
-    scaffold(button, { dir, force: true });
     expect(readFileSync(join(dir, 'index.ts'), 'utf8')).toBe(
-      "export * from './Other.js';\nexport * from './Button.js';\n",
-    );
-    const empty = fresh();
-    scaffold(button, { dir: empty });
-    expect(readFileSync(join(empty, 'index.ts'), 'utf8')).toBe(
-      "export * from './Button.js';\n",
+      "export * from './Other.js';\n",
     );
   });
 
@@ -109,13 +103,12 @@ describe('scaffoldFlutter', () => {
     return lib;
   };
 
-  it('writes the widget once, and exports it from the library in order', () => {
+  it('writes the widget once, and leaves the library alone: its list is generated', () => {
     const lib = freshLib();
+    const before = readFileSync(join(lib, 'solar_flutter.dart'), 'utf8');
     expect(scaffoldFlutter(button, { lib }).status).toBe('written');
     expect(scaffoldFlutter(button, { lib }).status).toBe('exists');
-    expect(readFileSync(join(lib, 'solar_flutter.dart'), 'utf8')).toBe(
-      "library;\n\nexport 'src/components/solar_button.dart';\nexport 'src/generated/tokens.dart';\nexport 'src/solar_icon.dart';\n",
-    );
+    expect(readFileSync(join(lib, 'solar_flutter.dart'), 'utf8')).toBe(before);
   });
 
   it('gives the widget the IR’s props and slots, and no design value', () => {
