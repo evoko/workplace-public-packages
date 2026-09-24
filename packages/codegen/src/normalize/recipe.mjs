@@ -629,7 +629,9 @@ export function deriveRecipe(
     for (const [cell, cls] of classes) {
       // The overlay may say one cell follows other axes than its class does (Button's label
       // type follows prio, state and danger as well as size, by the owner's decision).
-      const override = cellFollows[path]?.[cell];
+      // `*`: a drawing, whose every cell follows every axis (followsOf).
+      const override =
+        cellFollows['*'] === '*' ? axisNames : cellFollows[path]?.[cell];
       if (override)
         for (const a of override)
           if (!axes[a])

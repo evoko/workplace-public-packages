@@ -7,10 +7,12 @@ import 'button.dart';
 import 'button_group.dart';
 import 'icon_button.dart';
 import 'spinner.dart';
+import 'statusindicator.dart';
 
 final cases = <String, VisualCase>{
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
   'Icon Button': iconButtonCase,
   'Spinner': spinnerCase,
+  'StatusIndicator': statusIndicatorCase,
 };

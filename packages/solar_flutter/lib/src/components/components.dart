@@ -5,3 +5,4 @@ export 'solar_button.dart';
 export 'solar_button_group.dart';
 export 'solar_icon_button.dart';
 export 'solar_spinner.dart';
+export 'solar_statusindicator.dart';

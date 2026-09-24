@@ -171,7 +171,19 @@ export function solarButtonGroupStyle(
   return merge(s.reset, s.root, s.appearances[key]);
 }
 
-type Parts = Record<string, string | boolean | null>;
+/** A drawn layer's outline: its box, and the fill's and the stroke's paths (Figma's geometry). */
+type Glyph = {
+  width: number;
+  height: number;
+  fill: { d: string; evenOdd: boolean }[];
+  stroke: { d: string; evenOdd: boolean }[];
+};
+/** One layer's composition: shown or not, its composed child, its glyph, its position. */
+export type SolarButtonGroupParts = Record<
+  string,
+  string | number | boolean | Glyph | null
+>;
+type Parts = SolarButtonGroupParts;
 type Layered = {
   base: Parts;
   size?: Record<string, Parts>;

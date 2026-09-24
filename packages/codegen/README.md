@@ -162,6 +162,16 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    parent's edge, and records a glyph's position inside the glyph, unmeasured, as its outline is.
    A layer the base control draws itself (Spinner's ring, CircularProgress's SVG circle) is the
    overlay's `controlDraws`, and the oracle excuses its box.
+   A **drawing** (StatusIndicator, whose every type is its own shape from other layers) is the
+   overlay's `drawing`: every cell of every layer follows every axis, so its entries are keyed by
+   size and appearance together. A layer can then be a glyph in one entry and a box in another
+   (StatusIndicator's container: a vector circle for danger, a disc frame for neutral), so the MUI
+   recipe decides per entry: where the entry draws a glyph, its colours are the SVG's `fill` and
+   `stroke` (and the stroke outline's `fill`, `.SolarGlyph-stroke`), and a glyph takes no radius or
+   shadow, which the emitter refuses rather than drops. The composition data (`Solar<Name>Parts`,
+   exported per component) carries each layer's glyph and position for the shell. `allowLiteral`
+   may name the `values` it allows, where a `bind` takes the rest (StatusIndicator's 8px dot, beside
+   md and sm bound to the icon ladder).
    A border whose sides differ (Button Group's divider) has a cell per side, `borderTopWidth` and
    the rest, read from the weights the fetcher records per side; data fetched before it recorded
    them draws a side where it is bound and reports the layer `unrecorded` until a sync.
@@ -252,7 +262,7 @@ findings outright, by declaring an axis interaction: tertiary hover's link style
 look are drawn as Figma draws them. Three findings are open and are genuine Figma defects:
 secondary loses its background at `sm`, the backgrounds change inconsistently at `lg` (Figma's `xl` until 2026-09-23), and the
 `lg` disabled label uses the danger colour. They are in
-[the design review](../../docs/solar-review-for-design.md), section 6 (the four components variant by variant). Run over the whole corpus,
+[the design review](../../docs/solar-review-for-design.md), section 6 (the components we build, variant by variant). Run over the whole corpus,
 every one of SOLAR Web's 132 components derives a recipe and builds an IR: the 119 sets and the
 13 standalone components (milestone 4's Task M4), since Task M5 gave stacked paints, corners of
 their own and overlay-named layers a rule. PIN Input, Password Input and Tree Item build with the

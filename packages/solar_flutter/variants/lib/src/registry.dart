@@ -6,10 +6,12 @@ import 'button.dart';
 import 'button_group.dart';
 import 'icon_button.dart';
 import 'spinner.dart';
+import 'statusindicator.dart';
 
 const builders = <String, VariantBuilder>{
   'Button': buildButton,
   'Button Group': buildButtonGroup,
   'Icon Button': buildIconButton,
   'Spinner': buildSpinner,
+  'StatusIndicator': buildStatusIndicator,
 };

@@ -4,3 +4,4 @@ export 'button.dart';
 export 'button_group.dart';
 export 'icon_button.dart';
 export 'spinner.dart';
+export 'statusindicator.dart';

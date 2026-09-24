@@ -710,6 +710,52 @@ Sparkline, Spinner, Time Slot, Radio, ProgressBar, RowExpand, Node End and Donut
   - StatusIndicator's unknown variable is corrected to a border colour;
   - it asks one new question, how Avatar's initials take their colour.
 
+**Pioneer done 2026-09-24: StatusIndicator.** 21 variants, every one matching Figma on both
+platforms; 32 findings, all decided.
+
+- **Overlay** (`spec/overlay/statusindicator.yaml`):
+  - bespoke on both platforms;
+  - `drawing`, a new rule: every cell of every layer follows every axis, since each type is its
+    own drawing from other layers. It turned 86 open findings into 18;
+  - the disc sizes (root, container, info's frame) bound to `icon.md`/`icon.sm`, as a feedback
+    icon's;
+  - the xs dot's 8px allowed, through `allowLiteral` with `values`, a new form that leaves the rest
+    to a bind;
+  - the marks' boxes allowed as the drawing's coordinates;
+  - `help`'s unknown border colour `set` to `color.border.medium`, as every other type's;
+  - the `shadow/raised` Figma puts on five of the seven marks `set` to none, since a box shadow
+    cannot fall on an outline and SOLAR has no drop-shadow token.
+- **Machinery found and fixed on the pioneer:**
+  - `drawing`, and `allowLiteral` `values`.
+  - **Glyph entries in the MUI recipe.** A layer may be a glyph in one entry and a box in another
+    (the container: danger's vector circle, neutral's disc frame), so the emitter decides per entry.
+    A glyph's colours are the SVG's `fill` and `stroke` and the stroke outline's `fill`; radius or
+    shadow on a glyph is refused, not dropped.
+  - **Combined-only recipes.** Both emitters found a component's appearance axes from its
+    appearance entries alone; a drawing has only combined ones (size with type).
+  - **`Solar<Name>Parts`,** the composition type, now carries numbers and glyphs, exported per
+    component, so a shell reads a glyph and a position with its type.
+  - **`SolarGlyphView`** (`lib/src/solar_glyph.dart`), a hand-written widget that draws a glyph at its
+    size in its fill and stroke colours, and carries the stroke width for the check to read.
+    Checkbox and Sparkline will reuse it.
+  - **Placed glyphs are measured.** A glyph's position and box are measured as a box's are, so a
+    shell that misplaced the `!` fails. Spinner's indicator arc joins its track under
+    `controlDraws`.
+  - **The web check** reads an SVG element's paint whatever its layer, since a layer can be SVG in
+    some variants only.
+- **Shells:** each walks Figma's layer tree from the recipe, drawing a layer as a glyph or a box,
+  placed at the recipe's `x`/`y` where its parent has no auto layout. Both are decorative unless
+  given a `label`, then an image with that name.
+- **Both visual checks were proven to compare:** a deliberately wrong colour, and a wrong type,
+  fail every variant, naming the layer.
+- **For the designers** (review, section 6 and the decisions): the marks' shadow, and the dot's
+  size; `help`'s unknown variable is in section 4.
+- **Tests:** the IR and both recipes (`test/status-indicator.test.mjs`), the React shell
+  (`test/StatusIndicator.test.mjs`), the widget (`solar_statusindicator_test.dart`), the overlay
+  forms, and both visual checks.
+- **Checks:** 623 JS tests, both visual checks (7 on the web), 99 Flutter tests, lint, typecheck,
+  format, both viewers, and two identical rebuilds.
+
 ### F2: Buttons
 
 On Button's machinery.

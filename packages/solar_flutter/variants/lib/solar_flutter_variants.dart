@@ -12,3 +12,4 @@ export 'src/icon_button.dart';
 export 'src/probes.dart';
 export 'src/registry.dart';
 export 'src/spinner.dart';
+export 'src/statusindicator.dart';

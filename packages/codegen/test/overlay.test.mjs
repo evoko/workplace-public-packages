@@ -740,3 +740,46 @@ controlDraws:
     );
   });
 });
+
+describe('drawing, and an allowLiteral of some values', () => {
+  it('refuses a drawing without a reason, and an allowLiteral with values that are not numbers', () => {
+    expect(() => yaml(`component: X\ndrawing: {}\n`)).toThrow(
+      /drawing has no reason/,
+    );
+    expect(() =>
+      yaml(
+        `component: X\nallowLiteral:\n  root.width:\n    values: [a]\n    reason: r\n`,
+      ),
+    ).toThrow(/values must list the numbers it allows/);
+  });
+
+  it('makes every cell follow every axis, so no axis finding is left', () => {
+    const { deviations } = build(
+      yaml(
+        `component: Button\ndrawing:\n  reason: every variant its own drawing\n`,
+      ),
+    );
+    expect(deviations.filter((d) => d.kind === 'axis')).toEqual([]);
+    expect(plain.deviations.some((d) => d.kind === 'axis')).toBe(true);
+  });
+
+  it('lets a bind leave the values an allowLiteral names, and allows those alone', () => {
+    // Button's heights are 32, 40 and 48; bind 40 (as if it had a token) and allow the rest.
+    const on = (values) =>
+      build(
+        yaml(`component: Button
+bind:
+  root.height:
+    tokens: { 40: inset.3xl }
+    reason: r
+allowLiteral:
+  root.height:
+    values: [${values}]
+    reason: r
+`),
+      );
+    const { spec } = on('32, 48');
+    expect(spec.style.root.base.height).toMatchObject({ token: 'inset.3xl' });
+    expect(() => on('32')).toThrow(/leaves 48 unbound/);
+  });
+});

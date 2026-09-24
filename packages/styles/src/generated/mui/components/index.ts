@@ -3,3 +3,4 @@ export * from './button.js';
 export * from './button-group.js';
 export * from './icon-button.js';
 export * from './spinner.js';
+export * from './statusindicator.js';

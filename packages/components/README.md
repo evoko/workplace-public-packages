@@ -1,6 +1,7 @@
 # @bwp-web/components
 
-SOLAR components for React, built on MUI.
+SOLAR components for React, built on MUI: Button, Icon Button, Button Group, Spinner and
+StatusIndicator so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -95,6 +96,20 @@ mixes secondary and primary, so that is not checked; the design review lists the
 MUI's CircularProgress with its track, restyled by the recipe; the motion is MUI's, since SOLAR has
 no token for a spinner's rotation. Figma calls `variant` `style`, which is React's inline-style prop.
 Give it an `aria-label` saying what is loading.
+
+## StatusIndicator
+
+| Prop    | Values                                                                     | Default   |
+| ------- | -------------------------------------------------------------------------- | --------- |
+| `type`  | `success` · `info` · `warning` · `danger` · `neutral` · `help` · `private` | `success` |
+| `size`  | `md` · `sm` · `xs`                                                         | `md`      |
+| `label` | a string                                                                   | none      |
+
+A drawn mark: each type is Figma's own drawing, a disc or a triangle with its mark, and `xs` is the
+dot alone. The shell walks Figma's layer tree and draws each layer as a glyph (an SVG of Figma's
+outline, filled in the recipe's colours) or as a box, where the recipe places it. Decorative, and
+hidden from assistive technology, unless given a `label`, which it then announces as an image; say
+the status in words beside a decorative one.
 
 ## Checked against Figma
 

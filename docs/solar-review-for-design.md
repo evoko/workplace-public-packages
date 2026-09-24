@@ -61,17 +61,17 @@ If you take only a few items, take these:
 
 ## At a glance
 
-| #                                                                      | What                                                  | Count                                              | File        |
-| ---------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------- | ----------- |
-| [1](#1-hard-coded-values--9-across-8-components)                       | Hard-coded values not bound to a variable             | 9 in 8 components, and 1,130 zeros                 | SOLAR Web   |
-| [2](#2-primitive-colours-used-directly--2-components)                  | Components using primitive colours directly           | 2                                                  | SOLAR Web   |
-| [3](#3-described-sizes-that-disagree-with-the-drawing--11-components)  | Described sizes that disagree with the drawn ones     | 11                                                 | SOLAR Web   |
-| [4](#4-variable-bindings--2-wrong-2-unknown)                           | Wrong or unknown variable bindings                    | 2 + 2                                              | SOLAR Web   |
-| [5](#5-documentation-cards-copied-from-breadcrumbs--36-pages)          | Documentation cards copied from Breadcrumbs           | 36 pages                                           | SOLAR Web   |
-| [6](#6-button-spinner-icon-button-and-button-group-variant-by-variant) | Button, Spinner, Icon Button, Button Group, in detail | Button 6, Spinner 2, Icon Button 5, Button Group 3 | SOLAR Web   |
-| [7](#7-guideline-pages-that-contradict-the-variables)                  | Guideline pages that contradict the variables         | 2, and 2 page edits                                | Foundations |
-| [8](#8-action-colours-below-the-contrast-floor--5)                     | Action colours below the contrast floor               | 5                                                  | Foundations |
-| [9](#9-icons-and-logos)                                                | Icons and logos                                       | no icon findings; 2 logo questions                 | SOLAR Icons |
+| #                                                                     | What                                              | Count                                                                 | File        |
+| --------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------- | ----------- |
+| [1](#1-hard-coded-values--9-across-8-components)                      | Hard-coded values not bound to a variable         | 9 in 8 components, and 1,130 zeros                                    | SOLAR Web   |
+| [2](#2-primitive-colours-used-directly--2-components)                 | Components using primitive colours directly       | 2                                                                     | SOLAR Web   |
+| [3](#3-described-sizes-that-disagree-with-the-drawing--11-components) | Described sizes that disagree with the drawn ones | 11                                                                    | SOLAR Web   |
+| [4](#4-variable-bindings--2-wrong-2-unknown)                          | Wrong or unknown variable bindings                | 2 + 2                                                                 | SOLAR Web   |
+| [5](#5-documentation-cards-copied-from-breadcrumbs--36-pages)         | Documentation cards copied from Breadcrumbs       | 36 pages                                                              | SOLAR Web   |
+| [6](#6-the-components-we-build-variant-by-variant)                    | The components we build, in detail                | Button 6, Spinner 2, Icon Button 5, Button Group 3, StatusIndicator 2 | SOLAR Web   |
+| [7](#7-guideline-pages-that-contradict-the-variables)                 | Guideline pages that contradict the variables     | 2, and 2 page edits                                                   | Foundations |
+| [8](#8-action-colours-below-the-contrast-floor--5)                    | Action colours below the contrast floor           | 5                                                                     | Foundations |
+| [9](#9-icons-and-logos)                                               | Icons and logos                                   | no icon findings; 2 logo questions                                    | SOLAR Icons |
 
 ---
 
@@ -195,10 +195,9 @@ The 36 pages, whose Accessibility section needs its own text:
 | patterns/data                     | Bulk Actions Bar, Column Chooser, Data Table, Filter Panel                                     |
 | patterns/forms, dashboards        | Form Row, Form Section, Widget Card, Stat Card                                                 |
 
-## 6. Button, Spinner, Icon Button and Button Group, variant by variant
+## 6. The components we build, variant by variant
 
-These four are the components we build first, so we have read every one of their variants against
-the others. SOLAR's model — geometry follows `size`, colour follows `prio`, `state` and `danger` —
+We have read every variant of each component we build against the others. SOLAR's model — geometry follows `size`, colour follows `prio`, `state` and `danger` —
 holds almost everywhere; these are the places where it does not, or where a component disagrees
 with a sibling. Where an item is open, we build it exactly as drawn.
 
@@ -267,6 +266,19 @@ as the description says, there is no vertical full-width. We build those three a
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | **"Regular sizes to content"**, says the description, but regular's buttons are drawn filling the group in equal shares, as full-width's are. Which is meant? | We draw them filling, as drawn.                                      |
 | **"All children must share the same prio"**, says the description, but every variant mixes secondary and primary. Is it one _size_ that is meant?             | We check (in development builds) only that the buttons share a size. |
+
+### StatusIndicator · [3738:305](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3738-305)
+
+Each type is its own drawing, from other layers (success is the disc itself, warning a triangle,
+danger a circle, the rest a disc frame), and `xs` is the dot alone. We build each as drawn, placing
+each mark where Figma puts it. The `help` type's border is bound to an unknown variable (section 4).
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                                                                                                                                                                            | What we do meanwhile            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| **A shadow on the marks?** The tick, the exclamation, the cross, info's `i` and neutral's dash carry `shadow/raised`; help's question mark and private's lock do not. A shadow variable is a box shadow, which a mark's outline cannot take. Should the marks have a shadow (then a drop-shadow variable), or none? | We draw no shadow on the marks. |
+| **The xs dot's size.** It is 8px, below the icon ladder, whose smallest is 12. md and sm are 20 and 16, which bind to `icon/md` and `icon/sm`. A size variable for the dot, or the ladder extended?                                                                                                                 | We carry 8px as a raw value.    |
 
 ---
 
@@ -347,39 +359,41 @@ The questions we cannot answer ourselves, most far-reaching first.
    is right, and is 44px the intended hit area? A control-height variable (`control/height/*`) and
    a target-size variable would settle both this and Button's fixed heights. Sections 3 and 6.
 2. **Spinner sizes** — variables of their own, or the icon ladder? Section 6.
-3. **A logo size scale** (`logo.*`)? Section 9.
+3. **StatusIndicator's xs dot** — 8px, below the icon ladder: a variable for it? Section 6.
+4. **A logo size scale** (`logo.*`)? Section 9.
 
 **Colour**
 
-4. **Danger hover labels** at 4.07 and 4.13 : 1 — a darker hover red, or an accepted exception for
+5. **Danger hover labels** at 4.07 and 4.13 : 1 — a darker hover red, or an accepted exception for
    the hover state? Section 8.
-5. **Avatar's initials** — an avatar takes any colour its user picks. Should the initials' colour be
+6. **Avatar's initials** — an avatar takes any colour its user picks. Should the initials' colour be
    picked with it, or follow from it (dark initials on a light colour, light on a dark one, at the
    4.5:1 text floor)? Figma pairs each fill with a darker shade of the same hue.
-6. **Launch Card's favourite button** — translucent white on any cover image: a semantic overlay
+7. **Launch Card's favourite button** — translucent white on any cover image: a semantic overlay
    colour, or a fixed white on purpose? Section 2.
-7. **Icon master colour** — the semantic `color/icon/primary`, or the primitive the checklist
+8. **Icon master colour** — the semantic `color/icon/primary`, or the primitive the checklist
    should then mention? Section 7.
 
 **Components**
 
-8. **Button `lg`** — a larger button, or a different kind (full-width or menu)? Icon Button's lg is
+9. **Button `lg`** — a larger button, or a different kind (full-width or menu)? Icon Button's lg is
    flat the same way. Section 6.
-9. **Tertiary hover's underline** — meant everywhere, or only where it is drawn? Section 6.
-10. **Icon Button's primary border** — grey at sm and only at rest, where Button's primary keeps its
+10. **Tertiary hover's underline** — meant everywhere, or only where it is drawn? Section 6.
+11. **Icon Button's primary border** — grey at sm and only at rest, where Button's primary keeps its
     `#111111` action border in every state. Which is right? Section 6.
-11. **A focus ring on press** — Icon Button's pressed primary and secondary show it, Button's do
+12. **A focus ring on press** — Icon Button's pressed primary and secondary show it, Button's do
     not. Intended? Section 6.
-12. **Button Group's description** — "regular sizes to content" and "all children share one prio",
+13. **Button Group's description** — "regular sizes to content" and "all children share one prio",
     where every group is drawn with filling buttons of mixed priority. Section 6.
+14. **StatusIndicator's marks** — a shadow on them, or none? Section 6.
 
 **Structure**
 
-13. **Action states** — `active` in the variables, `pressed` on the guideline pages. Which name
+15. **Action states** — `active` in the variables, `pressed` on the guideline pages. Which name
     should both use? Section 7.
-14. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
+16. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
     Web rather than in Foundations. Should it move down a layer?
-15. **A flat Teams mark**, if Microsoft publishes one? Section 9.
+17. **A flat Teams mark**, if Microsoft publishes one? Section 9.
 
 ---
 

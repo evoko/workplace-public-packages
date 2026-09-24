@@ -1,0 +1,103 @@
+# Hand-written decisions about SOLAR StatusIndicator, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: StatusIndicator
+
+base:
+  reason: >-
+    Bespoke on both platforms: a drawn mark, a disc or a triangle with a glyph in it, which no
+    stock control draws. MUI has no status icon, and Flutter's Icon draws a font glyph.
+
+drawing:
+  reason: >-
+    Each type is its own drawing, built from other layers: success is the disc itself, warning a
+    triangle vector, danger a circle vector, info, neutral, help and private a disc frame, each
+    with its own mark, and xs is a dot alone. So every cell follows type and size, as a glyph does.
+
+bind:
+  root.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: >-
+      A status mark is a feedback icon ("Feedback icon (20px)", says the description): md and sm are
+      the icon ladder's md and sm, the same values. xs, the 8px dot, is allowed below.
+  root.height:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the width, the icon ladder.
+  container.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: The disc of danger, neutral, help and private fills the mark, so it is the mark's size.
+  container.height:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the width, the mark's size.
+  frame3.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: Info's disc fills the mark, so it is the mark's size.
+  frame3.height:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the width, the mark's size.
+
+allowLiteral:
+  root.width:
+    values: [8]
+    reason: >-
+      The xs dot is 8px, and the icon ladder starts at 12: SOLAR has no size for it, a governance
+      gap the design review raises.
+  root.height:
+    values: [8]
+    reason: As the width, the 8px dot.
+  innerPath.width:
+    reason: >-
+      The box of a drawn mark (the tick, the exclamation, the cross), in the drawing's own
+      coordinates, as its outline is: part of the drawing, not a size of the system.
+  innerPath.height:
+    reason: As the width, part of the drawing.
+  frame3InnerPath.width:
+    reason: Info's mark, part of the drawing.
+  frame3InnerPath.height:
+    reason: Info's mark, part of the drawing.
+  containerInnerPath.width:
+    reason: Neutral's dash, part of the drawing.
+  containerInnerPath.height:
+    reason: Neutral's dash, part of the drawing.
+  icon.width:
+    reason: Help's question mark, part of the drawing.
+  icon.height:
+    reason: Help's question mark, part of the drawing.
+  containerUnion.width:
+    reason: Private's lock, part of the drawing.
+  containerUnion.height:
+    reason: Private's lock, part of the drawing.
+
+set:
+  root.combined.xs.type=help.default.borderColor:
+    token: color.border.medium
+    reason: >-
+      Figma binds help's border to a variable that is not in Foundations, so no colour can be read
+      from it. Every other type's border is color.border.medium, which we draw meanwhile; the design
+      review asks SOLAR to rebind it.
+  container.combined.md.type=help.default.borderColor:
+    token: color.border.medium
+    reason: As the xs dot's, an unknown variable; color.border.medium as every other type.
+  container.combined.sm.type=help.default.borderColor:
+    token: color.border.medium
+    reason: As the xs dot's, an unknown variable; color.border.medium as every other type.
+  innerPath.base.shadow:
+    none: true
+    reason: >-
+      Figma puts shadow/raised on the tick, the exclamation and the cross (and info's and
+      neutral's marks, below), but not on help's or private's. A shadow token is a box shadow,
+      which a glyph's outline cannot take, and SOLAR has no drop-shadow token; not drawn meanwhile,
+      and the design review asks whether the marks mean to have one.
+  frame3InnerPath.combined.md.type=info.default.shadow:
+    none: true
+    reason: As the tick's, a box shadow on a glyph, not drawn.
+  frame3InnerPath.combined.sm.type=info.default.shadow:
+    none: true
+    reason: As the tick's, a box shadow on a glyph, not drawn.
+  containerInnerPath.combined.md.type=neutral.default.shadow:
+    none: true
+    reason: As the tick's, a box shadow on a glyph, not drawn.
+  containerInnerPath.combined.sm.type=neutral.default.shadow:
+    none: true
+    reason: As the tick's, a box shadow on a glyph, not drawn.

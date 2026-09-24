@@ -47,8 +47,8 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 
 ## Components
 
-`SolarButton`, `SolarIconButton`, `SolarButtonGroup` and `SolarSpinner` take the same props as the
-React components (a group takes its buttons as `children`, and asserts against the vertical
+`SolarButton`, `SolarIconButton`, `SolarButtonGroup`, `SolarSpinner` and `SolarStatusIndicator` take
+the same props as the React components (a group takes its buttons as `children`, and asserts against the vertical
 full-width group Figma does not draw):
 
 ```dart
@@ -90,9 +90,13 @@ Presence (the spinner while loading, the label hidden) is `SolarButtonRecipe.pre
 Spinner is `SolarButtonRecipe.lookup('spinner.variant.size', …)`, for the widget that composes the
 button's content, as `SolarButton` does.
 
-A shape a component draws itself (Spinner's ring, and in later components Checkbox's tick) is a
-`SolarGlyph`: Figma's path data for the fill and for the stroke's outline, read from the recipe with
-`Solar<Name>Recipe.glyph(layer, props, states)` and drawn by `SolarVectorPainter`, as the icons are.
+A shape a component draws itself (Spinner's ring, StatusIndicator's marks, and in later components
+Checkbox's tick) is a `SolarGlyph`: Figma's path data for the fill and for the stroke's outline, read
+from the recipe with `Solar<Name>Recipe.glyph(layer, props, states)`. `SolarGlyphView` draws one at
+its own size, the fill's outline in the fill colour and the stroke's in the stroke colour, by
+`SolarVectorPainter` as the icons are. `SolarStatusIndicator` walks Figma's layer tree, drawing each
+layer as a `SolarGlyphView` or a box, and placing it at the recipe's `x` and `y` where its parent has
+no auto layout; decorative unless given a `label`, which it announces as an image.
 
 Every variant of both widgets is checked against what Figma draws (`spec/verify/`) by
 `flutter test`: see [test/visual/README.md](test/visual/README.md). To look at them instead,

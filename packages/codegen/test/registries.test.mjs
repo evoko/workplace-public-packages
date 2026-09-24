@@ -48,9 +48,7 @@ describe('renderRegistries', () => {
 
   it('matches what is committed for today’s components', () => {
     // The stage writes them on every solar:codegen; CI's rebuild check holds them to it.
-    const built = ['Button', 'Button Group', 'Icon Button', 'Spinner'];
-    expect([...NAMES].sort()).toEqual(built);
-    for (const [file, text] of Object.entries(files(built))) {
+    for (const [file, text] of Object.entries(files(NAMES))) {
       const path = join(packagesDir, file);
       expect(existsSync(path), file).toBe(true);
       expect(readFileSync(path, 'utf8'), file).toBe(text);

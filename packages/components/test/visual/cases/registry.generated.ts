@@ -6,6 +6,7 @@ import button from './button.js';
 import buttonGroup from './button-group.js';
 import iconButton from './icon-button.js';
 import spinner from './spinner.js';
+import statusIndicator from './statusindicator.js';
 import type { VisualCase } from './types.js';
 
 export const CASES: Record<string, VisualCase> = {
@@ -13,4 +14,5 @@ export const CASES: Record<string, VisualCase> = {
   'Button Group': buttonGroup,
   'Icon Button': iconButton,
   Spinner: spinner,
+  StatusIndicator: statusIndicator,
 };

@@ -261,7 +261,10 @@ export function renderFlutterComponent(spec, tokens) {
     }
   }
   const firstCombo = Object.values(spec.style)
-    .flatMap((st) => Object.keys(st.appearance))
+    .flatMap((st) => [
+      ...Object.keys(st.appearance),
+      ...Object.values(st.combined ?? {}).flatMap((c) => Object.keys(c)),
+    ])
     .at(0);
   const appearanceAxes =
     firstCombo?.split(', ').map((part) => part.split('=')[0]) ?? [];

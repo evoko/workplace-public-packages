@@ -437,6 +437,11 @@
       },
       {
         "rule": "controlDraws",
+        "at": "indicator",
+        "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+      },
+      {
+        "rule": "controlDraws",
         "at": "track",
         "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
       },

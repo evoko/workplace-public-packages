@@ -162,7 +162,11 @@ describe('the Spinner oracle', () => {
     );
     expect(v.props).toEqual({ size: 'sm', variant: 'default' });
     expect(v.layers.indicator.borderColor).toBeNull();
-    expect(v.excused.filter((e) => e.layer === 'indicator')).toEqual([
+    expect(
+      v.excused.filter(
+        (e) => e.layer === 'indicator' && e.property === 'borderColor',
+      ),
+    ).toEqual([
       expect.objectContaining({
         layer: 'indicator',
         property: 'borderColor',
@@ -173,7 +177,9 @@ describe('the Spinner oracle', () => {
       (x) => x.figma === 'size=sm, style=inverse',
     );
     expect(inverse.layers.indicator.borderColor).toBe('#ffffff');
-    expect(inverse.excused.every((e) => e.layer === 'track')).toBe(true);
+    expect(inverse.excused.every((e) => e.decision === 'controlDraws')).toBe(
+      true,
+    );
   });
 
   it('excuses the box of a layer the base control draws, by the overlay’s controlDraws', () => {

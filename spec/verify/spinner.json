@@ -50,13 +50,15 @@
             "fill": [],
             "stroke": [
               "M0 0L1.75211e-16 1C2.71563 1 5.0927 2.82398 5.79556 5.44709L6.76148 5.18827L7.72741 4.92945C6.79026 1.43198 3.62085 -1 -1.75211e-16 -1L0 0Z"
-            ],
-            "x": 8,
-            "y": 1
+            ]
           },
           "background": "transparent",
           "borderColor": null,
-          "borderWidth": 2
+          "borderWidth": 2,
+          "width": 7,
+          "height": 5,
+          "x": 8,
+          "y": 1
         }
       },
       "excused": [
@@ -99,6 +101,38 @@
           "finding": "component.spinner.indicator.borderColor#misbound",
           "decision": "set",
           "reason": "Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width* variable, which holds no colour; the recipe reports it as misbound. color.border.strong is the colour of the same name, and the inverse style's indicator uses its inverse (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle. Raised with SOLAR to rebind."
+        },
+        {
+          "layer": "indicator",
+          "property": "x",
+          "figma": 8,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "y",
+          "figma": 1,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "width",
+          "figma": 7,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "height",
+          "figma": 5,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
         }
       ]
     },
@@ -144,13 +178,15 @@
             "fill": [],
             "stroke": [
               "M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z"
-            ],
-            "x": 12,
-            "y": 1.25
+            ]
           },
           "background": "transparent",
           "borderColor": null,
-          "borderWidth": 2
+          "borderWidth": 2,
+          "width": 10,
+          "height": 8,
+          "x": 12,
+          "y": 1.25
         }
       },
       "excused": [
@@ -193,6 +229,38 @@
           "finding": "component.spinner.indicator.borderColor#misbound",
           "decision": "set",
           "reason": "Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width* variable, which holds no colour; the recipe reports it as misbound. color.border.strong is the colour of the same name, and the inverse style's indicator uses its inverse (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle. Raised with SOLAR to rebind."
+        },
+        {
+          "layer": "indicator",
+          "property": "x",
+          "figma": 12,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "y",
+          "figma": 1.25,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "width",
+          "figma": 10,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "height",
+          "figma": 8,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
         }
       ]
     },
@@ -238,13 +306,15 @@
             "fill": [],
             "stroke": [
               "M0 0L1.6917e-16 1C6.11018 1 11.4586 5.10397 13.04 11.0059L14.0059 10.7471L14.9719 10.4883C13.1561 3.71196 7.01539 -1 -1.6917e-16 -1L0 0Z"
-            ],
-            "x": 16,
-            "y": 1.5
+            ]
           },
           "background": "transparent",
           "borderColor": null,
-          "borderWidth": 2
+          "borderWidth": 2,
+          "width": 14,
+          "height": 11,
+          "x": 16,
+          "y": 1.5
         }
       },
       "excused": [
@@ -287,6 +357,38 @@
           "finding": "component.spinner.indicator.borderColor#misbound",
           "decision": "set",
           "reason": "Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width* variable, which holds no colour; the recipe reports it as misbound. color.border.strong is the colour of the same name, and the inverse style's indicator uses its inverse (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle. Raised with SOLAR to rebind."
+        },
+        {
+          "layer": "indicator",
+          "property": "x",
+          "figma": 16,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "y",
+          "figma": 1.5,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "width",
+          "figma": 14,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "height",
+          "figma": 11,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
         }
       ]
     },
@@ -332,13 +434,15 @@
             "fill": [],
             "stroke": [
               "M0 0L1.75211e-16 1C2.71563 1 5.0927 2.82398 5.79556 5.44709L6.76148 5.18827L7.72741 4.92945C6.79026 1.43198 3.62085 -1 -1.75211e-16 -1L0 0Z"
-            ],
-            "x": 8,
-            "y": 1
+            ]
           },
           "background": "transparent",
           "borderColor": "#ffffff",
-          "borderWidth": 2
+          "borderWidth": 2,
+          "width": 7,
+          "height": 5,
+          "x": 8,
+          "y": 1
         }
       },
       "excused": [
@@ -373,6 +477,38 @@
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "indicator",
+          "property": "x",
+          "figma": 8,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "y",
+          "figma": 1,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "width",
+          "figma": 7,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "height",
+          "figma": 5,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
         }
       ]
     },
@@ -418,13 +554,15 @@
             "fill": [],
             "stroke": [
               "M0 0L1.82546e-16 1C4.41291 1 8.27563 3.96397 9.41778 8.22651L10.3837 7.9677L11.3496 7.70888C9.9732 2.57197 5.31812 -1 -1.82546e-16 -1L0 0Z"
-            ],
-            "x": 12,
-            "y": 1.25
+            ]
           },
           "background": "transparent",
           "borderColor": "#ffffff",
-          "borderWidth": 2
+          "borderWidth": 2,
+          "width": 10,
+          "height": 8,
+          "x": 12,
+          "y": 1.25
         }
       },
       "excused": [
@@ -459,6 +597,38 @@
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "indicator",
+          "property": "x",
+          "figma": 12,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "y",
+          "figma": 1.25,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "width",
+          "figma": 10,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "height",
+          "figma": 8,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
         }
       ]
     },
@@ -504,13 +674,15 @@
             "fill": [],
             "stroke": [
               "M0 0L1.6917e-16 1C6.11018 1 11.4586 5.10397 13.04 11.0059L14.0059 10.7471L14.9719 10.4883C13.1561 3.71196 7.01539 -1 -1.6917e-16 -1L0 0Z"
-            ],
-            "x": 16,
-            "y": 1.5
+            ]
           },
           "background": "transparent",
           "borderColor": "#ffffff",
-          "borderWidth": 2
+          "borderWidth": 2,
+          "width": 14,
+          "height": 11,
+          "x": 16,
+          "y": 1.5
         }
       },
       "excused": [
@@ -545,6 +717,38 @@
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "indicator",
+          "property": "x",
+          "figma": 16,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "y",
+          "figma": 1.5,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "width",
+          "figma": 14,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
+        },
+        {
+          "layer": "indicator",
+          "property": "height",
+          "figma": 11,
+          "finding": "component.spinner.indicator#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the indicator as an arc of the same SVG circle, animated round the ring, so its place and its box are the control's; Figma draws one still frame of it, an arc at [8, 1] in the sm ring."
         }
       ]
     }

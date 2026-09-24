@@ -13,6 +13,8 @@
  *   codeName:     { name, reason }                       the component's name in code, where its
  *                                                        Figma name is two components'
  *   base:         { mui, flutter, reason }              the stock control each target wraps
+ *   drawing:      { reason }                             every variant is its own drawing: every cell
+ *                                                        of every layer follows every axis
  *   rename:       { <axis>: { to, values?, reason } }    Figma axis name to API name; `values` maps
  *                                                        each value too, and true/false makes it a boolean
  *   states:       { rename: { <value>: { to, reason } } }  a state value Figma spells otherwise
@@ -26,7 +28,9 @@
  *                 or { tokens: { <literal>: <token>, … }, reason } where the value differs by size
  *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none | keyword, reason } }  one entry,
  *                                                        changed
- *   allowLiteral: { <layer>.<cell>: { reason } }         a raw value there is no token for
+ *   allowLiteral: { <layer>.<cell>: { values?, reason } }  a raw value there is no token for;
+ *                                                        `values` allows those alone, where a bind
+ *                                                        takes the rest (StatusIndicator's 8px dot)
  *   controlDraws: { <layer>: { reason } }                the base control draws this layer itself
  *                                                        (Spinner's ring): its box is the control's,
  *                                                        which the oracle then excuses
@@ -56,14 +60,20 @@ const FIELDS = {
   follows: ['axes'],
   bind: ['literal', 'token', 'tokens'],
   set: ['token', 'none', 'keyword'],
-  allowLiteral: [],
+  allowLiteral: ['values'],
   controlDraws: [],
   accept: [],
   slots: ['name', 'type'],
   derive: ['when'],
   layerNames: ['name'],
 };
-const SECTIONS = ['codeName', 'base', 'states', ...Object.keys(FIELDS)];
+const SECTIONS = [
+  'codeName',
+  'base',
+  'drawing',
+  'states',
+  ...Object.keys(FIELDS),
+];
 const SLOT_TYPES = new Set([
   'icon',
   'text',
@@ -93,6 +103,11 @@ export function parseOverlay(text, file) {
     )
       fail('codeName: name must be capitalised words, as a Figma name is');
     if (!doc.codeName.reason) fail('codeName has no reason');
+  }
+  if (doc.drawing !== undefined) {
+    for (const key of Object.keys(doc.drawing ?? {}))
+      if (key !== 'reason') fail(`drawing: unknown field ${key}`);
+    if (!doc.drawing?.reason) fail('drawing has no reason');
   }
   if (doc.base !== undefined) {
     for (const key of Object.keys(doc.base))
@@ -144,6 +159,14 @@ export function parseOverlay(text, file) {
           fail(`bind.${at}: tokens must map each literal to a token`);
     }
   }
+  for (const [at, rule] of Object.entries(doc.allowLiteral ?? {}))
+    if (
+      rule.values !== undefined &&
+      (!Array.isArray(rule.values) ||
+        rule.values.length === 0 ||
+        !rule.values.every((v) => typeof v === 'number'))
+    )
+      fail(`allowLiteral.${at}: values must list the numbers it allows`);
   for (const [path, rule] of Object.entries(doc.layerNames ?? {})) {
     if (!path.startsWith('/'))
       fail(`layerNames.${path}: address a layer by its Figma path, from /`);
@@ -375,6 +398,9 @@ function* entriesOf(layerStyle, cell) {
  */
 export function followsOf(overlay, pathOf) {
   const out = {};
+  // A drawing (StatusIndicator: each type is its own shape, from other layers): every cell of
+  // every layer follows every axis, which deriveRecipe reads from `*`.
+  if (overlay?.drawing) out['*'] = '*';
   for (const [at] of Object.entries(overlay?.follows ?? {})) {
     const [layer, cell] = splitCell(at);
     const path = pathOf(layer);
@@ -484,6 +510,8 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       overlay.codeName.reason,
     );
 
+  if (overlay.drawing) record('drawing', 'every cell', overlay.drawing.reason);
+
   if (overlay.base) {
     spec.base = {
       mui: overlay.base.mui ?? null,
@@ -576,10 +604,12 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
         }
       if (bound === 0) fail(`bind ${at}: no literal ${literal} to bind`);
     }
-    // The finding is decided only when no raw value is left in the cell.
+    // The finding is decided only when no raw value is left in the cell, but for the values the
+    // cell's allowLiteral names.
+    const allowed = overlay.allowLiteral?.[at]?.values ?? [];
     const left = entries
       .map(([holder, key]) => holder[key].literal)
-      .filter((l) => l !== undefined);
+      .filter((l) => l !== undefined && !allowed.includes(l));
     if (left.length)
       fail(`bind ${at}: leaves ${[...new Set(left)].join(', ')} unbound`);
     decide(`component.${lc}.${layer}.${cell}#unbound`, 'bind', rule.reason);
@@ -626,7 +656,9 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   for (const [at, rule] of sorted('allowLiteral')) {
     const { layer, cell, entries } = cellEntries(at, 'allowLiteral');
     const literals = entries.filter(
-      ([holder, key]) => 'literal' in holder[key],
+      ([holder, key]) =>
+        'literal' in holder[key] &&
+        (!rule.values || rule.values.includes(holder[key].literal)),
     );
     if (literals.length === 0) fail(`allowLiteral ${at}: no literal to allow`);
     for (const [holder, key] of literals)

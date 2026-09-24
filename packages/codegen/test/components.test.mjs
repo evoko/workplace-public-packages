@@ -435,13 +435,14 @@ describe('the oracle of layers placed by position', () => {
     expect(on).toMatchObject({ x: 17, y: 3, width: 12, height: 12 });
   });
 
-  it('records a placed shape’s position in its drawing, not as measured properties', () => {
+  it('measures a placed glyph as a box too, beside its outline', () => {
+    // StatusIndicator's `!`, placed in its triangle: a shell that misplaced it would draw it wrong.
     const status = oracleOf('StatusIndicator');
     const warning = status.variants.find(
       (v) => v.figma === 'type=warning, size=md',
     ).layers.innerPath;
-    expect(warning.glyph).toMatchObject({ x: 9, y: 6 });
-    expect(warning).not.toHaveProperty('x');
+    expect(warning).toMatchObject({ x: 9, y: 6, width: 2, height: 9 });
+    expect(warning.glyph.fill.length).toBeGreaterThan(0);
   });
 });
 

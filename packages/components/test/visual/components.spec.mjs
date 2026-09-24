@@ -103,37 +103,41 @@ function measure(root, { list, composed }) {
     if (!el) return null;
     const cs = getComputedStyle(el);
     const box = el.getBoundingClientRect();
-    const values = svg
-      ? {
-          background: cs.fill,
-          borderColor: cs.stroke,
-          borderWidth: cs.strokeWidth,
-        }
-      : {
-          background: cs.backgroundColor,
-          borderColor: cs.borderTopColor,
-          borderWidth: cs.borderTopStyle === 'none' ? '0px' : cs.borderTopWidth,
-          ...Object.fromEntries(
-            ['Top', 'Right', 'Bottom', 'Left'].map((side) => [
-              `border${side}Width`,
-              cs[`border${side}Style`] === 'none'
-                ? '0px'
-                : cs[`border${side}Width`],
-            ]),
-          ),
-          radius: cs.borderTopLeftRadius,
-          ...Object.fromEntries(
-            ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'].map(
-              (corner) => [`radius${corner}`, cs[`border${corner}Radius`]],
+    // An SVG shape paints with fill and stroke: the control's own (Spinner's), or a glyph the shell
+    // draws as SVG in this variant (StatusIndicator's marks).
+    const values =
+      svg || el.namespaceURI === 'http://www.w3.org/2000/svg'
+        ? {
+            background: cs.fill,
+            borderColor: cs.stroke,
+            borderWidth: cs.strokeWidth,
+          }
+        : {
+            background: cs.backgroundColor,
+            borderColor: cs.borderTopColor,
+            borderWidth:
+              cs.borderTopStyle === 'none' ? '0px' : cs.borderTopWidth,
+            ...Object.fromEntries(
+              ['Top', 'Right', 'Bottom', 'Left'].map((side) => [
+                `border${side}Width`,
+                cs[`border${side}Style`] === 'none'
+                  ? '0px'
+                  : cs[`border${side}Width`],
+              ]),
             ),
-          ),
-          shadow: cs.boxShadow,
-          paddingTop: cs.paddingTop,
-          paddingRight: cs.paddingRight,
-          paddingBottom: cs.paddingBottom,
-          paddingLeft: cs.paddingLeft,
-          gap: cs.columnGap,
-        };
+            radius: cs.borderTopLeftRadius,
+            ...Object.fromEntries(
+              ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'].map(
+                (corner) => [`radius${corner}`, cs[`border${corner}Radius`]],
+              ),
+            ),
+            shadow: cs.boxShadow,
+            paddingTop: cs.paddingTop,
+            paddingRight: cs.paddingRight,
+            paddingBottom: cs.paddingBottom,
+            paddingLeft: cs.paddingLeft,
+            gap: cs.columnGap,
+          };
     return {
       ...values,
       color: cs.color,

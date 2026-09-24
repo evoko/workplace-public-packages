@@ -180,14 +180,24 @@ function context(spec, tokens) {
   const svg = new Set(MUI_SVG_LAYERS[spec.component] ?? []);
 
   /** One IR cell as CSS declarations. */
-  const declare = (cell, entry, at, layer) => {
+  const declare = (cell, entry, at, layer, glyph = false) => {
     const paint = (prop) =>
       entry.none ? { [prop]: 'transparent' } : { [prop]: ref(entry.token, at) };
-    if (svg.has(layer))
+    // An SVG shape: a control's own (Spinner's ring), or a glyph the shell draws in this entry
+    // (StatusIndicator's marks). A glyph's stroke is its outline, a path filled in the stroke's
+    // colour (`.SolarGlyph-stroke`); `stroke` on the element says which colour that is.
+    if (svg.has(layer) || glyph)
       switch (cell) {
         case 'background':
           return entry.none ? { fill: 'none' } : paint('fill');
         case 'borderColor':
+          if (glyph && !svg.has(layer))
+            return entry.none
+              ? { stroke: 'none', '& .SolarGlyph-stroke': { fill: 'none' } }
+              : {
+                  ...paint('stroke'),
+                  '& .SolarGlyph-stroke': paint('fill'),
+                };
           return entry.none ? { stroke: 'none' } : paint('stroke');
         case 'borderWidth':
           return entry.none
@@ -464,14 +474,27 @@ export function renderMuiComponent(spec, tokens) {
   // The parents of boxes placed by position, which position them: `relative`, once, at rest.
   const placing = new Set();
 
-  /** Every cell of one style block (one size, one state …) into a target object. */
+  /**
+   * Every cell of one style block (one size, one state …) into a target object. Whether the layer
+   * is drawn as a glyph there is the block's own glyph, or the base's where the block names none:
+   * a layer may be a glyph in one variant and a box in another (StatusIndicator's container).
+   */
   const render = (target, layer, cells, at) => {
+    const glyph =
+      'glyph' in cells
+        ? Boolean(cells.glyph?.glyph)
+        : Boolean(spec.style[layer]?.base?.glyph?.glyph);
     for (const [cell, entry] of Object.entries(cells)) {
       const here = `${layer}.${at}.${cell}`;
       if (composed(layer, cell)) continue;
       if (PLACED(cell) && entry.position !== undefined)
         placing.add(spec.layers[layer].parent);
-      place(target, slots[layer], declare(cell, entry, here, layer), here);
+      place(
+        target,
+        slots[layer],
+        declare(cell, entry, here, layer, glyph),
+        here,
+      );
     }
   };
   const byState = (target, states, layer, at) => {
@@ -589,8 +612,13 @@ export function renderMuiComponent(spec, tokens) {
   );
 
   // The axes an appearance is keyed by, from any key: `variant=primary, danger=false`.
+  // A drawing (StatusIndicator) keys its entries by size and appearance together, so the
+  // combined section may be the only one that names them.
   const appearanceAxes =
-    Object.keys(styles.appearances)[0]
+    (
+      Object.keys(styles.appearances)[0] ??
+      Object.values(styles.combined).flatMap((c) => Object.keys(c))[0]
+    )
       ?.split(', ')
       .map((part) => part.split('=')[0]) ?? [];
 
@@ -668,7 +696,11 @@ export function renderMuiComponent(spec, tokens) {
       ? `  const size = p.size as string;\n  return merge(s.reset, s.root, s.sizes[size], s.appearances[key], s.combined[size]?.[key]);\n`
       : `  return merge(s.reset, s.root, s.appearances[key]);\n`) +
     `}\n\n` +
-    `type Parts = Record<string, string | boolean | null>;\n` +
+    `/** A drawn layer's outline: its box, and the fill's and the stroke's paths (Figma's geometry). */\n` +
+    `type Glyph = {\n  width: number;\n  height: number;\n  fill: { d: string; evenOdd: boolean }[];\n  stroke: { d: string; evenOdd: boolean }[];\n};\n` +
+    `/** One layer's composition: shown or not, its composed child, its glyph, its position. */\n` +
+    `export type Solar${name}Parts = Record<string, string | number | boolean | Glyph | null>;\n` +
+    `type Parts = Solar${name}Parts;\n` +
     `type Layered = {\n  base: Parts;\n  size?: Record<string, Parts>;\n  appearance?: Record<string, Record<string, Parts>>;\n  combined?: Record<string, Record<string, Record<string, Parts>>>;\n};\n\n` +
     `/**\n * What the shell renders for one set of props in one state, by layer: whether it shows, and which\n * component and variant a composed child takes. The same precedence as the style: base, size,\n * appearance, then size and appearance together, each at rest and then in the state.\n */\n` +
     `export function solar${name}Compose(\n  props: Solar${name}Props = {},\n  state: string = 'default',\n): Record<string, Parts> {\n` +

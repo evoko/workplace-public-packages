@@ -176,12 +176,10 @@ export function buildOracle(
     const [sizeX, sizeY] = (layer.layout?.sizing ?? layer.sizing ?? '').split(
       '/',
     );
-    // A box its parent's auto layout does not place is where Figma put it, at the size it is
-    // drawn: both are measured, from the parent's edge. A layer drawn by its outline (a glyph)
-    // carries its place in the glyph instead; an ellipse or a rectangle, which Figma describes
-    // by its size, is a box.
-    const placedBox =
-      layer.position && !layer.geometry && !layer.strokeGeometry;
+    // A layer its parent's auto layout does not place is where Figma put it, at the size it is
+    // drawn: both are measured, from the parent's edge, for a box and a glyph alike (the `!` in
+    // StatusIndicator's triangle), since a shell that misplaced one would draw it wrong.
+    const placedBox = Boolean(layer.position);
     const box = () => {
       if ((sizeX === 'FIXED' || placedBox) && layer.size)
         out.width = layer.size[0];
@@ -217,15 +215,10 @@ export function buildOracle(
     }
     if (layer.fills?.includes('IMAGE')) out.image = true;
     // The shape drawn, as Figma's path data, compared as data by the visual checks.
-    // A shape placed by position carries its place in its drawing, which, like its outline, is
-    // recorded and not measured.
     if (layer.geometry || layer.strokeGeometry)
       out.glyph = {
         fill: (layer.geometry ?? []).map((g) => g.path),
         stroke: (layer.strokeGeometry ?? []).map((g) => g.path),
-        ...(layer.position
-          ? { x: layer.position[0], y: layer.position[1] }
-          : {}),
       };
     paint('background', layer.fills);
     paint('borderColor', layer.strokes);
