@@ -1,0 +1,59 @@
+/**
+ * SOLAR RowExpand.
+ *
+ * Scaffolded once by `npm run solar:scaffold RowExpand` from spec/components/rowexpand.json, and
+ * owned by developers from then on: change it freely. What it looks like is not here. That is the
+ * recipe, `solarRowExpandStyle` and `solarRowExpandCompose` in `@bwp-web/styles/mui`: each type’s
+ * chevron or connector, their colours and places.
+ *
+ * Bespoke: an expandable table row’s cell, drawn from Figma’s layer tree (`internal/layers.tsx`):
+ * the chevron on the parent row, and the connector beside each child row. Decorative: the row it
+ * belongs to is the control that expands, and says so (`aria-expanded`). The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { IconChevronDown, IconChevronRight } from '@bwp-web/assets';
+import { forwardRef } from 'react';
+import {
+  solarRowExpandCompose,
+  solarRowExpandStyle,
+  type SolarRowExpandProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['iconChevronRight', 'iconChevronDown', 'container', 'container2'],
+};
+
+export interface RowExpandProps
+  extends
+    SolarRowExpandProps,
+    // MUI types BoxProps' ref for any element; the component's own comes from forwardRef.
+    Omit<BoxProps, keyof SolarRowExpandProps | 'children' | 'ref'> {}
+
+export const RowExpand = forwardRef<HTMLSpanElement, RowExpandProps>(
+  function RowExpand({ type, sx, ...rest }, ref) {
+    const parts = solarRowExpandCompose({ type });
+    return (
+      <Box
+        component="span"
+        ref={ref}
+        aria-hidden
+        {...rest}
+        sx={[solarRowExpandStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarRowExpand',
+          tree: TREE,
+          parts,
+          icons: {
+            iconChevronRight: <IconChevronRight />,
+            iconChevronDown: <IconChevronDown />,
+          },
+        })}
+      </Box>
+    );
+  },
+);

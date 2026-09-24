@@ -1,0 +1,35 @@
+# Hand-written decisions about SOLAR Skeleton, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Skeleton
+
+base:
+  mui: Skeleton
+  reason: >-
+    MUI's Skeleton on the web, always its rectangular variant, restyled by the recipe: its text
+    variant scales the box to 60% of its height, which SOLAR's text lines are not. Its pulse is
+    MUI's, as Spinner's rotation is, since Figma draws a still frame and SOLAR has no token for
+    it. Flutter has no skeleton: its widget is bespoke, pulsing the same way.
+
+follows:
+  root.width:
+    axes: [type, size]
+    reason: >-
+      A skeleton mirrors the content it stands in for: a line's width is the text's, a circle's the
+      avatar's, a rectangle's the card's, each by size.
+  root.height:
+    axes: [type, size]
+    reason: As the width, the content's height.
+  root.radius:
+    axes: [type]
+    reason: A circle is round (radius.pill); a line and a rectangle take the control radius.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      The placeholder is the size of what it stands in for (120 to 320 wide) and bound to nothing:
+      SOLAR has no size for it, and the caller gives the real content's (width, height). Raised as
+      a governance gap.
+  root.height:
+    reason: As the width, the content's height (12 to 180).

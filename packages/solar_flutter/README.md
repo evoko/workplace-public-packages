@@ -47,9 +47,14 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 
 ## Components
 
-`SolarButton`, `SolarIconButton`, `SolarButtonGroup`, `SolarSpinner` and `SolarStatusIndicator` take
-the same props as the React components (a group takes its buttons as `children`, and asserts against the vertical
-full-width group Figma does not draw):
+`SolarButton`, `SolarIconButton`, `SolarButtonGroup` and `SolarSpinner`, and the display primitives
+(`SolarStatusIndicator`, `SolarCounter`, `SolarKbd`, `SolarTimestamp`, `SolarAvatar`,
+`SolarTrendBadge`, `SolarDivider`, `SolarSkeleton`, `SolarProgressBar`, `SolarNodeEnd`,
+`SolarRowExpand`, `SolarTreeIndent` and `SolarCursor`) take the same props as the React components
+(a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
+does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
+`SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, and a `SolarTimestamp` takes
+the app's words (`text`) with no `DateTime`, since Flutter has no machine-readable time:
 
 ```dart
 SolarButton(
@@ -94,11 +99,23 @@ A shape a component draws itself (Spinner's ring, StatusIndicator's marks, and i
 Checkbox's tick) is a `SolarGlyph`: Figma's path data for the fill and for the stroke's outline, read
 from the recipe with `Solar<Name>Recipe.glyph(layer, props, states)`. `SolarGlyphView` draws one at
 its own size, the fill's outline in the fill colour and the stroke's in the stroke colour, by
-`SolarVectorPainter` as the icons are. `SolarStatusIndicator` walks Figma's layer tree, drawing each
-layer as a `SolarGlyphView` or a box, and placing it at the recipe's `x` and `y` where its parent has
-no auto layout; decorative unless given a `label`, which it announces as an image.
+`SolarVectorPainter` as the icons are.
 
-Every variant of both widgets is checked against what Figma draws (`spec/verify/`) by
+A display primitive draws Figma's layer tree itself with `SolarLayers` (`lib/src/solar_layers.dart`):
+each layer, keyed `<component>.<layer>`, as a `SolarGlyphView`, a `SolarIcon`, a `Text` or a box,
+laid out by its auto layout or placed at the recipe's `x` and `y` where it has none, translucent
+where the recipe gives it an opacity. `SolarLayerRecipe` is the component's generated recipe as
+closures, under its props and states. Avatar, Skeleton and Divider are drawn so too; ProgressBar
+wraps `LinearProgressIndicator`.
+
+A control's states are shared with what it holds (`lib/src/solar_states.dart`): `SolarButton` gives
+its states to a `SolarStatesScope`, and a `SolarCounter` in it reads them with a
+`SolarStatesBuilder`, so it follows the button's hover, press and disabled colours, as Figma draws
+it. `SolarPressable` gives a drawn widget states of its own where it is a control (a counter with
+`onPressed`). `solarInkOn` (`lib/src/solar_ink.dart`) is the Avatar initials' ink, the web's rule
+step for step.
+
+Every variant of every widget is checked against what Figma draws (`spec/verify/`) by
 `flutter test`: see [test/visual/README.md](test/visual/README.md). To look at them instead,
 `npm run widgetbook` from the repository root: every Figma variant with its state forced, in Light
 and Dark, and a playground with a knob per prop ([widgetbook/README.md](widgetbook/README.md)). How

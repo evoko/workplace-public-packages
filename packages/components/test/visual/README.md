@@ -14,8 +14,10 @@ npx playwright install chromium  # once, on a new machine
 - **What is measured** is `page.tsx`, one case per oracle variant of every component, rendered by
   the real components with `tokens.css` and `fonts.css`, bundled by esbuild from sources
   (`build.mjs`). How a component is rendered is its case module, `cases/<name>.tsx`: its props from
-  the oracle and every slot filled with a probe (each Button shows both icons and a counter, so
-  their colours are measured too). `cases/registry.generated.ts` registers them, written by
+  the oracle and every slot filled with a probe (each Button shows both icons and a SOLAR
+  Counter, of the type Figma draws there, so their colours are measured too; a photo avatar a
+  one-pixel picture). A case may read its input from the oracle where Figma's sample is the
+  caller's (Avatar's colour, ProgressBar's value). `cases/registry.generated.ts` registers them, written by
   `solar:codegen` from the codegen's component list, and every component must have one: a
   component with no case file fails the typecheck, and one with no cases fails its check, naming
   the file to add.
@@ -24,7 +26,8 @@ npx playwright install chromium  # once, on a new machine
   through them; where the component's `STATE_SELECTORS` marks focus with a class, the check first
   proves the control carries it. A state that is a prop (disabled, loading) is set by the case's
   props. Transitions are switched off, so the end state is measured, not a frame.
-- **Where each layer is** comes from the emitter's own table (`MUI_SLOTS`), not a copy of it. A
+- **Where each layer is** comes from the emitter's own table (`slotsOf`, from `MUI_SLOTS`, and for
+  a drawn component every IR layer's class), not a copy of it. A
   layer placed by position (`x`, `y` in the oracle) is measured from its parent layer's outer edge
   to its own, as Figma measures it.
 - **A composed child** (Button's spinner, Button Group's buttons: a layer the oracle names as
@@ -37,7 +40,9 @@ npx playwright install chromium  # once, on a new machine
 - **Excused entries on a layer the variant does not draw** (a Button hidden in one group) cannot be
   reached, so the count of gaps expected leaves them out.
 - **Comparing** (`compare.mjs`): colours in sRGB within one 8-bit step, lengths within half a
-  pixel, shadows part by part, the first font family, letter spacing in pixels. A layer Figma
+  pixel, shadows part by part, the first font family, letter spacing in pixels, opacity within
+  0.01. A corner is compared as drawn, no rounder than half its box, so a pill's 9999px and an
+  ellipse's half its size agree, and a square corner still fails. A layer Figma
   hides in a variant (the label while loading, the spinner at rest) must not be drawn; a slot the
   oracle lists as shown by a prop, hidden at rest (the icons), is measured whenever rendered.
 - **Flutter** has the same check, `packages/solar_flutter/test/visual/`, against the same oracle.

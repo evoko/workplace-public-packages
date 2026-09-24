@@ -1,0 +1,17 @@
+# Hand-written decisions about SOLAR Kbd, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Kbd
+
+base:
+  reason: >-
+    Bespoke on both platforms: a key cap, one label on a box. Neither MUI nor Flutter has one; the
+    web draws it as <kbd>, the element HTML has for a key a user presses.
+
+layerNames:
+  /⌘K:
+    name: label
+    reason: >-
+      Figma names the text after its sample, ⌘K, which gives no name in code. It is the key's
+      label, which the caller gives.

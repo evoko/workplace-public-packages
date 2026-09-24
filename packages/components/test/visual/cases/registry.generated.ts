@@ -2,17 +2,41 @@
 // The web registry: a case per generated component, by its name. The spec requires one for
 // every component in the codegen’s `COMPONENTS`, so a new component cannot go unmeasured.
 
+import avatar from './avatar.js';
 import button from './button.js';
 import buttonGroup from './button-group.js';
+import counter from './counter.js';
+import cursor from './cursor.js';
+import divider from './divider.js';
 import iconButton from './icon-button.js';
+import kbd from './kbd.js';
+import nodeEnd from './node-end.js';
+import progressBar from './progressbar.js';
+import rowExpand from './rowexpand.js';
+import skeleton from './skeleton.js';
 import spinner from './spinner.js';
 import statusIndicator from './statusindicator.js';
+import timestamp from './timestamp.js';
+import treeIndent from './tree-indent.js';
+import trendBadge from './trend-badge.js';
 import type { VisualCase } from './types.js';
 
 export const CASES: Record<string, VisualCase> = {
+  Avatar: avatar,
   Button: button,
   'Button Group': buttonGroup,
+  Counter: counter,
+  Cursor: cursor,
+  Divider: divider,
   'Icon Button': iconButton,
+  Kbd: kbd,
+  'Node End': nodeEnd,
+  ProgressBar: progressBar,
+  RowExpand: rowExpand,
+  Skeleton: skeleton,
   Spinner: spinner,
   StatusIndicator: statusIndicator,
+  Timestamp: timestamp,
+  'Tree Indent': treeIndent,
+  'Trend Badge': trendBadge,
 };

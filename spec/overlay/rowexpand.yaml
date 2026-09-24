@@ -1,0 +1,39 @@
+# Hand-written decisions about SOLAR RowExpand, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: RowExpand
+
+base:
+  reason: >-
+    Bespoke on both platforms: a table row's expand cell and the connector drawn beside its child
+    rows, drawn from its layers. Decorative: the row it belongs to is the control that expands and
+    says so (aria-expanded), as Table (F11) will.
+
+drawing:
+  reason: >-
+    Each type is its own drawing: the title row an empty cell, collapsed and expanded a chevron,
+    and the bottom, middle and vertical-only rows a connector of their own, one or two vectors
+    placed by position with no auto layout. So every cell follows the type.
+
+bind:
+  root.width:
+    literal: 16
+    token: icon.sm
+    reason: >-
+      The cell is the width of its chevron, an icon.sm (16px), the same value, so the connector
+      lines up with the chevron above it.
+  iconChevronRight.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; Figma binds the chevron's height to icon.sm already.
+  iconChevronDown.width:
+    literal: 16
+    token: icon.sm
+    reason: As the right chevron's.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A table row's height, 40, bound to nothing: SOLAR publishes no row height. Raised as a
+      governance gap.

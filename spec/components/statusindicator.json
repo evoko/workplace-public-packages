@@ -993,7 +993,10 @@
               "borderColor": {
                 "token": "color.border.medium",
                 "from": "overlay",
-                "reason": "Figma binds help's border to a variable that is not in Foundations, so no colour can be read from it. Every other type's border is color.border.medium, which we draw meanwhile; the design review asks SOLAR to rebind it."
+                "reason": "Figma binds help's border to a variable that is not in Foundations, so no colour can be read from it. Every other type's border is color.border.medium, which we draw meanwhile; the design review asks SOLAR to rebind it.",
+                "replaced": {
+                  "literal": "{unresolved:5f4e0e43eb89}"
+                }
               },
               "direction": {
                 "none": true,
@@ -1157,7 +1160,10 @@
         "shadow": {
           "none": true,
           "from": "overlay",
-          "reason": "Figma puts shadow/raised on the tick, the exclamation and the cross (and info's and neutral's marks, below), but not on help's or private's. A shadow token is a box shadow, which a glyph's outline cannot take, and SOLAR has no drop-shadow token; not drawn meanwhile, and the design review asks whether the marks mean to have one."
+          "reason": "Figma puts shadow/raised on the tick, the exclamation and the cross (and info's and neutral's marks, below), but not on help's or private's. A shadow token is a box shadow, which a glyph's outline cannot take, and SOLAR has no drop-shadow token; not drawn meanwhile, and the design review asks whether the marks mean to have one.",
+          "replaced": {
+            "token": "shadow.raised"
+          }
         },
         "radius": {
           "none": true,
@@ -1801,7 +1807,10 @@
               "borderColor": {
                 "token": "color.border.medium",
                 "from": "overlay",
-                "reason": "As the xs dot's, an unknown variable; color.border.medium as every other type."
+                "reason": "As the xs dot's, an unknown variable; color.border.medium as every other type.",
+                "replaced": {
+                  "literal": "{unresolved:5f4e0e43eb89}"
+                }
               },
               "shadow": {
                 "none": true,
@@ -2134,7 +2143,10 @@
               "borderColor": {
                 "token": "color.border.medium",
                 "from": "overlay",
-                "reason": "As the xs dot's, an unknown variable; color.border.medium as every other type."
+                "reason": "As the xs dot's, an unknown variable; color.border.medium as every other type.",
+                "replaced": {
+                  "literal": "{unresolved:5f4e0e43eb89}"
+                }
               },
               "shadow": {
                 "none": true,
@@ -2499,7 +2511,10 @@
               "shadow": {
                 "none": true,
                 "from": "overlay",
-                "reason": "As the tick's, a box shadow on a glyph, not drawn."
+                "reason": "As the tick's, a box shadow on a glyph, not drawn.",
+                "replaced": {
+                  "token": "shadow.raised"
+                }
               },
               "radius": {
                 "none": true,
@@ -2554,7 +2569,10 @@
               "shadow": {
                 "none": true,
                 "from": "overlay",
-                "reason": "As the tick's, a box shadow on a glyph, not drawn."
+                "reason": "As the tick's, a box shadow on a glyph, not drawn.",
+                "replaced": {
+                  "token": "shadow.raised"
+                }
               },
               "radius": {
                 "none": true,
@@ -2621,7 +2639,10 @@
               "shadow": {
                 "none": true,
                 "from": "overlay",
-                "reason": "As the tick's, a box shadow on a glyph, not drawn."
+                "reason": "As the tick's, a box shadow on a glyph, not drawn.",
+                "replaced": {
+                  "token": "shadow.raised"
+                }
               },
               "radius": {
                 "none": true,
@@ -2676,7 +2697,10 @@
               "shadow": {
                 "none": true,
                 "from": "overlay",
-                "reason": "As the tick's, a box shadow on a glyph, not drawn."
+                "reason": "As the tick's, a box shadow on a glyph, not drawn.",
+                "replaced": {
+                  "token": "shadow.raised"
+                }
               },
               "radius": {
                 "none": true,

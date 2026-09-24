@@ -1,0 +1,82 @@
+# Hand-written decisions about SOLAR Divider, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Divider
+
+base:
+  reason: >-
+    Bespoke on both platforms, not MUI's Divider or Flutter's: SOLAR's divider is a rule, a label
+    between two rules, or an inset rule, as layers of their own. MUI draws its rule as a border
+    and a labelled one as two pseudo-elements, and Flutter's Divider takes no label, so neither
+    can be drawn, or measured, layer by layer.
+
+follows:
+  root.direction:
+    axes: [orientation]
+    reason: A vertical divider lays its rule out down, a horizontal one across.
+  root.width:
+    axes: [orientation, type]
+    reason: >-
+      Its extent is the orientation's: a horizontal divider spans its container, a vertical one
+      is its rule's thickness.
+  root.height:
+    axes: [orientation, type]
+    reason: As the width; a labelled divider is as tall as its label's row.
+  root.align:
+    axes: [type]
+    reason: A labelled divider centres its label between the rules; a plain rule starts it.
+  root.gap:
+    axes: [type]
+    reason: The gap between the label and its rules; a plain rule has none.
+  root.paddingLeft:
+    axes: [type]
+    reason: The inset type is the rule indented by inset.md; the others start at the edge.
+  rule.width:
+    axes: [orientation]
+    reason: The rule fills the divider's length and is a hairline across it.
+  rule.height:
+    axes: [orientation]
+    reason: As the width, turned for a vertical divider.
+
+bind:
+  rule.width:
+    literal: 1
+    token: border.default
+    reason: >-
+      The vertical rule's thickness, 1px: a hairline, border.default's width, the same value.
+  rule.height:
+    literal: 1
+    token: border.default
+    reason: The horizontal rule's thickness, as the vertical one's.
+  rule2.height:
+    literal: 1
+    token: border.default
+    reason: The second rule of a labelled divider, as the first.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A divider spans its container: Figma draws the full one 320 wide, a sample, and the inset one
+      filling already.
+  root.base.height:
+    token: border.default
+    reason: >-
+      A horizontal rule's divider is the rule's thickness, 1px, border.default's width, the same
+      value.
+  root.appearance.orientation=vertical, type=full.default.width:
+    token: border.default
+    reason: As the horizontal one's height, the vertical divider is its rule's thickness.
+  root.appearance.orientation=vertical, type=full.default.height:
+    keyword: FILL
+    reason: >-
+      A vertical divider spans the row it separates: Figma draws it 32 tall, a sample, as the
+      horizontal one's 320.
+
+allowLiteral:
+  root.height:
+    values: [20]
+    reason: >-
+      A labelled divider is 20 tall, its label's row, and bound to nothing: SOLAR has no size for
+      it. Raised as a governance gap.

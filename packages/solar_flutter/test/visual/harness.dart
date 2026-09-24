@@ -2,10 +2,12 @@
 // forcing its platform state, and comparing every layer with the oracle -- a composed child against
 // its own oracle. What is particular to a component is its case, under cases/.
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
@@ -41,6 +43,27 @@ Map<String, Map<String, dynamic>> loadOracles() {
     out[o['component'] as String] = o;
   }
   return out;
+}
+
+/// Every font the package bundles, from the font manifest, under the name a style asks for it by
+/// (`packages/solar_flutter/Inter`). Without them a test lays text out in its own font, whose
+/// every glyph is a square, so a fixed-width Button with every probe in it would overflow where the
+/// real font fits, as it does on the web.
+Future<void> loadBundledFonts() async {
+  final manifest =
+      jsonDecode(await rootBundle.loadString('FontManifest.json')) as List;
+  for (final family in manifest.cast<Map<String, dynamic>>()) {
+    // Tested as the app itself, the package's fonts are listed under their bare names; a style
+    // names them as a package's fonts.
+    final name = family['family'] as String;
+    final loader = FontLoader(
+      name.startsWith('packages/') ? name : 'packages/solar_flutter/$name',
+    );
+    for (final font in (family['fonts'] as List).cast<Map<String, dynamic>>()) {
+      loader.addFont(rootBundle.load(font['asset'] as String));
+    }
+    await loader.load();
+  }
 }
 
 /// Each case in a tree of its own (a new key), so nothing animates from the previous one.

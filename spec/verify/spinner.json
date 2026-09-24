@@ -40,6 +40,7 @@
           "background": "transparent",
           "borderColor": "#0000001a",
           "borderWidth": 2,
+          "radius": 8,
           "width": 16,
           "height": 16,
           "x": 0,
@@ -90,6 +91,14 @@
           "layer": "track",
           "property": "height",
           "figma": 16,
+          "finding": "component.spinner.track#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "track",
+          "property": "radius",
+          "figma": 8,
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
@@ -168,6 +177,7 @@
           "background": "transparent",
           "borderColor": "#0000001a",
           "borderWidth": 2,
+          "radius": 12,
           "width": 24,
           "height": 24,
           "x": 0,
@@ -218,6 +228,14 @@
           "layer": "track",
           "property": "height",
           "figma": 24,
+          "finding": "component.spinner.track#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "track",
+          "property": "radius",
+          "figma": 12,
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
@@ -296,6 +314,7 @@
           "background": "transparent",
           "borderColor": "#0000001a",
           "borderWidth": 2,
+          "radius": 16,
           "width": 32,
           "height": 32,
           "x": 0,
@@ -346,6 +365,14 @@
           "layer": "track",
           "property": "height",
           "figma": 32,
+          "finding": "component.spinner.track#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "track",
+          "property": "radius",
+          "figma": 16,
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
@@ -424,6 +451,7 @@
           "background": "transparent",
           "borderColor": "#ffffff33",
           "borderWidth": 2,
+          "radius": 8,
           "width": 16,
           "height": 16,
           "x": 0,
@@ -474,6 +502,14 @@
           "layer": "track",
           "property": "height",
           "figma": 16,
+          "finding": "component.spinner.track#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "track",
+          "property": "radius",
+          "figma": 8,
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
@@ -544,6 +580,7 @@
           "background": "transparent",
           "borderColor": "#ffffff33",
           "borderWidth": 2,
+          "radius": 12,
           "width": 24,
           "height": 24,
           "x": 0,
@@ -594,6 +631,14 @@
           "layer": "track",
           "property": "height",
           "figma": 24,
+          "finding": "component.spinner.track#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "track",
+          "property": "radius",
+          "figma": 12,
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
@@ -664,6 +709,7 @@
           "background": "transparent",
           "borderColor": "#ffffff33",
           "borderWidth": 2,
+          "radius": 16,
           "width": 32,
           "height": 32,
           "x": 0,
@@ -714,6 +760,14 @@
           "layer": "track",
           "property": "height",
           "figma": 32,
+          "finding": "component.spinner.track#controlDraws",
+          "decision": "controlDraws",
+          "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        {
+          "layer": "track",
+          "property": "radius",
+          "figma": 16,
           "finding": "component.spinner.track#controlDraws",
           "decision": "controlDraws",
           "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."

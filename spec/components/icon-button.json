@@ -1665,34 +1665,32 @@
         "present": {
           "value": false,
           "from": "size=sm, shape=square, prio=primary, state=default"
+        },
+        "component": {
+          "keyword": "Spinner",
+          "from": "size=sm, shape=square, prio=primary, state=loading"
+        },
+        "variant.size": {
+          "keyword": "sm",
+          "from": "size=sm, shape=square, prio=primary, state=loading"
+        },
+        "width": {
+          "keyword": "HUG",
+          "from": "size=sm, shape=square, prio=primary, state=loading"
+        },
+        "height": {
+          "keyword": "HUG",
+          "from": "size=sm, shape=square, prio=primary, state=loading"
         }
       },
       "size": {
-        "sm": {
-          "component": {
-            "keyword": "Spinner",
-            "from": "size=sm, shape=square, prio=primary, state=loading"
-          },
-          "variant.size": {
-            "keyword": "sm",
-            "from": "size=sm, shape=square, prio=primary, state=loading"
-          }
-        },
         "md": {
-          "component": {
-            "keyword": "Spinner",
-            "from": "size=md, shape=square, prio=primary, state=loading"
-          },
           "variant.size": {
             "keyword": "md",
             "from": "size=md, shape=square, prio=primary, state=loading"
           }
         },
         "lg": {
-          "component": {
-            "keyword": "Spinner",
-            "from": "size=lg, shape=square, prio=primary, state=loading"
-          },
           "variant.size": {
             "keyword": "lg",
             "from": "size=lg, shape=square, prio=primary, state=loading"

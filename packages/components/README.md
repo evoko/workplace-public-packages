@@ -1,7 +1,8 @@
 # @bwp-web/components
 
-SOLAR components for React, built on MUI: Button, Icon Button, Button Group, Spinner and
-StatusIndicator so far.
+SOLAR components for React, built on MUI: Button, Icon Button, Button Group and Spinner, and the
+display primitives (StatusIndicator, Counter, Kbd, Timestamp, Avatar, Trend Badge, Divider,
+Skeleton, ProgressBar, Node End, RowExpand, Tree Indent and Cursor) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -110,6 +111,118 @@ dot alone. The shell walks Figma's layer tree and draws each layer as a glyph (a
 outline, filled in the recipe's colours) or as a box, where the recipe places it. Decorative, and
 hidden from assistive technology, unless given a `label`, which it then announces as an image; say
 the status in words beside a decorative one.
+
+The display primitives below draw Figma's layer tree themselves, from the recipe
+(`src/internal/layers.tsx`): a glyph as Figma's outline, a SOLAR icon, a text, or a box, each with
+a class of its own and placed where the recipe says. Only Avatar, Skeleton and ProgressBar wrap an
+MUI control.
+
+## Counter
+
+| Prop       | Values                                     | Default   |
+| ---------- | ------------------------------------------ | --------- |
+| `type`     | `regular` · `danger` · `inverted` · `idle` | `regular` |
+| `disabled` | boolean                                    | `false`   |
+| `count`    | a number                                   | required  |
+| `max`      | a number                                   | `99`      |
+
+A count on a pill. At 0 or below it draws nothing, and above `max` it reads `99+`, as SOLAR asks.
+It takes the states of the control it sits in, so in a Button's `counter` slot it follows the
+Button's hover, press and disabled colours, as Figma draws it; given `onClick`, it is a `<button>`
+of its own.
+
+## Kbd
+
+| Prop       | Values                   | Default   |
+| ---------- | ------------------------ | --------- |
+| `type`     | `default` · `top-search` | `default` |
+| `children` | the key's label          | required  |
+
+A key cap, drawn as `<kbd>`. One key per Kbd: a chord is several, with a separator between them.
+
+## Timestamp
+
+| Prop       | Values                               | Default    |
+| ---------- | ------------------------------------ | ---------- |
+| `format`   | `relative` · `absolute` · `combined` | `relative` |
+| `size`     | `sm` · `md`                          | `sm`       |
+| `emphasis` | `default` · `subtle`                 | `default`  |
+| `dateTime` | a `Date` or an ISO string            | required   |
+| `children` | the words                            | required   |
+| `detail`   | the absolute time, for `combined`    | none       |
+
+A time in words, drawn as `<time datetime>`. The words are the app's, formatted in the user's
+locale and timezone (owner decision, 2026-09-24): `format` says which they are and changes nothing
+drawn. For `combined`, `detail` is shown on hover.
+
+## Avatar
+
+| Prop        | Values                             | Default     |
+| ----------- | ---------------------------------- | ----------- |
+| `size`      | `lg` · `md` · `sm` · `xs`          | `lg`        |
+| `type`      | `text` · `photo` · `logo`          | `text`      |
+| `color`     | any CSS colour                     | none        |
+| `name`      | who or what it is                  | required    |
+| `children`  | the initials                       | from `name` |
+| `textColor` | any CSS colour                     | derived     |
+| `src`       | the photo or logo, for those types | none        |
+
+MUI's Avatar. Its colour is the caller's, any colour (design team, 2026-09-24): seed it from a
+stable hash of the person's ID, never at random. The initials take that colour's hue at a lightness
+that reads at WCAG AA (`src/internal/ink.ts`, owner decision 2026-09-24), unless `textColor` gives
+theirs; a colour the rule cannot read (a `var()`) needs one. With no colour it is SOLAR's neutral
+avatar. A photo fills the circle; a logo sits whole in a rounded square. Always named by `name`.
+
+## Trend Badge
+
+| Prop    | Values                            | Default   |
+| ------- | --------------------------------- | --------- |
+| `type`  | `incline` · `decline` · `neutral` | `incline` |
+| `size`  | `md` · `sm` · `xs`                | `md`      |
+| `label` | a string                          | none      |
+
+An arrow or a dash on a disc, and a dot alone at `xs`, drawn as StatusIndicator is. Decorative
+unless given a `label`.
+
+## Divider
+
+| Prop          | Values                          | Default      |
+| ------------- | ------------------------------- | ------------ |
+| `orientation` | `horizontal` · `vertical`       | `horizontal` |
+| `type`        | `full` · `inset` · `with-label` | `full`       |
+| `children`    | the label, for `with-label`     | none         |
+
+A 1px rule, an inset one, or a label between two rules; a separator to a screen reader. It fills
+what it separates: a horizontal one the width it is given, a vertical one the height. Drawn from
+its layers rather than MUI's Divider, which draws its rules as a border and pseudo-elements.
+
+## Skeleton
+
+| Prop              | Values                            | Default |
+| ----------------- | --------------------------------- | ------- |
+| `type`            | `text` · `circle` · `rectangular` | `text`  |
+| `size`            | `sm` · `md` · `lg`                | `sm`    |
+| `width`, `height` | the real content's size           | Figma's |
+
+MUI's Skeleton, always its rectangular variant (its text variant scales the box to 60%), with MUI's
+pulse, removed where motion is reduced. Decorative: mark the loading region `aria-busy`.
+
+## ProgressBar
+
+| Prop       | Values                                                | Default   |
+| ---------- | ----------------------------------------------------- | --------- |
+| `feedback` | `neutral` · `info` · `success` · `warning` · `danger` | `neutral` |
+| `value`    | 0 to 100                                              | required  |
+
+MUI's determinate LinearProgress, which fills its container. Name it (`aria-label`) and say the
+number beside it.
+
+## Node End, RowExpand, Tree Indent and Cursor
+
+Building blocks, decorative: Node End is the dot at the end of a Coachmark's connector (`halo`);
+RowExpand an expandable table row's chevron or connector (`type`); Tree Indent a tree row's indent,
+16px per level (`depth`, `00` to `10`; Figma's `.Tree Indent`); Cursor the pointer glyphs of the
+canvas editors (`type`, 22 of them). The rows and trees that use them carry the semantics.
 
 ## Checked against Figma
 

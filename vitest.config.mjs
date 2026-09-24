@@ -21,6 +21,11 @@ export default defineConfig({
         find: /^@bwp-web\/styles$/,
         replacement: src('packages/styles/src/index.ts'),
       },
+      // The icons a drawn component shows (RowExpand's chevrons).
+      {
+        find: /^@bwp-web\/assets$/,
+        replacement: src('packages/assets/src/index.ts'),
+      },
     ],
   },
   test: {

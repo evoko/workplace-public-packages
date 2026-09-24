@@ -1,0 +1,42 @@
+# Hand-written decisions about SOLAR Node End, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Node End
+
+base:
+  reason: >-
+    Bespoke on both platforms: a drawn marker, a dot with a halo behind it, placed where Figma puts
+    them. Decorative always, as its description says: the element a tour step is about carries
+    the name.
+
+follows:
+  halo.width:
+    axes: [halo]
+    reason: >-
+      The halo is what the prop draws: 6px, hidden behind the dot, without it, and 14px, a ring
+      around it, with it. Its size follows the prop, as its place does.
+  halo.height:
+    axes: [halo]
+    reason: As the width, the halo's size.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      The marker's box, 12px, in the drawing's own coordinates: part of the drawing, as a glyph's
+      box is, not a size of the system. SOLAR has no marker size.
+  root.height:
+    reason: As the width, the marker's box.
+  halo.width:
+    reason: The halo's size, 6 and 14, part of the drawing.
+  halo.height:
+    reason: As the width, part of the drawing.
+  dot.width:
+    reason: The dot's 6px ("a plain 6px Dot", says the description), part of the drawing.
+  dot.height:
+    reason: As the width, part of the drawing.
+  halo.opacity:
+    reason: >-
+      The halo is the dot's colour at 20% opacity. SOLAR has alpha colours but no opacity scale,
+      and no alpha form of surface/feedback/info/strong; carried as Figma's number, and raised as a
+      governance gap.

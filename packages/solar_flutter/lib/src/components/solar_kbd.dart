@@ -1,0 +1,57 @@
+/// SOLAR Kbd.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Kbd` from spec/components/kbd.json, and
+/// owned by developers from then on: change it freely. What it looks like is not here. That is the
+/// recipe, [SolarKbdRecipe]: the key cap’s fill, border and radius, and its label’s text style,
+/// read cell by cell.
+///
+/// Bespoke: a key cap, drawn from Figma's layer tree with [SolarLayers]. One key per Kbd: a chord
+/// is several, with a separator between them (Ctrl + K), and a modifier is the platform's own
+/// symbol (⌘ on macOS, Ctrl elsewhere).
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/kbd.dart';
+import '../solar_layers.dart';
+import 'solar_theme_of.dart';
+
+class SolarKbd extends StatelessWidget {
+  const SolarKbd({
+    super.key,
+    this.type = SolarKbdType.$default,
+    required this.label,
+  });
+
+  final SolarKbdType type;
+
+  /// The key's label: one key, as the platform names it (⌘, Ctrl, K, Enter).
+  final String label;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['label'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarKbdProps(type: type);
+    const states = <WidgetState>{};
+    final mark = SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarKbdRecipe.lookup(c, p, states),
+        dimension: (c) => SolarKbdRecipe.dimension(c, p, states),
+        color: (c) => SolarKbdRecipe.color(t, c, p, states),
+        shadow: (c) => SolarKbdRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarKbdRecipe.textStyle(t, c, p, states),
+        present: (l) => SolarKbdRecipe.present(l, p, states),
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'kbd',
+      text: {'label': label},
+    ).layer('root');
+    return mark;
+  }
+}

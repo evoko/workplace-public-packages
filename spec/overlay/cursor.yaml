@@ -1,0 +1,80 @@
+# Hand-written decisions about SOLAR Cursor, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Cursor
+
+base:
+  reason: >-
+    Bespoke on both platforms: a drawn pointer glyph for the canvas and authoring surfaces, where
+    the native cursor cannot say which tool is active. No stock control draws one. Decorative: the
+    tool it shows is said elsewhere, as its description asks.
+
+drawing:
+  reason: >-
+    Each type is its own drawing, from layers of its own (an arrow, a hand, an hourglass, a pair of
+    arrows), placed by position with no auto layout, so every cell follows the type, as a glyph
+    does.
+
+bind:
+  rectangle237.borderWidth:
+    literal: 1
+    token: border.default
+    reason: >-
+      Same value, governed token: the outline that keeps a glyph legible on light and dark (its
+      description), 1px, border.default's width.
+  importedLayersCopy4.borderWidth:
+    literal: 1
+    token: border.default
+    reason: As the arrow's outline, border.default.
+  oval3.borderWidth:
+    literal: 1
+    token: border.default
+    reason: As the arrow's outline, border.default.
+  rectangle254.borderWidth:
+    literal: 1
+    token: border.default
+    reason: As the arrow's outline, border.default.
+  path.borderWidth:
+    literal: 1
+    token: border.default
+    reason: As the arrow's outline, border.default.
+  oval38.borderWidth:
+    literal: 1
+    token: border.default
+    reason: As the arrow's outline, border.default.
+  rectangle272.borderWidth:
+    literal: 1
+    token: border.default
+    reason: As the arrow's outline, border.default.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      Each glyph's box (12 × 14 for the arrow, 22 × 24 for Progress), in the drawing's own
+      coordinates, as a glyph's outline is: part of the drawing, not a size of the system.
+  root.height:
+    reason: As the width, the glyph's box.
+
+set:
+  root.base.shadow:
+    none: true
+    reason: >-
+      Figma puts shadow/raised on the Default arrow's frame, alone of the 22, where it falls as a
+      drop shadow following the arrow. A shadow token is a box shadow, which would draw a
+      rectangle round the glyph's box, and SOLAR has no drop-shadow token: not drawn meanwhile, as
+      StatusIndicator's marks' is not, and the design review asks for one.
+  oval3.appearance.type=Copy.default.background:
+    token: color.surface.feedback.success.strong
+    reason: >-
+      Figma fills Copy's plus disc with the primitive color/green/400, which component code may not
+      name, and no semantic colour has its value. A filled success disc is
+      color.surface.feedback.success.strong (green/500 in Light), which we draw meanwhile; the
+      design review asks SOLAR to rebind it.
+  rectangle8.appearance.type=Progress.default.background:
+    token: color.icon.link.hover
+    reason: >-
+      Figma fills Progress's arc with the primitive color/blue/400, and no semantic colour has its
+      value. Its disc is color.icon.link.default, so the arc is the brighter link blue beside it,
+      color.icon.link.hover (blue/500 in Light), meanwhile; the design review asks SOLAR to rebind
+      it.

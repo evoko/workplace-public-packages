@@ -1,0 +1,42 @@
+# Hand-written decisions about SOLAR Trend Badge, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Trend Badge
+
+base:
+  reason: >-
+    Bespoke on both platforms: a drawn mark, an arrow on a disc, which no stock control draws, as
+    StatusIndicator is.
+
+drawing:
+  reason: >-
+    Each type is its own drawing: incline and decline an arrow, neutral a dash, each with a box of
+    its own, and xs a dot with no mark at all. So every cell follows type and size, as
+    StatusIndicator's do.
+
+bind:
+  root.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: >-
+      A trend badge is an inline indicator the size of an icon: md and sm are the icon ladder's md
+      and sm, the same values, as StatusIndicator's marks are. xs, the 8px dot, is allowed below.
+  root.height:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the width, the icon ladder.
+
+allowLiteral:
+  root.width:
+    values: [8]
+    reason: >-
+      The xs dot is 8px, and the icon ladder starts at 12: SOLAR has no size for it, as
+      StatusIndicator's xs dot has none. A governance gap the design review raises.
+  root.height:
+    values: [8]
+    reason: As the width, the 8px dot.
+  icon.width:
+    reason: >-
+      The box of the drawn arrow or dash, in the drawing's own coordinates, as its outline is: part
+      of the drawing, not a size of the system.
+  icon.height:
+    reason: As the width, part of the drawing.

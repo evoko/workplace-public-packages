@@ -42,7 +42,7 @@ Widget buildButtonGroup(
   // Room for three Buttons with every probe (both icons, a counter): the group fills whatever it is
   // given, and no width of it is compared.
   return SizedBox(
-    width: 720,
+    width: 800,
     child: SolarButtonGroup(
       orientation: enumNamed(
         SolarButtonGroupOrientation.values,

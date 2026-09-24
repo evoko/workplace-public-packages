@@ -756,6 +756,67 @@ platforms; 32 findings, all decided.
 - **Checks:** 623 JS tests, both visual checks (7 on the web), 99 Flutter tests, lint, typecheck,
   format, both viewers, and two identical rebuilds.
 
+**Batch done 2026-09-24: F1 complete.** The twelve members are built on the pioneer's machinery,
+one after another rather than by subagents: each adds a descriptor to the one tree the others build
+from, so parallel builds would have read each other's half-written files. Every member matches Figma
+on both platforms, and every finding is decided (the triage shows 0 open for all 13).
+
+- **Owner decisions (asked at the start of the batch):**
+  - **Timestamp** takes the app's words, formatted in the user's locale, plus the date: `<time
+    datetime>` on the web, a tooltip with the absolute time for `combined`. Flutter has no
+    machine-readable time, so its widget takes the words (`text`) and the `detail`.
+  - **Avatar's initials** keep the caller's colour's hue at Figma's lightness (OKLCH 0.37 or 0.93,
+    its 700s and 100s), as vivid as sRGB holds, and move toward black or white just far enough for
+    4.5:1 (`internal/ink.ts`, `solar_ink.dart`, identical outputs pinned on both). A grey's ink is
+    a grey; `textColor` overrides.
+- **Members:**
+  - drawn on both platforms (the shared layer helpers): Counter, Kbd, Timestamp, Trend Badge,
+    Divider, Node End, RowExpand, Tree Indent (Figma's `.Tree Indent`, `codeName`), Cursor;
+  - Avatar: MUI Avatar, drawn in Flutter (CircleAvatar cannot draw the logo's square);
+  - Skeleton: MUI Skeleton (always rectangular, its pulse removed under reduced motion), drawn in
+    Flutter with the same pulse over `motion.duration.slower`;
+  - ProgressBar: MUI LinearProgress and Flutter LinearProgressIndicator, the bar `controlDraws`.
+  - **Changed from the plan:** Divider is drawn rather than MUI's or Flutter's Divider, which draw
+    their rules as a border and pseudo-elements, and take no label, so neither can be measured
+    layer by layer.
+- **Machinery found and fixed on the batch** (each with tests):
+  - **Shared layer helpers:** `internal/layers.tsx` and `SolarLayers`, with a measuring twin
+    (`test/visual/layers.dart`), draw a glyph, a SOLAR icon, a text, an image or a box, placed or
+    laid out, translucent where the recipe says; `src/scaffold/drawn.mjs` writes the shells.
+    StatusIndicator was re-scaffolded onto them. `slots: 'drawn'` derives a drawn component's slot
+    table from the IR (Cursor has 11 layers).
+  - **States from the control around** (`solar_states.dart`): `SolarButton` shares its states, and
+    Counter follows them, as Figma draws a counter in a button; `SolarPressable` for a drawn
+    control. The web does it with selectors, spelled from the element (`button:hover &`), since
+    Emotion reads a leading colon as the element's own. Button's cases now hold a real Counter,
+    checked against Counter's oracle.
+  - **The recipe read cells it used to drop:** a layer the reference variant does not draw
+    (Divider's label) is read where it is drawn; a root or placed layer no auto layout sizes has
+    its drawn size; an ellipse is a round box (`radius.pill`); a boolean operation's operands are
+    no layers; a translucent layer has `opacity`. This is why the triage's finding count rose from
+    3,472 to 3,515.
+  - **Emitters:** a `HUG` past a fixed base resets to `auto`; a vector's radius is in its outline;
+    `controlDraws` layers declare no box; empty rules are dropped; enum values that are no Dart
+    identifier are respelled (`top-search` to `topSearch`, `00` to `$00`).
+  - **Oracle:** a `set` keeps what it `replaced`, so the oracle excuses exactly the variants that
+    draw it (Cursor's shadow); `controlDraws` excuses roundness too; an ellipse's radius is half its
+    size.
+  - **Checks:** both compare a corner as drawn (no rounder than half its box) and `opacity`; the
+    Flutter checks load the bundled fonts, so text is laid out in Inter rather than the test font.
+  - **Overlay:** `samples` (an axis of samples, dropped) and `caller` (a colour the caller gives, a
+    `color` prop, or a cell derived from it), with a `color` API type in both emitters, Storybook
+    and Widgetbook; overlay files drop a leading dot (`tree-indent.yaml`).
+- **For the designers** (review, sections 2 and 6, and the decisions, now 20): Cursor's two
+  primitives, Trend Badge's xs decline colour, Avatar's missing lg logo, Tree Indent's 39px units,
+  sizes with no variable, Node End's halo opacity, drop shadows, Skeleton's pulse, and Avatar's
+  initials rule.
+- **Checks:** 745 JS tests, both visual checks (19 on the web), 137 Flutter tests, lint, typecheck,
+  format, all three Flutter packages analysed and formatted, both viewers built, the personal-data
+  scan, and two identical rebuilds.
+- **Open for the family review:** whether Cursor belongs in `@bwp-web/canvas` rather than
+  components, and whether Tree Indent, Node End and RowExpand, building blocks of later families,
+  should be exported publicly.
+
 ### F2: Buttons
 
 On Button's machinery.

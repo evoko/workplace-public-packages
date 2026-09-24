@@ -783,3 +783,95 @@ allowLiteral:
     expect(() => on('32')).toThrow(/leaves 48 unbound/);
   });
 });
+
+describe('samples and caller: a colour the caller gives (F1, Avatar)', () => {
+  const avatar = loadComponent(catalog, 'Avatar');
+  const on = (text) =>
+    buildComponentSpec(avatar, {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay: yaml(text),
+    });
+
+  it('refuses a caller rule with both a prop and a from, or a from no prop rule gives', () => {
+    expect(() =>
+      yaml(
+        `component: X\ncaller:\n  root.background:\n    prop: color\n    from: color\n    reason: r\n`,
+      ),
+    ).toThrow(/give prop or from, one of them/);
+    expect(() =>
+      on(`component: Avatar
+caller:
+  ds.color:
+    from: color
+    reason: r
+`),
+    ).toThrow(/from color, which no caller rule gives/);
+  });
+
+  it('drops a sampled axis, keeping one variant per combination, or refuses', () => {
+    const { spec } = on(`component: Avatar
+samples:
+  color:
+    keep: [neutral]
+    reason: samples
+  shade:
+    keep: [Light, Image, Logo]
+    reason: samples
+`);
+    expect(Object.keys(spec.api)).toEqual(['size', 'type']);
+    // Light and Dark kept together are two text avatars at one size.
+    expect(() =>
+      on(`component: Avatar
+samples:
+  color:
+    keep: [neutral]
+    reason: samples
+  shade:
+    keep: [Light, Dark, Image, Logo]
+    reason: samples
+`),
+    ).toThrow(/keep two variants at lg, text/);
+  });
+
+  it('makes a caller’s cell a colour prop, and says which cells take it or follow it', () => {
+    const { spec } = on(`component: Avatar
+samples:
+  color:
+    keep: [neutral]
+    reason: samples
+  shade:
+    keep: [Light, Image, Logo]
+    reason: samples
+caller:
+  root.background:
+    prop: color
+    reason: the caller's
+  ds.color:
+    from: color
+    reason: follows it
+`);
+    expect(spec.api.color).toEqual({ type: 'color', default: null });
+    expect(spec.callers).toEqual({
+      'root.background': { prop: 'color', reason: "the caller's" },
+      'ds.color': { from: 'color', reason: 'follows it' },
+    });
+  });
+});
+
+describe('set keeps what Figma had beside the decision', () => {
+  it('so the oracle excuses only the variants that draw what it replaced', () => {
+    const { spec } = build(
+      yaml(`component: Button
+set:
+  root.base.shadow:
+    none: true
+    reason: r
+`),
+    );
+    expect(spec.style.root.base.shadow).toMatchObject({
+      none: true,
+      replaced: { token: expect.stringMatching(/^shadow\./) },
+    });
+  });
+});

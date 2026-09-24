@@ -49,6 +49,7 @@ const PROPERTIES_OF = {
   height: ['height'],
   x: ['x'],
   y: ['y'],
+  opacity: ['opacity'],
   typography: [
     'fontFamily',
     'fontWeight',
@@ -93,6 +94,30 @@ const px = (v) => {
   return n;
 };
 
+/** Whether a `set` rule's IR entry reaches a Figma variant: the base every one, a size its size,
+ * an appearance its combination (at rest, in every state; in a state, that state alone), and the
+ * two together both. */
+function setReaches(props, section, keys) {
+  const holds = (key) =>
+    key.split(', ').every((kv) => {
+      const [axis, value] = kv.split('=');
+      return String(props[axis]) === value;
+    });
+  const inState = (state) =>
+    state === 'default' || String(props.state ?? 'default') === state;
+  if (section === 'base') return true;
+  if (section === 'size') return String(props.size) === keys[0];
+  if (section === 'appearance') return holds(keys[0]) && inState(keys[1]);
+  return String(props.size) === keys[0] && holds(keys[1]) && inState(keys[2]);
+}
+
+const same = (a, b) =>
+  a !== undefined &&
+  b !== undefined &&
+  (typeof a === 'number' || typeof b === 'number'
+    ? Number(a) === Number(b)
+    : String(a) === String(b));
+
 /**
  * @param {object} set the raw component set
  * @param {object} spec the component's IR, for its layer names, API and states only
@@ -134,6 +159,25 @@ export function buildOracle(
     if (!token)
       throw new Error(`${where}: effect style ${style} is not a token`);
     return token.modes?.light ?? token.value;
+  };
+
+  /** What a `set` rule draws, as the oracle spells the property, or undefined for a keyword. */
+  const decidedValue = (rule, property) => {
+    if (rule.none)
+      return {
+        background: 'transparent',
+        borderColor: 'transparent',
+        color: 'transparent',
+        shadow: 'none',
+        borderWidth: 0,
+        radius: 0,
+      }[property];
+    const token = rule.token && byName.get(rule.token);
+    if (!token) return undefined;
+    if (token.type === 'color') return hex(token.modes?.light ?? token.value);
+    if (token.type === 'shadow') return token.modes?.light ?? token.value;
+    if (token.type === 'dimension') return px(token.value);
+    return undefined;
   };
 
   const typography = (style, at) => {
@@ -180,10 +224,13 @@ export function buildOracle(
     // drawn: both are measured, from the parent's edge, for a box and a glyph alike (the `!` in
     // StatusIndicator's triangle), since a shell that misplaced one would draw it wrong.
     const placedBox = Boolean(layer.position);
+    // A root no auto layout sizes (Cursor's arrow) is fixed at the size it is drawn, as the recipe
+    // draws it.
+    const drawnAt = placedBox || (path === '/' && !sizeX);
     const box = () => {
-      if ((sizeX === 'FIXED' || placedBox) && layer.size)
+      if ((sizeX === 'FIXED' || drawnAt) && layer.size)
         out.width = layer.size[0];
-      if ((sizeY === 'FIXED' || placedBox) && layer.size)
+      if ((sizeY === 'FIXED' || drawnAt) && layer.size)
         out.height = layer.size[1];
       if (placedBox) {
         out.x = layer.position[0];
@@ -222,6 +269,9 @@ export function buildOracle(
       };
     paint('background', layer.fills);
     paint('borderColor', layer.strokes);
+    // A layer drawn translucent (Node End's halo), as the recipe rounds it.
+    if (layer.opacity !== undefined)
+      out.opacity = Math.round(layer.opacity * 1e4) / 1e4;
     // Sides of their own where the weights were recorded; `mixed` where they were not, which the
     // recipe's `unrecorded` finding excuses until a sync records them.
     if (layer.strokes?.length && layer.strokeWeights)
@@ -230,9 +280,26 @@ export function buildOracle(
       });
     else
       out.borderWidth = layer.strokes?.length ? (layer.strokeWeight ?? 0) : 0;
-    // A shape (Spinner's ring) has no box to round; a frame or rectangle does.
+    // An ellipse with no outline of its own is drawn as a box (Node End's dot), and it is round:
+    // its corner is half its size, which a renderer's pill radius draws, since no corner can be
+    // rounder than half its box (compare.mjs).
     if (
-      !['ELLIPSE', 'VECTOR', 'LINE', 'STAR', 'POLYGON'].includes(layer.type)
+      layer.type === 'ELLIPSE' &&
+      !layer.geometry &&
+      !layer.strokeGeometry &&
+      layer.size
+    )
+      out.radius = Math.min(...layer.size) / 2;
+    // A shape (Spinner's ring, Cursor's hand) has no box to round; a frame or rectangle does.
+    else if (
+      ![
+        'ELLIPSE',
+        'VECTOR',
+        'LINE',
+        'STAR',
+        'POLYGON',
+        'BOOLEAN_OPERATION',
+      ].includes(layer.type)
     ) {
       // Corners of their own where they differ, clockwise from the top left as Figma records them.
       const r = layer.radius ?? 0;
@@ -275,10 +342,15 @@ export function buildOracle(
   );
   const derived = overlay?.derive ?? {};
   const reach = (props) => {
-    const api = { ...defaults };
+    // A colour the caller gives has no default: it is given where Figma draws one (callers).
+    const api = Object.fromEntries(
+      Object.entries(defaults).filter(([, d]) => d !== null),
+    );
     let state = 'default';
     let content;
     for (const [axis, value] of Object.entries(props)) {
+      // An axis of samples is no prop: its sample is the caller's value, read below (callers).
+      if (overlay?.samples?.[axis]) continue;
       // An axis the overlay derives from content is reached by filling those slots.
       if (derived[axis]) {
         content = [
@@ -332,18 +404,53 @@ export function buildOracle(
   }
 
   // A layer the base control draws itself (Spinner's ring, CircularProgress's SVG circle): its
-  // box is the control's, by an overlay decision, in every variant.
+  // box, and the roundness of its shape, are the control's, by an overlay decision, in every
+  // variant.
   for (const [layer, rule] of Object.entries(overlay?.controlDraws ?? {}))
     excuses.push({
       variant: null,
       layer,
-      properties: ['x', 'y', 'width', 'height'],
+      properties: ['x', 'y', 'width', 'height', 'radius'],
       why: {
         finding: `component.${spec.component.toLowerCase()}.${layer}#controlDraws`,
         decision: 'controlDraws',
         reason: rule.reason,
       },
     });
+
+  // A cell an overlay `set` changed where Figma's value was readable (Cursor's raised shadow, not
+  // drawn): the code draws the decision, so Figma's value is excused in the variants that draw
+  // what the decision replaced (the IR keeps it beside the decision), where it differs from the
+  // decision. A value no colour can be read from is its finding's to excuse, above.
+  for (const [at, rule] of Object.entries(overlay?.set ?? {})) {
+    const parts = at.split('.');
+    const [layer, section] = parts;
+    const depth = { base: 0, size: 1, appearance: 2, combined: 3 }[section];
+    const keys = parts.slice(2, 2 + depth);
+    const cell = parts.slice(2 + depth).join('.');
+    const properties = PROPERTIES_OF[cell];
+    if (!properties || !spec.layers[layer]) continue;
+    let node = spec.style?.[layer]?.[section];
+    for (const k of keys) node = node?.[k];
+    const replaced = node?.[cell]?.replaced;
+    if (!replaced) continue;
+    excuses.push({
+      variant: null,
+      layer,
+      properties,
+      reaches: (props) => setReaches(props, section, keys),
+      drew: (property, figma) =>
+        (replaced.literal !== undefined
+          ? same(replaced.literal, figma)
+          : same(decidedValue(replaced, property), figma)) &&
+        !same(decidedValue(rule, property), figma),
+      why: {
+        finding: `component.${spec.component.toLowerCase()}.${layer}.${cell}#set`,
+        decision: 'set',
+        reason: rule.reason,
+      },
+    });
+  }
 
   const variants = resolved.variants.map((v) => {
     const layers = {};
@@ -356,9 +463,11 @@ export function buildOracle(
       for (const e of excuses) {
         if (e.layer !== name || (e.variant !== null && e.variant !== v.name))
           continue;
+        if (e.reaches && !e.reaches(v.props)) continue;
         for (const property of e.properties) {
           if (!(property in out)) continue;
           if (e.unresolvedOnly && !(property in unresolved)) continue;
+          if (e.drew && !e.drew(property, out[property])) continue;
           // One excuse per property: two findings may cover it (a set value that also differs by
           // axis), and the first found names it.
           if (excused.some((x) => x.layer === name && x.property === property))
@@ -372,9 +481,38 @@ export function buildOracle(
         }
       }
     }
+    // A cell whose value is the caller's (Avatar's background): the colour Figma draws there is
+    // the caller's in this variant, so the variant is reached with it, and the cell compared. A
+    // cell derived from it (the initials' ink) is the shell's rule, not Figma's sample: excused.
+    const reached = reach(v.props);
+    const callers = Object.entries(spec.callers ?? {});
+    for (const [at, c] of callers) {
+      if (!c.prop) continue;
+      const [layer, cell] = at.split('.');
+      const value = layers[layer]?.[PROPERTIES_OF[cell][0]];
+      if (value && value !== 'transparent') reached.props[c.prop] = value;
+    }
+    for (const [at, c] of callers) {
+      if (!c.from || reached.props[c.from] === undefined) continue;
+      const [layer, cell] = at.split('.');
+      for (const property of PROPERTIES_OF[cell])
+        if (
+          layers[layer] &&
+          property in layers[layer] &&
+          !excused.some((x) => x.layer === layer && x.property === property)
+        )
+          excused.push({
+            layer,
+            property,
+            figma: layers[layer][property],
+            finding: `component.${spec.component.toLowerCase()}.${layer}.${cell}#caller`,
+            decision: 'caller',
+            reason: c.reason,
+          });
+    }
     return {
       figma: v.name,
-      ...reach(v.props),
+      ...reached,
       layers,
       ...(excused.length ? { excused } : {}),
     };

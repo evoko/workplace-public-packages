@@ -3,16 +3,40 @@
 // for every oracle under spec/verify/, so a new component cannot go unmeasured.
 
 import '../harness.dart';
+import 'avatar.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'counter.dart';
+import 'cursor.dart';
+import 'divider.dart';
 import 'icon_button.dart';
+import 'kbd.dart';
+import 'node_end.dart';
+import 'progressbar.dart';
+import 'rowexpand.dart';
+import 'skeleton.dart';
 import 'spinner.dart';
 import 'statusindicator.dart';
+import 'timestamp.dart';
+import 'tree_indent.dart';
+import 'trend_badge.dart';
 
 final cases = <String, VisualCase>{
+  'Avatar': avatarCase,
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
+  'Counter': counterCase,
+  'Cursor': cursorCase,
+  'Divider': dividerCase,
   'Icon Button': iconButtonCase,
+  'Kbd': kbdCase,
+  'Node End': nodeEndCase,
+  'ProgressBar': progressBarCase,
+  'RowExpand': rowExpandCase,
+  'Skeleton': skeletonCase,
   'Spinner': spinnerCase,
   'StatusIndicator': statusIndicatorCase,
+  'Timestamp': timestampCase,
+  'Tree Indent': treeIndentCase,
+  'Trend Badge': trendBadgeCase,
 };

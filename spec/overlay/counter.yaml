@@ -1,0 +1,30 @@
+# Hand-written decisions about SOLAR Counter, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Counter
+
+base:
+  reason: >-
+    Bespoke on both platforms: a count on a pill, drawn inline (in a Button's counter slot, beside
+    a tab). MUI's Badge and Flutter's Badge both anchor a count to the corner of another element,
+    which SOLAR's Counter is not.
+
+layerNames:
+  /0:
+    name: value
+    reason: >-
+      Figma names the text after its sample, 0, which gives no name in code. It is the count.
+
+follows:
+  root.borderWidth:
+    axes: [type]
+    reason: >-
+      The inverted counter, drawn on a primary button's dark fill, has no border in any state, and
+      the other types have one: a difference by type, which the width follows, as the colours do.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      The badge is 20 tall and bound to nothing; no SOLAR token names a badge height, as Button's
+      counter slot is not (button.yaml). Raised as a governance gap.

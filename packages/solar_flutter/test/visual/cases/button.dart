@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
 import '../harness.dart';
+import 'counter.dart';
 import 'spinner.dart';
 
 const buttonCase = VisualCase(
@@ -89,8 +90,11 @@ Layers measureButtonAt(WidgetTester tester, Finder at) {
     },
     'iconLeading': icon('lead'),
     'iconTrailing': icon('trail'),
-    // The slot's box, which the recipe sizes, as the web measures .SolarButton-counter.
+    // A composed Counter: its own layers, which the harness checks against the Counter oracle,
+    // and the slot's box, which the recipe sizes, as the web measures .SolarButton-counter.
     'counter': {
+      'drawn': true,
+      'layers': counterLayers(tester, inside(find.byType(SolarCounter))),
       'height': tester
           .getSize(
             find

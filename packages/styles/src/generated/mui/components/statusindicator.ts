@@ -27,6 +27,9 @@ export const solarStatusIndicatorStyles = {
       display: 'flex',
       boxSizing: 'border-box',
     },
+    '& .SolarStatusIndicator-text': {
+      whiteSpace: 'nowrap',
+    },
     '& .SolarStatusIndicator-glyph': {
       display: 'block',
       overflow: 'visible',

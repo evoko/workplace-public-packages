@@ -18,7 +18,7 @@ import { flattenSpec } from '../spec.mjs';
 import { pascal, quote } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
-import { dartName, RESERVED, STATIC_CLASS } from './flutter.mjs';
+import { dartEnumValue, dartName, STATIC_CLASS } from './flutter.mjs';
 import { restateOverlaps, stateSelectors } from './mui-component.mjs';
 
 const OUT_DIR = join(
@@ -245,12 +245,23 @@ export function renderFlutterComponent(spec, tokens) {
     if (def.type === 'boolean') {
       fields.push(`  final bool ${prop};`);
       params.push(`    this.${prop} = ${def.default},`);
+    } else if (def.type === 'color') {
+      // A colour the caller gives (Avatar's): it keys nothing in the recipe, which draws its own
+      // where none is given; the widget draws this one.
+      fields.push(`  final Color? ${prop};`);
+      params.push(`    this.${prop},`);
     } else {
       const type = `Solar${name}${pascal(prop)}`;
-      // A value that is a Dart keyword (Spinner's `default`) is escaped with `$`, as token names
-      // are, and the enum then carries Figma's spelling, which the recipe's keys are written in.
-      const id = (v) => (RESERVED.has(v) ? `$${v}` : v);
-      if (def.values.some((v) => RESERVED.has(v))) {
+      // A value that is no Dart identifier as Figma spells it (Spinner's `default`, Kbd's
+      // `top-search`) is respelled (dartEnumValue), and the enum then carries Figma's spelling,
+      // which the recipe's keys are written in.
+      const id = dartEnumValue;
+      const ids = def.values.map(id);
+      if (new Set(ids).size !== ids.length)
+        throw new Error(
+          `${spec.component} ${prop}: two values are one Dart name (${ids.join(', ')})`,
+        );
+      if (def.values.some((v) => id(v) !== v)) {
         spelled.add(prop);
         enums.push(
           `enum ${type} {\n${def.values.map((v) => `  ${id(v)}('${v}')`).join(',\n')};\n\n  const ${type}(this.figma);\n\n  /// The value as Figma spells it, which the recipe is keyed by.\n  final String figma;\n}`,

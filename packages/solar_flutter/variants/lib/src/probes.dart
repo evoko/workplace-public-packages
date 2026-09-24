@@ -1,6 +1,8 @@
 // Stand-ins the builders fill slots with, and the helpers that read an oracle variant. Imports no
 // test library, so the Widgetbook app can use them as the visual checks do.
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 /// A stand-in icon that paints what the control's IconTheme gives it, so the colour and size an
@@ -38,3 +40,10 @@ Set<WidgetState> statesFor(String? state) => {
   if (state == 'pressed') WidgetState.hovered,
   ?platformStates[state],
 };
+
+/// A stand-in picture for a photo or a logo (Avatar's): one grey pixel.
+final pictureProbe = MemoryImage(
+  base64Decode(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNoaGj4DwAFhAKAjM1mJgAAAABJRU5ErkJggg==',
+  ),
+);

@@ -6,14 +6,6 @@ export const icon = (
   </svg>
 );
 
-/**
- * A stand-in for the counter a caller fills Button's slot with: centred in the box the recipe sizes,
- * as SOLAR's Counter fills it, rather than a bare number sitting at the top of it.
- */
-export const counter = (
-  <span
-    style={{ display: 'inline-flex', alignItems: 'center', height: '100%' }}
-  >
-    3
-  </span>
-);
+/** A stand-in picture for a photo or a logo (Avatar's): one grey pixel, which loads at once. */
+export const picture =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNoaGj4DwAFhAKAjM1mJgAAAABJRU5ErkJggg==';

@@ -118,6 +118,8 @@ export function matches(property, figma, rendered) {
       return String(rendered).split(' ')[0] === figma;
     case 'letterSpacing':
       return Math.abs(pixels(rendered) - figma) <= 0.02;
+    case 'opacity':
+      return Math.abs(Number(rendered) - figma) <= 0.01;
     default:
       return Math.abs(pixels(rendered) - figma) <= 0.5;
   }
@@ -147,6 +149,7 @@ export const MEASURED = [
   'height',
   'x',
   'y',
+  'opacity',
   'color',
   'fontFamily',
   'fontWeight',
@@ -185,8 +188,31 @@ export function compareLayer(expected, rendered, excused = []) {
       });
       continue;
     }
-    if (!matches(property, figma, got))
+    const want = rounded(property, figma, rendered);
+    const drawn = CORNERS.has(property)
+      ? rounded(property, pixels(got), rendered)
+      : got;
+    if (!matches(property, want, drawn))
       failures.push({ property, figma, rendered: got });
   }
   return { failures, gaps };
+}
+
+const CORNERS = new Set([
+  'radius',
+  'radiusTopLeft',
+  'radiusTopRight',
+  'radiusBottomRight',
+  'radiusBottomLeft',
+]);
+
+/**
+ * A corner no rounder than its box allows: no corner is drawn rounder than half the box's shorter
+ * side, in CSS, in Flutter or in Figma, so a pill's 9999 and an ellipse's half its size draw the
+ * same round. Compared as drawn, where the box was measured.
+ */
+function rounded(property, figma, rendered) {
+  const [width, height] = [pixels(rendered.width), pixels(rendered.height)];
+  if (!CORNERS.has(property) || !(width > 0) || !(height > 0)) return figma;
+  return Math.min(figma, width / 2, height / 2);
 }

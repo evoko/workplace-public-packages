@@ -1,0 +1,89 @@
+# Hand-written decisions about SOLAR Avatar, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Avatar
+
+base:
+  mui: Avatar
+  reason: >-
+    MUI's Avatar on the web, which draws initials, or a picture with its fallback, restyled by the
+    recipe; bespoke in Flutter, whose CircleAvatar cannot draw the logo's rounded square. Its
+    colour is the caller's, any colour (design team, 2026-09-24).
+
+samples:
+  color:
+    keep: [neutral]
+    reason: >-
+      An avatar takes any colour the caller gives, not one of a palette (design team,
+      2026-09-24): Figma's nine seeds are samples of that colour, which the oracle checks each
+      variant with. The recipe keeps neutral's, the look when no colour is given.
+  shade:
+    keep: [Light, Image, Logo]
+    reason: >-
+      Light, Medium and Dark are samples of the caller's colour too, drawn light or dark; Image and
+      Logo are the photo's and the logo's own, one for each type, so they stay with it.
+
+caller:
+  root.background:
+    prop: color
+    reason: >-
+      The caller's colour, any colour (design team, 2026-09-24): the prop is the avatar's fill.
+      Without one, it is the recipe's, surface/feedback/neutral/subtle.
+  initials.color:
+    from: color
+    reason: >-
+      The initials take the caller's colour's hue at a lightness that reads at WCAG AA (owner
+      decision, 2026-09-24), computed where the colour is given (internal/ink.ts,
+      solar_ink.dart): not Figma's sample's ink, so it is not compared. Without a colour they are
+      the recipe's, color.text.primary.
+
+layerNames:
+  /DS:
+    name: initials
+    reason: >-
+      Figma names the text after its sample, DS, which gives the IR the name ds. It is the
+      initials.
+
+follows:
+  root.radius:
+    axes: [type]
+    reason: >-
+      A logo sits in a rounded square (radius.container), "centred, not cropped"; initials and a
+      photo in a circle (radius.pill).
+  root.borderWidth:
+    axes: [type]
+    reason: A logo has no border; initials and a photo have the subtle one.
+  root.direction:
+    axes: [type]
+    reason: >-
+      Figma lays a photo's and a logo's frame out across and the initials' down; each centres its
+      one child, so both are drawn as Figma has them.
+
+set:
+  root.base.background:
+    token: color.surface.feedback.neutral.subtle
+    reason: >-
+      Figma's neutral sample is the primitive color/neutral/50, which component code may not name.
+      Without the caller's colour, the avatar is surface/feedback/neutral/subtle, neutral/50 in
+      Light, and re-themed in Dark.
+  initials.base.color:
+    token: color.text.primary
+    reason: >-
+      Figma's neutral sample's ink is the primitive color/neutral/700. Without the caller's
+      colour, the initials are color.text.primary, which reads on the neutral fill in Light and
+      Dark.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      The avatar's sizes, 44, 32, 24 and 16, bound to nothing: SOLAR has no avatar size. Raised as
+      a governance gap.
+  root.height:
+    reason: As the width, the avatar is square.
+
+accept:
+  component.avatar.sparse@type=logo:
+    reason: >-
+      Figma draws no lg logo avatar; its look is read from md's, and its size is lg's, as for the
+      other types.

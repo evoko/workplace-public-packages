@@ -2,16 +2,40 @@
 // How each generated widget is built in one oracle variant, by its name (see builders.dart).
 
 import 'builders.dart';
+import 'avatar.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'counter.dart';
+import 'cursor.dart';
+import 'divider.dart';
 import 'icon_button.dart';
+import 'kbd.dart';
+import 'node_end.dart';
+import 'progressbar.dart';
+import 'rowexpand.dart';
+import 'skeleton.dart';
 import 'spinner.dart';
 import 'statusindicator.dart';
+import 'timestamp.dart';
+import 'tree_indent.dart';
+import 'trend_badge.dart';
 
 const builders = <String, VariantBuilder>{
+  'Avatar': buildAvatar,
   'Button': buildButton,
   'Button Group': buildButtonGroup,
+  'Counter': buildCounter,
+  'Cursor': buildCursor,
+  'Divider': buildDivider,
   'Icon Button': buildIconButton,
+  'Kbd': buildKbd,
+  'Node End': buildNodeEnd,
+  'ProgressBar': buildProgressBar,
+  'RowExpand': buildRowExpand,
+  'Skeleton': buildSkeleton,
   'Spinner': buildSpinner,
   'StatusIndicator': buildStatusIndicator,
+  'Timestamp': buildTimestamp,
+  'Tree Indent': buildTreeIndent,
+  'Trend Badge': buildTrendBadge,
 };

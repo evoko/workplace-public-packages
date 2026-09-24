@@ -299,6 +299,9 @@ describe('renderFlutterComponent: a component with no axes', () => {
       fileVersion: catalog.fileVersion,
       defaults: loadDefaults(),
     });
+    // Its drawn size, which Scrim's own overlay will decide (see the MUI test).
+    for (const cell of ['width', 'height'])
+      spec.style.root.base[cell].allowed = 'stand-in';
     const { cells, dart } = renderFlutterComponent(spec, tokens);
     expect(Object.keys(cells).length).toBeGreaterThan(0);
     expect(Object.keys(cells).every((k) => k.endsWith('|base'))).toBe(true);

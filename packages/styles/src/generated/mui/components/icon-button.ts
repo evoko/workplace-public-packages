@@ -73,7 +73,6 @@ export const solarIconButtonStyles = {
         height: 'var(--solar-icon-sm)',
       },
     },
-    sm: {},
   },
   appearances: {
     'shape=square, variant=primary': {
@@ -771,6 +770,8 @@ export const solarIconButtonComposition = {
   spinner: {
     base: {
       present: false,
+      component: 'Spinner',
+      'variant.size': 'sm',
     },
     appearance: {
       'shape=square, variant=primary': {
@@ -811,16 +812,10 @@ export const solarIconButtonComposition = {
       },
     },
     size: {
-      sm: {
-        component: 'Spinner',
-        'variant.size': 'sm',
-      },
       md: {
-        component: 'Spinner',
         'variant.size': 'md',
       },
       lg: {
-        component: 'Spinner',
         'variant.size': 'lg',
       },
     },

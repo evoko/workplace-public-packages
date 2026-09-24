@@ -1,0 +1,122 @@
+# Hand-written decisions about SOLAR .Tree Indent, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: .Tree Indent
+
+codeName:
+  name: Tree Indent
+  reason: >-
+    The leading dot is Figma's mark for a building block kept out of the assets panel (Tree Item
+    nests it); in code the component is Tree Indent.
+
+base:
+  reason: >-
+    Bespoke on both platforms: a spacer, a row of depth units, which no stock control is. Tree Item
+    (F6) composes it; decorative, since the tree's own semantics say the depth.
+
+drawing:
+  reason: >-
+    Each depth is a drawing of its own: depth 00 is an empty 0px frame with no auto layout, and each
+    other depth a row of that many units, so every cell follows the depth.
+
+layerNames:
+  /1:
+    name: unit 1
+    reason: >-
+      Figma numbers the depth units 1 to 10, and a number is no name in code: a CSS class cannot
+      start with a digit. Each is one level of indent, the unit at that depth.
+  /2:
+    name: unit 2
+    reason: As /1, the unit at that depth.
+  /3:
+    name: unit 3
+    reason: As /1, the unit at that depth.
+  /4:
+    name: unit 4
+    reason: As /1, the unit at that depth.
+  /5:
+    name: unit 5
+    reason: As /1, the unit at that depth.
+  /6:
+    name: unit 6
+    reason: As /1, the unit at that depth.
+  /7:
+    name: unit 7
+    reason: As /1, the unit at that depth.
+  /8:
+    name: unit 8
+    reason: As /1, the unit at that depth.
+  /9:
+    name: unit 9
+    reason: As /1, the unit at that depth.
+  /10:
+    name: unit 10
+    reason: As /1, the unit at that depth.
+
+bind:
+  unit1.width:
+    tokens: { 16: icon.sm }
+    reason: >-
+      One level of indent is 16px, "matching the 16px chevron slot", says the description: the
+      width of Tree Item's chevron, an icon.sm, the same value.
+  unit2.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit3.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit4.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit5.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit6.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit7.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit8.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit9.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+  unit10.width:
+    tokens: { 16: icon.sm }
+    reason: As unit1, one level of indent.
+
+allowLiteral:
+  root.width:
+    values: [0]
+    reason: >-
+      Depth 00 is an empty frame 0px wide, where no unit is drawn: no indent. SOLAR's none tokens
+      are spacings, and this is a width.
+  root.height:
+    reason: >-
+      A tree row's height, 32, bound to nothing: SOLAR publishes no row height. Raised as a
+      governance gap.
+  unit1.height:
+    reason: >-
+      Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as
+      Figma draws it; the design review asks whether 32 is meant.
+  unit2.height:
+    reason: As unit1, the unit's height.
+  unit3.height:
+    reason: As unit1, the unit's height.
+  unit4.height:
+    reason: As unit1, the unit's height.
+  unit5.height:
+    reason: As unit1, the unit's height.
+  unit6.height:
+    reason: As unit1, the unit's height.
+  unit7.height:
+    reason: As unit1, the unit's height.
+  unit8.height:
+    reason: As unit1, the unit's height.
+  unit9.height:
+    reason: As unit1, the unit's height.
+  unit10.height:
+    reason: As unit1, the unit's height.

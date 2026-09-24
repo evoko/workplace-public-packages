@@ -38,6 +38,23 @@ const OUT_DIR = join(
 export const MUI_SLOTS = descriptorTable('mui', 'slots');
 
 /**
+ * A component's slot table: its descriptor's, or, for a drawn component (`slots: 'drawn'`), every
+ * IR layer as the element the shell draws it as, with a class of its own (`& .SolarCounter-value`),
+ * and the root as the component's own element. Read from the IR, so a drawing of 57 layers
+ * (Cursor's) lists none of them by hand.
+ */
+export function slotsOf(spec) {
+  const slots = MUI_SLOTS[spec.component];
+  if (slots !== 'drawn') return slots;
+  return Object.fromEntries(
+    Object.keys(spec.layers).map((l) => [
+      l,
+      l === 'root' ? '&' : `& .Solar${pascal(spec.component)}-${l}`,
+    ]),
+  );
+}
+
+/**
  * Layers MUI draws as SVG shapes, where Figma's stroke is `stroke` and `stroke-width`, not a CSS
  * border, and a fill is `fill`.
  */
@@ -100,6 +117,15 @@ const COMPOSITION = (cell) =>
   cell.startsWith('variant.');
 
 const PLACED = (cell) => cell === 'x' || cell === 'y';
+
+/** Figma layers whose outline Figma records with their corners already rounded. */
+const VECTORS = new Set([
+  'VECTOR',
+  'BOOLEAN_OPERATION',
+  'STAR',
+  'POLYGON',
+  'LINE',
+]);
 
 /** Whether a layer is drawn by its outline, a glyph, in any entry: then its place is the drawing's. */
 function drawn(style) {
@@ -178,9 +204,19 @@ function context(spec, tokens) {
   };
 
   const svg = new Set(MUI_SVG_LAYERS[spec.component] ?? []);
+  // Layers the base control draws itself (the overlay's controlDraws: Spinner's ring,
+  // ProgressBar's bar): where they sit and how big they are is the control's, so neither is
+  // declared, where a declaration would fight the control's own layout.
+  const controlDrawn = new Set(
+    (spec.overlay?.rules ?? [])
+      .filter((r) => r.rule === 'controlDraws')
+      .map((r) => r.at),
+  );
 
   /** One IR cell as CSS declarations. */
   const declare = (cell, entry, at, layer, glyph = false) => {
+    if (controlDrawn.has(layer) && ['x', 'y', 'width', 'height'].includes(cell))
+      return {};
     const paint = (prop) =>
       entry.none ? { [prop]: 'transparent' } : { [prop]: ref(entry.token, at) };
     // An SVG shape: a control's own (Spinner's ring), or a glyph the shell draws in this entry
@@ -203,12 +239,23 @@ function context(spec, tokens) {
           return entry.none
             ? { strokeWidth: '0' }
             : { strokeWidth: ref(entry.token, at) };
-        // The control's SVG places its shapes in its own view box.
+        // The control's SVG places its shapes in its own view box, and sizes them there too; a
+        // glyph the shell draws is an SVG element of its own, sized as a box is.
         case 'x':
         case 'y':
           return {};
-        // A shape has no box to round or shadow.
+        case 'width':
+        case 'height':
+          if (svg.has(layer)) return {};
+          break;
+        // A shape has no box to round or shadow. An ellipse is round already: its radius is the
+        // recipe's word for that (recipe.mjs), which the SVG shape draws by being a circle.
         case 'radius':
+          if (entry.ellipse) return {};
+          // A vector's corner radius is in its outline already (RowExpand's rounded connector):
+          // Figma rounds the path it records, so the glyph draws it.
+          if (glyph && VECTORS.has(spec.layers[layer]?.type)) return {};
+        // falls through
         case 'radiusTopLeft':
         case 'radiusTopRight':
         case 'radiusBottomRight':
@@ -281,6 +328,10 @@ function context(spec, tokens) {
           : length(entry, cell, at);
       case 'width':
       case 'height':
+        // A hug past the base resets the size to the box's own (Tree Indent hugs its units, where
+        // depth 00's base is a fixed 0px): declaring nothing would leave the base's standing.
+        if (entry.keyword === 'HUG' && at.split('.')[1] !== 'base')
+          return { [cell]: 'auto' };
         return length(entry, cell, at);
       // No auto-layout: Figma places the children itself, which the shell's own layout gives, so
       // nothing of the base's flex direction or alignment is restated.
@@ -293,6 +344,14 @@ function context(spec, tokens) {
           throw new Error(`${where} ${at}: cannot align ${entry.keyword}`);
         return { justifyContent: ALIGN[main], alignItems: ALIGN[cross] };
       }
+      // A layer drawn translucent: Figma's opacity, a number the overlay must allow, since SOLAR
+      // has no opacity scale.
+      case 'opacity':
+        if (entry.literal === undefined || !entry.allowed)
+          throw new Error(
+            `${where} ${at}: opacity ${entry.literal} is not allowed by the overlay`,
+          );
+        return { opacity: String(entry.literal) };
       case 'typography':
         return entry.none ? {} : textStyle(entry.token, at);
       default:
@@ -438,6 +497,8 @@ function restateBase(spec, style) {
 
 /** Merges declarations under a selector; the same property twice with two values is an error. */
 function place(target, selector, decls, at) {
+  // Nothing to declare (a control's shape, sized in its own view box) is no rule.
+  if (Object.keys(decls).length === 0) return;
   const into = selector === '&' ? target : (target[selector] ??= {});
   for (const [k, v] of Object.entries(decls)) {
     if (k in into && into[k] !== v)
@@ -450,7 +511,7 @@ function place(target, selector, decls, at) {
  * @returns {{ts: string, styles: object, composition: object, file: string}}
  */
 export function renderMuiComponent(spec, tokens) {
-  const slots = MUI_SLOTS[spec.component];
+  const slots = slotsOf(spec);
   if (!slots) throw new Error(`${spec.component}: no MUI slot table`);
   for (const layer of Object.keys(spec.layers))
     if (!slots[layer])
@@ -629,6 +690,11 @@ export function renderMuiComponent(spec, tokens) {
   for (const [prop, def] of Object.entries(spec.api)) {
     if (def.type === 'boolean') {
       propLines.push(`  ${prop}?: boolean;`);
+    } else if (def.type === 'color') {
+      // A colour the caller gives (Avatar's): any CSS colour. It keys nothing in the recipe, which
+      // draws its own where none is given; the shell draws this one.
+      propLines.push(`  ${prop}?: string;`);
+      continue;
     } else {
       const type = `Solar${name}${pascal(prop)}`;
       typeLines.push(

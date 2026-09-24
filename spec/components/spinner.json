@@ -195,12 +195,23 @@
           "from": "size=sm, style=default"
         },
         "radius": {
-          "none": true,
+          "token": "radius.pill",
+          "ellipse": true,
           "from": "size=sm, style=default"
         },
         "borderWidth": {
           "token": "border.strong",
           "from": "size=sm, style=default"
+        },
+        "width": {
+          "literal": 16,
+          "from": "size=sm, style=default",
+          "allowed": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+        },
+        "height": {
+          "literal": 16,
+          "from": "size=sm, style=default",
+          "allowed": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
         },
         "x": {
           "position": 0,
@@ -211,7 +222,32 @@
           "from": "size=sm, style=default"
         }
       },
-      "size": {},
+      "size": {
+        "md": {
+          "width": {
+            "literal": 24,
+            "from": "size=md, style=default",
+            "allowed": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+          },
+          "height": {
+            "literal": 24,
+            "from": "size=md, style=default",
+            "allowed": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+          }
+        },
+        "lg": {
+          "width": {
+            "literal": 32,
+            "from": "size=lg, style=default",
+            "allowed": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+          },
+          "height": {
+            "literal": 32,
+            "from": "size=lg, style=default",
+            "allowed": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
+          }
+        }
+      },
       "appearance": {
         "variant=inverse": {
           "default": {
@@ -250,7 +286,10 @@
         "borderColor": {
           "token": "color.border.strong",
           "from": "overlay",
-          "reason": "Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width* variable, which holds no colour; the recipe reports it as misbound. color.border.strong is the colour of the same name, and the inverse style's indicator uses its inverse (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle. Raised with SOLAR to rebind."
+          "reason": "Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width* variable, which holds no colour; the recipe reports it as misbound. color.border.strong is the colour of the same name, and the inverse style's indicator uses its inverse (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle. Raised with SOLAR to rebind.",
+          "replaced": {
+            "literal": "{Spatial:border/strong}"
+          }
         },
         "shadow": {
           "none": true,

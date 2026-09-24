@@ -31,6 +31,12 @@
  *   allowLiteral: { <layer>.<cell>: { values?, reason } }  a raw value there is no token for;
  *                                                        `values` allows those alone, where a bind
  *                                                        takes the rest (StatusIndicator's 8px dot)
+ *   samples:      { <axis>: { keep: [values], reason } }  an axis whose values are samples of what
+ *                                                        the caller gives (Avatar's colours): the API
+ *                                                        loses it, the recipe keeps those variants
+ *   caller:       { <layer>.<cell>: { prop | from, reason } }  a cell whose value is the caller's:
+ *                                                        `prop` names the colour prop it is (the API
+ *                                                        gains it), `from` the prop it is derived from
  *   controlDraws: { <layer>: { reason } }                the base control draws this layer itself
  *                                                        (Spinner's ring): its box is the control's,
  *                                                        which the oracle then excuses
@@ -50,9 +56,15 @@ import { repoRoot, specDir } from '../util/paths.mjs';
 
 export const overlayDir = join(specDir, 'overlay');
 
-/** `Button` to `button.yaml`, `Icon Button` to `icon-button.yaml`. */
+/**
+ * `Button` to `button.yaml`, `Icon Button` to `icon-button.yaml`, `.Tree Indent` to
+ * `tree-indent.yaml`: the leading dot Figma marks a building block with is no part of a file name.
+ */
 export const overlayFileOf = (component) =>
-  `${component.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.yaml`;
+  `${component
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')}.yaml`;
 
 // Fields each section's rules may carry, beyond the reason every rule needs.
 const FIELDS = {
@@ -62,6 +74,8 @@ const FIELDS = {
   set: ['token', 'none', 'keyword'],
   allowLiteral: ['values'],
   controlDraws: [],
+  samples: ['keep'],
+  caller: ['prop', 'from'],
   accept: [],
   slots: ['name', 'type'],
   derive: ['when'],
@@ -81,6 +95,49 @@ const SLOT_TYPES = new Set([
   'content',
   'instance',
 ]);
+
+/**
+ * The variants the recipe is built from, where the overlay says an axis is samples (Avatar's
+ * `color` and `shade`, colours Figma draws for show where the caller gives any): those at the
+ * values it keeps, with the axis gone. The oracle keeps every variant, each checked with its
+ * sample as the caller's value.
+ */
+export function sampleAxes(resolved, overlay) {
+  const rules = overlay?.samples;
+  if (!rules) return resolved;
+  const where = `spec/overlay/${overlayFileOf(resolved.name)}`;
+  for (const [axis, rule] of Object.entries(rules)) {
+    if (!resolved.axes[axis])
+      throw new Error(`${where}: samples ${axis}: no such axis`);
+    for (const v of rule.keep)
+      if (!resolved.axes[axis].options.includes(v))
+        throw new Error(`${where}: samples ${axis}: ${axis} has no value ${v}`);
+  }
+  const kept = Object.keys(resolved.axes).filter((a) => !(a in rules));
+  const variants = resolved.variants
+    .filter((v) =>
+      Object.entries(rules).every(([a, r]) => r.keep.includes(v.props[a])),
+    )
+    .map((v) => ({
+      ...v,
+      props: Object.fromEntries(kept.map((a) => [a, v.props[a]])),
+    }));
+  // One variant for each combination of the axes kept, or the recipe would hold two.
+  const seen = new Set();
+  for (const v of variants) {
+    const k = kept.map((a) => v.props[a]).join(', ');
+    if (seen.has(k))
+      throw new Error(
+        `${where}: samples keep two variants at ${k}; keep one value per combination`,
+      );
+    seen.add(k);
+  }
+  return {
+    ...resolved,
+    axes: Object.fromEntries(kept.map((a) => [a, resolved.axes[a]])),
+    variants,
+  };
+}
 
 /** Parses and validates overlay text. The structure is checked here; the IR is checked on apply. */
 export function parseOverlay(text, file) {
@@ -167,6 +224,20 @@ export function parseOverlay(text, file) {
         !rule.values.every((v) => typeof v === 'number'))
     )
       fail(`allowLiteral.${at}: values must list the numbers it allows`);
+  for (const [axis, rule] of Object.entries(doc.samples ?? {}))
+    if (
+      !Array.isArray(rule.keep) ||
+      rule.keep.length === 0 ||
+      !rule.keep.every((v) => typeof v === 'string')
+    )
+      fail(`samples.${axis}: keep must list the values the recipe keeps`);
+  for (const [at, rule] of Object.entries(doc.caller ?? {})) {
+    if ((rule.prop === undefined) === (rule.from === undefined))
+      fail(`caller.${at}: give prop or from, one of them`);
+    const name = rule.prop ?? rule.from;
+    if (typeof name !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(name))
+      fail(`caller.${at}: the prop must be a name in code`);
+  }
   for (const [path, rule] of Object.entries(doc.layerNames ?? {})) {
     if (!path.startsWith('/'))
       fail(`layerNames.${path}: address a layer by its Figma path, from /`);
@@ -634,12 +705,26 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       fail(`set ${at}: ${rule.token} is not a SOLAR token`);
     if (rule.keyword !== undefined && !['FILL', 'HUG'].includes(rule.keyword))
       fail(`set ${at}: keyword must be FILL or HUG`);
-    node[cell] =
-      rule.token !== undefined
-        ? { token: rule.token, from: 'overlay', reason: rule.reason }
+    // What Figma had there is kept beside the decision, so the oracle excuses the variants that
+    // draw it (Cursor's raised shadow) and no others.
+    const was = node[cell];
+    const replaced = was && {
+      ...Object.fromEntries(
+        ['token', 'none', 'keyword', 'literal'].flatMap((k) =>
+          k in was ? [[k, was[k]]] : [],
+        ),
+      ),
+    };
+    node[cell] = {
+      ...(rule.token !== undefined
+        ? { token: rule.token }
         : rule.keyword !== undefined
-          ? { keyword: rule.keyword, from: 'overlay', reason: rule.reason }
-          : { none: true, from: 'overlay', reason: rule.reason };
+          ? { keyword: rule.keyword }
+          : { none: true }),
+      from: 'overlay',
+      reason: rule.reason,
+      ...(replaced && Object.keys(replaced).length ? { replaced } : {}),
+    };
     // A cell set because Figma's value could not be read is that finding's decision, and so is
     // one set where Figma left a raw value, once no raw value is left anywhere in the cell.
     for (const kind of ['misbound', 'unknown-token'])
@@ -674,7 +759,47 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   for (const [layer, rule] of sorted('controlDraws')) {
     if (!spec.layers[layer])
       fail(`controlDraws ${layer}: the IR has no layer ${layer}`);
+    // Its size is the control's too: a raw size Figma draws it at is allowed, and decided here.
+    for (const cell of ['width', 'height']) {
+      const entries = [...entriesOf(spec.style[layer], cell)];
+      const raw = entries.filter(([holder, key]) => 'literal' in holder[key]);
+      for (const [holder, key] of raw)
+        holder[key] = { ...holder[key], allowed: rule.reason };
+      if (raw.length)
+        decide(
+          `component.${lc}.${layer}.${cell}#unbound`,
+          'controlDraws',
+          rule.reason,
+        );
+    }
     record('controlDraws', layer, rule.reason);
+  }
+
+  // The sampled axes were dropped before the recipe (sampleAxes); here they are recorded.
+  for (const [axis, rule] of sorted('samples'))
+    record('samples', `${axis}: ${rule.keep.join(', ')}`, rule.reason);
+
+  // A cell whose value is the caller's (Avatar's colour): the API gains the prop, and the IR says
+  // which cells take it, or follow from it, so the oracle and the shells read the same. The
+  // recipe's own value there is what is drawn when the caller gives none.
+  const callers = [
+    ...sorted('caller').filter(([, r]) => r.prop),
+    ...sorted('caller').filter(([, r]) => r.from),
+  ];
+  for (const [at, rule] of callers) {
+    const { cell } = cellEntries(at, 'caller');
+    if (!['background', 'borderColor', 'color'].includes(cell))
+      fail(`caller ${at}: only a colour can be the caller's`);
+    if (rule.prop) {
+      if (spec.api[rule.prop] && spec.api[rule.prop].type !== 'color')
+        fail(`caller ${at}: the API already has ${rule.prop}`);
+      spec.api[rule.prop] = { type: 'color', default: null };
+    } else if (spec.api[rule.from]?.type !== 'color')
+      fail(`caller ${at}: from ${rule.from}, which no caller rule gives`);
+    (spec.callers ??= {})[at] = rule.prop
+      ? { prop: rule.prop, reason: rule.reason }
+      : { from: rule.from, reason: rule.reason };
+    record('caller', at, rule.reason);
   }
 
   for (const [token, rule] of sorted('accept')) {

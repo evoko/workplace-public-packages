@@ -541,11 +541,11 @@ abstract final class SolarIconButtonRecipe {
     'icon.color|combined|sm|shape=round, variant=primary|focus':
         't:color.action.primary.icon.default',
     'spinner.present|base': 'b:false',
-    'spinner.component|size|sm': 'k:Spinner',
-    'spinner.variant.size|size|sm': 'k:sm',
-    'spinner.component|size|md': 'k:Spinner',
+    'spinner.component|base': 'k:Spinner',
+    'spinner.variant.size|base': 'k:sm',
+    'spinner.width|base': 'k:HUG',
+    'spinner.height|base': 'k:HUG',
     'spinner.variant.size|size|md': 'k:md',
-    'spinner.component|size|lg': 'k:Spinner',
     'spinner.variant.size|size|lg': 'k:lg',
     'spinner.present|appearance|shape=square, variant=primary|loading':
         'b:true',

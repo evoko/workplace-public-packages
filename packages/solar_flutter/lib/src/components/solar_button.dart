@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/button.dart';
 import '../generated/components/spinner.dart';
+import '../solar_states.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -57,7 +58,7 @@ class SolarButton extends StatelessWidget {
   /// The icon after the label. It indicates direction: an arrow beside "Continue".
   final Widget? iconTrailing;
 
-  /// A count shown after the label.
+  /// A count shown after the label: a `SolarCounter`, which takes the button's states.
   final Widget? counter;
 
   /// The accessible name, required when there is no label.
@@ -114,40 +115,45 @@ class SolarButton extends StatelessWidget {
       ],
     );
 
-    Widget button = FilledButton(
-      onPressed: disabled || busy ? null : onPressed,
-      style: SolarButtonRecipe.style(t, p),
-      focusNode: focusNode,
-      autofocus: autofocus,
-      statesController: statesController,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          content,
-          if (shows('spinner'))
-            // Which Spinner, Figma picks per Button variant; its `style` axis is the Spinner's
-            // `variant` prop.
-            ExcludeSemantics(
-              child: SolarSpinner(
-                size: SolarSpinnerSize.values.byName(
-                  SolarButtonRecipe.lookup(
-                    'spinner.variant.size',
-                    p,
-                    rest,
-                  )!.substring(2),
-                ),
-                variant: SolarSpinnerVariant.values.firstWhere(
-                  (v) =>
-                      'k:${v.figma}' ==
-                      SolarButtonRecipe.lookup(
-                        'spinner.variant.style',
-                        p,
-                        rest,
-                      ),
+    // The button's states are shared with what it holds, so a Counter in it follows its hover,
+    // press and disabled colours, as Figma draws it (SolarStatesScope).
+    Widget button = SolarStatesScope(
+      controller: statesController,
+      builder: (context, states) => FilledButton(
+        onPressed: disabled || busy ? null : onPressed,
+        style: SolarButtonRecipe.style(t, p),
+        focusNode: focusNode,
+        autofocus: autofocus,
+        statesController: states,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            content,
+            if (shows('spinner'))
+              // Which Spinner, Figma picks per Button variant; its `style` axis is the Spinner's
+              // `variant` prop.
+              ExcludeSemantics(
+                child: SolarSpinner(
+                  size: SolarSpinnerSize.values.byName(
+                    SolarButtonRecipe.lookup(
+                      'spinner.variant.size',
+                      p,
+                      rest,
+                    )!.substring(2),
+                  ),
+                  variant: SolarSpinnerVariant.values.firstWhere(
+                    (v) =>
+                        'k:${v.figma}' ==
+                        SolarButtonRecipe.lookup(
+                          'spinner.variant.style',
+                          p,
+                          rest,
+                        ),
+                  ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
     if (semanticLabel != null) {

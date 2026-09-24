@@ -10,6 +10,7 @@
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { dartEnumValue } from '../src/emit/flutter.mjs';
 import { describe, expect, it } from 'vitest';
 import {
   MUI_SLOTS,
@@ -506,13 +507,15 @@ describe('component parity: the React and Flutter widgets', () => {
 
     it(`${spec.component}: Flutter defaults to the IR's defaults`, () => {
       for (const [prop, def] of Object.entries(spec.api)) {
+        // A colour the caller gives (Avatar's) has no default on either platform.
+        if (def.type === 'color') continue;
+        // An enum value as the emitter spells it in Dart (`top-search` is `topSearch`).
         const expected =
           def.type === 'boolean'
             ? String(def.default)
-            : new RegExp(`\\.\\$?${def.default}$`);
-        if (typeof expected === 'string')
-          expect(flutter[prop], prop).toBe(expected);
-        else expect(flutter[prop], prop).toMatch(expected);
+            : `.${dartEnumValue(def.default)}`;
+        if (def.type === 'boolean') expect(flutter[prop], prop).toBe(expected);
+        else expect(flutter[prop].endsWith(expected), prop).toBe(true);
       }
     });
 

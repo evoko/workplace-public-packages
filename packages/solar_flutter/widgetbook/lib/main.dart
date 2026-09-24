@@ -116,9 +116,10 @@ Widget playground(
     if (initial is bool) {
       props[prop] = context.knobs.boolean(label: prop, initialValue: initial);
     } else {
+      // A colour the caller gives (Avatar's) is only in the variants that draw one.
       final options = <String>{
         for (final v in variants)
-          (v['props'] as Map<String, dynamic>)[prop] as String,
+          if ((v['props'] as Map<String, dynamic>)[prop] case final String s) s,
       }.toList();
       props[prop] = context.knobs.object.dropdown<String>(
         label: prop,

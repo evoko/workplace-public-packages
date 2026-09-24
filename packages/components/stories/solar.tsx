@@ -65,7 +65,9 @@ function argTypesOf(component: string): ArgTypes {
       prop,
       axis.type === 'boolean'
         ? { control: 'boolean' as const }
-        : { control: 'select' as const, options: axis.values },
+        : axis.type === 'color'
+          ? { control: 'color' as const }
+          : { control: 'select' as const, options: axis.values },
     ]),
   );
 }

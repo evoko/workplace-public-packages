@@ -36,6 +36,23 @@ export function dartName(rest) {
   return /^[0-9]/.test(name) || RESERVED.has(name) ? `$${name}` : name;
 }
 
+/**
+ * A Figma variant value as a Dart enum value: its words in camelCase (`top-search` to `topSearch`,
+ * `Default White` to `defaultWhite`), escaped with `$` where that is a reserved word or starts
+ * with a digit (`default` to `$default`, `00` to `$00`). An enum with any value respelled carries
+ * Figma's spelling beside it, which the recipe is keyed by.
+ */
+export function dartEnumValue(value) {
+  const name = String(value)
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((w, i) =>
+      i === 0 ? w.toLowerCase() : w[0].toUpperCase() + w.slice(1).toLowerCase(),
+    )
+    .join('');
+  return /^[0-9]/.test(name) || RESERVED.has(name) ? `$${name}` : name;
+}
+
 /** `#rrggbb` or `rgba(r, g, b, a)` to Dart `Color(0xAARRGGBB)`. */
 export function dartColor(value) {
   const [, r, g, b, a] = /^rgba\((\d+), (\d+), (\d+), ([\d.]+)\)$/.exec(

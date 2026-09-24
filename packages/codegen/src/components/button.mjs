@@ -210,6 +210,7 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/button.dart';
 import '../generated/components/spinner.dart';
+import '../solar_states.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -243,7 +244,7 @@ ${api.map(([prop, def]) => dartField('Button', prop, def)).join('\n')}
   /// The icon after the label. It indicates direction: an arrow beside "Continue".
   final Widget? iconTrailing;
 
-  /// A count shown after the label.
+  /// A count shown after the label: a \`SolarCounter\`, which takes the button's states.
   final Widget? counter;
 
   /// The accessible name, required when there is no label.
@@ -296,12 +297,16 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
       ],
     );
 
-    Widget button = FilledButton(
+    // The button's states are shared with what it holds, so a Counter in it follows its hover,
+    // press and disabled colours, as Figma draws it (SolarStatesScope).
+    Widget button = SolarStatesScope(
+      controller: statesController,
+      builder: (context, states) => FilledButton(
       onPressed: disabled || busy ? null : onPressed,
       style: SolarButtonRecipe.style(t, p),
       focusNode: focusNode,
       autofocus: autofocus,
-      statesController: statesController,
+      statesController: states,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -321,6 +326,7 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
             ),
         ],
       ),
+    ),
     );
     if (semanticLabel != null) {
       // Merged, so the name and the button's own tap action are one node for a screen reader: a

@@ -28,7 +28,17 @@ run by `flutter test` with the rest of the package.
   radius, shadows), the `Material` shape's side (border), the `Padding` FilledButton lays its
   content out in, the label's painted paragraph style, the colour and size the button's
   `IconTheme` gives an icon (a probe stands in for the icon), the gap between laid-out children,
-  the counter slot's box, and the `CircularProgressIndicator`'s colours and stroke.
+  the counter slot's box, and the `CircularProgressIndicator`'s colours and stroke. A widget drawn
+  with `SolarLayers` is measured layer by layer by `layers.dart`, from the widgets it keyed
+  `<component>.<layer>` inside the one measured: a glyph's colours as `SolarGlyphView` holds them,
+  an icon's as `SolarIcon` does, a text's painted style, a box's decoration and padding, its
+  opacity, and each one's place from its parent layer's corner. Button's counter is a real
+  `SolarCounter`, checked against Counter's oracle.
+- **Fonts**: the checks load every font the package bundles (`loadBundledFonts`, from the font
+  manifest), so text is laid out in Inter, as on the web, not in the test font, whose every glyph is
+  a square and would overflow a fixed-width Button the real font fits.
+- **Comparing**: as the web's (`compare.dart`), opacity within 0.01, and a corner compared as
+  drawn, no rounder than half its box.
 - **A property the oracle has and the widget does not measure is a failure**, not a skip.
   SolarSpinner draws no frame of its own, so its root is compared as the transparent, borderless
   frame Figma draws rather than left out.

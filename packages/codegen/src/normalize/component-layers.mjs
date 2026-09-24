@@ -186,6 +186,19 @@ export function resolveVariants(set) {
           `${raw.variant}: adds ${added.path} under ${added.parent}, which it does not have`,
         );
 
+    // A boolean operation is drawn as one shape, the outline Figma records on it (Cursor's hand);
+    // its children are its operands, which Figma never draws, so they are no layers of the
+    // component. Structure, not a correction: what Figma draws is the same.
+    const operand = (path) => {
+      for (let p = parents.get(path); p; p = parents.get(p))
+        if (layers.get(p)?.type === 'BOOLEAN_OPERATION') return true;
+      return false;
+    };
+    for (const path of [...layers.keys()].filter(operand)) {
+      layers.delete(path);
+      parents.delete(path);
+    }
+
     // The root's size is not diffed (the fetcher keeps it on the variant itself), so it is
     // read from there; the default tree's own root size is the default variant's.
     if (raw.size) layers.get('/').size = [...raw.size];

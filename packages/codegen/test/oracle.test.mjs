@@ -182,7 +182,7 @@ describe('the Spinner oracle', () => {
     );
   });
 
-  it('excuses the box of a layer the base control draws, by the overlay’s controlDraws', () => {
+  it('excuses the box and roundness of a layer the base control draws, by the overlay’s controlDraws', () => {
     // Spinner's track: placed at [0, 0] in the ring, drawn by CircularProgress in its view box.
     const v = spinner.variants.find(
       (x) => x.figma === 'size=sm, style=default',
@@ -197,6 +197,7 @@ describe('the Spinner oracle', () => {
       ['y', 'controlDraws'],
       ['width', 'controlDraws'],
       ['height', 'controlDraws'],
+      ['radius', 'controlDraws'],
     ]);
   });
 });

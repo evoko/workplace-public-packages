@@ -58,7 +58,6 @@ export const solarButtonStyles = {
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-action-primary-icon-default)',
     },
-    '& .MuiButton-loadingIndicator': {},
     color: 'var(--solar-color-action-primary-text-default)',
     fontFamily: 'var(--solar-type-font-family-inter)',
     fontWeight: 'var(--solar-type-font-weight-500)',

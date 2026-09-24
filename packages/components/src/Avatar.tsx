@@ -1,0 +1,95 @@
+/**
+ * SOLAR Avatar.
+ *
+ * Scaffolded once by `npm run solar:scaffold Avatar` from spec/components/avatar.json, and owned by
+ * developers from then on: change it freely. What it looks like is not here. That is the recipe,
+ * `solarAvatarStyle` in `@bwp-web/styles/mui`: each size, the initials' text style, the border,
+ * and a logo's rounded square.
+ *
+ * It wraps MUI's Avatar, which draws the initials, or the picture (`src`) with the initials as its
+ * fallback. Its `color` is the caller's, any colour: seed it from a stable hash of the person's ID,
+ * never at random. The initials take that colour's hue, at a lightness that reads at WCAG AA
+ * (`internal/ink.ts`), unless `textColor` gives theirs; with no colour it is SOLAR's neutral
+ * avatar. It is named by `name`, always. The app must load `@bwp-web/styles/tokens.css`.
+ */
+
+import MuiAvatar, {
+  type AvatarProps as MuiAvatarProps,
+} from '@mui/material/Avatar';
+import { forwardRef, type ReactNode } from 'react';
+import {
+  solarAvatarCompose,
+  solarAvatarStyle,
+  type SolarAvatarProps,
+} from '@bwp-web/styles/mui';
+import { inkOn } from './internal/ink.js';
+
+export interface AvatarProps
+  extends
+    SolarAvatarProps,
+    // MUI types it Ref<unknown>; the component's own ref, a <div>, comes from forwardRef.
+    Omit<
+      MuiAvatarProps,
+      keyof SolarAvatarProps | 'variant' | 'children' | 'ref'
+    > {
+  /** Who or what it is, the accessible name: a person's full name, a company's. */
+  name: string;
+  /** The initials; by default, from `name`: its first and last words' first letters. */
+  children?: ReactNode;
+  /**
+   * The initials' colour, where the ink rule's is not wanted, or `color` is one it cannot read (a
+   * `var()`).
+   */
+  textColor?: string;
+}
+
+/** The initials of a name: its first and last words' first letters, capitals, without accents. */
+export function initialsOf(name: string): string {
+  const words = name
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  const first = words[0]?.[0] ?? '';
+  const last =
+    words.length > 1 ? words[words.length - 1][0] : (words[0]?.[1] ?? '');
+  return (first + last).toUpperCase();
+}
+
+export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
+  { size, type, color, name, children, textColor, src, sx, ...rest },
+  ref,
+) {
+  const parts = solarAvatarCompose({ size, type });
+  const picture = parts.root?.image === true;
+  const ink = textColor ?? (color ? inkOn(color) : null);
+  return (
+    <MuiAvatar
+      ref={ref}
+      alt={name}
+      src={picture ? src : undefined}
+      // Initials are text a screen reader would spell out; the avatar is named instead.
+      role={picture ? undefined : 'img'}
+      aria-label={picture ? undefined : name}
+      {...rest}
+      slotProps={{
+        ...rest.slotProps,
+        // A photo fills the circle; a logo is centred, not cropped.
+        img: { style: { objectFit: type === 'logo' ? 'contain' : 'cover' } },
+      }}
+      sx={[
+        solarAvatarStyle({ size, type }),
+        color ? { backgroundColor: color } : null,
+        ink ? { '& .SolarAvatar-initials': { color: ink } } : null,
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {parts.initials?.present === false ? undefined : (
+        <span className="SolarAvatar-initials">
+          {children ?? initialsOf(name)}
+        </span>
+      )}
+    </MuiAvatar>
+  );
+});

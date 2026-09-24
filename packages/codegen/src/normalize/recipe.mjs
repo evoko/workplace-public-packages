@@ -250,9 +250,23 @@ function sizingOf(layer) {
   return s ? s.split('/') : null;
 }
 
-function extent(layer, i, names, where) {
+/**
+ * One axis of a layer's size. Where no auto layout sizes the layer -- a root with no auto layout of
+ * its own (Cursor's arrow), or a layer its parent places by position (Node End's dot) -- it is the
+ * size it is drawn at, fixed, as Figma draws it; `drawnAt` says it is such a layer.
+ */
+function extent(layer, i, names, where, drawnAt = false) {
   const sizing = sizingOf(layer);
-  if (!sizing) return undefined;
+  if (!sizing) {
+    if (!drawnAt || !layer.size) return undefined;
+    return bound(
+      layer,
+      [i === 0 ? 'width' : 'height'],
+      layer.size[i],
+      names,
+      where,
+    );
+  }
   if (sizing[i] !== 'FIXED') return { keyword: sizing[i] };
   return bound(
     layer,
@@ -269,8 +283,9 @@ function extent(layer, i, names, where) {
  * which of its variants, and how big -- because its own padding, colour and radius are its own
  * recipe's, and repeating them here would report every change of child variant as a deviation.
  */
-function cellsOf(layer, type, names, where, onCovered) {
+function cellsOf(layer, type, names, where, onCovered, root = false) {
   const cells = {};
+  const drawnAt = root || Boolean(layer.position);
   const put = (name, cls, value) => {
     if (value !== undefined) cells[name] = { cls, value };
   };
@@ -284,8 +299,16 @@ function cellsOf(layer, type, names, where, onCovered) {
     );
     for (const [k, v] of Object.entries(layer.variant ?? {}))
       put(`variant.${k}`, k === 'size' ? 'geometry' : 'paint', { keyword: v });
-    put('width', 'geometry', extent(layer, 0, names, `${where}.width`));
-    put('height', 'geometry', extent(layer, 1, names, `${where}.height`));
+    put(
+      'width',
+      'geometry',
+      extent(layer, 0, names, `${where}.width`, drawnAt),
+    );
+    put(
+      'height',
+      'geometry',
+      extent(layer, 1, names, `${where}.height`, drawnAt),
+    );
     // An icon's colour, recorded on the icon itself (fetch-rest.mjs). One icon in two colours is a
     // two-tone mark the recipe does not model, so it is left to the caller to report.
     const distinct = [...new Set(layer.iconFills ?? [])];
@@ -334,8 +357,12 @@ function cellsOf(layer, type, names, where, onCovered) {
     ),
   );
   put('shadow', 'paint', style(layer.effectStyle, names.effectStyle));
+  // A layer drawn translucent (Node End's halo), at Figma's opacity, rounded clear of Figma's float
+  // noise (0.20000000298023224).
   if (layer.opacity !== undefined)
-    put('opacity', 'paint', { literal: layer.opacity });
+    put('opacity', 'paint', {
+      literal: Math.round(layer.opacity * 1e4) / 1e4,
+    });
   // Corners of their own (Popover's content has a square corner by its arrow): one cell per
   // corner, clockwise from the top left as Figma records them, each from its own binding. Corners
   // that agree, in value and binding, are one radius.
@@ -351,6 +378,10 @@ function cellsOf(layer, type, names, where, onCovered) {
         bound(layer, [key], corners[i], names, `${where}.${CORNER_CELLS[i]}`),
       ),
     );
+  // An ellipse drawn with no outline of its own (Node End's dot, a Toggle's thumb) is a box, and
+  // Figma draws it round: SOLAR's round corner, radius.pill. Figma records no radius for one.
+  else if (type === 'ELLIPSE' && !layer.geometry && !layer.strokeGeometry)
+    put('radius', 'geometry', { token: 'radius.pill', ellipse: true });
   else
     put(
       'radius',
@@ -418,8 +449,10 @@ function cellsOf(layer, type, names, where, onCovered) {
       ),
     );
   }
-  put('width', 'geometry', extent(layer, 0, names, `${where}.width`));
-  put('height', 'geometry', extent(layer, 1, names, `${where}.height`));
+  // A glyph's box is its outline's, in the glyph itself.
+  const sized = drawnAt && !cells.glyph;
+  put('width', 'geometry', extent(layer, 0, names, `${where}.width`, sized));
+  put('height', 'geometry', extent(layer, 1, names, `${where}.height`, sized));
   // Where a layer sits in a parent whose auto layout does not place it (StatusIndicator's `!`
   // inside its triangle, a Toggle's thumb): part of the drawing, as a glyph's outline is, so it
   // follows every axis and is a position, not a spacing literal to report.
@@ -589,6 +622,7 @@ export function deriveRecipe(
                 covered.set(k, { path, cell, top, under, variants: new Set() });
               covered.get(k).variants.add(v.name);
             },
+            layers[path].parent === null,
           ),
         );
         // An icon's colour is read from the icon itself (cellsOf). An icon drawn in more than one
@@ -660,11 +694,18 @@ export function deriveRecipe(
       const reference = (props) => {
         const exact = exactOf(props);
         const k = keyOf(props, follows);
+        // A layer the reference does not draw at all (Divider's label, added in with-label alone)
+        // has no value there to differ from: its look is read where it is drawn, as a hidden
+        // child's variant is. Only its presence is the reference's own, since that absence is
+        // what presence says.
+        const drawnElsewhere =
+          exact && cell !== 'present' && !exact.layers.has(path);
         if (
           exact &&
-          composes &&
-          read(exact, path, cell) === undefined &&
-          read(exact, path, 'present')?.value === false
+          (drawnElsewhere ||
+            (composes &&
+              read(exact, path, cell) === undefined &&
+              read(exact, path, 'present')?.value === false))
         )
           return (
             resolved.variants.find(
@@ -740,9 +781,12 @@ export function deriveRecipe(
       };
       const equalToBase = [];
 
-      const base = read(defaultVariant, path, cell);
+      // The base is the default variant's, or, for a layer it does not draw, the variant the
+      // default combination reads it from (above).
+      const baseRef = reference(defaults);
+      const base = read(baseRef, path, cell);
       if (base !== undefined)
-        entry.base[cell] = { ...base, from: defaultVariant.name };
+        entry.base[cell] = { ...base, from: baseRef.name };
 
       for (const v of resolved.variants) {
         const ref = reference(v.props);

@@ -1,0 +1,67 @@
+/**
+ * SOLAR Tree Indent.
+ *
+ * Scaffolded once by `npm run solar:scaffold Tree Indent` from spec/components/tree-indent.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, `solarTreeIndentStyle` and `solarTreeIndentCompose` in `@bwp-web/styles/mui`: each
+ * depth’s row of units and their size.
+ *
+ * Bespoke: a spacer, a row of `depth` units of indent, drawn from Figma’s layer tree
+ * (`internal/layers.tsx`). Tree Item composes it. Decorative: the tree’s own semantics
+ * (`aria-level`) say how deep a row is. The app must load `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { forwardRef } from 'react';
+import {
+  solarTreeIndentCompose,
+  solarTreeIndentStyle,
+  type SolarTreeIndentProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: [
+    'unit1',
+    'unit2',
+    'unit3',
+    'unit4',
+    'unit5',
+    'unit6',
+    'unit7',
+    'unit8',
+    'unit10',
+    'unit9',
+  ],
+};
+
+export interface TreeIndentProps
+  extends
+    SolarTreeIndentProps,
+    // MUI types BoxProps' ref for any element; the component's own comes from forwardRef.
+    Omit<BoxProps, keyof SolarTreeIndentProps | 'children' | 'ref'> {}
+
+export const TreeIndent = forwardRef<HTMLSpanElement, TreeIndentProps>(
+  function TreeIndent({ depth, sx, ...rest }, ref) {
+    const parts = solarTreeIndentCompose({ depth });
+    return (
+      <Box
+        component="span"
+        ref={ref}
+        aria-hidden
+        {...rest}
+        sx={[
+          solarTreeIndentStyle({ depth }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarTreeIndent',
+          tree: TREE,
+          parts,
+        })}
+      </Box>
+    );
+  },
+);

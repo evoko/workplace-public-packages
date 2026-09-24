@@ -1,0 +1,56 @@
+/**
+ * SOLAR Kbd.
+ *
+ * Scaffolded once by `npm run solar:scaffold Kbd` from spec/components/kbd.json, and owned by
+ * developers from then on: change it freely. What it looks like is not here. That is the recipe,
+ * `solarKbdStyle` and `solarKbdCompose` in `@bwp-web/styles/mui`: the key cap’s fill, border and
+ * radius, and its label’s text style.
+ *
+ * Bespoke: a key cap, drawn as HTML’s <kbd> from Figma’s layer tree (`internal/layers.tsx`). One
+ * key per Kbd: a chord is several, with a separator between them (Ctrl + K), and a modifier is the
+ * platform’s own symbol (⌘ on macOS, Ctrl elsewhere). The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { forwardRef, type ReactNode } from 'react';
+import {
+  solarKbdCompose,
+  solarKbdStyle,
+  type SolarKbdProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = { root: ['label'] };
+
+export interface KbdProps
+  extends
+    SolarKbdProps,
+    // MUI types BoxProps' ref for any element; the component's own comes from forwardRef.
+    Omit<BoxProps, keyof SolarKbdProps | 'children' | 'ref'> {
+  /** The key's label: one key, as the platform names it (⌘, Ctrl, K, Enter). */
+  children: ReactNode;
+}
+
+export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(
+  { type, children, sx, ...rest },
+  ref,
+) {
+  const parts = solarKbdCompose({ type });
+  return (
+    <Box
+      component="kbd"
+      ref={ref}
+      {...rest}
+      sx={[solarKbdStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      {drawChildren('root', {
+        prefix: 'SolarKbd',
+        tree: TREE,
+        parts,
+        text: { label: children },
+      })}
+    </Box>
+  );
+});

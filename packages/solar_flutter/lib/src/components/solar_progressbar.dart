@@ -1,0 +1,55 @@
+/// SOLAR ProgressBar.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter ProgressBar` from
+/// spec/components/progressbar.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarProgressBarRecipe]: the track's colour and
+/// height, and the bar's colour by feedback.
+///
+/// It wraps Flutter's determinate LinearProgressIndicator, which draws the bar at [value] (0 to 1)
+/// and supplies the semantics: name it ([semanticsLabel]), and say the number beside it, as SOLAR
+/// asks. It fills the width it is given.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/progressbar.dart';
+import 'solar_theme_of.dart';
+
+class SolarProgressBar extends StatelessWidget {
+  const SolarProgressBar({
+    super.key,
+    required this.value,
+    this.feedback = SolarProgressBarFeedback.neutral,
+    this.semanticsLabel,
+  });
+
+  /// How far along, from 0 to 1, as for any Flutter progress indicator.
+  final double value;
+
+  final SolarProgressBarFeedback feedback;
+
+  /// What is in progress, for a screen reader.
+  final String? semanticsLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarProgressBarProps(feedback: feedback);
+    const rest = <WidgetState>{};
+    return LinearProgressIndicator(
+      value: value,
+      minHeight: SolarProgressBarRecipe.dimension('root.height', p, rest),
+      backgroundColor: SolarProgressBarRecipe.color(
+        t,
+        'root.background',
+        p,
+        rest,
+      ),
+      color: SolarProgressBarRecipe.color(t, 'indicator.background', p, rest),
+      borderRadius: BorderRadius.circular(
+        SolarProgressBarRecipe.dimension('root.radius', p, rest)!,
+      ),
+      semanticsLabel: semanticsLabel,
+    );
+  }
+}

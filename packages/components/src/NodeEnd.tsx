@@ -1,0 +1,52 @@
+/**
+ * SOLAR Node End.
+ *
+ * Scaffolded once by `npm run solar:scaffold Node End` from spec/components/node-end.json, and
+ * owned by developers from then on: change it freely. What it looks like is not here. That is the
+ * recipe, `solarNodeEndStyle` and `solarNodeEndCompose` in `@bwp-web/styles/mui`: the dot and its
+ * halo, their colour, size and place.
+ *
+ * Bespoke: a drawn marker, the end of a Coachmark’s connector, drawn from Figma’s layer tree
+ * (`internal/layers.tsx`). Decorative always: the element a tour step is about carries its own
+ * name, and the dot is never the only sign of what the step refers to. The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { forwardRef } from 'react';
+import {
+  solarNodeEndCompose,
+  solarNodeEndStyle,
+  type SolarNodeEndProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = { root: ['halo', 'dot'] };
+
+export interface NodeEndProps
+  extends
+    SolarNodeEndProps,
+    // MUI types BoxProps' ref for any element; the component's own comes from forwardRef.
+    Omit<BoxProps, keyof SolarNodeEndProps | 'children' | 'ref'> {}
+
+export const NodeEnd = forwardRef<HTMLSpanElement, NodeEndProps>(
+  function NodeEnd({ halo, sx, ...rest }, ref) {
+    const parts = solarNodeEndCompose({ halo });
+    return (
+      <Box
+        component="span"
+        ref={ref}
+        aria-hidden
+        {...rest}
+        sx={[solarNodeEndStyle({ halo }), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarNodeEnd',
+          tree: TREE,
+          parts,
+        })}
+      </Box>
+    );
+  },
+);

@@ -1,0 +1,39 @@
+# Hand-written decisions about SOLAR ProgressBar, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: ProgressBar
+
+base:
+  mui: LinearProgress
+  flutter: LinearProgressIndicator
+  reason: >-
+    Each platform's own determinate progress bar, restyled by the recipe: the track's colour and
+    height, the bar's colour by feedback, and both rounded. The progressbar role and its value are
+    the platform's.
+
+follows:
+  indicator.width:
+    axes: [feedback]
+    reason: >-
+      The bar's length is the value, and Figma draws each feedback at a sample of its own (40% for
+      neutral, 60% info, 100% success, 90% warning, 95% danger): the caller's value in code.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A progress bar spans its container: Figma draws it 200 wide, a sample. The caller sizes it.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      The track is 6 tall and bound to nothing: SOLAR has no progress bar height. Raised as a
+      governance gap.
+
+controlDraws:
+  indicator:
+    reason: >-
+      LinearProgress draws the bar itself, as wide as its track, moved by a transform to show the
+      value, so its place and box are the control's; Figma draws one still frame of it, at the
+      variant's sample value.

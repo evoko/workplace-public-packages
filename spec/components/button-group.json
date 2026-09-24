@@ -217,12 +217,18 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "The buttons fill the group in every variant Figma draws. This one is hidden at rest (the TertiaryCTA prop shows it) and keeps a fixed 138 from before it was hidden, which is not how a shown button is drawn."
+          "reason": "The buttons fill the group in every variant Figma draws. This one is hidden at rest (the TertiaryCTA prop shows it) and keeps a fixed 138 from before it was hidden, which is not how a shown button is drawn.",
+          "replaced": {
+            "literal": 138
+          }
         },
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "A child's height is the Button's own (40 at md, 48 at lg); the group decides its width, not its height, so a caller's sm Buttons stay 32."
+          "reason": "A child's height is the Button's own (40 at md, 48 at lg); the group decides its width, not its height, so a caller's sm Buttons stay 32.",
+          "replaced": {
+            "literal": 40
+          }
         }
       },
       "size": {},
@@ -294,7 +300,10 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the tertiary one, the Button's own height."
+          "reason": "As the tertiary one, the Button's own height.",
+          "replaced": {
+            "literal": 40
+          }
         }
       },
       "size": {},
@@ -342,7 +351,10 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the tertiary one, the Button's own height."
+          "reason": "As the tertiary one, the Button's own height.",
+          "replaced": {
+            "literal": 40
+          }
         }
       },
       "size": {},
@@ -360,7 +372,10 @@
             "width": {
               "keyword": "FILL",
               "from": "overlay",
-              "reason": "As the tertiary one: hidden in the vertical group, where it keeps a fixed 431; every shown button fills."
+              "reason": "As the tertiary one: hidden in the vertical group, where it keeps a fixed 431; every shown button fills.",
+              "replaced": {
+                "literal": 431
+              }
             }
           }
         },

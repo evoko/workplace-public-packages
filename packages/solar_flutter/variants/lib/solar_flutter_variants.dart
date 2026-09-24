@@ -5,11 +5,23 @@
 /// (widgetbook/), so both show a widget the same way.
 library;
 
+export 'src/avatar.dart';
 export 'src/builders.dart';
 export 'src/button.dart';
 export 'src/button_group.dart';
+export 'src/counter.dart';
+export 'src/cursor.dart';
+export 'src/divider.dart';
 export 'src/icon_button.dart';
+export 'src/kbd.dart';
+export 'src/node_end.dart';
 export 'src/probes.dart';
+export 'src/progressbar.dart';
 export 'src/registry.dart';
+export 'src/rowexpand.dart';
+export 'src/skeleton.dart';
 export 'src/spinner.dart';
 export 'src/statusindicator.dart';
+export 'src/timestamp.dart';
+export 'src/tree_indent.dart';
+export 'src/trend_badge.dart';

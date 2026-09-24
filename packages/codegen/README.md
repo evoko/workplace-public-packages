@@ -181,6 +181,28 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    size the layer is drawn at, and one border width where another variant has sides is that
    width on every side. What is left is an axis finding, `no value` against the other's value.
    A composed child's variant is the one exception, since Figma records none on a hidden instance.
+   A layer the reference variant does not draw at all (Divider's label, added in `with-label`
+   alone) has no value there to differ from, so each of its cells is read where it is drawn, as a
+   hidden child's variant is; only its presence is the reference's own. A cell that follows no
+   axis then lands in the base, where the emitters find it, rather than being dropped unreported.
+   What F1 (the display primitives) added:
+   - **Sizes no auto layout gives.** A root with no auto layout of its own (Cursor's arrow) and a
+     layer its parent places by position (Node End's dot) are the size Figma draws them at, fixed,
+     and the oracle measures them so; a glyph's size is its outline's, inside the glyph.
+   - **Ellipses and booleans.** An ellipse with no outline of its own is a round box,
+     `radius.pill` (marked `ellipse`); the oracle records its radius as half its size, and both
+     checks compare a corner as drawn, no rounder than half its box, so a pill and an ellipse
+     agree. A boolean operation is one shape, the outline Figma records on it: its operands are no
+     layers of the component (`resolveVariants`). A vector's corner radius is in its outline, so
+     the MUI recipe draws none for it.
+   - **Opacity.** A translucent layer (Node End's halo) has an `opacity` cell, Figma's number,
+     rounded clear of float noise; the overlay must allow it, since SOLAR has no opacity scale. The
+     oracle records it, and both checks compare it.
+   - **Hugging past the base.** A `HUG` in a later entry over a fixed size in the base (Tree
+     Indent's 0px depth 00) resets the MUI size to `auto`, since declaring nothing would leave the
+     base's standing.
+   - **A colour the caller gives** (Avatar's): an API prop of `type: 'color'`, a CSS colour on the
+     web and a `Color` in Flutter, keying nothing in the recipe (the overlay's `caller`, below).
 3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
    demoted — hover, pressed and focus become platform states, disabled and loading stay props;
    states drawn as `false/true` axes of their own, as Checkbox's are, are first folded into one
@@ -202,6 +224,20 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    boolean (Button Group's `type: regular | full-width` is `fullWidth`). `set` takes a sizing
    `keyword` (`FILL`, `HUG`) as well as a token or none, and settles a raw-value finding once no raw
    value is left in the cell; the oracle then excuses Figma's value there, as for any decision.
+   A `set` keeps what Figma had beside the decision (`replaced`), so the oracle excuses a measured
+   value it changed (Cursor's raised shadow, not drawn) in exactly the variants that draw what it
+   replaced, and no others.
+   `controlDraws` decides the raw sizes of the layer the control draws, and the MUI recipe then
+   declares nothing of its place or size (ProgressBar's bar, moved by LinearProgress itself); the
+   oracle excuses its box and its roundness.
+   `samples` names an axis whose values are samples of what the caller gives (Avatar's `color` and
+   `shade`, colours Figma draws for show): the API loses it, and the recipe keeps the variants at
+   the values `keep` lists, one per combination of the rest, or the build fails. `caller` names a
+   cell whose value is the caller's: `prop` makes it a colour prop of the API (Avatar's
+   background), and `from` a cell the shell derives from that prop (the initials' ink). The
+   recipe's own value there is what is drawn when the caller gives none. The oracle keeps every
+   variant: each is reached with the colour Figma samples there as the prop, and compared, and a
+   `from` cell is excused, since it is the shell's rule, not Figma's sample.
    Then the **shared defaults** (`spec/overlay/defaults.yaml`, `applyDefaults`), decisions that
    hold for every component, each with a reason. There are two: `zero-insets` binds a padding Figma
    leaves unbound at `0` to `inset.none`, and `zero-gaps` a gap to the none of its layout's
@@ -337,7 +373,14 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
      its MUI tables (`slots`, and `resets`, `svgLayers`, `states`, `overlaps`, `restates` as it
      needs them), its Flutter tables (`style` where its base takes a style object, `BUILDERS`, and
      `shared`), and its two shell templates, `templates.react` and `templates.flutter`. Shared
-     template helpers are in `src/scaffold/helpers.mjs`.
+     template helpers are in `src/scaffold/helpers.mjs`. A component that draws its own layers
+     (the display primitives) has `slots: 'drawn'` (every IR layer, each with a class of its own,
+     `slotsOf`), `drawnResets`, and templates from `src/scaffold/drawn.mjs` (`drawnReact`,
+     `drawnFlutter`), which hand the layer tree to the shells' shared runtime helpers
+     (`packages/components/src/internal/layers.tsx`, `solar_flutter`'s `SolarLayers`) and draw a
+     SOLAR icon layer with its component from the assets. A value that is no Dart identifier
+     (`top-search`, `Default White`, `00`) is respelled for its enum (`dartEnumValue`), which then
+     carries Figma's spelling.
   2. Its overlay, `spec/overlay/<address>.yaml`.
   3. `npm run solar:codegen`, which also writes every list the component is in, from the
      descriptors (`src/emit/registries.mjs`): both packages' barrels of shells

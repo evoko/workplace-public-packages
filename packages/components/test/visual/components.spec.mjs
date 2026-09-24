@@ -18,9 +18,9 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { expect, test } from '@playwright/test';
 import {
-  MUI_SLOTS,
   MUI_SVG_LAYERS,
   STATE_SELECTORS,
+  slotsOf,
 } from '../../../codegen/src/emit/mui-component.mjs';
 import { NAMES, fileOf } from '../../../codegen/src/stages/components.mjs';
 import { compareLayer, matches } from './compare.mjs';
@@ -52,7 +52,7 @@ const STILL =
  */
 function targets(component) {
   const svg = new Set(MUI_SVG_LAYERS[component] ?? []);
-  return Object.entries(MUI_SLOTS[component]).map(([layer, selector]) => ({
+  return Object.entries(slotsOf(specs[component])).map(([layer, selector]) => ({
     layer,
     selector: selector === '&' ? null : selector.replace(/^&\s*/, ':scope '),
     svg: svg.has(layer),
@@ -140,6 +140,7 @@ function measure(root, { list, composed }) {
           };
     return {
       ...values,
+      opacity: cs.opacity,
       color: cs.color,
       fontFamily: cs.fontFamily,
       fontWeight: cs.fontWeight,

@@ -99,6 +99,19 @@ describe('corners of their own', () => {
   });
 });
 
+describe('a round corner', () => {
+  it('is as round as its box allows, however it is spelled: a pill and an ellipse draw alike', () => {
+    // Node End's dot: Figma's ellipse is round, half its 6px size; the recipe's pill is 9999px.
+    const drawn = { radius: '9999px', width: 6, height: 6 };
+    expect(compareLayer({ radius: 3 }, drawn).failures).toEqual([]);
+    expect(compareLayer({ radius: 9999 }, drawn).failures).toEqual([]);
+    // A square corner is still a square corner.
+    expect(
+      compareLayer({ radius: 3 }, { ...drawn, radius: '0px' }).failures,
+    ).toEqual([{ property: 'radius', figma: 3, rendered: '0px' }]);
+  });
+});
+
 describe('a layer placed by position', () => {
   it('is measured from its parent’s edge, and a misplaced one names the axis', () => {
     const figma = { x: 17, y: 3, width: 12, height: 12 };

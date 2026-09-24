@@ -408,6 +408,10 @@ describe('a component with no axes (Scrim, one Figma drew with no variants)', ()
       fileVersion: catalog.fileVersion,
       defaults: loadDefaults(),
     });
+    // A root no auto layout sizes is the size Figma draws it at, which Scrim's own overlay will
+    // decide; allowed here, as that overlay would.
+    for (const cell of ['width', 'height'])
+      spec.style.root.base[cell].allowed = 'stand-in';
     // A stand-in for the slot table Scrim's own task will write.
     MUI_SLOTS.Scrim = { root: '&' };
     try {

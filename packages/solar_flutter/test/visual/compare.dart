@@ -105,6 +105,8 @@ bool agrees(String property, Object? figma, Object? painted) {
       return (painted as String) == figma;
     case 'letterSpacing':
       return ((painted as num) - (figma! as num)).abs() <= 0.02;
+    case 'opacity':
+      return ((painted as num) - (figma! as num)).abs() <= 0.01;
     default:
       return ((painted as num) - (figma! as num)).abs() <= 0.5;
   }
@@ -134,6 +136,7 @@ const measured = [
   'height',
   'x',
   'y',
+  'opacity',
   'color',
   'fontFamily',
   'fontWeight',
@@ -212,12 +215,41 @@ void compareLayer(
       );
       continue;
     }
-    if (!agrees(property, figma, painted[property])) {
+    if (!agrees(
+      property,
+      _rounded(property, figma, painted),
+      _rounded(property, painted[property], painted),
+    )) {
       failures.add(
         Difference(variant, layer, property, figma, painted[property]),
       );
     }
   }
+}
+
+const _corners = {
+  'radius',
+  'radiusTopLeft',
+  'radiusTopRight',
+  'radiusBottomRight',
+  'radiusBottomLeft',
+};
+
+/// A corner no rounder than its box allows: no corner is drawn rounder than half the box's shorter
+/// side, in Flutter, in CSS or in Figma, so a pill's 9999 and an ellipse's half its size draw the
+/// same round. Compared as drawn, where the box was measured (compare.mjs does the same).
+Object? _rounded(String property, Object? value, Map<String, Object?> painted) {
+  final width = painted['width'];
+  final height = painted['height'];
+  if (!_corners.contains(property) ||
+      value is! num ||
+      width is! num ||
+      height is! num ||
+      width <= 0 ||
+      height <= 0) {
+    return value;
+  }
+  return [value, width / 2, height / 2].reduce((a, b) => a < b ? a : b);
 }
 
 /// Writes a report beside the build output, where CI can keep it.

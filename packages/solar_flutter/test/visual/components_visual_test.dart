@@ -19,6 +19,8 @@ String fileOf(String component) =>
     component.toLowerCase().replaceAll(RegExp('[^a-z0-9]+'), '_');
 
 void main() {
+  setUpAll(loadBundledFonts);
+
   test('every generated component has a visual case', () {
     expect(oracles.keys, isNotEmpty);
     for (final component in oracles.keys) {

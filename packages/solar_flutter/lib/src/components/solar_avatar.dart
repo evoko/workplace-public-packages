@@ -1,0 +1,111 @@
+/// SOLAR Avatar.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Avatar` from
+/// spec/components/avatar.json, and owned by developers from then on: change it freely. What it
+/// looks like is not here. That is the recipe, [SolarAvatarRecipe]: each size, the initials' text
+/// style, the border, and a logo's rounded square, read cell by cell.
+///
+/// Bespoke: CircleAvatar cannot draw a logo's rounded square, so it is drawn with [SolarLayers],
+/// the picture ([image]) inside its border. Its [color] is the caller's, any colour: seed it from a
+/// stable hash of the person's ID, never at random. The initials take that colour's hue, at a
+/// lightness that reads at WCAG AA ([solarInkOn]), unless [textColor] gives theirs; with no colour
+/// it is SOLAR's neutral avatar. It is named by [name], always.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/avatar.dart';
+import '../solar_ink.dart';
+import '../solar_layers.dart';
+import 'solar_theme_of.dart';
+
+/// The initials of a name: its first and last words' first letters, in capitals.
+String solarInitialsOf(String name) {
+  final words = name
+      .trim()
+      .split(RegExp(r'\s+'))
+      .where((w) => w.isNotEmpty)
+      .toList();
+  if (words.isEmpty) return '';
+  final first = words.first.characters.first;
+  final last = words.length > 1
+      ? words.last.characters.first
+      : words.first.characters.skip(1).take(1).string;
+  return (first + last).toUpperCase();
+}
+
+class SolarAvatar extends StatelessWidget {
+  const SolarAvatar({
+    super.key,
+    this.size = SolarAvatarSize.lg,
+    this.type = SolarAvatarType.text,
+    this.color,
+    required this.name,
+    this.initials,
+    this.textColor,
+    this.image,
+  });
+
+  final SolarAvatarSize size;
+  final SolarAvatarType type;
+  final Color? color;
+
+  /// Who or what it is, the accessible name: a person's full name, a company's.
+  final String name;
+
+  /// The initials; by default, from [name]: its first and last words' first letters.
+  final String? initials;
+
+  /// The initials' colour, where the ink rule's is not wanted.
+  final Color? textColor;
+
+  /// The photo or the logo, for those types.
+  final ImageProvider? image;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['initials'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarAvatarProps(size: size, type: type, color: color);
+    const states = <WidgetState>{};
+    final fill = color;
+    final ink = textColor ?? (fill == null ? null : solarInkOn(fill));
+    final picture =
+        SolarAvatarRecipe.lookup('root.image', p, states) == 'b:true';
+    final mark = SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarAvatarRecipe.lookup(c, p, states),
+        dimension: (c) => SolarAvatarRecipe.dimension(c, p, states),
+        color: (c) => switch (c) {
+          'root.background' when fill != null => fill,
+          'initials.color' when ink != null => ink,
+          _ => SolarAvatarRecipe.color(t, c, p, states),
+        },
+        shadow: (c) => SolarAvatarRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarAvatarRecipe.textStyle(t, c, p, states),
+        present: (l) => SolarAvatarRecipe.present(l, p, states),
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'avatar',
+      text: {'initials': initials ?? solarInitialsOf(name)},
+      images: {
+        if (picture && image != null)
+          // A photo fills the circle; a logo is centred, not cropped.
+          'root': DecorationImage(
+            image: image!,
+            fit: type == SolarAvatarType.logo ? BoxFit.contain : BoxFit.cover,
+          ),
+      },
+    ).layer('root');
+    return Semantics(
+      label: name,
+      image: true,
+      child: ExcludeSemantics(child: mark),
+    );
+  }
+}
