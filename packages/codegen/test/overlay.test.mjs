@@ -388,7 +388,7 @@ describe('spec/overlay/button.yaml', () => {
   });
 
   it('returns null for a component with no overlay', () => {
-    expect(loadOverlay('Tabs')).toBeNull();
+    expect(loadOverlay('Pagination')).toBeNull();
   });
 });
 

@@ -80,45 +80,52 @@ export const solarCounterStyles = {
   sizes: {},
   appearances: {
     'type=regular': {
-      '&:is(button):not(:disabled):hover, button:not(:disabled):hover &': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-primary-text-hover)',
+      '&:is(button):not(:disabled):hover, button:not(:disabled):not([role="tab"]):hover &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-primary-text-hover)',
+          },
         },
-      },
-      '&:is(button):not(:disabled):active, button:not(:disabled):active &': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-active)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-primary-text-active)',
+      '&:is(button):not(:disabled):active, button:not(:disabled):not([role="tab"]):active &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-active)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-primary-text-active)',
+          },
         },
-      },
-      '&.SolarCounter-disabled, button:disabled &, .Mui-disabled &': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-primary-text-disabled)',
+      '&.SolarCounter-disabled, button:not([role="tab"]):disabled &, .Mui-disabled:not([role="tab"]) &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-primary-text-disabled)',
+          },
         },
-      },
     },
     'type=danger': {
       backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
-      '&:is(button):not(:disabled):hover, button:not(:disabled):hover &': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-hover)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-primary-text-danger-hover)',
+      '&:is(button):not(:disabled):hover, button:not(:disabled):not([role="tab"]):hover &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-hover)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-primary-text-danger-hover)',
+          },
         },
-      },
-      '&:is(button):not(:disabled):active, button:not(:disabled):active &': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-active)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-primary-text-danger-active)',
+      '&:is(button):not(:disabled):active, button:not(:disabled):not([role="tab"]):active &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-active)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-primary-text-danger-active)',
+          },
         },
-      },
-      '&.SolarCounter-disabled, button:disabled &, .Mui-disabled &': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-disabled)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-primary-text-danger-disabled)',
+      '&.SolarCounter-disabled, button:not([role="tab"]):disabled &, .Mui-disabled:not([role="tab"]) &':
+        {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-disabled)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-primary-text-danger-disabled)',
+          },
         },
-      },
       '& .SolarCounter-value': {
         color: 'var(--solar-color-action-primary-text-danger-default)',
       },
@@ -127,24 +134,27 @@ export const solarCounterStyles = {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       borderWidth: 'var(--solar-border-none)',
       borderStyle: 'solid',
-      '&:is(button):not(:disabled):hover, button:not(:disabled):hover &': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-secondary-text-hover)',
+      '&:is(button):not(:disabled):hover, button:not(:disabled):not([role="tab"]):hover &':
+        {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-secondary-text-hover)',
+          },
         },
-      },
-      '&:is(button):not(:disabled):active, button:not(:disabled):active &': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-secondary-text-active)',
+      '&:is(button):not(:disabled):active, button:not(:disabled):not([role="tab"]):active &':
+        {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-secondary-text-active)',
+          },
         },
-      },
-      '&.SolarCounter-disabled, button:disabled &, .Mui-disabled &': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-disabled)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-secondary-text-disabled)',
+      '&.SolarCounter-disabled, button:not([role="tab"]):disabled &, .Mui-disabled:not([role="tab"]) &':
+        {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-disabled)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-secondary-text-disabled)',
+          },
         },
-      },
       '& .SolarCounter-value': {
         color: 'var(--solar-color-action-secondary-text-default)',
       },
@@ -152,27 +162,30 @@ export const solarCounterStyles = {
     'type=idle': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       borderColor: 'var(--solar-color-border-subtle)',
-      '&:is(button):not(:disabled):hover, button:not(:disabled):hover &': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
-        borderColor: 'var(--solar-color-border-subtle)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-text-secondary)',
+      '&:is(button):not(:disabled):hover, button:not(:disabled):not([role="tab"]):hover &':
+        {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+          borderColor: 'var(--solar-color-border-subtle)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-text-secondary)',
+          },
         },
-      },
-      '&:is(button):not(:disabled):active, button:not(:disabled):active &': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
-        borderColor: 'var(--solar-color-border-subtle)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-text-tertiary)',
+      '&:is(button):not(:disabled):active, button:not(:disabled):not([role="tab"]):active &':
+        {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+          borderColor: 'var(--solar-color-border-subtle)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-text-tertiary)',
+          },
         },
-      },
-      '&.SolarCounter-disabled, button:disabled &, .Mui-disabled &': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
-        borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarCounter-value': {
-          color: 'var(--solar-color-action-primary-text-disabled)',
+      '&.SolarCounter-disabled, button:not([role="tab"]):disabled &, .Mui-disabled:not([role="tab"]) &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
+          borderColor: 'var(--solar-color-border-medium)',
+          '& .SolarCounter-value': {
+            color: 'var(--solar-color-action-primary-text-disabled)',
+          },
         },
-      },
       '& .SolarCounter-value': {
         color: 'var(--solar-color-text-tertiary)',
       },

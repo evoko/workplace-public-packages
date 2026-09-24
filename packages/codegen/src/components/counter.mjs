@@ -24,7 +24,9 @@ const requireValue = (spec) => {
  * counter's own (`:hover &` would be the counter hovered inside itself).
  */
 const own = ':is(button):not(:disabled)';
-const around = 'button:not(:disabled)';
+// Not a tab: a Tab Item's Counter is drawn at rest in every state of the tab (its type says the
+// tab's state), as Figma draws it.
+const around = 'button:not(:disabled):not([role="tab"])';
 
 export default {
   name: 'Counter',
@@ -50,7 +52,8 @@ export default {
       default: null,
       hover: `&${own}:hover, ${around}:hover &`,
       pressed: `&${own}:active, ${around}:active &`,
-      disabled: '&.SolarCounter-disabled, button:disabled &, .Mui-disabled &',
+      disabled:
+        '&.SolarCounter-disabled, button:not([role="tab"]):disabled &, .Mui-disabled:not([role="tab"]) &',
     },
     overlaps: { pressed: ['hover'] },
   },

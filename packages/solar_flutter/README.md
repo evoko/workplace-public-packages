@@ -61,7 +61,9 @@ and `SolarFileUpload`), and the menus and lists (`SolarDropdownItem`, `SolarDrop
 `SolarDropdownMenu`, `SolarContextMenuItem`, `SolarContextMenu`, `SolarOptionRow`,
 `SolarOptionsList`, `SolarListItem` and `SolarList`), and the pickers (`SolarSelect`,
 `SolarDropdown`, `SolarAutocomplete`, `SolarDatePicker`, `SolarDatePickerOpen`,
-`SolarDatePickerDayCell`, `SolarTimePicker` and `SolarTimePickerDropdown`) take the same props as the React components
+`SolarDatePickerDayCell`, `SolarTimePicker` and `SolarTimePickerDropdown`), and navigation
+(`SolarTabs`, `SolarTabItem`, `SolarNavItem`, `SolarSectionNavItem`, `SolarSectionNavGroupHeader`,
+`SolarBreadcrumbs`, `SolarBreadcrumbItem` and `SolarTreeItem`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
@@ -112,6 +114,14 @@ key). A `SolarTimePicker` holds a `TimeOfDay? value` and calls `onTimeChanged`, 
 `formatTimeOfDay` on the platform's clock, read back on either (`parseSolarTime`,
 `lib/src/solar_time.dart`); its list, a `SolarTimePickerDropdown`, is every `step` minutes from
 `first` to `last`, the chosen one scrolled into sight.
+A `SolarTabs` holds `SolarTabItem`s with a `value` each, and says which is selected by its own
+(`value`, `onChanged`), through `SolarTabsScope` (`lib/src/solar_tabs.dart`), as a RadioGroup
+does its radios; `SolarTabList` makes the row a tab bar the arrow keys move along, Enter or Space
+selecting. It is not Flutter's TabBar, which needs a TabController, draws its own label style and
+ink, and has no arrow keys. A `SolarNavItem` takes `iconOutline` and `iconSolid` widgets, and a
+`SolarBreadcrumbs` its trail as `SolarBreadcrumbItem`s, reading their labels and `onPressed` for
+the menu of a collapsed trail's middle. A `SolarTreeItem` holds its rename's words in a controller
+of its own, starting from its label.
 `SolarFAB` is a FilledButton, which a Scaffold's `floatingActionButton` takes:
 
 ```dart

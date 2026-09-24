@@ -1,0 +1,20 @@
+# Hand-written decisions about SOLAR Breadcrumb Item, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Breadcrumb Item
+
+base:
+  reason: >-
+    One segment of a breadcrumb trail, its description says: a link to an ancestor page, or the
+    current page at the end, not a link (`aria-current="page"`). Drawn with the shared layer helpers
+    on both platforms: on the web a link (or a button, given no `href`), a text where it is the
+    current page or disabled; in Flutter pressable and announced as a link.
+
+set:
+  root.appearance.type=link.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws a breadcrumb no focus state, and a visible focus is SOLAR's floor. A focused link
+      draws SOLAR's focus ring, as a Nav Item's and a Link's do (owner decision 2026-09-24 for Nav
+      Item); the design review asks SOLAR to draw it.

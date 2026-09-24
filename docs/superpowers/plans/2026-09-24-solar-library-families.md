@@ -1282,6 +1282,42 @@ and its grid's gap, which Figma binds as a grid gap the recipe had not read.
   - Breadcrumb Item and Breadcrumbs: MUI `Breadcrumbs`;
   - Tree Item: after M5; composes `.Tree Indent`, Checkbox, Counter, StatusIndicator and Tag.
 
+**F8 done 2026-09-24.** Tab Item and Tabs (pioneer), Nav Item, Section Nav Item, Section Nav Group
+Header, Breadcrumb Item, Breadcrumbs and Tree Item, every variant matching Figma on both platforms,
+every finding decided (none left open). 70 components, 69 exported.
+
+- **Owner decisions (2026-09-24):**
+  - in Tabs, the arrow keys move the focus and Enter or Space selects (manual activation), as
+    SOLAR's description says, since a selected tab is the routed one;
+  - a focused tab draws Figma's focus, the selected underline and the ring, on any tab;
+  - a focused Nav Item draws SOLAR's focus ring (Figma draws no focus state);
+  - Tree Item renames inline (a text field in its label's place), and a keyboard-focused row
+    draws edit's edge and ring.
+- **Taken here, open to the owner:**
+  - Tabs on MUI's Tabs and Tab (its indicator hidden, `variant="standard"`); in Flutter a drawn
+    strip (`SolarTabsScope`, `SolarTabList`), not the plan's TabBar, which needs a TabController,
+    draws its own label style and ink, and has no arrow keys. The strip does not scroll, since a
+    scroll clips the focused ring.
+  - Nav Item and Section Nav Item on ButtonBase, links where they have an `href`.
+  - Breadcrumbs drawn, not the plan's MUI Breadcrumbs, whose collapse expands in place and whose
+    separators are one element for every gap: past five its middle is an ellipsis opening a
+    Dropdown Menu, as the description asks.
+  - Breadcrumb Item's focus draws SOLAR's ring, as Nav Item's.
+  - A Tab Item's Counter follows the tab's state, not its hover.
+  - Section Nav Items have no padded target, since they touch, as rows; nor do Tree Item's chevron
+    and actions, 16px and 4px apart, where each padded target covered its neighbour's (the widget
+    tests found a tap on More calling Add).
+  - Tree Item's actions are `onMore` and `onAdd`; its parts are the caller's (`checked`,
+    `status`, `tag`, `count`, icons).
+- **Machinery:**
+  - a `samples` rule that drops Figma's default variant reads the rest against the kept one
+    (Breadcrumbs keeps its 5-item trail);
+  - Counter's selectors skip a tab around it;
+  - `solar_tabs.dart` (`SolarTabsScope`, `SolarTabList`).
+- **Checks:** 1383 JS tests, both visual checks (73 on the web, 335 Flutter tests), lint, typecheck,
+  format, all three Flutter packages analysed and formatted, both viewers built, the personal-data
+  scan, and a rebuild that reproduces the tree.
+
 ### F9: Paging and steps
 
 - **Pioneer: PaginationItem.** MUI `PaginationItem`, bespoke in Flutter.

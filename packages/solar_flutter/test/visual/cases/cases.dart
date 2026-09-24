@@ -10,6 +10,8 @@ import 'autocomplete_open.dart';
 import 'avatar.dart';
 import 'backbutton.dart';
 import 'banner.dart';
+import 'breadcrumb_item.dart';
+import 'breadcrumbs.dart';
 import 'button.dart';
 import 'button_group.dart';
 import 'checkbox.dart';
@@ -35,6 +37,7 @@ import 'kbd.dart';
 import 'link.dart';
 import 'list.dart';
 import 'listitem.dart';
+import 'nav_item.dart';
 import 'node_end.dart';
 import 'number_input.dart';
 import 'option_row.dart';
@@ -45,6 +48,8 @@ import 'progressbar.dart';
 import 'radio.dart';
 import 'rowexpand.dart';
 import 'searchfield.dart';
+import 'section_nav_group_header.dart';
+import 'section_nav_item.dart';
 import 'segmented_control.dart';
 import 'segmented_control_item.dart';
 import 'select.dart';
@@ -54,6 +59,8 @@ import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
+import 'tab_item.dart';
+import 'tabs.dart';
 import 'tag.dart';
 import 'text_area.dart';
 import 'text_input.dart';
@@ -64,6 +71,7 @@ import 'toast.dart';
 import 'toggle.dart';
 import 'token_input.dart';
 import 'tree_indent.dart';
+import 'tree_item.dart';
 import 'trend_badge.dart';
 
 final cases = <String, VisualCase>{
@@ -74,6 +82,8 @@ final cases = <String, VisualCase>{
   'Avatar': avatarCase,
   'BackButton': backButtonCase,
   'Banner': bannerCase,
+  'Breadcrumb Item': breadcrumbItemCase,
+  'Breadcrumbs': breadcrumbsCase,
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
   'Checkbox': checkboxCase,
@@ -99,6 +109,7 @@ final cases = <String, VisualCase>{
   'Link': linkCase,
   'List': listCase,
   'ListItem': listItemCase,
+  'Nav Item': navItemCase,
   'Node End': nodeEndCase,
   'Number Input': numberInputCase,
   'Option Row': optionRowCase,
@@ -109,6 +120,8 @@ final cases = <String, VisualCase>{
   'Radio': radioCase,
   'RowExpand': rowExpandCase,
   'SearchField': searchFieldCase,
+  'Section Nav Group Header': sectionNavGroupHeaderCase,
+  'Section Nav Item': sectionNavItemCase,
   'Segmented Control': segmentedControlCase,
   'Segmented Control Item': segmentedControlItemCase,
   'Select': selectCase,
@@ -118,6 +131,8 @@ final cases = <String, VisualCase>{
   'Spinner': spinnerCase,
   'SplitButton': splitButtonCase,
   'StatusIndicator': statusIndicatorCase,
+  'Tab Item': tabItemCase,
+  'Tabs': tabsCase,
   'Tag': tagCase,
   'Text Area': textAreaCase,
   'Text Input': textInputCase,
@@ -128,5 +143,6 @@ final cases = <String, VisualCase>{
   'Toggle': toggleCase,
   'Token Input': tokenInputCase,
   'Tree Indent': treeIndentCase,
+  'Tree Item': treeItemCase,
   'Trend Badge': trendBadgeCase,
 };

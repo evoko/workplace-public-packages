@@ -8,8 +8,9 @@ and its Item), the tags and messages (Tag, Alert, Alert Small, Banner, Toast and
 the text fields (Text Input, Text Area, SearchField, GlobalSearch, Password Input, Number
 Input, Inline Input, Token Input, PIN Input and FileUpload), and the menus and lists (Dropdown
 Item, Dropdown Group Label, Dropdown Menu, Context Menu Item, Context Menu, Option Row, Options
-List, ListItem and List), and the pickers (Select, Dropdown, Autocomplete, DatePicker, Date Picker
-Open and its Day Cell, TimePicker and TimePicker Dropdown) so far.
+List, ListItem and List), the pickers (Select, Dropdown, Autocomplete, DatePicker, Date Picker Open
+and its Day Cell, TimePicker and TimePicker Dropdown), and navigation (Tabs and Tab Item, Nav Item,
+Section Nav Item and Group Header, Breadcrumbs and Breadcrumb Item, Tree Item) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -772,6 +773,76 @@ dropdown is one list of times a step apart (owner decision: not Figma's descript
 minute columns, which its drawing does not draw), each a Dropdown Item, the chosen one selected and
 scrolled into sight, a listbox the arrow keys move along. For a date and a time, put a DatePicker
 beside it.
+
+## Tabs and Tab Item
+
+| Prop                                     | Values                                                   | Default |
+| ---------------------------------------- | -------------------------------------------------------- | ------- |
+| `size` (Tabs)                            | `sm` · `md`, which its tabs take                         | `sm`    |
+| `value` · `defaultValue` · `onChange`    | the selected tab's `value` (its index where it has none) | none    |
+| `label` (Tab Item)                       | the tab's words                                          | —       |
+| `leadingIcon` · `trailingIcon` · `count` | an icon either side, a SOLAR Counter                     | none    |
+| `selected` · `disabled` (Tab Item)       | boolean; in a Tabs, the strip says which is selected     | `false` |
+
+Two to seven tabs, MUI's Tabs and Tab, a tablist: the arrow keys move the focus, Enter or Space
+selects (owner decision: the arrows move the focus, as SOLAR's description says, since a selected
+tab is the routed one). Each tab draws its own underline, MUI's moving indicator hidden; a focused
+tab draws Figma's focus, the underline and the ring (owner decision: as drawn). A tab's Counter is
+drawn in the variant Figma draws for the tab's state, at rest in every state. The strip does not
+scroll: a scroll would clip the focused tab's ring. A Tab Item lives in a Tabs (MUI's Tab needs
+one).
+
+## Nav Item, Section Nav Item and Section Nav Group Header
+
+| Prop                              | Values                                                | Default  |
+| --------------------------------- | ----------------------------------------------------- | -------- |
+| `label`                           | where it goes, its name                               | —        |
+| `iconOutline` · `iconSolid` (Nav) | its icon, and the solid one drawn while selected      | —        |
+| `icon` (Section Nav Item)         | its icon                                              | —        |
+| `selected`                        | the current page (`aria-current="page"`)              | `false`  |
+| `expanded` (Nav Item)             | its label shown beside its icon, spanning the sidebar | `false`  |
+| `disabled` (Section Nav Item)     | boolean                                               | `false`  |
+| `href` · every ButtonBase prop    | a link where it has one, a button otherwise           | a button |
+| `level` (Group Header)            | its heading level                                     | `3`      |
+
+A sidebar's destinations (Nav Item) and a settings rail's (Section Nav Item, grouped under Section
+Nav Group Headers, headings). Collapsed, a Nav Item is its icon alone, named by its label. Figma
+draws a Nav Item no focus; it draws SOLAR's ring (owner decision). A Section Nav Item spans its rail
+and has no padded target, since the items touch, as a menu's rows.
+
+## Breadcrumbs and Breadcrumb Item
+
+| Prop                                     | Values                                               | Default |
+| ---------------------------------------- | ---------------------------------------------------- | ------- |
+| children (Breadcrumbs)                   | BreadcrumbItems, the page's ancestors, then the page | —       |
+| `maxItems` · `expandLabel` (Breadcrumbs) | the longest trail shown whole; the ellipsis's name   | `5`     |
+| `href` · `onClick` (Breadcrumb Item)     | a link, or a button                                  | none    |
+| `type` · `disabled` (Breadcrumb Item)    | `link` · `current`; a disabled link is text          | `link`  |
+
+A page's place in its site, in a `nav` named "Breadcrumb" and an ordered list, a chevron between
+each two, hidden from a screen reader, the last the current page (`aria-current="page"`, no link).
+Past five, its middle collapses to an ellipsis, a button that opens a Dropdown Menu of the pages it
+hides, as SOLAR's description says. Drawn, not MUI's Breadcrumbs, whose collapse expands in place.
+A focused link draws SOLAR's ring, which Figma draws none of.
+
+## Tree Item
+
+| Prop                                            | Values                                             | Default |
+| ----------------------------------------------- | -------------------------------------------------- | ------- |
+| `label` · `depth`                               | its words; how deep it is, 0 to 10                 | — · `0` |
+| `selected` · `expanded` · `edit`                | boolean                                            | `false` |
+| `expandable` · `onExpandedChange`               | its chevron (a leaf keeps its room)                | `true`  |
+| `onSelect`                                      | a click, Enter or Space                            | none    |
+| `checked` · `onCheckedChange`                   | a checkbox                                         | none    |
+| `leadingIcon` · `trailingIcon`                  | an icon either side                                | none    |
+| `status` · `tag` · `count`                      | a StatusIndicator's type, a Tag, a Counter's count | none    |
+| `onMore` · `onAdd`                              | its actions, shown on hover and while selected     | none    |
+| `onRenameStart` · `onRename` · `onRenameCancel` | F2; Enter in the rename field; Escape              | none    |
+
+One row of a tree, `role="treeitem"` at its level. The arrow keys expand and collapse it. `edit`
+draws its words as a text field, an inline rename (owner decision), and a keyboard-focused row
+draws edit's edge and ring, as its description says edit "doubles as the focus treatment". The tree
+around it, the arrow keys across its rows, is the Tree Navigation Panel pattern's, later.
 
 ## Checked against Figma
 

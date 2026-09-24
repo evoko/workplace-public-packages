@@ -1,0 +1,51 @@
+# Hand-written decisions about SOLAR Tab Item, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Tab Item
+
+base:
+  mui: Tab
+  reason: >-
+    One tab of a Tabs strip. MUI's Tab on the web, for a tablist's keyboard: its Tabs moves the
+    focus from tab to tab with the arrow keys, and Enter or Space selects (owner decision
+    2026-09-24: arrows move the focus, as SOLAR's description says, since a selected tab is the
+    routed one). Its icons, words and Counter are drawn with the shared layer helpers. Bespoke in
+    Flutter, drawn and pressable, announced as a tab, selected where it is.
+
+follows:
+  root.borderBottomWidth:
+    axes: [state]
+    reason: >-
+      The selected tab's underline is its state's, 2px under the selected and the focused tab, as
+      Figma draws each; a tab at rest has none.
+
+set:
+  root.appearance.default.focus.borderColor:
+    token: color.border.strong
+    reason: >-
+      Figma binds the focused tab's underline colour to border/strong, a border width, not a
+      colour (its description's issue: "Non-color variable bound as a color"). It is the selected
+      tab's underline, drawn as Figma draws it on a focused tab with the ring (owner decision
+      2026-09-24), in the selected underline's colour, color.border.strong.
+  counter.base.height:
+    none: true
+    reason: >-
+      The counter is a SOLAR Counter, whose 20px pill is its own: the tab places it, and never
+      sizes it.
+
+bind:
+  leadingIcon.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.
+  trailingIcon.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: As the leading icon's.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap). A tab is drawn 40 (md) and 32 (sm), as its description says.

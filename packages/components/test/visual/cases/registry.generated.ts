@@ -9,6 +9,8 @@ import autocompleteOpen from './autocomplete-open.js';
 import avatar from './avatar.js';
 import backButton from './backbutton.js';
 import banner from './banner.js';
+import breadcrumbItem from './breadcrumb-item.js';
+import breadcrumbs from './breadcrumbs.js';
 import button from './button.js';
 import buttonGroup from './button-group.js';
 import checkbox from './checkbox.js';
@@ -34,6 +36,7 @@ import kbd from './kbd.js';
 import link from './link.js';
 import list from './list.js';
 import listItem from './listitem.js';
+import navItem from './nav-item.js';
 import nodeEnd from './node-end.js';
 import numberInput from './number-input.js';
 import optionRow from './option-row.js';
@@ -44,6 +47,8 @@ import progressBar from './progressbar.js';
 import radio from './radio.js';
 import rowExpand from './rowexpand.js';
 import searchField from './searchfield.js';
+import sectionNavGroupHeader from './section-nav-group-header.js';
+import sectionNavItem from './section-nav-item.js';
 import segmentedControl from './segmented-control.js';
 import segmentedControlItem from './segmented-control-item.js';
 import select from './select.js';
@@ -53,6 +58,8 @@ import sliderRange from './slider-range.js';
 import spinner from './spinner.js';
 import splitButton from './splitbutton.js';
 import statusIndicator from './statusindicator.js';
+import tabItem from './tab-item.js';
+import tabs from './tabs.js';
 import tag from './tag.js';
 import textArea from './text-area.js';
 import textInput from './text-input.js';
@@ -63,6 +70,7 @@ import toast from './toast.js';
 import toggle from './toggle.js';
 import tokenInput from './token-input.js';
 import treeIndent from './tree-indent.js';
+import treeItem from './tree-item.js';
 import trendBadge from './trend-badge.js';
 import type { VisualCase } from './types.js';
 
@@ -74,6 +82,8 @@ export const CASES: Record<string, VisualCase> = {
   Avatar: avatar,
   BackButton: backButton,
   Banner: banner,
+  'Breadcrumb Item': breadcrumbItem,
+  Breadcrumbs: breadcrumbs,
   Button: button,
   'Button Group': buttonGroup,
   Checkbox: checkbox,
@@ -99,6 +109,7 @@ export const CASES: Record<string, VisualCase> = {
   Link: link,
   List: list,
   ListItem: listItem,
+  'Nav Item': navItem,
   'Node End': nodeEnd,
   'Number Input': numberInput,
   'Option Row': optionRow,
@@ -109,6 +120,8 @@ export const CASES: Record<string, VisualCase> = {
   Radio: radio,
   RowExpand: rowExpand,
   SearchField: searchField,
+  'Section Nav Group Header': sectionNavGroupHeader,
+  'Section Nav Item': sectionNavItem,
   'Segmented Control': segmentedControl,
   'Segmented Control Item': segmentedControlItem,
   Select: select,
@@ -118,6 +131,8 @@ export const CASES: Record<string, VisualCase> = {
   Spinner: spinner,
   SplitButton: splitButton,
   StatusIndicator: statusIndicator,
+  'Tab Item': tabItem,
+  Tabs: tabs,
   Tag: tag,
   'Text Area': textArea,
   'Text Input': textInput,
@@ -128,5 +143,6 @@ export const CASES: Record<string, VisualCase> = {
   Toggle: toggle,
   'Token Input': tokenInput,
   'Tree Indent': treeIndent,
+  'Tree Item': treeItem,
   'Trend Badge': trendBadge,
 };

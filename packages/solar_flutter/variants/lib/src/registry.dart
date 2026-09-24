@@ -9,6 +9,8 @@ import 'autocomplete_open.dart';
 import 'avatar.dart';
 import 'backbutton.dart';
 import 'banner.dart';
+import 'breadcrumb_item.dart';
+import 'breadcrumbs.dart';
 import 'button.dart';
 import 'button_group.dart';
 import 'checkbox.dart';
@@ -34,6 +36,7 @@ import 'kbd.dart';
 import 'link.dart';
 import 'list.dart';
 import 'listitem.dart';
+import 'nav_item.dart';
 import 'node_end.dart';
 import 'number_input.dart';
 import 'option_row.dart';
@@ -44,6 +47,8 @@ import 'progressbar.dart';
 import 'radio.dart';
 import 'rowexpand.dart';
 import 'searchfield.dart';
+import 'section_nav_group_header.dart';
+import 'section_nav_item.dart';
 import 'segmented_control.dart';
 import 'segmented_control_item.dart';
 import 'select.dart';
@@ -53,6 +58,8 @@ import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
+import 'tab_item.dart';
+import 'tabs.dart';
 import 'tag.dart';
 import 'text_area.dart';
 import 'text_input.dart';
@@ -63,6 +70,7 @@ import 'toast.dart';
 import 'toggle.dart';
 import 'token_input.dart';
 import 'tree_indent.dart';
+import 'tree_item.dart';
 import 'trend_badge.dart';
 
 const builders = <String, VariantBuilder>{
@@ -73,6 +81,8 @@ const builders = <String, VariantBuilder>{
   'Avatar': buildAvatar,
   'BackButton': buildBackButton,
   'Banner': buildBanner,
+  'Breadcrumb Item': buildBreadcrumbItem,
+  'Breadcrumbs': buildBreadcrumbs,
   'Button': buildButton,
   'Button Group': buildButtonGroup,
   'Checkbox': buildCheckbox,
@@ -98,6 +108,7 @@ const builders = <String, VariantBuilder>{
   'Link': buildLink,
   'List': buildList,
   'ListItem': buildListItem,
+  'Nav Item': buildNavItem,
   'Node End': buildNodeEnd,
   'Number Input': buildNumberInput,
   'Option Row': buildOptionRow,
@@ -108,6 +119,8 @@ const builders = <String, VariantBuilder>{
   'Radio': buildRadio,
   'RowExpand': buildRowExpand,
   'SearchField': buildSearchField,
+  'Section Nav Group Header': buildSectionNavGroupHeader,
+  'Section Nav Item': buildSectionNavItem,
   'Segmented Control': buildSegmentedControl,
   'Segmented Control Item': buildSegmentedControlItem,
   'Select': buildSelect,
@@ -117,6 +130,8 @@ const builders = <String, VariantBuilder>{
   'Spinner': buildSpinner,
   'SplitButton': buildSplitButton,
   'StatusIndicator': buildStatusIndicator,
+  'Tab Item': buildTabItem,
+  'Tabs': buildTabs,
   'Tag': buildTag,
   'Text Area': buildTextArea,
   'Text Input': buildTextInput,
@@ -127,5 +142,6 @@ const builders = <String, VariantBuilder>{
   'Toggle': buildToggle,
   'Token Input': buildTokenInput,
   'Tree Indent': buildTreeIndent,
+  'Tree Item': buildTreeItem,
   'Trend Badge': buildTrendBadge,
 };

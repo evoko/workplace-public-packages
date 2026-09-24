@@ -1,0 +1,41 @@
+# Hand-written decisions about SOLAR Breadcrumbs, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Breadcrumbs
+
+base:
+  reason: >-
+    The trail of a page's ancestors, its description says: Breadcrumb Items between chevrons, the
+    last the current page, in a `nav` named "Breadcrumb" and an ordered list, the chevrons hidden
+    from a screen reader; past five, its middle collapses to an ellipsis that opens a menu of the
+    pages it hides ("middle collapses to an ellipsis menu"). Drawn with the shared layer helpers on
+    both platforms, not MUI's Breadcrumbs, whose collapse expands the trail in place and whose
+    separators are one element for every gap.
+
+samples:
+  items:
+    keep: ['5']
+    reason: >-
+      The number of items is the caller's trail, not a prop: Figma's 2 to 5, and "multiple" (past
+      five, collapsed to the first page, an ellipsis and the current page), are samples of it,
+      drawn with the same items and chevrons. The recipe keeps 5, the fullest, which names every
+      item and chevron; the oracle checks each trail, reached by as many pages.
+
+bind:
+  iconChevronRight.width:
+    literal: 12
+    token: icon.xs
+    reason: Same value, governed token; the chevron's height is already bound to it.
+  iconChevronRight2.width:
+    literal: 12
+    token: icon.xs
+    reason: As the first chevron's.
+  iconChevronRight3.width:
+    literal: 12
+    token: icon.xs
+    reason: As the first chevron's.
+  iconChevronRight4.width:
+    literal: 12
+    token: icon.xs
+    reason: As the first chevron's.

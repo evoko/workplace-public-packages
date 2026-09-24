@@ -1,0 +1,75 @@
+# Hand-written decisions about SOLAR Nav Item, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Nav Item
+
+base:
+  mui: ButtonBase
+  reason: >-
+    One item of a sidebar or top bar, its description says: a destination, a link where it has an
+    `href` and a button otherwise, the current one selected (`aria-current="page"`). MUI's
+    ButtonBase on the web, for its keyboard focus (focus-visible) and its link or button element;
+    its icon and label drawn with the shared layer helpers. Bespoke in Flutter, drawn and
+    pressable. Collapsed, it is its icon alone, named by its label.
+
+follows:
+  root.gap:
+    axes: [expanded]
+    reason: >-
+      Expanded, the item holds its label beside its icon, 8px apart; collapsed, the icon alone,
+      with no gap, as Figma draws each.
+  root.paddingLeft:
+    axes: [expanded]
+    reason: As the gap, the expanded item's padding either side of its icon and label.
+  root.paddingRight:
+    axes: [expanded]
+    reason: As the left padding.
+  root.width:
+    axes: [expanded]
+    reason: >-
+      Collapsed, the item is a 40px square, its icon alone; expanded, it spans its sidebar, as its
+      description says ("full-width × 40 expanded").
+
+set:
+  root.appearance.selected=false, expanded=true.default.width:
+    keyword: FILL
+    reason: >-
+      Expanded, the item spans its sidebar ("full-width × 40 expanded", its description says):
+      Figma draws it 182 wide, bound to nothing, a sample of a sidebar's width.
+  root.appearance.selected=true, expanded=true.default.width:
+    keyword: FILL
+    reason: As the unselected expanded item's, it spans its sidebar.
+  root.appearance.selected=false, expanded=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Nav Item no focus state, and its description argues against one as a boolean
+      axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's
+      focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR
+      to draw it.
+  root.appearance.selected=false, expanded=true.focus.shadow:
+    token: shadow.focus.default
+    reason: As the collapsed item's, the focus ring.
+  root.appearance.selected=true, expanded=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the unselected item's, the focus ring.
+  root.appearance.selected=true, expanded=true.focus.shadow:
+    token: shadow.focus.default
+    reason: As the unselected item's, the focus ring.
+
+bind:
+  iconOutline.height:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's width is already bound to it.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap). An item is drawn 40 tall, as its description says.
+  root.width:
+    values: [40]
+    reason: >-
+      Collapsed, the item is as wide as it is tall, a 40px square around its icon, as its
+      description says ("40×40 collapsed (icon-only)"); expanded, it fills its sidebar.

@@ -40,19 +40,20 @@ describe('the Counter recipe', () => {
   const { styles } = renderMuiComponent(spec, tokens);
   const regular = styles.appearances['type=regular'];
 
-  it('hovers where it is a button, and where the button it sits in is hovered', () => {
+  // Not in a tab: a Tab Item's Counter is drawn at rest in every state of the tab, as Figma draws it.
+  it('hovers where it is a button, and where the button it sits in, not a tab, is hovered', () => {
     const hover = Object.keys(regular).find((k) => k.includes(':hover'));
     expect(hover).toBe(
-      '&:is(button):not(:disabled):hover, button:not(:disabled):hover &',
+      '&:is(button):not(:disabled):hover, button:not(:disabled):not([role="tab"]):hover &',
     );
     expect(regular[hover]).toMatchObject({
       backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
     });
   });
 
-  it('is disabled by its prop, or by the disabled control around it', () => {
+  it('is disabled by its prop, or by the disabled control around it, not a tab', () => {
     expect(regular).toHaveProperty([
-      '&.SolarCounter-disabled, button:disabled &, .Mui-disabled &',
+      '&.SolarCounter-disabled, button:not([role="tab"]):disabled &, .Mui-disabled:not([role="tab"]) &',
     ]);
   });
 

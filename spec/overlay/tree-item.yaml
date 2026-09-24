@@ -1,7 +1,6 @@
 # Hand-written decisions about SOLAR Tree Item, applied over its IR by `npm run solar:codegen`.
 # Every rule needs a reason; one that no longer matches the IR fails the build.
-# Format: packages/codegen/src/normalize/overlay.mjs. The component's other decisions come with its
-# family, F8 of the milestone 4 plan.
+# Format: packages/codegen/src/normalize/overlay.mjs.
 
 component: Tree Item
 
@@ -13,3 +12,160 @@ layerNames:
       inline input of a rename, with the caret drawn into its text. Its name and the label's reduce
       to one; this names what it is. `edit` stays one of Tree Item's states, as SOLAR draws it
       (design team, 2026-09-24).
+
+base:
+  reason: >-
+    One row of a hierarchical tree, its description says: indented by its depth (a .Tree Indent),
+    a chevron that expands and collapses it, and a checkbox, icons, a status, a Tag, a Counter and
+    its actions as the caller gives them. Bespoke on both platforms, a row announced as a tree
+    item, drawn with the shared layer helpers. Its edit state is an inline rename, a text field in
+    the label's place, and doubles as its focus: a keyboard-focused row draws edit's edge and ring
+    (owner decision 2026-09-24). The tree around it, its arrow keys across rows, is the Tree
+    Navigation Panel pattern's.
+
+follows:
+  root.borderWidth:
+    axes: [state]
+    reason: >-
+      Editing, and focused, the row is edged, as an input is; at rest and hovered it has no edge,
+      as Figma draws each.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row spans its tree, as a list's does: Figma draws it 200 wide, bound to nothing, a sample of
+      a tree's width.
+  treeIndent.base.width:
+    none: true
+    reason: >-
+      The indent is a SOLAR .Tree Indent, as wide as its depth (16px a level, its description
+      says): the row lays it out and never sizes it; Figma's 0 is depth 00's.
+  treeIndent.base.height:
+    none: true
+    reason: As its width, the Tree Indent's own, its row's height.
+  checkbox.base.width:
+    none: true
+    reason: >-
+      The checkbox is a SOLAR Checkbox, whose 16px box is its own: the row places it, and never
+      sizes it.
+  checkbox.base.height:
+    none: true
+    reason: As its width, the Checkbox's own.
+  status.base.width:
+    none: true
+    reason: The status is a SOLAR StatusIndicator, whose 8px dot (xs) is its own.
+  status.base.height:
+    none: true
+    reason: As its width, the StatusIndicator's own.
+  tag.base.height:
+    none: true
+    reason: The tag is a SOLAR Tag, whose 24px height is its own.
+  counter.base.height:
+    none: true
+    reason: The counter is a SOLAR Counter, whose 20px pill is its own.
+  root.appearance.selected=false, expanded=false.focus.borderWidth:
+    token: border.default
+    reason: >-
+      Figma draws Tree Item no focus state: its description says edit "doubles as the focus
+      treatment" (owner decision 2026-09-24). A keyboard-focused row draws edit's edge and ring,
+      its label and fill its own; the design review asks SOLAR to draw it.
+  root.appearance.selected=false, expanded=false.focus.borderColor:
+    token: color.border.feedback.focus.strong
+    reason: As a resting row's focus, edit's edge colour.
+  root.appearance.selected=false, expanded=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As a resting row's focus, edit's ring.
+  root.appearance.selected=false, expanded=true.focus.borderWidth:
+    token: border.default
+    reason: As a resting row's focus, its edge, edit's width.
+  root.appearance.selected=false, expanded=true.focus.borderColor:
+    token: color.border.feedback.focus.strong
+    reason: As a resting row's focus, edit's edge colour.
+  root.appearance.selected=false, expanded=true.focus.shadow:
+    token: shadow.focus.default
+    reason: As a resting row's focus, edit's ring.
+  root.appearance.selected=true, expanded=false.focus.borderWidth:
+    token: border.default
+    reason: As a resting row's focus, its edge, edit's width.
+  root.appearance.selected=true, expanded=false.focus.borderColor:
+    token: color.border.feedback.focus.strong
+    reason: As a resting row's focus, edit's edge colour.
+  root.appearance.selected=true, expanded=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As a resting row's focus, edit's ring.
+  root.appearance.selected=true, expanded=true.focus.borderWidth:
+    token: border.default
+    reason: As a resting row's focus, its edge, edit's width.
+  root.appearance.selected=true, expanded=true.focus.borderColor:
+    token: color.border.feedback.focus.strong
+    reason: As a resting row's focus, edit's edge colour.
+  root.appearance.selected=true, expanded=true.focus.shadow:
+    token: shadow.focus.default
+    reason: As a resting row's focus, edit's ring.
+
+accept:
+  component.tree item.root.paddingTop@selected=false, expanded=false, state=edit:
+    reason: >-
+      Figma binds the editing row's top padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+  component.tree item.root.paddingBottom@selected=false, expanded=false, state=edit:
+    reason: >-
+      Figma binds the editing row's bottom padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+  component.tree item.root.paddingTop@selected=false, expanded=true, state=edit:
+    reason: >-
+      Figma binds the editing row's top padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+  component.tree item.root.paddingBottom@selected=false, expanded=true, state=edit:
+    reason: >-
+      Figma binds the editing row's bottom padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+  component.tree item.root.paddingTop@selected=true, expanded=false, state=edit:
+    reason: >-
+      Figma binds the editing row's top padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+  component.tree item.root.paddingBottom@selected=true, expanded=false, state=edit:
+    reason: >-
+      Figma binds the editing row's bottom padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+  component.tree item.root.paddingTop@selected=true, expanded=true, state=edit:
+    reason: >-
+      Figma binds the editing row's top padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+  component.tree item.root.paddingBottom@selected=true, expanded=true, state=edit:
+    reason: >-
+      Figma binds the editing row's bottom padding to stack.none and leaves the others an
+      unbound 0, which the shared default binds to inset.none: the same 0 either way.
+
+bind:
+  chevronChevron.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+  iconChevronDown.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+  leadingIcon.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+  trailingIcon.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+  iconMore.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+  iconPlus.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As a list's row: SOLAR publishes no row height token (owner decision 2026-09-23, raised as a
+      governance gap). A row is drawn 32 tall, its description's.

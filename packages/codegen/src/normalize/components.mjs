@@ -411,9 +411,9 @@ export function buildComponentSpec(
   // picker's Day Cell), is the component's name from here on: its files, its code and its
   // findings' tokens. Figma's stays in the provenance.
   const codeName = overlay?.codeName?.name;
-  const set = codeName ? { ...figmaSet, name: codeName } : figmaSet;
+  const named = codeName ? { ...figmaSet, name: codeName } : figmaSet;
   // Checkbox draws `hover` and `focus` as axes of their own; they are one state axis here.
-  const folded = foldStateAxes(resolveVariants(set));
+  const folded = foldStateAxes(resolveVariants(named));
   const stateFindings = folded.findings;
   // Then a state value Figma spells otherwise (Text Input's `pressed` is its focus state).
   // Axes that are samples of what the caller gives (Avatar's colours) are dropped, keeping the
@@ -423,6 +423,19 @@ export function buildComponentSpec(
     sameLayers(renameStates(folded.resolved, overlay), overlay),
     overlay,
   );
+  // The variant the rest are read against: Figma's default, or, where the samples dropped it
+  // (Breadcrumbs keeps its 5-item trail, not its default "multiple"), the kept variant at every
+  // other axis's default.
+  const set = resolved.variants.some((v) => v.name === named.defaultVariant)
+    ? named
+    : {
+        ...named,
+        defaultVariant: resolved.variants.find((v) =>
+          Object.entries(resolved.axes).every(
+            ([axis, def]) => v.props[axis] === def.default,
+          ),
+        )?.name,
+      };
   // Settled before the recipe, because the overlay's `follows` rules are written in them.
   const parents = new Map();
   const defaultVariant = resolved.variants.find(

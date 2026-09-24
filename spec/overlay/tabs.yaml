@@ -1,0 +1,67 @@
+# Hand-written decisions about SOLAR Tabs, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Tabs
+
+base:
+  mui: Tabs
+  reason: >-
+    A strip of two to seven Tab Items, its description says, one selected: MUI's Tabs on the web,
+    for a tablist's keyboard (the arrow keys move the focus from tab to tab, Enter or Space selects:
+    owner decision 2026-09-24) and its moving indicator hidden, since each Tab Item draws its own
+    underline; the strip's edge drawn by its recipe. Bespoke in Flutter, a row of SolarTabItems the
+    arrow keys move along, announced as a tab bar. Neither scrolls: the strip holds its tabs, and a
+    scroll would clip the focused tab's ring.
+
+set:
+  tabItem.base.height:
+    none: true
+    reason: >-
+      A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never
+      sizes it.
+  tabItem.size.md.height:
+    none: true
+    reason: As sm's, its own.
+  tabItem2.base.height:
+    none: true
+    reason: As the first tab's, its own.
+  tabItem2.size.md.height:
+    none: true
+    reason: As sm's, its own.
+  tabItem3.base.height:
+    none: true
+    reason: As the first tab's, its own.
+  tabItem3.size.md.height:
+    none: true
+    reason: As sm's, its own.
+  tabItem4.base.height:
+    none: true
+    reason: As the first tab's, its own.
+  tabItem4.size.md.height:
+    none: true
+    reason: As sm's, its own.
+  tabItem5.base.height:
+    none: true
+    reason: As the first tab's, its own.
+  tabItem5.size.md.height:
+    none: true
+    reason: As sm's, its own.
+  tabItem6.base.height:
+    none: true
+    reason: As the first tab's, its own.
+  tabItem6.size.md.height:
+    none: true
+    reason: As sm's, its own.
+  tabItem7.base.height:
+    none: true
+    reason: As the first tab's, its own.
+  tabItem7.size.md.height:
+    none: true
+    reason: As sm's, its own.
+  tabItem8.base.height:
+    none: true
+    reason: As the first tab's, its own.
+  tabItem8.size.md.height:
+    none: true
+    reason: As sm's, its own.

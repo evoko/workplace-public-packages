@@ -210,6 +210,11 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      rows a shell gives it (`content`) by the gap.
    - **A text placed by position** (the double calendar's month labels) has `x` and `y` cells, as
      any placed layer; before, a text's position was dropped, though the oracle measured it.
+     What F8 (navigation) added:
+   - **Samples that drop the default variant.** Where the overlay's `samples` keeps a value other
+     than Figma's default (Breadcrumbs keeps its 5-item trail, not its default "multiple"), the
+     variant the rest are read against is the kept one at every other axis's default. The oracle
+     still keeps every variant, each reached by the content it samples (as many pages).
 3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
    demoted — hover, pressed and focus become platform states, disabled and loading stay props;
    states drawn as `false/true` axes of their own, as Checkbox's are, are first folded into one
@@ -507,7 +512,11 @@ axis=value, …>` gives each layer and property of those variants as a chain: Fi
      out. `shells.slots` says how both shells name a slot they name otherwise (`required:
 'mandatory'`, `{react, flutter}`), or `null` where the shell fills it itself (Select's
      chevron, the calendar's month). `drawnFlutter`'s `control` takes `focusNode` (a calendar's
-     day, which the arrow keys move to) and `target: false` (days that touch, as rows do). A drawn icon is marked `<prefix>-drawnIcon` on the
+     day, which the arrow keys move to) and `target: false` (days that touch, as rows do). F8's
+     strip and rail share `solar_flutter`'s `lib/src/solar_tabs.dart` (`SolarTabsScope`, the strip's
+     size and choice, which a tab reads; `SolarTabList`, the tab bar and its arrow keys). A Counter
+     in a tab takes none of the tab's states (its selectors skip a `[role="tab"]` button, and in
+     Flutter it sits in a `SolarStatesScope` of its own). A drawn icon is marked `<prefix>-drawnIcon` on the
      web, a class no layer is named, so a layer named `icon` (ListItem's) styles itself alone.
      Every control's recipe gives it a 44 × 44 target that takes no room
      (`src/shells/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input
