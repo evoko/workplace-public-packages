@@ -39,7 +39,7 @@ export const solarRowExpandStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarRowExpand-icon': {
+    '& .SolarRowExpand-drawnIcon': {
       display: 'block',
       flexShrink: '0',
     },

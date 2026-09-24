@@ -73,6 +73,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
       disabled = false,
       onChange,
       className,
+      slotProps,
       sx,
       ...rest
     },
@@ -102,7 +103,11 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
             .join(' ') || undefined
         }
         slots={{ thumb: Thumb }}
-        slotProps={{ thumb: { parts: solarToggleCompose(look) } as object }}
+        // The caller's, the input's among them (an Option Row describes it), beside the thumb's.
+        slotProps={{
+          ...slotProps,
+          thumb: { parts: solarToggleCompose(look) } as object,
+        }}
         sx={[solarToggleStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
       />
     );

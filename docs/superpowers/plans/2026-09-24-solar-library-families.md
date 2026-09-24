@@ -1161,6 +1161,48 @@ surface and the rows.
   - List.
 - **When done:** SplitButton's menu slot gets its default.
 
+**F6 done 2026-09-24.** Dropdown Item (pioneer), Dropdown Group Label, Dropdown Menu, Context Menu
+Item, Context Menu, Option Row, Options List, ListItem and List, every variant matching Figma on
+both platforms, every finding decided (none left open); SplitButton's menu has its default.
+53 components.
+
+- **Owner decisions (2026-09-24):**
+  - a menu's keyboard moves real focus, and a focused Dropdown Item draws the hover (its
+    description's aria-activedescendant read as the look, not the mechanism);
+  - a menu is a surface that floats where it is anchored (an element, or a point for Context
+    Menu), and draws in place otherwise;
+  - SplitButton takes `items` and opens its own Dropdown Menu;
+  - List is drawn as Figma draws it, though its description says the opposite of its `in-card`
+    variants (the design review asks);
+  - rows that touch get no padded 44 × 44 target (a row's box is its target, above WCAG's 24);
+  - a menu caps at 300px, one flagged raw value (`MENU_MAX_HEIGHT`, `solarMenuMaxHeight`);
+  - Options List's legend is hidden on the page, read by a screen reader.
+- **Taken here, open to the owner:** Dropdown Item and Context Menu Item on MUI's MenuItem, ListItem
+  on ListItemButton, the rest bespoke; in Flutter all drawn, a menu floated by MenuAnchor through
+  `SolarMenuAnchor`. A menu's rows take its size, and a List's rows its compactness, the container
+  winning (`SolarMenuScope`, `SolarListScope`, a React context each). ListItem's type follows from
+  an `avatar`, as Tag's does; List's `in-card` is renamed `inCard`. A destructive Context Menu
+  Item's hover, focus and disabled look are the other rows' (Figma draws none). An Option Row's
+  control takes the row's hover. ListItem's `trailing` is an icon.
+- **Machinery:**
+  - `flutter.states`, a platform state's own Flutter test (the Dropdown Item's hover under focus);
+  - a control drawn inside another, inert: `control.drawnIn` (Checkbox's `inStates`), and on the
+    web `.SolarStatesScope:hover &` in Checkbox's, Radio's and Toggle's hover;
+  - `SolarPressable`'s `role` and `selected`; `content` in both drawn helpers and `before` in the
+    React one;
+  - `shells/menu.mjs` (`menuReact`, `menuResets`), `internal/float.tsx`, and in Flutter
+    `solar_menu.dart` (`SolarMenuList`, `SolarMenuAnchor`, `SolarMenuScope`) and `solar_list.dart`;
+  - the web helper marks a drawn icon `<prefix>-drawnIcon`, not `<prefix>-icon`, which a layer
+    named `icon` shared: ListItem's icon rule was styling its trailing icon (RowExpand's reset
+    moved with it; Tag had the same latent overlap);
+  - Toggle merges the caller's `slotProps`.
+- **The checks:** a case may mark its root (`data-case-root`) where it holds the component in what
+  it always sits in (a MUI MenuList); the Flutter harness measures a slot's keyed children
+  (`measureHeld`); the case type lets a child's variant lack a prop.
+- **Checks:** 1194 JS tests, both visual checks (56 on the web, 258 Flutter tests), lint, typecheck,
+  format, all three Flutter packages analysed and formatted, both viewers built, the personal-data
+  scan, and a rebuild that reproduces the tree.
+
 ### F7: Pickers
 
 - **Pioneer: Select.** MUI `Select` on F5's `InputBase`, with F6's Dropdown Menu as its menu.

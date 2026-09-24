@@ -262,8 +262,13 @@ async function check(page, component, { only } = {}) {
   for (const [i, variant] of oracle.variants.entries()) {
     if (only && !only.includes(variant.figma)) continue;
     const kase = page.locator(`[data-case="${slug(component)}:${i}"]`);
-    // The component's root: Button's <button>, Spinner's box.
-    const control = kase.locator(':scope > *').first();
+    // The component's root: Button's <button>, Spinner's box; or, where the case holds it in what
+    // it always sits in (a Dropdown Item in a menu), the element the case marks as the root.
+    const marked = kase.locator('[data-case-root]');
+    const control =
+      (await marked.count()) > 0
+        ? marked.first()
+        : kase.locator(':scope > *').first();
     const leave = await reach(page, control, variant.state, component);
     if (variant.state === 'focus' && focusClass)
       await expect(control, `${variant.figma}: keyboard focus`).toHaveClass(

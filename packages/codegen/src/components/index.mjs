@@ -7,8 +7,9 @@
  *   address    how the catalog finds it, where that is not `name` (`calendar/Day Cell`)
  *   mui        slots (or 'drawn': every layer the shell draws, from the IR), resets, svgLayers,
  *              states, overlaps, restates (src/emit/mui-component.mjs)
- *   flutter    style, shared (src/emit/flutter-component.mjs), and groupDecides: the props a
- *              group decides in Flutter, not the widget (Radio's checked, its RadioGroup's)
+ *   flutter    style, shared, states (src/emit/flutter-component.mjs: a platform state's own
+ *              test, the Flutter side of mui.states), and groupDecides: the props a group decides
+ *              in Flutter, not the widget (Radio's checked, its RadioGroup's)
  *   shells     how the shells name what the IR names otherwise, where they do: `label: 'label'`, a
  *              label that is a prop, not the children (a field's), and `flutter`, the props
  *              Flutter takes by another name (a field's `value` is its `controller`'s)

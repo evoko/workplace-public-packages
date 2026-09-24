@@ -36,7 +36,10 @@ npx playwright install chromium  # once, on a new machine
   fills its group, whatever width it has alone), so its root's width and height are compared with
   the parent's entry for the layer instead. Where the slot table styles several layers with one
   selector (a group's buttons are all `& > *`), the case marks each layer's element with
-  `data-layer`, which the check measures in preference. Cases are `data-case="<slug>:<index>"`.
+  `data-layer`, which the check measures in preference; so does a case that holds the caller's
+  children in a slot (a menu's rows). Cases are `data-case="<slug>:<index>"`, and the component's
+  root is the case's first element, or the one it marks `data-case-root` where it holds the
+  component in what it always sits in (a Dropdown Item in a MUI MenuList).
 - **Excused entries on a layer the variant does not draw** (a Button hidden in one group) cannot be
   reached, so the count of gaps expected leaves them out.
 - **Comparing** (`compare.mjs`): colours in sRGB within one 8-bit step, lengths within half a

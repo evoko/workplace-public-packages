@@ -10,9 +10,14 @@ import banner from './banner.js';
 import button from './button.js';
 import buttonGroup from './button-group.js';
 import checkbox from './checkbox.js';
+import contextMenu from './context-menu.js';
+import contextMenuItem from './context-menu-item.js';
 import counter from './counter.js';
 import divider from './divider.js';
 import dragHandle from './draghandle.js';
+import dropdownGroupLabel from './dropdown-group-label.js';
+import dropdownItem from './dropdown-item.js';
+import dropdownMenu from './dropdown-menu.js';
 import emptyState from './emptystate.js';
 import fab from './fab.js';
 import fileUpload from './fileupload.js';
@@ -21,8 +26,12 @@ import iconButton from './icon-button.js';
 import inlineInput from './inline-input.js';
 import kbd from './kbd.js';
 import link from './link.js';
+import list from './list.js';
+import listItem from './listitem.js';
 import nodeEnd from './node-end.js';
 import numberInput from './number-input.js';
+import optionRow from './option-row.js';
+import optionsList from './options-list.js';
 import pinInput from './pin-input.js';
 import passwordInput from './password-input.js';
 import progressBar from './progressbar.js';
@@ -57,9 +66,14 @@ export const CASES: Record<string, VisualCase> = {
   Button: button,
   'Button Group': buttonGroup,
   Checkbox: checkbox,
+  'Context Menu': contextMenu,
+  'Context Menu Item': contextMenuItem,
   Counter: counter,
   Divider: divider,
   DragHandle: dragHandle,
+  'Dropdown Group Label': dropdownGroupLabel,
+  'Dropdown Item': dropdownItem,
+  'Dropdown Menu': dropdownMenu,
   EmptyState: emptyState,
   FAB: fab,
   FileUpload: fileUpload,
@@ -68,8 +82,12 @@ export const CASES: Record<string, VisualCase> = {
   'Inline Input': inlineInput,
   Kbd: kbd,
   Link: link,
+  List: list,
+  ListItem: listItem,
   'Node End': nodeEnd,
   'Number Input': numberInput,
+  'Option Row': optionRow,
+  'Options List': optionsList,
   'PIN Input': pinInput,
   'Password Input': passwordInput,
   ProgressBar: progressBar,

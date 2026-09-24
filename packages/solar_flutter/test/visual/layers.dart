@@ -169,3 +169,28 @@ String? _composedPrefix(WidgetTester tester, KeyedSubtree keyed, Finder here) {
   }
   return null;
 }
+
+/// The children a component holds that its case keyed by their Figma layers (a menu's rows, a
+/// list's items), each measured as that child's check measures one, into [into]. [prefixes] maps
+/// the start of a layer's name to the child's own key prefix (`'dropdownItem'` to `'dropdownItem'`,
+/// `'divider'` to `'divider'`).
+void measureHeld(
+  WidgetTester tester,
+  Finder of,
+  Layers into,
+  Map<String, String> prefixes,
+) {
+  for (final keyed in tester.widgetList<KeyedSubtree>(
+    find.descendant(of: of, matching: find.byType(KeyedSubtree)),
+  )) {
+    final key = keyed.key;
+    if (key is! ValueKey<String> || key.value.contains('.')) continue;
+    for (final MapEntry(key: start, value: prefix) in prefixes.entries) {
+      if (!key.value.startsWith(start)) continue;
+      into[key.value] = {
+        'drawn': true,
+        'layers': measureLayers(tester, find.byKey(key), prefix),
+      };
+    }
+  }
+}

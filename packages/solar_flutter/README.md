@@ -57,7 +57,9 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 `SolarAlert`, `SolarAlertSmall`, `SolarBanner`, `SolarToast` and `SolarEmptyState`), and the
 text fields (`SolarTextInput`, `SolarTextArea`, `SolarSearchField`, `SolarGlobalSearch`,
 `SolarPasswordInput`, `SolarNumberInput`, `SolarInlineInput`, `SolarTokenInput`, `SolarPINInput`
-and `SolarFileUpload`) take the same props as the React components
+and `SolarFileUpload`), and the menus and lists (`SolarDropdownItem`, `SolarDropdownGroupLabel`,
+`SolarDropdownMenu`, `SolarContextMenuItem`, `SolarContextMenu`, `SolarOptionRow`,
+`SolarOptionsList`, `SolarListItem` and `SolarList`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
@@ -77,8 +79,20 @@ focus and states for them all: hovered and focused as the field is, not as the T
 A `SolarNumberInput` takes a `num? value` and `onChanged`; a `SolarTokenInput` its entries as
 `value`, its draft in a `controller`; a `SolarPINInput` its digits in a `controller`; and a
 `SolarFileUpload` shows the names the app's picker chose, calling `onBrowse` for it to open one,
-since Flutter has none of its own. `SolarFAB` is a FilledButton, which a Scaffold's
-`floatingActionButton` takes:
+since Flutter has none of its own. A menu (`SolarDropdownMenu`, `SolarContextMenu`) draws where it
+is put, its rows in a `SolarMenuList` (`lib/src/solar_menu.dart`) that the arrow keys move along,
+scrolling past `solarMenuMaxHeight` (300, a flagged raw value, as the description asks); to float
+one, give it to a `SolarMenuAnchor`, Flutter's MenuAnchor with its panel giving way to the menu,
+opened by the controller its builder is given (at a point, `controller.open(position: …)`, for a
+context menu), which focuses the first row and closes on Escape or a tap outside. Its rows take its
+size and are announced as menu items (`SolarMenuScope`), a focused row drawing Figma's hover; a
+`SolarDropdownItem`'s checkbox is a `SolarCheckbox` drawn in the row's states (`inStates`), inert.
+A `SolarSplitButton` given `items` opens them in a menu of its own. A `SolarOptionRow<T>` is its
+control's target: a tap on the row is the control's, hovering it hovers it, and a radio row is
+checked by its `RadioGroup<T>`. A `SolarList` puts a `SolarDivider` between each two rows unless
+`dividers` is false, and gives its rows its compactness (`SolarListScope`, `lib/src/solar_list.dart`),
+as Figma draws them; a `SolarListItem` is an avatar row where it is given an `avatar`.
+`SolarFAB` is a FilledButton, which a Scaffold's `floatingActionButton` takes:
 
 ```dart
 SolarButton(

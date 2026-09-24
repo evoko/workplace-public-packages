@@ -62,9 +62,10 @@ describe('the Checkbox recipe', () => {
 
   it('marks its states with MUI’s classes', () => {
     const checked = styles.appearances['checked=true, mixed=false'];
+    // Its hover is also a row's that draws it (a Dropdown Item's, hovered or focused: F6).
     expect(Object.keys(checked)).toEqual(
       expect.arrayContaining([
-        '&:hover',
+        '&:hover, .SolarStatesScope:hover &, .SolarStatesScope.Mui-focusVisible &',
         '&.Mui-focusVisible',
         '&.Mui-disabled',
       ]),

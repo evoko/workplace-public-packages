@@ -13,7 +13,13 @@ export interface OracleVariant {
    */
   layers?: Record<
     string,
-    ({ variant?: Record<string, string> } & Record<string, unknown>) | undefined
+    // A child's variant, where two components share a layer (Option Row's Checkbox or Radio), may
+    // lack a prop the other has.
+    | ({ variant?: Record<string, string | undefined> } & Record<
+        string,
+        unknown
+      >)
+    | undefined
   >;
 }
 

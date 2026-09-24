@@ -20,7 +20,7 @@ export default {
     // The shell draws every layer itself, each with a class of its own.
     slots: 'drawn',
     resets: drawnResets('RowExpand', {
-      '& .SolarRowExpand-icon': { display: 'block', flexShrink: '0' },
+      '& .SolarRowExpand-drawnIcon': { display: 'block', flexShrink: '0' },
     }),
   },
   flutter: {},

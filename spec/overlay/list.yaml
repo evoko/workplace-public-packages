@@ -1,0 +1,101 @@
+# Hand-written decisions about SOLAR List, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: List
+
+base:
+  reason: >-
+    The container of a set of ListItems, with a Divider between them where the caller asks: a list
+    on both platforms, its rows the caller's, drawn with the shared layer helpers.
+
+rename:
+  in-card:
+    to: inCard
+    reason: >-
+      A prop in code is one word, as the platforms spell a flag: `inCard`. Figma's name has a
+      hyphen, which neither a React prop nor a Dart parameter can take as it is.
+
+follows:
+  root.borderWidth:
+    axes: [in-card]
+    reason: >-
+      Drawn as Figma draws it (owner decision 2026-09-24): in-card=true has the edge, in-card=false
+      none, though the description says the opposite ("true drops the outer border and padding
+      for placement inside Card"). The design review asks SOLAR which is meant.
+  root.radius:
+    axes: [in-card]
+    reason: As the edge, drawn as Figma draws it.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A list spans what holds it, as its rows do: Figma's in-card list hugs its 387-wide rows and
+      its other one is 368 wide, samples.
+  items.base.width:
+    keyword: FILL
+    reason: The rows' column spans the list.
+  items.appearance.in-card=false.default.width:
+    keyword: FILL
+    reason: As the in-card list's.
+  listItem.base.width:
+    keyword: FILL
+    reason: >-
+      A row spans the list: Figma draws it 387 wide, a sample.
+  listItem.appearance.in-card=false.default.width:
+    keyword: FILL
+    reason: As the in-card list's rows.
+  listItem2.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  listItem2.appearance.in-card=false.default.width:
+    keyword: FILL
+    reason: As the in-card list's rows.
+  listItem3.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  listItem3.appearance.in-card=false.default.width:
+    keyword: FILL
+    reason: As the in-card list's rows.
+  listItem4.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  listItem4.appearance.in-card=false.default.width:
+    keyword: FILL
+    reason: As the in-card list's rows.
+  listItem5.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  listItem5.appearance.in-card=false.default.width:
+    keyword: FILL
+    reason: As the in-card list's rows.
+  divider.base.height:
+    none: true
+    reason: >-
+      The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it.
+  divider2.base.height:
+    none: true
+    reason: As the first divider's, its own.
+  divider3.base.height:
+    none: true
+    reason: As the first divider's, its own.
+  divider4.base.height:
+    none: true
+    reason: As the first divider's, its own.
+
+accept:
+  component.list.root.width@in-card=false:
+    reason: >-
+      Both lists' widths are samples, one hugging its rows and the other 368 wide: the code's list
+      fills what holds it in both (set above).
+  component.list.divider.height@in-card=false:
+    reason: >-
+      Both are the Divider's own 1px rule: Figma fixes it at 1 in the in-card list and hugs it in
+      the other, and the code leaves it the Divider's in both (set above).
+  component.list.divider2.height@in-card=false:
+    reason: As the first divider's.
+  component.list.divider3.height@in-card=false:
+    reason: As the first divider's.
+  component.list.divider4.height@in-card=false:
+    reason: As the first divider's.

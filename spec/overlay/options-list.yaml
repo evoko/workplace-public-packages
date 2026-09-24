@@ -1,0 +1,18 @@
+# Hand-written decisions about SOLAR Options List, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Options List
+
+base:
+  reason: >-
+    The fieldset around Option Rows that answer one question, as the description says: a
+    <fieldset> on the web with its legend hidden, read by a screen reader (owner decision
+    2026-09-24: Figma draws no legend); a group named by its label in Flutter. Bespoke on both, its
+    content the caller's rows.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A list spans its form's column, as its rows do: Figma draws it 320 wide, a sample.

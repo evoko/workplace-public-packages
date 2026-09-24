@@ -72,9 +72,10 @@ export const solarCheckboxStyles = {
   sizes: {},
   appearances: {
     'checked=false, mixed=false': {
-      '&:hover': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
-      },
+      '&:hover, .SolarStatesScope:hover &, .SolarStatesScope.Mui-focusVisible &':
+        {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
+        },
       '&.Mui-focusVisible': {
         backgroundColor: 'var(--solar-color-surface-base)',
         borderColor: 'var(--solar-color-border-feedback-focus-strong)',
@@ -95,16 +96,17 @@ export const solarCheckboxStyles = {
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
-      '&:hover': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-        '& .SolarCheckbox-icon': {
-          fill: 'var(--solar-color-icon-inverse)',
-          stroke: 'none',
-          '& .SolarGlyph-stroke': {
-            fill: 'none',
+      '&:hover, .SolarStatesScope:hover &, .SolarStatesScope.Mui-focusVisible &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
+          '& .SolarCheckbox-icon': {
+            fill: 'var(--solar-color-icon-inverse)',
+            stroke: 'none',
+            '& .SolarGlyph-stroke': {
+              fill: 'none',
+            },
           },
         },
-      },
       '&.Mui-focusVisible': {
         backgroundColor: 'var(--solar-color-action-primary-bg-default)',
         borderColor: 'var(--solar-color-border-feedback-focus-strong)',
@@ -148,17 +150,18 @@ export const solarCheckboxStyles = {
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
-      '&:hover': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-        borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarCheckbox-container': {
-          fill: 'var(--solar-color-icon-inverse)',
-          stroke: 'none',
-          '& .SolarGlyph-stroke': {
-            fill: 'none',
+      '&:hover, .SolarStatesScope:hover &, .SolarStatesScope.Mui-focusVisible &':
+        {
+          backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
+          borderColor: 'var(--solar-color-border-medium)',
+          '& .SolarCheckbox-container': {
+            fill: 'var(--solar-color-icon-inverse)',
+            stroke: 'none',
+            '& .SolarGlyph-stroke': {
+              fill: 'none',
+            },
           },
         },
-      },
       '&.Mui-focusVisible': {
         backgroundColor: 'var(--solar-color-action-primary-bg-default)',
         borderColor: 'var(--solar-color-border-feedback-focus-strong)',

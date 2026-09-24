@@ -28,6 +28,7 @@ class SolarCheckbox extends StatelessWidget {
     this.mixed = false,
     required this.onChanged,
     this.semanticLabel,
+    this.inStates,
     this.statesController,
   });
 
@@ -40,6 +41,11 @@ class SolarCheckbox extends StatelessWidget {
 
   /// What it chooses, for a screen reader, where no label beside it says so.
   final String? semanticLabel;
+
+  /// The states it is drawn in where it is a part of another control, which it then is (a Dropdown
+  /// Item's box, in the row's hover): it takes no input and says nothing, the row announcing its
+  /// choice. Null for a checkbox of its own.
+  final Set<WidgetState>? inStates;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;
@@ -54,7 +60,7 @@ class SolarCheckbox extends StatelessWidget {
     final t = solarThemeOf(context);
     final p = SolarCheckboxProps(
       checked: checked || mixed,
-      disabled: disabled || onChanged == null,
+      disabled: disabled || (inStates == null && onChanged == null),
       mixed: mixed,
     );
     Widget draw(Set<WidgetState> states) => SolarLayers(
@@ -70,16 +76,18 @@ class SolarCheckbox extends StatelessWidget {
       tree: _tree,
       keyPrefix: 'checkbox',
     ).layer('root');
-    final mark = SolarPressable(
-      onPressed: disabled || onChanged == null
-          ? null
-          : () => onChanged!(!checked),
-      statesController: statesController,
-      checked: checked,
-      mixed: mixed,
-      target: true,
-      builder: (_, states) => draw(states),
-    );
+    final mark = inStates != null
+        ? ExcludeSemantics(child: draw(inStates!))
+        : SolarPressable(
+            onPressed: disabled || onChanged == null
+                ? null
+                : () => onChanged!(!checked),
+            statesController: statesController,
+            checked: checked,
+            mixed: mixed,
+            target: true,
+            builder: (_, states) => draw(states),
+          );
     return semanticLabel == null
         ? mark
         : Semantics(label: semanticLabel, child: mark);

@@ -18,6 +18,9 @@ run by `flutter test` with the rest of the package.
   compared with the parent's entry for the layer instead. A builder that needs more than the
   variant takes the whole oracle (Button Group builds the Buttons Figma nests, the prop-shown
   tertiary among them). Excused entries on a layer the variant does not draw are not expected.
+  The caller's children a component holds in a slot (a menu's rows, a list's items) are keyed by
+  their Figma layers in the builder, and `measureHeld` (`layers.dart`) measures each as its own
+  check does.
 
 - **States** are forced through a `WidgetStatesController` (hover, pressed, focus), as a user
   reaches them: a pressed widget is hovered too, as a pointer pressing it is and as the web check

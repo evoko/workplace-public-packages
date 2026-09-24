@@ -1,0 +1,39 @@
+# Hand-written decisions about SOLAR Dropdown Item, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Dropdown Item
+
+base:
+  mui: MenuItem
+  reason: >-
+    One row of a Dropdown Menu. MUI's MenuItem on the web, for a menu's keyboard: the menu moves
+    the focus from row to row with the arrow keys, and a focused row draws Figma's hover, as the
+    description says a highlighted one does (owner decision 2026-09-24: real focus, hover look).
+    MUI's Select takes it as an option in F7. Its checkbox, icon and words are drawn with the
+    shared layer helpers. Bespoke in Flutter, drawn and pressable, focusable in the menu's order.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row spans its menu, whose width is the menu's: Figma draws it 240 wide (md) and 160 (sm),
+      samples of a menu's width.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, the sm row's 160 a sample of its menu's width.
+  checkbox.base.width:
+    none: true
+    reason: >-
+      The checkbox is a SOLAR Checkbox, whose 16px box is its own: the row places it, and never
+      sizes it.
+  checkbox.base.height:
+    none: true
+    reason: As its width, the Checkbox's own.
+
+bind:
+  icon.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.

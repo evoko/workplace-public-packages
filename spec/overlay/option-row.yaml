@@ -1,0 +1,41 @@
+# Hand-written decisions about SOLAR Option Row, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Option Row
+
+base:
+  reason: >-
+    A selection control and its words, the whole row its target, as the description says: on the
+    web a <label> around the SOLAR Checkbox, Radio or Toggle, whose native input it names; in
+    Flutter a row that taps its control and merges their semantics. Bespoke on both, drawn with
+    the shared layer helpers; the control's own states (hover, focus, checked, disabled) are the
+    control's, and hovering the row hovers it.
+
+follows:
+  control.component:
+    axes: [control]
+    reason: >-
+      The control is the row's: a Checkbox for control=checkbox, a Radio for control=radio (the
+      Toggle is a layer of its own), as the description says.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row is the width it is given, so long words wrap rather than stretch it, as the description
+      says ("row width is fixed"): Figma draws it 320 wide, a sample of a form's column.
+  control.base.width:
+    none: true
+    reason: >-
+      The control is a SOLAR Checkbox or Radio, whose 16px box is its own: the row places it, and
+      never sizes it.
+  control.base.height:
+    none: true
+    reason: As its width, the control's own.
+  toggle.base.width:
+    none: true
+    reason: The Toggle's 32 × 18 track is its own, as the Checkbox's box is.
+  toggle.base.height:
+    none: true
+    reason: As its width, the Toggle's own.

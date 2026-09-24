@@ -5,8 +5,10 @@ SplitButton, Link and Spinner, the display primitives (StatusIndicator, Counter,
 Avatar, Trend Badge, Divider, Skeleton, ProgressBar, Node End, RowExpand and Tree Indent), and the
 selection controls (Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle, Segmented Control
 and its Item), the tags and messages (Tag, Alert, Alert Small, Banner, Toast and EmptyState),
-and the text fields (Text Input, Text Area, SearchField, GlobalSearch, Password Input, Number
-Input, Inline Input, Token Input, PIN Input and FileUpload) so far.
+the text fields (Text Input, Text Area, SearchField, GlobalSearch, Password Input, Number
+Input, Inline Input, Token Input, PIN Input and FileUpload), and the menus and lists (Dropdown
+Item, Dropdown Group Label, Dropdown Menu, Context Menu Item, Context Menu, Option Row, Options
+List, ListItem and List) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -129,6 +131,7 @@ named "Back"; `href` makes it a link.
 | `loading`    | boolean                 | `false`        |
 | `children`   | the action's label      | required       |
 | `onClick`    | the action              | none           |
+| `items`      | the action's variants   | none           |
 | `onMenuOpen` | opens the menu          | none           |
 | `menuOpen`   | boolean                 | `false`        |
 | `menuLabel`  | the chevron's name      | `More options` |
@@ -136,8 +139,8 @@ named "Back"; `href` makes it a link.
 The dominant action and a chevron that opens a menu of its variants: two buttons in one joined
 control, drawn from its layers. The whole control takes the states of whichever half is hovered,
 pressed or focused, as Figma draws them. The chevron says it opens a menu (`aria-haspopup`,
-`aria-expanded`), and Alt+Down on the action opens it too; the menu is the caller's until
-Dropdown.
+`aria-expanded`), and Alt+Down on the action opens it too. Given `items`, it opens them in a
+Dropdown Menu of its own; without them, the menu is the caller's (`onMenuOpen`, `menuOpen`).
 
 ## Link
 
@@ -602,6 +605,87 @@ goes in is drawn as Figma's first, which takes the hover, the focus and the care
 
 A drop zone with a real `<input type="file">`, opened by Browse, a SOLAR Button; chosen, the
 file's name with replace and remove, SOLAR Icon Buttons. The app checks sizes and types.
+
+## Dropdown Item
+
+| Prop                    | Values                                                  | Default    |
+| ----------------------- | ------------------------------------------------------- | ---------- |
+| `size`                  | `md` · `sm`; in a menu, the menu's                      | `md`       |
+| `selected` · `disabled` | boolean                                                 | `false`    |
+| `checkbox`              | a checkbox before the words, checked where selected     | `false`    |
+| `icon` · `helper`       | an icon before the words; a second line                 | none       |
+| `role`                  | `menuitemradio` (single choice), `option` (a listbox's) | `menuitem` |
+
+One row of a Dropdown Menu, on MUI's MenuItem: the menu's arrow keys move the focus from row to
+row, and a focused row draws Figma's hover (owner decision: real focus, hover look). With a
+checkbox it is a menuitemcheckbox, announced checked; its box is an inert SOLAR Checkbox that takes
+the row's hover.
+
+## Dropdown Group Label
+
+A section's heading in a Dropdown Menu ("Recent"), presentational, so the menu's keyboard passes
+over it; in a menu it takes the menu's size. SOLAR: only where a menu has three or more kinds of
+row.
+
+## Dropdown Menu
+
+| Prop                            | Values                                         | Default  |
+| ------------------------------- | ---------------------------------------------- | -------- |
+| `size`                          | `md` · `sm`, which its rows take               | `md`     |
+| `anchorEl` · `open` · `onClose` | floats it under its trigger while open         | in place |
+| `anchorPosition`                | floats it at a point instead (`{ top, left }`) | none     |
+
+The surface of Dropdown Items and Group Labels around MUI's MenuList (owner decision: a surface
+that floats where it is anchored). Floating, it is MUI's Popover: Escape, a click outside or Tab
+close it, the focus is held in it and returns to the trigger, and its first row takes the focus as
+it opens. Without an anchor it draws in place, as the checks and the pickers draw it. Past 300px
+its rows scroll (owner decision: SOLAR's ~300, one flagged value, `MENU_MAX_HEIGHT`). Name it with
+`aria-labelledby`.
+
+## Context Menu Item and Context Menu
+
+| Prop                           | Values                                           | Default |
+| ------------------------------ | ------------------------------------------------ | ------- |
+| `disabled` · `destructive`     | boolean; destructive for what cannot be undone   | `false` |
+| `leadingIcon` · `trailingIcon` | an icon either side of the words                 | none    |
+| `shortcut`                     | its keyboard shortcut, as the platform writes it | none    |
+
+An object's actions, opened at the pointer: a Context Menu is a Dropdown Menu's surface floated at
+`anchorPosition` (a right-click's or a long press's), Context Menu Items with Dividers between
+their groups (`<Divider component="li" />`). A focused row draws Figma's focus. Figma draws a
+destructive row at rest alone; its hover, focus and disabled look are the other rows'.
+
+## Option Row and Options List
+
+| Prop                                       | Values                                        | Default    |
+| ------------------------------------------ | --------------------------------------------- | ---------- |
+| `control`                                  | `checkbox` · `radio` · `toggle`               | `checkbox` |
+| `checked` · `defaultChecked` · `mixed`     | the control's                                 | —          |
+| `disabled` · `onChange` · `name` · `value` | the control's; a radio's `value` in its group | —          |
+| `supportingText`                           | a second line, describing the control         | none       |
+
+A `<label>` around a SOLAR Checkbox, Radio or Toggle: the whole row is its target and names it,
+and hovering the row hovers it. An Options List is the `<fieldset>` around rows of one question,
+named by `label`, its legend, which a screen reader reads and Figma does not draw (owner decision).
+Radios go in MUI's RadioGroup inside it.
+
+## ListItem and List
+
+| Prop                                | Values                                                       | Default |
+| ----------------------------------- | ------------------------------------------------------------ | ------- |
+| `selected` · `disabled` · `compact` | boolean; in a List, the list's compactness                   | `false` |
+| `icon` · `avatar`                   | an icon, or a SOLAR Avatar (an avatar row), before the words | none    |
+| `helper` · `trailing`               | a second line; an icon after (a chevron)                     | none    |
+| `inCard` (List)                     | Figma's in-card list: edged, its rows padded                 | `true`  |
+| `dividers` (List)                   | a Divider between each two rows                              | `true`  |
+
+A ListItem is a row a user chooses, MUI's ListItemButton, its focus Figma's ring; a selected row
+is announced as the current one, or as selected in a listbox (`role="option"`). A List is drawn as
+Figma draws it (owner decision): its in-card list has the edge, the other none, its rows compact,
+though the description says the opposite; the design review asks SOLAR.
+
+SplitButton takes `items` too (`{ label, onSelect, disabled?, icon? }`): the chevron, or Alt+Down
+on the action, opens them in a Dropdown Menu of its size under it.
 
 ## Checked against Figma
 

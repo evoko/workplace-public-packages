@@ -115,10 +115,12 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
       </svg>
     );
   const icon = d.icons?.[name];
+  // Marked as a drawn icon, by a class no layer is named (a layer named \`icon\`, ListItem's, would
+  // otherwise style every icon of its component: its trailing one too).
   if (icon)
     return cloneElement(icon, {
       key: name,
-      className: `${className} ${d.prefix}-icon`,
+      className: `${className} ${d.prefix}-drawnIcon`,
       style: place,
     });
   if (d.text && name in d.text)

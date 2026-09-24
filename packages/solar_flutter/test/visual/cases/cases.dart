@@ -11,9 +11,14 @@ import 'banner.dart';
 import 'button.dart';
 import 'button_group.dart';
 import 'checkbox.dart';
+import 'context_menu.dart';
+import 'context_menu_item.dart';
 import 'counter.dart';
 import 'divider.dart';
 import 'draghandle.dart';
+import 'dropdown_group_label.dart';
+import 'dropdown_item.dart';
+import 'dropdown_menu.dart';
 import 'emptystate.dart';
 import 'fab.dart';
 import 'fileupload.dart';
@@ -22,8 +27,12 @@ import 'icon_button.dart';
 import 'inline_input.dart';
 import 'kbd.dart';
 import 'link.dart';
+import 'list.dart';
+import 'listitem.dart';
 import 'node_end.dart';
 import 'number_input.dart';
+import 'option_row.dart';
+import 'options_list.dart';
 import 'pin_input.dart';
 import 'password_input.dart';
 import 'progressbar.dart';
@@ -57,9 +66,14 @@ final cases = <String, VisualCase>{
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
   'Checkbox': checkboxCase,
+  'Context Menu': contextMenuCase,
+  'Context Menu Item': contextMenuItemCase,
   'Counter': counterCase,
   'Divider': dividerCase,
   'DragHandle': dragHandleCase,
+  'Dropdown Group Label': dropdownGroupLabelCase,
+  'Dropdown Item': dropdownItemCase,
+  'Dropdown Menu': dropdownMenuCase,
   'EmptyState': emptyStateCase,
   'FAB': fabCase,
   'FileUpload': fileUploadCase,
@@ -68,8 +82,12 @@ final cases = <String, VisualCase>{
   'Inline Input': inlineInputCase,
   'Kbd': kbdCase,
   'Link': linkCase,
+  'List': listCase,
+  'ListItem': listItemCase,
   'Node End': nodeEndCase,
   'Number Input': numberInputCase,
+  'Option Row': optionRowCase,
+  'Options List': optionsListCase,
   'PIN Input': pinInputCase,
   'Password Input': passwordInputCase,
   'ProgressBar': progressBarCase,

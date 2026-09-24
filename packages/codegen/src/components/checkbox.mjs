@@ -31,9 +31,13 @@ export default {
       // The input is the target, 44 × 44 around the box (shells/target.mjs).
       ...targetInput('& input'),
     }),
+    // A box a row draws for its choice (a Dropdown Item's) is inert, and takes the row's hover:
+    // the row marks itself SolarStatesScope, as Flutter's scope shares a control's states, and
+    // its keyboard focus draws its hover, as Figma's row draws the box hovered.
     states: {
       default: null,
-      hover: '&:hover',
+      hover:
+        '&:hover, .SolarStatesScope:hover &, .SolarStatesScope.Mui-focusVisible &',
       focus: '&.Mui-focusVisible',
       disabled: '&.Mui-disabled',
     },
@@ -147,22 +151,30 @@ checkbox. One choice of many, committed on tap. [mixed] draws the dash, for a pa
 children are partly checked, and is announced so. Name it with [semanticLabel], or a label beside
 it that toggles it too.`,
         params: `required this.onChanged,
-this.semanticLabel,`,
+this.semanticLabel,
+this.inStates,`,
         fields: `/// Called with the value a tap asks for, the opposite of [checked]; null disables it.
 final ValueChanged<bool>? onChanged;
 
 /// What it chooses, for a screen reader, where no label beside it says so.
-final String? semanticLabel;`,
+final String? semanticLabel;
+
+/// The states it is drawn in where it is a part of another control, which it then is (a Dropdown
+/// Item's box, in the row's hover): it takes no input and says nothing, the row announcing its
+/// choice. Null for a checkbox of its own.
+final Set<WidgetState>? inStates;`,
         control: {
           onPressed:
             'disabled || onChanged == null ? null : () => onChanged!(!checked)',
           semantics: `checked: checked,
 mixed: mixed,`,
+          drawnIn: 'inStates',
         },
-        // Figma draws a mixed box only as a checked one, and a box with nothing to do as disabled.
+        // Figma draws a mixed box only as a checked one, and a box with nothing to do as disabled,
+        // but for one a row draws, which has nothing to do of its own.
         values: {
           checked: 'checked || mixed',
-          disabled: 'disabled || onChanged == null',
+          disabled: 'disabled || (inStates == null && onChanged == null)',
         },
         wrap: `semanticLabel == null
         ? mark

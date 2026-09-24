@@ -9,16 +9,20 @@
  *
  * The dominant action and a chevron that opens a menu of its variants (Save, Save as, Save and
  * close): two buttons in one joined control, drawn from Figma's layer tree
- * (`internal/layers.tsx`). The chevron says it opens a menu (`aria-haspopup`, `aria-expanded`
- * from `menuOpen`); the menu itself is the caller's until Dropdown. Alt+Down on the action opens
- * it too. The app must load `@bwp-web/styles/tokens.css`.
+ * (`internal/layers.tsx`). Given `items`, the chevron, or Alt+Down on the action, opens them in
+ * a DropdownMenu of its size under the control, and choosing one closes it; without them, the
+ * chevron calls `onMenuOpen` for the caller's own menu, whose `menuOpen` it announces
+ * (`aria-haspopup`, `aria-expanded`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconChevronDown } from '@bwp-web/assets';
+import { useForkRef } from '@mui/material/utils';
 import {
   forwardRef,
+  useRef,
+  useState,
   type KeyboardEvent,
   type MouseEvent,
   type ReactNode,
@@ -30,8 +34,21 @@ import {
   type SolarSpinnerSize,
   type SolarSpinnerVariant,
 } from '@bwp-web/styles/mui';
+import { DropdownItem } from './DropdownItem.js';
+import { DropdownMenu } from './DropdownMenu.js';
 import { drawChildren, type DrawnLayer } from './internal/layers.js';
 import { Spinner } from './Spinner.js';
+
+/** One of the action's variants, a row of the menu. */
+export interface SplitButtonItem {
+  /** Its words. */
+  label: ReactNode;
+  /** Called when it is chosen; the menu closes first. */
+  onSelect: () => void;
+  disabled?: boolean;
+  /** An icon before its words. */
+  icon?: ReactNode;
+}
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = {
@@ -52,9 +69,11 @@ export interface SplitButtonProps
   children: ReactNode;
   /** The dominant action. */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  /** Opens the menu of the action's variants, from the chevron or Alt+Down on the action. */
+  /** The action's variants, which the chevron opens in a menu of its own. */
+  items?: SplitButtonItem[];
+  /** Called as the chevron, or Alt+Down on the action, opens the menu: the caller's own, without `items`. */
   onMenuOpen?: () => void;
-  /** Whether that menu is open, for the chevron's `aria-expanded`. */
+  /** Whether the caller's own menu is open, for the chevron's `aria-expanded`. */
   menuOpen?: boolean;
   /** The chevron's accessible name. */
   menuLabel?: string;
@@ -69,8 +88,9 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(
       loading,
       children,
       onClick,
+      items,
       onMenuOpen,
-      menuOpen = false,
+      menuOpen: menuOpenProp = false,
       menuLabel = 'More options',
       className,
       sx,
@@ -96,85 +116,126 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(
       parts[layer]?.present === false
         ? { visibility: 'hidden' as const }
         : undefined;
+    // Its own menu, where it is given the items, under the control.
+    const [open, setOpen] = useState(false);
+    const control = useRef<HTMLDivElement>(null);
+    const joined = useForkRef(ref, control);
+    const menuOpen = items ? open : menuOpenProp;
+    const toggleMenu = () => {
+      if (items) setOpen(true);
+      onMenuOpen?.();
+    };
     const openMenu = (event: KeyboardEvent) => {
       if (event.altKey && event.key === 'ArrowDown') {
         event.preventDefault();
-        onMenuOpen?.();
+        toggleMenu();
       }
     };
     return (
-      <Box
-        component="div"
-        ref={ref}
-        role="group"
-        aria-busy={busy || undefined}
-        className={
-          [
-            disabled ? 'SolarSplitButton-disabled' : null,
-            busy ? 'SolarSplitButton-loading' : null,
-            className,
-          ]
-            .filter(Boolean)
-            .join(' ') || undefined
-        }
-        {...rest}
-        sx={[
-          solarSplitButtonStyle({ variant, size, disabled, loading }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      >
-        {drawChildren('root', {
-          prefix: 'SolarSplitButton',
-          tree: TREE,
-          parts: kept,
-          text: { label: children },
-          icons: { iconChevronDown: <IconChevronDown /> },
-          render: {
-            action: ({ className: c, style, children: inner }: DrawnLayer) => (
-              <ButtonBase
-                className={c}
-                style={{ ...style, ...shown('action') }}
-                disabled={inactive}
-                disableRipple
-                onClick={onClick}
-                onKeyDown={openMenu}
+      <>
+        <Box
+          component="div"
+          ref={joined}
+          role="group"
+          aria-busy={busy || undefined}
+          className={
+            [
+              disabled ? 'SolarSplitButton-disabled' : null,
+              busy ? 'SolarSplitButton-loading' : null,
+              className,
+            ]
+              .filter(Boolean)
+              .join(' ') || undefined
+          }
+          {...rest}
+          sx={[
+            solarSplitButtonStyle({ variant, size, disabled, loading }),
+            ...(Array.isArray(sx) ? sx : [sx]),
+          ]}
+        >
+          {drawChildren('root', {
+            prefix: 'SolarSplitButton',
+            tree: TREE,
+            parts: kept,
+            text: { label: children },
+            icons: { iconChevronDown: <IconChevronDown /> },
+            render: {
+              action: ({
+                className: c,
+                style,
+                children: inner,
+              }: DrawnLayer) => (
+                <ButtonBase
+                  className={c}
+                  style={{ ...style, ...shown('action') }}
+                  disabled={inactive}
+                  disableRipple
+                  onClick={onClick}
+                  onKeyDown={openMenu}
+                >
+                  {inner}
+                </ButtonBase>
+              ),
+              divider: ({ className: c, style }: DrawnLayer) => (
+                <span
+                  className={c}
+                  style={{ ...style, ...shown('divider') }}
+                  aria-hidden
+                />
+              ),
+              trigger: ({
+                className: c,
+                style,
+                children: inner,
+              }: DrawnLayer) => (
+                <ButtonBase
+                  className={c}
+                  style={{ ...style, ...shown('trigger') }}
+                  disabled={inactive}
+                  disableRipple
+                  aria-label={menuLabel}
+                  aria-haspopup="menu"
+                  aria-expanded={menuOpen}
+                  onClick={toggleMenu}
+                >
+                  {inner}
+                </ButtonBase>
+              ),
+              spinner: ({ className: c }: DrawnLayer) =>
+                busy ? (
+                  <span className={c}>
+                    <Spinner
+                      size={spinner['variant.size'] as SolarSpinnerSize}
+                      variant={spinner['variant.style'] as SolarSpinnerVariant}
+                    />
+                  </span>
+                ) : null,
+            },
+          })}
+        </Box>
+        {items ? (
+          <DropdownMenu
+            size={size}
+            anchorEl={control.current}
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            {items.map((item, i) => (
+              <DropdownItem
+                key={i}
+                disabled={item.disabled}
+                icon={item.icon}
+                onClick={() => {
+                  setOpen(false);
+                  item.onSelect();
+                }}
               >
-                {inner}
-              </ButtonBase>
-            ),
-            divider: ({ className: c, style }: DrawnLayer) => (
-              <span
-                className={c}
-                style={{ ...style, ...shown('divider') }}
-                aria-hidden
-              />
-            ),
-            trigger: ({ className: c, style, children: inner }: DrawnLayer) => (
-              <ButtonBase
-                className={c}
-                style={{ ...style, ...shown('trigger') }}
-                disabled={inactive}
-                disableRipple
-                aria-label={menuLabel}
-                aria-haspopup="menu"
-                aria-expanded={menuOpen}
-                onClick={() => onMenuOpen?.()}
-              >
-                {inner}
-              </ButtonBase>
-            ),
-            spinner: ({ className: c }: DrawnLayer) =>
-              busy ? (
-                <span className={c}>
-                  <Spinner
-                    size={spinner['variant.size'] as SolarSpinnerSize}
-                    variant={spinner['variant.style'] as SolarSpinnerVariant}
-                  />
-                </span>
-              ) : null,
-          },
-        })}
-      </Box>
+                {item.label}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        ) : null}
+      </>
     );
   },
 );

@@ -82,7 +82,7 @@ export const solarToggleStyles = {
   sizes: {},
   appearances: {
     'selected=false': {
-      '&:hover': {
+      '&:hover, .SolarStatesScope:hover &': {
         borderColor: 'var(--solar-color-border-medium)',
         '& .SolarToggle-thumb': {
           borderColor: 'var(--solar-color-border-medium)',
@@ -105,7 +105,7 @@ export const solarToggleStyles = {
     },
     'selected=true': {
       backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-      '&:hover': {
+      '&:hover, .SolarStatesScope:hover &': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
         borderColor: 'var(--solar-color-border-medium)',
         '& .SolarToggle-thumb': {

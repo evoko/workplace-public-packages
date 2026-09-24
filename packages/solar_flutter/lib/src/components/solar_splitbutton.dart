@@ -8,27 +8,54 @@
 ///
 /// The dominant action and a chevron that opens a menu of its variants: two buttons in one joined
 /// control, drawn from Figma's layer tree with [SolarLayers]. The whole control takes the states of
-/// whichever half is hovered, pressed or focused, as Figma draws them. The menu is the caller's
-/// until Dropdown ([onMenuPressed]).
+/// whichever half is hovered, pressed or focused, as Figma draws them. Given [items], the chevron
+/// opens them in a SolarDropdownMenu of its size under the control, and choosing one closes it;
+/// without them, the chevron calls [onMenuPressed] for the caller's own menu.
 library;
 
 import 'package:flutter/material.dart';
 
+import '../generated/components/dropdown_menu.dart';
 import '../generated/components/spinner.dart';
 import '../generated/components/splitbutton.dart';
 import '../generated/icons.dart';
 import '../solar_layers.dart';
+import '../solar_menu.dart';
 import '../solar_states.dart';
 import '../solar_target.dart';
+import 'solar_dropdown_item.dart';
+import 'solar_dropdown_menu.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
+
+/// One of the action's variants, a row of a SolarSplitButton's menu.
+class SolarSplitButtonItem {
+  const SolarSplitButtonItem({
+    required this.label,
+    required this.onSelected,
+    this.disabled = false,
+    this.icon,
+  });
+
+  /// Its words.
+  final String label;
+
+  /// Called when it is chosen; the menu closes first.
+  final VoidCallback onSelected;
+
+  final bool disabled;
+
+  /// An icon before its words.
+  final Widget? icon;
+}
 
 class SolarSplitButton extends StatelessWidget {
   const SolarSplitButton({
     super.key,
     required this.label,
     required this.onPressed,
-    required this.onMenuPressed,
+    this.onMenuPressed,
+    this.items,
     this.menuLabel = 'More options',
     this.variant = SolarSplitButtonVariant.primary,
     this.size = SolarSplitButtonSize.md,
@@ -43,8 +70,11 @@ class SolarSplitButton extends StatelessWidget {
   /// The dominant action; null disables the control.
   final VoidCallback? onPressed;
 
-  /// Opens the menu of the action's variants.
+  /// Called as the chevron opens the menu: the caller's own, without [items].
   final VoidCallback? onMenuPressed;
+
+  /// The action's variants, which the chevron opens in a menu of its own.
+  final List<SolarSplitButtonItem>? items;
 
   /// The chevron's accessible name.
   final String menuLabel;
@@ -68,6 +98,35 @@ class SolarSplitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final rows = items;
+    if (rows == null) return _control(context, onMenuPressed);
+    // Its own menu, under the control, of its size.
+    return SolarMenuAnchor(
+      menu: SolarDropdownMenu(
+        size: SolarDropdownMenuSize.values.byName(size.name),
+        children: [
+          for (final item in rows)
+            Builder(
+              builder: (context) => SolarDropdownItem(
+                label: item.label,
+                icon: item.icon,
+                disabled: item.disabled,
+                onPressed: () {
+                  MenuController.maybeOf(context)?.close();
+                  item.onSelected();
+                },
+              ),
+            ),
+        ],
+      ),
+      builder: (context, controller) => _control(context, () {
+        controller.isOpen ? controller.close() : controller.open();
+        onMenuPressed?.call();
+      }),
+    );
+  }
+
+  Widget _control(BuildContext context, VoidCallback? openMenu) {
     final t = solarThemeOf(context);
     // Disabled wins over loading, as in Figma's state order.
     final busy = loading && !disabled;
@@ -126,7 +185,7 @@ class SolarSplitButton extends StatelessWidget {
                 'divider': (w) => kept('divider', ExcludeSemantics(child: w)),
                 'trigger': (w) => Semantics(
                   label: menuLabel,
-                  child: half('trigger', onMenuPressed, w),
+                  child: half('trigger', openMenu, w),
                 ),
               },
             ).layer('root');

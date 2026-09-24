@@ -1,0 +1,57 @@
+# Hand-written decisions about SOLAR Context Menu Item, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Context Menu Item
+
+base:
+  mui: MenuItem
+  reason: >-
+    One row of a Context Menu: MUI's MenuItem on the web, as a Dropdown Item is, for the menu's
+    keyboard (the arrow keys move the focus, and a focused row draws Figma's focus); bespoke in
+    Flutter, drawn and pressable. Its icons, words and shortcut drawn with the shared layer helpers.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row spans its menu, whose width is its widest row's: Figma draws it 200 wide, a sample.
+  root.appearance.destructive=true.hover.background:
+    token: color.surface.hover
+    reason: >-
+      Figma ships a destructive row at rest alone ("shipped as the used combinations"), so it would
+      show no hover and, worse, no keyboard focus. It is drawn as the other rows are hovered and
+      focused; the design review asks SOLAR to draw both.
+  root.appearance.destructive=true.focus.background:
+    token: color.surface.hover
+    reason: As its hover, the other rows' focus.
+  label.appearance.destructive=true.disabled.color:
+    token: color.text.disabled
+    reason: >-
+      A disabled destructive row is drawn disabled, as the other rows are: its danger colour would
+      say it can still be chosen. Figma draws no such row; the design review asks.
+  shortcut.appearance.destructive=true.disabled.color:
+    token: color.text.disabled
+    reason: As the label's.
+  leadingIcon.appearance.destructive=true.disabled.color:
+    token: color.icon.disabled
+    reason: As the label's, the icon's disabled ink.
+  trailingIcon.appearance.destructive=true.disabled.color:
+    token: color.icon.disabled
+    reason: As the leading icon's.
+
+bind:
+  leadingIcon.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+  trailingIcon.width:
+    literal: 16
+    token: icon.sm
+    reason: As the leading icon's.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A row is 36 tall, bound to nothing: SOLAR has no control height token (the design review's
+      question on control heights, as Button's is).

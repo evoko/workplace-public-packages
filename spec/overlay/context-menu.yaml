@@ -1,0 +1,63 @@
+# Hand-written decisions about SOLAR Context Menu, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Context Menu
+
+base:
+  reason: >-
+    The floating surface of an object's actions, opened at the pointer (owner decision 2026-09-24:
+    a surface that floats where it is anchored, here at a point). Bespoke on both platforms, as
+    Dropdown Menu is: its content MUI's MenuList on the web, floated by MUI's Popover at the
+    point; in Flutter a column the arrow keys move along, floated by MenuAnchor at the point.
+
+set:
+  contextMenuItem.base.width:
+    keyword: FILL
+    reason: >-
+      The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's
+      width, which is its widest row's.
+  contextMenuItem.base.height:
+    none: true
+    reason: A row's height is its own (36), the Context Menu Item's; the menu never sizes it.
+  contextMenuItem2.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  contextMenuItem2.base.height:
+    none: true
+    reason: As the first row's, its own.
+  contextMenuItem3.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  contextMenuItem3.base.height:
+    none: true
+    reason: As the first row's, its own.
+  contextMenuItem4.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  contextMenuItem4.base.height:
+    none: true
+    reason: As the first row's, its own.
+  contextMenuItem5.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  contextMenuItem5.base.height:
+    none: true
+    reason: As the first row's, its own.
+  contextMenuItem6.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  contextMenuItem6.base.height:
+    none: true
+    reason: As the first row's, its own.
+  contextMenuItem7.base.width:
+    keyword: FILL
+    reason: As the first row's.
+  contextMenuItem7.base.height:
+    none: true
+    reason: As the first row's, its own.
+  divider.base.height:
+    none: true
+    reason: >-
+      The divider is a SOLAR Divider, whose 1px rule is its own: the menu places it, and never
+      sizes it.

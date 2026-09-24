@@ -464,7 +464,20 @@ axis=value, …>` gives each layer and property of those variants as a chain: Fi
      `SolarPressable` as a checkbox or a switch, and `values` gives the recipe a prop's value where
      it is not the prop as given (a mixed box is drawn checked). Where a group decides a prop in
      Flutter (Radio's `checked`, its RadioGroup's), `flutter.groupDecides` says so, and the widget
-     does not take it. Every control's recipe gives it a 44 × 44 target that takes no room
+     does not take it. `flutter.states` is a platform state's own test where it is not its
+     `WidgetState` alone, the Flutter side of `mui.states` (a Dropdown Item's hover holds while it
+     has the focus, as its web selector matches `.Mui-focusVisible`). A control that is a part of
+     another (a Dropdown Item's checkbox) is drawn in the other's states, inert: `control.drawnIn`
+     names the parameter that gives them in Flutter, and on the web the part's hover selector
+     also matches under a `SolarStatesScope` ancestor (`.SolarStatesScope:hover &`), the class the
+     row sets, as Flutter's `SolarStatesScope` shares a control's states. `content` (both helpers)
+     holds the caller's children in a layer in place of Figma's examples, and `before` (React)
+     draws something ahead of the layers (Options List's legend). The menus share
+     `src/shells/menu.mjs`: `menuReact`, their surface around MUI's MenuList floating where it is
+     anchored (`components/src/internal/float.tsx`), and `menuResets` with `MENU_MAX_HEIGHT`, the
+     one raw menu height, a governance gap. A drawn icon is marked `<prefix>-drawnIcon` on the
+     web, a class no layer is named, so a layer named `icon` (ListItem's) styles itself alone.
+     Every control's recipe gives it a 44 × 44 target that takes no room
      (`src/shells/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input
      enlarged), and its widget a `SolarTarget`; `TARGET` there is the one raw target size, a
      governance gap, until SOLAR publishes a variable for it. A value that is no Dart identifier

@@ -66,7 +66,7 @@ export const solarRadioStyles = {
   appearances: {
     'checked=false': {
       borderColor: 'var(--solar-color-border-medium)',
-      '&:hover': {
+      '&:hover, .SolarStatesScope:hover &': {
         backgroundColor: 'var(--solar-color-surface-background)',
         borderColor: 'var(--solar-color-border-medium)',
       },
@@ -80,7 +80,7 @@ export const solarRadioStyles = {
       },
     },
     'checked=true': {
-      '&:hover': {
+      '&:hover, .SolarStatesScope:hover &': {
         borderColor: 'var(--solar-color-border-medium)',
       },
       '&.Mui-focusVisible': {

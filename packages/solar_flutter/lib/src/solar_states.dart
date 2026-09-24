@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 
 import 'solar_target.dart';
 
@@ -106,6 +107,8 @@ class SolarPressable extends StatelessWidget {
     this.mixed = false,
     this.toggled,
     this.target = false,
+    this.role,
+    this.selected,
   });
 
   /// Called on a tap or the keyboard's activation; null disables it.
@@ -133,6 +136,13 @@ class SolarPressable extends StatelessWidget {
   /// part of another (a Tag's close button, whose component gives it [SolarTarget.inside]).
   final bool target;
 
+  /// What it is announced as, where that is a role of its own (a Dropdown Item in a menu, a menu
+  /// item), in place of a button; null for the button, link, checkbox or switch above.
+  final SemanticsRole? role;
+
+  /// Whether it is announced as selected (a Dropdown Item's choice); null for neither.
+  final bool? selected;
+
   Widget _targeted(Widget control) =>
       target ? SolarTarget(child: control) : control;
 
@@ -144,7 +154,9 @@ class SolarPressable extends StatelessWidget {
       void set(WidgetState state, bool on) => states.update(state, on);
       final box = checked != null;
       return Semantics(
-        button: !link && !box && toggled == null,
+        role: role,
+        selected: selected,
+        button: role == null && !link && !box && toggled == null,
         toggled: toggled,
         link: link,
         // Flutter announces a mixed box as not checked, and mixed.

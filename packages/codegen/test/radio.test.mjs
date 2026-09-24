@@ -36,9 +36,10 @@ describe('the Radio recipe', () => {
   });
 
   it('marks its states with MUI’s classes', () => {
+    // Its hover is also a row's that it is the target of (an Option Row's: F6).
     expect(Object.keys(styles.appearances['checked=false'])).toEqual(
       expect.arrayContaining([
-        '&:hover',
+        '&:hover, .SolarStatesScope:hover &',
         '&.Mui-focusVisible',
         '&.Mui-disabled',
       ]),

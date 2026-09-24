@@ -39,9 +39,10 @@ export default {
       // Through the switch base, as specific as MUI's own rule for the input, which it follows.
       ...targetInput('& .MuiSwitch-switchBase .MuiSwitch-input'),
     }),
+    // A toggle in a row that is its target (an Option Row's) takes the row's hover, as Checkbox's.
     states: {
       default: null,
-      hover: '&:hover',
+      hover: '&:hover, .SolarStatesScope:hover &',
       focus: '&:has(.Mui-focusVisible)',
       disabled: '&.SolarToggle-disabled',
     },
@@ -107,7 +108,16 @@ export interface ToggleProps
 }
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle(
-  { selected: selectedProp, defaultSelected, disabled = false, onChange, className, sx, ...rest },
+  {
+    selected: selectedProp,
+    defaultSelected,
+    disabled = false,
+    onChange,
+    className,
+    slotProps,
+    sx,
+    ...rest
+  },
   ref,
 ) {
   const [selected, setSelected] = useControlled({
@@ -130,7 +140,8 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
       disableRipple
       className={[disabled ? 'SolarToggle-disabled' : null, className].filter(Boolean).join(' ') || undefined}
       slots={{ thumb: Thumb }}
-      slotProps={{ thumb: { parts: solarToggleCompose(look) } as object }}
+      // The caller's, the input's among them (an Option Row describes it), beside the thumb's.
+      slotProps={{ ...slotProps, thumb: { parts: solarToggleCompose(look) } as object }}
       sx={[solarToggleStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
     />
   );

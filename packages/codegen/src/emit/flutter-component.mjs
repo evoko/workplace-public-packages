@@ -44,6 +44,13 @@ export const statePrecedence = (component) =>
 const WIDGET_STATE = { hover: 'hovered', pressed: 'pressed', focus: 'focused' };
 
 /**
+ * A component's own test for a platform state, where it is not the state's `WidgetState` alone:
+ * the Flutter side of its MUI state selectors (a Dropdown Item's hover holds while it has the
+ * focus, as its web selector matches `.Mui-focusVisible`), a Dart expression in `s`.
+ */
+export const FLUTTER_STATES = descriptorTable('flutter', 'states');
+
+/**
  * How a state is detected, the same for every component, since Flutter tracks the same
  * `WidgetState`s whatever the control (MUI's classes are what differ, `STATE_SELECTORS`): a
  * platform state is its `WidgetState`, a state that is a prop is the prop, and `disabled` is also
@@ -53,6 +60,14 @@ const WIDGET_STATE = { hover: 'hovered', pressed: 'pressed', focus: 'focused' };
  * to an enabled control.
  */
 export function stateTest(spec, state) {
+  const own = FLUTTER_STATES[spec.component]?.[state];
+  if (own) {
+    if (!spec.states.includes(state))
+      throw new Error(
+        `${spec.component}: flutter.states names ${state}, which is not one of its platform states`,
+      );
+    return own;
+  }
   if (WIDGET_STATE[state] && spec.states.includes(state))
     return `s.contains(WidgetState.${WIDGET_STATE[state]})`;
   // A state derived from content (Text Input's filled) is a prop too, which the widget sets.

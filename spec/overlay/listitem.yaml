@@ -1,0 +1,61 @@
+# Hand-written decisions about SOLAR ListItem, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: ListItem
+
+base:
+  mui: ListItemButton
+  reason: >-
+    One row of a List, which a user chooses: MUI's ListItemButton on the web, for a button's
+    keyboard and focus-visible; bespoke in Flutter, drawn and pressable. Its icon or avatar, words
+    and trailing icon drawn with the shared layer helpers. Figma draws its own focus, a ring.
+
+derive:
+  type:
+    when:
+      - value: avatar
+        given: [avatar]
+      - value: icon
+    reason: >-
+      A row is an avatar row where it is given an avatar, and an icon row otherwise, as Figma's two
+      are drawn: it follows from what the caller gives, so it is no prop the caller could set
+      against it, as a Tag's type is.
+
+follows:
+  root.paddingTop:
+    axes: [compact]
+    reason: >-
+      A compact row is shorter, and flush at the sides, for a list in a card (the description's
+      compact): its padding is the axis's, not a slip.
+  root.paddingBottom:
+    axes: [compact]
+    reason: As its top padding.
+  root.paddingLeft:
+    axes: [compact]
+    reason: As its top padding, flush at the side.
+  root.paddingRight:
+    axes: [type, compact]
+    reason: >-
+      As its left padding, flush when compact; an avatar row's is its own, the avatar's column
+      taking the room an icon row's trailing icon leaves.
+
+set:
+  avatar.base.width:
+    none: true
+    reason: >-
+      The avatar is the caller's SOLAR Avatar, md as Figma draws it, whose 32px is its own: the
+      row places it, and never sizes it.
+  avatar.base.height:
+    none: true
+    reason: As its width, the Avatar's own.
+
+bind:
+  icon.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's height is already bound to it.
+  trailing.width:
+    literal: 16
+    token: icon.sm
+    reason: As the icon's, a step smaller; its height is already bound to it.

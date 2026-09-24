@@ -75,15 +75,24 @@ export default {
  *
  * The dominant action and a chevron that opens a menu of its variants (Save, Save as, Save and
  * close): two buttons in one joined control, drawn from Figma's layer tree
- * (\`internal/layers.tsx\`). The chevron says it opens a menu (\`aria-haspopup\`, \`aria-expanded\`
- * from \`menuOpen\`); the menu itself is the caller's until Dropdown. Alt+Down on the action opens
- * it too. The app must load \`@bwp-web/styles/tokens.css\`.
+ * (\`internal/layers.tsx\`). Given \`items\`, the chevron, or Alt+Down on the action, opens them in
+ * a DropdownMenu of its size under the control, and choosing one closes it; without them, the
+ * chevron calls \`onMenuOpen\` for the caller's own menu, whose \`menuOpen\` it announces
+ * (\`aria-haspopup\`, \`aria-expanded\`). The app must load \`@bwp-web/styles/tokens.css\`.
  */
 
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconChevronDown } from '@bwp-web/assets';
-import { forwardRef, type KeyboardEvent, type MouseEvent, type ReactNode } from 'react';
+import { useForkRef } from '@mui/material/utils';
+import {
+  forwardRef,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type MouseEvent,
+  type ReactNode,
+} from 'react';
 import {
   solarSplitButtonCompose,
   solarSplitButtonStyle,
@@ -91,8 +100,21 @@ import {
   type SolarSpinnerSize,
   type SolarSpinnerVariant,
 } from '@bwp-web/styles/mui';
+import { DropdownItem } from './DropdownItem.js';
+import { DropdownMenu } from './DropdownMenu.js';
 import { drawChildren, type DrawnLayer } from './internal/layers.js';
 import { Spinner } from './Spinner.js';
+
+/** One of the action's variants, a row of the menu. */
+export interface SplitButtonItem {
+  /** Its words. */
+  label: ReactNode;
+  /** Called when it is chosen; the menu closes first. */
+  onSelect: () => void;
+  disabled?: boolean;
+  /** An icon before its words. */
+  icon?: ReactNode;
+}
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
@@ -105,9 +127,11 @@ export interface SplitButtonProps
   children: ReactNode;
   /** The dominant action. */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  /** Opens the menu of the action's variants, from the chevron or Alt+Down on the action. */
+  /** The action's variants, which the chevron opens in a menu of its own. */
+  items?: SplitButtonItem[];
+  /** Called as the chevron, or Alt+Down on the action, opens the menu: the caller's own, without \`items\`. */
   onMenuOpen?: () => void;
-  /** Whether that menu is open, for the chevron's \`aria-expanded\`. */
+  /** Whether the caller's own menu is open, for the chevron's \`aria-expanded\`. */
   menuOpen?: boolean;
   /** The chevron's accessible name. */
   menuLabel?: string;
@@ -118,8 +142,9 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(function
     ${api.join(', ')},
     children,
     onClick,
+    items,
     onMenuOpen,
-    menuOpen = false,
+    menuOpen: menuOpenProp = false,
     menuLabel = 'More options',
     className,
     sx,
@@ -137,16 +162,26 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(function
     kept[half] = { ...parts[half], present: true };
   const shown = (layer: string) =>
     parts[layer]?.present === false ? { visibility: 'hidden' as const } : undefined;
+  // Its own menu, where it is given the items, under the control.
+  const [open, setOpen] = useState(false);
+  const control = useRef<HTMLDivElement>(null);
+  const joined = useForkRef(ref, control);
+  const menuOpen = items ? open : menuOpenProp;
+  const toggleMenu = () => {
+    if (items) setOpen(true);
+    onMenuOpen?.();
+  };
   const openMenu = (event: KeyboardEvent) => {
     if (event.altKey && event.key === 'ArrowDown') {
       event.preventDefault();
-      onMenuOpen?.();
+      toggleMenu();
     }
   };
   return (
+    <>
     <Box
       component="div"
-      ref={ref}
+      ref={joined}
       role="group"
       aria-busy={busy || undefined}
       className={
@@ -192,7 +227,7 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(function
               aria-label={menuLabel}
               aria-haspopup="menu"
               aria-expanded={menuOpen}
-              onClick={() => onMenuOpen?.()}
+              onClick={toggleMenu}
             >
               {inner}
             </ButtonBase>
@@ -209,6 +244,29 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(function
         },
       })}
     </Box>
+    {items ? (
+      <DropdownMenu
+        size={size}
+        anchorEl={control.current}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        {items.map((item, i) => (
+          <DropdownItem
+            key={i}
+            disabled={item.disabled}
+            icon={item.icon}
+            onClick={() => {
+              setOpen(false);
+              item.onSelect();
+            }}
+          >
+            {item.label}
+          </DropdownItem>
+        ))}
+      </DropdownMenu>
+    ) : null}
+    </>
   );
 });
 `;
@@ -231,27 +289,54 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(function
 ///
 /// The dominant action and a chevron that opens a menu of its variants: two buttons in one joined
 /// control, drawn from Figma's layer tree with [SolarLayers]. The whole control takes the states of
-/// whichever half is hovered, pressed or focused, as Figma draws them. The menu is the caller's
-/// until Dropdown ([onMenuPressed]).
+/// whichever half is hovered, pressed or focused, as Figma draws them. Given [items], the chevron
+/// opens them in a SolarDropdownMenu of its size under the control, and choosing one closes it;
+/// without them, the chevron calls [onMenuPressed] for the caller's own menu.
 library;
 
 import 'package:flutter/material.dart';
 
+import '../generated/components/dropdown_menu.dart';
 import '../generated/components/spinner.dart';
 import '../generated/components/splitbutton.dart';
 import '../generated/icons.dart';
 import '../solar_layers.dart';
+import '../solar_menu.dart';
 import '../solar_states.dart';
 import '../solar_target.dart';
+import 'solar_dropdown_item.dart';
+import 'solar_dropdown_menu.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
+
+/// One of the action's variants, a row of a SolarSplitButton's menu.
+class SolarSplitButtonItem {
+  const SolarSplitButtonItem({
+    required this.label,
+    required this.onSelected,
+    this.disabled = false,
+    this.icon,
+  });
+
+  /// Its words.
+  final String label;
+
+  /// Called when it is chosen; the menu closes first.
+  final VoidCallback onSelected;
+
+  final bool disabled;
+
+  /// An icon before its words.
+  final Widget? icon;
+}
 
 class SolarSplitButton extends StatelessWidget {
   const SolarSplitButton({
     super.key,
     required this.label,
     required this.onPressed,
-    required this.onMenuPressed,
+    this.onMenuPressed,
+    this.items,
     this.menuLabel = 'More options',
 ${api.map(([prop, def]) => `    ${dartParam('SplitButton', prop, def)},`).join('\n')}
     this.statesController,
@@ -263,8 +348,11 @@ ${api.map(([prop, def]) => `    ${dartParam('SplitButton', prop, def)},`).join('
   /// The dominant action; null disables the control.
   final VoidCallback? onPressed;
 
-  /// Opens the menu of the action's variants.
+  /// Called as the chevron opens the menu: the caller's own, without [items].
   final VoidCallback? onMenuPressed;
+
+  /// The action's variants, which the chevron opens in a menu of its own.
+  final List<SolarSplitButtonItem>? items;
 
   /// The chevron's accessible name.
   final String menuLabel;
@@ -283,6 +371,35 @@ ${tree}
 
   @override
   Widget build(BuildContext context) {
+    final rows = items;
+    if (rows == null) return _control(context, onMenuPressed);
+    // Its own menu, under the control, of its size.
+    return SolarMenuAnchor(
+      menu: SolarDropdownMenu(
+        size: SolarDropdownMenuSize.values.byName(size.name),
+        children: [
+          for (final item in rows)
+            Builder(
+              builder: (context) => SolarDropdownItem(
+                label: item.label,
+                icon: item.icon,
+                disabled: item.disabled,
+                onPressed: () {
+                  MenuController.maybeOf(context)?.close();
+                  item.onSelected();
+                },
+              ),
+            ),
+        ],
+      ),
+      builder: (context, controller) => _control(context, () {
+        controller.isOpen ? controller.close() : controller.open();
+        onMenuPressed?.call();
+      }),
+    );
+  }
+
+  Widget _control(BuildContext context, VoidCallback? openMenu) {
     final t = solarThemeOf(context);
     // Disabled wins over loading, as in Figma's state order.
     final busy = loading && !disabled;
@@ -335,7 +452,7 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
               'divider': (w) => kept('divider', ExcludeSemantics(child: w)),
               'trigger': (w) => Semantics(
                     label: menuLabel,
-                    child: half('trigger', onMenuPressed, w),
+                    child: half('trigger', openMenu, w),
                   ),
             },
           ).layer('root');

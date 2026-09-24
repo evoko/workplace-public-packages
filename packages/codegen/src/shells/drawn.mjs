@@ -146,6 +146,9 @@ export const keyPrefixOf = (name) =>
  *   `icon: <span>{icon}</span>`)
  * @param {Record<string, string>} [o.present] whether a layer is drawn, an expression by layer,
  *   over the recipe's answer (a slot left empty is not drawn)
+ * @param {string} [o.content] the caller's children of a layer, drawn in it in place of Figma's
+ *   examples, an object expression by layer (Options List's rows)
+ * @param {string} [o.before] JSX drawn in the root before its layers (a fieldset's legend)
  */
 export function drawnReact(spec, o) {
   const name = spec.component;
@@ -217,11 +220,11 @@ ${o.prelude ? `${indent(o.prelude, 2)}\n` : ''}  const ${present.length ? 'compo
       ref={ref}
 ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
       sx={[solar${P}Style(${args}), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    >${o.before ? `\n      ${o.before}` : ''}
       {drawChildren('root', {
         prefix: 'Solar${P}',
         tree: TREE,
-        parts,${o.text ? `\n        text: ${o.text},` : ''}${iconMap ? `\n        icons: ${iconMap},` : ''}
+        parts,${o.text ? `\n        text: ${o.text},` : ''}${o.content ? `\n        content: ${o.content},` : ''}${iconMap ? `\n        icons: ${iconMap},` : ''}
       })}
     </Box>
   );
@@ -249,7 +252,9 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  * @param {object} [o.control] makes it a control always (Checkbox), whatever is around it:
  *   `onPressed`, the expression called on a tap (null disables it), and `semantics`, the
  *   [SolarPressable] arguments that announce it (`checked: checked,`). Its callback is one of
- *   `o.params`; the widget takes a `statesController`.
+ *   `o.params`; the widget takes a `statesController`. `drawnIn` names a parameter, the states
+ *   it is drawn in where it is a part of another control (a Dropdown Item's box): given, it is
+ *   drawn in them with no input and no semantics of its own.
  * @param {Record<string, string>} [o.values] the value the recipe reads for a prop, where it is
  *   not the prop as given (a mixed box is drawn checked), and for an axis the overlay derives
  *   from content (Tag's type), which is no prop
@@ -263,6 +268,8 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  * @param {boolean} [o.restyle] takes the colours a composing component draws it in (Toast's Tag:
  *   its root's fill and edge), a `restyle` map by cell
  * @param {string} [o.slots] the slots the caller fills, a map literal by layer (Link's icons)
+ * @param {string} [o.content] the caller's children of a layer, drawn in it in place of Figma's
+ *   examples, a map literal by layer of widget lists (a menu's rows)
  * @param {(recipe: string) => string} [o.present] whether layer `l` is drawn, around the recipe's
  *   answer, an expression in `l` (a slot left empty is not drawn)
  * @param {string} [o.text] the text layers' words, a map literal by layer
@@ -333,11 +340,17 @@ final Map<String, Color> restyle;`;
         glyph: ${glyphs ? `(l) => ${R}.glyph(l, p, ${states})` : '(_) => null'},
       ),
       tree: _tree,
-      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${o.truncates ? `\n      truncates: ${o.truncates},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
+      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.content ? `\n      content: ${o.content},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${o.truncates ? `\n      truncates: ${o.truncates},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
     ).layer('root')`;
   const draw = o.control
     ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};
-    final mark = SolarPressable(
+    final mark = ${
+      o.control.drawnIn
+        ? `${o.control.drawnIn} != null
+        ? ExcludeSemantics(child: draw(${o.control.drawnIn}!))
+        : `
+        : ''
+    }SolarPressable(
       onPressed: ${o.control.onPressed},
       statesController: statesController,
 ${indent(o.control.semantics, 6)}

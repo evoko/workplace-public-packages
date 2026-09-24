@@ -29,9 +29,10 @@ export default {
       // The input is the target, 44 × 44 around the ring (shells/target.mjs).
       ...targetInput('& input'),
     }),
+    // A radio in a row that is its target (an Option Row's) takes the row's hover, as Checkbox's.
     states: {
       default: null,
-      hover: '&:hover',
+      hover: '&:hover, .SolarStatesScope:hover &',
       focus: '&.Mui-focusVisible',
       disabled: '&.Mui-disabled',
     },
