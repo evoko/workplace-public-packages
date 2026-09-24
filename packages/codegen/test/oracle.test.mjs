@@ -214,3 +214,41 @@ describe('hex', () => {
     expect(() => hex('blue')).toThrow(/not a colour/);
   });
 });
+
+describe('what a set replaced', () => {
+  it('is excused where Figma draws it, and compared where it does not', () => {
+    // Button's primary has a resting shadow and its lg is flat: taking the shadow away excuses the
+    // variants that draw it, and leaves the flat ones compared, as they agree with the decision.
+    const catalog = loadWebCatalog();
+    const loaded = loadComponent(catalog, 'Button');
+    const overlay = {
+      ...loadOverlay('Button'),
+      set: {
+        ...loadOverlay('Button').set,
+        'root.base.shadow': { none: true, reason: 'test' },
+      },
+    };
+    const spec = structuredClone(button.spec);
+    spec.style.root.base.shadow = {
+      none: true,
+      replaced: { ...button.spec.style.root.base.shadow },
+    };
+    delete spec.style.root.base.shadow.replaced.from;
+    const o = buildOracle(loaded.set, spec, button.deviations, {
+      tokens,
+      names: tokenNames(loadContract()),
+      overlay,
+      fileVersion: catalog.fileVersion,
+    });
+    const shadowExcuse = (figma) =>
+      (o.variants.find((v) => v.figma === figma).excused ?? []).filter(
+        (e) => e.layer === 'root' && e.property === 'shadow',
+      );
+    expect(
+      shadowExcuse('size=md, prio=primary, state=default, danger=false'),
+    ).toEqual([expect.objectContaining({ decision: 'set' })]);
+    expect(
+      shadowExcuse('size=lg, prio=primary, state=default, danger=false'),
+    ).toEqual([]);
+  });
+});

@@ -461,10 +461,13 @@ describe('component parity: the React and Flutter widgets', () => {
       `function ${name}\\(\\s*\\{([\\s\\S]*?)\\}\\s*,\\s*ref`,
     ).exec(source);
     if (!m) throw new Error(`${name}: no destructured props in the shell`);
-    return m[1]
-      .split(',')
-      .map((p) => p.trim())
-      .filter((p) => p && !p.startsWith('...'));
+    return (
+      m[1]
+        .split(',')
+        // A prop with a default (`children = 'Back'`) by its name.
+        .map((p) => p.trim().split(/\s*=/)[0])
+        .filter((p) => p && !p.startsWith('...'))
+    );
   }
 
   /** A Flutter widget's constructor parameters, as {name: default or null}. */
@@ -523,9 +526,14 @@ describe('component parity: the React and Flutter widgets', () => {
       for (const slot of Object.keys(spec.slots)) {
         // The label is the child; a slot styled as one of the root's children (Button Group's
         // example Buttons, all `& > *`) is one of the caller's children.
+        // A drawn component (SplitButton) draws its label's words itself, so Flutter takes them
+        // as a String, `label`.
         const [inReact, inFlutter] =
           slot === 'label'
-            ? ['children', 'child']
+            ? [
+                'children',
+                MUI_SLOTS[spec.component] === 'drawn' ? 'label' : 'child',
+              ]
             : MUI_SLOTS[spec.component]?.[slot] === '& > *'
               ? ['children', 'children']
               : [slot, slot];

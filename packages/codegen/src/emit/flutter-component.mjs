@@ -14,7 +14,7 @@
 
 import { join } from 'node:path';
 import { table as descriptorTable } from '../components/index.mjs';
-import { flattenSpec } from '../spec.mjs';
+import { flattenSpec, recipeAxes } from '../spec.mjs';
 import { pascal, quote } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
@@ -241,7 +241,10 @@ export function renderFlutterComponent(spec, tokens) {
   const spelled = new Set();
   const fields = [];
   const params = [];
-  for (const [prop, def] of Object.entries(spec.api)) {
+  // An axis derived from content (FAB's type) is in the props too: the widget sets it from what it
+  // is given, and the recipe's lookups take it.
+  const axesAll = recipeAxes(spec);
+  for (const [prop, def] of Object.entries(axesAll)) {
     if (def.type === 'boolean') {
       fields.push(`  final bool ${prop};`);
       params.push(`    this.${prop} = ${def.default},`);
@@ -271,12 +274,13 @@ export function renderFlutterComponent(spec, tokens) {
       params.push(`    this.${prop} = ${type}.${id(def.default)},`);
     }
   }
+  // A component with states and no appearance axis (BackButton) keys them under `default`.
   const firstCombo = Object.values(spec.style)
     .flatMap((st) => [
       ...Object.keys(st.appearance),
       ...Object.values(st.combined ?? {}).flatMap((c) => Object.keys(c)),
     ])
-    .at(0);
+    .find((k) => k !== 'default');
   const appearanceAxes =
     firstCombo?.split(', ').map((part) => part.split('=')[0]) ?? [];
   // The states this component can be in, in precedence order; a test of a prop the component
@@ -285,12 +289,13 @@ export function renderFlutterComponent(spec, tokens) {
     (st) => spec.api[st]?.type === 'boolean' || spec.states.includes(st),
   );
   const sizeExpr = 'size' in spec.api ? 'p.size.name' : "''";
-  const combo = appearanceAxes
-    .map(
-      (a) =>
-        `${a}=\${p.${a}${spec.api[a].type === 'boolean' ? '' : spelled.has(a) ? '.figma' : '.name'}}`,
-    )
-    .join(', ');
+  const combo =
+    appearanceAxes
+      .map(
+        (a) =>
+          `${a}=\${p.${a}${axesAll[a].type === 'boolean' ? '' : spelled.has(a) ? '.figma' : '.name'}}`,
+      )
+      .join(', ') || 'default';
   const cell = (key) => `'${table[key]}'`;
   // What a ButtonStyle needs from every component, and what only some have: an icon button has no
   // label, so no text style.
@@ -370,11 +375,13 @@ export function renderFlutterComponent(spec, tokens) {
       backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
 ${optional(
   'foreground',
-  `      foregroundColor: by((s) => color(t, ${cell('foreground')}, p, s)),
+  // A layer this variant does not draw has no colour (an icon FAB's label): the property is
+  // left unset there rather than given one the recipe does not hold.
+  `      foregroundColor: by((s) => lookup(${cell('foreground')}, p, s) == null ? null : color(t, ${cell('foreground')}, p, s)),
 `,
 )}${optional(
           'iconColor',
-          `      iconColor: by((s) => color(t, ${cell('iconColor')}, p, s)),
+          `      iconColor: by((s) => lookup(${cell('iconColor')}, p, s) == null ? null : color(t, ${cell('iconColor')}, p, s)),
 `,
         )}${optional(
           'iconSize',
@@ -482,7 +489,7 @@ ${holds.map((st) => `        '${st}' => ${stateTest(spec, st)},`).join('\n')}
   /// holds beats the resting value, the per-size-and-appearance entry beats the per-appearance
   /// one, and the resting value falls back through appearance, size and base.
   static String? lookup(String cell, Solar${name}Props p, Set<WidgetState> s) {
-    ${combo ? 'final' : 'const'} combo = '${combo}';
+    ${combo.includes('${') ? 'final' : 'const'} combo = '${combo}';
     ${'size' in spec.api ? 'final' : 'const'} size = ${sizeExpr};
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;

@@ -2,18 +2,21 @@
 // Every generated widget’s hand-owned shell, which solar_flutter.dart exports.
 
 export 'solar_avatar.dart';
+export 'solar_backbutton.dart';
 export 'solar_button.dart';
 export 'solar_button_group.dart';
 export 'solar_counter.dart';
-export 'solar_cursor.dart';
 export 'solar_divider.dart';
+export 'solar_fab.dart';
 export 'solar_icon_button.dart';
 export 'solar_kbd.dart';
+export 'solar_link.dart';
 export 'solar_node_end.dart';
 export 'solar_progressbar.dart';
 export 'solar_rowexpand.dart';
 export 'solar_skeleton.dart';
 export 'solar_spinner.dart';
+export 'solar_splitbutton.dart';
 export 'solar_statusindicator.dart';
 export 'solar_timestamp.dart';
 export 'solar_tree_indent.dart';

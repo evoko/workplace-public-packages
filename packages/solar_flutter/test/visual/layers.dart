@@ -23,8 +23,14 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
     // Inside [at]: a Button Group holds a counter in each of its buttons, all keyed alike.
     final here = find.descendant(of: at, matching: find.byKey(key)).first;
     final size = tester.getSize(here);
+    // A layer a Visibility hides, keeping its room (a SplitButton half while loading), is not drawn.
+    final hidden = tester
+        .widgetList<Visibility>(
+          find.ancestor(of: here, matching: find.byType(Visibility)),
+        )
+        .any((v) => !v.visible);
     final values = <String, Object?>{
-      'drawn': true,
+      'drawn': !hidden,
       'width': size.width,
       'height': size.height,
     };
@@ -53,6 +59,9 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
     }
     if (child is SolarIcon) {
       values['color'] = child.color;
+    } else if (child is IconTheme) {
+      // A slot the caller fills (an icon probe), in the colour the recipe gives it.
+      values['color'] = child.data.color;
     } else if (child is SolarGlyphView) {
       values.addAll({
         'background': child.fill,

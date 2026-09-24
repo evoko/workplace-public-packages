@@ -97,6 +97,7 @@ class SolarPressable extends StatelessWidget {
     required this.onPressed,
     required this.builder,
     this.statesController,
+    this.link = false,
   });
 
   /// Called on a tap or the keyboard's activation; null disables it.
@@ -108,6 +109,9 @@ class SolarPressable extends StatelessWidget {
   /// The states, where the caller keeps them (the visual checks force a state through it).
   final WidgetStatesController? statesController;
 
+  /// Whether it is announced as a link (Link) rather than a button.
+  final bool link;
+
   @override
   Widget build(BuildContext context) => SolarStatesScope(
     controller: statesController,
@@ -115,7 +119,8 @@ class SolarPressable extends StatelessWidget {
       final enabled = onPressed != null;
       void set(WidgetState state, bool on) => states.update(state, on);
       return Semantics(
-        button: true,
+        button: !link,
+        link: link,
         enabled: enabled,
         child: FocusableActionDetector(
           enabled: enabled,

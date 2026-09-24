@@ -32,10 +32,11 @@ describe('the component descriptors', () => {
     expect(STATE_SELECTORS['Icon Button']).toBe(
       DESCRIPTORS.find((d) => d.name === 'Icon Button').mui.states,
     );
-    expect(Object.keys(FLUTTER_STYLE).sort()).toEqual([
-      'Button',
-      'Icon Button',
-    ]);
+    expect(Object.keys(FLUTTER_STYLE).sort()).toEqual(
+      DESCRIPTORS.filter((d) => d.flutter?.style)
+        .map((d) => d.name)
+        .sort(),
+    );
     expect(table('mui', 'svgLayers')).toEqual({
       Spinner: ['track', 'indicator'],
     });

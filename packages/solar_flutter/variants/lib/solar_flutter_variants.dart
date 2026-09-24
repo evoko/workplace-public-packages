@@ -6,14 +6,16 @@
 library;
 
 export 'src/avatar.dart';
+export 'src/backbutton.dart';
 export 'src/builders.dart';
 export 'src/button.dart';
 export 'src/button_group.dart';
 export 'src/counter.dart';
-export 'src/cursor.dart';
 export 'src/divider.dart';
+export 'src/fab.dart';
 export 'src/icon_button.dart';
 export 'src/kbd.dart';
+export 'src/link.dart';
 export 'src/node_end.dart';
 export 'src/probes.dart';
 export 'src/progressbar.dart';
@@ -21,6 +23,7 @@ export 'src/registry.dart';
 export 'src/rowexpand.dart';
 export 'src/skeleton.dart';
 export 'src/spinner.dart';
+export 'src/splitbutton.dart';
 export 'src/statusindicator.dart';
 export 'src/timestamp.dart';
 export 'src/tree_indent.dart';

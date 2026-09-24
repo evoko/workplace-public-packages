@@ -98,7 +98,9 @@ const px = (v) => {
  * an appearance its combination (at rest, in every state; in a state, that state alone), and the
  * two together both. */
 function setReaches(props, section, keys) {
+  // `default` is the one key of a component with no appearance axis (Link), which every variant has.
   const holds = (key) =>
+    key === 'default' ||
     key.split(', ').every((kv) => {
       const [axis, value] = kv.split('=');
       return String(props[axis]) === value;
@@ -224,7 +226,7 @@ export function buildOracle(
     // drawn: both are measured, from the parent's edge, for a box and a glyph alike (the `!` in
     // StatusIndicator's triangle), since a shell that misplaced one would draw it wrong.
     const placedBox = Boolean(layer.position);
-    // A root no auto layout sizes (Cursor's arrow) is fixed at the size it is drawn, as the recipe
+    // A root no auto layout sizes (Checkbox's) is fixed at the size it is drawn, as the recipe
     // draws it.
     const drawnAt = placedBox || (path === '/' && !sizeX);
     const box = () => {
@@ -290,7 +292,7 @@ export function buildOracle(
       layer.size
     )
       out.radius = Math.min(...layer.size) / 2;
-    // A shape (Spinner's ring, Cursor's hand) has no box to round; a frame or rectangle does.
+    // A shape (Spinner's ring, a boolean operation) has no box to round; a frame or rectangle does.
     else if (
       ![
         'ELLIPSE',
@@ -418,7 +420,7 @@ export function buildOracle(
       },
     });
 
-  // A cell an overlay `set` changed where Figma's value was readable (Cursor's raised shadow, not
+  // A cell an overlay `set` changed where Figma's value was readable (a shadow the overlay removes,
   // drawn): the code draws the decision, so Figma's value is excused in the variants that draw
   // what the decision replaced (the IR keeps it beside the decision), where it differs from the
   // decision. A value no colour can be read from is its finding's to excuse, above.

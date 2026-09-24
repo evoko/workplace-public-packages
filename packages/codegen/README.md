@@ -186,7 +186,7 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    hidden child's variant is; only its presence is the reference's own. A cell that follows no
    axis then lands in the base, where the emitters find it, rather than being dropped unreported.
    What F1 (the display primitives) added:
-   - **Sizes no auto layout gives.** A root with no auto layout of its own (Cursor's arrow) and a
+   - **Sizes no auto layout gives.** A root with no auto layout of its own (Checkbox's) and a
      layer its parent places by position (Node End's dot) are the size Figma draws them at, fixed,
      and the oracle measures them so; a glyph's size is its outline's, inside the glyph.
    - **Ellipses and booleans.** An ellipse with no outline of its own is a round box,
@@ -225,11 +225,23 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    `keyword` (`FILL`, `HUG`) as well as a token or none, and settles a raw-value finding once no raw
    value is left in the cell; the oracle then excuses Figma's value there, as for any decision.
    A `set` keeps what Figma had beside the decision (`replaced`), so the oracle excuses a measured
-   value it changed (Cursor's raised shadow, not drawn) in exactly the variants that draw what it
+   value it changed (a shadow it removes) in exactly the variants that draw what it
    replaced, and no others.
    `controlDraws` decides the raw sizes of the layer the control draws, and the MUI recipe then
    declares nothing of its place or size (ProgressBar's bar, moved by LinearProgress itself); the
    oracle excuses its box and its roundness.
+   A `set` may also add a state's entry where the IR keeps none because Figma draws the state as
+   at rest (FAB's and Link's focus, given SOLAR's ring), under an appearance the IR has and for a
+   state the component has; anything else is refused as a stale rule. What it `replaced` is then
+   the value the resting lookup found there. A component with states and no appearance axis
+   (BackButton, Link) keys them under `default` on both platforms.
+   `derive` makes an axis follow from content (FAB's `type`, from whether it has a label): the API
+   loses it, and both emitters still key the recipe by it, the MUI recipe through
+   `Solar<Name>RecipeProps` and Flutter's props class through a field the widget sets, so the
+   shell passes what it derived. The oracle reaches such a variant by filling the slots (its
+   `content`).
+   `spec/overlay/excluded.yaml` names the components left out of the flow by decision (Cursor):
+   the triage lists none of them, and the build refuses a descriptor for one.
    `samples` names an axis whose values are samples of what the caller gives (Avatar's `color` and
    `shade`, colours Figma draws for show): the API loses it, and the recipe keeps the variants at
    the values `keep` lists, one per combination of the rest, or the build fails. `caller` names a
@@ -378,7 +390,9 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
      `slotsOf`), `drawnResets`, and templates from `src/scaffold/drawn.mjs` (`drawnReact`,
      `drawnFlutter`), which hand the layer tree to the shells' shared runtime helpers
      (`packages/components/src/internal/layers.tsx`, `solar_flutter`'s `SolarLayers`) and draw a
-     SOLAR icon layer with its component from the assets. A value that is no Dart identifier
+     SOLAR icon layer with its component from the assets. A shell may draw a layer as an element
+     of its own (`render` on the web, `builders` in Flutter: SplitButton's halves are buttons), and
+     fill a slot with the caller's widget (`slots`: Link's icons). A value that is no Dart identifier
      (`top-search`, `Default White`, `00`) is respelled for its enum (`dartEnumValue`), which then
      carries Figma's spelling.
   2. Its overlay, `spec/overlay/<address>.yaml`.

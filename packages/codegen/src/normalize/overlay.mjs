@@ -53,6 +53,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { parse } from 'yaml';
 import { repoRoot, specDir } from '../util/paths.mjs';
+import { BOOLEAN_STATES } from './component-layers.mjs';
 
 export const overlayDir = join(specDir, 'overlay');
 
@@ -327,6 +328,35 @@ export function parseDefaults(text, file) {
 }
 
 /** The shared defaults, or null when there is no defaults file. */
+const excludedFile = join(overlayDir, 'excluded.yaml');
+
+/**
+ * Parses the components left out of the design-to-code flow (`spec/overlay/excluded.yaml`), by
+ * address: each with its reason, and nothing else.
+ */
+export function parseExcluded(text, file) {
+  const doc = parse(text) ?? {};
+  const out = {};
+  for (const [address, rule] of Object.entries(doc)) {
+    for (const key of Object.keys(rule ?? {}))
+      if (key !== 'reason')
+        throw new Error(`${file}: ${address}: unknown field ${key}`);
+    if (typeof rule?.reason !== 'string' || rule.reason.trim() === '')
+      throw new Error(`${file}: ${address} has no reason`);
+    out[address] = rule.reason.trim();
+  }
+  return out;
+}
+
+/** The components left out of the flow, by address, with their reasons; none without the file. */
+export function loadExcluded() {
+  if (!existsSync(excludedFile)) return {};
+  return parseExcluded(
+    readFileSync(excludedFile, 'utf8'),
+    relative(repoRoot, excludedFile),
+  );
+}
+
 export function loadDefaults() {
   if (!existsSync(defaultsFile)) return null;
   return parseDefaults(
@@ -645,6 +675,7 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     delete spec.api[axis];
     (spec.derived ??= {})[axis] = {
       values: [...options],
+      default: axes[axis].default,
       when: rule.when.map((w) => ({
         value: w.value,
         given: [...(w.given ?? [])],
@@ -695,19 +726,42 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       fail(`set ${at}: ${section} is not a style section`);
     let node = s[section];
     const keys = parts.slice(2, 2 + DEPTH[section]);
-    for (const key of keys) {
+    // A state the IR keeps no entry for, because Figma draws it as at rest (FAB's focus), may be
+    // given one, under an appearance the IR has, for a state the component has.
+    const states = new Set([
+      'default',
+      ...spec.states,
+      ...Object.keys(spec.api).filter((p) => BOOLEAN_STATES.includes(p)),
+    ]);
+    keys.forEach((key, i) => {
+      const last = i === keys.length - 1 && section !== 'size';
+      if (!node?.[key] && last && node && states.has(key)) node[key] = {};
       if (!node?.[key]) fail(`set ${at}: the IR has no ${section} ${key}`);
       node = node[key];
-    }
+    });
     const cell = parts.slice(2 + DEPTH[section]).join('.');
     if (!cell) fail(`set ${at}: names no cell`);
+    // What the lookup finds where the entry has no value of its own: the resting value.
+    const resting = () => {
+      if (section === 'appearance')
+        return s.appearance[keys[0]]?.default?.[cell] ?? s.base[cell];
+      if (section === 'combined')
+        return (
+          s.combined[keys[0]]?.[keys[1]]?.default?.[cell] ??
+          s.appearance?.[keys[1]]?.default?.[cell] ??
+          s.size?.[keys[0]]?.[cell] ??
+          s.base[cell]
+        );
+      if (section === 'size') return s.base[cell];
+      return undefined;
+    };
     if (rule.token !== undefined && !names.has(rule.token))
       fail(`set ${at}: ${rule.token} is not a SOLAR token`);
     if (rule.keyword !== undefined && !['FILL', 'HUG'].includes(rule.keyword))
       fail(`set ${at}: keyword must be FILL or HUG`);
     // What Figma had there is kept beside the decision, so the oracle excuses the variants that
-    // draw it (Cursor's raised shadow) and no others.
-    const was = node[cell];
+    // draw it and no others.
+    const was = node[cell] ?? resting();
     const replaced = was && {
       ...Object.fromEntries(
         ['token', 'none', 'keyword', 'literal'].flatMap((k) =>

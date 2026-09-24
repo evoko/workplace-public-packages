@@ -252,7 +252,7 @@ function sizingOf(layer) {
 
 /**
  * One axis of a layer's size. Where no auto layout sizes the layer -- a root with no auto layout of
- * its own (Cursor's arrow), or a layer its parent places by position (Node End's dot) -- it is the
+ * its own (Checkbox's), or a layer its parent places by position (Node End's dot) -- it is the
  * size it is drawn at, fixed, as Figma draws it; `drawnAt` says it is such a layer.
  */
 function extent(layer, i, names, where, drawnAt = false) {

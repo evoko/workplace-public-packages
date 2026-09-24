@@ -1,0 +1,92 @@
+/// SOLAR Link.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Link` from spec/components/link.json,
+/// and owned by developers from then on: change it freely. What it looks like is not here. That is
+/// the recipe, [SolarLinkRecipe]: each size’s text style, underlined on hover, its colours by
+/// state, and its icons’ sizes, read cell by cell.
+///
+/// Bespoke: Flutter has no link. Its words and icons are drawn from Figma's layer tree with
+/// [SolarLayers], pressable, and announced as a link. For navigation; an action that changes
+/// something is a SolarButton. A leading icon says internal (a chevron), a trailing one outbound;
+/// one of the two, not both.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/link.dart';
+import '../solar_layers.dart';
+import '../solar_states.dart';
+import 'solar_theme_of.dart';
+
+class SolarLink extends StatelessWidget {
+  const SolarLink({
+    super.key,
+    this.size = SolarLinkSize.md,
+    this.disabled = false,
+    required this.label,
+    this.leadingIcon,
+    this.trailingIcon,
+    this.onPressed,
+    this.statesController,
+  });
+
+  final SolarLinkSize size;
+  final bool disabled;
+
+  /// The link's words, which say where it goes.
+  final String label;
+
+  /// An icon before the words: internal navigation.
+  final Widget? leadingIcon;
+
+  /// An icon after the words: outbound, or a new tab.
+  final Widget? trailingIcon;
+
+  /// Called when it is tapped, which makes it a control of its own; without it, it takes the
+  /// states of the control around it (a Button's).
+  final VoidCallback? onPressed;
+
+  /// Its states, where the caller keeps them.
+  final WidgetStatesController? statesController;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['leadingIcon', 'label', 'trailingIcon'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarLinkProps(size: size, disabled: disabled);
+    Widget draw(Set<WidgetState> states) => SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarLinkRecipe.lookup(c, p, states),
+        dimension: (c) => SolarLinkRecipe.dimension(c, p, states),
+        color: (c) => SolarLinkRecipe.color(t, c, p, states),
+        shadow: (c) => SolarLinkRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarLinkRecipe.textStyle(t, c, p, states),
+        present: (l) => switch (l) {
+          'leadingIcon' => leadingIcon != null,
+          'trailingIcon' => trailingIcon != null,
+          _ => SolarLinkRecipe.present(l, p, states),
+        },
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'link',
+      text: {'label': label},
+      slots: {'leadingIcon': ?leadingIcon, 'trailingIcon': ?trailingIcon},
+    ).layer('root');
+    // A control of its own only when it has something to do; otherwise it takes the states of
+    // the control around it (a Counter in a Button).
+    final mark = onPressed == null && statesController == null
+        ? SolarStatesBuilder(builder: (_, states) => draw(states))
+        : SolarPressable(
+            onPressed: !disabled ? onPressed : null,
+            statesController: statesController,
+            link: true,
+            builder: (_, states) => draw(states),
+          );
+    return mark;
+  }
+}

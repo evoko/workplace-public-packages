@@ -741,8 +741,16 @@ abstract final class SolarIconButtonRecipe {
     final height = dimension('root.height', p, none);
     return ButtonStyle(
       backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
-      foregroundColor: by((s) => color(t, 'icon.color', p, s)),
-      iconColor: by((s) => color(t, 'icon.color', p, s)),
+      foregroundColor: by(
+        (s) => lookup('icon.color', p, s) == null
+            ? null
+            : color(t, 'icon.color', p, s),
+      ),
+      iconColor: by(
+        (s) => lookup('icon.color', p, s) == null
+            ? null
+            : color(t, 'icon.color', p, s),
+      ),
       iconSize: WidgetStatePropertyAll(dimension('icon.width', p, none)),
       padding: by(
         (s) => EdgeInsetsDirectional.only(

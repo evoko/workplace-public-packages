@@ -12,7 +12,7 @@
  */
 
 import { join } from 'node:path';
-import { flattenSpec } from '../spec.mjs';
+import { flattenSpec, recipeAxes } from '../spec.mjs';
 import { pascal } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
@@ -41,7 +41,7 @@ export const MUI_SLOTS = descriptorTable('mui', 'slots');
  * A component's slot table: its descriptor's, or, for a drawn component (`slots: 'drawn'`), every
  * IR layer as the element the shell draws it as, with a class of its own (`& .SolarCounter-value`),
  * and the root as the component's own element. Read from the IR, so a drawing of 57 layers
- * (Cursor's) lists none of them by hand.
+ * (StatusIndicator's nine) lists none of them by hand.
  */
 export function slotsOf(spec) {
   const slots = MUI_SLOTS[spec.component];
@@ -653,7 +653,7 @@ export function renderMuiComponent(spec, tokens) {
       const [axis, value] = part.includes('=')
         ? part.split('=')
         : ['size', part];
-      const def = spec.api[axis];
+      const def = recipeAxes(spec)[axis];
       return def?.values ? def.values.indexOf(value) : value === 'true' ? 1 : 0;
     });
   const ordered = (obj) =>
@@ -675,19 +675,31 @@ export function renderMuiComponent(spec, tokens) {
   // The axes an appearance is keyed by, from any key: `variant=primary, danger=false`.
   // A drawing (StatusIndicator) keys its entries by size and appearance together, so the
   // combined section may be the only one that names them.
+  // A component with states and no appearance axis (BackButton) keys them under `default`.
+  const firstKey = [
+    ...Object.keys(styles.appearances),
+    ...Object.values(styles.combined).flatMap((c) => Object.keys(c)),
+  ].find((k) => k !== 'default');
   const appearanceAxes =
-    (
-      Object.keys(styles.appearances)[0] ??
-      Object.values(styles.combined).flatMap((c) => Object.keys(c))[0]
-    )
-      ?.split(', ')
-      .map((part) => part.split('=')[0]) ?? [];
+    firstKey?.split(', ').map((part) => part.split('=')[0]) ?? [];
 
   const name = pascal(spec.component);
   const typeLines = [];
   const propLines = [];
+  // An axis derived from content (FAB's type) is the shell's to set, not the caller's to give.
+  const derivedLines = [];
   const defaults = {};
-  for (const [prop, def] of Object.entries(spec.api)) {
+  const axesAll = recipeAxes(spec);
+  for (const [prop, def] of Object.entries(axesAll)) {
+    if (def.derived) {
+      const type = `Solar${name}${pascal(prop)}`;
+      typeLines.push(
+        `export type ${type} = ${def.values.map((v) => `'${v}'`).join(' | ')};`,
+      );
+      derivedLines.push(`  ${prop}?: ${type};`);
+      defaults[prop] = def.default;
+      continue;
+    }
     if (def.type === 'boolean') {
       propLines.push(`  ${prop}?: boolean;`);
     } else if (def.type === 'color') {
@@ -722,12 +734,13 @@ export function renderMuiComponent(spec, tokens) {
         `${spec.component}: appearance key ${key} does not name ${appearanceAxes.join(', ')}`,
       );
   for (const axis of appearanceAxes)
-    if (!(axis in spec.api))
+    if (!(axis in axesAll))
       throw new Error(
         `${spec.component}: appearance axis ${axis} is not a prop`,
       );
 
-  const key = appearanceAxes.map((a) => `${a}=\${p.${a}}`).join(', ');
+  const key =
+    appearanceAxes.map((a) => `${a}=\${p.${a}}`).join(', ') || 'default';
   const sizeProp = 'size' in spec.api ? 'size' : null;
 
   const ts =
@@ -736,6 +749,9 @@ export function renderMuiComponent(spec, tokens) {
     `// Every value is a var(--solar-*) reference into tokens.css, which must be loaded.\n\n` +
     `${typeLines.join('\n')}\n\n` +
     `export interface Solar${name}Props {\n${propLines.join('\n')}\n}\n\n` +
+    (derivedLines.length
+      ? `/** The props and what the shell derives from its content (the recipe is keyed by both). */\nexport interface Solar${name}RecipeProps extends Solar${name}Props {\n${derivedLines.join('\n')}\n}\n\n`
+      : '') +
     `export const solar${name}Defaults = ${JSON.stringify(defaults, null, 2)} as const;\n\n` +
     `/** Style by layer and state: \`root\` is the base, then per size, per appearance, and per size and appearance together. */\n` +
     `export const solar${name}Styles = ${JSON.stringify(styles, null, 2)} as const;\n\n` +
@@ -750,7 +766,7 @@ export function renderMuiComponent(spec, tokens) {
     `  return out;\n` +
     `}\n\n` +
     `/** The complete style for one set of props, for \`sx\` or \`styleOverrides.root\`. */\n` +
-    `export function solar${name}Style(props: Solar${name}Props = {}): Style {\n` +
+    `export function solar${name}Style(props: Solar${name}${derivedLines.length ? 'RecipeProps' : 'Props'} = {}): Style {\n` +
     // A prop passed as undefined means "not set", and must not overwrite its default: a shell
     // that forwards every prop it destructured passes undefined for each one the caller left out.
     `  const p: Record<string, unknown> = { ...solar${name}Defaults };\n` +
@@ -769,7 +785,7 @@ export function renderMuiComponent(spec, tokens) {
     `type Parts = Solar${name}Parts;\n` +
     `type Layered = {\n  base: Parts;\n  size?: Record<string, Parts>;\n  appearance?: Record<string, Record<string, Parts>>;\n  combined?: Record<string, Record<string, Record<string, Parts>>>;\n};\n\n` +
     `/**\n * What the shell renders for one set of props in one state, by layer: whether it shows, and which\n * component and variant a composed child takes. The same precedence as the style: base, size,\n * appearance, then size and appearance together, each at rest and then in the state.\n */\n` +
-    `export function solar${name}Compose(\n  props: Solar${name}Props = {},\n  state: string = 'default',\n): Record<string, Parts> {\n` +
+    `export function solar${name}Compose(\n  props: Solar${name}${derivedLines.length ? 'RecipeProps' : 'Props'} = {},\n  state: string = 'default',\n): Record<string, Parts> {\n` +
     `  const p: Record<string, unknown> = { ...solar${name}Defaults };\n` +
     `  for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;\n` +
     `  const key = \`${key}\`;\n` +

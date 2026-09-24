@@ -146,6 +146,7 @@ export function triage(
     done,
     defaults = null,
     overlayOf = () => null,
+    excluded = {},
     scope = 'components/',
     rawDir = join(docsDir, 'solar-web', 'raw'),
   },
@@ -164,6 +165,8 @@ export function triage(
   const rows = [];
   for (const entry of catalog.components) {
     if (!entry.section.startsWith(scope)) continue;
+    // Left out of the flow by decision: no candidate, and none of its findings counted.
+    if (excluded[addressOf(catalog, entry)]) continue;
     const set = componentOf(entry, { rawDir });
     rows.push(
       triageEntry(entry, set, {
@@ -186,7 +189,7 @@ const count = (rows, f) => rows.filter(f).length;
 const sum = (rows, k) => rows.reduce((n, r) => n + (r.findings[k] ?? 0), 0);
 
 /** The survey as markdown: totals, then one row per component. */
-export function renderTriage(rows, { fileVersion }) {
+export function renderTriage(rows, { fileVersion, excluded = {} }) {
   const kinds = ['axis', 'zeroInset', 'boundable', 'noToken', 'decided'];
   const others = (r) =>
     Object.entries(r.findings)
@@ -210,6 +213,9 @@ export function renderTriage(rows, { fileVersion }) {
     `- ${rows.length} components: ${count(rows, (r) => r.kind === 'set')} sets, ` +
       `${count(rows, (r) => r.kind === 'standalone')} standalone; ${count(rows, (r) => r.done)} generated.`,
     `- ${builds.length} build an IR today; ${rows.length - builds.length} do not.`,
+    ...Object.entries(excluded).map(
+      ([name, reason]) => `- Left out of the flow: ${name}. ${reason}`,
+    ),
     `- ${total} findings, ${sum(builds, 'decided')} decided; open: ${sum(builds, 'axis')} axis, ` +
       `${sum(builds, 'zeroInset')} 0-inset, ${sum(builds, 'boundable')} token, ` +
       `${sum(builds, 'noToken')} no token, ${total - kinds.reduce((n, k) => n + sum(builds, k), 0)} other.`,

@@ -1,0 +1,95 @@
+/**
+ * SOLAR BackButton.
+ *
+ * Scaffolded once by `npm run solar:scaffold BackButton` from spec/components/backbutton.json, and
+ * owned by developers from then on: change it freely. What it looks like is not here. That is the
+ * recipe, `solarBackButtonStyle` in `@bwp-web/styles/mui`: its sizes, its colours by state, its
+ * shadow and focus ring.
+ *
+ * Back to the previous view or a parent: one per view, top left. It wraps MUI's Button, which
+ * supplies focus, keyboard activation, and the disabled and loading states, with SOLAR's
+ * ArrowLeft icon. The label is "Back" by default; give the destination where it helps ("Back to
+ * Devices"), or `{null}` for the arrow alone, which is then named "Back". Pass `href` to
+ * make it a link. The app must load `@bwp-web/styles/tokens.css`.
+ */
+
+import MuiButton, {
+  type ButtonProps as MuiButtonProps,
+} from '@mui/material/Button';
+import { IconArrowLeft } from '@bwp-web/assets';
+import { forwardRef, type ReactNode } from 'react';
+import {
+  solarBackButtonCompose,
+  solarBackButtonStyle,
+  type SolarBackButtonProps,
+  type SolarSpinnerSize,
+  type SolarSpinnerVariant,
+} from '@bwp-web/styles/mui';
+import { Spinner } from './Spinner.js';
+
+export interface BackButtonProps
+  extends
+    SolarBackButtonProps,
+    Omit<
+      MuiButtonProps,
+      | keyof SolarBackButtonProps
+      | 'color'
+      | 'variant'
+      | 'startIcon'
+      | 'endIcon'
+      | 'disableElevation'
+      | 'children'
+    > {
+  /** Where it goes back to: "Back" by default, or null for the arrow alone. */
+  children?: ReactNode;
+}
+
+export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
+  function BackButton(
+    { size, disabled, loading, children = 'Back', sx, ...rest },
+    ref,
+  ) {
+    const busy = Boolean(loading && !disabled);
+    // What the loading state hides, keeping its room, and the Spinner it shows, as Figma picks it.
+    const parts = solarBackButtonCompose(
+      { size, disabled, loading },
+      busy ? 'loading' : 'default',
+    );
+    const spinner = solarBackButtonCompose(
+      { size, disabled, loading },
+      'loading',
+    ).spinner;
+    return (
+      <MuiButton
+        ref={ref}
+        aria-label={children == null ? 'Back' : undefined}
+        {...rest}
+        disabled={disabled}
+        loading={busy}
+        startIcon={<IconArrowLeft />}
+        loadingIndicator={
+          <Spinner
+            size={spinner['variant.size'] as SolarSpinnerSize}
+            variant={spinner['variant.style'] as SolarSpinnerVariant}
+          />
+        }
+        // SOLAR's states have their own colours; MUI's ripple and elevation would paint over them.
+        variant="text"
+        disableRipple
+        sx={[
+          solarBackButtonStyle({ size, disabled, loading }),
+          parts.iconArrowLeft?.present === false
+            ? { '& .MuiButton-startIcon': { visibility: 'hidden' } }
+            : null,
+          // Under the loading class the recipe's own colour rule is, so this one, later, wins.
+          parts.label?.present === false
+            ? { '&.MuiButton-loading': { color: 'transparent' } }
+            : null,
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {children}
+      </MuiButton>
+    );
+  },
+);

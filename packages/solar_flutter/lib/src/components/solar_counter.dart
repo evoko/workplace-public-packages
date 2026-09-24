@@ -70,8 +70,8 @@ class SolarCounter extends StatelessWidget {
       keyPrefix: 'counter',
       text: {'value': count > max ? '$max+' : '$count'},
     ).layer('root');
-    // A control of its own only when it has something to do; otherwise the control around it
-    // (a Button) is the one pressed, and its states are these.
+    // A control of its own only when it has something to do; otherwise it takes the states of
+    // the control around it (a Counter in a Button).
     final mark = onPressed == null && statesController == null
         ? SolarStatesBuilder(builder: (_, states) => draw(states))
         : SolarPressable(

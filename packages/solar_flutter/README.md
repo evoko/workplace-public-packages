@@ -47,14 +47,17 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 
 ## Components
 
-`SolarButton`, `SolarIconButton`, `SolarButtonGroup` and `SolarSpinner`, and the display primitives
+`SolarButton`, `SolarIconButton`, `SolarButtonGroup`, `SolarFAB`, `SolarBackButton`,
+`SolarSplitButton`, `SolarLink` and `SolarSpinner`, and the display primitives
 (`SolarStatusIndicator`, `SolarCounter`, `SolarKbd`, `SolarTimestamp`, `SolarAvatar`,
 `SolarTrendBadge`, `SolarDivider`, `SolarSkeleton`, `SolarProgressBar`, `SolarNodeEnd`,
-`SolarRowExpand`, `SolarTreeIndent` and `SolarCursor`) take the same props as the React components
+`SolarRowExpand` and `SolarTreeIndent`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
-`SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, and a `SolarTimestamp` takes
-the app's words (`text`) with no `DateTime`, since Flutter has no machine-readable time:
+`SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
+the app's words (`text`) with no `DateTime`, since Flutter has no machine-readable time, and a
+drawn component (`SolarSplitButton`, `SolarLink`) takes its words as a `String`, `label`. `SolarFAB`
+is a FilledButton, which a Scaffold's `floatingActionButton` takes:
 
 ```dart
 SolarButton(

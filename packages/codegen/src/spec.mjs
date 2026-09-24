@@ -37,3 +37,20 @@ export function flattenSpec(spec) {
   walk(spec, '');
   return out;
 }
+
+/**
+ * The axes a component's recipe is keyed by: its API's props, and an axis the overlay derives from
+ * content (FAB's type, from whether it has a label), which is no prop of the component but which
+ * the shell sets from what it is given, so the recipe's lookups still take it.
+ */
+export function recipeAxes(spec) {
+  return {
+    ...spec.api,
+    ...Object.fromEntries(
+      Object.entries(spec.derived ?? {}).map(([axis, d]) => [
+        axis,
+        { values: d.values, default: d.default, derived: true },
+      ]),
+    ),
+  };
+}

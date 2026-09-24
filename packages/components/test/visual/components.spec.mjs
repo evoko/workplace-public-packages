@@ -180,7 +180,14 @@ async function reach(page, control, state) {
   if (state === 'focus') {
     // A key first, so the browser (and MUI with it) treats the focus as keyboard focus.
     await page.keyboard.press('Shift');
-    await control.focus();
+    // The control's first focusable part, as Tab reaches it: the control itself, or, for a group
+    // of buttons (SplitButton's halves), the first of them.
+    await control.evaluate((el) =>
+      (el.matches('button, a[href], input, [tabindex]')
+        ? el
+        : el.querySelector('button, a[href], input, [tabindex]')
+      )?.focus(),
+    );
   }
   return async () => {};
 }

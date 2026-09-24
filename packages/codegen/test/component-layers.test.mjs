@@ -370,3 +370,30 @@ describe('resolveVariants: a component Figma drew with no variants', () => {
     ).toThrow(/Broken: has no variant axes/);
   });
 });
+
+describe('a boolean operation', () => {
+  it('is one shape, its outline Figma’s; its operands are no layers of the component', () => {
+    const [v] = resolveVariants(
+      synthetic({
+        tree: {
+          name: 'tone=a',
+          type: 'COMPONENT',
+          children: [
+            {
+              name: 'Mark',
+              type: 'BOOLEAN_OPERATION',
+              fills: ['{Color:icon/primary}'],
+              children: [
+                { name: 'Path', type: 'VECTOR' },
+                { name: 'Path', type: 'VECTOR' },
+              ],
+            },
+          ],
+        },
+        variants: [{ variant: 'tone=a' }, { variant: 'tone=b' }],
+      }),
+    ).variants;
+    expect([...v.layers.keys()]).toEqual(['/', '/Mark']);
+    expect(v.parents.has('/Mark/Path')).toBe(false);
+  });
+});

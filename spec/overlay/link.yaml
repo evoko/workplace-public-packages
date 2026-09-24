@@ -1,0 +1,62 @@
+# Hand-written decisions about SOLAR Link, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Link
+
+base:
+  mui: Link
+  reason: >-
+    MUI's Link on the web, an <a> with keyboard focus handling, restyled by the recipe; bespoke in
+    Flutter, which has no link: its text and icons drawn with the shared layer helpers, pressable,
+    and announced as a link.
+
+follows:
+  label.typography:
+    axes: [size, state]
+    reason: >-
+      A link underlines on hover "so the affordance never relies on color alone", says the
+      description: its hover text style is link/*/hover, underlined, and every other state's
+      link/*/default.
+
+set:
+  label.combined.xs.default.default.typography:
+    token: typography.link.xs.default
+    reason: >-
+      The xs label is detached from its text style: Figma binds it to local copies of body/xs's
+      size and line height (10px on 14px), which are link/xs/default's exactly. Drawn with that
+      style; the design review asks SOLAR to reattach it.
+  label.combined.xs.default.hover.typography:
+    token: typography.link.xs.hover
+    reason: As at rest, xs's hover style is link/xs/hover, underlined, as every other size's is.
+  label.combined.xs.default.pressed.typography:
+    token: typography.link.xs.default
+    reason: As at rest, link/xs/default.
+  label.combined.xs.default.disabled.typography:
+    token: typography.link.xs.default
+    reason: As at rest, link/xs/default.
+  label.combined.xs.default.focus.typography:
+    token: typography.link.xs.default
+    reason: As at rest, link/xs/default.
+  root.appearance.default.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws the focus state as the resting one, with no ring, and WCAG's visible focus is
+      SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's is; the design review asks SOLAR to
+      draw it.
+
+bind:
+  leadingIcon.height:
+    tokens: { 24: icon.lg, 16: icon.sm, 12: icon.xs }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's width is
+      already bound to them ("icon size tracks text size", says the description).
+  trailingIcon.height:
+    tokens: { 24: icon.lg, 16: icon.sm, 12: icon.xs }
+    reason: As the leading icon's.
+
+allowLiteral:
+  root.opacity:
+    reason: >-
+      A disabled link is drawn at 50% opacity, over its disabled colours. SOLAR has no opacity
+      scale, as for Node End's halo; carried as Figma's number, and raised as a governance gap.

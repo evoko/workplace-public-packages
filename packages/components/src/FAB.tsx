@@ -1,0 +1,105 @@
+/**
+ * SOLAR FAB.
+ *
+ * Scaffolded once by `npm run solar:scaffold FAB` from spec/components/fab.json, and owned by
+ * developers from then on: change it freely. What it looks like is not here. That is the recipe,
+ * `solarFABStyle` in `@bwp-web/styles/mui`: each size and type, its colours by state, its shadow and
+ * its focus ring.
+ *
+ * The screen's one most important action. It wraps MUI's Button, which supplies focus, keyboard
+ * activation, and the disabled and loading states (MUI's Fab has no loading state). It is extended
+ * when it has a label, and an icon alone otherwise, which then needs an `aria-label`. Where it
+ * floats (usually the bottom right) is the app's. The app must load `@bwp-web/styles/tokens.css`.
+ */
+
+import MuiButton, {
+  type ButtonProps as MuiButtonProps,
+} from '@mui/material/Button';
+import { forwardRef, type ReactNode } from 'react';
+import {
+  solarFABCompose,
+  solarFABStyle,
+  type SolarFABProps,
+  type SolarSpinnerSize,
+  type SolarSpinnerVariant,
+} from '@bwp-web/styles/mui';
+import { Spinner } from './Spinner.js';
+
+export interface FABProps
+  extends
+    SolarFABProps,
+    Omit<
+      MuiButtonProps,
+      | keyof SolarFABProps
+      | 'color'
+      | 'variant'
+      | 'startIcon'
+      | 'endIcon'
+      | 'disableElevation'
+    > {
+  /** The action's icon: add, compose, scan. */
+  icon: ReactNode;
+  /** The label, which makes it an extended FAB. Without one, give it an `aria-label`. */
+  children?: ReactNode;
+}
+
+// Through globalThis, because `process` exists only where a bundler or Node provides it.
+const DEV =
+  (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process?.env
+    ?.NODE_ENV !== 'production';
+
+export const FAB = forwardRef<HTMLButtonElement, FABProps>(function FAB(
+  { size, disabled, loading, icon, children, sx, ...rest },
+  ref,
+) {
+  // Extended where it has a label, as SOLAR says; the icon FAB's name is its aria-label.
+  const extended = children != null && children !== false && children !== '';
+  if (DEV && !extended && !rest['aria-label'] && !rest['aria-labelledby'])
+    // eslint-disable-next-line no-console -- a development-only accessibility warning, on purpose
+    console.warn('SOLAR FAB: an icon FAB needs an aria-label.');
+  const recipe = {
+    size,
+    disabled,
+    loading,
+    type: extended ? 'extended' : 'icon',
+  } as const;
+  const busy = Boolean(loading && !disabled);
+  // Which Spinner the loading state shows, as Figma picks it per size, and what it hides: the icon
+  // and the label, which keep their room so the FAB does not resize.
+  const parts = solarFABCompose(recipe, busy ? 'loading' : 'default');
+  const spinner = solarFABCompose(recipe, 'loading').spinner;
+
+  return (
+    <MuiButton
+      ref={ref}
+      {...rest}
+      disabled={disabled}
+      // Disabled wins over loading, as in Figma's state order.
+      loading={busy}
+      startIcon={icon}
+      loadingIndicator={
+        <Spinner
+          size={spinner['variant.size'] as SolarSpinnerSize}
+          variant={spinner['variant.style'] as SolarSpinnerVariant}
+        />
+      }
+      // SOLAR's states have their own colours and shadows; MUI's ripple and elevation would paint
+      // over them, so its own variant is pinned to text, as Button's is.
+      variant="text"
+      disableRipple
+      sx={[
+        solarFABStyle(recipe),
+        parts.icon?.present === false
+          ? { '& .MuiButton-startIcon': { visibility: 'hidden' } }
+          : null,
+        // Under the loading class the recipe's own colour rule is, so this one, later, wins.
+        parts.label?.present === false
+          ? { '&.MuiButton-loading': { color: 'transparent' } }
+          : null,
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {extended ? children : null}
+    </MuiButton>
+  );
+});

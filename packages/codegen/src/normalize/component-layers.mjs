@@ -186,7 +186,7 @@ export function resolveVariants(set) {
           `${raw.variant}: adds ${added.path} under ${added.parent}, which it does not have`,
         );
 
-    // A boolean operation is drawn as one shape, the outline Figma records on it (Cursor's hand);
+    // A boolean operation is drawn as one shape, the outline Figma records on it;
     // its children are its operands, which Figma never draws, so they are no layers of the
     // component. Structure, not a correction: what Figma draws is the same.
     const operand = (path) => {

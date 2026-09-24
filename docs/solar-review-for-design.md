@@ -55,23 +55,23 @@ If you take only a few items, take these:
    disappear when pressed. Two variable values; the one problem on this list that users would
    notice. [Section 8](#8-action-colours-below-the-contrast-floor--5).
 2. **Control heights** — eleven components describe themselves as 36/44px tall and are drawn at
-   32/40px, which is also the touch-target question. [Section 3](#3-described-sizes-that-disagree-with-the-drawing--11-components).
+   32/40px, which is also the touch-target question. [Section 3](#3-described-sizes-that-disagree-with-the-drawing--12-components).
 3. **36 Accessibility cards** still carry the Breadcrumbs page's text, and two Usage cards do too.
    [Section 5](#5-documentation-cards-copied-from-breadcrumbs--36-pages).
 
 ## At a glance
 
-| #                                                                     | What                                              | Count                                                                                                                 | File        |
-| --------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [1](#1-hard-coded-values--9-across-8-components)                      | Hard-coded values not bound to a variable         | 9 in 8 components, and 1,130 zeros                                                                                    | SOLAR Web   |
-| [2](#2-primitive-colours-used-directly--3-components)                 | Components using primitive colours directly       | 3                                                                                                                     | SOLAR Web   |
-| [3](#3-described-sizes-that-disagree-with-the-drawing--11-components) | Described sizes that disagree with the drawn ones | 11                                                                                                                    | SOLAR Web   |
-| [4](#4-variable-bindings--2-wrong-2-unknown)                          | Wrong or unknown variable bindings                | 2 + 2                                                                                                                 | SOLAR Web   |
-| [5](#5-documentation-cards-copied-from-breadcrumbs--36-pages)         | Documentation cards copied from Breadcrumbs       | 36 pages                                                                                                              | SOLAR Web   |
-| [6](#6-the-components-we-build-variant-by-variant)                    | The components we build, in detail                | Button 6, Spinner 2, Icon Button 5, Button Group 3, StatusIndicator 2, the display primitives 3 fixes and 5 questions | SOLAR Web   |
-| [7](#7-guideline-pages-that-contradict-the-variables)                 | Guideline pages that contradict the variables     | 2, and 2 page edits                                                                                                   | Foundations |
-| [8](#8-action-colours-below-the-contrast-floor--5)                    | Action colours below the contrast floor           | 5                                                                                                                     | Foundations |
-| [9](#9-icons-and-logos)                                               | Icons and logos                                   | no icon findings; 2 logo questions                                                                                    | SOLAR Icons |
+| #                                                                     | What                                              | Count                                                                                                                                                      | File        |
+| --------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [1](#1-hard-coded-values--9-across-8-components)                      | Hard-coded values not bound to a variable         | 9 in 8 components, and 1,130 zeros                                                                                                                         | SOLAR Web   |
+| [2](#2-primitive-colours-used-directly--2-components)                 | Components using primitive colours directly       | 2                                                                                                                                                          | SOLAR Web   |
+| [3](#3-described-sizes-that-disagree-with-the-drawing--12-components) | Described sizes that disagree with the drawn ones | 12                                                                                                                                                         | SOLAR Web   |
+| [4](#4-variable-bindings--2-wrong-2-unknown)                          | Wrong or unknown variable bindings                | 2 + 2                                                                                                                                                      | SOLAR Web   |
+| [5](#5-documentation-cards-copied-from-breadcrumbs--36-pages)         | Documentation cards copied from Breadcrumbs       | 36 pages                                                                                                                                                   | SOLAR Web   |
+| [6](#6-the-components-we-build-variant-by-variant)                    | The components we build, in detail                | Button 6, Spinner 2, Icon Button 5, Button Group 3, StatusIndicator 2, the display primitives 3 fixes and 4 questions, the buttons 3 fixes and 4 questions | SOLAR Web   |
+| [7](#7-guideline-pages-that-contradict-the-variables)                 | Guideline pages that contradict the variables     | 2, and 2 page edits                                                                                                                                        | Foundations |
+| [8](#8-action-colours-below-the-contrast-floor--5)                    | Action colours below the contrast floor           | 5                                                                                                                                                          | Foundations |
+| [9](#9-icons-and-logos)                                               | Icons and logos                                   | no icon findings; 2 logo questions                                                                                                                         | SOLAR Icons |
 
 ---
 
@@ -103,23 +103,19 @@ unbound `0` gap as `inset/none` or `stack/none` by the direction of its auto lay
 component, so they need no answer component by component. If you rebind them in bulk, nothing in
 our code changes.
 
-## 2. Primitive colours used directly — 3 components
+## 2. Primitive colours used directly — 2 components
 
 Bound directly, a primitive does not follow Light and Dark, because only the semantic colours are
 reassigned per mode.
 
-| Component            | Section            | Layer                                          | Primitive              | Open                                                                           |
-| -------------------- | ------------------ | ---------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------ |
-| **Interactive Card** | components/cards   | the text-and-icon row's icon (`Icon/None`)     | `color/neutral/900`    | [10400:504](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=10400-504) |
-| **Launch Card**      | components/cards   | the favourite Icon Button over the cover image | `color/alpha/white-60` | [10403:814](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=10403-814) |
-| **Cursor**           | components/utility | Copy's plus disc (`Oval 3`)                    | `color/green/400`      | [8871:436](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=8871-436)   |
-| **Cursor**           | components/utility | Progress's arc (`Rectangle 8`)                 | `color/blue/400`       | [8871:436](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=8871-436)   |
+| Component            | Section          | Layer                                          | Primitive              | Open                                                                           |
+| -------------------- | ---------------- | ---------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------ |
+| **Interactive Card** | components/cards | the text-and-icon row's icon (`Icon/None`)     | `color/neutral/900`    | [10400:504](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=10400-504) |
+| **Launch Card**      | components/cards | the favourite Icon Button over the cover image | `color/alpha/white-60` | [10403:814](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=10403-814) |
 
 The icon wants a `color/icon/*` colour. The favourite button's translucent white sits on a photo,
 where no Light or Dark colour helps; if it is meant to stay white on every image, a semantic
-overlay colour would say so. No semantic colour has Cursor's two values: we draw the plus disc
-with `color/surface/feedback/success/strong` and the arc with `color/icon/link/hover` (`green/500`
-and `blue/500` in Light, beside the disc's own `icon/link/default`), and ask you to rebind them.
+overlay colour would say so.
 
 Two sources of primitives are not on this list, on purpose. **Avatar**'s colours are the user's
 choice: an avatar takes whatever colour it is given, so its palette, and the Avatars inside Agenda
@@ -127,9 +123,9 @@ Row, Event Row, Column Item, Activity Feed, Profile Dropdown and Top Bar, are sa
 than bindings. **The Biamp logo** carries `color/brand/red` and `brand/white`, as a brand mark always
 carries its own colours; that is every other primitive in the patterns.
 
-## 3. Described sizes that disagree with the drawing — 11 components
+## 3. Described sizes that disagree with the drawing — 12 components
 
-Eleven descriptions give a control height in pixels that the component does not have. Across the
+Eleven descriptions give a control height in pixels that the component does not have, and Link's gives its xs text size. Across the
 button, tab and input families the pattern is the same: **the description says 36px and 44px, the
 component is drawn 32px and 40px** — 4px taller in the description. Icon Button is off by 4px the
 other way. For the inputs we compared the field itself, not the component with its label and helper.
@@ -139,6 +135,7 @@ other way. For the inputs we compared the field itself, not the component with i
 | **Button**       | sm 36, md 44, lg 48  | sm 32, md 40, lg 48 | [2087:2544](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2087-2544)   |
 | **BackButton**   | sm 36, md 44         | sm 32, md 40        | [4549:130](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4549-130)     |
 | **SplitButton**  | sm 36, md 44         | sm 32, md 40        | [4569:200](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4569-200)     |
+| **Link**         | xs text 12px         | xs text 10px        | [2715:626](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2715-626)     |
 | **Icon Button**  | sm 28, md 36, lg 44  | sm 32, md 40, lg 48 | [2995:443](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2995-443)     |
 | **Tab Item**     | sm 36, md 44         | sm 32, md 40        | [3414:71](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3414-71)       |
 | **Tabs**         | sm 36, md 44         | sm 32, md 40        | [6165:12202](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6165-12202) |
@@ -287,7 +284,7 @@ each mark where Figma puts it. The `help` type's border is bound to an unknown v
 ### The display primitives
 
 Counter, Kbd, Timestamp, Avatar, Trend Badge, Divider, Skeleton, ProgressBar, Node End, RowExpand,
-Tree Indent and Cursor, the small parts the rest of the library is built from. We build each as
+and Tree Indent, the small parts the rest of the library is built from. We build each as
 drawn. Kbd and Timestamp have nothing to raise. Divider, Skeleton and ProgressBar are drawn at
 sample sizes (Divider 320px wide, ProgressBar 200px, Skeleton the size of its content), which in
 code fill the space or take the content they are given; nothing needs to change.
@@ -307,12 +304,32 @@ code fill the space or take the content they are given; nothing needs to change.
 | **Avatar's initials on a colour.** An avatar takes any colour, so its initials need a rule. Figma's samples pair each colour with a darker or lighter shade of its hue, but on the Medium shade 8 of the 9 samples fall below 4.5:1 (yellow 2.5, turquoise 2.3, neutral 3.3, pink 3.5, green 3.7, red, orange and blue 4.1; purple 4.7 passes). Is the rule yours to set? | We keep the colour's hue at Figma's own lightness and move it toward black or white just enough to reach 4.5:1.                    |
 | **Sizes with no variable.** Counter's badge is 20px tall, Avatar 44, 32, 24 and 16, ProgressBar 6, a table row (RowExpand) 40, a tree row (Tree Indent) 32, a labelled Divider 20 and Trend Badge's xs dot 8, all bound to nothing. One family of size variables, as for Button's heights?                                                                                | We carry them as raw values.                                                                                                       |
 | **Node End's halo** is the dot's colour at 20% layer opacity. SOLAR has alpha colours but no opacity scale, and no alpha form of `surface/feedback/info/strong`. A variable for it?                                                                                                                                                                                       | We carry 0.2 as Figma's number.                                                                                                    |
-| **Cursor's shadow.** The Default arrow, alone of the 22, carries `shadow/raised`, which falls as a drop shadow following the arrow; the same question as StatusIndicator's marks.                                                                                                                                                                                         | We draw no shadow.                                                                                                                 |
 | **Skeleton's pulse.** Its description asks for "a subtle shimmer or pulse", and SOLAR has no motion variable for a loop.                                                                                                                                                                                                                                                  | The web uses MUI's pulse; Flutter pulses the same way, over `motion.duration.slower` each way. Neither moves under reduced motion. |
 
 ---
 
 # Part 2 · SOLAR Foundations
+
+### The buttons: FAB, BackButton, SplitButton and Link
+
+BackButton has nothing to raise beyond its described sizes (section 3).
+
+**Fix** — these look like accidents:
+
+| Component                                                                                      | What                                                                                                                                                                                            | Variants                                              |
+| ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| **FAB** · [4557:130](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4557-130)         | The **loading extended FAB is 7 and 8px narrower** (84 and 104, beside 91 and 112 at rest) and padded evenly, so it would shrink under the pointer. We keep its size, as a loading Button does. | `extended / loading`, both sizes                      |
+| **SplitButton** · [4569:200](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4569-200) | The **chevron's half is 4px wider** (44, beside 40) in pressed primary and hovered secondary, at md alone. We keep it 40.                                                                       | 2: `md / primary / pressed`, `md / secondary / hover` |
+| **Link** · [2715:626](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2715-626)        | The **xs label is detached** from its text style: it binds local copies of body/xs's size and line height, which are `link/xs/default`'s. We draw it with `link/xs/*`.                          | every xs variant                                      |
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                                                                       | What we do meanwhile                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| **FAB's and Link's focus draw no ring.** Their focus variants are drawn as at rest; FAB's description says "Focus ring via shadow/focus/default", and a visible focus is SOLAR's floor.                        | We draw `shadow/focus/default` on both.         |
+| **SplitButton's focus ring** — the description says it "wraps whichever half is focused, not the whole control", and the focus variant rings the whole control. Which?                                         | We ring the whole control, as drawn.            |
+| **Links are underlined at rest.** `link/*/default` is underlined, as `link/*/hover` is, so a link is underlined in every state; the description says it "underlines on hover". Is the resting underline meant? | We draw the underline in every state, as drawn. |
+| **More opacity values** — SplitButton's rule between its halves is its label's colour at 30%, and a disabled Link is drawn at 50% over its disabled colours; the same question as Node End's halo.             | We carry Figma's numbers.                       |
 
 ## 7. Guideline pages that contradict the variables
 
@@ -403,7 +420,8 @@ The questions we cannot answer ourselves, most far-reaching first.
    picked with it, or follow from it? Figma pairs each fill with a darker or lighter shade of the
    same hue, below 4.5:1 on 8 of the 9 Medium samples; meanwhile we keep the hue and move it just
    far enough to reach 4.5:1. Section 6.
-8. **Node End's halo** — 20% opacity, with no opacity scale or alpha variable for it. Section 6.
+8. **Opacity** — Node End's halo at 20%, SplitButton's rule at 30%, a disabled Link at 50%, with
+   no opacity scale or alpha variable for them. Section 6.
 9. **Launch Card's favourite button** — translucent white on any cover image: a semantic overlay
    colour, or a fixed white on purpose? Section 2.
 10. **Icon master colour** — the semantic `color/icon/primary`, or the primitive the checklist
@@ -420,17 +438,22 @@ The questions we cannot answer ourselves, most far-reaching first.
     not. Intended? Section 6.
 15. **Button Group's description** — "regular sizes to content" and "all children share one prio",
     where every group is drawn with filling buttons of mixed priority. Section 6.
-16. **Drop shadows** — StatusIndicator's marks and Cursor's Default arrow carry `shadow/raised`, a
-    box shadow, where the shape needs a drop shadow: a drop-shadow variable, or none? Section 6.
+16. **StatusIndicator's marks** — `shadow/raised` is a box shadow, where a mark needs a drop
+    shadow: a drop-shadow variable, or none? Section 6.
 17. **Skeleton's pulse** — a motion variable for it? Section 6.
+18. **FAB's and Link's focus** — no ring is drawn, where a visible focus is the floor. Draw
+    `shadow/focus/default`? Section 6.
+19. **SplitButton's focus ring** — around the focused half, as described, or the whole control,
+    as drawn? Section 6.
+20. **Links underlined at rest** — meant, where the description says hover? Section 6.
 
 **Structure**
 
-18. **Action states** — `active` in the variables, `pressed` on the guideline pages. Which name
+21. **Action states** — `active` in the variables, `pressed` on the guideline pages. Which name
     should both use? Section 7.
-19. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
+22. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
     Web rather than in Foundations. Should it move down a layer?
-20. **A flat Teams mark**, if Microsoft publishes one? Section 9.
+23. **A flat Teams mark**, if Microsoft publishes one? Section 9.
 
 ---
 

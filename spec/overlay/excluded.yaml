@@ -1,0 +1,8 @@
+# SOLAR Web components deliberately left out of the design-to-code flow: never generated, and not
+# listed by `npm run solar:triage` as candidates. Every entry needs a reason. A descriptor for one
+# fails the build. Format: parseExcluded in packages/codegen/src/normalize/overlay.mjs.
+
+Cursor:
+  reason: >-
+    Owner decision, 2026-09-24: the canvas editors' pointer glyphs are not built from Figma. It is
+    removed from the whole flow, its findings with it.

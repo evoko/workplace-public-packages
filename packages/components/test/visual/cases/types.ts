@@ -5,8 +5,8 @@ export interface OracleVariant {
   figma: string;
   props: Record<string, unknown>;
   state: string;
-  /** For an axis the API derives from content (Tag's type): the slots to fill. */
-  content?: Record<string, unknown>;
+  /** For an axis the API derives from content (FAB's type): the slots to fill. */
+  content?: string[];
   /**
    * What Figma draws in each layer: for a composed child, which of its variants (Button's Counter);
    * for a sample Figma draws, its size (ProgressBar's bar, at the variant's value).

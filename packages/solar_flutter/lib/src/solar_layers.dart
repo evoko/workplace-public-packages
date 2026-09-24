@@ -60,6 +60,8 @@ class SolarLayers {
     this.text = const {},
     this.icons = const {},
     this.images = const {},
+    this.builders = const {},
+    this.slots = const {},
   });
 
   /// The component's recipe under its props and states.
@@ -79,6 +81,14 @@ class SolarLayers {
 
   /// The picture a box shows, by layer (Avatar's photo), inside its border and radius.
   final Map<String, DecorationImage> images;
+
+  /// What the caller fills a slot with, by layer (Link's icons): drawn in the layer's box, in the
+  /// colour and size the recipe gives the layer, as an icon theme.
+  final Map<String, Widget> slots;
+
+  /// What a shell wraps a drawn layer in, by layer (SplitButton's halves, each a pressable): the
+  /// keyed layer, as drawn, is the argument.
+  final Map<String, Widget Function(Widget layer)> builders;
 
   static const _main = {
     'MIN': MainAxisAlignment.start,
@@ -114,17 +124,30 @@ class SolarLayers {
   Widget layer(String name) {
     final opacity = recipe.lookup('$name.opacity');
     final drawn = _drawn(name);
-    return KeyedSubtree(
+    final keyed = KeyedSubtree(
       key: Key('$keyPrefix.$name'),
       child: opacity == null || opacity == 'none'
           ? drawn
           : Opacity(opacity: recipe.dimension('$name.opacity')!, child: drawn),
     );
+    return builders[name]?.call(keyed) ?? keyed;
   }
 
   Widget _drawn(String name) {
     final glyph = recipe.glyph(name);
     final words = text[name];
+    final slot = slots[name];
+    if (slot != null) {
+      final width = _extent('$name.width');
+      return IconTheme(
+        data: IconThemeData(color: recipe.color('$name.color'), size: width),
+        child: SizedBox(
+          width: width,
+          height: _extent('$name.height'),
+          child: slot,
+        ),
+      );
+    }
     final icon = icons[name];
     if (icon != null) {
       return SolarIcon(

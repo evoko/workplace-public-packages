@@ -817,6 +817,17 @@ on both platforms, and every finding is decided (the triage shows 0 open for all
   components, and whether Tree Indent, Node End and RowExpand, building blocks of later families,
   should be exported publicly.
 
+**F1 reviewed 2026-09-24 (owner):**
+
+- **Cursor is removed from the design-to-code flow.** Its descriptor, overlay, generated files,
+  shells, cases and tests are deleted, and `spec/overlay/excluded.yaml` records the decision: the
+  triage no longer lists it (131 components, 16 generated), the build refuses a descriptor for it,
+  and the design review drops its findings (its two primitives, its shadow). The machinery it was
+  the example for stays, with tests of its own: a boolean operation's operands (a synthetic set),
+  the oracle's excuse of what a `set` replaced (Button's shadow), and unsized roots (Checkbox,
+  Radio, Bar and Scrim have them).
+- **Tree Indent, Node End and RowExpand stay public.**
+
 ### F2: Buttons
 
 On Button's machinery.
@@ -827,6 +838,44 @@ On Button's machinery.
   - BackButton: Button with the arrow icon;
   - SplitButton: two joined press targets. The menu is a slot the caller fills until F6;
   - Link: MUI `Link`, bespoke in Flutter. It uses the `link/*` text styles with their underline.
+
+**F2 done 2026-09-24.** FAB (pioneer), BackButton, SplitButton and Link, every variant matching
+Figma on both platforms and every finding decided (the triage shows 0 open for all four).
+
+- **Members and bases:**
+  - **FAB:** MUI's Button, not its Fab, which has no loading state; Flutter's FilledButton. Its
+    `type` is derived from the label (an extended FAB is one with a label), so it is no prop, and
+    no clash with a button's HTML `type`.
+  - **BackButton:** MUI Button and FilledButton with SOLAR's ArrowLeft; "Back" by default, the
+    arrow alone named "Back".
+  - **SplitButton:** drawn on both platforms, its halves two buttons, the whole control taking the
+    states of whichever is hovered, pressed or focused; the menu is the caller's until F6.
+  - **Link:** MUI's Link on the web, drawn in Flutter and announced as a link.
+- **Decisions in the overlays** (and raised in the design review):
+  - SOLAR's focus ring where Figma draws none (FAB, Link), for the WCAG floor;
+  - FAB keeps its size while loading, where Figma narrows the extended one;
+  - SplitButton's chevron half keeps its size where Figma widens it in two variants, and its
+    halves keep their room while loading;
+  - Link's detached xs label drawn in `link/xs/*`;
+  - opacity literals for SplitButton's rule and the disabled Link.
+- **Machinery found and fixed on the family** (each with tests):
+  - **`derive` in the emitters:** a derived axis keys the recipe (`Solar<Name>RecipeProps`, and a
+    field of Flutter's props class) though it is no prop.
+  - **`set` adds a state's entry** where the IR keeps none (a focus drawn as at rest), refusing a
+    state the component lacks; what it replaced is the resting value.
+  - **A component with states and no appearance axis** keys them under `default` on both
+    platforms, and the oracle's `set` excuse reaches every variant under it.
+  - **The ButtonStyle builder** leaves the foreground unset where a variant has no label (an icon
+    FAB), rather than asking the recipe for a colour it does not hold.
+  - **The drawn-layer helpers:** a layer drawn as the shell's own element (`render`, `builders`),
+    a slot the caller fills (`slots`), and a pressable announced as a link.
+  - **The checks:** the web check reaches focus on a control's first focusable part (a group of
+    buttons), and the Flutter measure reads a layer a Visibility hides as not drawn.
+- **Label conventions:** a label is `children` in React and `child` in Flutter (FAB, BackButton);
+  a drawn component takes its words as a String, `label` (SplitButton, Link).
+- **Checks:** 776 JS tests, both visual checks (22 on the web), 149 Flutter tests, lint, typecheck,
+  format, all three Flutter packages analysed and formatted, both viewers built, the personal-data
+  scan, and a rebuild that reproduces the tree.
 
 ### F3: Selection controls
 

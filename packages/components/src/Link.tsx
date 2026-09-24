@@ -1,0 +1,100 @@
+/**
+ * SOLAR Link.
+ *
+ * Scaffolded once by `npm run solar:scaffold Link` from spec/components/link.json, and owned by
+ * developers from then on: change it freely. What it looks like is not here. That is the recipe,
+ * `solarLinkStyle` in `@bwp-web/styles/mui`: each size's text style, underlined on hover, its
+ * colours by state, and its icons' sizes.
+ *
+ * For navigation, inside the product or out of it; an action that changes something is a Button.
+ * It wraps MUI's Link, an <a>, with its label and icons drawn from Figma's layer tree
+ * (`internal/layers.tsx`). A leading icon says internal (a chevron), a trailing one outbound (an
+ * external-link arrow); one of the two, not both. A disabled link is no link: it keeps its text,
+ * loses its href, and says it is disabled. The app must load `@bwp-web/styles/tokens.css`.
+ */
+
+import MuiLink, { type LinkProps as MuiLinkProps } from '@mui/material/Link';
+import { forwardRef, type ReactNode } from 'react';
+import {
+  solarLinkCompose,
+  solarLinkStyle,
+  type SolarLinkProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['leadingIcon', 'label', 'trailingIcon'],
+};
+
+export interface LinkProps
+  extends
+    SolarLinkProps,
+    Omit<
+      MuiLinkProps,
+      | keyof SolarLinkProps
+      | 'children'
+      | 'color'
+      | 'underline'
+      | 'variant'
+      | 'ref'
+    > {
+  /** The link's words, which say where it goes ("Read the release notes", not "click here"). */
+  children: ReactNode;
+  /** An icon before the words: internal navigation. */
+  leadingIcon?: ReactNode;
+  /** An icon after the words: outbound, or a new tab. */
+  trailingIcon?: ReactNode;
+}
+
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+  {
+    size,
+    disabled,
+    children,
+    leadingIcon,
+    trailingIcon,
+    href,
+    className,
+    sx,
+    ...rest
+  },
+  ref,
+) {
+  const parts = solarLinkCompose({ size, disabled });
+  // A slot left empty is not drawn.
+  const drawn = {
+    ...parts,
+    leadingIcon: { ...parts.leadingIcon, present: leadingIcon != null },
+    trailingIcon: { ...parts.trailingIcon, present: trailingIcon != null },
+  };
+  return (
+    <MuiLink
+      ref={ref}
+      href={disabled ? undefined : href}
+      aria-disabled={disabled || undefined}
+      className={
+        [disabled ? 'SolarLink-disabled' : null, className]
+          .filter(Boolean)
+          .join(' ') || undefined
+      }
+      {...rest}
+      underline="none"
+      sx={[
+        solarLinkStyle({ size, disabled }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      {drawChildren('root', {
+        prefix: 'SolarLink',
+        tree: TREE,
+        parts: drawn,
+        text: { label: children },
+        icons: {
+          leadingIcon: <span>{leadingIcon}</span>,
+          trailingIcon: <span>{trailingIcon}</span>,
+        },
+      })}
+    </MuiLink>
+  );
+});

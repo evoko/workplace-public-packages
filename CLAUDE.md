@@ -9,8 +9,10 @@ except package names.
 The SOLAR Foundations reference is in [docs/solar/](docs/solar/README.md). SOLAR names
 `CLAUDE.md` as the agent instruction layer, so treat the rules below as hard.
 [docs/README.md](docs/README.md) maps the whole pipeline: inputs, scripts, outputs, and
-what is not built yet (Button, Icon Button, Button Group, Spinner and F1's display primitives, from
-StatusIndicator to Cursor, are the components so far).
+what is not built yet (Button, Icon Button, Button Group, FAB, BackButton, SplitButton, Link,
+Spinner and F1's display primitives, from
+StatusIndicator to Tree Indent, are the components so far; Cursor is left out by decision,
+`spec/overlay/excluded.yaml`).
 CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
 and fails if the result differs from what is committed, and scans for credentials and
 unreviewed personal data. `npm run solar:sync` does the whole chain — fetch, docs, derived tokens, code — and
@@ -106,7 +108,7 @@ that saves an overlay rule) is **not built yet**.
 - Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (the 340 SOLAR
   icons, the logos and the app icons, generated), `@bwp-web/canvas` (interactive canvas),
   `@bwp-web/components` (SOLAR components for React, on MUI; Button, Icon Button, Button Group,
-  Spinner and the F1 display primitives so far), all at
+  FAB, BackButton, SplitButton, Link, Spinner and the F1 display primitives so far), all at
   `2.0.0-alpha.0`; canvas is still an empty skeleton. Plus
   `@bwp-web/codegen` (private build tool) and `solar_flutter` (a Dart package, outside the npm
   workspace, formatted by `dart format` and pinned to the Flutter version in `solar.yml`).

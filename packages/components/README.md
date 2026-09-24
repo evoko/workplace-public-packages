@@ -1,8 +1,8 @@
 # @bwp-web/components
 
-SOLAR components for React, built on MUI: Button, Icon Button, Button Group and Spinner, and the
-display primitives (StatusIndicator, Counter, Kbd, Timestamp, Avatar, Trend Badge, Divider,
-Skeleton, ProgressBar, Node End, RowExpand, Tree Indent and Cursor) so far.
+SOLAR components for React, built on MUI: Button, Icon Button, Button Group, FAB, BackButton,
+SplitButton, Link and Spinner, and the display primitives (StatusIndicator, Counter, Kbd, Timestamp, Avatar, Trend Badge, Divider,
+Skeleton, ProgressBar, Node End, RowExpand and Tree Indent) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -86,6 +86,66 @@ width of a column, and keeps its own height. Figma draws no vertical full-width 
 refuse `orientation="vertical"` with `fullWidth` (`ButtonGroupLayout`). In development it warns when
 its buttons mix sizes. Figma's description also asks for one priority, but every group it draws
 mixes secondary and primary, so that is not checked; the design review lists the disagreement.
+
+## FAB
+
+| Prop       | Values            | Default  |
+| ---------- | ----------------- | -------- |
+| `size`     | `sm` · `md`       | `sm`     |
+| `disabled` | boolean           | `false`  |
+| `loading`  | boolean           | `false`  |
+| `icon`     | the action's icon | required |
+| `children` | the label         | none     |
+
+The screen's one most important action, on MUI's Button (MUI's Fab has no loading state). It is
+extended when it has a label and an icon alone otherwise, which then needs an `aria-label`: Figma's
+`type` follows from the label. Loading keeps its size. SOLAR's focus ring is drawn, where Figma
+draws none. Where it floats is the app's.
+
+## BackButton
+
+| Prop       | Values                           | Default |
+| ---------- | -------------------------------- | ------- |
+| `size`     | `sm` · `md`                      | `md`    |
+| `disabled` | boolean                          | `false` |
+| `loading`  | boolean                          | `false` |
+| `children` | where it goes back to, or `null` | `Back`  |
+
+A tertiary button with SOLAR's ArrowLeft, one per view, top left. `null` shows the arrow alone,
+named "Back"; `href` makes it a link.
+
+## SplitButton
+
+| Prop         | Values                  | Default        |
+| ------------ | ----------------------- | -------------- |
+| `variant`    | `primary` · `secondary` | `primary`      |
+| `size`       | `sm` · `md`             | `md`           |
+| `disabled`   | boolean                 | `false`        |
+| `loading`    | boolean                 | `false`        |
+| `children`   | the action's label      | required       |
+| `onClick`    | the action              | none           |
+| `onMenuOpen` | opens the menu          | none           |
+| `menuOpen`   | boolean                 | `false`        |
+| `menuLabel`  | the chevron's name      | `More options` |
+
+The dominant action and a chevron that opens a menu of its variants: two buttons in one joined
+control, drawn from its layers. The whole control takes the states of whichever half is hovered,
+pressed or focused, as Figma draws them. The chevron says it opens a menu (`aria-haspopup`,
+`aria-expanded`), and Alt+Down on the action opens it too; the menu is the caller's until
+Dropdown.
+
+## Link
+
+| Prop           | Values             | Default  |
+| -------------- | ------------------ | -------- |
+| `size`         | `xs` · `sm` · `md` | `md`     |
+| `disabled`     | boolean            | `false`  |
+| `children`     | the words          | required |
+| `leadingIcon`  | an icon: internal  | none     |
+| `trailingIcon` | an icon: outbound  | none     |
+
+MUI's Link, an `<a>`, in the `link/*` text styles, underlined on hover, with SOLAR's focus ring. A
+disabled link loses its `href` and says it is disabled. For navigation; an action is a Button.
 
 ## Spinner
 
@@ -217,12 +277,12 @@ pulse, removed where motion is reduced. Decorative: mark the loading region `ari
 MUI's determinate LinearProgress, which fills its container. Name it (`aria-label`) and say the
 number beside it.
 
-## Node End, RowExpand, Tree Indent and Cursor
+## Node End, RowExpand and Tree Indent
 
 Building blocks, decorative: Node End is the dot at the end of a Coachmark's connector (`halo`);
 RowExpand an expandable table row's chevron or connector (`type`); Tree Indent a tree row's indent,
-16px per level (`depth`, `00` to `10`; Figma's `.Tree Indent`); Cursor the pointer glyphs of the
-canvas editors (`type`, 22 of them). The rows and trees that use them carry the semantics.
+16px per level (`depth`, `00` to `10`; Figma's `.Tree Indent`). The rows and trees that use them
+carry the semantics.
 
 ## Checked against Figma
 

@@ -3,18 +3,21 @@
 
 import 'builders.dart';
 import 'avatar.dart';
+import 'backbutton.dart';
 import 'button.dart';
 import 'button_group.dart';
 import 'counter.dart';
-import 'cursor.dart';
 import 'divider.dart';
+import 'fab.dart';
 import 'icon_button.dart';
 import 'kbd.dart';
+import 'link.dart';
 import 'node_end.dart';
 import 'progressbar.dart';
 import 'rowexpand.dart';
 import 'skeleton.dart';
 import 'spinner.dart';
+import 'splitbutton.dart';
 import 'statusindicator.dart';
 import 'timestamp.dart';
 import 'tree_indent.dart';
@@ -22,18 +25,21 @@ import 'trend_badge.dart';
 
 const builders = <String, VariantBuilder>{
   'Avatar': buildAvatar,
+  'BackButton': buildBackButton,
   'Button': buildButton,
   'Button Group': buildButtonGroup,
   'Counter': buildCounter,
-  'Cursor': buildCursor,
   'Divider': buildDivider,
+  'FAB': buildFAB,
   'Icon Button': buildIconButton,
   'Kbd': buildKbd,
+  'Link': buildLink,
   'Node End': buildNodeEnd,
   'ProgressBar': buildProgressBar,
   'RowExpand': buildRowExpand,
   'Skeleton': buildSkeleton,
   'Spinner': buildSpinner,
+  'SplitButton': buildSplitButton,
   'StatusIndicator': buildStatusIndicator,
   'Timestamp': buildTimestamp,
   'Tree Indent': buildTreeIndent,

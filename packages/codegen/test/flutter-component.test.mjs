@@ -308,7 +308,7 @@ describe('renderFlutterComponent: a component with no axes', () => {
     // Dart refuses empty braces for named parameters, and a constant key must be const, so both
     // are written for a component with nothing to take.
     expect(dart).toContain('const SolarScrimProps();');
-    expect(dart).toContain("const combo = '';");
+    expect(dart).toContain("const combo = 'default';");
   });
 });
 

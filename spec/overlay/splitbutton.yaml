@@ -1,0 +1,87 @@
+# Hand-written decisions about SOLAR SplitButton, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: SplitButton
+
+base:
+  reason: >-
+    Bespoke on both platforms: two buttons in one joined control, the action and the chevron that
+    opens its menu ("two <button>s in a joined container", says the description). Figma draws the
+    states on the whole control, so the control takes the states of whichever half the pointer or
+    the keyboard is on. No stock control is that; the menu is the caller's until Dropdown (F6).
+
+rename:
+  prio:
+    to: variant
+    reason: As Button, whose API names it `variant`; `prio` is the Figma property name.
+
+bind:
+  iconChevronDown.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the chevron's height is
+      already bound to them.
+  divider.width:
+    literal: 1
+    token: border.default
+    reason: >-
+      The rule between the halves is 1px, a hairline, border.default's width, the same value, as
+      Divider's rule is.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap). Drawn 40 and 32; the description's 44 and 36 disagree, which the design
+      review lists (section 3, described sizes).
+  trigger.width:
+    reason: >-
+      The chevron's half is square, 40 and 32, the control's height, under the same decision.
+  trigger.height:
+    reason: At sm, the chevron's half is fixed at the control's 32, under the same decision.
+  divider.opacity:
+    reason: >-
+      The rule is the label's colour at 30% opacity. SOLAR has no opacity scale, as for Node End's
+      halo; carried as Figma's number, and raised as a governance gap.
+
+accept:
+  component.splitbutton.trigger.width@prio=primary, state=pressed:
+    reason: >-
+      Figma widens the chevron's half by 4px (44 beside 40) in pressed primary and hovered
+      secondary at md alone, which looks like an accident: the halves keep their size in every
+      state here. The design review lists it.
+  component.splitbutton.trigger.width@prio=secondary, state=hover:
+    reason: As pressed primary's, the chevron's half keeps its size.
+  component.splitbutton.trigger.height@prio=primary, state=pressed:
+    reason: As its width, the chevron's half keeps its size in every state.
+  component.splitbutton.action.height#unbound:
+    reason: >-
+      The action half is hidden while loading, where Figma sizes it 44 and 36, never drawn; it keeps its resting room (its FILL), as a loading Button keeps its label's.
+  component.splitbutton.action.height@prio=primary, state=loading:
+    reason: >-
+      As the unbound height, a size of a half the loading state hides.
+  component.splitbutton.action.height@prio=secondary, state=loading:
+    reason: >-
+      As the unbound height, a size of a half the loading state hides.
+  component.splitbutton.divider.height#unbound:
+    reason: >-
+      As the action half's, the rule is hidden while loading, keeping its resting room.
+  component.splitbutton.divider.height@prio=primary, state=loading:
+    reason: >-
+      As the unbound height, hidden while loading.
+  component.splitbutton.divider.height@prio=secondary, state=loading:
+    reason: >-
+      As the unbound height, hidden while loading.
+  component.splitbutton.trigger.height@prio=primary, state=loading:
+    reason: >-
+      As the action half's, the chevron's half is hidden while loading, keeping its resting room.
+  component.splitbutton.trigger.height@prio=secondary, state=loading:
+    reason: >-
+      As primary's, hidden while loading.
+  component.splitbutton.trigger.width@prio=primary, state=loading:
+    reason: >-
+      As its height, hidden while loading.
+  component.splitbutton.trigger.width@prio=secondary, state=loading:
+    reason: >-
+      As its height, hidden while loading.

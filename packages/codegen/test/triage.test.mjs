@@ -117,3 +117,25 @@ describe('counting findings', () => {
     expect(b.level).toBe(Infinity);
   });
 });
+
+describe('a component left out of the flow', () => {
+  it('is no candidate, and the build refuses a descriptor for it', async () => {
+    const { parseExcluded, loadExcluded } =
+      await import('../src/normalize/overlay.mjs');
+    expect(loadExcluded()).toHaveProperty('Cursor');
+    expect(() => parseExcluded('Cursor: {}\n', 'x.yaml')).toThrow(
+      /Cursor has no reason/,
+    );
+    const { loadWebCatalog } = await import('../src/normalize/components.mjs');
+    const { tokenNames } = await import('../src/normalize/recipe.mjs');
+    const { loadContract } = await import('../src/normalize/tokens.mjs');
+    const { triage } = await import('../src/report/triage.mjs');
+    const rows = triage(loadWebCatalog(), {
+      names: tokenNames(loadContract()),
+      done: new Set(),
+      excluded: { Cursor: 'test' },
+      scope: 'components/utility',
+    });
+    expect(rows.map((r) => r.name)).not.toContain('Cursor');
+  });
+});

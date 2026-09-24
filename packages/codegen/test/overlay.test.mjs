@@ -201,10 +201,12 @@ set:
   root.size.lg.shadow: { token: shadow.control, reason: test }
 `),
     );
+    // What the lookup found there before, the base's shadow, is kept beside the decision.
     expect(spec.style.root.size.lg.shadow).toEqual({
       token: 'shadow.control',
       from: 'overlay',
       reason: 'test',
+      replaced: { token: 'shadow.control' },
     });
   });
 
@@ -873,5 +875,25 @@ set:
       none: true,
       replaced: { token: expect.stringMatching(/^shadow\./) },
     });
+  });
+});
+
+describe('set, where the IR keeps no entry for a state', () => {
+  it('adds one for a state the component has, and refuses any other', () => {
+    const on = (state) =>
+      build(
+        yaml(`component: Button
+set:
+  root.appearance.prio=primary, danger=false.${state}.borderColor:
+    token: color.border.medium
+    reason: r
+`),
+      );
+    // Button draws focus with an entry of its own; loading, for the border, it does not.
+    expect(
+      on('loading').spec.style.root.appearance['prio=primary, danger=false']
+        .loading.borderColor,
+    ).toMatchObject({ token: 'color.border.medium', from: 'overlay' });
+    expect(() => on('asleep')).toThrow(/the IR has no appearance asleep/);
   });
 });

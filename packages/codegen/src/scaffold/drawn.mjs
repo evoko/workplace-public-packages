@@ -80,7 +80,8 @@ const entriesOf = (style) => [
 export function iconsOf(spec) {
   const out = [];
   for (const [layer, def] of Object.entries(spec.layers)) {
-    if (def.type !== 'INSTANCE') continue;
+    // A slot is the caller's to fill (Link's icons), not an icon the shell draws.
+    if (def.type !== 'INSTANCE' || spec.slots[layer]) continue;
     const entries = entriesOf(spec.style[layer] ?? { base: {} });
     const names = new Set(
       entries
@@ -232,6 +233,10 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  * @param {string} [o.pressable] makes it a control where it is given an `onPressed` (an
  *   interactive Counter): the expression that says it is enabled. Otherwise it takes the states
  *   of the control around it (SolarStatesBuilder), a Button's.
+ * @param {boolean} [o.link] announced as a link, where it is pressable (Link), not a button
+ * @param {string} [o.slots] the slots the caller fills, a map literal by layer (Link's icons)
+ * @param {(recipe: string) => string} [o.present] whether layer `l` is drawn, around the recipe's
+ *   answer, an expression in `l` (a slot left empty is not drawn)
  * @param {string} [o.text] the text layers' words, a map literal by layer
  * @param {string} [o.wrap] the returned widget, around `mark` (the drawn root)
  */
@@ -277,21 +282,21 @@ final WidgetStatesController? statesController;`;
         color: (c) => ${R}.color(t, c, p, ${states}),
         shadow: (c) => ${R}.shadow(t, c, p, ${states}),
         textStyle: (c) => ${R}.textStyle(t, c, p, ${states}),
-        present: (l) => ${R}.present(l, p, ${states}),
+        present: (l) => ${o.present ? o.present(`${R}.present(l, p, ${states})`) : `${R}.present(l, p, ${states})`},
         glyph: ${glyphs ? `(l) => ${R}.glyph(l, p, ${states})` : '(_) => null'},
       ),
       tree: _tree,
-      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
+      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
     ).layer('root')`;
   const draw = o.pressable
     ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};
-    // A control of its own only when it has something to do; otherwise the control around it
-    // (a Button) is the one pressed, and its states are these.
+    // A control of its own only when it has something to do; otherwise it takes the states of
+    // the control around it (a Counter in a Button).
     final mark = onPressed == null && statesController == null
         ? SolarStatesBuilder(builder: (_, states) => draw(states))
         : SolarPressable(
             onPressed: ${o.pressable} ? onPressed : null,
-            statesController: statesController,
+            statesController: statesController,${o.link ? '\n            link: true,' : ''}
             builder: (_, states) => draw(states),
           );`
     : `    ${o.states ? `final states = ${o.states};` : 'const states = <WidgetState>{};'}

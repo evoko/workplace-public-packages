@@ -1,0 +1,99 @@
+# Hand-written decisions about SOLAR FAB, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: FAB
+
+base:
+  mui: Button
+  flutter: FilledButton
+  reason: >-
+    MUI's Button, not its Fab: SOLAR's FAB has a loading state, which MUI's Button draws (its
+    loading indicator, the content keeping its room) and MUI's Fab does not, and Fab's own size,
+    elevation and upper-case label are all SOLAR's to set. Flutter's FilledButton, as for Button,
+    restyled by the same ButtonStyle builder; where it floats is the app's (a Scaffold's
+    floatingActionButton takes any widget).
+
+slots:
+  iconNone:
+    name: icon
+    type: icon
+    reason: >-
+      The icon is the action (add, compose, scan), and the caller gives it. Figma draws the
+      Icon/None placeholder and records no prop, so it is declared here, as Icon Button's is.
+
+derive:
+  type:
+    when:
+      - value: extended
+        given: [label]
+      - value: icon
+    reason: >-
+      An extended FAB is one with a label ("extended type gets its name from the visible label",
+      says the description): the type follows from whether the caller gives one, so it is no prop
+      the caller could set against its content, and no clash with a button's HTML type.
+
+follows:
+  root.width:
+    axes: [size, type]
+    reason: >-
+      An icon FAB is a fixed circle (44 and 56); an extended one is a pill that hugs its icon and
+      label.
+  root.paddingRight:
+    axes: [size, type]
+    reason: >-
+      An extended FAB pads its label's side more than its icon's (inset.lg and inset.xl, beside
+      inset.sm and inset.md), as an extended FAB's pill is balanced; an icon FAB is padded evenly.
+  root.gap:
+    axes: [size, type]
+    reason: The gap between the icon and the label, which an icon FAB does not have.
+  icon.width:
+    axes: [size, type]
+    reason: >-
+      An extended FAB's icon is 24px (icon.lg), an icon FAB's 20px (icon.md), at both sizes.
+  icon.height:
+    axes: [size, type]
+    reason: As the width.
+
+bind:
+  icon.width:
+    literal: 20
+    token: icon.md
+    reason: >-
+      Same value, governed token: an icon FAB's icon is 20 wide and bound to nothing, and 20 tall
+      bound to icon.md.
+  icon.height:
+    literal: 24
+    token: icon.lg
+    reason: >-
+      Same value, governed token: an extended FAB's icon is 24 tall and bound to nothing, and 24
+      wide bound to icon.lg.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap). Drawn 44 and 56, as the description says.
+  root.width:
+    reason: An icon FAB is a circle, so its width is its height, under the same decision.
+
+set:
+  root.appearance.type=icon.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma's focus state draws no focus ring, only the resting shadow/overlay, where the
+      description says "Focus ring via shadow/focus/default" and WCAG's visible focus is SOLAR's
+      floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it.
+  root.appearance.type=extended.focus.shadow:
+    token: shadow.focus.default
+    reason: As the icon FAB's, the focus ring.
+
+accept:
+  component.fab.root.width@state=loading:
+    reason: >-
+      A loading FAB keeps its size, the label hidden but keeping its room, as Button's does, so it
+      does not shrink under the pointer. Figma's loading extended FAB is 7 and 8px narrower (84 and
+      104, beside 91 and 112) and padded evenly, which looks like an accident; the design review
+      lists it.
+  component.fab.root.paddingRight@state=loading:
+    reason: As its width, the loading FAB keeps the padding it has at rest.

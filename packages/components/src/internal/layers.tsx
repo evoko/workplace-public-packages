@@ -11,6 +11,7 @@
 
 import {
   cloneElement,
+  Fragment,
   type CSSProperties,
   type ReactElement,
   type ReactNode,
@@ -18,6 +19,13 @@ import {
 
 type Path = { d: string; evenOdd: boolean };
 type Glyph = { width: number; height: number; fill: Path[]; stroke: Path[] };
+
+/** What a shell's own element for a layer takes: the recipe's class and place, and its children. */
+export interface DrawnLayer {
+  className: string;
+  style: CSSProperties | undefined;
+  children: ReactNode[];
+}
 
 /** One layer's composition, as a generated `Solar<Name>Parts` holds it. */
 export type LayerParts = Record<string, unknown>;
@@ -31,6 +39,11 @@ export interface LayerDrawing {
   parts: Record<string, LayerParts>;
   /** What each text layer says, by layer. */
   text?: Record<string, ReactNode>;
+  /**
+   * A layer the shell draws as an element of its own, by layer (SplitButton's halves, two buttons):
+   * given the class and place the recipe gives the layer, and its children drawn.
+   */
+  render?: Record<string, (layer: DrawnLayer) => ReactNode>;
   /** The SOLAR icon each icon layer draws, by layer (RowExpand's chevrons). */
   icons?: Record<
     string,
@@ -102,6 +115,17 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
       >
         {d.text[name]}
       </span>
+    );
+  const own = d.render?.[name];
+  if (own)
+    return (
+      <Fragment key={name}>
+        {own({
+          className: `${className} ${d.prefix}-box`,
+          style: place,
+          children: drawChildren(name, d),
+        })}
+      </Fragment>
     );
   return (
     <span key={name} className={`${className} ${d.prefix}-box`} style={place}>

@@ -7,7 +7,11 @@ import {
   loadWebCatalog,
 } from '../normalize/components.mjs';
 import { DESCRIPTORS } from '../components/index.mjs';
-import { loadDefaults, loadOverlay } from '../normalize/overlay.mjs';
+import {
+  loadDefaults,
+  loadExcluded,
+  loadOverlay,
+} from '../normalize/overlay.mjs';
 import { tokenNames } from '../normalize/recipe.mjs';
 import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
@@ -39,6 +43,13 @@ export const fileOf = (component) =>
   `${component.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.json`;
 
 export function build() {
+  // A component left out of the flow by decision is never generated.
+  const excluded = loadExcluded();
+  for (const address of COMPONENTS)
+    if (excluded[address])
+      throw new Error(
+        `src/components: ${address} is left out of the flow (spec/overlay/excluded.yaml): ${excluded[address]}`,
+      );
   const catalog = loadWebCatalog();
   const contract = loadContract();
   const names = tokenNames(contract);

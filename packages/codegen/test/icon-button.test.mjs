@@ -119,7 +119,7 @@ describe('the Icon Button recipe', () => {
   it('builds a ButtonStyle with the icon as its foreground and no text style', () => {
     expect(dart).toContain('A [ButtonStyle] for a IconButton');
     expect(dart).toContain(
-      "foregroundColor: by((s) => color(t, 'icon.color', p, s))",
+      "foregroundColor: by((s) => lookup('icon.color', p, s) == null ? null : color(t, 'icon.color', p, s))",
     );
     expect(dart).not.toContain('textStyle: by(');
     expect(
