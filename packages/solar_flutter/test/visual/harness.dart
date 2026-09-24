@@ -109,8 +109,9 @@ Map<String, dynamic> childVariant(
 ) {
   for (final v in (oracle['variants'] as List).cast<Map<String, dynamic>>()) {
     final axes = {
+      // A standalone's one variant is named '': no axes.
       for (final part in (v['figma'] as String).split(', '))
-        part.split('=')[0]: part.split('=')[1],
+        if (part.contains('=')) part.split('=')[0]: part.split('=')[1],
     };
     if (wanted.entries.every((e) => axes[e.key] == e.value)) return v;
   }
@@ -230,9 +231,10 @@ void checkChild(
     failures.add(Difference(variant, layer, 'present', true, false));
     return;
   }
+  // A standalone child (Pagination's ellipsis) has no variant to name: its one is the one.
   final want = childVariant(
     oracle,
-    expected['variant'] as Map<String, dynamic>,
+    (expected['variant'] as Map<String, dynamic>?) ?? const {},
   );
   // What the parent's entry holds of the child's root is the parent's to decide: its box, and its
   // fill and edge where the parent restyles it (Toast's Tag).

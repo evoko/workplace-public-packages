@@ -577,10 +577,16 @@ export function buildOracle(
         v.layers.get(v.parents.get(path)),
         farEdgesOf(resolved.variants, path),
       );
+      // A composed child Figma records no variant for (Stepper's first step, an instance of the
+      // Step variant itself) takes the one decided too.
       for (const d of variantSets)
-        if (d.layer === name && out.variant && d.reaches(v.props)) {
-          out.figmaVariant ??= { ...out.variant };
-          out.variant[d.axis] = d.keyword;
+        if (
+          d.layer === name &&
+          (out.variant || out.component) &&
+          d.reaches(v.props)
+        ) {
+          out.figmaVariant ??= { ...(out.variant ?? {}) };
+          out.variant = { ...out.variant, [d.axis]: d.keyword };
         }
       layers[name] = out;
       for (const e of excuses) {

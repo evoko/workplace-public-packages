@@ -9,8 +9,10 @@ the text fields (Text Input, Text Area, SearchField, GlobalSearch, Password Inpu
 Input, Inline Input, Token Input, PIN Input and FileUpload), and the menus and lists (Dropdown
 Item, Dropdown Group Label, Dropdown Menu, Context Menu Item, Context Menu, Option Row, Options
 List, ListItem and List), the pickers (Select, Dropdown, Autocomplete, DatePicker, Date Picker Open
-and its Day Cell, TimePicker and TimePicker Dropdown), and navigation (Tabs and Tab Item, Nav Item,
-Section Nav Item and Group Header, Breadcrumbs and Breadcrumb Item, Tree Item) so far.
+and its Day Cell, TimePicker and TimePicker Dropdown), navigation (Tabs and Tab Item, Nav Item,
+Section Nav Item and Group Header, Breadcrumbs and Breadcrumb Item, Tree Item), and paging and steps
+(Pagination and its Item, Nav and Ellipsis, Page Navigator and its Button, Stepper, Step and Stepper
+Indicator) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -843,6 +845,47 @@ One row of a tree, `role="treeitem"` at its level. The arrow keys expand and col
 draws its words as a text field, an inline rename (owner decision), and a keyboard-focused row
 draws edit's edge and ring, as its description says edit "doubles as the focus treatment". The tree
 around it, the arrow keys across its rows, is the Tree Navigation Panel pattern's, later.
+
+## Pagination, PaginationItem, PaginationNav and PaginationEllipsis
+
+| Prop                                | Values                                        | Default |
+| ----------------------------------- | --------------------------------------------- | ------- |
+| `count`                             | how many pages                                | —       |
+| `page` · `defaultPage` · `onChange` | the current page, from 1                      | `1`     |
+| `hrefOf`                            | each page's address: the pages are then links | none    |
+
+A list's pages, in a `nav` named "Pagination" and a list: the previous arrow, the pages, the next
+arrow, disabled at the ends. The pages shown are Figma's (owner decision): the first, the last, the
+current ± 1, and three at the end the current is near, `1 2 3 … 12`; a gap of one page shows the
+page, a longer one an ellipsis, which is no control. The current page is `aria-current="page"`.
+One page draws nothing. Each item's own 24 × 24 box is its target (owner decision: they sit 4px
+apart). `pagesOf(page, count)` is exported.
+
+## PageNavigator and PageNavButton
+
+| Prop                            | Values                                             | Default     |
+| ------------------------------- | -------------------------------------------------- | ----------- |
+| `count` · `page` · `onChange`   | the sequence's length and the current page, from 1 | `1`         |
+| `indicator`                     | where the reader is, in words                      | `"3 of 10"` |
+| `direction` · children (Button) | `prev` · `next`; its words                         | "Previous"  |
+
+A linear pager for a sequence walked start to end: its buttons disabled at the ends, where the
+reader is announced as it changes (`aria-live`). A button hugs its words and arrow (Figma fixes it
+at 112px), mirrored right to left.
+
+## Stepper, Step and Stepper Indicator
+
+| Prop                   | Values                                             | Default      |
+| ---------------------- | -------------------------------------------------- | ------------ |
+| `type`                 | `with label` · `no label` · `line` · `line+text`   | `with label` |
+| `steps` · `activeStep` | two to five labels; the active one's index, from 0 | —            |
+| `errorStep`            | a step in error                                    | none         |
+| `onStepClick`          | completed Steps become buttons that go back        | none         |
+
+A linear flow's progress (owner decision: labels and an active index; completed steps pressable
+where `onStepClick` is given). Steps before the active one are complete, it active
+(`aria-current="step"`), those after upcoming. Where a type draws no words (`no label`, `line`),
+each step's label is read, not drawn. Each part is drawn in the layer Figma draws for its status.
 
 ## Checked against Figma
 

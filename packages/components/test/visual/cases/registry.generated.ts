@@ -42,6 +42,12 @@ import numberInput from './number-input.js';
 import optionRow from './option-row.js';
 import optionsList from './options-list.js';
 import pinInput from './pin-input.js';
+import pageNavButton from './pagenavbutton.js';
+import pageNavigator from './pagenavigator.js';
+import pagination from './pagination.js';
+import paginationEllipsis from './paginationellipsis.js';
+import paginationItem from './paginationitem.js';
+import paginationNav from './paginationnav.js';
 import passwordInput from './password-input.js';
 import progressBar from './progressbar.js';
 import radio from './radio.js';
@@ -58,6 +64,9 @@ import sliderRange from './slider-range.js';
 import spinner from './spinner.js';
 import splitButton from './splitbutton.js';
 import statusIndicator from './statusindicator.js';
+import step from './step.js';
+import stepper from './stepper.js';
+import stepperIndicator from './stepper-indicator.js';
 import tabItem from './tab-item.js';
 import tabs from './tabs.js';
 import tag from './tag.js';
@@ -115,6 +124,12 @@ export const CASES: Record<string, VisualCase> = {
   'Option Row': optionRow,
   'Options List': optionsList,
   'PIN Input': pinInput,
+  PageNavButton: pageNavButton,
+  PageNavigator: pageNavigator,
+  Pagination: pagination,
+  PaginationEllipsis: paginationEllipsis,
+  PaginationItem: paginationItem,
+  PaginationNav: paginationNav,
   'Password Input': passwordInput,
   ProgressBar: progressBar,
   Radio: radio,
@@ -131,6 +146,9 @@ export const CASES: Record<string, VisualCase> = {
   Spinner: spinner,
   SplitButton: splitButton,
   StatusIndicator: statusIndicator,
+  Step: step,
+  Stepper: stepper,
+  'Stepper Indicator': stepperIndicator,
   'Tab Item': tabItem,
   Tabs: tabs,
   Tag: tag,

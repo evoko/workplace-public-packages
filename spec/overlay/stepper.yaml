@@ -1,0 +1,143 @@
+# Hand-written decisions about SOLAR Stepper, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Stepper
+
+base:
+  reason: >-
+    A linear flow's progress, its description says: two to five steps, the active one announced
+    (`aria-current="step"`), in one of four looks: round Steps over a progress bar (with label),
+    Stepper Indicators joined by lines (no label), a bar of segments (line), or horizontal Steps
+    (line+text). It takes its steps' labels and the active one's index (owner decision 2026-09-24),
+    and draws each part in the layer Figma draws for its status; completed steps are buttons
+    where it is given `onStepClick` (owner decision 2026-09-24). Drawn with the shared layer
+    helpers on both platforms.
+
+composes:
+  Step/complete/horizontal:
+    name: Step
+    reason: >-
+      The line+text stepper's first step is an instance of the Step variant itself, named by its
+      variant (`Step/complete/horizontal`): it is a Step, complete and horizontal.
+
+follows:
+  root.direction:
+    axes: [type]
+    reason: >-
+      With label, the stepper stacks its bar and its steps; the other types lay their parts out in
+      one row, as Figma draws each.
+  root.align:
+    axes: [type]
+    reason: As its direction, by type.
+  root.gap:
+    axes: [type]
+    reason: As its direction, by type, each type's gap its own.
+  root.height:
+    axes: [type]
+    reason: As its direction, by type.
+
+set:
+  root.appearance.type=line.default.height:
+    keyword: HUG
+    reason: >-
+      The line stepper is as tall as its segments: Figma fixes it at their 4px, bound to nothing.
+  progress.base.paddingRight:
+    none: true
+    reason: >-
+      The progress bar's 225px right padding is Figma presentation only (design team,
+      2026-09-24), the room its sample fill leaves: not reproduced. The shell draws the fill's
+      width from the active step.
+  stepCompleteHorizontal.base.variant.status:
+    keyword: complete
+    reason: As its name says, the first step complete.
+  stepCompleteHorizontal.base.variant.type:
+    keyword: horizontal
+    reason: As its name says, a horizontal Step.
+  step.appearance.type=line+text.default.variant.status:
+    keyword: active
+    reason: >-
+      Figma draws the line+text stepper's second step upcoming after a complete first, with no step
+      active; a stepper always has one (its active index), the step after the completed ones. The
+      design review asks SOLAR to draw it.
+  stepperIndicator.base.width:
+    none: true
+    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
+  stepperIndicator.base.height:
+    none: true
+    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
+  stepperIndicator2.base.width:
+    none: true
+    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
+  stepperIndicator2.base.height:
+    none: true
+    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
+  stepperIndicator3.base.width:
+    none: true
+    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
+  stepperIndicator3.base.height:
+    none: true
+    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
+
+controlDraws:
+  progress:
+    cells: [x, right, width]
+    reason: >-
+      The bar spans the stepper under its steps, drawn by the shell from edge to edge (the first
+      and last circles cover its ends): Figma places it 313 wide, 18 from the right, a sample of
+      the stepper's width. Its height, corners, colour and its place from the top are the recipe's.
+  progressRectangle2:
+    cells: [width]
+    reason: >-
+      The bar's fill reaches the active step, a share of the bar the shell draws: Figma's 153 is
+      its sample, the second of three.
+
+accept:
+  component.stepper.root.paddingTop@type=line:
+    reason: >-
+      Figma binds this type's padding to inset.none and leaves the with label type's an unbound 0,
+      which the shared default binds to inset.none: the same 0.
+  component.stepper.root.paddingRight@type=line:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingBottom@type=line:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingLeft@type=line:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingTop@type=line+text:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingRight@type=line+text:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingBottom@type=line+text:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingLeft@type=line+text:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingTop@type=no label:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingRight@type=no label:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingBottom@type=no label:
+    reason: As the first, the same 0.
+  component.stepper.root.paddingLeft@type=no label:
+    reason: As the first, the same 0.
+
+allowLiteral:
+  progress.height:
+    reason: >-
+      The bar is 4px thick, bound to nothing: SOLAR has no line-thickness token beside its border
+      widths (the design review's question on sizes with no variable).
+  progressRectangle2.height:
+    reason: As the bar's, 4px.
+  rectangle1.height:
+    reason: As the progress bar's, a segment 4px thick.
+  rectangle2.height:
+    reason: As the progress bar's, a segment 4px thick.
+  rectangle3.height:
+    reason: As the progress bar's, a segment 4px thick.
+  rectangle4.height:
+    reason: As the progress bar's, a segment 4px thick.
+  rectangle5.height:
+    reason: As the progress bar's, a segment 4px thick.
+  frame.height:
+    reason: A line between two circles is 2px thick, bound to nothing (as the bar's, no token).
+  frame2.height:
+    reason: As the first line's, 2px.

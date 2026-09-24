@@ -329,7 +329,8 @@ async function check(page, component, { only } = {}) {
 }
 
 /** The child oracle's variant a parent's layer names: every axis it gives, by Figma's spelling. */
-function childVariant(oracle, wanted) {
+function childVariant(oracle, wanted = {}) {
+  // A standalone child (Pagination's ellipsis) has no variant to name: its one is the one.
   const found = oracle.variants.find((v) => {
     const axes = Object.fromEntries(
       v.figma.split(', ').map((p) => p.split('=')),

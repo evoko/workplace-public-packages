@@ -63,7 +63,10 @@ and `SolarFileUpload`), and the menus and lists (`SolarDropdownItem`, `SolarDrop
 `SolarDropdown`, `SolarAutocomplete`, `SolarDatePicker`, `SolarDatePickerOpen`,
 `SolarDatePickerDayCell`, `SolarTimePicker` and `SolarTimePickerDropdown`), and navigation
 (`SolarTabs`, `SolarTabItem`, `SolarNavItem`, `SolarSectionNavItem`, `SolarSectionNavGroupHeader`,
-`SolarBreadcrumbs`, `SolarBreadcrumbItem` and `SolarTreeItem`) take the same props as the React components
+`SolarBreadcrumbs`, `SolarBreadcrumbItem` and `SolarTreeItem`), and paging and steps
+(`SolarPagination`, `SolarPaginationItem`, `SolarPaginationNav`, `SolarPaginationEllipsis`,
+`SolarPageNavigator`, `SolarPageNavButton`, `SolarStepper`, `SolarStep` and
+`SolarStepperIndicator`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
@@ -121,7 +124,10 @@ selecting. It is not Flutter's TabBar, which needs a TabController, draws its ow
 ink, and has no arrow keys. A `SolarNavItem` takes `iconOutline` and `iconSolid` widgets, and a
 `SolarBreadcrumbs` its trail as `SolarBreadcrumbItem`s, reading their labels and `onPressed` for
 the menu of a collapsed trail's middle. A `SolarTreeItem` holds its rename's words in a controller
-of its own, starting from its label.
+of its own, starting from its label. A `SolarPagination` and a `SolarPageNavigator` take `page` and
+`count` and call `onChanged` (`solarPagesOf` says which pages show); their arrows are named by
+MaterialLocalizations and mirrored right to left. A `SolarStepper` takes `steps` (labels) and
+`activeStep`, and a `SolarStepperIndicator` its step's `number`.
 `SolarFAB` is a FilledButton, which a Scaffold's `floatingActionButton` takes:
 
 ```dart

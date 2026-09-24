@@ -43,6 +43,12 @@ import 'number_input.dart';
 import 'option_row.dart';
 import 'options_list.dart';
 import 'pin_input.dart';
+import 'pagenavbutton.dart';
+import 'pagenavigator.dart';
+import 'pagination.dart';
+import 'paginationellipsis.dart';
+import 'paginationitem.dart';
+import 'paginationnav.dart';
 import 'password_input.dart';
 import 'progressbar.dart';
 import 'radio.dart';
@@ -59,6 +65,9 @@ import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
+import 'step.dart';
+import 'stepper.dart';
+import 'stepper_indicator.dart';
 import 'tab_item.dart';
 import 'tabs.dart';
 import 'tag.dart';
@@ -115,6 +124,12 @@ final cases = <String, VisualCase>{
   'Option Row': optionRowCase,
   'Options List': optionsListCase,
   'PIN Input': pinInputCase,
+  'PageNavButton': pageNavButtonCase,
+  'PageNavigator': pageNavigatorCase,
+  'Pagination': paginationCase,
+  'PaginationEllipsis': paginationEllipsisCase,
+  'PaginationItem': paginationItemCase,
+  'PaginationNav': paginationNavCase,
   'Password Input': passwordInputCase,
   'ProgressBar': progressBarCase,
   'Radio': radioCase,
@@ -131,6 +146,9 @@ final cases = <String, VisualCase>{
   'Spinner': spinnerCase,
   'SplitButton': splitButtonCase,
   'StatusIndicator': statusIndicatorCase,
+  'Step': stepCase,
+  'Stepper': stepperCase,
+  'Stepper Indicator': stepperIndicatorCase,
   'Tab Item': tabItemCase,
   'Tabs': tabsCase,
   'Tag': tagCase,

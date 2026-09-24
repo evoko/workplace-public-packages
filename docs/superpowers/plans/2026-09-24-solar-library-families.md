@@ -1333,6 +1333,33 @@ every finding decided (none left open). 70 components, 69 exported.
       decide it in the overlay as not reproduced, with that reason. Its gaps bound to `inset.*`
       are right, being horizontal.
 
+**F9 done 2026-09-24.** PaginationItem (pioneer), PaginationNav, PaginationEllipsis, Pagination,
+PageNavButton, PageNavigator, Stepper Indicator, Step and Stepper, every variant matching Figma on
+both platforms, every finding decided (none left open). 79 components, 78 exported.
+
+- **Owner decisions (2026-09-24):**
+  - Pagination shows Figma's pages: the first, the last, the current ± 1, three at the near end
+    (`1 2 3 … 12`), a one-page gap filled;
+  - Stepper takes `steps` (labels) and `activeStep`, statuses following from it (`errorStep` for
+    one in error);
+  - completed steps are buttons where `onStepClick` is given;
+  - Pagination's items keep their own 24 × 24 box as their target (4px apart, 44 × 44 targets
+    would cover each other).
+- **Taken here, open to the owner:** the pagination parts on ButtonBase (not MUI's
+  PaginationItem, as the plan said: the assembly is drawn, its truncation Figma's); PageNavButton
+  hugs its words (Figma fixes 112); the first page's previous arrow and button disabled (Figma
+  draws them enabled); the line+text stepper's second step active (Figma draws none active); the
+  with-label bar spans the stepper from edge to edge, its fill the active step's share; in the no
+  label and line types each step's label is read, not drawn; the arrows mirror right to left.
+- **Machinery:** an icon that follows one axis (`iconsOf`'s `byAxis`, `reactIcon`, `dartIcon`);
+  a `set` child variant on a child with none; both checks take a standalone child in its one
+  variant; `drawnFlutter`'s `pressable: true`.
+- **Checks:** 1481 JS tests, both visual checks (82 on the web, 379 Flutter tests), lint, typecheck,
+  format, all three Flutter packages analysed and formatted, both viewers built, the personal-data
+  scan, and a rebuild that reproduces the tree. The widget tests found and fixed: Pagination and
+  the with-label Stepper crashing on repeated layers (duplicate keys) past four pages or with two
+  steps of one status, and a page item's semantics hiding its button and selected state.
+
 ### F10: Cards
 
 - **Pioneer: Card.** MUI `Card`, Flutter bespoke on `Material`.

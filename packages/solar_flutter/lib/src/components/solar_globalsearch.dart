@@ -104,7 +104,6 @@ class SolarGlobalSearch extends StatelessWidget {
     final mark = SolarPressable(
       onPressed: onPressed,
       statesController: statesController,
-
       target: true,
       builder: (_, states) => draw(states),
     );

@@ -210,6 +210,14 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      rows a shell gives it (`content`) by the gap.
    - **A text placed by position** (the double calendar's month labels) has `x` and `y` cells, as
      any placed layer; before, a text's position was dropped, though the oracle measured it.
+     What F9 (paging and steps) added:
+   - **An icon that follows one axis.** `iconsOf` gives a layer whose icon changes with one axis
+     (PaginationNav's chevron, by its direction) `byAxis`, the icon at each value, which
+     `reactIcon` and `dartIcon` choose by the prop; any other layer drawing two icons is refused.
+   - **A decided variant on a child with none.** An overlay `set` of a composed child's
+     `variant.*` reaches a child Figma records no variant for (Stepper's first line+text step, an
+     instance of the Step variant itself); both checks take a standalone child (PaginationEllipsis)
+     in its one variant.
      What F8 (navigation) added:
    - **Samples that drop the default variant.** Where the overlay's `samples` keeps a value other
      than Figma's default (Breadcrumbs keeps its 5-item trail, not its default "multiple"), the
@@ -516,7 +524,8 @@ axis=value, …>` gives each layer and property of those variants as a chain: Fi
      strip and rail share `solar_flutter`'s `lib/src/solar_tabs.dart` (`SolarTabsScope`, the strip's
      size and choice, which a tab reads; `SolarTabList`, the tab bar and its arrow keys). A Counter
      in a tab takes none of the tab's states (its selectors skip a `[role="tab"]` button, and in
-     Flutter it sits in a `SolarStatesScope` of its own). A drawn icon is marked `<prefix>-drawnIcon` on the
+     Flutter it sits in a `SolarStatesScope` of its own). `drawnFlutter`'s `pressable: true` is
+     pressable wherever it is given a callback (a Step one can go back to). A drawn icon is marked `<prefix>-drawnIcon` on the
      web, a class no layer is named, so a layer named `icon` (ListItem's) styles itself alone.
      Every control's recipe gives it a 44 × 44 target that takes no room
      (`src/shells/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input

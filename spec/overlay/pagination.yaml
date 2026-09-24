@@ -1,0 +1,66 @@
+# Hand-written decisions about SOLAR Pagination, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Pagination
+
+base:
+  reason: >-
+    A list's pages, its description says: the previous arrow, the pages with ellipses in their
+    gaps, the next arrow, in a `nav` named "Pagination" and a list; hidden where there is a single
+    page. Drawn with the shared layer helpers on both platforms, each item in the layer Figma draws
+    at its place. The pages shown are Figma's (owner decision 2026-09-24): the first, the last and
+    the current ± 1, and three at the end the current is near, as Figma draws 1 2 3 … 12; a gap of
+    one page shows that page.
+
+set:
+  previous.base.width:
+    none: true
+    reason: >-
+      Each item is a SOLAR PaginationNav, PaginationItem or PaginationEllipsis, whose 24px square is
+      its own: the pagination lays it out and never sizes it.
+  previous.base.height:
+    none: true
+    reason: As the previous arrow's, its own.
+  page1.base.width:
+    none: true
+    reason: As the previous arrow's, its own.
+  page1.base.height:
+    none: true
+    reason: As the previous arrow's, its own.
+  page2.base.width:
+    none: true
+    reason: As the previous arrow's, its own.
+  page2.base.height:
+    none: true
+    reason: As the previous arrow's, its own.
+  page3.base.width:
+    none: true
+    reason: As the previous arrow's, its own.
+  page3.base.height:
+    none: true
+    reason: As the previous arrow's, its own.
+  paginationEllipsis.base.width:
+    none: true
+    reason: As the previous arrow's, its own.
+  paginationEllipsis.base.height:
+    none: true
+    reason: As the previous arrow's, its own.
+  page12.base.width:
+    none: true
+    reason: As the previous arrow's, its own.
+  page12.base.height:
+    none: true
+    reason: As the previous arrow's, its own.
+  next.base.width:
+    none: true
+    reason: As the previous arrow's, its own.
+  next.base.height:
+    none: true
+    reason: As the previous arrow's, its own.
+  previous.base.variant.state:
+    keyword: disabled
+    reason: >-
+      Figma draws the previous arrow enabled on the first page, where the description disables it
+      there ("Disable prev/next at the boundaries rather than hiding them"): the code disables it,
+      and the design review asks SOLAR to draw it so.

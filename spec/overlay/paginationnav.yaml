@@ -1,0 +1,34 @@
+# Hand-written decisions about SOLAR PaginationNav, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: PaginationNav
+
+base:
+  mui: ButtonBase
+  reason: >-
+    The previous or next arrow of a Pagination, its description says: a button to the page before
+    or after, disabled at the first and the last (`aria-disabled`), named for a screen reader.
+    MUI's ButtonBase on the web, as a PaginationItem's; bespoke in Flutter. At 24 × 24,
+      its target is its own box: the items sit 4px apart, where 44 × 44 targets would cover each
+      other (owner decision 2026-09-24, as Tree Item's actions), which meets WCAG 2.2's 24px
+      minimum; the design review asks SOLAR for room.
+
+follows:
+  icon.component:
+    axes: [direction]
+    reason: >-
+      The chevron points the way it goes: left for the previous page, right for the next, as its
+      description says ("Chevron icon flips by direction").
+
+bind:
+  icon.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+
+allowLiteral:
+  root.width:
+    reason: As a PaginationItem's, a 24px square, bound to nothing (a governance gap).
+  root.height:
+    reason: As its width.

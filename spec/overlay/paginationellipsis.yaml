@@ -1,0 +1,16 @@
+# Hand-written decisions about SOLAR PaginationEllipsis, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: PaginationEllipsis
+
+base:
+  reason: >-
+    The gap in a Pagination's pages, its description says: static text, never a control, no hit
+    area and no focus. Drawn with the shared layer helpers on both platforms.
+
+allowLiteral:
+  root.width:
+    reason: As a PaginationItem's, a 24px square, so it keeps the items' rhythm (a governance gap).
+  root.height:
+    reason: As its width.

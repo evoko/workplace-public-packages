@@ -1,0 +1,33 @@
+# Hand-written decisions about SOLAR PageNavigator, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: PageNavigator
+
+base:
+  reason: >-
+    A linear pager, its description says: the previous and next buttons and, between them, where
+    the reader is ("1 of 10"), no page numbers; disabled at the ends. Drawn with the shared layer
+    helpers on both platforms, its position announced as it changes.
+
+set:
+  prevButton.base.width:
+    none: true
+    reason: >-
+      Each button is a SOLAR PageNavButton, whose size is its own: the navigator places it, and
+      never sizes it.
+  prevButton.base.height:
+    none: true
+    reason: As its width, its own.
+  nextButton.base.width:
+    none: true
+    reason: As the previous button's, its own.
+  nextButton.base.height:
+    none: true
+    reason: As its width, its own.
+  prevButton.base.variant.state:
+    keyword: disabled
+    reason: >-
+      Figma draws the previous button enabled at "1 of 10", where the description disables it at
+      the ends ("Disabled at the ends of the sequence"): the code disables it, as Pagination's
+      previous arrow, and the design review asks SOLAR to draw it so.

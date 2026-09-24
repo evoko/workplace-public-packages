@@ -1,0 +1,70 @@
+# Hand-written decisions about SOLAR PageNavButton, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: PageNavButton
+
+base:
+  mui: ButtonBase
+  reason: >-
+    The previous or next button of a Page Navigator, its description says: a secondary button with
+    its arrow, "Previous" or "Next", disabled at the ends of the sequence. MUI's ButtonBase on the
+    web, for its keyboard focus (focus-visible) and press; its icons and words drawn with the shared
+    layer helpers. Bespoke in Flutter, drawn and pressable.
+
+set:
+  root.base.width:
+    keyword: HUG
+    reason: >-
+      A button is as wide as its words and arrow, as SOLAR's Button is, so a longer word (a
+      translation) fits: Figma draws it 112 wide, bound to nothing (the design review asks).
+
+accept:
+  component.pagenavbutton.root.align@direction=next, state=default:
+    reason: >-
+      Figma lays the button out edge to edge (SPACE_BETWEEN) here and from the start at rest: a
+      button that hugs its words draws both the same.
+  component.pagenavbutton.root.align@direction=next, state=disabled:
+    reason: As the others, the same in a button that hugs its words.
+  component.pagenavbutton.root.align@direction=next, state=focus:
+    reason: As the others, the same in a button that hugs its words.
+  component.pagenavbutton.root.align@direction=next, state=hover:
+    reason: As the others, the same in a button that hugs its words.
+  component.pagenavbutton.root.align@direction=next, state=pressed:
+    reason: As the others, the same in a button that hugs its words.
+  component.pagenavbutton.root.align@direction=prev, state=focus:
+    reason: As the others, the same in a button that hugs its words.
+  component.pagenavbutton.root.align@direction=prev, state=hover:
+    reason: As the others, the same in a button that hugs its words.
+  component.pagenavbutton.root.align@direction=prev, state=pressed:
+    reason: As the others, the same in a button that hugs its words.
+  component.pagenavbutton.root.gap#unbound:
+    reason: >-
+      The next button's gap is an unbound 8, the previous button's bound to stack.xs, the same 8:
+      drawn as the previous one's.
+  component.pagenavbutton.root.gap@direction=next, state=default:
+    reason: As the gap's unbound finding, the same 8 as stack.xs.
+  component.pagenavbutton.root.gap@direction=next, state=disabled:
+    reason: As the gap's unbound finding, the same 8 as stack.xs.
+  component.pagenavbutton.root.gap@direction=next, state=focus:
+    reason: As the gap's unbound finding, the same 8 as stack.xs.
+  component.pagenavbutton.root.gap@direction=next, state=hover:
+    reason: As the gap's unbound finding, the same 8 as stack.xs.
+  component.pagenavbutton.root.gap@direction=next, state=pressed:
+    reason: As the gap's unbound finding, the same 8 as stack.xs.
+
+bind:
+  iconArrowLeft.height:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's width is already bound to it.
+  iconArrowRight.height:
+    literal: 20
+    token: icon.md
+    reason: As the left arrow's.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap). The button is drawn 36 tall.

@@ -10,6 +10,7 @@
  */
 
 import { camel, pascal } from '../util/naming.mjs';
+import { dartEnumValue } from '../emit/flutter.mjs';
 import { dartField, dartParam } from './helpers.mjs';
 
 /**
@@ -74,8 +75,10 @@ const entriesOf = (style) => [
 
 /**
  * The layers that draw a SOLAR icon of their own (RowExpand's chevrons, `Icon/ChevronRight`), with
- * the icon each draws: its React component in `@bwp-web/assets` and its `SolarIcons` constant. One
- * icon per layer; a layer that is a different icon in another variant is refused, for now.
+ * the icon each draws: its React component in `@bwp-web/assets` and its `SolarIcons` constant. A
+ * layer whose icon follows one axis (PaginationNav's chevron, by its direction) has `byAxis`, the
+ * icon for each of the axis's values, which the drawn helpers choose by the prop; any other layer
+ * that draws two icons is refused.
  */
 export function iconsOf(spec) {
   const out = [];
@@ -90,20 +93,87 @@ export function iconsOf(spec) {
         .map((k) => k.slice('Icon/'.length)),
     );
     if (names.size === 0) continue;
-    if (names.size > 1)
-      throw new Error(
-        `${spec.component} ${layer}: one layer draws ${[...names].join(', ')}`,
-      );
-    const [name] = names;
     const solid = entries.some((e) => e?.['variant.solid']?.keyword === 'true');
+    const of = (name) => ({
+      react: `Icon${pascal(name)}`,
+      dart: `SolarIcons.${camel(name)}${solid ? 'Solid' : 'Outline'}`,
+    });
+    const base = spec.style[layer]?.base?.component?.keyword?.slice(
+      'Icon/'.length,
+    );
+    const byAxis = names.size > 1 ? iconAxisOf(spec, layer, base) : null;
     out.push({
       layer,
-      react: `Icon${pascal(name)}`,
+      ...of(byAxis ? base : [...names][0]),
       solid,
-      dart: `SolarIcons.${camel(name)}${solid ? 'Solid' : 'Outline'}`,
+      ...(byAxis
+        ? {
+            byAxis: {
+              axis: byAxis.axis,
+              values: Object.fromEntries(
+                Object.entries(byAxis.values).map(([v, name]) => [v, of(name)]),
+              ),
+            },
+          }
+        : {}),
     });
   }
   return out;
+}
+
+/**
+ * The axis a layer's icon follows, and its icon at each value: the icon its appearance entries at
+ * rest name, keyed by one axis alone (`direction=next`), the base's elsewhere. Refused where the
+ * icon changes otherwise (by size, or state, or two axes together).
+ */
+function iconAxisOf(spec, layer, base) {
+  const fail = () => {
+    throw new Error(
+      `${spec.component} ${layer}: one layer draws icons by more than one axis`,
+    );
+  };
+  const style = spec.style[layer];
+  if (
+    Object.values(style.size ?? {}).some((e) => e.component) ||
+    style.combined
+  )
+    fail();
+  let axis = null;
+  const values = {};
+  for (const [key, states] of Object.entries(style.appearance ?? {})) {
+    for (const [state, entry] of Object.entries(states))
+      if (entry.component && state !== 'default') fail();
+    const icon = states.default?.component?.keyword;
+    if (!icon) continue;
+    const pairs = key.split(', ').map((p) => p.split('='));
+    if (pairs.length !== 1 || (axis && axis !== pairs[0][0])) fail();
+    axis = pairs[0][0];
+    values[pairs[0][1]] = icon.slice('Icon/'.length);
+  }
+  if (!axis || !spec.api[axis]?.values) fail();
+  for (const v of spec.api[axis].values) values[v] ??= base;
+  return { axis, values };
+}
+
+/** The React expression for an icon layer's icon: its component, or the one of its axis's value. */
+export function reactIcon(i, spec) {
+  const el = (x) => `<${x.react}${i.solid ? ' variant="solid"' : ''} />`;
+  if (!i.byAxis) return el(i);
+  const { axis, values } = i.byAxis;
+  const map = Object.entries(values)
+    .map(([v, x]) => `${JSON.stringify(v)}: ${el(x)}`)
+    .join(', ');
+  return `({ ${map} } as const)[${axis} ?? ${JSON.stringify(spec.api[axis].default)}]`;
+}
+
+/** The Dart expression for an icon layer's icon: its constant, or the one of its axis's value. */
+export function dartIcon(i, spec) {
+  if (!i.byAxis) return i.dart;
+  const { axis, values } = i.byAxis;
+  const type = `Solar${pascal(spec.component)}${pascal(axis)}`;
+  return `switch (${axis}) {${Object.entries(values)
+    .map(([v, x]) => ` ${type}.${dartEnumValue(v)} => ${x.dart},`)
+    .join('')} }`;
 }
 
 /** Whether any entry of the recipe draws a glyph. */
@@ -168,13 +238,14 @@ export function drawnReact(spec, o) {
       .map((l) => (l ? ' '.repeat(n) + l : l))
       .join('\n');
   const icons = iconsOf(spec);
+  const iconNames = icons.flatMap((i) =>
+    i.byAxis ? Object.values(i.byAxis.values).map((x) => x.react) : [i.react],
+  );
   const iconImport = icons.length
-    ? `import { ${[...new Set(icons.map((i) => i.react))].sort().join(', ')} } from '@bwp-web/assets';\n`
+    ? `import { ${[...new Set(iconNames)].sort().join(', ')} } from '@bwp-web/assets';\n`
     : '';
   const iconEntries = [
-    ...icons.map(
-      (i) => `${i.layer}: <${i.react}${i.solid ? ' variant="solid"' : ''} />`,
-    ),
+    ...icons.map((i) => `${i.layer}: ${reactIcon(i, spec)}`),
     ...(o.icons ? [o.icons] : []),
   ];
   const iconMap = iconEntries.length ? `{ ${iconEntries.join(', ')} }` : null;
@@ -247,7 +318,8 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  * @param {string} [o.states] the states expression, a `Set<WidgetState>`; none by default
  * @param {string} [o.pressable] makes it a control where it is given an `onPressed` (an
  *   interactive Counter): the expression that says it is enabled. Otherwise it takes the states
- *   of the control around it (SolarStatesBuilder), a Button's.
+ *   of the control around it (SolarStatesBuilder), a Button's. `true` is pressable whenever it has
+ *   one (a Step one can go back to).
  * @param {boolean} [o.link] announced as a link, where it is pressable (Link), not a button
  * @param {object} [o.control] makes it a control always (Checkbox), whatever is around it:
  *   `onPressed`, the expression called on a tap (null disables it), and `semantics`, the
@@ -342,7 +414,7 @@ final Map<String, Color> restyle;`;
         glyph: ${glyphs ? `(l) => ${R}.glyph(l, p, ${states})` : '(_) => null'},
       ),
       tree: _tree,
-      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.content ? `\n      content: ${o.content},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${o.truncates ? `\n      truncates: ${o.truncates},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
+      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.content ? `\n      content: ${o.content},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${o.truncates ? `\n      truncates: ${o.truncates},` : ''}${icons.length ? `\n      icons: ${icons.some((i) => i.byAxis) ? '' : 'const '}{${icons.map((i) => `'${i.layer}': ${dartIcon(i, spec)}`).join(', ')}},` : ''}
     ).layer('root')`;
   const draw = o.control
     ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};
@@ -360,8 +432,7 @@ final Map<String, Color> restyle;`;
       focusNode: ${o.control.focusNode},`
           : ''
       }
-${indent(o.control.semantics, 6)}
-      target: ${o.control.target === false ? 'false' : 'true'},
+${o.control.semantics ? `${indent(o.control.semantics, 6)}\n` : ''}      target: ${o.control.target === false ? 'false' : 'true'},
       builder: (_, states) => draw(states),
     );`
     : o.pressable
@@ -371,7 +442,7 @@ ${indent(o.control.semantics, 6)}
     final mark = onPressed == null && statesController == null
         ? SolarStatesBuilder(builder: (_, states) => draw(states))
         : SolarPressable(
-            onPressed: ${o.pressable} ? onPressed : null,
+            onPressed: ${o.pressable === true ? 'onPressed' : `${o.pressable} ? onPressed : null`},
             statesController: statesController,${o.link ? '\n            link: true,' : ''}
             target: true,
       builder: (_, states) => draw(states),

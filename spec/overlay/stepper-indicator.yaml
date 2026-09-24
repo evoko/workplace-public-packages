@@ -1,0 +1,32 @@
+# Hand-written decisions about SOLAR Stepper Indicator, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Stepper Indicator
+
+base:
+  reason: >-
+    The circle that marks one step's status in a Stepper, its description says: a tick when
+    completed, its number when active or upcoming, a "!" in error. Drawn with the shared layer
+    helpers on both platforms; a part of a Step, not used on its own.
+
+follows:
+  root.borderWidth:
+    axes: [status]
+    reason: >-
+      An upcoming step's circle and an erring one's are edged; a completed and an active one are
+      filled and not, as Figma draws each.
+
+bind:
+  iconCheck.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the tick's height is already bound to it.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      The circle is 24 across, bound to nothing: SOLAR has no size token for it (the design
+      review's question on sizes with no variable).
+  root.height:
+    reason: As its width.

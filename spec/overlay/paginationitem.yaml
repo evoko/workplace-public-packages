@@ -1,0 +1,25 @@
+# Hand-written decisions about SOLAR PaginationItem, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: PaginationItem
+
+base:
+  mui: ButtonBase
+  reason: >-
+    One page of a Pagination, its description says: a button that goes to its page, the current one
+    selected (`aria-current="page"`). MUI's ButtonBase on the web, for its keyboard focus
+    (focus-visible) and press; its number drawn with the shared layer helpers. Bespoke in Flutter,
+    drawn and pressable. At 24 × 24,
+      its target is its own box: the items sit 4px apart, where 44 × 44 targets would cover each
+      other (owner decision 2026-09-24, as Tree Item's actions), which meets WCAG 2.2's 24px
+      minimum; the design review asks SOLAR for room.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      A page is a 24px square, bound to nothing: SOLAR publishes no control size token (owner
+      decision 2026-09-23, raised as a governance gap). Four figures or more would outgrow it; the
+      design review asks.
+  root.height:
+    reason: As its width.

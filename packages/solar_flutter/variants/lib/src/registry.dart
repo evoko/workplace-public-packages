@@ -42,6 +42,12 @@ import 'number_input.dart';
 import 'option_row.dart';
 import 'options_list.dart';
 import 'pin_input.dart';
+import 'pagenavbutton.dart';
+import 'pagenavigator.dart';
+import 'pagination.dart';
+import 'paginationellipsis.dart';
+import 'paginationitem.dart';
+import 'paginationnav.dart';
 import 'password_input.dart';
 import 'progressbar.dart';
 import 'radio.dart';
@@ -58,6 +64,9 @@ import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
+import 'step.dart';
+import 'stepper.dart';
+import 'stepper_indicator.dart';
 import 'tab_item.dart';
 import 'tabs.dart';
 import 'tag.dart';
@@ -114,6 +123,12 @@ const builders = <String, VariantBuilder>{
   'Option Row': buildOptionRow,
   'Options List': buildOptionsList,
   'PIN Input': buildPINInput,
+  'PageNavButton': buildPageNavButton,
+  'PageNavigator': buildPageNavigator,
+  'Pagination': buildPagination,
+  'PaginationEllipsis': buildPaginationEllipsis,
+  'PaginationItem': buildPaginationItem,
+  'PaginationNav': buildPaginationNav,
   'Password Input': buildPasswordInput,
   'ProgressBar': buildProgressBar,
   'Radio': buildRadio,
@@ -130,6 +145,9 @@ const builders = <String, VariantBuilder>{
   'Spinner': buildSpinner,
   'SplitButton': buildSplitButton,
   'StatusIndicator': buildStatusIndicator,
+  'Step': buildStep,
+  'Stepper': buildStepper,
+  'Stepper Indicator': buildStepperIndicator,
   'Tab Item': buildTabItem,
   'Tabs': buildTabs,
   'Tag': buildTag,
