@@ -55,7 +55,9 @@ const WIDGET_STATE = { hover: 'hovered', pressed: 'pressed', focus: 'focused' };
 export function stateTest(spec, state) {
   if (WIDGET_STATE[state] && spec.states.includes(state))
     return `s.contains(WidgetState.${WIDGET_STATE[state]})`;
-  if (spec.api[state]?.type !== 'boolean')
+  // A state derived from content (Text Input's filled) is a prop too, which the widget sets.
+  const prop = spec.api[state] ?? spec.derived?.[state];
+  if (prop?.type !== 'boolean')
     throw new Error(`${spec.component}: no Flutter test for state ${state}`);
   if (state !== 'disabled') return `p.${state}`;
   return spec.api.loading?.type === 'boolean'
@@ -285,8 +287,11 @@ export function renderFlutterComponent(spec, tokens) {
     firstCombo?.split(', ').map((part) => part.split('=')[0]) ?? [];
   // The states this component can be in, in precedence order; a test of a prop the component
   // does not have (a Spinner is never disabled) would not compile.
+  // A derived state (Text Input's filled) is a prop the widget sets.
   const holds = precedence.filter(
-    (st) => spec.api[st]?.type === 'boolean' || spec.states.includes(st),
+    (st) =>
+      (spec.api[st] ?? spec.derived?.[st])?.type === 'boolean' ||
+      spec.states.includes(st),
   );
   const sizeExpr = 'size' in spec.api ? 'p.size.name' : "''";
   const combo =

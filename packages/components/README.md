@@ -4,8 +4,9 @@ SOLAR components for React, built on MUI: Button, Icon Button, Button Group, FAB
 SplitButton, Link and Spinner, the display primitives (StatusIndicator, Counter, Kbd, Timestamp,
 Avatar, Trend Badge, Divider, Skeleton, ProgressBar, Node End, RowExpand and Tree Indent), and the
 selection controls (Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle, Segmented Control
-and its Item), and the tags and messages (Tag, Alert, Alert Small, Banner, Toast and EmptyState)
-so far.
+and its Item), the tags and messages (Tag, Alert, Alert Small, Banner, Toast and EmptyState),
+and the text fields (Text Input, Text Area, SearchField, GlobalSearch, Password Input, Number
+Input, Inline Input, Token Input, PIN Input and FileUpload) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -448,6 +449,159 @@ and for how long is the app's: show it in MUI's Snackbar.
 
 A placeholder for a view with nothing to show, a centred stack whose words wrap. For something
 still loading, use a Skeleton or a Spinner.
+
+## Text Input
+
+| Prop                           | Values                                           | Default |
+| ------------------------------ | ------------------------------------------------ | ------- |
+| `size`                         | `md` · `sm`                                      | `md`    |
+| `disabled`                     | boolean                                          | `false` |
+| `error`                        | boolean                                          | `false` |
+| `label`                        | what it asks for, above it                       | none    |
+| `mandatory`                    | stars the label, and makes the input required    | `false` |
+| `helper`                       | more, below it; in `error`, what is wrong        | none    |
+| `leadingIcon` · `trailingIcon` | an icon, or after the words a small IconButton   | none    |
+| every InputBase prop           | `value` · `defaultValue` · `onChange` · `type` … | —       |
+
+Single-line text. The field is MUI's InputBase, so its native input takes the value, autofill, the
+caret and an `inputComponent`; the label is a `<label>` for it and the helper describes it, by id.
+It is drawn filled where it holds a value, controlled or not, and focused while the input has the
+focus (Figma's `pressed`). It fills its container, and its field has a 44 × 44 target under its
+words. A placeholder never replaces the label; validate on blur.
+
+## Text Area
+
+| Prop                 | Values                                            | Default |
+| -------------------- | ------------------------------------------------- | ------- |
+| `size`               | `md` · `sm`                                       | `md`    |
+| `disabled` · `error` | boolean                                           | `false` |
+| `label` · `helper`   | as Text Input's                                   | none    |
+| `mandatory`          | stars the label, and makes the textarea required  | `false` |
+| `charCount`          | counts the characters, against `maxLength`        | `false` |
+| `maxLength`          | the most characters it takes                      | none    |
+| `cta` · `attachment` | an IconButton at sm, in the bottom right and left | none    |
+| every InputBase prop | `value` · `defaultValue` · `onChange` …           | —       |
+
+Text of many lines, in a field of Figma's height whose words scroll within it. Its buttons are the
+caller's, pinned in the field's bottom corners: Figma places them 8px in from the edges, which they
+keep however wide the field is. It is drawn filled where it holds a value. One focus ring is drawn,
+the field's, where Figma draws a second around the whole component.
+
+## SearchField
+
+| Prop                 | Values                                          | Default |
+| -------------------- | ----------------------------------------------- | ------- |
+| `size`               | `md` · `sm`                                     | `md`    |
+| `disabled` · `error` | boolean                                         | `false` |
+| `filter`             | after the query: an IconButton (filters, clear) | none    |
+| every InputBase prop | `value` · `defaultValue` · `onChange` …         | —       |
+
+A search of the list or table beside it: SOLAR's search icon, a native search input named
+"Search" unless its `inputProps` say more, and the caller's filter. Drawn filled where it holds a
+query. Debounce the filtering, and announce the count of results.
+
+## GlobalSearch
+
+| Prop          | Values                                    | Default  |
+| ------------- | ----------------------------------------- | -------- |
+| `size`        | `md` · `sm`                               | `md`     |
+| `error`       | boolean                                   | `false`  |
+| `placeholder` | what it searches                          | `Search` |
+| `query`       | the query the app's search holds (filled) | none     |
+| `shortcut`    | the key that opens it, in a Kbd ("⌘K")    | none     |
+| `onClick`     | opens the app's search overlay            | —        |
+
+A trigger drawn as a field, not a field (owner decision): a button, named by its words, that opens
+the app's search. Binding its shortcut is the app's.
+
+## Password Input
+
+| Prop                             | Values                                     | Default            |
+| -------------------------------- | ------------------------------------------ | ------------------ |
+| `size` · `disabled` · `error`    | as Text Input's                            |                    |
+| `label` · `mandatory` · `helper` | as Text Input's                            |                    |
+| `forgotPassword`                 | a link to the reset flow, below the helper | none               |
+| `autoComplete`                   | `current-password` · `new-password`        | `current-password` |
+| every InputBase prop but `type`  | `value` · `onChange` …                     | —                  |
+
+A native password input a password manager fills, with SOLAR's eye to show or hide its words: a
+toggle that leaves the focus in the field. The link shows where given, in every state; Figma draws
+it only while focused, which could not be clicked.
+
+## Number Input
+
+| Prop                             | Values                                         | Default  |
+| -------------------------------- | ---------------------------------------------- | -------- |
+| `size` · `disabled` · `error`    | as Text Input's                                |          |
+| `stepper`                        | `inline` (− and +) · `side` (a chevron column) | `inline` |
+| `value` · `defaultValue`         | a number, or null                              | null     |
+| `onChange`                       | `(value: number \| null) => void`              | —        |
+| `min` · `max` · `step`           | its range and step                             | 1 step   |
+| `label` · `mandatory` · `helper` | as Text Input's                                |          |
+
+A spinbutton: its input takes only a number, the arrow keys step it, and so do its buttons, which
+are out of the tab order. Inline, the field is as wide as its digits.
+
+## Inline Input
+
+| Prop                 | Values                                            | Default |
+| -------------------- | ------------------------------------------------- | ------- |
+| `disabled` · `error` | boolean                                           | `false` |
+| `value`              | the value shown, and edited                       | —       |
+| `onConfirm`          | Enter or Confirm; returning false keeps it open   | —       |
+| `onCancel`           | Esc or Cancel                                     | none    |
+| `defaultEditing`     | starts it open                                    | `false` |
+| `label`              | names the input and the edit button ("Edit name") | none    |
+
+A value edited where it is shown, which holds its own mode (owner decision): read, its words with
+an edit button on hover or focus; open, an input with Confirm and Cancel. Figma's filled is the
+open mode with the focus on its buttons.
+
+## Token Input
+
+| Prop                             | Values                                        | Default |
+| -------------------------------- | --------------------------------------------- | ------- |
+| `size` · `disabled` · `error`    | as Text Input's                               |         |
+| `readonly`                       | shows the entries, which cannot be changed    | `false` |
+| `value` · `defaultValue`         | its entries, `string[]`                       | `[]`    |
+| `onChange`                       | `(value: string[]) => void`                   | —       |
+| `inputValue` · `onInputChange`   | the draft                                     | —       |
+| `maxVisible`                     | how many are drawn; the rest a Counter counts | all     |
+| `getTagProps`                    | more props for each entry's Tag               | none    |
+| `label` · `mandatory` · `helper` | as Text Input's                               |         |
+
+A field of entries it holds (owner decision), each a neutral SOLAR Tag with a close button: Enter
+adds the draft, Backspace in the empty input removes the last. Figma's active is its draft being
+typed; read-only and disabled Tags have no close button.
+
+## PIN Input
+
+| Prop                             | Values                                         | Default |
+| -------------------------------- | ---------------------------------------------- | ------- |
+| `size` · `disabled` · `error`    | as Text Input's                                |         |
+| `length`                         | `4` · `5` · `6`                                | `6`     |
+| `value` · `defaultValue`         | the digits                                     | `''`    |
+| `onChange` · `onComplete`        | with the digits; once every cell holds one     | —       |
+| `errorMessage`                   | what is wrong, in the helper's place, in error | none    |
+| `label` · `mandatory` · `helper` | as Text Input's                                |         |
+
+A one-time code, one digit per cell (owner decision: 4 to 6). One native input holds it, invisible
+over the cells (the code a phone offers, a paste, the numeric keyboard); the cell the next digit
+goes in is drawn as Figma's first, which takes the hover, the focus and the caret.
+
+## FileUpload
+
+| Prop                             | Values                                 | Default |
+| -------------------------------- | -------------------------------------- | ------- |
+| `disabled` · `error`             | boolean                                | `false` |
+| `value` · `defaultValue`         | the files, `File[]`                    | `[]`    |
+| `onChange`                       | `(files: File[]) => void`              | —       |
+| `accept` · `multiple` · `name`   | the file input's                       | —       |
+| `placeholder` · `browseLabel`    | its words                              | Figma's |
+| `label` · `mandatory` · `helper` | as Text Input's; the helper its limits |         |
+
+A drop zone with a real `<input type="file">`, opened by Browse, a SOLAR Button; chosen, the
+file's name with replace and remove, SOLAR Icon Buttons. The app checks sizes and types.
 
 ## Checked against Figma
 

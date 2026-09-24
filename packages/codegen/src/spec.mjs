@@ -49,7 +49,9 @@ export function recipeAxes(spec) {
     ...Object.fromEntries(
       Object.entries(spec.derived ?? {}).map(([axis, d]) => [
         axis,
-        { values: d.values, default: d.default, derived: true },
+        d.type === 'boolean'
+          ? { type: 'boolean', default: d.default, derived: true }
+          : { values: d.values, default: d.default, derived: true },
       ]),
     ),
   };

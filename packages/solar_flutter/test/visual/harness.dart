@@ -171,19 +171,20 @@ Future<(List<Difference>, List<Difference>)> check(
         in (v['layers'] as Map<String, dynamic>).entries) {
       final expected = e as Map<String, dynamic>;
       final got = painted[layer];
-      if (got == null) {
-        failures.add(Difference(name, layer, 'present', true, false));
-        continue;
-      }
       // Shown by a prop (hidden at rest in Figma): measured whenever rendered. Hidden only in this
-      // variant: the state removes it, so it must not be drawn.
+      // variant: the state removes it, so it must not be drawn, and a layer not built at all is
+      // not drawn (Number Input's leading icon), as the web check reads it.
       final byProp =
           (oracle['slots'] as Map).containsKey(layer) &&
-          (atRest[layer] as Map<String, dynamic>)['hidden'] == true;
+          (atRest[layer] as Map<String, dynamic>?)?['hidden'] == true;
       if (expected['hidden'] == true && !byProp) {
-        if (got['drawn'] == true) {
+        if (got?['drawn'] == true) {
           failures.add(Difference(name, layer, 'hidden', true, false));
         }
+        continue;
+      }
+      if (got == null) {
+        failures.add(Difference(name, layer, 'present', true, false));
         continue;
       }
       final child = oracles[expected['component']];

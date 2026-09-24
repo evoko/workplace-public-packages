@@ -1,0 +1,65 @@
+# Hand-written decisions about SOLAR FileUpload, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: FileUpload
+
+base:
+  reason: >-
+    Bespoke on both: a drop zone drawn from Figma's layers with the shared helpers, its Browse a
+    SOLAR Button and its replace and remove SOLAR Icon Buttons. On the web a real <input
+    type="file"> takes the choice, as the description asks, and the field takes a drop; Flutter has
+    no file picker of its own, so its widget shows the files the app's picker chose, and asks the
+    app to browse.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [value]
+      - value: false
+    reason: >-
+      A file upload is filled where it holds a file, which the user chooses or drops, so it is no
+      prop the caller could set against its content.
+
+follows:
+  field.borderWidth:
+    axes: [state]
+    reason: >-
+      A disabled drop zone has no edge, on its muted fill, where every other one keeps its border:
+      a control that cannot be used is drawn flat, as a disabled Checkbox is.
+
+set:
+  root.appearance.default.focus.shadow:
+    none: true
+    reason: >-
+      Figma rings the whole component, label and helper with it, when it has the focus: the ring
+      is the field's, as every field's is, below. The design review asks SOLAR which it means.
+  field.appearance.default.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      SOLAR's focus ring, on the drop zone its Browse button sits in, where Figma draws it around
+      the whole component.
+  button.base.height:
+    none: true
+    reason: >-
+      Browse is a SOLAR Button, md as Figma draws it, whose height is its own: the field lays it
+      out and never sizes it.
+  iconButton.base.width:
+    none: true
+    reason: As Browse's, the replace Icon Button's own size.
+  iconButton.base.height:
+    none: true
+    reason: As its width.
+  iconButton2.base.width:
+    none: true
+    reason: As the replace button's, the remove Icon Button's own size.
+  iconButton2.base.height:
+    none: true
+    reason: As its width.
+
+bind:
+  iconFile.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's height is already bound to it.

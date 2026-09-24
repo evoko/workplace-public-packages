@@ -110,18 +110,21 @@ export function iconsOf(spec) {
 const hasGlyphs = (spec) => JSON.stringify(spec.style).includes('"glyph":{');
 
 /** `Counter` to `counter.json`, `Trend Badge` to `trend-badge.json`, as the stage names the IR. */
-const irFile = (name) =>
+export const irFile = (name) =>
   `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.json`;
 
 /** `Trend Badge` to `trend_badge.dart`, as the Flutter emitter names the recipe. */
-const dartFile = (name) =>
+export const dartFile = (name) =>
   `${name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.dart`;
 
-/** `Trend Badge` to `trendBadge`, the key every Flutter layer is named under. */
-export const keyPrefixOf = (name) => {
-  const p = pascal(name);
-  return p[0].toLowerCase() + p.slice(1);
-};
+/**
+ * `Trend Badge` to `trendBadge`, the key every Flutter layer is named under; a leading acronym is
+ * lowercased whole (`PIN Input` to `pinInput`).
+ */
+export const keyPrefixOf = (name) =>
+  pascal(name).replace(/^[A-Z]+(?=[A-Z][a-z]|$)|^[A-Z]/, (m) =>
+    m.toLowerCase(),
+  );
 
 /**
  * A React shell.
@@ -259,6 +262,8 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  * @param {string} [o.composed] the widget a layer that is another component is drawn as, a map
  *   literal by layer (Tag's StatusIndicator), in `p` and `states`
  * @param {string} [o.wraps] the texts that wrap, and how their lines align, a map literal by layer
+ * @param {string} [o.truncates] the texts that take their row's room and are cut short, a set
+ *   literal (GlobalSearch's words)
  * @param {boolean} [o.restyle] takes the colours a composing component draws it in (Toast's Tag:
  *   its root's fill and edge), a `restyle` map by cell
  * @param {string} [o.slots] the slots the caller fills, a map literal by layer (Link's icons)
@@ -332,7 +337,7 @@ final Map<String, Color> restyle;`;
         glyph: ${glyphs ? `(l) => ${R}.glyph(l, p, ${states})` : '(_) => null'},
       ),
       tree: _tree,
-      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
+      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${o.truncates ? `\n      truncates: ${o.truncates},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
     ).layer('root')`;
   const draw = o.control
     ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};

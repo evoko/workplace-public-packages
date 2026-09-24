@@ -129,6 +129,7 @@ export const solarButtonStyles = {
           color: 'var(--solar-color-action-primary-icon-active)',
         },
       },
+      '&.MuiButton-loading': {},
       '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         borderColor: 'var(--solar-color-action-primary-border-disabled)',
@@ -140,7 +141,6 @@ export const solarButtonStyles = {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
       },
-      '&.MuiButton-loading': {},
     },
     'variant=primary, danger=true': {
       backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
@@ -531,6 +531,28 @@ export const solarButtonStyles = {
     },
     sm: {
       'variant=primary, danger=false': {
+        '&:hover': {
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        fontFamily: 'var(--solar-type-font-family-inter)',
+        fontWeight: 'var(--solar-type-font-weight-500)',
+        fontSize: 'var(--solar-type-size-label-sm)',
+        lineHeight: 'var(--solar-type-line-height-label-sm)',
+        letterSpacing: '-0.02em',
+        textDecoration: 'none',
+        '&:active': {
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
@@ -549,28 +571,6 @@ export const solarButtonStyles = {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
-        fontFamily: 'var(--solar-type-font-family-inter)',
-        fontWeight: 'var(--solar-type-font-weight-500)',
-        fontSize: 'var(--solar-type-size-label-sm)',
-        lineHeight: 'var(--solar-type-line-height-label-sm)',
-        letterSpacing: '-0.02em',
-        textDecoration: 'none',
-        '&:hover': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        '&:active': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
         '&.Mui-disabled:not(.MuiButton-loading)': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -581,8 +581,7 @@ export const solarButtonStyles = {
         },
       },
       'variant=primary, danger=true': {
-        '&.Mui-focusVisible': {
-          boxShadow: 'var(--solar-shadow-focus-danger)',
+        '&:hover': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -596,7 +595,7 @@ export const solarButtonStyles = {
         lineHeight: 'var(--solar-type-line-height-label-sm)',
         letterSpacing: '-0.02em',
         textDecoration: 'none',
-        '&:hover': {
+        '&:active': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -604,7 +603,8 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        '&:active': {
+        '&.Mui-focusVisible': {
+          boxShadow: 'var(--solar-shadow-focus-danger)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -622,8 +622,7 @@ export const solarButtonStyles = {
         },
       },
       'variant=secondary, danger=false': {
-        '&.Mui-focusVisible': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
+        '&:hover': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -637,7 +636,7 @@ export const solarButtonStyles = {
         lineHeight: 'var(--solar-type-line-height-label-sm)',
         letterSpacing: '-0.02em',
         textDecoration: 'none',
-        '&:hover': {
+        '&:active': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -645,7 +644,8 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        '&:active': {
+        '&.Mui-focusVisible': {
+          boxShadow: 'var(--solar-shadow-focus-default)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -663,8 +663,7 @@ export const solarButtonStyles = {
         },
       },
       'variant=secondary, danger=true': {
-        '&.Mui-focusVisible': {
-          boxShadow: 'var(--solar-shadow-focus-danger)',
+        '&:hover': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -678,7 +677,7 @@ export const solarButtonStyles = {
         lineHeight: 'var(--solar-type-line-height-label-sm)',
         letterSpacing: '-0.02em',
         textDecoration: 'none',
-        '&:hover': {
+        '&:active': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -686,7 +685,8 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        '&:active': {
+        '&.Mui-focusVisible': {
+          boxShadow: 'var(--solar-shadow-focus-danger)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',

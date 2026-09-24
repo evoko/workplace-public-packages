@@ -1,0 +1,84 @@
+# Hand-written decisions about SOLAR Token Input, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Token Input
+
+base:
+  reason: >-
+    Bespoke on both: a field of entries, which it holds (owner decision 2026-09-24: `value` is its
+    string list), each drawn as a SOLAR Tag, neutral and closable, and the ones past `maxVisible`
+    counted by a SOLAR Counter. Its input, where the next entry is typed, is MUI's InputBase on the
+    web and an undecorated TextField in Flutter. No stock control draws SOLAR's tokens.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [value]
+      - value: false
+    reason: >-
+      A token input is filled where it holds entries, which the user adds and removes, so it is no
+      prop the caller could set against its content.
+  active:
+    when:
+      - value: true
+        props: [inputValue]
+      - value: false
+    reason: >-
+      Figma's active field is one being typed in: its words are the draft's, drawn as typed, not
+      the placeholder's. It follows from the draft the input holds, as filled follows the entries.
+
+follows:
+  addItems.present:
+    axes: [size]
+    reason: >-
+      The input stays, in every state but read-only and disabled, so the next entry can be typed:
+      Figma hides its words once there are entries, which is the placeholder going (the code shows
+      it only while there are none). The accept rules below say so for each state.
+
+accept:
+  component.token input.addItems.present@state=focus:
+    reason: >-
+      Focused with an entry, the input is there, empty, for the next one: its placeholder is gone,
+      which is what Figma's hidden words draw.
+  component.token input.addItems.present@state=filled:
+    reason: As focused, the input empty beside the entries.
+  component.token input.addItems.present@state=error:
+    reason: As focused, the input empty beside the entries.
+  component.token input.addItems.present@state=readonly:
+    reason: >-
+      Read-only, there is no input at all: the entries are shown, and cannot be changed. The code
+      draws none, as Figma draws none.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160
+      (sm), samples. The caller sizes it, as a Text Input.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, the sm field's 160 a sample.
+  tag.base.height:
+    none: true
+    reason: >-
+      The tokens are SOLAR Tags, whose height is their own: the field lays them out and never
+      sizes them.
+  tag2.base.height:
+    none: true
+    reason: As the first token's.
+  counter.base.height:
+    none: true
+    reason: The Counter's height is its own, as the Tags' are.
+  tag.appearance.default.readonly.variant.type:
+    keyword: text-only
+    reason: >-
+      A read-only field's entries cannot be removed, so its Tags have no close button: Figma draws
+      them closable. The design review asks SOLAR to draw them without.
+  tag2.appearance.default.readonly.variant.type:
+    keyword: text-only
+    reason: As the first token's.
+  tag.appearance.default.disabled.variant.type:
+    keyword: text-only
+    reason: As read-only, a disabled field's entries cannot be removed.

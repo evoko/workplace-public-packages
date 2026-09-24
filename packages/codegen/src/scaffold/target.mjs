@@ -24,12 +24,22 @@ const reach = {
 
 /**
  * An invisible target around the element `selector` names (`&`, the root): a pseudo-element,
- * which a click lands on as on the element itself.
+ * which a click lands on as on the element itself. `under` lays it beneath the element's own
+ * content (a text field's input, which a pointer must still reach to place the caret), the element
+ * then a stacking context of its own.
  */
-export function targetArea(selector = '&') {
+export function targetArea(selector = '&', { under = false } = {}) {
   return {
-    [selector]: { position: 'relative' },
-    [`${selector}::after`]: { content: '""', position: 'absolute', ...reach },
+    [selector]: {
+      position: 'relative',
+      ...(under ? { isolation: 'isolate' } : {}),
+    },
+    [`${selector}::after`]: {
+      content: '""',
+      position: 'absolute',
+      ...reach,
+      ...(under ? { zIndex: '-1' } : {}),
+    },
   };
 }
 

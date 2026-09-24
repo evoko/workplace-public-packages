@@ -255,7 +255,23 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    loses it, and both emitters still key the recipe by it, the MUI recipe through
    `Solar<Name>RecipeProps` and Flutter's props class through a field the widget sets, so the
    shell passes what it derived. The oracle reaches such a variant by filling the slots (its
-   `content`).
+   `content`). A state value the IR makes a boolean prop may be derived too, `true` or `false`
+   (a field's `filled`, from its `value`; Token Input's `active`, from its draft): the oracle
+   reaches its variant by the content that makes it true, and every other by the content that
+   makes it false. A `set` may add a size's entry a layer lacks (SearchField's icons, whose sm
+   entry Figma's resting sm variant leaves as md's), and decides an axis finding whose every
+   variant draws, where the set reaches, what it now draws (a raw value counts as the token of
+   its value). `same` reads a layer Figma draws anew in some variants as another, a sibling
+   (Inline Input's Confirm and Cancel, framed again in each edit state): its path, and those
+   inside it, take the other's before the recipe and the oracle read them, so one layer stands
+   where Figma drew several.
+   A layer Figma places by position in a parent that grows keeps its distance from the nearer
+   edge (`src/normalize/placement.mjs`, read by the recipe and the oracle alike): Text Area's
+   send button is `right` 8, not `x` 240, so it stays in its corner however wide the field. Each
+   layer is pinned the same way in every variant; placed from the far edge, the MUI recipe says
+   `right` and `bottom`, stepped back by the parent's `--solar-placed-right` and
+   `--solar-placed-bottom`, and Flutter's SolarLayers a `Positioned` from those edges, over the
+   laid-out children where the parent has an auto layout.
    `spec/overlay/excluded.yaml` names the components left out of the flow by decision (Cursor):
    the triage lists none of them, and the build refuses a descriptor for one.
    `samples` names an axis whose values are samples of what the caller gives (Avatar's `color` and

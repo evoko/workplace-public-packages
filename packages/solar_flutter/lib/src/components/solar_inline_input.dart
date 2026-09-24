@@ -1,0 +1,236 @@
+/// SOLAR Inline Input.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter "Inline Input"` from
+/// spec/components/inline-input.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarInlineInputRecipe]: its box by mode and
+/// state, and its words' ink, read cell by cell.
+///
+/// A value edited where it is shown (a name in a header, a cell): read, its [value] as text, with
+/// an edit button on hover or focus; a tap, or the edit button, opens it for editing, an
+/// undecorated [TextField] with Confirm and Cancel, drawn from Figma's layer tree with
+/// [SolarLayers] ([SolarField] holds its states). Enter or Confirm calls [onConfirm] with what is
+/// typed, which may return false to keep it open (a value it rejects, with [error] set); Esc or
+/// Cancel discards the edit ([onCancel]). It holds its own mode, and [defaultEditing] starts it
+/// open. Its [label] names the input and the edit button for a screen reader ("Edit name").
+library;
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../generated/components/inline_input.dart';
+import '../generated/components/icon_button.dart';
+import '../generated/icons.dart';
+import '../solar_field.dart';
+import '../solar_icon.dart';
+import '../solar_layers.dart';
+import 'solar_icon_button.dart';
+import 'solar_theme_of.dart';
+
+class SolarInlineInput extends StatefulWidget {
+  const SolarInlineInput({
+    super.key,
+    this.error = false,
+    this.disabled = false,
+    required this.value,
+    required this.onConfirm,
+    this.onCancel,
+    this.defaultEditing = false,
+    this.label,
+    this.placeholder,
+    this.statesController,
+  });
+
+  final bool error;
+  final bool disabled;
+
+  /// The value it shows, and edits.
+  final String value;
+
+  /// Called with what is typed when Enter or Confirm commits it; false keeps it open (a value the
+  /// caller rejects, with [error] set).
+  final bool? Function(String value) onConfirm;
+
+  /// Called when Esc or Cancel discards the edit.
+  final VoidCallback? onCancel;
+
+  /// Whether it starts open for editing.
+  final bool defaultEditing;
+
+  /// What it holds, for a screen reader: names the input, and the edit button ("Edit name").
+  final String? label;
+
+  /// What it shows while the input is empty.
+  final String? placeholder;
+
+  /// States to draw it in beside its own, where the caller keeps them (the visual checks force a
+  /// state through it).
+  final WidgetStatesController? statesController;
+
+  @override
+  State<SolarInlineInput> createState() => _SolarInlineInputState();
+}
+
+class _SolarInlineInputState extends State<SolarInlineInput> {
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['value', 'iconButton', 'frame1'],
+    'frame1': ['confirm', 'cancel'],
+  };
+
+  late bool _editing = widget.defaultEditing && !widget.disabled;
+  late final _draft = TextEditingController(text: widget.value);
+  final _focus = FocusNode();
+  final _edit = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    // The edit button shows while it has the focus, as while it is hovered.
+    _edit.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _draft.dispose();
+    _focus.dispose();
+    _edit.dispose();
+    super.dispose();
+  }
+
+  void _begin() {
+    if (widget.disabled || _editing) return;
+    _draft.text = widget.value;
+    setState(() => _editing = true);
+    _focus.requestFocus();
+  }
+
+  void _close() {
+    setState(() => _editing = false);
+    _edit.requestFocus();
+  }
+
+  void _confirm() {
+    if (widget.onConfirm(_draft.text) != false) _close();
+  }
+
+  void _cancel() {
+    _draft.text = widget.value;
+    _close();
+    widget.onCancel?.call();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final label = widget.label;
+    Widget action(
+      SolarVector icon,
+      String name,
+      VoidCallback onPressed, {
+      FocusNode? focus,
+    }) => SolarIconButton(
+      variant: SolarIconButtonVariant.tertiary,
+      size: SolarIconButtonSize.sm,
+      shape: SolarIconButtonShape.square,
+      // In the size and ink the button gives its icon.
+      icon: Builder(
+        builder: (context) {
+          final theme = IconTheme.of(context);
+          return SolarIcon(icon, size: theme.size, color: theme.color);
+        },
+      ),
+      semanticLabel: name,
+      focusNode: focus,
+      onPressed: onPressed,
+    );
+    return SolarField(
+      controller: _draft,
+      focusNode: _focus,
+      statesController: widget.statesController,
+      builder: (context, field) {
+        final states = field.states;
+        final hovered = states.contains(WidgetState.hovered);
+        // Filled while it is open and the focus is off its input, on its buttons.
+        final p = SolarInlineInputProps(
+          error: widget.error,
+          disabled: widget.disabled,
+          filled: _editing && !states.contains(WidgetState.focused),
+        );
+        return SolarLayers(
+          recipe: SolarLayerRecipe(
+            lookup: (c) => SolarInlineInputRecipe.lookup(c, p, states),
+            dimension: (c) => SolarInlineInputRecipe.dimension(c, p, states),
+            color: (c) => SolarInlineInputRecipe.color(t, c, p, states),
+            shadow: (c) => SolarInlineInputRecipe.shadow(t, c, p, states),
+            textStyle: (c) => SolarInlineInputRecipe.textStyle(t, c, p, states),
+            // Read, its words and the edit button; editing, the input and its actions.
+            present: (l) => switch (l) {
+              'iconButton' => !_editing && !widget.disabled,
+              'frame1' || 'confirm' || 'cancel' => _editing,
+              _ => SolarInlineInputRecipe.present(l, p, states),
+            },
+            glyph: (_) => null,
+          ),
+          tree: _tree,
+          keyPrefix: 'inlineInput',
+          text: _editing ? const {} : {'value': widget.value},
+          truncates: const {'value'},
+          composed: {
+            // The edit button shows while it is hovered or has the focus, keeping its room.
+            'iconButton': Visibility.maintain(
+              visible: hovered || _edit.hasFocus,
+              child: action(
+                SolarIcons.editOutline,
+                label == null ? 'Edit' : 'Edit $label',
+                _begin,
+                focus: _edit,
+              ),
+            ),
+            'confirm': action(SolarIcons.checkOutline, 'Confirm', _confirm),
+            'cancel': action(SolarIcons.closeOutline, 'Cancel', _cancel),
+          },
+          fields: {
+            if (_editing)
+              'value': (style) => field.read(
+                CallbackShortcuts(
+                  bindings: {
+                    const SingleActivator(LogicalKeyboardKey.escape): _cancel,
+                  },
+                  child: TextField(
+                    controller: field.text,
+                    focusNode: field.focus,
+                    onSubmitted: (_) => _confirm(),
+                    style: style,
+                    maxLines: 1,
+                    decoration: InputDecoration.collapsed(
+                      hintText: widget.placeholder,
+                      hintStyle: style,
+                    ),
+                  ),
+                ),
+                label: label,
+              ),
+          },
+          builders: {
+            // Read, a tap anywhere edits it; editing, it is hovered as a field is.
+            'root': (layer) => _editing
+                ? field.area(layer, enabled: true)
+                : MouseRegion(
+                    cursor: widget.disabled
+                        ? MouseCursor.defer
+                        : SystemMouseCursors.text,
+                    child: field.area(
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: widget.disabled ? null : _begin,
+                        child: layer,
+                      ),
+                      enabled: false,
+                    ),
+                  ),
+          },
+        ).layer('root');
+      },
+    );
+  }
+}

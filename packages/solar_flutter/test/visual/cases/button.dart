@@ -43,8 +43,27 @@ Layers measureButtonAt(WidgetTester tester, Finder at) {
       .padding
       .resolve(TextDirection.ltr);
   final root = tester.getRect(faceFinder);
-  final lead = tester.getRect(inside(find.byKey(const Key('lead'))));
-  final label = tester.getRect(inside(find.text('Label')));
+  // The check's probes (a lead icon, Figma's "Label"), or a button a component draws itself with
+  // its label alone (FileUpload's Browse).
+  final leads = inside(find.byKey(const Key('lead')));
+  final words = inside(find.text('Label')).evaluate().isNotEmpty
+      ? inside(find.text('Label'))
+      : inside(find.byType(Text)).first;
+  final label = tester.getRect(words);
+  // A label alone is spaced from nothing: its gap is the one the button spaces its parts by.
+  double gap() {
+    if (leads.evaluate().isNotEmpty) {
+      return label.left - tester.getRect(leads).right;
+    }
+    final b = tester.widget<SolarButton>(inside(find.byType(SolarButton)));
+    return SolarButtonRecipe.dimension(
+          'root.gap',
+          SolarButtonProps(size: b.size, variant: b.variant, danger: b.danger),
+          const {},
+        ) ??
+        0;
+  }
+
   Map<String, Object?> icon(String key) {
     final finder = inside(find.byKey(Key(key)));
     final painted = tester.widget<ColoredBox>(
@@ -55,10 +74,7 @@ Layers measureButtonAt(WidgetTester tester, Finder at) {
   }
 
   final visibility = tester.widget<Visibility>(
-    find.ancestor(
-      of: inside(find.text('Label')),
-      matching: find.byType(Visibility),
-    ),
+    find.ancestor(of: words, matching: find.byType(Visibility)).first,
   );
   final spinners = inside(find.byType(SolarSpinner));
 
@@ -75,37 +91,37 @@ Layers measureButtonAt(WidgetTester tester, Finder at) {
       'paddingRight': padding.right,
       'paddingBottom': padding.bottom,
       'paddingLeft': padding.left,
-      'gap': label.left - lead.right,
+      'gap': gap(),
       'width': root.width,
       'height': root.height,
     },
     'label': {
-      ...textValues(
-        tester
-            .renderObject<RenderParagraph>(inside(find.text('Label')))
-            .text
-            .style!,
-      ),
+      ...textValues(tester.renderObject<RenderParagraph>(words).text.style!),
       'drawn': visibility.visible,
     },
-    'iconLeading': icon('lead'),
-    'iconTrailing': icon('trail'),
+    // Where the button holds none (FileUpload's Browse), an icon or a counter is not drawn.
+    'iconLeading': leads.evaluate().isEmpty ? {'drawn': false} : icon('lead'),
+    'iconTrailing': inside(find.byKey(const Key('trail'))).evaluate().isEmpty
+        ? {'drawn': false}
+        : icon('trail'),
     // A composed Counter: its own layers, which the harness checks against the Counter oracle,
     // and the slot's box, which the recipe sizes, as the web measures .SolarButton-counter.
-    'counter': {
-      'drawn': true,
-      'layers': counterLayers(tester, inside(find.byType(SolarCounter))),
-      'height': tester
-          .getSize(
-            find
-                .ancestor(
-                  of: inside(find.byKey(const Key('counter'))),
-                  matching: find.byType(SizedBox),
+    'counter': inside(find.byType(SolarCounter)).evaluate().isEmpty
+        ? {'drawn': false}
+        : {
+            'drawn': true,
+            'layers': counterLayers(tester, inside(find.byType(SolarCounter))),
+            'height': tester
+                .getSize(
+                  find
+                      .ancestor(
+                        of: inside(find.byKey(const Key('counter'))),
+                        matching: find.byType(SizedBox),
+                      )
+                      .first,
                 )
-                .first,
-          )
-          .height,
-    },
+                .height,
+          },
     // A composed Spinner: its own layers, which the harness checks against the Spinner oracle.
     'spinner': spinners.evaluate().isEmpty
         ? {'drawn': false}

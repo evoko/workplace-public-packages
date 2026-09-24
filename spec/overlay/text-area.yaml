@@ -1,0 +1,58 @@
+# Hand-written decisions about SOLAR Text Area, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Text Area
+
+base:
+  mui: InputBase
+  flutter: TextField
+  reason: >-
+    As Text Input: MUI's InputBase on the web, multiline, as the field, for its native textarea;
+    Flutter's TextField, undecorated and many lines tall, as its words. The label above, the
+    footer below and the field's buttons are drawn with the shared layer helpers, the buttons the
+    caller's Icon Buttons.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [value]
+      - value: false
+    reason: >-
+      As Text Input's: a field is filled where it holds a value, which the caller types or sets,
+      so it is no prop the caller could set against its content.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A field spans its container, as a form row lays it out: Figma draws it 280 wide (md) and
+      200 (sm), samples. The caller sizes it, as a Text Input.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, the sm field's 200 a sample.
+  root.appearance.default.focus.shadow:
+    none: true
+    reason: >-
+      Figma rings the whole component, label and footer with it, as well as the field, when it is
+      focused: the focus ring is the field's, as Text Input's is, and one ring is drawn. The
+      design review asks SOLAR to remove the outer one.
+
+allowLiteral:
+  cta.width:
+    reason: >-
+      The buttons are the caller's Icon Buttons, sm as Figma draws them: 32 square, which is where
+      the field places them, bound to nothing (SOLAR has no control size token, the design review's
+      question on control sizes). Each is drawn at its own size, centred in that box, so a touch
+      target around it reaches past the box rather than moving it.
+  cta.height:
+    reason: As its width.
+  attachment.width:
+    reason: As the send button's.
+  attachment.height:
+    reason: As its width.
+  field.height:
+    reason: >-
+      As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,
+      raised as a governance gap). Drawn 120 (md) and 100 (sm); the words scroll within it.

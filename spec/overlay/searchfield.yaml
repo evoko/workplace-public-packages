@@ -1,0 +1,80 @@
+# Hand-written decisions about SOLAR SearchField, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: SearchField
+
+base:
+  mui: InputBase
+  flutter: TextField
+  reason: >-
+    As Text Input: MUI's InputBase on the web, as the whole field, for its native search input;
+    Flutter's TextField, undecorated, as its words. The search icon and the caller's filter are
+    drawn with the shared layer helpers.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [value]
+      - value: false
+    reason: >-
+      As Text Input's: a field is filled where it holds a query, which the caller types or sets, so
+      it is no prop the caller could set against its content.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A search field spans the list or table it filters: Figma draws it 240 wide (md) and 200
+      (sm), samples. The caller sizes it, as a Text Input.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, the sm field's 200 a sample.
+  root.appearance.default.hover.borderColor:
+    token: color.border.medium
+    reason: >-
+      Figma edges the hovered sm field in color.border.medium, as every hovered Text Input is, and
+      leaves the md one's edge as at rest: drawn at both sizes as the sm one and Text Input are. The
+      design review asks SOLAR to edge the md one.
+
+  iconSearch.size.sm.width:
+    token: icon.xs
+    reason: >-
+      The sm field's icons are icon.xs, 12, as Figma draws them in five of its six states: its
+      resting variant keeps md's 16, a slip the design review lists.
+  iconSearch.size.sm.height:
+    token: icon.xs
+    reason: As its width.
+  filter.size.sm.width:
+    token: icon.xs
+    reason: As the search icon's.
+  filter.size.sm.height:
+    token: icon.xs
+    reason: As its width.
+
+follows:
+  root.shadow:
+    axes: [size, state]
+    reason: >-
+      The sm field is flat, where md carries shadow.control, in every state but focus and error,
+      which ring it: a smaller field in a list's or table's toolbar, drawn as Figma draws it. The
+      design review asks whether that is meant.
+
+bind:
+  iconSearch.width:
+    literal: 16
+    token: icon.sm
+    reason: >-
+      Same value, governed token; the icon's height is already bound to it. The sm field's are set
+      to icon.xs, below.
+  filter.width:
+    literal: 16
+    token: icon.sm
+    reason: As the search icon's.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,
+      raised as a governance gap). Drawn 40 (md) and 32 (sm).

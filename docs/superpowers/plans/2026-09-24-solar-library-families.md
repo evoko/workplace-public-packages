@@ -1049,6 +1049,76 @@ describe their own components. **Owner decision: pad now**, with one flagged 44 
   - Password Input and PIN Input: after M5;
   - FileUpload: composes Button.
 
+**F5 done 2026-09-24.** Text Input (pioneer), Text Area, SearchField, GlobalSearch, Password Input,
+Number Input, Inline Input, Token Input, PIN Input and FileUpload, every variant matching Figma on
+both platforms. The triage shows 0 open findings for Text Area, Inline Input, Token Input and PIN
+Input, and 20 open elsewhere, each a Figma slip the code does not copy (sm paddings and centring,
+the error fields' centring, Number Input's md error spacing, FileUpload's 68px filled zone), in the
+design review. The triage matched this plan's picture; the owner answered its four questions:
+GlobalSearch is a trigger, Inline Input holds its mode, PIN Input takes a `length` of 4 to 6, and
+Token Input owns its `string[]`.
+
+- **Members and bases** (where they differ from the plan, why):
+  - **Text Input:** MUI's InputBase, as planned, but **not in a FormControl**: the shell knows
+    filled from its value and draws its own label and helper, linked by id. Flutter's TextField,
+    undecorated, in the drawn field. Its `pressed` is renamed `focus`, and `filled` follows the
+    value. Figma's `mandatory` layer is `mandatory` on both, which also makes the input required.
+  - **Text Area:** InputBase, multiline, filling the field's fixed height; the caller's Icon
+    Buttons pinned in its corners; its count against `maxLength`.
+  - **SearchField:** the whole component is the InputBase, a search input named "Search".
+  - **GlobalSearch:** **a button drawn as the field** (owner), showing the placeholder or the
+    app's `query`, with its `shortcut` in a Kbd.
+  - **Password Input:** a native password input with SOLAR's eye as a toggle; Figma's "Forgot
+    password?" layer is **a slot of its own**, shown wherever given.
+  - **Number Input:** **a text input announced as a spinbutton**, not a native number input, so it
+    can be as wide as its digits; the arrow keys and its stepper's buttons step it.
+  - **Inline Input:** bespoke; **it holds its mode** (owner), Confirm and Cancel SOLAR Icon Buttons.
+  - **Token Input:** **its `string[]`, each a SOLAR Tag** (owner), not the caller's Tags; the rest
+    counted by a Counter past `maxVisible`.
+  - **PIN Input:** **one native input over the cells** (one-time-code autofill, paste, the numeric
+    keyboard), not one per cell; the cell the next digit goes in drawn as Figma's first.
+  - **FileUpload:** a real file input on the web; **in Flutter, the app's picker** (Flutter has
+    none of its own): `onBrowse`, and the names it gives back.
+- **Decisions in the overlays** (and raised in the design review): `filled` (and Token Input's
+  `active`) derived from what the field holds; every field filling its container; one focus ring,
+  the field's, where Figma rings the whole component; SearchField's hover edge at both sizes and
+  its sm icons at `icon.xs`; PIN Input's cells hugging and its sm placeholder `body.md.medium`;
+  read-only and disabled tokens without a close button; a Number Input's layout by its stepper;
+  Inline Input's padding, edge and radius by its mode; the fields' heights as raw values.
+- **Machinery found and fixed on the family** (each with tests):
+  - **State blocks in the table's order.** The MUI emitter added a state's block where a layer
+    first had the state, so a first layer with only error and disabled put them before a later
+    layer's hover, which then won. The blocks now follow the state table, as Flutter's precedence
+    already did. Eight built recipes moved (Button, BackButton, DragHandle, FAB, Link, SplitButton,
+    Slider, Slider Range); only Button's, Link's and FAB's combined focus blocks changed which rule
+    wins, and now agree with Flutter.
+  - **A derived state value**: `derive` of a state value the IR makes a boolean prop (`filled`),
+    reached in the oracle by content; Flutter's recipe tests it as the prop the widget sets.
+  - **Placement from the nearer edge** (`normalize/placement.mjs`, read by the recipe and the
+    oracle): a layer placed in a parent that grows keeps its distance from the parent's nearer edge
+    (Text Area's buttons, `right` 8), decided once per layer across variants; an instance's place is
+    recorded too. Both emitters, both measurers and SolarLayers (an auto layout with children placed
+    over it, per-side edges, a caller's control centred in Figma's box) read it. No built
+    component's IR or oracle moved.
+  - **`set` forms:** a size entry a layer lacks, and an axis finding decided where the set draws
+    what its variants draw, a base entry reaching every variant; the oracle excuses a text style a
+    set replaced.
+  - **`same`**, reading a layer Figma draws anew in some variants as another (Inline Input's
+    Confirm and Cancel); the parity test's `shells` table (a label that is a prop, a Flutter name
+    for a web prop); a slot that only holds slots is no prop.
+  - **The shells' helpers:** `scaffold/field.mjs` (`fieldResets`, `fieldStates`, `fieldFlutter`);
+    `targetArea` under an element's content; `SolarField` (`lib/src/solar_field.dart`), holding a
+    field's words, focus, states and reveal; SolarLayers' `fields`, `truncates`, a field hugging its
+    words in a row that hugs; `keyPrefixOf` lowercasing a leading acronym (`pinInput`).
+  - **The checks:** the web check focuses what Tab reaches, a field through its input, and hovers
+    the part the recipe's hover names; it measures a composed child's place, and far edges. The
+    Flutter harness takes a hidden layer that is not built as not drawn, and measures a field by
+    its EditableText; its Button and Icon Button measurers take a component's own buttons.
+- **Checks:** 1063 JS tests, both visual checks (47 on the web, the target check among them, with
+  five fields' targets), 234 Flutter tests, lint, typecheck, format, all three Flutter packages
+  analysed and formatted, both viewers built, the personal-data scan, and a rebuild that
+  reproduces the tree.
+
 ### F6: Menus and lists
 
 The anchored popup comes from MUI `Menu`/`Popover` and Flutter `MenuAnchor`; SOLAR styles the

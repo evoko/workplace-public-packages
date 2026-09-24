@@ -1,0 +1,205 @@
+/**
+ * SOLAR Text Area.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Text Area"` from spec/components/text-area.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, `solarTextAreaStyle` and `solarTextAreaCompose` in `@bwp-web/styles/mui`: the
+ * field's fill, edge and focus ring by state, its words' ink, the label and the footer.
+ *
+ * Text of many lines (descriptions, notes, feedback): its `label` above (a `mandatory` one is
+ * starred, and the textarea required), its `helper` below, which says what is wrong where it is in
+ * `error`, beside the count of characters (`charCount`, against `maxLength` where given). The field
+ * is MUI's InputBase, multiline, a native textarea its height, whose words scroll within it; every
+ * InputBase prop but its adornments and rows reaches it. `cta` (a send or save IconButton, primary
+ * at sm) and `attachment` (an attach IconButton, secondary at sm) sit in its bottom corners. It is
+ * drawn filled where it holds a value. For one line use a Text Input. The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import Box from '@mui/material/Box';
+import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
+import { useControlled } from '@mui/material/utils';
+import { forwardRef, useId, type ReactNode } from 'react';
+import {
+  solarTextAreaCompose,
+  solarTextAreaStyle,
+  type SolarTextAreaProps,
+} from '@bwp-web/styles/mui';
+import {
+  drawChildren,
+  drawLayer,
+  type LayerDrawing,
+} from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['label', 'field', 'footer'],
+  label: ['labelLabel', 'mandatory'],
+  field: ['enterText', 'cta', 'attachment'],
+  footer: ['helper', 'charCount'],
+};
+
+export interface TextAreaProps
+  extends
+    SolarTextAreaProps,
+    Omit<
+      InputBaseProps,
+      | keyof SolarTextAreaProps
+      | 'size'
+      | 'color'
+      | 'fullWidth'
+      | 'margin'
+      | 'multiline'
+      | 'rows'
+      | 'minRows'
+      | 'maxRows'
+      | 'startAdornment'
+      | 'endAdornment'
+      | 'required'
+      | 'ref'
+    > {
+  /** What it asks for, above it. */
+  label?: ReactNode;
+  /** Whether it must be filled, which stars the label and makes the textarea required. */
+  mandatory?: boolean;
+  /** More about it, below; where it is in `error`, what is wrong. */
+  helper?: ReactNode;
+  /** Whether it counts its characters, below at the end: against `maxLength` where given. */
+  charCount?: boolean;
+  /** The most characters it takes, which the count shows. */
+  maxLength?: number;
+  /** The field's action, in its bottom right: an IconButton, primary at sm (send, save). */
+  cta?: ReactNode;
+  /** An attachment's button, in its bottom left: an IconButton, secondary at sm. */
+  attachment?: ReactNode;
+}
+
+export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
+  function TextArea(
+    {
+      size,
+      disabled,
+      error,
+      label,
+      mandatory = false,
+      helper,
+      charCount = false,
+      maxLength,
+      cta,
+      attachment,
+      id: idProp,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      inputProps,
+      className,
+      style,
+      sx,
+      ...rest
+    },
+    ref,
+  ) {
+    const own = useId();
+    const id = idProp ?? own;
+    const [value, setValue] = useControlled<unknown>({
+      controlled: valueProp,
+      default: defaultValue ?? '',
+      name: 'TextArea',
+      state: 'value',
+    });
+    const words = value == null ? '' : String(value);
+    // Filled where it holds a value: its words are then the value's, not the placeholder's.
+    const filled = words !== '';
+    const look = { size, disabled, error, filled };
+    const parts = solarTextAreaCompose(look);
+    const drawing: LayerDrawing = {
+      prefix: 'SolarTextArea',
+      tree: TREE,
+      // A part left empty is not drawn; the footer is where either of its parts is.
+      parts: {
+        ...parts,
+        label: { ...parts.label, present: label != null },
+        mandatory: { ...parts.mandatory, present: mandatory },
+        cta: { ...parts.cta, present: cta != null },
+        attachment: { ...parts.attachment, present: attachment != null },
+        footer: { ...parts.footer, present: helper != null || charCount },
+        helper: { ...parts.helper, present: helper != null },
+        charCount: { ...parts.charCount, present: charCount },
+      },
+      text: {
+        labelLabel: label,
+        mandatory: <span aria-hidden>*</span>,
+        charCount:
+          maxLength != null
+            ? `${words.length}/${maxLength}`
+            : `${words.length}`,
+      },
+      render: {
+        label: (layer) => <label htmlFor={id} {...layer} />,
+        // The field is MUI's InputBase, its textarea its words, its buttons pinned in its corners.
+        field: (layer) => (
+          <InputBase
+            {...rest}
+            className={layer.className}
+            style={layer.style}
+            id={id}
+            multiline
+            rows={1}
+            value={value}
+            onChange={(event) => {
+              setValue(event.target.value);
+              onChange?.(event);
+            }}
+            disabled={disabled}
+            error={error}
+            required={mandatory}
+            endAdornment={
+              <>
+                {drawLayer('cta', drawing)}
+                {drawLayer('attachment', drawing)}
+              </>
+            }
+            inputProps={{
+              ...inputProps,
+              maxLength,
+              className: ['SolarTextArea-enterText', inputProps?.className]
+                .filter(Boolean)
+                .join(' '),
+              'aria-describedby': helper != null ? `${id}-helper` : undefined,
+            }}
+          />
+        ),
+        cta: (layer) => <span {...layer}>{cta}</span>,
+        attachment: (layer) => <span {...layer}>{attachment}</span>,
+        helper: (layer) => (
+          <span
+            id={`${id}-helper`}
+            className={layer.className}
+            style={layer.style}
+          >
+            {helper}
+          </span>
+        ),
+      },
+    };
+    return (
+      <Box
+        ref={ref}
+        className={
+          [
+            filled ? 'SolarTextArea-filled' : null,
+            error ? 'SolarTextArea-error' : null,
+            disabled ? 'SolarTextArea-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        style={style}
+        sx={[solarTextAreaStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', drawing)}
+      </Box>
+    );
+  },
+);

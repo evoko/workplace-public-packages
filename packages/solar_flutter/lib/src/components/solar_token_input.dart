@@ -1,0 +1,220 @@
+/// SOLAR Token Input.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter "Token Input"` from
+/// spec/components/token-input.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarTokenInputRecipe]: the field's fill, edge
+/// and focus ring by state, the draft's ink, and the label and helper, read cell by cell.
+///
+/// A field of entries (tags, recipients, keywords): its [label] above (a [mandatory] one is
+/// starred), its [helper] below, which says what is wrong where it is in [error]. Its [value] is
+/// drawn as SolarTags, each with a close button that removes it; the keyboard's action adds what is
+/// typed, and Backspace in the empty input removes the last. [maxVisible] draws that many, and
+/// counts the rest in a SolarCounter. [onChanged] is called with the entries. The draft is an
+/// undecorated [TextField] in the field drawn from Figma's layer tree with [SolarLayers]
+/// ([SolarField] holds it and its states). Read-only, the entries are shown and cannot be changed.
+library;
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../generated/components/tag.dart';
+import '../generated/components/token_input.dart';
+import '../solar_field.dart';
+import '../solar_layers.dart';
+import 'solar_counter.dart';
+import 'solar_tag.dart';
+import 'solar_theme_of.dart';
+
+class SolarTokenInput extends StatelessWidget {
+  const SolarTokenInput({
+    super.key,
+    this.size = SolarTokenInputSize.md,
+    this.disabled = false,
+    this.error = false,
+    this.readonly = false,
+    this.label,
+    this.mandatory = false,
+    this.helper,
+    required this.value,
+    this.onChanged,
+    this.controller,
+    this.placeholder,
+    this.maxVisible,
+    this.focusNode,
+    this.statesController,
+  });
+
+  final SolarTokenInputSize size;
+  final bool disabled;
+  final bool error;
+  final bool readonly;
+
+  /// What it asks for, above it.
+  final String? label;
+
+  /// Whether it must be filled, which stars the label.
+  final bool mandatory;
+
+  /// More about it, below; where it is in [error], what is wrong.
+  final String? helper;
+
+  /// Its entries.
+  final List<String> value;
+
+  /// Called with the entries as they change; null, it cannot change them.
+  final ValueChanged<List<String>>? onChanged;
+
+  /// What is typed, the next entry, where the caller keeps it.
+  final TextEditingController? controller;
+
+  /// What the input shows while there are no entries ("Add items…").
+  final String? placeholder;
+
+  /// How many entries are drawn; the rest are counted. All of them where null.
+  final int? maxVisible;
+
+  /// Its focus, where the caller keeps it.
+  final FocusNode? focusNode;
+
+  /// States to draw it in beside its own, where the caller keeps them (the visual checks force a
+  /// state through it).
+  final WidgetStatesController? statesController;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['label', 'field', 'helper'],
+    'label': ['labelLabel', 'mandatory'],
+    'field': ['tags', 'counter'],
+    'tags': ['addItems', 'tag', 'tag2'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final label = this.label;
+    final helper = this.helper;
+    final changes = !readonly && !disabled && onChanged != null;
+    final shown = value.take(maxVisible ?? value.length).toList();
+    final hidden = value.length - shown.length;
+    return SolarField(
+      controller: controller,
+      focusNode: focusNode,
+      statesController: statesController,
+      builder: (context, field) {
+        final states = field.states;
+        // Filled where it holds entries; active where a draft is being typed.
+        final p = SolarTokenInputProps(
+          size: size,
+          disabled: disabled,
+          error: error,
+          readonly: readonly,
+          filled: value.isNotEmpty,
+          active: field.text.text.isNotEmpty,
+        );
+        final style =
+            SolarTokenInputRecipe.textStyle(
+              t,
+              'addItems.typography',
+              p,
+              states,
+            )?.copyWith(
+              color: SolarTokenInputRecipe.color(
+                t,
+                'addItems.color',
+                p,
+                states,
+              ),
+            );
+        void add() {
+          final text = field.text.text.trim();
+          if (text.isEmpty || !changes) return;
+          onChanged!([...value, text]);
+          field.text.clear();
+        }
+
+        return SolarLayers(
+          recipe: SolarLayerRecipe(
+            lookup: (c) => SolarTokenInputRecipe.lookup(c, p, states),
+            dimension: (c) => SolarTokenInputRecipe.dimension(c, p, states),
+            color: (c) => SolarTokenInputRecipe.color(t, c, p, states),
+            shadow: (c) => SolarTokenInputRecipe.shadow(t, c, p, states),
+            textStyle: (c) => SolarTokenInputRecipe.textStyle(t, c, p, states),
+            // A part left empty is not drawn; the count shows where entries are left out.
+            present: (l) => switch (l) {
+              'label' => label != null,
+              'mandatory' => mandatory,
+              'helper' => helper != null,
+              'counter' => hidden > 0,
+              _ => SolarTokenInputRecipe.present(l, p, states),
+            },
+            glyph: (_) => null,
+          ),
+          tree: _tree,
+          keyPrefix: 'tokenInput',
+          text: {'labelLabel': ?label, 'mandatory': '*', 'helper': ?helper},
+          wraps: const {'helper': TextAlign.start},
+          // The entries, each a SOLAR Tag, and the input for the next, in Figma's row of tags.
+          content: {
+            'tags': [
+              for (final (i, entry) in shown.indexed)
+                SolarTag(
+                  status: SolarTagStatus.neutral,
+                  label: entry,
+                  onClose: changes
+                      ? () => onChanged!([...value]..removeAt(i))
+                      : null,
+                ),
+              if (!readonly)
+                Expanded(
+                  child: KeyedSubtree(
+                    key: const Key('tokenInput.addItems'),
+                    child: field.read(
+                      Focus(
+                        // Backspace in the empty input removes the last entry.
+                        onKeyEvent: (_, event) {
+                          if (event is KeyDownEvent &&
+                              event.logicalKey ==
+                                  LogicalKeyboardKey.backspace &&
+                              field.text.text.isEmpty &&
+                              value.isNotEmpty &&
+                              changes) {
+                            onChanged!(value.sublist(0, value.length - 1));
+                            return KeyEventResult.handled;
+                          }
+                          return KeyEventResult.ignored;
+                        },
+                        child: TextField(
+                          controller: field.text,
+                          focusNode: field.focus,
+                          enabled: !disabled,
+                          onSubmitted: (_) => add(),
+                          textInputAction: TextInputAction.done,
+                          style: style,
+                          maxLines: 1,
+                          decoration: InputDecoration.collapsed(
+                            hintText: value.isEmpty ? placeholder : null,
+                            hintStyle: style,
+                          ),
+                        ),
+                      ),
+                      label: label,
+                      hint: helper,
+                    ),
+                  ),
+                ),
+            ],
+          },
+          // A SOLAR Counter of the entries left out.
+          composed: {'counter': SolarCounter(count: hidden)},
+          builders: {
+            // The label and the helper are read with the input, which they name and describe.
+            'label': (layer) => ExcludeSemantics(child: layer),
+            'helper': (layer) => ExcludeSemantics(child: layer),
+            'field': (layer) =>
+                field.area(layer, enabled: !disabled && !readonly),
+          },
+        ).layer('root');
+      },
+    );
+  }
+}

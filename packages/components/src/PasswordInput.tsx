@@ -1,0 +1,206 @@
+/**
+ * SOLAR Password Input.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Password Input"` from
+ * spec/components/password-input.json, and owned by developers from then on: change it freely.
+ * What it looks like is not here. That is the recipe, `solarPasswordInputStyle` and
+ * `solarPasswordInputCompose` in `@bwp-web/styles/mui`: the field's fill, edge and focus ring by
+ * state, its words' and eye's ink, and the label and helper.
+ *
+ * A password: its `label` above (a `mandatory` one is starred, and the input required), its
+ * `helper` below, which says what is wrong where it is in `error`, and a `forgotPassword` link
+ * below that where given. Its words are hidden, a native password input a password manager fills
+ * (`autoComplete` is `current-password` unless it says `new-password`); SOLAR's eye after them
+ * shows or hides them, announced as a toggle, and leaves the focus in the field. Never log or show
+ * what is typed; for a value that need not be hidden, use a Text Input. The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import { IconEye, IconEyeOff } from '@bwp-web/assets';
+import Box from '@mui/material/Box';
+import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
+import { useControlled } from '@mui/material/utils';
+import { forwardRef, useId, useState, type ReactNode } from 'react';
+import {
+  solarPasswordInputCompose,
+  solarPasswordInputStyle,
+  type SolarPasswordInputProps,
+} from '@bwp-web/styles/mui';
+import {
+  drawChildren,
+  drawLayer,
+  type LayerDrawing,
+} from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['label', 'field', 'helper', 'forgotPassword'],
+  label: ['password', 'mandatory'],
+  field: ['maskedValue', 'icon'],
+};
+
+export interface PasswordInputProps
+  extends
+    SolarPasswordInputProps,
+    Omit<
+      InputBaseProps,
+      | keyof SolarPasswordInputProps
+      | 'size'
+      | 'color'
+      | 'type'
+      | 'fullWidth'
+      | 'margin'
+      | 'multiline'
+      | 'rows'
+      | 'minRows'
+      | 'maxRows'
+      | 'startAdornment'
+      | 'endAdornment'
+      | 'required'
+      | 'ref'
+    > {
+  /** What it asks for, above it ("Password"). */
+  label?: ReactNode;
+  /** Whether it must be filled, which stars the label and makes the input required. */
+  mandatory?: boolean;
+  /** More about it, below; where it is in `error`, what is wrong. */
+  helper?: ReactNode;
+  /** A link to the app's reset flow, below the helper ("Forgot password?"). */
+  forgotPassword?: ReactNode;
+}
+
+export const PasswordInput = forwardRef<HTMLDivElement, PasswordInputProps>(
+  function PasswordInput(
+    {
+      size,
+      disabled,
+      error,
+      label,
+      mandatory = false,
+      helper,
+      forgotPassword,
+      id: idProp,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      autoComplete = 'current-password',
+      inputProps,
+      className,
+      style,
+      sx,
+      ...rest
+    },
+    ref,
+  ) {
+    const own = useId();
+    const id = idProp ?? own;
+    const [value, setValue] = useControlled<unknown>({
+      controlled: valueProp,
+      default: defaultValue ?? '',
+      name: 'PasswordInput',
+      state: 'value',
+    });
+    const [shown, setShown] = useState(false);
+    // Filled where it holds a value: its words are then the value's, not the placeholder's.
+    const filled = value != null && String(value) !== '';
+    const look = { size, disabled, error, filled };
+    const parts = solarPasswordInputCompose(look);
+    const drawing: LayerDrawing = {
+      prefix: 'SolarPasswordInput',
+      tree: TREE,
+      // A part left empty is not drawn.
+      parts: {
+        ...parts,
+        label: { ...parts.label, present: label != null },
+        mandatory: { ...parts.mandatory, present: mandatory },
+        helper: { ...parts.helper, present: helper != null },
+        forgotPassword: {
+          ...parts.forgotPassword,
+          present: forgotPassword != null,
+        },
+      },
+      text: {
+        password: label,
+        mandatory: <span aria-hidden>*</span>,
+        forgotPassword,
+      },
+      icons: {
+        // SOLAR's eye, a toggle that shows or hides the words, and leaves the focus in the field.
+        icon: (
+          <button
+            type="button"
+            aria-label="Show password"
+            aria-pressed={shown}
+            aria-controls={id}
+            disabled={disabled}
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={() => setShown((was) => !was)}
+          >
+            {shown ? <IconEyeOff /> : <IconEye />}
+          </button>
+        ),
+      },
+      render: {
+        label: (layer) => <label htmlFor={id} {...layer} />,
+        // The field is MUI's InputBase, its input the hidden words, the eye after them.
+        field: (layer) => (
+          <InputBase
+            {...rest}
+            className={layer.className}
+            style={layer.style}
+            id={id}
+            type={shown ? 'text' : 'password'}
+            autoComplete={autoComplete}
+            value={value}
+            onChange={(event) => {
+              setValue(event.target.value);
+              onChange?.(event);
+            }}
+            disabled={disabled}
+            error={error}
+            required={mandatory}
+            endAdornment={drawLayer('icon', drawing)}
+            inputProps={{
+              ...inputProps,
+              className: [
+                'SolarPasswordInput-maskedValue',
+                inputProps?.className,
+              ]
+                .filter(Boolean)
+                .join(' '),
+              'aria-describedby': helper != null ? `${id}-helper` : undefined,
+            }}
+          />
+        ),
+        helper: (layer) => (
+          <span
+            id={`${id}-helper`}
+            className={layer.className}
+            style={layer.style}
+          >
+            {helper}
+          </span>
+        ),
+      },
+    };
+    return (
+      <Box
+        ref={ref}
+        className={
+          [
+            filled ? 'SolarPasswordInput-filled' : null,
+            error ? 'SolarPasswordInput-error' : null,
+            disabled ? 'SolarPasswordInput-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        style={style}
+        sx={[solarPasswordInputStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', drawing)}
+      </Box>
+    );
+  },
+);

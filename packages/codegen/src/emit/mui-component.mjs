@@ -17,6 +17,7 @@ import { pascal } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { BOOLEAN_STATES } from '../normalize/component-layers.mjs';
+import { PLACES } from '../normalize/recipe.mjs';
 import { canonical, letterSpacingEm } from './manifest.mjs';
 import { cssTextFeatures, featuresOf } from './text-features.mjs';
 import { table as descriptorTable } from '../components/index.mjs';
@@ -116,7 +117,7 @@ const COMPOSITION = (cell) =>
   cell === 'glyph' ||
   cell.startsWith('variant.');
 
-const PLACED = (cell) => cell === 'x' || cell === 'y';
+const PLACED = (cell) => PLACES.includes(cell);
 
 /** Figma layers whose outline Figma records with their corners already rounded. */
 const VECTORS = new Set([
@@ -228,7 +229,10 @@ function context(spec, tokens) {
   const controlDrawn = new Map(
     (spec.overlay?.rules ?? [])
       .filter((r) => r.rule === 'controlDraws')
-      .map((r) => [r.at, r.cells ?? ['x', 'y', 'width', 'height']]),
+      .map((r) => [
+        r.at,
+        r.cells ?? ['x', 'y', 'right', 'bottom', 'width', 'height'],
+      ]),
   );
 
   /** One IR cell as CSS declarations. */
@@ -260,6 +264,8 @@ function context(spec, tokens) {
         // glyph the shell draws is an SVG element of its own, sized as a box is.
         case 'x':
         case 'y':
+        case 'right':
+        case 'bottom':
           return {};
         case 'width':
         case 'height':
@@ -337,6 +343,20 @@ function context(spec, tokens) {
         return entry.none
           ? {}
           : { top: `calc(${entry.position}px - var(--solar-placed-top, 0px))` };
+      // One pinned to its parent's far edge, in a parent that grows (placementOf).
+      case 'right':
+        return entry.none
+          ? { position: 'static' }
+          : {
+              position: 'absolute',
+              right: `calc(${entry.position}px - var(--solar-placed-right, 0px))`,
+            };
+      case 'bottom':
+        return entry.none
+          ? {}
+          : {
+              bottom: `calc(${entry.position}px - var(--solar-placed-bottom, 0px))`,
+            };
       // A layer with no auto-layout in this variant (the recipe writes it `none`) has no gap or
       // padding, which is inset.none, as a `none` radius is radius.none. Written, not left out, so
       // it overrides the gap the base's layout has.
@@ -563,32 +583,42 @@ export function renderMuiComponent(spec, tokens) {
     COMPOSITION(cell) || (PLACED(cell) && shape(layer));
   // The parents of boxes placed by position, which position them: `relative`, once, at rest.
   const placing = new Set();
-  // Every layer that places a child by position, box or glyph. Figma measures a child's position
-  // from its parent's outer edge, and CSS from inside its border, so each says its own left and
-  // top border (`--solar-placed-left`, `--solar-placed-top`), which its placed children step
-  // back by; said at rest by every one, so a child never reads a grandparent's.
-  const placers = new Set(
-    Object.entries(spec.style)
-      .filter(([, st]) =>
-        entriesOf(st).some((e) => e?.x?.position !== undefined),
-      )
-      .map(([layer]) => spec.layers[layer]?.parent)
-      .filter((p) => p != null),
-  );
+  // Every layer that places a child by position, box or glyph, with the edges it places them from.
+  // Figma measures a child's position from its parent's outer edge, and CSS from inside its
+  // border, so each says its own left and top border (`--solar-placed-left`, `--solar-placed-top`),
+  // and its right and bottom where a child is pinned to those (placementOf), which its placed
+  // children step back by; said at rest by every one, so a child never reads a grandparent's.
+  const placers = new Map();
+  for (const [layer, st] of Object.entries(spec.style)) {
+    const parent = spec.layers[layer]?.parent;
+    if (parent == null) continue;
+    for (const [cell, edge] of [
+      ['x', ['left', 'top']],
+      ['right', ['right']],
+      ['bottom', ['bottom']],
+    ])
+      if (entriesOf(st).some((e) => e?.[cell]?.position !== undefined))
+        for (const side of edge)
+          (
+            placers.get(parent) ?? placers.set(parent, new Set()).get(parent)
+          ).add(side);
+  }
   const EDGES = {
-    borderWidth: ['--solar-placed-left', '--solar-placed-top'],
-    borderLeftWidth: ['--solar-placed-left'],
-    borderTopWidth: ['--solar-placed-top'],
+    borderWidth: ['left', 'top', 'right', 'bottom'],
+    borderLeftWidth: ['left'],
+    borderTopWidth: ['top'],
+    borderRightWidth: ['right'],
+    borderBottomWidth: ['bottom'],
   };
   const edges = (layer, cell, entry, at) =>
-    placers.has(layer) && EDGES[cell]
-      ? Object.fromEntries(
-          EDGES[cell].map((v) => [
-            v,
-            entry.none ? '0px' : ref(entry.token, at),
-          ]),
-        )
-      : {};
+    Object.fromEntries(
+      (EDGES[cell] ?? [])
+        .filter((side) => placers.get(layer)?.has(side))
+        .map((side) => [
+          `--solar-placed-${side}`,
+          entry.none ? '0px' : ref(entry.token, at),
+        ]),
+    );
 
   /**
    * Every cell of one style block (one size, one state …) into a target object. Whether the layer
@@ -700,9 +730,11 @@ export function renderMuiComponent(spec, tokens) {
   }
 
   // Each placer's border at rest, where its base draws none.
-  for (const layer of placers) {
+  for (const [layer, sides] of placers) {
     const at = slots[layer] === '&' ? styles.root : styles.root[slots[layer]];
-    for (const v of ['--solar-placed-left', '--solar-placed-top'])
+    for (const v of ['left', 'top', 'right', 'bottom']
+      .filter((side) => sides.has(side))
+      .map((side) => `--solar-placed-${side}`))
       if (!at?.[v])
         place(styles.root, slots[layer], { [v]: '0px' }, `${layer}.base.${v}`);
   }
@@ -746,6 +778,30 @@ export function renderMuiComponent(spec, tokens) {
     Object.entries(ordered(styles.combined)).map(([k, v]) => [k, ordered(v)]),
   );
 
+  // Each state's block in the state table's order, where a later rule wins: a block is added where
+  // a layer first has the state, so a first layer with only disabled and error (Text Input's
+  // label) would put them before a later layer's hover, which would then win over both. The
+  // blocks keep the places they have; only which state sits where follows the table.
+  const inTableOrder = (block) => {
+    const rank = Object.values(selectors);
+    const keys = Object.keys(block);
+    const states = keys
+      .filter((k) => rank.includes(k))
+      .sort((a, b) => rank.indexOf(a) - rank.indexOf(b));
+    let next = 0;
+    return Object.fromEntries(
+      keys.map((k) => {
+        const key = rank.includes(k) ? states[next++] : k;
+        return [key, block[key]];
+      }),
+    );
+  };
+  for (const combo of Object.keys(styles.appearances))
+    styles.appearances[combo] = inTableOrder(styles.appearances[combo]);
+  for (const byCombo of Object.values(styles.combined))
+    for (const combo of Object.keys(byCombo))
+      byCombo[combo] = inTableOrder(byCombo[combo]);
+
   // The axes an appearance is keyed by, from any key: `variant=primary, danger=false`.
   // A drawing (StatusIndicator) keys its entries by size and appearance together, so the
   // combined section may be the only one that names them.
@@ -765,6 +821,12 @@ export function renderMuiComponent(spec, tokens) {
   const defaults = {};
   const axesAll = recipeAxes(spec);
   for (const [prop, def] of Object.entries(axesAll)) {
+    // A derived state value (Text Input's `filled`, from its value) is true or false.
+    if (def.derived && def.type === 'boolean') {
+      derivedLines.push(`  ${prop}?: boolean;`);
+      defaults[prop] = def.default;
+      continue;
+    }
     if (def.derived) {
       const type = `Solar${name}${pascal(prop)}`;
       typeLines.push(

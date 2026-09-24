@@ -187,9 +187,6 @@ export const solarDragHandleStyles = {
   },
   appearances: {
     default: {
-      '&:focus-visible': {
-        boxShadow: 'var(--solar-shadow-focus-default)',
-      },
       '&:hover': {
         '& .SolarDragHandle-col1Dot': {
           backgroundColor: 'var(--solar-color-icon-primary)',
@@ -229,6 +226,9 @@ export const solarDragHandleStyles = {
         '& .SolarDragHandle-col2Dot3': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
+      },
+      '&:focus-visible': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
       },
       '&.SolarDragHandle-disabled': {
         '& .SolarDragHandle-col1Dot': {

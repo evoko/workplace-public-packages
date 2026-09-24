@@ -109,13 +109,13 @@ export const solarFABStyles = {
       '&.Mui-focusVisible': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
+      '&.MuiButton-loading': {},
       '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
       },
-      '&.MuiButton-loading': {},
     },
     'type=extended': {
       '&:hover': {
@@ -136,15 +136,15 @@ export const solarFABStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         color: 'var(--solar-color-action-primary-text-default)',
       },
+      '&.MuiButton-loading': {
+        color: 'var(--solar-color-action-primary-text-default)',
+      },
       '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
         color: 'var(--solar-color-action-primary-text-disabled)',
-      },
-      '&.MuiButton-loading': {
-        color: 'var(--solar-color-action-primary-text-default)',
       },
       color: 'var(--solar-color-action-primary-text-default)',
     },

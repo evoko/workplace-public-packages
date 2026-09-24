@@ -1,0 +1,182 @@
+/**
+ * SOLAR Text Input.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Text Input"` from spec/components/text-input.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, `solarTextInputStyle` and `solarTextInputCompose` in `@bwp-web/styles/mui`: the
+ * field's fill, edge and focus ring by state, its words' and icons' ink, and the label and helper.
+ *
+ * Single-line text: its `label` above (a `mandatory` one is starred, and the input required), its
+ * `helper` below, which says what is wrong where it is in `error`, and an icon either side. The
+ * field is MUI's InputBase, a native input, so every InputBase prop but its adornments reaches it
+ * (`value` or `defaultValue`, `onChange`, `placeholder`, `type`, `name`, `inputRef`); the label
+ * and the helper are linked to it by id. It is drawn filled where it holds a value. A placeholder
+ * never replaces the label; validate on blur. For many lines use a Text Area, for numbers a Number
+ * Input. The app must load `@bwp-web/styles/tokens.css`.
+ */
+
+import Box from '@mui/material/Box';
+import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
+import { useControlled } from '@mui/material/utils';
+import { forwardRef, useId, type ReactNode } from 'react';
+import {
+  solarTextInputCompose,
+  solarTextInputStyle,
+  type SolarTextInputProps,
+} from '@bwp-web/styles/mui';
+import {
+  drawChildren,
+  drawLayer,
+  type LayerDrawing,
+} from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['labelLabel', 'mandatory'],
+  field: ['leadingIcon', 'fieldLabel', 'trailingIcon'],
+};
+
+export interface TextInputProps
+  extends
+    SolarTextInputProps,
+    Omit<
+      InputBaseProps,
+      | keyof SolarTextInputProps
+      | 'size'
+      | 'color'
+      | 'fullWidth'
+      | 'margin'
+      | 'multiline'
+      | 'rows'
+      | 'minRows'
+      | 'maxRows'
+      | 'startAdornment'
+      | 'endAdornment'
+      | 'required'
+      | 'ref'
+    > {
+  /** What it asks for, above it. */
+  label?: ReactNode;
+  /** Whether it must be filled, which stars the label and makes the input required. */
+  mandatory?: boolean;
+  /** More about it, below; where it is in `error`, what is wrong. */
+  helper?: ReactNode;
+  /** An icon before the words. */
+  leadingIcon?: ReactNode;
+  /** An icon after the words, or a small control (an IconButton that clears it). */
+  trailingIcon?: ReactNode;
+}
+
+export const TextInput = forwardRef<HTMLDivElement, TextInputProps>(
+  function TextInput(
+    {
+      size,
+      disabled,
+      error,
+      label,
+      mandatory = false,
+      helper,
+      leadingIcon,
+      trailingIcon,
+      id: idProp,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      inputProps,
+      className,
+      style,
+      sx,
+      ...rest
+    },
+    ref,
+  ) {
+    const own = useId();
+    const id = idProp ?? own;
+    const [value, setValue] = useControlled<unknown>({
+      controlled: valueProp,
+      default: defaultValue ?? '',
+      name: 'TextInput',
+      state: 'value',
+    });
+    // Filled where it holds a value: its words are then the value's, not the placeholder's.
+    const filled = value != null && String(value) !== '';
+    const look = { size, disabled, error, filled };
+    const parts = solarTextInputCompose(look);
+    const drawing: LayerDrawing = {
+      prefix: 'SolarTextInput',
+      tree: TREE,
+      // A part left empty is not drawn.
+      parts: {
+        ...parts,
+        label: { ...parts.label, present: label != null },
+        mandatory: { ...parts.mandatory, present: mandatory },
+        leadingIcon: { ...parts.leadingIcon, present: leadingIcon != null },
+        trailingIcon: { ...parts.trailingIcon, present: trailingIcon != null },
+        helper: { ...parts.helper, present: helper != null },
+      },
+      text: { labelLabel: label, mandatory: <span aria-hidden>*</span> },
+      icons: {
+        leadingIcon: <span>{leadingIcon}</span>,
+        trailingIcon: <span>{trailingIcon}</span>,
+      },
+      render: {
+        label: (layer) => <label htmlFor={id} {...layer} />,
+        // The field is MUI's InputBase, its icons either side of the input, which is its words.
+        field: (layer) => (
+          <InputBase
+            {...rest}
+            className={layer.className}
+            style={layer.style}
+            id={id}
+            value={value}
+            onChange={(event) => {
+              setValue(event.target.value);
+              onChange?.(event);
+            }}
+            disabled={disabled}
+            error={error}
+            required={mandatory}
+            startAdornment={drawLayer('leadingIcon', drawing)}
+            endAdornment={drawLayer('trailingIcon', drawing)}
+            inputProps={{
+              ...inputProps,
+              className: ['SolarTextInput-fieldLabel', inputProps?.className]
+                .filter(Boolean)
+                .join(' '),
+              'aria-describedby': helper != null ? `${id}-helper` : undefined,
+            }}
+          />
+        ),
+        helper: (layer) => (
+          <span
+            id={`${id}-helper`}
+            className={layer.className}
+            style={layer.style}
+          >
+            {helper}
+          </span>
+        ),
+      },
+    };
+    return (
+      <Box
+        ref={ref}
+        className={
+          [
+            filled ? 'SolarTextInput-filled' : null,
+            error ? 'SolarTextInput-error' : null,
+            disabled ? 'SolarTextInput-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        style={style}
+        sx={[solarTextInputStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', drawing)}
+      </Box>
+    );
+  },
+);

@@ -108,6 +108,7 @@ export const solarBackButtonStyles = {
       '&.Mui-focusVisible': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
+      '&.MuiButton-loading': {},
       '&.Mui-disabled:not(.MuiButton-loading)': {
         backgroundColor: 'var(--solar-color-action-tertiary-bg-disabled)',
         '& .MuiButton-startIcon': {
@@ -115,7 +116,6 @@ export const solarBackButtonStyles = {
         },
         color: 'var(--solar-color-action-tertiary-text-disabled)',
       },
-      '&.MuiButton-loading': {},
     },
   },
   combined: {

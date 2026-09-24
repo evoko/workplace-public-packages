@@ -13,6 +13,7 @@
  * Values bound to no variable, or to one that is not a SOLAR token, are recorded the same way.
  */
 
+import { farEdgesOf, placementOf } from './placement.mjs';
 import { drawnPaint } from './paints.mjs';
 import { checkPathData } from './svg.mjs';
 
@@ -291,11 +292,20 @@ function cellsOf(
   onCovered,
   root = false,
   restyled = [],
+  parent = null,
+  far = [false, false],
 ) {
   const cells = {};
   const drawnAt = root || Boolean(layer.position);
   const put = (name, cls, value) => {
     if (value !== undefined) cells[name] = { cls, value };
+  };
+  // Where a layer sits in a parent whose auto layout does not place it (StatusIndicator's `!`
+  // inside its triangle, a Toggle's thumb, Text Area's buttons): part of the drawing, as a glyph's
+  // outline is, so it follows every axis and is a position, not a spacing literal to report.
+  const place = () => {
+    for (const [cell, at] of Object.entries(placementOf(layer, parent, far)))
+      put(cell, 'shape', { position: at });
   };
   put('present', 'paint', { value: !layer.hidden });
 
@@ -346,6 +356,7 @@ function cellsOf(
           onCovered?.('color', c, p),
         ),
       );
+    place();
     return cells;
   }
 
@@ -479,13 +490,7 @@ function cellsOf(
   const sized = drawnAt && !cells.glyph;
   put('width', 'geometry', extent(layer, 0, names, `${where}.width`, sized));
   put('height', 'geometry', extent(layer, 1, names, `${where}.height`, sized));
-  // Where a layer sits in a parent whose auto layout does not place it (StatusIndicator's `!`
-  // inside its triangle, a Toggle's thumb): part of the drawing, as a glyph's outline is, so it
-  // follows every axis and is a position, not a spacing literal to report.
-  if (layer.position) {
-    put('x', 'shape', { position: layer.position[0] });
-    put('y', 'shape', { position: layer.position[1] });
-  }
+  place();
   return cells;
 }
 
@@ -496,6 +501,8 @@ const LAYOUT_CELLS = [
   ...PADDING.map((side) => `padding${side}`),
 ];
 const SIDE_CELLS = PADDING.map((side) => `border${side}Width`);
+/** The cells that place a layer, from its parent's near edges or its far ones (placementOf). */
+export const PLACES = ['x', 'y', 'right', 'bottom'];
 
 /**
  * A cell one variant of a layer has and another lacks says something, and the comparison can only
@@ -543,7 +550,7 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
         if (LAYOUT_CELLS.includes(c))
           own[c] = { cls: 'geometry', value: { none: true } };
         // Where another variant places the layer by position and this one's auto layout places it.
-        else if (c === 'x' || c === 'y')
+        else if (PLACES.includes(c))
           own[c] = { cls: 'shape', value: { none: true } };
         else if ((c === 'width' || c === 'height') && layer.size) {
           const i = c === 'width' ? 0 : 1;
@@ -631,6 +638,13 @@ export function deriveRecipe(
   const covered = new Map();
   const unattribute = (path, variant) =>
     unattributed.set(path, (unattributed.get(path) ?? new Set()).add(variant));
+  // The edges each placed layer is pinned to, the same in every variant (placement.mjs).
+  const farEdges = new Map(
+    Object.keys(layers).map((path) => [
+      path,
+      farEdgesOf(resolved.variants, path),
+    ]),
+  );
   const cells = new Map(
     resolved.variants.map((v) => {
       const perLayer = new Map();
@@ -650,6 +664,8 @@ export function deriveRecipe(
             },
             layers[path].parent === null,
             restyles[path],
+            v.layers.get(v.parents.get(path)) ?? null,
+            farEdges.get(path),
           ),
         );
         // An icon's colour is read from the icon itself (cellsOf). An icon drawn in more than one

@@ -1,0 +1,141 @@
+/// SOLAR SearchField.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter SearchField` from
+/// spec/components/searchfield.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarSearchFieldRecipe]: the field's fill, edge
+/// and focus ring by state, and its query's and icons' ink, read cell by cell.
+///
+/// A local search, filtering the list or table beside it as the user types: SOLAR's search icon
+/// before the query, and a [filter] after it (a SolarIconButton that opens the filters, or clears
+/// the query). The query is a [TextField], undecorated, in the field drawn from Figma's layer tree
+/// with [SolarLayers] ([SolarField] holds its words and states); a tap anywhere in the field
+/// focuses it. It is drawn filled where its [controller] holds a query, and hovered and focused as
+/// the field is. It reads as a text field named [semanticLabel], "Search" unless it says more.
+/// Debounce the filtering, and announce the count of results. For search across the product, use a
+/// GlobalSearch.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/searchfield.dart';
+import '../generated/icons.dart';
+import '../solar_field.dart';
+import '../solar_layers.dart';
+import 'solar_theme_of.dart';
+
+class SolarSearchField extends StatelessWidget {
+  const SolarSearchField({
+    super.key,
+    this.error = false,
+    this.disabled = false,
+    this.size = SolarSearchFieldSize.md,
+    this.filter,
+    this.semanticLabel = 'Search',
+    this.onSubmitted,
+    this.controller,
+    this.placeholder,
+    this.onChanged,
+    this.autofocus = false,
+    this.focusNode,
+    this.statesController,
+  });
+
+  final bool error;
+  final bool disabled;
+  final SolarSearchFieldSize size;
+
+  /// After the query: a SolarIconButton that opens the filters, or clears the query; or an icon.
+  final Widget? filter;
+
+  /// What it searches, for a screen reader: "Search" unless it says more.
+  final String semanticLabel;
+
+  /// Called with the query when the keyboard's action submits it.
+  final ValueChanged<String>? onSubmitted;
+
+  /// Its words, where the caller keeps them; one of its own, empty, otherwise.
+  final TextEditingController? controller;
+
+  /// What it shows while empty, in its words' place.
+  final String? placeholder;
+
+  /// Called with the words as they change.
+  final ValueChanged<String>? onChanged;
+
+  /// Whether it takes the focus when first built.
+  final bool autofocus;
+
+  /// Its focus, where the caller keeps it.
+  final FocusNode? focusNode;
+
+  /// States to draw it in beside its own, where the caller keeps them (the visual checks force a
+  /// state through it).
+  final WidgetStatesController? statesController;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['iconSearch', 'search', 'filter'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final enabled = !disabled;
+    return SolarField(
+      controller: controller,
+      focusNode: focusNode,
+      statesController: statesController,
+      builder: (context, field) {
+        final states = field.states;
+        // Filled where it holds text: its words are then the value's, not the placeholder's.
+        final p = SolarSearchFieldProps(
+          error: error,
+          disabled: disabled,
+          size: size,
+          filled: field.text.text.isNotEmpty,
+        );
+        return SolarLayers(
+          recipe: SolarLayerRecipe(
+            lookup: (c) => SolarSearchFieldRecipe.lookup(c, p, states),
+            dimension: (c) => SolarSearchFieldRecipe.dimension(c, p, states),
+            color: (c) => SolarSearchFieldRecipe.color(t, c, p, states),
+            shadow: (c) => SolarSearchFieldRecipe.shadow(t, c, p, states),
+            textStyle: (c) => SolarSearchFieldRecipe.textStyle(t, c, p, states),
+            // A part left empty is not drawn.
+            present: (l) => switch (l) {
+              'filter' => filter != null,
+              _ => SolarSearchFieldRecipe.present(l, p, states),
+            },
+            glyph: (_) => null,
+          ),
+          tree: _tree,
+          keyPrefix: 'searchField',
+          slots: {'filter': ?filter},
+          icons: const {'iconSearch': SolarIcons.searchOutline},
+          // The field's words, in the recipe's style.
+          fields: {
+            'search': (style) => field.read(
+              TextField(
+                controller: field.text,
+                focusNode: field.focus,
+                enabled: enabled,
+                autofocus: autofocus,
+                onChanged: onChanged,
+                style: style,
+                textInputAction: TextInputAction.search,
+                onSubmitted: onSubmitted,
+                maxLines: 1,
+                decoration: InputDecoration.collapsed(
+                  hintText: placeholder,
+                  hintStyle: style,
+                ),
+              ),
+              label: semanticLabel,
+            ),
+          },
+          builders: {'root': (layer) => field.area(layer, enabled: enabled)},
+        ).layer('root');
+      },
+    );
+  }
+}

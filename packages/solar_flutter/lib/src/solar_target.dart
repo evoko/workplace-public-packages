@@ -93,9 +93,19 @@ class _RenderSolarTarget extends RenderShiftedBox {
       height: math.max(drawn.height, solarTargetSize),
     );
     if (!target.contains(position) && !size.contains(position)) return false;
-    // A tap in the target is the control's: outside the drawing, it lands on the drawing's centre,
-    // as Material's padded targets do (a corner may be rounded off, and hit nothing).
-    final at = drawn.contains(position) ? position : drawn.center;
+    // A tap in the target is the control's: outside the drawing, it lands on the drawing's middle
+    // line, across from where it fell (a text field's caret goes there), or on its centre where it
+    // fell beside it too. A rounded corner may be cut off; its middle line never is.
+    final at = drawn.contains(position)
+        ? position
+        : Offset(
+            position.dx >= drawn.left && position.dx < drawn.right
+                ? position.dx
+                : drawn.center.dx,
+            position.dy >= drawn.top && position.dy < drawn.bottom
+                ? position.dy
+                : drawn.center.dy,
+          );
     final hit = result.addWithPaintOffset(
       offset: drawn.topLeft,
       position: at,

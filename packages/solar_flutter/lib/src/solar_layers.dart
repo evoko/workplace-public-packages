@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart' show OverflowBoxFit;
 
 import 'solar_glyph.dart';
 import 'solar_icon.dart';
+import 'solar_target.dart';
 
 /// One component's recipe as a bespoke widget reads it, under one set of props and states: each
 /// function is the generated recipe's method of the same name with the props and states applied.
@@ -65,6 +66,8 @@ class SolarLayers {
     this.content = const {},
     this.composed = const {},
     this.wraps = const {},
+    this.fields = const {},
+    this.truncates = const {},
   });
 
   /// The component's recipe under its props and states.
@@ -105,6 +108,14 @@ class SolarLayers {
   /// how its lines align, by layer; every other text runs on one line, as a Figma text that hugs
   /// it does.
   final Map<String, TextAlign> wraps;
+
+  /// A text the user edits (Text Input's words), by layer: drawn as the field the shell builds in
+  /// the layer's text style, taking the room its row leaves, as Figma's text fills the field.
+  final Map<String, Widget Function(TextStyle? style)> fields;
+
+  /// A text that takes the room its row leaves, and is cut short with an ellipsis where it runs out
+  /// (GlobalSearch's words, beside its Kbd), by layer.
+  final Set<String> truncates;
 
   static const _main = {
     'MIN': MainAxisAlignment.start,
@@ -159,22 +170,37 @@ class SolarLayers {
   Widget _drawn(String name) {
     final child = composed[name];
     if (child != null) return child;
+    final field = fields[name];
+    if (field != null) return field(_textStyle(name));
     final glyph = recipe.glyph(name);
     final words = text[name];
     final slot = slots[name];
     if (slot != null) {
       final width = _extent('$name.width');
+      final height = _extent('$name.height');
       // A component slot (Banner's Buttons) has no colour of its own to give.
       final colour = recipe.lookup('$name.color') == null
           ? null
           : recipe.color('$name.color');
+      // A control the caller gives where Figma sizes and places it (Text Area's Icon Buttons): at
+      // its own size, centred in Figma's box, so the target Material pads it to on touch reaches
+      // past the box, as a target of SOLAR's does, rather than moving it.
+      if (colour == null && width != null && height != null) {
+        return SolarTarget.inside(
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: OverflowBox(
+              maxWidth: double.infinity,
+              maxHeight: double.infinity,
+              child: slot,
+            ),
+          ),
+        );
+      }
       return IconTheme(
         data: IconThemeData(color: colour, size: width),
-        child: SizedBox(
-          width: width,
-          height: _extent('$name.height'),
-          child: slot,
-        ),
+        child: SizedBox(width: width, height: height, child: slot),
       );
     }
     final icon = icons[name];
@@ -197,6 +223,8 @@ class SolarLayers {
             words,
             softWrap: wraps.containsKey(name),
             textAlign: wraps[name],
+            maxLines: truncates.contains(name) ? 1 : null,
+            overflow: truncates.contains(name) ? TextOverflow.ellipsis : null,
             style: _textStyle(name),
           )
         : _box(name);
@@ -212,24 +240,44 @@ class SolarLayers {
     );
   }
 
-  /// A child where Figma put it: at its position where its parent does not lay it out. Figma
-  /// measures the position from the parent's outer edge, and the parent's border and padding
-  /// ([inset]) hold its children in from it.
-  Widget _placed(String child, Offset inset) {
+  /// Whether Figma places [child] by position rather than its parent's auto layout: from the
+  /// parent's left, or its right where it is pinned there (a parent that grows).
+  bool _isPlaced(String child) =>
+      _extent('$child.x') != null || _extent('$child.right') != null;
+
+  /// A child where Figma put it: at its position where its parent does not lay it out, from the
+  /// edges it is pinned to (Text Area's buttons, to the field's bottom corners). Figma measures the
+  /// position from the parent's outer edge, and the parent's border and padding ([inset]) hold its
+  /// children in from it.
+  Widget _placed(String child, EdgeInsets inset) {
+    if (!_isPlaced(child)) return layer(child);
     final x = _extent('$child.x');
-    return x == null
-        ? layer(child)
-        : Positioned(
-            left: x - inset.dx,
-            top: (_extent('$child.y') ?? 0) - inset.dy,
-            child: layer(child),
-          );
+    final right = _extent('$child.right');
+    final bottom = _extent('$child.bottom');
+    return Positioned(
+      left: x == null ? null : x - inset.left,
+      right: right == null ? null : right - inset.right,
+      top: bottom != null ? null : (_extent('$child.y') ?? 0) - inset.top,
+      bottom: bottom == null ? null : bottom - inset.bottom,
+      child: layer(child),
+    );
+  }
+
+  /// The border and padding that hold [name]'s children in from its outer edge.
+  EdgeInsets _inset(String name) {
+    final edge = _length('$name.borderWidth');
+    return EdgeInsets.fromLTRB(
+      edge + _length('$name.paddingLeft'),
+      edge + _length('$name.paddingTop'),
+      edge + _length('$name.paddingRight'),
+      edge + _length('$name.paddingBottom'),
+    );
   }
 
   /// A child of an auto layout: filling it along the axis where the recipe says so, and, where it
   /// is fixed larger across than its parent (Tree Indent's 39px units in a 32px row), overflowing
   /// it as Figma and CSS draw it rather than squeezed to fit.
-  Widget _inFlex(String child, bool horizontal) {
+  Widget _inFlex(String child, bool horizontal, {bool hugs = false}) {
     final along = horizontal ? 'width' : 'height';
     final across = _extent('$child.${horizontal ? 'height' : 'width'}');
     Widget drawn = _keyed(child);
@@ -242,7 +290,36 @@ class SolarLayers {
       );
     }
     drawn = _built(child, drawn);
-    return _fills('$child.$along') ? Expanded(child: drawn) : drawn;
+    // A field in a row that hugs its content (Number Input's inline number) is as wide as its
+    // words; in any other, it takes the room its row leaves.
+    if (fields.containsKey(child) && hugs) return IntrinsicWidth(child: drawn);
+    return _fills('$child.$along') ||
+            fields.containsKey(child) ||
+            (horizontal && truncates.contains(child))
+        ? Expanded(child: drawn)
+        : drawn;
+  }
+
+  /// A layer's edge: one width all round, or one per side where Figma gives each its own (Number
+  /// Input's side stepper, edged on its left alone); none where it has no width.
+  Border? _border(String name) {
+    const sides = ['Top', 'Right', 'Bottom', 'Left'];
+    final perSide = sides.any(
+      (side) => recipe.lookup('$name.border${side}Width') != null,
+    );
+    final widths = perSide
+        ? [for (final side in sides) _length('$name.border${side}Width')]
+        : List.filled(4, _length('$name.borderWidth'));
+    if (widths.every((w) => w == 0)) return null;
+    final colour = recipe.color('$name.borderColor');
+    BorderSide side(double width) =>
+        width == 0 ? BorderSide.none : BorderSide(color: colour, width: width);
+    return Border(
+      top: side(widths[0]),
+      right: side(widths[1]),
+      bottom: side(widths[2]),
+      left: side(widths[3]),
+    );
   }
 
   Widget _box(String name) {
@@ -254,65 +331,73 @@ class SolarLayers {
     ];
     final direction = recipe.lookup('$name.direction');
     final laid = direction == 'k:HORIZONTAL' || direction == 'k:VERTICAL';
-    final Widget? content;
-    // An auto layout is one even with nothing in it (RowExpand's empty title cell): its gap and
-    // alignment are still the layer's.
-    if (laid && !children.any((c) => _extent('$c.x') != null)) {
+    final placed = children.where(_isPlaced).toList();
+    final flow = children.where((c) => !_isPlaced(c)).toList();
+    Widget flex(List<String> laidOut) {
       final horizontal = direction == 'k:HORIZONTAL';
       final along = horizontal ? 'width' : 'height';
       final align = recipe.lookup('$name.align')!.substring(2).split('/');
-      content = Flex(
+      final hugs = recipe.lookup('$name.$along') == 'k:HUG';
+      return Flex(
         direction: horizontal ? Axis.horizontal : Axis.vertical,
         // A layer that hugs its content is as long as its children, as Figma's auto layout is.
-        mainAxisSize: recipe.lookup('$name.$along') == 'k:HUG'
-            ? MainAxisSize.min
-            : MainAxisSize.max,
+        mainAxisSize: hugs ? MainAxisSize.min : MainAxisSize.max,
         mainAxisAlignment: _main[align.first]!,
         crossAxisAlignment: _cross[align.last]!,
         textBaseline: TextBaseline.alphabetic,
         spacing: _length('$name.gap'),
-        children: given ?? [for (final c in children) _inFlex(c, horizontal)],
+        children:
+            given ??
+            [for (final c in laidOut) _inFlex(c, horizontal, hugs: hugs)],
+      );
+    }
+
+    final padding = EdgeInsets.fromLTRB(
+      _length('$name.paddingLeft'),
+      _length('$name.paddingTop'),
+      _length('$name.paddingRight'),
+      _length('$name.paddingBottom'),
+    );
+    // Where the padding goes: around the content, or, for an auto layout with children placed
+    // over it, around the laid-out ones alone.
+    var padded = true;
+    final Widget? content;
+    // An auto layout is one even with nothing in it (RowExpand's empty title cell): its gap and
+    // alignment are still the layer's.
+    if (laid && placed.isEmpty) {
+      content = flex(children);
+    } else if (laid && flow.isNotEmpty && given == null) {
+      // An auto layout with children placed over it (Text Area's buttons, in the field's corners):
+      // the laid-out ones in it, the placed ones where Figma put them, from inside the border, so
+      // a placed child reaching into the padding is hit there too.
+      padded = false;
+      final edge = _length('$name.borderWidth');
+      content = Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Padding(padding: padding, child: flex(flow)),
+          for (final c in placed) _placed(c, EdgeInsets.all(edge)),
+        ],
       );
     } else if (given != null) {
       content = Stack(clipBehavior: Clip.none, children: given);
     } else if (children.isEmpty) {
       content = null;
     } else {
-      final edge = _length('$name.borderWidth');
       content = Stack(
         clipBehavior: Clip.none,
-        children: [
-          for (final c in children)
-            _placed(
-              c,
-              Offset(
-                edge + _length('$name.paddingLeft'),
-                edge + _length('$name.paddingTop'),
-              ),
-            ),
-        ],
+        children: [for (final c in children) _placed(c, _inset(name))],
       );
     }
-    final borderWidth = _length('$name.borderWidth');
     return Container(
       width: _extent('$name.width'),
       height: _extent('$name.height'),
-      padding: EdgeInsets.fromLTRB(
-        _length('$name.paddingLeft'),
-        _length('$name.paddingTop'),
-        _length('$name.paddingRight'),
-        _length('$name.paddingBottom'),
-      ),
+      padding: padded ? padding : EdgeInsets.zero,
       decoration: BoxDecoration(
         color: recipe.lookup('$name.background') == null
             ? null
             : recipe.color('$name.background'),
-        border: borderWidth == 0
-            ? null
-            : Border.all(
-                color: recipe.color('$name.borderColor'),
-                width: borderWidth,
-              ),
+        border: _border(name),
         borderRadius: BorderRadius.circular(_length('$name.radius')),
         boxShadow: recipe.lookup('$name.shadow') == null
             ? null

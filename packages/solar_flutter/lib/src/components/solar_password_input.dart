@@ -1,0 +1,202 @@
+/// SOLAR Password Input.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter "Password Input"` from
+/// spec/components/password-input.json, and owned by developers from then on: change it freely.
+/// What it looks like is not here. That is the recipe, [SolarPasswordInputRecipe]: the field's
+/// fill, edge and focus ring by state, its words' and eye's ink, and the label and helper, read
+/// cell by cell.
+///
+/// A password: its [label] above (a [mandatory] one is starred), its [helper] below, which says
+/// what is wrong where it is in [error], and a [forgotPassword] link below that where given. Its
+/// words are an obscured [TextField], undecorated, in the field drawn from Figma's layer tree with
+/// [SolarLayers] ([SolarField] holds its words, its states and whether they are shown), which a
+/// password manager fills; SOLAR's eye after them shows or hides them, announced as a toggle. It is
+/// drawn filled where its [controller] holds text, and hovered and focused as the field is. It
+/// reads as one text field, named by its label and described by its helper. Never log or show what
+/// is typed; for a value that need not be hidden, use a SolarTextInput.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/password_input.dart';
+import '../generated/icons.dart';
+import '../solar_field.dart';
+import '../solar_layers.dart';
+import '../solar_states.dart';
+import '../solar_target.dart';
+import 'solar_theme_of.dart';
+
+class SolarPasswordInput extends StatelessWidget {
+  const SolarPasswordInput({
+    super.key,
+    this.size = SolarPasswordInputSize.md,
+    this.disabled = false,
+    this.error = false,
+    this.label,
+    this.mandatory = false,
+    this.helper,
+    this.forgotPassword,
+    this.onForgotPassword,
+    this.onSubmitted,
+    this.controller,
+    this.placeholder,
+    this.onChanged,
+    this.autofocus = false,
+    this.focusNode,
+    this.statesController,
+  });
+
+  final SolarPasswordInputSize size;
+  final bool disabled;
+  final bool error;
+
+  /// What it asks for, above it ("Password").
+  final String? label;
+
+  /// Whether it must be filled, which stars the label.
+  final bool mandatory;
+
+  /// More about it, below; where it is in [error], what is wrong.
+  final String? helper;
+
+  /// The words of a link to the app's reset flow, below the helper ("Forgot password?").
+  final String? forgotPassword;
+
+  /// Opens the app's reset flow, where [forgotPassword] is given.
+  final VoidCallback? onForgotPassword;
+
+  /// Called with the words when the keyboard's action submits them.
+  final ValueChanged<String>? onSubmitted;
+
+  /// Its words, where the caller keeps them; one of its own, empty, otherwise.
+  final TextEditingController? controller;
+
+  /// What it shows while empty, in its words' place.
+  final String? placeholder;
+
+  /// Called with the words as they change.
+  final ValueChanged<String>? onChanged;
+
+  /// Whether it takes the focus when first built.
+  final bool autofocus;
+
+  /// Its focus, where the caller keeps it.
+  final FocusNode? focusNode;
+
+  /// States to draw it in beside its own, where the caller keeps them (the visual checks force a
+  /// state through it).
+  final WidgetStatesController? statesController;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['label', 'field', 'helper', 'forgotPassword'],
+    'label': ['password', 'mandatory'],
+    'field': ['maskedValue', 'icon'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final enabled = !disabled;
+    return SolarField(
+      controller: controller,
+      focusNode: focusNode,
+      statesController: statesController,
+      obscured: true,
+      builder: (context, field) {
+        final states = field.states;
+        // Filled where it holds text: its words are then the value's, not the placeholder's.
+        final p = SolarPasswordInputProps(
+          size: size,
+          disabled: disabled,
+          error: error,
+          filled: field.text.text.isNotEmpty,
+        );
+        return SolarLayers(
+          recipe: SolarLayerRecipe(
+            lookup: (c) => SolarPasswordInputRecipe.lookup(c, p, states),
+            dimension: (c) => SolarPasswordInputRecipe.dimension(c, p, states),
+            color: (c) => SolarPasswordInputRecipe.color(t, c, p, states),
+            shadow: (c) => SolarPasswordInputRecipe.shadow(t, c, p, states),
+            textStyle: (c) =>
+                SolarPasswordInputRecipe.textStyle(t, c, p, states),
+            // A part left empty is not drawn.
+            present: (l) => switch (l) {
+              'label' => label != null,
+              'mandatory' => mandatory,
+              'helper' => helper != null,
+              'forgotPassword' => forgotPassword != null,
+              _ => SolarPasswordInputRecipe.present(l, p, states),
+            },
+            glyph: (_) => null,
+          ),
+          tree: _tree,
+          keyPrefix: 'passwordInput',
+          text: {
+            'password': ?label,
+            'mandatory': '*',
+            'helper': ?helper,
+            'forgotPassword': ?forgotPassword,
+          },
+          wraps: const {'helper': TextAlign.start},
+          icons: {
+            'icon': field.obscured
+                ? SolarIcons.eyeOutline
+                : SolarIcons.eyeOffOutline,
+          },
+          // The field's words, in the recipe's style.
+          fields: {
+            'maskedValue': (style) => field.read(
+              TextField(
+                controller: field.text,
+                focusNode: field.focus,
+                enabled: enabled,
+                autofocus: autofocus,
+                onChanged: onChanged,
+                style: style,
+                obscureText: field.obscured,
+                autofillHints: const [AutofillHints.password],
+                onSubmitted: onSubmitted,
+                maxLines: 1,
+                decoration: InputDecoration.collapsed(
+                  hintText: placeholder,
+                  hintStyle: style,
+                ),
+              ),
+              label: label,
+              hint: helper,
+            ),
+          },
+          builders: {
+            'label': (layer) => ExcludeSemantics(child: layer),
+            'helper': (layer) => ExcludeSemantics(child: layer),
+            // The link is a control of its own, announced as a link.
+            'forgotPassword': (words) => SolarTarget.inside(
+              child: Semantics(
+                container: true,
+                child: SolarPressable(
+                  onPressed: onForgotPassword,
+                  link: true,
+                  builder: (_, _) => words,
+                ),
+              ),
+            ),
+            // The eye is a toggle of its own, which shows or hides the words.
+            'icon': (eye) => SolarTarget.inside(
+              child: Semantics(
+                container: true,
+                label: 'Show password',
+                toggled: !field.obscured,
+                child: SolarPressable(
+                  onPressed: enabled ? field.reveal : null,
+                  builder: (_, _) => eye,
+                ),
+              ),
+            ),
+            'field': (layer) => field.area(layer, enabled: enabled),
+          },
+        ).layer('root');
+      },
+    );
+  }
+}

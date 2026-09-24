@@ -21,6 +21,10 @@ import {
 
 const SELECTORS = STATE_SELECTORS.Button;
 const GROUP_DECIDES = table('flutter', 'groupDecides');
+// How a component's shells name what the IR names otherwise (Text Input's label, a prop, and its
+// value, Flutter's controller).
+const LABEL_PROP = table('shells', 'label');
+const FLUTTER_NAMES = table('shells', 'flutter');
 import { flattenSpec } from '../src/spec.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { flutterFileOf, shellFileOf } from '../src/scaffold/index.mjs';
@@ -517,12 +521,14 @@ describe('component parity: the React and Flutter widgets', () => {
     });
 
     it(`${spec.component}: both take the props its derived axes follow from`, () => {
-      // Tag's type follows from `indicator` and `onClose`, which both shells must take.
+      // Tag's type follows from `indicator` and `onClose`, which both shells must take; Text
+      // Input's filled from its value, which Flutter holds in its controller.
       for (const d of Object.values(spec.derived ?? {}))
         for (const w of d.when)
           for (const prop of w.props ?? []) {
             expect(react, `${prop} in React`).toContain(prop);
-            expect(flutter, `${prop} in Flutter`).toHaveProperty(prop);
+            const there = FLUTTER_NAMES[spec.component]?.[prop] ?? prop;
+            expect(flutter, `${there} in Flutter`).toHaveProperty(there);
           }
     });
 
@@ -541,20 +547,33 @@ describe('component parity: the React and Flutter widgets', () => {
     });
 
     it(`${spec.component}: both take every slot, the label as their child`, () => {
+      // A slot that only holds other slots (Text Area's footer, around its helper and count) is
+      // shown by them, and no prop of its own.
+      const layerOf = (slot) =>
+        Object.keys(spec.layers).find(
+          (l) => spec.layers[l].path === spec.slots[slot].layer,
+        );
+      const holdsSlots = (slot) => {
+        const kids = Object.keys(spec.layers).filter(
+          (l) => spec.layers[l].parent === layerOf(slot),
+        );
+        return kids.length > 0 && kids.every((k) => k in spec.slots);
+      };
       for (const slot of Object.keys(spec.slots)) {
+        if (holdsSlots(slot)) continue;
         // The label is the child; a slot styled as one of the root's children (Button Group's
         // example Buttons, all `& > *`) is one of the caller's children.
         // A drawn component (SplitButton) draws its label's words itself, so Flutter takes them
         // as a String, `label`.
         // A content slot (Segmented Control's track of segments) is the children on both, and a
-        // label beside it names the whole, `label`.
+        // label beside it names the whole, `label`, as a field's label does (Text Input's).
         const content = Object.values(spec.slots).some(
           (s) => s.type === 'content',
         );
         const [inReact, inFlutter] =
           spec.slots[slot].type === 'content'
             ? ['children', 'children']
-            : slot === 'label' && content
+            : slot === 'label' && (content || LABEL_PROP[spec.component])
               ? ['label', 'label']
               : slot === 'label'
                 ? [

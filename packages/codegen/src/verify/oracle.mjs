@@ -20,8 +20,9 @@ import {
   resolveVariants,
 } from '../normalize/component-layers.mjs';
 import { PLATFORM_STATES } from '../normalize/components.mjs';
-import { renameStates } from '../normalize/overlay.mjs';
+import { renameStates, sameLayers } from '../normalize/overlay.mjs';
 import { drawnPaint } from '../normalize/paints.mjs';
+import { farEdgesOf, placementOf } from '../normalize/placement.mjs';
 import { featuresOf } from '../emit/text-features.mjs';
 
 /** Each IR cell a finding can name, as the oracle properties it covers. */
@@ -49,6 +50,8 @@ const PROPERTIES_OF = {
   height: ['height'],
   x: ['x'],
   y: ['y'],
+  right: ['right'],
+  bottom: ['bottom'],
   opacity: ['opacity'],
   typography: [
     'fontFamily',
@@ -167,30 +170,8 @@ export function buildOracle(
     return token.modes?.light ?? token.value;
   };
 
-  /** What a `set` rule draws, as the oracle spells the property, or undefined for a keyword. */
-  const decidedValue = (rule, property) => {
-    if (rule.none)
-      return {
-        background: 'transparent',
-        borderColor: 'transparent',
-        color: 'transparent',
-        shadow: 'none',
-        borderWidth: 0,
-        radius: 0,
-      }[property];
-    const token = rule.token && byName.get(rule.token);
-    if (!token) return undefined;
-    if (token.type === 'color') return hex(token.modes?.light ?? token.value);
-    if (token.type === 'shadow') return token.modes?.light ?? token.value;
-    if (token.type === 'dimension') return px(token.value);
-    return undefined;
-  };
-
-  const typography = (style, at) => {
-    const doc = names.textStyle(style);
-    const token = doc && byName.get(doc);
-    if (!token)
-      throw new Error(`${where} ${at}: text style ${style} is not a token`);
+  /** A text style token's values, as the oracle spells them (typography, below). */
+  const textValues = (token) => {
     const { fontFamily, fontWeight, fontSize, lineHeight, letterSpacing } =
       token.value;
     const desktop = token.modes?.desktop ?? {};
@@ -213,8 +194,37 @@ export function buildOracle(
     };
   };
 
+  /** What a `set` rule draws, as the oracle spells the property, or undefined for a keyword. */
+  const decidedValue = (rule, property) => {
+    if (rule.none)
+      return {
+        background: 'transparent',
+        borderColor: 'transparent',
+        color: 'transparent',
+        shadow: 'none',
+        borderWidth: 0,
+        radius: 0,
+      }[property];
+    const token = rule.token && byName.get(rule.token);
+    if (!token) return undefined;
+    if (token.type === 'color') return hex(token.modes?.light ?? token.value);
+    if (token.type === 'shadow') return token.modes?.light ?? token.value;
+    if (token.type === 'dimension') return px(token.value);
+    // A text style (PIN Input's sm placeholder, set to body.md.medium): each of its properties.
+    if (token.type === 'typography') return textValues(token)[property];
+    return undefined;
+  };
+
+  const typography = (style, at) => {
+    const doc = names.textStyle(style);
+    const token = doc && byName.get(doc);
+    if (!token)
+      throw new Error(`${where} ${at}: text style ${style} is not a token`);
+    return textValues(token);
+  };
+
   /** What one layer looks like in one variant, and the Figma values no colour could be read from. */
-  function measure(layer, path) {
+  function measure(layer, path, parent, far) {
     const out = {};
     const unresolved = {};
     const paint = (prop, paints) => {
@@ -238,10 +248,8 @@ export function buildOracle(
         out.width = layer.size[0];
       if ((sizeY === 'FIXED' || drawnAt) && layer.size)
         out.height = layer.size[1];
-      if (placedBox) {
-        out.x = layer.position[0];
-        out.y = layer.position[1];
-      }
+      // From the edge it is pinned to, which is Figma's reading of where it is (placementOf).
+      if (placedBox) Object.assign(out, placementOf(layer, parent, far));
     };
 
     if (layer.type === 'TEXT') {
@@ -249,10 +257,7 @@ export function buildOracle(
       if (layer.textStyle)
         Object.assign(out, typography(layer.textStyle, path));
       // A text placed by position: where it starts; its size follows from its font.
-      if (placedBox) {
-        out.x = layer.position[0];
-        out.y = layer.position[1];
-      }
+      if (placedBox) Object.assign(out, placementOf(layer, parent, far));
       return { out, unresolved };
     }
     if (layer.type === 'INSTANCE') {
@@ -343,8 +348,8 @@ export function buildOracle(
   );
   const renameValue = (axis, value) =>
     overlay?.rename?.[axis]?.values?.[value] ?? value;
-  const resolved = renameStates(
-    foldStateAxes(resolveVariants(set)).resolved,
+  const resolved = sameLayers(
+    renameStates(foldStateAxes(resolveVariants(set)).resolved, overlay),
     overlay,
   );
   const defaults = Object.fromEntries(
@@ -370,7 +375,7 @@ export function buildOracle(
       }
       if (axis === 'state') {
         if (PLATFORM_STATES.has(value)) state = value;
-        else api[value] = true;
+        else if (!derived[value]) api[value] = true;
         continue;
       }
       const prop = rename[axis] ?? axis;
@@ -378,6 +383,16 @@ export function buildOracle(
         throw new Error(`${where}: axis ${axis} is not a prop of the IR`);
       const v = renameValue(axis, value);
       api[prop] = spec.api[prop].type === 'boolean' ? v === 'true' : v;
+    }
+    // A state value derived from content (Text Input's `filled`, from its value): reached by the
+    // content that makes it true in the variant that draws it, and by the content that makes it
+    // false in every other. It is no prop.
+    for (const [value, d] of Object.entries(derived)) {
+      if (d.when.some((w) => typeof w.value !== 'boolean')) continue;
+      const on = props.state === value;
+      const w = d.when.find((x) => x.value === on);
+      content = [...(content ?? []), ...(w.given ?? []), ...(w.props ?? [])];
+      delete api[value];
     }
     return { props: api, state, ...(content ? { content } : {}) };
   };
@@ -421,7 +436,15 @@ export function buildOracle(
     excuses.push({
       variant: null,
       layer,
-      properties: rule.cells ?? ['x', 'y', 'width', 'height', 'radius'],
+      properties: rule.cells ?? [
+        'x',
+        'y',
+        'right',
+        'bottom',
+        'width',
+        'height',
+        'radius',
+      ],
       why: {
         finding: `component.${spec.component.toLowerCase()}.${layer}#controlDraws`,
         decision: 'controlDraws',
@@ -496,7 +519,12 @@ export function buildOracle(
     for (const [path, layer] of v.layers) {
       const name = nameOf.get(path);
       if (!name) throw new Error(`${where}: no IR name for layer ${path}`);
-      const { out, unresolved } = measure(layer, path);
+      const { out, unresolved } = measure(
+        layer,
+        path,
+        v.layers.get(v.parents.get(path)),
+        farEdgesOf(resolved.variants, path),
+      );
       for (const d of variantSets)
         if (d.layer === name && out.variant && d.reaches(v.props)) {
           out.figmaVariant ??= { ...out.variant };

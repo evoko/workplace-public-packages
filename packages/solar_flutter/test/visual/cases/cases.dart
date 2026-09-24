@@ -16,13 +16,20 @@ import 'divider.dart';
 import 'draghandle.dart';
 import 'emptystate.dart';
 import 'fab.dart';
+import 'fileupload.dart';
+import 'globalsearch.dart';
 import 'icon_button.dart';
+import 'inline_input.dart';
 import 'kbd.dart';
 import 'link.dart';
 import 'node_end.dart';
+import 'number_input.dart';
+import 'pin_input.dart';
+import 'password_input.dart';
 import 'progressbar.dart';
 import 'radio.dart';
 import 'rowexpand.dart';
+import 'searchfield.dart';
 import 'segmented_control.dart';
 import 'segmented_control_item.dart';
 import 'skeleton.dart';
@@ -32,9 +39,12 @@ import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
 import 'tag.dart';
+import 'text_area.dart';
+import 'text_input.dart';
 import 'timestamp.dart';
 import 'toast.dart';
 import 'toggle.dart';
+import 'token_input.dart';
 import 'tree_indent.dart';
 import 'trend_badge.dart';
 
@@ -52,13 +62,20 @@ final cases = <String, VisualCase>{
   'DragHandle': dragHandleCase,
   'EmptyState': emptyStateCase,
   'FAB': fabCase,
+  'FileUpload': fileUploadCase,
+  'GlobalSearch': globalSearchCase,
   'Icon Button': iconButtonCase,
+  'Inline Input': inlineInputCase,
   'Kbd': kbdCase,
   'Link': linkCase,
   'Node End': nodeEndCase,
+  'Number Input': numberInputCase,
+  'PIN Input': pinInputCase,
+  'Password Input': passwordInputCase,
   'ProgressBar': progressBarCase,
   'Radio': radioCase,
   'RowExpand': rowExpandCase,
+  'SearchField': searchFieldCase,
   'Segmented Control': segmentedControlCase,
   'Segmented Control Item': segmentedControlItemCase,
   'Skeleton': skeletonCase,
@@ -68,9 +85,12 @@ final cases = <String, VisualCase>{
   'SplitButton': splitButtonCase,
   'StatusIndicator': statusIndicatorCase,
   'Tag': tagCase,
+  'Text Area': textAreaCase,
+  'Text Input': textInputCase,
   'Timestamp': timestampCase,
   'Toast': toastCase,
   'Toggle': toggleCase,
+  'Token Input': tokenInputCase,
   'Tree Indent': treeIndentCase,
   'Trend Badge': trendBadgeCase,
 };

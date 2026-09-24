@@ -74,6 +74,7 @@ function children(component) {
           component: e.component,
           selector: targets(component).find((t) => t.layer === layer).selector,
           list: targets(e.component),
+          parent: specs[component]?.layers[layer]?.parent ?? null,
         };
   return out;
 }
@@ -93,6 +94,9 @@ function measure(root, { list, composed }) {
       if (!own || !parent) continue;
       own.x = own.left - parent.left;
       own.y = own.top - parent.top;
+      // From the far edges too, for a layer pinned to them (placementOf).
+      own.right = parent.left + parent.width - (own.left + own.width);
+      own.bottom = parent.top + parent.height - (own.top + own.height);
     }
     return got;
   };
@@ -163,15 +167,30 @@ function measure(root, { list, composed }) {
       root.querySelector(`:scope [data-layer="${layer}"]`) ??
       (c.selector ? root.querySelector(c.selector) : root)?.firstElementChild;
     out[layer] = child ? { drawn: true, layers: within(child, c.list) } : null;
+    // Its place, from the parent's layer, as any layer's (Text Area's buttons, in its field).
+    const own = out[layer]?.layers.root;
+    const parent = c.parent && out[c.parent];
+    if (own && parent) {
+      own.x = own.left - parent.left;
+      own.y = own.top - parent.top;
+      own.right = parent.left + parent.width - (own.left + own.width);
+      own.bottom = parent.top + parent.height - (own.top + own.height);
+    }
   }
   return out;
 }
 
 /** Puts the control into a platform state as a user would. Returns how to leave it. */
-async function reach(page, control, state) {
+async function reach(page, control, state, component) {
   await page.mouse.move(0, 0);
   await page.evaluate(() => document.activeElement?.blur());
-  if (state === 'hover') await control.hover();
+  // Hovered where the recipe says it is: the part its hover names (a PIN Input's cells, a Text
+  // Input's field), or the whole.
+  const part = /^&:has\((\.[\w-]+):hover\)$/.exec(
+    STATE_SELECTORS[component]?.hover ?? '',
+  )?.[1];
+  if (state === 'hover')
+    await (part ? control.locator(part).first() : control).hover();
   if (state === 'pressed') {
     await control.hover();
     await page.mouse.down();
@@ -182,12 +201,19 @@ async function reach(page, control, state) {
     await page.keyboard.press('Shift');
     // The control's first focusable part, as Tab reaches it: the control itself, or, for a group
     // of buttons (SplitButton's halves), the first of them.
-    await control.evaluate((el) =>
-      (el.matches('button, a[href], input, [tabindex]')
+    // One taken out of the tab order (a stepper's button, tabindex -1) is not reached by Tab. A
+    // field's focus is its input's, where it has one: the words it types in, not a Tag's close
+    // button before them (Token Input's).
+    await control.evaluate((el) => {
+      const tabbable =
+        ':is(button, a[href], input, textarea, [tabindex]):not([tabindex="-1"])';
+      const words =
+        ':is(input, textarea):not([type="hidden"], [tabindex="-1"])';
+      (el.matches(tabbable)
         ? el
-        : el.querySelector('button, a[href], input, [tabindex]')
-      )?.focus(),
-    );
+        : (el.querySelector(words) ?? el.querySelector(tabbable))
+      )?.focus();
+    });
   }
   return async () => {};
 }
@@ -238,7 +264,7 @@ async function check(page, component, { only } = {}) {
     const kase = page.locator(`[data-case="${slug(component)}:${i}"]`);
     // The component's root: Button's <button>, Spinner's box.
     const control = kase.locator(':scope > *').first();
-    const leave = await reach(page, control, variant.state);
+    const leave = await reach(page, control, variant.state, component);
     if (variant.state === 'focus' && focusClass)
       await expect(control, `${variant.figma}: keyboard focus`).toHaveClass(
         new RegExp(focusClass),
@@ -450,6 +476,23 @@ const TARGETED = {
   DragHandle: null,
   Link: null,
   'Segmented Control Item': null,
+  // A field's target is its field's, which the label above and the helper below stand around.
+  'Text Input': {
+    figma: 'size=sm, state=default',
+    part: '.SolarTextInput-field',
+  },
+  SearchField: 'state=default, size=sm',
+  GlobalSearch: 'state=default, size=sm',
+  // A password's eye, in its field.
+  'Password Input': {
+    figma: 'size=sm, state=default',
+    part: 'button.SolarPasswordInput-icon',
+  },
+  // An inline stepper's plus, beside its number.
+  'Number Input': {
+    figma: 'size=sm, state=default, stepper=inline',
+    part: 'button.SolarNumberInput-fieldIncrement',
+  },
 };
 
 test('every control is hit anywhere in a 44 × 44 target around it', async ({
@@ -457,7 +500,9 @@ test('every control is hit anywhere in a 44 × 44 target around it', async ({
 }) => {
   await open(page);
   const missed = [];
-  for (const [component, figma] of Object.entries(TARGETED)) {
+  for (const [component, entry] of Object.entries(TARGETED)) {
+    const { figma, part } =
+      typeof entry === 'string' ? { figma: entry } : (entry ?? {});
     const i = figma
       ? oracles[component].variants.findIndex((v) => v.figma === figma)
       : 0;
@@ -465,10 +510,12 @@ test('every control is hit anywhere in a 44 × 44 target around it', async ({
       .locator(`[data-case="${slug(component)}:${i}"]`)
       .locator(':scope > *')
       .first();
-    const hits = await control.evaluate((el) => {
+    const hits = await control.evaluate((root, part) => {
       // Room around it, as a page gives a control, where the check's cases stand closer than a
       // target is wide; and in the middle of the view, so every point probed is on the page.
-      el.parentElement.style.margin = '48px 0';
+      root.parentElement.style.margin = '48px 0';
+      // The part a pointer must reach, where it is not the whole (a field's field).
+      const el = part ? root.querySelector(part) : root;
       el.scrollIntoView({ block: 'center', inline: 'center' });
       const box = el.getBoundingClientRect();
       const [x, y] = [box.left + box.width / 2, box.top + box.height / 2];
@@ -481,7 +528,7 @@ test('every control is hit anywhere in a 44 × 44 target around it', async ({
         const at = document.elementFromPoint(x + dx, y + dy);
         return at !== null && (el === at || el.contains(at));
       });
-    });
+    }, part);
     if (hits.includes(false)) missed.push({ component, hits });
   }
   expect(missed).toEqual([]);

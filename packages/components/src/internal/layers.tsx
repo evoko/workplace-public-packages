@@ -79,13 +79,21 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
   const p = d.parts[name] ?? {};
   if (p.present === false) return null;
   // Figma measures a position from the parent's outer edge, CSS from inside its border, which the
-  // recipe says on the parent (`--solar-placed-left`, `--solar-placed-top`).
+  // recipe says on the parent (`--solar-placed-left`, `--solar-placed-top`); a layer pinned to its
+  // parent's right or bottom (in a parent that grows) is placed from that edge.
+  const from = (edge: string, at: unknown) =>
+    typeof at === 'number'
+      ? { [edge]: `calc(${at}px - var(--solar-placed-${edge}, 0px))` }
+      : {};
   const place: CSSProperties | undefined =
-    typeof p.x === 'number'
+    typeof p.x === 'number' || typeof p.right === 'number'
       ? {
           position: 'absolute',
-          left: `calc(${p.x}px - var(--solar-placed-left, 0px))`,
-          top: `calc(${typeof p.y === 'number' ? p.y : 0}px - var(--solar-placed-top, 0px))`,
+          ...from('left', p.x),
+          ...from('right', p.right),
+          ...(typeof p.bottom === 'number'
+            ? from('bottom', p.bottom)
+            : from('top', typeof p.y === 'number' ? p.y : 0)),
         }
       : undefined;
   const className = `${d.prefix}-${name}`;

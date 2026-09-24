@@ -106,20 +106,6 @@ export const solarSliderRangeStyles = {
   sizes: {},
   appearances: {
     default: {
-      '&:has(.Mui-focusVisible)': {
-        boxShadow: 'var(--solar-shadow-focus-default)',
-        '& .MuiSlider-track': {
-          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-        },
-        '& .MuiSlider-thumb[data-index="0"]': {
-          borderColor: 'var(--solar-color-action-primary-border-default)',
-          boxShadow: 'var(--solar-shadow-control)',
-        },
-        '& .MuiSlider-thumb[data-index="1"]': {
-          borderColor: 'var(--solar-color-action-primary-border-default)',
-          boxShadow: 'var(--solar-shadow-control)',
-        },
-      },
       '&:hover': {
         '& .MuiSlider-track': {
           backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
@@ -143,6 +129,20 @@ export const solarSliderRangeStyles = {
         },
         '& .MuiSlider-thumb[data-index="1"]': {
           borderColor: 'var(--solar-color-action-primary-border-active)',
+          boxShadow: 'var(--solar-shadow-control)',
+        },
+      },
+      '&:has(.Mui-focusVisible)': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
+        '& .MuiSlider-track': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
+        },
+        '& .MuiSlider-thumb[data-index="0"]': {
+          borderColor: 'var(--solar-color-action-primary-border-default)',
+          boxShadow: 'var(--solar-shadow-control)',
+        },
+        '& .MuiSlider-thumb[data-index="1"]': {
+          borderColor: 'var(--solar-color-action-primary-border-default)',
           boxShadow: 'var(--solar-shadow-control)',
         },
       },

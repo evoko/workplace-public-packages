@@ -193,6 +193,7 @@ export const solarSplitButtonStyles = {
       '&:has(.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
+      '&.SolarSplitButton-loading': {},
       '&.SolarSplitButton-disabled': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         boxShadow: 'none',
@@ -203,7 +204,6 @@ export const solarSplitButtonStyles = {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
       },
-      '&.SolarSplitButton-loading': {},
     },
     'variant=secondary': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',

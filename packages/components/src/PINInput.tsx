@@ -1,0 +1,276 @@
+/**
+ * SOLAR PIN Input.
+ *
+ * Scaffolded once by `npm run solar:scaffold "PIN Input"` from spec/components/pin-input.json, and
+ * owned by developers from then on: change it freely. What it looks like is not here. That is the
+ * recipe, `solarPINInputStyle` and `solarPINInputCompose` in `@bwp-web/styles/mui`: each cell's
+ * fill, edge and focus ring by state, its digit's and placeholder's ink, and the label, helper and
+ * error.
+ *
+ * A one-time code or a verification code, one digit per cell, `length` of them (4 to 6, six by
+ * default): its `label` above (a `mandatory` one is starred), its `helper` below, and in `error`
+ * its `errorMessage` there instead. One native input holds the code, invisible over the cells, so
+ * typing moves on a cell, Backspace steps back, a paste fills every cell, and the phone offers the
+ * code it was sent (`autoComplete` one-time-code, the numeric keyboard). The cell the next digit
+ * goes in shows the focus and the caret. `onChange` is called with the digits, `onComplete` once
+ * every cell holds one. For a password or free text, use a Password Input or a Text Input. The app
+ * must load `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { useControlled } from '@mui/material/utils';
+import {
+  forwardRef,
+  useId,
+  useState,
+  type InputHTMLAttributes,
+  type ReactNode,
+} from 'react';
+import {
+  solarPINInputCompose,
+  solarPINInputStyle,
+  type SolarPINInputProps,
+} from '@bwp-web/styles/mui';
+import {
+  drawChildren,
+  drawLayer,
+  type LayerDrawing,
+} from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['label', 'cells', 'helper', 'errorMessage'],
+  label: ['labelLabel', 'mandatory'],
+  cells: ['field', 'field2', 'field3', 'field4', 'field5', 'field6'],
+  field: ['placeholder', 'caret', 'digit'],
+  field2: ['placeholder2', 'digit2'],
+  field3: ['placeholder3', 'digit3'],
+  field4: ['placeholder4', 'digit4'],
+  field5: ['placeholder5', 'digit5'],
+  field6: ['placeholder6', 'digit6'],
+};
+
+/** Figma's six cells, in its order: the first takes the hover, the focus and the caret. */
+const CELLS = TREE.cells;
+
+/** A cell's placeholder and digit, as Figma names them. */
+const partsOf = (cell: string) => ({
+  placeholder: TREE[cell].find((l) => l.startsWith('placeholder'))!,
+  digit: TREE[cell].find((l) => l.startsWith('digit'))!,
+});
+
+export interface PINInputProps
+  extends
+    SolarPINInputProps,
+    Omit<
+      BoxProps,
+      | keyof SolarPINInputProps
+      | 'children'
+      | 'onChange'
+      | 'defaultValue'
+      | 'ref'
+    > {
+  /** What it asks for, above it. */
+  label?: ReactNode;
+  /** Whether it must be filled, which stars the label and makes the input required. */
+  mandatory?: boolean;
+  /** More about it, below. */
+  helper?: ReactNode;
+  /** What is wrong, below in the helper's place, where it is in `error`. */
+  errorMessage?: ReactNode;
+  /** How many digits the code has, 4 to 6. */
+  length?: 4 | 5 | 6;
+  /** The digits typed; controlled where given. */
+  value?: string;
+  /** The digits it starts with, where `value` does not say. */
+  defaultValue?: string;
+  /** Called with the digits as they change. */
+  onChange?: (value: string) => void;
+  /** Called with the code once every cell holds a digit. */
+  onComplete?: (value: string) => void;
+  /** What an empty cell shows, Figma's 0 by default. */
+  placeholder?: string;
+  /** Props for the native input (its `name` for a form, `autoFocus`). */
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
+}
+
+export const PINInput = forwardRef<HTMLDivElement, PINInputProps>(
+  function PINInput(
+    {
+      size,
+      disabled,
+      error,
+      label,
+      mandatory = false,
+      helper,
+      errorMessage,
+      length = 6,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      onComplete,
+      placeholder = '0',
+      inputProps,
+      className,
+      style,
+      sx,
+      ...rest
+    },
+    ref,
+  ) {
+    const id = useId();
+    const [value, setValue] = useControlled<string>({
+      controlled: valueProp,
+      default: defaultValue ?? '',
+      name: 'PINInput',
+      state: 'value',
+    });
+    const [focused, setFocused] = useState(false);
+    // Filled where it holds its code.
+    const filled = value.length > 0;
+    const look = { size, disabled, error, filled };
+    // Its helper gives way to its error, in error.
+    const parts = solarPINInputCompose(look, error ? 'error' : 'default');
+    // The cell the next digit goes in is Figma's first; the others are Figma's rest, in order.
+    const next = Math.min(value.length, length - 1);
+    const others = CELLS.slice(1);
+    const cells = Array.from({ length }, (_, i) =>
+      i === next ? CELLS[0] : others.shift()!,
+    );
+    const text: Record<string, ReactNode> = {};
+    const present: Record<string, boolean> = {};
+    cells.forEach((cell, i) => {
+      const { placeholder: empty, digit } = partsOf(cell);
+      const caret = cell === CELLS[0] && focused && !value[i];
+      text[digit] = value[i] ?? '';
+      text[empty] = placeholder;
+      present[digit] = Boolean(value[i]);
+      present[empty] = !value[i] && !caret;
+      if (cell === CELLS[0]) {
+        text.caret = '|';
+        present.caret = caret;
+      }
+    });
+    const drawing: LayerDrawing = {
+      prefix: 'SolarPINInput',
+      tree: TREE,
+      parts: {
+        ...parts,
+        ...Object.fromEntries(
+          Object.entries(present).map(([layer, shown]) => [
+            layer,
+            { ...parts[layer], present: shown },
+          ]),
+        ),
+        label: { ...parts.label, present: label != null },
+        mandatory: { ...parts.mandatory, present: mandatory },
+        helper: {
+          ...parts.helper,
+          present: parts.helper?.present !== false && helper != null,
+        },
+        errorMessage: {
+          ...parts.errorMessage,
+          present:
+            parts.errorMessage?.present !== false && errorMessage != null,
+        },
+      },
+      text: {
+        ...text,
+        labelLabel: label,
+        mandatory: <span aria-hidden>*</span>,
+        errorMessage,
+      },
+    };
+    const describedBy =
+      error && errorMessage != null
+        ? `${id}-error`
+        : helper != null
+          ? `${id}-helper`
+          : undefined;
+    return (
+      <Box
+        ref={ref}
+        {...rest}
+        className={
+          [
+            filled ? 'SolarPINInput-filled' : null,
+            error ? 'SolarPINInput-error' : null,
+            disabled ? 'SolarPINInput-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        style={style}
+        sx={[solarPINInputStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          ...drawing,
+          content: {
+            // Its cells, the next one Figma's first, and the input over them.
+            cells: [
+              ...cells.map((cell) => drawLayer(cell, drawing)),
+              <input
+                key="input"
+                {...inputProps}
+                id={id}
+                className="SolarPINInput-input"
+                value={value}
+                maxLength={length}
+                inputMode="numeric"
+                pattern="[0-9]*"
+                autoComplete="one-time-code"
+                aria-invalid={error || undefined}
+                aria-describedby={describedBy}
+                required={mandatory}
+                disabled={disabled}
+                onFocus={(event) => {
+                  setFocused(true);
+                  inputProps?.onFocus?.(event);
+                }}
+                onBlur={(event) => {
+                  setFocused(false);
+                  inputProps?.onBlur?.(event);
+                }}
+                // The digits go in at the end, whatever the caret the browser keeps.
+                onSelect={(event) => {
+                  const end = event.currentTarget.value.length;
+                  event.currentTarget.setSelectionRange(end, end);
+                }}
+                onChange={(event) => {
+                  const digits = event.target.value
+                    .replace(/\D/g, '')
+                    .slice(0, length);
+                  setValue(digits);
+                  onChange?.(digits);
+                  if (digits.length === length) onComplete?.(digits);
+                }}
+              />,
+            ],
+          },
+          render: {
+            label: (layer) => <label htmlFor={id} {...layer} />,
+            helper: (layer) => (
+              <span
+                id={`${id}-helper`}
+                className={layer.className}
+                style={layer.style}
+              >
+                {helper}
+              </span>
+            ),
+            errorMessage: (layer) => (
+              <span
+                id={`${id}-error`}
+                className={layer.className}
+                style={layer.style}
+              >
+                {errorMessage}
+              </span>
+            ),
+          },
+        })}
+      </Box>
+    );
+  },
+);

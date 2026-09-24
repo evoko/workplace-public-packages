@@ -1,0 +1,90 @@
+# Hand-written decisions about SOLAR Number Input, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Number Input
+
+layerNames:
+  /Field/0:
+    name: inline value
+    reason: >-
+      Figma names the inline stepper's value by what it draws, a 0: the number in the field. A name
+      made of a digit cannot become code; the side stepper's is already `Value`.
+
+base:
+  mui: InputBase
+  flutter: TextField
+  reason: >-
+    As Text Input: MUI's InputBase on the web, as the field, for its native number input (a
+    spinbutton, with min, max and step, and the arrow keys stepping); Flutter's TextField,
+    undecorated, as its number, stepped by the arrow keys too. The steppers are buttons drawn from
+    Figma's layers with the shared layer helpers, the label and helper as Text Input's.
+
+follows:
+  field.gap:
+    axes: [size, stepper]
+    reason: >-
+      Each stepper lays the field out its own way: inline, the minus and plus sit inset.sm from
+      the number (inset.xs at sm); beside it, the stepper column meets the number with no gap.
+  field.paddingLeft:
+    axes: [size, stepper]
+    reason: >-
+      As the gap: the number sits inset.md in from the field's edge beside a side stepper, which
+      meets the field's right edge (no right padding), and inset.sm either side inline.
+  field.paddingRight:
+    axes: [size, stepper]
+    reason: As the left padding, the side stepper's column flush with the field's right edge.
+  field.width:
+    axes: [size, stepper]
+    reason: >-
+      Inline, the field hugs its number and its buttons; beside a side stepper, it is Figma's
+      fixed 88 (md) and 68 (sm), the number filling what the column leaves.
+
+set:
+  root.appearance.stepper=inline.focus.shadow:
+    none: true
+    reason: >-
+      As Text Area's: Figma rings the whole component, label and helper with it, as well as the
+      field, when it is focused. The focus ring is the field's, and one ring is drawn.
+  root.appearance.stepper=side.focus.shadow:
+    none: true
+    reason: As inline's, one ring, the field's.
+
+bind:
+  fieldDecrement.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.
+  fieldIncrement.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the minus's.
+  leadingIcon.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the minus's.
+  chevronUp.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: As the minus's, a step smaller.
+  chevronDown.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: As the up chevron's.
+  divider.height:
+    literal: 1
+    token: border.default
+    reason: >-
+      The stepper's divider is a hairline, 1px, border.default's width, as Divider's rule is: the
+      same value.
+
+allowLiteral:
+  field.height:
+    reason: >-
+      As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,
+      raised as a governance gap). Drawn 40 (md) and 32 (sm).
+  field.width:
+    reason: >-
+      Beside a side stepper, the field is 88 (md) and 68 (sm), bound to nothing: SOLAR has no
+      control width token (the design review's question on control sizes).
+  stepper.width:
+    reason: >-
+      The side stepper's column is 28 (md) and 24 (sm) wide, bound to nothing, as the field's
+      width is.

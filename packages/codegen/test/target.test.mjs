@@ -46,6 +46,12 @@ describe('the target', () => {
       'Alert Small',
       'Banner',
       'Toast',
+      'Text Input',
+      'Text Area',
+      'SearchField',
+      'GlobalSearch',
+      'Password Input',
+      'Number Input',
     ];
     for (const name of controls)
       expect(JSON.stringify(MUI_RESETS[name]), name).toContain(TARGET);

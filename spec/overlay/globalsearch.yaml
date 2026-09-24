@@ -1,0 +1,46 @@
+# Hand-written decisions about SOLAR GlobalSearch, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: GlobalSearch
+
+base:
+  reason: >-
+    Bespoke on both, as SOLAR's description has it: "the field itself is a trigger" that opens the
+    app's search overlay. Owner decision 2026-09-24: a button drawn as Figma's field, its words the
+    placeholder or the current query, its Kbd the shortcut, pressable and announced as a button on
+    both. No stock control is a field that opens something else.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [query]
+      - value: false
+    reason: >-
+      A trigger is filled where it shows the search the app holds, its query, in place of the
+      placeholder: it follows from the query the app gives, so it is no prop the caller could set
+      against it.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      The trigger spans the room the app's header gives it: Figma draws it 240 wide (md) and 200
+      (sm), samples. The caller sizes it, as a field.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, the sm trigger's 200 a sample.
+
+bind:
+  iconSearch.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,
+      raised as a governance gap). Drawn 40 (md) and 32 (sm).

@@ -95,6 +95,8 @@ describe('controlDraws cells', () => {
           'test.yaml',
         ),
       }),
-    ).toThrow(/controlDraws handle: radius is not one of x, y, width, height/);
+    ).toThrow(
+      /controlDraws handle: radius is not one of x, y, right, bottom, width, height/,
+    );
   });
 });

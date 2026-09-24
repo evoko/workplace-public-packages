@@ -1,0 +1,90 @@
+# Hand-written decisions about SOLAR Inline Input, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Inline Input
+
+base:
+  reason: >-
+    Bespoke on both: a value shown as text that is edited in place (owner decision 2026-09-24: the
+    component holds its mode). Read, it is its words, with an edit button on hover; editing, MUI's
+    InputBase on the web and an undecorated TextField in Flutter, with Confirm and Cancel, the
+    caller's Icon Buttons of Figma's look, drawn by the shells. No stock control edits in place.
+
+same:
+  /Frame 2:
+    as: /Frame 1
+    reason: >-
+      Confirm and Cancel are one pair of buttons, which Figma frames anew in each edit state
+      (Frame 1 focused, Frame 2 filled, Frame 3 in error): one pair in the code, so the focus stays
+      on a button as the state moves from focused to filled.
+  /Frame 3:
+    as: /Frame 1
+    reason: As Frame 2, the pair in error.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [defaultEditing]
+      - value: false
+    reason: >-
+      Figma's filled is the edit mode with the focus on its buttons, not the input: the component
+      holds its mode (owner decision 2026-09-24), which a click or the edit button opens and the
+      caller may start in (defaultEditing), so it is no prop.
+
+follows:
+  root.paddingTop:
+    axes: [state]
+    reason: >-
+      Read, the value is text in a bare row; hovered or editing, it sits in a box 4px in from its
+      top, right and bottom, its buttons at the end: each state lays it out its own way.
+  root.paddingRight:
+    axes: [state]
+    reason: As the top padding.
+  root.paddingBottom:
+    axes: [state]
+    reason: As the top padding.
+  root.borderWidth:
+    axes: [state]
+    reason: >-
+      Read or hovered, it has no edge; editing, it is edged as a field is, focused, filled or in
+      error.
+  root.radius:
+    axes: [state]
+    reason: >-
+      Hovered, its box is rounded radius.container, as a surface's; editing, radius.control, as a
+      field's.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      An inline value spans the room its row gives it: Figma draws it 240 wide, a sample. The
+      caller places it.
+  iconButton.base.width:
+    none: true
+    reason: >-
+      The edit, Confirm and Cancel buttons are SOLAR Icon Buttons, sm as Figma draws them, whose
+      size is their own: the row places them and never sizes them.
+  iconButton.base.height:
+    none: true
+    reason: As its width.
+  confirm.base.width:
+    none: true
+    reason: As the edit button's.
+  confirm.base.height:
+    none: true
+    reason: As the edit button's.
+  cancel.base.width:
+    none: true
+    reason: As the edit button's.
+  cancel.base.height:
+    none: true
+    reason: As the edit button's.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,
+      raised as a governance gap). Drawn 40, read and editing.

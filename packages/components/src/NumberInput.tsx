@@ -1,0 +1,288 @@
+/**
+ * SOLAR Number Input.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Number Input"` from spec/components/number-input.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, `solarNumberInputStyle` and `solarNumberInputCompose` in `@bwp-web/styles/mui`: the
+ * field's fill, edge and focus ring by state, its number's and steppers' ink, and the label and
+ * helper, by stepper.
+ *
+ * A number, stepped between `min` and `max` by `step`: its `label` above (a `mandatory` one is
+ * starred), its `helper` below, which says what is wrong where it is in `error`. The field is MUI's
+ * InputBase, a native input announced as a spinbutton, which takes only a number (the mobile
+ * keyboard's numeric one): the arrow keys step it, and so do its `stepper`'s buttons, a minus and
+ * a plus either side (`inline`) or a column of chevrons after it (`side`, larger for touch). It
+ * calls `onChange` with the number, or null while it is empty. Validate on blur. The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import {
+  IconChevronDown,
+  IconChevronUp,
+  IconMinus,
+  IconPlus,
+} from '@bwp-web/assets';
+import Box from '@mui/material/Box';
+import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
+import { useControlled } from '@mui/material/utils';
+import {
+  forwardRef,
+  useId,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from 'react';
+import {
+  solarNumberInputCompose,
+  solarNumberInputStyle,
+  type SolarNumberInputProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren, type LayerDrawing } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['labelLabel', 'mandatory'],
+  field: [
+    'fieldDecrement',
+    'inlineValue',
+    'fieldIncrement',
+    'leadingIcon',
+    'value',
+    'stepper',
+  ],
+  stepper: ['stepperIncrement', 'divider', 'stepperDecrement'],
+  stepperIncrement: ['chevronUp'],
+  stepperDecrement: ['chevronDown'],
+};
+
+/** A number as the field shows it, or nothing for none. */
+const shown = (n: number | null | undefined) => (n == null ? '' : String(n));
+
+/** What the field holds, as a number: null while it is empty, or not yet a number ("-"). */
+const parsed = (text: string) => {
+  const n = text.trim() === '' ? null : Number(text);
+  return n != null && Number.isFinite(n) ? n : null;
+};
+
+export interface NumberInputProps
+  extends
+    SolarNumberInputProps,
+    Omit<
+      InputBaseProps,
+      | keyof SolarNumberInputProps
+      | 'size'
+      | 'color'
+      | 'type'
+      | 'value'
+      | 'defaultValue'
+      | 'onChange'
+      | 'fullWidth'
+      | 'margin'
+      | 'multiline'
+      | 'rows'
+      | 'minRows'
+      | 'maxRows'
+      | 'startAdornment'
+      | 'endAdornment'
+      | 'required'
+      | 'ref'
+    > {
+  /** What it asks for, above it. */
+  label?: ReactNode;
+  /** Whether it must be filled, which stars the label and makes the input required. */
+  mandatory?: boolean;
+  /** More about it, below; where it is in `error`, what is wrong. */
+  helper?: ReactNode;
+  /** The number it holds, or null for none; controlled where given. */
+  value?: number | null;
+  /** The number it starts with, where `value` does not say. */
+  defaultValue?: number | null;
+  /** Called with the number as it changes, or null while it is empty. */
+  onChange?: (value: number | null) => void;
+  /** The least it takes. */
+  min?: number;
+  /** The most it takes. */
+  max?: number;
+  /** How far a step goes, 1 by default. */
+  step?: number;
+}
+
+export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
+  function NumberInput(
+    {
+      size,
+      disabled,
+      error,
+      stepper,
+      label,
+      mandatory = false,
+      helper,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      min,
+      max,
+      step = 1,
+      id: idProp,
+      inputProps,
+      onBlur,
+      className,
+      style,
+      sx,
+      ...rest
+    },
+    ref,
+  ) {
+    const own = useId();
+    const id = idProp ?? own;
+    const [value, setValue] = useControlled<number | null>({
+      controlled: valueProp,
+      default: defaultValue ?? null,
+      name: 'NumberInput',
+      state: 'value',
+    });
+    // What is typed, while it is not yet a number ("-", "1."); the number's own words otherwise.
+    const [draft, setDraft] = useState<string | null>(null);
+    const text = draft ?? shown(value);
+    const clamp = (n: number) =>
+      Math.min(max ?? Infinity, Math.max(min ?? -Infinity, n));
+    const commit = (n: number | null) => {
+      setValue(n);
+      onChange?.(n);
+    };
+    const stepBy = (dir: 1 | -1) => {
+      if (disabled) return;
+      setDraft(null);
+      commit(clamp((value ?? 0) + dir * step));
+    };
+    const look = { size, disabled, error, stepper };
+    const parts = solarNumberInputCompose(look);
+    // A stepper's button: out of the tab order, the arrow keys being the keyboard's steps, and
+    // leaving the focus in the field.
+    const stepButton = (
+      dir: 1 | -1,
+      name: string,
+      children: ReactNode,
+      layer = {},
+    ) => (
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-label={dir > 0 ? 'Increase' : 'Decrease'}
+        aria-controls={id}
+        disabled={
+          disabled ||
+          (dir > 0
+            ? value != null && max != null && value >= max
+            : value != null && min != null && value <= min)
+        }
+        onMouseDown={(event) => event.preventDefault()}
+        onClick={() => stepBy(dir)}
+        {...layer}
+        key={name}
+      >
+        {children}
+      </button>
+    );
+    const words = (className: string) => (
+      <InputBase
+        {...rest}
+        className="SolarNumberInput-number"
+        id={id}
+        value={text}
+        onChange={(event) => {
+          const typed = event.target.value;
+          // Only what may become a number: digits, a sign and a point.
+          if (!/^-?\d*\.?\d*$/.test(typed)) return;
+          setDraft(typed);
+          const n = parsed(typed);
+          if (n !== value) commit(n);
+        }}
+        onBlur={(event) => {
+          setDraft(null);
+          onBlur?.(event);
+        }}
+        disabled={disabled}
+        error={error}
+        required={mandatory}
+        inputProps={{
+          ...inputProps,
+          inputMode: 'decimal',
+          role: 'spinbutton',
+          'aria-valuenow': value ?? undefined,
+          'aria-valuemin': min,
+          'aria-valuemax': max,
+          size: Math.max(text.length, 1),
+          onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
+            inputProps?.onKeyDown?.(event);
+            if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+              event.preventDefault();
+              stepBy(event.key === 'ArrowUp' ? 1 : -1);
+            }
+          },
+          className: [className, inputProps?.className]
+            .filter(Boolean)
+            .join(' '),
+          'aria-describedby': helper != null ? `${id}-helper` : undefined,
+        }}
+      />
+    );
+    const drawing: LayerDrawing = {
+      prefix: 'SolarNumberInput',
+      tree: TREE,
+      // A part left empty is not drawn.
+      parts: {
+        ...parts,
+        label: { ...parts.label, present: label != null },
+        mandatory: { ...parts.mandatory, present: mandatory },
+        helper: { ...parts.helper, present: helper != null },
+      },
+      text: { labelLabel: label, mandatory: <span aria-hidden>*</span> },
+      icons: {
+        fieldDecrement: stepButton(-1, 'fieldDecrement', <IconMinus />),
+        fieldIncrement: stepButton(1, 'fieldIncrement', <IconPlus />),
+        chevronUp: <IconChevronUp variant="solid" />,
+        chevronDown: <IconChevronDown variant="solid" />,
+      },
+      render: {
+        label: (layer) => <label htmlFor={id} {...layer} />,
+        // The number, inline between its buttons or before its stepper column: an input whose class
+        // is the layer's.
+        inlineValue: (layer) => words(layer.className),
+        value: (layer) => words(layer.className),
+        stepperIncrement: (layer) =>
+          stepButton(1, 'stepperIncrement', layer.children, layer),
+        stepperDecrement: (layer) =>
+          stepButton(-1, 'stepperDecrement', layer.children, layer),
+        helper: (layer) => (
+          <span
+            id={`${id}-helper`}
+            className={layer.className}
+            style={layer.style}
+          >
+            {helper}
+          </span>
+        ),
+      },
+    };
+    return (
+      <Box
+        ref={ref}
+        className={
+          [
+            error ? 'SolarNumberInput-error' : null,
+            disabled ? 'SolarNumberInput-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        style={style}
+        sx={[solarNumberInputStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', drawing)}
+      </Box>
+    );
+  },
+);

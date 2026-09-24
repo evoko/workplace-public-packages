@@ -1,0 +1,245 @@
+/**
+ * SOLAR Token Input.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Token Input"` from spec/components/token-input.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, `solarTokenInputStyle` and `solarTokenInputCompose` in `@bwp-web/styles/mui`: the
+ * field's fill, edge and focus ring by state, the draft's ink, and the label and helper.
+ *
+ * A field of entries (tags, recipients, keywords): its `label` above (a `mandatory` one is starred),
+ * its `helper` below, which says what is wrong where it is in `error`. It holds its entries,
+ * `value` or `defaultValue`, each drawn as a SOLAR Tag with a close button that removes it; Enter
+ * adds what is typed, and Backspace in the empty input removes the last. `maxVisible` draws that
+ * many, and counts the rest in a SOLAR Counter. `onChange` is called with the entries,
+ * `onInputChange` with the draft. Read-only, the entries are shown and cannot be changed. The app
+ * must load `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import InputBase, {
+  type InputBaseComponentProps,
+} from '@mui/material/InputBase';
+import { useControlled } from '@mui/material/utils';
+import { forwardRef, useId, type ReactNode } from 'react';
+import {
+  solarTokenInputCompose,
+  solarTokenInputStyle,
+  type SolarTokenInputProps,
+} from '@bwp-web/styles/mui';
+import { Counter } from './Counter.js';
+import { drawChildren } from './internal/layers.js';
+import { Tag, type TagProps } from './Tag.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['labelLabel', 'mandatory'],
+  field: ['tags', 'counter'],
+  tags: ['addItems', 'tag', 'tag2'],
+};
+
+export interface TokenInputProps
+  extends
+    SolarTokenInputProps,
+    Omit<
+      BoxProps,
+      | keyof SolarTokenInputProps
+      | 'children'
+      | 'onChange'
+      | 'defaultValue'
+      | 'ref'
+    > {
+  /** What it asks for, above it. */
+  label?: ReactNode;
+  /** Whether it must be filled, which stars the label. */
+  mandatory?: boolean;
+  /** More about it, below; where it is in `error`, what is wrong. */
+  helper?: ReactNode;
+  /** Its entries; controlled where given. */
+  value?: string[];
+  /** The entries it starts with, where `value` does not say. */
+  defaultValue?: string[];
+  /** Called with the entries as they change. */
+  onChange?: (value: string[]) => void;
+  /** What is typed, the next entry; controlled where given. */
+  inputValue?: string;
+  /** Called with what is typed as it changes. */
+  onInputChange?: (inputValue: string) => void;
+  /** What the input shows while there are no entries ("Add items…"). */
+  placeholder?: string;
+  /** How many entries are drawn; the rest are counted. All of them by default. */
+  maxVisible?: number;
+  /** More props for the Tag of each entry (a title, a test id). */
+  getTagProps?: (
+    entry: string,
+    index: number,
+  ) => Partial<TagProps> & Record<string, unknown>;
+  /** Props for the native input (its name for a screen reader, where no label says it). */
+  inputProps?: InputBaseComponentProps;
+}
+
+export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(
+  function TokenInput(
+    {
+      size,
+      disabled,
+      error,
+      readonly,
+      label,
+      mandatory = false,
+      helper,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      inputValue: inputProp,
+      onInputChange,
+      placeholder,
+      maxVisible = Infinity,
+      getTagProps,
+      inputProps,
+      className,
+      style,
+      sx,
+      ...rest
+    },
+    ref,
+  ) {
+    const id = useId();
+    const [value, setValue] = useControlled<string[]>({
+      controlled: valueProp,
+      default: defaultValue ?? [],
+      name: 'TokenInput',
+      state: 'value',
+    });
+    const [draft, setDraft] = useControlled<string>({
+      controlled: inputProp,
+      default: '',
+      name: 'TokenInput',
+      state: 'inputValue',
+    });
+    const changes = !readonly && !disabled;
+    const commit = (next: string[]) => {
+      setValue(next);
+      onChange?.(next);
+    };
+    const type = (text: string) => {
+      setDraft(text);
+      onInputChange?.(text);
+    };
+    // Filled where it holds entries; active where a draft is being typed.
+    const filled = value.length > 0;
+    const active = draft !== '';
+    const look = { size, disabled, error, readonly, filled, active };
+    const parts = solarTokenInputCompose(look);
+    const shown = value.slice(0, maxVisible);
+    const hidden = value.length - shown.length;
+    return (
+      <Box
+        ref={ref}
+        {...rest}
+        className={
+          [
+            active ? 'SolarTokenInput-active' : null,
+            filled ? 'SolarTokenInput-filled' : null,
+            readonly ? 'SolarTokenInput-readonly' : null,
+            error ? 'SolarTokenInput-error' : null,
+            disabled ? 'SolarTokenInput-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        style={style}
+        sx={[solarTokenInputStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarTokenInput',
+          tree: TREE,
+          // A part left empty is not drawn; the count shows where entries are left out.
+          parts: {
+            ...parts,
+            label: { ...parts.label, present: label != null },
+            mandatory: { ...parts.mandatory, present: mandatory },
+            helper: { ...parts.helper, present: helper != null },
+            counter: { ...parts.counter, present: hidden > 0 },
+          },
+          text: { labelLabel: label, mandatory: <span aria-hidden>*</span> },
+          // The entries, each a SOLAR Tag, and the input for the next, in Figma's row of tags.
+          content: {
+            tags: [
+              ...shown.map((entry, i) => (
+                <Tag
+                  key={`${i}:${entry}`}
+                  status="neutral"
+                  onClose={
+                    changes
+                      ? () => commit(value.filter((_, at) => at !== i))
+                      : undefined
+                  }
+                  {...getTagProps?.(entry, i)}
+                >
+                  {entry}
+                </Tag>
+              )),
+              readonly ? null : (
+                <InputBase
+                  key="input"
+                  className="SolarTokenInput-words"
+                  value={draft}
+                  placeholder={filled ? undefined : placeholder}
+                  onChange={(event) => type(event.target.value)}
+                  disabled={disabled}
+                  error={error}
+                  inputProps={{
+                    'aria-label': typeof label === 'string' ? label : undefined,
+                    ...inputProps,
+                    className: [
+                      'SolarTokenInput-addItems',
+                      inputProps?.className,
+                    ]
+                      .filter(Boolean)
+                      .join(' '),
+                    'aria-describedby':
+                      helper != null ? `${id}-helper` : undefined,
+                    onKeyDown: (event) => {
+                      inputProps?.onKeyDown?.(event);
+                      const text = draft.trim();
+                      if (event.key === 'Enter' && text) {
+                        event.preventDefault();
+                        commit([...value, text]);
+                        type('');
+                      }
+                      if (
+                        event.key === 'Backspace' &&
+                        draft === '' &&
+                        value.length
+                      )
+                        commit(value.slice(0, -1));
+                    },
+                  }}
+                />
+              ),
+            ],
+          },
+          render: {
+            // A SOLAR Counter of the entries left out.
+            counter: (layer) => (
+              <span {...layer}>
+                <Counter count={hidden} />
+              </span>
+            ),
+            helper: (layer) => (
+              <span
+                id={`${id}-helper`}
+                className={layer.className}
+                style={layer.style}
+              >
+                {helper}
+              </span>
+            ),
+          },
+        })}
+      </Box>
+    );
+  },
+);

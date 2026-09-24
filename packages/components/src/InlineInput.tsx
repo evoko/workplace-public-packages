@@ -1,0 +1,213 @@
+/**
+ * SOLAR Inline Input.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Inline Input"` from spec/components/inline-input.json,
+ * and owned by developers from then on: change it freely. What it looks like is not here. That is
+ * the recipe, `solarInlineInputStyle` and `solarInlineInputCompose` in `@bwp-web/styles/mui`: its
+ * box by mode and state, and its words' ink.
+ *
+ * A value edited where it is shown (a name in a header, a cell): read, its `value` as text, with an
+ * edit button on hover; a click, or the edit button, opens it for editing, MUI's InputBase with
+ * Confirm and Cancel. Enter or Confirm calls `onConfirm` with what is typed, which may return false
+ * to keep it open (a value it rejects, with `error` set); Esc or Cancel discards the edit
+ * (`onCancel`). It holds its own mode, and `defaultEditing` starts it open. Its `label` names the
+ * input and the edit button for a screen reader ("Edit name"). The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import { IconCheck, IconClose, IconEdit } from '@bwp-web/assets';
+import Box, { type BoxProps } from '@mui/material/Box';
+import InputBase from '@mui/material/InputBase';
+import { forwardRef, useEffect, useRef, useState } from 'react';
+import {
+  solarInlineInputCompose,
+  solarInlineInputStyle,
+  type SolarInlineInputProps,
+} from '@bwp-web/styles/mui';
+import { IconButton } from './IconButton.js';
+import { drawChildren } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['value', 'iconButton', 'frame1'],
+  frame1: ['confirm', 'cancel'],
+};
+
+export interface InlineInputProps
+  extends
+    SolarInlineInputProps,
+    Omit<
+      BoxProps,
+      keyof SolarInlineInputProps | 'children' | 'onChange' | 'ref'
+    > {
+  /** The value it shows, and edits. */
+  value: string;
+  /**
+   * Called with what is typed when Enter or Confirm commits it; false keeps it open (a value the
+   * caller rejects, with `error` set).
+   */
+  onConfirm: (value: string) => boolean | void;
+  /** Called when Esc or Cancel discards the edit. */
+  onCancel?: () => void;
+  /** Whether it starts open for editing. */
+  defaultEditing?: boolean;
+  /** What it holds, for a screen reader: names the input, and the edit button ("Edit name"). */
+  label?: string;
+  /** What it shows while the input is empty. */
+  placeholder?: string;
+}
+
+export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
+  function InlineInput(
+    {
+      error,
+      disabled,
+      value,
+      onConfirm,
+      onCancel,
+      defaultEditing = false,
+      label,
+      placeholder,
+      className,
+      onClick,
+      sx,
+      ...rest
+    },
+    ref,
+  ) {
+    const [editing, setEditing] = useState(defaultEditing && !disabled);
+    const [draft, setDraft] = useState(value);
+    const [focused, setFocused] = useState(false);
+    const input = useRef<HTMLInputElement>(null);
+    const edit = useRef<HTMLButtonElement>(null);
+    // Where the user opened it, the focus goes to the input; where it closes, back to the edit button.
+    const moveFocus = useRef<'input' | 'edit' | null>(null);
+    useEffect(() => {
+      if (moveFocus.current === 'input') input.current?.focus();
+      if (moveFocus.current === 'edit') edit.current?.focus();
+      moveFocus.current = null;
+    }, [editing]);
+    const begin = () => {
+      if (disabled || editing) return;
+      setDraft(value);
+      moveFocus.current = 'input';
+      setEditing(true);
+    };
+    const close = () => {
+      setFocused(false);
+      moveFocus.current = 'edit';
+      setEditing(false);
+    };
+    const confirm = () => {
+      if (onConfirm(draft) !== false) close();
+    };
+    const cancel = () => {
+      setDraft(value);
+      close();
+      onCancel?.();
+    };
+    // Filled while it is open and the focus is off its input, on its buttons.
+    const filled = editing && !focused;
+    const look = { error, disabled, filled };
+    const parts = solarInlineInputCompose(look);
+    return (
+      <Box
+        ref={ref}
+        {...rest}
+        onClick={(event) => {
+          onClick?.(event);
+          begin();
+        }}
+        className={
+          [
+            editing ? 'SolarInlineInput-editing' : null,
+            filled ? 'SolarInlineInput-filled' : null,
+            error ? 'SolarInlineInput-error' : null,
+            disabled ? 'SolarInlineInput-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        sx={[solarInlineInputStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarInlineInput',
+          tree: TREE,
+          // Read, its words and the edit button; editing, the input and its actions.
+          parts: {
+            ...parts,
+            iconButton: { ...parts.iconButton, present: !editing && !disabled },
+            frame1: { ...parts.frame1, present: editing },
+            confirm: { ...parts.confirm, present: editing },
+            cancel: { ...parts.cancel, present: editing },
+          },
+          text: editing ? undefined : { value },
+          render: {
+            value: (layer) => (
+              <InputBase
+                className="SolarInlineInput-words"
+                inputRef={input}
+                value={draft}
+                placeholder={placeholder}
+                onChange={(event) => setDraft(event.target.value)}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                error={error}
+                inputProps={{
+                  className: layer.className,
+                  'aria-label': label,
+                  'aria-invalid': error || undefined,
+                  onKeyDown: (event) => {
+                    if (event.key === 'Enter') confirm();
+                    if (event.key === 'Escape') cancel();
+                  },
+                }}
+              />
+            ),
+            iconButton: (layer) => (
+              <span {...layer}>
+                <IconButton
+                  ref={edit}
+                  variant="tertiary"
+                  size="sm"
+                  shape="square"
+                  icon={<IconEdit />}
+                  aria-label={label ? `Edit ${label}` : 'Edit'}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    begin();
+                  }}
+                />
+              </span>
+            ),
+            confirm: (layer) => (
+              <span {...layer}>
+                <IconButton
+                  variant="tertiary"
+                  size="sm"
+                  shape="square"
+                  icon={<IconCheck />}
+                  aria-label="Confirm"
+                  onClick={confirm}
+                />
+              </span>
+            ),
+            cancel: (layer) => (
+              <span {...layer}>
+                <IconButton
+                  variant="tertiary"
+                  size="sm"
+                  shape="square"
+                  icon={<IconClose />}
+                  aria-label="Cancel"
+                  onClick={cancel}
+                />
+              </span>
+            ),
+          },
+        })}
+      </Box>
+    );
+  },
+);

@@ -60,6 +60,10 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
       final origin = box.localToGlobal(Offset.zero);
       values['x'] = corner.dx - origin.dx;
       values['y'] = corner.dy - origin.dy;
+      // From the far edges too, for a layer pinned to them (placementOf).
+      values['right'] = origin.dx + box.size.width - (corner.dx + size.width);
+      values['bottom'] =
+          origin.dy + box.size.height - (corner.dy + size.height);
     }
     // A translucent layer (Node End's halo) is its drawing inside an Opacity.
     var child = keyed.child;
@@ -89,18 +93,46 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
               .style!,
         ),
       );
+    } else if (child is! Container) {
+      // A text the user edits (Text Input's words, the shell's field), in the style its words are
+      // painted in; or a control the caller gives (Text Area's Icon Buttons), which its own check
+      // measures, where the case does.
+      final words = find.descendant(
+        of: here,
+        matching: find.byType(EditableText),
+      );
+      if (words.evaluate().isNotEmpty) {
+        values.addAll(textValues(tester.widget<EditableText>(words).style));
+      }
     } else {
-      final container = child as Container;
+      final container = child;
       final d = container.decoration! as BoxDecoration;
       final border = d.border as Border?;
-      final padding = (container.padding ?? EdgeInsets.zero).resolve(
-        TextDirection.ltr,
-      );
-      final content = container.child;
+      // An auto layout with children placed over it (Text Area's field) pads its laid-out
+      // children alone, the first of its stack.
+      final stacked = container.child;
+      final inner =
+          stacked is Stack &&
+              stacked.children.isNotEmpty &&
+              stacked.children.first is Padding
+          ? stacked.children.first as Padding
+          : null;
+      final padding = (inner?.padding ?? container.padding ?? EdgeInsets.zero)
+          .resolve(TextDirection.ltr);
+      final content = inner?.child ?? container.child;
       values.addAll({
         'background': d.color ?? Colors.transparent,
-        'borderColor': border?.top.color ?? Colors.transparent,
+        // The colour of a side that is drawn, where only some are (Number Input's side stepper).
+        'borderColor':
+            [border?.top, border?.right, border?.bottom, border?.left]
+                .firstWhere((s) => s != null && s.width > 0, orElse: () => null)
+                ?.color ??
+            Colors.transparent,
         'borderWidth': border?.top.width ?? 0.0,
+        'borderTopWidth': border?.top.width ?? 0.0,
+        'borderRightWidth': border?.right.width ?? 0.0,
+        'borderBottomWidth': border?.bottom.width ?? 0.0,
+        'borderLeftWidth': border?.left.width ?? 0.0,
         'radius': (d.borderRadius as BorderRadius?)?.topLeft.x ?? 0.0,
         'shadow': d.boxShadow ?? const <BoxShadow>[],
         'paddingTop': padding.top,

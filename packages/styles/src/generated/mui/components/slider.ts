@@ -99,12 +99,6 @@ export const solarSliderStyles = {
   sizes: {},
   appearances: {
     default: {
-      '&:has(.Mui-focusVisible)': {
-        boxShadow: 'var(--solar-shadow-focus-default)',
-        '& .MuiSlider-track': {
-          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-        },
-      },
       '&:hover': {
         '& .MuiSlider-track': {
           backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
@@ -113,6 +107,12 @@ export const solarSliderStyles = {
       '&:has(.Mui-active)': {
         '& .MuiSlider-track': {
           backgroundColor: 'var(--solar-color-action-primary-bg-active)',
+        },
+      },
+      '&:has(.Mui-focusVisible)': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
+        '& .MuiSlider-track': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
         },
       },
       '&.Mui-disabled': {

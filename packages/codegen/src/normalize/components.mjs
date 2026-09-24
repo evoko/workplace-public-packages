@@ -20,6 +20,7 @@ import {
   followsOf,
   restylesOf,
   renameStates,
+  sameLayers,
   sampleAxes,
 } from './overlay.mjs';
 import { deriveRecipe } from './recipe.mjs';
@@ -417,7 +418,11 @@ export function buildComponentSpec(
   // Then a state value Figma spells otherwise (Text Input's `pressed` is its focus state).
   // Axes that are samples of what the caller gives (Avatar's colours) are dropped, keeping the
   // variants at the values the overlay names.
-  const resolved = sampleAxes(renameStates(folded.resolved, overlay), overlay);
+  // And the layers the overlay reads as one (Inline Input's action frames, drawn anew per state).
+  const resolved = sampleAxes(
+    sameLayers(renameStates(folded.resolved, overlay), overlay),
+    overlay,
+  );
   // Settled before the recipe, because the overlay's `follows` rules are written in them.
   const parents = new Map();
   const defaultVariant = resolved.variants.find(

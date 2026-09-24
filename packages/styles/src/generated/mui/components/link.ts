@@ -114,21 +114,6 @@ export const solarLinkStyles = {
   },
   appearances: {
     default: {
-      '&.Mui-focusVisible': {
-        boxShadow: 'var(--solar-shadow-focus-default)',
-      },
-      '&.SolarLink-disabled': {
-        opacity: '0.5',
-        '& .SolarLink-leadingIcon': {
-          color: 'var(--solar-color-icon-link-disabled)',
-        },
-        '& .SolarLink-label': {
-          color: 'var(--solar-color-text-link-disabled)',
-        },
-        '& .SolarLink-trailingIcon': {
-          color: 'var(--solar-color-icon-link-disabled)',
-        },
-      },
       '&:hover': {
         '& .SolarLink-leadingIcon': {
           color: 'var(--solar-color-icon-link-hover)',
@@ -151,11 +136,54 @@ export const solarLinkStyles = {
           color: 'var(--solar-color-icon-link-active)',
         },
       },
+      '&.Mui-focusVisible': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
+      },
+      '&.SolarLink-disabled': {
+        opacity: '0.5',
+        '& .SolarLink-leadingIcon': {
+          color: 'var(--solar-color-icon-link-disabled)',
+        },
+        '& .SolarLink-label': {
+          color: 'var(--solar-color-text-link-disabled)',
+        },
+        '& .SolarLink-trailingIcon': {
+          color: 'var(--solar-color-icon-link-disabled)',
+        },
+      },
     },
   },
   combined: {
     xs: {
       default: {
+        '&:hover': {
+          '& .SolarLink-label': {
+            fontFamily: 'var(--solar-type-font-family-inter)',
+            fontWeight: 'var(--solar-type-font-weight-500)',
+            fontSize: 'var(--solar-type-size-body-xs)',
+            lineHeight: 'var(--solar-type-line-height-body-xs)',
+            letterSpacing: '-0.02em',
+            textDecoration: 'underline',
+          },
+        },
+        '& .SolarLink-label': {
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-body-xs)',
+          lineHeight: 'var(--solar-type-line-height-body-xs)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'underline',
+        },
+        '&:active': {
+          '& .SolarLink-label': {
+            fontFamily: 'var(--solar-type-font-family-inter)',
+            fontWeight: 'var(--solar-type-font-weight-500)',
+            fontSize: 'var(--solar-type-size-body-xs)',
+            lineHeight: 'var(--solar-type-line-height-body-xs)',
+            letterSpacing: '-0.02em',
+            textDecoration: 'underline',
+          },
+        },
         '&.Mui-focusVisible': {
           '& .SolarLink-leadingIcon': {
             color: 'var(--solar-color-icon-link-default)',
@@ -171,34 +199,6 @@ export const solarLinkStyles = {
           },
           '& .SolarLink-trailingIcon': {
             color: 'var(--solar-color-icon-link-default)',
-          },
-        },
-        '& .SolarLink-label': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-body-xs)',
-          lineHeight: 'var(--solar-type-line-height-body-xs)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'underline',
-        },
-        '&:hover': {
-          '& .SolarLink-label': {
-            fontFamily: 'var(--solar-type-font-family-inter)',
-            fontWeight: 'var(--solar-type-font-weight-500)',
-            fontSize: 'var(--solar-type-size-body-xs)',
-            lineHeight: 'var(--solar-type-line-height-body-xs)',
-            letterSpacing: '-0.02em',
-            textDecoration: 'underline',
-          },
-        },
-        '&:active': {
-          '& .SolarLink-label': {
-            fontFamily: 'var(--solar-type-font-family-inter)',
-            fontWeight: 'var(--solar-type-font-weight-500)',
-            fontSize: 'var(--solar-type-size-body-xs)',
-            lineHeight: 'var(--solar-type-line-height-body-xs)',
-            letterSpacing: '-0.02em',
-            textDecoration: 'underline',
           },
         },
         '&.SolarLink-disabled': {
@@ -215,6 +215,34 @@ export const solarLinkStyles = {
     },
     sm: {
       default: {
+        '&:hover': {
+          '& .SolarLink-label': {
+            fontFamily: 'var(--solar-type-font-family-inter)',
+            fontWeight: 'var(--solar-type-font-weight-500)',
+            fontSize: 'var(--solar-type-size-body-md)',
+            lineHeight: 'var(--solar-type-line-height-body-md)',
+            letterSpacing: '-0.02286em',
+            textDecoration: 'underline',
+          },
+        },
+        '& .SolarLink-label': {
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-body-md)',
+          lineHeight: 'var(--solar-type-line-height-body-md)',
+          letterSpacing: '-0.02286em',
+          textDecoration: 'underline',
+        },
+        '&:active': {
+          '& .SolarLink-label': {
+            fontFamily: 'var(--solar-type-font-family-inter)',
+            fontWeight: 'var(--solar-type-font-weight-500)',
+            fontSize: 'var(--solar-type-size-body-md)',
+            lineHeight: 'var(--solar-type-line-height-body-md)',
+            letterSpacing: '-0.02286em',
+            textDecoration: 'underline',
+          },
+        },
         '&.Mui-focusVisible': {
           '& .SolarLink-leadingIcon': {
             color: 'var(--solar-color-icon-link-default)',
@@ -230,34 +258,6 @@ export const solarLinkStyles = {
           },
           '& .SolarLink-trailingIcon': {
             color: 'var(--solar-color-icon-link-default)',
-          },
-        },
-        '& .SolarLink-label': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-body-md)',
-          lineHeight: 'var(--solar-type-line-height-body-md)',
-          letterSpacing: '-0.02286em',
-          textDecoration: 'underline',
-        },
-        '&:hover': {
-          '& .SolarLink-label': {
-            fontFamily: 'var(--solar-type-font-family-inter)',
-            fontWeight: 'var(--solar-type-font-weight-500)',
-            fontSize: 'var(--solar-type-size-body-md)',
-            lineHeight: 'var(--solar-type-line-height-body-md)',
-            letterSpacing: '-0.02286em',
-            textDecoration: 'underline',
-          },
-        },
-        '&:active': {
-          '& .SolarLink-label': {
-            fontFamily: 'var(--solar-type-font-family-inter)',
-            fontWeight: 'var(--solar-type-font-weight-500)',
-            fontSize: 'var(--solar-type-size-body-md)',
-            lineHeight: 'var(--solar-type-line-height-body-md)',
-            letterSpacing: '-0.02286em',
-            textDecoration: 'underline',
           },
         },
         '&.SolarLink-disabled': {
@@ -274,23 +274,6 @@ export const solarLinkStyles = {
     },
     md: {
       default: {
-        '&.Mui-focusVisible': {
-          '& .SolarLink-leadingIcon': {
-            color: 'var(--solar-color-icon-link-default)',
-          },
-          '& .SolarLink-label': {
-            color: 'var(--solar-color-text-link-default)',
-            fontFamily: 'var(--solar-type-font-family-inter)',
-            fontWeight: 'var(--solar-type-font-weight-500)',
-            fontSize: 'var(--solar-type-size-body-lg)',
-            lineHeight: 'var(--solar-type-line-height-body-lg)',
-            letterSpacing: '-0.02em',
-            textDecoration: 'underline',
-          },
-          '& .SolarLink-trailingIcon': {
-            color: 'var(--solar-color-icon-link-default)',
-          },
-        },
         '&:hover': {
           '& .SolarLink-label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
@@ -309,6 +292,23 @@ export const solarLinkStyles = {
             lineHeight: 'var(--solar-type-line-height-body-lg)',
             letterSpacing: '-0.02em',
             textDecoration: 'underline',
+          },
+        },
+        '&.Mui-focusVisible': {
+          '& .SolarLink-leadingIcon': {
+            color: 'var(--solar-color-icon-link-default)',
+          },
+          '& .SolarLink-label': {
+            color: 'var(--solar-color-text-link-default)',
+            fontFamily: 'var(--solar-type-font-family-inter)',
+            fontWeight: 'var(--solar-type-font-weight-500)',
+            fontSize: 'var(--solar-type-size-body-lg)',
+            lineHeight: 'var(--solar-type-line-height-body-lg)',
+            letterSpacing: '-0.02em',
+            textDecoration: 'underline',
+          },
+          '& .SolarLink-trailingIcon': {
+            color: 'var(--solar-color-icon-link-default)',
           },
         },
       },

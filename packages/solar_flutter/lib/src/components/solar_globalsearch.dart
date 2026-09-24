@@ -1,0 +1,112 @@
+/// SOLAR GlobalSearch.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter GlobalSearch` from
+/// spec/components/globalsearch.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarGlobalSearchRecipe]: its fill, edge and
+/// focus ring by state, and its words’ and icon’s ink, read cell by cell.
+///
+/// The entry to search across the product, usually in the app's header: a trigger drawn as a field,
+/// not a field, drawn from Figma's layer tree with [SolarLayers]. It shows [placeholder]
+/// ("Search"), or the [query] the app's search holds (drawn filled), and [onPressed] opens the
+/// app's search overlay (a command palette), which takes the typing. [shortcut] shows the key that
+/// opens it too in a SolarKbd ("⌘K", "/"); binding that key is the app's. It is a button, named by
+/// its words. For a search of one list or table, use a SolarSearchField.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/globalsearch.dart';
+import '../generated/icons.dart';
+import '../solar_layers.dart';
+import '../solar_states.dart';
+import '../generated/components/kbd.dart';
+import 'solar_kbd.dart';
+import 'solar_theme_of.dart';
+
+class SolarGlobalSearch extends StatelessWidget {
+  const SolarGlobalSearch({
+    super.key,
+    this.error = false,
+    this.size = SolarGlobalSearchSize.md,
+    required this.onPressed,
+    this.placeholder = 'Search',
+    this.query,
+    this.shortcut,
+    this.statesController,
+  });
+
+  final bool error;
+  final SolarGlobalSearchSize size;
+
+  /// Opens the app's search; null disables it.
+  final VoidCallback? onPressed;
+
+  /// What it searches, while the app's search holds no query.
+  final String placeholder;
+
+  /// The query the app's search holds, shown in the placeholder's place.
+  final String? query;
+
+  /// The key that opens the search too, in a SolarKbd ("⌘K", "/"), where the app binds one.
+  final String? shortcut;
+
+  /// Its states, where the caller keeps them.
+  final WidgetStatesController? statesController;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['iconSearch', 'searchWorkplace', 'kbd'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    // Filled where it shows a query, whose words are then the query's, not the placeholder's.
+    final query = this.query;
+    final filled = query != null && query.isNotEmpty;
+    final t = solarThemeOf(context);
+    final p = SolarGlobalSearchProps(error: error, size: size, filled: filled);
+    Widget draw(Set<WidgetState> states) => SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarGlobalSearchRecipe.lookup(c, p, states),
+        dimension: (c) => SolarGlobalSearchRecipe.dimension(c, p, states),
+        color: (c) => SolarGlobalSearchRecipe.color(t, c, p, states),
+        shadow: (c) => SolarGlobalSearchRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarGlobalSearchRecipe.textStyle(t, c, p, states),
+        present: (l) => l == 'kbd'
+            ? shortcut != null
+            : SolarGlobalSearchRecipe.present(l, p, states),
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'globalSearch',
+      text: {'searchWorkplace': filled ? query : placeholder},
+      composed: {
+        if (shortcut case final keys?)
+          'kbd': ExcludeSemantics(
+            child: SolarKbd(
+              type: SolarKbdType.values.firstWhere(
+                (k) =>
+                    k.figma ==
+                    SolarGlobalSearchRecipe.lookup(
+                      'kbd.variant.type',
+                      p,
+                      states,
+                    )!.substring(2),
+              ),
+              label: keys,
+            ),
+          ),
+      },
+      truncates: const {'searchWorkplace'},
+      icons: const {'iconSearch': SolarIcons.searchOutline},
+    ).layer('root');
+    final mark = SolarPressable(
+      onPressed: onPressed,
+      statesController: statesController,
+
+      target: true,
+      builder: (_, states) => draw(states),
+    );
+    return mark;
+  }
+}

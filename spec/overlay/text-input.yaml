@@ -1,0 +1,61 @@
+# Hand-written decisions about SOLAR Text Input, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Text Input
+
+base:
+  mui: InputBase
+  flutter: TextField
+  reason: >-
+    MUI's InputBase on the web, as the field, for its native input (a form value, autofill, the
+    caret and selection, an input component of the caller's), with its icons either side; SOLAR's
+    label above it and helper below are the shell's own, linked to the input by id. Flutter's
+    TextField, undecorated, as the text in the field, for its editing, selection and semantics; the
+    field, its icons, the label and the helper drawn with the shared layer helpers.
+
+states:
+  rename:
+    pressed:
+      to: focus
+      reason: >-
+        Figma's description says it: "pressed is the focused state here and is flagged to rename
+        to focus (Class B) in a breaking cut". A field is focused, not pressed; the code draws it
+        while the input has the focus.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [value]
+      - value: false
+    reason: >-
+      A field is filled where it holds a value: its words are drawn as the value's, not the
+      placeholder's. It follows from the value the input holds, as the caller types or sets it,
+      so it is no prop the caller could set against its content.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160
+      (sm), samples. The caller sizes it, as a Slider or a Banner.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, the sm field's 160 a sample.
+
+bind:
+  leadingIcon.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.
+  trailingIcon.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the leading icon's.
+
+allowLiteral:
+  field.height:
+    reason: >-
+      As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap). The field is drawn 40 (md) and 32 (sm), as the description says.

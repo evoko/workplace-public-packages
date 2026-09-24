@@ -15,13 +15,20 @@ import 'divider.dart';
 import 'draghandle.dart';
 import 'emptystate.dart';
 import 'fab.dart';
+import 'fileupload.dart';
+import 'globalsearch.dart';
 import 'icon_button.dart';
+import 'inline_input.dart';
 import 'kbd.dart';
 import 'link.dart';
 import 'node_end.dart';
+import 'number_input.dart';
+import 'pin_input.dart';
+import 'password_input.dart';
 import 'progressbar.dart';
 import 'radio.dart';
 import 'rowexpand.dart';
+import 'searchfield.dart';
 import 'segmented_control.dart';
 import 'segmented_control_item.dart';
 import 'skeleton.dart';
@@ -31,9 +38,12 @@ import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
 import 'tag.dart';
+import 'text_area.dart';
+import 'text_input.dart';
 import 'timestamp.dart';
 import 'toast.dart';
 import 'toggle.dart';
+import 'token_input.dart';
 import 'tree_indent.dart';
 import 'trend_badge.dart';
 
@@ -51,13 +61,20 @@ const builders = <String, VariantBuilder>{
   'DragHandle': buildDragHandle,
   'EmptyState': buildEmptyState,
   'FAB': buildFAB,
+  'FileUpload': buildFileUpload,
+  'GlobalSearch': buildGlobalSearch,
   'Icon Button': buildIconButton,
+  'Inline Input': buildInlineInput,
   'Kbd': buildKbd,
   'Link': buildLink,
   'Node End': buildNodeEnd,
+  'Number Input': buildNumberInput,
+  'PIN Input': buildPINInput,
+  'Password Input': buildPasswordInput,
   'ProgressBar': buildProgressBar,
   'Radio': buildRadio,
   'RowExpand': buildRowExpand,
+  'SearchField': buildSearchField,
   'Segmented Control': buildSegmentedControl,
   'Segmented Control Item': buildSegmentedControlItem,
   'Skeleton': buildSkeleton,
@@ -67,9 +84,12 @@ const builders = <String, VariantBuilder>{
   'SplitButton': buildSplitButton,
   'StatusIndicator': buildStatusIndicator,
   'Tag': buildTag,
+  'Text Area': buildTextArea,
+  'Text Input': buildTextInput,
   'Timestamp': buildTimestamp,
   'Toast': buildToast,
   'Toggle': buildToggle,
+  'Token Input': buildTokenInput,
   'Tree Indent': buildTreeIndent,
   'Trend Badge': buildTrendBadge,
 };

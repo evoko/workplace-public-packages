@@ -15,13 +15,20 @@ import divider from './divider.js';
 import dragHandle from './draghandle.js';
 import emptyState from './emptystate.js';
 import fab from './fab.js';
+import fileUpload from './fileupload.js';
+import globalSearch from './globalsearch.js';
 import iconButton from './icon-button.js';
+import inlineInput from './inline-input.js';
 import kbd from './kbd.js';
 import link from './link.js';
 import nodeEnd from './node-end.js';
+import numberInput from './number-input.js';
+import pinInput from './pin-input.js';
+import passwordInput from './password-input.js';
 import progressBar from './progressbar.js';
 import radio from './radio.js';
 import rowExpand from './rowexpand.js';
+import searchField from './searchfield.js';
 import segmentedControl from './segmented-control.js';
 import segmentedControlItem from './segmented-control-item.js';
 import skeleton from './skeleton.js';
@@ -31,9 +38,12 @@ import spinner from './spinner.js';
 import splitButton from './splitbutton.js';
 import statusIndicator from './statusindicator.js';
 import tag from './tag.js';
+import textArea from './text-area.js';
+import textInput from './text-input.js';
 import timestamp from './timestamp.js';
 import toast from './toast.js';
 import toggle from './toggle.js';
+import tokenInput from './token-input.js';
 import treeIndent from './tree-indent.js';
 import trendBadge from './trend-badge.js';
 import type { VisualCase } from './types.js';
@@ -52,13 +62,20 @@ export const CASES: Record<string, VisualCase> = {
   DragHandle: dragHandle,
   EmptyState: emptyState,
   FAB: fab,
+  FileUpload: fileUpload,
+  GlobalSearch: globalSearch,
   'Icon Button': iconButton,
+  'Inline Input': inlineInput,
   Kbd: kbd,
   Link: link,
   'Node End': nodeEnd,
+  'Number Input': numberInput,
+  'PIN Input': pinInput,
+  'Password Input': passwordInput,
   ProgressBar: progressBar,
   Radio: radio,
   RowExpand: rowExpand,
+  SearchField: searchField,
   'Segmented Control': segmentedControl,
   'Segmented Control Item': segmentedControlItem,
   Skeleton: skeleton,
@@ -68,9 +85,12 @@ export const CASES: Record<string, VisualCase> = {
   SplitButton: splitButton,
   StatusIndicator: statusIndicator,
   Tag: tag,
+  'Text Area': textArea,
+  'Text Input': textInput,
   Timestamp: timestamp,
   Toast: toast,
   Toggle: toggle,
+  'Token Input': tokenInput,
   'Tree Indent': treeIndent,
   'Trend Badge': trendBadge,
 };

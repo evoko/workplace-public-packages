@@ -54,8 +54,10 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 `SolarRowExpand` and `SolarTreeIndent`), and the selection controls (`SolarCheckbox`,
 `SolarRadio`, `SolarToggle`, `SolarSlider`, `SolarSliderRange`, `SolarDragHandle`,
 `SolarSegmentedControl` and `SolarSegmentedControlItem`), and the tags and messages (`SolarTag`,
-`SolarAlert`, `SolarAlertSmall`, `SolarBanner`, `SolarToast` and `SolarEmptyState`) take the same
-props as the React components
+`SolarAlert`, `SolarAlertSmall`, `SolarBanner`, `SolarToast` and `SolarEmptyState`), and the
+text fields (`SolarTextInput`, `SolarTextArea`, `SolarSearchField`, `SolarGlobalSearch`,
+`SolarPasswordInput`, `SolarNumberInput`, `SolarInlineInput`, `SolarTokenInput`, `SolarPINInput`
+and `SolarFileUpload`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
@@ -65,7 +67,17 @@ control takes what a tap asks for as Flutter's do (`onChanged` on a `SolarCheckb
 `SolarToggle`, null disabling it), and a slider is on `min` to `max`, 0 to 1 by default. A
 `SolarRadio<T>` and a `SolarSegmentedControlItem<T>` are checked by the `RadioGroup` around them,
 by their `value`, as Flutter's own Radio is, so they take no `checked` or `selected`; the group
-also moves between them with the arrow keys. `SolarFAB` is a FilledButton, which a Scaffold's
+also moves between them with the arrow keys. A `SolarTextInput` holds its words in a
+`TextEditingController` (`controller`), where the web takes a `value`, and is drawn filled while it
+holds any; its words are an undecorated `TextField`, a tap anywhere in the field focuses them, and
+they are read as one text field, named by its label and described by its helper, a control in the
+field (a clear button) its own. A `SolarTextArea` is the same, many lines tall, with the caller's
+Icon Buttons in its bottom corners. `SolarField` (`lib/src/solar_field.dart`) holds a field's words,
+focus and states for them all: hovered and focused as the field is, not as the TextField's own box.
+A `SolarNumberInput` takes a `num? value` and `onChanged`; a `SolarTokenInput` its entries as
+`value`, its draft in a `controller`; a `SolarPINInput` its digits in a `controller`; and a
+`SolarFileUpload` shows the names the app's picker chose, calling `onBrowse` for it to open one,
+since Flutter has none of its own. `SolarFAB` is a FilledButton, which a Scaffold's
 `floatingActionButton` takes:
 
 ```dart
@@ -121,7 +133,12 @@ examples where the shell gives them (`content`: Segmented Control's track). A pl
 in from its parent's border and padding, since Figma measures from the parent's outer edge.
 A layer that is another SOLAR component (Tag's StatusIndicator, Toast's Tag) is drawn as the widget
 the shell builds for it (`composed`), a text may wrap (`wraps`: EmptyState's words), and a Tag
-takes the colours a Toast draws it in (`restyle`).
+takes the colours a Toast draws it in (`restyle`), and a text the user edits is the shell's field,
+in the layer's text style, taking the room its row leaves (`fields`: Text Input's words). A layer
+Figma places in a parent that grows keeps its distance from the nearer edge (Text Area's buttons,
+pinned to the field's bottom corners), placed over the laid-out ones where its parent has an auto
+layout; a control the caller gives there is drawn at its own size, centred in Figma's box, so a
+touch target around it does not move it.
 `SolarLayerRecipe` is the component's generated recipe as closures, under its props and states. Avatar, Skeleton and Divider are drawn so too; ProgressBar
 wraps `LinearProgressIndicator`.
 

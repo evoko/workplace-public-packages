@@ -1,0 +1,274 @@
+/// SOLAR Number Input.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter "Number Input"` from
+/// spec/components/number-input.json, and owned by developers from then on: change it freely. What
+/// it looks like is not here. That is the recipe, [SolarNumberInputRecipe]: the field's fill, edge
+/// and focus ring by state, its number's and steppers' ink, and the label and helper, by stepper,
+/// read cell by cell.
+///
+/// A number, stepped between [min] and [max] by [step]: its [label] above (a [mandatory] one is
+/// starred), its [helper] below, which says what is wrong where it is in [error]. The number is a
+/// [TextField], undecorated, in the field drawn from Figma's layer tree with [SolarLayers]
+/// ([SolarField] holds its states), which takes only a number (the numeric keyboard): the arrow
+/// keys step it, and so do its [stepper]'s buttons, a minus and a plus either side
+/// ([SolarNumberInputStepper.inline]) or a column of chevrons after it
+/// ([SolarNumberInputStepper.side], larger for touch). It reads as one adjustable text field, named
+/// by its label. It calls [onChanged] with the number, or null while it is empty. Validate on blur.
+library;
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../generated/components/number_input.dart';
+import '../generated/icons.dart';
+import '../solar_field.dart';
+import '../solar_layers.dart';
+import '../solar_states.dart';
+import '../solar_target.dart';
+import 'solar_theme_of.dart';
+
+class SolarNumberInput extends StatefulWidget {
+  const SolarNumberInput({
+    super.key,
+    this.size = SolarNumberInputSize.md,
+    this.disabled = false,
+    this.error = false,
+    this.stepper = SolarNumberInputStepper.inline,
+    this.label,
+    this.mandatory = false,
+    this.helper,
+    required this.value,
+    required this.onChanged,
+    this.min,
+    this.max,
+    this.step = 1,
+    this.autofocus = false,
+    this.focusNode,
+    this.statesController,
+  });
+
+  final SolarNumberInputSize size;
+  final bool disabled;
+  final bool error;
+  final SolarNumberInputStepper stepper;
+
+  /// What it asks for, above it.
+  final String? label;
+
+  /// Whether it must be filled, which stars the label.
+  final bool mandatory;
+
+  /// More about it, below; where it is in [error], what is wrong.
+  final String? helper;
+
+  /// The number it holds, or null for none.
+  final num? value;
+
+  /// Called with the number as it changes, or null while it is empty; null disables it.
+  final ValueChanged<num?>? onChanged;
+
+  /// The least it takes.
+  final num? min;
+
+  /// The most it takes.
+  final num? max;
+
+  /// How far a step goes.
+  final num step;
+
+  /// Whether it takes the focus when first built.
+  final bool autofocus;
+
+  /// Its focus, where the caller keeps it.
+  final FocusNode? focusNode;
+
+  /// States to draw it in beside its own, where the caller keeps them (the visual checks force a
+  /// state through it).
+  final WidgetStatesController? statesController;
+
+  @override
+  State<SolarNumberInput> createState() => _SolarNumberInputState();
+}
+
+class _SolarNumberInputState extends State<SolarNumberInput> {
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['label', 'field', 'helper'],
+    'label': ['labelLabel', 'mandatory'],
+    'field': [
+      'fieldDecrement',
+      'inlineValue',
+      'fieldIncrement',
+      'leadingIcon',
+      'value',
+      'stepper',
+    ],
+    'stepper': ['stepperIncrement', 'divider', 'stepperDecrement'],
+    'stepperIncrement': ['chevronUp'],
+    'stepperDecrement': ['chevronDown'],
+  };
+
+  /// A number as the field shows it, or nothing for none.
+  static String _shown(num? n) =>
+      n == null ? '' : (n == n.roundToDouble() ? n.round().toString() : '$n');
+
+  late final _text = TextEditingController(text: _shown(widget.value));
+
+  @override
+  void didUpdateWidget(SolarNumberInput old) {
+    super.didUpdateWidget(old);
+    // The caller's number, where it is not what is typed ("-", "1." are on their way to one).
+    if (widget.value != num.tryParse(_text.text)) {
+      _text.text = _shown(widget.value);
+    }
+  }
+
+  @override
+  void dispose() {
+    _text.dispose();
+    super.dispose();
+  }
+
+  bool get _enabled => !widget.disabled && widget.onChanged != null;
+
+  num _clamp(num n) {
+    final min = widget.min;
+    final max = widget.max;
+    return max != null && n > max ? max : (min != null && n < min ? min : n);
+  }
+
+  void _step(int dir) {
+    if (!_enabled) return;
+    final next = _clamp((widget.value ?? 0) + dir * widget.step);
+    _text.text = _shown(next);
+    widget.onChanged!(next);
+  }
+
+  bool _can(int dir) {
+    final value = widget.value;
+    final limit = dir > 0 ? widget.max : widget.min;
+    return _enabled &&
+        (value == null ||
+            limit == null ||
+            (dir > 0 ? value < limit : value > limit));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final label = widget.label;
+    final helper = widget.helper;
+    // A stepper's button, a control of its own; the arrow keys are the keyboard's steps.
+    Widget stepper(int dir, Widget drawn, {required bool target}) {
+      final button = Semantics(
+        container: true,
+        label: dir > 0 ? 'Increase' : 'Decrease',
+        child: SolarPressable(
+          onPressed: _can(dir) ? () => _step(dir) : null,
+          builder: (_, _) => drawn,
+        ),
+      );
+      return target ? SolarTarget.inside(child: button) : button;
+    }
+
+    return SolarField(
+      controller: _text,
+      focusNode: widget.focusNode,
+      statesController: widget.statesController,
+      builder: (context, field) {
+        final states = field.states;
+        final p = SolarNumberInputProps(
+          size: widget.size,
+          disabled: widget.disabled,
+          error: widget.error,
+          stepper: widget.stepper,
+        );
+        Widget words(TextStyle? style) => field.read(
+          Focus(
+            // The arrow keys step it, as a spinbutton's do.
+            onKeyEvent: (_, event) {
+              if (event is KeyUpEvent) return KeyEventResult.ignored;
+              final dir = event.logicalKey == LogicalKeyboardKey.arrowUp
+                  ? 1
+                  : event.logicalKey == LogicalKeyboardKey.arrowDown
+                  ? -1
+                  : 0;
+              if (dir == 0) return KeyEventResult.ignored;
+              _step(dir);
+              return KeyEventResult.handled;
+            },
+            child: TextField(
+              controller: field.text,
+              focusNode: field.focus,
+              enabled: _enabled,
+              autofocus: widget.autofocus,
+              keyboardType: const TextInputType.numberWithOptions(
+                signed: true,
+                decimal: true,
+              ),
+              // Only what may become a number: digits, a sign and a point.
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^-?\d*\.?\d*')),
+              ],
+              onChanged: (typed) {
+                final n = num.tryParse(typed);
+                if (n != widget.value) widget.onChanged?.call(n);
+              },
+              style: style,
+              maxLines: 1,
+              textAlign: widget.stepper == SolarNumberInputStepper.inline
+                  ? TextAlign.center
+                  : TextAlign.start,
+              decoration: InputDecoration.collapsed(
+                hintText: null,
+                hintStyle: style,
+              ),
+            ),
+          ),
+          label: label,
+          hint: helper,
+        );
+        return SolarLayers(
+          recipe: SolarLayerRecipe(
+            lookup: (c) => SolarNumberInputRecipe.lookup(c, p, states),
+            dimension: (c) => SolarNumberInputRecipe.dimension(c, p, states),
+            color: (c) => SolarNumberInputRecipe.color(t, c, p, states),
+            shadow: (c) => SolarNumberInputRecipe.shadow(t, c, p, states),
+            textStyle: (c) => SolarNumberInputRecipe.textStyle(t, c, p, states),
+            // A part left empty is not drawn.
+            present: (l) => switch (l) {
+              'label' => label != null,
+              'mandatory' => widget.mandatory,
+              'helper' => helper != null,
+              _ => SolarNumberInputRecipe.present(l, p, states),
+            },
+            glyph: (_) => null,
+          ),
+          tree: _tree,
+          keyPrefix: 'numberInput',
+          text: {'labelLabel': ?label, 'mandatory': '*', 'helper': ?helper},
+          wraps: const {'helper': TextAlign.start},
+          icons: const {
+            'fieldDecrement': SolarIcons.minusOutline,
+            'fieldIncrement': SolarIcons.plusOutline,
+            'chevronUp': SolarIcons.chevronUpSolid,
+            'chevronDown': SolarIcons.chevronDownSolid,
+          },
+          // The number, in the recipe's style, in either stepper's place for it.
+          fields: {'inlineValue': words, 'value': words},
+          builders: {
+            // The label and the helper are read with the number, which they name and describe.
+            'label': (layer) => ExcludeSemantics(child: layer),
+            'helper': (layer) => ExcludeSemantics(child: layer),
+            'fieldDecrement': (drawn) => stepper(-1, drawn, target: true),
+            'fieldIncrement': (drawn) => stepper(1, drawn, target: true),
+            // The side stepper's halves, stacked 20px tall, cannot have a 44 × 44 target each.
+            'stepperIncrement': (drawn) => stepper(1, drawn, target: false),
+            'stepperDecrement': (drawn) => stepper(-1, drawn, target: false),
+            'field': (layer) => field.area(layer, enabled: _enabled),
+          },
+        ).layer('root');
+      },
+    );
+  }
+}

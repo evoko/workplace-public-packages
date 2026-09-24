@@ -20,6 +20,9 @@
  *   states:       { rename: { <value>: { to, reason } } }  a state value Figma spells otherwise
  *   layerNames:   { <Figma path>: { name, reason } }     a layer's IR name, where Figma's cannot give one
  *                                                        (a glyph for a name, or two that reduce to one)
+ *   same:         { <Figma path>: { as, reason } }       a layer Figma draws anew in some variants that
+ *                                                        is another (Inline Input's Confirm and Cancel,
+ *                                                        framed again per edit state): read as `as`
  *   slots:        { <layer>: { name, type, reason } }    a layer the caller fills, with no Figma prop
  *   derive:       { <axis>: { when: [{ value, given?, props? }], reason } }  an axis that follows
  *                                                        from content (first match wins), not a
@@ -111,6 +114,7 @@ const FIELDS = {
   slots: ['name', 'type'],
   derive: ['when'],
   layerNames: ['name'],
+  same: ['as'],
 };
 const SECTIONS = [
   'codeName',
@@ -288,7 +292,9 @@ export function parseOverlay(text, file) {
     if (!Array.isArray(rule.when) || rule.when.length === 0)
       fail(`derive.${axis} has no when list`);
     for (const w of rule.when) {
-      if (!w || typeof w.value !== 'string')
+      // A value of an axis (Tag's `closable`), or true or false for a state value the IR makes a
+      // boolean prop (Text Input's `filled`).
+      if (!w || !['string', 'boolean'].includes(typeof w.value))
         fail(`derive.${axis}: every when entry needs a value`);
       if (w.given !== undefined && !Array.isArray(w.given))
         fail(`derive.${axis}.${w.value}: given must be a list of slots`);
@@ -593,6 +599,53 @@ export function renameStates(resolved, overlay) {
 }
 
 /**
+ * Reads the layers the overlay says are one (`same`: Inline Input's action frames, drawn anew in
+ * each edit state) as the one they are: in every variant, a layer at a `same` path, and each layer
+ * inside it, takes the path `as` names, so the recipe and the oracle see one layer where Figma
+ * drew several. Applied to the resolved variants, before the recipe is derived, as `states` is. A
+ * rule for a path no variant has, onto one that is not a sibling's, or where one variant has both,
+ * fails.
+ */
+export function sameLayers(resolved, overlay) {
+  const rules = Object.entries(overlay?.same ?? {});
+  if (!rules.length) return resolved;
+  const where = overlay.file;
+  const has = (path) => resolved.variants.some((v) => v.layers.has(path));
+  const parentOf = (path) => path.slice(0, path.lastIndexOf('/')) || '/';
+  for (const [path, rule] of rules) {
+    if (!has(path)) fail(`same ${path}: no variant has the layer`);
+    if (!has(rule.as)) fail(`same ${path}: no variant has ${rule.as}`);
+    if (parentOf(path) !== parentOf(rule.as))
+      fail(`same ${path}: ${rule.as} is not a sibling of it`);
+  }
+  function fail(detail) {
+    throw new Error(`${where}: ${detail}`);
+  }
+  const moved = (path) => {
+    for (const [from, rule] of rules)
+      if (path === from || path.startsWith(`${from}/`))
+        return rule.as + path.slice(from.length);
+    return path;
+  };
+  return {
+    ...resolved,
+    variants: resolved.variants.map((v) => {
+      const layers = new Map();
+      const parents = new Map();
+      for (const [path, layer] of v.layers) {
+        const to = moved(path);
+        if (to !== path && v.layers.has(to))
+          fail(`same: ${v.name} draws both ${path} and ${to}`);
+        layers.set(to, layer);
+        const parent = v.parents.get(path);
+        parents.set(to, parent == null ? parent : moved(parent));
+      }
+      return { ...v, layers, parents };
+    }),
+  };
+}
+
+/**
  * Applies everything but `follows` and `states` to a built IR and its deviations.
  *
  * @returns {{spec: object, deviations: object[]}} new objects; the inputs are not mutated
@@ -684,6 +737,10 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   for (const [path, rule] of sorted('layerNames'))
     record('layerNames', `${path} → ${rule.name}`, rule.reason);
 
+  // Layers read as one were merged before the recipe was derived (sameLayers); here recorded.
+  for (const [path, rule] of sorted('same'))
+    record('same', `${path} → ${rule.as}`, rule.reason);
+
   // Slots were declared before the layers were named (see declareSlots); here they are recorded.
   for (const [at, rule] of sorted('slots'))
     record('slots', `${at} → ${rule.name}`, rule.reason);
@@ -692,10 +749,16 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   // its parts show. The recipe keeps the axis, keyed as Figma draws it; the API loses it, and
   // `derived` says which value each combination of filled slots gives, first match wins.
   for (const [axis, rule] of sorted('derive')) {
-    if (!axes[axis])
+    // A state value that is no platform state is a boolean prop (Text Input's `filled`, drawn as
+    // one of its states): derived, it is true or false by what the caller gives.
+    const boolean =
+      !axes[axis] &&
+      axes.state?.options.includes(axis) &&
+      spec.api[axis]?.type === 'boolean';
+    if (!axes[axis] && !boolean)
       fail(`derive ${axis}: ${spec.component} has no axis ${axis}`);
     const values = rule.when.map((w) => w.value);
-    const options = axes[axis].options;
+    const options = boolean ? [true, false] : axes[axis].options;
     for (const v of options)
       if (values.filter((x) => x === v).length !== 1)
         fail(`derive ${axis}: ${v} must appear once in when`);
@@ -711,8 +774,8 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     // `rename` applies last, so the API is still keyed by Figma's axis name here.
     delete spec.api[axis];
     (spec.derived ??= {})[axis] = {
-      values: [...options],
-      default: axes[axis].default,
+      ...(boolean ? { type: 'boolean' } : { values: [...options] }),
+      default: boolean ? false : axes[axis].default,
       when: rule.when.map((w) => ({
         value: w.value,
         given: [...(w.given ?? [])],
@@ -789,6 +852,16 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
         looks.has(key)
       )
         node[key] = {};
+      // And a size the layer draws as at rest, where the component has the size (SearchField's
+      // icons, whose sm entry Figma's resting sm variant leaves as md's).
+      if (
+        !node?.[key] &&
+        i === 0 &&
+        section === 'size' &&
+        node &&
+        spec.api.size?.values?.includes(key)
+      )
+        node[key] = {};
       if (!node?.[key] && last && node && states.has(key)) {
         node[key] = {};
         if (key === 'focus' && !spec.states.includes('focus'))
@@ -843,6 +916,54 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       reason: rule.reason,
       ...(replaced && Object.keys(replaced).length ? { replaced } : {}),
     };
+    // An axis finding whose every variant draws, where the set reaches, what it now draws (the sm
+    // field's 12px icons, which its resting variant alone drew at 16) is decided by it.
+    // A raw value is the token's where it is the token's value (Figma's 12 is icon.xs).
+    const drawsIt = (found) =>
+      rule.token !== undefined
+        ? found?.token === rule.token ||
+          (found?.literal !== undefined &&
+            found.literal === names.value(rule.token))
+        : rule.keyword !== undefined
+          ? found?.keyword === rule.keyword
+          : Boolean(found?.none);
+    const stateOf = (props) =>
+      overlay.states?.rename?.[props.state]?.to ?? props.state ?? 'default';
+    const looksLike = (combo, props) =>
+      combo === 'default' ||
+      combo.split(', ').every((pair) => {
+        const [axis, value] = pair.split('=');
+        return props[axis] === value;
+      });
+    const reaches = (props) =>
+      section === 'base'
+        ? true
+        : section === 'size'
+          ? props.size === keys[0]
+          : section === 'appearance'
+            ? looksLike(keys[0], props) && stateOf(props) === keys[1]
+            : section === 'combined'
+              ? props.size === keys[0] &&
+                looksLike(keys[1], props) &&
+                stateOf(props) === keys[2]
+              : false;
+    const path = spec.layers[layer]?.path;
+    for (const d of deviations)
+      if (
+        d.kind === 'axis' &&
+        !d.decision &&
+        d.layer === path &&
+        d.cell === cell &&
+        d.variants.every(
+          (v) =>
+            reaches(
+              Object.fromEntries(
+                v.variant.split(', ').map((p) => p.split('=')),
+              ),
+            ) && drawsIt(v.found),
+        )
+      )
+        d.decision = { rule: 'set', reason: rule.reason };
     // A cell set because Figma's value could not be read is that finding's decision, and so is
     // one set where Figma left a raw value, once no raw value is left anywhere in the cell.
     for (const kind of ['misbound', 'unknown-token'])
@@ -874,7 +995,7 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     record('allowLiteral', at, rule.reason);
   }
 
-  const BOX = ['x', 'y', 'width', 'height'];
+  const BOX = ['x', 'y', 'right', 'bottom', 'width', 'height'];
   for (const [layer, rule] of sorted('controlDraws')) {
     if (!spec.layers[layer])
       fail(`controlDraws ${layer}: the IR has no layer ${layer}`);
