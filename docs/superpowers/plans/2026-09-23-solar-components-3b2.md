@@ -495,6 +495,15 @@ Button's, Icon Button's and Spinner's generated output is unchanged. For the des
 section 8): the unbound full-width padding, the hidden buttons' leftover widths, and the two
 description-versus-drawing questions.
 
+**After the owner's sync, 2026-09-24** (SOLAR Web `2402412754718078809`; Foundations and Icons at the
+same versions). The fetcher's `strokeWeights` arrived on 33 files and changed nothing else: every
+other difference in the raw data is that one field, and the new SOLAR Web version brought no
+content change in anything the pipeline reads. The divider is `[1, 0, 0, 0]`, exactly what the
+recipe had inferred from the top's binding, so the generated code is unchanged; the `unrecorded`
+finding is gone (Button Group: 13 findings, all decided) and both checks now compare each side of
+the divider with Figma's weight. The corpus guards hold (117 derive, 114 build). A synthetic test
+keeps the fallback for data without weights covered.
+
 **Pause for review.**
 
 ## Wave C — glyphs and labels

@@ -314,6 +314,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:stack/sm",
               "paddingLeft": "Spatial:inset/md",
@@ -827,6 +833,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              1,
+              0,
+              0,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:stack/lg",
               "paddingLeft": "Spatial:inset/md",

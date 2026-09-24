@@ -37,6 +37,12 @@
           "{Color:border/subtle}"
         ],
         "strokeWeight": "mixed",
+        "strokeWeights": [
+          0,
+          0,
+          1,
+          0
+        ],
         "vars": {
           "itemSpacing": "Spatial:stack/sm",
           "paddingLeft": "Spatial:inset/md",
@@ -339,6 +345,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -376,6 +388,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -472,6 +490,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -509,6 +533,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -581,6 +611,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "propRefs": {
               "slotContentId": "Desktop apps#9558:0"
             },
@@ -629,6 +665,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "vars": {
                       "itemSpacing": "Spatial:stack/sm",
                       "paddingLeft": "Spatial:inset/md",
@@ -666,6 +708,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "vars": {
                       "itemSpacing": "Spatial:stack/sm",
                       "paddingLeft": "Spatial:inset/md",
@@ -822,6 +870,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Primitives:spatial/scale/4",
@@ -921,6 +975,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Primitives:spatial/scale/4",
@@ -1000,6 +1060,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Primitives:spatial/scale/4",

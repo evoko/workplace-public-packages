@@ -44,6 +44,12 @@
           "{Color:border/subtle}"
         ],
         "strokeWeight": "mixed",
+        "strokeWeights": [
+          1,
+          0,
+          0,
+          1
+        ],
         "vars": {
           "strokeTopWeight": "Spatial:border/default",
           "strokeLeftWeight": "Spatial:border/default"

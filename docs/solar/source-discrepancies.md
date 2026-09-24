@@ -11,9 +11,10 @@ raised with the SOLAR core team (the design lead) through governance.
 
 ## Status
 
-Checked against Foundations file version `2402389239778582681` (last modified 2026-09-23). That
-revision changed one sentence (Iconography now gives one stroke weight across the set, as the
-chapter already did) and neither conflict below.
+Checked against Foundations file version `2402389239778582681` (last modified 2026-09-23), and
+re-checked on 2026-09-24's sync, which found the file unchanged. That revision changed one sentence
+(Iconography now gives one stroke weight across the set, as the chapter already did) and neither
+conflict below.
 
 **Two conflicts remain.** The 2026-09-22 revision resolved 25 of the 26 previously recorded here
 and all 6 structural quirks, and introduced one new one. In most cases the pages now state the
@@ -40,6 +41,14 @@ knowing: the Outline vs Solid and Icon Library slides and the Gatekeeper checkli
 the old scheme (a `/Solid` suffix, size variants, "Sourced from Remix at every size"), and the
 checklist asks for icon fills bound to `color.icon.*` while every icon master binds the primitive
 `color/neutral/900`. [09-iconography.md](09-iconography.md) follows the shipped icons.
+
+One variable pair is wrong within the variables themselves, which the precedence above cannot
+settle: in Dark, `action/primary/icon/hover` and `action/primary/icon/active` are `color/mono/white`,
+while the primary backgrounds they sit on are white and `color/neutral/50`, and every other mode and
+state of `action/primary/icon/*` follows `action/primary/text/*` (`color/neutral/900` in Dark). The
+code follows the variables, so a primary button's icons vanish on hover in Dark until SOLAR fixes
+them; do not patch the colour in a component. It is in the design review (section 10), with three
+danger-hover labels just under the WCAG AA text contrast.
 
 ## Resolved in the 2026-09-22 revision
 

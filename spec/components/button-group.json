@@ -158,22 +158,18 @@
             },
             "borderTopWidth": {
               "token": "border.default",
-              "inferred": true,
               "from": "orientation=horizontal, type=full-width"
             },
             "borderRightWidth": {
               "none": true,
-              "inferred": true,
               "from": "orientation=horizontal, type=full-width"
             },
             "borderBottomWidth": {
               "none": true,
-              "inferred": true,
               "from": "orientation=horizontal, type=full-width"
             },
             "borderLeftWidth": {
               "none": true,
-              "inferred": true,
               "from": "orientation=horizontal, type=full-width"
             }
           }
@@ -388,7 +384,7 @@
     "pageId": "2163:3661",
     "figmaNode": "2618:3237",
     "defaultVariant": "orientation=horizontal, type=regular",
-    "fileVersion": "2402405917143022507"
+    "fileVersion": "2402412754718078809"
   },
   "overlay": {
     "file": "spec/overlay/button-group.yaml",

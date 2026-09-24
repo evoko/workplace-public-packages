@@ -45,6 +45,12 @@
           "{Color:border/subtle}"
         ],
         "strokeWeight": "mixed",
+        "strokeWeights": [
+          0,
+          1,
+          0,
+          0
+        ],
         "vars": {
           "itemSpacing": "Spatial:stack/md",
           "paddingLeft": "Spatial:inset/sm",

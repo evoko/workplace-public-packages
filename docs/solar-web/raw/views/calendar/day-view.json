@@ -252,6 +252,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          1,
+                          0
+                        ],
                         "vars": {
                           "itemSpacing": "Spatial:stack/md",
                           "paddingLeft": "Spatial:inset/md",
@@ -292,6 +298,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          1,
+                          0
+                        ],
                         "vars": {
                           "itemSpacing": "Spatial:stack/md",
                           "paddingLeft": "Spatial:inset/md",
@@ -332,6 +344,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          1,
+                          0
+                        ],
                         "vars": {
                           "itemSpacing": "Spatial:stack/md",
                           "paddingLeft": "Spatial:inset/md",
@@ -402,6 +420,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Frame",
@@ -436,6 +460,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Weekday Header",
@@ -467,6 +497,12 @@
                               "{Color:border/surface}"
                             ],
                             "strokeWeight": "mixed",
+                            "strokeWeights": [
+                              0,
+                              0,
+                              0,
+                              1
+                            ],
                             "vars": {
                               "paddingLeft": "Spatial:inset/sm",
                               "paddingTop": "Spatial:inset/sm",
@@ -503,6 +539,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "vars": {
                       "paddingTop": "Spatial:inset/2xs",
                       "paddingBottom": "Spatial:inset/2xs"
@@ -579,6 +621,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "vars": {
                           "paddingLeft": "Spatial:inset/2xs",
                           "paddingRight": "Spatial:inset/2xs"
@@ -1057,6 +1105,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Slot Stack",
@@ -1098,6 +1152,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1123,6 +1183,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1148,6 +1214,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1173,6 +1245,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1198,6 +1276,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1223,6 +1307,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1248,6 +1338,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1273,6 +1369,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1298,6 +1400,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1323,6 +1431,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1348,6 +1462,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"
@@ -1373,6 +1493,12 @@
                                   "{Color:border/subtle}"
                                 ],
                                 "strokeWeight": "mixed",
+                                "strokeWeights": [
+                                  1,
+                                  0,
+                                  0,
+                                  1
+                                ],
                                 "vars": {
                                   "strokeTopWeight": "Spatial:border/default",
                                   "strokeLeftWeight": "Spatial:border/default"

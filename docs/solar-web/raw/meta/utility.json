@@ -76,6 +76,12 @@
               "{Primitives:color/neutral/100}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "children": [
               {
                 "name": "Container",
@@ -100,6 +106,12 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "paddingLeft": "unresolved:8fd955719573",
                   "paddingRight": "unresolved:8fd955719573"
@@ -241,6 +253,12 @@
                   "{Primitives:color/neutral/900}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:inset/lg",
                   "paddingLeft": "unresolved:8fd955719573",
@@ -333,6 +351,12 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",
                   "paddingLeft": "Spatial:stack/2xl",
@@ -399,6 +423,12 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",
                   "paddingLeft": "Spatial:stack/2xl",
@@ -468,6 +498,12 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",
                   "paddingLeft": "Spatial:stack/2xl",
@@ -534,6 +570,12 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",
                   "paddingLeft": "Spatial:stack/2xl",
@@ -603,6 +645,12 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",
                   "paddingLeft": "Spatial:stack/2xl",
@@ -669,6 +717,12 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",
                   "paddingLeft": "Spatial:stack/2xl",

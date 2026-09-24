@@ -1,75 +1,81 @@
-# SOLAR — Figma fix list
+# SOLAR — what to fix and decide in Figma
 
-**Prepared for:** the SOLAR design team
+**For:** the SOLAR design team
 **From:** the Biamp Workplace web team
-**Date:** 2026-09-23, third revision (after the afternoon's changes to all three files)
+**Date:** 2026-09-24
 
-Everything below is something we think can be fixed or improved **in Figma**, read from the three
-SOLAR files as they stand now. This is a work list, not a critique — most items are small and
-mechanical, and each one is something only you can change.
+## What this is
 
-## How to use this
+The Biamp Workplace web and mobile apps build their components straight from the three SOLAR
+Figma files: **SOLAR Foundations** (the variables and the guideline pages), **SOLAR Web** (the
+components, patterns and views) and **SOLAR Icons**. A script reads every variant of every
+component, and the code draws exactly what Figma draws. That makes Figma the source of truth in a
+very literal sense: an unbound value, a variable bound in the wrong place or a variant that
+disagrees with its siblings ends up in the product.
 
-Every row links straight to the node in Figma. Work top to bottom within a section, or take a
-whole section at a time.
+This list is everything we found in the files that we think should be fixed or decided **in
+Figma**. It is a work list, not a critique: most items are small and mechanical, and each one is
+something only the design team can change. Nothing here needs to be done at once, and nothing blocks
+us — where an item is open, we draw what Figma draws and say so below.
 
-- **Fix** — clearly wrong, no judgement needed.
-- **⚠️ Decide** — we can see something is off but the right answer is a design call.
+**Scope.** Part 1 covers the 196 component sets we read in SOLAR Web. It leaves out the view pages
+we do not build from yet (Generic Views, Account & Identity, Organization & Admin, Communications,
+Devices & Operations, Help & Discovery); that is a choice about our pipeline, not about the file.
+Parts 2 and 3 cover Foundations and Icons completely.
 
-Where we suggest a token, we picked the one whose value already matches what is drawn, so in most
-cases the visual result does not change at all.
+## How to read it
 
-**Scope note.** Part 1 covers the 196 components our build currently reads. We have paused on 28
-view pages — Generic Views, Account & Identity, Organization & Admin, Communications, Devices &
-Operations and Help & Discovery — so the sets on those pages are not measured here. That is a
-decision about our pipeline, not about your file. Parts 2 and 3 cover their files completely.
+- **Fix** — clearly wrong; no judgement needed.
+- **⚠️ Decide** — something is off, but the right answer is a design call. The questions are
+  gathered again at the end, in [Decisions we need from you](#decisions-we-need-from-you).
 
-## Thank you — fixed since the last list
+Every row links straight to the node in Figma. Where we suggest a variable, it is the one whose
+value already matches what is drawn, so binding it changes nothing visually; it only makes the value
+follow the system (theme, density, future changes).
 
-Since this morning's list:
+A few terms used throughout:
 
-- **Button's description** is rewritten: it now gives 108 variants, the right size and state lists,
-  and says `xl` became `lg`. All three description findings are gone.
-- **Both duplicate state spellings** are gone: Icon Button no longer has `active` beside `pressed`
-  (108 variants), and Text Area no longer has `focused` beside `focus`.
-- **`ghost` and `destructive` are now booleans** rather than state values, on Status Card, Insight
-  Card, Insight Card Small, Insight Row, Stat Card, Stat Card Small, Schedule Strip,
-  SearchResultsPanel and Context Menu Item — the question we asked about them, answered.
-- **Property names are consistently lower case**: Alert (`type`, `style`), Banner (`type`), Option
-  Row (`control`), Avatar (`shade`), Dropdown Group Label, Cursor, and the `breakpoint`,
-  `expanded` and `isLoggedIn` values on the layout patterns.
-- **Banner** now has one visibility prop per button (`Show Primary Button` and
-  `Show Secondary Button`) instead of one prop driving both, and no longer uses a primitive colour.
-- **23 hard-coded values are bound**, including the oversized gaps that looked like layout
-  accidents on TableFooter (242px), TableHeader (692px) and Coachmark (122px), ProgressBar's pill
-  radius, Launch Card Full Screen, Day Cell, Chart Tooltip, Bar Stack, Split Dialog, Section Nav
-  and the `.Component Description` frame.
-- **Icons:** the duplicate `Icon/Phone` on Audio & DSP is deleted. The icon file has **no findings
-  left at all**.
-- **Stepper**'s 197px step gap is now 16px and bound to a variable — one of the two layout
-  accidents we flagged.
-- **Foundations:** Iconography now says one stroke weight across the set, not per size.
+- **Bound / unbound.** A value is _bound_ when it uses a Foundations variable, _unbound_ (hard-coded)
+  when it is typed in as a number or colour.
+- **Primitive and semantic colours.** Primitives are the raw palette (`color/purple/700`);
+  semantic colours say what a colour is for (`color/text/primary`, `color/action/primary/bg/hover`).
+  Only the semantic ones switch between Light and Dark, so components should bind those.
+- **`inset.*` and `stack.*`.** Two spacing scales with the same numbers: `inset` is padding inside a
+  container, `stack` the gap between siblings. An auto-layout _padding_ binds to `inset.*`, its
+  _gap_ to `stack.*`.
+- **Axes and variants.** A component set's properties (`size`, `prio`, `state`, …) are its axes;
+  each combination is a variant. SOLAR's model is that **geometry follows `size` and colour follows
+  `prio`, `state` and `danger`**; section 8 lists where a component departs from it.
 
-## Summary
+## Start here
 
-| #                                                                      | What                                                              | Count             | File        |
-| ---------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------- | ----------- |
-| [1](#1-components-with-no-description--24)                             | Components with no description                                    | 24                | SOLAR Web   |
-| [2](#2-hard-coded-values--55-across-11-components)                     | Hard-coded values not bound to a variable                         | 55 in 11          | SOLAR Web   |
-| [3](#3-primitive-colours-used-directly--32-components)                 | Components using primitive colours directly                       | 32                | SOLAR Web   |
-| [4](#4-described-sizes-that-disagree-with-the-drawing--11-components)  | Described sizes that disagree with the drawn ones                 | 11                | SOLAR Web   |
-| [5](#5-state-values-outside-the-standard-ladder--5)                    | State values outside the standard ladder                          | 5                 | SOLAR Web   |
-| [6](#6-variable-binding--3-wrong-bindings-5-unknown-variables)         | Wrong or unknown variable bindings                                | 3 + 5             | SOLAR Web   |
-| [7](#7-documentation-cards-copied-from-breadcrumbs--45-pages)          | Documentation cards copied from Breadcrumbs                       | 45 pages          | SOLAR Web   |
-| [8](#8-button-spinner-icon-button-and-button-group-variant-by-variant) | Button, Spinner, Icon Button and Button Group, variant by variant | 4 + 3 + 2 + 5 + 4 | SOLAR Web   |
-| [9](#9-pages-that-still-contradict-the-variables--2)                   | Pages that still contradict the variables                         | 2 + 2             | Foundations |
-| [10](#10-action-colours-below-the-contrast-floor--5)                   | Action colours below the contrast floor                           | 5                 | Foundations |
-| [11](#11-icons-and-logos)                                              | Icons and logos                                                   | 0 + 2             | SOLAR Icons |
+If you take only a few items, take these:
 
-**If you only do three things:** decide the control heights in section 4 (it touches eleven
-components and the touch-target question), replace the Breadcrumbs text on the 45 documentation
-cards in section 7, and fix Stepper's last layout accident at the top of section 2. **And one
-quick fix that users would see:** in Dark, a primary button's icons disappear on hover (section 10).
+1. **In Dark, a primary button's icons disappear on hover** — white on white — and nearly
+   disappear when pressed. Two variable values; the one problem on this list that users would
+   notice. [Section 10](#10-action-colours-below-the-contrast-floor--5).
+2. **Control heights** — eleven components describe themselves as 36/44px tall and are drawn at
+   32/40px, which is also the touch-target question. [Section 4](#4-described-sizes-that-disagree-with-the-drawing--11-components).
+3. **45 documentation cards** still carry the Breadcrumbs page's text.
+   [Section 7](#7-documentation-cards-copied-from-breadcrumbs--45-pages).
+4. **Stepper's 225px padding**, the one hard-coded value that looks like a layout accident rather
+   than a missing binding. [Section 2](#2-hard-coded-values--55-across-11-components).
+
+## At a glance
+
+| #                                                                      | What                                                  | Count                                              | File        |
+| ---------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------- | ----------- |
+| [1](#1-components-with-no-description--24)                             | Components with no description                        | 24                                                 | SOLAR Web   |
+| [2](#2-hard-coded-values--55-across-11-components)                     | Hard-coded values not bound to a variable             | 55 in 11 components                                | SOLAR Web   |
+| [3](#3-primitive-colours-used-directly--32-components)                 | Components using primitive colours directly           | 32                                                 | SOLAR Web   |
+| [4](#4-described-sizes-that-disagree-with-the-drawing--11-components)  | Described sizes that disagree with the drawn ones     | 11                                                 | SOLAR Web   |
+| [5](#5-state-values-outside-the-standard-ladder--5)                    | State values outside the standard ladder              | 5 (+2 described)                                   | SOLAR Web   |
+| [6](#6-variable-bindings--3-wrong-5-unknown)                           | Wrong or unknown variable bindings                    | 3 + 5                                              | SOLAR Web   |
+| [7](#7-documentation-cards-copied-from-breadcrumbs--45-pages)          | Documentation cards copied from Breadcrumbs           | 45 pages                                           | SOLAR Web   |
+| [8](#8-button-spinner-icon-button-and-button-group-variant-by-variant) | Button, Spinner, Icon Button, Button Group, in detail | Button 7, Spinner 3, Icon Button 5, Button Group 4 | SOLAR Web   |
+| [9](#9-guideline-pages-that-contradict-the-variables)                  | Guideline pages that contradict the variables         | 2, and 2 page edits                                | Foundations |
+| [10](#10-action-colours-below-the-contrast-floor--5)                   | Action colours below the contrast floor               | 5                                                  | Foundations |
+| [11](#11-icons-and-logos)                                              | Icons and logos                                       | no icon findings; 2 logo questions                 | SOLAR Icons |
 
 ---
 
@@ -77,8 +83,9 @@ quick fix that users would see:** in Dark, a primary button's icons disappear on
 
 ## 1. Components with no description — 24
 
-Unchanged since the last list. Every `components/*` set and every `patterns/*` set is described;
-what is left is three view groups and one utility frame.
+Every set under `components/` and `patterns/` is described. These are the ones that are not: three
+groups of views and one utility frame. A description tells anyone reading the file, person or tool,
+what the set is for and how its variants differ.
 
 | Figma page                  | Component                             | Variants | Open                                                                             |
 | --------------------------- | ------------------------------------- | -------- | -------------------------------------------------------------------------------- |
@@ -110,28 +117,22 @@ what is left is three view groups and one utility frame.
 ## 2. Hard-coded values — 55 across 11 components
 
 Paddings and gaps typed in as numbers rather than bound to a variable. They do not follow theme or
-density changes, and they are invisible unless you inspect the layer.
+density changes, and they are invisible unless you inspect the layer. **53 of the 55 match a
+variable exactly** and can be bound with no visual change. Most of them (44) are one view, Resource
+View, repeating the same five values across its rows; the other ten components have one or two
+each.
 
-The count went up only because the calendar views are now read in full: **Resource View** repeats
-the same five values across its header and resource rows, which is 46 of the 55. Nine components
-are down to one or two values each.
-
-**53 of the 55 match a token exactly** and can be bound with no visual change. `inset.*` is padding
-inside a container; `stack.*` is the gap between siblings, so auto-layout _gap_ binds to `stack.*`
-and _padding_ to `inset.*`, even though the two scales carry the same numbers.
-
-**Fix first — one layout accident left** (TableFooter's, TableHeader's, Coachmark's and Stepper's
-197px step gap are fixed):
+**Fix first — a layout accident:**
 
 | Component   | Layer    | Property     | Value   | Open                                                                           |
 | ----------- | -------- | ------------ | ------- | ------------------------------------------------------------------------------ |
 | **Stepper** | Progress | paddingRight | `225px` | [5762:5846](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5762-5846) |
 
-It has no token anywhere near (the scale stops at 40px), and looks like a width that should follow
-from the number of steps rather than fixed spacing. A small note on the gap just fixed: it is bound
-to `inset/md`, a padding token; `stack/md` is the gap token of the same value.
+No spacing variable comes near (the scale stops at 40px); it looks like a width that should follow
+from the number of steps rather than fixed spacing. On the same component, the gap between steps is
+bound to `inset/md`, a padding variable; `stack/md` is the gap variable of the same value.
 
-**Resource View** · views/calendar · 46 values · [open](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6827-2)
+**Resource View** · views/calendar · 44 values · [open](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6827-2)
 
 | Layer (under Calendar Body › Calendar Surface) | Property      | Current | Times | Bind to    |
 | ---------------------------------------------- | ------------- | ------- | ----- | ---------- |
@@ -145,11 +146,11 @@ to `inset/md`, a padding token; `stack/md` is the gap token of the same value.
 
 **Day View** · views/calendar · 1 value · [open](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6822-119)
 
-| Layer                                                    | Property | Current | Bind to                                                        |
-| -------------------------------------------------------- | -------- | ------- | -------------------------------------------------------------- |
-| Calendar Body › Calendar Surface › All-Day Strip › Frame | gap      | `2px`   | ⚠️ no spacing token at 2px (it exists only as `border.strong`) |
+| Layer                                                    | Property | Current | Bind to                                                           |
+| -------------------------------------------------------- | -------- | ------- | ----------------------------------------------------------------- |
+| Calendar Body › Calendar Surface › All-Day Strip › Frame | gap      | `2px`   | ⚠️ no spacing variable at 2px (it exists only as `border.strong`) |
 
-**The rest match a token exactly:**
+**The rest match a variable exactly:**
 
 | Component                    | Section               | Layer                              | Property | Current  | Bind to    | Open                                                                             |
 | ---------------------------- | --------------------- | ---------------------------------- | -------- | -------- | ---------- | -------------------------------------------------------------------------------- |
@@ -164,9 +165,8 @@ to `inset/md`, a padding token; `stack/md` is the gap token of the same value.
 
 ## 3. Primitive colours used directly — 32 components
 
-A primitive is a raw palette entry. Bound directly it will not follow Light/Dark, because only the
-semantic tokens are reassigned per mode. Banner is fixed; **Resource View** is new (`neutral/50`).
-Most of the rest are the same few colours repeated.
+Bound directly, a primitive does not follow Light and Dark, because only the semantic colours are
+reassigned per mode. Most of these are the same few colours repeated:
 
 | Primitive           | Components |
 | ------------------- | ---------- |
@@ -182,6 +182,9 @@ Most of the rest are the same few colours repeated.
 | `color/pink/700`    | 2          |
 | `color/red/500`     | 2          |
 | `color/red/700`     | 2          |
+
+Two are really questions (in the decisions list): whether `brand/red` and `purple/700` are meant as
+fixed brand colours, and whether Avatar's 45-colour palette wants tokens of its own.
 
 | Component                             | Section                 | Primitives                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Open                                                                             |
 | ------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -220,11 +223,10 @@ Most of the rest are the same few colours repeated.
 
 ## 4. Described sizes that disagree with the drawing — 11 components
 
-**New.** Eleven descriptions give a control height in pixels that the component does not have.
-Across the button, tab and input families the pattern is the same: **the description says 36px
-and 44px, the component is drawn 32px and 40px** — the description's numbers are 4px taller.
-Icon Button is off by 4px the other way. For the inputs we compared the field itself, not the whole
-component with its label and helper.
+Eleven descriptions give a control height in pixels that the component does not have. Across the
+button, tab and input families the pattern is the same: **the description says 36px and 44px, the
+component is drawn 32px and 40px** — 4px taller in the description. Icon Button is off by 4px the
+other way. For the inputs we compared the field itself, not the component with its label and helper.
 
 | Component        | Description says     | Drawn               | Open                                                                             |
 | ---------------- | -------------------- | ------------------- | -------------------------------------------------------------------------------- |
@@ -243,13 +245,15 @@ component with its label and helper.
 **⚠️ Decide:** which is right? 44px is the WCAG touch target, so the descriptions may be describing
 the intended hit area while the drawings show the visible control — Button's description says as
 much ("sm renders below the 44px WCAG touch target — pad the hit area in code"). If so, a sentence
-saying "drawn at 32/40, hit area 44" in each description would settle it. **We ship what is drawn**
-(32 and 40), and pad nothing yet, because there is no token for the target size (see the decisions
-list).
+saying "drawn at 32/40, hit area 44" in each description would settle it. **We build what is drawn**
+(32 and 40) and do not pad the hit area yet, because there is no variable for the target size. A
+control-height variable and a target-size variable would settle this and section 8's heights
+together.
 
 ## 5. State values outside the standard ladder — 5
 
-Down from 12: both duplicate spellings and every `ghost` and `destructive` are fixed. What is left:
+SOLAR's state axis runs `default`, `hover`, `pressed`, `focus`, `disabled` (plus `loading` where a
+component can load). These sets add values that describe their content rather than an interaction:
 
 | Component              | Section               | Values                           | Open                                                                             |
 | ---------------------- | --------------------- | -------------------------------- | -------------------------------------------------------------------------------- |
@@ -259,20 +263,20 @@ Down from 12: both duplicate spellings and every `ghost` and `destructive` are f
 | **SearchResultsPanel** | patterns/layout-shell | no-results                       | [7258:3327](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=7258-3327)   |
 | **Sidebar Locations**  | patterns/layout-shell | search, no-results, rename       | [10406:1217](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=10406-1217) |
 
-The same treatment `ghost` got would fit most of these: `today`, `other-month` and `no-results`
-describe content, not interaction, and read naturally as booleans.
+**⚠️ Decide:** `today`, `other-month` and `no-results` read naturally as booleans of their own (as
+`ghost` and `destructive` already are on the cards), leaving the state axis for interaction.
 
-Two more, not flagged by the ladder check because Figma's descriptions already say so:
+Two more that the descriptions themselves point out:
 
-- **Text Input**'s `pressed` "is the focused state here and is flagged to rename to focus" —
+- **Text Input**'s `pressed` "is the focused state here and is flagged to rename to focus", and is
   still `pressed`. [2087:2737](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2087-2737)
-- **Tab Item**'s selected tab and focus state are described as `active` and `focused` in the
-  description but drawn as `selected` and `focus`, which is the right way round — only the
-  description needs the update. [3414:71](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3414-71)
+- **Tab Item**'s description calls its selected tab and focus state `active` and `focused`; they are
+  drawn as `selected` and `focus`, which is the right way round, so only the description needs
+  updating. [3414:71](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3414-71)
 
-## 6. Variable binding — 3 wrong bindings, 5 unknown variables
+## 6. Variable bindings — 3 wrong, 5 unknown
 
-**Wrong bindings** (unchanged):
+**Wrong bindings** — a value bound to a variable of the wrong kind or from the wrong place:
 
 | Component                      | Finding                                                                                                                          | Open                                                                           |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -280,9 +284,9 @@ Two more, not flagged by the ladder check because Figma's descriptions already s
 | **Tab Item**                   | A colour bound to `border/strong`, the stroke-width variable, as on Spinner.                                                     | [3414:71](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3414-71)     |
 | **Auth — Create Organization** | Bound to a local duplicate `Color(local):text/primary`, not the library variable.                                                | [9441:2461](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=9441-2461) |
 
-**Unknown variables — new to this list.** These layers are bound to five variables that are not in
-the Foundations library at all; we cannot tell what value they hold. They may be deleted, detached
-or from another library. Rebinding each to its Foundations equivalent would fix it.
+**Unknown variables** — these layers are bound to five variables that are not in the Foundations
+library at all, so we cannot tell what value they hold. They may have been deleted, detached or
+taken from another library. Rebinding each to its Foundations equivalent fixes it.
 
 | Component                                    | Bound property                                  | Uses | Open                                                                                                                                                           |
 | -------------------------------------------- | ----------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -293,11 +297,10 @@ or from another library. Rebinding each to its Foundations equivalent would fix 
 
 ## 7. Documentation cards copied from Breadcrumbs — 45 pages
 
-**New to this list, though not new in the file.** On 45 pages the documentation card still holds
-the Breadcrumbs page's text ("Breadcrumbs compose from Breadcrumb Items…", `aria-label="Breadcrumb"`)
-rather than a description of the page's own component — it looks like the card was duplicated from
-Breadcrumbs and never rewritten. Anyone reading the card, person or tool, is told about the wrong
-component.
+On 45 pages the documentation card holds the Breadcrumbs page's text ("Breadcrumbs compose from
+Breadcrumb Items…", `aria-label="Breadcrumb"`) rather than a description of the page's own
+component. It looks as if the card was duplicated from Breadcrumbs and never rewritten, so anyone
+reading the card, person or tool, is told about the wrong component.
 
 | Section                           | Pages                                                                                                     |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -312,58 +315,53 @@ component.
 | patterns/forms, dashboards        | Form Row, Form Section, Widget Card, Stat Card                                                            |
 | views                             | Auth — Sign In, Invite Acceptance, Organization Selector, Month View, 403, 404, 500, Maintenance, Offline |
 
-The full list with each page's link is in our generated
-[`docs/solar-web/issues.md`](solar-web/issues.md#page-level-findings-45-pages).
-
----
+We can send the full list with a link to each page's card.
 
 ## 8. Button, Spinner, Icon Button and Button Group, variant by variant
 
-We generate these components from their variants, reading every variant against the others.
-SOLAR's model holds almost everywhere — **geometry follows `size`, colour follows `prio`, `state`
-and `danger`** — and these are the places where it does not. `xl` is `lg` now; nothing else about
-Button changed in this revision, so all of these still stand.
+These four are the components we build first, so we have read every one of their variants against
+the others. SOLAR's model — geometry follows `size`, colour follows `prio`, `state` and `danger` —
+holds almost everywhere; these are the places where it does not, or where a component disagrees
+with a sibling. Where an item is open, we build it exactly as drawn.
 
 ### Button · [2087:2544](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2087-2544)
 
 **Fix** — these look like accidents:
 
-| What                                                                                                                                                                                    | Variants                                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| The **secondary** button has no background at `sm`. md and lg carry `action/secondary/bg/*`; sm has none, so it is transparent on a grey surface.                                       | 8: `sm / secondary` in default, pressed, focus and loading, with and without danger |
-| The **lg disabled secondary** label uses `action/secondary/text/danger/disabled` although danger is off. Every other size uses `action/secondary/text/disabled`.                        | 1: `lg / secondary / disabled / danger=false`                                       |
-| Vertical padding is `0` but bound to nothing. `inset/none` has the same value.                                                                                                          | all                                                                                 |
-| lg's gap is `12` and bound to nothing (every other size binds an inset). `inset/sm` has the same value. The two icon slots are `16` tall, unbound; their width already binds `icon/sm`. | all lg; all                                                                         |
+| What                                                                                                                                                                                       | Variants                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| The **secondary** button has no background at `sm`. md and lg carry `action/secondary/bg/*`; sm has none, so it is transparent on a grey surface.                                          | 8: `sm / secondary` in default, pressed, focus and loading, with and without danger |
+| The **lg disabled secondary** label uses `action/secondary/text/danger/disabled` although danger is off. Every other size uses `action/secondary/text/disabled`.                           | 1: `lg / secondary / disabled / danger=false`                                       |
+| Vertical padding is `0` but bound to nothing. `inset/none` has the same value.                                                                                                             | all                                                                                 |
+| lg's gap is `12` and bound to nothing (every other size binds an inset). `inset/sm` has the same value. The two icon slots are `16` tall and unbound; their width already binds `icon/sm`. | all lg; all                                                                         |
 
 **⚠️ Decide:**
 
 | Question                                                                                                                                                                                                                                                                                                                                                   | What we do meanwhile                                        |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Is `lg` a different kind of button?** It is fixed at 200px wide, `space-between`, square (`radius/none`), borderless and has no resting shadow, though it keeps the focus ring. That reads like a full-width or menu button rather than a larger one. Also, tertiary gains a background only at lg, and secondary hover loses its background only at lg. | We ship `lg` exactly as drawn.                              |
+| **Is `lg` a different kind of button?** It is fixed at 200px wide, `space-between`, square (`radius/none`), borderless and has no resting shadow, though it keeps the focus ring. That reads like a full-width or menu button rather than a larger one. Also, tertiary gains a background only at lg, and secondary hover loses its background only at lg. | We build `lg` exactly as drawn.                             |
 | **Tertiary hover switches the label to a link style** (`link/*/hover`, which is underlined). With danger it does not switch, and at lg it uses `link/md/default` — as does lg _secondary_ hover. Is the underline meant for tertiary hover everywhere?                                                                                                     | We reproduce each variant as drawn.                         |
-| **Heights have no token.** Button is 32 / 40 / 48px tall, lg is 200px wide and the counter badge 20px tall, all fixed and bound to nothing, and SOLAR publishes no control-size token. Would you add one (e.g. `control/height/sm…lg`)? Section 4 is the same question from the other side.                                                                | We carry these as raw pixel values, the only ones we allow. |
+| **Heights have no variable.** Button is 32 / 40 / 48px tall, lg is 200px wide and the counter badge 20px tall, all fixed and bound to nothing, and SOLAR publishes no control-size variable. Would you add one (e.g. `control/height/sm…lg`)? Section 4 is the same question from the other side.                                                          | We carry these as raw pixel values, the only ones we allow. |
 
 ### Spinner · [4626:102](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4626-102)
 
-New on this list: we now generate Spinner too, because Button's loading state shows it.
-
-- **Fix:** the default indicator's colour (section 6). We draw it with `color/border/strong`
-  meanwhile, the colour whose inverse the inverse style uses.
+- **Fix:** the default indicator's colour is bound to a width variable (section 6). We draw it with
+  `color/border/strong` meanwhile, the colour whose inverse the inverse style uses.
 - **Fix:** the frame's padding and gap are `0` and bound to nothing; `inset/none` has the same value.
 - **⚠️ Decide:** the ring is 16, 24 and 32px across and bound to nothing. Should Spinner sizes be
-  tokens, or follow the icon ladder (`icon/sm`, `icon/lg`, `icon/2xl` have the same values)?
+  variables of their own, or follow the icon ladder (`icon/sm`, `icon/lg`, `icon/2xl` have the same
+  values)?
 
 ### Icon Button · [2995:443](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2995-443)
 
-New on this list: we now generate Icon Button. Its sizes are in section 4 (described 28/36/44,
-drawn 32/40/48).
+Its sizes are in section 4 (described 28/36/44, drawn 32/40/48).
 
 **Fix** — these look like accidents:
 
-| What                                                                                                                                                                                                                             | Variants                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| **Disabled gains a border.** Tertiary has no border in any state but disabled, where it draws 1px `color/border/medium`; lg secondary is the same (no border at lg, but one when disabled).                                      | 8: `tertiary / disabled` at every size and shape; `lg / secondary / disabled` |
-| The frame's padding and gap are `0` and bound to nothing; `inset/none` has the same value. The icon is 12 / 16 / 20px wide, unbound; `icon/xs`, `icon/sm` and `icon/md` have the same values, and its height already binds them. | all                                                                           |
+| What                                                                                                                                                                                                                                | Variants                                                                      |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **Disabled gains a border.** Tertiary has no border in any state but disabled, where it draws 1px `color/border/medium`; lg secondary is the same (no border at lg, but one when disabled).                                         | 8: `tertiary / disabled` at every size and shape; `lg / secondary / disabled` |
+| The frame's padding and gap are `0` and bound to nothing; `inset/none` has the same value. The icon is 12 / 16 / 20px wide and unbound; `icon/xs`, `icon/sm` and `icon/md` have the same values, and its height already binds them. | all                                                                           |
 
 **⚠️ Decide:**
 
@@ -371,16 +369,15 @@ drawn 32/40/48).
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **Primary's border differs from Button's.** At sm, primary draws a grey 1px `color/border/medium` border at rest, in focus and while loading, and none on hover, press or disable; at md and lg it has none. Button's primary keeps `action/primary/border/default` (`#111111`) in every state at sm and md. Which is right? | We draw each variant as Figma does. |
 | **Pressing shows the focus ring.** Pressed primary and secondary at sm and md draw `shadow/focus/default`, where Button's pressed state keeps its control shadow. Is a ring on press intended?                                                                                                                               | We draw each variant as Figma does. |
-| **lg is flat**, as Button's lg is: no resting shadow, and secondary loses its border, keeping only the focus ring. The same question as Button's lg.                                                                                                                                                                         | We ship lg as drawn.                |
+| **lg is flat**, as Button's lg is: no resting shadow, and secondary loses its border, keeping only the focus ring. The same question as Button's lg.                                                                                                                                                                         | We build lg as drawn.               |
 
 The description asks for a 44 × 44 hit area around the smaller sizes; that waits on the same
-target-size token as section 4. Flutter already pads the tap target to 48 on its own.
+target-size question as section 4.
 
 ### Button Group · [2618:3237](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2618-3237)
 
-New on this list: we now generate Button Group. We build the three combinations you draw
-(horizontal regular, vertical regular, horizontal full-width) and, as the description says, no
-vertical full-width.
+Three combinations are drawn — horizontal regular, vertical regular and horizontal full-width — and,
+as the description says, there is no vertical full-width. We build those three and no other.
 
 **Fix** — tidying:
 
@@ -391,46 +388,47 @@ vertical full-width.
 
 **⚠️ Decide:**
 
-| Question                                                                                                                                                      | What we do meanwhile                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **"Regular sizes to content"**, says the description, but regular's buttons are drawn filling the group in equal shares, as full-width's are. Which is meant? | We draw them filling, as drawn.               |
-| **"All children must share the same prio"**, says the description, but every variant mixes secondary and primary. Is it one _size_ that is meant?             | We warn (in development) on mixed sizes only. |
+| Question                                                                                                                                                      | What we do meanwhile                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **"Regular sizes to content"**, says the description, but regular's buttons are drawn filling the group in equal shares, as full-width's are. Which is meant? | We draw them filling, as drawn.                                      |
+| **"All children must share the same prio"**, says the description, but every variant mixes secondary and primary. Is it one _size_ that is meant?             | We check (in development builds) only that the buttons share a size. |
+
+---
 
 # Part 2 · SOLAR Foundations
 
-## 9. Pages that still contradict the variables — 2
+## 9. Guideline pages that contradict the variables
 
-Unchanged in this revision; both still stand.
+Where a guideline page and a variable disagree, we follow the variable; these pages should be
+brought in line.
 
 | Where                                     | Says                                                       | Variables say                                                       | Fix                                                                 |
 | ----------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | Agentic Reference `[COLOR_TOKEN_GRAMMAR]` | `data: … category.01-08, scale.01-08`                      | `color.data.scale.100 … 900`                                        | Change `scale.01-08` to `scale.100-900`. `category.01-08` is right. |
 | Color and Borders & Radius page contexts  | action states `{default\|hover\|focus\|pressed\|disabled}` | `default \| hover \| active \| disabled` — no `focus`, no `pressed` | ⚠️ Decide: rename the variables, or correct the pages               |
 
-The States page also still says "the variant value is pressed, never active", which the 96 action
-colour variables contradict — SOLAR Web's buttons bind `action/*/bg/active` for their pressed
-state. We have followed the variables.
+The States page also says "the variant value is pressed, never active", which the 96 action colour
+variables contradict — SOLAR Web's buttons bind `action/*/bg/active` for their pressed state.
 
-**Two unfinished edits on the Iconography page:**
+**Two edits needed on the Iconography page:**
 
-- The stroke sentence is fixed, but the **Outline vs Solid** and **Icon Library** slides still say
-  solid "uses a /Solid suffix" in a component set with "Size and Style variants", and the
-  **Gatekeeper checklist** still says "Sourced from Remix at every size", "Canvas matches the
-  rendered size" and "Identical across sizes". The shipped icons are one 24 × 24 canvas with a
-  `solid` boolean, which the Sizing, Grid, Stroke and Naming slides already describe.
+- The **Outline vs Solid** and **Icon Library** slides say solid "uses a /Solid suffix" in a
+  component set with "Size and Style variants", and the **Gatekeeper checklist** says "Sourced from
+  Remix at every size", "Canvas matches the rendered size" and "Identical across sizes". The icons
+  as built are one 24 × 24 canvas with a `solid` boolean, as the Sizing, Grid, Stroke and Naming
+  slides already describe.
 - The same checklist says an icon's fill is "bound to semantic tokens — `color.icon.*` or
   `color.action.*.icon.*`". Every one of the 680 icon variants is bound to the primitive
   `color/neutral/900`. ⚠️ Decide: rebind the masters to `color/icon/primary`, or say in the
-  checklist that masters use the primitive. (It makes no difference to us: icons take their
-  colour where they are used.)
+  checklist that masters use the primitive. (It makes no difference to us: icons take their colour
+  where they are used.)
 
 ## 10. Action colours below the contrast floor — 5
 
-New in this revision, found when we first looked at Button in Dark in our component gallery. We
-then checked every one of the 96 `action/*` colour variables the same way: each `icon` and `text`
-colour against the `bg` of the same role and state, in both modes, laid over
-`surface/background` where the background is see-through. The floor is WCAG 2.1 AA, which SOLAR
-names as its own: 3:1 for an icon, 4.5:1 for text at the label sizes. Disabled colours are exempt.
+We checked all 96 `action/*` colour variables: each `icon` and `text` colour against the `bg` of the
+same role and state, in both modes, laid over `surface/background` where the background is
+see-through. The floor is WCAG 2.1 AA, which SOLAR names as its own: 3:1 for an icon, 4.5:1 for text
+at the label sizes. Disabled colours are exempt.
 
 | Variable                             | Mode  | Colour    | On                                 | Colour    | Contrast | Fix                                                                |
 | ------------------------------------ | ----- | --------- | ---------------------------------- | --------- | -------- | ------------------------------------------------------------------ |
@@ -440,20 +438,20 @@ names as its own: 3:1 for an icon, 4.5:1 for text at the label sizes. Disabled c
 | `action/secondary/text/danger/hover` | Light | `#e0032d` | `action/secondary/bg/danger/hover` | `#ffe4df` | 4.13 : 1 | ⚠️ Decide: as above                                                |
 | `action/tertiary/text/danger/hover`  | Light | `#e0032d` | `action/tertiary/bg/danger/hover`  | `#ffe4df` | 4.13 : 1 | ⚠️ Decide: as above                                                |
 
-The first two are clearly mistakes: in Dark, a primary button's icons are white on its white
-hover background, so they vanish, and nearly vanish when pressed. Every other mode and state of
-`action/primary/icon/*` follows `action/primary/text/*`, and these two do not. The three danger
+The first two are clearly mistakes: in Dark, a primary button's icons are white on its white hover
+background, so they vanish, and nearly vanish when pressed. Every other mode and state of
+`action/primary/icon/*` follows `action/primary/text/*`, and these two do not. Because our code
+follows the variables, the apps show the same thing until the variables change. The three danger
 hovers miss 4.5:1 narrowly; a hover state is transient, but the floor has no exception for it.
 
 # Part 3 · SOLAR Icons
 
 ## 11. Icons and logos
 
-**340 icons, and no findings.** No strokes, no clipping masks, one fill per icon, 24 × 24 frames
-throughout, and both variants drawn for every icon. The name collision is gone with the Audio & DSP
-`Icon/Phone`, so every icon now takes its component name from its Figma name.
+**The 340 icons have no findings.** No strokes, no clipping masks, one fill per icon, 24 × 24 frames
+throughout, both variants drawn for every icon, and every name unique.
 
-Two questions about the logos, which were never on this list:
+Two questions about the logos:
 
 - **⚠️ Decide: a flat Teams mark?** The Teams logo is drawn with 12 gradient fills and per-path
   opacity. The web draws it faithfully; our Flutter package has to leave it out, because redrawing
@@ -466,30 +464,52 @@ Two questions about the logos, which were never on this list:
 
 # Decisions we need from you
 
-These are the ones we genuinely cannot answer:
+The questions we cannot answer ourselves, most far-reaching first.
 
-1. **Control heights** — the descriptions say 36/44px and the components are drawn 32/40px
-   (section 4). Which is right, and is 44px the intended hit area? A control-size token
-   (`control/height/*`) and a target-size token would settle both this and Button's heights.
-2. **Button `lg`** — a larger button, or a different kind (full-width or menu)? Section 8.
-3. **Tertiary hover's underline** — meant everywhere, or only where it is drawn? Section 8.
-4. **The remaining state values** — `today`, `other-month`, `no-results`, `edit`, `search`,
-   `rename`: booleans, as `ghost` became? Section 5.
-5. **Avatar's 45 palette colours** — a deliberate identity palette that wants its own tokens?
-6. **`color/brand/red` (19 components) and `color/purple/700` (12)** — intentional brand colour,
-   or should they be semantic? They are the two biggest entries in section 3.
-7. **Action states** — `active` in the variables, `pressed` on the pages. Section 9.
-8. **Icon master colour** — semantic token or primitive? Section 9.
-9. **Spinner sizes** — tokens, or the icon ladder? Section 8.
-10. **Logos** — a flat Teams mark, and a `logo.*` size scale. Section 11.
-11. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
+**Sizes and targets**
+
+1. **Control heights** — the descriptions say 36/44px and the components are drawn 32/40px. Which
+   is right, and is 44px the intended hit area? A control-height variable (`control/height/*`) and
+   a target-size variable would settle both this and Button's fixed heights. Sections 4 and 8.
+2. **Spinner sizes** — variables of their own, or the icon ladder? Section 8.
+3. **A logo size scale** (`logo.*`)? Section 11.
+
+**Colour**
+
+4. **Danger hover labels** at 4.07 and 4.13 : 1 — a darker hover red, or an accepted exception for
+   the hover state? Section 10.
+5. **`color/brand/red` (19 components) and `color/purple/700` (12)** — fixed brand colours, or
+   should they be semantic? Section 3.
+6. **Avatar's 45 palette colours** — a deliberate identity palette that wants its own tokens?
+   Section 3.
+7. **Icon master colour** — the semantic `color/icon/primary`, or the primitive the checklist
+   should then mention? Section 9.
+
+**Components**
+
+8. **Button `lg`** — a larger button, or a different kind (full-width or menu)? Icon Button's lg is
+   flat the same way. Section 8.
+9. **Tertiary hover's underline** — meant everywhere, or only where it is drawn? Section 8.
+10. **Icon Button's primary border** — grey at sm and only at rest, where Button's primary keeps its
+    `#111111` action border in every state. Which is right? Section 8.
+11. **A focus ring on press** — Icon Button's pressed primary and secondary show it, Button's do
+    not. Intended? Section 8.
+12. **Button Group's description** — "regular sizes to content" and "all children share one prio",
+    where every group is drawn with filling buttons of mixed priority. Section 8.
+13. **The remaining state values** — `today`, `other-month`, `no-results`, `edit`, `search`,
+    `rename`: booleans of their own? Section 5.
+
+**Structure**
+
+14. **Action states** — `active` in the variables, `pressed` on the guideline pages. Which name
+    should both use? Section 9.
+15. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
     Web rather than in Foundations. Should it move down a layer?
+16. **A flat Teams mark**, if Microsoft publishes one? Section 11.
 
 ---
 
-_Extracted from SOLAR Foundations `[v1--2026]` version `2402389239778582681`, SOLAR Web
-`[v1--2026]` version `2402405917143022507` and SOLAR Icons `[v2--2026]` version
-`2402400024423705866`, all read on 2026-09-23. Counts are computed from the files, not estimated,
-and each section was re-checked against this revision rather than carried over. Happy to walk
-through any of this live — and happy to be wrong on the judgement calls, where we may be missing
-context._
+_Read from SOLAR Foundations `[v1--2026]` version `2402389239778582681`, SOLAR Web `[v1--2026]`
+version `2402412754718078809` and SOLAR Icons `[v2--2026]` version `2402400024423705866`, on
+2026-09-24. Counts are computed from the files, not estimated. We are happy to walk through any of
+this live — and happy to be wrong on the judgement calls, where we may be missing context._

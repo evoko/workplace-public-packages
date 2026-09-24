@@ -533,6 +533,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -784,6 +790,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -1184,6 +1196,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -1443,6 +1461,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -1829,6 +1853,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -2083,6 +2113,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -2561,6 +2597,12 @@
                     "{Color:border/disabled}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -2825,6 +2867,12 @@
                     "{Color:border/disabled}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -3290,6 +3338,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }
@@ -3553,6 +3607,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    0,
+                    1
+                  ],
                   "vars": {
                     "strokeLeftWeight": "Spatial:border/default"
                   }

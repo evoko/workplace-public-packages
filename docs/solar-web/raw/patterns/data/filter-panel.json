@@ -1012,6 +1012,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:stack/sm",
               "paddingLeft": "Spatial:inset/md",
@@ -1183,6 +1189,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "strokeBottomWeight": "Spatial:border/default"
                 }
@@ -1215,6 +1227,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "strokeBottomWeight": "Spatial:border/default"
                 }
@@ -1242,6 +1260,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -1304,6 +1328,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -1684,6 +1714,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              1,
+              0,
+              0,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:inset/none",
               "strokeTopWeight": "Spatial:border/default"
@@ -1812,6 +1848,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    1,
+                    0
+                  ],
                   "vars": {
                     "strokeBottomWeight": "Spatial:border/default"
                   }
@@ -1848,6 +1890,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    0,
+                    0,
+                    1,
+                    0
+                  ],
                   "vars": {
                     "strokeBottomWeight": "Spatial:border/default"
                   }

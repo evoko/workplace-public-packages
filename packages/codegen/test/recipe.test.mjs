@@ -571,3 +571,51 @@ describe('deriveRecipe over all of SOLAR Web', () => {
     expect(total).toBe(119);
   });
 });
+
+describe('deriveRecipe: a border whose sides differ', () => {
+  // Button Group's full-width bar: a divider along the top only, bound on that side.
+  const set = (weights) => ({
+    name: 'Bar',
+    defaultVariant: 'tone=a',
+    props: { tone: { type: 'VARIANT', default: 'a', options: ['a'] } },
+    defaultVariantTree: {
+      name: 'tone=a',
+      type: 'COMPONENT',
+      strokes: ['{Color:border/subtle}'],
+      strokeWeight: 'mixed',
+      ...(weights ? { strokeWeights: weights } : {}),
+      vars: { strokeTopWeight: 'Spatial:border/default' },
+      children: [],
+    },
+    variants: [{ variant: 'tone=a' }],
+  });
+
+  it('gives each side a cell of its own from the weights Figma records', () => {
+    const r = deriveRecipe(resolveVariants(set([1, 0, 0, 0])), { names });
+    const root = r.style['/'].base;
+    expect(root.borderTopWidth).toMatchObject({ token: 'border.default' });
+    for (const side of ['Right', 'Bottom', 'Left'])
+      expect(root[`border${side}Width`]).toMatchObject({ none: true });
+    expect(root).not.toHaveProperty('borderWidth');
+    expect(r.deviations.some((d) => d.kind === 'unrecorded')).toBe(false);
+  });
+
+  it('without recorded weights, draws the bound side, marks it inferred and reports it', () => {
+    const r = deriveRecipe(resolveVariants(set(null)), { names });
+    const root = r.style['/'].base;
+    expect(root.borderTopWidth).toMatchObject({
+      token: 'border.default',
+      inferred: true,
+    });
+    expect(root.borderBottomWidth).toMatchObject({
+      none: true,
+      inferred: true,
+    });
+    expect(r.deviations).toContainEqual(
+      expect.objectContaining({
+        kind: 'unrecorded',
+        token: 'component.bar.root.borderWidth#unrecorded',
+      }),
+    );
+  });
+});

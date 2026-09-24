@@ -53,6 +53,12 @@
           "{Color:border/surface}"
         ],
         "strokeWeight": "mixed",
+        "strokeWeights": [
+          0,
+          0,
+          0,
+          1
+        ],
         "radius": [
           12,
           0,
@@ -89,6 +95,12 @@
               "{Color:border/surface}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "paddingLeft": "Spatial:inset/lg",
               "paddingTop": "Spatial:inset/xs",
@@ -243,6 +255,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              1,
+              0,
+              0,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:inset/none",
               "strokeTopWeight": "Spatial:border/default"

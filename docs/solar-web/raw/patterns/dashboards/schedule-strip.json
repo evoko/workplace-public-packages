@@ -53,6 +53,12 @@
           "{Color:border/surface}"
         ],
         "strokeWeight": "mixed",
+        "strokeWeights": [
+          0,
+          0,
+          1,
+          0
+        ],
         "vars": {
           "itemSpacing": "Spatial:stack/sm",
           "paddingLeft": "Spatial:inset/md",
@@ -255,6 +261,7 @@
                 ],
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "strokeBottomWeight": null
                 }
@@ -395,6 +402,7 @@
                 ],
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "strokeBottomWeight": null
                 }
@@ -621,6 +629,7 @@
                 ],
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "strokeBottomWeight": null
                 }
@@ -793,6 +802,7 @@
                 ],
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "strokeBottomWeight": null
                 }
@@ -936,6 +946,12 @@
               "{Color:border/surface}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "paddingLeft": "Spatial:inset/md",
               "paddingTop": "Spatial:inset/md",
@@ -1036,6 +1052,12 @@
                   "{Color:border/surface}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -1073,6 +1095,12 @@
                   "{Color:border/surface}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -1110,6 +1138,12 @@
                   "{Color:border/surface}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -1147,6 +1181,12 @@
                   "{Color:border/surface}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -1184,6 +1224,12 @@
                   "{Color:border/surface}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:inset/md",
@@ -1244,6 +1290,7 @@
               "/Container": {
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "strokeBottomWeight": null
                 }
@@ -1429,6 +1476,7 @@
               "/Container": {
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "strokeBottomWeight": null
                 }

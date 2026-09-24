@@ -1784,7 +1784,7 @@
     "pageId": "2163:3670",
     "figmaNode": "2995:443",
     "defaultVariant": "size=sm, shape=square, prio=primary, state=default",
-    "fileVersion": "2402405917143022507"
+    "fileVersion": "2402412754718078809"
   },
   "overlay": {
     "file": "spec/overlay/icon-button.yaml",

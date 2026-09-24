@@ -50,6 +50,12 @@
           "{Color:border/surface}"
         ],
         "strokeWeight": "mixed",
+        "strokeWeights": [
+          0,
+          0,
+          0,
+          1
+        ],
         "vars": {
           "paddingLeft": "Spatial:inset/sm",
           "paddingTop": "Spatial:inset/sm",

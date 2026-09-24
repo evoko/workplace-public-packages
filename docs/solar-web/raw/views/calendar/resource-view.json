@@ -149,6 +149,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Corner",
@@ -219,6 +225,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -265,6 +277,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -311,6 +329,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -357,6 +381,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -403,6 +433,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -449,6 +485,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -495,6 +537,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -541,6 +589,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -587,6 +641,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -633,6 +693,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -679,6 +745,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -725,6 +797,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Hour Label",
@@ -773,6 +851,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Resource Label",
@@ -922,6 +1006,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Rectangle",
@@ -1141,6 +1231,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Resource Label",
@@ -1290,6 +1386,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Rectangle",
@@ -1509,6 +1611,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Resource Label",
@@ -1658,6 +1766,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Rectangle",
@@ -1877,6 +1991,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Resource Label",
@@ -2026,6 +2146,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Rectangle",
@@ -2245,6 +2371,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Resource Label",
@@ -2394,6 +2526,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Rectangle",
@@ -2578,6 +2716,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "children": [
                       {
                         "name": "Resource Label",
@@ -2727,6 +2871,12 @@
                           "{Color:border/subtle}"
                         ],
                         "strokeWeight": "mixed",
+                        "strokeWeights": [
+                          0,
+                          0,
+                          0,
+                          1
+                        ],
                         "children": [
                           {
                             "name": "Rectangle",

@@ -61,6 +61,12 @@
           "{Color:border/subtle}"
         ],
         "strokeWeight": "mixed",
+        "strokeWeights": [
+          1,
+          0,
+          0,
+          0
+        ],
         "vars": {
           "itemSpacing": "Spatial:inset/xs",
           "paddingLeft": "Spatial:inset/md",
@@ -211,6 +217,7 @@
                 },
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "itemSpacing": null,
                   "paddingLeft": null,
@@ -252,6 +259,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    1,
+                    0,
+                    0,
+                    0
+                  ],
                   "vars": {
                     "itemSpacing": "Spatial:inset/xs",
                     "paddingLeft": "Spatial:inset/md",
@@ -356,6 +369,7 @@
                 },
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "itemSpacing": null,
                   "paddingLeft": null,
@@ -400,6 +414,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    1,
+                    0,
+                    0,
+                    0
+                  ],
                   "vars": {
                     "itemSpacing": "Spatial:inset/xs",
                     "paddingLeft": "Spatial:inset/md",
@@ -506,6 +526,7 @@
                 },
                 "strokes": null,
                 "strokeWeight": null,
+                "strokeWeights": null,
                 "vars": {
                   "itemSpacing": null,
                   "paddingLeft": null,
@@ -547,6 +568,12 @@
                     "{Color:border/subtle}"
                   ],
                   "strokeWeight": "mixed",
+                  "strokeWeights": [
+                    1,
+                    0,
+                    0,
+                    0
+                  ],
                   "vars": {
                     "itemSpacing": "Spatial:inset/xs",
                     "paddingLeft": "Spatial:inset/md",

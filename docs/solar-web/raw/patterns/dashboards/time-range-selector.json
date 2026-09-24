@@ -261,6 +261,12 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": "mixed",
+            "strokeWeights": [
+              0,
+              0,
+              1,
+              0
+            ],
             "vars": {
               "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Spatial:inset/xs",
@@ -424,6 +430,12 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": "mixed",
+                "strokeWeights": [
+                  0,
+                  1,
+                  0,
+                  0
+                ],
                 "vars": {
                   "itemSpacing": "Spatial:inset/none",
                   "paddingLeft": "Spatial:inset/xs",
@@ -768,6 +780,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "vars": {
                       "itemSpacing": "Spatial:inset/xl",
                       "paddingLeft": "Spatial:inset/xl",
@@ -840,6 +858,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      1,
+                      0,
+                      0,
+                      0
+                    ],
                     "vars": {
                       "itemSpacing": "Spatial:inset/xs",
                       "paddingLeft": "Spatial:inset/sm",

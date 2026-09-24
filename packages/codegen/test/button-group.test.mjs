@@ -39,10 +39,10 @@ describe('the Button Group IR', () => {
     ).toEqual({ orientation: 'horizontal', fullWidth: true });
   });
 
-  it('decides every finding but the divider’s unrecorded sides, which a sync records', () => {
-    expect(deviations.filter((d) => !d.decision).map((d) => d.kind)).toEqual([
-      'unrecorded',
-    ]);
+  it('decides every finding, now that the sync has recorded the divider’s sides', () => {
+    expect(deviations.length).toBeGreaterThan(0);
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
+    expect(deviations.some((d) => d.kind === 'unrecorded')).toBe(false);
   });
 
   it('draws the full-width divider on its top side alone', () => {
@@ -53,6 +53,18 @@ describe('the Button Group IR', () => {
     for (const side of ['Right', 'Bottom', 'Left'])
       expect(bar[`border${side}Width`]).toMatchObject({ none: true });
     expect(bar.borderColor.token).toBe('color.border.subtle');
+    // Read from the weights Figma records per side, not inferred from the bindings.
+    expect(JSON.stringify(bar)).not.toContain('inferred');
+    const figma = oracle.variants.find(
+      (v) => v.figma === 'orientation=horizontal, type=full-width',
+    ).layers.root;
+    expect(figma).toMatchObject({
+      borderTopWidth: 1,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+      borderLeftWidth: 0,
+    });
+    expect(figma).not.toHaveProperty('borderWidth');
   });
 
   it('lets every child fill the group, and leaves its height to the Button', () => {

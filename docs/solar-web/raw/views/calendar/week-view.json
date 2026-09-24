@@ -150,7 +150,13 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ]
                   },
                   {
                     "name": "All-Day Strip",
@@ -175,6 +181,12 @@
                       "{Color:border/subtle}"
                     ],
                     "strokeWeight": "mixed",
+                    "strokeWeights": [
+                      0,
+                      0,
+                      1,
+                      0
+                    ],
                     "vars": {
                       "paddingTop": "Spatial:inset/2xs",
                       "paddingBottom": "Spatial:inset/2xs"
