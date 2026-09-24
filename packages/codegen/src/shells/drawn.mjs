@@ -109,10 +109,6 @@ export function iconsOf(spec) {
 /** Whether any entry of the recipe draws a glyph. */
 const hasGlyphs = (spec) => JSON.stringify(spec.style).includes('"glyph":{');
 
-/** `Counter` to `counter.json`, `Trend Badge` to `trend-badge.json`, as the stage names the IR. */
-export const irFile = (name) =>
-  `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.json`;
-
 /** `Trend Badge` to `trend_badge.dart`, as the Flutter emitter names the recipe. */
 export const dartFile = (name) =>
   `${name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.dart`;
@@ -180,7 +176,7 @@ export function drawnReact(spec, o) {
   ];
   const iconMap = iconEntries.length ? `{ ${iconEntries.join(', ')} }` : null;
   const present = Object.entries(o.present ?? {});
-  const header = `Scaffolded once by \`npm run solar:scaffold ${name}\` from spec/components/${irFile(name)}, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, \`solar${P}Style\` and \`solar${P}Compose\` in \`@bwp-web/styles/mui\`: ${o.look}.`;
+  const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, \`solar${P}Style\` and \`solar${P}Compose\` in \`@bwp-web/styles/mui\`: ${o.look}.`;
   return `/**
  * SOLAR ${name}.
  *
@@ -362,7 +358,7 @@ ${indent(o.control.semantics, 6)}
           );`
       : `    ${o.states ? `final states = ${o.states};` : 'const states = <WidgetState>{};'}
     final mark = ${layers('states')};`;
-  const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter ${name}\` from spec/components/${irFile(name)}, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [${R}]: ${o.look}.`;
+  const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [${R}]: ${o.look}.`;
   return `/// SOLAR ${name}.
 ///
 ${wrapDoc(header, '/// ')}

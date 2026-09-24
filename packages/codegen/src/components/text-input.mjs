@@ -1,15 +1,15 @@
 /**
  * SOLAR Text Input, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A field: SOLAR's label above, its helper below, and between them the field, MUI's InputBase on
  * the web and an undecorated TextField in Flutter, drawn by the shared layer helpers. Filled
  * follows the value (the overlay's `derive`), which the shells track.
  */
 
-import { treeOf } from '../scaffold/drawn.mjs';
-import { fieldFlutter, fieldResets, fieldStates } from '../scaffold/field.mjs';
+import { treeOf } from '../shells/drawn.mjs';
+import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
 
 const P = 'SolarTextInput';
 
@@ -66,9 +66,9 @@ export default {
       return `/**
  * SOLAR Text Input.
  *
- * Scaffolded once by \`npm run solar:scaffold "Text Input"\` from spec/components/text-input.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarTextInputStyle\` and \`solarTextInputCompose\` in \`@bwp-web/styles/mui\`: the
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarTextInputStyle\` and \`solarTextInputCompose\` in \`@bwp-web/styles/mui\`: the
  * field's fill, edge and focus ring by state, its words' and icons' ink, and the label and helper.
  *
  * Single-line text: its \`label\` above (a \`mandatory\` one is starred, and the input required), its

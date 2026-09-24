@@ -186,6 +186,12 @@ Component shells are **scaffolded once** from the IR, then owned by developers f
 recipe beside them regenerates on every run. This is the boundary that lets look changes flow
 in automatically while behaviour is never clobbered.
 
+> **Superseded 2026-09-24 (owner decision).** The shells are generated on every run from the
+> templates in each component's descriptor, which are where behaviour is written; a component can
+> opt out (`owned: true`) and keep hand-edited shell files. The boundary holds: look flows through
+> the recipe, behaviour through the template, and neither clobbers the other, since no one edits a
+> generated shell. The reasons are in the families plan, "Between F5 and F6".
+
 ## 6. The developer loop
 
 The review surface is the tweak surface. A Storybook panel is bound to the component's recipe;
@@ -196,7 +202,7 @@ Supporting commands:
 
 | Command                                   | Purpose                                                                                                                            |
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `solar:explain <C> --variant … --state …` | Print the provenance chain for every resolved property: shell, recipe, token, Figma node, overlay, or "MUI default, not in recipe" |
+| `solar:explain <C> --variant … --state …` | Print the provenance chain for every resolved property: shell, recipe, token, Figma node, overlay, or "MUI default, not in recipe". Built 2026-09-24 as `solar:explain -- "<C>" --variant …` (a state is part of the variant), without the MUI-default label |
 | `solar:codegen -- --adopt <C>`            | Read hand edits and fold what it understands into the overlay, asking about the rest                                               |
 | `solar:overlay:audit`                     | Report overlay rules repeated across components: candidates for promotion into the normalizer                                      |
 | `solar:verify`                            | Run the three parity suites                                                                                                        |

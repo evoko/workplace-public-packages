@@ -7,8 +7,9 @@
 **Goal:** Generate every component in SOLAR Web's components section, 128 beyond the four built,
 for React (MUI) and Flutter. Each is checked variant by variant against Figma, as in 3b.
 
-**Architecture:** Unchanged from 3b: IR, overlay, two recipes, shells scaffolded once, and the
-oracle and visual checks. Two things change. The machinery tasks (M) come first and make a component
+**Architecture:** Unchanged from 3b: IR, overlay, two recipes, shells from templates (scaffolded
+once until 2026-09-24, generated on every run since: see "Between F5 and F6"), and the oracle and
+visual checks. Two things change. The machinery tasks (M) come first and make a component
 cheap to add: shared defaults, complete findings, standalone components, and files of its own. Then
 the components go by **family**, not one by one. A family's **pioneer** is built with 3b's full
 care, and any machinery the family needs is found and fixed on it. The rest of the family is then
@@ -598,8 +599,9 @@ The seven steps, per component (from 3b-2, with M7's files):
       style builder where the base has one. Unit tests for both recipes.
 - [ ] **3. Templates.** A React and a Flutter template in the descriptor, functions of the IR, holding
       no design value.
-- [ ] **4. Shells.** `npm run solar:scaffold <Name>` and `npm run solar:scaffold -- --flutter <Name>`.
-      Shell tests: behaviour, accessibility, composition from the recipe.
+- [ ] **4. Shells.** `npm run solar:codegen` writes them from the templates, with the story.
+      Shell tests: behaviour, accessibility, composition from the recipe. When a check fails,
+      `npm run solar:explain -- "<Name>" --variant …` says which recipe entry won and why.
 - [ ] **5. Parity.** The parity suite covers it through `COMPONENTS`; make it pass.
 - [ ] **6. Visual.** Its web case and Flutter builder and case. Every variant matches Figma or is excused
       by a named finding.
@@ -1118,6 +1120,31 @@ Token Input owns its `string[]`.
   five fields' targets), 234 Flutter tests, lint, typecheck, format, all three Flutter packages
   analysed and formatted, both viewers built, the personal-data scan, and a rebuild that
   reproduces the tree.
+
+**Between F5 and F6, 2026-09-24 (owner decision).** Two pieces of the developer loop, for the rest
+of the build-out and for the `solar:sync` maintenance after it:
+
+- **Shells are generated.** Every one of the 88 shells was byte for byte its template's output, so
+  `solar:codegen` now renders them, and the stories, on every run (`src/shells/index.mjs`, which
+  was `src/scaffold/`), each under a header naming its descriptor; CI's rebuild proves them.
+  `solar:scaffold` is gone. The owner chose this over splitting the components into generated and
+  hand-owned ones by behaviour: a shared helper's fix and a slot Figma adds keep reaching every
+  component, and the two platforms' shells cannot drift apart unseen. The price is behaviour
+  written in template strings. The opt-out is `owned: true` in a descriptor (no templates; the
+  shells are files, without the header). The design spec's "scaffolded once, then owned forever"
+  (§5) is superseded, and says so.
+- **`solar:explain`** (`bin/solar-explain.mjs`, `src/explain/`): without a variant, a component's
+  variants, its excused differences grouped by why, and the last runs' failures; with one, each
+  layer and property as Figma's value, the recipe entry that wins and its token's value, where it
+  was read from and why, the rules on the cell, the excuse, and what each platform drew in its
+  last check. Its lookup is the Flutter recipe's precedence; a test proves it resolves to Figma's
+  value in all 21,703 unexcused cells of the 44 components' variants.
+- **Found by it:** where two `set` rules decide one finding (a field's width, the base's and sm's),
+  the oracle gave every variant the last rule's reason, so md read "As md's, the sm field's 160 a
+  sample". Each variant now names the rule that reaches it; eight oracles' reasons changed, no
+  excused entry moved.
+- **Checks:** 1114 JS tests, both visual checks (47, 234 Flutter tests), lint, typecheck, format,
+  the Flutter packages analysed, and a rebuild that reproduces the tree.
 
 ### F6: Menus and lists
 

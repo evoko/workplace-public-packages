@@ -1,15 +1,16 @@
 /**
  * SOLAR FAB, beyond its IR: where MUI draws each layer and marks each state, what the Flutter base
- * control's style reads, and the two shell templates, run once by \`solar:scaffold\`. One file per
- * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
+ * control's style reads, and the two shell templates, rendered into the shells by \`solar:codegen\`
+ * on every run. One file per component, so adding one edits nothing shared;
+ * \`src/components/index.mjs\` finds them.
  *
  * On Button's machinery: MUI's Button and Flutter's FilledButton, restyled by the recipe. Its type
  * is derived (the overlay's `derive`): an extended FAB is one with a label, so the shells set it
  * from whether they are given one.
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireSlots = (spec) => {
   for (const slot of ['icon', 'label'])
@@ -36,7 +37,7 @@ export default {
       // so the icon keeps its size and overlaps the border's pixel, as Figma draws it.
       '& .MuiButton-startIcon': { margin: '0', flexShrink: '0' },
       '& .MuiButton-startIcon > svg': { width: '100%', height: '100%' },
-      // A 44 × 44 target around the drawn button (scaffold/target.mjs).
+      // A 44 × 44 target around the drawn button (shells/target.mjs).
       ...targetArea(),
     },
     states: {
@@ -75,10 +76,10 @@ export default {
       return `/**
  * SOLAR FAB.
  *
- * Scaffolded once by \`npm run solar:scaffold FAB\` from spec/components/fab.json, and owned by
- * developers from then on: change it freely. What it looks like is not here. That is the recipe,
- * \`solarFABStyle\` in \`@bwp-web/styles/mui\`: each size and type, its colours by state, its shadow and
- * its focus ring.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarFABStyle\` in \`@bwp-web/styles/mui\`: each size and type, its colours by
+ * state, its shadow and its focus ring.
  *
  * The screen's one most important action. It wraps MUI's Button, which supplies focus, keyboard
  * activation, and the disabled and loading states (MUI's Fab has no loading state). It is extended
@@ -176,10 +177,10 @@ export const FAB = forwardRef<HTMLButtonElement, FABProps>(function FAB(
       const api = Object.entries(spec.api);
       return `/// SOLAR FAB.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter FAB\` from spec/components/fab.json, and
-/// owned by developers from then on: change it freely. What it looks like is not here. That is the
-/// recipe, [SolarFABRecipe]: each size and type, its colours by state, its shadow and its focus
-/// ring.
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarFABRecipe]: each size and type, its colours by state, its shadow and its
+/// focus ring.
 ///
 /// The screen's one most important action. It wraps Flutter's FilledButton, as SolarButton does,
 /// restyled by [SolarFABRecipe.style]; where it floats is the app's (a Scaffold's

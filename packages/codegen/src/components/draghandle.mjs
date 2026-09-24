@@ -1,9 +1,9 @@
 /**
  * SOLAR DragHandle, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
- * A drawn component (`src/scaffold/drawn.mjs`): six dots, focusable, pressed while held (the grab).
+ * A drawn component (`src/shells/drawn.mjs`): six dots, focusable, pressed while held (the grab).
  * The drag itself is the caller's.
  */
 
@@ -13,9 +13,9 @@ import {
   keyPrefixOf,
   treeOf,
   wrapDoc,
-} from '../scaffold/drawn.mjs';
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+} from '../shells/drawn.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireApi = (spec) => {
   if (!spec.api.size) throw new Error('DragHandle: the IR has no size');
@@ -35,7 +35,7 @@ export default {
       '&:active': { cursor: 'grabbing' },
       '&.SolarDragHandle-disabled': { cursor: 'default' },
       '&:focus-visible': { outline: 'none' },
-      // A 44 × 44 target around the grip (scaffold/target.mjs).
+      // A 44 × 44 target around the grip (shells/target.mjs).
       ...targetArea(),
     }),
     // Pressed while held by the pointer, or while the caller's drag says it is lifted.
@@ -80,7 +80,7 @@ className={
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter DragHandle\` from spec/components/draghandle.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarDragHandleRecipe]: the dots' size and colour by state, and the grip's padding and focus ring, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarDragHandleRecipe]: the dots' size and colour by state, and the grip's padding and focus ring, read cell by cell.`;
       const about = `Bespoke: a grip, drawn from Figma's layer tree with [SolarLayers], that marks a row or card as one to reorder. It is focusable, hovered by the mouse, and pressed while a pointer holds it, which is the grab; it is not a button, and does nothing itself. The drag is the caller's: wrap it in the list's drag listener (a ReorderableDragStartListener), and give the list the keyboard's Space to lift, arrows to move, Space to drop.`;
       return `/// SOLAR DragHandle.
 ///

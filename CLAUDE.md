@@ -36,18 +36,23 @@ touching that package. Decisions about one component go in its hand-written over
 `spec/overlay/<component>.yaml`: every rule needs a `reason`, and a rule that no
 longer matches the IR fails the build. A decision that holds for every component (an unbound `0`
 inset is `inset.none`) goes in `spec/overlay/defaults.yaml` instead, once; a component's own rule
-on the same cell wins. A component's shell (`packages/components/src/<Name>.tsx`, and
-`solar_flutter`'s `lib/src/components/solar_<name>.dart`) is written once by
-`npm run solar:scaffold <Name>` (`-- --flutter` for the widget) and then hand-owned; its look is the
-generated recipe, never values in the shell. Every variant is checked on both platforms against
+on the same cell wins. A component's shells (`packages/components/src/<Name>.tsx`, `solar_flutter`'s
+`lib/src/components/solar_<name>.dart`, and its story) are generated on every `solar:codegen` from
+the templates in its descriptor, which are the hand-written behaviour: edit the template, never
+the shell, whose first line names its descriptor. A component whose shell must be edited as a file
+opts out with `owned: true` (`packages/codegen/src/shells/index.mjs`). Its look is the generated
+recipe, never values in the shell. Every variant is checked on both platforms against
 what Figma draws: `spec/verify/<name>.json` (the oracle, generated beside the IR, never from the
 recipe) and the visual checks (`npm run test:visual` for React in Chromium, `flutter test` for the
 widgets). A difference fails unless the oracle excuses it with an open finding or an overlay
 decision; never loosen a check or edit the oracle to make one pass. To look at the components,
 `npm run storybook` (React) and `npm run widgetbook` (Flutter) show every Figma variant with its
 state forced, in Light and Dark, built from the same cases and oracles; they are viewers, not
-checks. Which components come next, and what each needs, is `npm run solar:triage`; the active plan is [milestone 4, family by family](docs/superpowers/plans/2026-09-24-solar-library-families.md). The rest of the tweak loop the design spec describes (`solar:explain`, the tweak panel
-that saves an overlay rule) is **not built yet**.
+checks. Which components come next, and what each needs, is `npm run solar:triage`; the active plan is [milestone 4, family by family](docs/superpowers/plans/2026-09-24-solar-library-families.md). Why a component draws what it draws, cell by cell (Figma's value, the recipe entry
+and token that win, the rule and reason behind them, the excuse, what each platform drew in its
+last check), is `npm run solar:explain -- "<Name>" [--variant …]`; start there when a check
+fails. The tweak panel the design spec describes (edit a value in the viewer, save an overlay
+rule) is **not built yet**.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type

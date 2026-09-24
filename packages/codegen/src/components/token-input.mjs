@@ -1,7 +1,7 @@
 /**
  * SOLAR Token Input, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A field of entries it holds (owner decision 2026-09-24), each a SOLAR Tag, those past
  * \`maxVisible\` counted by a SOLAR Counter, and an input for the next: MUI's InputBase on the web,
@@ -9,9 +9,9 @@
  * overlay's `derive`).
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { keyPrefixOf, treeOf, wrapDoc } from '../scaffold/drawn.mjs';
-import { fieldResets } from '../scaffold/field.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { fieldResets } from '../shells/field.mjs';
 
 const P = 'SolarTokenInput';
 
@@ -79,9 +79,9 @@ export default {
       return `/**
  * SOLAR Token Input.
  *
- * Scaffolded once by \`npm run solar:scaffold "Token Input"\` from spec/components/token-input.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarTokenInputStyle\` and \`solarTokenInputCompose\` in \`@bwp-web/styles/mui\`: the
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarTokenInputStyle\` and \`solarTokenInputCompose\` in \`@bwp-web/styles/mui\`: the
  * field's fill, edge and focus ring by state, the draft's ink, and the label and helper.
  *
  * A field of entries (tags, recipients, keywords): its \`label\` above (a \`mandatory\` one is starred),
@@ -291,7 +291,7 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(function T
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter "Token Input"\` from spec/components/token-input.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarTokenInputRecipe]: the field's fill, edge and focus ring by state, the draft's ink, and the label and helper, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarTokenInputRecipe]: the field's fill, edge and focus ring by state, the draft's ink, and the label and helper, read cell by cell.`;
       const about = `A field of entries (tags, recipients, keywords): its [label] above (a [mandatory] one is starred), its [helper] below, which says what is wrong where it is in [error]. Its [value] is drawn as SolarTags, each with a close button that removes it; the keyboard's action adds what is typed, and Backspace in the empty input removes the last. [maxVisible] draws that many, and counts the rest in a SolarCounter. [onChanged] is called with the entries. The draft is an undecorated [TextField] in the field drawn from Figma's layer tree with [SolarLayers] ([SolarField] holds it and its states). Read-only, the entries are shown and cannot be changed.`;
       return `/// SOLAR Token Input.
 ///

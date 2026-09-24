@@ -1,15 +1,15 @@
 /**
  * SOLAR Password Input, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
- * A field (scaffold/field.mjs) whose words are hidden: MUI's InputBase on the web, a password
+ * A field (shells/field.mjs) whose words are hidden: MUI's InputBase on the web, a password
  * input, and an obscured TextField in Flutter, with SOLAR's eye after it to show or hide them.
  */
 
-import { treeOf } from '../scaffold/drawn.mjs';
-import { fieldFlutter, fieldResets, fieldStates } from '../scaffold/field.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { treeOf } from '../shells/drawn.mjs';
+import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const P = 'SolarPasswordInput';
 
@@ -42,7 +42,7 @@ export default {
       wraps: ['helper', 'forgotPassword'],
       more: {
         // The eye is a button of the icon's size, its ink the recipe's, with a 44 × 44 target
-        // (scaffold/target.mjs).
+        // (shells/target.mjs).
         ...targetArea(`& button.${P}-icon`),
         [`& button.${P}-icon`]: {
           ...targetArea(`& button.${P}-icon`)[`& button.${P}-icon`],
@@ -79,11 +79,11 @@ export default {
       return `/**
  * SOLAR Password Input.
  *
- * Scaffolded once by \`npm run solar:scaffold "Password Input"\` from
- * spec/components/password-input.json, and owned by developers from then on: change it freely.
- * What it looks like is not here. That is the recipe, \`solarPasswordInputStyle\` and
- * \`solarPasswordInputCompose\` in \`@bwp-web/styles/mui\`: the field's fill, edge and focus ring by
- * state, its words' and eye's ink, and the label and helper.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarPasswordInputStyle\` and \`solarPasswordInputCompose\` in
+ * \`@bwp-web/styles/mui\`: the field's fill, edge and focus ring by state, its words' and eye's ink,
+ * and the label and helper.
  *
  * A password: its \`label\` above (a \`mandatory\` one is starred, and the input required), its
  * \`helper\` below, which says what is wrong where it is in \`error\`, and a \`forgotPassword\` link

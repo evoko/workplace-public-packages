@@ -173,7 +173,7 @@
           "figma": 1,
           "finding": "component.divider.root.width#unbound",
           "decision": "set",
-          "reason": "A divider spans its container: Figma draws the full one 320 wide, a sample, and the inset one filling already."
+          "reason": "As the horizontal one's height, the vertical divider is its rule's thickness."
         },
         {
           "layer": "root",

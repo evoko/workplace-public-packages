@@ -1,17 +1,17 @@
 /**
  * SOLAR Number Input, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
- * A field (scaffold/field.mjs) of a number, a spinbutton: MUI's InputBase on the web and an
+ * A field (shells/field.mjs) of a number, a spinbutton: MUI's InputBase on the web and an
  * undecorated TextField in Flutter, stepped by the arrow keys and by its stepper's buttons, inline
  * (a minus and a plus either side) or beside it (a column of chevrons).
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { keyPrefixOf, treeOf, wrapDoc } from '../scaffold/drawn.mjs';
-import { fieldResets, fieldStates } from '../scaffold/field.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { fieldResets, fieldStates } from '../shells/field.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const P = 'SolarNumberInput';
 
@@ -82,7 +82,7 @@ export default {
             width: '100%',
             height: '100%',
           },
-        // The inline buttons have a 44 × 44 target each (scaffold/target.mjs); the side stepper's
+        // The inline buttons have a 44 × 44 target each (shells/target.mjs); the side stepper's
         // halves, stacked 20px tall, cannot without covering each other, and keep Figma's.
         ...targetArea(`& button.${P}-fieldDecrement`),
         ...targetArea(`& button.${P}-fieldIncrement`),
@@ -115,10 +115,10 @@ export default {
       return `/**
  * SOLAR Number Input.
  *
- * Scaffolded once by \`npm run solar:scaffold "Number Input"\` from spec/components/number-input.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarNumberInputStyle\` and \`solarNumberInputCompose\` in \`@bwp-web/styles/mui\`: the
- * field's fill, edge and focus ring by state, its number's and steppers' ink, and the label and
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarNumberInputStyle\` and \`solarNumberInputCompose\` in \`@bwp-web/styles/mui\`:
+ * the field's fill, edge and focus ring by state, its number's and steppers' ink, and the label and
  * helper, by stepper.
  *
  * A number, stepped between \`min\` and \`max\` by \`step\`: its \`label\` above (a \`mandatory\` one is
@@ -368,7 +368,7 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(function
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter "Number Input"\` from spec/components/number-input.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarNumberInputRecipe]: the field's fill, edge and focus ring by state, its number's and steppers' ink, and the label and helper, by stepper, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarNumberInputRecipe]: the field's fill, edge and focus ring by state, its number's and steppers' ink, and the label and helper, by stepper, read cell by cell.`;
       const about = `A number, stepped between [min] and [max] by [step]: its [label] above (a [mandatory] one is starred), its [helper] below, which says what is wrong where it is in [error]. The number is a [TextField], undecorated, in the field drawn from Figma's layer tree with [SolarLayers] ([SolarField] holds its states), which takes only a number (the numeric keyboard): the arrow keys step it, and so do its [stepper]'s buttons, a minus and a plus either side ([SolarNumberInputStepper.inline]) or a column of chevrons after it ([SolarNumberInputStepper.side], larger for touch). It reads as one adjustable text field, named by its label. It calls [onChanged] with the number, or null while it is empty. Validate on blur.`;
       return `/// SOLAR Number Input.
 ///

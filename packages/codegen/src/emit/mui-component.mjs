@@ -63,8 +63,8 @@ export const MUI_SVG_LAYERS = descriptorTable('mui', 'svgLayers');
 
 /**
  * MUI's own defaults that would otherwise show through the recipe. These are MUI knowledge, like
- * the slot table, so they live here and regenerate, rather than being copied into every hand-owned
- * shell. Each undoes something MUI draws that SOLAR does not: Button's 64px minimum width (SOLAR
+ * the slot table, so they live here and regenerate, rather than being copied into every shell's
+ * template. Each undoes something MUI draws that SOLAR does not: Button's 64px minimum width (SOLAR
  * buttons hug their label), its upper-case label (SOLAR labels are sentence case, and MUI's
  * default theme upper-cases them), the margins MUI puts around the icons (SOLAR spaces them with
  * the gap), and MUI's icon font size (the SOLAR icon fills its slot, which the recipe sizes). So a

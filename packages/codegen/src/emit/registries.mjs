@@ -2,17 +2,17 @@
  * The lists every generated component is in, written from the component list
  * (`src/components/`), so adding a component edits none of them by hand:
  *
- * - each package's barrel of its hand-owned shells;
+ * - each package's barrel of its shells;
  * - the web visual check's registry of cases, and the Flutter one's;
  * - the variant builders the Flutter check shares with the Widgetbook app, and their library.
  *
- * Each names a file by the scaffolder's conventions (`IconButton.tsx`, `icon-button.tsx`,
- * `icon_button.dart`). A file named here that does not exist fails the typecheck or
+ * Each names a file by the shells' conventions (src/shells/index.mjs: `IconButton.tsx`,
+ * `icon-button.tsx`, `icon_button.dart`). A file named here that does not exist fails the typecheck or
  * `flutter analyze`, so a component cannot go unregistered, and none can be registered twice.
  */
 
 import { join } from 'node:path';
-import { flutterFileOf, shellFileOf } from '../scaffold/index.mjs';
+import { flutterFileOf, shellFileOf } from '../shells/index.mjs';
 import { camel, pascal } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
@@ -91,7 +91,7 @@ export function renderRegistries(names) {
   ];
   const widgets = [
     HEADER,
-    '// Every generated widget’s hand-owned shell, which solar_flutter.dart exports.',
+    '// Every generated widget’s shell, which solar_flutter.dart exports.',
     '',
     ...sorted.map((n) => `export '${flutterFileOf(n)}';`),
   ];

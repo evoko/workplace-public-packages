@@ -1,16 +1,16 @@
 /**
  * SOLAR SplitButton, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A drawn component with two press targets: the shells draw Figma's layer tree with the shared
  * helpers, the action and the chevron halves as buttons of their own, and the whole control takes
  * the states of whichever half is hovered, pressed or focused, as Figma draws them.
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { drawnResets, treeOf } from '../scaffold/drawn.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { drawnResets, treeOf } from '../shells/drawn.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   for (const layer of [
@@ -37,7 +37,7 @@ export default {
         font: 'inherit',
         color: 'inherit',
       },
-      // A 44 × 44 target around each half (scaffold/target.mjs).
+      // A 44 × 44 target around each half (shells/target.mjs).
       ...targetArea('& .SolarSplitButton-action'),
       ...targetArea('& .SolarSplitButton-trigger'),
       '& .SolarSplitButton-spinner': {
@@ -68,9 +68,9 @@ export default {
       return `/**
  * SOLAR SplitButton.
  *
- * Scaffolded once by \`npm run solar:scaffold SplitButton\` from spec/components/splitbutton.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarSplitButtonStyle\` in \`@bwp-web/styles/mui\`: the control's colours, border,
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarSplitButtonStyle\` in \`@bwp-web/styles/mui\`: the control's colours, border,
  * shadow and focus ring by state, its halves' padding, and the rule between them.
  *
  * The dominant action and a chevron that opens a menu of its variants (Save, Save as, Save and
@@ -224,10 +224,10 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(function
         .join('\n');
       return `/// SOLAR SplitButton.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter SplitButton\` from
-/// spec/components/splitbutton.json, and owned by developers from then on: change it freely. What
-/// it looks like is not here. That is the recipe, [SolarSplitButtonRecipe]: the control's colours,
-/// border, shadow and focus ring by state, its halves' padding, and the rule between them.
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarSplitButtonRecipe]: the control's colours, border, shadow and focus ring by
+/// state, its halves' padding, and the rule between them.
 ///
 /// The dominant action and a chevron that opens a menu of its variants: two buttons in one joined
 /// control, drawn from Figma's layer tree with [SolarLayers]. The whole control takes the states of

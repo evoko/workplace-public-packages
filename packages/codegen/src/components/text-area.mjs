@@ -1,15 +1,15 @@
 /**
  * SOLAR Text Area, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
- * A field of many lines (scaffold/field.mjs): the label above, the footer below (the helper and
+ * A field of many lines (shells/field.mjs): the label above, the footer below (the helper and
  * the count), and between them the field, MUI's InputBase, multiline, on the web and an
  * undecorated TextField in Flutter, with the caller's Icon Buttons pinned in its bottom corners.
  */
 
-import { treeOf } from '../scaffold/drawn.mjs';
-import { fieldFlutter, fieldResets, fieldStates } from '../scaffold/field.mjs';
+import { treeOf } from '../shells/drawn.mjs';
+import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
 
 const P = 'SolarTextArea';
 
@@ -70,9 +70,9 @@ export default {
       return `/**
  * SOLAR Text Area.
  *
- * Scaffolded once by \`npm run solar:scaffold "Text Area"\` from spec/components/text-area.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarTextAreaStyle\` and \`solarTextAreaCompose\` in \`@bwp-web/styles/mui\`: the
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarTextAreaStyle\` and \`solarTextAreaCompose\` in \`@bwp-web/styles/mui\`: the
  * field's fill, edge and focus ring by state, its words' ink, the label and the footer.
  *
  * Text of many lines (descriptions, notes, feedback): its \`label\` above (a \`mandatory\` one is

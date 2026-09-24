@@ -1,13 +1,13 @@
 /**
- * SOLAR Kbd, beyond its IR: where MUI draws each layer, and the two shell templates, run once by
- * \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * SOLAR Kbd, beyond its IR: where MUI draws each layer, and the two shell templates, rendered into
+ * the shells by \`solar:codegen\` on every run. One file per component, so adding one edits nothing
+ * shared; \`src/components/index.mjs\` finds them.
  *
  * A drawn component: the shells draw its layer tree with the shared helpers
- * (`src/scaffold/drawn.mjs`), the label as the caller's text in its box.
+ * (`src/shells/drawn.mjs`), the label as the caller's text in its box.
  */
 
-import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
+import { drawnFlutter, drawnReact, drawnResets } from '../shells/drawn.mjs';
 
 const requireLabel = (spec) => {
   if (spec.layers.label?.type !== 'TEXT')

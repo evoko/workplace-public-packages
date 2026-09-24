@@ -7,7 +7,7 @@
  */
 
 import { pascal } from '../util/naming.mjs';
-import { drawnFlutter, drawnResets, treeOf } from './drawn.mjs';
+import { drawnFlutter, drawnResets, treeOf, wrapDoc } from './drawn.mjs';
 import { targetArea } from './target.mjs';
 
 /** The layers and slots a callout's templates need, refused where the IR lacks one. */
@@ -55,10 +55,7 @@ export function alertReact(spec, { about }) {
   return `/**
  * SOLAR ${name}.
  *
- * Scaffolded once by \`npm run solar:scaffold "${name}"\` from spec/components/${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solar${P}Style\` and \`solar${P}Compose\` in \`@bwp-web/styles/mui\`: each type's
- * fill, edge and words, filled or outlined, and the StatusIndicator it shows.
+${wrapDoc(`Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, \`solar${P}Style\` and \`solar${P}Compose\` in \`@bwp-web/styles/mui\`: each type's fill, edge and words, filled or outlined, and the StatusIndicator it shows.`, ' * ')}
  *
  * ${`${ABOUT} ${about}`.replace(/\n/g, ' ')} Bespoke: drawn from Figma's layer tree
  * (\`internal/layers.tsx\`). The app must load \`@bwp-web/styles/tokens.css\`.

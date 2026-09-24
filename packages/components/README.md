@@ -43,7 +43,7 @@ passes through, and `sx` applies on top of the recipe. An icon-only button needs
 `sm` is drawn 32px tall and `md` 40px, below the 44px WCAG touch target, and its hit area is
 padded to 44 × 44 in code, as SOLAR's description asks: an invisible target around the drawn button,
 which takes no room. Every control here has one. SOLAR publishes no variable for the target size, so
-44 is the one raw value for it, in the codegen's `src/scaffold/target.mjs`, until SOLAR does (the
+44 is the one raw value for it, in the codegen's `src/shells/target.mjs`, until SOLAR does (the
 first question in [the design review](../../docs/solar-review-for-design.md)).
 
 ## Icon Button
@@ -619,9 +619,11 @@ A component here is two parts, with a hard line between them:
 
 - **The recipe** — what it looks like — is `solarButtonStyle` in `@bwp-web/styles/mui`, generated
   from Figma by `npm run solar:codegen`. It is never edited; a design change arrives through it.
-- **The shell** — props, slots, loading, accessibility — is `src/Button.tsx`, written once by
-  `npm run solar:scaffold Button` and owned by developers from then on. The scaffolder refuses to
-  overwrite it without `--force`, so behaviour someone added is never lost to a design change.
+- **The shell** — props, slots, loading, accessibility — is `src/Button.tsx`, generated on every
+  `npm run solar:codegen` from the React template in Button's descriptor
+  (`packages/codegen/src/components/button.mjs`). The template is the hand-written behaviour; the
+  shell is never edited, and its first line says so. A component whose shell must be edited as a
+  file opts out with `owned: true` in its descriptor.
 
 The rule of thumb: **the overlay for a decision about one component, the normalizer for a rule
-about the system, the shell for behaviour.**
+about the system, the shell's template for behaviour.**

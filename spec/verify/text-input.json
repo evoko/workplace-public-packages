@@ -120,7 +120,7 @@
           "figma": 240,
           "finding": "component.text input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Slider or a Banner."
         }
       ]
     },
@@ -340,7 +340,7 @@
           "figma": 240,
           "finding": "component.text input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Slider or a Banner."
         }
       ]
     },
@@ -560,7 +560,7 @@
           "figma": 240,
           "finding": "component.text input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Slider or a Banner."
         }
       ]
     },
@@ -796,7 +796,7 @@
           "figma": 240,
           "finding": "component.text input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Slider or a Banner."
         }
       ]
     },
@@ -1032,7 +1032,7 @@
           "figma": 240,
           "finding": "component.text input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Slider or a Banner."
         }
       ]
     },
@@ -1268,7 +1268,7 @@
           "figma": 240,
           "finding": "component.text input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Slider or a Banner."
         }
       ]
     },

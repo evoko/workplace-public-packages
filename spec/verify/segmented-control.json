@@ -146,7 +146,7 @@
           "figma": 32,
           "finding": "component.segmented control.segmentedControlItem.height#unbound",
           "decision": "set",
-          "reason": "As at md, the segment's own height."
+          "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one."
         },
         {
           "layer": "segmentedControlItem2",
@@ -154,7 +154,7 @@
           "figma": 32,
           "finding": "component.segmented control.segmentedControlItem2.height#unbound",
           "decision": "set",
-          "reason": "As at md, the segment's own height."
+          "reason": "As the first segment's, its own height."
         },
         {
           "layer": "segmentedControlItem3",
@@ -162,7 +162,7 @@
           "figma": 32,
           "finding": "component.segmented control.segmentedControlItem3.height#unbound",
           "decision": "set",
-          "reason": "As at md, the segment's own height."
+          "reason": "As the first segment's, its own height."
         },
         {
           "layer": "segmentedControlItem4",
@@ -170,7 +170,7 @@
           "figma": 32,
           "finding": "component.segmented control.segmentedControlItem4.height#unbound",
           "decision": "set",
-          "reason": "As at md, the segment's own height."
+          "reason": "As the first segment's, its own height."
         },
         {
           "layer": "segmentedControlItem5",
@@ -178,7 +178,7 @@
           "figma": 32,
           "finding": "component.segmented control.segmentedControlItem5.height#unbound",
           "decision": "set",
-          "reason": "As at md, the segment's own height."
+          "reason": "As the first segment's, its own height."
         },
         {
           "layer": "segmentedControlItem6",
@@ -186,7 +186,7 @@
           "figma": 32,
           "finding": "component.segmented control.segmentedControlItem6.height#unbound",
           "decision": "set",
-          "reason": "As at md, the segment's own height."
+          "reason": "As the first segment's, its own height."
         }
       ]
     },

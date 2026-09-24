@@ -1,7 +1,7 @@
 /**
  * SOLAR PIN Input, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A code of one digit per cell, `length` of them (owner decision 2026-09-24: 4 to 6), held by one
  * native input laid invisible over the cells. The cell the next digit goes in is drawn as Figma's
@@ -9,13 +9,8 @@
  * Filled follows the code (the overlay's `derive`).
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import {
-  drawnResets,
-  keyPrefixOf,
-  treeOf,
-  wrapDoc,
-} from '../scaffold/drawn.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
 
 const P = 'SolarPINInput';
 
@@ -86,11 +81,11 @@ export default {
       return `/**
  * SOLAR PIN Input.
  *
- * Scaffolded once by \`npm run solar:scaffold "PIN Input"\` from spec/components/pin-input.json, and
- * owned by developers from then on: change it freely. What it looks like is not here. That is the
- * recipe, \`solarPINInputStyle\` and \`solarPINInputCompose\` in \`@bwp-web/styles/mui\`: each cell's
- * fill, edge and focus ring by state, its digit's and placeholder's ink, and the label, helper and
- * error.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarPINInputStyle\` and \`solarPINInputCompose\` in \`@bwp-web/styles/mui\`: each
+ * cell's fill, edge and focus ring by state, its digit's and placeholder's ink, and the label,
+ * helper and error.
  *
  * A one-time code or a verification code, one digit per cell, \`length\` of them (4 to 6, six by
  * default): its \`label\` above (a \`mandatory\` one is starred), its \`helper\` below, and in \`error\`
@@ -323,7 +318,7 @@ export const PINInput = forwardRef<HTMLDivElement, PINInputProps>(function PINIn
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter "PIN Input"\` from spec/components/pin-input.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarPINInputRecipe]: each cell's fill, edge and focus ring by state, its digit's and placeholder's ink, and the label, helper and error, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarPINInputRecipe]: each cell's fill, edge and focus ring by state, its digit's and placeholder's ink, and the label, helper and error, read cell by cell.`;
       const about = `A one-time code or a verification code, one digit per cell, [length] of them (4 to 6, six by default): its [label] above (a [mandatory] one is starred), its [helper] below, and in [error] its [errorMessage] there instead. One [TextField] holds the code, invisible over the cells drawn from Figma's layer tree with [SolarLayers] ([SolarField] holds it and its states), so typing moves on a cell, Backspace steps back, a paste fills every cell, and the phone offers the code it was sent (the one-time-code autofill, the numeric keyboard). The cell the next digit goes in shows the focus and the caret. [onChanged] is called with the digits, [onCompleted] once every cell holds one. It reads as one text field, named by its label.`;
       return `/// SOLAR PIN Input.
 ///

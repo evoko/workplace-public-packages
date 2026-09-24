@@ -1,7 +1,7 @@
 /**
  * SOLAR FileUpload, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A drop zone with a Browse button (a SOLAR Button), and, once a file is chosen, its name with
  * replace and remove buttons (SOLAR Icon Buttons). A real file input on the web; in Flutter, which
@@ -9,13 +9,8 @@
  * overlay's `derive`).
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import {
-  drawnResets,
-  keyPrefixOf,
-  treeOf,
-  wrapDoc,
-} from '../scaffold/drawn.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
 
 const P = 'SolarFileUpload';
 
@@ -69,10 +64,10 @@ export default {
       return `/**
  * SOLAR FileUpload.
  *
- * Scaffolded once by \`npm run solar:scaffold FileUpload\` from spec/components/fileupload.json, and
- * owned by developers from then on: change it freely. What it looks like is not here. That is the
- * recipe, \`solarFileUploadStyle\` and \`solarFileUploadCompose\` in \`@bwp-web/styles/mui\`: the drop
- * zone's fill, edge and focus ring by state, its file's ink, and the label and helper.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarFileUploadStyle\` and \`solarFileUploadCompose\` in \`@bwp-web/styles/mui\`: the
+ * drop zone's fill, edge and focus ring by state, its file's ink, and the label and helper.
  *
  * A file to upload: its \`label\` above (a \`mandatory\` one is starred), its \`helper\` below (the
  * limits: "Max 10MB, .jpg .png"), which says what is wrong where it is in \`error\`. Browse opens the
@@ -287,7 +282,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(function F
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter FileUpload\` from spec/components/fileupload.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarFileUploadRecipe]: the drop zone's fill, edge and focus ring by state, its file's ink, and the label and helper, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarFileUploadRecipe]: the drop zone's fill, edge and focus ring by state, its file's ink, and the label and helper, read cell by cell.`;
       const about = `A file to upload: its [label] above (a [mandatory] one is starred), its [helper] below (the limits: "Max 10MB, .jpg .png"), which says what is wrong where it is in [error]. Flutter has no file picker of its own, so the app's does the choosing: Browse and replace call [onBrowse], for the app to open one (the file_picker package, say) and give back what was chosen as [value], the files' names, which it shows, with replace and remove ([onRemove]) buttons. Drawn from Figma's layer tree with [SolarLayers]; its Browse is a SolarButton, and replace and remove are SolarIconButtons.`;
       return `/// SOLAR FileUpload.
 ///

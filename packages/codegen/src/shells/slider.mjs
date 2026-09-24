@@ -85,7 +85,7 @@ export function sliderReact(spec, { range, about }) {
   return `/**
  * SOLAR ${name}.
  *
-${wrapDoc(`Scaffolded once by \`npm run solar:scaffold "${name}"\` from spec/components/${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, \`solar${P}Style\` in \`@bwp-web/styles/mui\`: the rail, the fill by state, and the handle${range ? 's' : ''}' size, edge and shadow.`, ' * ')}
+${wrapDoc(`Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, \`solar${P}Style\` in \`@bwp-web/styles/mui\`: the rail, the fill by state, and the handle${range ? 's' : ''}' size, edge and shadow.`, ' * ')}
  *
 ${wrapDoc(`${about} It wraps MUI's Slider, which drags, takes the arrow keys and is announced as a slider${range ? ' for each thumb (name each with `getAriaLabel`)' : ' (name it with `aria-label`)'}; on 0 to 100 by default, as MUI's is. It fills its container. The app must load \`@bwp-web/styles/tokens.css\`.`, ' * ')}
  */
@@ -145,7 +145,7 @@ export function sliderFlutter(spec, { handles, about }) {
   const fromFractions = range
     ? 'RangeValues(min + f[0] * span, min + f[1] * span)'
     : 'min + f[0] * span';
-  const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter "${name}"\` from spec/components/${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [${R}]: the rail, the fill by state, and the handle${range ? 's' : ''}' size, edge and shadow, read cell by cell.`;
+  const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [${R}]: the rail, the fill by state, and the handle${range ? 's' : ''}' size, edge and shadow, read cell by cell.`;
   const text = `${about} Bespoke: Flutter's ${range ? 'RangeSlider' : 'Slider'} paints its own track and thumb${range ? 's' : ''}. Figma's layers are drawn with [SolarLayers] over a [SolarSliderInput], which drags, takes the arrow keys and announces ${range ? 'each handle' : 'it'} as a slider; the value places the fill and handle${range ? 's' : ''}. On [min] to [max], 0 to 1 by default, as Flutter's is. It fills its container, which must give it a width.`;
   return `/// SOLAR ${name}.
 ///

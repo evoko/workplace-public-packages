@@ -2,7 +2,7 @@
 
 import { dartEnumValue } from '../emit/flutter.mjs';
 
-/** The MUI prop each slot type becomes; a slot type with no entry here cannot be scaffolded. */
+/** The MUI prop each slot type becomes; a slot type with no entry here has no template. */
 export const MUI_SLOT_PROPS = {
   iconLeading: 'startIcon',
   iconTrailing: 'endIcon',

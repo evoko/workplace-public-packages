@@ -1,14 +1,14 @@
 /**
  * SOLAR Radio, beyond its IR: where MUI draws each layer and marks each state, and the two shell
- * templates, run once by \`solar:scaffold\`. One file per component, so adding one edits nothing
- * shared; \`src/components/index.mjs\` finds them.
+ * templates, rendered into the shells by \`solar:codegen\` on every run. One file per component, so
+ * adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * MUI's Radio on the web and Flutter's RawRadio, each checked by its group, the ring and dot drawn
  * inside by the shared layer helpers.
  */
 
-import { drawnResets, treeOf, wrapDoc } from '../scaffold/drawn.mjs';
-import { targetInput } from '../scaffold/target.mjs';
+import { drawnResets, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { targetInput } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   for (const prop of ['checked', 'disabled'])
@@ -26,7 +26,7 @@ export default {
     // native input, invisible, covers the ring.
     resets: drawnResets('Radio', {
       padding: '0',
-      // The input is the target, 44 × 44 around the ring (scaffold/target.mjs).
+      // The input is the target, 44 × 44 around the ring (shells/target.mjs).
       ...targetInput('& input'),
     }),
     states: {
@@ -47,10 +47,10 @@ export default {
       return `/**
  * SOLAR Radio.
  *
- * Scaffolded once by \`npm run solar:scaffold Radio\` from spec/components/radio.json, and owned by
- * developers from then on: change it freely. What it looks like is not here. That is the recipe,
- * \`solarRadioStyle\` and \`solarRadioCompose\` in \`@bwp-web/styles/mui\`: the ring's fill and edge
- * by state, and the dot, Figma's own outline.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarRadioStyle\` and \`solarRadioCompose\` in \`@bwp-web/styles/mui\`: the ring's
+ * fill and edge by state, and the dot, Figma's own outline.
  *
  * One choice of a group, committed on click: put two to five in MUI's RadioGroup, which checks the
  * one whose \`value\` is its own and names them all, and gives each a label (MUI's
@@ -128,7 +128,7 @@ export const Radio = forwardRef<HTMLButtonElement, RadioProps>(function Radio(
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter Radio\` from spec/components/radio.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarRadioRecipe]: the ring's fill and edge by state, and the dot, Figma's own outline, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarRadioRecipe]: the ring's fill and edge by state, and the dot, Figma's own outline, read cell by cell.`;
       const about = `One choice of a group, committed on tap: put two to five under a [RadioGroup], which checks the one whose [value] is its own, calls its onChanged with the value tapped, and moves between them with the arrow keys, as it does Flutter's own Radio. A radio alone is a bug, SOLAR says; outside a group it is drawn unchecked and does nothing. Built on [RawRadio], with its ring and dot drawn from Figma's layer tree with [SolarLayers]. Name it with [semanticLabel], or a label beside it.`;
       return `/// SOLAR Radio.
 ///

@@ -1,7 +1,7 @@
 /**
  * Component parity: the MUI and Flutter Buttons expose the same API and draw from the same recipe.
  *
- * Read from the artifacts -- the generated TypeScript and Dart, and the hand-owned shell -- and
+ * Read from the artifacts -- the generated TypeScript and Dart, and the shells -- and
  * never from an emitter's own account of what it wrote. Milestone 1 learned why: three token
  * emitters recorded a mode they had forgotten to emit, and every assertion that read the emitter's
  * claim stayed green. Here each platform is parsed back and compared with the IR, which is the
@@ -27,7 +27,7 @@ const LABEL_PROP = table('shells', 'label');
 const FLUTTER_NAMES = table('shells', 'flutter');
 import { flattenSpec } from '../src/spec.mjs';
 import * as stage from '../src/stages/components.mjs';
-import { flutterFileOf, shellFileOf } from '../src/scaffold/index.mjs';
+import { flutterFileOf, shellFileOf } from '../src/shells/index.mjs';
 import { pascal } from '../src/util/naming.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
@@ -458,8 +458,8 @@ describe('component parity: every entry, in place', () => {
 });
 
 // The widgets developers use, not the generated props classes alone: the React shell and the
-// Flutter widget are hand-owned after scaffolding, so either can drift from the IR, and this is
-// what notices.
+// Flutter widget are written by hand (as templates, or as an owned shell), so either can drift
+// from the IR, and this is what notices.
 describe('component parity: the React and Flutter widgets', () => {
   /** The names a React shell destructures from its props. */
   function reactProps(source, name) {
@@ -491,7 +491,7 @@ describe('component parity: the React and Flutter widgets', () => {
   }
 
   for (const { spec } of built) {
-    // `Icon Button` is IconButton.tsx and solar_icon_button.dart, as the scaffolder names them.
+    // `Icon Button` is IconButton.tsx and solar_icon_button.dart, as the shells are named.
     const name = pascal(spec.component);
     const react = reactProps(
       read('components', 'src', shellFileOf(spec.component)),

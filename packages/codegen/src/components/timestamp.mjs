@@ -1,13 +1,13 @@
 /**
- * SOLAR Timestamp, beyond its IR: where MUI draws each layer, and the two shell templates, run
- * once by \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * SOLAR Timestamp, beyond its IR: where MUI draws each layer, and the two shell templates, rendered
+ * into the shells by \`solar:codegen\` on every run. One file per component, so adding one edits
+ * nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A drawn component: one text, the words the app formats (owner decision, 2026-09-24), drawn by
- * the shared layer helpers (`src/scaffold/drawn.mjs`). `format` changes the words, not the look.
+ * the shared layer helpers (`src/shells/drawn.mjs`). `format` changes the words, not the look.
  */
 
-import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
+import { drawnFlutter, drawnReact, drawnResets } from '../shells/drawn.mjs';
 
 const requireValue = (spec) => {
   if (spec.layers.value?.type !== 'TEXT')

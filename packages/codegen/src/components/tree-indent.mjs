@@ -1,13 +1,13 @@
 /**
- * SOLAR Tree Indent (Figma's `.Tree Indent`), beyond its IR: where MUI draws each layer, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * SOLAR Tree Indent (Figma's `.Tree Indent`), beyond its IR: where MUI draws each layer, and the
+ * two shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A drawing (its overlay's `drawing`): each depth is a row of that many 16px units, drawn from
- * Figma's layer tree by the shared helpers (`src/scaffold/drawn.mjs`).
+ * Figma's layer tree by the shared helpers (`src/shells/drawn.mjs`).
  */
 
-import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
+import { drawnFlutter, drawnReact, drawnResets } from '../shells/drawn.mjs';
 
 const requireDepth = (spec) => {
   if (!spec.api.depth) throw new Error('Tree Indent: the IR has no depth');

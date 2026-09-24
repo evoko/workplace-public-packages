@@ -1,20 +1,15 @@
 /**
  * SOLAR Segmented Control Item, beyond its IR: where MUI draws each layer and marks each state, and
- * the two shell templates, run once by \`solar:scaffold\`. One file per component, so adding one
- * edits nothing shared; \`src/components/index.mjs\` finds them.
+ * the two shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * One choice of a Segmented Control, which is a radio group: on the web a label around a native
  * radio input, in Flutter a RawRadio; its words and icons drawn by the shared layer helpers.
  */
 
-import {
-  drawnResets,
-  keyPrefixOf,
-  treeOf,
-  wrapDoc,
-} from '../scaffold/drawn.mjs';
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['iconLeading', 'iconTrailing'])
@@ -35,7 +30,7 @@ export default {
     // fills its slot, which the recipe sizes and colours.
     resets: drawnResets('Segmented Control Item', {
       cursor: 'pointer',
-      // A 44 × 44 target around the segment (scaffold/target.mjs).
+      // A 44 × 44 target around the segment (shells/target.mjs).
       ...targetArea(),
       [`& .${P}-input`]: {
         position: 'absolute',
@@ -68,10 +63,10 @@ export default {
       return `/**
  * SOLAR Segmented Control Item.
  *
- * Scaffolded once by \`npm run solar:scaffold "Segmented Control Item"\` from
- * spec/components/segmented-control-item.json, and owned by developers from then on: change it
- * freely. What it looks like is not here. That is the recipe, \`solarSegmentedControlItemStyle\` in
- * \`@bwp-web/styles/mui\`: the chosen segment's raised surface, the others' quieter words, by size.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarSegmentedControlItemStyle\` in \`@bwp-web/styles/mui\`: the chosen segment's
+ * raised surface, the others' quieter words, by size.
  *
  * One segment of a SegmentedControl, which selects the one whose \`value\` is its own: a <label>
  * around a native radio input, so the browser moves between the segments with the arrow keys and
@@ -184,7 +179,7 @@ export const SegmentedControlItem = forwardRef<HTMLLabelElement, SegmentedContro
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter "Segmented Control Item"\` from spec/components/segmented-control-item.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarSegmentedControlItemRecipe]: the chosen segment's raised surface, the others' quieter words, by size, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarSegmentedControlItemRecipe]: the chosen segment's raised surface, the others' quieter words, by size, read cell by cell.`;
       const about = `One segment of a [SolarSegmentedControl], whose [RadioGroup] selects the one whose [value] is its own, calls its onChanged with the value tapped, and moves between them with the arrow keys. Built on [RawRadio], with its words, and an icon either side, drawn from Figma's layer tree with [SolarLayers]. Give it its control's size.`;
       return `/// SOLAR Segmented Control Item.
 ///

@@ -1,11 +1,12 @@
 /**
- * SOLAR Icon Button, beyond its IR: where MUI draws each layer and marks each state, what the Flutter
- * base control's style reads, and the two shell templates, run once by \`solar:scaffold\`. One file
- * per component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
+ * SOLAR Icon Button, beyond its IR: where MUI draws each layer and marks each state, what the
+ * Flutter base control's style reads, and the two shell templates, rendered into the shells by
+ * \`solar:codegen\` on every run. One file per component, so adding one edits nothing shared;
+ * \`src/components/index.mjs\` finds them.
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 export default {
   name: 'Icon Button',
@@ -23,7 +24,7 @@ export default {
     resets: {
       '& .SolarIconButton-icon': { display: 'inline-flex' },
       '& .SolarIconButton-icon > svg': { width: '100%', height: '100%' },
-      // A 44 × 44 target around the drawn button (scaffold/target.mjs).
+      // A 44 × 44 target around the drawn button (shells/target.mjs).
       ...targetArea(),
     },
     // MUI's IconButton marks its states as Button does, under its own name.
@@ -65,9 +66,9 @@ export default {
       return `/**
  * SOLAR Icon Button.
  *
- * Scaffolded once by \`npm run solar:scaffold "Icon Button"\` from spec/components/icon-button.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarIconButtonStyle\` in \`@bwp-web/styles/mui\`, which regenerates from Figma on
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarIconButtonStyle\` in \`@bwp-web/styles/mui\`, which regenerates from Figma on
  * every \`solar:codegen\`. This file is behaviour: the props, the icon, loading, and accessibility.
  *
  * It wraps MUI's IconButton, which supplies focus handling, keyboard activation, the disabled and
@@ -171,11 +172,11 @@ ${api.map((p) => `    ${p},`).join('\n')}
         throw new Error('Icon Button: the IR has no icon slot');
       return `/// SOLAR Icon Button.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter "Icon Button"\` from
-/// spec/components/icon-button.json, and owned by developers from then on: change it freely. What
-/// it looks like is not here. That is the recipe, [SolarIconButtonRecipe], which regenerates from
-/// Figma on every \`solar:codegen\`. This file is behaviour: the props, the icon, loading and
-/// accessibility, with the same props as the React IconButton.
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarIconButtonRecipe], which regenerates from Figma on every \`solar:codegen\`.
+/// This file is behaviour: the props, the icon, loading and accessibility, with the same props as
+/// the React IconButton.
 ///
 /// It wraps Flutter's IconButton, which supplies focus, keyboard activation, hover and press;
 /// [SolarIconButtonRecipe.style] restyles it.

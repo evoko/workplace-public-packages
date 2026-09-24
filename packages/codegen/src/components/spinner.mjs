@@ -1,10 +1,11 @@
 /**
  * SOLAR Spinner, beyond its IR: where MUI draws each layer and marks each state, what the Flutter
- * base control's style reads, and the two shell templates, run once by \`solar:scaffold\`. One file
- * per component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
+ * base control's style reads, and the two shell templates, rendered into the shells by
+ * \`solar:codegen\` on every run. One file per component, so adding one edits nothing shared;
+ * \`src/components/index.mjs\` finds them.
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
 
 export default {
   name: 'Spinner',
@@ -40,9 +41,10 @@ export default {
       return `/**
  * SOLAR Spinner.
  *
- * Scaffolded once by \`npm run solar:scaffold Spinner\` from spec/components/spinner.json, and owned
- * by developers from then on. Its look is the recipe, \`solarSpinnerStyle\` in
- * \`@bwp-web/styles/mui\`: the ring's size, its stroke width, and the track and indicator colours.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. Its look is the recipe,
+ * \`solarSpinnerStyle\` in \`@bwp-web/styles/mui\`: the ring's size, its stroke width, and the track
+ * and indicator colours.
  *
  * It wraps MUI's CircularProgress, which supplies the motion and the progressbar role. A box takes
  * the recipe's size and the progress fills it, because MUI writes its own size prop as an inline
@@ -90,8 +92,8 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
       const api = Object.entries(spec.api);
       return `/// SOLAR Spinner.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter Spinner\` from
-/// spec/components/spinner.json, and owned by developers from then on. Its look is the recipe,
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. Its look is the recipe,
 /// [SolarSpinnerRecipe]: the ring's size, its stroke width, and the track and indicator colours.
 ///
 /// It wraps Flutter's CircularProgressIndicator, which supplies the motion and the semantics.

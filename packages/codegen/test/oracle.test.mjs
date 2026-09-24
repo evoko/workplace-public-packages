@@ -252,3 +252,21 @@ describe('what a set replaced', () => {
     ).toEqual([]);
   });
 });
+
+describe('a finding several set rules decide', () => {
+  it('names, in each variant, the rule that reaches it, not the last one applied', () => {
+    // Text Input's width: the base rule decides md, the sm rule sm.
+    const input = of('Text Input');
+    const overlay = loadOverlay('Text Input');
+    const width = (figma) =>
+      input.oracle.variants
+        .find((v) => v.figma === figma)
+        .excused.find((e) => e.layer === 'root' && e.property === 'width');
+    expect(width('size=md, state=default').reason).toBe(
+      overlay.set['root.base.width'].reason,
+    );
+    expect(width('size=sm, state=hover').reason).toBe(
+      overlay.set['root.size.sm.width'].reason,
+    );
+  });
+});

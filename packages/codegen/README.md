@@ -326,13 +326,22 @@ hover's underline on a mouse press, and hover's colours on a focused primary und
 
 **Recipe and shell.** The recipe is what a component looks like; it regenerates on every run and
 is never edited. The shell — `packages/components/src/<Name>.tsx`: props, slots, loading,
-accessibility — is written once by `npm run solar:scaffold <Name>` (`src/scaffold/`), and its Flutter widget
-(`solar_flutter/lib/src/components/solar_<name>.dart`) by `npm run solar:scaffold -- --flutter <Name>`;
-both are then owned by developers; the scaffolder refuses to overwrite it without `--force`, and it never runs in CI.
+accessibility — its Flutter widget (`solar_flutter/lib/src/components/solar_<name>.dart`) and its
+story are generated too, on every run, from the two templates in the component's descriptor
+(`src/shells/index.mjs`). The templates are the hand-written behaviour: functions of the IR, so a
+slot or prop Figma adds reaches the shells, and a fix to a shared helper (`src/shells/drawn.mjs`,
+`field.mjs`, `target.mjs`) reaches every component that uses it, both proven by the rebuild CI
+runs. A generated shell's first line names its descriptor; it is never edited. A component whose
+shell must be edited as a file has `owned: true` in its descriptor and no templates: its shells are
+left alone, and must exist without the generated header, so taking one over is deliberate
+(remove the header, delete the templates, set `owned`). A stale generated shell, a component
+removed, is deleted by its header. Until 2026-09-24 the shells were written once by a
+`solar:scaffold` command and then hand-owned; every one was still exactly its template's output, so
+they became generated with no change but the header.
 The rule of thumb for where a change goes:
 
 > **The overlay for a decision about one component, the normalizer for a rule about the system,
-> the shell for behaviour.**
+> the shell's template for behaviour.**
 
 **What Button's findings mean.** Button produced 11 findings (46 in the whole report, with Spinner's and Icon Button's, whose ten are all decided). Eight
 carry an overlay decision and stay in the report beside it: five bind a raw value to the token of
@@ -360,7 +369,9 @@ and uses the IR only for its layer names and API, so a wrong recipe shows as a d
 than agreeing with itself; a test scrambles the recipe and checks the oracle does not move. Where
 the code is known to differ, the entry keeps Figma's value and is marked `excused` with the
 finding and its decision, if any: Button's three open findings excuse 18 entries, and Spinner's
-unreadable indicator colour is excused by its overlay `set`. It also lists each component's
+unreadable indicator colour is excused by its overlay `set`. Where several `set` rules decide one
+finding (Text Input's width, the base's and sm's), each variant's excuse names the rule that
+reaches it. It also lists each component's
 slots, so a check can tell a layer a prop hides from one a state removes. The visual checks
 (`packages/components/test/visual/`, `packages/solar_flutter/test/visual/`) render both platforms
 and compare every entry that is not excused. It is Figma,
@@ -370,9 +381,12 @@ not the other platform, because two platforms agreeing on a mistake would pass a
 
 ```
 bin/solar-codegen.mjs      the CLI: builds every stage, then emits, reports, prunes, formats
-bin/solar-scaffold.mjs     writes a component's hand-owned shell, once
+bin/solar-explain.mjs      why a component draws what it draws, cell by cell; writes nothing
+bin/solar-triage.mjs       which components come next, and what each needs; writes nothing
 src/stages/                one module per stage (tokens, icons, components): build(), emit()
-src/scaffold/              the React and Flutter shell templates, written once
+src/shells/                the shells, rendered from the descriptors' templates, and the helpers
+                           the templates share (drawn, field, alert, slider, target)
+src/explain/               solar:explain: the recipe lookup, the rows, the report reading
 src/normalize/             css-contract.json -> the DTCG spec, solar-icons/ -> the icon spec,
                            solar-web/ -> the component IR (layers, recipe, overlay), the SVG
                            reader, and the recorded deviations
@@ -394,8 +408,10 @@ single target has been rewritten. A new stage is a module exporting `name`, `bui
 generated directories (`packages/styles/src/generated`, `packages/assets/src/generated`,
 `packages/solar_flutter/lib/src/generated`, `spec/components` and `spec/verify`) that the run did not write, and
 says so. Without it, an icon removed in Figma would keep its generated module forever,
-regenerating to the same bytes and invisible to CI. Nothing outside those directories is pruned:
-`spec/overlay/` and the component shells are hand-written.
+regenerating to the same bytes and invisible to CI. Nothing else in them is pruned:
+`spec/overlay/` is hand-written. The component shells share their directories with hand-written
+files (the package entry, `internal/`, an owned shell), so a stale shell is found by its generated
+header instead and deleted the same way.
 
 ## Changing it
 
@@ -410,16 +426,29 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
   `flutter.style`…), which the emitters read as `MUI_SLOTS`, `MUI_RESETS`, `STATE_SELECTORS` and
   `FLUTTER_STYLE`.
 - **A component looks wrong, and Figma is right for it alone** → its overlay in `spec/overlay/`.
-- **A component behaves wrong** → its shell in `packages/components/src/`, which is yours.
+- **A component behaves wrong** → its shell's template, `templates.react` or `templates.flutter` in
+  its descriptor (or the shared helper it calls), then `npm run solar:codegen`; the shell itself
+  is generated. An `owned` component's shell is the file itself.
+- **A visual check fails, or a value looks wrong** → `npm run solar:explain -- "<Name>"` lists the
+  variants, every excused difference and the last runs' failures; `--variant <n | name |
+axis=value, …>` gives each layer and property of those variants as a chain: Figma's value, the
+  recipe entry that wins and where it sits (base, size, appearance, combined), its token and that
+  token's value, where the entry was read from (a Figma variant, the defaults, the overlay) and
+  why, the rules on the cell, the excuse, and what the web and Flutter checks drew in their last
+  runs (their reports, `test/visual/.out/` and `build/visual/`). `--layer` and `--property` narrow
+  it; `--full` expands every row, not only those that differ. It builds from the current sources
+  in memory and writes nothing. Its lookup is the recipe's own precedence, and a test proves it:
+  wherever nothing excuses a difference, the entry it finds resolves to Figma's value, in every
+  variant of every component.
 - **A new component** → new files only; no list is edited by hand.
   1. Its descriptor, `src/components/<name>.mjs`. The index finds it, and `COMPONENTS` is the
      descriptors found. It holds the component's `name` (and its `address`, where that differs),
      its MUI tables (`slots`, and `resets`, `svgLayers`, `states`, `overlaps`, `restates` as it
      needs them), its Flutter tables (`style` where its base takes a style object, `BUILDERS`, and
      `shared`), and its two shell templates, `templates.react` and `templates.flutter`. Shared
-     template helpers are in `src/scaffold/helpers.mjs`. A component that draws its own layers
+     template helpers are in `src/shells/helpers.mjs`. A component that draws its own layers
      (the display primitives) has `slots: 'drawn'` (every IR layer, each with a class of its own,
-     `slotsOf`), `drawnResets`, and templates from `src/scaffold/drawn.mjs` (`drawnReact`,
+     `slotsOf`), `drawnResets`, and templates from `src/shells/drawn.mjs` (`drawnReact`,
      `drawnFlutter`), which hand the layer tree to the shells' shared runtime helpers
      (`packages/components/src/internal/layers.tsx`, `solar_flutter`'s `SolarLayers`) and draw a
      SOLAR icon layer with its component from the assets. A shell may draw a layer as an element
@@ -436,7 +465,7 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
      it is not the prop as given (a mixed box is drawn checked). Where a group decides a prop in
      Flutter (Radio's `checked`, its RadioGroup's), `flutter.groupDecides` says so, and the widget
      does not take it. Every control's recipe gives it a 44 × 44 target that takes no room
-     (`src/scaffold/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input
+     (`src/shells/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input
      enlarged), and its widget a `SolarTarget`; `TARGET` there is the one raw target size, a
      governance gap, until SOLAR publishes a variable for it. A value that is no Dart identifier
      (`top-search`, `Default White`, `00`) is respelled for its enum (`dartEnumValue`), which then
@@ -448,8 +477,7 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
      `lib/src/components/components.dart`), the web case registry
      (`test/visual/cases/registry.generated.ts`), the Flutter one (`test/visual/cases/cases.dart`)
      and the variant builders' (`variants/lib/src/registry.dart`, and its library).
-  4. `npm run solar:scaffold <Name>` and `npm run solar:scaffold -- --flutter <Name>`, for the
-     shells and the story.
+  4. Nothing: that run also wrote the shells and the story from the templates (step 1).
   5. A visual case on each platform, in the files the registries name:
      `packages/components/test/visual/cases/<slug>.tsx`, a builder in `solar_flutter/variants/lib/src/`
      and a case in `solar_flutter/test/visual/cases/`. Until they exist, the typecheck and

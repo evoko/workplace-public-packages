@@ -1,10 +1,11 @@
 /**
  * SOLAR ProgressBar, beyond its IR: where MUI draws each layer, what the Flutter base control's
- * style reads, and the two shell templates, run once by \`solar:scaffold\`. One file per component,
- * so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
+ * style reads, and the two shell templates, rendered into the shells by \`solar:codegen\` on every
+ * run. One file per component, so adding one edits nothing shared; \`src/components/index.mjs\`
+ * finds them.
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
 
 export default {
   name: 'ProgressBar',
@@ -36,9 +37,9 @@ export default {
       return `/**
  * SOLAR ProgressBar.
  *
- * Scaffolded once by \`npm run solar:scaffold ProgressBar\` from spec/components/progressbar.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarProgressBarStyle\` in \`@bwp-web/styles/mui\`: the track's colour and height,
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarProgressBarStyle\` in \`@bwp-web/styles/mui\`: the track's colour and height,
  * and the bar's colour by feedback.
  *
  * It wraps MUI's determinate LinearProgress, which draws the bar at \`value\` (0 to 100) and
@@ -90,10 +91,10 @@ export const ProgressBar = forwardRef<HTMLSpanElement, ProgressBarProps>(
       const api = Object.entries(spec.api);
       return `/// SOLAR ProgressBar.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter ProgressBar\` from
-/// spec/components/progressbar.json, and owned by developers from then on: change it freely. What
-/// it looks like is not here. That is the recipe, [SolarProgressBarRecipe]: the track's colour and
-/// height, and the bar's colour by feedback.
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarProgressBarRecipe]: the track's colour and height, and the bar's colour by
+/// feedback.
 ///
 /// It wraps Flutter's determinate LinearProgressIndicator, which draws the bar at [value] (0 to 1)
 /// and supplies the semantics: name it ([semanticsLabel]), and say the number beside it, as SOLAR

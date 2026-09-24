@@ -10,7 +10,7 @@ import 'package:flutter/rendering.dart';
 ///
 /// ⚠️ Governance gap: the one raw target size in the widgets, here, until SOLAR publishes a
 /// target-size variable, which then replaces it. The web's twin is `TARGET` in the codegen's
-/// `scaffold/target.mjs`.
+/// `shells/target.mjs`.
 const double solarTargetSize = 44;
 
 /// A control's target, at least [solarTargetSize] square, around the control as drawn.

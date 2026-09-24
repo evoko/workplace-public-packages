@@ -1,7 +1,7 @@
 /**
  * SOLAR Inline Input, beyond its IR: where MUI draws each layer and marks each state, and the two
- * shell templates, run once by \`solar:scaffold\`. One file per component, so adding one edits
- * nothing shared; \`src/components/index.mjs\` finds them.
+ * shell templates, rendered into the shells by \`solar:codegen\` on every run. One file per
+ * component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A value edited in place, which holds its mode (owner decision 2026-09-24): read, its words, with
  * an edit button on hover; editing, MUI's InputBase on the web and an undecorated TextField in
@@ -9,13 +9,8 @@
  * overlay's `derive`).
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import {
-  drawnResets,
-  keyPrefixOf,
-  treeOf,
-  wrapDoc,
-} from '../scaffold/drawn.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
 
 const P = 'SolarInlineInput';
 
@@ -82,10 +77,10 @@ export default {
       return `/**
  * SOLAR Inline Input.
  *
- * Scaffolded once by \`npm run solar:scaffold "Inline Input"\` from spec/components/inline-input.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarInlineInputStyle\` and \`solarInlineInputCompose\` in \`@bwp-web/styles/mui\`: its
- * box by mode and state, and its words' ink.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarInlineInputStyle\` and \`solarInlineInputCompose\` in \`@bwp-web/styles/mui\`:
+ * its box by mode and state, and its words' ink.
  *
  * A value edited where it is shown (a name in a header, a cell): read, its \`value\` as text, with an
  * edit button on hover; a click, or the edit button, opens it for editing, MUI's InputBase with
@@ -293,7 +288,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(function
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter "Inline Input"\` from spec/components/inline-input.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarInlineInputRecipe]: its box by mode and state, and its words' ink, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarInlineInputRecipe]: its box by mode and state, and its words' ink, read cell by cell.`;
       const about = `A value edited where it is shown (a name in a header, a cell): read, its [value] as text, with an edit button on hover or focus; a tap, or the edit button, opens it for editing, an undecorated [TextField] with Confirm and Cancel, drawn from Figma's layer tree with [SolarLayers] ([SolarField] holds its states). Enter or Confirm calls [onConfirm] with what is typed, which may return false to keep it open (a value it rejects, with [error] set); Esc or Cancel discards the edit ([onCancel]). It holds its own mode, and [defaultEditing] starts it open. Its [label] names the input and the edit button for a screen reader ("Edit name").`;
       return `/// SOLAR Inline Input.
 ///

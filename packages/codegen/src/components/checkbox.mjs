@@ -1,14 +1,14 @@
 /**
  * SOLAR Checkbox, beyond its IR: where MUI draws each layer and marks each state, and the two shell
- * templates, run once by \`solar:scaffold\`. One file per component, so adding one edits nothing
- * shared; \`src/components/index.mjs\` finds them.
+ * templates, rendered into the shells by \`solar:codegen\` on every run. One file per component, so
+ * adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * MUI's Checkbox on the web, its root the box, the tick and dash drawn inside it by the shared layer
  * helpers as MUI's icons; drawn and pressable in Flutter, announced as a checkbox.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
-import { targetInput } from '../scaffold/target.mjs';
+import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { targetInput } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   for (const prop of ['checked', 'mixed', 'disabled'])
@@ -28,7 +28,7 @@ export default {
     // native input, invisible, covers the box.
     resets: drawnResets('Checkbox', {
       padding: '0',
-      // The input is the target, 44 × 44 around the box (scaffold/target.mjs).
+      // The input is the target, 44 × 44 around the box (shells/target.mjs).
       ...targetInput('& input'),
     }),
     states: {
@@ -46,10 +46,10 @@ export default {
       return `/**
  * SOLAR Checkbox.
  *
- * Scaffolded once by \`npm run solar:scaffold Checkbox\` from spec/components/checkbox.json, and
- * owned by developers from then on: change it freely. What it looks like is not here. That is the
- * recipe, \`solarCheckboxStyle\` and \`solarCheckboxCompose\` in \`@bwp-web/styles/mui\`: the box's
- * fill and edge by state, and the tick and dash, Figma's own outlines.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarCheckboxStyle\` and \`solarCheckboxCompose\` in \`@bwp-web/styles/mui\`: the
+ * box's fill and edge by state, and the tick and dash, Figma's own outlines.
  *
  * One choice of many, committed on click. It wraps MUI's Checkbox, a native input, with its box,
  * tick and dash drawn from Figma's layer tree (\`internal/layers.tsx\`). \`mixed\` draws the dash, for

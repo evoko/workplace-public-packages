@@ -1,5 +1,5 @@
-// The component stage: spec/components/<name>.json from docs/solar-web. The recipe emitters join
-// it in milestone 3a tasks 5 and 6.
+// The component stage: spec/components/<name>.json and spec/verify/<name>.json from docs/solar-web,
+// then each component's recipes, its shells (from its descriptor's templates) and the registries.
 import { join } from 'node:path';
 import {
   buildComponentSpec,
@@ -17,6 +17,7 @@ import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { emitFlutterComponents } from '../emit/flutter-component.mjs';
 import { emitRegistries } from '../emit/registries.mjs';
+import { renderShells } from '../shells/index.mjs';
 import { buildOracle } from '../verify/oracle.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
@@ -85,7 +86,10 @@ export function build() {
         `src/components: the descriptor ${d.name} builds as ${built[i].spec.component}; its name must be the component's name in code`,
       );
   });
-  return { built, tokens };
+  // The shells, from their descriptors' templates, rendered here with the rest of the build: a
+  // template that throws, or an owned shell handed over wrongly, stops the run before any write.
+  const shells = renderShells(built.map((b) => b.spec));
+  return { built, tokens, shells };
 }
 
 /** Refuses two components generated under one name, naming it. */
@@ -100,7 +104,7 @@ export function assertDistinct(names) {
   }
 }
 
-export function emit({ built, tokens }) {
+export function emit({ built, tokens, shells }) {
   for (const { spec } of built)
     writeGenerated(
       join(componentsDir, fileOf(spec.component)),
@@ -119,12 +123,14 @@ export function emit({ built, tokens }) {
       JSON.stringify(oracle, null, 2) + '\n',
     );
   const specs = built.map((b) => b.spec);
+  for (const { path, text } of shells) writeGenerated(path, text);
   return {
     counts: {
       specs: built.length,
       oracles: built.length,
       mui: emitMuiComponents(specs, tokens),
       flutter: emitFlutterComponents(specs, tokens),
+      shells: shells.length,
       registries: emitRegistries(specs.map((s) => s.component)),
     },
     deviations: built.flatMap((b) => b.deviations),

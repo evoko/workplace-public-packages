@@ -5,13 +5,18 @@
 // any is emitted, so a throw from one normalizer stops the run before half the targets have been
 // rewritten.
 import { execSync } from 'node:child_process';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import * as tokens from '../src/stages/tokens.mjs';
 import * as icons from '../src/stages/icons.mjs';
 import * as components from '../src/stages/components.mjs';
 import { writeDeviationsReport } from '../src/report/deviations.mjs';
 import { packagesDir, repoRoot } from '../src/util/paths.mjs';
-import { pruneGenerated } from '../src/util/write.mjs';
+import { staleShells } from '../src/shells/index.mjs';
+import {
+  pruneGenerated,
+  removeGenerated,
+  wasWritten,
+} from '../src/util/write.mjs';
 
 const STAGES = [tokens, icons, components];
 
@@ -43,6 +48,12 @@ writeDeviationsReport(
 );
 
 const pruned = OWNED_DIRS.flatMap((dir) => pruneGenerated(dir));
+// The shells share their directories with hand-written files (the package entry, `internal/`, an
+// owned shell), so a stale one is told by its generated header instead.
+for (const path of staleShells(wasWritten)) {
+  removeGenerated(path);
+  pruned.push(relative(repoRoot, path));
+}
 for (const path of pruned) console.log(`removed stale ${path}`);
 
 // The generated files are checked in and are linted and format-checked like hand-written
@@ -52,8 +63,14 @@ for (const path of pruned) console.log(`removed stale ${path}`);
 // SVG parser, and while it silently skips an .svg file found by expanding a directory, a glob
 // that matches one is an explicit request and fails with "No parser could be inferred". The
 // generated SVG files are written already formatted and need no pass.
+// The React shells and stories are named one by one, not globbed: they sit beside hand-written
+// files (an owned shell), which the generator must not rewrite.
+const shells = built[STAGES.indexOf(components)].shells
+  .map((s) => s.path)
+  .filter((path) => path.endsWith('.tsx'))
+  .map((path) => JSON.stringify(relative(repoRoot, path)));
 execSync(
-  'npx prettier --write "spec/**/*.{json,md}" "packages/styles/src/generated/**/*.{ts,css,json}" "packages/assets/src/generated/**/*.{ts,tsx,json}"',
+  `npx prettier --write "spec/**/*.{json,md}" "packages/styles/src/generated/**/*.{ts,css,json}" "packages/assets/src/generated/**/*.{ts,tsx,json}" ${shells.join(' ')}`,
   { cwd: repoRoot, stdio: 'ignore' },
 );
 try {

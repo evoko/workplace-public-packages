@@ -1,11 +1,12 @@
 /**
  * SOLAR Button, beyond its IR: where MUI draws each layer and marks each state, what the Flutter
- * base control's style reads, and the two shell templates, run once by \`solar:scaffold\`. One file
- * per component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
+ * base control's style reads, and the two shell templates, rendered into the shells by
+ * \`solar:codegen\` on every run. One file per component, so adding one edits nothing shared;
+ * \`src/components/index.mjs\` finds them.
  */
 
-import { dartField, dartParam, MUI_SLOT_PROPS } from '../scaffold/helpers.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { dartField, dartParam, MUI_SLOT_PROPS } from '../shells/helpers.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 export default {
   name: 'Button',
@@ -31,7 +32,7 @@ export default {
         width: '100%',
         height: '100%',
       },
-      // A 44 × 44 target around the drawn button (scaffold/target.mjs).
+      // A 44 × 44 target around the drawn button (shells/target.mjs).
       ...targetArea(),
     },
     states: {
@@ -90,9 +91,9 @@ export default {
       return `/**
  * SOLAR Button.
  *
- * Scaffolded once by \`npm run solar:scaffold Button\` from spec/components/button.json, and owned
- * by developers from then on: change it freely. What it looks like is not here. That is the recipe,
- * \`solarButtonStyle\` in \`@bwp-web/styles/mui\`, which regenerates from Figma on every
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarButtonStyle\` in \`@bwp-web/styles/mui\`, which regenerates from Figma on every
  * \`solar:codegen\`, so a design change reaches this component without anyone touching this file.
  * This file is behaviour: the props, the slots, loading, and accessibility.
  *
@@ -199,9 +200,9 @@ ${api.map((p) => `    ${p},`).join('\n')}
           throw new Error(`Button: the IR has no ${required} slot`);
       return `/// SOLAR Button.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter Button\` from spec/components/button.json,
-/// and owned by developers from then on: change it freely. What it looks like is not here. That is
-/// the recipe, [SolarButtonRecipe], which regenerates from Figma on every \`solar:codegen\`. This
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarButtonRecipe], which regenerates from Figma on every \`solar:codegen\`. This
 /// file is behaviour: the props, the slots, loading and accessibility, with the same props as the
 /// React Button.
 ///

@@ -1,14 +1,14 @@
 /**
- * SOLAR Tag, beyond its IR: where MUI draws each layer, and the two shell templates, run once by
- * \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * SOLAR Tag, beyond its IR: where MUI draws each layer, and the two shell templates, rendered into
+ * the shells by \`solar:codegen\` on every run. One file per component, so adding one edits nothing
+ * shared; \`src/components/index.mjs\` finds them.
  *
- * A drawn component (`src/scaffold/drawn.mjs`): a pill whose type follows from what the caller
+ * A drawn component (`src/shells/drawn.mjs`): a pill whose type follows from what the caller
  * gives (the overlay's derive), its close button a pressable of its own.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['label', 'icon'])
@@ -34,7 +34,7 @@ export default {
           height: '100%',
         },
       // A 44 × 44 target around the close button, as far as the page lets it reach
-      // (scaffold/target.mjs).
+      // (shells/target.mjs).
       ...targetArea('& button.SolarTag-iconClose'),
       '& button.SolarTag-iconClose': {
         appearance: 'none',
@@ -53,10 +53,10 @@ export default {
       return `/**
  * SOLAR Tag.
  *
- * Scaffolded once by \`npm run solar:scaffold Tag\` from spec/components/tag.json, and owned by
- * developers from then on: change it freely. What it looks like is not here. That is the recipe,
- * \`solarTagStyle\` and \`solarTagCompose\` in \`@bwp-web/styles/mui\`: each status's fill, edge and
- * words, inverted or not, and each type's layout.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarTagStyle\` and \`solarTagCompose\` in \`@bwp-web/styles/mui\`: each status's
+ * fill, edge and words, inverted or not, and each type's layout.
  *
  * A compact label for a status, a category or a user's entry, of one to three words. Bespoke: a
  * pill drawn from Figma's layer tree (\`internal/layers.tsx\`). Its type follows from what it is

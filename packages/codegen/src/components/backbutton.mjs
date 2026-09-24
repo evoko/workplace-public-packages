@@ -1,15 +1,15 @@
 /**
  * SOLAR BackButton, beyond its IR: where MUI draws each layer and marks each state, what the
- * Flutter base control's style reads, and the two shell templates, run once by
- * \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
+ * Flutter base control's style reads, and the two shell templates, rendered into the shells by
+ * \`solar:codegen\` on every run. One file per component, so adding one edits nothing shared;
  * \`src/components/index.mjs\` finds them.
  *
  * On Button's machinery: a tertiary button, its arrow SOLAR's ArrowLeft icon, drawn by the shells,
  * and its label optional ("Back" by default).
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   if (!spec.layers.iconArrowLeft)
@@ -33,7 +33,7 @@ export default {
       textTransform: 'none',
       '& .MuiButton-startIcon': { margin: '0', flexShrink: '0' },
       '& .MuiButton-startIcon > svg': { width: '100%', height: '100%' },
-      // A 44 × 44 target around the drawn button (scaffold/target.mjs).
+      // A 44 × 44 target around the drawn button (shells/target.mjs).
       ...targetArea(),
     },
     states: {
@@ -72,10 +72,10 @@ export default {
       return `/**
  * SOLAR BackButton.
  *
- * Scaffolded once by \`npm run solar:scaffold BackButton\` from spec/components/backbutton.json, and
- * owned by developers from then on: change it freely. What it looks like is not here. That is the
- * recipe, \`solarBackButtonStyle\` in \`@bwp-web/styles/mui\`: its sizes, its colours by state, its
- * shadow and focus ring.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarBackButtonStyle\` in \`@bwp-web/styles/mui\`: its sizes, its colours by state,
+ * its shadow and focus ring.
  *
  * Back to the previous view or a parent: one per view, top left. It wraps MUI's Button, which
  * supplies focus, keyboard activation, and the disabled and loading states, with SOLAR's
@@ -159,10 +159,10 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
       const api = Object.entries(spec.api);
       return `/// SOLAR BackButton.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter BackButton\` from
-/// spec/components/backbutton.json, and owned by developers from then on: change it freely. What it
-/// looks like is not here. That is the recipe, [SolarBackButtonRecipe]: its sizes, its colours by
-/// state, its shadow and focus ring.
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarBackButtonRecipe]: its sizes, its colours by state, its shadow and focus
+/// ring.
 ///
 /// Back to the previous view or a parent: one per view, top left. It wraps Flutter's FilledButton,
 /// as SolarButton does, with SOLAR's ArrowLeft icon. Its label, the [child], is 'Back' by default;

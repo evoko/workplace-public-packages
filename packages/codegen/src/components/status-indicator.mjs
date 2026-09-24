@@ -1,14 +1,14 @@
 /**
  * SOLAR StatusIndicator, beyond its IR: where MUI draws each layer, and the two shell templates,
- * run once by \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * rendered into the shells by \`solar:codegen\` on every run. One file per component, so adding one
+ * edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A drawing (its overlay's `drawing`): every type is its own shape, from other layers. The shells
- * draw Figma's layer tree with the shared helpers (`src/scaffold/drawn.mjs`), a layer as a glyph
+ * draw Figma's layer tree with the shared helpers (`src/shells/drawn.mjs`), a layer as a glyph
  * where its entry has one and as a box where it does not, placed where the recipe says.
  */
 
-import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
+import { drawnFlutter, drawnReact, drawnResets } from '../shells/drawn.mjs';
 
 const requireAxes = (spec) => {
   for (const axis of ['type', 'size'])

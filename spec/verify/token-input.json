@@ -113,7 +113,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -323,7 +323,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -533,7 +533,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -743,7 +743,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "tag",
@@ -986,7 +986,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "tag",
@@ -1275,7 +1275,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "tag",
@@ -1524,7 +1524,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "tag",
@@ -1794,7 +1794,7 @@
           "figma": 240,
           "finding": "component.token input.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 160 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "tag",

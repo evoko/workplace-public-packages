@@ -1,13 +1,13 @@
 /**
- * SOLAR Trend Badge, beyond its IR: where MUI draws each layer, and the two shell templates, run
- * once by \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * SOLAR Trend Badge, beyond its IR: where MUI draws each layer, and the two shell templates,
+ * rendered into the shells by \`solar:codegen\` on every run. One file per component, so adding one
+ * edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A drawing (its overlay's `drawing`), as StatusIndicator is: an arrow on a disc, drawn from
- * Figma's layer tree by the shared helpers (`src/scaffold/drawn.mjs`).
+ * Figma's layer tree by the shared helpers (`src/shells/drawn.mjs`).
  */
 
-import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
+import { drawnFlutter, drawnReact, drawnResets } from '../shells/drawn.mjs';
 
 const requireAxes = (spec) => {
   for (const axis of ['type', 'size'])

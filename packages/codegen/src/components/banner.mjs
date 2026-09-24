@@ -1,9 +1,9 @@
 /**
- * SOLAR Banner, beyond its IR: where MUI draws each layer, and the two shell templates, run once by
- * \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * SOLAR Banner, beyond its IR: where MUI draws each layer, and the two shell templates, rendered
+ * into the shells by \`solar:codegen\` on every run. One file per component, so adding one edits
+ * nothing shared; \`src/components/index.mjs\` finds them.
  *
- * A drawn component (`src/scaffold/drawn.mjs`): a full-width strip whose icon is SOLAR's for its
+ * A drawn component (`src/shells/drawn.mjs`): a full-width strip whose icon is SOLAR's for its
  * type, holding the caller's Buttons, a text action and a close button.
  */
 
@@ -12,8 +12,8 @@ import {
   drawnResets,
   iconsOf,
   treeOf,
-} from '../scaffold/drawn.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+} from '../shells/drawn.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of [
@@ -49,7 +49,7 @@ export default {
         cursor: 'pointer',
       },
       // A 44 × 44 target around the text action and the close button ("implement each with a
-      // ≥44×44px touch area", says the description; scaffold/target.mjs).
+      // ≥44×44px touch area", says the description; shells/target.mjs).
       ...targetArea('& button.SolarBanner-action'),
       ...targetArea('& button.SolarBanner-close'),
       '& .SolarBanner-close > svg': {
@@ -67,10 +67,10 @@ export default {
       return `/**
  * SOLAR Banner.
  *
- * Scaffolded once by \`npm run solar:scaffold Banner\` from spec/components/banner.json, and owned
- * by developers from then on: change it freely. What it looks like is not here. That is the recipe,
- * \`solarBannerStyle\` and \`solarBannerCompose\` in \`@bwp-web/styles/mui\`: each type's fill and
- * icon, and the message's and action's text styles.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarBannerStyle\` and \`solarBannerCompose\` in \`@bwp-web/styles/mui\`: each type's
+ * fill and icon, and the message's and action's text styles.
  *
  * A bold, full-width message for a page or the app, more urgent than an Alert: one line, cut short
  * where it runs out of room, with SOLAR's icon for its type. Offer at most one action, a Button

@@ -67,7 +67,7 @@
           "figma": 240,
           "finding": "component.searchfield.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A search field spans the list or table it filters: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "iconSearch",
@@ -237,7 +237,7 @@
           "figma": 240,
           "finding": "component.searchfield.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A search field spans the list or table it filters: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "root",
@@ -423,7 +423,7 @@
           "figma": 240,
           "finding": "component.searchfield.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A search field spans the list or table it filters: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "iconSearch",
@@ -593,7 +593,7 @@
           "figma": 240,
           "finding": "component.searchfield.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A search field spans the list or table it filters: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "iconSearch",
@@ -763,7 +763,7 @@
           "figma": 240,
           "finding": "component.searchfield.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A search field spans the list or table it filters: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "iconSearch",
@@ -933,7 +933,7 @@
           "figma": 240,
           "finding": "component.searchfield.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A search field spans the list or table it filters: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "iconSearch",

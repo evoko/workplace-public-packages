@@ -1,7 +1,7 @@
 /**
  * The stories every component gets, built from its visual-check case (how to render one oracle
  * variant) and the codegen's data (its API, how its states are marked). A component's story file
- * is two lines that name it; `npm run solar:scaffold` writes it with the shell.
+ * is two lines that name it; `npm run solar:codegen` writes it with the shell.
  */
 
 import type { ArgTypes, Meta, StoryObj } from '@storybook/react-vite';

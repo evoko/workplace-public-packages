@@ -62,7 +62,7 @@
           "figma": 240,
           "finding": "component.globalsearch.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm trigger's 200 a sample."
+          "reason": "The trigger spans the room the app's header gives it: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a field."
         }
       ]
     },
@@ -178,7 +178,7 @@
           "figma": 240,
           "finding": "component.globalsearch.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm trigger's 200 a sample."
+          "reason": "The trigger spans the room the app's header gives it: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a field."
         }
       ]
     },
@@ -294,7 +294,7 @@
           "figma": 240,
           "finding": "component.globalsearch.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm trigger's 200 a sample."
+          "reason": "The trigger spans the room the app's header gives it: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a field."
         }
       ]
     },
@@ -410,7 +410,7 @@
           "figma": 240,
           "finding": "component.globalsearch.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm trigger's 200 a sample."
+          "reason": "The trigger spans the room the app's header gives it: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a field."
         }
       ]
     },
@@ -526,7 +526,7 @@
           "figma": 240,
           "finding": "component.globalsearch.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm trigger's 200 a sample."
+          "reason": "The trigger spans the room the app's header gives it: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a field."
         }
       ]
     },

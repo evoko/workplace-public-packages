@@ -90,8 +90,9 @@ SolarButton(
 )
 ```
 
-Each is a widget scaffolded once (`npm run solar:scaffold -- --flutter <Name>`) and then hand-owned,
-styled by a generated recipe it never copies values from. They read the `SolarTheme` the app
+Each is a widget generated on every `npm run solar:codegen` from the Flutter template in its
+descriptor (`packages/codegen/src/components/`), which is where its behaviour is written, never in
+the widget itself (an `owned: true` component's widget is the exception), styled by a generated recipe it never copies values from. They read the `SolarTheme` the app
 installed, or Light or Dark for the app's brightness if it installed none. An icon-only
 `SolarButton` needs a `semanticLabel`, and `SolarIconButton` requires one; either way the name and
 the button's tap action are one node for a screen reader. While loading the label keeps its room and its semantics

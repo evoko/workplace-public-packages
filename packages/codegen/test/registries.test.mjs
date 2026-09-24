@@ -16,7 +16,7 @@ const files = (names) =>
 describe('renderRegistries', () => {
   const out = files(['Icon Button', 'Button', 'Calendar Day Cell']);
 
-  it('lists each package’s shells, sorted, by the scaffolder’s file names', () => {
+  it('lists each package’s shells, sorted, by the shells’ file names', () => {
     expect(out['components/src/components.generated.ts']).toContain(
       "export * from './Button.js';\nexport * from './CalendarDayCell.js';\nexport * from './IconButton.js';\n",
     );

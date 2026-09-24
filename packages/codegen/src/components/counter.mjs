@@ -1,15 +1,15 @@
 /**
  * SOLAR Counter, beyond its IR: where MUI draws each layer and marks each state, and the two shell
- * templates, run once by \`solar:scaffold\`. One file per component, so adding one edits nothing
- * shared; \`src/components/index.mjs\` finds them.
+ * templates, rendered into the shells by \`solar:codegen\` on every run. One file per component, so
+ * adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
- * A drawn component (`src/scaffold/drawn.mjs`). Figma gives it hover and pressed because it is
+ * A drawn component (`src/shells/drawn.mjs`). Figma gives it hover and pressed because it is
  * drawn inside a Button: it takes the states of the control around it, and is a control of its own
  * only when given something to do (`onClick`, `onPressed`).
  */
 
-import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
-import { targetArea } from '../scaffold/target.mjs';
+import { drawnFlutter, drawnReact, drawnResets } from '../shells/drawn.mjs';
+import { targetArea } from '../shells/target.mjs';
 
 const requireValue = (spec) => {
   if (spec.layers.value?.type !== 'TEXT')
@@ -40,7 +40,7 @@ export default {
         appearance: 'none',
       },
       '&:is(button):disabled': { cursor: 'default' },
-      // A 44 × 44 target around a counter that is a control (scaffold/target.mjs).
+      // A 44 × 44 target around a counter that is a control (shells/target.mjs).
       ...targetArea('&:is(button)'),
     }),
     // Its own states where it is a control, and otherwise the states of the control it sits in

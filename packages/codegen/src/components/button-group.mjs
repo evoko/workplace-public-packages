@@ -1,10 +1,11 @@
 /**
- * SOLAR Button Group, beyond its IR: where MUI draws each layer and marks each state, what the Flutter
- * base control's style reads, and the two shell templates, run once by \`solar:scaffold\`. One file
- * per component, so adding one edits nothing shared; \`src/components/index.mjs\` finds them.
+ * SOLAR Button Group, beyond its IR: where MUI draws each layer and marks each state, what the
+ * Flutter base control's style reads, and the two shell templates, rendered into the shells by
+ * \`solar:codegen\` on every run. One file per component, so adding one edits nothing shared;
+ * \`src/components/index.mjs\` finds them.
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
 
 export default {
   name: 'Button Group',
@@ -29,10 +30,10 @@ export default {
       return `/**
  * SOLAR Button Group.
  *
- * Scaffolded once by \`npm run solar:scaffold "Button Group"\` from spec/components/button-group.json,
- * and owned by developers from then on: change it freely. What it looks like is not here. That is
- * the recipe, \`solarButtonGroupStyle\` in \`@bwp-web/styles/mui\`: the direction, the gap, the padding,
- * the full-width bar's divider, and its buttons filling it. This file is behaviour.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarButtonGroupStyle\` in \`@bwp-web/styles/mui\`: the direction, the gap, the
+ * padding, the full-width bar's divider, and its buttons filling it. This file is behaviour.
  *
  * Bespoke: a box of the caller's Buttons, which it never changes. The app must load
  * \`@bwp-web/styles/tokens.css\`.
@@ -96,10 +97,10 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(function
           throw new Error(`Button Group: the IR has no ${axis}`);
       return `/// SOLAR Button Group.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter "Button Group"\` from
-/// spec/components/button-group.json, and owned by developers from then on: change it freely.
-/// What it looks like is not here. That is the recipe, [SolarButtonGroupRecipe]: the direction, the
-/// gap, the padding, the full-width bar's divider, and its buttons filling it, read cell by cell.
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarButtonGroupRecipe]: the direction, the gap, the padding, the full-width
+/// bar's divider, and its buttons filling it, read cell by cell.
 ///
 /// Bespoke: a row or column of the caller's buttons, which it never changes.
 library;

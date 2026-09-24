@@ -1,14 +1,14 @@
 /**
  * SOLAR Toggle, beyond its IR: where MUI draws each layer and marks each state, and the two shell
- * templates, run once by \`solar:scaffold\`. One file per component, so adding one edits nothing
- * shared; \`src/components/index.mjs\` finds them.
+ * templates, rendered into the shells by \`solar:codegen\` on every run. One file per component, so
+ * adding one edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * MUI's Switch on the web, its root drawn as the track and the recipe's thumb in its thumb slot;
  * drawn and pressable in Flutter, announced as a switch.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
-import { targetInput } from '../scaffold/target.mjs';
+import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { targetInput } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
   for (const prop of ['selected', 'disabled'])
@@ -35,7 +35,7 @@ export default {
         transform: 'none',
         backgroundColor: 'transparent',
       },
-      // The input is the target, 44 × 44 around the track (scaffold/target.mjs).
+      // The input is the target, 44 × 44 around the track (shells/target.mjs).
       // Through the switch base, as specific as MUI's own rule for the input, which it follows.
       ...targetInput('& .MuiSwitch-switchBase .MuiSwitch-input'),
     }),
@@ -54,10 +54,10 @@ export default {
       return `/**
  * SOLAR Toggle.
  *
- * Scaffolded once by \`npm run solar:scaffold Toggle\` from spec/components/toggle.json, and owned
- * by developers from then on: change it freely. What it looks like is not here. That is the recipe,
- * \`solarToggleStyle\` and \`solarToggleCompose\` in \`@bwp-web/styles/mui\`: the track's fill and edge
- * by state, and the thumb's, where it sits on and off.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarToggleStyle\` and \`solarToggleCompose\` in \`@bwp-web/styles/mui\`: the track's
+ * fill and edge by state, and the thumb's, where it sits on and off.
  *
  * A setting, on or off, that takes effect at once: no confirm, and no action (that is a Button). It
  * wraps MUI's Switch, a native input announced as a switch, with Figma's track and thumb drawn from

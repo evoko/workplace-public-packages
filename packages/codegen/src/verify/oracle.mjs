@@ -26,7 +26,7 @@ import { farEdgesOf, placementOf } from '../normalize/placement.mjs';
 import { featuresOf } from '../emit/text-features.mjs';
 
 /** Each IR cell a finding can name, as the oracle properties it covers. */
-const PROPERTIES_OF = {
+export const PROPERTIES_OF = {
   background: ['background'],
   borderColor: ['borderColor'],
   borderWidth: ['borderWidth'],
@@ -96,6 +96,57 @@ const px = (v) => {
   if (!Number.isFinite(n)) throw new Error(`not a length: ${v}`);
   return n;
 };
+
+/** A text style token's values, as the oracle spells them: its parts, Desktop, in pixels. */
+export function textValuesOf(token) {
+  const { fontFamily, fontWeight, fontSize, lineHeight, letterSpacing } =
+    token.value;
+  const desktop = token.modes?.desktop ?? {};
+  const size = px(desktop.fontSize ?? fontSize);
+  // Figma spells tracking as a percentage of the size or in pixels; the renderer reports pixels.
+  const tracking = String(letterSpacing ?? '0');
+  const spacing = tracking.endsWith('%')
+    ? (Number(tracking.slice(0, -1)) / 100) * size
+    : px(tracking);
+  return {
+    fontFamily,
+    fontWeight,
+    fontSize: size,
+    lineHeight: px(desktop.lineHeight ?? lineHeight),
+    letterSpacing: Math.round(spacing * 1000) / 1000,
+    // As CSS spells it (Figma writes UNDERLINE).
+    textDecoration: String(
+      featuresOf(token.ext).textDecoration ?? 'none',
+    ).toLowerCase(),
+  };
+}
+
+/**
+ * What an IR cell's token draws of one oracle property, resolved to Light and Desktop as the oracle
+ * spells it, or undefined where it names none (a keyword, a literal, a token of another type): what
+ * a `set` rule decides, and what `solar:explain` compares with Figma.
+ *
+ * @param {Map<string, object>} byName the token spec's tokens by name (flattenSpec)
+ */
+export function cellValue(byName, cell, property) {
+  if (cell.none)
+    return {
+      background: 'transparent',
+      borderColor: 'transparent',
+      color: 'transparent',
+      shadow: 'none',
+      borderWidth: 0,
+      radius: 0,
+    }[property];
+  const token = cell.token && byName.get(cell.token);
+  if (!token) return undefined;
+  if (token.type === 'color') return hex(token.modes?.light ?? token.value);
+  if (token.type === 'shadow') return token.modes?.light ?? token.value;
+  if (token.type === 'dimension') return px(token.value);
+  // A text style (PIN Input's sm placeholder, set to body.md.medium): each of its properties.
+  if (token.type === 'typography') return textValuesOf(token)[property];
+  return undefined;
+}
 
 /** Whether a `set` rule's IR entry reaches a Figma variant: the base every one, a size its size,
  * an appearance its combination (at rest, in every state; in a state, that state alone), and the
@@ -170,50 +221,8 @@ export function buildOracle(
     return token.modes?.light ?? token.value;
   };
 
-  /** A text style token's values, as the oracle spells them (typography, below). */
-  const textValues = (token) => {
-    const { fontFamily, fontWeight, fontSize, lineHeight, letterSpacing } =
-      token.value;
-    const desktop = token.modes?.desktop ?? {};
-    const size = px(desktop.fontSize ?? fontSize);
-    // Figma spells tracking as a percentage of the size or in pixels; the renderer reports pixels.
-    const tracking = String(letterSpacing ?? '0');
-    const spacing = tracking.endsWith('%')
-      ? (Number(tracking.slice(0, -1)) / 100) * size
-      : px(tracking);
-    return {
-      fontFamily,
-      fontWeight,
-      fontSize: size,
-      lineHeight: px(desktop.lineHeight ?? lineHeight),
-      letterSpacing: Math.round(spacing * 1000) / 1000,
-      // As CSS spells it (Figma writes UNDERLINE).
-      textDecoration: String(
-        featuresOf(token.ext).textDecoration ?? 'none',
-      ).toLowerCase(),
-    };
-  };
-
-  /** What a `set` rule draws, as the oracle spells the property, or undefined for a keyword. */
-  const decidedValue = (rule, property) => {
-    if (rule.none)
-      return {
-        background: 'transparent',
-        borderColor: 'transparent',
-        color: 'transparent',
-        shadow: 'none',
-        borderWidth: 0,
-        radius: 0,
-      }[property];
-    const token = rule.token && byName.get(rule.token);
-    if (!token) return undefined;
-    if (token.type === 'color') return hex(token.modes?.light ?? token.value);
-    if (token.type === 'shadow') return token.modes?.light ?? token.value;
-    if (token.type === 'dimension') return px(token.value);
-    // A text style (PIN Input's sm placeholder, set to body.md.medium): each of its properties.
-    if (token.type === 'typography') return textValues(token)[property];
-    return undefined;
-  };
+  const textValues = textValuesOf;
+  const decidedValue = (rule, property) => cellValue(byName, rule, property);
 
   const typography = (style, at) => {
     const doc = names.textStyle(style);
@@ -414,9 +423,32 @@ export function buildOracle(
       for (const { variant } of d.variants)
         excuses.push({ variant, layer, properties, why });
     // A raw value an overlay `set` replaced (Button Group's hidden button, fixed at 138, set to
-    // fill): the code draws the decision, so Figma's value is excused wherever it appears.
-    if (d.kind === 'unbound' && d.decision?.rule === 'set')
+    // fill): the code draws the decision, so Figma's value is excused wherever it appears. Where
+    // several rules set the cell (Text Input's width, the base's and sm's), each variant names the
+    // rule that reaches it, the most specific first; the finding's own decision is the last rule
+    // applied, which may be another size's.
+    if (d.kind === 'unbound' && d.decision?.rule === 'set') {
+      const depth = { base: 0, size: 1, appearance: 2, combined: 3 };
+      const rules = Object.entries(overlay?.set ?? {})
+        .map(([at, rule]) => ({ parts: at.split('.'), rule }))
+        .filter(
+          ({ parts: [l, section], parts }) =>
+            l === layer &&
+            section in depth &&
+            parts.slice(2 + depth[section]).join('.') === d.cell,
+        )
+        .sort((a, b) => depth[b.parts[1]] - depth[a.parts[1]]);
+      for (const { parts, rule } of rules)
+        excuses.push({
+          variant: null,
+          layer,
+          properties,
+          reaches: (props) =>
+            setReaches(props, parts[1], parts.slice(2, 2 + depth[parts[1]])),
+          why: { ...why, reason: rule.reason },
+        });
       excuses.push({ variant: null, layer, properties, why });
+    }
     // A value no colour can be read from, wherever it appears.
     if (d.kind === 'misbound' || d.kind === 'unknown-token')
       excuses.push({

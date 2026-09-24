@@ -9,7 +9,7 @@ import { join } from 'node:path';
 import { DESCRIPTORS, table } from '../src/components/index.mjs';
 import { MUI_SLOTS, STATE_SELECTORS } from '../src/emit/mui-component.mjs';
 import { FLUTTER_STYLE } from '../src/emit/flutter-component.mjs';
-import { FLUTTER_TEMPLATES, TEMPLATES } from '../src/scaffold/index.mjs';
+import { FLUTTER_TEMPLATES, TEMPLATES } from '../src/shells/index.mjs';
 import { COMPONENTS } from '../src/stages/components.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
@@ -25,7 +25,7 @@ describe('the component descriptors', () => {
     expect(COMPONENTS).toEqual(DESCRIPTORS.map((d) => d.address ?? d.name));
   });
 
-  it('are what the emitters’ and the scaffolder’s tables read, by name', () => {
+  it('are what the emitters’ and the shells’ tables read, by name', () => {
     expect(Object.keys(MUI_SLOTS).sort()).toEqual(
       DESCRIPTORS.map((d) => d.name).sort(),
     );

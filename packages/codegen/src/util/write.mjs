@@ -38,6 +38,15 @@ export function writeGenerated(absolutePath, contents) {
   return absolutePath;
 }
 
+/** Deletes one generated file, under the same guard as a write. */
+export function removeGenerated(absolutePath) {
+  guard(absolutePath);
+  unlinkSync(absolutePath);
+}
+
+/** Whether this run wrote the file at the absolute path. */
+export const wasWritten = (absolutePath) => written.has(absolutePath);
+
 /**
  * Deletes every file under `dir` that this run did not write, and any directory left empty.
  *

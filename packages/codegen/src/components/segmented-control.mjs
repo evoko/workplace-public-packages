@@ -1,19 +1,14 @@
 /**
  * SOLAR Segmented Control, beyond its IR: where MUI draws each layer, and the two shell templates,
- * run once by \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * rendered into the shells by \`solar:codegen\` on every run. One file per component, so adding one
+ * edits nothing shared; \`src/components/index.mjs\` finds them.
  *
  * A drawn component: a field's label and helper around a track of the caller's segments (the
  * helpers' `content`), which is a radio group.
  */
 
-import {
-  drawnResets,
-  keyPrefixOf,
-  treeOf,
-  wrapDoc,
-} from '../scaffold/drawn.mjs';
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
 
 const requireLayers = (spec) => {
   for (const layer of ['labelLabel', 'mandatory', 'track', 'helper'])
@@ -37,11 +32,10 @@ export default {
       return `/**
  * SOLAR Segmented Control.
  *
- * Scaffolded once by \`npm run solar:scaffold "Segmented Control"\` from
- * spec/components/segmented-control.json, and owned by developers from then on: change it freely.
- * What it looks like is not here. That is the recipe, \`solarSegmentedControlStyle\` and
- * \`solarSegmentedControlCompose\` in \`@bwp-web/styles/mui\`: the track, and the label and helper's
- * text styles, by size.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarSegmentedControlStyle\` and \`solarSegmentedControlCompose\` in
+ * \`@bwp-web/styles/mui\`: the track, and the label and helper's text styles, by size.
  *
  * Two to five SegmentedControlItems of its size, one always chosen, committed on click: a radio
  * group, whose segments are native radio inputs of one name, so the arrow keys move between them.
@@ -146,7 +140,7 @@ export const SegmentedControl = forwardRef<HTMLSpanElement, SegmentedControlProp
             `    '${parent}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
         )
         .join('\n');
-      const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter "Segmented Control"\` from spec/components/segmented-control.json, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [SolarSegmentedControlRecipe]: the track, and the label and helper's text styles, by size, read cell by cell.`;
+      const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [SolarSegmentedControlRecipe]: the track, and the label and helper's text styles, by size, read cell by cell.`;
       const about = `Two to five [SolarSegmentedControlItem]s of its size, one always chosen, committed on tap: a [RadioGroup], which selects the segment whose value is [groupValue], calls [onChanged] with the one tapped, and moves between them with the arrow keys. Its [label] names the group (a [mandatory] one is starred), and its [helper] says more below it. Drawn from Figma's layer tree with [SolarLayers], the track holding the segments. For six or more choices, or for navigation, use tabs; for on and off, a SolarToggle.`;
       return `/// SOLAR Segmented Control.
 ///

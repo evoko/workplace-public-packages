@@ -10,7 +10,6 @@ import {
   dartFile,
   drawnResets,
   iconsOf,
-  irFile,
   keyPrefixOf,
   treeOf,
   wrapDoc,
@@ -136,7 +135,7 @@ export function fieldFlutter(spec, o) {
     .join('\n');
   const icons = iconsOf(spec);
   const present = Object.entries(o.present ?? {});
-  const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter ${name.includes(' ') ? `"${name}"` : name}\` from spec/components/${irFile(name)}, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [${R}]: ${o.look}, read cell by cell.`;
+  const header = `Generated from its template in \`packages/codegen/src/components/\` on every \`npm run solar:codegen\`: change the template there, never this file. What it looks like is not here. That is the recipe, [${R}]: ${o.look}, read cell by cell.`;
   return `/// SOLAR ${name}.
 ///
 ${wrapDoc(header, '/// ')}

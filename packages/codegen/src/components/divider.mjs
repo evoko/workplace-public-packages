@@ -1,13 +1,13 @@
 /**
- * SOLAR Divider, beyond its IR: where MUI draws each layer, and the two shell templates, run once
- * by \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * SOLAR Divider, beyond its IR: where MUI draws each layer, and the two shell templates, rendered
+ * into the shells by \`solar:codegen\` on every run. One file per component, so adding one edits
+ * nothing shared; \`src/components/index.mjs\` finds them.
  *
- * A drawn component (`src/scaffold/drawn.mjs`): a rule, or a label between two rules, as layers of
+ * A drawn component (`src/shells/drawn.mjs`): a rule, or a label between two rules, as layers of
  * their own. Its root is a block, as a separator spans its container.
  */
 
-import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
+import { drawnFlutter, drawnReact, drawnResets } from '../shells/drawn.mjs';
 
 const requireLayers = (spec) => {
   for (const axis of ['orientation', 'type'])

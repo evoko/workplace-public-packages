@@ -152,7 +152,7 @@
           "figma": 280,
           "finding": "component.text area.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 280 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -432,7 +432,7 @@
           "figma": 280,
           "finding": "component.text area.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 280 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -712,7 +712,7 @@
           "figma": 280,
           "finding": "component.text area.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 280 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -992,7 +992,7 @@
           "figma": 280,
           "finding": "component.text area.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 280 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -1272,7 +1272,7 @@
           "figma": 280,
           "finding": "component.text area.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 280 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         }
       ]
     },
@@ -1552,7 +1552,7 @@
           "figma": 280,
           "finding": "component.text area.root.width#unbound",
           "decision": "set",
-          "reason": "As md's, the sm field's 200 a sample."
+          "reason": "A field spans its container, as a form row lays it out: Figma draws it 280 wide (md) and 200 (sm), samples. The caller sizes it, as a Text Input."
         },
         {
           "layer": "root",

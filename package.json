@@ -25,8 +25,8 @@
     "solar:tokens": "node docs/solar/tokens/build-derived.mjs",
     "solar:codegen": "node packages/codegen/bin/solar-codegen.mjs",
     "solar:rebuild": "node scripts/solar-sync.mjs --no-fetch",
-    "solar:scaffold": "node packages/codegen/bin/solar-scaffold.mjs",
-    "solar:triage": "node packages/codegen/bin/solar-triage.mjs"
+    "solar:triage": "node packages/codegen/bin/solar-triage.mjs",
+    "solar:explain": "node packages/codegen/bin/solar-explain.mjs"
   },
   "devDependencies": {
     "turbo": "^2.11.2",

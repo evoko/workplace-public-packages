@@ -1,15 +1,15 @@
 /**
- * SOLAR Avatar, beyond its IR: where MUI draws each layer, and the two shell templates, run once by
- * \`solar:scaffold\`. One file per component, so adding one edits nothing shared;
- * \`src/components/index.mjs\` finds them.
+ * SOLAR Avatar, beyond its IR: where MUI draws each layer, and the two shell templates, rendered
+ * into the shells by \`solar:codegen\` on every run. One file per component, so adding one edits
+ * nothing shared; \`src/components/index.mjs\` finds them.
  *
  * Its colour is the caller's, any colour (design team, 2026-09-24): the overlay's `caller` rules
  * make it a prop, the background it is, and the initials' ink derived from it by the shells' ink
  * rule (`internal/ink.ts`, `solar_ink.dart`, owner decision 2026-09-24).
  */
 
-import { dartField, dartParam } from '../scaffold/helpers.mjs';
-import { treeOf } from '../scaffold/drawn.mjs';
+import { dartField, dartParam } from '../shells/helpers.mjs';
+import { treeOf } from '../shells/drawn.mjs';
 
 const requireApi = (spec) => {
   for (const prop of ['size', 'type'])
@@ -38,10 +38,10 @@ export default {
       return `/**
  * SOLAR Avatar.
  *
- * Scaffolded once by \`npm run solar:scaffold Avatar\` from spec/components/avatar.json, and owned by
- * developers from then on: change it freely. What it looks like is not here. That is the recipe,
- * \`solarAvatarStyle\` in \`@bwp-web/styles/mui\`: each size, the initials' text style, the border,
- * and a logo's rounded square.
+ * Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+ * solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+ * is the recipe, \`solarAvatarStyle\` in \`@bwp-web/styles/mui\`: each size, the initials' text style,
+ * the border, and a logo's rounded square.
  *
  * It wraps MUI's Avatar, which draws the initials, or the picture (\`src\`) with the initials as its
  * fallback. Its \`color\` is the caller's, any colour: seed it from a stable hash of the person's ID,
@@ -134,10 +134,10 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
         .join('\n');
       return `/// SOLAR Avatar.
 ///
-/// Scaffolded once by \`npm run solar:scaffold -- --flutter Avatar\` from
-/// spec/components/avatar.json, and owned by developers from then on: change it freely. What it
-/// looks like is not here. That is the recipe, [SolarAvatarRecipe]: each size, the initials' text
-/// style, the border, and a logo's rounded square, read cell by cell.
+/// Generated from its template in \`packages/codegen/src/components/\` on every \`npm run
+/// solar:codegen\`: change the template there, never this file. What it looks like is not here. That
+/// is the recipe, [SolarAvatarRecipe]: each size, the initials' text style, the border, and a
+/// logo's rounded square, read cell by cell.
 ///
 /// Bespoke: CircleAvatar cannot draw a logo's rounded square, so it is drawn with [SolarLayers],
 /// the picture ([image]) inside its border. Its [color] is the caller's, any colour: seed it from a
