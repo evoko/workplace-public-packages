@@ -1,8 +1,10 @@
 # @bwp-web/components
 
 SOLAR components for React, built on MUI: Button, Icon Button, Button Group, FAB, BackButton,
-SplitButton, Link and Spinner, and the display primitives (StatusIndicator, Counter, Kbd, Timestamp, Avatar, Trend Badge, Divider,
-Skeleton, ProgressBar, Node End, RowExpand and Tree Indent) so far.
+SplitButton, Link and Spinner, the display primitives (StatusIndicator, Counter, Kbd, Timestamp,
+Avatar, Trend Badge, Divider, Skeleton, ProgressBar, Node End, RowExpand and Tree Indent), and the
+selection controls (Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle, Segmented Control
+and its Item) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -283,6 +285,98 @@ Building blocks, decorative: Node End is the dot at the end of a Coachmark's con
 RowExpand an expandable table row's chevron or connector (`type`); Tree Indent a tree row's indent,
 16px per level (`depth`, `00` to `10`; Figma's `.Tree Indent`). The rows and trees that use them
 carry the semantics.
+
+## Checkbox
+
+| Prop             | Values  | Default |
+| ---------------- | ------- | ------- |
+| `checked`        | boolean | `false` |
+| `mixed`          | boolean | `false` |
+| `disabled`       | boolean | `false` |
+| `defaultChecked` | boolean | none    |
+| `onChange`       | MUI's   | none    |
+
+One choice of many, committed on click: MUI's Checkbox, a native input, with Figma's box, tick and
+dash drawn inside it. `mixed` draws the dash, for a parent whose children are partly checked, and
+is announced so. Name it with a `<label>` (which toggles it) or an `aria-label`. The box is 16px,
+its hit area unpadded until SOLAR has a target-size variable (as Button's).
+
+## Radio
+
+| Prop       | Values                   | Default |
+| ---------- | ------------------------ | ------- |
+| `value`    | what it stands for       | none    |
+| `checked`  | boolean, outside a group | none    |
+| `disabled` | boolean                  | `false` |
+
+One choice of a group of two to five: put them in MUI's RadioGroup, which checks the one whose
+`value` is its own, names them all, and lets the arrow keys move between them. MUI's Radio, a
+native input, with Figma's ring and dot drawn inside. A radio alone is a bug, SOLAR says.
+
+## Toggle
+
+| Prop              | Values                      | Default |
+| ----------------- | --------------------------- | ------- |
+| `selected`        | boolean                     | `false` |
+| `disabled`        | boolean                     | `false` |
+| `defaultSelected` | boolean                     | none    |
+| `onChange`        | `(event, selected) => void` | none    |
+
+A setting that takes effect at once, on MUI's Switch, a native input announced as a switch, its
+root drawn as Figma's track and the recipe's thumb in its thumb slot. SOLAR's focus ring is drawn,
+where Figma draws none.
+
+## Slider and Slider Range
+
+| Prop               | Values                      | Default |
+| ------------------ | --------------------------- | ------- |
+| `disabled`         | boolean                     | `false` |
+| `filled` · `error` | boolean (Slider)            | `false` |
+| `value`            | a number, or a pair (Range) | none    |
+| `onChange`         | MUI's                       | none    |
+
+MUI's Slider, on 0 to 100 by default, which drags, takes the arrow keys and is announced as a
+slider: name it with `aria-label`, or each thumb of a range with `getAriaLabel`. It fills its
+container. `filled` and `error` are drawn as at rest, as Figma draws them, until SOLAR draws them
+otherwise (`error` is announced). Show a range's two values beside it.
+
+## DragHandle
+
+| Prop         | Values      | Default   |
+| ------------ | ----------- | --------- |
+| `size`       | `sm` · `md` | `sm`      |
+| `disabled`   | boolean     | `false`   |
+| `aria-label` | what moves  | `Reorder` |
+
+A grip of six dots that marks a row or card as one to reorder: focusable, announced as a drag
+handle, and drawn pressed while held (or while the caller's drag sets `aria-pressed`). It does
+nothing itself: spread the drag and drop library's handle props over it, and give the list the
+keyboard's Space to lift, arrows to move, Space to drop.
+
+## Segmented Control and Segmented Control Item
+
+| Prop (Control) | Values                     | Default  |
+| -------------- | -------------------------- | -------- |
+| `size`         | `md` · `sm`                | `md`     |
+| `value`        | the chosen segment's value | required |
+| `onChange`     | `(event, value) => void`   | required |
+| `label`        | names the group            | none     |
+| `mandatory`    | stars the label            | `false`  |
+| `helper`       | more, below it             | none     |
+| `children`     | two to five Items          | required |
+
+| Prop (Item)                    | Values             | Default  |
+| ------------------------------ | ------------------ | -------- |
+| `value`                        | what it stands for | required |
+| `size`                         | `md` · `sm`        | `md`     |
+| `children`                     | the words          | required |
+| `iconLeading` · `iconTrailing` | an icon            | none     |
+
+A radio group of two to five choices, one always chosen: each segment is a `<label>` around a
+native radio input of the group's name, so the arrow keys move between them and a form sends the
+value. Give the Items the Control's size. The label shows where given, though Figma hides it; SOLAR's
+focus ring is drawn on a segment, where Figma draws none. For six or more choices, or navigation,
+use Tabs; for on and off, a Toggle.
 
 ## Checked against Figma
 

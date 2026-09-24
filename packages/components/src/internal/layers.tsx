@@ -40,6 +40,11 @@ export interface LayerDrawing {
   /** What each text layer says, by layer. */
   text?: Record<string, ReactNode>;
   /**
+   * The caller's children of a layer, drawn in it in place of the ones Figma draws as examples
+   * (Segmented Control's segments in its track), by layer.
+   */
+  content?: Record<string, ReactNode>;
+  /**
    * A layer the shell draws as an element of its own, by layer (SplitButton's halves, two buttons):
    * given the class and place the recipe gives the layer, and its children drawn.
    */
@@ -73,12 +78,14 @@ export function drawChildren(name: string, d: LayerDrawing): ReactNode[] {
 export function drawLayer(name: string, d: LayerDrawing): ReactNode {
   const p = d.parts[name] ?? {};
   if (p.present === false) return null;
+  // Figma measures a position from the parent's outer edge, CSS from inside its border, which the
+  // recipe says on the parent (`--solar-placed-left`, `--solar-placed-top`).
   const place: CSSProperties | undefined =
     typeof p.x === 'number'
       ? {
           position: 'absolute',
-          left: p.x,
-          top: typeof p.y === 'number' ? p.y : 0,
+          left: `calc(${p.x}px - var(--solar-placed-left, 0px))`,
+          top: `calc(${typeof p.y === 'number' ? p.y : 0}px - var(--solar-placed-top, 0px))`,
         }
       : undefined;
   const className = `${d.prefix}-${name}`;
@@ -123,13 +130,17 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
         {own({
           className: `${className} ${d.prefix}-box`,
           style: place,
-          children: drawChildren(name, d),
+          children: kids(name, d),
         })}
       </Fragment>
     );
   return (
     <span key={name} className={`${className} ${d.prefix}-box`} style={place}>
-      {drawChildren(name, d)}
+      {kids(name, d)}
     </span>
   );
 }
+
+/** A layer's children: the caller's where it gives them, and otherwise Figma's. */
+const kids = (name: string, d: LayerDrawing): ReactNode[] =>
+  d.content && name in d.content ? [d.content[name]] : drawChildren(name, d);

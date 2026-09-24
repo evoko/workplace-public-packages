@@ -1,0 +1,49 @@
+# Hand-written decisions about SOLAR Segmented Control Item, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Segmented Control Item
+
+base:
+  flutter: RawRadio
+  reason: >-
+    One choice of a Segmented Control, which behaves as a radio group, says its description:
+    bespoke on the web, a label around a native radio input, so the browser moves between the
+    segments with the arrow keys; Flutter's RawRadio under a RadioGroup, which does the same.
+    Both draw Figma's segment with the shared layer helpers.
+
+set:
+  root.appearance.selected=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws no focus state ("handled by the parent assembly treating the segment as a
+      radio", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with
+      SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it.
+  root.appearance.selected=true.focus.shadow:
+    token: shadow.focus.default
+    reason: As unselected, SOLAR's focus ring.
+
+bind:
+  iconLeading.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.
+  iconTrailing.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: As the leading icon's.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A segment is 32 tall at md and 24 at sm, bound to nothing: SOLAR has no control height
+      token (the design review's question on control heights, as Button's is).
+
+accept:
+  component.segmented control item.root.borderWidth@selected=false, state=default:
+    reason: >-
+      An unselected segment has no edge in Figma, where a border takes no room. In CSS it takes
+      a pixel a side of a segment that hugs its words, so the code keeps the edge, transparent,
+      and a segment does not grow when it is chosen.
+  component.segmented control item.root.borderWidth@selected=false, state=hover:
+    reason: As at rest, a transparent edge.

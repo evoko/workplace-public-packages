@@ -43,6 +43,8 @@ export const solarSpinnerStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
+    '--solar-placed-left': '0px',
+    '--solar-placed-top': '0px',
     width: '16px',
     height: '16px',
     '& .MuiCircularProgress-track': {

@@ -1,0 +1,39 @@
+# Hand-written decisions about SOLAR DragHandle, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: DragHandle
+
+base:
+  reason: >-
+    Bespoke on both: a grip of six dots drawn from Figma's layers with the shared helpers,
+    focusable, and pressed while held, which is the grab. The dragging is the caller's (its list's
+    drag and drop, and the keyboard's Space to lift, arrows to move, Space to drop).
+
+allowLiteral:
+  col1Dot.width:
+    reason: >-
+      A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts
+      at 12. Carried as Figma's numbers, and raised as a governance gap.
+  col1Dot.height:
+    reason: As its width.
+  col1Dot2.width:
+    reason: As the first dot's, 3px at sm and 4px at md.
+  col1Dot2.height:
+    reason: As its width.
+  col1Dot3.width:
+    reason: As the first dot's, 3px at sm and 4px at md.
+  col1Dot3.height:
+    reason: As its width.
+  col2Dot.width:
+    reason: As the first dot's, 3px at sm and 4px at md.
+  col2Dot.height:
+    reason: As its width.
+  col2Dot2.width:
+    reason: As the first dot's, 3px at sm and 4px at md.
+  col2Dot2.height:
+    reason: As its width.
+  col2Dot3.width:
+    reason: As the first dot's, 3px at sm and 4px at md.
+  col2Dot3.height:
+    reason: As its width.

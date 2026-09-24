@@ -1,0 +1,112 @@
+/// SOLAR Radio.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Radio` from spec/components/radio.json,
+/// and owned by developers from then on: change it freely. What it looks like is not here. That is
+/// the recipe, [SolarRadioRecipe]: the ring's fill and edge by state, and the dot, Figma's own
+/// outline, read cell by cell.
+///
+/// One choice of a group, committed on tap: put two to five under a [RadioGroup], which checks the
+/// one whose [value] is its own, calls its onChanged with the value tapped, and moves between them
+/// with the arrow keys, as it does Flutter's own Radio. A radio alone is a bug, SOLAR says; outside
+/// a group it is drawn unchecked and does nothing. Built on [RawRadio], with its ring and dot drawn
+/// from Figma's layer tree with [SolarLayers]. Name it with [semanticLabel], or a label beside it.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/radio.dart';
+import '../solar_layers.dart';
+import 'solar_theme_of.dart';
+
+class SolarRadio<T> extends StatefulWidget {
+  const SolarRadio({
+    super.key,
+    required this.value,
+    this.disabled = false,
+    this.semanticLabel,
+    this.focusNode,
+    this.autofocus = false,
+    this.statesController,
+  });
+
+  /// The value it stands for: its group checks it where the group's value is this.
+  final T value;
+
+  final bool disabled;
+
+  /// What it chooses, for a screen reader, where no label beside it says so.
+  final String? semanticLabel;
+
+  /// Its focus, where the caller keeps it.
+  final FocusNode? focusNode;
+
+  /// Whether it takes the focus when first built.
+  final bool autofocus;
+
+  /// States to draw it in beside its own, where the caller keeps them (the visual checks force a
+  /// state through it).
+  final WidgetStatesController? statesController;
+
+  @override
+  State<SolarRadio<T>> createState() => _SolarRadioState<T>();
+}
+
+class _SolarRadioState<T> extends State<SolarRadio<T>> {
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['icon'],
+  };
+
+  FocusNode? _own;
+
+  FocusNode get _focus => widget.focusNode ?? (_own ??= FocusNode());
+
+  @override
+  void dispose() {
+    _own?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final group = RadioGroup.maybeOf<T>(context);
+    final enabled = !widget.disabled && group != null;
+    final p = SolarRadioProps(
+      checked: group != null && group.groupValue == widget.value,
+      disabled: !enabled,
+    );
+    Widget draw(Set<WidgetState> states) => SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarRadioRecipe.lookup(c, p, states),
+        dimension: (c) => SolarRadioRecipe.dimension(c, p, states),
+        color: (c) => SolarRadioRecipe.color(t, c, p, states),
+        shadow: (c) => SolarRadioRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarRadioRecipe.textStyle(t, c, p, states),
+        present: (l) => SolarRadioRecipe.present(l, p, states),
+        glyph: (l) => SolarRadioRecipe.glyph(l, p, states),
+      ),
+      tree: _tree,
+      keyPrefix: 'radio',
+    ).layer('root');
+    final forced = widget.statesController;
+    final radio = RawRadio<T>(
+      value: widget.value,
+      mouseCursor: WidgetStateMouseCursor.clickable,
+      toggleable: false,
+      focusNode: _focus,
+      autofocus: widget.autofocus,
+      groupRegistry: group,
+      enabled: enabled,
+      builder: (context, state) => forced == null
+          ? draw(state.states)
+          : ListenableBuilder(
+              listenable: forced,
+              builder: (_, _) => draw({...state.states, ...forced.value}),
+            ),
+    );
+    return widget.semanticLabel == null
+        ? radio
+        : Semantics(label: widget.semanticLabel, child: radio);
+  }
+}

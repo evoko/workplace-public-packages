@@ -97,7 +97,7 @@ const px = (v) => {
 /** Whether a `set` rule's IR entry reaches a Figma variant: the base every one, a size its size,
  * an appearance its combination (at rest, in every state; in a state, that state alone), and the
  * two together both. */
-function setReaches(props, section, keys) {
+function setReaches(props, section, keys, holdsOwn = () => false) {
   // `default` is the one key of a component with no appearance axis (Link), which every variant has.
   const holds = (key) =>
     key === 'default' ||
@@ -105,8 +105,12 @@ function setReaches(props, section, keys) {
       const [axis, value] = kv.split('=');
       return String(props[axis]) === value;
     });
-  const inState = (state) =>
-    state === 'default' || String(props.state ?? 'default') === state;
+  // A resting entry reaches the other states too, but for one whose own entry holds the cell (a
+  // disabled Checkbox's edge): that state draws its own, not the decision.
+  const inState = (state) => {
+    const at = String(props.state ?? 'default');
+    return at === state || (state === 'default' && !holdsOwn(at));
+  };
   if (section === 'base') return true;
   if (section === 'size') return String(props.size) === keys[0];
   if (section === 'appearance') return holds(keys[0]) && inState(keys[1]);
@@ -408,11 +412,12 @@ export function buildOracle(
   // A layer the base control draws itself (Spinner's ring, CircularProgress's SVG circle): its
   // box, and the roundness of its shape, are the control's, by an overlay decision, in every
   // variant.
+  // A rule that names its cells (a slider's handle: where it sits) excuses those alone.
   for (const [layer, rule] of Object.entries(overlay?.controlDraws ?? {}))
     excuses.push({
       variant: null,
       layer,
-      properties: ['x', 'y', 'width', 'height', 'radius'],
+      properties: rule.cells ?? ['x', 'y', 'width', 'height', 'radius'],
       why: {
         finding: `component.${spec.component.toLowerCase()}.${layer}#controlDraws`,
         decision: 'controlDraws',
@@ -440,7 +445,12 @@ export function buildOracle(
       variant: null,
       layer,
       properties,
-      reaches: (props) => setReaches(props, section, keys),
+      reaches: (props) =>
+        setReaches(props, section, keys, (state) => {
+          let own = spec.style?.[layer]?.[section];
+          for (const k of keys.slice(0, -1)) own = own?.[k];
+          return own?.[state]?.[cell] !== undefined;
+        }),
       drew: (property, figma) =>
         (replaced.literal !== undefined
           ? same(replaced.literal, figma)
@@ -527,11 +537,17 @@ export function buildOracle(
     mode: { color: 'light', type: 'desktop' },
     // The layers a prop shows or hides (a slot), by the prop: a slot hidden at rest is drawn when
     // its prop says so, where any other layer Figma hides in a variant must not be drawn there.
-    slots: Object.fromEntries(
-      Object.entries(spec.slots)
+    slots: Object.fromEntries([
+      ...Object.entries(spec.slots)
         .filter(([, s]) => s.props.visible)
         .map(([, s]) => [nameOf.get(s.layer), s.props.visible]),
-    ),
+      // A layer Figma always hides, drawn where the caller fills a slot (an overlay's shownBy):
+      // shown by the slot, as by a prop, and so is the slot's own layer.
+      ...Object.entries(overlay?.shownBy ?? {}).flatMap(([layer, rule]) => [
+        [layer, `filled ${rule.slot}`],
+        [nameOf.get(spec.slots[rule.slot].layer), `filled ${rule.slot}`],
+      ]),
+    ]),
     variants,
   };
 }

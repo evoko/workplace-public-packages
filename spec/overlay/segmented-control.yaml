@@ -1,0 +1,61 @@
+# Hand-written decisions about SOLAR Segmented Control, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Segmented Control
+
+base:
+  reason: >-
+    Bespoke on both: a field's label and helper around a track of the caller's segments, drawn
+    from Figma's layers with the shared helpers. It is a radio group, as its description says:
+    on the web a radiogroup whose segments are native radio inputs of one name, in Flutter a
+    RadioGroup, each of which moves between the segments with the arrow keys.
+
+set:
+  segmentedControlItem.base.height:
+    none: true
+    reason: >-
+      A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the
+      control lays them out and never sizes them, so a segment of the wrong size shows as one.
+  segmentedControlItem.size.sm.height:
+    none: true
+    reason: As at md, the segment's own height.
+  segmentedControlItem2.base.height:
+    none: true
+    reason: As the first segment's, its own height.
+  segmentedControlItem2.size.sm.height:
+    none: true
+    reason: As at md, the segment's own height.
+  segmentedControlItem3.base.height:
+    none: true
+    reason: As the first segment's, its own height.
+  segmentedControlItem3.size.sm.height:
+    none: true
+    reason: As at md, the segment's own height.
+  segmentedControlItem4.base.height:
+    none: true
+    reason: As the first segment's, its own height.
+  segmentedControlItem4.size.sm.height:
+    none: true
+    reason: As at md, the segment's own height.
+  segmentedControlItem5.base.height:
+    none: true
+    reason: As the first segment's, its own height.
+  segmentedControlItem5.size.sm.height:
+    none: true
+    reason: As at md, the segment's own height.
+  segmentedControlItem6.base.height:
+    none: true
+    reason: As the first segment's, its own height.
+  segmentedControlItem6.size.sm.height:
+    none: true
+    reason: As at md, the segment's own height.
+
+shownBy:
+  label:
+    slot: label
+    reason: >-
+      Figma hides the label in both variants, with no prop to show it, though the description
+      gives the control "an optional field label ... so it can sit in a form" and a text prop for
+      it. Drawn where the caller gives a label, as the helper is by its prop; the design review
+      asks SOLAR for the prop.

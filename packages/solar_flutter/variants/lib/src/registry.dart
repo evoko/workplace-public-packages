@@ -6,20 +6,28 @@ import 'avatar.dart';
 import 'backbutton.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'checkbox.dart';
 import 'counter.dart';
 import 'divider.dart';
+import 'draghandle.dart';
 import 'fab.dart';
 import 'icon_button.dart';
 import 'kbd.dart';
 import 'link.dart';
 import 'node_end.dart';
 import 'progressbar.dart';
+import 'radio.dart';
 import 'rowexpand.dart';
+import 'segmented_control.dart';
+import 'segmented_control_item.dart';
 import 'skeleton.dart';
+import 'slider.dart';
+import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
 import 'timestamp.dart';
+import 'toggle.dart';
 import 'tree_indent.dart';
 import 'trend_badge.dart';
 
@@ -28,20 +36,28 @@ const builders = <String, VariantBuilder>{
   'BackButton': buildBackButton,
   'Button': buildButton,
   'Button Group': buildButtonGroup,
+  'Checkbox': buildCheckbox,
   'Counter': buildCounter,
   'Divider': buildDivider,
+  'DragHandle': buildDragHandle,
   'FAB': buildFAB,
   'Icon Button': buildIconButton,
   'Kbd': buildKbd,
   'Link': buildLink,
   'Node End': buildNodeEnd,
   'ProgressBar': buildProgressBar,
+  'Radio': buildRadio,
   'RowExpand': buildRowExpand,
+  'Segmented Control': buildSegmentedControl,
+  'Segmented Control Item': buildSegmentedControlItem,
   'Skeleton': buildSkeleton,
+  'Slider': buildSlider,
+  'Slider Range': buildSliderRange,
   'Spinner': buildSpinner,
   'SplitButton': buildSplitButton,
   'StatusIndicator': buildStatusIndicator,
   'Timestamp': buildTimestamp,
+  'Toggle': buildToggle,
   'Tree Indent': buildTreeIndent,
   'Trend Badge': buildTrendBadge,
 };

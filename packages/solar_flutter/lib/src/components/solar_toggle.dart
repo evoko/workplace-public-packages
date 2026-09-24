@@ -1,0 +1,81 @@
+/// SOLAR Toggle.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Toggle` from
+/// spec/components/toggle.json, and owned by developers from then on: change it freely. What it
+/// looks like is not here. That is the recipe, [SolarToggleRecipe]: the track’s fill and edge by
+/// state, and the thumb’s, where it sits on and off, read cell by cell.
+///
+/// Bespoke: Flutter's Switch paints its own track and thumb and cannot take Figma's. They are drawn
+/// from Figma's layer tree with [SolarLayers], pressable, and announced as a switch. A setting, on
+/// or off, that takes effect at once: no confirm, and no action (that is a SolarButton). On and off
+/// read by the thumb's place as well as the colour. Name it with [semanticLabel], or a label beside
+/// it that toggles it too.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/toggle.dart';
+import '../solar_layers.dart';
+import '../solar_states.dart';
+import 'solar_theme_of.dart';
+
+class SolarToggle extends StatelessWidget {
+  const SolarToggle({
+    super.key,
+    this.selected = false,
+    this.disabled = false,
+    required this.onChanged,
+    this.semanticLabel,
+    this.statesController,
+  });
+
+  final bool selected;
+  final bool disabled;
+
+  /// Called with the value a tap asks for, the opposite of [selected]; null disables it.
+  final ValueChanged<bool>? onChanged;
+
+  /// What it turns on, for a screen reader, where no label beside it says so.
+  final String? semanticLabel;
+
+  /// Its states, where the caller keeps them.
+  final WidgetStatesController? statesController;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['thumb'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarToggleProps(
+      selected: selected,
+      disabled: disabled || onChanged == null,
+    );
+    Widget draw(Set<WidgetState> states) => SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarToggleRecipe.lookup(c, p, states),
+        dimension: (c) => SolarToggleRecipe.dimension(c, p, states),
+        color: (c) => SolarToggleRecipe.color(t, c, p, states),
+        shadow: (c) => SolarToggleRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarToggleRecipe.textStyle(t, c, p, states),
+        present: (l) => SolarToggleRecipe.present(l, p, states),
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'toggle',
+    ).layer('root');
+    final mark = SolarPressable(
+      onPressed: disabled || onChanged == null
+          ? null
+          : () => onChanged!(!selected),
+      statesController: statesController,
+      toggled: selected,
+      builder: (_, states) => draw(states),
+    );
+    return semanticLabel == null
+        ? mark
+        : Semantics(label: semanticLabel, child: mark);
+  }
+}

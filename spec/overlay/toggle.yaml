@@ -1,0 +1,42 @@
+# Hand-written decisions about SOLAR Toggle, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Toggle
+
+base:
+  mui: Switch
+  reason: >-
+    MUI's Switch on the web, for its native input announced as a switch, its root drawn as
+    Figma's track and its thumb as the recipe's; bespoke in Flutter, whose Switch paints its own
+    track and thumb and cannot take Figma's: drawn with the shared layer helpers, pressable, and
+    announced as a switch.
+
+follows:
+  thumb.borderWidth:
+    axes: [state]
+    reason: >-
+      A disabled thumb has no edge, off or on, where every other thumb keeps its border: a
+      control that cannot be used is drawn flat, as Checkbox's disabled box is.
+
+set:
+  root.appearance.selected=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's
+      focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it.
+  root.appearance.selected=true.focus.shadow:
+    token: shadow.focus.default
+    reason: As off, SOLAR's focus ring.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      The track is 32 by 18, and SOLAR has no control size token (the design review's question
+      on control sizes and the target size); carried as Figma's numbers, as Checkbox's box is.
+  root.height:
+    reason: As its width.
+  thumb.width:
+    reason: The thumb is 12px, as the track's size, a number with no token.
+  thumb.height:
+    reason: As its width.

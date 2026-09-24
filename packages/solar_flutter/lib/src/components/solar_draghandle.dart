@@ -1,0 +1,103 @@
+/// SOLAR DragHandle.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter DragHandle` from
+/// spec/components/draghandle.json, and owned by developers from then on: change it freely. What it
+/// looks like is not here. That is the recipe, [SolarDragHandleRecipe]: the dots' size and colour
+/// by state, and the grip's padding and focus ring, read cell by cell.
+///
+/// Bespoke: a grip, drawn from Figma's layer tree with [SolarLayers], that marks a row or card as
+/// one to reorder. It is focusable, hovered by the mouse, and pressed while a pointer holds it,
+/// which is the grab; it is not a button, and does nothing itself. The drag is the caller's: wrap
+/// it in the list's drag listener (a ReorderableDragStartListener), and give the list the
+/// keyboard's Space to lift, arrows to move, Space to drop.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/draghandle.dart';
+import '../solar_layers.dart';
+import '../solar_states.dart';
+import 'solar_theme_of.dart';
+
+class SolarDragHandle extends StatelessWidget {
+  const SolarDragHandle({
+    super.key,
+    this.size = SolarDragHandleSize.sm,
+    this.disabled = false,
+    this.semanticLabel = 'Reorder',
+    this.focusNode,
+    this.statesController,
+  });
+
+  final SolarDragHandleSize size;
+  final bool disabled;
+
+  /// What it reorders, for a screen reader: "Reorder" unless it says more.
+  final String semanticLabel;
+
+  /// Its focus, where the caller keeps it.
+  final FocusNode? focusNode;
+
+  /// Its states, where the caller keeps them (the visual checks force a state through it).
+  final WidgetStatesController? statesController;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['col1', 'col2'],
+    'col1': ['col1Dot', 'col1Dot2', 'col1Dot3'],
+    'col2': ['col2Dot', 'col2Dot2', 'col2Dot3'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarDragHandleProps(size: size, disabled: disabled);
+    Widget draw(Set<WidgetState> states) => SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarDragHandleRecipe.lookup(c, p, states),
+        dimension: (c) => SolarDragHandleRecipe.dimension(c, p, states),
+        color: (c) => SolarDragHandleRecipe.color(t, c, p, states),
+        shadow: (c) => SolarDragHandleRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarDragHandleRecipe.textStyle(t, c, p, states),
+        present: (l) => SolarDragHandleRecipe.present(l, p, states),
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'dragHandle',
+    ).layer('root');
+    return SolarStatesScope(
+      controller: statesController,
+      builder: (context, states) {
+        final enabled = !disabled;
+        void set(WidgetState state, bool on) => states.update(state, on);
+        // Pressed by the pointer itself, not a tap, which would give way to the caller's drag.
+        return Semantics(
+          label: semanticLabel,
+          enabled: enabled,
+          child: FocusableActionDetector(
+            enabled: enabled,
+            focusNode: focusNode,
+            mouseCursor: enabled ? SystemMouseCursors.grab : MouseCursor.defer,
+            onShowHoverHighlight: (on) => set(WidgetState.hovered, on),
+            onShowFocusHighlight: (on) => set(WidgetState.focused, on),
+            child: Listener(
+              onPointerDown: enabled
+                  ? (_) => set(WidgetState.pressed, true)
+                  : null,
+              onPointerUp: enabled
+                  ? (_) => set(WidgetState.pressed, false)
+                  : null,
+              onPointerCancel: enabled
+                  ? (_) => set(WidgetState.pressed, false)
+                  : null,
+              child: ListenableBuilder(
+                listenable: states,
+                builder: (context, _) => draw({...states.value}),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

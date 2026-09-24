@@ -10,6 +10,7 @@
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { table } from '../src/components/index.mjs';
 import { dartEnumValue } from '../src/emit/flutter.mjs';
 import { describe, expect, it } from 'vitest';
 import {
@@ -19,6 +20,7 @@ import {
 } from '../src/emit/mui-component.mjs';
 
 const SELECTORS = STATE_SELECTORS.Button;
+const GROUP_DECIDES = table('flutter', 'groupDecides');
 import { flattenSpec } from '../src/spec.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { flutterFileOf, shellFileOf } from '../src/scaffold/index.mjs';
@@ -464,8 +466,9 @@ describe('component parity: the React and Flutter widgets', () => {
     return (
       m[1]
         .split(',')
-        // A prop with a default (`children = 'Back'`) by its name.
-        .map((p) => p.trim().split(/\s*=/)[0])
+        // A prop with a default (`children = 'Back'`), or renamed (`checked: checkedProp`, which
+        // the shell reads beside its own state), by its name.
+        .map((p) => p.trim().split(/\s*[=:]/)[0])
         .filter((p) => p && !p.startsWith('...'))
     );
   }
@@ -501,17 +504,22 @@ describe('component parity: the React and Flutter widgets', () => {
       name,
     );
 
+    // A prop a Flutter group decides (Radio's checked, its RadioGroup's) is no parameter there.
+    const fromGroup = new Set(GROUP_DECIDES[spec.component] ?? []);
+
     it(`${spec.component}: both take every prop of the IR`, () => {
       for (const prop of Object.keys(spec.api)) {
         expect(react, `${prop} in React`).toContain(prop);
-        expect(flutter, `${prop} in Flutter`).toHaveProperty(prop);
+        if (fromGroup.has(prop))
+          expect(flutter, `${prop} in Flutter`).not.toHaveProperty(prop);
+        else expect(flutter, `${prop} in Flutter`).toHaveProperty(prop);
       }
     });
 
     it(`${spec.component}: Flutter defaults to the IR's defaults`, () => {
       for (const [prop, def] of Object.entries(spec.api)) {
         // A colour the caller gives (Avatar's) has no default on either platform.
-        if (def.type === 'color') continue;
+        if (def.type === 'color' || fromGroup.has(prop)) continue;
         // An enum value as the emitter spells it in Dart (`top-search` is `topSearch`).
         const expected =
           def.type === 'boolean'
@@ -528,15 +536,24 @@ describe('component parity: the React and Flutter widgets', () => {
         // example Buttons, all `& > *`) is one of the caller's children.
         // A drawn component (SplitButton) draws its label's words itself, so Flutter takes them
         // as a String, `label`.
+        // A content slot (Segmented Control's track of segments) is the children on both, and a
+        // label beside it names the whole, `label`.
+        const content = Object.values(spec.slots).some(
+          (s) => s.type === 'content',
+        );
         const [inReact, inFlutter] =
-          slot === 'label'
-            ? [
-                'children',
-                MUI_SLOTS[spec.component] === 'drawn' ? 'label' : 'child',
-              ]
-            : MUI_SLOTS[spec.component]?.[slot] === '& > *'
-              ? ['children', 'children']
-              : [slot, slot];
+          spec.slots[slot].type === 'content'
+            ? ['children', 'children']
+            : slot === 'label' && content
+              ? ['label', 'label']
+              : slot === 'label'
+                ? [
+                    'children',
+                    MUI_SLOTS[spec.component] === 'drawn' ? 'label' : 'child',
+                  ]
+                : MUI_SLOTS[spec.component]?.[slot] === '& > *'
+                  ? ['children', 'children']
+                  : [slot, slot];
         expect(react, `${slot} in React`).toContain(inReact);
         expect(flutter, `${slot} in Flutter`).toHaveProperty(inFlutter);
       }

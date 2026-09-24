@@ -1,0 +1,85 @@
+# Hand-written decisions about SOLAR Slider Range, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Slider Range
+
+base:
+  mui: Slider
+  reason: >-
+    MUI's Slider on the web, for its dragging, its keyboard and its slider role, a thumb for each end,
+    its rail, track and thumbs restyled by the recipe. Bespoke in Flutter, whose Slider paints
+    its own track and thumb and cannot take Figma's edged, shadowed handle: drawn from Figma's
+    layers with the shared helpers, over an input of SOLAR's own (dragging, the arrow keys, a
+    slider's semantics for each handle).
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A slider spans its container: Figma draws it 320 wide, a sample. The caller sizes it, as a
+      ProgressBar.
+  track.base.width:
+    keyword: FILL
+    reason: The rail spans the slider, whatever its width.
+  root.appearance.default.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's
+      focus ring around the whole slider, as Slider's own focus is drawn; the design review asks
+      SOLAR to draw it.
+
+follows:
+  handle.width:
+    axes: [state]
+    reason: >-
+      A disabled handle is 14px with a 1px edge, where every other handle is 16px with a 2px one:
+      a control that cannot be used is drawn smaller and flat.
+  handle.height:
+    axes: [state]
+    reason: As its width.
+  handle.borderWidth:
+    axes: [state]
+    reason: As its width, the disabled handle's thinner edge.
+  handle2.width:
+    axes: [state]
+    reason: As the first handle's, 14px disabled.
+  handle2.height:
+    axes: [state]
+    reason: As its width.
+  handle2.borderWidth:
+    axes: [state]
+    reason: As the first handle's, a thinner edge disabled.
+
+controlDraws:
+  fill:
+    cells: [x, width]
+    reason: >-
+      The fill runs from the start (or the lower end) to the value, which the control draws:
+      Figma draws one still frame at a sample value. Its height and look are the recipe's.
+  handle:
+    cells: [x]
+    reason: >-
+      The handle sits at the value, centred on it, where the control puts it; Figma draws it at a sample, 2px before the value it marks (the design review raises it). Its size, edge and shadow are the recipe's.
+  handle2:
+    cells: [x]
+    reason: >-
+      As the first handle, at the upper end.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      The slider is 20 tall, its track 4 and its handle 16 (14 disabled), bound to nothing: SOLAR
+      has no size tokens for them. Carried as Figma's numbers, and raised as a governance gap.
+  track.height:
+    reason: As the slider's height.
+  fill.height:
+    reason: As the slider's height.
+  handle.width:
+    reason: As the slider's height.
+  handle.height:
+    reason: As the slider's height.
+  handle2.width:
+    reason: As the slider's height.
+  handle2.height:
+    reason: As the slider's height.

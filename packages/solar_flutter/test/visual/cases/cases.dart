@@ -7,20 +7,28 @@ import 'avatar.dart';
 import 'backbutton.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'checkbox.dart';
 import 'counter.dart';
 import 'divider.dart';
+import 'draghandle.dart';
 import 'fab.dart';
 import 'icon_button.dart';
 import 'kbd.dart';
 import 'link.dart';
 import 'node_end.dart';
 import 'progressbar.dart';
+import 'radio.dart';
 import 'rowexpand.dart';
+import 'segmented_control.dart';
+import 'segmented_control_item.dart';
 import 'skeleton.dart';
+import 'slider.dart';
+import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
 import 'timestamp.dart';
+import 'toggle.dart';
 import 'tree_indent.dart';
 import 'trend_badge.dart';
 
@@ -29,20 +37,28 @@ final cases = <String, VisualCase>{
   'BackButton': backButtonCase,
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
+  'Checkbox': checkboxCase,
   'Counter': counterCase,
   'Divider': dividerCase,
+  'DragHandle': dragHandleCase,
   'FAB': fabCase,
   'Icon Button': iconButtonCase,
   'Kbd': kbdCase,
   'Link': linkCase,
   'Node End': nodeEndCase,
   'ProgressBar': progressBarCase,
+  'Radio': radioCase,
   'RowExpand': rowExpandCase,
+  'Segmented Control': segmentedControlCase,
+  'Segmented Control Item': segmentedControlItemCase,
   'Skeleton': skeletonCase,
+  'Slider': sliderCase,
+  'Slider Range': sliderRangeCase,
   'Spinner': spinnerCase,
   'SplitButton': splitButtonCase,
   'StatusIndicator': statusIndicatorCase,
   'Timestamp': timestampCase,
+  'Toggle': toggleCase,
   'Tree Indent': treeIndentCase,
   'Trend Badge': trendBadgeCase,
 };

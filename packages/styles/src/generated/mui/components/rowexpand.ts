@@ -50,6 +50,8 @@ export const solarRowExpandStyles = {
     boxShadow: 'none',
     borderRadius: 'var(--solar-radius-none)',
     borderStyle: 'none',
+    '--solar-placed-left': '0px',
+    '--solar-placed-top': '0px',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

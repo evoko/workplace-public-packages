@@ -78,15 +78,25 @@ export function scaffoldFlutter(
  * visual case and IR), so the file only names the component; Storybook reads a story file
  * statically, which is why its default export is an object literal rather than a call.
  */
-export const storyTemplate = (component) =>
-  `import type { Meta, StoryObj } from '@storybook/react-vite';
+export const storyTemplate = (component) => {
+  // On one line where it fits the repository's 80 columns, and otherwise as Prettier wraps it.
+  const line = `export default { title: 'SOLAR/${component}', ...meta('${component}') } satisfies Meta;`;
+  const meta =
+    line.length <= 80
+      ? line
+      : `export default {
+  title: 'SOLAR/${component}',
+  ...meta('${component}'),
+} satisfies Meta;`;
+  return `import type { Meta, StoryObj } from '@storybook/react-vite';
 import { meta, playground, variants } from './solar.js';
 
 // Storybook reads a story file statically, so the default export is an object literal here.
-export default { title: 'SOLAR/${component}', ...meta('${component}') } satisfies Meta;
+${meta}
 export const Playground: StoryObj = playground('${component}');
 export const Variants: StoryObj = variants('${component}');
 `;
+};
 
 /** \`Button\` to \`Button.stories.tsx\`. */
 export const storyFileOf = (component) =>

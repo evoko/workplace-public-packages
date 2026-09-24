@@ -143,6 +143,15 @@ describe('scaffoldStory', () => {
     expect(storyFileOf('Icon Button')).toBe('IconButton.stories.tsx');
   });
 
+  it('writes the export on one line where it fits 80 columns, and wraps it as Prettier does', () => {
+    expect(storyTemplate('Button')).toContain(
+      "export default { title: 'SOLAR/Button', ...meta('Button') } satisfies Meta;",
+    );
+    expect(storyTemplate('Segmented Control Item')).toContain(
+      "export default {\n  title: 'SOLAR/Segmented Control Item',\n  ...meta('Segmented Control Item'),\n} satisfies Meta;",
+    );
+  });
+
   it('has written one for every generated component', () => {
     for (const component of stage.NAMES) {
       const story = readFileSync(

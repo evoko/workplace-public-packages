@@ -51,13 +51,20 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 `SolarSplitButton`, `SolarLink` and `SolarSpinner`, and the display primitives
 (`SolarStatusIndicator`, `SolarCounter`, `SolarKbd`, `SolarTimestamp`, `SolarAvatar`,
 `SolarTrendBadge`, `SolarDivider`, `SolarSkeleton`, `SolarProgressBar`, `SolarNodeEnd`,
-`SolarRowExpand` and `SolarTreeIndent`) take the same props as the React components
+`SolarRowExpand` and `SolarTreeIndent`), and the selection controls (`SolarCheckbox`,
+`SolarRadio`, `SolarToggle`, `SolarSlider`, `SolarSliderRange`, `SolarDragHandle`,
+`SolarSegmentedControl` and `SolarSegmentedControlItem`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
 the app's words (`text`) with no `DateTime`, since Flutter has no machine-readable time, and a
-drawn component (`SolarSplitButton`, `SolarLink`) takes its words as a `String`, `label`. `SolarFAB`
-is a FilledButton, which a Scaffold's `floatingActionButton` takes:
+drawn component (`SolarSplitButton`, `SolarLink`) takes its words as a `String`, `label`. A
+control takes what a tap asks for as Flutter's do (`onChanged` on a `SolarCheckbox` or
+`SolarToggle`, null disabling it), and a slider is on `min` to `max`, 0 to 1 by default. A
+`SolarRadio<T>` and a `SolarSegmentedControlItem<T>` are checked by the `RadioGroup` around them,
+by their `value`, as Flutter's own Radio is, so they take no `checked` or `selected`; the group
+also moves between them with the arrow keys. `SolarFAB` is a FilledButton, which a Scaffold's
+`floatingActionButton` takes:
 
 ```dart
 SolarButton(
@@ -98,8 +105,8 @@ Presence (the spinner while loading, the label hidden) is `SolarButtonRecipe.pre
 Spinner is `SolarButtonRecipe.lookup('spinner.variant.size', …)`, for the widget that composes the
 button's content, as `SolarButton` does.
 
-A shape a component draws itself (Spinner's ring, StatusIndicator's marks, and in later components
-Checkbox's tick) is a `SolarGlyph`: Figma's path data for the fill and for the stroke's outline, read
+A shape a component draws itself (Spinner's ring, StatusIndicator's marks, Checkbox's tick and
+dash, Radio's dot) is a `SolarGlyph`: Figma's path data for the fill and for the stroke's outline, read
 from the recipe with `Solar<Name>Recipe.glyph(layer, props, states)`. `SolarGlyphView` draws one at
 its own size, the fill's outline in the fill colour and the stroke's in the stroke colour, by
 `SolarVectorPainter` as the icons are.
@@ -107,16 +114,21 @@ its own size, the fill's outline in the fill colour and the stroke's in the stro
 A display primitive draws Figma's layer tree itself with `SolarLayers` (`lib/src/solar_layers.dart`):
 each layer, keyed `<component>.<layer>`, as a `SolarGlyphView`, a `SolarIcon`, a `Text` or a box,
 laid out by its auto layout or placed at the recipe's `x` and `y` where it has none, translucent
-where the recipe gives it an opacity. `SolarLayerRecipe` is the component's generated recipe as
-closures, under its props and states. Avatar, Skeleton and Divider are drawn so too; ProgressBar
+where the recipe gives it an opacity, and holding the caller's children in place of Figma's
+examples where the shell gives them (`content`: Segmented Control's track). A placed layer is set
+in from its parent's border and padding, since Figma measures from the parent's outer edge.
+`SolarLayerRecipe` is the component's generated recipe as closures, under its props and states. Avatar, Skeleton and Divider are drawn so too; ProgressBar
 wraps `LinearProgressIndicator`.
 
 A control's states are shared with what it holds (`lib/src/solar_states.dart`): `SolarButton` gives
 its states to a `SolarStatesScope`, and a `SolarCounter` in it reads them with a
 `SolarStatesBuilder`, so it follows the button's hover, press and disabled colours, as Figma draws
 it. `SolarPressable` gives a drawn widget states of its own where it is a control (a counter with
-`onPressed`). `solarInkOn` (`lib/src/solar_ink.dart`) is the Avatar initials' ink, the web's rule
-step for step.
+`onPressed`), announced as a button, a link, a checkbox (`checked`, `mixed`) or a switch
+(`toggled`). `SolarSliderInput` (`lib/src/solar_slider_input.dart`) is the same for the sliders:
+it drags the nearest handle, gives each handle the focus, the arrow keys and a slider's semantics,
+and leaves the drawing to `SolarLayers`, the value placing the fill and handles. `solarInkOn`
+(`lib/src/solar_ink.dart`) is the Avatar initials' ink, the web's rule step for step.
 
 Every variant of every widget is checked against what Figma draws (`spec/verify/`) by
 `flutter test`: see [test/visual/README.md](test/visual/README.md). To look at them instead,

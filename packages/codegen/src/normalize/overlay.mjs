@@ -37,9 +37,14 @@
  *   caller:       { <layer>.<cell>: { prop | from, reason } }  a cell whose value is the caller's:
  *                                                        `prop` names the colour prop it is (the API
  *                                                        gains it), `from` the prop it is derived from
- *   controlDraws: { <layer>: { reason } }                the base control draws this layer itself
+ *   controlDraws: { <layer>: { cells?, reason } }        the base control draws this layer itself
  *                                                        (Spinner's ring): its box is the control's,
- *                                                        which the oracle then excuses
+ *                                                        which the oracle then excuses; `cells`
+ *                                                        names the only ones it decides (a
+ *                                                        slider's handle: where it sits, x)
+ *   shownBy:      { <layer>: { slot, reason } }          a layer Figma hides in every variant, with
+ *                                                        no prop to show it, drawn where the caller
+ *                                                        fills the slot (Segmented Control's label)
  *   accept:       { <deviation token>: { reason } }      the code keeps its value; Figma's
  *                                                        difference is known and intended
  *
@@ -74,7 +79,8 @@ const FIELDS = {
   bind: ['literal', 'token', 'tokens'],
   set: ['token', 'none', 'keyword'],
   allowLiteral: ['values'],
-  controlDraws: [],
+  controlDraws: ['cells'],
+  shownBy: ['slot'],
   samples: ['keep'],
   caller: ['prop', 'from'],
   accept: [],
@@ -584,7 +590,8 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
 
   const lc = spec.component.toLowerCase();
   const rules = [];
-  const record = (rule, at, reason) => rules.push({ rule, at, reason });
+  const record = (rule, at, reason, more = {}) =>
+    rules.push({ rule, at, reason, ...more });
   const decide = (token, rule, reason) => {
     const d = deviations.find((x) => x.token === token);
     if (d) d.decision = { rule, reason };
@@ -727,15 +734,35 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     let node = s[section];
     const keys = parts.slice(2, 2 + DEPTH[section]);
     // A state the IR keeps no entry for, because Figma draws it as at rest (FAB's focus), may be
-    // given one, under an appearance the IR has, for a state the component has.
+    // given one, under an appearance the IR has, for a state the component has. So may focus
+    // where Figma draws none at all (Toggle's): a visible focus is SOLAR's floor, and the state
+    // joins the component's.
     const states = new Set([
       'default',
+      'focus',
       ...spec.states,
       ...Object.keys(spec.api).filter((p) => BOOLEAN_STATES.includes(p)),
     ]);
+    // So may an appearance the layer lacks and another layer of the component has (Slider
+    // Range's root, where only its fill changes at rest: `default`).
+    const looks = new Set(
+      Object.values(spec.style).flatMap((st) => Object.keys(st[section] ?? {})),
+    );
     keys.forEach((key, i) => {
       const last = i === keys.length - 1 && section !== 'size';
-      if (!node?.[key] && last && node && states.has(key)) node[key] = {};
+      if (
+        !node?.[key] &&
+        i === 0 &&
+        section === 'appearance' &&
+        node &&
+        looks.has(key)
+      )
+        node[key] = {};
+      if (!node?.[key] && last && node && states.has(key)) {
+        node[key] = {};
+        if (key === 'focus' && !spec.states.includes('focus'))
+          spec.states.push('focus');
+      }
       if (!node?.[key]) fail(`set ${at}: the IR has no ${section} ${key}`);
       node = node[key];
     });
@@ -810,11 +837,18 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     record('allowLiteral', at, rule.reason);
   }
 
+  const BOX = ['x', 'y', 'width', 'height'];
   for (const [layer, rule] of sorted('controlDraws')) {
     if (!spec.layers[layer])
       fail(`controlDraws ${layer}: the IR has no layer ${layer}`);
-    // Its size is the control's too: a raw size Figma draws it at is allowed, and decided here.
-    for (const cell of ['width', 'height']) {
+    for (const cell of rule.cells ?? [])
+      if (!BOX.includes(cell))
+        fail(`controlDraws ${layer}: ${cell} is not one of ${BOX.join(', ')}`);
+    // Its size is the control's too, where it decides it: a raw size Figma draws it at is
+    // allowed, and decided here.
+    for (const cell of ['width', 'height'].filter(
+      (c) => !rule.cells || rule.cells.includes(c),
+    )) {
       const entries = [...entriesOf(spec.style[layer], cell)];
       const raw = entries.filter(([holder, key]) => 'literal' in holder[key]);
       for (const [holder, key] of raw)
@@ -826,7 +860,25 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
           rule.reason,
         );
     }
-    record('controlDraws', layer, rule.reason);
+    record(
+      'controlDraws',
+      layer,
+      rule.reason,
+      rule.cells ? { cells: [...rule.cells] } : {},
+    );
+  }
+
+  for (const [layer, rule] of sorted('shownBy')) {
+    if (!spec.layers[layer])
+      fail(`shownBy ${layer}: the IR has no layer ${layer}`);
+    if (!spec.slots[rule.slot])
+      fail(`shownBy ${layer}: ${spec.component} has no slot ${rule.slot}`);
+    const shown = entriesOf(spec.style[layer], 'present').some(
+      ([holder, key]) => holder[key].value !== false,
+    );
+    if (shown)
+      fail(`shownBy ${layer}: Figma shows ${layer} in some variant already`);
+    record('shownBy', `${layer} ← ${rule.slot}`, rule.reason);
   }
 
   // The sampled axes were dropped before the recipe (sampleAxes); here they are recorded.

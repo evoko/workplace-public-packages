@@ -29,6 +29,8 @@ export const solarProgressBarStyles = {
     boxShadow: 'none',
     borderRadius: 'var(--solar-radius-pill)',
     borderStyle: 'none',
+    '--solar-placed-left': '0px',
+    '--solar-placed-top': '0px',
     width: '100%',
     height: '6px',
     '& .MuiLinearProgress-bar': {

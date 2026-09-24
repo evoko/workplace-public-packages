@@ -127,17 +127,34 @@ const VECTORS = new Set([
   'LINE',
 ]);
 
+/** Every entry of one layer's style, whatever its section. */
+const entriesOf = (style) => [
+  style.base,
+  ...Object.values(style.size ?? {}),
+  ...Object.values(style.appearance ?? {}).flatMap(Object.values),
+  ...Object.values(style.combined ?? {}).flatMap((c) =>
+    Object.values(c).flatMap(Object.values),
+  ),
+];
+
 /** Whether a layer is drawn by its outline, a glyph, in any entry: then its place is the drawing's. */
 function drawn(style) {
-  const entries = [
-    style.base,
-    ...Object.values(style.size ?? {}),
-    ...Object.values(style.appearance ?? {}).flatMap(Object.values),
-    ...Object.values(style.combined ?? {}).flatMap((c) =>
-      Object.values(c).flatMap(Object.values),
-    ),
-  ];
-  return entries.some((e) => e?.glyph);
+  return entriesOf(style).some((e) => e?.glyph);
+}
+
+/**
+ * Whether the base's cells are a glyph's: where the base draws one, or where it draws the layer
+ * not at all and every entry that shows it draws a glyph (Checkbox's tick, only in a checked box),
+ * so its unchanging cells (no stroke) are the glyph's.
+ */
+function baseGlyph(style) {
+  if (!style?.base) return false;
+  if (style.base.glyph) return Boolean(style.base.glyph.glyph);
+  if (style.base.present?.value !== false) return false;
+  const shown = entriesOf(style)
+    .slice(1)
+    .filter((e) => e?.present?.value === true);
+  return shown.length > 0 && shown.every((e) => e.glyph?.glyph);
 }
 
 function context(spec, tokens) {
@@ -207,16 +224,16 @@ function context(spec, tokens) {
   // Layers the base control draws itself (the overlay's controlDraws: Spinner's ring,
   // ProgressBar's bar): where they sit and how big they are is the control's, so neither is
   // declared, where a declaration would fight the control's own layout.
-  const controlDrawn = new Set(
+  // A rule may name the only cells the control decides (a slider's handle: where it sits).
+  const controlDrawn = new Map(
     (spec.overlay?.rules ?? [])
       .filter((r) => r.rule === 'controlDraws')
-      .map((r) => r.at),
+      .map((r) => [r.at, r.cells ?? ['x', 'y', 'width', 'height']]),
   );
 
   /** One IR cell as CSS declarations. */
   const declare = (cell, entry, at, layer, glyph = false) => {
-    if (controlDrawn.has(layer) && ['x', 'y', 'width', 'height'].includes(cell))
-      return {};
+    if (controlDrawn.get(layer)?.includes(cell)) return {};
     const paint = (prop) =>
       entry.none ? { [prop]: 'transparent' } : { [prop]: ref(entry.token, at) };
     // An SVG shape: a control's own (Spinner's ring), or a glyph the shell draws in this entry
@@ -312,9 +329,14 @@ function context(spec, tokens) {
       case 'x':
         return entry.none
           ? { position: 'static' }
-          : { position: 'absolute', left: `${entry.position}px` };
+          : {
+              position: 'absolute',
+              left: `calc(${entry.position}px - var(--solar-placed-left, 0px))`,
+            };
       case 'y':
-        return entry.none ? {} : { top: `${entry.position}px` };
+        return entry.none
+          ? {}
+          : { top: `calc(${entry.position}px - var(--solar-placed-top, 0px))` };
       // A layer with no auto-layout in this variant (the recipe writes it `none`) has no gap or
       // padding, which is inset.none, as a `none` radius is radius.none. Written, not left out, so
       // it overrides the gap the base's layout has.
@@ -358,7 +380,7 @@ function context(spec, tokens) {
         throw new Error(`${where} ${at}: no MUI rendering for cell ${cell}`);
     }
   };
-  return { declare };
+  return { declare, ref };
 }
 
 /**
@@ -517,7 +539,7 @@ export function renderMuiComponent(spec, tokens) {
     if (!slots[layer])
       throw new Error(`${spec.component}: no MUI slot for layer ${layer}`);
 
-  const { declare } = context(spec, tokens);
+  const { declare, ref } = context(spec, tokens);
   const selectors = stateSelectors(spec.component);
   const styles = {
     reset: structuredClone(MUI_RESETS[spec.component] ?? {}),
@@ -534,6 +556,32 @@ export function renderMuiComponent(spec, tokens) {
     COMPOSITION(cell) || (PLACED(cell) && shape(layer));
   // The parents of boxes placed by position, which position them: `relative`, once, at rest.
   const placing = new Set();
+  // Every layer that places a child by position, box or glyph. Figma measures a child's position
+  // from its parent's outer edge, and CSS from inside its border, so each says its own left and
+  // top border (`--solar-placed-left`, `--solar-placed-top`), which its placed children step
+  // back by; said at rest by every one, so a child never reads a grandparent's.
+  const placers = new Set(
+    Object.entries(spec.style)
+      .filter(([, st]) =>
+        entriesOf(st).some((e) => e?.x?.position !== undefined),
+      )
+      .map(([layer]) => spec.layers[layer]?.parent)
+      .filter((p) => p != null),
+  );
+  const EDGES = {
+    borderWidth: ['--solar-placed-left', '--solar-placed-top'],
+    borderLeftWidth: ['--solar-placed-left'],
+    borderTopWidth: ['--solar-placed-top'],
+  };
+  const edges = (layer, cell, entry, at) =>
+    placers.has(layer) && EDGES[cell]
+      ? Object.fromEntries(
+          EDGES[cell].map((v) => [
+            v,
+            entry.none ? '0px' : ref(entry.token, at),
+          ]),
+        )
+      : {};
 
   /**
    * Every cell of one style block (one size, one state …) into a target object. Whether the layer
@@ -544,7 +592,7 @@ export function renderMuiComponent(spec, tokens) {
     const glyph =
       'glyph' in cells
         ? Boolean(cells.glyph?.glyph)
-        : Boolean(spec.style[layer]?.base?.glyph?.glyph);
+        : baseGlyph(spec.style[layer]);
     for (const [cell, entry] of Object.entries(cells)) {
       const here = `${layer}.${at}.${cell}`;
       if (composed(layer, cell)) continue;
@@ -553,7 +601,10 @@ export function renderMuiComponent(spec, tokens) {
       place(
         target,
         slots[layer],
-        declare(cell, entry, here, layer, glyph),
+        {
+          ...declare(cell, entry, here, layer, glyph),
+          ...edges(layer, cell, entry, here),
+        },
         here,
       );
     }
@@ -631,6 +682,14 @@ export function renderMuiComponent(spec, tokens) {
       comp.combined
     )
       composition[layer] = comp;
+  }
+
+  // Each placer's border at rest, where its base draws none.
+  for (const layer of placers) {
+    const at = slots[layer] === '&' ? styles.root : styles.root[slots[layer]];
+    for (const v of ['--solar-placed-left', '--solar-placed-top'])
+      if (!at?.[v])
+        place(styles.root, slots[layer], { [v]: '0px' }, `${layer}.base.${v}`);
   }
 
   // A parent placed itself is `absolute` already, which positions its children as well.

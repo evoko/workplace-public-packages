@@ -7,7 +7,8 @@
  *   address    how the catalog finds it, where that is not `name` (`calendar/Day Cell`)
  *   mui        slots (or 'drawn': every layer the shell draws, from the IR), resets, svgLayers,
  *              states, overlaps, restates (src/emit/mui-component.mjs)
- *   flutter    style, shared (src/emit/flutter-component.mjs)
+ *   flutter    style, shared (src/emit/flutter-component.mjs), and groupDecides: the props a
+ *              group decides in Flutter, not the widget (Radio's checked, its RadioGroup's)
  *   templates  react and flutter: the shells `solar:scaffold` writes once (src/scaffold/)
  */
 

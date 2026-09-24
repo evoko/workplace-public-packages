@@ -234,6 +234,12 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  *   interactive Counter): the expression that says it is enabled. Otherwise it takes the states
  *   of the control around it (SolarStatesBuilder), a Button's.
  * @param {boolean} [o.link] announced as a link, where it is pressable (Link), not a button
+ * @param {object} [o.control] makes it a control always (Checkbox), whatever is around it:
+ *   `onPressed`, the expression called on a tap (null disables it), and `semantics`, the
+ *   [SolarPressable] arguments that announce it (`checked: checked,`). Its callback is one of
+ *   `o.params`; the widget takes a `statesController`.
+ * @param {Record<string, string>} [o.values] the value the recipe reads for a prop, where it is
+ *   not the prop as given (a mixed box is drawn checked)
  * @param {string} [o.slots] the slots the caller fills, a map literal by layer (Link's icons)
  * @param {(recipe: string) => string} [o.present] whether layer `l` is drawn, around the recipe's
  *   answer, an expression in `l` (a slot left empty is not drawn)
@@ -265,6 +271,7 @@ export function drawnFlutter(spec, o) {
     ...(o.pressable
       ? ['    this.onPressed,', '    this.statesController,']
       : []),
+    ...(o.control ? ['    this.statesController,'] : []),
   ].join('\n');
   const pressableFields = `/// Called when it is tapped, which makes it a control of its own; without it, it takes the
 /// states of the control around it (a Button's).
@@ -272,7 +279,13 @@ final VoidCallback? onPressed;
 
 /// Its states, where the caller keeps them.
 final WidgetStatesController? statesController;`;
-  const fields = [o.fields, o.pressable ? pressableFields : null]
+  const controlFields = `/// Its states, where the caller keeps them.
+final WidgetStatesController? statesController;`;
+  const fields = [
+    o.fields,
+    o.pressable ? pressableFields : null,
+    o.control ? controlFields : null,
+  ]
     .filter(Boolean)
     .join('\n\n');
   const layers = (states) => `SolarLayers(
@@ -288,8 +301,16 @@ final WidgetStatesController? statesController;`;
       tree: _tree,
       keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
     ).layer('root')`;
-  const draw = o.pressable
+  const draw = o.control
     ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};
+    final mark = SolarPressable(
+      onPressed: ${o.control.onPressed},
+      statesController: statesController,
+${indent(o.control.semantics, 6)}
+      builder: (_, states) => draw(states),
+    );`
+    : o.pressable
+      ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};
     // A control of its own only when it has something to do; otherwise it takes the states of
     // the control around it (a Counter in a Button).
     final mark = onPressed == null && statesController == null
@@ -299,7 +320,7 @@ final WidgetStatesController? statesController;`;
             statesController: statesController,${o.link ? '\n            link: true,' : ''}
             builder: (_, states) => draw(states),
           );`
-    : `    ${o.states ? `final states = ${o.states};` : 'const states = <WidgetState>{};'}
+      : `    ${o.states ? `final states = ${o.states};` : 'const states = <WidgetState>{};'}
     final mark = ${layers('states')};`;
   const header = `Scaffolded once by \`npm run solar:scaffold -- --flutter ${name}\` from spec/components/${irFile(name)}, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, [${R}]: ${o.look}.`;
   return `/// SOLAR ${name}.
@@ -313,7 +334,7 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/${dartFile(name)}';
 ${icons.length ? "import '../generated/icons.dart';\n" : ''}import '../solar_layers.dart';
-${o.pressable ? "import '../solar_states.dart';\n" : ''}${o.imports ? `${o.imports.trim()}\n` : ''}import 'solar_theme_of.dart';
+${o.pressable || o.control ? "import '../solar_states.dart';\n" : ''}${o.imports ? `${o.imports.trim()}\n` : ''}import 'solar_theme_of.dart';
 
 class Solar${P} extends StatelessWidget {
   const Solar${P}({
@@ -331,7 +352,7 @@ ${o.members ? `\n${indent(o.members, 2)}\n` : ''}
   @override
   Widget build(BuildContext context) {
 ${o.prelude ? `${indent(o.prelude, 4)}\n` : ''}    final t = solarThemeOf(context);
-    final p = Solar${P}Props(${api.map(([prop]) => `${prop}: ${prop}`).join(', ')});
+    final p = Solar${P}Props(${api.map(([prop]) => `${prop}: ${o.values?.[prop] ?? prop}`).join(', ')});
 ${draw}
     return ${o.wrap ? o.wrap.trim() : 'mark'};
   }

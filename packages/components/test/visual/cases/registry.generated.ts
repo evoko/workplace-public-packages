@@ -6,20 +6,28 @@ import avatar from './avatar.js';
 import backButton from './backbutton.js';
 import button from './button.js';
 import buttonGroup from './button-group.js';
+import checkbox from './checkbox.js';
 import counter from './counter.js';
 import divider from './divider.js';
+import dragHandle from './draghandle.js';
 import fab from './fab.js';
 import iconButton from './icon-button.js';
 import kbd from './kbd.js';
 import link from './link.js';
 import nodeEnd from './node-end.js';
 import progressBar from './progressbar.js';
+import radio from './radio.js';
 import rowExpand from './rowexpand.js';
+import segmentedControl from './segmented-control.js';
+import segmentedControlItem from './segmented-control-item.js';
 import skeleton from './skeleton.js';
+import slider from './slider.js';
+import sliderRange from './slider-range.js';
 import spinner from './spinner.js';
 import splitButton from './splitbutton.js';
 import statusIndicator from './statusindicator.js';
 import timestamp from './timestamp.js';
+import toggle from './toggle.js';
 import treeIndent from './tree-indent.js';
 import trendBadge from './trend-badge.js';
 import type { VisualCase } from './types.js';
@@ -29,20 +37,28 @@ export const CASES: Record<string, VisualCase> = {
   BackButton: backButton,
   Button: button,
   'Button Group': buttonGroup,
+  Checkbox: checkbox,
   Counter: counter,
   Divider: divider,
+  DragHandle: dragHandle,
   FAB: fab,
   'Icon Button': iconButton,
   Kbd: kbd,
   Link: link,
   'Node End': nodeEnd,
   ProgressBar: progressBar,
+  Radio: radio,
   RowExpand: rowExpand,
+  'Segmented Control': segmentedControl,
+  'Segmented Control Item': segmentedControlItem,
   Skeleton: skeleton,
+  Slider: slider,
+  'Slider Range': sliderRange,
   Spinner: spinner,
   SplitButton: splitButton,
   StatusIndicator: statusIndicator,
   Timestamp: timestamp,
+  Toggle: toggle,
   'Tree Indent': treeIndent,
   'Trend Badge': trendBadge,
 };

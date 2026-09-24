@@ -1,0 +1,125 @@
+/// SOLAR Segmented Control Item.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter "Segmented Control Item"` from
+/// spec/components/segmented-control-item.json, and owned by developers from then on: change it
+/// freely. What it looks like is not here. That is the recipe, [SolarSegmentedControlItemRecipe]:
+/// the chosen segment's raised surface, the others' quieter words, by size, read cell by cell.
+///
+/// One segment of a [SolarSegmentedControl], whose [RadioGroup] selects the one whose [value] is
+/// its own, calls its onChanged with the value tapped, and moves between them with the arrow keys.
+/// Built on [RawRadio], with its words, and an icon either side, drawn from Figma's layer tree with
+/// [SolarLayers]. Give it its control's size.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/segmented_control_item.dart';
+import '../solar_layers.dart';
+import 'solar_theme_of.dart';
+
+class SolarSegmentedControlItem<T> extends StatefulWidget {
+  const SolarSegmentedControlItem({
+    super.key,
+    required this.value,
+    required this.label,
+    this.size = SolarSegmentedControlItemSize.md,
+    this.iconLeading,
+    this.iconTrailing,
+    this.focusNode,
+    this.statesController,
+  });
+
+  /// The value it stands for: its group selects it where the group's value is this.
+  final T value;
+
+  /// The segment's words.
+  final String label;
+
+  final SolarSegmentedControlItemSize size;
+
+  /// An icon before the words.
+  final Widget? iconLeading;
+
+  /// An icon after the words.
+  final Widget? iconTrailing;
+
+  /// Its focus, where the caller keeps it.
+  final FocusNode? focusNode;
+
+  /// States to draw it in beside its own, where the caller keeps them (the visual checks force a
+  /// state through it).
+  final WidgetStatesController? statesController;
+
+  @override
+  State<SolarSegmentedControlItem<T>> createState() =>
+      _SolarSegmentedControlItemState<T>();
+}
+
+class _SolarSegmentedControlItemState<T>
+    extends State<SolarSegmentedControlItem<T>> {
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['iconLeading', 'label', 'iconTrailing'],
+  };
+
+  FocusNode? _own;
+
+  FocusNode get _focus => widget.focusNode ?? (_own ??= FocusNode());
+
+  @override
+  void dispose() {
+    _own?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final group = RadioGroup.maybeOf<T>(context);
+    final p = SolarSegmentedControlItemProps(
+      selected: group != null && group.groupValue == widget.value,
+      size: widget.size,
+    );
+    Widget draw(Set<WidgetState> states) => SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarSegmentedControlItemRecipe.lookup(c, p, states),
+        dimension: (c) =>
+            SolarSegmentedControlItemRecipe.dimension(c, p, states),
+        color: (c) => SolarSegmentedControlItemRecipe.color(t, c, p, states),
+        shadow: (c) => SolarSegmentedControlItemRecipe.shadow(t, c, p, states),
+        textStyle: (c) =>
+            SolarSegmentedControlItemRecipe.textStyle(t, c, p, states),
+        // A slot left empty is not drawn.
+        present: (l) => switch (l) {
+          'iconLeading' => widget.iconLeading != null,
+          'iconTrailing' => widget.iconTrailing != null,
+          _ => SolarSegmentedControlItemRecipe.present(l, p, states),
+        },
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'segmentedControlItem',
+      text: {'label': widget.label},
+      slots: {
+        'iconLeading': ?widget.iconLeading,
+        'iconTrailing': ?widget.iconTrailing,
+      },
+    ).layer('root');
+    final forced = widget.statesController;
+    return RawRadio<T>(
+      value: widget.value,
+      mouseCursor: WidgetStateMouseCursor.clickable,
+      toggleable: false,
+      focusNode: _focus,
+      autofocus: false,
+      groupRegistry: group,
+      enabled: group != null,
+      builder: (context, state) => forced == null
+          ? draw(state.states)
+          : ListenableBuilder(
+              listenable: forced,
+              builder: (_, _) => draw({...state.states, ...forced.value}),
+            ),
+    );
+  }
+}

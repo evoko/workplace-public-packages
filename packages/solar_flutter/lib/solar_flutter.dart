@@ -15,4 +15,5 @@ export 'src/solar_fonts.dart';
 export 'src/solar_glyph.dart';
 export 'src/solar_icon.dart';
 export 'src/solar_layers.dart';
+export 'src/solar_slider_input.dart';
 export 'src/solar_states.dart';

@@ -61,17 +61,17 @@ If you take only a few items, take these:
 
 ## At a glance
 
-| #                                                                     | What                                              | Count                                                                                                                                                      | File        |
-| --------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [1](#1-hard-coded-values--9-across-8-components)                      | Hard-coded values not bound to a variable         | 9 in 8 components, and 1,130 zeros                                                                                                                         | SOLAR Web   |
-| [2](#2-primitive-colours-used-directly--2-components)                 | Components using primitive colours directly       | 2                                                                                                                                                          | SOLAR Web   |
-| [3](#3-described-sizes-that-disagree-with-the-drawing--12-components) | Described sizes that disagree with the drawn ones | 12                                                                                                                                                         | SOLAR Web   |
-| [4](#4-variable-bindings--2-wrong-2-unknown)                          | Wrong or unknown variable bindings                | 2 + 2                                                                                                                                                      | SOLAR Web   |
-| [5](#5-documentation-cards-copied-from-breadcrumbs--36-pages)         | Documentation cards copied from Breadcrumbs       | 36 pages                                                                                                                                                   | SOLAR Web   |
-| [6](#6-the-components-we-build-variant-by-variant)                    | The components we build, in detail                | Button 6, Spinner 2, Icon Button 5, Button Group 3, StatusIndicator 2, the display primitives 3 fixes and 4 questions, the buttons 3 fixes and 4 questions | SOLAR Web   |
-| [7](#7-guideline-pages-that-contradict-the-variables)                 | Guideline pages that contradict the variables     | 2, and 2 page edits                                                                                                                                        | Foundations |
-| [8](#8-action-colours-below-the-contrast-floor--5)                    | Action colours below the contrast floor           | 5                                                                                                                                                          | Foundations |
-| [9](#9-icons-and-logos)                                               | Icons and logos                                   | no icon findings; 2 logo questions                                                                                                                         | SOLAR Icons |
+| #                                                                     | What                                              | Count                                                                                                                                                                                                      | File        |
+| --------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [1](#1-hard-coded-values--9-across-8-components)                      | Hard-coded values not bound to a variable         | 9 in 8 components, and 1,130 zeros                                                                                                                                                                         | SOLAR Web   |
+| [2](#2-primitive-colours-used-directly--2-components)                 | Components using primitive colours directly       | 2                                                                                                                                                                                                          | SOLAR Web   |
+| [3](#3-described-sizes-that-disagree-with-the-drawing--12-components) | Described sizes that disagree with the drawn ones | 12                                                                                                                                                                                                         | SOLAR Web   |
+| [4](#4-variable-bindings--2-wrong-2-unknown)                          | Wrong or unknown variable bindings                | 2 + 2                                                                                                                                                                                                      | SOLAR Web   |
+| [5](#5-documentation-cards-copied-from-breadcrumbs--36-pages)         | Documentation cards copied from Breadcrumbs       | 36 pages                                                                                                                                                                                                   | SOLAR Web   |
+| [6](#6-the-components-we-build-variant-by-variant)                    | The components we build, in detail                | Button 6, Spinner 2, Icon Button 5, Button Group 3, StatusIndicator 2, the display primitives 3 fixes and 4 questions, the buttons 3 fixes and 4 questions, the selection controls 5 fixes and 3 questions | SOLAR Web   |
+| [7](#7-guideline-pages-that-contradict-the-variables)                 | Guideline pages that contradict the variables     | 2, and 2 page edits                                                                                                                                                                                        | Foundations |
+| [8](#8-action-colours-below-the-contrast-floor--5)                    | Action colours below the contrast floor           | 5                                                                                                                                                                                                          | Foundations |
+| [9](#9-icons-and-logos)                                               | Icons and logos                                   | no icon findings; 2 logo questions                                                                                                                                                                         | SOLAR Icons |
 
 ---
 
@@ -306,10 +306,6 @@ code fill the space or take the content they are given; nothing needs to change.
 | **Node End's halo** is the dot's colour at 20% layer opacity. SOLAR has alpha colours but no opacity scale, and no alpha form of `surface/feedback/info/strong`. A variable for it?                                                                                                                                                                                       | We carry 0.2 as Figma's number.                                                                                                    |
 | **Skeleton's pulse.** Its description asks for "a subtle shimmer or pulse", and SOLAR has no motion variable for a loop.                                                                                                                                                                                                                                                  | The web uses MUI's pulse; Flutter pulses the same way, over `motion.duration.slower` each way. Neither moves under reduced motion. |
 
----
-
-# Part 2 · SOLAR Foundations
-
 ### The buttons: FAB, BackButton, SplitButton and Link
 
 BackButton has nothing to raise beyond its described sizes (section 3).
@@ -330,6 +326,34 @@ BackButton has nothing to raise beyond its described sizes (section 3).
 | **SplitButton's focus ring** — the description says it "wraps whichever half is focused, not the whole control", and the focus variant rings the whole control. Which?                                         | We ring the whole control, as drawn.            |
 | **Links are underlined at rest.** `link/*/default` is underlined, as `link/*/hover` is, so a link is underlined in every state; the description says it "underlines on hover". Is the resting underline meant? | We draw the underline in every state, as drawn. |
 | **More opacity values** — SplitButton's rule between its halves is its label's colour at 30%, and a disabled Link is drawn at 50% over its disabled colours; the same question as Node End's halo.             | We carry Figma's numbers.                       |
+
+### The selection controls: Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle and Segmented Control
+
+DragHandle has nothing to raise beyond its dots' sizes. Checkbox, Radio and Toggle are drawn at 16,
+18 and 32 × 18px with no size variable (decision 4), and, as for Button, we do not pad their hit
+areas until there is a target-size variable (section 3).
+
+**Fix** — these look like accidents:
+
+| Component                                                                                                                                                                              | What                                                                                                                                                                                                 | Variants                      |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **Checkbox** · [2202:1291](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2202-1291)                                                                                          | The **resting mixed box has no edge**, where the resting checked box and the hovered mixed box have `border/medium`. We draw the edge.                                                               | 1: `checked / mixed`, at rest |
+| **Checkbox** · [2202:1291](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2202-1291)                                                                                          | The **only disabled mixed box is drawn hovered** (`disabled` and `hover` both true); no variant draws it disabled alone. We read it as disabled.                                                     | 1                             |
+| **Radio** · [2203:3333](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2203-3333)                                                                                             | A **disabled unchecked radio is drawn as an enabled one**: the same `border/medium` ring and no fill, so the two cannot be told apart. We draw it as drawn.                                          | 1: `disabled / unchecked`     |
+| **Slider** · [5475:48](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5475-48), **Slider Range** · [5475:74](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5475-74) | Each **handle sits 2px before the value it marks**: its centre is at 158 for a fill ending at 160, and at 78 and 238 for a range from 80 to 240. We centre it on the value.                          | every variant                 |
+| **Segmented Control** · [6170:20250](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6170-20250)                                                                               | The **label is hidden in both variants, with no prop to show it**, though the description gives the control "an optional field label" and a text prop for it. We show it where the caller gives one. | both                          |
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                                                                            | What we do meanwhile                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **Focus where none is drawn.** Toggle, Slider Range and Segmented Control Item have no focus state (the Item's description leaves it to "the parent assembly"), and a visible focus is SOLAR's floor.               | We draw `shadow/focus/default` around the track, the whole slider and the segment. |
+| **Slider's `filled` and `error`** are drawn exactly as its default. What should they look like?                                                                                                                     | They are props that draw as at rest; `error` is announced.                         |
+| **The sliders' handles.** Slider Range's handles take `action/primary/border/hover` and `shadow/raised` on hover, and `action/primary/border/active` when pressed; Slider's handle does not change. Which is right? | We draw each as drawn.                                                             |
+
+---
+
+# Part 2 · SOLAR Foundations
 
 ## 7. Guideline pages that contradict the variables
 
@@ -409,7 +433,9 @@ The questions we cannot answer ourselves, most far-reaching first.
 3. **The xs dots** — StatusIndicator's and Trend Badge's, 8px, below the icon ladder: a variable
    for them? Section 6.
 4. **Sizes with no variable** — Counter's badge, Avatar, ProgressBar, the table and tree rows, a
-   labelled Divider: one family of size variables? Section 6.
+   labelled Divider, and the selection controls (Checkbox's box, Radio's ring, Toggle's track and
+   thumb, a slider's track and handle, DragHandle's dots, a segment's height): one family of size
+   variables? Section 6.
 5. **A logo size scale** (`logo.*`)? Section 9.
 
 **Colour**
@@ -441,19 +467,24 @@ The questions we cannot answer ourselves, most far-reaching first.
 16. **StatusIndicator's marks** — `shadow/raised` is a box shadow, where a mark needs a drop
     shadow: a drop-shadow variable, or none? Section 6.
 17. **Skeleton's pulse** — a motion variable for it? Section 6.
-18. **FAB's and Link's focus** — no ring is drawn, where a visible focus is the floor. Draw
-    `shadow/focus/default`? Section 6.
+18. **Focus where none is drawn** — FAB's and Link's focus variants have no ring, and Toggle,
+    Slider Range and Segmented Control Item have no focus state, where a visible focus is the
+    floor. Draw `shadow/focus/default`? Section 6.
 19. **SplitButton's focus ring** — around the focused half, as described, or the whole control,
     as drawn? Section 6.
 20. **Links underlined at rest** — meant, where the description says hover? Section 6.
+21. **Slider's `filled` and `error`** — drawn as its default: what should they look like?
+    Section 6.
+22. **The sliders' handles** — Slider Range's react to hover and press, Slider's does not. Which?
+    Section 6.
 
 **Structure**
 
-21. **Action states** — `active` in the variables, `pressed` on the guideline pages. Which name
+23. **Action states** — `active` in the variables, `pressed` on the guideline pages. Which name
     should both use? Section 7.
-22. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
+24. **The Layout collection** (grid columns, margins, gutters, breakpoints) lives locally in SOLAR
     Web rather than in Foundations. Should it move down a layer?
-23. **A flat Teams mark**, if Microsoft publishes one? Section 9.
+25. **A flat Teams mark**, if Microsoft publishes one? Section 9.
 
 ---
 

@@ -893,6 +893,66 @@ Figma on both platforms and every finding decided (the triage shows 0 open for a
 - **Target size:** the hit area of the 16px box follows the target-size decision the design review
   asks about.
 
+**F3 done 2026-09-24.** Checkbox (pioneer), Radio, Toggle, Slider, Slider Range, DragHandle,
+Segmented Control Item and Segmented Control, every variant matching Figma on both platforms. The
+triage shows 0 open findings for all but Checkbox, whose compound disabled-and-hover variant stays
+3b-1's finding, as planned. The triage matched this plan's picture of the family; the one
+question it raised, Slider's `filled` and `error` drawn exactly as its default, the owner answered:
+kept as props.
+
+- **Members and bases** (where they differ from the plan, why):
+  - **Checkbox:** MUI's Checkbox, its root the box, the tick and dash drawn inside as MUI's icons;
+    in Flutter, drawn and pressable, announced as a checkbox. A mixed box is drawn checked, as
+    Figma draws it only so. Uncontrolled through `defaultChecked`.
+  - **Radio:** MUI's Radio, checked by MUI's RadioGroup; in Flutter **`RawRadio` under a
+    `RadioGroup`**, not a bespoke pressable, for the group's arrow keys and semantics, so its
+    `checked` is the group's (`flutter.groupDecides`).
+  - **Toggle:** MUI's Switch, its root drawn as the track and the recipe's thumb in MUI's thumb
+    slot; drawn in Flutter, announced as a switch.
+  - **Slider and Slider Range:** MUI's Slider. **In Flutter, drawn over `SolarSliderInput`**, not
+    Flutter's Slider and RangeSlider: those paint a track and thumb the check cannot read, and
+    take no edged, shadowed handle. The input drags the nearest handle, and gives each the focus,
+    the arrow keys and a slider's semantics.
+  - **DragHandle:** drawn on both; focusable, announced as a drag handle, pressed while held
+    (from the raw pointer in Flutter, so the caller's drag does not cancel it). The drag is the
+    caller's.
+  - **Segmented Control and its Item:** **a radio group, not MUI's ToggleButtonGroup**, as the
+    description says it behaves: each segment a `<label>` around a native radio input of one
+    name on the web, a `RawRadio` in Flutter, so the arrow keys move between them. The control is
+    drawn, its track holding the caller's segments.
+- **Decisions in the overlays** (and raised in the design review):
+  - SOLAR's focus ring where Figma draws no focus state (Toggle, Slider Range, Segmented Control
+    Item);
+  - Checkbox's resting mixed box given the edge every other enabled box has; a disabled checked
+    box and a disabled thumb or handle drawn flat, as Figma draws them;
+  - an unselected segment keeps a transparent edge, so choosing one does not grow it;
+  - a slider fills its container, and its handle is centred on the value, where Figma draws it 2px
+    short;
+  - Segmented Control's label shown where given, though Figma always hides it;
+  - raw sizes carried for the boxes, rings, tracks, thumbs, handles and dots.
+- **Machinery found and fixed on the family** (each with tests):
+  - **A placed layer steps back by its parent's border.** Figma measures a position from the
+    parent's outer edge, and CSS and a Flutter Container from inside the border: Radio's dot sat
+    a pixel off. The MUI recipe says each placing layer's border as `--solar-placed-left` and
+    `--solar-placed-top`, which its children subtract, and SolarLayers sets a placed child in by
+    its parent's border and padding.
+  - **A base drawn by no variant reads as its layer is drawn** (Checkbox's tick, only in a checked
+    box): its cells are a glyph's where every entry that shows it draws a glyph, so an SVG takes
+    no stroke.
+  - **`set` adds focus where Figma draws none at all** (it joins the states), and an appearance
+    the layer lacks where another layer has it; its excuse no longer reaches a state that holds
+    its own value.
+  - **`controlDraws` with `cells`** names the only cells the control decides (a slider's fill and
+    handle), and **`shownBy`** a layer Figma always hides that a filled slot shows.
+  - **The shells:** `drawnFlutter`'s `control` and `values`; `SolarPressable` announced as a
+    checkbox or a switch; SolarLayers' and `drawChildren`'s `content`; `SolarSliderInput`; and
+    the story template wraps a long export as Prettier does.
+  - **The parity test** reads a renamed prop (`checked: checkedProp`), a prop a Flutter group
+    decides, and a content slot as the children.
+- **Checks:** 858 JS tests, both visual checks (30 on the web), 177 Flutter tests, lint, typecheck,
+  format, all three Flutter packages analysed and formatted, both viewers built, the personal-data
+  scan, and a rebuild that reproduces the tree.
+
 ### F4: Tags and messages
 
 - **Pioneer: Tag.** MUI `Chip`, Flutter `Chip` (`InputChip` when closable). API: `status`,

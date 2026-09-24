@@ -453,12 +453,15 @@ describe('a layer placed by position', () => {
   const { styles } = renderMuiComponent(group, tokens);
 
   it('is absolute at Figma’s position, and its parent positions it', () => {
+    // Figma measures from the parent's outer edge, CSS from inside its border, which the parent
+    // says (none here) and the child steps back by.
     expect(styles.root['& > *']).toMatchObject({
       position: 'absolute',
-      left: '4px',
-      top: '6.5px',
+      left: 'calc(4px - var(--solar-placed-left, 0px))',
+      top: 'calc(6.5px - var(--solar-placed-top, 0px))',
     });
     expect(styles.root.position).toBe('relative');
+    expect(styles.root['--solar-placed-left']).toBe('0px');
   });
 
   it('keeps a shape’s position with its drawing, in the composition, not in CSS', () => {

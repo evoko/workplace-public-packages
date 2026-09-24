@@ -229,11 +229,18 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    replaced, and no others.
    `controlDraws` decides the raw sizes of the layer the control draws, and the MUI recipe then
    declares nothing of its place or size (ProgressBar's bar, moved by LinearProgress itself); the
-   oracle excuses its box and its roundness.
+   oracle excuses its box and its roundness. With `cells` it names the only ones the control
+   decides (a slider's fill: `x` and `width`; its handle: `x`), and the rest are drawn and checked.
+   `shownBy` names a layer Figma hides in every variant, with no prop to show it, that is drawn
+   where the caller fills a slot (Segmented Control's label); the oracle treats it, and the slot's
+   own layer, as shown by a prop, and the rule is refused where Figma shows the layer anywhere.
    A `set` may also add a state's entry where the IR keeps none because Figma draws the state as
    at rest (FAB's and Link's focus, given SOLAR's ring), under an appearance the IR has and for a
-   state the component has; anything else is refused as a stale rule. What it `replaced` is then
-   the value the resting lookup found there. A component with states and no appearance axis
+   state the component has, or focus where Figma draws none at all (Toggle's, Segmented Control
+   Item's), which then joins the component's states; under an appearance another layer of the
+   component has, it adds that too (Slider Range's root). Anything else is refused as a stale
+   rule. What it `replaced` is then the value the resting lookup found there, and the oracle
+   excuses it in each state that holds no value of its own there. A component with states and no appearance axis
    (BackButton, Link) keys them under `default` on both platforms.
    `derive` makes an axis follow from content (FAB's `type`, from whether it has a label): the API
    loses it, and both emitters still key the recipe by it, the MUI recipe through
@@ -391,8 +398,16 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
      `drawnFlutter`), which hand the layer tree to the shells' shared runtime helpers
      (`packages/components/src/internal/layers.tsx`, `solar_flutter`'s `SolarLayers`) and draw a
      SOLAR icon layer with its component from the assets. A shell may draw a layer as an element
-     of its own (`render` on the web, `builders` in Flutter: SplitButton's halves are buttons), and
-     fill a slot with the caller's widget (`slots`: Link's icons). A value that is no Dart identifier
+     of its own (`render` on the web, `builders` in Flutter: SplitButton's halves are buttons),
+     fill a slot with the caller's widget (`slots`: Link's icons), and hold the caller's children in
+     a layer in place of Figma's examples (`content`: Segmented Control's segments). A placed layer
+     is set in from its parent's outer edge, as Figma measures it: the recipe says each placing
+     layer's border as `--solar-placed-left` and `--solar-placed-top`, which its children step back
+     by. `drawnFlutter`'s `control` makes a widget a control always (Checkbox, Toggle), announced by
+     `SolarPressable` as a checkbox or a switch, and `values` gives the recipe a prop's value where
+     it is not the prop as given (a mixed box is drawn checked). Where a group decides a prop in
+     Flutter (Radio's `checked`, its RadioGroup's), `flutter.groupDecides` says so, and the widget
+     does not take it. A value that is no Dart identifier
      (`top-search`, `Default White`, `00`) is respelled for its enum (`dartEnumValue`), which then
      carries Figma's spelling.
   2. Its overlay, `spec/overlay/<address>.yaml`.

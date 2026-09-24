@@ -32,8 +32,8 @@ describe('the SOLAR StatusIndicator shell', () => {
     const warning = render(h(StatusIndicator, { type: 'warning' })).html;
     expect(warning).toContain('SolarStatusIndicator-union');
     // The mark sits where Figma put it in the triangle.
-    expect(warning).toMatch(
-      /SolarStatusIndicator-innerPath[^>]*style="position:absolute;left:9px;top:6px"/,
+    expect(warning).toContain(
+      'style="position:absolute;left:calc(9px - var(--solar-placed-left, 0px));top:calc(6px - var(--solar-placed-top, 0px))"',
     );
   });
 

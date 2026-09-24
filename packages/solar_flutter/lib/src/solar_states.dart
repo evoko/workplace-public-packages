@@ -89,7 +89,9 @@ class SolarStatesBuilder extends StatelessWidget {
 /// Hover, press and focus for a widget SOLAR draws itself (an interactive Counter), where no stock
 /// control supplies them: tracked in [statesController] (the scope's own where none is given),
 /// shared through a [SolarStatesScope], and a tap or the keyboard's activation calls [onPressed].
-/// It is disabled, and announced so, where [onPressed] is null.
+/// It is disabled, and announced so, where [onPressed] is null. It is announced as a button, as a
+/// link ([link]), as a checkbox where it is [checked] or not ([mixed] for neither), or as a switch
+/// where it is [toggled] on or off.
 class SolarPressable extends StatelessWidget {
   /// A pressable region drawn by [builder] in its current states.
   const SolarPressable({
@@ -98,6 +100,9 @@ class SolarPressable extends StatelessWidget {
     required this.builder,
     this.statesController,
     this.link = false,
+    this.checked,
+    this.mixed = false,
+    this.toggled,
   });
 
   /// Called on a tap or the keyboard's activation; null disables it.
@@ -112,15 +117,29 @@ class SolarPressable extends StatelessWidget {
   /// Whether it is announced as a link (Link) rather than a button.
   final bool link;
 
+  /// Whether it is checked, where it is announced as a checkbox (Checkbox); null for none.
+  final bool? checked;
+
+  /// Whether it is announced as partly checked, a checkbox's mixed state, where [checked] is given.
+  final bool mixed;
+
+  /// Whether it is on, where it is announced as a switch (Toggle); null for none.
+  final bool? toggled;
+
   @override
   Widget build(BuildContext context) => SolarStatesScope(
     controller: statesController,
     builder: (context, states) {
       final enabled = onPressed != null;
       void set(WidgetState state, bool on) => states.update(state, on);
+      final box = checked != null;
       return Semantics(
-        button: !link,
+        button: !link && !box && toggled == null,
+        toggled: toggled,
         link: link,
+        // Flutter announces a mixed box as not checked, and mixed.
+        checked: box ? checked! && !mixed : null,
+        mixed: box && mixed ? true : null,
         enabled: enabled,
         child: FocusableActionDetector(
           enabled: enabled,

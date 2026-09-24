@@ -1,0 +1,126 @@
+/**
+ * SOLAR Segmented Control Item.
+ *
+ * Scaffolded once by `npm run solar:scaffold "Segmented Control Item"` from
+ * spec/components/segmented-control-item.json, and owned by developers from then on: change it
+ * freely. What it looks like is not here. That is the recipe, `solarSegmentedControlItemStyle` in
+ * `@bwp-web/styles/mui`: the chosen segment's raised surface, the others' quieter words, by size.
+ *
+ * One segment of a SegmentedControl, which selects the one whose `value` is its own: a <label>
+ * around a native radio input, so the browser moves between the segments with the arrow keys and
+ * a form sends the value chosen. Its words, and an icon either side, are drawn from Figma's layer
+ * tree (`internal/layers.tsx`). Give it its control's size. The app must load
+ * `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  type ChangeEvent,
+  type ReactNode,
+} from 'react';
+import {
+  solarSegmentedControlItemCompose,
+  solarSegmentedControlItemStyle,
+  type SolarSegmentedControlItemProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren } from './internal/layers.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['iconLeading', 'label', 'iconTrailing'],
+};
+
+/** What a SegmentedControl tells its segments: the radio group's name, its value, and its choice. */
+export interface SegmentedControlChoice {
+  name: string;
+  value: string | null;
+  onChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+}
+
+/** A SegmentedControl's choice, to the segments inside it. */
+export const SegmentedControlContext =
+  createContext<SegmentedControlChoice | null>(null);
+
+export interface SegmentedControlItemProps
+  extends
+    SolarSegmentedControlItemProps,
+    Omit<
+      BoxProps<'label'>,
+      keyof SolarSegmentedControlItemProps | 'children' | 'onChange' | 'ref'
+    > {
+  /** The segment's words. */
+  children: ReactNode;
+  /** The value it stands for: its SegmentedControl selects it where the control's value is this. */
+  value: string;
+  /** An icon before the words. */
+  iconLeading?: ReactNode;
+  /** An icon after the words. */
+  iconTrailing?: ReactNode;
+  /** Called when it is chosen, where no SegmentedControl holds it. */
+  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+}
+
+export const SegmentedControlItem = forwardRef<
+  HTMLLabelElement,
+  SegmentedControlItemProps
+>(function SegmentedControlItem(
+  {
+    selected: selectedProp,
+    size,
+    value,
+    children,
+    iconLeading,
+    iconTrailing,
+    onChange,
+    sx,
+    ...rest
+  },
+  ref,
+) {
+  const group = useContext(SegmentedControlContext);
+  // Its prop where given, and otherwise whether its control's value is its own.
+  const selected = selectedProp ?? group?.value === value;
+  const look = { selected, size };
+  const parts = solarSegmentedControlItemCompose(look);
+  // A slot left empty is not drawn.
+  const drawn = {
+    ...parts,
+    iconLeading: { ...parts.iconLeading, present: iconLeading != null },
+    iconTrailing: { ...parts.iconTrailing, present: iconTrailing != null },
+  };
+  const choose = group?.onChange ?? onChange;
+  return (
+    <Box
+      component="label"
+      ref={ref}
+      {...rest}
+      sx={[
+        solarSegmentedControlItemStyle(look),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <input
+        type="radio"
+        className="SolarSegmentedControlItem-input"
+        name={group?.name}
+        value={value}
+        checked={selected}
+        readOnly={!choose}
+        onChange={choose && ((event) => choose(event, value))}
+      />
+      {drawChildren('root', {
+        prefix: 'SolarSegmentedControlItem',
+        tree: TREE,
+        parts: drawn,
+        text: { label: children },
+        icons: {
+          iconLeading: <span>{iconLeading}</span>,
+          iconTrailing: <span>{iconTrailing}</span>,
+        },
+      })}
+    </Box>
+  );
+});

@@ -62,6 +62,7 @@ class SolarLayers {
     this.images = const {},
     this.builders = const {},
     this.slots = const {},
+    this.content = const {},
   });
 
   /// The component's recipe under its props and states.
@@ -89,6 +90,10 @@ class SolarLayers {
   /// What a shell wraps a drawn layer in, by layer (SplitButton's halves, each a pressable): the
   /// keyed layer, as drawn, is the argument.
   final Map<String, Widget Function(Widget layer)> builders;
+
+  /// The caller's children of a layer, laid out in it in place of the ones Figma draws as
+  /// examples (Segmented Control's segments in its track), by layer.
+  final Map<String, List<Widget>> content;
 
   static const _main = {
     'MIN': MainAxisAlignment.start,
@@ -178,14 +183,16 @@ class SolarLayers {
     );
   }
 
-  /// A child where Figma put it: at its position where its parent does not lay it out.
-  Widget _placed(String child) {
+  /// A child where Figma put it: at its position where its parent does not lay it out. Figma
+  /// measures the position from the parent's outer edge, and the parent's border and padding
+  /// ([inset]) hold its children in from it.
+  Widget _placed(String child, Offset inset) {
     final x = _extent('$child.x');
     return x == null
         ? layer(child)
         : Positioned(
-            left: x,
-            top: _extent('$child.y') ?? 0,
+            left: x - inset.dx,
+            top: (_extent('$child.y') ?? 0) - inset.dy,
             child: layer(child),
           );
   }
@@ -209,9 +216,11 @@ class SolarLayers {
   }
 
   Widget _box(String name) {
+    final given = this.content[name];
     final children = [
-      for (final c in tree[name] ?? const <String>[])
-        if (recipe.present(c)) c,
+      if (given == null)
+        for (final c in tree[name] ?? const <String>[])
+          if (recipe.present(c)) c,
     ];
     final direction = recipe.lookup('$name.direction');
     final laid = direction == 'k:HORIZONTAL' || direction == 'k:VERTICAL';
@@ -232,14 +241,26 @@ class SolarLayers {
         crossAxisAlignment: _cross[align.last]!,
         textBaseline: TextBaseline.alphabetic,
         spacing: _length('$name.gap'),
-        children: [for (final c in children) _inFlex(c, horizontal)],
+        children: given ?? [for (final c in children) _inFlex(c, horizontal)],
       );
+    } else if (given != null) {
+      content = Stack(clipBehavior: Clip.none, children: given);
     } else if (children.isEmpty) {
       content = null;
     } else {
+      final edge = _length('$name.borderWidth');
       content = Stack(
         clipBehavior: Clip.none,
-        children: [for (final c in children) _placed(c)],
+        children: [
+          for (final c in children)
+            _placed(
+              c,
+              Offset(
+                edge + _length('$name.paddingLeft'),
+                edge + _length('$name.paddingTop'),
+              ),
+            ),
+        ],
       );
     }
     final borderWidth = _length('$name.borderWidth');
