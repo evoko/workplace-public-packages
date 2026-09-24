@@ -27,6 +27,9 @@
  *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none | keyword, reason } }  one entry,
  *                                                        changed
  *   allowLiteral: { <layer>.<cell>: { reason } }         a raw value there is no token for
+ *   controlDraws: { <layer>: { reason } }                the base control draws this layer itself
+ *                                                        (Spinner's ring): its box is the control's,
+ *                                                        which the oracle then excuses
  *   accept:       { <deviation token>: { reason } }      the code keeps its value; Figma's
  *                                                        difference is known and intended
  *
@@ -54,6 +57,7 @@ const FIELDS = {
   bind: ['literal', 'token', 'tokens'],
   set: ['token', 'none', 'keyword'],
   allowLiteral: [],
+  controlDraws: [],
   accept: [],
   slots: ['name', 'type'],
   derive: ['when'],
@@ -633,6 +637,12 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       rule.reason,
     );
     record('allowLiteral', at, rule.reason);
+  }
+
+  for (const [layer, rule] of sorted('controlDraws')) {
+    if (!spec.layers[layer])
+      fail(`controlDraws ${layer}: the IR has no layer ${layer}`);
+    record('controlDraws', layer, rule.reason);
   }
 
   for (const [token, rule] of sorted('accept')) {

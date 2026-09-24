@@ -438,3 +438,29 @@ describe('corners of their own', () => {
     expect(vertical.borderBottomLeftRadius).toBe('var(--solar-radius-none)');
   });
 });
+
+describe('a layer placed by position', () => {
+  const group = structuredClone(
+    built.find((b) => b.spec.component === 'Button Group').spec,
+  );
+  // Button Group's third button, as if Figma placed it by position.
+  group.style.button3.base.x = { position: 4 };
+  group.style.button3.base.y = { position: 6.5 };
+  const { styles } = renderMuiComponent(group, tokens);
+
+  it('is absolute at Figma’s position, and its parent positions it', () => {
+    expect(styles.root['& > *']).toMatchObject({
+      position: 'absolute',
+      left: '4px',
+      top: '6.5px',
+    });
+    expect(styles.root.position).toBe('relative');
+  });
+
+  it('keeps a shape’s position with its drawing, in the composition, not in CSS', () => {
+    const spinner = built.find((b) => b.spec.component === 'Spinner').spec;
+    const { styles: s, composition } = renderMuiComponent(spinner, tokens);
+    expect(composition.indicator.base).toMatchObject({ x: 8, y: 1 });
+    expect(JSON.stringify(s)).not.toContain('"left"');
+  });
+});

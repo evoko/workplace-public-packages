@@ -162,7 +162,7 @@ describe('the Spinner oracle', () => {
     );
     expect(v.props).toEqual({ size: 'sm', variant: 'default' });
     expect(v.layers.indicator.borderColor).toBeNull();
-    expect(v.excused).toEqual([
+    expect(v.excused.filter((e) => e.layer === 'indicator')).toEqual([
       expect.objectContaining({
         layer: 'indicator',
         property: 'borderColor',
@@ -173,7 +173,25 @@ describe('the Spinner oracle', () => {
       (x) => x.figma === 'size=sm, style=inverse',
     );
     expect(inverse.layers.indicator.borderColor).toBe('#ffffff');
-    expect(inverse).not.toHaveProperty('excused');
+    expect(inverse.excused.every((e) => e.layer === 'track')).toBe(true);
+  });
+
+  it('excuses the box of a layer the base control draws, by the overlay’s controlDraws', () => {
+    // Spinner's track: placed at [0, 0] in the ring, drawn by CircularProgress in its view box.
+    const v = spinner.variants.find(
+      (x) => x.figma === 'size=sm, style=default',
+    );
+    expect(v.layers.track).toMatchObject({ x: 0, y: 0, width: 16, height: 16 });
+    expect(
+      v.excused
+        .filter((e) => e.layer === 'track')
+        .map((e) => [e.property, e.decision]),
+    ).toEqual([
+      ['x', 'controlDraws'],
+      ['y', 'controlDraws'],
+      ['width', 'controlDraws'],
+      ['height', 'controlDraws'],
+    ]);
   });
 });
 

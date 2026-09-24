@@ -74,6 +74,8 @@ abstract final class SolarSpinnerRecipe {
     'track.shadow|base': 'none',
     'track.radius|base': 'none',
     'track.borderWidth|base': 't:border.strong',
+    'track.x|base': 'px:0',
+    'track.y|base': 'px:0',
     'track.borderColor|appearance|variant=inverse|default':
         't:color.border.inverse.subtle',
     'indicator.present|base': 'b:true',
@@ -83,12 +85,22 @@ abstract final class SolarSpinnerRecipe {
     'indicator.shadow|base': 'none',
     'indicator.radius|base': 'none',
     'indicator.borderWidth|base': 't:border.strong',
+    'indicator.x|base': 'px:8',
+    'indicator.y|base': 'px:1',
     'indicator.borderColor|appearance|variant=inverse|default':
         't:color.border.inverse.strong',
     'indicator.glyph|combined|md|variant=default|default': 'g:1',
+    'indicator.x|combined|md|variant=default|default': 'px:12',
+    'indicator.y|combined|md|variant=default|default': 'px:1.25',
     'indicator.glyph|combined|md|variant=inverse|default': 'g:1',
+    'indicator.x|combined|md|variant=inverse|default': 'px:12',
+    'indicator.y|combined|md|variant=inverse|default': 'px:1.25',
     'indicator.glyph|combined|lg|variant=default|default': 'g:2',
+    'indicator.x|combined|lg|variant=default|default': 'px:16',
+    'indicator.y|combined|lg|variant=default|default': 'px:1.5',
     'indicator.glyph|combined|lg|variant=inverse|default': 'g:2',
+    'indicator.x|combined|lg|variant=inverse|default': 'px:16',
+    'indicator.y|combined|lg|variant=inverse|default': 'px:1.5',
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.

@@ -132,6 +132,8 @@ const measured = [
   'gap',
   'width',
   'height',
+  'x',
+  'y',
   'color',
   'fontFamily',
   'fontWeight',

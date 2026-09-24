@@ -94,6 +94,8 @@ function encode(entry, at) {
   if (entry.none) return 'none';
   if (entry.keyword !== undefined) return `k:${entry.keyword}`;
   if (entry.value !== undefined) return `b:${entry.value}`;
+  // A position is the drawing's coordinate, read as a length (`dimension`), not an allowed literal.
+  if (entry.position !== undefined) return `px:${entry.position}`;
   if (entry.literal !== undefined) {
     if (!entry.allowed)
       throw new Error(

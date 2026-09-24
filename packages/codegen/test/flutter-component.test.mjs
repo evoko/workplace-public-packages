@@ -308,3 +308,12 @@ describe('renderFlutterComponent: a component with no axes', () => {
     expect(dart).toContain("const combo = '';");
   });
 });
+
+describe('renderFlutterComponent: a layer placed by position', () => {
+  it('writes its position as a length the shell reads', () => {
+    const spinner = built.find((b) => b.spec.component === 'Spinner').spec;
+    const { cells } = renderFlutterComponent(spinner, tokens);
+    expect(cells['indicator.x|base']).toBe('px:8');
+    expect(cells['indicator.y|base']).toBe('px:1');
+  });
+});

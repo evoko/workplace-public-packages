@@ -55,6 +55,7 @@ export const solarSpinnerStyles = {
       stroke: 'var(--solar-color-border-strong)',
       strokeWidth: 'var(--solar-border-strong)',
     },
+    position: 'relative',
   },
   sizes: {
     md: {
@@ -119,6 +120,8 @@ export const solarSpinnerComposition = {
           },
         ],
       },
+      x: 8,
+      y: 1,
     },
     combined: {
       md: {
@@ -135,6 +138,8 @@ export const solarSpinnerComposition = {
                 },
               ],
             },
+            x: 12,
+            y: 1.25,
           },
         },
         'variant=inverse': {
@@ -150,6 +155,8 @@ export const solarSpinnerComposition = {
                 },
               ],
             },
+            x: 12,
+            y: 1.25,
           },
         },
       },
@@ -167,6 +174,8 @@ export const solarSpinnerComposition = {
                 },
               ],
             },
+            x: 16,
+            y: 1.5,
           },
         },
         'variant=inverse': {
@@ -182,6 +191,8 @@ export const solarSpinnerComposition = {
                 },
               ],
             },
+            x: 16,
+            y: 1.5,
           },
         },
       },

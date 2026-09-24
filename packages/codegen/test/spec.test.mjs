@@ -130,7 +130,7 @@ describe('the committed component specs', () => {
 
   it('exist, one per generated component, and nothing else', () => {
     expect(readdirSync(stage.componentsDir).sort()).toEqual(
-      stage.COMPONENTS.map(stage.fileOf).sort(),
+      stage.NAMES.map(stage.fileOf).sort(),
     );
   });
 

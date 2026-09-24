@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { STATE_SELECTORS } from '../../codegen/src/emit/mui-component.mjs';
-import { COMPONENTS, fileOf } from '../../codegen/src/stages/components.mjs';
+import { NAMES, fileOf } from '../../codegen/src/stages/components.mjs';
 
 const here = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 const styles = (path: string) => here(`../../styles/src/${path}`);
@@ -20,14 +20,14 @@ const styles = (path: string) => here(`../../styles/src/${path}`);
  */
 function solarData() {
   const specs = Object.fromEntries(
-    COMPONENTS.map((c) => {
+    NAMES.map((c) => {
       const spec = JSON.parse(
         readFileSync(here(`../../../spec/components/${fileOf(c)}`), 'utf8'),
       );
       return [c, { api: spec.api }];
     }),
   );
-  return `export const COMPONENTS = ${JSON.stringify(COMPONENTS)};
+  return `export const COMPONENTS = ${JSON.stringify(NAMES)};
 export const SPECS = ${JSON.stringify(specs)};
 export const STATES = ${JSON.stringify(STATE_SELECTORS)};
 `;

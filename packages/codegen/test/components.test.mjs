@@ -412,6 +412,39 @@ describe('the oracle of a layer whose corners differ', () => {
   });
 });
 
+describe('the oracle of layers placed by position', () => {
+  const oracleOf = (name) => {
+    const loaded = loadComponent(catalog, name);
+    const { spec, deviations } = buildComponentSpec(loaded, {
+      names,
+      fileVersion: catalog.fileVersion,
+    });
+    return buildOracle(loaded.set, spec, deviations, {
+      tokens: buildTokenSpec(loadContract()).spec,
+      names,
+      overlay: null,
+      fileVersion: catalog.fileVersion,
+    });
+  };
+
+  it('measures a placed box where Figma put it, at its drawn size', () => {
+    const toggle = oracleOf('Toggle');
+    const on = toggle.variants.find(
+      (v) => v.figma === 'selected=true, state=default',
+    ).layers.thumb;
+    expect(on).toMatchObject({ x: 17, y: 3, width: 12, height: 12 });
+  });
+
+  it('records a placed shape’s position in its drawing, not as measured properties', () => {
+    const status = oracleOf('StatusIndicator');
+    const warning = status.variants.find(
+      (v) => v.figma === 'type=warning, size=md',
+    ).layers.innerPath;
+    expect(warning.glyph).toMatchObject({ x: 9, y: 6 });
+    expect(warning).not.toHaveProperty('x');
+  });
+});
+
 describe('standalone components', () => {
   const standalone = catalog.components.filter(
     (c) => c.kind === 'component' && c.section.startsWith('components/'),

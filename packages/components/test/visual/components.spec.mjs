@@ -22,7 +22,7 @@ import {
   MUI_SVG_LAYERS,
   STATE_SELECTORS,
 } from '../../../codegen/src/emit/mui-component.mjs';
-import { COMPONENTS, fileOf } from '../../../codegen/src/stages/components.mjs';
+import { NAMES, fileOf } from '../../../codegen/src/stages/components.mjs';
 import { compareLayer, matches } from './compare.mjs';
 
 const repo = (path) =>
@@ -31,7 +31,11 @@ const load = (path) => JSON.parse(readFileSync(repo(path), 'utf8'));
 const out = (path) => fileURLToPath(new URL(`.out/${path}`, import.meta.url));
 
 const oracles = Object.fromEntries(
-  COMPONENTS.map((c) => [c, load(`spec/verify/${fileOf(c)}`)]),
+  NAMES.map((c) => [c, load(`spec/verify/${fileOf(c)}`)]),
+);
+// Each layer's parent, for a position measured from the parent's edge, as Figma's is.
+const specs = Object.fromEntries(
+  NAMES.map((c) => [c, load(`spec/components/${fileOf(c)}`)]),
 );
 
 /** As `cases/index.ts` spells a component in `data-case`. */
@@ -52,6 +56,7 @@ function targets(component) {
     layer,
     selector: selector === '&' ? null : selector.replace(/^&\s*/, ':scope '),
     svg: svg.has(layer),
+    parent: specs[component]?.layers[layer]?.parent ?? null,
   }));
 }
 
@@ -79,8 +84,18 @@ function children(component) {
  */
 function measure(root, { list, composed }) {
   const px = (v) => v;
-  const within = (at, targets) =>
-    Object.fromEntries(targets.map((t) => [t.layer, one(at, t)]));
+  // A layer's place, from its parent layer's outer edge to its own, as Figma measures it.
+  const within = (at, targets) => {
+    const got = Object.fromEntries(targets.map((t) => [t.layer, one(at, t)]));
+    for (const t of targets) {
+      const own = got[t.layer];
+      const parent = t.parent && got[t.parent];
+      if (!own || !parent) continue;
+      own.x = own.left - parent.left;
+      own.y = own.top - parent.top;
+    }
+    return got;
+  };
   const one = (at, { layer, selector, svg }) => {
     const el =
       at.querySelector(`:scope [data-layer="${layer}"]`) ??
@@ -130,6 +145,8 @@ function measure(root, { list, composed }) {
       textDecoration: cs.textDecorationLine,
       width: box.width,
       height: box.height,
+      left: box.left,
+      top: box.top,
       drawn:
         box.width > 0 && cs.visibility !== 'hidden' && cs.display !== 'none',
     };
@@ -338,7 +355,7 @@ const report = (component, gaps) =>
     `${JSON.stringify(gaps, null, 2)}\n`,
   );
 
-for (const component of COMPONENTS)
+for (const component of NAMES)
   test(`${component} draws what Figma draws, in every variant`, async ({
     page,
   }) => {

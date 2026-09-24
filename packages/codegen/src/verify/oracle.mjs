@@ -47,6 +47,8 @@ const PROPERTIES_OF = {
   paddingLeft: ['paddingLeft'],
   width: ['width'],
   height: ['height'],
+  x: ['x'],
+  y: ['y'],
   typography: [
     'fontFamily',
     'fontWeight',
@@ -174,15 +176,32 @@ export function buildOracle(
     const [sizeX, sizeY] = (layer.layout?.sizing ?? layer.sizing ?? '').split(
       '/',
     );
+    // A box its parent's auto layout does not place is where Figma put it, at the size it is
+    // drawn: both are measured, from the parent's edge. A layer drawn by its outline (a glyph)
+    // carries its place in the glyph instead; an ellipse or a rectangle, which Figma describes
+    // by its size, is a box.
+    const placedBox =
+      layer.position && !layer.geometry && !layer.strokeGeometry;
     const box = () => {
-      if (sizeX === 'FIXED' && layer.size) out.width = layer.size[0];
-      if (sizeY === 'FIXED' && layer.size) out.height = layer.size[1];
+      if ((sizeX === 'FIXED' || placedBox) && layer.size)
+        out.width = layer.size[0];
+      if ((sizeY === 'FIXED' || placedBox) && layer.size)
+        out.height = layer.size[1];
+      if (placedBox) {
+        out.x = layer.position[0];
+        out.y = layer.position[1];
+      }
     };
 
     if (layer.type === 'TEXT') {
       paint('color', layer.fills);
       if (layer.textStyle)
         Object.assign(out, typography(layer.textStyle, path));
+      // A text placed by position: where it starts; its size follows from its font.
+      if (placedBox) {
+        out.x = layer.position[0];
+        out.y = layer.position[1];
+      }
       return { out, unresolved };
     }
     if (layer.type === 'INSTANCE') {
@@ -198,10 +217,15 @@ export function buildOracle(
     }
     if (layer.fills?.includes('IMAGE')) out.image = true;
     // The shape drawn, as Figma's path data, compared as data by the visual checks.
+    // A shape placed by position carries its place in its drawing, which, like its outline, is
+    // recorded and not measured.
     if (layer.geometry || layer.strokeGeometry)
       out.glyph = {
         fill: (layer.geometry ?? []).map((g) => g.path),
         stroke: (layer.strokeGeometry ?? []).map((g) => g.path),
+        ...(layer.position
+          ? { x: layer.position[0], y: layer.position[1] }
+          : {}),
       };
     paint('background', layer.fills);
     paint('borderColor', layer.strokes);
@@ -313,6 +337,20 @@ export function buildOracle(
         unresolvedOnly: true,
       });
   }
+
+  // A layer the base control draws itself (Spinner's ring, CircularProgress's SVG circle): its
+  // box is the control's, by an overlay decision, in every variant.
+  for (const [layer, rule] of Object.entries(overlay?.controlDraws ?? {}))
+    excuses.push({
+      variant: null,
+      layer,
+      properties: ['x', 'y', 'width', 'height'],
+      why: {
+        finding: `component.${spec.component.toLowerCase()}.${layer}#controlDraws`,
+        decision: 'controlDraws',
+        reason: rule.reason,
+      },
+    });
 
   const variants = resolved.variants.map((v) => {
     const layers = {};

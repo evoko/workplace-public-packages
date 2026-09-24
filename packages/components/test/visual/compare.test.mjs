@@ -98,3 +98,14 @@ describe('corners of their own', () => {
     ).toEqual([{ property: 'radiusBottomLeft', figma: 0, rendered: '8px' }]);
   });
 });
+
+describe('a layer placed by position', () => {
+  it('is measured from its parent’s edge, and a misplaced one names the axis', () => {
+    const figma = { x: 17, y: 3, width: 12, height: 12 };
+    const drawn = { x: 17, y: 3, width: '12px', height: '12px' };
+    expect(compareLayer(figma, drawn).failures).toEqual([]);
+    expect(compareLayer(figma, { ...drawn, x: 3 }).failures).toEqual([
+      { property: 'x', figma: 17, rendered: 3 },
+    ]);
+  });
+});

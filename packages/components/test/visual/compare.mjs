@@ -145,6 +145,8 @@ export const MEASURED = [
   'gap',
   'width',
   'height',
+  'x',
+  'y',
   'color',
   'fontFamily',
   'fontWeight',

@@ -420,6 +420,13 @@ function cellsOf(layer, type, names, where, onCovered) {
   }
   put('width', 'geometry', extent(layer, 0, names, `${where}.width`));
   put('height', 'geometry', extent(layer, 1, names, `${where}.height`));
+  // Where a layer sits in a parent whose auto layout does not place it (StatusIndicator's `!`
+  // inside its triangle, a Toggle's thumb): part of the drawing, as a glyph's outline is, so it
+  // follows every axis and is a position, not a spacing literal to report.
+  if (layer.position) {
+    put('x', 'shape', { position: layer.position[0] });
+    put('y', 'shape', { position: layer.position[1] });
+  }
   return cells;
 }
 
@@ -439,6 +446,7 @@ const SIDE_CELLS = PADDING.map((side) => `border${side}Width`);
  * - no auto-layout (Checkbox's box in some states only) is a layout of `none`, which the emitters
  *   draw as no flex, and no gap or padding (`inset.none`);
  * - no recorded sizing is the size the layer is drawn at, bound as any size is;
+ * - no position, where another variant has one, is a layer its auto layout places (`none`);
  * - one border width where another variant has a width per side (Tab Item) is that width on
  *   every side, so the sides are compared side by side, and one radius where another variant has
  *   one per corner is that radius on every corner.
@@ -475,6 +483,9 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
           continue;
         if (LAYOUT_CELLS.includes(c))
           own[c] = { cls: 'geometry', value: { none: true } };
+        // Where another variant places the layer by position and this one's auto layout places it.
+        else if (c === 'x' || c === 'y')
+          own[c] = { cls: 'shape', value: { none: true } };
         else if ((c === 'width' || c === 'height') && layer.size) {
           const i = c === 'width' ? 0 : 1;
           own[c] = {
@@ -510,7 +521,11 @@ const describe = (v) =>
       (v.none
         ? 'none'
         : (v.keyword ??
-          (v.value !== undefined ? String(v.value) : String(v.literal)))));
+          (v.value !== undefined
+            ? String(v.value)
+            : v.position !== undefined
+              ? String(v.position)
+              : String(v.literal)))));
 
 /**
  * @param {ReturnType<import('./component-layers.mjs').resolveVariants>} resolved

@@ -655,6 +655,39 @@ Sparkline, Spinner, Time Slot, Radio, ProgressBar, RowExpand, Node End and Donut
 - **Then, as machinery:** the recipe gives a placed layer `x` and `y` cells, the oracle records
   them, both checks measure them, and both emitters and the shells place such a layer.
 
+**Positions, done 2026-09-24.**
+
+- **Recipe:** a placed layer has `x` and `y` cells (`{ position }`), class `shape`, so they follow
+  every axis and raise no finding: positions are the drawing's coordinates, as a glyph's outline
+  is, not spacing. M2's rule writes `none` where another variant's auto layout places the layer.
+- **Shape or box:** a layer with a glyph (an outline) is a shape; a frame, text, instance,
+  ellipse or rectangle is a box. Toggle's thumb is an `ELLIPSE` with no outline, so a box.
+  - The MUI recipe draws a placed box `position: absolute` at `left`/`top` in pixels, with
+    `position: relative` on its parent unless the parent is placed itself. A placed shape's
+    position stays in the composition data with its glyph, for the shell that draws it.
+  - An SVG layer of a control (Spinner's) gets no CSS position.
+  - Flutter reads positions as lengths (`px:`).
+- **Oracle:** a placed box gets `x`, `y`, `width` and `height`, measured from the parent's edge;
+  a placed text only `x` and `y`. A shape's position is inside its `glyph`, recorded and not
+  measured, as its outline is. Both checks list `x` and `y`, and the web check measures them
+  between the layer's and its parent layer's outer edges.
+- **`controlDraws`,** a new overlay rule: a layer the base control draws itself, whose box the
+  oracle then excuses in every variant.
+  - Spinner's track is one. CircularProgress draws the ring as an SVG circle in its own view box,
+    so it cannot match Figma's `[0, 0]`, 16×16 ellipse to half a pixel.
+  - This is Spinner's one oracle change. Its generated recipes gained the positions (composition
+    data on the web, lengths in Flutter), and its drawing is unchanged.
+- **`NAMES`,** the components by their names in code, is exported beside `COMPONENTS`, which holds
+  addresses. The web check, the Storybook data and two tests read `NAMES`, since their files and
+  tables are named after the code name (M6's `inputs/Day Cell` builds as `Date Picker Day Cell`).
+  Before this, they would have missed it.
+- **Tests:** positions in the recipe (moving by axis, `none` where laid out), the MUI emitter (a
+  placed box, a placed shape), Flutter's lengths, the oracle (Toggle's thumb as a box,
+  StatusIndicator's `!` in its glyph, Spinner's excused track), `controlDraws`, and the web
+  comparison.
+- **Checks:** 604 JS tests, both visual checks, 94 Flutter tests, lint, typecheck, format, both
+  viewers, and two identical rebuilds.
+
 **What the sync of 2026-09-24 changed, and what followed:**
 
 - **Documentation cards:** 43 pages' Usage text now describes their own component; Nav Item and

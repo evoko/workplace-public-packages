@@ -835,3 +835,52 @@ describe('deriveRecipe: a cell painted twice', () => {
     });
   });
 });
+
+describe('deriveRecipe: a layer placed by position', () => {
+  // Toggle's thumb: in a frame with no auto layout, at 3 when off and 17 when on.
+  const set = {
+    name: 'Switch',
+    defaultVariant: 'on=false',
+    props: {
+      on: { type: 'VARIANT', default: 'false', options: ['false', 'true'] },
+    },
+    defaultVariantTree: {
+      name: 'on=false',
+      type: 'COMPONENT',
+      size: [32, 18],
+      children: [
+        { name: 'Thumb', type: 'FRAME', size: [12, 12], position: [3, 3] },
+      ],
+    },
+    variants: [
+      { variant: 'on=false' },
+      {
+        variant: 'on=true',
+        overrides: { changed: { '/Thumb': { position: [17, 3] } } },
+      },
+    ],
+  };
+  const r = deriveRecipe(resolveVariants(set), { names });
+  const thumb = r.style['/Thumb'];
+
+  it('gives it x and y, which follow every axis, as part of the drawing', () => {
+    expect(thumb.base.x).toMatchObject({ position: 3 });
+    expect(thumb.base.y).toMatchObject({ position: 3 });
+    expect(thumb.appearance['on=true'].default.x).toMatchObject({
+      position: 17,
+    });
+    // No finding: a position differing by axis is the drawing moving, and it is no spacing literal.
+    expect(
+      r.deviations.filter((d) => d.cell === 'x' || d.cell === 'y'),
+    ).toEqual([]);
+  });
+
+  it('reads no position, where another variant has one, as placed by auto layout', () => {
+    const laid = structuredClone(set);
+    laid.variants[1].overrides.changed['/Thumb'] = { position: null };
+    const r2 = deriveRecipe(resolveVariants(laid), { names });
+    expect(r2.style['/Thumb'].appearance['on=true'].default.x).toMatchObject({
+      none: true,
+    });
+  });
+});

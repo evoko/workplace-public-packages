@@ -99,6 +99,21 @@ const COMPOSITION = (cell) =>
   cell === 'glyph' ||
   cell.startsWith('variant.');
 
+const PLACED = (cell) => cell === 'x' || cell === 'y';
+
+/** Whether a layer is drawn by its outline, a glyph, in any entry: then its place is the drawing's. */
+function drawn(style) {
+  const entries = [
+    style.base,
+    ...Object.values(style.size ?? {}),
+    ...Object.values(style.appearance ?? {}).flatMap(Object.values),
+    ...Object.values(style.combined ?? {}).flatMap((c) =>
+      Object.values(c).flatMap(Object.values),
+    ),
+  ];
+  return entries.some((e) => e?.glyph);
+}
+
 function context(spec, tokens) {
   const all = flattenSpec(tokens);
   const byName = new Map(all.map((t) => [t.name, t]));
@@ -178,6 +193,10 @@ function context(spec, tokens) {
           return entry.none
             ? { strokeWidth: '0' }
             : { strokeWidth: ref(entry.token, at) };
+        // The control's SVG places its shapes in its own view box.
+        case 'x':
+        case 'y':
+          return {};
         // A shape has no box to round or shadow.
         case 'radius':
         case 'radiusTopLeft':
@@ -230,6 +249,15 @@ function context(spec, tokens) {
       }
       case 'shadow':
         return { boxShadow: entry.none ? 'none' : ref(entry.token, at) };
+      // A box its parent's auto layout does not place: at Figma's position, from the parent's
+      // edge. Positions are the drawing's coordinates, as a glyph's outline is, not spacing, so
+      // they are pixels. `none` is a variant whose auto layout places it after all.
+      case 'x':
+        return entry.none
+          ? { position: 'static' }
+          : { position: 'absolute', left: `${entry.position}px` };
+      case 'y':
+        return entry.none ? {} : { top: `${entry.position}px` };
       // A layer with no auto-layout in this variant (the recipe writes it `none`) has no gap or
       // padding, which is inset.none, as a `none` radius is radius.none. Written, not left out, so
       // it overrides the gap the base's layout has.
@@ -428,12 +456,21 @@ export function renderMuiComponent(spec, tokens) {
     combined: {},
   };
   const composition = {};
+  // A shape's position is part of its drawing, which the shell draws from the composition data,
+  // as it draws its outline; a box's is CSS, absolute in its parent.
+  const shape = (layer) => drawn(spec.style[layer] ?? {});
+  const composed = (layer, cell) =>
+    COMPOSITION(cell) || (PLACED(cell) && shape(layer));
+  // The parents of boxes placed by position, which position them: `relative`, once, at rest.
+  const placing = new Set();
 
   /** Every cell of one style block (one size, one state …) into a target object. */
   const render = (target, layer, cells, at) => {
     for (const [cell, entry] of Object.entries(cells)) {
       const here = `${layer}.${at}.${cell}`;
-      if (COMPOSITION(cell)) continue;
+      if (composed(layer, cell)) continue;
+      if (PLACED(cell) && entry.position !== undefined)
+        placing.add(spec.layers[layer].parent);
       place(target, slots[layer], declare(cell, entry, here, layer), here);
     }
   };
@@ -479,8 +516,11 @@ export function renderMuiComponent(spec, tokens) {
     const pick = (cells) =>
       Object.fromEntries(
         Object.entries(cells)
-          .filter(([c]) => COMPOSITION(c))
-          .map(([c, e]) => [c, e.glyph ?? e.keyword ?? e.value ?? null]),
+          .filter(([c]) => composed(layer, c))
+          .map(([c, e]) => [
+            c,
+            e.glyph ?? e.keyword ?? e.value ?? e.position ?? null,
+          ]),
       );
     comp.base = pick(s.base);
     for (const [combo, states] of Object.entries(s.appearance))
@@ -507,6 +547,19 @@ export function renderMuiComponent(spec, tokens) {
       comp.combined
     )
       composition[layer] = comp;
+  }
+
+  // A parent placed itself is `absolute` already, which positions its children as well.
+  for (const parent of placing) {
+    if (parent === null) continue;
+    const at = slots[parent] === '&' ? styles.root : styles.root[slots[parent]];
+    if (!at?.position)
+      place(
+        styles.root,
+        slots[parent],
+        { position: 'relative' },
+        `${parent}.base.position`,
+      );
   }
 
   // Keys in the API's own order -- sizes md, sm, lg; variants primary, secondary, tertiary -- not

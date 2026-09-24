@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { renderRegistries } from '../src/emit/registries.mjs';
-import { COMPONENTS } from '../src/stages/components.mjs';
+import { NAMES } from '../src/stages/components.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
 const files = (names) =>
@@ -49,7 +49,7 @@ describe('renderRegistries', () => {
   it('matches what is committed for today’s components', () => {
     // The stage writes them on every solar:codegen; CI's rebuild check holds them to it.
     const built = ['Button', 'Button Group', 'Icon Button', 'Spinner'];
-    expect([...COMPONENTS].sort()).toEqual(built);
+    expect([...NAMES].sort()).toEqual(built);
     for (const [file, text] of Object.entries(files(built))) {
       const path = join(packagesDir, file);
       expect(existsSync(path), file).toBe(true);

@@ -201,6 +201,14 @@
         "borderWidth": {
           "token": "border.strong",
           "from": "size=sm, style=default"
+        },
+        "x": {
+          "position": 0,
+          "from": "size=sm, style=default"
+        },
+        "y": {
+          "position": 0,
+          "from": "size=sm, style=default"
         }
       },
       "size": {},
@@ -255,6 +263,14 @@
         "borderWidth": {
           "token": "border.strong",
           "from": "size=sm, style=default"
+        },
+        "x": {
+          "position": 8,
+          "from": "size=sm, style=default"
+        },
+        "y": {
+          "position": 1,
+          "from": "size=sm, style=default"
         }
       },
       "size": {},
@@ -285,6 +301,14 @@
                   ]
                 },
                 "from": "size=md, style=default"
+              },
+              "x": {
+                "position": 12,
+                "from": "size=md, style=default"
+              },
+              "y": {
+                "position": 1.25,
+                "from": "size=md, style=default"
               }
             }
           },
@@ -302,6 +326,14 @@
                     }
                   ]
                 },
+                "from": "size=md, style=inverse"
+              },
+              "x": {
+                "position": 12,
+                "from": "size=md, style=inverse"
+              },
+              "y": {
+                "position": 1.25,
                 "from": "size=md, style=inverse"
               }
             }
@@ -323,6 +355,14 @@
                   ]
                 },
                 "from": "size=lg, style=default"
+              },
+              "x": {
+                "position": 16,
+                "from": "size=lg, style=default"
+              },
+              "y": {
+                "position": 1.5,
+                "from": "size=lg, style=default"
               }
             }
           },
@@ -340,6 +380,14 @@
                     }
                   ]
                 },
+                "from": "size=lg, style=inverse"
+              },
+              "x": {
+                "position": 16,
+                "from": "size=lg, style=inverse"
+              },
+              "y": {
+                "position": 1.5,
                 "from": "size=lg, style=inverse"
               }
             }
@@ -386,6 +434,11 @@
         "rule": "allowLiteral",
         "at": "spinnerRing.width",
         "reason": "The ring is 16, 24 and 32 across and bound to nothing. SOLAR publishes no spinner size token; carried as literals under the owner's decision for control heights (2026-09-23), and raised as a governance gap."
+      },
+      {
+        "rule": "controlDraws",
+        "at": "track",
+        "reason": "CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the recipe sizes, so its place and size inside the ring are the control's; Figma's track fills the ring at [0, 0], as MUI's does, with its stroke inside."
       },
       {
         "rule": "bind",

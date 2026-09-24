@@ -25,6 +25,12 @@ export const name = 'components';
  */
 export const COMPONENTS = DESCRIPTORS.map((d) => d.address ?? d.name);
 
+/**
+ * The same components by their names in code: what their files, tables, cases and stories are
+ * named after (`Calendar Day Cell`, where `COMPONENTS` has `calendar/Day Cell`).
+ */
+export const NAMES = DESCRIPTORS.map((d) => d.name);
+
 export const componentsDir = join(specDir, 'components');
 export const verifyDir = join(specDir, 'verify');
 

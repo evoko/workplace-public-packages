@@ -144,7 +144,7 @@ describe('scaffoldStory', () => {
   });
 
   it('has written one for every generated component', () => {
-    for (const component of stage.COMPONENTS) {
+    for (const component of stage.NAMES) {
       const story = readFileSync(
         join(storiesDir, storyFileOf(component)),
         'utf8',

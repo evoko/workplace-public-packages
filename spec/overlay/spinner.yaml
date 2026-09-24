@@ -38,3 +38,10 @@ allowLiteral:
       and raised as a governance gap.
   spinnerRing.height:
     reason: The ring is square; see spinnerRing.width.
+
+controlDraws:
+  track:
+    reason: >-
+      CircularProgress draws the ring as an SVG circle in its own view box, scaled to the box the
+      recipe sizes, so its place and size inside the ring are the control's; Figma's track fills
+      the ring at [0, 0], as MUI's does, with its stroke inside.

@@ -24,7 +24,9 @@ npx playwright install chromium  # once, on a new machine
   through them; where the component's `STATE_SELECTORS` marks focus with a class, the check first
   proves the control carries it. A state that is a prop (disabled, loading) is set by the case's
   props. Transitions are switched off, so the end state is measured, not a frame.
-- **Where each layer is** comes from the emitter's own table (`MUI_SLOTS`), not a copy of it.
+- **Where each layer is** comes from the emitter's own table (`MUI_SLOTS`), not a copy of it. A
+  layer placed by position (`x`, `y` in the oracle) is measured from its parent layer's outer edge
+  to its own, as Figma measures it.
 - **A composed child** (Button's spinner, Button Group's buttons: a layer the oracle names as
   another generated component) is measured inside its slot and checked against its own oracle,
   layer by layer, in the variant Figma picks for it. Its box is the parent's to decide (a Button

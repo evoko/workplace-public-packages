@@ -152,6 +152,16 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    (Popover's square corner by its arrow) has a cell per corner, clockwise from the top left as
    Figma records them, `radiusTopLeft` and the rest, each from its own binding; the MUI recipe
    writes `border<Corner>Radius`, the oracle a radius per corner, and both checks measure each.
+   A layer its parent's auto layout does not place (a Toggle's thumb, StatusIndicator's `!` in its
+   triangle) has `x` and `y` cells, from the position the fetcher records: part of the drawing, as
+   a glyph is, so they follow every axis and raise no finding. Where another variant's auto layout
+   places the layer, its `x` and `y` are `none`. The MUI recipe draws a placed box `absolute` at
+   `left`/`top` in pixels (the drawing's coordinates, not spacing), with its parent `relative`,
+   and keeps a placed glyph's position in the composition data with its outline. Flutter reads
+   them as lengths. The oracle measures a placed box's `x`, `y`, `width` and `height` from its
+   parent's edge, and records a glyph's position inside the glyph, unmeasured, as its outline is.
+   A layer the base control draws itself (Spinner's ring, CircularProgress's SVG circle) is the
+   overlay's `controlDraws`, and the oracle excuses its box.
    A border whose sides differ (Button Group's divider) has a cell per side, `borderTopWidth` and
    the rest, read from the weights the fetcher records per side; data fetched before it recorded
    them draws a side where it is bound and reports the layer `unrecorded` until a sync.

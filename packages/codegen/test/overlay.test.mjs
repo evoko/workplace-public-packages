@@ -714,3 +714,29 @@ describe('codeName', () => {
     );
   });
 });
+
+describe('controlDraws', () => {
+  it('names a layer the component has, and is recorded as a decision', () => {
+    expect(() =>
+      build(
+        yaml(`
+component: Button
+controlDraws:
+  ghost:
+    reason: r
+`),
+      ),
+    ).toThrow(/controlDraws ghost: the IR has no layer ghost/);
+    const { spec } = build(
+      yaml(`
+component: Button
+controlDraws:
+  spinner:
+    reason: MUI's loading indicator draws itself
+`),
+    );
+    expect(spec.overlay.rules).toContainEqual(
+      expect.objectContaining({ rule: 'controlDraws', at: 'spinner' }),
+    );
+  });
+});
