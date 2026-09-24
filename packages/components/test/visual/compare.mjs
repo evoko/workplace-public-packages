@@ -149,6 +149,8 @@ export const MEASURED = [
   'height',
   'x',
   'y',
+  'right',
+  'bottom',
   'opacity',
   'color',
   'fontFamily',

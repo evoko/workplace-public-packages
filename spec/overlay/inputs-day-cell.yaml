@@ -11,3 +11,74 @@ codeName:
     Figma names two components Day Cell: this one, a day of the date picker (Date Picker Open
     composes it), and the calendar's. Code needs one name each; the component it serves says
     which this is.
+
+base:
+  reason: >-
+    One day of Date Picker Open's grid: a grid cell, focusable (the grid moves the focus with the
+    arrow keys, as its description says), announced selected, today or disabled. Bespoke on both
+    platforms, drawn with the shared layer helpers. Its range roles are drawn as Figma draws them,
+    though the pickers choose one date for now (owner decision 2026-09-24).
+
+rename:
+  range-role:
+    to: rangeRole
+    reason: >-
+      A prop in code is one word, as the platforms spell it: `rangeRole`. Figma's name has a
+      hyphen, which neither a React prop nor a Dart parameter can take.
+
+follows:
+  root.borderWidth:
+    axes: [state, range-role]
+    reason: >-
+      A cell's edge is its state's and its range role's: today and focus draw one, as do a range's
+      ends, and a resting cell none.
+  root.radiusTopLeft:
+    axes: [range-role]
+    reason: >-
+      A range is one shape across its days: its start is rounded on the leading side, its end on
+      the trailing, its middle square, as Figma draws each role.
+  root.radiusBottomLeft:
+    axes: [range-role]
+    reason: As the top-left corner, by the range role.
+  root.radiusTopRight:
+    axes: [range-role]
+    reason: As the top-left corner, by the range role; a preview's end is a pill's.
+  root.radiusBottomRight:
+    axes: [range-role]
+    reason: As the top-right corner, by the range role.
+
+bind:
+  root.borderWidth:
+    literal: 1
+    token: border.default
+    reason: Same value, governed token; today's and the focused cell's edges are bound to it.
+  root.radiusTopLeft:
+    tokens: { 0: radius.none }
+    reason: Same value, governed token, a range's square side.
+  root.radiusBottomLeft:
+    tokens: { 0: radius.none }
+    reason: As the top-left corner's.
+
+set:
+  root.appearance.range-role=start.default.radiusTopRight:
+    token: radius.none
+    reason: Same value, governed token, a range start's square side, as the end's left.
+  root.appearance.range-role=start.default.radiusBottomRight:
+    token: radius.none
+    reason: As its top-right corner.
+  root.appearance.range-role=preview-end.default.radiusTopRight:
+    token: radius.pill
+    reason: >-
+      A preview's end is a pill's corner, 18, half the 36px cell and bound to nothing: radius.pill
+      draws the same round, as a corner is never rounder than half its box.
+  root.appearance.range-role=preview-end.default.radiusBottomRight:
+    token: radius.pill
+    reason: As the top-right corner's.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      A day is 36 square, bound to nothing: SOLAR has no size token for a grid's cell (the design
+      review's question on sizes with no variable).
+  root.height:
+    reason: As its width.

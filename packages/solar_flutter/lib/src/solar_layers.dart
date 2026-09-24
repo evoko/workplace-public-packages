@@ -131,6 +131,21 @@ class SolarLayers {
   };
 
   /// A length, where `none` (no border, no auto layout) is none of it.
+  /// A box's corners: each its own where the recipe gives one (a range's day, rounded on one side
+  /// only), and otherwise the box's radius.
+  BorderRadius _corners(String name) {
+    final all = _length('$name.radius');
+    Radius corner(String cell) => Radius.circular(
+      recipe.lookup('$name.$cell') == null ? all : _length('$name.$cell'),
+    );
+    return BorderRadius.only(
+      topLeft: corner('radiusTopLeft'),
+      topRight: corner('radiusTopRight'),
+      bottomRight: corner('radiusBottomRight'),
+      bottomLeft: corner('radiusBottomLeft'),
+    );
+  }
+
   double _length(String cell) {
     final v = recipe.lookup(cell);
     if (v == null || v == 'none') return 0;
@@ -379,6 +394,15 @@ class SolarLayers {
           for (final c in placed) _placed(c, EdgeInsets.all(edge)),
         ],
       );
+    } else if (given != null && direction == 'k:GRID') {
+      // A grid (Date Picker Open's days): the caller's rows, stacked by the grid's gap, as CSS lays
+      // a grid's rows; each row the caller's, spaced by the same gap.
+      content = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: _length('$name.gap'),
+        children: given,
+      );
     } else if (given != null) {
       content = Stack(clipBehavior: Clip.none, children: given);
     } else if (children.isEmpty) {
@@ -398,7 +422,7 @@ class SolarLayers {
             ? null
             : recipe.color('$name.background'),
         border: _border(name),
-        borderRadius: BorderRadius.circular(_length('$name.radius')),
+        borderRadius: _corners(name),
         boxShadow: recipe.lookup('$name.shadow') == null
             ? null
             : recipe.shadow('$name.shadow'),

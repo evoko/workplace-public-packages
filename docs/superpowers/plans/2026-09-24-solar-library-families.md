@@ -1216,6 +1216,59 @@ both platforms, every finding decided (none left open); SplitButton's menu has i
   are expected to be mostly its grid's cell geometry. Decide them as layout that follows from the
   day count, not as tokens, as Stepper's widths follow from its step count.
 
+**F7 done 2026-09-24.** Select (pioneer), Dropdown, Autocomplete, Autocomplete Open, DatePicker,
+Date Picker Open, Date Picker Day Cell, TimePicker and TimePicker Dropdown, every variant matching
+Figma on both platforms. Every finding is decided but four left open for SOLAR, Select's and
+Dropdown's disabled and error field alignment (a slip, drawn from the start). 62 components,
+61 exported: Autocomplete Open is checked as an open Autocomplete. Date Picker Open's 214
+no-token findings were mostly its 105 day cells' sizes, which are the Day Cell's own (`set` none),
+and its grid's gap, which Figma binds as a grid gap the recipe had not read.
+
+- **Owner decisions (2026-09-24):**
+  - Select and Dropdown are one control in two looks;
+  - Select's panel is its own, drawn as Figma draws it;
+  - a date and a time are typed and picked;
+  - the date pickers choose single dates (a Day Cell's range roles are drawn, for later);
+  - TimePicker Dropdown is one list of times, not the columns its description names;
+  - the week starts on the locale's first day;
+  - an Autocomplete's highlighted suggestion draws a row's hover, no look of its own;
+  - Autocomplete Open is Autocomplete's open state, no component of its own;
+  - `solar_flutter` takes `intl`, so Flutter's weekdays are two letters, as the web writes them;
+  - the double calendar's month labels are drawn where Figma places them (the design review asks);
+  - a floating double calendar shows one month, as Figma draws double only inline.
+- **Taken here, open to the owner:** Select and Dropdown on MUI's Select over InputBase,
+  Autocomplete on `useAutocomplete` (its suggestions a Dropdown Menu that keeps the focus in the
+  input), the calendar and time list bespoke; in Flutter the pickers are drawn fields under
+  `SolarMenuAnchor`, Autocomplete is RawAutocomplete. Values: a date is ISO on the web and a
+  `DateTime` in Flutter (`onDateChanged`, as CalendarDatePicker names it, since `onChanged` is a
+  field's words), a time `HH:mm` and a `TimeOfDay` (`onTimeChanged`); words are the locale's
+  (Intl on the web, MaterialLocalizations in Flutter) and read back on Enter and blur, words that
+  are no value leaving it as it was. `error-focused` is error while focused (`states.compound`).
+  Dropdown takes Select's focus (Figma draws none). The day cells have no padded target (they
+  touch, as rows do). Flutter's Autocomplete shows no panel where nothing matches, as RawAutocomplete does; the web
+  writes `noOptionsText`.
+- **Machinery:**
+  - the overlay's `states.compound` and `composes`; the oracle's `hides` for a composed child's
+    hidden layers, checked on both platforms; the descriptor's `checkedAs` and `shells.slots`;
+  - a GRID layout's gap from `gridRowGap`, drawn `display: grid` on the web and as the shell's rows
+    in Flutter's SolarLayers; a text placed by position keeps its `x` and `y`;
+  - `shells/picker.mjs`, `shells/typed.mjs`, and `menuReact`'s generated rows (`rowsFrom`,
+    `sizedBy`, `role`, `listRef`); `fieldFlutter`'s `typeParams` and `around`; `drawnFlutter`'s
+    `control.focusNode` and `control.target`;
+  - the runtime: `internal/calendar.ts`, `internal/clock.ts`, `internal/float.tsx`'s `keepFocus`
+    (MUI's Popper), `solar_time.dart`, SolarLayers' per-corner radii, SolarPressable's
+    `focusNode`, and SolarTarget's padded intrinsic sizes (a menu sized by them was 8px short per
+    padded control).
+- **The checks:** both compare a placed layer's `right` and `bottom` too (they were measured and
+  never compared); Flutter measures each corner's radius; a case keys a calendar's days
+  (`dayProps`, `dayBuilder`) and a time list's rows (`optionProps`, `optionBuilder`) by their
+  Figma layers. Tests found and fixed: the double calendar's month titles a month ahead, a day
+  never taking the keyboard focus in Flutter, Select's and Dropdown's field reading its label
+  twice, and the calendar's first focus on the month's first day where the chosen day was in it.
+- **Checks:** 1291 JS tests, both visual checks (65 on the web, 304 Flutter tests), lint, typecheck,
+  format, all three Flutter packages analysed and formatted, both viewers built, the personal-data
+  scan, and a rebuild that reproduces the tree.
+
 ### F8: Navigation
 
 - **Pioneer: Tab Item and Tabs.** MUI `Tabs` and `Tab`, Flutter `TabBar` and `Tab`, with the moving

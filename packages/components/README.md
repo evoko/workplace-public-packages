@@ -8,7 +8,8 @@ and its Item), the tags and messages (Tag, Alert, Alert Small, Banner, Toast and
 the text fields (Text Input, Text Area, SearchField, GlobalSearch, Password Input, Number
 Input, Inline Input, Token Input, PIN Input and FileUpload), and the menus and lists (Dropdown
 Item, Dropdown Group Label, Dropdown Menu, Context Menu Item, Context Menu, Option Row, Options
-List, ListItem and List) so far.
+List, ListItem and List), and the pickers (Select, Dropdown, Autocomplete, DatePicker, Date Picker
+Open and its Day Cell, TimePicker and TimePicker Dropdown) so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -686,6 +687,91 @@ though the description says the opposite; the design review asks SOLAR.
 
 SplitButton takes `items` too (`{ label, onSelect, disabled?, icon? }`): the chevron, or Alt+Down
 on the action, opens them in a Dropdown Menu of its size under it.
+
+## Select and Dropdown
+
+| Prop                                      | Values                                             | Default |
+| ----------------------------------------- | -------------------------------------------------- | ------- |
+| `size`                                    | `md` · `sm`, which its rows take                   | `md`    |
+| `disabled` · `error`                      | boolean                                            | `false` |
+| `label` · `mandatory` · `helper`          | as a Text Input's                                  | none    |
+| `placeholder`                             | what the field says before a choice                | none    |
+| `value` · `defaultValue` · `onChange`     | the chosen row's `value`; `onChange(event, value)` | `''`    |
+| `open` · `onOpen` · `onClose`             | its panel, where the caller keeps it               | closed  |
+| `leadingIcon` · `trailingIcon` (Dropdown) | an icon either side of the choice                  | none    |
+| children                                  | DropdownItems, each with a `value`                 | —       |
+
+One choice from a short list, on MUI's Select over InputBase: a click, Enter or the arrow keys open
+its panel, where the arrow keys move, a typed letter finds a row, Enter chooses and Escape closes.
+The two are one control in two looks (owner decision): Select draws its own panel, as Figma draws
+it, as wide as the field; Dropdown's is a Dropdown Menu, and its chevron turns up while open.
+Figma draws Dropdown no focus; it takes Select's. Beyond about seven choices, use an Autocomplete.
+
+## Autocomplete
+
+| Prop                             | Values                                                         | Default      |
+| -------------------------------- | -------------------------------------------------------------- | ------------ |
+| `size` · `disabled` · `error`    | as a Text Input's                                              | `md` · false |
+| `label` · `mandatory` · `helper` | as a Text Input's                                              | none         |
+| `leadingIcon` · `trailingIcon`   | an icon either side of the words (a search icon, a clear)      | none         |
+| `noOptionsText`                  | what the suggestions say where none match                      | `No matches` |
+| `menuProps`                      | more of the suggestions' Dropdown Menu's props                 | none         |
+| every `useAutocomplete` option   | `options` · `value` · `onChange` · `inputValue` · `freeSolo` … | —            |
+
+A field that suggests matching options as the user types, on MUI's useAutocomplete, its field a
+Text Input's. Its suggestions are a Dropdown Menu floating under the field without taking the
+focus: the input keeps it, and the arrow keys move the highlight, which draws a row's hover (owner
+decision: no highlight look of its own). Figma's Autocomplete Open is its open state, checked as
+one, and exported as nothing of its own.
+
+## DatePicker, Date Picker Open and Date Picker Day Cell
+
+| Prop (DatePicker)                     | Values                                              | Default      |
+| ------------------------------------- | --------------------------------------------------- | ------------ |
+| `size` · `disabled` · `error`         | as a Text Input's                                   | `md` · false |
+| `label` · `mandatory` · `helper`      | as a Text Input's                                   | none         |
+| `value` · `defaultValue` · `onChange` | the date, ISO (`2026-04-24`), or null               | null         |
+| `locale`                              | the figures' order, the months' and weekdays' names | the page's   |
+| `min` · `max` · `isDateDisabled`      | the dates the calendar refuses                      | none         |
+| `weekStartsOn`                        | 0 (Sunday) to 6                                     | the locale's |
+| `open` · `onOpen` · `onClose`         | its calendar, where the caller keeps it             | closed       |
+| `calendarProps`                       | more of the calendar's props                        | none         |
+
+A date, typed or picked (owner decision). The words are the date in the locale's figures
+(`24/04/2026`, `04/24/2026` in the US), read on Enter and as the focus leaves; words that are no
+date leave the value as it was, for the caller to flag with `error`. The calendar button (Figma's
+calendar icon), or the down arrow, opens a Date Picker Open under the field, a dialog, the focus on
+the chosen day. One date is chosen (owner decision: single dates); Figma's `error-focused` is drawn
+as error while focused.
+
+Date Picker Open is the calendar on its own, or in the page (`inline`): the month, its previous and
+next, the weekdays from the locale's first day (owner decision), and a grid of Date Picker Day
+Cells as many weeks as the month spans, the days either side disabled. The arrow keys move the
+focus a day or a week, Home and End to the week's ends, Page Up and Down a month (with Shift, a
+year); Enter or a click chooses. `type="double"` shows the next month beside it in the page, as
+Figma draws it; a floating one shows one month. `today` and `dayProps` serve tests and tooltips.
+A Day Cell is a grid cell announced selected, as today's date or disabled; its `rangeRole` draws a
+range's part as Figma does, for when ranges come. Dates are the platform's own calendar
+(`internal/calendar.ts`), not a picker library's.
+
+## TimePicker and TimePicker Dropdown
+
+| Prop (TimePicker)                     | Values                                   | Default      |
+| ------------------------------------- | ---------------------------------------- | ------------ |
+| `size` · `disabled` · `error`         | as a Text Input's                        | `md` · false |
+| `label` · `mandatory` · `helper`      | as a Text Input's                        | none         |
+| `value` · `defaultValue` · `onChange` | the time, `HH:mm` (`09:30`), or null     | null         |
+| `locale`                              | its clock, 12- or 24-hour, and its words | the page's   |
+| `step` · `min` · `max`                | the times the list offers                | 30 · the day |
+| `open` · `onOpen` · `onClose`         | its list, where the caller keeps it      | closed       |
+| `dropdownProps`                       | more of the list's props                 | none         |
+
+A time of day, typed or picked, as a DatePicker's date: typed on either clock (`9:30 AM`, `21:30`,
+`2130`), written on the locale's, and picked from a TimePicker Dropdown under the field. The
+dropdown is one list of times a step apart (owner decision: not Figma's description's hour and
+minute columns, which its drawing does not draw), each a Dropdown Item, the chosen one selected and
+scrolled into sight, a listbox the arrow keys move along. For a date and a time, put a DatePicker
+beside it.
 
 ## Checked against Figma
 

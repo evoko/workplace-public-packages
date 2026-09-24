@@ -77,6 +77,38 @@ class _RenderSolarTarget extends RenderShiftedBox {
     );
   }
 
+  /// The room it takes along an axis, given the child's: the target's, where it pads.
+  double _padded(double drawn) =>
+      _pads ? math.max(drawn, solarTargetSize) : drawn;
+
+  // Its intrinsic sizes are the padded ones too, so a layout that sizes by them (a menu's panel,
+  // a row of days) makes room for the target, as its own layout takes it.
+  @override
+  double computeMinIntrinsicWidth(double height) =>
+      _padded(child?.getMinIntrinsicWidth(height) ?? 0);
+
+  @override
+  double computeMaxIntrinsicWidth(double height) =>
+      _padded(child?.getMaxIntrinsicWidth(height) ?? 0);
+
+  @override
+  double computeMinIntrinsicHeight(double width) =>
+      _padded(child?.getMinIntrinsicHeight(width) ?? 0);
+
+  @override
+  double computeMaxIntrinsicHeight(double width) =>
+      _padded(child?.getMaxIntrinsicHeight(width) ?? 0);
+
+  @override
+  Size computeDryLayout(covariant BoxConstraints constraints) {
+    final drawn = child?.getDryLayout(constraints) ?? Size.zero;
+    return _pads
+        ? constraints.constrain(
+            Size(_padded(drawn.width), _padded(drawn.height)),
+          )
+        : drawn;
+  }
+
   /// The child's box in this one.
   Rect get _drawn {
     final child = this.child!;

@@ -4,6 +4,8 @@
 import 'builders.dart';
 import 'alert.dart';
 import 'alert_small.dart';
+import 'autocomplete.dart';
+import 'autocomplete_open.dart';
 import 'avatar.dart';
 import 'backbutton.dart';
 import 'banner.dart';
@@ -13,8 +15,12 @@ import 'checkbox.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
 import 'counter.dart';
+import 'date_picker_day_cell.dart';
+import 'date_picker_open.dart';
+import 'datepicker.dart';
 import 'divider.dart';
 import 'draghandle.dart';
+import 'dropdown.dart';
 import 'dropdown_group_label.dart';
 import 'dropdown_item.dart';
 import 'dropdown_menu.dart';
@@ -40,6 +46,7 @@ import 'rowexpand.dart';
 import 'searchfield.dart';
 import 'segmented_control.dart';
 import 'segmented_control_item.dart';
+import 'select.dart';
 import 'skeleton.dart';
 import 'slider.dart';
 import 'slider_range.dart';
@@ -49,6 +56,8 @@ import 'statusindicator.dart';
 import 'tag.dart';
 import 'text_area.dart';
 import 'text_input.dart';
+import 'timepicker.dart';
+import 'timepicker_dropdown.dart';
 import 'timestamp.dart';
 import 'toast.dart';
 import 'toggle.dart';
@@ -59,6 +68,8 @@ import 'trend_badge.dart';
 const builders = <String, VariantBuilder>{
   'Alert': buildAlert,
   'Alert Small': buildAlertSmall,
+  'Autocomplete': buildAutocomplete,
+  'Autocomplete Open': buildAutocompleteOpen,
   'Avatar': buildAvatar,
   'BackButton': buildBackButton,
   'Banner': buildBanner,
@@ -68,8 +79,12 @@ const builders = <String, VariantBuilder>{
   'Context Menu': buildContextMenu,
   'Context Menu Item': buildContextMenuItem,
   'Counter': buildCounter,
+  'Date Picker Day Cell': buildDatePickerDayCell,
+  'Date Picker Open': buildDatePickerOpen,
+  'DatePicker': buildDatePicker,
   'Divider': buildDivider,
   'DragHandle': buildDragHandle,
+  'Dropdown': buildDropdown,
   'Dropdown Group Label': buildDropdownGroupLabel,
   'Dropdown Item': buildDropdownItem,
   'Dropdown Menu': buildDropdownMenu,
@@ -95,6 +110,7 @@ const builders = <String, VariantBuilder>{
   'SearchField': buildSearchField,
   'Segmented Control': buildSegmentedControl,
   'Segmented Control Item': buildSegmentedControlItem,
+  'Select': buildSelect,
   'Skeleton': buildSkeleton,
   'Slider': buildSlider,
   'Slider Range': buildSliderRange,
@@ -104,6 +120,8 @@ const builders = <String, VariantBuilder>{
   'Tag': buildTag,
   'Text Area': buildTextArea,
   'Text Input': buildTextInput,
+  'TimePicker': buildTimePicker,
+  'TimePicker Dropdown': buildTimePickerDropdown,
   'Timestamp': buildTimestamp,
   'Toast': buildToast,
   'Toggle': buildToggle,

@@ -243,6 +243,7 @@ void checkChild(
         'variant',
         'figmaVariant',
         'hidden',
+        'hides',
       }.contains(key))
         key: value,
   };
@@ -261,6 +262,13 @@ void checkChild(
       in (want['layers'] as Map<String, dynamic>).entries) {
     final spec = {...e as Map<String, dynamic>};
     if (spec['hidden'] == true) continue;
+    // What the instance hides of the child (a Select's rows, their checkbox), it must not draw.
+    if (((expected['hides'] as List?) ?? const []).contains(part)) {
+      if (layers[part]?['drawn'] == true) {
+        failures.add(Difference(variant, layer, '$part.hidden', true, false));
+      }
+      continue;
+    }
     if (part == 'root') {
       spec.removeWhere(
         (k, _) => k == 'width' || k == 'height' || parentDecides.containsKey(k),

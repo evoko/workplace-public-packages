@@ -32,9 +32,12 @@ const key = (name) => (/^[A-Za-z]\w*$/.test(name) ? name : `'${name}'`);
  * @param {string[]} names
  * @returns {Array<{file: string, text: string}>}
  */
-export function renderRegistries(names) {
+export function renderRegistries(names, { shelled = () => true } = {}) {
   const sorted = [...names].sort();
-  const components = sorted.map(
+  // A component checked as another's state (Autocomplete Open, Autocomplete's) has no shells of
+  // its own: it has a case, a builder and a story, and nothing to export.
+  const own = sorted.filter(shelled);
+  const components = own.map(
     (n) => `export * from './${shellFileOf(n).replace(/\.tsx$/, '.js')}';`,
   );
   const cases = [
@@ -93,7 +96,7 @@ export function renderRegistries(names) {
     HEADER,
     '// Every generated widget’s shell, which solar_flutter.dart exports.',
     '',
-    ...sorted.map((n) => `export '${flutterFileOf(n)}';`),
+    ...own.map((n) => `export '${flutterFileOf(n)}';`),
   ];
   return [
     {
@@ -124,8 +127,8 @@ export function renderRegistries(names) {
 }
 
 /** Writes every registry; returns how many. */
-export function emitRegistries(names) {
-  const files = renderRegistries(names);
+export function emitRegistries(names, options) {
+  const files = renderRegistries(names, options);
   for (const { file, text } of files)
     writeGenerated(join(packagesDir, file), text);
   return files.length;

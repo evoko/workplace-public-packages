@@ -149,13 +149,15 @@ describe('the web and Flutter packages are independent', () => {
     }
   });
 
-  it('solar_flutter depends on Flutter alone, and is not an npm workspace', async () => {
+  // And Dart's intl, which the calendar names its weekdays with (owner decision 2026-09-24):
+  // MaterialLocalizations has one-letter names only, where the web and Figma write two.
+  it('solar_flutter depends on Flutter and intl alone, and is not an npm workspace', async () => {
     const { existsSync } = await import('node:fs');
     const { parse } = await import('yaml');
     const doc = parse(
       readFileSync(join(packagesDir, 'solar_flutter', 'pubspec.yaml'), 'utf8'),
     );
-    expect(Object.keys(doc.dependencies)).toEqual(['flutter']);
+    expect(Object.keys(doc.dependencies)).toEqual(['flutter', 'intl']);
     expect(existsSync(join(packagesDir, 'solar_flutter', 'package.json'))).toBe(
       false,
     );

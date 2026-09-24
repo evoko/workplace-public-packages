@@ -224,6 +224,17 @@ export function buildOracle(
   const textValues = textValuesOf;
   const decidedValue = (rule, property) => cellValue(byName, rule, property);
 
+  /**
+   * What a layout's gap draws: its own value, or a grid's, the variable its rows and columns are
+   * bound to, since Figma records no number for a grid's gap (its plain gap is 0 and not drawn).
+   */
+  const gapOf = (layer) => {
+    if (layer.layout.dir !== 'GRID') return layer.layout.gap ?? 0;
+    const bound = layer.vars?.gridRowGap ?? layer.vars?.gridColumnGap;
+    const token = bound && byName.get(names.variable(bound));
+    return token ? px(token.value) : (layer.layout.gap ?? 0);
+  };
+
   const typography = (style, at) => {
     const doc = names.textStyle(style);
     const token = doc && byName.get(doc);
@@ -276,7 +287,9 @@ export function buildOracle(
       if (layer.main?.startsWith('Icon/')) {
         const fills = [...new Set(layer.iconFills ?? [])];
         if (fills.length === 1) paint('color', fills);
-      } else if (layer.main) out.component = layer.main;
+      } else if (layer.main)
+        // The component in code where Figma's name is two components' (the overlay's composes).
+        out.component = overlay?.composes?.[layer.main]?.name ?? layer.main;
       if (layer.variant) out.variant = { ...layer.variant };
       const restyled = overlay?.restyles?.[nameOf.get(path)]?.cells ?? [];
       if (restyled.includes('background')) paint('background', layer.fills);
@@ -343,7 +356,7 @@ export function buildOracle(
         paddingRight: right,
         paddingBottom: bottom,
         paddingLeft: left,
-        gap: layer.layout.gap ?? 0,
+        gap: gapOf(layer),
       });
     }
     box();
@@ -383,7 +396,14 @@ export function buildOracle(
         continue;
       }
       if (axis === 'state') {
-        if (PLATFORM_STATES.has(value)) state = value;
+        const parts = overlay?.states?.compound?.[value]?.of;
+        // A compound state is reached by holding its parts: its prop set, its platform state
+        // reached (DatePicker's error-focused: in error, focused).
+        if (parts)
+          for (const part of parts)
+            if (PLATFORM_STATES.has(part)) state = part;
+            else api[part] = true;
+        else if (PLATFORM_STATES.has(value)) state = value;
         else if (!derived[value]) api[value] = true;
         continue;
       }
@@ -641,4 +661,58 @@ export function buildOracle(
     ]),
     variants,
   };
+}
+
+/**
+ * Each IR layer's own name in Figma: its path's last part, below its parent's (`Icon/None`), without
+ * the `#2` the IR tells two of one name apart by, which Figma's names do not carry.
+ */
+const nodeNames = (spec) =>
+  Object.fromEntries(
+    Object.entries(spec.layers).map(([name, l]) => {
+      const parent = l.parent === null ? null : spec.layers[l.parent].path;
+      const node =
+        parent === null
+          ? l.path
+          : l.path.slice(parent === '/' ? 1 : parent.length + 1);
+      return [name, node.replace(/#\d+$/, '')];
+    }),
+  );
+
+/**
+ * What an instance of another component hides of it, in each variant (a Select's rows: the
+ * Dropdown Item's checkbox, second line and icon), from the names Figma records hidden in the
+ * variant (`hidden` on the raw variant), as `hides` on the composed child's entry, for the checks
+ * to expect undrawn. A second pass once every component's IR is built, since a child's layers are
+ * its own IR's; its names alone, never its recipe. A name the component's own layers also carry is
+ * the component's (Segmented Control's `Label`), not a child's.
+ *
+ * @param {object} oracle the component's, changed in place
+ * @param {object} spec the component's IR
+ * @param {object} set the raw component set
+ * @param {Record<string, object>} specs every IR, by component name
+ */
+export function hideInComposed(oracle, spec, set, specs) {
+  const own = new Set(Object.values(nodeNames(spec)));
+  // The fetcher records a variant's hidden names only where they differ from the default's.
+  const byDefault =
+    set.variants.find((v) => v.variant === set.defaultVariant)?.hidden ?? [];
+  const hiddenIn = new Map(
+    set.variants.map((v) => [v.variant, v.hidden ?? byDefault]),
+  );
+  for (const variant of oracle.variants) {
+    const hidden = new Set(
+      (hiddenIn.get(variant.figma) ?? []).filter((n) => !own.has(n)),
+    );
+    if (!hidden.size) continue;
+    for (const entry of Object.values(variant.layers)) {
+      const child = entry.component && specs[entry.component];
+      if (!child) continue;
+      const hides = Object.entries(nodeNames(child))
+        .filter(([name, node]) => name !== 'root' && hidden.has(node))
+        .map(([name]) => name)
+        .sort();
+      if (hides.length) entry.hides = hides;
+    }
+  }
 }

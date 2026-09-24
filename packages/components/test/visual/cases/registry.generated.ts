@@ -4,6 +4,8 @@
 
 import alert from './alert.js';
 import alertSmall from './alert-small.js';
+import autocomplete from './autocomplete.js';
+import autocompleteOpen from './autocomplete-open.js';
 import avatar from './avatar.js';
 import backButton from './backbutton.js';
 import banner from './banner.js';
@@ -13,8 +15,12 @@ import checkbox from './checkbox.js';
 import contextMenu from './context-menu.js';
 import contextMenuItem from './context-menu-item.js';
 import counter from './counter.js';
+import datePickerDayCell from './date-picker-day-cell.js';
+import datePickerOpen from './date-picker-open.js';
+import datePicker from './datepicker.js';
 import divider from './divider.js';
 import dragHandle from './draghandle.js';
+import dropdown from './dropdown.js';
 import dropdownGroupLabel from './dropdown-group-label.js';
 import dropdownItem from './dropdown-item.js';
 import dropdownMenu from './dropdown-menu.js';
@@ -40,6 +46,7 @@ import rowExpand from './rowexpand.js';
 import searchField from './searchfield.js';
 import segmentedControl from './segmented-control.js';
 import segmentedControlItem from './segmented-control-item.js';
+import select from './select.js';
 import skeleton from './skeleton.js';
 import slider from './slider.js';
 import sliderRange from './slider-range.js';
@@ -49,6 +56,8 @@ import statusIndicator from './statusindicator.js';
 import tag from './tag.js';
 import textArea from './text-area.js';
 import textInput from './text-input.js';
+import timePicker from './timepicker.js';
+import timePickerDropdown from './timepicker-dropdown.js';
 import timestamp from './timestamp.js';
 import toast from './toast.js';
 import toggle from './toggle.js';
@@ -60,6 +69,8 @@ import type { VisualCase } from './types.js';
 export const CASES: Record<string, VisualCase> = {
   Alert: alert,
   'Alert Small': alertSmall,
+  Autocomplete: autocomplete,
+  'Autocomplete Open': autocompleteOpen,
   Avatar: avatar,
   BackButton: backButton,
   Banner: banner,
@@ -69,8 +80,12 @@ export const CASES: Record<string, VisualCase> = {
   'Context Menu': contextMenu,
   'Context Menu Item': contextMenuItem,
   Counter: counter,
+  'Date Picker Day Cell': datePickerDayCell,
+  'Date Picker Open': datePickerOpen,
+  DatePicker: datePicker,
   Divider: divider,
   DragHandle: dragHandle,
+  Dropdown: dropdown,
   'Dropdown Group Label': dropdownGroupLabel,
   'Dropdown Item': dropdownItem,
   'Dropdown Menu': dropdownMenu,
@@ -96,6 +111,7 @@ export const CASES: Record<string, VisualCase> = {
   SearchField: searchField,
   'Segmented Control': segmentedControl,
   'Segmented Control Item': segmentedControlItem,
+  Select: select,
   Skeleton: skeleton,
   Slider: slider,
   'Slider Range': sliderRange,
@@ -105,6 +121,8 @@ export const CASES: Record<string, VisualCase> = {
   Tag: tag,
   'Text Area': textArea,
   'Text Input': textInput,
+  TimePicker: timePicker,
+  'TimePicker Dropdown': timePickerDropdown,
   Timestamp: timestamp,
   Toast: toast,
   Toggle: toggle,

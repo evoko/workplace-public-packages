@@ -18,7 +18,7 @@ import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { emitFlutterComponents } from '../emit/flutter-component.mjs';
 import { emitRegistries } from '../emit/registries.mjs';
 import { renderShells } from '../shells/index.mjs';
-import { buildOracle } from '../verify/oracle.mjs';
+import { buildOracle, hideInComposed } from '../verify/oracle.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
@@ -35,6 +35,13 @@ export const COMPONENTS = DESCRIPTORS.map((d) => d.address ?? d.name);
  * named after (`Calendar Day Cell`, where `COMPONENTS` has `calendar/Day Cell`).
  */
 export const NAMES = DESCRIPTORS.map((d) => d.name);
+
+/**
+ * Whether a component has shells, and so is exported: not one checked as another's state
+ * (Autocomplete Open, an open Autocomplete), which has a case and a story alone.
+ */
+export const shelled = (name) =>
+  !DESCRIPTORS.find((d) => d.name === name)?.checkedAs;
 
 export const componentsDir = join(specDir, 'components');
 export const verifyDir = join(specDir, 'verify');
@@ -74,8 +81,15 @@ export function build() {
       overlay,
       fileVersion: catalog.fileVersion,
     });
-    return { spec, deviations, oracle };
+    return { spec, deviations, oracle, set: loaded.set };
   });
+  // What an instance of another component hides of it, once every IR is built (a child may come
+  // after its parent in the list).
+  const specs = Object.fromEntries(
+    built.map((b) => [b.spec.component, b.spec]),
+  );
+  for (const b of built) hideInComposed(b.oracle, b.spec, b.set, specs);
+  for (const b of built) delete b.set;
   // Every file and class is named after the component, so two by one name would overwrite each
   // other: a Figma name two components share needs an overlay codeName for each.
   assertDistinct(built.map((b) => b.spec.component));
@@ -131,7 +145,10 @@ export function emit({ built, tokens, shells }) {
       mui: emitMuiComponents(specs, tokens),
       flutter: emitFlutterComponents(specs, tokens),
       shells: shells.length,
-      registries: emitRegistries(specs.map((s) => s.component)),
+      registries: emitRegistries(
+        specs.map((s) => s.component),
+        { shelled },
+      ),
     },
     deviations: built.flatMap((b) => b.deviations),
   };

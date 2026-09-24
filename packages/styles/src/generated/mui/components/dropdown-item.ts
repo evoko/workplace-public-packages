@@ -129,7 +129,7 @@ export const solarDropdownItemStyles = {
   },
   appearances: {
     default: {
-      '&:hover, &.Mui-focusVisible': {
+      '&:hover, &.Mui-focusVisible, &.Mui-focused': {
         backgroundColor: 'var(--solar-color-surface-hover)',
       },
       '&.SolarDropdownItem-selected': {

@@ -5,8 +5,8 @@ import 'probes.dart';
 
 /// SolarSegmentedControl in one oracle variant, holding the segments Figma draws in it, in its
 /// order, each keyed by its layer, with Figma's own words; the one Figma draws selected is chosen.
-/// Every slot is filled so its look is measured: the label, starred, the helper, and both icons of
-/// every segment.
+/// Every slot is filled so its look is measured: the label, starred, and the helper; the segments'
+/// icons Figma hides (the oracle's hides).
 Widget buildSegmentedControl(
   Map<String, dynamic> v,
   WidgetStatesController _, [
@@ -40,8 +40,6 @@ Widget buildSegmentedControl(
               SolarSegmentedControlItemSize.values,
               variant['size'] as String,
             ),
-            iconLeading: const IconProbe(),
-            iconTrailing: const IconProbe(),
           ),
         ),
     ],

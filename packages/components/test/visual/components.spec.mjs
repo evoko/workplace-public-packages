@@ -352,7 +352,13 @@ function childVariant(oracle, wanted) {
  * restyles it (Toast's Tag), so the root is measured against the parent's entry for those, with
  * the parent's excuses.
  */
-const NAMING = new Set(['component', 'variant', 'figmaVariant', 'hidden']);
+const NAMING = new Set([
+  'component',
+  'variant',
+  'figmaVariant',
+  'hidden',
+  'hides',
+]);
 function checkChild(expected, got, excusedHere, fail, gap) {
   if (!got) return fail({ property: 'present', figma: true, rendered: false });
   const child = childVariant(oracles[expected.component], expected.variant);
@@ -364,8 +370,14 @@ function checkChild(expected, got, excusedHere, fail, gap) {
   own.gaps.forEach(gap);
   for (const [layer, want] of Object.entries(child.layers)) {
     if (want.hidden) continue;
-    const excused = (child.excused ?? []).filter((e) => e.layer === layer);
     const measured = got.layers[layer];
+    // What the instance hides of the child (a Select's rows, their checkbox), it must not draw.
+    if (expected.hides?.includes(layer)) {
+      if (measured?.drawn)
+        fail({ property: `${layer}.hidden`, figma: true, rendered: false });
+      continue;
+    }
+    const excused = (child.excused ?? []).filter((e) => e.layer === layer);
     if (!measured) {
       fail({ property: `${layer}.present`, figma: true, rendered: false });
       continue;

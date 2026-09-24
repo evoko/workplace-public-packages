@@ -1,0 +1,21 @@
+# Hand-written decisions about SOLAR TimePicker Dropdown, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: TimePicker Dropdown
+
+base:
+  reason: >-
+    The panel a TimePicker opens: one list of times, a step apart, as Dropdown Items, the chosen
+    one selected and in sight (owner decision 2026-09-24: one list of times, not Figma's
+    description's hour and minute columns, which its drawing does not draw). A menu's surface on
+    both platforms, as Dropdown Menu's: MUI's MenuList on the web, a listbox the arrow keys move
+    along, floated by MUI's Popover under the field; in Flutter a SolarMenuList, floated by
+    MenuAnchor. Without an anchor it draws in place, as the checks draw it.
+
+set:
+  root.base.width:
+    keyword: HUG
+    reason: >-
+      As a Dropdown Menu, as wide as its widest row, a time as the locale writes it: Figma draws
+      it 136 wide, bound to no variable, a sample of the panel under a field.

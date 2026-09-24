@@ -7,11 +7,11 @@ import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { renderRegistries } from '../src/emit/registries.mjs';
-import { NAMES } from '../src/stages/components.mjs';
+import { NAMES, shelled } from '../src/stages/components.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
-const files = (names) =>
-  Object.fromEntries(renderRegistries(names).map((f) => [f.file, f.text]));
+const files = (names, o) =>
+  Object.fromEntries(renderRegistries(names, o).map((f) => [f.file, f.text]));
 
 describe('renderRegistries', () => {
   const out = files(['Icon Button', 'Button', 'Calendar Day Cell']);
@@ -48,7 +48,7 @@ describe('renderRegistries', () => {
 
   it('matches what is committed for today’s components', () => {
     // The stage writes them on every solar:codegen; CI's rebuild check holds them to it.
-    for (const [file, text] of Object.entries(files(NAMES))) {
+    for (const [file, text] of Object.entries(files(NAMES, { shelled }))) {
       const path = join(packagesDir, file);
       expect(existsSync(path), file).toBe(true);
       expect(readFileSync(path, 'utf8'), file).toBe(text);

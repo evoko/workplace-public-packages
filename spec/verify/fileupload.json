@@ -97,7 +97,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "helper": {
           "color": "#a8a8a8",
@@ -206,7 +207,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "helper": {
           "color": "#a8a8a8",
@@ -315,7 +317,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "helper": {
           "color": "#c00024",
@@ -424,7 +427,8 @@
             "state": "disabled",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "helper": {
           "color": "#00000033",
@@ -687,7 +691,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "helper": {
           "color": "#a8a8a8",

@@ -59,7 +59,9 @@ text fields (`SolarTextInput`, `SolarTextArea`, `SolarSearchField`, `SolarGlobal
 `SolarPasswordInput`, `SolarNumberInput`, `SolarInlineInput`, `SolarTokenInput`, `SolarPINInput`
 and `SolarFileUpload`), and the menus and lists (`SolarDropdownItem`, `SolarDropdownGroupLabel`,
 `SolarDropdownMenu`, `SolarContextMenuItem`, `SolarContextMenu`, `SolarOptionRow`,
-`SolarOptionsList`, `SolarListItem` and `SolarList`) take the same props as the React components
+`SolarOptionsList`, `SolarListItem` and `SolarList`), and the pickers (`SolarSelect`,
+`SolarDropdown`, `SolarAutocomplete`, `SolarDatePicker`, `SolarDatePickerOpen`,
+`SolarDatePickerDayCell`, `SolarTimePicker` and `SolarTimePickerDropdown`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
@@ -92,6 +94,24 @@ control's target: a tap on the row is the control's, hovering it hovers it, and 
 checked by its `RadioGroup<T>`. A `SolarList` puts a `SolarDivider` between each two rows unless
 `dividers` is false, and gives its rows its compactness (`SolarListScope`, `lib/src/solar_list.dart`),
 as Figma draws them; a `SolarListItem` is an avatar row where it is given an `avatar`.
+A `SolarSelect<T>` and a `SolarDropdown<T>` take their choices as `options` (`SolarSelectOption`,
+`SolarDropdownOption`: a value, a label, a helper, an icon), and float them under the field with a
+`SolarMenuAnchor`, opened by a tap, Enter or the down arrow; the field reads as a button named by
+its label, its value the choice. A `SolarAutocomplete<T>` is Flutter's `RawAutocomplete` in a Text
+Input's field, its suggestions a `SolarDropdownMenu`, the highlighted one drawn hovered; where
+nothing matches it shows no panel, as RawAutocomplete does (the web says `noOptionsText`). A
+`SolarDatePicker` holds a `DateTime? value` and calls `onDateChanged`, as Flutter's
+`CalendarDatePicker` does (`onChanged` is its words'), its words MaterialLocalizations' compact
+date; its calendar icon, or the down arrow, floats a `SolarDatePickerOpen` under the field, the
+focus on the chosen day. `SolarDatePickerOpen` takes `initialMonth`, `firstDate`, `lastDate` and
+`selectableDayPredicate`, as CalendarDatePicker does, its month from MaterialLocalizations, its
+weekdays two letters in the app's locale (`intl`, as the web writes them) from the locale's first
+day (`firstDayOfWeekIndex`, or `weekStartsOn`), each day a
+`SolarDatePickerDayCell` the arrow keys move the focus to; `dayBuilder` wraps a day (a test's
+key). A `SolarTimePicker` holds a `TimeOfDay? value` and calls `onTimeChanged`, its words
+`formatTimeOfDay` on the platform's clock, read back on either (`parseSolarTime`,
+`lib/src/solar_time.dart`); its list, a `SolarTimePickerDropdown`, is every `step` minutes from
+`first` to `last`, the chosen one scrolled into sight.
 `SolarFAB` is a FilledButton, which a Scaffold's `floatingActionButton` takes:
 
 ```dart

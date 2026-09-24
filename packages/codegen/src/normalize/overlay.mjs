@@ -18,6 +18,10 @@
  *   rename:       { <axis>: { to, values?, reason } }    Figma axis name to API name; `values` maps
  *                                                        each value too, and true/false makes it a boolean
  *   states:       { rename: { <value>: { to, reason } } }  a state value Figma spells otherwise
+ *                 { compound: { <value>: { of, reason } } }  a state value that is others held at once
+ *                                                        (DatePicker's error-focused, error while
+ *                                                        focused): no prop, but a state the shell
+ *                                                        detects from its parts, as a platform one
  *   layerNames:   { <Figma path>: { name, reason } }     a layer's IR name, where Figma's cannot give one
  *                                                        (a glyph for a name, or two that reduce to one)
  *   same:         { <Figma path>: { as, reason } }       a layer Figma draws anew in some variants that
@@ -57,6 +61,10 @@
  *                                                        fills the slot (Segmented Control's label)
  *   accept:       { <deviation token>: { reason } }      the code keeps its value; Figma's
  *                                                        difference is known and intended
+ *   composes:     { <Figma component>: { name, reason } } the component in code an instance of a
+ *                                                        Figma component is, where Figma's name is
+ *                                                        two components' (Date Picker Open's Day
+ *                                                        Cells are Date Picker Day Cells)
  *
  * `accept` and `follows` are not interchangeable. `accept` leaves the recipe as derived and only
  * records that the Figma variants differing from it are known. When the Figma variant is the
@@ -115,6 +123,7 @@ const FIELDS = {
   derive: ['when'],
   layerNames: ['name'],
   same: ['as'],
+  composes: ['name'],
 };
 const SECTIONS = [
   'codeName',
@@ -209,7 +218,8 @@ export function parseOverlay(text, file) {
   }
   if (doc.states !== undefined) {
     for (const key of Object.keys(doc.states))
-      if (key !== 'rename') fail(`states: unknown section ${key}`);
+      if (!['rename', 'compound'].includes(key))
+        fail(`states: unknown section ${key}`);
     for (const [value, rule] of Object.entries(doc.states.rename ?? {})) {
       if (!rule || typeof rule !== 'object')
         fail(`states.rename.${value} is not a rule`);
@@ -220,6 +230,21 @@ export function parseOverlay(text, file) {
         fail(`states.rename.${value} names no value to rename to`);
       if (typeof rule.reason !== 'string' || rule.reason.trim() === '')
         fail(`states.rename.${value} has no reason`);
+    }
+    for (const [value, rule] of Object.entries(doc.states.compound ?? {})) {
+      if (!rule || typeof rule !== 'object')
+        fail(`states.compound.${value} is not a rule`);
+      for (const key of Object.keys(rule))
+        if (!['of', 'reason'].includes(key))
+          fail(`states.compound.${value}: unknown field ${key}`);
+      if (
+        !Array.isArray(rule.of) ||
+        rule.of.length < 2 ||
+        rule.of.some((v) => typeof v !== 'string')
+      )
+        fail(`states.compound.${value} names no two states it is`);
+      if (typeof rule.reason !== 'string' || rule.reason.trim() === '')
+        fail(`states.compound.${value} has no reason`);
     }
   }
   for (const [section, fields] of Object.entries(FIELDS)) {
@@ -733,6 +758,23 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   ))
     record('states.rename', `${value} → ${rule.to}`, rule.reason);
 
+  // A compound state is no prop but a state of its parts (compoundStates), checked here against
+  // the state axis the IR has, and recorded.
+  for (const [value, rule] of Object.entries(
+    overlay.states?.compound ?? {},
+  ).sort(([a], [b]) => (a < b ? -1 : 1))) {
+    if (!spec.states.includes(value))
+      throw new Error(
+        `${overlay.file}: states.compound.${value}: the state axis has no ${value}`,
+      );
+    for (const part of rule.of)
+      if (!spec.states.includes(part) && spec.api[part]?.type !== 'boolean')
+        throw new Error(
+          `${overlay.file}: states.compound.${value}: ${part} is no state of ${spec.component}`,
+        );
+    record('states.compound', `${value} = ${rule.of.join(' + ')}`, rule.reason);
+  }
+
   // Layer names were given before the layers were named (see namesOf); here they are recorded.
   for (const [path, rule] of sorted('layerNames'))
     record('layerNames', `${path} → ${rule.name}`, rule.reason);
@@ -1073,6 +1115,18 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       ? { prop: rule.prop, reason: rule.reason }
       : { from: rule.from, reason: rule.reason };
     record('caller', at, rule.reason);
+  }
+
+  // The component in code an instance of a Figma component is, where Figma names two alike; the
+  // oracle reads it, to check the instance against that component's own oracle.
+  for (const [main, rule] of sorted('composes')) {
+    const drawn = Object.values(spec.style).some((st) =>
+      JSON.stringify(st).includes(
+        `"component":{"keyword":${JSON.stringify(main)}`,
+      ),
+    );
+    if (!drawn) fail(`composes ${main}: no layer is an instance of ${main}`);
+    record('composes', `${main} → ${rule.name}`, rule.reason);
   }
 
   for (const [token, rule] of sorted('accept')) {

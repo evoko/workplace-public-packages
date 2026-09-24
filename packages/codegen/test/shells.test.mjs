@@ -151,7 +151,7 @@ describe('the stories', () => {
 
 // What the rebuild committed: every component's shells, generated unless its descriptor owns them.
 describe('the committed shells', () => {
-  for (const d of DESCRIPTORS) {
+  for (const d of DESCRIPTORS.filter((x) => !x.checkedAs)) {
     it(`${d.name}: ${d.owned ? 'owned, without the header' : 'generated, under its header'}`, () => {
       const files = [
         join(componentsSrc, shellFileOf(d.name)),

@@ -109,6 +109,7 @@ class SolarPressable extends StatelessWidget {
     this.target = false,
     this.role,
     this.selected,
+    this.focusNode,
   });
 
   /// Called on a tap or the keyboard's activation; null disables it.
@@ -143,6 +144,9 @@ class SolarPressable extends StatelessWidget {
   /// Whether it is announced as selected (a Dropdown Item's choice); null for neither.
   final bool? selected;
 
+  /// Its focus, where the caller keeps it (a calendar's day, which the arrow keys move to).
+  final FocusNode? focusNode;
+
   Widget _targeted(Widget control) =>
       target ? SolarTarget(child: control) : control;
 
@@ -165,6 +169,7 @@ class SolarPressable extends StatelessWidget {
         enabled: enabled,
         child: _targeted(
           FocusableActionDetector(
+            focusNode: focusNode,
             enabled: enabled,
             mouseCursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
             onShowHoverHighlight: (on) => set(WidgetState.hovered, on),

@@ -254,7 +254,9 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  *   [SolarPressable] arguments that announce it (`checked: checked,`). Its callback is one of
  *   `o.params`; the widget takes a `statesController`. `drawnIn` names a parameter, the states
  *   it is drawn in where it is a part of another control (a Dropdown Item's box): given, it is
- *   drawn in them with no input and no semantics of its own.
+ *   drawn in them with no input and no semantics of its own. `focusNode` names the parameter that
+ *   is its focus (a calendar's day); `target: false` leaves it no padded 44 × 44 target, where
+ *   it touches its neighbours (a calendar's days, as a menu's rows).
  * @param {Record<string, string>} [o.values] the value the recipe reads for a prop, where it is
  *   not the prop as given (a mixed box is drawn checked), and for an axis the overlay derives
  *   from content (Tag's type), which is no prop
@@ -352,9 +354,14 @@ final Map<String, Color> restyle;`;
         : ''
     }SolarPressable(
       onPressed: ${o.control.onPressed},
-      statesController: statesController,
+      statesController: statesController,${
+        o.control.focusNode
+          ? `
+      focusNode: ${o.control.focusNode},`
+          : ''
+      }
 ${indent(o.control.semantics, 6)}
-      target: true,
+      target: ${o.control.target === false ? 'false' : 'true'},
       builder: (_, states) => draw(states),
     );`
     : o.pressable

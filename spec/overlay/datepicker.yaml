@@ -1,0 +1,59 @@
+# Hand-written decisions about SOLAR DatePicker, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: DatePicker
+
+base:
+  mui: InputBase
+  flutter: TextField
+  reason: >-
+    A date typed and picked (owner decision 2026-09-24): the field is a Text Input's, MUI's
+    InputBase on the web and an undecorated TextField in Flutter, taking the date typed in the
+    locale's figures ("Date format follows locale", its description says), and its calendar icon,
+    a click, or the down arrow opens a Date Picker Open under it, floating, to pick one. SOLAR's
+    label above and helper below are the shell's own, as a Text Input's.
+
+states:
+  compound:
+    error-focused:
+      of: [error, focus]
+      reason: >-
+        Figma's description says it: "state error-focused is flagged to fold into error + focus in
+        a breaking cut". It is a field in error while it has the focus, which the shell detects as
+        it does the focus: no prop the caller could set against the field's focus.
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [value]
+      - value: false
+    reason: >-
+      As a Text Input's: filled where it holds a date, which follows from its value, so it is no
+      prop the caller could set against its content.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A field spans its container, as a Text Input does: Figma draws it hugging its sample date, a
+      sample. The caller sizes it.
+  field.base.width:
+    keyword: FILL
+    reason: >-
+      The field spans the component, as a Text Input's does, and the words take the room its icon
+      leaves; Figma's field hugs its sample date.
+
+bind:
+  iconCalendar.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.
+
+allowLiteral:
+  field.height:
+    reason: >-
+      As Text Input: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap); 40 (md) and 32 (sm) are the field's, as its description gives them.

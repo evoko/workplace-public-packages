@@ -1,0 +1,711 @@
+# Hand-written decisions about SOLAR Date Picker Open, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Date Picker Open
+
+base:
+  reason: >-
+    The calendar a DatePicker opens, or the page holds inline: a month's header with the previous
+    and next months, its weekdays, and a grid of Date Picker Day Cells, one date chosen (owner
+    decisions 2026-09-24: single dates; the week starts on the locale's first day). Bespoke on
+    both platforms, a grid the arrow keys move the focus in, drawn with the shared layer helpers;
+    its dates from the platform's own calendar, not a picker library, which draws its own days.
+
+composes:
+  Day Cell:
+    name: Date Picker Day Cell
+    reason: >-
+      Figma names two components Day Cell; the calendar's grid holds the date picker's (the
+      overlay of components/inputs Day Cell names it Date Picker Day Cell).
+
+follows:
+  root.borderWidth:
+    axes: [inline]
+    reason: >-
+      A floating calendar has an edge, shadow and corners, a surface of its own; one in the page
+      has none, as its description says ("inline embeds the calendar in the page instead of
+      floating it").
+  root.radius:
+    axes: [inline]
+    reason: As the edge, by inline.
+  root.direction:
+    axes: [type]
+    reason: A double calendar lays its two months side by side, a single one stacks its parts.
+
+set:
+  root.appearance.inline=true, type=double.default.width:
+    keyword: HUG
+    reason: >-
+      The two months' width, 588, is what the calendar hugs (see the accept below): it is drawn
+      hugging them, as the single calendar is.
+  dayGridDayCell.base.width:
+    none: true
+    reason: >-
+      A day is a Date Picker Day Cell, whose 36px is its own: the grid lays it out and never
+      sizes it.
+  dayGridDayCell.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell2.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell2.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell3.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell3.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell4.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell4.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell5.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell5.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell6.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell6.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell7.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell7.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell8.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell8.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell9.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell9.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell10.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell10.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell11.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell11.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell12.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell12.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell13.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell13.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell14.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell14.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell15.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell15.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell16.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell16.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell17.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell17.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell18.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell18.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell19.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell19.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell20.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell20.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell21.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell21.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell22.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell22.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell23.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell23.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell24.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell24.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell25.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell25.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell26.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell26.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell27.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell27.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell28.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell28.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell29.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell29.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell30.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell30.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell31.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell31.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell32.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell32.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell33.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell33.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell34.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell34.base.height:
+    none: true
+    reason: As its width, its own.
+  dayGridDayCell35.base.width:
+    none: true
+    reason: As the first day's, its own.
+  dayGridDayCell35.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell2.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell2.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell3.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell3.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell4.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell4.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell5.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell5.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell6.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell6.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell7.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell7.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell8.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell8.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell9.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell9.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell10.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell10.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell11.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell11.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell12.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell12.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell13.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell13.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell14.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell14.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell15.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell15.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell16.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell16.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell17.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell17.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell18.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell18.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell19.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell19.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell20.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell20.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell21.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell21.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell22.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell22.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell23.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell23.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell24.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell24.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell25.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell25.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell26.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell26.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell27.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell27.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell28.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell28.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell29.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell29.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell30.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell30.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell31.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell31.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell32.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell32.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell33.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell33.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell34.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell34.base.height:
+    none: true
+    reason: As its width, its own.
+  containerDayGridDayCell35.base.width:
+    none: true
+    reason: As the first day's, its own.
+  containerDayGridDayCell35.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell2.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell2.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell3.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell3.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell4.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell4.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell5.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell5.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell6.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell6.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell7.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell7.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell8.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell8.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell9.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell9.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell10.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell10.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell11.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell11.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell12.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell12.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell13.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell13.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell14.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell14.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell15.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell15.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell16.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell16.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell17.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell17.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell18.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell18.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell19.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell19.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell20.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell20.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell21.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell21.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell22.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell22.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell23.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell23.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell24.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell24.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell25.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell25.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell26.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell26.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell27.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell27.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell28.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell28.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell29.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell29.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell30.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell30.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell31.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell31.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell32.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell32.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell33.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell33.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell34.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell34.base.height:
+    none: true
+    reason: As its width, its own.
+  container2DayGridDayCell35.base.width:
+    none: true
+    reason: As the first day's, its own.
+  container2DayGridDayCell35.base.height:
+    none: true
+    reason: As its width, its own.
+
+bind:
+  monthHeaderIconArrowLeft.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the arrow's height is already bound to it.
+  monthHeaderIconArrowRight.width:
+    literal: 20
+    token: icon.md
+    reason: As the previous month's arrow.
+  containerMonthHeaderIconArrowLeft.width:
+    literal: 20
+    token: icon.md
+    reason: As the single calendar's arrow.
+  container2MonthHeaderIconArrowRight.width:
+    literal: 20
+    token: icon.md
+    reason: As the single calendar's arrow.
+
+allowLiteral:
+  monthHeader.height:
+    reason: >-
+      The month's header row is 32 tall, bound to nothing: SOLAR has no size token for it (the
+      design review's question on sizes with no variable).
+  containerMonthHeader.height:
+    reason: As the single calendar's header.
+  container2MonthHeader.height:
+    reason: As the single calendar's header.
+
+accept:
+  component.date picker open.root.width@inline=true, type=double:
+    reason: >-
+      The two months' width, 588, is what the calendar hugs: two grids of seven 36px days and their
+      gaps, and its padding and gap. It hugs, as the single calendar does.
+  component.date picker open.sparse@type=double:
+    reason: >-
+      Figma draws no floating double calendar: it is the inline one's two months on the floating
+      calendar's surface, as each axis draws them.

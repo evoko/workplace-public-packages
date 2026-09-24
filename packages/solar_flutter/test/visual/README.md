@@ -20,7 +20,10 @@ run by `flutter test` with the rest of the package.
   tertiary among them). Excused entries on a layer the variant does not draw are not expected.
   The caller's children a component holds in a slot (a menu's rows, a list's items) are keyed by
   their Figma layers in the builder, and `measureHeld` (`layers.dart`) measures each as its own
-  check does.
+  check does (a calendar's days, through `dayBuilder`; a time list's rows, `optionBuilder`). The
+  layers of a child the parent's instance hides (the oracle's `hides`) must not be drawn. A
+  layer's corners are measured each (`radiusTopLeft`…), as a range's day draws them, and a placed
+  layer from each edge of its parent, `x`, `y`, `right` and `bottom`.
 
 - **States** are forced through a `WidgetStatesController` (hover, pressed, focus), as a user
   reaches them: a pressed widget is hovered too, as a pointer pressing it is and as the web check

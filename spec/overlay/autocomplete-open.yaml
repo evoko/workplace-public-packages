@@ -1,0 +1,25 @@
+# Hand-written decisions about SOLAR Autocomplete Open, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Autocomplete Open
+
+base:
+  reason: >-
+    An open Autocomplete, no component of its own (owner decision 2026-09-24): the field over its
+    suggestions, a Dropdown Menu, apart by this frame's gap, which Autocomplete floats its
+    suggestions under the field by. It is checked as an open Autocomplete, its layers the
+    Autocomplete and its menu.
+
+set:
+  dropdownMenu.base.width:
+    keyword: FILL
+    reason: >-
+      The suggestions are as wide as the field, as MUI's and Flutter's autocompletes draw them:
+      Figma draws them 320, the field's width.
+  autocomplete.base.variant.state:
+    keyword: default
+    reason: >-
+      Figma draws the field focused, as it is while its suggestions show; the check measures the
+      open panel with the focus elsewhere (a page holds one focus, and each variant is measured at
+      rest but for its own state), and Autocomplete's own check measures its focus.

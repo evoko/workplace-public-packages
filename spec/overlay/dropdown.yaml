@@ -1,0 +1,62 @@
+# Hand-written decisions about SOLAR Dropdown, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Dropdown
+
+base:
+  mui: Select
+  reason: >-
+    The same control as Select, in Dropdown's own look (owner decision 2026-09-24): MUI's Select on
+    InputBase on the web, its panel a Dropdown Menu, since Figma draws Dropdown none; a drawn field
+    under a SolarMenuAnchor in Flutter. A leading icon, and a chevron that turns up while open.
+
+states:
+  rename:
+    pressed:
+      to: open
+      reason: >-
+        Dropdown's pressed is its open state: the chevron turns up and the field takes the focus
+        ring, as Select's open does ("state=active is legacy — migrate to pressed", says its
+        description). The code draws it while the panel is open, as Select's.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160
+      (sm), samples. The caller sizes it, as a Select.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, a sample.
+  field.appearance.default.focus.borderColor:
+    token: color.border.feedback.focus.strong
+    reason: >-
+      Figma draws Dropdown no focus state, and a visible focus is SOLAR's floor: a focused field
+      draws Select's focus, its edge and ring, as Dropdown's own open field does. The design review
+      asks SOLAR to draw it.
+  field.appearance.default.focus.shadow:
+    token: shadow.focus.default
+    reason: As its edge, Select's focus ring.
+
+bind:
+  leadingIcon.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the icon's height is
+      already bound to them.
+  trailingIcon.width:
+    tokens: { 20: icon.md, 16: icon.sm }
+    reason: As the leading icon's.
+  iconChevronDown.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: As the icons', a step smaller for the chevron.
+  iconChevronUp.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: As the down chevron's.
+
+allowLiteral:
+  field.height:
+    reason: >-
+      As Select's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
+      governance gap). The field is drawn 40 (md) and 32 (sm).

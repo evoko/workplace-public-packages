@@ -556,18 +556,18 @@ allowLiteral:
     expect(on('Icon Button')).toMatchObject({ token: 'inset.none' });
   });
 
-  it('leaves a gap whose layout it names no token for (a grid) to its component', () => {
+  it('reads a grid’s gap from its row gap, which Figma binds, and leaves it no default to decide', () => {
     const picker = buildComponentSpec(
       loadComponent(catalog, 'Date Picker Open'),
       { names, fileVersion: catalog.fileVersion, defaults },
     );
     const grid = picker.spec.style.dayGrid.base;
     expect(grid.direction).toMatchObject({ keyword: 'GRID' });
-    expect(grid.gap).toMatchObject({ literal: 0 });
+    expect(grid.gap).toMatchObject({ token: 'inset.2xs' });
     expect(
       picker.deviations.find(
         (d) => d.token === 'component.date picker open.dayGrid.gap#unbound',
-      ).decision,
+      ),
     ).toBeUndefined();
   });
 

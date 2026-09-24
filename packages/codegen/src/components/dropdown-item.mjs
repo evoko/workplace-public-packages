@@ -45,12 +45,13 @@ export default {
       },
       [`& .${P}-helper`]: { whiteSpace: 'normal' },
     }),
-    // A focused row, the menu's keyboard highlight, draws Figma's hover. A selected row keeps its
-    // fill under the pointer, and a disabled one beats both; each is a class the shell sets, as
-    // MUI's own selected fill is not the recipe's.
+    // A focused row, the menu's keyboard highlight, draws Figma's hover, as does the row an
+    // Autocomplete highlights while its input keeps the focus (MUI marks it Mui-focused). A
+    // selected row keeps its fill under the pointer, and a disabled one beats both; each is a class
+    // the shell sets, as MUI's own selected fill is not the recipe's.
     states: {
       default: null,
-      hover: '&:hover, &.Mui-focusVisible',
+      hover: '&:hover, &.Mui-focusVisible, &.Mui-focused',
       selected: `&.${P}-selected`,
       disabled: '&.Mui-disabled',
     },

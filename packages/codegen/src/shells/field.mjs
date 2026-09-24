@@ -114,6 +114,10 @@ export function fieldStates(name, props, { field = 'field' } = {}) {
  * @param {string} [o.imports] more import lines
  * @param {string} [o.textField] the TextField's arguments beyond the field's own
  * @param {string} [o.prelude] statements in the builder, before the layers
+ * @param {string} [o.typeParams] the widget's type parameters (`<T>`: Autocomplete's options)
+ * @param {(field: string) => string} [o.around] what the widget builds around the field, given
+ *   `field`, a function of the words' controller and focus node (Autocomplete's RawAutocomplete,
+ *   whose builder hands it both)
  */
 export function fieldFlutter(spec, o) {
   const name = spec.component;
@@ -150,7 +154,7 @@ ${icons.length ? "import '../generated/icons.dart';\n" : ''}import '../solar_fie
 import '../solar_layers.dart';
 ${o.imports ? `${o.imports.trim()}\n` : ''}import 'solar_theme_of.dart';
 
-class Solar${P} extends StatelessWidget {
+class Solar${P}${o.typeParams ?? ''} extends StatelessWidget {
   const Solar${P}({
     super.key,
 ${api.map(([prop, def]) => `    ${dartParam(P, prop, def)},`).join('\n')}
@@ -192,9 +196,9 @@ ${tree}
   Widget build(BuildContext context) {
     final t = solarThemeOf(context);
     final enabled = !disabled;
-    return SolarField(
-      controller: controller,
-      focusNode: focusNode,
+    Widget field([TextEditingController? text, FocusNode? focus]) => SolarField(
+      controller: text ?? controller,
+      focusNode: focus ?? focusNode,
       statesController: statesController,${o.obscured ? '\n      obscured: true,' : ''}
       builder: (context, field) {
         final states = field.states;
@@ -252,6 +256,7 @@ ${(o.unread ?? [])
         ).layer('root');
       },
     );
+    return ${o.around ? o.around('field') : 'field()'};
   }
 }
 `;

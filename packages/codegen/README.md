@@ -203,6 +203,13 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      base's standing.
    - **A colour the caller gives** (Avatar's): an API prop of `type: 'color'`, a CSS colour on the
      web and a `Color` in Flutter, keying nothing in the recipe (the overlay's `caller`, below).
+     What F7 (the pickers) added:
+   - **Grids.** A `GRID` layout (Date Picker Open's days) is the `direction` keyword `GRID`, its
+     gap read from Figma's `gridRowGap` binding (`inset.2xs`); the MUI recipe draws it
+     `display: grid`, the shell's resets give it its columns, and Flutter's SolarLayers stacks the
+     rows a shell gives it (`content`) by the gap.
+   - **A text placed by position** (the double calendar's month labels) has `x` and `y` cells, as
+     any placed layer; before, a text's position was dropped, though the oracle measured it.
 3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
    demoted — hover, pressed and focus become platform states, disabled and loading stay props;
    states drawn as `false/true` axes of their own, as Checkbox's are, are first folded into one
@@ -218,6 +225,15 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    model says, a raw value bound to the token of the same value, an allowed literal, an accepted
    finding. Every rule needs a reason, and a rule that no longer matches the IR fails the build. A state
    value Figma spells otherwise (`states.rename`) is renamed before the recipe, as `follows` is.
+   A state value that is two others at once (`states.compound`: DatePicker's `error-focused`,
+   `of: [error, focus]`) is no prop but a state its shell detects, as a platform state: the MUI
+   state table gives it a selector (`&.SolarDatePicker-error:has(… .Mui-focused)`), `flutter.states`
+   its test, and the oracle reaches it by setting its prop parts and reaching its platform one.
+   `composes` names the component a Figma instance is in code where Figma's name is two
+   components' (Date Picker Open's `Day Cell` is `Date Picker Day Cell`); the oracle checks the
+   child against that one's oracle. A composed child's oracle entry says which of the child's
+   layers the instance hides (`hides`, from the variant's hidden layers: a Select's rows, their
+   checkbox, icon and helper), and both checks fail where the child draws one.
    `bind` takes one literal and its token, or `tokens` mapping several (Icon Button's icon is
    `{ 12: icon.xs, 16: icon.sm, 20: icon.md }`), each checked value for value; a bind that would leave a raw value in the cell fails.
    `rename` may map values too, and one whose values become `true` and `false` makes the prop a
@@ -475,7 +491,23 @@ axis=value, …>` gives each layer and property of those variants as a chain: Fi
      draws something ahead of the layers (Options List's legend). The menus share
      `src/shells/menu.mjs`: `menuReact`, their surface around MUI's MenuList floating where it is
      anchored (`components/src/internal/float.tsx`), and `menuResets` with `MENU_MAX_HEIGHT`, the
-     one raw menu height, a governance gap. A drawn icon is marked `<prefix>-drawnIcon` on the
+     one raw menu height, a governance gap; `menuReact` also builds rows of its own (`rowsFrom`:
+     TimePicker Dropdown's times, with `props`, `own`, `prelude`, a list `role` and `listRef`) and
+     gives its rows another menu's size (`sizedBy: 'DropdownMenuSizeContext'`). The pickers share
+     `src/shells/picker.mjs` (Select and Dropdown: MUI's Select on InputBase, the panel the
+     component's own layer or a Dropdown Menu; a drawn field under `SolarMenuAnchor` in Flutter)
+     and `src/shells/typed.mjs` (DatePicker and TimePicker: a field whose words are read back as
+     the value, its icon a button opening the panel, `error-focused` compound); `fieldFlutter`
+     takes `typeParams` and `around`, what the widget builds around its field (Autocomplete's
+     RawAutocomplete). Their dates and times are hand-written runtime helpers, not a picker
+     library: `components/src/internal/calendar.ts` and `clock.ts`, and `solar_flutter`'s
+     `lib/src/solar_time.dart` beside MaterialLocalizations. A descriptor's `checkedAs` names the
+     component a Figma component is the state of (Autocomplete Open, an open Autocomplete): it
+     has a recipe, a case on each platform and a story, but no shells, and the barrels leave it
+     out. `shells.slots` says how both shells name a slot they name otherwise (`required:
+'mandatory'`, `{react, flutter}`), or `null` where the shell fills it itself (Select's
+     chevron, the calendar's month). `drawnFlutter`'s `control` takes `focusNode` (a calendar's
+     day, which the arrow keys move to) and `target: false` (days that touch, as rows do). A drawn icon is marked `<prefix>-drawnIcon` on the
      web, a class no layer is named, so a layer named `icon` (ListItem's) styles itself alone.
      Every control's recipe gives it a 44 × 44 target that takes no room
      (`src/shells/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input

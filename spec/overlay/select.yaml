@@ -1,0 +1,67 @@
+# Hand-written decisions about SOLAR Select, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Select
+
+base:
+  mui: Select
+  reason: >-
+    One choice from a list, the listbox a field opens: MUI's Select on the web, on InputBase as the
+    field, for its combobox, its keyboard (the arrow keys open it, move and choose; a typed letter
+    finds a row) and its form value; its panel drawn as Figma draws it, its rows Dropdown Items
+    (owner decisions 2026-09-24: one control with Dropdown, which draws its own look; the panel
+    Select's own). In Flutter the field is drawn and pressable, the panel floated under it by
+    MenuAnchor. Its label, helper and field drawn with the shared layer helpers.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 200
+      (sm), samples. The caller sizes it, as a Text Input.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, a sample.
+  dropdownMenu.base.width:
+    keyword: FILL
+    reason: >-
+      The panel is as wide as its field, as MUI's Select and Flutter's anchor draw it: Figma draws
+      it 240 (md) and 200 (sm), the field's widths.
+  dropdownMenu.size.sm.width:
+    keyword: FILL
+    reason: As md's, the field's.
+  dropdownItem2.appearance.default.open.variant.state:
+    keyword: default
+    reason: >-
+      Figma draws the open panel's second row hovered, a sample of a pointer over it, not of the
+      list: every row is drawn at rest, and hovers as a Dropdown Item does.
+
+controlDraws:
+  dropdownMenu:
+    cells: [x, y, right, bottom, height]
+    reason: >-
+      The panel floats under the field, placed there by MUI's menu (and Flutter's MenuAnchor),
+      which keeps it on the page: Figma draws it in the component, 4px below the field. It is as
+      tall as its rows, Dropdown Items, which the menu scrolls past its room: Figma's md rows are 34
+      tall, a stale size (a Dropdown Item's md row is 44), and its edge takes no room. Its width
+      and look are the recipe's.
+
+bind:
+  trailingIcon.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: >-
+      Same values, governed tokens, a step of the icon ladder per size; the chevron's height is
+      already bound to them.
+
+allowLiteral:
+  field.height:
+    reason: >-
+      As Text Input's: SOLAR publishes no control height token (owner decision 2026-09-23, raised
+      as a governance gap). The field is drawn 40 (md) and 32 (sm), as the description says.
+
+accept:
+  component.select.dropdownItem4.variant.state@size=sm:
+    reason: >-
+      The rows are samples: md's fourth is a disabled option, sm's a resting one. Each is a
+      Dropdown Item, disabled where the caller says.

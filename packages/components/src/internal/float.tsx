@@ -11,6 +11,7 @@
  */
 
 import Popover from '@mui/material/Popover';
+import Popper, { type PopperProps } from '@mui/material/Popper';
 import type { ReactElement } from 'react';
 
 export interface Floating {
@@ -22,6 +23,13 @@ export interface Floating {
   open?: boolean;
   /** Called to close a floating menu: Escape, a click outside, Tab, or a choice. */
   onClose?: () => void;
+  /**
+   * Floats it without taking the focus, in MUI's Popper, which neither holds the focus nor closes
+   * it: a combobox's suggestions, which its input keeps the focus and the keyboard for.
+   */
+  keepFocus?: boolean;
+  /** More of the Popper's props, where it keeps the focus (`disablePortal`). */
+  popperProps?: Partial<PopperProps>;
 }
 
 /** Whether the menu floats: given something to float from. */
@@ -34,9 +42,22 @@ export function Float({
   anchorPosition,
   open = false,
   onClose,
+  keepFocus = false,
+  popperProps,
   children,
 }: Floating & { children: ReactElement }) {
   if (!floats({ anchorEl, anchorPosition })) return children;
+  if (keepFocus)
+    return (
+      <Popper
+        placement="bottom-start"
+        {...popperProps}
+        open={open && anchorEl != null}
+        anchorEl={anchorEl}
+      >
+        {children}
+      </Popper>
+    );
   return (
     <Popover
       open={open && (anchorPosition !== undefined || anchorEl != null)}

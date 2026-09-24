@@ -136,6 +136,8 @@ const measured = [
   'height',
   'x',
   'y',
+  'right',
+  'bottom',
   'opacity',
   'color',
   'fontFamily',

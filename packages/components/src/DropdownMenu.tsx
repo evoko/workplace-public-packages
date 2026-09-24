@@ -17,7 +17,7 @@
  */
 
 import Box, { type BoxProps } from '@mui/material/Box';
-import MenuList from '@mui/material/MenuList';
+import MenuList, { type MenuListProps } from '@mui/material/MenuList';
 import {
   createContext,
   forwardRef,
@@ -47,12 +47,13 @@ const TREE: Record<string, string[]> = {
   ],
 };
 
-const DropdownMenuContext = createContext<
+/** The menu's size, which its rows take; a picker that holds its own panel of rows gives it too. */
+export const DropdownMenuSizeContext = createContext<
   SolarDropdownMenuProps['size'] | undefined
 >(undefined);
 
 /** The size of the DropdownMenu around a row, which the row takes; undefined outside one. */
-export const useDropdownMenuSize = () => useContext(DropdownMenuContext);
+export const useDropdownMenuSize = () => useContext(DropdownMenuSizeContext);
 
 export interface DropdownMenuProps
   extends
@@ -65,29 +66,45 @@ export interface DropdownMenuProps
     > {
   /** The rows and headings: DropdownItems, and DropdownGroupLabels between them. */
   children: ReactNode;
+  /** More of the list's props: a combobox's listbox (`role`, `id`, its handlers). */
+  listProps?: MenuListProps;
 }
 
 export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
   function DropdownMenu(
-    { size, children, anchorEl, anchorPosition, open, onClose, sx, ...rest },
+    {
+      size,
+      children,
+      anchorEl,
+      anchorPosition,
+      open,
+      onClose,
+      keepFocus,
+      popperProps,
+      listProps,
+      sx,
+      ...rest
+    },
     ref,
   ) {
     const floating = floats({ anchorEl, anchorPosition });
     const parts = solarDropdownMenuCompose({ size });
     // Tab leaves a floating menu, as MUI's Menu does: it closes, and the focus moves on.
     const onKeyDown = (event: KeyboardEvent) => {
-      if (floating && event.key === 'Tab') {
+      if (floating && !keepFocus && event.key === 'Tab') {
         event.preventDefault();
         onClose?.();
       }
     };
     return (
-      <DropdownMenuContext.Provider value={size ?? 'md'}>
+      <DropdownMenuSizeContext.Provider value={size ?? 'md'}>
         <Float
           anchorEl={anchorEl}
           anchorPosition={anchorPosition}
           open={open}
           onClose={onClose}
+          keepFocus={keepFocus}
+          popperProps={popperProps}
         >
           <Box
             ref={ref}
@@ -110,8 +127,9 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
                     className={className}
                     style={style}
                     disablePadding
-                    autoFocusItem={floating && open}
+                    autoFocusItem={floating && open && !keepFocus}
                     onKeyDown={onKeyDown}
+                    {...listProps}
                   >
                     {rows}
                   </MenuList>
@@ -120,7 +138,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             })}
           </Box>
         </Float>
-      </DropdownMenuContext.Provider>
+      </DropdownMenuSizeContext.Provider>
     );
   },
 );

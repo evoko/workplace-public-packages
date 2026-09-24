@@ -126,6 +126,19 @@ export function renderShells(
     };
     const react = join(src, shellFileOf(name));
     const widget = join(flutter, flutterFileOf(name));
+    // Checked as another component's state (Autocomplete Open, an open Autocomplete): no shells,
+    // but its story.
+    if (d.checkedAs) {
+      if (d.templates || d.owned)
+        throw new Error(
+          `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, so it has no shells, templates or owned files`,
+        );
+      if (!byName[d.checkedAs])
+        throw new Error(
+          `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, which is no component`,
+        );
+      return [story];
+    }
     if (d.owned) {
       if (d.templates)
         throw new Error(

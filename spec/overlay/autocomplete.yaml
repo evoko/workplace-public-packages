@@ -1,0 +1,52 @@
+# Hand-written decisions about SOLAR Autocomplete, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Autocomplete
+
+base:
+  mui: InputBase
+  reason: >-
+    A field that suggests matching options as the user types: on the web MUI's useAutocomplete,
+    its field MUI's InputBase as Text Input's is, its suggestions a Dropdown Menu that floats under
+    the field without taking the focus (the input keeps it, and the keyboard: the arrow keys move
+    the highlight, Enter chooses, Escape closes); in Flutter RawAutocomplete, its field Text
+    Input's. Figma's open state is Autocomplete Open, which is its open look (owner decision
+    2026-09-24).
+
+derive:
+  filled:
+    when:
+      - value: true
+        props: [inputValue]
+      - value: false
+    reason: >-
+      A field is filled where it holds words, as Text Input's is: its words are drawn as typed,
+      not as the placeholder. It follows from what is typed, so it is no prop the caller could set
+      against it.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A field spans its container, as a form row lays it out: Figma draws it 240 wide (md) and 160
+      (sm), samples. The caller sizes it, as a Text Input.
+  root.size.sm.width:
+    keyword: FILL
+    reason: As md's, a sample.
+
+bind:
+  leadingIcon.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+  trailingIcon.width:
+    literal: 16
+    token: icon.sm
+    reason: As the leading icon's.
+
+allowLiteral:
+  field.height:
+    reason: >-
+      As Text Input's: SOLAR publishes no control height token (owner decision 2026-09-23, raised
+      as a governance gap). The field is drawn 40 (md) and 32 (sm).

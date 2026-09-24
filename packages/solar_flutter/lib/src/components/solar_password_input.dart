@@ -98,9 +98,9 @@ class SolarPasswordInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = solarThemeOf(context);
     final enabled = !disabled;
-    return SolarField(
-      controller: controller,
-      focusNode: focusNode,
+    Widget field([TextEditingController? text, FocusNode? focus]) => SolarField(
+      controller: text ?? controller,
+      focusNode: focus ?? focusNode,
       statesController: statesController,
       obscured: true,
       builder: (context, field) {
@@ -198,5 +198,6 @@ class SolarPasswordInput extends StatelessWidget {
         ).layer('root');
       },
     );
+    return field();
   }
 }

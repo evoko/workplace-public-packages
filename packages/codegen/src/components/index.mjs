@@ -12,11 +12,17 @@
  *              in Flutter, not the widget (Radio's checked, its RadioGroup's)
  *   shells     how the shells name what the IR names otherwise, where they do: `label: 'label'`, a
  *              label that is a prop, not the children (a field's), and `flutter`, the props
- *              Flutter takes by another name (a field's `value` is its `controller`'s)
+ *              Flutter takes by another name (a field's `value` is its `controller`'s), and
+ *              `slots`, how both name a slot where they name it otherwise: one name
+ *              (`required: 'mandatory'`), one per platform (`{react, flutter}`), or null where the
+ *              shell fills it itself (Select's chevron, a calendar's month)
  *   templates  react and flutter: functions of the IR that solar:codegen renders into the shells
  *              on every run (src/shells/); the shells are never edited, the templates are
  *   owned      true for a component whose shells are hand-edited files instead: it has no
  *              templates, and solar:codegen leaves its shells alone (src/shells/index.mjs)
+ *   checkedAs  the component a Figma component is the state of, where it is no component of its
+ *              own (Autocomplete Open, an open Autocomplete): it has a recipe, a case on each
+ *              platform and a story, but no shells, and nothing is exported for it
  */
 
 import { readdirSync } from 'node:fs';

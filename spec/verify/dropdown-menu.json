@@ -51,7 +51,8 @@
             "size": "md",
             "state": "default"
           },
-          "width": 240
+          "width": 240,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem2": {
           "component": "Dropdown Item",
@@ -59,7 +60,8 @@
             "size": "md",
             "state": "default"
           },
-          "width": 240
+          "width": 240,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem3": {
           "component": "Dropdown Item",
@@ -67,7 +69,8 @@
             "size": "md",
             "state": "default"
           },
-          "width": 240
+          "width": 240,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem4": {
           "component": "Dropdown Item",
@@ -75,7 +78,8 @@
             "size": "md",
             "state": "default"
           },
-          "width": 240
+          "width": 240,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem5": {
           "component": "Dropdown Item",
@@ -83,7 +87,8 @@
             "size": "md",
             "state": "default"
           },
-          "width": 240
+          "width": 240,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem6": {
           "component": "Dropdown Item",
@@ -91,7 +96,8 @@
             "size": "md",
             "state": "default"
           },
-          "width": 240
+          "width": 240,
+          "hides": ["checkbox", "helper", "icon"]
         }
       },
       "excused": [
@@ -196,7 +202,8 @@
             "size": "sm",
             "state": "default"
           },
-          "width": 160
+          "width": 160,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem2": {
           "component": "Dropdown Item",
@@ -204,7 +211,8 @@
             "size": "sm",
             "state": "default"
           },
-          "width": 160
+          "width": 160,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem3": {
           "component": "Dropdown Item",
@@ -212,7 +220,8 @@
             "size": "sm",
             "state": "default"
           },
-          "width": 160
+          "width": 160,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem4": {
           "component": "Dropdown Item",
@@ -220,7 +229,8 @@
             "size": "sm",
             "state": "default"
           },
-          "width": 160
+          "width": 160,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem5": {
           "component": "Dropdown Item",
@@ -228,7 +238,8 @@
             "size": "sm",
             "state": "default"
           },
-          "width": 160
+          "width": 160,
+          "hides": ["checkbox", "helper", "icon"]
         },
         "dropdownItem6": {
           "component": "Dropdown Item",
@@ -236,7 +247,8 @@
             "size": "sm",
             "state": "default"
           },
-          "width": 160
+          "width": 160,
+          "hides": ["checkbox", "helper", "icon"]
         }
       },
       "excused": [

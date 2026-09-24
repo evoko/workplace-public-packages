@@ -41,7 +41,8 @@
             "danger": "false"
           },
           "width": 138,
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "secondaryCTA": {
           "component": "Button",
@@ -51,7 +52,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "button3": {
           "component": "Button",
@@ -61,7 +63,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         }
       },
       "excused": [
@@ -127,7 +130,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "secondaryCTA": {
           "component": "Button",
@@ -137,7 +141,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "button3": {
           "hidden": true,
@@ -149,7 +154,8 @@
             "danger": "false"
           },
           "width": 431,
-          "height": 40
+          "height": 40,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         }
       },
       "excused": [
@@ -218,7 +224,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 48
+          "height": 48,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         },
         "secondaryCTA": {
           "component": "Button",
@@ -228,7 +235,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 48
+          "height": 48,
+          "hides": ["counter", "iconLeading", "iconTrailing", "spinner"]
         }
       },
       "excused": [

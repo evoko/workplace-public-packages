@@ -50,12 +50,12 @@ describe('a focused row draws the hover', () => {
     );
   });
 
-  it('on the web, where the hover matches MUI’s focus-visible, and the row’s box follows it', () => {
+  it('on the web, where the hover matches MUI’s focus-visible and an Autocomplete’s highlight, and the row’s box follows it', () => {
     const recipe = readFileSync(
       join(packagesDir, 'styles/src/generated/mui/components/dropdown-item.ts'),
       'utf8',
     );
-    expect(recipe).toContain("'&:hover, &.Mui-focusVisible'");
+    expect(recipe).toContain("'&:hover, &.Mui-focusVisible, &.Mui-focused'");
     const checkbox = readFileSync(
       join(packagesDir, 'styles/src/generated/mui/components/checkbox.ts'),
       'utf8',

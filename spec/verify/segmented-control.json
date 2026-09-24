@@ -81,7 +81,8 @@
             "state": "default",
             "size": "md"
           },
-          "height": 32
+          "height": 32,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem2": {
           "component": "Segmented Control Item",
@@ -90,7 +91,8 @@
             "state": "default",
             "size": "md"
           },
-          "height": 32
+          "height": 32,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem3": {
           "component": "Segmented Control Item",
@@ -99,7 +101,8 @@
             "state": "default",
             "size": "md"
           },
-          "height": 32
+          "height": 32,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem4": {
           "component": "Segmented Control Item",
@@ -108,7 +111,8 @@
             "state": "default",
             "size": "md"
           },
-          "height": 32
+          "height": 32,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem5": {
           "component": "Segmented Control Item",
@@ -117,7 +121,8 @@
             "state": "default",
             "size": "md"
           },
-          "height": 32
+          "height": 32,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem6": {
           "component": "Segmented Control Item",
@@ -126,7 +131,8 @@
             "state": "default",
             "size": "md"
           },
-          "height": 32
+          "height": 32,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "helper": {
           "hidden": true,
@@ -258,7 +264,8 @@
             "state": "default",
             "size": "sm"
           },
-          "height": 24
+          "height": 24,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem2": {
           "component": "Segmented Control Item",
@@ -267,7 +274,8 @@
             "state": "default",
             "size": "sm"
           },
-          "height": 24
+          "height": 24,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem3": {
           "component": "Segmented Control Item",
@@ -276,7 +284,8 @@
             "state": "default",
             "size": "sm"
           },
-          "height": 24
+          "height": 24,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem4": {
           "component": "Segmented Control Item",
@@ -285,7 +294,8 @@
             "state": "default",
             "size": "sm"
           },
-          "height": 24
+          "height": 24,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem5": {
           "component": "Segmented Control Item",
@@ -294,7 +304,8 @@
             "state": "default",
             "size": "sm"
           },
-          "height": 24
+          "height": 24,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "segmentedControlItem6": {
           "component": "Segmented Control Item",
@@ -303,7 +314,8 @@
             "state": "default",
             "size": "sm"
           },
-          "height": 24
+          "height": 24,
+          "hides": ["iconLeading", "iconTrailing"]
         },
         "helper": {
           "hidden": true,

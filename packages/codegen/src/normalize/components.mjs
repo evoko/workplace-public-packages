@@ -459,7 +459,10 @@ export function buildComponentSpec(
   for (const [axis, def] of Object.entries(recipe.axes)) {
     if (def.role === 'state') {
       for (const value of def.options) {
-        if (PLATFORM_STATES.has(value)) states.push(value);
+        // A compound state (DatePicker's error-focused) is its parts held at once, which the
+        // shell detects as it does a platform state: no prop.
+        if (PLATFORM_STATES.has(value) || overlay?.states?.compound?.[value])
+          states.push(value);
         else api[value] = { type: 'boolean', default: false };
       }
     } else if (isBoolean(def))

@@ -10,7 +10,7 @@
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { table } from '../src/components/index.mjs';
+import { DESCRIPTORS, table } from '../src/components/index.mjs';
 import { dartEnumValue } from '../src/emit/flutter.mjs';
 import { describe, expect, it } from 'vitest';
 import {
@@ -25,6 +25,7 @@ const GROUP_DECIDES = table('flutter', 'groupDecides');
 // value, Flutter's controller).
 const LABEL_PROP = table('shells', 'label');
 const FLUTTER_NAMES = table('shells', 'flutter');
+const SLOT_NAMES = table('shells', 'slots');
 import { flattenSpec } from '../src/spec.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { flutterFileOf, shellFileOf } from '../src/shells/index.mjs';
@@ -464,7 +465,8 @@ describe('component parity: the React and Flutter widgets', () => {
   /** The names a React shell destructures from its props. */
   function reactProps(source, name) {
     const m = new RegExp(
-      `function ${name}\\(\\s*\\{([\\s\\S]*?)\\}\\s*,\\s*ref`,
+      // A generic shell (Autocomplete<T>) names its type parameters first, and types its props.
+      `function ${name}(?:<[^>]*>)?\\(\\s*\\{([\\s\\S]*?)\\}(?:\\s*:\\s*[\\w<>]+)?\\s*,\\s*ref`,
     ).exec(source);
     if (!m) throw new Error(`${name}: no destructured props in the shell`);
     return (
@@ -490,7 +492,12 @@ describe('component parity: the React and Flutter widgets', () => {
     );
   }
 
-  for (const { spec } of built) {
+  // A component checked as another's state (Autocomplete Open) has no shells of its own.
+  const shelled = built.filter(
+    ({ spec }) =>
+      !DESCRIPTORS.find((d) => d.name === spec.component)?.checkedAs,
+  );
+  for (const { spec } of shelled) {
     // `Icon Button` is IconButton.tsx and solar_icon_button.dart, as the shells are named.
     const name = pascal(spec.component);
     const react = reactProps(
@@ -570,19 +577,28 @@ describe('component parity: the React and Flutter widgets', () => {
         const content = Object.values(spec.slots).some(
           (s) => s.type === 'content',
         );
+        // A slot the shells name otherwise, or fill themselves (the descriptor's shells.slots).
+        const named = SLOT_NAMES[spec.component] ?? {};
+        if (named[slot] === null) continue;
         const [inReact, inFlutter] =
-          spec.slots[slot].type === 'content'
-            ? ['children', 'children']
-            : slot === 'label' && (content || LABEL_PROP[spec.component])
-              ? ['label', 'label']
-              : slot === 'label'
-                ? [
-                    'children',
-                    MUI_SLOTS[spec.component] === 'drawn' ? 'label' : 'child',
-                  ]
-                : MUI_SLOTS[spec.component]?.[slot] === '& > *'
-                  ? ['children', 'children']
-                  : [slot, slot];
+          typeof named[slot] === 'string'
+            ? [named[slot], named[slot]]
+            : named[slot]
+              ? [named[slot].react, named[slot].flutter]
+              : spec.slots[slot].type === 'content'
+                ? ['children', 'children']
+                : slot === 'label' && (content || LABEL_PROP[spec.component])
+                  ? ['label', 'label']
+                  : slot === 'label'
+                    ? [
+                        'children',
+                        MUI_SLOTS[spec.component] === 'drawn'
+                          ? 'label'
+                          : 'child',
+                      ]
+                    : MUI_SLOTS[spec.component]?.[slot] === '& > *'
+                      ? ['children', 'children']
+                      : [slot, slot];
         // A slot a callback shows (Banner's close button, by `onClose`) is that callback.
         const on = `on${inReact[0].toUpperCase()}${inReact.slice(1)}`;
         expect(

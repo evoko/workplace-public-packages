@@ -17,7 +17,7 @@
  */
 
 import Box, { type BoxProps } from '@mui/material/Box';
-import MenuList from '@mui/material/MenuList';
+import MenuList, { type MenuListProps } from '@mui/material/MenuList';
 import { forwardRef, type KeyboardEvent, type ReactNode } from 'react';
 import {
   solarContextMenuCompose,
@@ -53,18 +53,31 @@ export interface ContextMenuProps
     > {
   /** The actions: ContextMenuItems, and Dividers between their groups. */
   children: ReactNode;
+  /** More of the list's props: a combobox's listbox (`role`, `id`, its handlers). */
+  listProps?: MenuListProps;
 }
 
 export const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
   function ContextMenu(
-    { children, anchorEl, anchorPosition, open, onClose, sx, ...rest },
+    {
+      children,
+      anchorEl,
+      anchorPosition,
+      open,
+      onClose,
+      keepFocus,
+      popperProps,
+      listProps,
+      sx,
+      ...rest
+    },
     ref,
   ) {
     const floating = floats({ anchorEl, anchorPosition });
     const parts = solarContextMenuCompose({});
     // Tab leaves a floating menu, as MUI's Menu does: it closes, and the focus moves on.
     const onKeyDown = (event: KeyboardEvent) => {
-      if (floating && event.key === 'Tab') {
+      if (floating && !keepFocus && event.key === 'Tab') {
         event.preventDefault();
         onClose?.();
       }
@@ -75,6 +88,8 @@ export const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
         anchorPosition={anchorPosition}
         open={open}
         onClose={onClose}
+        keepFocus={keepFocus}
+        popperProps={popperProps}
       >
         <Box
           ref={ref}
@@ -94,8 +109,9 @@ export const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
                   className={className}
                   style={style}
                   disablePadding
-                  autoFocusItem={floating && open}
+                  autoFocusItem={floating && open && !keepFocus}
                   onKeyDown={onKeyDown}
+                  {...listProps}
                 >
                   {rows}
                 </MenuList>

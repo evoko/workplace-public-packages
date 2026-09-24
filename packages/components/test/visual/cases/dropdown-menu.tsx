@@ -5,7 +5,6 @@ import {
   DropdownMenu,
   type DropdownMenuProps,
 } from '../../../src/DropdownMenu.js';
-import { icon } from './probes.js';
 import type { OracleVariant, VisualCase } from './types.js';
 
 type ChildLayer = { component?: string };
@@ -17,8 +16,8 @@ const held = (v: OracleVariant) =>
       l.component === 'Dropdown Item' || l.component === 'Dropdown Group Label',
   );
 
-// Figma's heading and rows, in place (no anchor), every row's slots filled so its look is
-// measured: the checkbox, an icon probe and the second line.
+// Figma's heading and rows, in place (no anchor), the rows as Figma's menu draws them: words alone,
+// their checkbox, icon and second line hidden (the oracle's hides).
 export default {
   oracle,
   render: (v) => (
@@ -29,13 +28,7 @@ export default {
             Group Label
           </DropdownGroupLabel>
         ) : (
-          <DropdownItem
-            key={name}
-            data-layer={name}
-            checkbox
-            icon={icon}
-            helper="Description"
-          >
+          <DropdownItem key={name} data-layer={name}>
             Label
           </DropdownItem>
         ),

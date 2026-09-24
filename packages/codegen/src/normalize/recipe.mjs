@@ -369,6 +369,9 @@ function cellsOf(
       ),
     );
     put('typography', 'geometry', style(layer.textStyle, names.textStyle));
+    // A text placed by position is where Figma put it, as any layer is; its size follows from its
+    // font.
+    if (layer.position) place();
     return cells;
   }
 
@@ -467,10 +470,27 @@ function cellsOf(
     put('direction', 'geometry', { keyword: layer.layout.dir });
     if (layer.layout.align)
       put('align', 'geometry', { keyword: layer.layout.align });
+    // A grid's gap is its rows' and columns' (gridRowGap, gridColumnGap), one value: its plain
+    // gap Figma leaves 0 and does not draw.
+    const grid = layer.layout.dir === 'GRID';
     put(
       'gap',
       'geometry',
-      bound(layer, ['itemSpacing'], layer.layout.gap, names, `${where}.gap`),
+      grid
+        ? bound(
+            layer,
+            ['gridRowGap', 'gridColumnGap'],
+            undefined,
+            names,
+            `${where}.gap`,
+          )
+        : bound(
+            layer,
+            ['itemSpacing'],
+            layer.layout.gap,
+            names,
+            `${where}.gap`,
+          ),
     );
     PADDING.forEach((side, i) =>
       put(

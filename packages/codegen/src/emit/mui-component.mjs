@@ -378,7 +378,11 @@ function context(spec, tokens) {
       // No auto-layout: Figma places the children itself, which the shell's own layout gives, so
       // nothing of the base's flex direction or alignment is restated.
       case 'direction':
-        return entry.none ? {} : { flexDirection: DIRECTION[entry.keyword] };
+        if (entry.none) return {};
+        // A grid lays its children out in rows of the shell's columns (a month's week), spaced by
+        // its gap both ways.
+        if (entry.keyword === 'GRID') return { display: 'grid' };
+        return { flexDirection: DIRECTION[entry.keyword] };
       case 'align': {
         if (entry.none) return {};
         const [main, cross] = entry.keyword.split('/');

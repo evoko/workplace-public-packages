@@ -134,6 +134,12 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
         'borderBottomWidth': border?.bottom.width ?? 0.0,
         'borderLeftWidth': border?.left.width ?? 0.0,
         'radius': (d.borderRadius as BorderRadius?)?.topLeft.x ?? 0.0,
+        'radiusTopLeft': (d.borderRadius as BorderRadius?)?.topLeft.x ?? 0.0,
+        'radiusTopRight': (d.borderRadius as BorderRadius?)?.topRight.x ?? 0.0,
+        'radiusBottomRight':
+            (d.borderRadius as BorderRadius?)?.bottomRight.x ?? 0.0,
+        'radiusBottomLeft':
+            (d.borderRadius as BorderRadius?)?.bottomLeft.x ?? 0.0,
         'shadow': d.boxShadow ?? const <BoxShadow>[],
         'paddingTop': padding.top,
         'paddingRight': padding.right,

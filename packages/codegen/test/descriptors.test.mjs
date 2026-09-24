@@ -41,8 +41,9 @@ describe('the component descriptors', () => {
       Spinner: ['track', 'indicator'],
     });
     for (const d of DESCRIPTORS) {
-      expect(TEMPLATES[d.name], d.name).toBe(d.templates.react);
-      expect(FLUTTER_TEMPLATES[d.name], d.name).toBe(d.templates.flutter);
+      // One checked as another's state (Autocomplete Open) has no shells, so no templates.
+      expect(TEMPLATES[d.name], d.name).toBe(d.templates?.react);
+      expect(FLUTTER_TEMPLATES[d.name], d.name).toBe(d.templates?.flutter);
     }
   });
 });

@@ -4,8 +4,8 @@ import 'package:solar_flutter/solar_flutter.dart';
 import 'probes.dart';
 
 /// SolarDropdownMenu in one oracle variant, holding the heading and rows Figma draws in it, in its
-/// order, each keyed by its layer, every row's slots filled so its look is measured: the checkbox,
-/// an icon probe and the second line. A menu has no states of its own.
+/// order, each keyed by its layer, the rows as Figma's menu draws them: words alone, their checkbox,
+/// icon and second line hidden (the oracle's hides). A menu has no states of its own.
 Widget buildDropdownMenu(
   Map<String, dynamic> v,
   WidgetStatesController _, [
@@ -25,13 +25,7 @@ Widget buildDropdownMenu(
         else if (l['component'] == 'Dropdown Item')
           KeyedSubtree(
             key: Key(name),
-            child: SolarDropdownItem(
-              label: 'Label',
-              helper: 'Description',
-              icon: const IconProbe(),
-              checkbox: true,
-              onPressed: () {},
-            ),
+            child: SolarDropdownItem(label: 'Label', onPressed: () {}),
           ),
     ],
   );

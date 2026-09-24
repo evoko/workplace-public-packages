@@ -7,7 +7,6 @@ import {
   SegmentedControlItem,
   type SegmentedControlItemProps,
 } from '../../../src/SegmentedControlItem.js';
-import { icon } from './probes.js';
 import type { OracleVariant, VisualCase } from './types.js';
 
 type ChildLayer = { component?: string; variant?: Record<string, string> };
@@ -19,7 +18,8 @@ const segments = (v: OracleVariant) =>
   );
 
 // Figma's segments with Figma's words, the one it draws selected chosen, and every slot filled so
-// its look is measured: the label, starred, the helper, and both icons of every segment.
+// its look is measured: the label, starred, and the helper; the segments' icons Figma hides (the
+// oracle's hides).
 export default {
   oracle,
   render: (v) => (
@@ -42,8 +42,6 @@ export default {
           data-layer={name}
           value={name}
           size={l.variant?.size as SegmentedControlItemProps['size']}
-          iconLeading={icon}
-          iconTrailing={icon}
         >
           Label
         </SegmentedControlItem>
