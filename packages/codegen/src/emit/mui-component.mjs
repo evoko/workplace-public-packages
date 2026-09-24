@@ -517,12 +517,19 @@ function restateBase(spec, style) {
   return style;
 }
 
-/** Merges declarations under a selector; the same property twice with two values is an error. */
+/**
+ * Merges declarations under a selector; the same property twice with two values is an error. A
+ * nested block (a restyled child's `& > *`) merges into the one already there.
+ */
 function place(target, selector, decls, at) {
   // Nothing to declare (a control's shape, sized in its own view box) is no rule.
   if (Object.keys(decls).length === 0) return;
   const into = selector === '&' ? target : (target[selector] ??= {});
   for (const [k, v] of Object.entries(decls)) {
+    if (v !== null && typeof v === 'object') {
+      place(into, k, v, at);
+      continue;
+    }
     if (k in into && into[k] !== v)
       throw new Error(`${at}: ${selector} ${k} is both ${into[k]} and ${v}`);
     into[k] = v;
@@ -588,6 +595,13 @@ export function renderMuiComponent(spec, tokens) {
    * is drawn as a glyph there is the block's own glyph, or the base's where the block names none:
    * a layer may be a glyph in one variant and a box in another (StatusIndicator's container).
    */
+  // The composed children the parent restyles (Toast's Tag): their fill and edge are drawn on the
+  // child's own root, which sits inside the layer's element.
+  const restyled = new Map(
+    (spec.overlay?.rules ?? [])
+      .filter((r) => r.rule === 'restyles')
+      .map((r) => [r.at, new Set(r.cells)]),
+  );
   const render = (target, layer, cells, at) => {
     const glyph =
       'glyph' in cells
@@ -598,13 +612,14 @@ export function renderMuiComponent(spec, tokens) {
       if (composed(layer, cell)) continue;
       if (PLACED(cell) && entry.position !== undefined)
         placing.add(spec.layers[layer].parent);
+      const decl = {
+        ...declare(cell, entry, here, layer, glyph),
+        ...edges(layer, cell, entry, here),
+      };
       place(
         target,
         slots[layer],
-        {
-          ...declare(cell, entry, here, layer, glyph),
-          ...edges(layer, cell, entry, here),
-        },
+        restyled.get(layer)?.has(cell) ? { '& > *': decl } : decl,
         here,
       );
     }
@@ -807,7 +822,10 @@ export function renderMuiComponent(spec, tokens) {
     `// Plain data on purpose: this module imports nothing, so @bwp-web/styles stays dependency free.\n` +
     `// Every value is a var(--solar-*) reference into tokens.css, which must be loaded.\n\n` +
     `${typeLines.join('\n')}\n\n` +
-    `export interface Solar${name}Props {\n${propLines.join('\n')}\n}\n\n` +
+    // A component with no props (EmptyState) takes none, which an empty interface would not say.
+    (propLines.length
+      ? `export interface Solar${name}Props {\n${propLines.join('\n')}\n}\n\n`
+      : `export type Solar${name}Props = Record<never, never>;\n\n`) +
     (derivedLines.length
       ? `/** The props and what the shell derives from its content (the recipe is keyed by both). */\nexport interface Solar${name}RecipeProps extends Solar${name}Props {\n${derivedLines.join('\n')}\n}\n\n`
       : '') +

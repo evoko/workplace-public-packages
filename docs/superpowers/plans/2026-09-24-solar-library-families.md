@@ -964,6 +964,53 @@ kept as props.
   - Toast: MUI `SnackbarContent`, Flutter `SnackBar` content; composes Tag;
   - EmptyState: standalone (M4); composes Button.
 
+**F4 done 2026-09-24.** Tag (pioneer), Alert, Alert Small, Banner, Toast and EmptyState, every
+variant matching Figma on both platforms and every finding decided (the triage shows 0 open for
+all six). As the plan expected, Tag's 120 axis findings went with its `type`: once derived, each
+type's layout followed it. The triage's one new question, Toast's Tag, the owner answered: draw
+Figma's overridden look.
+
+- **Members and bases** (where they differ from the plan, why):
+  - **Tag:** **drawn on both, not MUI's Chip or Flutter's Chip**, whose paddings, heights and
+    label boxes fight Figma's five layouts; it is a label, not a control. Its type follows from
+    the words, an icon, `indicator` and `onClose` (the 2026-09-23 decision); its dot is a
+    StatusIndicator; the types refuse an inverted tag with a dot, which Figma does not draw.
+  - **Alert and Alert Small:** **drawn, not MUI's Alert**, for the same reason, and to announce
+    a warning or a danger at once and anything else politely, where MUI's Alert always alerts. One
+    template serves both.
+  - **Banner:** drawn; SOLAR's icon for its type, the caller's sm Buttons, a text action and a
+    close button.
+  - **Toast:** drawn; where it appears and for how long is the app's (MUI's Snackbar, Flutter's
+    ScaffoldMessenger), so neither base's container is used. Its Tag is a SOLAR Tag in `status`,
+    restyled by the toast (owner decision: Figma's look).
+  - **EmptyState:** drawn, standalone; its words wrap, centred.
+- **Decisions in the overlays** (and raised in the design review): Tag's types by content; the
+  Toast's `pill` Tag drawn as a status tag, and restyled; every callout, banner and slider-like
+  width filling its container; composed children's sizes left to them; Figma's `style` renamed
+  `variant`; icon sizes bound to the ladder.
+- **Machinery found and fixed on the family** (each with tests):
+  - **A reference no variant draws the layer in** (Figma draws no inverted status Tag): the recipe
+    now reads a cell from a variant of the same combination that draws it, so the inverted close
+    button's 16px was no longer lost.
+  - **`derive` with `props`:** an axis may follow from the shell's props (`indicator`,
+    `onClose`) beside its slots; the oracle's `content` names both, and the parity test checks
+    both shells take them.
+  - **`restyles`**, a parent drawing its composed child's fill and edge, read from the instance,
+    written on the child's root, and checked against the parent; and **a `set` on a child's
+    `variant.*`**, which the oracle honours (`figmaVariant` keeps Figma's).
+  - **Composed children in drawn components:** `render` on the web (in the layer's element),
+    `composed` in Flutter, and the Flutter measure recognises a composed child by its keyed root,
+    at any depth (Toast, Tag, StatusIndicator). Both checks leave a composed child's box, and
+    whatever else the parent's entry holds, to the parent.
+  - **The shells' helpers:** SolarLayers' `wraps` and a component slot with no colour;
+    `drawnFlutter`'s `builders`, `composed`, `wraps`, `restyle` and derived `values`;
+    `drawnReact`'s extra `icons` and `present`; a component with no props (`Record<never, never>`
+    on the web, `const` props in Flutter); `place` merging nested blocks.
+  - **The parity test** accepts `on<Slot>` for a slot a callback shows (Banner's `onClose`).
+- **Checks:** 936 JS tests, both visual checks (36 on the web), 190 Flutter tests, lint,
+  typecheck, format, all three Flutter packages analysed and formatted, both viewers built, the
+  personal-data scan, and a rebuild that reproduces the tree.
+
 ### F5: Text fields
 
 - **Pioneer: Text Input.** MUI `InputBase` in a `FormControl`, with SOLAR's label above and helper

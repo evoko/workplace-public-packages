@@ -2,14 +2,18 @@
 // The web registry: a case per generated component, by its name. The spec requires one for
 // every component in the codegen’s `COMPONENTS`, so a new component cannot go unmeasured.
 
+import alert from './alert.js';
+import alertSmall from './alert-small.js';
 import avatar from './avatar.js';
 import backButton from './backbutton.js';
+import banner from './banner.js';
 import button from './button.js';
 import buttonGroup from './button-group.js';
 import checkbox from './checkbox.js';
 import counter from './counter.js';
 import divider from './divider.js';
 import dragHandle from './draghandle.js';
+import emptyState from './emptystate.js';
 import fab from './fab.js';
 import iconButton from './icon-button.js';
 import kbd from './kbd.js';
@@ -26,21 +30,27 @@ import sliderRange from './slider-range.js';
 import spinner from './spinner.js';
 import splitButton from './splitbutton.js';
 import statusIndicator from './statusindicator.js';
+import tag from './tag.js';
 import timestamp from './timestamp.js';
+import toast from './toast.js';
 import toggle from './toggle.js';
 import treeIndent from './tree-indent.js';
 import trendBadge from './trend-badge.js';
 import type { VisualCase } from './types.js';
 
 export const CASES: Record<string, VisualCase> = {
+  Alert: alert,
+  'Alert Small': alertSmall,
   Avatar: avatar,
   BackButton: backButton,
+  Banner: banner,
   Button: button,
   'Button Group': buttonGroup,
   Checkbox: checkbox,
   Counter: counter,
   Divider: divider,
   DragHandle: dragHandle,
+  EmptyState: emptyState,
   FAB: fab,
   'Icon Button': iconButton,
   Kbd: kbd,
@@ -57,7 +67,9 @@ export const CASES: Record<string, VisualCase> = {
   Spinner: spinner,
   SplitButton: splitButton,
   StatusIndicator: statusIndicator,
+  Tag: tag,
   Timestamp: timestamp,
+  Toast: toast,
   Toggle: toggle,
   'Tree Indent': treeIndent,
   'Trend Badge': trendBadge,

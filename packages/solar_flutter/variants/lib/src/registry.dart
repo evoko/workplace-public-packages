@@ -2,14 +2,18 @@
 // How each generated widget is built in one oracle variant, by its name (see builders.dart).
 
 import 'builders.dart';
+import 'alert.dart';
+import 'alert_small.dart';
 import 'avatar.dart';
 import 'backbutton.dart';
+import 'banner.dart';
 import 'button.dart';
 import 'button_group.dart';
 import 'checkbox.dart';
 import 'counter.dart';
 import 'divider.dart';
 import 'draghandle.dart';
+import 'emptystate.dart';
 import 'fab.dart';
 import 'icon_button.dart';
 import 'kbd.dart';
@@ -26,20 +30,26 @@ import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
+import 'tag.dart';
 import 'timestamp.dart';
+import 'toast.dart';
 import 'toggle.dart';
 import 'tree_indent.dart';
 import 'trend_badge.dart';
 
 const builders = <String, VariantBuilder>{
+  'Alert': buildAlert,
+  'Alert Small': buildAlertSmall,
   'Avatar': buildAvatar,
   'BackButton': buildBackButton,
+  'Banner': buildBanner,
   'Button': buildButton,
   'Button Group': buildButtonGroup,
   'Checkbox': buildCheckbox,
   'Counter': buildCounter,
   'Divider': buildDivider,
   'DragHandle': buildDragHandle,
+  'EmptyState': buildEmptyState,
   'FAB': buildFAB,
   'Icon Button': buildIconButton,
   'Kbd': buildKbd,
@@ -56,7 +66,9 @@ const builders = <String, VariantBuilder>{
   'Spinner': buildSpinner,
   'SplitButton': buildSplitButton,
   'StatusIndicator': buildStatusIndicator,
+  'Tag': buildTag,
   'Timestamp': buildTimestamp,
+  'Toast': buildToast,
   'Toggle': buildToggle,
   'Tree Indent': buildTreeIndent,
   'Trend Badge': buildTrendBadge,

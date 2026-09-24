@@ -212,9 +212,9 @@ Future<(List<Difference>, List<Difference>)> check(
 /// A composed child (Button's spinner, Button Group's buttons) is the child component in the variant
 /// Figma picks; what that variant looks like is the child's oracle, so the two are checked
 /// together, layer by layer. What the child's oracle excuses is not compared here: the child's own
-/// check reports it. Its box is the parent's to decide (a Button fills a group, whatever width it
-/// has alone), so the child's root is measured against the parent's width and height instead, with
-/// the parent's excuses.
+/// check reports it. What the parent's entry holds of the child's root is the parent's to decide
+/// (a Button fills a group, whatever width it has alone; Toast restyles its Tag), so the root is
+/// measured against the parent's entry for those, with the parent's excuses.
 void checkChild(
   String variant,
   String layer,
@@ -233,14 +233,23 @@ void checkChild(
     oracle,
     expected['variant'] as Map<String, dynamic>,
   );
+  // What the parent's entry holds of the child's root is the parent's to decide: its box, and its
+  // fill and edge where the parent restyles it (Toast's Tag).
+  final parentDecides = {
+    for (final MapEntry(:key, :value) in expected.entries)
+      if (!const {
+        'component',
+        'variant',
+        'figmaVariant',
+        'hidden',
+      }.contains(key))
+        key: value,
+  };
   final layers = got['layers']! as Layers;
   compareLayer(
     variant,
     layer,
-    {
-      for (final p in ['width', 'height'])
-        if (expected.containsKey(p)) p: expected[p],
-    },
+    parentDecides,
     layers['root'] ?? const {},
     excusedHere,
     failures,
@@ -252,9 +261,9 @@ void checkChild(
     final spec = {...e as Map<String, dynamic>};
     if (spec['hidden'] == true) continue;
     if (part == 'root') {
-      spec
-        ..remove('width')
-        ..remove('height');
+      spec.removeWhere(
+        (k, _) => k == 'width' || k == 'height' || parentDecides.containsKey(k),
+      );
     }
     final measured = layers[part];
     if (measured == null) {

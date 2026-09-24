@@ -63,6 +63,8 @@ class SolarLayers {
     this.builders = const {},
     this.slots = const {},
     this.content = const {},
+    this.composed = const {},
+    this.wraps = const {},
   });
 
   /// The component's recipe under its props and states.
@@ -94,6 +96,15 @@ class SolarLayers {
   /// The caller's children of a layer, laid out in it in place of the ones Figma draws as
   /// examples (Segmented Control's segments in its track), by layer.
   final Map<String, List<Widget>> content;
+
+  /// A layer that is another SOLAR component (Tag's StatusIndicator), drawn as the widget the
+  /// shell builds for it in the variant the recipe names, by layer.
+  final Map<String, Widget> composed;
+
+  /// A text that wraps onto more lines where it runs out of room (EmptyState's description), and
+  /// how its lines align, by layer; every other text runs on one line, as a Figma text that hugs
+  /// it does.
+  final Map<String, TextAlign> wraps;
 
   static const _main = {
     'MIN': MainAxisAlignment.start,
@@ -139,13 +150,19 @@ class SolarLayers {
   }
 
   Widget _drawn(String name) {
+    final child = composed[name];
+    if (child != null) return child;
     final glyph = recipe.glyph(name);
     final words = text[name];
     final slot = slots[name];
     if (slot != null) {
       final width = _extent('$name.width');
+      // A component slot (Banner's Buttons) has no colour of its own to give.
+      final colour = recipe.lookup('$name.color') == null
+          ? null
+          : recipe.color('$name.color');
       return IconTheme(
-        data: IconThemeData(color: recipe.color('$name.color'), size: width),
+        data: IconThemeData(color: colour, size: width),
         child: SizedBox(
           width: width,
           height: _extent('$name.height'),
@@ -169,7 +186,12 @@ class SolarLayers {
             strokeWidth: _length('$name.borderWidth'),
           )
         : words != null
-        ? Text(words, softWrap: false, style: _textStyle(name))
+        ? Text(
+            words,
+            softWrap: wraps.containsKey(name),
+            textAlign: wraps[name],
+            style: _textStyle(name),
+          )
         : _box(name);
   }
 

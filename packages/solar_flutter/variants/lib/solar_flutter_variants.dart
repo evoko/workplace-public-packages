@@ -5,8 +5,11 @@
 /// (widgetbook/), so both show a widget the same way.
 library;
 
+export 'src/alert.dart';
+export 'src/alert_small.dart';
 export 'src/avatar.dart';
 export 'src/backbutton.dart';
+export 'src/banner.dart';
 export 'src/builders.dart';
 export 'src/button.dart';
 export 'src/button_group.dart';
@@ -14,6 +17,7 @@ export 'src/checkbox.dart';
 export 'src/counter.dart';
 export 'src/divider.dart';
 export 'src/draghandle.dart';
+export 'src/emptystate.dart';
 export 'src/fab.dart';
 export 'src/icon_button.dart';
 export 'src/kbd.dart';
@@ -32,7 +36,9 @@ export 'src/slider_range.dart';
 export 'src/spinner.dart';
 export 'src/splitbutton.dart';
 export 'src/statusindicator.dart';
+export 'src/tag.dart';
 export 'src/timestamp.dart';
+export 'src/toast.dart';
 export 'src/toggle.dart';
 export 'src/tree_indent.dart';
 export 'src/trend_badge.dart';

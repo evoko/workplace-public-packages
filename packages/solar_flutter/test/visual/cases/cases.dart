@@ -3,14 +3,18 @@
 // for every oracle under spec/verify/, so a new component cannot go unmeasured.
 
 import '../harness.dart';
+import 'alert.dart';
+import 'alert_small.dart';
 import 'avatar.dart';
 import 'backbutton.dart';
+import 'banner.dart';
 import 'button.dart';
 import 'button_group.dart';
 import 'checkbox.dart';
 import 'counter.dart';
 import 'divider.dart';
 import 'draghandle.dart';
+import 'emptystate.dart';
 import 'fab.dart';
 import 'icon_button.dart';
 import 'kbd.dart';
@@ -27,20 +31,26 @@ import 'slider_range.dart';
 import 'spinner.dart';
 import 'splitbutton.dart';
 import 'statusindicator.dart';
+import 'tag.dart';
 import 'timestamp.dart';
+import 'toast.dart';
 import 'toggle.dart';
 import 'tree_indent.dart';
 import 'trend_badge.dart';
 
 final cases = <String, VisualCase>{
+  'Alert': alertCase,
+  'Alert Small': alertSmallCase,
   'Avatar': avatarCase,
   'BackButton': backButtonCase,
+  'Banner': bannerCase,
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
   'Checkbox': checkboxCase,
   'Counter': counterCase,
   'Divider': dividerCase,
   'DragHandle': dragHandleCase,
+  'EmptyState': emptyStateCase,
   'FAB': fabCase,
   'Icon Button': iconButtonCase,
   'Kbd': kbdCase,
@@ -57,7 +67,9 @@ final cases = <String, VisualCase>{
   'Spinner': spinnerCase,
   'SplitButton': splitButtonCase,
   'StatusIndicator': statusIndicatorCase,
+  'Tag': tagCase,
   'Timestamp': timestampCase,
+  'Toast': toastCase,
   'Toggle': toggleCase,
   'Tree Indent': treeIndentCase,
   'Trend Badge': trendBadgeCase,

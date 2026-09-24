@@ -10,7 +10,9 @@ import 'harness.dart';
 
 /// Every layer SolarLayers keyed `<prefix>.<layer>` inside [at]: a glyph's colours and stroke width
 /// as [SolarGlyphView] holds them, a text's style as it is painted, a box's from its decoration,
-/// and each one's place from its parent layer's corner.
+/// and each one's place from its parent layer's corner. A layer that is another drawn component
+/// (Tag's StatusIndicator, Toast's Tag), whose own root is keyed `<its prefix>.root`, is measured
+/// as its own check measures it, at any depth, for the harness to check against its own oracle.
 Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
   final lead = '$prefix.';
   final out = <String, Map<String, Object?>>{};
@@ -29,6 +31,14 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
           find.ancestor(of: here, matching: find.byType(Visibility)),
         )
         .any((v) => !v.visible);
+    final inner = _composedPrefix(tester, keyed, here);
+    if (inner != null) {
+      out[name] = {
+        'drawn': !hidden,
+        'layers': measureLayers(tester, here, inner),
+      };
+      continue;
+    }
     final values = <String, Object?>{
       'drawn': !hidden,
       'width': size.width,
@@ -103,4 +113,27 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
     out[name] = values;
   }
   return out;
+}
+
+/// The prefix of the drawn component a layer is (a Tag in a Toast), from the key of its own root,
+/// or null where the layer is drawn by the one measured.
+String? _composedPrefix(WidgetTester tester, KeyedSubtree keyed, Finder here) {
+  var child = keyed.child;
+  if (child is Opacity) child = child.child!;
+  if (child is SolarIcon ||
+      child is IconTheme ||
+      child is SolarGlyphView ||
+      child is Text ||
+      child is Container) {
+    return null;
+  }
+  for (final inner in tester.widgetList<KeyedSubtree>(
+    find.descendant(of: here, matching: find.byType(KeyedSubtree)),
+  )) {
+    final key = inner.key;
+    if (key is ValueKey<String> && key.value.endsWith('.root')) {
+      return key.value.substring(0, key.value.length - '.root'.length);
+    }
+  }
+  return null;
 }

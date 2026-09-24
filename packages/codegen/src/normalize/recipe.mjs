@@ -283,7 +283,15 @@ function extent(layer, i, names, where, drawnAt = false) {
  * which of its variants, and how big -- because its own padding, colour and radius are its own
  * recipe's, and repeating them here would report every change of child variant as a deviation.
  */
-function cellsOf(layer, type, names, where, onCovered, root = false) {
+function cellsOf(
+  layer,
+  type,
+  names,
+  where,
+  onCovered,
+  root = false,
+  restyled = [],
+) {
   const cells = {};
   const drawnAt = root || Boolean(layer.position);
   const put = (name, cls, value) => {
@@ -309,6 +317,24 @@ function cellsOf(layer, type, names, where, onCovered, root = false) {
       'geometry',
       extent(layer, 1, names, `${where}.height`, drawnAt),
     );
+    // A child the parent draws its own way (the overlay's restyles: Toast's Tag): its fill and
+    // edge as the instance overrides them, which are the parent's to decide.
+    if (restyled.includes('background'))
+      put(
+        'background',
+        'paint',
+        paint(layer.fills, names, `${where}.background`, (c, p) =>
+          onCovered?.('background', c, p),
+        ),
+      );
+    if (restyled.includes('borderColor'))
+      put(
+        'borderColor',
+        'paint',
+        paint(layer.strokes, names, `${where}.borderColor`, (c, p) =>
+          onCovered?.('borderColor', c, p),
+        ),
+      );
     // An icon's colour, recorded on the icon itself (fetch-rest.mjs). One icon in two colours is a
     // two-tone mark the recipe does not model, so it is left to the caller to report.
     const distinct = [...new Set(layer.iconFills ?? [])];
@@ -566,7 +592,7 @@ const describe = (v) =>
  */
 export function deriveRecipe(
   resolved,
-  { names, roles, follows: cellFollows = {} } = {},
+  { names, roles, follows: cellFollows = {}, restyles = {} } = {},
 ) {
   if (!names)
     throw new Error(
@@ -623,6 +649,7 @@ export function deriveRecipe(
               covered.get(k).variants.add(v.name);
             },
             layers[path].parent === null,
+            restyles[path],
           ),
         );
         // An icon's colour is read from the icon itself (cellsOf). An icon drawn in more than one
@@ -715,11 +742,20 @@ export function deriveRecipe(
             ) ?? exact
           );
         if (exact) return exact;
-        if (!fallbacks.has(k))
+        // No variant at the default of the other axes (Figma draws no inverted status Tag): the
+        // first that holds the combination, and of those one that draws the cell, as above, so
+        // an inverted closable Tag's close button is read from a variant that has one.
+        if (!fallbacks.has(k)) {
+          const at = resolved.variants.filter(
+            (w) => keyOf(w.props, follows) === k,
+          );
           fallbacks.set(
             k,
-            resolved.variants.find((w) => keyOf(w.props, follows) === k),
+            (cell !== 'present' &&
+              at.find((w) => read(w, path, cell) !== undefined)) ||
+              at[0],
           );
+        }
         return fallbacks.get(k);
       };
       const fallbacks = new Map();

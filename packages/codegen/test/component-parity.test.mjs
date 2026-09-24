@@ -516,6 +516,16 @@ describe('component parity: the React and Flutter widgets', () => {
       }
     });
 
+    it(`${spec.component}: both take the props its derived axes follow from`, () => {
+      // Tag's type follows from `indicator` and `onClose`, which both shells must take.
+      for (const d of Object.values(spec.derived ?? {}))
+        for (const w of d.when)
+          for (const prop of w.props ?? []) {
+            expect(react, `${prop} in React`).toContain(prop);
+            expect(flutter, `${prop} in Flutter`).toHaveProperty(prop);
+          }
+    });
+
     it(`${spec.component}: Flutter defaults to the IR's defaults`, () => {
       for (const [prop, def] of Object.entries(spec.api)) {
         // A colour the caller gives (Avatar's) has no default on either platform.
@@ -554,8 +564,16 @@ describe('component parity: the React and Flutter widgets', () => {
                 : MUI_SLOTS[spec.component]?.[slot] === '& > *'
                   ? ['children', 'children']
                   : [slot, slot];
-        expect(react, `${slot} in React`).toContain(inReact);
-        expect(flutter, `${slot} in Flutter`).toHaveProperty(inFlutter);
+        // A slot a callback shows (Banner's close button, by `onClose`) is that callback.
+        const on = `on${inReact[0].toUpperCase()}${inReact.slice(1)}`;
+        expect(
+          react.includes(inReact) || react.includes(on),
+          `${slot} in React`,
+        ).toBe(true);
+        expect(
+          inFlutter in flutter || on in flutter,
+          `${slot} in Flutter`,
+        ).toBe(true);
       }
     });
   }

@@ -53,7 +53,9 @@ constants for the Desktop scale, for when the viewport does not matter. SOLAR ch
 `SolarTrendBadge`, `SolarDivider`, `SolarSkeleton`, `SolarProgressBar`, `SolarNodeEnd`,
 `SolarRowExpand` and `SolarTreeIndent`), and the selection controls (`SolarCheckbox`,
 `SolarRadio`, `SolarToggle`, `SolarSlider`, `SolarSliderRange`, `SolarDragHandle`,
-`SolarSegmentedControl` and `SolarSegmentedControlItem`) take the same props as the React components
+`SolarSegmentedControl` and `SolarSegmentedControlItem`), and the tags and messages (`SolarTag`,
+`SolarAlert`, `SolarAlertSmall`, `SolarBanner`, `SolarToast` and `SolarEmptyState`) take the same
+props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
@@ -117,6 +119,9 @@ laid out by its auto layout or placed at the recipe's `x` and `y` where it has n
 where the recipe gives it an opacity, and holding the caller's children in place of Figma's
 examples where the shell gives them (`content`: Segmented Control's track). A placed layer is set
 in from its parent's border and padding, since Figma measures from the parent's outer edge.
+A layer that is another SOLAR component (Tag's StatusIndicator, Toast's Tag) is drawn as the widget
+the shell builds for it (`composed`), a text may wrap (`wraps`: EmptyState's words), and a Tag
+takes the colours a Toast draws it in (`restyle`).
 `SolarLayerRecipe` is the component's generated recipe as closures, under its props and states. Avatar, Skeleton and Divider are drawn so too; ProgressBar
 wraps `LinearProgressIndicator`.
 

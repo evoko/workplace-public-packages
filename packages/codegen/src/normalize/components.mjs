@@ -18,6 +18,7 @@ import {
   applyDefaults,
   applyOverlay,
   followsOf,
+  restylesOf,
   renameStates,
   sampleAxes,
 } from './overlay.mjs';
@@ -445,6 +446,7 @@ export function buildComponentSpec(
   const recipe = deriveRecipe(resolved, {
     names,
     follows: followsOf(overlay, pathOf),
+    restyles: restylesOf(overlay, pathOf),
   });
 
   const api = {};

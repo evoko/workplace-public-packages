@@ -1,0 +1,34 @@
+# Hand-written decisions about SOLAR Alert, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Alert
+
+base:
+  reason: >-
+    Bespoke on both: a callout drawn from Figma's layers with the shared helpers, its
+    StatusIndicator composed and its action a pressable of its own. MUI's Alert lays out an
+    icon, a message and an action with paddings and colours of its own, which fight Figma's
+    layout, and gives it the alert role whatever the message; Flutter has none.
+
+rename:
+  style:
+    to: variant
+    reason: >-
+      Figma's style (filled, outlined) would be React's inline-style prop; `variant` is what MUI
+      calls a look, as Spinner's style is.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A callout spans the space it is put in: Figma draws it 466 wide, a sample. The caller
+      sizes it.
+  statusIndicator.base.width:
+    none: true
+    reason: >-
+      The mark is a StatusIndicator, whose md, 20px is its own: the callout places it, and never
+      sizes it.
+  statusIndicator.base.height:
+    none: true
+    reason: As its width, the StatusIndicator's own.

@@ -4,7 +4,8 @@ SOLAR components for React, built on MUI: Button, Icon Button, Button Group, FAB
 SplitButton, Link and Spinner, the display primitives (StatusIndicator, Counter, Kbd, Timestamp,
 Avatar, Trend Badge, Divider, Skeleton, ProgressBar, Node End, RowExpand and Tree Indent), and the
 selection controls (Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle, Segmented Control
-and its Item) so far.
+and its Item), and the tags and messages (Tag, Alert, Alert Small, Banner, Toast and EmptyState)
+so far.
 
 ```tsx
 import '@bwp-web/styles/tokens.css';
@@ -377,6 +378,75 @@ native radio input of the group's name, so the arrow keys move between them and 
 value. Give the Items the Control's size. The label shows where given, though Figma hides it; SOLAR's
 focus ring is drawn on a segment, where Figma draws none. For six or more choices, or navigation,
 use Tabs; for on and off, a Toggle.
+
+## Tag
+
+| Prop        | Values                                                | Default   |
+| ----------- | ----------------------------------------------------- | --------- |
+| `status`    | `success` · `neutral` · `warning` · `danger` · `info` | `success` |
+| `invert`    | boolean                                               | `false`   |
+| `indicator` | shows the status dot (not when inverted)              | `false`   |
+| `icon`      | an icon, before the words or alone                    | none      |
+| `onClose`   | shows a close button                                  | none      |
+| `children`  | the words, one to three                               | none      |
+
+A compact label, drawn from its layers. Figma's five types follow from what it is given: the
+dot, a close button (named "Remove" and the words), an icon before the words, an icon alone
+(which then needs an `aria-label`), or the words alone. The types refuse an inverted tag with a
+dot, which Figma does not draw.
+
+## Alert and Alert Small
+
+| Prop          | Values                                                | Default   |
+| ------------- | ----------------------------------------------------- | --------- |
+| `type`        | `default` · `info` · `success` · `warning` · `danger` | `success` |
+| `variant`     | `filled` · `outlined` (Figma's `style`)               | `filled`  |
+| `title`       | what happened                                         | none      |
+| `description` | what it means                                         | none      |
+| `action`      | the one action's words, which call `onAction`         | none      |
+
+A callout in the page, beside the StatusIndicator of its type; Alert Small is the compact one for
+cards and panels. Each part shows where it is given. It is announced as it appears
+(`role="alert"` for a warning or a danger, `status` otherwise). It fills its container.
+
+## Banner
+
+| Prop                                | Values                                                | Default   |
+| ----------------------------------- | ----------------------------------------------------- | --------- |
+| `type`                              | `neutral` · `info` · `success` · `warning` · `danger` | `neutral` |
+| `description`                       | the message, one line                                 | required  |
+| `primaryButton` · `secondaryButton` | a SOLAR Button at sm                                  | none      |
+| `action`                            | the text action's words, which call `onAction`        | none      |
+| `onClose`                           | shows a close button, named "Dismiss"                 | none      |
+
+A bold, full-width message for a page or the app, with SOLAR's icon for its type, cut short where
+it runs out of room. Offer at most one action, a Button or the text one.
+
+## Toast
+
+| Prop      | Values                                                | Default   |
+| --------- | ----------------------------------------------------- | --------- |
+| `status`  | `neutral` · `success` · `warning` · `danger` · `info` | `success` |
+| `message` | what happened                                         | required  |
+| `tag`     | what it is about, in a Tag                            | none      |
+| `action`  | the action's words ("Undo"), which call `onAction`    | none      |
+| `chevron` | a chevron after the action                            | `false`   |
+
+A passing message about something done in the background, never an error that needs a decision.
+Its Tag is a SOLAR Tag drawn on the toast's surface and edge, as Figma draws it. Where it appears
+and for how long is the app's: show it in MUI's Snackbar.
+
+## EmptyState
+
+| Prop          | Values                          | Default |
+| ------------- | ------------------------------- | ------- |
+| `icon`        | what is empty                   | none    |
+| `title`       | why it is empty                 | none    |
+| `description` | what to do next                 | none    |
+| `action`      | a SOLAR Button, secondary at sm | none    |
+
+A placeholder for a view with nothing to show, a centred stack whose words wrap. For something
+still loading, use a Skeleton or a Spinner.
 
 ## Checked against Figma
 

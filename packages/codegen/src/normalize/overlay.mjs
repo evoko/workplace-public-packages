@@ -21,8 +21,10 @@
  *   layerNames:   { <Figma path>: { name, reason } }     a layer's IR name, where Figma's cannot give one
  *                                                        (a glyph for a name, or two that reduce to one)
  *   slots:        { <layer>: { name, type, reason } }    a layer the caller fills, with no Figma prop
- *   derive:       { <axis>: { when: [{ value, given? }], reason } }  an axis that follows from
- *                                                        content (first match wins), not a prop
+ *   derive:       { <axis>: { when: [{ value, given?, props? }], reason } }  an axis that follows
+ *                                                        from content (first match wins), not a
+ *                                                        prop: the slots `given`, and the shell's
+ *                                                        `props` the caller sets (Tag's onClose)
  *   follows:      { <layer>.<cell>: { axes, reason } }    a cell that follows other axes than its class
  *   bind:         { <layer>.<cell>: { literal, token, reason } }  a raw value to the token of that value,
  *                 or { tokens: { <literal>: <token>, … }, reason } where the value differs by size
@@ -42,6 +44,11 @@
  *                                                        which the oracle then excuses; `cells`
  *                                                        names the only ones it decides (a
  *                                                        slider's handle: where it sits, x)
+ *   restyles:     { <layer>: { cells, reason } }         a composed child whose paint the parent
+ *                                                        draws its own way (Toast's Tag, filled
+ *                                                        and edged by the toast): `cells`, of
+ *                                                        background and borderColor, are read from
+ *                                                        the instance, and checked there
  *   shownBy:      { <layer>: { slot, reason } }          a layer Figma hides in every variant, with
  *                                                        no prop to show it, drawn where the caller
  *                                                        fills the slot (Segmented Control's label)
@@ -62,6 +69,22 @@ import { BOOLEAN_STATES } from './component-layers.mjs';
 
 export const overlayDir = join(specDir, 'overlay');
 
+/** The cells of a composed child's root a parent may draw its own way (`restyles`). */
+export const RESTYLED = ['background', 'borderColor'];
+
+/**
+ * The composed children the overlay restyles, keyed the way deriveRecipe reads them: by Figma
+ * path, to the cells read from the instance.
+ */
+export function restylesOf(overlay, pathOf) {
+  const out = {};
+  for (const [layer, rule] of Object.entries(overlay?.restyles ?? {})) {
+    const path = pathOf(layer);
+    if (path) out[path] = rule.cells ?? [];
+  }
+  return out;
+}
+
 /**
  * `Button` to `button.yaml`, `Icon Button` to `icon-button.yaml`, `.Tree Indent` to
  * `tree-indent.yaml`: the leading dot Figma marks a building block with is no part of a file name.
@@ -81,6 +104,7 @@ const FIELDS = {
   allowLiteral: ['values'],
   controlDraws: ['cells'],
   shownBy: ['slot'],
+  restyles: ['cells'],
   samples: ['keep'],
   caller: ['prop', 'from'],
   accept: [],
@@ -268,6 +292,12 @@ export function parseOverlay(text, file) {
         fail(`derive.${axis}: every when entry needs a value`);
       if (w.given !== undefined && !Array.isArray(w.given))
         fail(`derive.${axis}.${w.value}: given must be a list of slots`);
+      if (
+        w.props !== undefined &&
+        (!Array.isArray(w.props) ||
+          w.props.some((p) => !/^[a-z][A-Za-z0-9]*$/.test(p)))
+      )
+        fail(`derive.${axis}.${w.value}: props must be a list of prop names`);
     }
   }
   return { ...doc, file };
@@ -686,6 +716,7 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       when: rule.when.map((w) => ({
         value: w.value,
         given: [...(w.given ?? [])],
+        ...(w.props ? { props: [...w.props] } : {}),
       })),
       reason: rule.reason,
     };
@@ -784,7 +815,13 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     };
     if (rule.token !== undefined && !names.has(rule.token))
       fail(`set ${at}: ${rule.token} is not a SOLAR token`);
-    if (rule.keyword !== undefined && !['FILL', 'HUG'].includes(rule.keyword))
+    // A composed child's variant is a keyword of the child's own (Toast's Tag: `status`, where
+    // Figma names one Tag no longer has); any other keyword is a size's.
+    if (
+      rule.keyword !== undefined &&
+      !cell.startsWith('variant.') &&
+      !['FILL', 'HUG'].includes(rule.keyword)
+    )
       fail(`set ${at}: keyword must be FILL or HUG`);
     // What Figma had there is kept beside the decision, so the oracle excuses the variants that
     // draw it and no others.
@@ -866,6 +903,15 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       rule.reason,
       rule.cells ? { cells: [...rule.cells] } : {},
     );
+  }
+
+  for (const [layer, rule] of sorted('restyles')) {
+    if (spec.layers[layer]?.type !== 'INSTANCE')
+      fail(`restyles ${layer}: the IR has no composed child ${layer}`);
+    const cells = rule.cells ?? [];
+    if (!cells.length || cells.some((c) => !RESTYLED.includes(c)))
+      fail(`restyles ${layer}: cells must be some of ${RESTYLED.join(', ')}`);
+    record('restyles', layer, rule.reason, { cells: [...cells] });
   }
 
   for (const [layer, rule] of sorted('shownBy')) {

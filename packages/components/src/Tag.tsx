@@ -1,0 +1,130 @@
+/**
+ * SOLAR Tag.
+ *
+ * Scaffolded once by `npm run solar:scaffold Tag` from spec/components/tag.json, and owned by
+ * developers from then on: change it freely. What it looks like is not here. That is the recipe,
+ * `solarTagStyle` and `solarTagCompose` in `@bwp-web/styles/mui`: each status's fill, edge and
+ * words, inverted or not, and each type's layout.
+ *
+ * A compact label for a status, a category or a user's entry, of one to three words. Bespoke: a
+ * pill drawn from Figma's layer tree (`internal/layers.tsx`). Its type follows from what it is
+ * given, as Figma's five are drawn: `indicator` shows the status dot, `onClose` a close button
+ * (named "Remove" and its words), an `icon` sits before the words, or alone where there are none,
+ * which then needs an `aria-label`. An inverted tag has no dot, as Figma draws none. The app must
+ * load `@bwp-web/styles/tokens.css`.
+ */
+
+import Box, { type BoxProps } from '@mui/material/Box';
+import { IconClose } from '@bwp-web/assets';
+import { forwardRef, type ReactNode } from 'react';
+import {
+  solarTagCompose,
+  solarTagStyle,
+  type SolarTagProps,
+  type SolarTagRecipeProps,
+} from '@bwp-web/styles/mui';
+import { drawChildren } from './internal/layers.js';
+import {
+  StatusIndicator,
+  type StatusIndicatorProps,
+} from './StatusIndicator.js';
+
+/** Each layer's children, as Figma nests them. */
+const TREE: Record<string, string[]> = {
+  root: ['statusIndicator', 'label', 'icon', 'iconNone', 'iconClose'],
+};
+
+/** Figma draws the status dot on a tag that is not inverted alone. */
+export type TagLook =
+  { invert?: false; indicator?: boolean } | { invert: true; indicator?: false };
+
+export type TagProps = Omit<SolarTagProps, 'invert'> &
+  TagLook &
+  Omit<BoxProps, keyof SolarTagProps | 'children' | 'ref'> & {
+    /** The words, one to three; none makes it an icon tag, named by `aria-label`. */
+    children?: ReactNode;
+    /** An icon before the words, or alone. */
+    icon?: ReactNode;
+    /** Shows a close button, which calls it: a user's entry, removable. */
+    onClose?: () => void;
+    /** The close button's name, before the words. */
+    closeLabel?: string;
+  };
+
+/** Which of Figma's five a tag is, from what it is given, first match first (the overlay's derive). */
+function typeOf(p: {
+  indicator?: boolean;
+  onClose?: unknown;
+  icon?: unknown;
+  label: boolean;
+}): SolarTagRecipeProps['type'] {
+  if (p.indicator && p.label) return 'status';
+  if (p.onClose && p.label) return 'closable';
+  if (p.icon != null) return p.label ? 'icon+text' : 'icon-only';
+  return 'text-only';
+}
+
+export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
+  {
+    status,
+    invert,
+    indicator,
+    children,
+    icon,
+    onClose,
+    closeLabel = 'Remove',
+    sx,
+    ...rest
+  },
+  ref,
+) {
+  const label = children != null && children !== false && children !== '';
+  const look: SolarTagRecipeProps = {
+    status,
+    invert,
+    type: typeOf({ indicator, onClose, icon, label }),
+  };
+  const words = typeof children === 'string' ? ` ${children}` : '';
+  const parts = solarTagCompose(look);
+  const dot = parts.statusIndicator;
+  return (
+    <Box
+      component="span"
+      ref={ref}
+      {...rest}
+      sx={[solarTagStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+    >
+      {drawChildren('root', {
+        prefix: 'SolarTag',
+        tree: TREE,
+        parts,
+        text: { label: children },
+        // The dot is a StatusIndicator, in the type and size the recipe names for the status, in
+        // its layer's element; decorative, as the words say the status.
+        render: {
+          statusIndicator: ({ className, style }) => (
+            <span className={className} style={style}>
+              <StatusIndicator
+                type={dot['variant.type'] as StatusIndicatorProps['type']}
+                size={dot['variant.size'] as StatusIndicatorProps['size']}
+              />
+            </span>
+          ),
+        },
+        icons: {
+          icon: <span>{icon}</span>,
+          iconNone: <span>{icon}</span>,
+          iconClose: (
+            <button
+              type="button"
+              aria-label={`${closeLabel}${words}`}
+              onClick={onClose}
+            >
+              <IconClose />
+            </button>
+          ),
+        },
+      })}
+    </Box>
+  );
+});

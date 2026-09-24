@@ -1,0 +1,144 @@
+/// SOLAR Tag.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Tag` from spec/components/tag.json, and
+/// owned by developers from then on: change it freely. What it looks like is not here. That is the
+/// recipe, [SolarTagRecipe]: each status’s fill, edge and words, inverted or not, and each type’s
+/// layout, read cell by cell.
+///
+/// Bespoke: a compact label for a status, a category or a user's entry, of one to three words,
+/// drawn from Figma's layer tree with [SolarLayers]. Its type follows from what it is given, as
+/// Figma's five are drawn: [indicator] shows the status dot, [onClose] a close button (named
+/// [closeLabel] and the words), an [icon] sits before the words, or alone where there are none,
+/// which then needs a [semanticLabel]. An inverted tag has no dot, as Figma draws none.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/tag.dart';
+import '../generated/icons.dart';
+import '../solar_layers.dart';
+import '../solar_states.dart';
+import '../generated/components/statusindicator.dart';
+import 'solar_statusindicator.dart';
+import 'solar_theme_of.dart';
+
+class SolarTag extends StatelessWidget {
+  const SolarTag({
+    super.key,
+    this.status = SolarTagStatus.success,
+    this.invert = false,
+    this.label,
+    this.icon,
+    this.indicator = false,
+    this.onClose,
+    this.closeLabel = 'Remove',
+    this.semanticLabel,
+    this.restyle = const {},
+  });
+
+  final SolarTagStatus status;
+  final bool invert;
+
+  /// The words, one to three; none makes it an icon tag, named by [semanticLabel].
+  final String? label;
+
+  /// An icon before the words, or alone.
+  final Widget? icon;
+
+  /// Whether it shows the status dot; never on an inverted tag.
+  final bool indicator;
+
+  /// Shows a close button, which calls it: a user's entry, removable.
+  final VoidCallback? onClose;
+
+  /// The close button's name, before the words.
+  final String closeLabel;
+
+  /// What an icon tag says, for a screen reader.
+  final String? semanticLabel;
+
+  /// The colours a component that holds it draws it in, by cell (Toast's: `root.background`,
+  /// `root.borderColor`), over the recipe's.
+  final Map<String, Color> restyle;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['statusIndicator', 'label', 'icon', 'iconNone', 'iconClose'],
+  };
+
+  /// Which of Figma's five it is, from what it is given, first match first (the overlay's derive).
+  SolarTagType get _type {
+    final words = label != null && label!.isNotEmpty;
+    if (indicator && words) return SolarTagType.status;
+    if (onClose != null && words) return SolarTagType.closable;
+    if (icon != null) {
+      return words ? SolarTagType.iconText : SolarTagType.iconOnly;
+    }
+    return SolarTagType.textOnly;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    assert(
+      !(invert && indicator),
+      'SolarTag: Figma draws no inverted tag with a status dot',
+    );
+    final t = solarThemeOf(context);
+    final p = SolarTagProps(status: status, invert: invert, type: _type);
+    const states = <WidgetState>{};
+    final mark = SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarTagRecipe.lookup(c, p, states),
+        dimension: (c) => SolarTagRecipe.dimension(c, p, states),
+        color: (c) => restyle[c] ?? SolarTagRecipe.color(t, c, p, states),
+        shadow: (c) => SolarTagRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarTagRecipe.textStyle(t, c, p, states),
+        present: (l) => SolarTagRecipe.present(l, p, states),
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'tag',
+      text: {'label': ?label},
+      slots: {'icon': ?icon, 'iconNone': ?icon},
+      builders: {
+        'iconClose': (close) => Semantics(
+          // A node of its own, so the control keeps its name inside the component's.
+          container: true,
+          child: SolarPressable(
+            onPressed: onClose,
+            builder: (_, _) => Semantics(
+              label: [closeLabel, ?label].join(' '),
+              excludeSemantics: true,
+              child: close,
+            ),
+          ),
+        ),
+      },
+      composed: {
+        'statusIndicator': SolarStatusIndicator(
+          type: SolarStatusIndicatorType.values.byName(
+            SolarTagRecipe.lookup(
+              'statusIndicator.variant.type',
+              p,
+              states,
+            )!.substring(2),
+          ),
+          size: SolarStatusIndicatorSize.values.byName(
+            SolarTagRecipe.lookup(
+              'statusIndicator.variant.size',
+              p,
+              states,
+            )!.substring(2),
+          ),
+        ),
+      },
+      icons: const {
+        'iconNone': SolarIcons.noneOutline,
+        'iconClose': SolarIcons.closeOutline,
+      },
+    ).layer('root');
+    return semanticLabel == null
+        ? mark
+        : Semantics(label: semanticLabel, child: mark);
+  }
+}

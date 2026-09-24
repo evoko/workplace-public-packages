@@ -231,6 +231,13 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    declares nothing of its place or size (ProgressBar's bar, moved by LinearProgress itself); the
    oracle excuses its box and its roundness. With `cells` it names the only ones the control
    decides (a slider's fill: `x` and `width`; its handle: `x`), and the rest are drawn and checked.
+   `restyles` names a composed child whose fill and edge the parent draws its own way (Toast's
+   Tag, on the toast's surface and edge): the recipe reads them from the instance, the MUI recipe
+   writes them on the child's own root (`& > *` of its layer), and the checks compare them, and
+   the child's box, against the parent's entry, the rest against the child's own oracle. A `set`
+   may give a composed child's `variant.*` a keyword of the child's own (Toast's Tag: `status`,
+   where Figma names a type Tag no longer has); the oracle then checks the child in that variant,
+   keeping Figma's beside it as `figmaVariant`.
    `shownBy` names a layer Figma hides in every variant, with no prop to show it, that is drawn
    where the caller fills a slot (Segmented Control's label); the oracle treats it, and the slot's
    own layer, as shown by a prop, and the rule is refused where Figma shows the layer anywhere.
@@ -242,7 +249,9 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    rule. What it `replaced` is then the value the resting lookup found there, and the oracle
    excuses it in each state that holds no value of its own there. A component with states and no appearance axis
    (BackButton, Link) keys them under `default` on both platforms.
-   `derive` makes an axis follow from content (FAB's `type`, from whether it has a label): the API
+   `derive` makes an axis follow from content (FAB's `type`, from whether it has a label; Tag's
+   from its words, its icon, and its shell's `indicator` and `onClose`, the `props` a `when` may
+   name beside its slots, which both shells must take): the API
    loses it, and both emitters still key the recipe by it, the MUI recipe through
    `Solar<Name>RecipeProps` and Flutter's props class through a field the widget sets, so the
    shell passes what it derived. The oracle reaches such a variant by filling the slots (its
@@ -399,6 +408,9 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
      (`packages/components/src/internal/layers.tsx`, `solar_flutter`'s `SolarLayers`) and draw a
      SOLAR icon layer with its component from the assets. A shell may draw a layer as an element
      of its own (`render` on the web, `builders` in Flutter: SplitButton's halves are buttons),
+     draw a layer that is another SOLAR component (Tag's StatusIndicator: `render` on the web, in
+     the layer's element; `composed` in Flutter, which the measure recognises by its keyed root),
+     let a text wrap (`wraps`), take a composing component's colours (`restyle`),
      fill a slot with the caller's widget (`slots`: Link's icons), and hold the caller's children in
      a layer in place of Figma's examples (`content`: Segmented Control's segments). A placed layer
      is set in from its parent's outer edge, as Figma measures it: the recipe says each placing

@@ -143,6 +143,10 @@ export const keyPrefixOf = (name) => {
  * @param {string} [o.attrs] JSX attributes on the root, before the caller's
  * @param {string} [o.text] the text layers' words, an object expression by layer
  * @param {string} [o.state] the composition's state expression, `'default'` by default
+ * @param {string} [o.icons] more of the icons map, entries by layer (a slot's filling:
+ *   `icon: <span>{icon}</span>`)
+ * @param {Record<string, string>} [o.present] whether a layer is drawn, an expression by layer,
+ *   over the recipe's answer (a slot left empty is not drawn)
  */
 export function drawnReact(spec, o) {
   const name = spec.component;
@@ -165,9 +169,14 @@ export function drawnReact(spec, o) {
   const iconImport = icons.length
     ? `import { ${[...new Set(icons.map((i) => i.react))].sort().join(', ')} } from '@bwp-web/assets';\n`
     : '';
-  const iconMap = icons.length
-    ? `{ ${icons.map((i) => `${i.layer}: <${i.react}${i.solid ? ' variant="solid"' : ''} />`).join(', ')} }`
-    : null;
+  const iconEntries = [
+    ...icons.map(
+      (i) => `${i.layer}: <${i.react}${i.solid ? ' variant="solid"' : ''} />`,
+    ),
+    ...(o.icons ? [o.icons] : []),
+  ];
+  const iconMap = iconEntries.length ? `{ ${iconEntries.join(', ')} }` : null;
+  const present = Object.entries(o.present ?? {});
   const header = `Scaffolded once by \`npm run solar:scaffold ${name}\` from spec/components/${irFile(name)}, and owned by developers from then on: change it freely. What it looks like is not here. That is the recipe, \`solar${P}Style\` and \`solar${P}Compose\` in \`@bwp-web/styles/mui\`: ${o.look}.`;
   return `/**
  * SOLAR ${name}.
@@ -198,7 +207,11 @@ export const ${P} = forwardRef<${refType}, ${P}Props>(function ${P}(
   { ${destructured} },
   ref,
 ) {
-${o.prelude ? `${indent(o.prelude, 2)}\n` : ''}  const parts = solar${P}Compose(${args}${o.state ? `, ${o.state}` : ''});
+${o.prelude ? `${indent(o.prelude, 2)}\n` : ''}  const ${present.length ? 'composed' : 'parts'} = solar${P}Compose(${args}${o.state ? `, ${o.state}` : ''});${
+    present.length
+      ? `\n  const parts = {\n    ...composed,\n${present.map(([l, e]) => `    ${l}: { ...composed.${l}, present: ${e} },`).join('\n')}\n  };`
+      : ''
+  }
   return (
     <Box
       component=${element.startsWith('{') ? element : `"${element}"`}
@@ -239,7 +252,15 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  *   [SolarPressable] arguments that announce it (`checked: checked,`). Its callback is one of
  *   `o.params`; the widget takes a `statesController`.
  * @param {Record<string, string>} [o.values] the value the recipe reads for a prop, where it is
- *   not the prop as given (a mixed box is drawn checked)
+ *   not the prop as given (a mixed box is drawn checked), and for an axis the overlay derives
+ *   from content (Tag's type), which is no prop
+ * @param {string} [o.builders] what the shell wraps a layer in, a map literal by layer (Tag's
+ *   close button)
+ * @param {string} [o.composed] the widget a layer that is another component is drawn as, a map
+ *   literal by layer (Tag's StatusIndicator), in `p` and `states`
+ * @param {string} [o.wraps] the texts that wrap, and how their lines align, a map literal by layer
+ * @param {boolean} [o.restyle] takes the colours a composing component draws it in (Toast's Tag:
+ *   its root's fill and edge), a `restyle` map by cell
  * @param {string} [o.slots] the slots the caller fills, a map literal by layer (Link's icons)
  * @param {(recipe: string) => string} [o.present] whether layer `l` is drawn, around the recipe's
  *   answer, an expression in `l` (a slot left empty is not drawn)
@@ -265,6 +286,13 @@ export function drawnFlutter(spec, o) {
       .join('\n');
   const R = `Solar${P}Recipe`;
   const icons = iconsOf(spec);
+  // A component with no props (EmptyState) reads its recipe under constant ones.
+  const propsArgs = [
+    ...api.map(([prop]) => `${prop}: ${o.values?.[prop] ?? prop}`),
+    ...Object.entries(o.values ?? {})
+      .filter(([k]) => !spec.api[k])
+      .map(([k, v]) => `${k}: ${v}`),
+  ];
   const params = [
     ...api.map(([prop, def]) => `    ${dartParam(P, prop, def)},`),
     ...(o.params ? [indent(o.params, 4)] : []),
@@ -272,6 +300,7 @@ export function drawnFlutter(spec, o) {
       ? ['    this.onPressed,', '    this.statesController,']
       : []),
     ...(o.control ? ['    this.statesController,'] : []),
+    ...(o.restyle ? ['    this.restyle = const {},'] : []),
   ].join('\n');
   const pressableFields = `/// Called when it is tapped, which makes it a control of its own; without it, it takes the
 /// states of the control around it (a Button's).
@@ -281,10 +310,14 @@ final VoidCallback? onPressed;
 final WidgetStatesController? statesController;`;
   const controlFields = `/// Its states, where the caller keeps them.
 final WidgetStatesController? statesController;`;
+  const restyleFields = `/// The colours a component that holds it draws it in, by cell (Toast's: \`root.background\`,
+/// \`root.borderColor\`), over the recipe's.
+final Map<String, Color> restyle;`;
   const fields = [
     o.fields,
     o.pressable ? pressableFields : null,
     o.control ? controlFields : null,
+    o.restyle ? restyleFields : null,
   ]
     .filter(Boolean)
     .join('\n\n');
@@ -292,14 +325,14 @@ final WidgetStatesController? statesController;`;
       recipe: SolarLayerRecipe(
         lookup: (c) => ${R}.lookup(c, p, ${states}),
         dimension: (c) => ${R}.dimension(c, p, ${states}),
-        color: (c) => ${R}.color(t, c, p, ${states}),
+        color: (c) => ${o.restyle ? 'restyle[c] ?? ' : ''}${R}.color(t, c, p, ${states}),
         shadow: (c) => ${R}.shadow(t, c, p, ${states}),
         textStyle: (c) => ${R}.textStyle(t, c, p, ${states}),
         present: (l) => ${o.present ? o.present(`${R}.present(l, p, ${states})`) : `${R}.present(l, p, ${states})`},
         glyph: ${glyphs ? `(l) => ${R}.glyph(l, p, ${states})` : '(_) => null'},
       ),
       tree: _tree,
-      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
+      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${icons.length ? `\n      icons: const {${icons.map((i) => `'${i.layer}': ${i.dart}`).join(', ')}},` : ''}
     ).layer('root')`;
   const draw = o.control
     ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};
@@ -352,7 +385,7 @@ ${o.members ? `\n${indent(o.members, 2)}\n` : ''}
   @override
   Widget build(BuildContext context) {
 ${o.prelude ? `${indent(o.prelude, 4)}\n` : ''}    final t = solarThemeOf(context);
-    final p = Solar${P}Props(${api.map(([prop]) => `${prop}: ${o.values?.[prop] ?? prop}`).join(', ')});
+    ${propsArgs.length ? 'final' : 'const'} p = Solar${P}Props(${propsArgs.join(', ')});
 ${draw}
     return ${o.wrap ? o.wrap.trim() : 'mark'};
   }

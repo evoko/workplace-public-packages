@@ -1,0 +1,131 @@
+/// SOLAR Toast.
+///
+/// Scaffolded once by `npm run solar:scaffold -- --flutter Toast` from spec/components/toast.json,
+/// and owned by developers from then on: change it freely. What it looks like is not here. That is
+/// the recipe, [SolarToastRecipe]: each status’s fill, edge and action colour, and the Tag drawn on
+/// the toast’s surface and edge, read cell by cell.
+///
+/// Bespoke: a passing message about something done in the background, with a Tag saying what it is
+/// about and an optional action ("Undo"), drawn from Figma's layer tree with [SolarLayers]. Never
+/// for an error that needs a decision: that is a dialog. Where it appears, and how long it stays (4
+/// to 7 seconds, longer for a danger), is the app's: show it in a SnackBar. It is announced as it
+/// appears.
+library;
+
+import 'package:flutter/material.dart';
+
+import '../generated/components/toast.dart';
+import '../solar_layers.dart';
+import '../generated/components/tag.dart';
+import '../generated/icons.dart';
+import '../solar_icon.dart';
+import '../solar_states.dart';
+import 'solar_tag.dart';
+import 'solar_theme_of.dart';
+
+class SolarToast extends StatelessWidget {
+  const SolarToast({
+    super.key,
+    this.status = SolarToastStatus.success,
+    required this.message,
+    this.tag,
+    this.action,
+    this.onAction,
+    this.chevron = false,
+  });
+
+  final SolarToastStatus status;
+
+  /// What happened, in a few words.
+  final String message;
+
+  /// What it is about, in the Tag before the message.
+  final String? tag;
+
+  /// The action's words ("Undo"), which call [onAction].
+  final String? action;
+
+  /// Called by the action.
+  final VoidCallback? onAction;
+
+  /// Whether a chevron follows the action, where it opens something.
+  final bool chevron;
+
+  /// Each layer's children, as Figma nests them.
+  static const _tree = <String, List<String>>{
+    'root': ['tag', 'message', 'action', 'chevron'],
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final t = solarThemeOf(context);
+    final p = SolarToastProps(status: status);
+    const states = <WidgetState>{};
+    final mark = SolarLayers(
+      recipe: SolarLayerRecipe(
+        lookup: (c) => SolarToastRecipe.lookup(c, p, states),
+        dimension: (c) => SolarToastRecipe.dimension(c, p, states),
+        color: (c) => SolarToastRecipe.color(t, c, p, states),
+        shadow: (c) => SolarToastRecipe.shadow(t, c, p, states),
+        textStyle: (c) => SolarToastRecipe.textStyle(t, c, p, states),
+        present: (l) => switch (l) {
+          'tag' => tag != null,
+          'action' => action != null,
+          'chevron' => action != null && chevron,
+          _ => SolarToastRecipe.present(l, p, states),
+        },
+        glyph: (_) => null,
+      ),
+      tree: _tree,
+      keyPrefix: 'toast',
+      text: {'message': message, 'action': ?action},
+      slots: {
+        // The chevron, in the colour and size the recipe gives its layer.
+        'chevron': ?(action != null && chevron
+            ? Builder(
+                builder: (context) => SolarIcon(
+                  SolarIcons.chevronRightOutline,
+                  size: IconTheme.of(context).size,
+                  color: IconTheme.of(context).color,
+                ),
+              )
+            : null),
+      },
+      builders: {
+        'action': (words) => Semantics(
+          // A node of its own, so the control keeps its name inside the component's.
+          container: true,
+          child: SolarPressable(onPressed: onAction, builder: (_, _) => words),
+        ),
+      },
+      composed: {
+        'tag': SolarTag(
+          status: SolarTagStatus.values.byName(
+            SolarToastRecipe.lookup(
+              'tag.variant.status',
+              p,
+              states,
+            )!.substring(2),
+          ),
+          label: tag,
+          indicator: true,
+          restyle: {
+            'root.background': SolarToastRecipe.color(
+              t,
+              'tag.background',
+              p,
+              states,
+            ),
+            'root.borderColor': SolarToastRecipe.color(
+              t,
+              'tag.borderColor',
+              p,
+              states,
+            ),
+          },
+        ),
+      },
+    ).layer('root');
+    return Semantics(container: true, liveRegion: true, child: mark);
+  }
+}

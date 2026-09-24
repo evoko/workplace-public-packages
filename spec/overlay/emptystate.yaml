@@ -1,0 +1,41 @@
+# Hand-written decisions about SOLAR EmptyState, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: EmptyState
+
+base:
+  reason: >-
+    Bespoke on both: a centred stack drawn from Figma's layers with the shared helpers, its icon,
+    words and Button the caller's. No stock control draws one.
+
+slots:
+  iconNone:
+    name: icon
+    type: icon
+    reason: >-
+      The icon says what is empty, and is the caller's: Figma draws the Icon/None placeholder and
+      records no prop.
+  title:
+    name: title
+    type: text
+    reason: >-
+      The words carry the meaning ("say why it is empty and what to do next"), and are the
+      caller's; Figma records no text prop for them.
+  description:
+    name: description
+    type: text
+    reason: As the title, the caller's words.
+
+set:
+  action.base.height:
+    none: true
+    reason: >-
+      The action is the caller's SOLAR Button, sm as Figma draws it, whose height is its own: the
+      empty state places it and never sizes it.
+
+bind:
+  icon.height:
+    literal: 24
+    token: icon.lg
+    reason: Same value, governed token; the icon's width is already bound to it.

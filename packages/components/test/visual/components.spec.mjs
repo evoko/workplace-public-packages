@@ -316,17 +316,17 @@ function childVariant(oracle, wanted) {
  * A composed child (Button's spinner, Button Group's buttons) is the child component in the
  * variant Figma picks; what that variant looks like is the child's oracle, so the two are checked
  * together, layer by layer. What the child's oracle excuses is not compared: the child's own check
- * reports it. Its box is the parent's to decide (a Button fills a group, whatever width it has
- * alone), so the child's root is measured against the parent's width and height instead, with the
- * parent's excuses.
+ * reports it. What the parent's entry holds of the child's root is the parent's to decide: its box
+ * (a Button fills a group, whatever width it has alone), and its fill and edge where the parent
+ * restyles it (Toast's Tag), so the root is measured against the parent's entry for those, with
+ * the parent's excuses.
  */
+const NAMING = new Set(['component', 'variant', 'figmaVariant', 'hidden']);
 function checkChild(expected, got, excusedHere, fail, gap) {
   if (!got) return fail({ property: 'present', figma: true, rendered: false });
   const child = childVariant(oracles[expected.component], expected.variant);
   const box = Object.fromEntries(
-    ['width', 'height']
-      .filter((p) => p in expected)
-      .map((p) => [p, expected[p]]),
+    Object.entries(expected).filter(([p]) => !NAMING.has(p)),
   );
   const own = compareLayer(box, got.layers.root ?? {}, excusedHere);
   own.failures.forEach(fail);
@@ -339,8 +339,12 @@ function checkChild(expected, got, excusedHere, fail, gap) {
       fail({ property: `${layer}.present`, figma: true, rendered: false });
       continue;
     }
-    const { width: _w, height: _h, ...rest } = want;
-    const expectedHere = layer === 'root' ? rest : want;
+    // The child's box is always the parent's, and so is whatever else the parent's entry holds.
+    const parents = (p) => p === 'width' || p === 'height' || p in box;
+    const expectedHere =
+      layer === 'root'
+        ? Object.fromEntries(Object.entries(want).filter(([p]) => !parents(p)))
+        : want;
     for (const f of compareLayer(expectedHere, measured, excused).failures)
       fail({ ...f, property: `${layer}.${f.property}` });
   }

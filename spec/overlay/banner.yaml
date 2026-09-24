@@ -1,0 +1,54 @@
+# Hand-written decisions about SOLAR Banner, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Banner
+
+base:
+  reason: >-
+    Bespoke on both: a full-width strip drawn from Figma's layers with the shared helpers, its
+    icon SOLAR's for the type, its Buttons the caller's, its text action and close button
+    pressables of its own. No stock control draws a banner.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A banner spans the page or app it speaks for ("full-width", says the description): Figma
+      draws it 458 wide, a sample. The caller places it.
+  primaryButton.base.height:
+    none: true
+    reason: >-
+      The Buttons are the caller's, sm as Figma draws them, whose height is their own: the banner
+      places them and never sizes them.
+  secondaryButton.base.height:
+    none: true
+    reason: As the primary Button's, the Button's own height.
+
+bind:
+  iconInfo.height:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's width is already bound to it.
+  iconSuccess.height:
+    literal: 20
+    token: icon.md
+    reason: As the info icon's.
+  iconWarning.height:
+    literal: 20
+    token: icon.md
+    reason: As the info icon's.
+  iconDanger.height:
+    literal: 20
+    token: icon.md
+    reason: As the info icon's.
+  close.height:
+    literal: 20
+    token: icon.md
+    reason: As the info icon's; the close button's width is already bound to it.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A banner is 44 tall, bound to nothing: SOLAR has no control height token (the design
+      review's question on control heights, as Button's is).

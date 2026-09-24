@@ -257,12 +257,16 @@ export function buildOracle(
     }
     if (layer.type === 'INSTANCE') {
       // A composed child draws itself; the parent decides only its size, which variant it is,
-      // and, for an icon, the colour it inherits.
+      // and, for an icon, the colour it inherits; and its fill and edge where the parent draws
+      // them its own way (the overlay's restyles: Toast's Tag).
       if (layer.main?.startsWith('Icon/')) {
         const fills = [...new Set(layer.iconFills ?? [])];
         if (fills.length === 1) paint('color', fills);
       } else if (layer.main) out.component = layer.main;
       if (layer.variant) out.variant = { ...layer.variant };
+      const restyled = overlay?.restyles?.[nameOf.get(path)]?.cells ?? [];
+      if (restyled.includes('background')) paint('background', layer.fills);
+      if (restyled.includes('borderColor')) paint('borderColor', layer.strokes);
       box();
       return { out, unresolved };
     }
@@ -357,11 +361,11 @@ export function buildOracle(
     for (const [axis, value] of Object.entries(props)) {
       // An axis of samples is no prop: its sample is the caller's value, read below (callers).
       if (overlay?.samples?.[axis]) continue;
-      // An axis the overlay derives from content is reached by filling those slots.
+      // An axis the overlay derives from content is reached by filling those slots, and setting
+      // the props it names (Tag's onClose).
       if (derived[axis]) {
-        content = [
-          ...(derived[axis].when.find((w) => w.value === value).given ?? []),
-        ];
+        const w = derived[axis].when.find((x) => x.value === value);
+        content = [...(w.given ?? []), ...(w.props ?? [])];
         continue;
       }
       if (axis === 'state') {
@@ -464,6 +468,28 @@ export function buildOracle(
     });
   }
 
+  // A composed child's variant an overlay `set` decides (Toast's Tag: `status`, where Figma names
+  // a type Tag no longer has): the child is checked in the variant decided, and Figma's is kept
+  // beside it, as `figmaVariant`.
+  const variantSets = Object.entries(overlay?.set ?? {}).flatMap(
+    ([at, rule]) => {
+      const parts = at.split('.');
+      const [layer, section] = parts;
+      const depth = { base: 0, size: 1, appearance: 2, combined: 3 }[section];
+      const cell = parts.slice(2 + depth).join('.');
+      if (!cell.startsWith('variant.') || rule.keyword === undefined) return [];
+      const keys = parts.slice(2, 2 + depth);
+      return [
+        {
+          layer,
+          axis: cell.slice('variant.'.length),
+          keyword: rule.keyword,
+          reaches: (props) => setReaches(props, section, keys),
+        },
+      ];
+    },
+  );
+
   const variants = resolved.variants.map((v) => {
     const layers = {};
     const excused = [];
@@ -471,6 +497,11 @@ export function buildOracle(
       const name = nameOf.get(path);
       if (!name) throw new Error(`${where}: no IR name for layer ${path}`);
       const { out, unresolved } = measure(layer, path);
+      for (const d of variantSets)
+        if (d.layer === name && out.variant && d.reaches(v.props)) {
+          out.figmaVariant ??= { ...out.variant };
+          out.variant[d.axis] = d.keyword;
+        }
       layers[name] = out;
       for (const e of excuses) {
         if (e.layer !== name || (e.variant !== null && e.variant !== v.name))
