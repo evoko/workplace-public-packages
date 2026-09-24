@@ -8,6 +8,7 @@
  */
 
 import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['label', 'icon'])
@@ -32,6 +33,9 @@ export default {
           width: '100%',
           height: '100%',
         },
+      // A 44 × 44 target around the close button, as far as the page lets it reach
+      // (scaffold/target.mjs).
+      ...targetArea('& button.SolarTag-iconClose'),
       '& button.SolarTag-iconClose': {
         appearance: 'none',
         border: '0',
@@ -212,7 +216,7 @@ SolarTagType get _type {
         text: "{'label': ?label}",
         slots: "{'icon': ?icon, 'iconNone': ?icon}",
         builders: `{
-        'iconClose': (close) => Semantics(
+        'iconClose': (close) => SolarTarget.inside(child: Semantics(
           // A node of its own, so the control keeps its name inside the component's.
           container: true,
           child: SolarPressable(
@@ -222,7 +226,7 @@ SolarTagType get _type {
             excludeSemantics: true,
             child: close,
           ),
-        )),
+        ))),
       }`,
         // The dot is a StatusIndicator, in the type and size the recipe names for the status.
         composed: `{
@@ -238,6 +242,7 @@ SolarTagType get _type {
         ),
       }`,
         imports: `import '../solar_states.dart';
+import '../solar_target.dart';
 import '../generated/components/statusindicator.dart';
 import 'solar_statusindicator.dart';`,
         wrap: `semanticLabel == null

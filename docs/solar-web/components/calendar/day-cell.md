@@ -76,10 +76,6 @@ Default variant: `state=default` · 5 variants · default size 160×120px
 
 - State axis uses non-standard value(s): other-month, today, today-column.
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Usage**
@@ -88,23 +84,18 @@ Month-grid day cell. Holds the date number and a stack of Event Chip instances. 
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the first variant: Day Num Row · Events. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+5 variants.  
+• state — default | other-month | selected | today | today-column  
+Props: hasEvent01 (boolean), hasEvent02 (boolean), hasMoreEvents (boolean).
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+No sibling or alternative component is called out for this page.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+Not yet documented here — follow the state-class requirements in CLAUDE.md §7 Check 2 and the WCAG AA rules in §6.

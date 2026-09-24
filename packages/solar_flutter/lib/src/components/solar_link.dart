@@ -85,6 +85,7 @@ class SolarLink extends StatelessWidget {
             onPressed: !disabled ? onPressed : null,
             statesController: statesController,
             link: true,
+            target: true,
             builder: (_, states) => draw(states),
           );
     return mark;

@@ -32,6 +32,18 @@ export const solarIconButtonStyles = {
       width: '100%',
       height: '100%',
     },
+    '&': {
+      position: 'relative',
+    },
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
+    },
   },
   root: {
     backgroundColor: 'var(--solar-color-action-primary-bg-default)',

@@ -1659,13 +1659,13 @@
     "Usage",
     "ROLE: composition of Card. Dashboard widget chrome. A Card composition with opinionated header (Title + optional overflow menu + optional control slot for Time Range Selector), body slot, and first-class loading / error / empty states. ANATOMY Outer COMPONENT wraps an inner Surface FRAME that carries all card tokens (surface/base, border/subtle, radius/container, border/default weight, shadow/raised effect style, padding inset/lg). Inside Surface: WidgetHeader (Title + Trailing(Control + Overflow)) → Body → Footer. Applied via --solar-card-padding in code, not a fork. May override: padding (inset.lg), Header content (fixed WidgetHeader), state vocabulary (loading|error|empty). STATE DELEGATIONS • loading → Skeleton (rectangular, md) • empty   → EmptyState (size=sm) • error   → inline error block (message + Button instance) BUILD NOTE (2026-04-21) Outer COMPONENT uses an inner Surface FRAME because Figma’s Plugin API silently drops scalar bindings (padding/radius/strokeWeight/itemSpacing) when applied directly to a COMPONENT root node. Taxonomy intent (Widget Card as a Card INSTANCE) is blocked on Card exposing a content-accepting slot — flagged on the handoff.",
     "Anatomy",
-    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
-    "States",
-    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
-    "Truncation",
-    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Top-level layers of the first variant: Header · body · footer. Instances keep their SOLAR component names.",
+    "Specification",
+    "8 variants.\n• state — default | loading | error | empty\n• action — more | link\nProps: show footer (boolean), footer (slot), body (slot), hasStatus (boolean), title (text).",
+    "Related",
+    "No sibling or alternative component is called out for this page.",
     "Accessibility",
-    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+    "VARIANT PROPERTIES • state — default, loading, error, empty BOOLEANS • show overflow (default true) • show control (default false) • show footer (default false) • title (text prop) PADDING OVERRIDE Bound to inset/lg vs Card’s nominal inset/md. COMPOSITION CONTRACT Widget Card may not override: surface/*, border/*, radius/*, border/default weight, shadow/raised, focus ring. The Surface FRAME holds all card tokens; the COMPONENT wrapper provides the variant axis. IS NOT • Not a Card variant. • Not a layout grid. • Not an entity card. • Does not own the Time Range Selector — accepts one as an instance swap into the Control slot."
   ],
   "pageContext": null
 }

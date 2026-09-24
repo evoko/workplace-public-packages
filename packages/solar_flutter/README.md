@@ -130,7 +130,13 @@ its states to a `SolarStatesScope`, and a `SolarCounter` in it reads them with a
 `SolarStatesBuilder`, so it follows the button's hover, press and disabled colours, as Figma draws
 it. `SolarPressable` gives a drawn widget states of its own where it is a control (a counter with
 `onPressed`), announced as a button, a link, a checkbox (`checked`, `mixed`) or a switch
-(`toggled`). `SolarSliderInput` (`lib/src/solar_slider_input.dart`) is the same for the sliders:
+(`toggled`). Every control has a target at least 44 × 44, WCAG's floor, as SOLAR asks ("the 44×44px WCAG hit
+area is padded in code"): `SolarTarget` (`lib/src/solar_target.dart`). A control on its own takes
+that room where the theme pads tap targets (on touch platforms, as Material's controls do) and draws
+centred in it; a part of another component (a Tag's close button, `SolarTarget.inside`) reaches past
+itself as far as the component lets a pointer reach, taking no room. The FilledButton-based buttons
+are padded by Material itself. `solarTargetSize` is the one raw target size until SOLAR publishes a
+variable for it. `SolarSliderInput` (`lib/src/solar_slider_input.dart`) is the same for the sliders:
 it drags the nearest handle, gives each handle the focus, the arrow keys and a slider's semantics,
 and leaves the drawing to `SolarLayers`, the value placing the fill and handles. `solarInkOn`
 (`lib/src/solar_ink.dart`) is the Avatar initials' ink, the web's rule step for step.

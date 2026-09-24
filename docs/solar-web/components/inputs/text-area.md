@@ -103,9 +103,9 @@ Default variant: `size=md, state=default` · 12 variants · default size 280×15
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-A multi-line field for longer free-form text — comments, descriptions, notes. Grows or scrolls with content. Not for single-line entry (use Text Input).
+Multi-line text field for long-form input. Resize handle bottom-right. Use when expected input exceeds ~2 lines (descriptions, notes, feedback). For rich formatting switch to a rich-text editor component.
 
 **Usage**
 
@@ -128,12 +128,6 @@ Programmatic label; error sets aria-invalid and links a message. Announce charac
 
 **Rules**
 
-- DO: Show a visible label
-- DO: Add a counter when limited
-- DO: Surface errors inline
-- DO: Allow resize where useful
+- DO: Use when expected input exceeds ~2 lines (descriptions, notes, feedback).
 
-- DON'T: Use for single-line input
-- DON'T: Hide the label
-- DON'T: Rely on colour alone for errors
-- DON'T: Fix a tiny height for long content
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

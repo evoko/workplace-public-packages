@@ -2195,13 +2195,13 @@
     "Usage",
     "Global search results: GlobalSearch field with filter Tags, then results grouped by category with a See all Link per group.",
     "Anatomy",
-    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
-    "States",
-    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
-    "Truncation",
-    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Top-level layers of the first variant: SearchHeader · ResultsBody. Instances keep their SOLAR component names.",
+    "Specification",
+    "4 variants.\n• state — no-results | empty | default\n• ghost — false | true",
+    "Related",
+    "No sibling or alternative component is called out for this page.",
     "Accessibility",
-    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+    "Rows are ResultRow instances; the panel announces the result count on each change."
   ],
   "pageContext": null
 }

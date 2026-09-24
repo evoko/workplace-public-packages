@@ -399,7 +399,7 @@
     "pageId": "2163:3661",
     "figmaNode": "2618:3237",
     "defaultVariant": "orientation=horizontal, type=regular",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/button-group.yaml",

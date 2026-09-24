@@ -95,9 +95,9 @@ Default variant: `status=success, type=status, invert=false` · 45 variants · d
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-A compact label for categorising, status, or metadata. Read-only by default; can be closable when it represents a removable selection. For user-entered tokens, use Tag Input.
+Compact label for status, category, or user-entered content. Keep text to 1–3 words.
 
 **Status**
 
@@ -117,12 +117,6 @@ Convey status with text or an icon, never colour alone. A closable tag’s remov
 
 **Rules**
 
-- DO: Pair colour with text
-- DO: Keep labels short (1–2 words)
-- DO: Use closable only for removable items
-- DO: Match status colour to meaning
+- DO: Keep text to 1–3 words.
 
-- DON'T: Rely on colour alone for status
-- DON'T: Use tags as buttons
-- DON'T: Overload with long text
-- DON'T: Make every tag closable
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

@@ -57,10 +57,6 @@ Default variant: `placement=top, size=md` · 8 variants · default size 320×100
 | right     | sm   | 250×66  |      |        | `shadow/dialog` | `color.text.primary`<br>`color.text.secondary` |      |
 | right     | md   | 330×90  |      |        | `shadow/dialog` | `color.text.primary`<br>`color.text.secondary` |      |
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Usage**
@@ -69,23 +65,19 @@ Anchored overlay with an arrow for rich content — a title, body text and optio
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the first variant: Content · Tip. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+8 variants.  
+• placement — top | bottom | left | right  
+• size — sm | md  
+Props: title (text), body (text).
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+For a one-line hint use Tooltip; for a list of actions use Dropdown.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+Not yet documented here — follow the state-class requirements in CLAUDE.md §7 Check 2 and the WCAG AA rules in §6.

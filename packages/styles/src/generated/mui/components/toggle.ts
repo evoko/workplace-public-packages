@@ -45,9 +45,12 @@ export const solarToggleStyles = {
       transform: 'none',
       backgroundColor: 'transparent',
     },
-    '& .MuiSwitch-input': {
-      left: '0',
-      width: '100%',
+    '& .MuiSwitch-switchBase .MuiSwitch-input': {
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
     },
   },
   root: {

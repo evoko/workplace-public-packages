@@ -5,7 +5,7 @@
     {
       "name": "SplitButton",
       "id": "4569:200",
-      "description": "Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 36px, md 44px) × state (default, hover, pressed, disabled, focus, loading). Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.",
+      "description": "Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 32px, md 40px) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.",
       "docLinks": [],
       "variantCount": 24,
       "props": {

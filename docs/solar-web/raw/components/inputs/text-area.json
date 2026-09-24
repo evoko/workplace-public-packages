@@ -1420,8 +1420,8 @@
     "Biamp Design System",
     "1.0",
     "Text Area",
-    "Description",
-    "A multi-line field for longer free-form text — comments, descriptions, notes. Grows or scrolls with content. Not for single-line entry (use Text Input).",
+    "Usage",
+    "Multi-line text field for long-form input. Resize handle bottom-right. Use when expected input exceeds ~2 lines (descriptions, notes, feedback). For rich formatting switch to a rich-text editor component.",
     "Usage",
     "Use when input may exceed one line. Show a character counter where limits apply. Allow resize where space permits.",
     "States",
@@ -1431,8 +1431,8 @@
     "Accessibility",
     "Programmatic label; error sets aria-invalid and links a message. Announce character-limit state politely. Visible focus ring.",
     "Rules",
-    "DO   Show a visible label\nDO   Add a counter when limited\nDO   Surface errors inline\nDO   Allow resize where useful",
-    "DON'T   Use for single-line input\nDON'T   Hide the label\nDON'T   Rely on colour alone for errors\nDON'T   Fix a tiny height for long content"
+    "DO   Use when expected input exceeds ~2 lines (descriptions, notes, feedback).",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

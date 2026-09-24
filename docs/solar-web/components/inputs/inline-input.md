@@ -54,9 +54,9 @@ Default variant: `state=default` · 6 variants · default size 240×40px
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-An editable value that sits inline in text or a table cell — click to edit in place, commit on blur or Enter. Use for lightweight edits without a separate form field.
+Inline Input — edit-in-place field that displays a value as text and reveals an editable field on interaction. 6 states: default (read), hover (shows edit affordance), focus (active edit, focus border), filled (edit mode with value), error (validation error), disabled. Edit states expose Confirm (check) and Cancel (close) icon buttons to commit or discard. Set the displayed text via the ’value’ property.
 
 **Usage**
 
@@ -78,12 +78,6 @@ Editable region has a label; announce edit mode on focus. Enter commits, Esc can
 
 **Rules**
 
-- DO: Use for quick in-place edits
-- DO: Show an edit affordance on hover
-- DO: Commit on Enter / blur
-- DO: Allow Esc to cancel
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-- DON'T: Use for complex multi-field forms
-- DON'T: Hide that a value is editable
-- DON'T: Lose input on accidental blur
-- DON'T: Rely on colour alone for errors
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

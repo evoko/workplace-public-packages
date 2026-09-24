@@ -346,7 +346,7 @@
     "pageId": "2966:592",
     "figmaNode": "2203:3266",
     "defaultVariant": "type=regular, state=default",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/counter.yaml",

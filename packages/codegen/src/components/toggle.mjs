@@ -8,6 +8,7 @@
  */
 
 import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
+import { targetInput } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const prop of ['selected', 'disabled'])
@@ -34,7 +35,9 @@ export default {
         transform: 'none',
         backgroundColor: 'transparent',
       },
-      '& .MuiSwitch-input': { left: '0', width: '100%' },
+      // The input is the target, 44 × 44 around the track (scaffold/target.mjs).
+      // Through the switch base, as specific as MUI's own rule for the input, which it follows.
+      ...targetInput('& .MuiSwitch-switchBase .MuiSwitch-input'),
     }),
     states: {
       default: null,

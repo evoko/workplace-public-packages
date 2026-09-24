@@ -65,7 +65,7 @@ Default variant: `state=default, range-role=none` · 13 variants · default size
 
 ## Component set: DatePicker
 
-Date selector. 14 variants: size (sm 36px, md 44px) × state (default, hover, focus, filled, disabled, error, error-focused). NOTE: state `error-focused` flagged for rename to match SOLAR's locked `focus` naming. Text input accepts typed dates; paired Date Picker Open presents the calendar grid for click selection. Date format follows locale.
+Date selector. 14 variants: size (sm, md) × state (default, hover, focus, filled, disabled, error, error-focused). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). NOTE: state error-focused is flagged to fold into error + focus in a breaking cut. Props: value, label, helperText (text), showLabel, showHelper, showRequired. Text input accepts typed dates; paired Date Picker Open presents the calendar grid for click selection. Date format follows locale.
 
 ### Props
 

@@ -5,7 +5,7 @@
     {
       "name": "Tab Item",
       "id": "3414:71",
-      "description": "Single tab inside a Tabs strip. 10 variants: size (sm 36px, md 44px) × state (default, hover, active, focused, disabled). NOTE: state values `active` and `focused` diverge from SOLAR's locked `pressed` and `focus` naming — flagged for migration. 'active' here means the currently-routed tab (persistent), not the mouse-down flash. Supports leading icon, trailing icon, and counter Badge via booleans.",
+      "description": "Single tab inside a Tabs strip. 10 variants: size (sm 32px, md 40px) × state (default, hover, selected, focus, disabled). selected is the currently routed tab (aria-selected, persistent), not a press flash. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Props: label (text), show leading icon, show trailing icon, show counter (Badge). Use only inside Tabs.",
       "docLinks": [],
       "variantCount": 10,
       "props": {
@@ -845,7 +845,7 @@
     {
       "name": "Tabs",
       "id": "6165:12202",
-      "description": "Horizontal tab strip that switches between 2–7 peer views under the same context. 2 variants: size (sm 36px, md 44px). Tabs is a slot for Tab Item instances. role=tablist; arrow keys move focus and aria-selected marks the current tab. For ordered flows use Stepper or Page Navigator; for 2–5 inline view toggles inside a form use Segmented Control.",
+      "description": "Horizontal tab strip that switches between 2–7 peer views under the same context. 2 variants: size (sm 32px, md 40px). Tabs is a slot for Tab Item instances. role=tablist; arrow keys move focus and aria-selected marks the current tab. For ordered flows use Stepper or Page Navigator; for 2–5 inline view toggles inside a form use Segmented Control.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

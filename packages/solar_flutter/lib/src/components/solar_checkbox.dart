@@ -76,6 +76,7 @@ class SolarCheckbox extends StatelessWidget {
       statesController: statesController,
       checked: checked,
       mixed: mixed,
+      target: true,
       builder: (_, states) => draw(states),
     );
     return semanticLabel == null

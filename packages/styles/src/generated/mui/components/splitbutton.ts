@@ -44,6 +44,30 @@ export const solarSplitButtonStyles = {
       font: 'inherit',
       color: 'inherit',
     },
+    '& .SolarSplitButton-action': {
+      position: 'relative',
+    },
+    '& .SolarSplitButton-action::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
+    },
+    '& .SolarSplitButton-trigger': {
+      position: 'relative',
+    },
+    '& .SolarSplitButton-trigger::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
+    },
     '& .SolarSplitButton-spinner': {
       position: 'absolute',
       inset: '0',

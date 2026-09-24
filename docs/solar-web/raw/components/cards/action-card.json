@@ -881,13 +881,13 @@
     "Usage",
     "ROLE: composition of Card. The single interactive composition of Card. Whole-surface click affordance for onboarding checklists, empty-state CTAs, and feature promos. ANATOMY Card surface + fixed Body anatomy: leading Icon (instance swap, 24px) → Title → Description → CTA row (Button Group instance swap). COMPOSITION CONTRACT Action Card is (taxonomy-intent) a Card instance with clickable=true pinned. Current build is a detached copy of Card, not a Card instance — graduation to a true Card instance requires owner call (see Open Items). Downstream consumers instance Action Card, not Card + manual content. IS NOT • Not a generic clickable Card wrapper — if a consumer needs a bespoke clickable body (Device Card, Billing Card), use Card with clickable=true directly. • Action Card is specifically the icon-title-description-CTA pattern. • Not a Button-in-a-Card — the surface itself is the control. • Not a list-row — that’s List.",
     "Anatomy",
-    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
-    "States",
-    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
-    "Truncation",
-    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Top-level layers of the first variant: Title · content · CTA. Instances keep their SOLAR component names.",
+    "Specification",
+    "6 variants.\n• status — default | done | danger\n• state — hover | default\n• layout — vertical\nProps: showCTA (boolean), showPrimaryCTA (boolean), showSecondaryCTA (boolean), showIcon (boolean), content (slot), icon (instance swap).",
+    "Related",
+    "No sibling or alternative component is called out for this page.",
     "Accessibility",
-    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+    "VARIANT PROPERTIES • status — default, done, danger (controls CTA-row vs done-indicator swap; danger marks a destructive action) • state — default, hover (pressed / focus queued) • layout — vertical (horizontal queued) BOOLEANS • Show CTA • Show Primary CTA • Show Secondary CTA • Show Icon • Content (slot) Queued: show description, show status-message. Inherits Card’s focus ring (shadow/focus/default) and hover/pressed overlay — does not redefine them."
   ],
   "pageContext": null
 }

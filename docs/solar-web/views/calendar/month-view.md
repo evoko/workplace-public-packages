@@ -35,10 +35,6 @@ Instance census (tree capped at depth 3): Event Chip ×105, Icon/Repeat ×105, D
 
 - Calendar Toolbar
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Usage**
@@ -47,23 +43,16 @@ Composed Month View pattern. Wires up Calendar Toolbar (top), Weekday Header row
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the component: Calendar Toolbar · Calendar Body. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+Single component.
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+No sibling or alternative component is called out for this page.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+Not yet documented here — follow the state-class requirements in CLAUDE.md §7 Check 2 and the WCAG AA rules in §6.

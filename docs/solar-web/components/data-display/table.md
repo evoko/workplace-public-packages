@@ -406,10 +406,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 | desktop    | 1020×56 |      |        |        | `color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.primary` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default` |
 | mobile     | 377×56  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default` |
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Usage**
@@ -418,23 +414,20 @@ Data table chassis — header row plus a Rows slot of Row instances.
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the first variant: Row · Rows. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+6 variants.  
+• breakpoint — desktop | mobile  
+• expandable — false | true  
+• selectable — false | true  
+Props: Rows (slot).
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+Compose with TableHeader above and TableFooter below; for the full toolbar + pagination assembly use the Data Table pattern.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+Not yet documented here — follow the state-class requirements in CLAUDE.md §7 Check 2 and the WCAG AA rules in §6.

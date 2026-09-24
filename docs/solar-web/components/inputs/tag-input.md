@@ -88,9 +88,11 @@ Default variant: `size=md, state=default` · 16 variants · default size 240×76
 
 ## Documentation card
 
-**Description**
+**Token Input**
 
-A field for entering multiple values as removable chips (tokens) — recipients, labels, keywords. Type and confirm to add; remove via the chip or backspace. For a single free value use Text Input.
+**Usage**
+
+Multi-value (token) input. Collects discrete entries as removable Token chips with an optional overflow Counter. Class B form input. Properties: label, helper, show label, show helper, show mandatory. Built from SOLAR Web primitives; chips = local .Token; counter = Counter.
 
 **Usage**
 
@@ -113,12 +115,6 @@ Labelled field; each chip’s remove is a labelled button. Announce added/remove
 
 **Rules**
 
-- DO: Confirm tokens on Enter / comma
-- DO: Make each chip removable
-- DO: Announce add / remove
-- DO: Validate tokens with a message
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-- DON'T: Use for a single value (use Text Input)
-- DON'T: Trap focus among chips
-- DON'T: Rely on colour alone for errors
-- DON'T: Lose typed text on blur
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

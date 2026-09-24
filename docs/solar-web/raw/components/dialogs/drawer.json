@@ -282,13 +282,13 @@
     "Usage",
     "Panel that slides in from the viewport edge for a secondary task that keeps the page in context — filters, quick edits, settings. Traps focus like a dialog; Esc closes and focus returns to the trigger.",
     "Anatomy",
-    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
-    "States",
-    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
-    "Truncation",
-    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Top-level layers of the component: Header · content · Button Group. Instances keep their SOLAR component names.",
+    "Specification",
+    "Single component.\nProps: title (text), content (slot), hasCTA (boolean).",
+    "Related",
+    "Use Dialog when the task must finish before the page continues; use Detail Side Panel for read-only detail.",
     "Accessibility",
-    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+    "Single variant; title is a text prop, content is a slot, hasCTA toggles the footer Button Group."
   ],
   "pageContext": null
 }

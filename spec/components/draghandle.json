@@ -740,7 +740,7 @@
     "pageId": "4533:82",
     "figmaNode": "4583:170",
     "defaultVariant": "size=sm, state=default",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/draghandle.yaml",

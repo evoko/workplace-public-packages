@@ -8,6 +8,7 @@
  */
 
 import { drawnResets, treeOf, wrapDoc } from '../scaffold/drawn.mjs';
+import { targetInput } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const prop of ['checked', 'disabled'])
@@ -23,7 +24,11 @@ export default {
     slots: 'drawn',
     // MUI's root is the ring: its padding and round hover halo give way to the recipe's, and its
     // native input, invisible, covers the ring.
-    resets: drawnResets('Radio', { padding: '0' }),
+    resets: drawnResets('Radio', {
+      padding: '0',
+      // The input is the target, 44 × 44 around the ring (scaffold/target.mjs).
+      ...targetInput('& input'),
+    }),
     states: {
       default: null,
       hover: '&:hover',
@@ -136,6 +141,7 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/radio.dart';
 import '../solar_layers.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarRadio<T> extends StatefulWidget {
@@ -210,7 +216,7 @@ ${tree}
       keyPrefix: 'radio',
     ).layer('root');
     final forced = widget.statesController;
-    final radio = RawRadio<T>(
+    final radio = SolarTarget(child: RawRadio<T>(
       value: widget.value,
       mouseCursor: WidgetStateMouseCursor.clickable,
       toggleable: false,
@@ -224,7 +230,7 @@ ${tree}
               listenable: forced,
               builder: (_, _) => draw({...state.states, ...forced.value}),
             ),
-    );
+    ));
     return widget.semanticLabel == null
         ? radio
         : Semantics(label: widget.semanticLabel, child: radio);

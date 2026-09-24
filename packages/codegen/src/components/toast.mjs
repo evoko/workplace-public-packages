@@ -8,6 +8,7 @@
  */
 
 import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['message', 'tag', 'action', 'chevron'])
@@ -29,6 +30,8 @@ export default {
         background: 'none',
         cursor: 'pointer',
       },
+      // A 44 × 44 target around the action (scaffold/target.mjs).
+      ...targetArea('& button.SolarToast-action'),
       '& .SolarToast-chevron > svg': {
         display: 'block',
         width: '100%',
@@ -182,13 +185,13 @@ final bool chevron;`,
           _ => ${recipe},
         }`,
         builders: `{
-        'action': (words) => Semantics(
+        'action': (words) => SolarTarget.inside(child: Semantics(
           // A node of its own, so the control keeps its name inside the component's.
           container: true,
           child: SolarPressable(
           onPressed: onAction,
           builder: (_, _) => words,
-        )),
+        ))),
       }`,
         // A SOLAR Tag, in the variant the recipe names, on the toast's surface and edge.
         composed: `{
@@ -208,6 +211,7 @@ final bool chevron;`,
 import '../generated/icons.dart';
 import '../solar_icon.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import 'solar_tag.dart';`,
         wrap: `Semantics(
       container: true,

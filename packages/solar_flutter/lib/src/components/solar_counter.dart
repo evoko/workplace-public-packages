@@ -77,6 +77,7 @@ class SolarCounter extends StatelessWidget {
         : SolarPressable(
             onPressed: !disabled ? onPressed : null,
             statesController: statesController,
+            target: true,
             builder: (_, states) => draw(states),
           );
     return mark;

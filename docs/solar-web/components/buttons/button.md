@@ -7,14 +7,14 @@
 Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).
 
 Variants (108):
-• size — sm (36px) | md (44px, default) | lg (48px)
+• size — sm (32px) | md (40px, default) | lg (48px)
 • prio — primary | secondary | tertiary
 • state — default | hover | pressed | focus | loading | disabled
 • danger — false | true (destructive/irreversible actions: delete, remove, revoke)
 
 focus carries the shared effect style shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission.
 
-Sizing: sm renders below the 44px WCAG touch target — pad the hit area in code or reserve it for dense tables and toolbars. There is no xs or xl size; size=xl was renamed lg on 2026-09-23.
+Sizing: Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). sm and md both render below 44px — reserve sm for dense tables and toolbars. There is no xs or xl size; size=xl was renamed lg on 2026-09-23.
 
 Labels: write as actions — “Save changes” not “OK”, “Delete project” not “Yes”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.
 

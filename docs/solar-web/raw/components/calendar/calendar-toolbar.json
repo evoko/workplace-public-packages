@@ -356,13 +356,13 @@
     "Usage",
     "Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today button (secondary) + current date-range title. Right: Segmented Control for switching between Day / Week / Month / Agenda + primary Button for creating a new event.",
     "Anatomy",
-    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
-    "States",
-    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
-    "Truncation",
-    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Top-level layers of the component: Left · Right. Instances keep their SOLAR component names.",
+    "Specification",
+    "Single component.\nProps: range (text).",
+    "Related",
+    "No sibling or alternative component is called out for this page.",
     "Accessibility",
-    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+    "Not yet documented here — follow the state-class requirements in CLAUDE.md §7 Check 2 and the WCAG AA rules in §6."
   ],
   "pageContext": null
 }

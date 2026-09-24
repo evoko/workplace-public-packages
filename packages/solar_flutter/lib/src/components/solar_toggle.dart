@@ -72,6 +72,7 @@ class SolarToggle extends StatelessWidget {
           : () => onChanged!(!selected),
       statesController: statesController,
       toggled: selected,
+      target: true,
       builder: (_, states) => draw(states),
     );
     return semanticLabel == null

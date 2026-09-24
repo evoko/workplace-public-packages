@@ -39,10 +39,11 @@ the label is hidden but keeps its room, and the SOLAR Spinner shows in the varia
 passes through, and `sx` applies on top of the recipe. An icon-only button needs an
 `aria-label`; in development the component warns when one is missing.
 
-`sm` is drawn 32px tall and `md` 40px, below the 44px WCAG touch target. SOLAR asks for the hit
-area to be padded in code but publishes no token for the target size, and the descriptions in
-Figma give 36px and 44px where the components are drawn 32px and 40px, so this is not done yet: it
-is the first question in [the design review](../../docs/solar-review-for-design.md).
+`sm` is drawn 32px tall and `md` 40px, below the 44px WCAG touch target, and its hit area is
+padded to 44 × 44 in code, as SOLAR's description asks: an invisible target around the drawn button,
+which takes no room. Every control here has one. SOLAR publishes no variable for the target size, so
+44 is the one raw value for it, in the codegen's `src/scaffold/target.mjs`, until SOLAR does (the
+first question in [the design review](../../docs/solar-review-for-design.md)).
 
 ## Icon Button
 
@@ -65,7 +66,7 @@ callers). The icon fills a box the recipe sizes from the icon ladder. While load
 way to the Spinner Figma picks for the variant; disabled wins over loading. Figma draws some
 variants inconsistently with Button (primary's border, a focus ring on press, disabled borders);
 they are drawn as Figma draws them and listed in [the design review](../../docs/solar-review-for-design.md),
-section 8. The 44px hit area waits on the same token as Button's.
+section 8. Its hit area is padded to 44 × 44, as Button's is.
 
 ## Button Group
 
@@ -300,7 +301,7 @@ carry the semantics.
 One choice of many, committed on click: MUI's Checkbox, a native input, with Figma's box, tick and
 dash drawn inside it. `mixed` draws the dash, for a parent whose children are partly checked, and
 is announced so. Name it with a `<label>` (which toggles it) or an `aria-label`. The box is 16px,
-its hit area unpadded until SOLAR has a target-size variable (as Button's).
+its native input the 44 × 44 target around it.
 
 ## Radio
 

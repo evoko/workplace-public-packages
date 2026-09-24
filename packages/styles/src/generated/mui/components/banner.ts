@@ -47,6 +47,30 @@ export const solarBannerStyles = {
       background: 'none',
       cursor: 'pointer',
     },
+    '& button.SolarBanner-action': {
+      position: 'relative',
+    },
+    '& button.SolarBanner-action::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
+    },
+    '& button.SolarBanner-close': {
+      position: 'relative',
+    },
+    '& button.SolarBanner-close::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
+    },
     '& .SolarBanner-close > svg': {
       display: 'block',
       width: '100%',

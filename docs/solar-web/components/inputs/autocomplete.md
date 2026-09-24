@@ -7,10 +7,10 @@
 Text input that suggests matching options from a data set as the user types. Pair with Dropdown Menu + Dropdown Item for the open-state suggestion list.
 
 Use for: free-text search with hints, large picklists where Select is impractical, tag/entity pickers.
-Don't use for: ≤ ~8 static options (use Select), pure search without suggestions (use Search), authoring with rich cell types (use Combobox / tag input patterns).
+Do not use for: ≤ ~8 static options (use Select), pure search without suggestions (use Search), authoring with rich cell types (use Combobox / tag input patterns).
 
 Props:
-• size — md (44px, default) · sm (36px, dense contexts)
+• size — md (field 40px, default) · sm (field 32px, dense contexts); with label and helper the component measures 76 / 66px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet).
 • state — default · hover · focus · filled · disabled · error
 • show label / show mandatory / show helper / show leading icon / show trailing icon — toggles for Label, \*, Helper, and the Icon/None slots inside Field.
 

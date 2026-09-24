@@ -5,7 +5,7 @@
     {
       "name": "BackButton",
       "id": "4549:130",
-      "description": "Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 36px, md 44px) × state (default, hover, pressed, focus, disabled, loading). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.",
+      "description": "Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 32px, md 40px) × state (default, hover, pressed, focus, disabled, loading). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Props: Label (text), showLabel. Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.",
       "docLinks": [],
       "variantCount": 12,
       "props": {
@@ -775,9 +775,9 @@
     "SOLAR®",
     "Biamp Design System",
     "1.0",
-    "Back Button",
-    "Description",
-    "Returns to the previous screen or a parent view. A low-emphasis navigation control, usually top-left of a page, panel, or wizard step. Not for submitting or confirming (use Button).",
+    "BackButton",
+    "Usage",
+    "Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.",
     "Usage",
     "Place top-left of a page, panel, or step. Pairs with a Page Header. One per view.",
     "Behavior",
@@ -787,8 +787,8 @@
     "Accessibility",
     "Expose as a link or button with a clear label (“Back”, “Back to Devices”). Reachable and operable by keyboard; visible focus ring.",
     "Rules",
-    "DO   Place it top-left, one per view\nDO   Give it a clear destination label\nDO   Pair with the Page Header\nDO   Keep a 44px hit area",
-    "DON'T   Use it to submit or confirm\nDON'T   Show more than one per view\nDON'T   Rely on the chevron alone with no label where context is unclear\nDON'T   Shrink below 44px"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   Routes to the ancestor the user came from — should never be a no-op or hit browser-back."
   ],
   "pageContext": null
 }

@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/radio.dart';
 import '../solar_layers.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarRadio<T> extends StatefulWidget {
@@ -90,20 +91,22 @@ class _SolarRadioState<T> extends State<SolarRadio<T>> {
       keyPrefix: 'radio',
     ).layer('root');
     final forced = widget.statesController;
-    final radio = RawRadio<T>(
-      value: widget.value,
-      mouseCursor: WidgetStateMouseCursor.clickable,
-      toggleable: false,
-      focusNode: _focus,
-      autofocus: widget.autofocus,
-      groupRegistry: group,
-      enabled: enabled,
-      builder: (context, state) => forced == null
-          ? draw(state.states)
-          : ListenableBuilder(
-              listenable: forced,
-              builder: (_, _) => draw({...state.states, ...forced.value}),
-            ),
+    final radio = SolarTarget(
+      child: RawRadio<T>(
+        value: widget.value,
+        mouseCursor: WidgetStateMouseCursor.clickable,
+        toggleable: false,
+        focusNode: _focus,
+        autofocus: widget.autofocus,
+        groupRegistry: group,
+        enabled: enabled,
+        builder: (context, state) => forced == null
+            ? draw(state.states)
+            : ListenableBuilder(
+                listenable: forced,
+                builder: (_, _) => draw({...state.states, ...forced.value}),
+              ),
+      ),
     );
     return widget.semanticLabel == null
         ? radio

@@ -2251,9 +2251,9 @@
     "SOLAR®",
     "Biamp Design System",
     "1.0",
-    "Tag Input",
-    "Description",
-    "A field for entering multiple values as removable chips (tokens) — recipients, labels, keywords. Type and confirm to add; remove via the chip or backspace. For a single free value use Text Input.",
+    "Token Input",
+    "Usage",
+    "Multi-value (token) input. Collects discrete entries as removable Token chips with an optional overflow Counter. Class B form input. Properties: label, helper, show label, show helper, show mandatory. Built from SOLAR Web primitives; chips = local .Token; counter = Counter.",
     "Usage",
     "Confirm a token on Enter or comma. Show chips inline; allow removal via the chip or backspace. Optionally suggest matches, like Autocomplete.",
     "States",
@@ -2263,8 +2263,8 @@
     "Accessibility",
     "Labelled field; each chip’s remove is a labelled button. Announce added/removed tokens. Backspace removes the last chip; keyboard reaches every chip.",
     "Rules",
-    "DO   Confirm tokens on Enter / comma\nDO   Make each chip removable\nDO   Announce add / remove\nDO   Validate tokens with a message",
-    "DON'T   Use for a single value (use Text Input)\nDON'T   Trap focus among chips\nDON'T   Rely on colour alone for errors\nDON'T   Lose typed text on blur"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

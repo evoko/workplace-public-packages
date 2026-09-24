@@ -18,6 +18,7 @@ import '../generated/components/tag.dart';
 import '../generated/icons.dart';
 import '../solar_layers.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import '../generated/components/statusindicator.dart';
 import 'solar_statusindicator.dart';
 import 'solar_theme_of.dart';
@@ -101,15 +102,17 @@ class SolarTag extends StatelessWidget {
       text: {'label': ?label},
       slots: {'icon': ?icon, 'iconNone': ?icon},
       builders: {
-        'iconClose': (close) => Semantics(
-          // A node of its own, so the control keeps its name inside the component's.
-          container: true,
-          child: SolarPressable(
-            onPressed: onClose,
-            builder: (_, _) => Semantics(
-              label: [closeLabel, ?label].join(' '),
-              excludeSemantics: true,
-              child: close,
+        'iconClose': (close) => SolarTarget.inside(
+          child: Semantics(
+            // A node of its own, so the control keeps its name inside the component's.
+            container: true,
+            child: SolarPressable(
+              onPressed: onClose,
+              builder: (_, _) => Semantics(
+                label: [closeLabel, ?label].join(' '),
+                excludeSemantics: true,
+                child: close,
+              ),
             ),
           ),
         ),

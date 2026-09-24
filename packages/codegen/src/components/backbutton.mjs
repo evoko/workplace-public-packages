@@ -9,6 +9,7 @@
  */
 
 import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   if (!spec.layers.iconArrowLeft)
@@ -32,6 +33,8 @@ export default {
       textTransform: 'none',
       '& .MuiButton-startIcon': { margin: '0', flexShrink: '0' },
       '& .MuiButton-startIcon > svg': { width: '100%', height: '100%' },
+      // A 44 × 44 target around the drawn button (scaffold/target.mjs).
+      ...targetArea(),
     },
     states: {
       default: null,

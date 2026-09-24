@@ -628,7 +628,7 @@
     "pageId": "2202:1217",
     "figmaNode": "2762:706",
     "defaultVariant": "type=success, style=filled",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/alert.yaml",

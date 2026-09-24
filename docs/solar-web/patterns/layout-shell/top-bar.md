@@ -160,10 +160,6 @@ Default variant: `type=vertical` · 3 variants · default size 131×32px
   - ~~**\***~~ (hidden by default) · text `label/md` "\*" · FIXED/FIXED · 8×10  
     fill `color.text.feedback.info` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500`
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Helper text**
@@ -174,23 +170,21 @@ App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the first variant: App Name · GlobalSearch · Right Zone. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+6 variants.  
+• breakpoint — mobile | desktop  
+• hasSidebar — false | true  
+• isLoggedIn — true | false  
+Props: hasTenantSwitcher (boolean), hasSearchField (boolean), hasNotifications (boolean).  
+Props: hasTenantSwitcher, hasSearchField, hasNotifications (booleans).
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+No sibling or alternative component is called out for this page.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+It is the banner landmark; the app name links home and the search opens Search Results Panel.

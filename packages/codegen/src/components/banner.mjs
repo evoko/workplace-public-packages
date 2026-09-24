@@ -13,6 +13,7 @@ import {
   iconsOf,
   treeOf,
 } from '../scaffold/drawn.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of [
@@ -47,6 +48,10 @@ export default {
         background: 'none',
         cursor: 'pointer',
       },
+      // A 44 × 44 target around the text action and the close button ("implement each with a
+      // ≥44×44px touch area", says the description; scaffold/target.mjs).
+      ...targetArea('& button.SolarBanner-action'),
+      ...targetArea('& button.SolarBanner-close'),
       '& .SolarBanner-close > svg': {
         display: 'block',
         width: '100%',
@@ -225,15 +230,15 @@ final String closeLabel;`,
           _ => ${recipe},
         }`,
         builders: `{
-        'action': (words) => Semantics(
+        'action': (words) => SolarTarget.inside(child: Semantics(
           // A node of its own, so the control keeps its name inside the component's.
           container: true,
           child: SolarPressable(
           onPressed: onAction,
           link: true,
           builder: (_, _) => words,
-        )),
-        'close': (close) => Semantics(
+        ))),
+        'close': (close) => SolarTarget.inside(child: Semantics(
           // A node of its own, so the control keeps its name inside the component's.
           container: true,
           child: SolarPressable(
@@ -243,10 +248,11 @@ final String closeLabel;`,
             excludeSemantics: true,
             child: close,
           ),
-        )),
+        ))),
       }`,
         imports: `import '../solar_icon.dart';
-import '../solar_states.dart';`,
+import '../solar_states.dart';
+import '../solar_target.dart';`,
         wrap: `Semantics(
       container: true,
       liveRegion: true,

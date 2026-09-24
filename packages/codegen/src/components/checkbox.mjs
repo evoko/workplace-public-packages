@@ -8,6 +8,7 @@
  */
 
 import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
+import { targetInput } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const prop of ['checked', 'mixed', 'disabled'])
@@ -25,7 +26,11 @@ export default {
     slots: 'drawn',
     // MUI's root is the box: its padding and round hover halo give way to the recipe's, and its
     // native input, invisible, covers the box.
-    resets: drawnResets('Checkbox', { padding: '0' }),
+    resets: drawnResets('Checkbox', {
+      padding: '0',
+      // The input is the target, 44 × 44 around the box (scaffold/target.mjs).
+      ...targetInput('& input'),
+    }),
     states: {
       default: null,
       hover: '&:hover',

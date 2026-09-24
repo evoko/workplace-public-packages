@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import '../generated/components/slider_range.dart';
 import '../solar_layers.dart';
 import '../solar_slider_input.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarSliderRange extends StatelessWidget {
@@ -75,50 +76,54 @@ class SolarSliderRange extends StatelessWidget {
     RangeValues of(List<double> f) =>
         RangeValues(min + f[0] * span, min + f[1] * span);
     final at = [frac(values.start), frac(values.end)];
-    return SolarSliderInput(
-      values: at,
-      onChanged: off ? null : (f) => onChanged!(of(f)),
-      onChangeStart: onChangeStart == null
-          ? null
-          : (f) => onChangeStart!(of(f)),
-      onChangeEnd: onChangeEnd == null ? null : (f) => onChangeEnd!(of(f)),
-      labels: [semanticLabels.$1, semanticLabels.$2],
-      valueLabel: (f) => '${(f * 100).round()}%',
-      statesController: statesController,
-      builder: (context, states, width, handle) {
-        // Where the value puts the fill and the handles, which the control decides (the
-        // overlay's controlDraws), and the width it is given; the recipe says the rest.
-        double half(String h) =>
-            (SolarSliderRangeRecipe.dimension('$h.width', p, states) ?? 0) / 2;
-        double? placed(String cell) => switch (cell) {
-          'root.width' || 'track.width' => width,
-          'fill.x' => at[0] * width,
-          'fill.width' => (at[1] - at[0]) * width,
-          'handle.x' => at[0] * width - half('handle'),
-          'handle2.x' => at[1] * width - half('handle2'),
-          _ => null,
-        };
-        return SolarLayers(
-          recipe: SolarLayerRecipe(
-            lookup: (c) => placed(c) == null
-                ? SolarSliderRangeRecipe.lookup(c, p, states)
-                : 'px:placed',
-            dimension: (c) =>
-                placed(c) ?? SolarSliderRangeRecipe.dimension(c, p, states),
-            color: (c) => SolarSliderRangeRecipe.color(t, c, p, states),
-            shadow: (c) => SolarSliderRangeRecipe.shadow(t, c, p, states),
-            textStyle: (c) => SolarSliderRangeRecipe.textStyle(t, c, p, states),
-            present: (l) => SolarSliderRangeRecipe.present(l, p, states),
-            glyph: (_) => null,
-          ),
-          tree: _tree,
-          keyPrefix: 'sliderRange',
-          builders: {
-            'handle': (drawn) => handle(0, drawn),
-            'handle2': (drawn) => handle(1, drawn),
-          },
-        ).layer('root');
-      },
+    return SolarTarget(
+      child: SolarSliderInput(
+        values: at,
+        onChanged: off ? null : (f) => onChanged!(of(f)),
+        onChangeStart: onChangeStart == null
+            ? null
+            : (f) => onChangeStart!(of(f)),
+        onChangeEnd: onChangeEnd == null ? null : (f) => onChangeEnd!(of(f)),
+        labels: [semanticLabels.$1, semanticLabels.$2],
+        valueLabel: (f) => '${(f * 100).round()}%',
+        statesController: statesController,
+        builder: (context, states, width, handle) {
+          // Where the value puts the fill and the handles, which the control decides (the
+          // overlay's controlDraws), and the width it is given; the recipe says the rest.
+          double half(String h) =>
+              (SolarSliderRangeRecipe.dimension('$h.width', p, states) ?? 0) /
+              2;
+          double? placed(String cell) => switch (cell) {
+            'root.width' || 'track.width' => width,
+            'fill.x' => at[0] * width,
+            'fill.width' => (at[1] - at[0]) * width,
+            'handle.x' => at[0] * width - half('handle'),
+            'handle2.x' => at[1] * width - half('handle2'),
+            _ => null,
+          };
+          return SolarLayers(
+            recipe: SolarLayerRecipe(
+              lookup: (c) => placed(c) == null
+                  ? SolarSliderRangeRecipe.lookup(c, p, states)
+                  : 'px:placed',
+              dimension: (c) =>
+                  placed(c) ?? SolarSliderRangeRecipe.dimension(c, p, states),
+              color: (c) => SolarSliderRangeRecipe.color(t, c, p, states),
+              shadow: (c) => SolarSliderRangeRecipe.shadow(t, c, p, states),
+              textStyle: (c) =>
+                  SolarSliderRangeRecipe.textStyle(t, c, p, states),
+              present: (l) => SolarSliderRangeRecipe.present(l, p, states),
+              glyph: (_) => null,
+            ),
+            tree: _tree,
+            keyPrefix: 'sliderRange',
+            builders: {
+              'handle': (drawn) => handle(0, drawn),
+              'handle2': (drawn) => handle(1, drawn),
+            },
+          ).layer('root');
+        },
+      ),
     );
   }
 }

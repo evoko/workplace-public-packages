@@ -436,3 +436,53 @@ test('a composed child is checked against its own oracle, naming the layer insid
     }),
   ]);
 });
+
+// Every control is hit anywhere in a 44 × 44 target around it (SOLAR: "the 44×44px WCAG hit area
+// is padded in code"), however small it is drawn: 21px from its centre, either way, is still the
+// control. A part of another component (a Tag's close button) is hit as far as the page lets it.
+const TARGETED = {
+  Button: 'size=sm, prio=primary, state=default, danger=false',
+  'Icon Button': null,
+  Checkbox: null,
+  Radio: null,
+  Toggle: null,
+  Slider: null,
+  DragHandle: null,
+  Link: null,
+  'Segmented Control Item': null,
+};
+
+test('every control is hit anywhere in a 44 × 44 target around it', async ({
+  page,
+}) => {
+  await open(page);
+  const missed = [];
+  for (const [component, figma] of Object.entries(TARGETED)) {
+    const i = figma
+      ? oracles[component].variants.findIndex((v) => v.figma === figma)
+      : 0;
+    const control = page
+      .locator(`[data-case="${slug(component)}:${i}"]`)
+      .locator(':scope > *')
+      .first();
+    const hits = await control.evaluate((el) => {
+      // Room around it, as a page gives a control, where the check's cases stand closer than a
+      // target is wide; and in the middle of the view, so every point probed is on the page.
+      el.parentElement.style.margin = '48px 0';
+      el.scrollIntoView({ block: 'center', inline: 'center' });
+      const box = el.getBoundingClientRect();
+      const [x, y] = [box.left + box.width / 2, box.top + box.height / 2];
+      return [
+        [0, -21],
+        [0, 21],
+        [-21, 0],
+        [21, 0],
+      ].map(([dx, dy]) => {
+        const at = document.elementFromPoint(x + dx, y + dy);
+        return at !== null && (el === at || el.contains(at));
+      });
+    });
+    if (hits.includes(false)) missed.push({ component, hits });
+  }
+  expect(missed).toEqual([]);
+});

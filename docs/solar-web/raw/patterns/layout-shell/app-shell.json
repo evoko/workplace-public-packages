@@ -506,13 +506,13 @@
     "Usage",
     "App-level chrome scaffold: Top Bar + Sidebar + Page Content slot. Slot contract: the content area accepts any Page Layout pattern (e.g., Page Layout / Three Column, Page Layout / Single Column). This keeps chrome and content layout as separate concerns.",
     "Anatomy",
-    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
-    "States",
-    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
-    "Truncation",
-    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Top-level layers of the first variant: Top Bar · App Content. Instances keep their SOLAR component names.",
+    "Specification",
+    "2 variants.\n• breakpoint — desktop | mobile\nProps: Left (slot), Center (slot), Right (slot), hasLeft (boolean), hasRight (boolean).\nVariants: breakpoint=desktop / mobile.",
+    "Related",
+    "No sibling or alternative component is called out for this page.",
     "Accessibility",
-    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+    "Layouts compose INTO App Shell — do not absorb layout choices as App Shell variants."
   ],
   "pageContext": null
 }

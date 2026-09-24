@@ -500,16 +500,16 @@
     "Biamp Design System",
     "1.0",
     "Nav Item",
-    "Description",
-    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Usage",
+    "Nav Item — generic interactive nav primitive used in both Sidebar and Top Bar (and any other nav surface). Anatomy: 40×40 collapsed (icon-only) / full-width × 40 expanded (icon + label). 20×20 icon slot. Designers set BOTH to matching outline+solid pair of one Icon/* metaphor. Consumers: Sidebar (Layout &amp; Shell), Top Bar (Layout &amp; Shell). 540+ instances across views. — KNOWN GAPS (1.0 promotion gate) — Class D states incomplete. Per CLAUDE.md §7 Class D requires {default, hover, focus, disabled, selected} as MUTUALLY EXCLUSIVE states (single `state` axis with 5 values), but current structure has selected/hover as INDEPENDENT booleans. Correct fix is a structural restructure to a single `state` axis — breaking change requiring instance-override migration script. Designer-led. Optical fineness pass at 12/16/20px on icon ramps. Strokes scale mathematically (1.5px × scale = 0.75 at size=12) which is too thin for crisp small-size rendering. Each size needs hand-tuned per-size stroke weight. Designer-led. Renamed from Sidebar Item 2026-05-04. Component key b7d724b6… preserved.",
     "Anatomy",
-    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
-    "States",
-    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
-    "Truncation",
-    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Top-level layers of the first variant: Icon/Home. Instances keep their SOLAR component names.",
+    "Specification",
+    "8 variants.\n• selected — false | true\n• hover — false | true\n• expanded — false | true\nProps: label (text), iconOutline (instance swap), iconSolid (instance swap).",
+    "Related",
+    "No sibling or alternative component is called out for this page.",
     "Accessibility",
-    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+    "Variant axes (lowercase):   selected — true/false — drives outline (false) ↔ solid (true) icon swap   hover    — true/false — hover background   expanded — true/false — collapsed (icon-only) vs expanded (icon + label) Icon swap (two-property pattern, required by Figma constraint — see auto-memory feedback_figma_instance_swap_variant_override.md):   iconOutline — INSTANCE_SWAP. Bound to selected=false variants.   iconSolid   — INSTANCE_SWAP. Bound to selected=true variants. Adding focus+disabled as booleans would be conceptually wrong (32-variant matrix of misleading state combinations)."
   ],
   "pageContext": null
 }

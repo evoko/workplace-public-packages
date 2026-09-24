@@ -18,6 +18,7 @@ import '../generated/icons.dart';
 import '../solar_layers.dart';
 import '../solar_icon.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarBanner extends StatelessWidget {
@@ -109,24 +110,28 @@ class SolarBanner extends StatelessWidget {
               )),
       },
       builders: {
-        'action': (words) => Semantics(
-          // A node of its own, so the control keeps its name inside the component's.
-          container: true,
-          child: SolarPressable(
-            onPressed: onAction,
-            link: true,
-            builder: (_, _) => words,
+        'action': (words) => SolarTarget.inside(
+          child: Semantics(
+            // A node of its own, so the control keeps its name inside the component's.
+            container: true,
+            child: SolarPressable(
+              onPressed: onAction,
+              link: true,
+              builder: (_, _) => words,
+            ),
           ),
         ),
-        'close': (close) => Semantics(
-          // A node of its own, so the control keeps its name inside the component's.
-          container: true,
-          child: SolarPressable(
-            onPressed: onClose,
-            builder: (_, _) => Semantics(
-              label: closeLabel,
-              excludeSemantics: true,
-              child: close,
+        'close': (close) => SolarTarget.inside(
+          child: Semantics(
+            // A node of its own, so the control keeps its name inside the component's.
+            container: true,
+            child: SolarPressable(
+              onPressed: onClose,
+              builder: (_, _) => Semantics(
+                label: closeLabel,
+                excludeSemantics: true,
+                child: close,
+              ),
             ),
           ),
         ),

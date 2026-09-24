@@ -4,7 +4,7 @@
 
 ## Component set: TimePicker
 
-Time-of-day selector. 14 variants: size (sm 36px, md 44px) × state (default, hover, focused, filled, disabled, error, error-focused). NOTE: state `focused` / `error-focused` flagged for rename to match SOLAR's locked `focus`. Text input accepts typed times; paired TimePicker Dropdown presents hour/minute columns for click selection. 12h or 24h based on locale.
+Time-of-day selector. 14 variants: size (sm, md) × state (default, hover, focus, filled, disabled, error, error-focused). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). NOTE: state error-focused is flagged to fold into error + focus in a breaking cut. Props: value, label, helperText (text), showLabel, showHelper, showRequired. Text input accepts typed times; paired TimePicker Dropdown presents hour/minute columns for click selection. 12h or 24h based on locale.
 
 ### Props
 

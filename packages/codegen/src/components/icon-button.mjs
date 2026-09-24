@@ -5,6 +5,7 @@
  */
 
 import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 export default {
   name: 'Icon Button',
@@ -22,6 +23,8 @@ export default {
     resets: {
       '& .SolarIconButton-icon': { display: 'inline-flex' },
       '& .SolarIconButton-icon > svg': { width: '100%', height: '100%' },
+      // A 44 × 44 target around the drawn button (scaffold/target.mjs).
+      ...targetArea(),
     },
     // MUI's IconButton marks its states as Button does, under its own name.
     states: {

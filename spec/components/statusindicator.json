@@ -2975,7 +2975,7 @@
     "pageId": "2163:3682",
     "figmaNode": "3738:305",
     "defaultVariant": "type=success, size=md",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/statusindicator.yaml",

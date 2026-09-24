@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { targetArea } from '../src/scaffold/target.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
 import {
@@ -68,9 +69,12 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
     ]);
     const allowed = new Set(['40px', '32px', '48px', '200px', '20px']);
     // The MUI resets are the one place a bare 0 or 100% appears: they undo MUI's own defaults.
+    // They also hold the 44 × 44 target, whose one raw size is TARGET (scaffold/target.mjs), the
+    // governance gap it names, and nothing else raw.
     const { reset, ...recipe } = styles;
+    const target = Object.values(targetArea()).flatMap((d) => Object.values(d));
     for (const [, value] of leaves(reset))
-      expect(['0', '100%', 'none', 'auto']).toContain(value);
+      expect(['0', '100%', 'none', 'auto', ...target]).toContain(value);
     for (const [at, value] of leaves(recipe)) {
       const ok =
         /^var\(--solar-[a-z0-9-]+\)$/.test(value) ||

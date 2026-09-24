@@ -1011,6 +1011,28 @@ Figma's overridden look.
   typecheck, format, all three Flutter packages analysed and formatted, both viewers built, the
   personal-data scan, and a rebuild that reproduces the tree.
 
+**Sync 2026-09-24, before F5** (SOLAR Web `2402761872194862831`). Text only: no drawing changed
+on any page, and no generated file of the 34 built components moved. SOLAR's descriptions now give
+the drawn heights and say "the 44×44px WCAG hit area is padded in code (no target-size variable
+exists yet)", which settles the design review's first question, and the 36 Breadcrumbs cards now
+describe their own components. **Owner decision: pad now**, with one flagged 44 per platform.
+
+- **Web:** `src/scaffold/target.mjs` (`TARGET`, `targetArea`, `targetInput`) gives every control's
+  recipe an invisible target at least 44 × 44 around it that takes no room: a pseudo-element, or
+  the native input enlarged (Checkbox, Radio, Toggle), and MUI's own thumb area on a slider. A new
+  check probes 21px from each control's centre, every way, and requires the control.
+- **Flutter:** `SolarTarget` (`lib/src/solar_target.dart`, `solarTargetSize`). Hit testing stops at
+  each box, so a control on its own takes the room where the theme pads tap targets (touch
+  platforms), drawn centred, a tap in the padding landing on its centre; a part of another
+  component (`SolarTarget.inside`) reaches past itself within the component, taking no room.
+  SolarPressable's `target`; SolarLayers applies a shell's builders outside a flex child's
+  overflow box, so the reach is not cut short. The FilledButton-based buttons are padded by
+  Material (48).
+- **Design review:** section 3 is down to Link's xs, section 5 is resolved, and decision 1 is now the
+  target-size variable.
+- **Checks:** 936 JS tests, both visual checks (37 on the web, the target check among them), 194
+  Flutter tests, and the rest of the list.
+
 ### F5: Text fields
 
 - **Pioneer: Text Input.** MUI `InputBase` in a `FormControl`, with SOLAR's label above and helper

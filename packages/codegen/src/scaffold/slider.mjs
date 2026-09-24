@@ -11,6 +11,7 @@
 import { pascal } from '../util/naming.mjs';
 import { keyPrefixOf, treeOf, wrapDoc } from './drawn.mjs';
 import { dartField, dartParam } from './helpers.mjs';
+import { TARGET, targetArea } from './target.mjs';
 
 /** The layers a slider's templates need, refused where the IR lacks one. */
 export function requireSlider(spec, handles) {
@@ -48,7 +49,11 @@ export function sliderMui(handles) {
         transform: 'translateX(-50%)',
         boxSizing: 'border-box',
         '&::before': { display: 'none' },
+        // MUI's own touch area, a pseudo-element, is the 44 × 44 target (target.mjs).
+        '&::after': { width: TARGET, height: TARGET },
       },
+      // A 44-tall target along the rail (target.mjs).
+      ...targetArea(),
     },
     // Figma draws each state on the whole slider: pressed while a thumb is held, focused while
     // one has the keyboard.
@@ -154,6 +159,7 @@ import 'package:flutter/material.dart';
 import '../generated/components/${name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.dart';
 import '../solar_layers.dart';
 import '../solar_slider_input.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class Solar${P} extends StatelessWidget {
@@ -210,7 +216,7 @@ ${tree}
     double frac(double v) => span == 0 ? 0 : ((v - min) / span).clamp(0.0, 1.0);
     ${T} of(List<double> f) => ${fromFractions};
     final at = ${toFractions};
-    return SolarSliderInput(
+    return SolarTarget(child: SolarSliderInput(
       values: at,
       onChanged: off ? null : (f) => onChanged!(of(f)),
       onChangeStart: onChangeStart == null ? null : (f) => onChangeStart!(of(f)),
@@ -253,7 +259,7 @@ ${handles.map((h, i) => `            '${h}': (drawn) => handle(${i}, drawn),`).j
           },
         ).layer('root');
       },
-    );
+    ));
   }
 }
 `;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'solar_target.dart';
+
 /// A control's states, shared with what it holds: SOLAR draws a Counter inside a Button in the
 /// Button's hover, pressed and disabled colours, so the Counter reads the states of the control
 /// around it, through a [SolarStatesBuilder].
@@ -103,6 +105,7 @@ class SolarPressable extends StatelessWidget {
     this.checked,
     this.mixed = false,
     this.toggled,
+    this.target = false,
   });
 
   /// Called on a tap or the keyboard's activation; null disables it.
@@ -126,6 +129,13 @@ class SolarPressable extends StatelessWidget {
   /// Whether it is on, where it is announced as a switch (Toggle); null for none.
   final bool? toggled;
 
+  /// Whether it is a control on its own, taking a [SolarTarget]'s room (a Checkbox), rather than a
+  /// part of another (a Tag's close button, whose component gives it [SolarTarget.inside]).
+  final bool target;
+
+  Widget _targeted(Widget control) =>
+      target ? SolarTarget(child: control) : control;
+
   @override
   Widget build(BuildContext context) => SolarStatesScope(
     controller: statesController,
@@ -141,27 +151,31 @@ class SolarPressable extends StatelessWidget {
         checked: box ? checked! && !mixed : null,
         mixed: box && mixed ? true : null,
         enabled: enabled,
-        child: FocusableActionDetector(
-          enabled: enabled,
-          mouseCursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
-          onShowHoverHighlight: (on) => set(WidgetState.hovered, on),
-          onShowFocusHighlight: (on) => set(WidgetState.focused, on),
-          actions: {
-            ActivateIntent: CallbackAction<ActivateIntent>(
-              onInvoke: (_) {
-                onPressed?.call();
-                return null;
-              },
-            ),
-          },
-          child: GestureDetector(
-            onTapDown: enabled ? (_) => set(WidgetState.pressed, true) : null,
-            onTapUp: enabled ? (_) => set(WidgetState.pressed, false) : null,
-            onTapCancel: enabled ? () => set(WidgetState.pressed, false) : null,
-            onTap: onPressed,
-            child: ListenableBuilder(
-              listenable: states,
-              builder: (context, _) => builder(context, {...states.value}),
+        child: _targeted(
+          FocusableActionDetector(
+            enabled: enabled,
+            mouseCursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
+            onShowHoverHighlight: (on) => set(WidgetState.hovered, on),
+            onShowFocusHighlight: (on) => set(WidgetState.focused, on),
+            actions: {
+              ActivateIntent: CallbackAction<ActivateIntent>(
+                onInvoke: (_) {
+                  onPressed?.call();
+                  return null;
+                },
+              ),
+            },
+            child: GestureDetector(
+              onTapDown: enabled ? (_) => set(WidgetState.pressed, true) : null,
+              onTapUp: enabled ? (_) => set(WidgetState.pressed, false) : null,
+              onTapCancel: enabled
+                  ? () => set(WidgetState.pressed, false)
+                  : null,
+              onTap: onPressed,
+              child: ListenableBuilder(
+                listenable: states,
+                builder: (context, _) => builder(context, {...states.value}),
+              ),
             ),
           ),
         ),

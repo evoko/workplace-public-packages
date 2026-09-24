@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import '../generated/components/slider.dart';
 import '../solar_layers.dart';
 import '../solar_slider_input.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarSlider extends StatelessWidget {
@@ -79,45 +80,47 @@ class SolarSlider extends StatelessWidget {
     double frac(double v) => span == 0 ? 0 : ((v - min) / span).clamp(0.0, 1.0);
     double of(List<double> f) => min + f[0] * span;
     final at = [frac(value)];
-    return SolarSliderInput(
-      values: at,
-      onChanged: off ? null : (f) => onChanged!(of(f)),
-      onChangeStart: onChangeStart == null
-          ? null
-          : (f) => onChangeStart!(of(f)),
-      onChangeEnd: onChangeEnd == null ? null : (f) => onChangeEnd!(of(f)),
-      labels: [semanticLabel],
-      valueLabel: (f) => '${(f * 100).round()}%',
-      statesController: statesController,
-      builder: (context, states, width, handle) {
-        // Where the value puts the fill and the handle, which the control decides (the
-        // overlay's controlDraws), and the width it is given; the recipe says the rest.
-        double half(String h) =>
-            (SolarSliderRecipe.dimension('$h.width', p, states) ?? 0) / 2;
-        double? placed(String cell) => switch (cell) {
-          'root.width' || 'track.width' => width,
-          'fill.width' => at[0] * width,
-          'handle.x' => at[0] * width - half('handle'),
-          _ => null,
-        };
-        return SolarLayers(
-          recipe: SolarLayerRecipe(
-            lookup: (c) => placed(c) == null
-                ? SolarSliderRecipe.lookup(c, p, states)
-                : 'px:placed',
-            dimension: (c) =>
-                placed(c) ?? SolarSliderRecipe.dimension(c, p, states),
-            color: (c) => SolarSliderRecipe.color(t, c, p, states),
-            shadow: (c) => SolarSliderRecipe.shadow(t, c, p, states),
-            textStyle: (c) => SolarSliderRecipe.textStyle(t, c, p, states),
-            present: (l) => SolarSliderRecipe.present(l, p, states),
-            glyph: (_) => null,
-          ),
-          tree: _tree,
-          keyPrefix: 'slider',
-          builders: {'handle': (drawn) => handle(0, drawn)},
-        ).layer('root');
-      },
+    return SolarTarget(
+      child: SolarSliderInput(
+        values: at,
+        onChanged: off ? null : (f) => onChanged!(of(f)),
+        onChangeStart: onChangeStart == null
+            ? null
+            : (f) => onChangeStart!(of(f)),
+        onChangeEnd: onChangeEnd == null ? null : (f) => onChangeEnd!(of(f)),
+        labels: [semanticLabel],
+        valueLabel: (f) => '${(f * 100).round()}%',
+        statesController: statesController,
+        builder: (context, states, width, handle) {
+          // Where the value puts the fill and the handle, which the control decides (the
+          // overlay's controlDraws), and the width it is given; the recipe says the rest.
+          double half(String h) =>
+              (SolarSliderRecipe.dimension('$h.width', p, states) ?? 0) / 2;
+          double? placed(String cell) => switch (cell) {
+            'root.width' || 'track.width' => width,
+            'fill.width' => at[0] * width,
+            'handle.x' => at[0] * width - half('handle'),
+            _ => null,
+          };
+          return SolarLayers(
+            recipe: SolarLayerRecipe(
+              lookup: (c) => placed(c) == null
+                  ? SolarSliderRecipe.lookup(c, p, states)
+                  : 'px:placed',
+              dimension: (c) =>
+                  placed(c) ?? SolarSliderRecipe.dimension(c, p, states),
+              color: (c) => SolarSliderRecipe.color(t, c, p, states),
+              shadow: (c) => SolarSliderRecipe.shadow(t, c, p, states),
+              textStyle: (c) => SolarSliderRecipe.textStyle(t, c, p, states),
+              present: (l) => SolarSliderRecipe.present(l, p, states),
+              glyph: (_) => null,
+            ),
+            tree: _tree,
+            keyPrefix: 'slider',
+            builders: {'handle': (drawn) => handle(0, drawn)},
+          ).layer('root');
+        },
+      ),
     );
   }
 }

@@ -112,10 +112,6 @@ Default variant: `status=default, state=default, layout=vertical` · 6 variants 
 | done    | hover   | vertical | 300×166 | `color.surface.base`                   | `color.border.medium` | `shadow/control` | `color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                        | `color.icon.secondary`<br>`color.action.secondary.icon.default`                                      |
 | danger  | hover   | vertical | 300×166 | `color.surface.feedback.danger.subtle` | `color.border.medium` | `shadow/raised`  | `color.text.feedback.danger`<br>`color.text.secondary`<br>`color.action.primary.text.danger.default`<br>`color.action.secondary.text.default` | `color.icon.feedback.danger`<br>`color.icon.secondary`<br>`color.action.primary.icon.danger.default` |
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Usage**
@@ -124,23 +120,20 @@ ROLE: composition of Card. The single interactive composition of Card. Whole-sur
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the first variant: Title · content · CTA. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+6 variants.  
+• status — default | done | danger  
+• state — hover | default  
+• layout — vertical  
+Props: showCTA (boolean), showPrimaryCTA (boolean), showSecondaryCTA (boolean), showIcon (boolean), content (slot), icon (instance swap).
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+No sibling or alternative component is called out for this page.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+VARIANT PROPERTIES • status — default, done, danger (controls CTA-row vs done-indicator swap; danger marks a destructive action) • state — default, hover (pressed / focus queued) • layout — vertical (horizontal queued) BOOLEANS • Show CTA • Show Primary CTA • Show Secondary CTA • Show Icon • Content (slot) Queued: show description, show status-message. Inherits Card’s focus ring (shadow/focus/default) and hover/pressed overlay — does not redefine them.

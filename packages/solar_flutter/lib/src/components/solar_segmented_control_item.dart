@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/segmented_control_item.dart';
 import '../solar_layers.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarSegmentedControlItem<T> extends StatefulWidget {
@@ -106,20 +107,22 @@ class _SolarSegmentedControlItemState<T>
       },
     ).layer('root');
     final forced = widget.statesController;
-    return RawRadio<T>(
-      value: widget.value,
-      mouseCursor: WidgetStateMouseCursor.clickable,
-      toggleable: false,
-      focusNode: _focus,
-      autofocus: false,
-      groupRegistry: group,
-      enabled: group != null,
-      builder: (context, state) => forced == null
-          ? draw(state.states)
-          : ListenableBuilder(
-              listenable: forced,
-              builder: (_, _) => draw({...state.states, ...forced.value}),
-            ),
+    return SolarTarget.inside(
+      child: RawRadio<T>(
+        value: widget.value,
+        mouseCursor: WidgetStateMouseCursor.clickable,
+        toggleable: false,
+        focusNode: _focus,
+        autofocus: false,
+        groupRegistry: group,
+        enabled: group != null,
+        builder: (context, state) => forced == null
+            ? draw(state.states)
+            : ListenableBuilder(
+                listenable: forced,
+                builder: (_, _) => draw({...state.states, ...forced.value}),
+              ),
+      ),
     );
   }
 }

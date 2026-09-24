@@ -4,7 +4,7 @@
 
 ## Component set: BackButton
 
-Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 36px, md 44px) × state (default, hover, pressed, focus, disabled, loading). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.
+Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 32px, md 40px) × state (default, hover, pressed, focus, disabled, loading). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Props: Label (text), showLabel. Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.
 
 ### Props
 
@@ -72,9 +72,11 @@ Default variant: `size=md, state=default` · 12 variants · default size 89×40p
 
 ## Documentation card
 
-**Description**
+**BackButton**
 
-Returns to the previous screen or a parent view. A low-emphasis navigation control, usually top-left of a page, panel, or wizard step. Not for submitting or confirming (use Button).
+**Usage**
+
+Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.
 
 **Usage**
 
@@ -95,12 +97,6 @@ Expose as a link or button with a clear label (“Back”, “Back to Devices”
 
 **Rules**
 
-- DO: Place it top-left, one per view
-- DO: Give it a clear destination label
-- DO: Pair with the Page Header
-- DO: Keep a 44px hit area
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-- DON'T: Use it to submit or confirm
-- DON'T: Show more than one per view
-- DON'T: Rely on the chevron alone with no label where context is unclear
-- DON'T: Shrink below 44px
+- DON'T: Routes to the ancestor the user came from — should never be a no-op or hit browser-back.

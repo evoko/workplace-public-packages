@@ -10,6 +10,7 @@
 
 import { dartField, dartParam } from '../scaffold/helpers.mjs';
 import { drawnResets, treeOf } from '../scaffold/drawn.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const layer of [
@@ -36,6 +37,9 @@ export default {
         font: 'inherit',
         color: 'inherit',
       },
+      // A 44 × 44 target around each half (scaffold/target.mjs).
+      ...targetArea('& .SolarSplitButton-action'),
+      ...targetArea('& .SolarSplitButton-trigger'),
       '& .SolarSplitButton-spinner': {
         position: 'absolute',
         inset: '0',
@@ -238,6 +242,7 @@ import '../generated/components/splitbutton.dart';
 import '../generated/icons.dart';
 import '../solar_layers.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -285,7 +290,7 @@ ${tree}
     final p = SolarSplitButtonProps(
 ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).join('\n')}
     );
-    return SolarStatesScope(
+    return SolarTarget(child: SolarStatesScope(
       controller: statesController,
       builder: (context, controller) => ListenableBuilder(
         listenable: controller,
@@ -356,7 +361,7 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
           );
         },
       ),
-    );
+    ));
   }
 }
 `;

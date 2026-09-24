@@ -137,17 +137,24 @@ class SolarLayers {
 
   /// The layer [name], keyed, drawn as this variant draws it: translucent where the recipe gives it
   /// an opacity (Node End's halo).
-  Widget layer(String name) {
+  Widget layer(String name) => _built(name, _keyed(name));
+
+  /// The layer, keyed, as drawn.
+  Widget _keyed(String name) {
     final opacity = recipe.lookup('$name.opacity');
     final drawn = _drawn(name);
-    final keyed = KeyedSubtree(
+    return KeyedSubtree(
       key: Key('$keyPrefix.$name'),
       child: opacity == null || opacity == 'none'
           ? drawn
           : Opacity(opacity: recipe.dimension('$name.opacity')!, child: drawn),
     );
-    return builders[name]?.call(keyed) ?? keyed;
   }
+
+  /// [drawn] in what the shell wraps the layer in, outermost, so a control's target (a Tag's
+  /// close button) is not cut short by the box its layout puts it in.
+  Widget _built(String name, Widget drawn) =>
+      builders[name]?.call(drawn) ?? drawn;
 
   Widget _drawn(String name) {
     final child = composed[name];
@@ -225,7 +232,7 @@ class SolarLayers {
   Widget _inFlex(String child, bool horizontal) {
     final along = horizontal ? 'width' : 'height';
     final across = _extent('$child.${horizontal ? 'height' : 'width'}');
-    Widget drawn = layer(child);
+    Widget drawn = _keyed(child);
     if (across != null && across.isFinite) {
       drawn = OverflowBox(
         fit: OverflowBoxFit.deferToChild,
@@ -234,6 +241,7 @@ class SolarLayers {
         child: drawn,
       );
     }
+    drawn = _built(child, drawn);
     return _fills('$child.$along') ? Expanded(child: drawn) : drawn;
   }
 

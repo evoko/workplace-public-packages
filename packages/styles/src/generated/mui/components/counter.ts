@@ -36,13 +36,19 @@ export const solarCounterStyles = {
       stroke: 'none',
     },
     '&:is(button)': {
-      font: 'inherit',
-      margin: '0',
-      cursor: 'pointer',
-      appearance: 'none',
+      position: 'relative',
     },
     '&:is(button):disabled': {
       cursor: 'default',
+    },
+    '&:is(button)::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
     },
   },
   root: {

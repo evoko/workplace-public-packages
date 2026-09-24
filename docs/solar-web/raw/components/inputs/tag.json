@@ -3006,8 +3006,8 @@
     "Biamp Design System",
     "1.0",
     "Tag",
-    "Description",
-    "A compact label for categorising, status, or metadata. Read-only by default; can be closable when it represents a removable selection. For user-entered tokens, use Tag Input.",
+    "Usage",
+    "Compact label for status, category, or user-entered content. Keep text to 1–3 words.",
     "Status",
     "Neutral · Info · Success · Warning · Danger — colour-coded meaning, always paired with text (never colour alone).",
     "Type",
@@ -3017,8 +3017,8 @@
     "Accessibility",
     "Convey status with text or an icon, never colour alone. A closable tag’s remove control is a labelled, keyboard-reachable button.",
     "Rules",
-    "DO   Pair colour with text\nDO   Keep labels short (1–2 words)\nDO   Use closable only for removable items\nDO   Match status colour to meaning",
-    "DON'T   Rely on colour alone for status\nDON'T   Use tags as buttons\nDON'T   Overload with long text\nDON'T   Make every tag closable"
+    "DO   Keep text to 1–3 words.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

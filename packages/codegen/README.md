@@ -419,7 +419,10 @@ regenerating to the same bytes and invisible to CI. Nothing outside those direct
      `SolarPressable` as a checkbox or a switch, and `values` gives the recipe a prop's value where
      it is not the prop as given (a mixed box is drawn checked). Where a group decides a prop in
      Flutter (Radio's `checked`, its RadioGroup's), `flutter.groupDecides` says so, and the widget
-     does not take it. A value that is no Dart identifier
+     does not take it. Every control's recipe gives it a 44 × 44 target that takes no room
+     (`src/scaffold/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input
+     enlarged), and its widget a `SolarTarget`; `TARGET` there is the one raw target size, a
+     governance gap, until SOLAR publishes a variable for it. A value that is no Dart identifier
      (`top-search`, `Default White`, `00`) is respelled for its enum (`dartEnumValue`), which then
      carries Figma's spelling.
   2. Its overlay, `spec/overlay/<address>.yaml`.

@@ -138,9 +138,9 @@ Don't
 • Validate per-keystroke; only on full entry or on submit  
 • Place inside dense table rows — use Text Input instead
 
-**Description**
+**Usage**
 
-A set of single-character cells for short codes — OTP, MFA, or PINs. Auto-advances between cells and accepts a pasted full code.
+Fixed-length numeric code entry (4–6 digits) for one-time codes and verification, one cell per digit. Booleans hasLabel, hasHelper, mandatory. Auto-advances, Backspace steps back, paste fills every cell; each cell is inputmode=numeric with autocomplete=one-time-code.
 
 **Usage**
 
@@ -163,12 +163,6 @@ Grouped under one label describing the code and its length. Announce position an
 
 **Rules**
 
-- DO: Auto-advance and accept paste
-- DO: Label the group and its length
-- DO: Support backspace navigation
-- DO: Surface expiry / invalid errors
+- DO: Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.
 
-- DON'T: Block pasting the code
-- DON'T: Trap focus in one cell
-- DON'T: Rely on colour alone for errors
-- DON'T: Use for long free-form text
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

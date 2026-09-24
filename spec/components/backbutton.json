@@ -342,7 +342,7 @@
     }
   },
   "docs": {
-    "description": "Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 36px, md 44px) × state (default, hover, pressed, focus, disabled, loading). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.",
+    "description": "Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 32px, md 40px) × state (default, hover, pressed, focus, disabled, loading). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Props: Label (text), showLabel. Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.",
     "figmaIssues": []
   },
   "provenance": {
@@ -350,7 +350,7 @@
     "pageId": "4533:80",
     "figmaNode": "4549:130",
     "defaultVariant": "size=md, state=default",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/backbutton.yaml",

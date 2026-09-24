@@ -365,7 +365,7 @@
     "pageId": "2202:1220",
     "figmaNode": "2714:588",
     "defaultVariant": "orientation=horizontal, type=full",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/divider.yaml",

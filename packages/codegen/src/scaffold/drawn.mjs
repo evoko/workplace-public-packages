@@ -340,6 +340,7 @@ final Map<String, Color> restyle;`;
       onPressed: ${o.control.onPressed},
       statesController: statesController,
 ${indent(o.control.semantics, 6)}
+      target: true,
       builder: (_, states) => draw(states),
     );`
     : o.pressable
@@ -351,7 +352,8 @@ ${indent(o.control.semantics, 6)}
         : SolarPressable(
             onPressed: ${o.pressable} ? onPressed : null,
             statesController: statesController,${o.link ? '\n            link: true,' : ''}
-            builder: (_, states) => draw(states),
+            target: true,
+      builder: (_, states) => draw(states),
           );`
       : `    ${o.states ? `final states = ${o.states};` : 'const states = <WidgetState>{};'}
     final mark = ${layers('states')};`;

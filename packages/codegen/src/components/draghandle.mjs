@@ -15,6 +15,7 @@ import {
   wrapDoc,
 } from '../scaffold/drawn.mjs';
 import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireApi = (spec) => {
   if (!spec.api.size) throw new Error('DragHandle: the IR has no size');
@@ -34,6 +35,8 @@ export default {
       '&:active': { cursor: 'grabbing' },
       '&.SolarDragHandle-disabled': { cursor: 'default' },
       '&:focus-visible': { outline: 'none' },
+      // A 44 × 44 target around the grip (scaffold/target.mjs).
+      ...targetArea(),
     }),
     // Pressed while held by the pointer, or while the caller's drag says it is lifted.
     states: {
@@ -91,6 +94,7 @@ import 'package:flutter/material.dart';
 import '../generated/components/draghandle.dart';
 import '../solar_layers.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarDragHandle extends StatelessWidget {
@@ -144,7 +148,7 @@ ${tree}
         return Semantics(
           label: semanticLabel,
           enabled: enabled,
-          child: FocusableActionDetector(
+          child: SolarTarget(child: FocusableActionDetector(
             enabled: enabled,
             focusNode: focusNode,
             mouseCursor: enabled ? SystemMouseCursors.grab : MouseCursor.defer,
@@ -159,7 +163,7 @@ ${tree}
                 builder: (context, _) => draw({...states.value}),
               ),
             ),
-          ),
+          )),
         );
       },
     );

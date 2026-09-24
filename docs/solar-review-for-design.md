@@ -54,24 +54,22 @@ If you take only a few items, take these:
 1. **In Dark, a primary button's icons disappear on hover** — white on white — and nearly
    disappear when pressed. Two variable values; the one problem on this list that users would
    notice. [Section 8](#8-action-colours-below-the-contrast-floor--5).
-2. **Control heights** — eleven components describe themselves as 36/44px tall and are drawn at
-   32/40px, which is also the touch-target question. [Section 3](#3-described-sizes-that-disagree-with-the-drawing--12-components).
-3. **36 Accessibility cards** still carry the Breadcrumbs page's text, and two Usage cards do too.
-   [Section 5](#5-documentation-cards-copied-from-breadcrumbs--36-pages).
+2. **A target-size variable** — the descriptions now say the 44 × 44 hit area is padded in code;
+   we do, with one raw 44 in each platform's code, which a variable would replace. Decision 1.
 
 ## At a glance
 
-| #                                                                     | What                                              | Count                                                                                                                                                                                                                                                     | File        |
-| --------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [1](#1-hard-coded-values--9-across-8-components)                      | Hard-coded values not bound to a variable         | 9 in 8 components, and 1,130 zeros                                                                                                                                                                                                                        | SOLAR Web   |
-| [2](#2-primitive-colours-used-directly--2-components)                 | Components using primitive colours directly       | 2                                                                                                                                                                                                                                                         | SOLAR Web   |
-| [3](#3-described-sizes-that-disagree-with-the-drawing--12-components) | Described sizes that disagree with the drawn ones | 12                                                                                                                                                                                                                                                        | SOLAR Web   |
-| [4](#4-variable-bindings--2-wrong-2-unknown)                          | Wrong or unknown variable bindings                | 2 + 2                                                                                                                                                                                                                                                     | SOLAR Web   |
-| [5](#5-documentation-cards-copied-from-breadcrumbs--36-pages)         | Documentation cards copied from Breadcrumbs       | 36 pages                                                                                                                                                                                                                                                  | SOLAR Web   |
-| [6](#6-the-components-we-build-variant-by-variant)                    | The components we build, in detail                | Button 6, Spinner 2, Icon Button 5, Button Group 3, StatusIndicator 2, the display primitives 3 fixes and 4 questions, the buttons 3 fixes and 4 questions, the selection controls 5 fixes and 3 questions, the tags and messages 4 fixes and 2 questions | SOLAR Web   |
-| [7](#7-guideline-pages-that-contradict-the-variables)                 | Guideline pages that contradict the variables     | 2, and 2 page edits                                                                                                                                                                                                                                       | Foundations |
-| [8](#8-action-colours-below-the-contrast-floor--5)                    | Action colours below the contrast floor           | 5                                                                                                                                                                                                                                                         | Foundations |
-| [9](#9-icons-and-logos)                                               | Icons and logos                                   | no icon findings; 2 logo questions                                                                                                                                                                                                                        | SOLAR Icons |
+| #                                                                   | What                                              | Count                                                                                                                                                                                                                                                     | File        |
+| ------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [1](#1-hard-coded-values--9-across-8-components)                    | Hard-coded values not bound to a variable         | 9 in 8 components, and 1,130 zeros                                                                                                                                                                                                                        | SOLAR Web   |
+| [2](#2-primitive-colours-used-directly--2-components)               | Components using primitive colours directly       | 2                                                                                                                                                                                                                                                         | SOLAR Web   |
+| [3](#3-described-sizes-that-disagree-with-the-drawing--1-component) | Described sizes that disagree with the drawn ones | 1 (Link)                                                                                                                                                                                                                                                  | SOLAR Web   |
+| [4](#4-variable-bindings--2-wrong-2-unknown)                        | Wrong or unknown variable bindings                | 2 + 2                                                                                                                                                                                                                                                     | SOLAR Web   |
+| [5](#5-documentation-cards-copied-from-breadcrumbs--resolved)       | Documentation cards copied from Breadcrumbs       | resolved                                                                                                                                                                                                                                                  | SOLAR Web   |
+| [6](#6-the-components-we-build-variant-by-variant)                  | The components we build, in detail                | Button 6, Spinner 2, Icon Button 5, Button Group 3, StatusIndicator 2, the display primitives 3 fixes and 4 questions, the buttons 3 fixes and 4 questions, the selection controls 5 fixes and 3 questions, the tags and messages 4 fixes and 2 questions | SOLAR Web   |
+| [7](#7-guideline-pages-that-contradict-the-variables)               | Guideline pages that contradict the variables     | 2, and 2 page edits                                                                                                                                                                                                                                       | Foundations |
+| [8](#8-action-colours-below-the-contrast-floor--5)                  | Action colours below the contrast floor           | 5                                                                                                                                                                                                                                                         | Foundations |
+| [9](#9-icons-and-logos)                                             | Icons and logos                                   | no icon findings; 2 logo questions                                                                                                                                                                                                                        | SOLAR Icons |
 
 ---
 
@@ -123,35 +121,19 @@ Row, Event Row, Column Item, Activity Feed, Profile Dropdown and Top Bar, are sa
 than bindings. **The Biamp logo** carries `color/brand/red` and `brand/white`, as a brand mark always
 carries its own colours; that is every other primitive in the patterns.
 
-## 3. Described sizes that disagree with the drawing — 12 components
+## 3. Described sizes that disagree with the drawing — 1 component
 
-Eleven descriptions give a control height in pixels that the component does not have, and Link's gives its xs text size. Across the
-button, tab and input families the pattern is the same: **the description says 36px and 44px, the
-component is drawn 32px and 40px** — 4px taller in the description. Icon Button is off by 4px the
-other way. For the inputs we compared the field itself, not the component with its label and helper.
+Settled in the 2026-09-24 revision for all but one: the button, tab and input descriptions now give
+the drawn heights, 32px and 40px, and say that "the 44×44px WCAG hit area is padded in code (no
+target-size variable exists yet)". **We pad it now**, on every control we build: an invisible
+target at least 44 × 44 around the drawn control on the web, and on touch platforms in Flutter.
+The 44 is one raw value in each platform's code until there is a variable for it (decision 1).
 
-| Component        | Description says     | Drawn               | Open                                                                             |
-| ---------------- | -------------------- | ------------------- | -------------------------------------------------------------------------------- |
-| **Button**       | sm 36, md 44, lg 48  | sm 32, md 40, lg 48 | [2087:2544](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2087-2544)   |
-| **BackButton**   | sm 36, md 44         | sm 32, md 40        | [4549:130](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4549-130)     |
-| **SplitButton**  | sm 36, md 44         | sm 32, md 40        | [4569:200](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4569-200)     |
-| **Link**         | xs text 12px         | xs text 10px        | [2715:626](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2715-626)     |
-| **Icon Button**  | sm 28, md 36, lg 44  | sm 32, md 40, lg 48 | [2995:443](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2995-443)     |
-| **Tab Item**     | sm 36, md 44         | sm 32, md 40        | [3414:71](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3414-71)       |
-| **Tabs**         | sm 36, md 44         | sm 32, md 40        | [6165:12202](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6165-12202) |
-| **Text Input**   | sm 36, md 44 (field) | sm 32, md 40        | [2087:2737](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2087-2737)   |
-| **Select**       | sm 36, md 44 (field) | sm 32, md 40        | [5422:92](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5422-92)       |
-| **Autocomplete** | sm 36, md 44 (field) | sm 32, md 40        | [3889:128](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3889-128)     |
-| **DatePicker**   | sm 36, md 44 (field) | sm 32, md 40        | [7266:25837](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=7266-25837) |
-| **TimePicker**   | sm 36, md 44 (field) | sm 32, md 40        | [4414:79](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4414-79)       |
+One description still disagrees with its drawing:
 
-**⚠️ Decide:** which is right? 44px is the WCAG touch target, so the descriptions may be describing
-the intended hit area while the drawings show the visible control — Button's description says as
-much ("sm renders below the 44px WCAG touch target — pad the hit area in code"). If so, a sentence
-saying "drawn at 32/40, hit area 44" in each description would settle it. **We build what is drawn**
-(32 and 40) and do not pad the hit area yet, because there is no variable for the target size. A
-control-height variable and a target-size variable would settle this and section 6's heights
-together.
+| Component | Description says | Drawn        | Open                                                                         |
+| --------- | ---------------- | ------------ | ---------------------------------------------------------------------------- |
+| **Link**  | xs text 12px     | xs text 10px | [2715:626](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2715-626) |
 
 ## 4. Variable bindings — 2 wrong, 2 unknown
 
@@ -171,30 +153,11 @@ taken from another library. Rebinding each to its Foundations equivalent fixes i
 | **Column Chooser**, **SearchResultsPanel** | corner radius (all four corners) | 88   | [6952:1068](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6952-1068), [7258:3327](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=7258-3327) |
 | **StatusIndicator**                        | the `help` type's border colour  | 4    | [3738:305](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3738-305)                                                                                   |
 
-## 5. Documentation cards copied from Breadcrumbs — 36 pages
+## 5. Documentation cards copied from Breadcrumbs — resolved
 
-On 36 pages the documentation card's **Accessibility** section still holds the Breadcrumbs page's
-text ("Wrap the trail in `<nav aria-label="Breadcrumb">`…") rather than the page's own component's.
-Their Usage sections now describe their own components, except on two pages:
-
-- **Nav Item** and **Stepper**: the Usage section is Breadcrumbs' too ("Shows the user's location
-  within a navigational hierarchy…").
-  [2663:774](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2663-774),
-  [5762:5846](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5762-5846)
-
-The 36 pages, whose Accessibility section needs its own text:
-
-| Section                           | Pages                                                                                          |
-| --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| components/cards                  | Accordion, Action Card, Card, Divider, Expandable Card, Insight Card, Insight Row, Status Card |
-| components/calendar               | Day Cell, Weekday Header, Event Chip, Time Slot, Calendar Toolbar                              |
-| components/dialogs                | Dialog, Confirmation Dialog, Drawer                                                            |
-| components/feedback               | Empty State, Spinner                                                                           |
-| components/navigation             | Nav Item, Stepper                                                                              |
-| components/data-display, overlays | Table, Popover                                                                                 |
-| patterns/layout-shell             | App Shell, Command Palette, Page Header, Search Results Panel, Sidebar, Top Bar                |
-| patterns/data                     | Bulk Actions Bar, Column Chooser, Data Table, Filter Panel                                     |
-| patterns/forms, dashboards        | Form Row, Form Section, Widget Card, Stat Card                                                 |
+Settled in the 2026-09-24 revision: the 36 pages whose Accessibility section held the Breadcrumbs
+page's text, and Nav Item's and Stepper's Usage sections, now describe their own components.
+Nothing is left to do here.
 
 ## 6. The components we build, variant by variant
 
@@ -230,7 +193,7 @@ with a sibling. Where an item is open, we build it exactly as drawn.
 
 ### Icon Button · [2995:443](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2995-443)
 
-Its sizes are in section 3 (described 28/36/44, drawn 32/40/48).
+Its described sizes now match the drawing, 32/40/48 (section 3).
 
 **Fix** — these look like accidents:
 
@@ -247,8 +210,8 @@ Its sizes are in section 3 (described 28/36/44, drawn 32/40/48).
 | **Pressing shows the focus ring.** Pressed primary and secondary at sm and md draw `shadow/focus/default`, where Button's pressed state keeps its control shadow. Is a ring on press intended?                                                                                                                               | We draw each variant as Figma does. |
 | **lg is flat**, as Button's lg is: no resting shadow, and secondary loses its border, keeping only the focus ring. The same question as Button's lg.                                                                                                                                                                         | We build lg as drawn.               |
 
-The description asks for a 44 × 44 hit area around the smaller sizes; that waits on the same
-target-size question as section 3.
+The description asks for a 44 × 44 hit area around the smaller sizes; we pad it, as for every
+control (section 3).
 
 ### Button Group · [2618:3237](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2618-3237)
 
@@ -308,7 +271,7 @@ code fill the space or take the content they are given; nothing needs to change.
 
 ### The buttons: FAB, BackButton, SplitButton and Link
 
-BackButton has nothing to raise beyond its described sizes (section 3).
+BackButton has nothing to raise; its described sizes now match the drawing (section 3).
 
 **Fix** — these look like accidents:
 
@@ -330,8 +293,8 @@ BackButton has nothing to raise beyond its described sizes (section 3).
 ### The selection controls: Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle and Segmented Control
 
 DragHandle has nothing to raise beyond its dots' sizes. Checkbox, Radio and Toggle are drawn at 16,
-18 and 32 × 18px with no size variable (decision 4), and, as for Button, we do not pad their hit
-areas until there is a target-size variable (section 3).
+18 and 32 × 18px with no size variable (decision 4); their hit areas are padded to 44 × 44, as
+every control's is (section 3).
 
 **Fix** — these look like accidents:
 
@@ -354,8 +317,8 @@ areas until there is a target-size variable (section 3).
 ### Tags and messages: Tag, Alert, Alert Small, Banner, Toast and EmptyState
 
 EmptyState has nothing to raise. Tag's close button and Banner's close icon and text action are
-drawn without a target area (Banner's description asks for 44 × 44); as for Button, we do not pad
-them until there is a target-size variable (section 3). Tag's 24px, Banner's 44px and the
+drawn without a target area (Banner's description asks for 44 × 44); we give each a 44 × 44
+target, reaching as far as the tag or banner around it lets it (section 3). Tag's 24px, Banner's 44px and the
 callouts' sizes join the sizes with no variable (decision 4).
 
 **Fix** — these look like accidents:
@@ -449,9 +412,9 @@ The questions we cannot answer ourselves, most far-reaching first.
 
 **Sizes and targets**
 
-1. **Control heights** — the descriptions say 36/44px and the components are drawn 32/40px. Which
-   is right, and is 44px the intended hit area? A control-height variable (`control/height/*`) and
-   a target-size variable would settle both this and Button's fixed heights. Sections 3 and 6.
+1. **A target-size variable** — the descriptions now say the 44 × 44 hit area is padded in code,
+   with no variable for it; we pad with one raw 44 per platform, which a variable would replace.
+   A control-height variable would settle Button's fixed heights with it. Sections 3 and 6.
 2. **Spinner sizes** — variables of their own, or the icon ladder? Section 6.
 3. **The xs dots** — StatusIndicator's and Trend Badge's, 8px, below the icon ladder: a variable
    for them? Section 6.
@@ -516,6 +479,6 @@ The questions we cannot answer ourselves, most far-reaching first.
 ---
 
 _Read from SOLAR Foundations `[v1--2026]` version `2402389239778582681`, SOLAR Web `[v1--2026]`
-version `2402690438319512660` and SOLAR Icons `[v2--2026]` version `2402400024423705866`, on
+version `2402761872194862831` and SOLAR Icons `[v2--2026]` version `2402400024423705866`, on
 2026-09-24. Counts are computed from the files, not estimated. We are happy to walk through any of
 this live — and happy to be wrong on the judgement calls, where we may be missing context._

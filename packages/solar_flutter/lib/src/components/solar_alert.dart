@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import '../generated/components/alert.dart';
 import '../solar_layers.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import '../generated/components/statusindicator.dart';
 import 'solar_statusindicator.dart';
 import 'solar_theme_of.dart';
@@ -76,10 +77,15 @@ class SolarAlert extends StatelessWidget {
       keyPrefix: 'alert',
       text: {'title': ?title, 'description': ?description, 'action': ?action},
       builders: {
-        'action': (words) => Semantics(
-          // A node of its own, so the control keeps its name inside the component's.
-          container: true,
-          child: SolarPressable(onPressed: onAction, builder: (_, _) => words),
+        'action': (words) => SolarTarget.inside(
+          child: Semantics(
+            // A node of its own, so the control keeps its name inside the component's.
+            container: true,
+            child: SolarPressable(
+              onPressed: onAction,
+              builder: (_, _) => words,
+            ),
+          ),
         ),
       },
       composed: {

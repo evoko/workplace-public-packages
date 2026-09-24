@@ -4,7 +4,7 @@
 
 ## Component set: Select
 
-Dropdown selector for picking one option from a predefined list. 12 variants: size (sm 36px, md 44px) × state (default, hover, focus, open, disabled, error). Trailing chevron rotates when open. Use when options are < ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.
+Dropdown selector for picking one option from a predefined list. 12 variants: size (sm, md) × state (default, hover, focus, open, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Trailing chevron rotates when open. Use when options are fewer than ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.
 
 ### Props
 
@@ -90,9 +90,9 @@ Default variant: `size=md, state=default` · 12 variants · default size 240×76
 
 ## Documentation card
 
-**Description**
+**Usage**
 
-A control for choosing one option from a predefined list. Use for known, mutually-exclusive choices. For free text use Text Input; for large or searchable sets use Autocomplete.
+Dropdown selector for picking one option from a predefined list. The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Trailing chevron rotates when open. Use when options are fewer than ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern.
 
 **Usage**
 
@@ -115,12 +115,6 @@ role=combobox/listbox with aria-expanded. Full keyboard support: arrows, type-ah
 
 **Rules**
 
-- DO: Use for known, exclusive choices
-- DO: Provide a default or placeholder
-- DO: Support keyboard + type-ahead
-- DO: Surface errors inline
+- DO: Use when options are fewer than ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern.
 
-- DON'T: Use for free text
-- DON'T: Use for 2–3 options (prefer Radio)
-- DON'T: Rely on colour alone for errors
-- DON'T: Nest complex content in options
+- DON'T: detach the instance or override its tokens locally — request a change through governance instead.

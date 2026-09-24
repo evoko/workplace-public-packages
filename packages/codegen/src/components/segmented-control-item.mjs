@@ -14,6 +14,7 @@ import {
   wrapDoc,
 } from '../scaffold/drawn.mjs';
 import { dartField, dartParam } from '../scaffold/helpers.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['iconLeading', 'iconTrailing'])
@@ -34,6 +35,8 @@ export default {
     // fills its slot, which the recipe sizes and colours.
     resets: drawnResets('Segmented Control Item', {
       cursor: 'pointer',
+      // A 44 × 44 target around the segment (scaffold/target.mjs).
+      ...targetArea(),
       [`& .${P}-input`]: {
         position: 'absolute',
         opacity: '0',
@@ -194,6 +197,7 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/segmented_control_item.dart';
 import '../solar_layers.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarSegmentedControlItem<T> extends StatefulWidget {
@@ -280,7 +284,7 @@ ${api.map(([prop]) => `      ${prop}: widget.${prop},`).join('\n')}
       slots: {'iconLeading': ?widget.iconLeading, 'iconTrailing': ?widget.iconTrailing},
     ).layer('root');
     final forced = widget.statesController;
-    return RawRadio<T>(
+    return SolarTarget.inside(child: RawRadio<T>(
       value: widget.value,
       mouseCursor: WidgetStateMouseCursor.clickable,
       toggleable: false,
@@ -294,7 +298,7 @@ ${api.map(([prop]) => `      ${prop}: widget.${prop},`).join('\n')}
               listenable: forced,
               builder: (_, _) => draw({...state.states, ...forced.value}),
             ),
-    );
+    ));
   }
 }
 `;

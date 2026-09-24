@@ -20,6 +20,7 @@ import '../generated/components/tag.dart';
 import '../generated/icons.dart';
 import '../solar_icon.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import 'solar_tag.dart';
 import 'solar_theme_of.dart';
 
@@ -92,10 +93,15 @@ class SolarToast extends StatelessWidget {
             : null),
       },
       builders: {
-        'action': (words) => Semantics(
-          // A node of its own, so the control keeps its name inside the component's.
-          container: true,
-          child: SolarPressable(onPressed: onAction, builder: (_, _) => words),
+        'action': (words) => SolarTarget.inside(
+          child: Semantics(
+            // A node of its own, so the control keeps its name inside the component's.
+            container: true,
+            child: SolarPressable(
+              onPressed: onAction,
+              builder: (_, _) => words,
+            ),
+          ),
         ),
       },
       composed: {

@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import '../generated/components/draghandle.dart';
 import '../solar_layers.dart';
 import '../solar_states.dart';
+import '../solar_target.dart';
 import 'solar_theme_of.dart';
 
 class SolarDragHandle extends StatelessWidget {
@@ -74,25 +75,29 @@ class SolarDragHandle extends StatelessWidget {
         return Semantics(
           label: semanticLabel,
           enabled: enabled,
-          child: FocusableActionDetector(
-            enabled: enabled,
-            focusNode: focusNode,
-            mouseCursor: enabled ? SystemMouseCursors.grab : MouseCursor.defer,
-            onShowHoverHighlight: (on) => set(WidgetState.hovered, on),
-            onShowFocusHighlight: (on) => set(WidgetState.focused, on),
-            child: Listener(
-              onPointerDown: enabled
-                  ? (_) => set(WidgetState.pressed, true)
-                  : null,
-              onPointerUp: enabled
-                  ? (_) => set(WidgetState.pressed, false)
-                  : null,
-              onPointerCancel: enabled
-                  ? (_) => set(WidgetState.pressed, false)
-                  : null,
-              child: ListenableBuilder(
-                listenable: states,
-                builder: (context, _) => draw({...states.value}),
+          child: SolarTarget(
+            child: FocusableActionDetector(
+              enabled: enabled,
+              focusNode: focusNode,
+              mouseCursor: enabled
+                  ? SystemMouseCursors.grab
+                  : MouseCursor.defer,
+              onShowHoverHighlight: (on) => set(WidgetState.hovered, on),
+              onShowFocusHighlight: (on) => set(WidgetState.focused, on),
+              child: Listener(
+                onPointerDown: enabled
+                    ? (_) => set(WidgetState.pressed, true)
+                    : null,
+                onPointerUp: enabled
+                    ? (_) => set(WidgetState.pressed, false)
+                    : null,
+                onPointerCancel: enabled
+                    ? (_) => set(WidgetState.pressed, false)
+                    : null,
+                child: ListenableBuilder(
+                  listenable: states,
+                  builder: (context, _) => draw({...states.value}),
+                ),
               ),
             ),
           ),

@@ -8,6 +8,7 @@
 
 import { pascal } from '../util/naming.mjs';
 import { drawnFlutter, drawnResets, treeOf } from './drawn.mjs';
+import { targetArea } from './target.mjs';
 
 /** The layers and slots a callout's templates need, refused where the IR lacks one. */
 export function requireAlert(spec) {
@@ -36,6 +37,8 @@ export function alertMui(name) {
         cursor: 'pointer',
         textAlign: 'start',
       },
+      // A 44 × 44 target around the action (target.mjs).
+      ...targetArea(`& button.${P}-action`),
     }),
   };
 }
@@ -168,13 +171,13 @@ final VoidCallback? onAction;`,
           _ => ${recipe},
         }`,
     builders: `{
-        'action': (words) => Semantics(
+        'action': (words) => SolarTarget.inside(child: Semantics(
           // A node of its own, so the control keeps its name inside the component's.
           container: true,
           child: SolarPressable(
           onPressed: onAction,
           builder: (_, _) => words,
-        )),
+        ))),
       }`,
     composed: `{
         'statusIndicator': ExcludeSemantics(
@@ -191,6 +194,7 @@ final VoidCallback? onAction;`,
         ),
       }`,
     imports: `import '../solar_states.dart';
+import '../solar_target.dart';
 import '../generated/components/statusindicator.dart';
 import 'solar_statusindicator.dart';`,
     wrap: `Semantics(

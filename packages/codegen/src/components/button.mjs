@@ -5,6 +5,7 @@
  */
 
 import { dartField, dartParam, MUI_SLOT_PROPS } from '../scaffold/helpers.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 export default {
   name: 'Button',
@@ -30,6 +31,8 @@ export default {
         width: '100%',
         height: '100%',
       },
+      // A 44 × 44 target around the drawn button (scaffold/target.mjs).
+      ...targetArea(),
     },
     states: {
       default: null,

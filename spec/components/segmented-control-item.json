@@ -369,7 +369,7 @@
     "pageId": "2163:3704",
     "figmaNode": "2488:12014",
     "defaultVariant": "selected=true, state=default, size=md",
-    "fileVersion": "2402690438319512660"
+    "fileVersion": "2402761872194862831"
   },
   "overlay": {
     "file": "spec/overlay/segmented-control-item.yaml",

@@ -8,6 +8,7 @@
  */
 
 import { drawnFlutter, drawnResets, treeOf } from '../scaffold/drawn.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['leadingIcon', 'trailingIcon'])
@@ -30,6 +31,8 @@ export default {
         height: '100%',
       },
       '&.Mui-focusVisible': { outline: 'none' },
+      // A 44 × 44 target around the words (scaffold/target.mjs).
+      ...targetArea(),
     }),
     states: {
       default: null,

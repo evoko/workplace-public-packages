@@ -131,10 +131,6 @@ Default variant: `state=default, status=none, loading=false` · 12 variants · d
 | hover    | info    | false   | 320×150 | `color.surface.feedback.info.subtle`    | `color.border.medium` | `shadow/raised` | `color.text.feedback.info`<br>`color.text.secondary`<br>`color.text.inverse`    | `color.icon.feedback.info`                    |
 | default  | info    | false   | 320×150 | `color.surface.feedback.info.subtle`    | `color.border.subtle` | `shadow/raised` | `color.text.feedback.info`<br>`color.text.secondary`<br>`color.text.inverse`    | `color.icon.feedback.info`                    |
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Usage**
@@ -143,23 +139,20 @@ ROLE: primitive (the surface primitive for the card family). Renders the raised 
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the first variant: Title · Content · Tag. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+12 variants.  
+• state — default | hover | disabled  
+• status — none | danger | warning | success | info  
+• loading — false | true  
+Props: Content (slot), title (text), hasTag (boolean), hasMore (boolean), hasHelper (boolean), hasIcon (boolean).
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+No sibling or alternative component is called out for this page.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+Body is the only required slot. (Current build exposes Title + Content slot + optional Tag; 4-slot Media/Header/Body/Footer expansion is queued — see Open Items.) VARIANT PROPERTIES • state — default, hover, disabled (pressed / focus / selected queued) • status — none, danger, warning, success, info (semantic border override via color.border.feedback.{type}.strong) • loading — false, true (true renders the skeleton placeholder state) BOOLEANS • title (text prop) • show tag • Content (slot) • clickable (queued: gates interaction-state visibility and the focus ring) TOKENS BOUND (current) surface/base, border/subtle, radius/container, border/default weight, effect style shadow/control, padding inset/lg.

@@ -9,6 +9,7 @@
  */
 
 import { drawnFlutter, drawnReact, drawnResets } from '../scaffold/drawn.mjs';
+import { targetArea } from '../scaffold/target.mjs';
 
 const requireValue = (spec) => {
   if (spec.layers.value?.type !== 'TEXT')
@@ -39,6 +40,8 @@ export default {
         appearance: 'none',
       },
       '&:is(button):disabled': { cursor: 'default' },
+      // A 44 × 44 target around a counter that is a control (scaffold/target.mjs).
+      ...targetArea('&:is(button)'),
     }),
     // Its own states where it is a control, and otherwise the states of the control it sits in
     // (a Button's), as Figma draws it inside one. Disabled is its prop's class, or a disabled

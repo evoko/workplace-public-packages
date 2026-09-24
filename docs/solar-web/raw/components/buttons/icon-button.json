@@ -5,7 +5,7 @@
     {
       "name": "Icon Button",
       "id": "2995:443",
-      "description": "Icon-only action button. 108 variants: size (sm 28px, md 36px, lg 44px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, pressed, focus, loading, disabled). Mirrors the Button priority/size/state system using SOLAR action tokens; the duplicate state=active was removed on 2026-09-23 — use pressed. Always expand the hit area to 44×44 via invisible padding when the visible size is smaller (WCAG 2.5.5). An icon-only control must carry an aria-label — the icon alone is not a name.",
+      "description": "Icon-only action button. 108 variants: size (sm 32px, md 40px, lg 48px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Mirrors the Button priority/size/state system using SOLAR action tokens; the duplicate state=active was removed on 2026-09-23 — use pressed. An icon-only control must carry an aria-label — the icon alone is not a name.",
       "docLinks": [],
       "variantCount": 108,
       "props": {

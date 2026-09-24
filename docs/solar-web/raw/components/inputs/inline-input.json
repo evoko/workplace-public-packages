@@ -749,8 +749,8 @@
     "Biamp Design System",
     "1.0",
     "Inline Input",
-    "Description",
-    "An editable value that sits inline in text or a table cell — click to edit in place, commit on blur or Enter. Use for lightweight edits without a separate form field.",
+    "Usage",
+    "Inline Input — edit-in-place field that displays a value as text and reveals an editable field on interaction. 6 states: default (read), hover (shows edit affordance), focus (active edit, focus border), filled (edit mode with value), error (validation error), disabled. Edit states expose Confirm (check) and Cancel (close) icon buttons to commit or discard. Set the displayed text via the ’value’ property.",
     "Usage",
     "Use in tables, detail lists, and editable labels. Show an edit affordance on hover. Commit on Enter/blur, cancel on Esc.",
     "States",
@@ -760,8 +760,8 @@
     "Accessibility",
     "Editable region has a label; announce edit mode on focus. Enter commits, Esc cancels. Visible focus ring.",
     "Rules",
-    "DO   Use for quick in-place edits\nDO   Show an edit affordance on hover\nDO   Commit on Enter / blur\nDO   Allow Esc to cancel",
-    "DON'T   Use for complex multi-field forms\nDON'T   Hide that a value is editable\nDON'T   Lose input on accidental blur\nDON'T   Rely on colour alone for errors"
+    "DO   Use it as described under Usage; bind every colour, spacing and radius to a SOLAR token.",
+    "DON'T   detach the instance or override its tokens locally — request a change through governance instead."
   ],
   "pageContext": null
 }

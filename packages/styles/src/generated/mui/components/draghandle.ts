@@ -45,6 +45,18 @@ export const solarDragHandleStyles = {
     '&:focus-visible': {
       outline: 'none',
     },
+    '&': {
+      position: 'relative',
+    },
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 'max(100%, 44px)',
+      height: 'max(100%, 44px)',
+      transform: 'translate(-50%, -50%)',
+    },
   },
   root: {
     backgroundColor: 'transparent',

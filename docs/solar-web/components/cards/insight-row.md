@@ -80,10 +80,6 @@ Default variant: `severity=success, state=default, ghost=false` · 10 variants �
 | info     | hover   | false | 480×64 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.action.secondary.icon.default` |
 | info     | hover   | true  | 480×64 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                   | `color.action.secondary.icon.default` |
 
-## Issues detected (page)
-
-- The documentation card's Accessibility section holds the Breadcrumbs page's text; it does not describe this component.
-
 ## Documentation card
 
 **Usage**
@@ -92,23 +88,21 @@ Single-line insight for a feed or panel — severity icon, title, meta and an op
 
 **Anatomy**
 
-Breadcrumbs compose from Breadcrumb Items joined by a separator.  
-Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
-Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+Top-level layers of the first variant: Severity Bar · Content. Instances keep their SOLAR component names.
 
-**States**
+**Specification**
 
-default Interactive ancestor link. Subtle text color.  
-hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
-disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+10 variants.  
+• severity — success | danger | warning | info  
+• state — default | hover  
+• ghost — false | true  
+Props: Title (text), Meta (text), showAction (boolean), action (instance swap).  
+Props: Title, Meta (text), showAction + action (instance swap).
 
-**Truncation**
+**Related**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+Stack rows in a List; for the same content as a standalone card use Insight Card.
 
 **Accessibility**
 
-Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
-Mark the current item with aria-current="page" — never link it.  
-Separators are decorative: aria-hidden="true".  
-Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.
+Not yet documented here — follow the state-class requirements in CLAUDE.md §7 Check 2 and the WCAG AA rules in §6.

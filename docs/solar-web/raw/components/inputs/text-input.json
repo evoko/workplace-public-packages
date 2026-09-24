@@ -5,7 +5,7 @@
     {
       "name": "Text Input",
       "id": "2087:2737",
-      "description": "Single-line text field for free-form input — label above, helper or error below, optional leading and trailing icons. 12 variants: size (sm 36px, md 44px) × state (default, hover, pressed, filled, disabled, error). NOTE: pressed is the focused state here and is flagged to rename to focus (Class B). Booleans show label, show helper, show leading icon, show trailing icon, show mandatory; label and helper are text props. Validate on blur; a placeholder never replaces the label. For multi-line use Text Area; for numbers use Number Input.",
+      "description": "Single-line text field for free-form input — label above, helper or error below, optional leading and trailing icons. 12 variants: size (sm, md) × state (default, hover, pressed, filled, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). NOTE: pressed is the focused state here and is flagged to rename to focus (Class B) in a breaking cut. Booleans show label, show helper, show leading icon, show trailing icon, show mandatory; label and helper are text props. Validate on blur; a placeholder never replaces the label. For multi-line use Text Area; for numbers use Number Input.",
       "docLinks": [],
       "variantCount": 12,
       "props": {

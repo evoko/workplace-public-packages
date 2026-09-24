@@ -106,9 +106,9 @@ Default variant: `items=multiple` · 5 variants · default size 156×12px
 
 ## Documentation card
 
-**Truncation**
+**Usage**
 
-Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+Shows the user’s location in a navigational hierarchy and allows quick jumps to ancestors. Use for deep page trees, not for linear progress (see Stepper) or single-level flows (omit entirely).
 
 **Accessibility**
 
