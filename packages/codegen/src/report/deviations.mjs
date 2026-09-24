@@ -7,9 +7,10 @@ const cell = (value) => String(value).replaceAll('|', '\\|');
 
 // A finding the overlay has ruled on stays in the report -- a decision to differ from Figma must
 // stay visible -- with the ruling beside what is still asked of SOLAR.
+// A shared default (spec/overlay/defaults.yaml) is named, so its rows read as one decision.
 const action = (d) =>
   d.decision
-    ? `**Decided (${d.decision.rule}):** ${d.decision.reason} ${d.raise ?? ''}`.trim()
+    ? `**Decided (${d.decision.rule}${d.decision.default ? `, shared default ${d.decision.default}` : ''}):** ${d.decision.reason} ${d.raise ?? ''}`.trim()
     : (d.raise ?? 'no action');
 
 /**

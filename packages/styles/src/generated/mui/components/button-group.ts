@@ -24,7 +24,6 @@ export const solarButtonGroupStyles = {
     borderColor: 'transparent',
     boxShadow: 'none',
     borderRadius: 'var(--solar-radius-none)',
-    borderStyle: 'none',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -34,6 +33,10 @@ export const solarButtonGroupStyles = {
     paddingBottom: 'var(--solar-inset-sm)',
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
+    borderLeftStyle: 'none',
     '& > *': {
       width: '100%',
     },
@@ -49,9 +52,6 @@ export const solarButtonGroupStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       borderTopWidth: 'var(--solar-border-default)',
       borderTopStyle: 'solid',
-      borderRightStyle: 'none',
-      borderBottomStyle: 'none',
-      borderLeftStyle: 'none',
       '& > *': {
         width: '100%',
       },

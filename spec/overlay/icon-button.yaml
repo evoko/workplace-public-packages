@@ -59,26 +59,6 @@ accept:
     reason: As at md, the border width is 0 at lg, so the colour is never drawn.
 
 bind:
-  root.gap:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the gap unbound at 0.
-  root.paddingTop:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the padding unbound at 0.
-  root.paddingRight:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the padding unbound at 0.
-  root.paddingBottom:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the padding unbound at 0.
-  root.paddingLeft:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the padding unbound at 0.
   icon.width:
     tokens: { 12: icon.xs, 16: icon.sm, 20: icon.md }
     reason: >-

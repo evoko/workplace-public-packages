@@ -4,7 +4,13 @@ import {
   loadComponent,
   loadWebCatalog,
 } from '../src/normalize/components.mjs';
-import { loadOverlay, parseOverlay } from '../src/normalize/overlay.mjs';
+import {
+  applyDefaults,
+  loadDefaults,
+  loadOverlay,
+  parseDefaults,
+  parseOverlay,
+} from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 
@@ -361,8 +367,13 @@ describe('spec/overlay/button.yaml', () => {
     });
   });
 
-  it('applies cleanly, leaving every literal in the recipe allowed or bound', () => {
-    const { spec } = build(overlay);
+  it('applies cleanly with the shared defaults, leaving every literal allowed or bound', () => {
+    const { spec } = buildComponentSpec(button, {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay,
+      defaults: loadDefaults(),
+    });
     const literals = [];
     const walk = (node, at) => {
       if (node && typeof node === 'object') {
@@ -445,5 +456,142 @@ describe('the overlay forms 3b-2 wave B added', () => {
         'set:\n  tertiaryCTA.base.width: { keyword: GROW, reason: r }\n',
       ),
     ).toThrow(/keyword must be FILL or HUG/);
+  });
+});
+
+describe('the shared defaults (spec/overlay/defaults.yaml)', () => {
+  const defaults = loadDefaults();
+  const withDefaults = (overlay, d = defaults) =>
+    buildComponentSpec(button, {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay,
+      defaults: d,
+    });
+
+  it('binds an inset Figma leaves at 0 to inset.none, in every layer, and decides its finding', () => {
+    expect(defaults.bind['zero-insets']).toMatchObject({
+      literal: 0,
+      token: 'inset.none',
+    });
+    const { spec, deviations } = withDefaults(null);
+    expect(spec.style.root.base.paddingTop).toMatchObject({
+      token: 'inset.none',
+      from: 'defaults',
+    });
+    expect(
+      deviations.find(
+        (d) => d.token === 'component.button.root.paddingTop#unbound',
+      ).decision,
+    ).toMatchObject({ rule: 'bind', default: 'zero-insets' });
+    // Recorded among the rules, with the file it came from.
+    expect(spec.overlay.rules).toContainEqual(
+      expect.objectContaining({
+        rule: 'bind',
+        default: 'zero-insets',
+        from: 'spec/overlay/defaults.yaml',
+      }),
+    );
+  });
+
+  it('leaves a cell the component rules on to the component', () => {
+    const own = yaml(`
+component: Button
+allowLiteral:
+  root.paddingTop:
+    reason: kept raw, for this test
+`);
+    const { spec, deviations } = withDefaults(own);
+    expect(spec.style.root.base.paddingTop).toMatchObject({
+      literal: 0,
+      allowed: 'kept raw, for this test',
+    });
+    expect(
+      deviations.find(
+        (d) => d.token === 'component.button.root.paddingTop#unbound',
+      ).decision.rule,
+    ).toBe('allowLiteral');
+  });
+
+  it('decides a finding only once no raw value is left in the cell', () => {
+    // Button's gap is 12 in Figma, unbound: a default for 0 has nothing to bind there.
+    const { deviations } = withDefaults(null);
+    expect(
+      deviations.find((d) => d.token === 'component.button.root.gap#unbound')
+        .decision,
+    ).toBeUndefined();
+  });
+
+  it('answers a 0 only a variant the recipe does not keep draws, which leaves nothing to bind', () => {
+    // .Tree Indent's gap is 0 and unbound in variants compared against its reference, so the
+    // recipe never holds the 0; the finding is Figma's, and the default still decides it.
+    const indent = buildComponentSpec(loadComponent(catalog, '.Tree Indent'), {
+      names,
+      fileVersion: catalog.fileVersion,
+      defaults,
+    });
+    const gap = indent.deviations.find(
+      (d) => d.token === 'component..tree indent.root.gap#unbound',
+    );
+    expect(gap.literals).toEqual([0]);
+    expect(gap.decision).toMatchObject({ default: 'zero-insets' });
+  });
+
+  it('leaves open a finding that holds another raw value besides 0', () => {
+    const d = parseDefaults(
+      `bind:\n  z:\n    cells: [gap]\n    literal: 0\n    token: inset.none\n    reason: r\n`,
+      'd.yaml',
+    );
+    const spec = { component: 'X', style: { root: { base: {} } } };
+    const found = [
+      {
+        kind: 'unbound',
+        token: 'component.x.root.gap#unbound',
+        literals: [0, 2],
+      },
+    ];
+    const r = applyDefaults(spec, found, d, { names, overlay: null });
+    expect(r.deviations[0].decision).toBeUndefined();
+  });
+
+  it('is not an error where it finds nothing, unlike a component rule', () => {
+    const d = parseDefaults(
+      `bind:\n  none-here:\n    cells: [gap]\n    literal: 999\n    token: inset.none\n    reason: test\n`,
+      'test.yaml',
+    );
+    // inset.none is 0, not 999: the token must have the value it binds.
+    expect(() => withDefaults(null, d)).toThrow(/inset.none is 0, not 999/);
+    const fine = parseDefaults(
+      `bind:\n  none-here:\n    cells: [radius]\n    literal: 0\n    token: inset.none\n    reason: test\n`,
+      'test.yaml',
+    );
+    expect(() => withDefaults(null, fine)).not.toThrow();
+  });
+
+  it('refuses a rule without a reason or its cells', () => {
+    expect(() =>
+      parseDefaults(
+        `bind:\n  x:\n    cells: [gap]\n    literal: 0\n    token: inset.none\n`,
+        'd.yaml',
+      ),
+    ).toThrow(/bind.x has no reason/);
+    expect(() =>
+      parseDefaults(
+        `bind:\n  x:\n    cells: []\n    literal: 0\n    token: inset.none\n    reason: r\n`,
+        'd.yaml',
+      ),
+    ).toThrow(/cells must list/);
+    expect(() => parseDefaults(`follows: {}\n`, 'd.yaml')).toThrow(
+      /unknown section follows/,
+    );
+  });
+
+  it('changes nothing when there are none', () => {
+    const { spec, deviations } = build(null);
+    const again = applyDefaults(spec, deviations, null, {
+      names,
+      overlay: null,
+    });
+    expect(again.spec).toEqual(spec);
   });
 });

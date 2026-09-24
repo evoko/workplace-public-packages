@@ -66,13 +66,13 @@ If you take only a few items, take these:
 | #                                                                      | What                                                  | Count                                              | File        |
 | ---------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------- | ----------- |
 | [1](#1-components-with-no-description--24)                             | Components with no description                        | 24                                                 | SOLAR Web   |
-| [2](#2-hard-coded-values--55-across-11-components)                     | Hard-coded values not bound to a variable             | 55 in 11 components                                | SOLAR Web   |
+| [2](#2-hard-coded-values--55-across-11-components)                     | Hard-coded values not bound to a variable             | 55 in 11 components, and 1,098 zeros               | SOLAR Web   |
 | [3](#3-primitive-colours-used-directly--32-components)                 | Components using primitive colours directly           | 32                                                 | SOLAR Web   |
 | [4](#4-described-sizes-that-disagree-with-the-drawing--11-components)  | Described sizes that disagree with the drawn ones     | 11                                                 | SOLAR Web   |
 | [5](#5-state-values-outside-the-standard-ladder--5)                    | State values outside the standard ladder              | 5 (+2 described)                                   | SOLAR Web   |
 | [6](#6-variable-bindings--3-wrong-5-unknown)                           | Wrong or unknown variable bindings                    | 3 + 5                                              | SOLAR Web   |
 | [7](#7-documentation-cards-copied-from-breadcrumbs--45-pages)          | Documentation cards copied from Breadcrumbs           | 45 pages                                           | SOLAR Web   |
-| [8](#8-button-spinner-icon-button-and-button-group-variant-by-variant) | Button, Spinner, Icon Button, Button Group, in detail | Button 7, Spinner 3, Icon Button 5, Button Group 4 | SOLAR Web   |
+| [8](#8-button-spinner-icon-button-and-button-group-variant-by-variant) | Button, Spinner, Icon Button, Button Group, in detail | Button 6, Spinner 2, Icon Button 5, Button Group 3 | SOLAR Web   |
 | [9](#9-guideline-pages-that-contradict-the-variables)                  | Guideline pages that contradict the variables         | 2, and 2 page edits                                | Foundations |
 | [10](#10-action-colours-below-the-contrast-floor--5)                   | Action colours below the contrast floor               | 5                                                  | Foundations |
 | [11](#11-icons-and-logos)                                              | Icons and logos                                       | no icon findings; 2 logo questions                 | SOLAR Icons |
@@ -121,6 +121,13 @@ density changes, and they are invisible unless you inspect the layer. **53 of th
 variable exactly** and can be bound with no visual change. Most of them (44) are one view, Resource
 View, repeating the same five values across its rows; the other ten components have one or two
 each.
+
+**Zeros, everywhere.** Separately from the 55, 1,098 paddings and gaps, in 91 of the 119 sets in
+the Components section, are `0` and bound to nothing. `inset/none` is the variable for `0`, so
+there is no visual change to make: binding them would only make the intent explicit and let density
+changes reach them. We read every unbound `0` padding or gap as `inset/none`, in every component,
+so they need no answer component by component. If you rebind them in bulk, nothing in our code
+changes.
 
 **Fix first — a layout accident:**
 
@@ -332,7 +339,6 @@ with a sibling. Where an item is open, we build it exactly as drawn.
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
 | The **secondary** button has no background at `sm`. md and lg carry `action/secondary/bg/*`; sm has none, so it is transparent on a grey surface.                                          | 8: `sm / secondary` in default, pressed, focus and loading, with and without danger |
 | The **lg disabled secondary** label uses `action/secondary/text/danger/disabled` although danger is off. Every other size uses `action/secondary/text/disabled`.                           | 1: `lg / secondary / disabled / danger=false`                                       |
-| Vertical padding is `0` but bound to nothing. `inset/none` has the same value.                                                                                                             | all                                                                                 |
 | lg's gap is `12` and bound to nothing (every other size binds an inset). `inset/sm` has the same value. The two icon slots are `16` tall and unbound; their width already binds `icon/sm`. | all lg; all                                                                         |
 
 **⚠️ Decide:**
@@ -347,7 +353,6 @@ with a sibling. Where an item is open, we build it exactly as drawn.
 
 - **Fix:** the default indicator's colour is bound to a width variable (section 6). We draw it with
   `color/border/strong` meanwhile, the colour whose inverse the inverse style uses.
-- **Fix:** the frame's padding and gap are `0` and bound to nothing; `inset/none` has the same value.
 - **⚠️ Decide:** the ring is 16, 24 and 32px across and bound to nothing. Should Spinner sizes be
   variables of their own, or follow the icon ladder (`icon/sm`, `icon/lg`, `icon/2xl` have the same
   values)?
@@ -358,10 +363,10 @@ Its sizes are in section 4 (described 28/36/44, drawn 32/40/48).
 
 **Fix** — these look like accidents:
 
-| What                                                                                                                                                                                                                                | Variants                                                                      |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| **Disabled gains a border.** Tertiary has no border in any state but disabled, where it draws 1px `color/border/medium`; lg secondary is the same (no border at lg, but one when disabled).                                         | 8: `tertiary / disabled` at every size and shape; `lg / secondary / disabled` |
-| The frame's padding and gap are `0` and bound to nothing; `inset/none` has the same value. The icon is 12 / 16 / 20px wide and unbound; `icon/xs`, `icon/sm` and `icon/md` have the same values, and its height already binds them. | all                                                                           |
+| What                                                                                                                                                                                        | Variants                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **Disabled gains a border.** Tertiary has no border in any state but disabled, where it draws 1px `color/border/medium`; lg secondary is the same (no border at lg, but one when disabled). | 8: `tertiary / disabled` at every size and shape; `lg / secondary / disabled` |
+| The icon is 12 / 16 / 20px wide and unbound; `icon/xs`, `icon/sm` and `icon/md` have the same values, and its height already binds them.                                                    | all                                                                           |
 
 **⚠️ Decide:**
 
@@ -383,7 +388,6 @@ as the description says, there is no vertical full-width. We build those three a
 
 | What                                                                                                                                                       | Variants                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Full-width's padding is `0` and bound to nothing; `inset/none` has the same value.                                                                         | `horizontal / full-width`                    |
 | The hidden buttons keep a fixed width from before they were hidden (the tertiary 138px, the vertical group's third 431px), while every shown button fills. | `horizontal / regular`, `vertical / regular` |
 
 **⚠️ Decide:**

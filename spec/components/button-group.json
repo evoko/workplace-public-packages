@@ -83,10 +83,6 @@
           "none": true,
           "from": "orientation=horizontal, type=regular"
         },
-        "borderWidth": {
-          "none": true,
-          "from": "orientation=horizontal, type=regular"
-        },
         "direction": {
           "keyword": "HORIZONTAL",
           "from": "orientation=horizontal, type=regular"
@@ -122,6 +118,22 @@
         "height": {
           "keyword": "HUG",
           "from": "orientation=horizontal, type=regular"
+        },
+        "borderTopWidth": {
+          "none": true,
+          "from": "orientation=horizontal, type=regular"
+        },
+        "borderRightWidth": {
+          "none": true,
+          "from": "orientation=horizontal, type=regular"
+        },
+        "borderBottomWidth": {
+          "none": true,
+          "from": "orientation=horizontal, type=regular"
+        },
+        "borderLeftWidth": {
+          "none": true,
+          "from": "orientation=horizontal, type=regular"
         }
       },
       "size": {},
@@ -138,38 +150,26 @@
             },
             "paddingTop": {
               "token": "inset.none",
-              "from": "overlay",
-              "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
+              "from": "defaults",
+              "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
             },
             "paddingRight": {
               "token": "inset.none",
-              "from": "overlay",
-              "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
+              "from": "defaults",
+              "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
             },
             "paddingBottom": {
               "token": "inset.none",
-              "from": "overlay",
-              "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
+              "from": "defaults",
+              "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
             },
             "paddingLeft": {
               "token": "inset.none",
-              "from": "overlay",
-              "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
+              "from": "defaults",
+              "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
             },
             "borderTopWidth": {
               "token": "border.default",
-              "from": "orientation=horizontal, type=full-width"
-            },
-            "borderRightWidth": {
-              "none": true,
-              "from": "orientation=horizontal, type=full-width"
-            },
-            "borderBottomWidth": {
-              "none": true,
-              "from": "orientation=horizontal, type=full-width"
-            },
-            "borderLeftWidth": {
-              "none": true,
               "from": "orientation=horizontal, type=full-width"
             }
           }
@@ -465,26 +465,6 @@
         "reason": "The buttons fill the group in every variant; see the set rules for the hidden ones."
       },
       {
-        "rule": "bind",
-        "at": "root.paddingBottom",
-        "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
-      },
-      {
-        "rule": "bind",
-        "at": "root.paddingLeft",
-        "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
-      },
-      {
-        "rule": "bind",
-        "at": "root.paddingRight",
-        "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
-      },
-      {
-        "rule": "bind",
-        "at": "root.paddingTop",
-        "reason": "Same value, governed token. Full-width leaves its padding unbound at 0."
-      },
-      {
         "rule": "set",
         "at": "button3.appearance.orientation=vertical, type=regular.default.width",
         "reason": "As the tertiary one: hidden in the vertical group, where it keeps a fixed 431; every shown button fills."
@@ -528,6 +508,13 @@
         "rule": "accept",
         "at": "component.button group.tertiaryCTA.variant.size@orientation=horizontal, type=full-width",
         "reason": "The buttons are the caller's, whose size the group never changes; Figma's full-width example happens to use lg."
+      },
+      {
+        "rule": "bind",
+        "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
+        "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "from": "spec/overlay/defaults.yaml",
+        "default": "zero-insets"
       }
     ]
   }

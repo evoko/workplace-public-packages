@@ -258,3 +258,30 @@ describe('renderFlutterComponent: glyphs', () => {
     expect(dart).not.toContain('SolarGlyph');
   });
 });
+
+describe('renderFlutterComponent: a layer with no auto-layout in a variant', () => {
+  const group = structuredClone(
+    built.find((b) => b.spec.component === 'Button Group').spec,
+  );
+  const none = { none: true };
+  group.style.root.appearance['orientation=vertical, fullWidth=false'].default =
+    {
+      direction: none,
+      gap: none,
+      paddingLeft: none,
+    };
+  const { cells: vertical } = renderFlutterComponent(group, tokens);
+  const at = (cell) =>
+    vertical[
+      `root.${cell}|appearance|orientation=vertical, fullWidth=false|default`
+    ];
+
+  it('reads its gap and padding as inset.none, a length like any other', () => {
+    expect(at('gap')).toBe('t:inset.none');
+    expect(at('paddingLeft')).toBe('t:inset.none');
+  });
+
+  it('keeps a none direction as none, for the shell to read', () => {
+    expect(at('direction')).toBe('none');
+  });
+});

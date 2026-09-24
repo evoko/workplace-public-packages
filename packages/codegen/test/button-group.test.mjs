@@ -50,8 +50,14 @@ describe('the Button Group IR', () => {
       spec.style.root.appearance['orientation=horizontal, fullWidth=true']
         .default;
     expect(bar.borderTopWidth.token).toBe('border.default');
+    // The other sides are the base's: every variant's border is read side by side, since one
+    // variant has sides of its own, so the regular group's "no border" is none on each side.
+    const base = spec.style.root.base;
+    expect(base).not.toHaveProperty('borderWidth');
+    for (const side of ['Top', 'Right', 'Bottom', 'Left'])
+      expect(base[`border${side}Width`]).toMatchObject({ none: true });
     for (const side of ['Right', 'Bottom', 'Left'])
-      expect(bar[`border${side}Width`]).toMatchObject({ none: true });
+      expect(bar).not.toHaveProperty(`border${side}Width`);
     expect(bar.borderColor.token).toBe('color.border.subtle');
     // Read from the weights Figma records per side, not inferred from the bindings.
     expect(JSON.stringify(bar)).not.toContain('inferred');
@@ -93,15 +99,16 @@ describe('the Button Group recipe', () => {
     });
   });
 
-  it('styles one side of the border only, over the uniform none', () => {
-    expect(styles.root.borderStyle).toBe('none');
-    expect(
-      styles.appearances['orientation=horizontal, fullWidth=true'],
-    ).toMatchObject({
+  it('styles the border side by side: none on each at rest, the top alone at full width', () => {
+    expect(styles.root).not.toHaveProperty('borderStyle');
+    for (const side of ['Top', 'Right', 'Bottom', 'Left'])
+      expect(styles.root[`border${side}Style`]).toBe('none');
+    const bar = styles.appearances['orientation=horizontal, fullWidth=true'];
+    expect(bar).toMatchObject({
       borderTopWidth: 'var(--solar-border-default)',
       borderTopStyle: 'solid',
-      borderBottomStyle: 'none',
     });
+    expect(bar).not.toHaveProperty('borderBottomStyle');
   });
 
   it('is a recipe alone on Flutter, with no style builder: the widget reads it cell by cell', () => {

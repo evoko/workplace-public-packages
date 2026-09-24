@@ -144,8 +144,8 @@
         },
         "paddingTop": {
           "token": "inset.none",
-          "from": "overlay",
-          "reason": "Same value, governed token. Figma leaves vertical padding unbound at 0."
+          "from": "defaults",
+          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingRight": {
           "token": "inset.sm",
@@ -153,8 +153,8 @@
         },
         "paddingBottom": {
           "token": "inset.none",
-          "from": "overlay",
-          "reason": "Same value, governed token. Figma leaves vertical padding unbound at 0."
+          "from": "defaults",
+          "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
         },
         "paddingLeft": {
           "token": "inset.sm",
@@ -2297,16 +2297,6 @@
         "reason": "Same value, governed token. Only lg leaves its gap unbound; every other size binds an inset token."
       },
       {
-        "rule": "bind",
-        "at": "root.paddingBottom",
-        "reason": "Same value, governed token. Figma leaves vertical padding unbound at 0."
-      },
-      {
-        "rule": "bind",
-        "at": "root.paddingTop",
-        "reason": "Same value, governed token. Figma leaves vertical padding unbound at 0."
-      },
-      {
         "rule": "allowLiteral",
         "at": "counter.height",
         "reason": "The counter badge is fixed at 20 tall and bound to nothing; no SOLAR token names a badge height. Raised as a governance gap."
@@ -2320,6 +2310,13 @@
         "rule": "allowLiteral",
         "at": "root.width",
         "reason": "lg is fixed at 200 wide and SOLAR publishes no control width token. Treated like the heights under the same decision; raised as a governance gap."
+      },
+      {
+        "rule": "bind",
+        "at": "root.paddingTop, root.paddingBottom",
+        "reason": "Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "from": "spec/overlay/defaults.yaml",
+        "default": "zero-insets"
       }
     ]
   }

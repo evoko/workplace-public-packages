@@ -37,14 +37,6 @@ follows:
       as on the paint axes. Raised with SOLAR to confirm.
 
 bind:
-  root.paddingTop:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves vertical padding unbound at 0.
-  root.paddingBottom:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves vertical padding unbound at 0.
   root.gap:
     literal: 12
     token: inset.sm

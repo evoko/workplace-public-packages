@@ -149,6 +149,140 @@ export function loadOverlay(component) {
   return parseOverlay(readFileSync(path, 'utf8'), relative(repoRoot, path));
 }
 
+/**
+ * The shared defaults, `spec/overlay/defaults.yaml`: decisions that hold for every component, each
+ * with a reason, applied after the component's own overlay and never over a cell it rules on.
+ * One section so far:
+ *
+ *   bind: { <name>: { cells: [<cell>, …], literal, token, reason } }   in every layer, a raw
+ *         value in one of `cells` to the token of that value
+ *
+ * Unlike a component's rule, a default that finds nothing to do in one component is not an error:
+ * it is written for all of them.
+ */
+export const defaultsFile = join(overlayDir, 'defaults.yaml');
+
+export function parseDefaults(text, file) {
+  const doc = parse(text) ?? {};
+  const fail = (detail) => {
+    throw new Error(`${file}: ${detail}`);
+  };
+  for (const key of Object.keys(doc))
+    if (key !== 'bind') fail(`unknown section ${key}`);
+  for (const [name, rule] of Object.entries(doc.bind ?? {})) {
+    if (!rule || typeof rule !== 'object') fail(`bind.${name} is not a rule`);
+    for (const key of Object.keys(rule))
+      if (!['cells', 'literal', 'token', 'reason'].includes(key))
+        fail(`bind.${name}: unknown field ${key}`);
+    if (typeof rule.reason !== 'string' || rule.reason.trim() === '')
+      fail(`bind.${name} has no reason`);
+    if (
+      !Array.isArray(rule.cells) ||
+      rule.cells.length === 0 ||
+      !rule.cells.every((c) => typeof c === 'string' && c)
+    )
+      fail(`bind.${name}: cells must list the cells it binds`);
+    if (typeof rule.literal !== 'number' || typeof rule.token !== 'string')
+      fail(`bind.${name}: literal must be a number and token a token name`);
+  }
+  return { bind: doc.bind ?? {}, file };
+}
+
+/** The shared defaults, or null when there is no defaults file. */
+export function loadDefaults() {
+  if (!existsSync(defaultsFile)) return null;
+  return parseDefaults(
+    readFileSync(defaultsFile, 'utf8'),
+    relative(repoRoot, defaultsFile),
+  );
+}
+
+/**
+ * Applies the shared defaults over a built IR, after its overlay (applyOverlay). A cell the
+ * component's overlay names in `bind`, `set` or `allowLiteral` is its own decision and is left
+ * alone. A finding is decided once no raw value is left in its cell, as a `bind` decides one.
+ *
+ * @returns {{spec: object, deviations: object[]}} new objects; the inputs are not mutated
+ */
+export function applyDefaults(ir, deviationsIn, defaults, { names, overlay }) {
+  const spec = structuredClone(ir);
+  const deviations = deviationsIn.map((d) => ({ ...d }));
+  if (!defaults) return { spec, deviations };
+
+  const own = new Set();
+  for (const at of [
+    ...Object.keys(overlay?.bind ?? {}),
+    ...Object.keys(overlay?.allowLiteral ?? {}),
+  ])
+    own.add(at);
+  for (const at of Object.keys(overlay?.set ?? {})) {
+    const [layer, section, ...rest] = at.split('.');
+    own.add(`${layer}.${rest.slice(DEPTH[section] ?? 0).join('.')}`);
+  }
+
+  const lc = spec.component.toLowerCase();
+  const rules = [];
+  for (const [name, rule] of Object.entries(defaults.bind).sort(([a], [b]) =>
+    a < b ? -1 : 1,
+  )) {
+    const value = names.value(rule.token);
+    if (value === null)
+      throw new Error(
+        `${defaults.file}: bind.${name}: ${rule.token} is not a SOLAR token`,
+      );
+    if (value !== rule.literal)
+      throw new Error(
+        `${defaults.file}: bind.${name}: ${rule.token} is ${value}, not ${rule.literal}`,
+      );
+    const at = [];
+    for (const [layer, s] of Object.entries(spec.style))
+      for (const cell of rule.cells) {
+        if (own.has(`${layer}.${cell}`)) continue;
+        const entries = [...entriesOf(s, cell)];
+        let bound = 0;
+        for (const [holder, key] of entries)
+          if (holder[key].literal === rule.literal && !holder[key].allowed) {
+            holder[key] = {
+              token: rule.token,
+              from: 'defaults',
+              reason: rule.reason,
+            };
+            bound++;
+          }
+        // The finding is Figma's raw values in the cell, wherever it drew them: a 0 only a
+        // non-reference variant draws is not in the recipe to bind, and the default still answers
+        // it. Decided once every raw value is this literal and none is left in the recipe; whether
+        // that variant should differ at all is its axis finding, which this leaves alone.
+        const d = deviations.find(
+          (x) =>
+            x.token === `component.${lc}.${layer}.${cell}#unbound` &&
+            !x.decision,
+        );
+        const answers =
+          d?.literals?.length > 0 &&
+          d.literals.every((l) => l === rule.literal) &&
+          entries.every(([holder, key]) => holder[key].literal === undefined);
+        if (answers)
+          d.decision = { rule: 'bind', reason: rule.reason, default: name };
+        if (bound || answers) at.push(`${layer}.${cell}`);
+      }
+    if (at.length)
+      rules.push({
+        rule: 'bind',
+        at: at.join(', '),
+        reason: rule.reason,
+        from: defaults.file,
+        default: name,
+      });
+  }
+  if (rules.length)
+    spec.overlay = {
+      file: spec.overlay?.file ?? null,
+      rules: [...(spec.overlay?.rules ?? []), ...rules],
+    };
+  return { spec, deviations };
+}
+
 /** `root.paddingTop` to `['root', 'paddingTop']`; a cell name may itself hold a dot. */
 function splitCell(at) {
   const i = at.indexOf('.');

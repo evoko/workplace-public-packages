@@ -367,3 +367,31 @@ describe('state selectors, per component', () => {
     expect(restateOverlaps(spinner)).toEqual(spinner.style);
   });
 });
+
+describe('a layer with no auto-layout in a variant', () => {
+  // Button Group, its vertical group drawn with no auto-layout: the recipe writes that as none.
+  const group = structuredClone(
+    built.find((b) => b.spec.component === 'Button Group').spec,
+  );
+  const none = { none: true };
+  group.style.root.appearance['orientation=vertical, fullWidth=false'].default =
+    {
+      direction: none,
+      align: none,
+      gap: none,
+      paddingTop: none,
+    };
+  const vertical = renderMuiComponent(group, tokens).styles.appearances[
+    'orientation=vertical, fullWidth=false'
+  ];
+
+  it('has no gap or padding, written as inset.none so the base’s are overridden', () => {
+    expect(vertical.gap).toBe('var(--solar-inset-none)');
+    expect(vertical.paddingTop).toBe('var(--solar-inset-none)');
+  });
+
+  it('restates no flex direction or alignment', () => {
+    expect(vertical).not.toHaveProperty('flexDirection');
+    expect(vertical).not.toHaveProperty('justifyContent');
+  });
+});

@@ -350,6 +350,65 @@ function cellsOf(layer, type, names, where) {
   return cells;
 }
 
+const LAYOUT_CELLS = [
+  'direction',
+  'align',
+  'gap',
+  ...PADDING.map((side) => `padding${side}`),
+];
+const SIDE_CELLS = PADDING.map((side) => `border${side}Width`);
+
+/**
+ * A cell one variant of a layer has and another lacks says something, and the comparison can only
+ * weigh values, not absences. So where another variant of the same layer has the cell, an absence
+ * is written as what it means, as "no stroke paint is no border" is in `cellsOf`:
+ *
+ * - no auto-layout (Checkbox's box in some states only) is a layout of `none`, which the emitters
+ *   draw as no flex, and no gap or padding (`inset.none`);
+ * - no recorded sizing is the size the layer is drawn at, bound as any size is;
+ * - one border width where another variant has a width per side (Tab Item) is that width on
+ *   every side, so the sides are compared side by side.
+ *
+ * A layer whose variants all agree on which cells they have is left as it is. What this does not
+ * fill, the comparison reports as a finding rather than skipping it.
+ */
+function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
+  for (const path of Object.keys(layers)) {
+    const drawn = resolved.variants.filter((v) => v.layers.has(path));
+    const has = new Set(
+      drawn.flatMap((v) => Object.keys(cells.get(v.name).get(path) ?? {})),
+    );
+    const sides = SIDE_CELLS.some((c) => has.has(c));
+    for (const v of drawn) {
+      const own = cells.get(v.name).get(path);
+      if (!own) continue;
+      if (sides && own.borderWidth) {
+        for (const c of SIDE_CELLS) own[c] = { ...own.borderWidth };
+        delete own.borderWidth;
+      }
+      const layer = v.layers.get(path);
+      for (const c of has) {
+        if (own[c] || (sides && c === 'borderWidth')) continue;
+        if (LAYOUT_CELLS.includes(c))
+          own[c] = { cls: 'geometry', value: { none: true } };
+        else if ((c === 'width' || c === 'height') && layer.size) {
+          const i = c === 'width' ? 0 : 1;
+          own[c] = {
+            cls: 'geometry',
+            value: bound(
+              layer,
+              [c],
+              layer.size[i],
+              names,
+              `${component} ${path}.${c}`,
+            ),
+          };
+        }
+      }
+    }
+  }
+}
+
 // ---------------------------------------------------------------------------------------------
 // Derivation
 
@@ -359,11 +418,13 @@ const coordinate = (props, axes) =>
 const keyOf = (props, axes) => axes.map((a) => `${a}=${props[a]}`).join(', ');
 const slug = (layer) => (layer === '/' ? 'root' : layer.slice(1));
 const describe = (v) =>
-  v.token ??
-  (v.none
-    ? 'none'
-    : (v.keyword ??
-      (v.value !== undefined ? String(v.value) : String(v.literal))));
+  v === undefined
+    ? 'no value'
+    : (v.token ??
+      (v.none
+        ? 'none'
+        : (v.keyword ??
+          (v.value !== undefined ? String(v.value) : String(v.literal)))));
 
 /**
  * @param {ReturnType<import('./component-layers.mjs').resolveVariants>} resolved
@@ -429,6 +490,7 @@ export function deriveRecipe(
       return [v.name, perLayer];
     }),
   );
+  sayWhatAbsenceMeans(resolved, cells, layers, names, component);
   const read = (variant, path, cell) => {
     if (!variant.layers.has(path))
       return cell === 'present' ? { value: false } : undefined;
@@ -585,10 +647,20 @@ export function deriveRecipe(
           continue;
         }
         const found = read(v, path, cell);
+        // A layer drawn in both, with the cell in one alone, is a difference, never a skip: the
+        // absences with a meaning were written as such before this. A composed child's variant
+        // is the exception, as Figma records none on a hidden instance (read above from the
+        // variant that draws it).
+        const oneSided =
+          (expected === undefined) !== (found === undefined) &&
+          !composes &&
+          v.layers.has(path) &&
+          ref.layers.has(path);
         if (
-          expected === undefined ||
-          found === undefined ||
-          same(expected, found)
+          !oneSided &&
+          (expected === undefined ||
+            found === undefined ||
+            same(expected, found))
         )
           continue;
         // Grouped by where the variant sits on the axes this cell should not follow: twenty lg
@@ -712,6 +784,8 @@ export function deriveRecipe(
               : `SOLAR has no ${label} token; ask SOLAR for one, or confirm ${literals.join(', ')} is intended.`,
     };
     if (suggest.length) d.suggest = suggest;
+    // The raw values themselves, for a rule that decides by value (the shared zero-insets default).
+    if (kind === 'unbound') d.literals = literals;
     deviations.push(d);
   }
 

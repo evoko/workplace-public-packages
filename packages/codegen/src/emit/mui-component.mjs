@@ -301,18 +301,26 @@ function context(spec, tokens) {
         };
       case 'shadow':
         return { boxShadow: entry.none ? 'none' : ref(entry.token, at) };
+      // A layer with no auto-layout in this variant (the recipe writes it `none`) has no gap or
+      // padding, which is inset.none, as a `none` radius is radius.none. Written, not left out, so
+      // it overrides the gap the base's layout has.
       case 'gap':
       case 'paddingTop':
       case 'paddingRight':
       case 'paddingBottom':
       case 'paddingLeft':
-        return length(entry, cell, at);
+        return entry.none
+          ? { [cell]: ref('inset.none', at) }
+          : length(entry, cell, at);
       case 'width':
       case 'height':
         return length(entry, cell, at);
+      // No auto-layout: Figma places the children itself, which the shell's own layout gives, so
+      // nothing of the base's flex direction or alignment is restated.
       case 'direction':
-        return { flexDirection: DIRECTION[entry.keyword] };
+        return entry.none ? {} : { flexDirection: DIRECTION[entry.keyword] };
       case 'align': {
+        if (entry.none) return {};
         const [main, cross] = entry.keyword.split('/');
         if (!ALIGN[main] || !ALIGN[cross])
           throw new Error(`${where} ${at}: cannot align ${entry.keyword}`);

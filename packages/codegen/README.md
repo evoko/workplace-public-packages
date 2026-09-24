@@ -135,6 +135,12 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    A border whose sides differ (Button Group's divider) has a cell per side, `borderTopWidth` and
    the rest, read from the weights the fetcher records per side; data fetched before it recorded
    them draws a side where it is bound and reports the layer `unrecorded` until a sync.
+   A cell one variant of a layer has and another lacks is never skipped. Where the absence has a
+   meaning it is written as that first: no auto-layout is a layout of `none` (the emitters draw
+   no gap or padding, `inset.none`, and restate no flex direction), no recorded sizing is the
+   size the layer is drawn at, and one border width where another variant has sides is that
+   width on every side. What is left is an axis finding, `no value` against the other's value.
+   A composed child's variant is the one exception, since Figma records none on a hidden instance.
 3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
    demoted — hover, pressed and focus become platform states, disabled and loading stay props;
    states drawn as `false/true` axes of their own, as Checkbox's are, are first folded into one
@@ -156,6 +162,13 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    boolean (Button Group's `type: regular | full-width` is `fullWidth`). `set` takes a sizing
    `keyword` (`FILL`, `HUG`) as well as a token or none, and settles a raw-value finding once no raw
    value is left in the cell; the oracle then excuses Figma's value there, as for any decision.
+   Then the **shared defaults** (`spec/overlay/defaults.yaml`, `applyDefaults`), decisions that
+   hold for every component, each with a reason. There is one: `zero-insets` binds a padding or gap
+   Figma leaves unbound at `0` to `inset.none`, in every layer, and decides the finding once every
+   raw value Figma left in that cell is `0`, even one only a variant the recipe does not keep draws.
+   A cell the component's own `bind`, `set` or `allowLiteral` names is left to it, and a default
+   that finds nothing to do in a component is not an error. Its decisions are recorded among the
+   IR's rules with `from: spec/overlay/defaults.yaml`, and the deviations report names them.
 
 Two emitters generate from the IR, and neither imports its framework:
 

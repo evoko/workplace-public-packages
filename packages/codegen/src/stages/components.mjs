@@ -6,7 +6,7 @@ import {
   loadComponent,
   loadWebCatalog,
 } from '../normalize/components.mjs';
-import { loadOverlay } from '../normalize/overlay.mjs';
+import { loadDefaults, loadOverlay } from '../normalize/overlay.mjs';
 import { tokenNames } from '../normalize/recipe.mjs';
 import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
@@ -34,6 +34,7 @@ export function build() {
   // The recipe emitters resolve a text style into its parts and check every custom property they
   // name exists, so they need the token spec as well as the component IR.
   const tokens = buildTokenSpec(contract).spec;
+  const defaults = loadDefaults();
   const built = COMPONENTS.map((component) => {
     const loaded = loadComponent(catalog, component);
     const overlay = loadOverlay(component);
@@ -41,6 +42,7 @@ export function build() {
       names,
       fileVersion: catalog.fileVersion,
       overlay,
+      defaults,
     });
     // Beside the IR, never from it: the oracle reads the Figma set, and the IR only for names.
     const oracle = buildOracle(loaded.set, spec, deviations, {

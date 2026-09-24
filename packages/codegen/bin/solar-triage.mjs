@@ -7,6 +7,7 @@
 //
 // Read-only: it writes nothing, and is never part of solar:codegen.
 import { loadWebCatalog } from '../src/normalize/components.mjs';
+import { loadDefaults, loadOverlay } from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 import { COMPONENTS } from '../src/stages/components.mjs';
@@ -17,6 +18,8 @@ const catalog = loadWebCatalog();
 const rows = triage(catalog, {
   names: tokenNames(loadContract()),
   done: new Set(COMPONENTS),
+  defaults: loadDefaults(),
+  overlayOf: loadOverlay,
   scope: args.includes('--all') ? '' : 'components/',
 });
 process.stdout.write(

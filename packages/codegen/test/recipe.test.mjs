@@ -619,3 +619,100 @@ describe('deriveRecipe: a border whose sides differ', () => {
     );
   });
 });
+
+describe('deriveRecipe: a cell one variant has and another lacks', () => {
+  // Two variants of one layer, `tone=b` changing it by `change`: Checkbox's box is an auto-layout
+  // frame in some states only, StatusIndicator's shapes are sized in some, Tab Item's border has
+  // sides in some.
+  const set = (box, change) => ({
+    name: 'Mark',
+    defaultVariant: 'tone=a',
+    props: { tone: { type: 'VARIANT', default: 'a', options: ['a', 'b'] } },
+    defaultVariantTree: {
+      name: 'tone=a',
+      type: 'COMPONENT',
+      children: [{ name: 'Box', type: 'FRAME', size: [16, 16], ...box }],
+    },
+    variants: [
+      { variant: 'tone=a' },
+      { variant: 'tone=b', overrides: { changed: { '/Box': change } } },
+    ],
+  });
+  const derive = (box, change) =>
+    deriveRecipe(resolveVariants(set(box, change)), { names });
+  const layout = {
+    dir: 'HORIZONTAL',
+    align: 'CENTER/CENTER',
+    gap: 4,
+    pad: [2, 2, 2, 2],
+    sizing: 'FIXED/FIXED',
+  };
+  const on = (r, cell) =>
+    r.deviations.filter((d) => d.kind === 'axis' && d.cell === cell);
+
+  it('reads no auto-layout as a layout of none, and reports the difference', () => {
+    const r = derive({ layout }, { layout: null });
+    const box = r.style['/Box'];
+    expect(box.base.gap).toMatchObject({ literal: 4 });
+    // The difference is geometry across an appearance axis: a finding, with none as what tone=b has.
+    expect(on(r, 'gap')).toHaveLength(1);
+    expect(on(r, 'gap')[0].variants[0].found).toEqual({ none: true });
+    expect(on(r, 'direction')[0].figmaValue).toContain('none where HORIZONTAL');
+  });
+
+  it('writes the none where the layout follows the axis, so the lookup cannot fall back to the base', () => {
+    const r = deriveRecipe(resolveVariants(set({ layout }, { layout: null })), {
+      names,
+      follows: { '/Box': { gap: ['tone'], direction: ['tone'] } },
+    });
+    const b = r.style['/Box'].appearance['tone=b'].default;
+    expect(b.gap).toMatchObject({ none: true });
+    expect(b.direction).toMatchObject({ none: true });
+  });
+
+  it('reads no recorded sizing as the size the layer is drawn at', () => {
+    const r = derive(
+      { sizing: 'FIXED/FIXED' },
+      { sizing: null, size: [12, 12] },
+    );
+    expect(on(r, 'width')).toHaveLength(1);
+    expect(on(r, 'width')[0].variants[0].found).toMatchObject({ literal: 12 });
+  });
+
+  it('reads one border width as that width on every side, where another variant has sides', () => {
+    const r = derive(
+      {
+        strokes: ['{Color:border/subtle}'],
+        strokeWeight: 1,
+        vars: { strokeWeight: 'Spatial:border/default' },
+      },
+      {
+        strokeWeight: 'mixed',
+        strokeWeights: [0, 0, 1, 0],
+        vars: { strokeBottomWeight: 'Spatial:border/default' },
+      },
+    );
+    const base = r.style['/Box'].base;
+    expect(base).not.toHaveProperty('borderWidth');
+    for (const side of ['Top', 'Right', 'Bottom', 'Left'])
+      expect(base[`border${side}Width`]).toMatchObject({
+        token: 'border.default',
+      });
+    // tone=b drops three sides: three findings, the bottom agreeing.
+    expect(on(r, 'borderTopWidth')).toHaveLength(1);
+    expect(on(r, 'borderBottomWidth')).toHaveLength(0);
+  });
+
+  it('reports a cell it cannot give a meaning, rather than skipping it', () => {
+    // No sizing and no size either: nothing to read the width as.
+    const r = derive({ sizing: 'FIXED/FIXED' }, { sizing: null, size: null });
+    expect(on(r, 'width')).toHaveLength(1);
+    expect(on(r, 'width')[0].figmaValue).toContain('no value where');
+  });
+
+  it('leaves a layer whose variants agree on their cells as it was', () => {
+    const r = derive({}, { name: 'Box' });
+    expect(r.deviations).toEqual([]);
+    expect(r.style['/Box'].base).not.toHaveProperty('gap');
+  });
+});

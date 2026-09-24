@@ -169,22 +169,84 @@ For each component it reports:
 `test/triage.test.mjs` pins its shape and the facts this plan leans on. Re-run it at every family's
 start and end: the counts in each Done note come from it.
 
-### Task M2: A cell one variant has and another lacks is reported
+### Task M2: Say what an absence means, then report what is left
 
 In `src/normalize/recipe.mjs`, the comparison skips a variant when either value is `undefined`
 (`expected === undefined || found === undefined`). A layer's absence is a real reason to skip,
 since `present` covers it. But where the layer is in both variants and only one has the cell, the
-difference is dropped. Report it as an axis finding, with `describe(undefined)` read as "no value".
-Examples: Checkbox's box is an auto-layout frame in some variants only, and Tab Item's border has
-per-side widths in some variants and one width in others.
+difference is dropped. A cell goes missing for three reasons:
 
-- A synthetic test: two variants, one with `gap` and one without, on the same layer. It gives one
-  axis finding naming both.
-- The corpus: about 50 new findings in the 8 components the triage names. Button Group's are
-  already decided by its `follows`; Button's, Icon Button's and Spinner's generated output is
-  unchanged.
-- **Also check the paired cells.** A variant with per-side widths has no `borderWidth`, and the
-  base's `borderWidth: none` must not be read as that variant agreeing with it.
+- **Layout.** A layer is an auto-layout frame in one variant and not in another, so one variant
+  has no `direction`, `align`, `gap` or padding (Checkbox's box, `.Tree Indent`).
+- **Size.** Figma records no sizing for the layer in one variant, so it has no `width` or `height`
+  (StatusIndicator's shapes).
+- **Borders.** One variant has one `borderWidth`, another a width per side (Tab Item, Accordion,
+  Button Group).
+
+Reporting the gap alone is not enough. Once a person decides the finding with `follows`, the
+variant with no auto-layout would still inherit the base's gap through the lookup. So the recipe
+first says what the absence means, as it already says "no stroke paint is no border":
+
+- **Fill in, per layer, only where another variant of the same layer has the cell,** so consistent
+  layers are untouched.
+  - A missing layout cell is `{ none: true }`: no auto-layout.
+  - A missing size is the layer's drawn size, bound as any size is.
+  - Where any variant of a layer has per-side widths, every variant's `borderWidth` becomes four
+    equal sides.
+- **Then report what is left.** Any cell still present in one variant and not the other, where the
+  layer is in both, is an axis finding (`describe(undefined)` reads "no value"), never a skip. A
+  future cause of absence then fails loudly.
+- **The emitters draw a layout `none`.** Today the MUI emitter writes nothing for a `none` gap or
+  padding, so a variant would inherit the base's. A `none` gap or padding is `inset.none` (as a
+  `none` radius is already `radius.none`), and a `none` direction is no flex layout. Flutter does
+  the same.
+- **The oracle is unchanged:** it reads Figma, not the recipe.
+
+Measured on a scratch copy before this plan changed, 2026-09-24:
+
+- **Dropped values:** 320 go to 1. The one left is Card's hidden Tag, whose `component` cell the
+  hidden-child rule already reads from the variant that draws it.
+- **Built components:** Button, Spinner and Icon Button generate identical output. Button Group's
+  CSS changes but draws the same: the base says no border per side, not once, and full-width turns
+  on only its top.
+- **New findings:** 199 axis findings in 7 components (Checkbox 3 to 59, `.Tree Indent` 10 to 80,
+  StatusIndicator 22 to 68, RowExpand 0 to 21, Accordion +3, Tab Item +2, Button Group +1 before its
+  overlay). They are grouped by cell and position, so each needs only a handful of `follows`
+  decisions when its family comes.
+
+Tests:
+
+- synthetic: a layer with auto-layout in one variant and not the other, a layer with sizing in one
+  variant only, and a uniform against a per-side border, each filled as above;
+- a cell left missing after the fill is an axis finding;
+- the emitters' `none` layout, on both platforms;
+- the triage's `sides` now holds for Button Group;
+- both visual checks still pass for the four built components.
+
+**Done 2026-09-24.** As planned, in `src/normalize/recipe.mjs`:
+
+- `sayWhatAbsenceMeans` runs after every variant's cells are read and before the comparison.
+- The comparison reports a one-sided cell on a layer drawn in both variants as an axis finding;
+  `describe` reads the absent side as `no value`. A composed child's `component` and `variant.*`
+  cells are still exempt: Figma records no variant on a hidden instance, and the hidden-child
+  rule reads it from the variant that draws it.
+- **Emitters:** a `none` gap or padding is `inset.none` on both platforms, the Flutter recipe
+  writing `t:inset.none` so a shell reads it as any length. A `none` direction or alignment
+  restates nothing on the web and is `none` in the Flutter recipe. Whether "restate nothing" is
+  right is for the first component that draws one (Checkbox, F3) to show in its visual check.
+- **Corpus, measured with `npm run solar:triage`:** 1,168 axis findings, up 199, in exactly the
+  seven components the prototype named, and no other count moved.
+- **Generated output:** Button's, Spinner's and Icon Button's is unchanged. Button Group's moved
+  its "no border" from the full-width entry to the base, per side: the base is `none` on all four,
+  and full-width sets only its top. It draws the same, and both visual checks pass.
+- **Tests:**
+  - six synthetic ones in `test/recipe.test.mjs`: layout, sizing, uniform against per-side, the
+    `none` written where the cell follows, the unfillable width reported, and agreeing layers left
+    alone;
+  - one each for the `none` layout in the MUI and Flutter emitter tests;
+  - `test/button-group.test.mjs` and the triage's `sides` test moved with it.
+- **Checks:** 549 JS tests, both visual checks, 94 Flutter tests, analysis of all three Flutter
+  packages, both viewers, and two identical rebuilds.
 
 ### Task M3: Shared defaults — zero insets
 
@@ -213,6 +275,36 @@ bind:
   zero inset no longer counts as open. The design review lists zero insets as one question: bind
   them in Figma.
 
+**Done 2026-09-24.** `spec/overlay/defaults.yaml` holds the one rule, `zero-insets`, parsed by
+`parseDefaults` and applied by `applyDefaults` in `src/normalize/overlay.mjs`, after the
+component's overlay. `buildComponentSpec` takes `defaults`; the stage and the triage load them.
+
+- **One change from the plan's text.** A finding is decided once every raw value Figma left in the
+  cell is `0` and none is left in the recipe, not only where the recipe held the `0`. In 426
+  findings the `0` is drawn only by variants the recipe compares against a reference, so the
+  recipe never holds it. The default answers those as well; whether such a variant should differ
+  at all is its axis finding, which stays open. For this, unbound findings now carry their
+  `literals`.
+- **Precedence:** a cell the component names in `bind`, `set` or `allowLiteral` is left to it,
+  which a test proves with an `allowLiteral` on Button's padding.
+- **Recorded as decisions:** in the IR's `overlay.rules` (`from: spec/overlay/defaults.yaml`,
+  `default: zero-insets`), on each entry (`from: defaults`), and in `spec/deviations.md` as
+  "Decided (bind, shared default zero-insets)".
+- **Rules removed:** 16 hand-written zero-inset `bind` rules, 2 in Button, 5 in Spinner, 5 in Icon
+  Button and 4 in Button Group, which left Spinner's and Button Group's `bind` sections empty.
+  Generated code and oracles are unchanged. Only the specs' reasons and rule lists, and the
+  report's wording, moved.
+- **Corpus, with `npm run solar:triage`,** which now applies the defaults and each built
+  component's overlay and counts decided findings apart:
+  - the default decides 1,098 findings in 91 components;
+  - open zero insets fall from 1,109 to 6, each a cell that also holds a `2`, which its
+    component must decide;
+  - the four built components have 3, 0, 0 and 0 open findings.
+- **Design review:** the four per-component "padding is 0" fixes became one item in section 2,
+  and the counts in "At a glance" moved with them.
+- **Checks:** 557 JS tests (8 new for the defaults), both visual checks, 94 Flutter tests, and
+  two identical rebuilds.
+
 ### Task M4: Standalone components
 
 13 components Figma drew with no variants:
@@ -233,6 +325,15 @@ bind:
   adds no axes.
 - **Loading them:** `loadComponent` reads `page.components` when the catalog entry's `kind` is
   `component`. The triage's adapter moves into `src/normalize/components.mjs`.
+- **Measured on a scratch copy, 2026-09-24:**
+  - Two one-line changes let all 13 build an IR and an oracle of one variant: `axesOf` accepts no
+    axes, and `parseVariantName` accepts the empty name.
+  - Scrim went through both emitters once it had a slot table, which every component gets in its
+    step 2.
+  - Drawer stopped only at its unbound 0 gap, which M3 settles.
+  - With no axes they have no axis findings, only unbound ones.
+  - A made-up axis to get them through was rejected: it would leak a meaningless prop into the
+    API.
 - **Tests:** Drawer's IR (title and content slots, `hasCTA`), a synthetic one-variant set, and both
   corpus guards moved to include them.
 

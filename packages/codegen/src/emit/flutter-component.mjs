@@ -156,8 +156,15 @@ function flatten(spec, glyphs = []) {
     if (i < 0) i = glyphs.push(glyph) - 1;
     return `g:${i}`;
   };
+  // A layer with no auto-layout in a variant (the recipe writes it `none`) has no gap or padding:
+  // inset.none, as the MUI recipe has it, so a shell reads a length there like any other.
+  const insets = /\.(gap|padding(Top|Right|Bottom|Left))\|/;
   const put = (key, entry) =>
-    (cells[key] = entry.glyph ? glyphIndex(entry.glyph) : encode(entry, key));
+    (cells[key] = entry.glyph
+      ? glyphIndex(entry.glyph)
+      : entry.none && insets.test(key)
+        ? 't:inset.none'
+        : encode(entry, key));
   for (const [layer, s] of Object.entries(spec.style)) {
     for (const [cell, e] of Object.entries(s.base))
       put(`${layer}.${cell}|base`, e);

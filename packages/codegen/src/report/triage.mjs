@@ -1,7 +1,8 @@
 // A survey of every SOLAR Web component, for planning: whether today's pipeline builds it, what it
-// is made of, what it needs beyond what is built, and how many findings it would bring, before any
-// overlay decides them. Read-only: it builds each IR in memory and writes nothing, so it is never
-// part of solar:codegen and is not held to CI's rebuild check.
+// is made of, what it needs beyond what is built, and how many findings are still open once the
+// shared defaults and its own overlay, where it has one, have decided theirs. Read-only: it
+// builds each IR in memory and writes nothing, so it is never part of solar:codegen and is not
+// held to CI's rebuild check.
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { buildComponentSpec } from '../normalize/components.mjs';
@@ -50,9 +51,14 @@ export function classify(d) {
 
 /**
  * One row of the survey. `known` is every component name in the catalog, so a composed child is
- * told from an icon instance.
+ * told from an icon instance. `defaults` and `overlay` decide what they decide, as in the build:
+ * those findings are counted as `decided`, and the rest by their class.
  */
-export function triageEntry(entry, set, { names, known, done }) {
+export function triageEntry(
+  entry,
+  set,
+  { names, known, done, defaults = null, overlay = null },
+) {
   const row = {
     name: entry.name,
     section: entry.section,
@@ -74,7 +80,7 @@ export function triageEntry(entry, set, { names, known, done }) {
   try {
     built = buildComponentSpec(
       { entry, set },
-      { names, fileVersion: 'triage' },
+      { names, fileVersion: 'triage', overlay, defaults },
     );
   } catch (e) {
     row.builds = false;
@@ -95,7 +101,7 @@ export function triageEntry(entry, set, { names, known, done }) {
   if (cells.has('typography')) row.features.push('text');
   if (SIDES.some((s) => cells.has(s))) row.features.push('sides');
   for (const d of deviations) {
-    const k = classify(d);
+    const k = d.decision ? 'decided' : classify(d);
     row.findings[k] = (row.findings[k] ?? 0) + 1;
   }
   return row;
@@ -132,6 +138,8 @@ export function triage(
   {
     names,
     done,
+    defaults = null,
+    overlayOf = () => null,
     scope = 'components/',
     rawDir = join(docsDir, 'solar-web', 'raw'),
   },
@@ -156,7 +164,15 @@ export function triage(
               variants: [],
             };
           })();
-    rows.push(triageEntry(entry, set, { names, known, done }));
+    rows.push(
+      triageEntry(entry, set, {
+        names,
+        known,
+        done,
+        defaults,
+        overlay: overlayOf(entry.name),
+      }),
+    );
   }
   return levels(rows).sort(
     (a, b) => byCodeUnit(a.section, b.section) || byCodeUnit(a.name, b.name),
@@ -169,7 +185,7 @@ const sum = (rows, k) => rows.reduce((n, r) => n + (r.findings[k] ?? 0), 0);
 
 /** The survey as markdown: totals, then one row per component. */
 export function renderTriage(rows, { fileVersion }) {
-  const kinds = ['axis', 'zeroInset', 'boundable', 'noToken'];
+  const kinds = ['axis', 'zeroInset', 'boundable', 'noToken', 'decided'];
   const others = (r) =>
     Object.entries(r.findings)
       .filter(([k]) => !kinds.includes(k))
@@ -183,20 +199,21 @@ export function renderTriage(rows, { fileVersion }) {
   const lines = [
     `# SOLAR Web triage`,
     ``,
-    `From \`npm run solar:triage\`, SOLAR Web file version \`${fileVersion}\`. Findings are counted ` +
-      `before any overlay decides them: \`axis\` a value that changes across an axis it should not ` +
-      `follow; \`0-inset\` a padding or gap left unbound at 0; \`token\` an unbound value a token has; ` +
-      `\`no token\` one no token has (a governance gap).`,
+    `From \`npm run solar:triage\`, SOLAR Web file version \`${fileVersion}\`. Findings the shared ` +
+      `defaults or a component's overlay decide are counted as \`decided\`; the rest are open: ` +
+      `\`axis\` a value that changes across an axis it should not follow; \`0-inset\` a padding or ` +
+      `gap left unbound at 0; \`token\` an unbound value a token has; \`no token\` one no token has ` +
+      `(a governance gap).`,
     ``,
     `- ${rows.length} components: ${count(rows, (r) => r.kind === 'set')} sets, ` +
       `${count(rows, (r) => r.kind === 'standalone')} standalone; ${count(rows, (r) => r.done)} generated.`,
     `- ${builds.length} build an IR today; ${rows.length - builds.length} do not.`,
-    `- ${total} findings: ${sum(builds, 'axis')} axis, ${sum(builds, 'zeroInset')} 0-inset, ` +
-      `${sum(builds, 'boundable')} token, ${sum(builds, 'noToken')} no token, ` +
-      `${total - kinds.reduce((n, k) => n + sum(builds, k), 0)} other.`,
+    `- ${total} findings, ${sum(builds, 'decided')} decided; open: ${sum(builds, 'axis')} axis, ` +
+      `${sum(builds, 'zeroInset')} 0-inset, ${sum(builds, 'boundable')} token, ` +
+      `${sum(builds, 'noToken')} no token, ${total - kinds.reduce((n, k) => n + sum(builds, k), 0)} other.`,
     ``,
-    `| Component | Section | Kind | Variants | Level | Composes | API | States | Slots | Features | axis | 0-inset | token | no token | other |`,
-    `| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |`,
+    `| Component | Section | Kind | Variants | Level | Composes | API | States | Slots | Features | axis | 0-inset | token | no token | decided | other |`,
+    `| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |`,
   ];
   for (const r of rows) {
     const name = r.done ? `**${r.name}** (done)` : r.name;
@@ -220,7 +237,7 @@ export function renderTriage(rows, { fileVersion }) {
           ...kinds.map((k) => r.findings[k] ?? 0),
           others(r),
         ]
-      : [`**does not build:** ${r.error}`, '', '', '', '', '', '', '', ''];
+      : [`**does not build:** ${r.error}`, '', '', '', '', '', '', '', '', ''];
     lines.push(`| ${[...head, ...body].map(cell).join(' | ')} |`);
   }
   return lines.join('\n') + '\n';

@@ -14,7 +14,12 @@ import { join } from 'node:path';
 import { docsDir } from '../util/paths.mjs';
 import { camel } from '../util/naming.mjs';
 import { foldStateAxes, resolveVariants } from './component-layers.mjs';
-import { applyOverlay, followsOf, renameStates } from './overlay.mjs';
+import {
+  applyDefaults,
+  applyOverlay,
+  followsOf,
+  renameStates,
+} from './overlay.mjs';
 import { deriveRecipe } from './recipe.mjs';
 
 const webDir = join(docsDir, 'solar-web');
@@ -325,11 +330,13 @@ const isBoolean = (axis) =>
  *   names: ReturnType<import('./recipe.mjs').tokenNames>,
  *   fileVersion: string,
  *   overlay?: object | null,
- * }} options `overlay` from loadOverlay; null builds the IR as Figma has it
+ *   defaults?: object | null,
+ * }} options `overlay` from loadOverlay and `defaults` from loadDefaults; null for both builds the
+ *   IR as Figma has it
  */
 export function buildComponentSpec(
   { entry, set },
-  { names, fileVersion, overlay = null },
+  { names, fileVersion, overlay = null, defaults = null },
 ) {
   // Checkbox draws `hover` and `focus` as axes of their own; they are one state axis here.
   const folded = foldStateAxes(resolveVariants(set));
@@ -338,8 +345,10 @@ export function buildComponentSpec(
   const resolved = renameStates(folded.resolved, overlay);
   // Settled before the recipe, because the overlay's `follows` rules are written in them.
   const parents = new Map();
-  const defaults = resolved.variants.find((v) => v.name === set.defaultVariant);
-  for (const v of [defaults, ...resolved.variants])
+  const defaultVariant = resolved.variants.find(
+    (v) => v.name === set.defaultVariant,
+  );
+  for (const v of [defaultVariant, ...resolved.variants])
     for (const path of v.layers.keys())
       if (!parents.has(path)) parents.set(path, v.parents.get(path) ?? null);
   // Figma's slots, then the ones the overlay declares where Figma records no prop, addressed by
@@ -426,5 +435,12 @@ export function buildComponentSpec(
       : d;
   });
 
-  return applyOverlay(spec, deviations, overlay, { names, axes: recipe.axes });
+  const applied = applyOverlay(spec, deviations, overlay, {
+    names,
+    axes: recipe.axes,
+  });
+  return applyDefaults(applied.spec, applied.deviations, defaults, {
+    names,
+    overlay,
+  });
 }

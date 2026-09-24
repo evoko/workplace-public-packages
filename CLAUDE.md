@@ -29,7 +29,9 @@ emitter in `src/emit/` for a target-specific one. Never edit a generated file to
 and never edit `docs/` to make code look right. Run the command and commit its output after
 touching that package. Decisions about one component go in its hand-written overlay,
 `spec/overlay/<component>.yaml`: every rule needs a `reason`, and a rule that no
-longer matches the IR fails the build. A component's shell (`packages/components/src/<Name>.tsx`, and
+longer matches the IR fails the build. A decision that holds for every component (an unbound `0`
+inset is `inset.none`) goes in `spec/overlay/defaults.yaml` instead, once; a component's own rule
+on the same cell wins. A component's shell (`packages/components/src/<Name>.tsx`, and
 `solar_flutter`'s `lib/src/components/solar_<name>.dart`) is written once by
 `npm run solar:scaffold <Name>` (`-- --flutter` for the widget) and then hand-owned; its look is the
 generated recipe, never values in the shell. Every variant is checked on both platforms against

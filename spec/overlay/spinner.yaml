@@ -20,28 +20,6 @@ rename:
       `style` is React's inline-style prop, so a component cannot take it as a SOLAR prop.
       `variant` is what Button calls its appearance axis too.
 
-bind:
-  root.paddingTop:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
-  root.paddingRight:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
-  root.paddingBottom:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
-  root.paddingLeft:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Figma leaves the spinner's frame padding unbound at 0.
-  root.gap:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token; the frame holds one child, so the gap draws nothing.
-
 set:
   indicator.base.borderColor:
     token: color.border.strong

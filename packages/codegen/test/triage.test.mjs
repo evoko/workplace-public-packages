@@ -53,9 +53,9 @@ describe('the triage of SOLAR Web', () => {
   it('describes what a set is made of', () => {
     expect(row('Checkbox').features).toContain('glyph');
     expect(row('Tabs').features).toContain('sides');
-    // Button Group's divider has sides too, but without its overlay the recipe drops them
-    // unreported: the gap milestone 4's Task M2 closes, which will make this `sides` as well.
-    expect(row('Button Group').features).not.toContain('sides');
+    // Without its overlay too: since milestone 4's Task M2 a border one variant has per side is
+    // read per side in every variant, not dropped.
+    expect(row('Button Group').features).toContain('sides');
     expect(row('Card').slots).toMatchObject({ content: 1, component: 1 });
   });
 

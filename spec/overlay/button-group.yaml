@@ -62,24 +62,6 @@ follows:
     axes: [orientation, type]
     reason: The buttons fill the group in every variant; see the set rules for the hidden ones.
 
-bind:
-  root.paddingTop:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
-  root.paddingRight:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
-  root.paddingBottom:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
-  root.paddingLeft:
-    literal: 0
-    token: inset.none
-    reason: Same value, governed token. Full-width leaves its padding unbound at 0.
-
 set:
   tertiaryCTA.base.width:
     keyword: FILL

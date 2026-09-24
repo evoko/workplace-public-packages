@@ -34,7 +34,6 @@ abstract final class SolarButtonGroupRecipe {
     'root.borderColor|base': 'none',
     'root.shadow|base': 'none',
     'root.radius|base': 'none',
-    'root.borderWidth|base': 'none',
     'root.direction|base': 'k:HORIZONTAL',
     'root.align|base': 'k:MIN/CENTER',
     'root.gap|base': 't:inset.xs',
@@ -44,6 +43,10 @@ abstract final class SolarButtonGroupRecipe {
     'root.paddingLeft|base': 't:inset.sm',
     'root.width|base': 'k:FILL',
     'root.height|base': 'k:HUG',
+    'root.borderTopWidth|base': 'none',
+    'root.borderRightWidth|base': 'none',
+    'root.borderBottomWidth|base': 'none',
+    'root.borderLeftWidth|base': 'none',
     'root.borderColor|appearance|orientation=horizontal, fullWidth=true|default':
         't:color.border.subtle',
     'root.gap|appearance|orientation=horizontal, fullWidth=true|default':
@@ -58,12 +61,6 @@ abstract final class SolarButtonGroupRecipe {
         't:inset.none',
     'root.borderTopWidth|appearance|orientation=horizontal, fullWidth=true|default':
         't:border.default',
-    'root.borderRightWidth|appearance|orientation=horizontal, fullWidth=true|default':
-        'none',
-    'root.borderBottomWidth|appearance|orientation=horizontal, fullWidth=true|default':
-        'none',
-    'root.borderLeftWidth|appearance|orientation=horizontal, fullWidth=true|default':
-        'none',
     'root.direction|appearance|orientation=vertical, fullWidth=false|default':
         'k:VERTICAL',
     'root.align|appearance|orientation=vertical, fullWidth=false|default':

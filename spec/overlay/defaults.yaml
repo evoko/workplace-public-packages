@@ -1,0 +1,15 @@
+# Hand-written decisions that hold for every SOLAR component, applied by `npm run solar:codegen`
+# after each component's own overlay (spec/overlay/<component>.yaml), and never over a cell that
+# overlay rules on: a component's own rule wins. Every rule needs a reason. Unlike a component's
+# rule, a default that matches nothing in one component is not an error.
+# Format: parseDefaults in packages/codegen/src/normalize/overlay.mjs.
+
+bind:
+  zero-insets:
+    cells: [paddingTop, paddingRight, paddingBottom, paddingLeft, gap]
+    literal: 0
+    token: inset.none
+    reason: >-
+      Same value, governed token: an inset Figma leaves unbound at 0 is inset.none, SOLAR's token
+      for no inset. It is the one answer in every component, so it is decided once here and raised
+      with SOLAR once, as a whole, not per component.
