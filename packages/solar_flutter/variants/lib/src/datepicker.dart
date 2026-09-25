@@ -15,7 +15,7 @@ Widget buildDatePicker(
   final content = ((v['content'] as List?) ?? const []).cast<String>();
   return SolarDatePicker(
     size: enumNamed(SolarDatePickerSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     label: 'Select Date',
     mandatory: true,

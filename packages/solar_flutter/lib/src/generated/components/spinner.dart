@@ -109,6 +109,12 @@ abstract final class SolarSpinnerRecipe {
     'indicator.y|combined|lg|variant=inverse|default': 'px:1.5',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['spinnerRing'],
+    'spinnerRing': ['track', 'indicator'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

@@ -11,11 +11,6 @@ base:
     states on the whole control, so the control takes the states of whichever half the pointer or
     the keyboard is on. No stock control is that; the menu is the caller's until Dropdown (F6).
 
-rename:
-  prio:
-    to: variant
-    reason: As Button, whose API names it `variant`; `prio` is the Figma property name.
-
 bind:
   iconChevronDown.width:
     tokens: { 20: icon.md, 16: icon.sm }

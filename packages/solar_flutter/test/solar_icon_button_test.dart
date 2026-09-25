@@ -76,7 +76,7 @@ void main() {
           icon: icon,
           semanticLabel: 'Add',
           size: SolarIconButtonSize.md,
-          variant: SolarIconButtonVariant.secondary,
+          prio: SolarIconButtonPrio.secondary,
         ),
       );
       final theme = IconTheme.of(tester.element(find.byKey(const Key('icon'))));

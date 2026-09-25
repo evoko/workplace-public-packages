@@ -140,6 +140,11 @@ abstract final class SolarStepRecipe {
     'line.shadow|appearance|status=error, type=horizontal|default': 'none',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['stepperIndicator', 'step', 'label', 'line'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

@@ -454,3 +454,17 @@ export function solarListItemCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarListItemTree: Record<string, string[]> = {
+  root: ['icon', 'body', 'trailing', 'avatar'],
+  body: ['label', 'helper'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarListItem-<slot>`, public. */
+export const solarListItemSlots: Record<string, string> = {
+  icon: 'icon',
+  helper: 'helper',
+  trailing: 'trailing',
+  avatar: 'avatar',
+};

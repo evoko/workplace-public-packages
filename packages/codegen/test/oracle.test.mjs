@@ -25,7 +25,7 @@ describe('the Button oracle', () => {
     const hover = variant('size=md, prio=primary, state=hover, danger=false');
     expect(hover.props).toEqual({
       size: 'md',
-      variant: 'primary',
+      prio: 'primary',
       disabled: false,
       loading: false,
       danger: false,

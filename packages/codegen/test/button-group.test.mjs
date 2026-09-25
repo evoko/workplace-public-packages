@@ -17,26 +17,26 @@ const { styles } = renderMuiComponent(spec, tokens);
 const { dart } = renderFlutterComponent(spec, tokens);
 
 describe('the Button Group IR', () => {
-  it('has orientation, and Figma’s regular/full-width type as a fullWidth boolean', () => {
+  it('has orientation, and Figma’s type, regular or full-width, in SOLAR’s words', () => {
     expect(spec.api).toEqual({
       orientation: {
         values: ['horizontal', 'vertical'],
         default: 'horizontal',
       },
-      fullWidth: { type: 'boolean', default: false },
+      type: { values: ['regular', 'full-width'], default: 'regular' },
     });
     expect(spec.states).toEqual([]);
     expect(spec.base).toEqual({ mui: null, flutter: null });
     expect(Object.keys(spec.style.root.appearance).sort()).toEqual([
-      'orientation=horizontal, fullWidth=true',
-      'orientation=vertical, fullWidth=false',
+      'orientation=horizontal, type=full-width',
+      'orientation=vertical, type=regular',
     ]);
-    // The oracle reaches each variant through the boolean, as the API does.
+    // The oracle reaches each variant through the API, in Figma's words.
     expect(
       oracle.variants.find(
         (v) => v.figma === 'orientation=horizontal, type=full-width',
       ).props,
-    ).toEqual({ orientation: 'horizontal', fullWidth: true });
+    ).toEqual({ orientation: 'horizontal', type: 'full-width' });
   });
 
   it('decides every finding, now that the sync has recorded the divider’s sides', () => {
@@ -47,7 +47,7 @@ describe('the Button Group IR', () => {
 
   it('draws the full-width divider on its top side alone', () => {
     const bar =
-      spec.style.root.appearance['orientation=horizontal, fullWidth=true']
+      spec.style.root.appearance['orientation=horizontal, type=full-width']
         .default;
     expect(bar.borderTopWidth.token).toBe('border.default');
     // The other sides are the base's: every variant's border is read side by side, since one
@@ -93,7 +93,7 @@ describe('the Button Group recipe', () => {
       '& > *': { width: '100%' },
     });
     expect(
-      styles.appearances['orientation=vertical, fullWidth=false'],
+      styles.appearances['orientation=vertical, type=regular'],
     ).toMatchObject({
       flexDirection: 'column',
     });
@@ -103,7 +103,7 @@ describe('the Button Group recipe', () => {
     expect(styles.root).not.toHaveProperty('borderStyle');
     for (const side of ['Top', 'Right', 'Bottom', 'Left'])
       expect(styles.root[`border${side}Style`]).toBe('none');
-    const bar = styles.appearances['orientation=horizontal, fullWidth=true'];
+    const bar = styles.appearances['orientation=horizontal, type=full-width'];
     expect(bar).toMatchObject({
       borderTopWidth: 'var(--solar-border-default)',
       borderTopStyle: 'solid',
@@ -114,7 +114,7 @@ describe('the Button Group recipe', () => {
   it('is a recipe alone on Flutter, with no style builder: the widget reads it cell by cell', () => {
     expect(dart).not.toContain('ButtonStyle');
     expect(dart).toContain(
-      "'root.borderTopWidth|appearance|orientation=horizontal, fullWidth=true|default': 't:border.default'",
+      "'root.borderTopWidth|appearance|orientation=horizontal, type=full-width|default': 't:border.default'",
     );
   });
 });

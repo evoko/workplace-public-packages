@@ -1,5 +1,6 @@
 // The component stage: spec/components/<name>.json and spec/verify/<name>.json from docs/solar-web,
-// then each component's recipes, its shells (from its descriptor's templates) and the registries.
+// then each component's recipes, its stories (its shells are files, checked here) and the registries.
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   buildComponentSpec,
@@ -19,7 +20,7 @@ import { emitFlutterComponents } from '../emit/flutter-component.mjs';
 import { emitRegistries } from '../emit/registries.mjs';
 import { emitMuiThemeComponents } from '../emit/mui-theme-components.mjs';
 import { pascal } from '../util/naming.mjs';
-import { renderShells } from '../shells/index.mjs';
+import { componentsSrc, renderShells, shellFileOf } from '../shells/index.mjs';
 import { buildOracle, hideInComposed, withDark } from '../verify/oracle.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
@@ -110,10 +111,10 @@ export function build() {
         `src/components: the descriptor ${d.name} builds as ${built[i].spec.component}; its name must be the component's name in code`,
       );
   });
-  // The shells, from their descriptors' templates, rendered here with the rest of the build: a
-  // template that throws, or an owned shell handed over wrongly, stops the run before any write.
-  const shells = renderShells(built.map((b) => b.spec));
-  return { built, tokens, shells };
+  // The stories, with each component's shells checked here with the rest of the build: a shell
+  // missing, or still under the generated header, stops the run before any write.
+  const stories = renderShells(built.map((b) => b.spec));
+  return { built, tokens, stories };
 }
 
 /** Refuses two components generated under one name, naming it. */
@@ -128,7 +129,7 @@ export function assertDistinct(names) {
   }
 }
 
-export function emit({ built, tokens, shells }) {
+export function emit({ built, tokens, stories }) {
   for (const { spec } of built)
     writeGenerated(
       join(componentsDir, fileOf(spec.component)),
@@ -147,7 +148,7 @@ export function emit({ built, tokens, shells }) {
       JSON.stringify(oracle, null, 2) + '\n',
     );
   const specs = built.map((b) => b.spec);
-  for (const { path, text } of shells) writeGenerated(path, text);
+  for (const { path, text } of stories) writeGenerated(path, text);
   return {
     counts: {
       specs: built.length,
@@ -155,18 +156,21 @@ export function emit({ built, tokens, shells }) {
       mui: emitMuiComponents(specs, tokens),
       muiTheme: emitMuiThemeComponents(specs),
       flutter: emitFlutterComponents(specs, tokens),
-      shells: shells.length,
+      stories: stories.length,
       registries: emitRegistries(
         specs.map((s) => s.component),
         {
           shelled,
           // Whose props type takes a type argument (Autocomplete's value, `<T>`).
-          generic: (n) =>
-            shells.some(
-              (s) =>
-                s.component === n &&
-                new RegExp(`export interface ${pascal(n)}Props<`).test(s.text),
-            ),
+          generic: (n) => {
+            const file = join(componentsSrc, shellFileOf(n));
+            return (
+              existsSync(file) &&
+              new RegExp(`export interface ${pascal(n)}Props<`).test(
+                readFileSync(file, 'utf8'),
+              )
+            );
+          },
         },
       ),
     },

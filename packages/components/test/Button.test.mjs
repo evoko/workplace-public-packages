@@ -65,10 +65,7 @@ describe('the SOLAR Button shell', () => {
         -1,
       )?.[1];
     expect(
-      last(
-        rule(h(Button, { variant: 'tertiary' }, 'Skip')),
-        'background-color',
-      ),
+      last(rule(h(Button, { prio: 'tertiary' }, 'Skip')), 'background-color'),
     ).toBe('transparent');
     expect(last(rule(h(Button, { size: 'sm' }, 'Save')), 'height')).toBe(
       '32px',
@@ -80,7 +77,7 @@ describe('the SOLAR Button shell', () => {
 
   it('passes variant, size and danger to the recipe, not to MUI', () => {
     const { html, css } = render(
-      h(Button, { variant: 'secondary', size: 'sm', danger: true }, 'Remove'),
+      h(Button, { prio: 'secondary', size: 'sm', danger: true }, 'Remove'),
     );
     expect(css).toContain(
       'var(--solar-color-action-secondary-bg-danger-default)',

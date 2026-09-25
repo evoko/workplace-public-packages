@@ -260,3 +260,13 @@ export function solarDatePickerDayCellCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDatePickerDayCellTree: Record<string, string[]> = {
+  root: ['day'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDatePickerDayCell-<slot>`, public. */
+export const solarDatePickerDayCellSlots: Record<string, string> = {
+  day: 'day',
+};

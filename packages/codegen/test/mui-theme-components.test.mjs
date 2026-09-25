@@ -22,7 +22,7 @@ describe('the MUI theme’s components', () => {
     // 3 variants × 2 colours × 3 sizes.
     expect(ts.match(/solarButtonStyle\(/g)).toHaveLength(18);
     expect(ts).toContain(
-      'solarButtonStyle({"variant":"secondary","danger":true,"size":"sm"})',
+      'solarButtonStyle({"prio":"secondary","danger":true,"size":"sm"})',
     );
   });
 

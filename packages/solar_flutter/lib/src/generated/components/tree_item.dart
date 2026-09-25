@@ -438,6 +438,25 @@ abstract final class SolarTreeItemRecipe {
         't:color.icon.primary',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': [
+      'treeIndent',
+      'chevron',
+      'checkbox',
+      'leadingIcon',
+      'label',
+      'status',
+      'tag',
+      'counter',
+      'trailingIcon',
+      'buttons',
+      'renameInput',
+    ],
+    'chevron': ['chevronChevron', 'iconChevronDown'],
+    'buttons': ['iconMore', 'iconPlus'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['edit', 'focus', 'hover'];
 

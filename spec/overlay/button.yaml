@@ -1,6 +1,6 @@
 # Hand-written decisions about SOLAR Button, applied over spec/components/button.json by
 # `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
-# build. Addresses use Figma's axis names (prio, not variant); `rename` is applied last.
+# build. Addresses use Figma's axis names; `rename` is applied last.
 # Format: packages/codegen/src/normalize/overlay.mjs.
 
 component: Button
@@ -12,13 +12,6 @@ base:
     The closest stock control on each platform. MUI Button and Flutter FilledButton both take a
     variant, a size and a disabled state and supply focus, ripple and accessibility; the recipe
     restyles them. Flip to null (bespoke) if the recipe cannot express what SOLAR draws.
-
-rename:
-  prio:
-    to: variant
-    reason: >-
-      The docs-to-code design spec names the public prop `variant`, as MUI and most React
-      libraries do; `prio` is the Figma property name.
 
 follows:
   label.typography:

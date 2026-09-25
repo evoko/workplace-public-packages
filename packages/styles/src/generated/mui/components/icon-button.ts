@@ -4,12 +4,12 @@
 
 export type SolarIconButtonSize = 'lg' | 'md' | 'sm';
 export type SolarIconButtonShape = 'square' | 'round';
-export type SolarIconButtonVariant = 'primary' | 'secondary' | 'tertiary';
+export type SolarIconButtonPrio = 'primary' | 'secondary' | 'tertiary';
 
 export interface SolarIconButtonProps {
   size?: SolarIconButtonSize;
   shape?: SolarIconButtonShape;
-  variant?: SolarIconButtonVariant;
+  prio?: SolarIconButtonPrio;
   disabled?: boolean;
   loading?: boolean;
 }
@@ -17,7 +17,7 @@ export interface SolarIconButtonProps {
 export const solarIconButtonDefaults = {
   size: 'sm',
   shape: 'square',
-  variant: 'primary',
+  prio: 'primary',
   disabled: false,
   loading: false,
 } as const;
@@ -87,7 +87,7 @@ export const solarIconButtonStyles = {
     },
   },
   appearances: {
-    'shape=square, variant=primary': {
+    'shape=square, prio=primary': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
         borderColor: 'transparent',
@@ -113,7 +113,7 @@ export const solarIconButtonStyles = {
         },
       },
     },
-    'shape=square, variant=secondary': {
+    'shape=square, prio=secondary': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
@@ -150,7 +150,7 @@ export const solarIconButtonStyles = {
         color: 'var(--solar-color-action-secondary-icon-default)',
       },
     },
-    'shape=square, variant=tertiary': {
+    'shape=square, prio=tertiary': {
       backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
       borderColor: 'transparent',
       '&:hover': {
@@ -192,7 +192,7 @@ export const solarIconButtonStyles = {
         color: 'var(--solar-color-action-tertiary-icon-default)',
       },
     },
-    'shape=round, variant=primary': {
+    'shape=round, prio=primary': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
         borderColor: 'transparent',
@@ -218,7 +218,7 @@ export const solarIconButtonStyles = {
         },
       },
     },
-    'shape=round, variant=secondary': {
+    'shape=round, prio=secondary': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
@@ -255,7 +255,7 @@ export const solarIconButtonStyles = {
         color: 'var(--solar-color-action-secondary-icon-default)',
       },
     },
-    'shape=round, variant=tertiary': {
+    'shape=round, prio=tertiary': {
       backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
       borderColor: 'transparent',
       '&:hover': {
@@ -300,7 +300,7 @@ export const solarIconButtonStyles = {
   },
   combined: {
     lg: {
-      'shape=square, variant=primary': {
+      'shape=square, prio=primary': {
         boxShadow: 'none',
         borderStyle: 'none',
         '&:hover': {
@@ -329,7 +329,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'none',
         },
       },
-      'shape=square, variant=secondary': {
+      'shape=square, prio=secondary': {
         boxShadow: 'none',
         borderStyle: 'none',
         '&:hover': {
@@ -354,7 +354,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'solid',
         },
       },
-      'shape=square, variant=tertiary': {
+      'shape=square, prio=tertiary': {
         boxShadow: 'none',
         borderStyle: 'none',
         '&:hover': {
@@ -379,7 +379,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'solid',
         },
       },
-      'shape=round, variant=primary': {
+      'shape=round, prio=primary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
         borderStyle: 'none',
@@ -409,7 +409,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'none',
         },
       },
-      'shape=round, variant=secondary': {
+      'shape=round, prio=secondary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
         borderStyle: 'none',
@@ -435,7 +435,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'solid',
         },
       },
-      'shape=round, variant=tertiary': {
+      'shape=round, prio=tertiary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
         borderStyle: 'none',
@@ -463,7 +463,7 @@ export const solarIconButtonStyles = {
       },
     },
     md: {
-      'shape=square, variant=primary': {
+      'shape=square, prio=primary': {
         borderStyle: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -490,7 +490,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'none',
         },
       },
-      'shape=square, variant=secondary': {
+      'shape=square, prio=secondary': {
         '&:hover': {
           boxShadow: 'none',
         },
@@ -504,7 +504,7 @@ export const solarIconButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'shape=square, variant=tertiary': {
+      'shape=square, prio=tertiary': {
         boxShadow: 'none',
         borderStyle: 'none',
         '&:hover': {
@@ -529,7 +529,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'solid',
         },
       },
-      'shape=round, variant=primary': {
+      'shape=round, prio=primary': {
         borderRadius: 'var(--solar-radius-pill)',
         borderStyle: 'none',
         '&:hover': {
@@ -557,7 +557,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'none',
         },
       },
-      'shape=round, variant=secondary': {
+      'shape=round, prio=secondary': {
         borderRadius: 'var(--solar-radius-pill)',
         '&:hover': {
           boxShadow: 'none',
@@ -572,7 +572,7 @@ export const solarIconButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'shape=round, variant=tertiary': {
+      'shape=round, prio=tertiary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
         borderStyle: 'none',
@@ -600,7 +600,7 @@ export const solarIconButtonStyles = {
       },
     },
     sm: {
-      'shape=square, variant=primary': {
+      'shape=square, prio=primary': {
         '&:hover': {
           boxShadow: 'none',
           borderStyle: 'none',
@@ -624,7 +624,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'none',
         },
       },
-      'shape=square, variant=secondary': {
+      'shape=square, prio=secondary': {
         '&:hover': {
           boxShadow: 'none',
         },
@@ -638,7 +638,7 @@ export const solarIconButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'shape=square, variant=tertiary': {
+      'shape=square, prio=tertiary': {
         boxShadow: 'none',
         borderStyle: 'none',
         '&:hover': {
@@ -663,7 +663,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'solid',
         },
       },
-      'shape=round, variant=primary': {
+      'shape=round, prio=primary': {
         borderRadius: 'var(--solar-radius-pill)',
         '&:hover': {
           boxShadow: 'none',
@@ -688,7 +688,7 @@ export const solarIconButtonStyles = {
           borderStyle: 'none',
         },
       },
-      'shape=round, variant=secondary': {
+      'shape=round, prio=secondary': {
         borderRadius: 'var(--solar-radius-pill)',
         '&:hover': {
           boxShadow: 'none',
@@ -703,7 +703,7 @@ export const solarIconButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'shape=round, variant=tertiary': {
+      'shape=round, prio=tertiary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
         borderStyle: 'none',
@@ -747,32 +747,32 @@ export const solarIconButtonComposition = {
       'variant.solid': 'false',
     },
     appearance: {
-      'shape=square, variant=primary': {
+      'shape=square, prio=primary': {
         loading: {
           present: false,
         },
       },
-      'shape=round, variant=primary': {
+      'shape=round, prio=primary': {
         loading: {
           present: false,
         },
       },
-      'shape=square, variant=secondary': {
+      'shape=square, prio=secondary': {
         loading: {
           present: false,
         },
       },
-      'shape=round, variant=secondary': {
+      'shape=round, prio=secondary': {
         loading: {
           present: false,
         },
       },
-      'shape=square, variant=tertiary': {
+      'shape=square, prio=tertiary': {
         loading: {
           present: false,
         },
       },
-      'shape=round, variant=tertiary': {
+      'shape=round, prio=tertiary': {
         loading: {
           present: false,
         },
@@ -786,37 +786,37 @@ export const solarIconButtonComposition = {
       'variant.size': 'sm',
     },
     appearance: {
-      'shape=square, variant=primary': {
+      'shape=square, prio=primary': {
         loading: {
           present: true,
           'variant.style': 'inverse',
         },
       },
-      'shape=round, variant=primary': {
+      'shape=round, prio=primary': {
         loading: {
           present: true,
           'variant.style': 'inverse',
         },
       },
-      'shape=square, variant=secondary': {
+      'shape=square, prio=secondary': {
         loading: {
           present: true,
           'variant.style': 'default',
         },
       },
-      'shape=round, variant=secondary': {
+      'shape=round, prio=secondary': {
         loading: {
           present: true,
           'variant.style': 'default',
         },
       },
-      'shape=square, variant=tertiary': {
+      'shape=square, prio=tertiary': {
         loading: {
           present: true,
           'variant.style': 'default',
         },
       },
-      'shape=round, variant=tertiary': {
+      'shape=round, prio=tertiary': {
         loading: {
           present: true,
           'variant.style': 'default',
@@ -851,7 +851,7 @@ function merge(...styles: (Style | undefined)[]): Style {
 export function solarIconButtonStyle(props: SolarIconButtonProps = {}): Style {
   const p: Record<string, unknown> = { ...solarIconButtonDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `shape=${p.shape}, variant=${p.variant}`;
+  const key = `shape=${p.shape}, prio=${p.prio}`;
   const s = solarIconButtonStyles as unknown as {
     reset: Style;
     root: Style;
@@ -900,7 +900,7 @@ export function solarIconButtonCompose(
 ): Record<string, Parts> {
   const p: Record<string, unknown> = { ...solarIconButtonDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `shape=${p.shape}, variant=${p.variant}`;
+  const key = `shape=${p.shape}, prio=${p.prio}`;
   const size = p.size as string;
   const out: Record<string, Parts> = {};
   for (const [layer, c] of Object.entries(
@@ -919,3 +919,11 @@ export function solarIconButtonCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarIconButtonTree: Record<string, string[]> = {
+  root: ['icon', 'spinner'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarIconButton-<slot>`, public. */
+export const solarIconButtonSlots: Record<string, string> = { icon: 'icon' };

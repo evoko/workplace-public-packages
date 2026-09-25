@@ -332,3 +332,17 @@ export function solarExpandableCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarExpandableCardTree: Record<string, string[]> = {
+  root: ['header', 'content'],
+  header: ['title', 'iconChevronDown', 'iconChevronUp'],
+  content: ['description'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarExpandableCard-<slot>`, public. */
+export const solarExpandableCardSlots: Record<string, string> = {
+  content: 'content',
+  title: 'title',
+  description: 'description',
+};

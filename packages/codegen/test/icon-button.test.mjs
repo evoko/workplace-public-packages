@@ -17,11 +17,11 @@ const { styles } = renderMuiComponent(spec, tokens);
 const { dart, cells } = renderFlutterComponent(spec, tokens);
 
 describe('the Icon Button IR', () => {
-  it('has Figma’s API, with prio renamed variant as on Button', () => {
+  it('has Figma’s API, prio in SOLAR’s word, as on Button', () => {
     expect(spec.api).toEqual({
       size: { values: ['lg', 'md', 'sm'], default: 'sm' },
       shape: { values: ['square', 'round'], default: 'square' },
-      variant: {
+      prio: {
         values: ['primary', 'secondary', 'tertiary'],
         default: 'primary',
       },
@@ -49,9 +49,9 @@ describe('the Icon Button IR', () => {
     const round = spec.style.root.combined;
     for (const size of ['sm', 'md', 'lg'])
       expect(
-        round[size]['shape=round, variant=primary'].default.radius.token,
+        round[size]['shape=round, prio=primary'].default.radius.token,
       ).toBe('radius.pill');
-    const lg = spec.style.root.combined.lg['shape=square, variant=primary'];
+    const lg = spec.style.root.combined.lg['shape=square, prio=primary'];
     expect(lg.default.shadow).toMatchObject({ none: true });
     expect(lg.focus.shadow.token).toBe('shadow.focus.default');
   });
@@ -61,7 +61,7 @@ describe('the Icon Button IR', () => {
     // both emitters look entries up by the full key; a partial one would never be found.
     for (const variant of ['primary', 'secondary', 'tertiary'])
       expect(
-        spec.style.root.combined.md[`shape=round, variant=${variant}`].default
+        spec.style.root.combined.md[`shape=round, prio=${variant}`].default
           .radius.token,
       ).toBe('radius.pill');
     for (const s of Object.values(spec.style))
@@ -69,7 +69,7 @@ describe('the Icon Button IR', () => {
         ...Object.keys(s.appearance),
         ...Object.values(s.combined ?? {}).flatMap((c) => Object.keys(c)),
       ])
-        expect(key).toMatch(/^shape=\w+, variant=\w+$/);
+        expect(key).toMatch(/^shape=\w+, prio=\w+$/);
   });
 
   it('is refused by the MUI emitter if a key names only some of the axes', () => {
@@ -78,7 +78,7 @@ describe('the Icon Button IR', () => {
       default: { radius: { token: 'radius.pill' } },
     };
     expect(() => renderMuiComponent(partial, tokens)).toThrow(
-      /appearance key shape=round does not name shape, variant/,
+      /appearance key shape=round does not name shape, prio/,
     );
   });
 
@@ -106,7 +106,7 @@ describe('the Icon Button recipe', () => {
     expect(styles.root['& .SolarIconButton-icon']).toMatchObject({
       width: 'var(--solar-icon-xs)',
     });
-    const primary = styles.appearances['shape=square, variant=primary'];
+    const primary = styles.appearances['shape=square, prio=primary'];
     expect(primary['&:hover']).toMatchObject({
       backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
     });
@@ -123,7 +123,7 @@ describe('the Icon Button recipe', () => {
     );
     expect(dart).not.toContain('textStyle: by(');
     expect(
-      cells['root.radius|combined|lg|shape=round, variant=primary|default'],
+      cells['root.radius|combined|lg|shape=round, prio=primary|default'],
     ).toBe('t:radius.pill');
   });
 

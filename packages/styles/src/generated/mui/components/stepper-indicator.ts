@@ -249,3 +249,11 @@ export function solarStepperIndicatorCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarStepperIndicatorTree: Record<string, string[]> = {
+  root: ['iconCheck', 'number', 'icon'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarStepperIndicator-<slot>`, public. */
+export const solarStepperIndicatorSlots: Record<string, string> = {};

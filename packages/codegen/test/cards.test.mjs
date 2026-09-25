@@ -3,12 +3,11 @@
  * layers Figma draws together that the caller picks one of (`choice`, by a prop or by the
  * content), what a composed child draws whatever Figma records hidden (`hides`), a look `set` adds
  * where no layer has it, an axis whose values alone are respelled (`rename`), the oracle's
- * expansion of a choice, and the card shells' templates.
+ * expansion of a choice, and the card shells.
  */
 
 import { describe, expect, it } from 'vitest';
 import * as stage from '../src/stages/components.mjs';
-import { DESCRIPTORS } from '../src/components/index.mjs';
 import {
   buildComponentSpec,
   loadComponent,
@@ -22,12 +21,11 @@ import {
 } from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
-import { cardFlutter, cardReact } from '../src/shells/card.mjs';
+import { flutterShell, reactShell } from './shell-files.mjs';
 import { buildOracle, hideInComposed } from '../src/verify/oracle.mjs';
 
 const { built } = stage.build();
 const of = (name) => built.find((b) => b.spec.component === name);
-const descriptor = (name) => DESCRIPTORS.find((d) => d.name === name);
 // Every IR, by component name, as the stage hands them to hideInComposed.
 const specs = Object.fromEntries(built.map((b) => [b.spec.component, b.spec]));
 
@@ -519,8 +517,7 @@ describe('hideInComposed, with the overlay’s hides', () => {
 });
 
 describe('the card shells', () => {
-  const card = of('Card').spec;
-  const react = descriptor('Card').templates.react(card);
+  const react = reactShell('Card');
 
   it('draws Card’s title as the stretched action, announced busy while loading, its More a named button', () => {
     expect(react).toContain('className="SolarCard-press"');
@@ -532,51 +529,18 @@ describe('the card shells', () => {
   it('defines CardMoreItem in Card, which Status Card imports', () => {
     expect(react).toContain('export interface CardMoreItem');
     expect(react).not.toContain('import type { CardMoreItem }');
-    const status = descriptor('Status Card').templates.react(
-      of('Status Card').spec,
-    );
+    const status = reactShell('Status Card');
     expect(status).toContain("import type { CardMoreItem } from './Card.js';");
     expect(status).not.toContain('export interface CardMoreItem');
-    const dart = descriptor('Card').templates.flutter(card);
-    expect(dart).toContain('class SolarCardMoreItem');
+    expect(flutterShell('Card')).toContain('class SolarCardMoreItem');
   });
 
   it('builds the props of a card with no API as a constant (Event Row)', () => {
-    const row = of('Event Row').spec;
-    expect(row.api).toEqual({});
-    expect(descriptor('Event Row').templates.flutter(row)).toContain(
+    expect(of('Event Row').spec.api).toEqual({});
+    expect(flutterShell('Event Row')).toContain(
       'const p = SolarEventRowProps();',
     );
-    expect(descriptor('Card').templates.flutter(card)).toContain(
-      'final p = SolarCardProps(',
-    );
-  });
-
-  it('refuses a descriptor prop naming a layer the IR lacks', () => {
-    const o = {
-      look: 'l',
-      about: 'a',
-      title: 'titleTitle',
-      props: [
-        { name: 'title', kind: 'text', layer: 'titleTitle', required: true },
-        { name: 'nope', kind: 'text', layer: 'nope' },
-      ],
-    };
-    expect(() => cardReact(card, o)).toThrow('Card: the IR has no nope layer');
-    expect(() => cardFlutter(card, o)).toThrow(
-      'Card: the IR has no nope layer',
-    );
-    expect(() => cardReact(card, { ...o, title: 'nope', props: [] })).toThrow(
-      'Card: the IR has no nope layer',
-    );
-  });
-
-  it('refuses a Card IR without a slot its descriptor draws', () => {
-    const spec = structuredClone(card);
-    delete spec.slots.icon;
-    expect(() => descriptor('Card').templates.react(spec)).toThrow(
-      'Card: the IR has no icon slot',
-    );
+    expect(flutterShell('Card')).toContain('final p = SolarCardProps(');
   });
 });
 

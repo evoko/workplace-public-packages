@@ -11,8 +11,9 @@
  *   (a reason another rule can give by reference, `reason: { as: … }`, or a rule to share);
  * - **literals a token now matches**: an `allowLiteral` cell whose raw value a token of its family
  *   has, which may be a `bind` after a token sync;
- * - **sets Figma now agrees with**: a `set` whose value is what Figma draws there, so it decides
- *   nothing.
+ * - **sets Figma now agrees with**: a `set` whose value is what Figma draws there and that decides
+ *   no finding in the component's oracle (a set can still be what decides Figma's unbound raw
+ *   value in the same cell), so it decides nothing.
  */
 
 import { existsSync, readFileSync } from 'node:fs';
@@ -83,6 +84,10 @@ export function auditOverlays({ components, overlayOf, names, fileOf }) {
     const file = join(specDir, 'components', fileOf(component));
     if (!existsSync(file)) continue;
     const ir = JSON.parse(readFileSync(file, 'utf8'));
+    const oracle = join(specDir, 'verify', fileOf(component));
+    const setDecides = setFindings(
+      existsSync(oracle) ? JSON.parse(readFileSync(oracle, 'utf8')) : {},
+    );
     for (const [layer, style] of Object.entries(ir.style ?? {}))
       for (const [where, cells] of cellsOf(style))
         for (const [cell, entry] of Object.entries(cells)) {
@@ -108,7 +113,7 @@ export function auditOverlays({ components, overlayOf, names, fileOf }) {
               (entry.token !== undefined && was.token === entry.token) ||
               (entry.keyword !== undefined && was.keyword === entry.keyword) ||
               (entry.none && was.none);
-            if (same)
+            if (same && !setDecides.has(`${layer}.${cell}`))
               agreed.push({ component, at: `${layer}.${where}${cell}` });
           }
         }
@@ -132,6 +137,23 @@ export function auditOverlays({ components, overlayOf, names, fileOf }) {
     literals,
     agreed,
   };
+}
+
+/** Every `<layer>.<cell>` a finding decided by a `set` names, anywhere in an oracle. */
+function setFindings(oracle) {
+  const out = new Set();
+  const walk = (v) => {
+    if (Array.isArray(v)) v.forEach(walk);
+    else if (v && typeof v === 'object') {
+      if (v.decision === 'set' && typeof v.finding === 'string') {
+        const m = /^component\.[^.]+\.([^.#@]+)\.([^.#@]+)[#@]/.exec(v.finding);
+        if (m) out.add(`${m[1]}.${m[2]}`);
+      }
+      Object.values(v).forEach(walk);
+    }
+  };
+  walk(oracle);
+  return out;
 }
 
 /** Every cell block of a layer's style, with where it sits (`base.`, `appearance.<look>.<state>.`). */

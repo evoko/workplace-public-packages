@@ -197,11 +197,12 @@ Component shells are **scaffolded once** from the IR, then owned by developers f
 recipe beside them regenerates on every run. This is the boundary that lets look changes flow
 in automatically while behaviour is never clobbered.
 
-> **Superseded 2026-09-24 (owner decision).** The shells are generated on every run from the
-> templates in each component's descriptor, which are where behaviour is written; a component can
-> opt out (`owned: true`) and keep hand-edited shell files. The boundary holds: look flows through
-> the recipe, behaviour through the template, and neither clobbers the other, since no one edits a
-> generated shell. The reasons are in the families plan, "Between F5 and F6".
+> **Superseded 2026-09-24, and again 2026-09-25 (owner decisions).** From 2026-09-24 the shells
+> were generated on every run from template strings in each component's descriptor. Since
+> 2026-09-25 every shell is a hand-written file (the pipeline review's item 9): TSX by a React
+> engineer, Dart by a Flutter engineer. What the IR decides still reaches them: the props types,
+> the layer tree and the slot names are generated beside the recipe and imported, and the
+> component-parity test fails a shell that leaves an IR prop, slot or icon unreached.
 
 ## 6. The developer loop
 
@@ -331,12 +332,14 @@ and views.
 | One generator with transpilation, or several? | Neither. One normalizer, one spec, independent emitters. Parity by generated conformance tests, not shared implementation code. |
 | Wrap Material or build our own?               | Hybrid, recorded per component. In practice (2026-09-25): drawn from the layer tree, a stock part borrowed for its behaviour (§3). |
 | Where does Flutter live?                      | `packages/solar_flutter` in this repo, consumed by git dependency.                                                              |
-| How much of a component is generated?         | Recipe and types regenerate every run; the shell is scaffolded once and then owned.                                             |
+| How much of a component is generated?         | Recipe, types, tree and slots regenerate every run; the shell is a hand-written file (2026-09-25).                             |
 | Can a tweak change the docs?                  | Never. Only docs-to-code logic changes.                                                                                         |
 
 **Open for the owner (2026-09-25, from the pipeline review):**
 
-- **Does MUI 9 with Emotion earn its place as `@bwp-web/components`' peer dependency**, for what
+- **Decided 2026-09-25: MUI stays the peer dependency** (owner). The components now read the MUI
+  theme (`useSolarProps`) and style stock MUI components, so the case for it grew. The question
+  was: **does MUI 9 with Emotion earn its place as `@bwp-web/components`' peer dependency**, for what
   is mostly `Box`, `ButtonBase` and `InputBase`? For: its focus and keyboard handling, and apps
   already on MUI. Against: its weight and a theme the components barely read. A migration would
   go component by component and can wait.

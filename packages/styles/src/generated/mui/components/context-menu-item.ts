@@ -273,3 +273,16 @@ export function solarContextMenuItemCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarContextMenuItemTree: Record<string, string[]> = {
+  root: ['leadingIcon', 'label', 'shortcut', 'trailingIcon'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarContextMenuItem-<slot>`, public. */
+export const solarContextMenuItemSlots: Record<string, string> = {
+  leadingIcon: 'leadingIcon',
+  label: 'label',
+  shortcut: 'shortcut',
+  trailingIcon: 'trailingIcon',
+};

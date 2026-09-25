@@ -171,6 +171,14 @@ abstract final class SolarImageCardRecipe {
         't:color.text.primary',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['image', 'text', 'iconCircle', 'label'],
+    'image': ['checkbox'],
+    'text': ['title', 'icon', 'subtitle'],
+    'iconCircle': ['iconPlus'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['focus', 'hover'];
 

@@ -323,3 +323,22 @@ export function solarDropdownMenuCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDropdownMenuTree: Record<string, string[]> = {
+  root: ['content'],
+  content: [
+    'dropdownGroupLabel',
+    'dropdownItem',
+    'dropdownItem2',
+    'dropdownItem3',
+    'dropdownItem4',
+    'dropdownItem5',
+    'dropdownItem6',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDropdownMenu-<slot>`, public. */
+export const solarDropdownMenuSlots: Record<string, string> = {
+  content: 'content',
+};

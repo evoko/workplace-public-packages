@@ -823,3 +823,29 @@ export function solarDeviceCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDeviceCardTree: Record<string, string[]> = {
+  root: ['icon', 'content', 'tag', 'button', 'headline', 'serialLocation'],
+  icon: ['iconIconDevice', 'iconIconProgress'],
+  content: ['contentName', 'details', 'contentSkeleton'],
+  headline: ['headlineIcon', 'headlineContent', 'headlineTag'],
+  headlineIcon: ['headlineIconIconDevice', 'headlineIconIconProgress'],
+  headlineContent: [
+    'headlineContentName',
+    'contentCount',
+    'row',
+    'headlineContentSkeleton',
+  ],
+  serialLocation: ['devices'],
+  row: ['rowName', 'rowCount'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDeviceCard-<slot>`, public. */
+export const solarDeviceCardSlots: Record<string, string> = {
+  button: 'button',
+  contentName: 'name',
+  details: 'details',
+  contentCount: 'count',
+  devices: 'devices',
+};

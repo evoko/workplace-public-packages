@@ -63,7 +63,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'small',
         style: restated(
-          solarButtonStyle({ variant: 'primary', danger: false, size: 'sm' }),
+          solarButtonStyle({ prio: 'primary', danger: false, size: 'sm' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -74,7 +74,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'medium',
         style: restated(
-          solarButtonStyle({ variant: 'primary', danger: false, size: 'md' }),
+          solarButtonStyle({ prio: 'primary', danger: false, size: 'md' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -85,7 +85,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'large',
         style: restated(
-          solarButtonStyle({ variant: 'primary', danger: false, size: 'lg' }),
+          solarButtonStyle({ prio: 'primary', danger: false, size: 'lg' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -96,7 +96,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'small',
         style: restated(
-          solarButtonStyle({ variant: 'primary', danger: true, size: 'sm' }),
+          solarButtonStyle({ prio: 'primary', danger: true, size: 'sm' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -107,7 +107,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'medium',
         style: restated(
-          solarButtonStyle({ variant: 'primary', danger: true, size: 'md' }),
+          solarButtonStyle({ prio: 'primary', danger: true, size: 'md' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -118,7 +118,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'large',
         style: restated(
-          solarButtonStyle({ variant: 'primary', danger: true, size: 'lg' }),
+          solarButtonStyle({ prio: 'primary', danger: true, size: 'lg' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -129,7 +129,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'small',
         style: restated(
-          solarButtonStyle({ variant: 'secondary', danger: false, size: 'sm' }),
+          solarButtonStyle({ prio: 'secondary', danger: false, size: 'sm' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -140,7 +140,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'medium',
         style: restated(
-          solarButtonStyle({ variant: 'secondary', danger: false, size: 'md' }),
+          solarButtonStyle({ prio: 'secondary', danger: false, size: 'md' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -151,7 +151,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'large',
         style: restated(
-          solarButtonStyle({ variant: 'secondary', danger: false, size: 'lg' }),
+          solarButtonStyle({ prio: 'secondary', danger: false, size: 'lg' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -162,7 +162,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'small',
         style: restated(
-          solarButtonStyle({ variant: 'secondary', danger: true, size: 'sm' }),
+          solarButtonStyle({ prio: 'secondary', danger: true, size: 'sm' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -173,7 +173,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'medium',
         style: restated(
-          solarButtonStyle({ variant: 'secondary', danger: true, size: 'md' }),
+          solarButtonStyle({ prio: 'secondary', danger: true, size: 'md' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -184,7 +184,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'large',
         style: restated(
-          solarButtonStyle({ variant: 'secondary', danger: true, size: 'lg' }),
+          solarButtonStyle({ prio: 'secondary', danger: true, size: 'lg' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -195,7 +195,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'small',
         style: restated(
-          solarButtonStyle({ variant: 'tertiary', danger: false, size: 'sm' }),
+          solarButtonStyle({ prio: 'tertiary', danger: false, size: 'sm' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -206,7 +206,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'medium',
         style: restated(
-          solarButtonStyle({ variant: 'tertiary', danger: false, size: 'md' }),
+          solarButtonStyle({ prio: 'tertiary', danger: false, size: 'md' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -217,7 +217,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'primary' &&
           p.size === 'large',
         style: restated(
-          solarButtonStyle({ variant: 'tertiary', danger: false, size: 'lg' }),
+          solarButtonStyle({ prio: 'tertiary', danger: false, size: 'lg' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -228,7 +228,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'small',
         style: restated(
-          solarButtonStyle({ variant: 'tertiary', danger: true, size: 'sm' }),
+          solarButtonStyle({ prio: 'tertiary', danger: true, size: 'sm' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -239,7 +239,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'medium',
         style: restated(
-          solarButtonStyle({ variant: 'tertiary', danger: true, size: 'md' }),
+          solarButtonStyle({ prio: 'tertiary', danger: true, size: 'md' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -250,7 +250,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
           p.color === 'error' &&
           p.size === 'large',
         style: restated(
-          solarButtonStyle({ variant: 'tertiary', danger: true, size: 'lg' }),
+          solarButtonStyle({ prio: 'tertiary', danger: true, size: 'lg' }),
           ['boxShadow', 'borderWidth', 'borderStyle', 'borderColor'],
         ),
       },
@@ -265,7 +265,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'primary',
+            prio: 'primary',
             size: 'sm',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -276,7 +276,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'primary',
+            prio: 'primary',
             size: 'md',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -287,7 +287,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'primary',
+            prio: 'primary',
             size: 'lg',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -298,7 +298,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'secondary',
+            prio: 'secondary',
             size: 'sm',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -310,7 +310,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'secondary',
+            prio: 'secondary',
             size: 'md',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -321,7 +321,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'secondary',
+            prio: 'secondary',
             size: 'lg',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -332,7 +332,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'tertiary',
+            prio: 'tertiary',
             size: 'sm',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -343,7 +343,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'tertiary',
+            prio: 'tertiary',
             size: 'md',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -354,7 +354,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
-            variant: 'tertiary',
+            prio: 'tertiary',
             size: 'lg',
           }),
           [['& .SolarIconButton-icon', '& > svg']],
@@ -373,7 +373,7 @@ export const solarMuiThemeDecisions = {
     component: 'Button',
     props: {
       variant: {
-        axis: 'variant',
+        axis: 'prio',
         values: {
           contained: 'primary',
           outlined: 'secondary',
@@ -403,7 +403,7 @@ export const solarMuiThemeDecisions = {
     component: 'Icon Button',
     props: {
       color: {
-        axis: 'variant',
+        axis: 'prio',
         values: {
           primary: 'primary',
           secondary: 'secondary',

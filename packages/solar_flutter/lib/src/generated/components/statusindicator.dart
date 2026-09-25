@@ -629,6 +629,13 @@ abstract final class SolarStatusIndicatorRecipe {
     'containerUnion.height|combined|sm|type=private|default': 'px:6',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['innerPath', 'union', 'container', 'frame3'],
+    'frame3': ['frame3InnerPath'],
+    'container': ['containerInnerPath', 'icon', 'containerUnion'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

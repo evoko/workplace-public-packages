@@ -17,7 +17,7 @@ Widget buildEmptyState(
   action: buildButton({
     'props': {
       'size': 'sm',
-      'variant': 'secondary',
+      'prio': 'secondary',
       'danger': false,
       'disabled': false,
       'loading': false,

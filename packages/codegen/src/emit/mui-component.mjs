@@ -21,7 +21,13 @@ import { PLACES } from '../normalize/recipe.mjs';
 import { canonical, letterSpacingEm } from './manifest.mjs';
 import { cssTextFeatures, featuresOf } from './text-features.mjs';
 import { table as descriptorTable } from '../components/index.mjs';
-import { byPrefix, layerClass, withLayerClasses } from '../util/classes.mjs';
+import {
+  byPrefix,
+  layerClass,
+  publicLayers,
+  withLayerClasses,
+} from '../util/classes.mjs';
+import { treeOf } from '../util/tree.mjs';
 
 const OUT_DIR = join(
   packagesDir,
@@ -950,7 +956,11 @@ export function renderMuiComponent(spec, tokens, specs = [spec]) {
     `  for (const [layer, c] of Object.entries(solar${name}Composition as unknown as Record<string, Layered>)) {\n` +
     `    const states = state === 'default' ? ['default'] : ['default', state];\n` +
     `    out[layer] = Object.assign(\n      {},\n      c.base,\n      c.size?.[size],\n      ...states.flatMap((st) => [c.appearance?.[key]?.[st], c.combined?.[size]?.[key]?.[st]]),\n    );\n  }\n  return out;\n` +
-    `}\n`;
+    `}\n\n` +
+    `/** Each layer's children, in Figma's order: the tree the shell draws (\`drawChildren\`). */\n` +
+    `export const solar${name}Tree: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};\n\n` +
+    `/** Each slot's layer, to the slot it is: its class is \`Solar${name}-<slot>\`, public. */\n` +
+    `export const solar${name}Slots: Record<string, string> = ${JSON.stringify(publicLayers(spec))};\n`;
 
   // Each layer's class as its own, public or internal, wherever the text still names it by the
   // layer; `specs`, every component's, for a selector into another's.

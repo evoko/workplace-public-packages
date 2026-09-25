@@ -147,6 +147,11 @@ abstract final class SolarRowExpandRecipe {
     'container2.y|appearance|type=middle-row|default': 'px:20',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['iconChevronRight', 'iconChevronDown', 'container', 'container2'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

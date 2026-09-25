@@ -22,7 +22,7 @@ import {
 } from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
-import { FLUTTER_TEMPLATES, TEMPLATES } from '../src/shells/index.mjs';
+import { flutterShell, reactShell } from './shell-files.mjs';
 import { apiOf } from '../src/shells/api.mjs';
 import { packagesDir, specDir } from '../src/util/paths.mjs';
 
@@ -252,7 +252,7 @@ describe('Tab Item', () => {
       'count',
       'count',
     ]);
-    const react = TEMPLATES['Tab Item'](spec);
+    const react = reactShell('Tab Item');
     expect(react).toContain(
       "import Tab, { type TabProps } from '@mui/material/Tab';",
     );
@@ -262,7 +262,7 @@ describe('Tab Item', () => {
   });
 
   it('announces itself a tab in Flutter, its counter at rest in a scope of its own', () => {
-    const widget = FLUTTER_TEMPLATES['Tab Item'](spec);
+    const widget = flutterShell('Tab Item');
     expect(widget).toContain('role: SemanticsRole.tab,');
     expect(widget).toContain("'counter': SolarStatesScope(");
     expect(widget).toContain('SolarTabsScope.maybeOf(context)');
@@ -271,7 +271,7 @@ describe('Tab Item', () => {
 
 describe('Tabs', () => {
   const { spec } = of('Tabs');
-  const react = TEMPLATES.Tabs(spec);
+  const react = reactShell('Tabs');
 
   it('is MUI’s standard Tabs, its tabs layer the list, its indicator hidden', () => {
     expect(react).toContain('variant="standard"');
@@ -291,15 +291,10 @@ describe('Tabs', () => {
       'export const useTabsSize = () => useContext(TabsSizeContext);',
     );
     expect(react).toContain("<TabsSizeContext.Provider value={size ?? 'sm'}>");
-    const md = structuredClone(spec);
-    md.api.size.default = 'md';
-    expect(TEMPLATES.Tabs(md)).toContain(
-      "<TabsSizeContext.Provider value={size ?? 'md'}>",
-    );
   });
 
   it('wraps its strip in SolarTabsScope in Flutter, its tabs layer in SolarTabList', () => {
-    const widget = FLUTTER_TEMPLATES.Tabs(spec);
+    const widget = flutterShell('Tabs');
     expect(widget).toContain('return SolarTabsScope(');
     expect(widget).toContain("{'tabs': (layer) => SolarTabList(child: layer)}");
   });
@@ -380,7 +375,7 @@ describe('Nav Item', () => {
   it('pads a 44 × 44 target around it', () => {
     expect(descriptor('Nav Item').mui.resets).toHaveProperty('&::after');
     expect(recipe('nav-item')).toContain("'&::after': {");
-    expect(FLUTTER_TEMPLATES['Nav Item'](spec)).toContain('target: true,');
+    expect(flutterShell('Nav Item')).toContain('target: true,');
   });
 });
 
@@ -416,18 +411,15 @@ describe('Section Nav Item and its group header', () => {
     expect(resets).not.toHaveProperty('&::after');
     expect(resets).not.toHaveProperty('&');
     expect(recipe('section-nav-item')).not.toContain('::after');
-    expect(FLUTTER_TEMPLATES['Section Nav Item'](spec)).toContain(
-      'target: false,',
-    );
+    expect(flutterShell('Section Nav Item')).toContain('target: false,');
   });
 
   it('announces a group header as a heading of its level', () => {
-    const header = of('Section Nav Group Header').spec;
-    const react = TEMPLATES['Section Nav Group Header'](header);
+    const react = reactShell('Section Nav Group Header');
     expect(react).toContain('role="heading"');
     expect(react).toContain('aria-level={level}');
     expect(react).toContain('level = 3');
-    expect(FLUTTER_TEMPLATES['Section Nav Group Header'](header)).toContain(
+    expect(flutterShell('Section Nav Group Header')).toContain(
       'Semantics(header: true, headingLevel: level, child: mark)',
     );
   });
@@ -457,7 +449,7 @@ describe('Breadcrumb Item', () => {
   });
 
   it('is a link, a button or the words alone, the current page announced so', () => {
-    const react = TEMPLATES['Breadcrumb Item'](spec);
+    const react = reactShell('Breadcrumb Item');
     expect(react).toContain('const control = !current && !disabled;');
     expect(react).toContain(
       "const as = !control ? 'span' : href !== undefined ? 'a' : 'button';",

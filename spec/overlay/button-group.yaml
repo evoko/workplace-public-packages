@@ -11,14 +11,6 @@ base:
     joins its buttons into one bordered control, which SOLAR does not draw, and Flutter has no
     stock group; the recipe gives the layout directly.
 
-rename:
-  type:
-    to: fullWidth
-    values: { regular: 'false', full-width: 'true' }
-    reason: >-
-      Figma's type has two values, regular and full-width, which is a boolean; `fullWidth` is
-      the name MUI and most React libraries give it.
-
 follows:
   root.direction:
     axes: [orientation, type]

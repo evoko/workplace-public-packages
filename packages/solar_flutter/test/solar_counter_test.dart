@@ -65,7 +65,7 @@ void main() {
         tester,
         SolarButton(
           onPressed: () {},
-          variant: SolarButtonVariant.secondary,
+          prio: SolarButtonPrio.secondary,
           statesController: states,
           counter: const SolarCounter(count: 3),
           child: const Text('Inbox'),
@@ -84,7 +84,7 @@ void main() {
         tester,
         const SolarButton(
           onPressed: null,
-          variant: SolarButtonVariant.secondary,
+          prio: SolarButtonPrio.secondary,
           counter: SolarCounter(count: 3),
           child: Text('Inbox'),
         ),

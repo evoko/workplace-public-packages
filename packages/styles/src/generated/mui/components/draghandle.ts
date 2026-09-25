@@ -442,3 +442,13 @@ export function solarDragHandleCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDragHandleTree: Record<string, string[]> = {
+  root: ['col1', 'col2'],
+  col1: ['col1Dot', 'col1Dot2', 'col1Dot3'],
+  col2: ['col2Dot', 'col2Dot2', 'col2Dot3'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDragHandle-<slot>`, public. */
+export const solarDragHandleSlots: Record<string, string> = {};

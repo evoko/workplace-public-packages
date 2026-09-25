@@ -28,10 +28,10 @@ BoxDecoration face(WidgetTester tester) =>
 void main() {
   group('SolarButton', () {
     const cases = {
-      (SolarButtonVariant.primary, false): 'actionPrimaryBgDefault',
-      (SolarButtonVariant.primary, true): 'actionPrimaryBgDangerDefault',
-      (SolarButtonVariant.secondary, false): 'actionSecondaryBgDefault',
-      (SolarButtonVariant.secondary, true): 'actionSecondaryBgDangerDefault',
+      (SolarButtonPrio.primary, false): 'actionPrimaryBgDefault',
+      (SolarButtonPrio.primary, true): 'actionPrimaryBgDangerDefault',
+      (SolarButtonPrio.secondary, false): 'actionSecondaryBgDefault',
+      (SolarButtonPrio.secondary, true): 'actionSecondaryBgDangerDefault',
     };
     final expected = {
       'actionPrimaryBgDefault': light.actionPrimaryBgDefault,
@@ -39,16 +39,15 @@ void main() {
       'actionSecondaryBgDefault': light.actionSecondaryBgDefault,
       'actionSecondaryBgDangerDefault': light.actionSecondaryBgDangerDefault,
     };
-    for (final MapEntry(key: (variant, danger), value: colour)
-        in cases.entries) {
+    for (final MapEntry(key: (prio, danger), value: colour) in cases.entries) {
       testWidgets(
-        'draws ${variant.name}${danger ? ' danger' : ''} from the recipe',
+        'draws ${prio.name}${danger ? ' danger' : ''} from the recipe',
         (tester) async {
           await pump(
             tester,
             SolarButton(
               onPressed: () {},
-              variant: variant,
+              prio: prio,
               danger: danger,
               child: const Text('Save'),
             ),
@@ -63,7 +62,7 @@ void main() {
         tester,
         SolarButton(
           onPressed: () {},
-          variant: SolarButtonVariant.tertiary,
+          prio: SolarButtonPrio.tertiary,
           child: const Text('Skip'),
         ),
       );
@@ -136,7 +135,7 @@ void main() {
         SolarButton(
           onPressed: () {},
           loading: true,
-          variant: SolarButtonVariant.secondary,
+          prio: SolarButtonPrio.secondary,
           child: const Text('Save'),
         ),
       );

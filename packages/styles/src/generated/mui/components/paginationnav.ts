@@ -213,3 +213,11 @@ export function solarPaginationNavCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarPaginationNavTree: Record<string, string[]> = {
+  root: ['icon'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarPaginationNav-<slot>`, public. */
+export const solarPaginationNavSlots: Record<string, string> = {};

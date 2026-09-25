@@ -246,3 +246,14 @@ export function solarOptionRowCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarOptionRowTree: Record<string, string[]> = {
+  root: ['control', 'text', 'toggle'],
+  text: ['label', 'supportingText'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarOptionRow-<slot>`, public. */
+export const solarOptionRowSlots: Record<string, string> = {
+  supportingText: 'supportingText',
+};

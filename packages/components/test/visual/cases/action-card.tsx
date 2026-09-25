@@ -12,7 +12,7 @@ const button = (v: OracleVariant, layer: string) => {
   return (
     <Button
       size={(b.size ?? 'sm') as ButtonProps['size']}
-      variant={(b.prio ?? 'primary') as ButtonProps['variant']}
+      prio={(b.prio ?? 'primary') as ButtonProps['prio']}
       danger={b.danger === 'true'}
     >
       Label

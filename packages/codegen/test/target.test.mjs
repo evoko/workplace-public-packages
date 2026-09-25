@@ -4,7 +4,11 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import { TARGET, targetArea, targetInput } from '../src/shells/target.mjs';
+import {
+  TARGET,
+  targetArea,
+  targetInput,
+} from '../src/components/shared/target.mjs';
 import { MUI_RESETS } from '../src/emit/mui-component.mjs';
 
 describe('the target', () => {

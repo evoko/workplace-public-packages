@@ -1,7 +1,9 @@
 /**
  * Every generated component's descriptor, one file each beside this one (`button.mjs`,
- * `icon-button.mjs`…): what the pipeline knows about it beyond its IR. The emitters, the shells
- * and the stage read them from here, so a new component is new files, and no list to edit.
+ * `icon-button.mjs`…): what the pipeline knows about it beyond its IR. The emitters, the parity
+ * test and the stage read them from here, so a new component is new files, and no list to edit.
+ * Its shells, the React component and the Flutter widget, are files of their own, written by hand
+ * (src/shells/index.mjs). What several descriptors share is in `shared/`.
  *
  *   name       the component's name in code: its Figma name, or its overlay's codeName
  *   address    how the catalog finds it, where that is not `name` (`calendar/Day Cell`)
@@ -14,10 +16,6 @@
  *              member that reaches it (`label: 'title'`; `value: 'controller'`, a Flutter field's),
  *              `{ group: 'RadioGroup' }` where a platform group decides it, or null where the shell
  *              fills it itself (src/shells/api.mjs, which the component-parity test checks)
- *   templates  react and flutter: functions of the IR that solar:codegen renders into the shells
- *              on every run (src/shells/); the shells are never edited, the templates are
- *   owned      true for a component whose shells are hand-edited files instead: it has no
- *              templates, and solar:codegen leaves its shells alone (src/shells/index.mjs)
  *   checkedAs  the component a Figma component is the state of, where it is no component of its
  *              own (Autocomplete Open, an open Autocomplete): it has a recipe, a case on each
  *              platform and a story, but no shells, and nothing is exported for it
@@ -39,6 +37,12 @@ const loaded = await Promise.all(
     const d = (await import(pathToFileURL(join(here, f)).href)).default;
     if (!d?.name)
       throw new Error(`src/components/${f}: exports no descriptor with a name`);
+    // The shells were templates here until 2026-09-25; they are files now (src/shells/index.mjs).
+    for (const key of ['templates', 'owned'])
+      if (key in d)
+        throw new Error(
+          `src/components/${f}: ${key} is gone: a component's shells are files of their own, written by hand`,
+        );
     return { d, f };
   }),
 );

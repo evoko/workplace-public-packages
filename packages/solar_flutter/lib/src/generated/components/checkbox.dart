@@ -174,6 +174,11 @@ abstract final class SolarCheckboxRecipe {
     'container.shadow|appearance|checked=true, mixed=true|focus': 'none',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['icon', 'container'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['disabled', 'focus', 'hover'];
 

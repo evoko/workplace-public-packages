@@ -15,7 +15,7 @@
       "figma": "orientation=horizontal, type=regular",
       "props": {
         "orientation": "horizontal",
-        "fullWidth": false
+        "type": "regular"
       },
       "state": "default",
       "layers": {
@@ -106,7 +106,7 @@
       "figma": "orientation=vertical, type=regular",
       "props": {
         "orientation": "vertical",
-        "fullWidth": false
+        "type": "regular"
       },
       "state": "default",
       "layers": {
@@ -197,7 +197,7 @@
       "figma": "orientation=horizontal, type=full-width",
       "props": {
         "orientation": "horizontal",
-        "fullWidth": true
+        "type": "full-width"
       },
       "state": "default",
       "layers": {

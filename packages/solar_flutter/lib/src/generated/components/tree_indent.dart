@@ -589,6 +589,22 @@ abstract final class SolarTreeIndentRecipe {
     'unit9.height|appearance|depth=10|default': 'px:39',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': [
+      'unit1',
+      'unit2',
+      'unit3',
+      'unit4',
+      'unit5',
+      'unit6',
+      'unit7',
+      'unit8',
+      'unit10',
+      'unit9',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

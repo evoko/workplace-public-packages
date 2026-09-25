@@ -376,3 +376,26 @@ export function solarBannerCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarBannerTree: Record<string, string[]> = {
+  root: [
+    'iconInfo',
+    'description',
+    'actionGroup',
+    'close',
+    'iconSuccess',
+    'iconWarning',
+    'iconDanger',
+  ],
+  actionGroup: ['primaryButton', 'secondaryButton', 'action'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarBanner-<slot>`, public. */
+export const solarBannerSlots: Record<string, string> = {
+  description: 'description',
+  primaryButton: 'primaryButton',
+  secondaryButton: 'secondaryButton',
+  action: 'action',
+  close: 'close',
+};

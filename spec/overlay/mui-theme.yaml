@@ -22,7 +22,7 @@ MuiButton:
   component: Button
   props:
     variant:
-      axis: variant
+      axis: prio
       values: { contained: primary, outlined: secondary, text: tertiary }
     color:
       axis: danger
@@ -45,7 +45,7 @@ MuiIconButton:
   component: Icon Button
   props:
     color:
-      axis: variant
+      axis: prio
       values: { primary: primary, secondary: secondary, default: tertiary }
     size:
       axis: size

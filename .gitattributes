@@ -1,0 +1,4 @@
+# Generated files GitHub collapses in pull-request review (the pipeline review's item 13, owner
+# decision 2026-09-25). They are still committed and diffed: CI rebuilds them and fails on any
+# difference, and a Figma change still shows as a diff of the contract, in spec/components/.
+spec/verify/** linguist-generated=true

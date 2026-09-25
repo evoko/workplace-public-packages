@@ -1265,3 +1265,14 @@ export function solarTagCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTagTree: Record<string, string[]> = {
+  root: ['statusIndicator', 'label', 'icon', 'iconNone', 'iconClose'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTag-<slot>`, public. */
+export const solarTagSlots: Record<string, string> = {
+  label: 'label',
+  icon: 'icon',
+};

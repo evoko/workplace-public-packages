@@ -181,3 +181,9 @@ export function solarSkeletonCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSkeletonTree: Record<string, string[]> = {};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSkeleton-<slot>`, public. */
+export const solarSkeletonSlots: Record<string, string> = {};

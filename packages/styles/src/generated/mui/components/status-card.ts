@@ -662,3 +662,16 @@ export function solarStatusCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarStatusCardTree: Record<string, string[]> = {
+  root: ['title', 'trend', 'skeleton', 'skeleton2'],
+  title: ['titleTitle', 'iconMore'],
+  trend: ['statusIndicator', 'value'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarStatusCard-<slot>`, public. */
+export const solarStatusCardSlots: Record<string, string> = {
+  titleTitle: 'title',
+  value: 'value',
+};

@@ -466,3 +466,19 @@ export function solarTextInputCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTextInputTree: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['labelLabel', 'mandatory'],
+  field: ['leadingIcon', 'fieldLabel', 'trailingIcon'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTextInput-<slot>`, public. */
+export const solarTextInputSlots: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  leadingIcon: 'leadingIcon',
+  trailingIcon: 'trailingIcon',
+  helper: 'helper',
+};

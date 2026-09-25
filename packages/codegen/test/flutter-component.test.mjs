@@ -22,7 +22,7 @@ describe('renderFlutterComponent on Button', () => {
       't:color.action.primary.bg.default',
     );
     expect(
-      cells['root.background|appearance|variant=primary, danger=false|hover'],
+      cells['root.background|appearance|prio=primary, danger=false|hover'],
     ).toBe('t:color.action.primary.bg.hover');
   });
 
@@ -82,7 +82,7 @@ describe('renderFlutterComponent on Button', () => {
     expect(dart).toMatch(/final bool danger;/);
     expect(dart).not.toMatch(/final bool hover/);
     expect(dart).toContain(
-      'enum SolarButtonVariant { primary, secondary, tertiary }',
+      'enum SolarButtonPrio { primary, secondary, tertiary }',
     );
     expect(dart).toContain('enum SolarButtonSize { md, sm, lg }');
   });
@@ -103,7 +103,7 @@ describe('renderFlutterComponent on Button', () => {
     expect(dart).toContain("'iconLeading.color'");
     const split = structuredClone(button);
     split.style.iconTrailing.appearance[
-      'variant=primary, danger=false'
+      'prio=primary, danger=false'
     ].hover.color = { token: 'color.action.secondary.icon.hover' };
     expect(() => renderFlutterComponent(split, tokens)).toThrow(
       /draws iconLeading.color and iconTrailing.color with one property/,
@@ -154,9 +154,7 @@ describe('renderFlutterComponent: states that hold together', () => {
   it('restates what an overlapping state would show through, as the MUI recipe does', () => {
     // A mouse press is hovered and pressed at once; Figma's pressed tertiary is not underlined.
     expect(
-      cells[
-        'label.typography|combined|md|variant=tertiary, danger=false|pressed'
-      ],
+      cells['label.typography|combined|md|prio=tertiary, danger=false|pressed'],
     ).toBe('t:typography.label.md');
     const restated = [];
     for (const [layer, s] of Object.entries(restateOverlaps(button)))
@@ -207,7 +205,7 @@ describe('renderFlutterComponent: states and builders, per component', () => {
 
   it('refuses a state it cannot detect, or cannot place in the order', () => {
     const copy = structuredClone(button);
-    copy.style.root.appearance['variant=primary, danger=false'].selected = {
+    copy.style.root.appearance['prio=primary, danger=false'].selected = {
       background: { token: 'color.action.primary.bg.hover' },
     };
     expect(() => renderFlutterComponent(copy, tokens)).toThrow(
@@ -264,16 +262,15 @@ describe('renderFlutterComponent: a layer with no auto-layout in a variant', () 
     built.find((b) => b.spec.component === 'Button Group').spec,
   );
   const none = { none: true };
-  group.style.root.appearance['orientation=vertical, fullWidth=false'].default =
-    {
-      direction: none,
-      gap: none,
-      paddingLeft: none,
-    };
+  group.style.root.appearance['orientation=vertical, type=regular'].default = {
+    direction: none,
+    gap: none,
+    paddingLeft: none,
+  };
   const { cells: vertical } = renderFlutterComponent(group, tokens);
   const at = (cell) =>
     vertical[
-      `root.${cell}|appearance|orientation=vertical, fullWidth=false|default`
+      `root.${cell}|appearance|orientation=vertical, type=regular|default`
     ];
 
   it('reads its gap and padding as inset.none, a length like any other', () => {

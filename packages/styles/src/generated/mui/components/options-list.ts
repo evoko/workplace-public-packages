@@ -200,3 +200,14 @@ export function solarOptionsListCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarOptionsListTree: Record<string, string[]> = {
+  root: ['content'],
+  content: ['optionRow', 'optionRow2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarOptionsList-<slot>`, public. */
+export const solarOptionsListSlots: Record<string, string> = {
+  content: 'content',
+};

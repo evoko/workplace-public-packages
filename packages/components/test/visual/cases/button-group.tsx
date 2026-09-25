@@ -32,7 +32,7 @@ function children(v: OracleVariant) {
         key={name}
         data-layer={name}
         size={l.variant?.size as ButtonProps['size']}
-        variant={l.variant?.prio as ButtonProps['variant']}
+        prio={l.variant?.prio as ButtonProps['prio']}
         danger={l.variant?.danger === 'true'}
       >
         Label
@@ -42,10 +42,13 @@ function children(v: OracleVariant) {
 
 /** The oracle's props as the layout the types allow: Figma draws no vertical full-width group. */
 function layout(v: OracleVariant): ButtonGroupLayout {
-  const p = v.props as { orientation?: string; fullWidth?: boolean };
+  const p = v.props as {
+    orientation?: string;
+    type?: 'regular' | 'full-width';
+  };
   return p.orientation === 'vertical'
     ? { orientation: 'vertical' }
-    : { orientation: 'horizontal', fullWidth: p.fullWidth };
+    : { orientation: 'horizontal', type: p.type };
 }
 
 export default {

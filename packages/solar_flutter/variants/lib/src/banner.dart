@@ -21,7 +21,7 @@ Widget buildBanner(
     return buildButton({
       'props': {
         'size': b['size'],
-        'variant': b['prio'],
+        'prio': b['prio'],
         'danger': b['danger'] == 'true',
         'disabled': false,
         'loading': false,

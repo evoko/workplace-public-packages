@@ -32,7 +32,7 @@ const last = (rule, prop) =>
   )?.[1];
 
 const buttons = (size) => [
-  h(Button, { key: 'a', variant: 'secondary', size }, 'Cancel'),
+  h(Button, { key: 'a', prio: 'secondary', size }, 'Cancel'),
   h(Button, { key: 'b', size }, 'Save'),
 ];
 
@@ -62,7 +62,7 @@ describe('the SOLAR Button Group shell', () => {
       ),
     ).toBe('column');
     const bar = rootRule(
-      render(h(ButtonGroup, { fullWidth: true }, buttons('lg'))),
+      render(h(ButtonGroup, { type: 'full-width' }, buttons('lg'))),
     );
     expect(last(bar, 'padding-top')).toBe('var(--solar-inset-none)');
     expect(last(bar, 'border-top-width')).toBe('var(--solar-border-default)');

@@ -15,7 +15,7 @@ Widget buildSearchField(
   final content = ((v['content'] as List?) ?? const []).cast<String>();
   return SolarSearchField(
     size: enumNamed(SolarSearchFieldSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     filter: const IconProbe(),
     controller: TextEditingController(

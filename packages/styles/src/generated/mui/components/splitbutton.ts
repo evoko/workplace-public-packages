@@ -2,18 +2,18 @@
 // Plain data on purpose: this module imports nothing, so @bwp-web/styles stays dependency free.
 // Every value is a var(--solar-*) reference into tokens.css, which must be loaded.
 
-export type SolarSplitButtonVariant = 'primary' | 'secondary';
+export type SolarSplitButtonPrio = 'primary' | 'secondary';
 export type SolarSplitButtonSize = 'sm' | 'md';
 
 export interface SolarSplitButtonProps {
-  variant?: SolarSplitButtonVariant;
+  prio?: SolarSplitButtonPrio;
   size?: SolarSplitButtonSize;
   disabled?: boolean;
   loading?: boolean;
 }
 
 export const solarSplitButtonDefaults = {
-  variant: 'primary',
+  prio: 'primary',
   size: 'md',
   disabled: false,
   loading: false,
@@ -180,7 +180,7 @@ export const solarSplitButtonStyles = {
     },
   },
   appearances: {
-    'variant=primary': {
+    'prio=primary': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
         '& .SolarSplitButton--iconChevronDown': {
@@ -209,7 +209,7 @@ export const solarSplitButtonStyles = {
         },
       },
     },
-    'variant=secondary': {
+    'prio=secondary': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
@@ -288,7 +288,7 @@ export const solarSplitButtonStyles = {
   },
   combined: {
     sm: {
-      'variant=primary': {
+      'prio=primary': {
         '&:has(.Mui-focusVisible)': {
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           '& .SolarSplitButton--iconChevronDown': {
@@ -298,7 +298,7 @@ export const solarSplitButtonStyles = {
       },
     },
     md: {
-      'variant=primary': {
+      'prio=primary': {
         '&:has(.Mui-focusVisible)': {
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           '& .SolarSplitButton--iconChevronDown': {
@@ -322,12 +322,12 @@ export const solarSplitButtonComposition = {
       present: true,
     },
     appearance: {
-      'variant=primary': {
+      'prio=primary': {
         loading: {
           present: false,
         },
       },
-      'variant=secondary': {
+      'prio=secondary': {
         loading: {
           present: false,
         },
@@ -344,12 +344,12 @@ export const solarSplitButtonComposition = {
       present: true,
     },
     appearance: {
-      'variant=primary': {
+      'prio=primary': {
         loading: {
           present: false,
         },
       },
-      'variant=secondary': {
+      'prio=secondary': {
         loading: {
           present: false,
         },
@@ -361,12 +361,12 @@ export const solarSplitButtonComposition = {
       present: true,
     },
     appearance: {
-      'variant=primary': {
+      'prio=primary': {
         loading: {
           present: false,
         },
       },
-      'variant=secondary': {
+      'prio=secondary': {
         loading: {
           present: false,
         },
@@ -387,13 +387,13 @@ export const solarSplitButtonComposition = {
       'variant.size': 'md',
     },
     appearance: {
-      'variant=primary': {
+      'prio=primary': {
         loading: {
           present: true,
           'variant.style': 'inverse',
         },
       },
-      'variant=secondary': {
+      'prio=secondary': {
         loading: {
           present: true,
           'variant.style': 'default',
@@ -427,7 +427,7 @@ export function solarSplitButtonStyle(
 ): Style {
   const p: Record<string, unknown> = { ...solarSplitButtonDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `variant=${p.variant}`;
+  const key = `prio=${p.prio}`;
   const s = solarSplitButtonStyles as unknown as {
     reset: Style;
     root: Style;
@@ -476,7 +476,7 @@ export function solarSplitButtonCompose(
 ): Record<string, Parts> {
   const p: Record<string, unknown> = { ...solarSplitButtonDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `variant=${p.variant}`;
+  const key = `prio=${p.prio}`;
   const size = p.size as string;
   const out: Record<string, Parts> = {};
   for (const [layer, c] of Object.entries(
@@ -495,3 +495,13 @@ export function solarSplitButtonCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSplitButtonTree: Record<string, string[]> = {
+  root: ['action', 'divider', 'trigger', 'spinner'],
+  action: ['label'],
+  trigger: ['iconChevronDown'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSplitButton-<slot>`, public. */
+export const solarSplitButtonSlots: Record<string, string> = { label: 'label' };

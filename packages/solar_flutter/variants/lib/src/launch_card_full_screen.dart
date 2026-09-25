@@ -28,7 +28,7 @@ Widget buildLaunchCardFullScreen(
       semanticLabel: 'Favourite',
       size: SolarIconButtonSize.md,
       shape: SolarIconButtonShape.round,
-      variant: SolarIconButtonVariant.tertiary,
+      prio: SolarIconButtonPrio.tertiary,
     ),
     action: SolarButton(onPressed: () {}, child: const Text('Open')),
   ),

@@ -35,7 +35,7 @@ export default {
         <IconButton
           size="sm"
           shape="round"
-          variant="tertiary"
+          prio="tertiary"
           icon={icon}
           aria-label="Favourite"
         />

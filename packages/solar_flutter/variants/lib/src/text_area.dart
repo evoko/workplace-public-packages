@@ -24,7 +24,7 @@ Widget buildTextArea(
       'props': {
         'size': b['size'],
         'shape': b['shape'],
-        'variant': b['prio'],
+        'prio': b['prio'],
         'disabled': b['state'] == 'disabled',
         'loading': false,
       },
@@ -33,7 +33,7 @@ Widget buildTextArea(
 
   return SolarTextArea(
     size: enumNamed(SolarTextAreaSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     label: 'Label',
     mandatory: true,

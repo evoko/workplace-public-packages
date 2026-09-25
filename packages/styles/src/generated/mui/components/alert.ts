@@ -363,3 +363,16 @@ export function solarAlertCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarAlertTree: Record<string, string[]> = {
+  root: ['statusIndicator', 'content', 'action'],
+  content: ['title', 'description'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarAlert-<slot>`, public. */
+export const solarAlertSlots: Record<string, string> = {
+  title: 'title',
+  description: 'description',
+  action: 'action',
+};

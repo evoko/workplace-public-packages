@@ -19,6 +19,18 @@ composes:
       Figma names two components Day Cell; the calendar's grid holds the date picker's (the
       overlay of components/inputs Day Cell names it Date Picker Day Cell).
 
+repeats:
+  '*DayCell':
+    reason: >-
+      A month's days are Figma's sample, 35 copies of one Date Picker Day Cell in each grid: the
+      shell draws the month's real days from its dates, so the first stands for them all, checked
+      as Figma draws it; each state a day can take is Date Picker Day Cell's own, checked there
+      (owner decision 2026-09-25, the pipeline review's item 1).
+  '*Weekday':
+    reason: >-
+      A week's days are seven copies of one text, the first standing for them all: the shell writes
+      the locale's own weekday names, from the week's first day.
+
 follows:
   root.borderWidth:
     axes: [inline]
@@ -34,11 +46,6 @@ follows:
     reason: A double calendar lays its two months side by side, a single one stacks its parts.
 
 set:
-  root.appearance.inline=true, type=double.default.width:
-    keyword: HUG
-    reason: >-
-      The two months' width, 588, is what the calendar hugs (see the accept below): it is drawn
-      hugging them, as the single calendar is.
   dayGridDayCell*.base.width:
     none: true
     reason: >-

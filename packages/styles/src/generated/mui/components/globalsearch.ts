@@ -285,3 +285,11 @@ export function solarGlobalSearchCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarGlobalSearchTree: Record<string, string[]> = {
+  root: ['iconSearch', 'searchWorkplace', 'kbd'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarGlobalSearch-<slot>`, public. */
+export const solarGlobalSearchSlots: Record<string, string> = {};

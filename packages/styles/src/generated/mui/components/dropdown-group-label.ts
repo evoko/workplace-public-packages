@@ -186,3 +186,11 @@ export function solarDropdownGroupLabelCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDropdownGroupLabelTree: Record<string, string[]> = {
+  root: ['groupLabel'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDropdownGroupLabel-<slot>`, public. */
+export const solarDropdownGroupLabelSlots: Record<string, string> = {};

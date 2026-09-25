@@ -10,7 +10,6 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import * as stage from '../src/stages/components.mjs';
-import { DESCRIPTORS } from '../src/components/index.mjs';
 import {
   buildComponentSpec,
   loadComponent,
@@ -19,13 +18,8 @@ import {
 import { loadDefaults, loadOverlay } from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
-import {
-  dartIcon,
-  drawnFlutter,
-  iconsOf,
-  reactIcon,
-} from '../src/shells/drawn.mjs';
-import { FLUTTER_TEMPLATES, TEMPLATES } from '../src/shells/index.mjs';
+import { dartIcon, iconsOf, reactIcon } from '../src/shells/icons.mjs';
+import { flutterShell, reactShell } from './shell-files.mjs';
 import { apiOf } from '../src/shells/api.mjs';
 import { packagesDir, specDir } from '../src/util/paths.mjs';
 import { buildOracle } from '../src/verify/oracle.mjs';
@@ -35,7 +29,6 @@ const of = (name) => built.find((b) => b.spec.component === name);
 const committed = (dir, file) =>
   JSON.parse(readFileSync(join(specDir, dir, `${file}.json`), 'utf8'));
 const read = (...parts) => readFileSync(join(packagesDir, ...parts), 'utf8');
-const descriptor = (name) => DESCRIPTORS.find((d) => d.name === name);
 
 const names = tokenNames(loadContract());
 const catalog = loadWebCatalog();
@@ -235,26 +228,18 @@ describe('an icon that follows one axis', () => {
   });
 
   it('renders PaginationNav’s shells with the map, Flutter’s icons no longer const', () => {
-    const { spec } = of('PaginationNav');
-    const react = TEMPLATES.PaginationNav(spec);
+    const react = reactShell('PaginationNav');
     expect(react).toContain(
       "import { IconChevronLeft, IconChevronRight } from '@bwp-web/assets';",
     );
-    expect(react).toContain(
-      'icons: { icon: ({ "next": <IconChevronRight />, "previous": <IconChevronLeft /> } as const)[direction ?? "previous"] },',
+    expect(react.replace(/\s+/g, ' ')).toContain(
+      "icon: ( { next: <IconChevronRight />, previous: <IconChevronLeft />, } as const )[direction ?? 'previous'],",
     );
-    const widget = FLUTTER_TEMPLATES.PaginationNav(spec);
+    const widget = flutterShell('PaginationNav');
     expect(widget).toContain(
-      "icons: {'icon': switch (direction) { SolarPaginationNavDirection.next => SolarIcons.chevronRightOutline, SolarPaginationNavDirection.previous => SolarIcons.chevronLeftOutline, }},",
-    );
-    expect(widget).not.toContain('icons: const {');
-    // The committed shell, formatted.
-    expect(read('components/src/PaginationNav.tsx')).toContain('} as const');
-    expect(
-      read('solar_flutter/lib/src/components/solar_paginationnav.dart'),
-    ).toContain(
       'SolarPaginationNavDirection.next => SolarIcons.chevronRightOutline,',
     );
+    expect(widget).not.toContain('icons: const {');
   });
 
   it('keeps PageNavButton’s arrows, one icon each, in a const map', () => {
@@ -265,29 +250,15 @@ describe('an icon that follows one axis', () => {
       'iconArrowRight',
     ]);
     for (const i of icons) expect(i, i.layer).not.toHaveProperty('byAxis');
-    expect(FLUTTER_TEMPLATES.PageNavButton(spec)).toContain('icons: const {');
+    expect(flutterShell('PageNavButton')).toContain('icons: const {');
   });
 });
 
-describe('drawnFlutter’s pressable', () => {
-  const { spec } = of('Step');
-  const look = { look: 'l', about: 'a' };
-
-  it('passes onPressed as it is where pressable is true (Step’s shell)', () => {
-    const widget = drawnFlutter(spec, { ...look, pressable: true });
-    expect(widget).toContain('            onPressed: onPressed,');
+describe('Step’s pressable', () => {
+  it('passes onPressed as it is', () => {
+    const widget = flutterShell('Step');
+    expect(widget).toContain('onPressed: onPressed,');
     expect(widget).not.toContain('? onPressed : null');
-    expect(FLUTTER_TEMPLATES.Step(spec)).toContain(
-      '            onPressed: onPressed,',
-    );
-    expect(read('solar_flutter/lib/src/components/solar_step.dart')).toContain(
-      'onPressed: onPressed,',
-    );
-  });
-
-  it('guards it with the expression where pressable is one', () => {
-    const widget = drawnFlutter(spec, { ...look, pressable: '!disabled' });
-    expect(widget).toContain('onPressed: !disabled ? onPressed : null,');
   });
 });
 
@@ -548,7 +519,7 @@ describe('PageNavButton', () => {
   });
 
   it('pads a 44 × 44 target around it in Flutter', () => {
-    expect(FLUTTER_TEMPLATES.PageNavButton(spec)).toContain('target: true,');
+    expect(flutterShell('PageNavButton')).toContain('target: true,');
   });
 });
 
@@ -577,8 +548,7 @@ describe('the pagination’s items', () => {
 
   it('take their own 24 × 24 box as their target in Flutter', () => {
     for (const name of ['PaginationItem', 'PaginationNav']) {
-      expect(descriptor(name).templates, name).toBeDefined();
-      const widget = FLUTTER_TEMPLATES[name](of(name).spec);
+      const widget = flutterShell(name);
       expect(widget, name).toContain('target: false,');
       expect(widget, name).not.toContain('target: true,');
     }

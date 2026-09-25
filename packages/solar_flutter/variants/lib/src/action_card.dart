@@ -22,7 +22,7 @@ Widget buildActionCard(
     return buildButton({
       'props': {
         'size': b['size'] ?? 'sm',
-        'variant': b['prio'] ?? 'primary',
+        'prio': b['prio'] ?? 'primary',
         'danger': b['danger'] == 'true',
         'disabled': false,
         'loading': false,

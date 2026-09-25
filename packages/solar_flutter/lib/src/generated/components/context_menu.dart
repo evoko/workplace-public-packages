@@ -101,6 +101,21 @@ abstract final class SolarContextMenuRecipe {
     'contextMenuItem7.height|base': 'none',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['content'],
+    'content': [
+      'contextMenuItem',
+      'contextMenuItem2',
+      'contextMenuItem3',
+      'contextMenuItem4',
+      'contextMenuItem5',
+      'contextMenuItem6',
+      'divider',
+      'contextMenuItem7',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

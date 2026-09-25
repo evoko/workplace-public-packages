@@ -13,9 +13,9 @@ const { spec, deviations } = built.find(
 );
 
 describe('the SplitButton IR', () => {
-  it('takes a variant, a size, disabled and loading, and every finding is decided', () => {
+  it('takes a prio, a size, disabled and loading, and every finding is decided', () => {
     expect(Object.keys(spec.api)).toEqual([
-      'variant',
+      'prio',
       'size',
       'disabled',
       'loading',
@@ -34,7 +34,7 @@ describe('the SplitButton IR', () => {
 describe('the SplitButton recipe', () => {
   it('styles the whole control by the states of its halves', () => {
     const { styles } = renderMuiComponent(spec, tokens);
-    const primary = styles.appearances['variant=primary'];
+    const primary = styles.appearances['prio=primary'];
     expect(primary['&:hover']).toMatchObject({
       backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
     });

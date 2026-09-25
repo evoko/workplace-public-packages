@@ -457,7 +457,7 @@
       {
         "rule": "rename",
         "at": "style",
-        "reason": "`style` is React's inline-style prop, so a component cannot take it as a SOLAR prop. `variant` is what Button calls its appearance axis too."
+        "reason": "The one exception to SOLAR's words (rule 5; owner decision 2026-09-25): `style` is React's inline-style prop, so no component can take it, and `variant` names the look on both platforms. The design review asks Figma to rename the property `variant`, so the names match."
       },
       {
         "rule": "set",

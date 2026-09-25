@@ -185,3 +185,11 @@ export function solarNodeEndCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarNodeEndTree: Record<string, string[]> = {
+  root: ['halo', 'dot'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarNodeEnd-<slot>`, public. */
+export const solarNodeEndSlots: Record<string, string> = {};

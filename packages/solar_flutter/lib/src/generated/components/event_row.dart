@@ -100,6 +100,13 @@ abstract final class SolarEventRowRecipe {
     'more.color|base': 't:color.icon.secondary',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['leading', 'content', 'timestamp', 'more'],
+    'content': ['title', 'meta'],
+    'meta': ['productTag', 'metaText'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['focus', 'hover'];
 

@@ -17,7 +17,7 @@ Widget buildPasswordInput(
   final forgot = (layers['forgotPassword'] as Map<String, dynamic>?)?['hidden'];
   return SolarPasswordInput(
     size: enumNamed(SolarPasswordInputSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     label: 'Password',
     mandatory: true,

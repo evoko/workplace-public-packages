@@ -139,6 +139,20 @@ abstract final class SolarSegmentedControlRecipe {
     'helper.typography|size|sm': 't:typography.helper.sm',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['label', 'track', 'helper'],
+    'label': ['labelLabel', 'mandatory'],
+    'track': [
+      'segmentedControlItem',
+      'segmentedControlItem2',
+      'segmentedControlItem3',
+      'segmentedControlItem4',
+      'segmentedControlItem5',
+      'segmentedControlItem6',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

@@ -16,7 +16,7 @@ Widget buildDropdown(
   return SolarDropdown<String>(
     size: enumNamed(SolarDropdownSize.values, props['size'] as String),
     open: props['open'] as bool,
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     label: 'Label',
     mandatory: true,

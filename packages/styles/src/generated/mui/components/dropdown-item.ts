@@ -299,3 +299,16 @@ export function solarDropdownItemCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDropdownItemTree: Record<string, string[]> = {
+  root: ['checkbox', 'icon', 'content'],
+  content: ['label', 'helper'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDropdownItem-<slot>`, public. */
+export const solarDropdownItemSlots: Record<string, string> = {
+  checkbox: 'checkbox',
+  icon: 'icon',
+  helper: 'helper',
+};

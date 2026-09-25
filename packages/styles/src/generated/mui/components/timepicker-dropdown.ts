@@ -287,3 +287,21 @@ export function solarTimePickerDropdownCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTimePickerDropdownTree: Record<string, string[]> = {
+  root: ['content'],
+  content: [
+    'dropdownItem',
+    'dropdownItem2',
+    'dropdownItem3',
+    'dropdownItem4',
+    'dropdownItem5',
+    'dropdownItem6',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTimePickerDropdown-<slot>`, public. */
+export const solarTimePickerDropdownSlots: Record<string, string> = {
+  content: 'content',
+};

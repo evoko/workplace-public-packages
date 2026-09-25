@@ -128,6 +128,16 @@ An axis's name in code (`to`), and its values (`values`, each Figma value to one
 Card's `type`: `File Card` → `file`, `New Asset Tile` → `create`). Applied last; every other
 address still spells Figma's.
 
+Which name to rename to follows one rule (docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md,
+rule 5; owner decision 2026-09-25): **SOLAR's word where SOLAR's description names the thing**
+(`helper`, `mandatory`, `iconLeading`, which the fields' and Button's descriptions use), and
+otherwise MUI's word on the web and Flutter's in Flutter, never one spelling forced on both. The
+IR keeps one name; a platform's own spelling is its descriptor's `api` table, not a `rename`: a
+Flutter field's `enabled` for the IR's `disabled` (`{ not: 'enabled' }`), a Flutter button's null
+`onPressed`. One exception, decided 2026-09-25: Figma's `style` (Alert, Alert Small, Spinner) is
+`variant` in code on both platforms, since `style` is React's inline-style prop and no component
+can take it; the design review asks the designers to rename the property.
+
 ### `follows`
 
 A cell that follows other axes than its class says (geometry follows size, paint appearance and
@@ -257,6 +267,31 @@ Where a layer one variant adds sits among its siblings: data fetched before 2026
 a layer after the others (Card's loading title placeholder, `before: /Content`). Data fetched
 since records its place (the added layer's `index`), and a rule that moves a layer to where it
 already is fails as stale.
+
+### `repeats`
+
+Sibling copies of one layer that Figma draws as a component's sample content, read as their first:
+Date Picker Open's grids hold 35 copies of one Date Picker Day Cell (`/DayGrid/Day Cell`,
+`/DayGrid/Day Cell#2`…) and its rows seven weekday texts, which the shell draws from its data, not
+Figma's samples. The first stands for the copies, and the IR marks it `repeat: <count>`; the other
+copies, and what they hold, are no layers, so the recipe, the oracle and the tree carry one of
+each. The first is checked as Figma draws it, and what the copies drew differently (the selected
+day among the disabled ones) is sample content, checked where it is the component's own (Date
+Picker Day Cell's every state). The key names the first by its IR name, or firsts by a pattern:
+
+```yaml
+repeats:
+  '*DayCell':
+    reason: …
+  '*Weekday':
+    reason: …
+```
+
+Opt-in, never automatic (owner decision 2026-09-25, the pipeline review's item 1): siblings Figma
+means to be distinct look the same to a rule that guesses. A rule that names a copy, or a layer
+with no copies, fails. A shell draws a repeated text layer once per item with the runtime helpers'
+`repeat` (web) and `repeats` (Flutter); a repeated layer whose children the caller gives (the day
+grid) takes them through `content`.
 
 ### `same`
 

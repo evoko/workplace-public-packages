@@ -16,10 +16,7 @@ Widget buildIconButton(
     semanticLabel: 'Icon',
     size: enumNamed(SolarIconButtonSize.values, props['size'] as String),
     shape: enumNamed(SolarIconButtonShape.values, props['shape'] as String),
-    variant: enumNamed(
-      SolarIconButtonVariant.values,
-      props['variant'] as String,
-    ),
+    prio: enumNamed(SolarIconButtonPrio.values, props['prio'] as String),
     loading: props['loading'] as bool,
     statesController: states,
     icon: const IconProbe(key: Key('icon')),

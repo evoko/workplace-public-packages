@@ -16,7 +16,7 @@ import {
 import { parseOverlay } from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
-import { targetArea } from '../src/shells/target.mjs';
+import { targetArea } from '../src/components/shared/target.mjs';
 import { recipeAxes } from '../src/spec.mjs';
 
 const { built, tokens } = stage.build();

@@ -333,6 +333,19 @@ abstract final class SolarPINInputRecipe {
     'errorMessage.present|appearance|default|error': 'b:true',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['label', 'cells', 'helper', 'errorMessage'],
+    'label': ['labelLabel', 'mandatory'],
+    'cells': ['field', 'field2', 'field3', 'field4', 'field5', 'field6'],
+    'field': ['placeholder', 'caret', 'digit'],
+    'field2': ['placeholder2', 'digit2'],
+    'field3': ['placeholder3', 'digit3'],
+    'field4': ['placeholder4', 'digit4'],
+    'field5': ['placeholder5', 'digit5'],
+    'field6': ['placeholder6', 'digit6'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = [
     'disabled',

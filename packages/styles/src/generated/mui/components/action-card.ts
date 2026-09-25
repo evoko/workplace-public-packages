@@ -502,3 +502,22 @@ export function solarActionCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarActionCardTree: Record<string, string[]> = {
+  root: ['title', 'content', 'cta', 'button'],
+  title: ['icon', 'titleTitle', 'iconMore'],
+  content: ['description'],
+  cta: ['primaryCTA', 'secondaryCTA'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarActionCard-<slot>`, public. */
+export const solarActionCardSlots: Record<string, string> = {
+  icon: 'icon',
+  content: 'content',
+  cta: 'cta',
+  primaryCTA: 'primaryCTA',
+  secondaryCTA: 'secondaryCTA',
+  titleTitle: 'title',
+  description: 'description',
+};

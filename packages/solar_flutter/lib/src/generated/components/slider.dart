@@ -87,6 +87,11 @@ abstract final class SolarSliderRecipe {
     'handle.y|appearance|default|disabled': 'px:3',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['track', 'fill', 'handle'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = [
     'disabled',

@@ -181,6 +181,21 @@ abstract final class SolarInteractiveCardRecipe {
     'iconButton3.height|base': 'none',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': [
+      'dragHandle',
+      'toggle',
+      'radioButton',
+      'checkbox',
+      'text',
+      'actions',
+    ],
+    'text': ['textIcon', 'description'],
+    'textIcon': ['icon', 'title'],
+    'actions': ['iconButton', 'iconButton2', 'iconButton3'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['selected', 'focus'];
 

@@ -15,7 +15,7 @@ Widget buildInlineInput(
   return SolarInlineInput(
     // A key per variant, so each starts afresh in its own mode.
     key: ValueKey(v['figma']),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     value: 'Current value',
     onConfirm: (_) => false,

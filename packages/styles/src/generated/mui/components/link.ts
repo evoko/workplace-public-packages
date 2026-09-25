@@ -433,3 +433,14 @@ export function solarLinkCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarLinkTree: Record<string, string[]> = {
+  root: ['leadingIcon', 'label', 'trailingIcon'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarLink-<slot>`, public. */
+export const solarLinkSlots: Record<string, string> = {
+  leadingIcon: 'leadingIcon',
+  trailingIcon: 'trailingIcon',
+};

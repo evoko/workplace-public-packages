@@ -326,3 +326,16 @@ export function solarTabItemCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTabItemTree: Record<string, string[]> = {
+  root: ['leadingIcon', 'label', 'trailingIcon', 'counter'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTabItem-<slot>`, public. */
+export const solarTabItemSlots: Record<string, string> = {
+  leadingIcon: 'leadingIcon',
+  label: 'label',
+  trailingIcon: 'trailingIcon',
+  counter: 'counter',
+};

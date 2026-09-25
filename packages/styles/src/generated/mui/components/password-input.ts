@@ -463,3 +463,18 @@ export function solarPasswordInputCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarPasswordInputTree: Record<string, string[]> = {
+  root: ['label', 'field', 'helper', 'forgotPassword'],
+  label: ['password', 'mandatory'],
+  field: ['maskedValue', 'icon'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarPasswordInput-<slot>`, public. */
+export const solarPasswordInputSlots: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+  forgotPassword: 'forgotPassword',
+};

@@ -539,3 +539,22 @@ export function solarTextAreaCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTextAreaTree: Record<string, string[]> = {
+  root: ['label', 'field', 'footer'],
+  label: ['labelLabel', 'mandatory'],
+  field: ['enterText', 'cta', 'attachment'],
+  footer: ['helper', 'charCount'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTextArea-<slot>`, public. */
+export const solarTextAreaSlots: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  cta: 'cta',
+  attachment: 'attachment',
+  footer: 'footer',
+  helper: 'helper',
+  charCount: 'charCount',
+};

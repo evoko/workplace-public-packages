@@ -43,6 +43,11 @@ export interface LayerDrawing {
   /** What each text layer says, by layer. */
   text?: Record<string, ReactNode>;
   /**
+   * A text layer Figma repeats (the calendar's weekdays, the IR's `repeat`), by layer: drawn once
+   * per item, each saying it, in the layer's class and place, as Figma draws its copies.
+   */
+  repeat?: Record<string, ReactNode[]>;
+  /**
    * The caller's children of a layer, drawn in it in place of the ones Figma draws as examples
    * (Segmented Control's segments in its track), by layer.
    */
@@ -75,7 +80,15 @@ const paths = (list: Path[], className: string, key: string) =>
 
 /** The children of `name`, each drawn as this variant draws it. */
 export function drawChildren(name: string, d: LayerDrawing): ReactNode[] {
-  return (d.tree[name] ?? []).map((child) => drawLayer(child, d));
+  return (d.tree[name] ?? []).flatMap((child) =>
+    d.repeat?.[child]
+      ? d.repeat[child].map((item, i) => (
+          <Fragment key={`${child}#${i}`}>
+            {drawLayer(child, { ...d, text: { ...d.text, [child]: item } })}
+          </Fragment>
+        ))
+      : [drawLayer(child, d)],
+  );
 }
 
 /** One layer, drawn as Figma draws it in this variant, or nothing where it is hidden. */

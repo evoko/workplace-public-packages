@@ -16,7 +16,7 @@ export default {
       count="3 devices"
       tag="Online"
       action={
-        <Button size="sm" variant="secondary">
+        <Button size="sm" prio="secondary">
           Try again
         </Button>
       }

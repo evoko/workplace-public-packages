@@ -219,3 +219,17 @@ export function solarEmptyStateCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarEmptyStateTree: Record<string, string[]> = {
+  root: ['icon', 'textContent', 'action'],
+  textContent: ['title', 'description'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarEmptyState-<slot>`, public. */
+export const solarEmptyStateSlots: Record<string, string> = {
+  action: 'action',
+  icon: 'icon',
+  title: 'title',
+  description: 'description',
+};

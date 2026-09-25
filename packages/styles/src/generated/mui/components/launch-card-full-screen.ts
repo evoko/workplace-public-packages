@@ -366,3 +366,21 @@ export function solarLaunchCardFullScreenCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarLaunchCardFullScreenTree: Record<string, string[]> = {
+  root: ['image', 'text'],
+  text: ['content', 'action'],
+  content: ['headline', 'name', 'bodyCopy'],
+  headline: ['appIcon', 'favourite'],
+  bodyCopy: ['intro', 'feature', 'feature2', 'feature3'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarLaunchCardFullScreen-<slot>`, public. */
+export const solarLaunchCardFullScreenSlots: Record<string, string> = {
+  name: 'name',
+  intro: 'intro',
+  appIcon: 'appIcon',
+  favourite: 'favourite',
+  action: 'action',
+};

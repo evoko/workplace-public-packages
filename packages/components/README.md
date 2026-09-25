@@ -24,7 +24,7 @@ import { Button, SolarProvider } from '@bwp-web/components';
 export function App() {
   return (
     <SolarProvider>
-      <Button variant="secondary">Continue</Button>
+      <Button prio="secondary">Continue</Button>
     </SolarProvider>
   );
 }
@@ -78,7 +78,7 @@ public class.
 
 | Prop                          | Values                                | Default   |
 | ----------------------------- | ------------------------------------- | --------- |
-| `variant`                     | `primary` · `secondary` · `tertiary`  | `primary` |
+| `prio`                        | `primary` · `secondary` · `tertiary`  | `primary` |
 | `size`                        | `md` · `sm` · `lg`                    | `md`      |
 | `danger`                      | boolean, for destructive actions only | `false`   |
 | `disabled`, `loading`         | boolean                               | `false`   |
@@ -94,20 +94,20 @@ passes through, and `sx` applies on top of the recipe. An icon-only button needs
 `sm` is drawn 32px tall and `md` 40px, below the 44px WCAG touch target, and its hit area is
 padded to 44 × 44 in code, as SOLAR's description asks: an invisible target around the drawn button,
 which takes no room. Every control here has one. SOLAR publishes no variable for the target size, so
-44 is the one raw value for it, in the codegen's `src/shells/target.mjs`, until SOLAR does (the
+44 is the one raw value for it, in the codegen's `src/components/shared/target.mjs`, until SOLAR does (the
 first question in [the design review](../../docs/solar-review-for-design.md)).
 
 ## Icon Button
 
 ```tsx
-<IconButton icon={<IconDelete />} aria-label="Delete" variant="secondary" />
+<IconButton icon={<IconDelete />} aria-label="Delete" prio="secondary" />
 ```
 
 | Prop                  | Values                               | Default   |
 | --------------------- | ------------------------------------ | --------- |
 | `icon`                | the icon, required                   |           |
 | `aria-label`          | the accessible name, required        |           |
-| `variant`             | `primary` · `secondary` · `tertiary` | `primary` |
+| `prio`                | `primary` · `secondary` · `tertiary` | `primary` |
 | `size`                | `sm` · `md` · `lg` (32, 40, 48px)    | `sm`      |
 | `shape`               | `square` · `round`                   | `square`  |
 | `disabled`, `loading` | boolean                              | `false`   |
@@ -123,23 +123,23 @@ section 8. Its hit area is padded to 44 × 44, as Button's is.
 ## Button Group
 
 ```tsx
-<ButtonGroup fullWidth>
-  <Button variant="secondary" size="lg">
+<ButtonGroup type="full-width">
+  <Button prio="secondary" size="lg">
     Cancel
   </Button>
   <Button size="lg">Save</Button>
 </ButtonGroup>
 ```
 
-| Prop          | Values                                  | Default      |
-| ------------- | --------------------------------------- | ------------ |
-| `orientation` | `horizontal` · `vertical`               | `horizontal` |
-| `fullWidth`   | boolean: a flush bar with a top divider | `false`      |
-| `children`    | two to five Buttons, of one size        |              |
+| Prop          | Values                                                   | Default      |
+| ------------- | -------------------------------------------------------- | ------------ |
+| `orientation` | `horizontal` · `vertical`                                | `horizontal` |
+| `type`        | `regular` · `full-width`: a flush bar with a top divider | `regular`    |
+| `children`    | two to five Buttons, of one size                         |              |
 
 A box of the caller's Buttons, which it never changes: each fills an equal share of a row, or the
 width of a column, and keeps its own height. Figma draws no vertical full-width group, so the types
-refuse `orientation="vertical"` with `fullWidth` (`ButtonGroupLayout`). In development it warns when
+refuse `orientation="vertical"` with `type="full-width"` (`ButtonGroupLayout`). In development it warns when
 its buttons mix sizes. Figma's description also asks for one priority, but every group it draws
 mixes secondary and primary, so that is not checked; the design review lists the disagreement.
 
@@ -174,7 +174,7 @@ named "Back"; `href` makes it a link.
 
 | Prop         | Values                  | Default        |
 | ------------ | ----------------------- | -------------- |
-| `variant`    | `primary` · `secondary` | `primary`      |
+| `prio`       | `primary` · `secondary` | `primary`      |
 | `size`       | `sm` · `md`             | `md`           |
 | `disabled`   | boolean                 | `false`        |
 | `loading`    | boolean                 | `false`        |
@@ -212,7 +212,9 @@ disabled link loses its `href` and says it is disabled. For navigation; an actio
 | `variant` | `default` · `inverse` | `default` |
 
 MUI's CircularProgress with its track, restyled by the recipe; the motion is MUI's, since SOLAR has
-no token for a spinner's rotation. Figma calls `variant` `style`, which is React's inline-style prop.
+no token for a spinner's rotation. Figma calls `variant` `style`, which is React's inline-style prop,
+so the web cannot take it; the one exception to SOLAR's words, raised with the designers (the
+design review asks Figma to rename it).
 Give it an `aria-label` saying what is loading.
 
 ## StatusIndicator
@@ -1056,11 +1058,11 @@ A component here is two parts, with a hard line between them:
 
 - **The recipe** — what it looks like — is `solarButtonStyle` in `@bwp-web/styles/mui`, generated
   from Figma by `npm run solar:codegen`. It is never edited; a design change arrives through it.
-- **The shell** — props, slots, loading, accessibility — is `src/Button.tsx`, generated on every
-  `npm run solar:codegen` from the React template in Button's descriptor
-  (`packages/codegen/src/components/button.mjs`). The template is the hand-written behaviour; the
-  shell is never edited, and its first line says so. A component whose shell must be edited as a
-  file opts out with `owned: true` in its descriptor.
+- **The shell** — props, slots, loading, accessibility — is `src/Button.tsx`, written by hand in
+  TSX. It never holds a design value, and what the IR decides of its drawing it imports: its props
+  type, its layer tree (`solarButtonTree`) and its slot names (`solarButtonSlots`), so a layer
+  Figma adds reaches it, and a prop, slot or icon it leaves unreached fails the component-parity
+  test.
 
 The rule of thumb: **the overlay for a decision about one component, the normalizer for a rule
-about the system, the shell's template for behaviour.**
+about the system, the shell for behaviour.**

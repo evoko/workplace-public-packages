@@ -15,8 +15,9 @@ rename:
   style:
     to: variant
     reason: >-
-      Figma's style (filled, outlined) would be React's inline-style prop; `variant` is what MUI
-      calls a look, as Spinner's style is.
+      The one exception to SOLAR's words (rule 5; owner decision 2026-09-25): `style` is React's
+      inline-style prop, so no component can take it, and `variant` names the look on both
+      platforms. The design review asks Figma to rename the property `variant`, so the names match.
 
 set:
   root.base.width:

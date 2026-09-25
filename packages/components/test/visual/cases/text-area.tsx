@@ -13,7 +13,7 @@ const button = (v: OracleVariant, layer: string) => {
     <IconButton
       size={b.size as 'sm'}
       shape={b.shape as 'square'}
-      variant={b.prio as 'primary'}
+      prio={b.prio as 'primary'}
       disabled={b.state === 'disabled'}
       aria-label="Icon"
       icon={icon}

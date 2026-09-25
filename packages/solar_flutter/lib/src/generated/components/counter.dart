@@ -111,6 +111,11 @@ abstract final class SolarCounterRecipe {
         't:color.action.secondary.text.disabled',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['value'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['disabled', 'pressed', 'hover'];
 

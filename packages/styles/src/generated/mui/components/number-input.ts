@@ -1049,3 +1049,27 @@ export function solarNumberInputCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarNumberInputTree: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['labelLabel', 'mandatory'],
+  field: [
+    'fieldDecrement',
+    'inlineValue',
+    'fieldIncrement',
+    'leadingIcon',
+    'value',
+    'stepper',
+  ],
+  stepper: ['stepperIncrement', 'divider', 'stepperDecrement'],
+  stepperIncrement: ['chevronUp'],
+  stepperDecrement: ['chevronDown'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarNumberInput-<slot>`, public. */
+export const solarNumberInputSlots: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+};

@@ -1250,3 +1250,13 @@ export function solarStatusIndicatorCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarStatusIndicatorTree: Record<string, string[]> = {
+  root: ['innerPath', 'union', 'container', 'frame3'],
+  frame3: ['frame3InnerPath'],
+  container: ['containerInnerPath', 'icon', 'containerUnion'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarStatusIndicator-<slot>`, public. */
+export const solarStatusIndicatorSlots: Record<string, string> = {};

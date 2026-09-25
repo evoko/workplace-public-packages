@@ -562,3 +562,24 @@ export function solarSelectCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSelectTree: Record<string, string[]> = {
+  root: ['label', 'field', 'helper', 'dropdownMenu'],
+  label: ['labelLabel', 'mandatory'],
+  field: ['placeholder', 'trailingIcon'],
+  dropdownMenu: [
+    'dropdownItem',
+    'dropdownItem2',
+    'dropdownItem3',
+    'dropdownItem4',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSelect-<slot>`, public. */
+export const solarSelectSlots: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  trailingIcon: 'trailingIcon',
+  helper: 'helper',
+};

@@ -60,6 +60,7 @@ class SolarLayers {
     required this.tree,
     required this.keyPrefix,
     this.text = const {},
+    this.repeats = const {},
     this.icons = const {},
     this.images = const {},
     this.builders = const {},
@@ -83,6 +84,11 @@ class SolarLayers {
 
   /// What each text layer says, by layer.
   final Map<String, String> text;
+
+  /// A text layer Figma repeats in an auto layout (the calendar's weekdays, the IR's `repeat`), by
+  /// layer: drawn once per item, each saying it, as Figma draws its copies. The first is keyed as
+  /// the layer, so a check measures it; the others under `<keyPrefix>#<i>`.
+  final Map<String, List<String>> repeats;
 
   /// The SOLAR icon each icon layer draws, by layer (RowExpand's chevrons).
   final Map<String, SolarVector> icons;
@@ -122,6 +128,28 @@ class SolarLayers {
   /// A box whose content is cut to its rounded corners (Split Dropdown's, whose two zones are
   /// tinted), by layer, as CSS's `overflow: hidden` cuts it.
   final Set<String> clips;
+
+  /// These layers with other words, or under another key (a repeated layer's copies).
+  SolarLayers _copy({
+    required Map<String, String> text,
+    required String keyPrefix,
+  }) => SolarLayers(
+    recipe: recipe,
+    tree: tree,
+    keyPrefix: keyPrefix,
+    text: text,
+    repeats: repeats,
+    icons: icons,
+    images: images,
+    builders: builders,
+    slots: slots,
+    content: content,
+    composed: composed,
+    wraps: wraps,
+    fields: fields,
+    truncates: truncates,
+    clips: clips,
+  );
 
   static const _main = {
     'MIN': MainAxisAlignment.start,
@@ -441,7 +469,17 @@ class SolarLayers {
         spacing: _length('$name.gap'),
         children:
             given ??
-            [for (final c in laidOut) _inFlex(c, horizontal, hugs: hugs)],
+            [
+              for (final c in laidOut)
+                if (repeats[c] case final items?)
+                  for (final (i, item) in items.indexed)
+                    _copy(
+                      text: {...text, c: item},
+                      keyPrefix: i == 0 ? keyPrefix : '$keyPrefix#$i',
+                    )._inFlex(c, horizontal, hugs: hugs)
+                else
+                  _inFlex(c, horizontal, hugs: hugs),
+            ],
       );
       if (!wraps) return laidFlex;
       return horizontal

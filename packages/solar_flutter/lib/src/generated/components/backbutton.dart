@@ -123,6 +123,11 @@ abstract final class SolarBackButtonRecipe {
     'spinner.variant.style|appearance|default|loading': 'k:default',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['iconArrowLeft', 'label', 'spinner'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = [
     'disabled',

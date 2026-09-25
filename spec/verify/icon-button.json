@@ -13,7 +13,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -60,7 +60,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -102,7 +102,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -144,7 +144,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false
       },
@@ -186,7 +186,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -232,7 +232,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true
       },
@@ -287,7 +287,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -334,7 +334,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -376,7 +376,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -418,7 +418,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false
       },
@@ -460,7 +460,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -506,7 +506,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true
       },
@@ -561,7 +561,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -617,7 +617,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -659,7 +659,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -701,7 +701,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false
       },
@@ -743,7 +743,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -798,7 +798,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true
       },
@@ -862,7 +862,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -918,7 +918,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -960,7 +960,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1002,7 +1002,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false
       },
@@ -1044,7 +1044,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1099,7 +1099,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true
       },
@@ -1163,7 +1163,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1218,7 +1218,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1260,7 +1260,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1302,7 +1302,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false
       },
@@ -1344,7 +1344,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1399,7 +1399,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true
       },
@@ -1462,7 +1462,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1517,7 +1517,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1559,7 +1559,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1601,7 +1601,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false
       },
@@ -1643,7 +1643,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false
       },
@@ -1698,7 +1698,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true
       },
@@ -1761,7 +1761,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -1808,7 +1808,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -1854,7 +1854,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -1900,7 +1900,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false
       },
@@ -1945,7 +1945,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -1991,7 +1991,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true
       },
@@ -2046,7 +2046,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2093,7 +2093,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2139,7 +2139,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2185,7 +2185,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false
       },
@@ -2230,7 +2230,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2276,7 +2276,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true
       },
@@ -2331,7 +2331,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2378,7 +2378,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2424,7 +2424,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2470,7 +2470,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false
       },
@@ -2515,7 +2515,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2561,7 +2561,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true
       },
@@ -2616,7 +2616,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2663,7 +2663,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2709,7 +2709,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2755,7 +2755,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false
       },
@@ -2800,7 +2800,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2846,7 +2846,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true
       },
@@ -2901,7 +2901,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -2956,7 +2956,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -3011,7 +3011,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -3066,7 +3066,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false
       },
@@ -3111,7 +3111,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -3166,7 +3166,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true
       },
@@ -3229,7 +3229,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -3284,7 +3284,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -3339,7 +3339,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -3394,7 +3394,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false
       },
@@ -3439,7 +3439,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false
       },
@@ -3494,7 +3494,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true
       },
@@ -3557,7 +3557,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -3602,7 +3602,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -3647,7 +3647,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -3692,7 +3692,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false
       },
@@ -3737,7 +3737,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -3782,7 +3782,7 @@
       "props": {
         "size": "sm",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true
       },
@@ -3835,7 +3835,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -3880,7 +3880,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -3925,7 +3925,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -3970,7 +3970,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false
       },
@@ -4015,7 +4015,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4060,7 +4060,7 @@
       "props": {
         "size": "sm",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true
       },
@@ -4113,7 +4113,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4158,7 +4158,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4203,7 +4203,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4248,7 +4248,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false
       },
@@ -4293,7 +4293,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4338,7 +4338,7 @@
       "props": {
         "size": "md",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true
       },
@@ -4391,7 +4391,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4436,7 +4436,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4481,7 +4481,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4526,7 +4526,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false
       },
@@ -4571,7 +4571,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4616,7 +4616,7 @@
       "props": {
         "size": "md",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true
       },
@@ -4669,7 +4669,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4714,7 +4714,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4759,7 +4759,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4804,7 +4804,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false
       },
@@ -4849,7 +4849,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4894,7 +4894,7 @@
       "props": {
         "size": "lg",
         "shape": "square",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true
       },
@@ -4947,7 +4947,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -4992,7 +4992,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -5037,7 +5037,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -5082,7 +5082,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false
       },
@@ -5127,7 +5127,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false
       },
@@ -5172,7 +5172,7 @@
       "props": {
         "size": "lg",
         "shape": "round",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true
       },

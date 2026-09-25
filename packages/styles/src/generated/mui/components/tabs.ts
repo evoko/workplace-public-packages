@@ -292,3 +292,21 @@ export function solarTabsCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTabsTree: Record<string, string[]> = {
+  root: ['tabs'],
+  tabs: [
+    'tabItem',
+    'tabItem2',
+    'tabItem3',
+    'tabItem4',
+    'tabItem5',
+    'tabItem6',
+    'tabItem7',
+    'tabItem8',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTabs-<slot>`, public. */
+export const solarTabsSlots: Record<string, string> = { tabs: 'tabs' };

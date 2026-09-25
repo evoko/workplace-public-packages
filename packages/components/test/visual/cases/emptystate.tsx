@@ -14,7 +14,7 @@ export default {
       title="No items found"
       description="Try adjusting your search or filters."
       action={
-        <Button size="sm" variant="secondary">
+        <Button size="sm" prio="secondary">
           Label
         </Button>
       }

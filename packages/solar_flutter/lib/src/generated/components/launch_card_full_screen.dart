@@ -147,6 +147,15 @@ abstract final class SolarLaunchCardFullScreenRecipe {
     'action.height|base': 'none',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['image', 'text'],
+    'text': ['content', 'action'],
+    'content': ['headline', 'name', 'bodyCopy'],
+    'headline': ['appIcon', 'favourite'],
+    'bodyCopy': ['intro', 'feature', 'feature2', 'feature3'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

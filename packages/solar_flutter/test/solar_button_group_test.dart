@@ -23,7 +23,7 @@ List<Widget> buttons([SolarButtonSize size = SolarButtonSize.md]) => [
     key: const Key('a'),
     onPressed: () {},
     size: size,
-    variant: SolarButtonVariant.secondary,
+    prio: SolarButtonPrio.secondary,
     child: const Text('Cancel'),
   ),
   SolarButton(
@@ -68,7 +68,7 @@ void main() {
       await pump(
         tester,
         SolarButtonGroup(
-          fullWidth: true,
+          type: SolarButtonGroupType.fullWidth,
           children: buttons(SolarButtonSize.lg),
         ),
       );
@@ -99,7 +99,7 @@ void main() {
       expect(
         () => SolarButtonGroup(
           orientation: SolarButtonGroupOrientation.vertical,
-          fullWidth: true,
+          type: SolarButtonGroupType.fullWidth,
           children: const [],
         ),
         throwsAssertionError,

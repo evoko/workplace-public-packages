@@ -6,7 +6,7 @@
 import { describe, expect, it } from 'vitest';
 import * as stage from '../src/stages/components.mjs';
 import { renderMuiComponent } from '../src/emit/mui-component.mjs';
-import { iconsOf } from '../src/shells/drawn.mjs';
+import { iconsOf } from '../src/shells/icons.mjs';
 
 const { built, tokens } = stage.build();
 const { spec, deviations } = built.find(

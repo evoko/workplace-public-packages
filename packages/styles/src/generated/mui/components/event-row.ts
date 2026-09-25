@@ -332,3 +332,20 @@ export function solarEventRowCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarEventRowTree: Record<string, string[]> = {
+  root: ['leading', 'content', 'timestamp', 'more'],
+  content: ['title', 'meta'],
+  meta: ['productTag', 'metaText'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarEventRow-<slot>`, public. */
+export const solarEventRowSlots: Record<string, string> = {
+  leading: 'leading',
+  title: 'title',
+  productTag: 'productTag',
+  metaText: 'metaText',
+  timestamp: 'timestamp',
+  more: 'more',
+};

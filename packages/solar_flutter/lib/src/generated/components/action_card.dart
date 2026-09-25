@@ -192,6 +192,14 @@ abstract final class SolarActionCardRecipe {
     'button.variant.danger|appearance|status=danger|hover': 'k:true',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['title', 'content', 'cta', 'button'],
+    'title': ['icon', 'titleTitle', 'iconMore'],
+    'content': ['description'],
+    'cta': ['primaryCTA', 'secondaryCTA'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['focus', 'hover'];
 

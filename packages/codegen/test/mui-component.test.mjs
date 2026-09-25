@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { targetArea } from '../src/shells/target.mjs';
+import { targetArea } from '../src/components/shared/target.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
 import {
@@ -43,7 +43,7 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
       'var(--solar-color-action-primary-bg-default)',
     );
     expect(
-      styles.appearances['variant=secondary, danger=false'].backgroundColor,
+      styles.appearances['prio=secondary, danger=false'].backgroundColor,
     ).toBe('var(--solar-color-action-secondary-bg-default)');
     expect(ts).not.toMatch(/#[0-9a-f]{6}\b/i);
   });
@@ -106,18 +106,18 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
 
   it('has every variant with and without danger', () => {
     expect(Object.keys(styles.appearances).sort()).toEqual([
-      'variant=primary, danger=false',
-      'variant=primary, danger=true',
-      'variant=secondary, danger=false',
-      'variant=secondary, danger=true',
-      'variant=tertiary, danger=false',
-      'variant=tertiary, danger=true',
+      'prio=primary, danger=false',
+      'prio=primary, danger=true',
+      'prio=secondary, danger=false',
+      'prio=secondary, danger=true',
+      'prio=tertiary, danger=false',
+      'prio=tertiary, danger=true',
     ]);
   });
 });
 
 describe('renderMuiComponent on Button: states', () => {
-  const primary = styles.appearances['variant=primary, danger=false'];
+  const primary = styles.appearances['prio=primary, danger=false'];
 
   it('renders platform states as the selectors MUI styleOverrides expects', () => {
     expect(primary['&:hover'].backgroundColor).toBe(
@@ -128,7 +128,7 @@ describe('renderMuiComponent on Button: states', () => {
     );
     // The shadow follows size too (lg is flat), so it sits in the per-size section.
     expect(
-      styles.combined.md['variant=primary, danger=false']['&.Mui-focusVisible']
+      styles.combined.md['prio=primary, danger=false']['&.Mui-focusVisible']
         .boxShadow,
     ).toBe('var(--solar-shadow-focus-default)');
   });
@@ -149,7 +149,7 @@ describe('renderMuiComponent on Button: states', () => {
 
   it('says a missing background is transparent, rather than inheriting primary', () => {
     expect(
-      styles.appearances['variant=tertiary, danger=false'].backgroundColor,
+      styles.appearances['prio=tertiary, danger=false'].backgroundColor,
     ).toBe('transparent');
   });
 
@@ -168,7 +168,7 @@ describe('renderMuiComponent on Button: states', () => {
   it('carries a cell that follows size and appearance at once', () => {
     // Owner decision: tertiary hover switches the label to a link style at every size.
     expect(
-      styles.combined.md['variant=tertiary, danger=false']['&:hover'].fontSize,
+      styles.combined.md['prio=tertiary, danger=false']['&:hover'].fontSize,
     ).toBe('var(--solar-type-size-body-md)');
   });
 });
@@ -176,7 +176,7 @@ describe('renderMuiComponent on Button: states', () => {
 describe('renderMuiComponent on Button: types and module', () => {
   it('types the props from the API, with no MUI import', () => {
     expect(ts).toContain(
-      "export type SolarButtonVariant = 'primary' | 'secondary' | 'tertiary';",
+      "export type SolarButtonPrio = 'primary' | 'secondary' | 'tertiary';",
     );
     expect(ts).toContain("export type SolarButtonSize = 'md' | 'sm' | 'lg';");
     expect(ts).toMatch(/danger\?: boolean;/);
@@ -267,7 +267,7 @@ describe('the generated compose lookup', () => {
       'variant.style': 'inverse',
     });
     expect(
-      solarButtonCompose({ variant: 'secondary' }, 'loading').spinner[
+      solarButtonCompose({ prio: 'secondary' }, 'loading').spinner[
         'variant.style'
       ],
     ).toBe('default');
@@ -287,7 +287,7 @@ describe('states that overlap in CSS', () => {
   const restated = restateOverlaps(button);
 
   it('restates hover’s link style as rest for tertiary pressed, per size', () => {
-    const combo = 'variant=tertiary, danger=false';
+    const combo = 'prio=tertiary, danger=false';
     const hover = (z) => button.style.label.combined[z][combo].hover.typography;
     const pressed = (z) => restated.label.combined[z][combo].pressed.typography;
     // Figma's pressed tertiary is not underlined; in CSS it is also hovered.
@@ -388,15 +388,14 @@ describe('a layer with no auto-layout in a variant', () => {
     built.find((b) => b.spec.component === 'Button Group').spec,
   );
   const none = { none: true };
-  group.style.root.appearance['orientation=vertical, fullWidth=false'].default =
-    {
-      direction: none,
-      align: none,
-      gap: none,
-      paddingTop: none,
-    };
+  group.style.root.appearance['orientation=vertical, type=regular'].default = {
+    direction: none,
+    align: none,
+    gap: none,
+    paddingTop: none,
+  };
   const vertical = renderMuiComponent(group, tokens).styles.appearances[
-    'orientation=vertical, fullWidth=false'
+    'orientation=vertical, type=regular'
   ];
 
   it('has no gap or padding, written as inset.none so the base’s are overridden', () => {
@@ -443,14 +442,13 @@ describe('corners of their own', () => {
     const group = structuredClone(
       built.find((b) => b.spec.component === 'Button Group').spec,
     );
-    group.style.root.appearance[
-      'orientation=vertical, fullWidth=false'
-    ].default = {
-      radiusTopLeft: { token: 'radius.container' },
-      radiusBottomLeft: { none: true },
-    };
+    group.style.root.appearance['orientation=vertical, type=regular'].default =
+      {
+        radiusTopLeft: { token: 'radius.container' },
+        radiusBottomLeft: { none: true },
+      };
     const vertical = renderMuiComponent(group, tokens).styles.appearances[
-      'orientation=vertical, fullWidth=false'
+      'orientation=vertical, type=regular'
     ];
     expect(vertical.borderTopLeftRadius).toBe('var(--solar-radius-container)');
     expect(vertical.borderBottomLeftRadius).toBe('var(--solar-radius-none)');

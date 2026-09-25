@@ -1,53 +1,30 @@
 /**
- * Every component's shells, generated: the React component, the Flutter widget and the Storybook
- * file, rendered from the templates in its descriptor (src/components/) on every `solar:codegen`.
+ * Every component's shells: the React component and the Flutter widget, written by hand, one file
+ * each, and the Storybook file, generated.
  *
  * The line between the recipe and the shell is the line between look and behaviour. The recipe --
  * what a component looks like -- is generated from Figma and never written by hand. The shell --
- * props, slots, keyboard, focus, accessibility -- is written by hand, as the descriptor's templates,
- * functions of the IR: so a slot or prop Figma adds reaches the shells, and a fix to a shared helper
- * here (drawn.mjs, field.mjs, target.mjs) reaches every component that uses it, both proven by the
- * rebuild CI runs. The generated shell is never edited; its first line says where its template is.
+ * props, slots, keyboard, focus, accessibility -- is written by hand, in TSX by a React engineer
+ * and in Dart by a Flutter engineer (docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md;
+ * owner decision 2026-09-25, the pipeline review's item 9). What the IR decides still reaches it
+ * with no edit: its props types, its layer tree and its slot names are generated beside the recipe
+ * and imported; a prop or slot Figma adds is a typecheck error in the shell, or a failure of the
+ * component-parity test, which proves every one is reached; and a fix to a runtime helper
+ * (`components/src/internal/`, `solar_flutter/lib/src/`) reaches every shell that imports it.
  *
- * A component whose shell has to be edited as a file (a behaviour no template should hold) opts
- * out with `owned: true` in its descriptor: it keeps no templates, its shells are left alone, and
- * they must exist without the generated header, which is what makes the handover deliberate.
+ * The codegen writes only the stories here, and checks that each component's two shells exist,
+ * without the header a generated file starts with.
  */
 
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DESCRIPTORS, fileOfDescriptor } from '../components/index.mjs';
 import { packagesDir } from '../util/paths.mjs';
-import { byPrefix, withLayerClasses } from '../util/classes.mjs';
-import { pascal } from '../util/naming.mjs';
 
 export const componentsSrc = join(packagesDir, 'components', 'src');
 export const storiesDir = join(packagesDir, 'components', 'stories');
 export const flutterLib = join(packagesDir, 'solar_flutter', 'lib');
 export const flutterComponents = join(flutterLib, 'src', 'components');
-
-/**
- * The React shell templates, by component, from each component's descriptor. A template is a
- * function of the IR, so prop and slot names come from Figma rather than being retyped, but its
- * structure is written for the one MUI control it wraps.
- */
-export const TEMPLATES = Object.fromEntries(
-  DESCRIPTORS.filter((d) => d.templates?.react).map((d) => [
-    d.name,
-    d.templates.react,
-  ]),
-);
-
-/**
- * The Flutter widget templates, by component: the same props as the React shell, from the same IR,
- * wrapping the Flutter control the overlay names, styled by the generated recipe.
- */
-export const FLUTTER_TEMPLATES = Object.fromEntries(
-  DESCRIPTORS.filter((d) => d.templates?.flutter).map((d) => [
-    d.name,
-    d.templates.flutter,
-  ]),
-);
 
 /** `Button` to `Button.tsx`. */
 export const shellFileOf = (component) =>
@@ -95,13 +72,13 @@ export const Variants: StoryObj = variants('${component}');
 };
 
 /**
- * Every generated shell for the specs, as absolute paths and their text, before formatting (the
- * codegen formats them as it does every generated file). An owned component contributes only its
- * story, and is checked instead: its shells must exist, without the header.
+ * Every component's story, as an absolute path and its text, before formatting (the codegen
+ * formats it as it does every generated file), with its two shells checked: each must exist,
+ * without the generated header, since a shell is written by hand.
  *
  * @param {Array<{component: string}>} specs
  * @param {{src?: string, stories?: string, flutter?: string, exists?: (path: string) => boolean,
- *   read?: (path: string) => string, descriptors?: object[]}} [o] where the shells go, how a file
+ *   read?: (path: string) => string, descriptors?: object[]}} [o] where the shells are, how a file
  *   is read, and the descriptors (a test's own)
  * @returns {Array<{path: string, text: string}>}
  */
@@ -117,127 +94,36 @@ export function renderShells(
   } = {},
 ) {
   const byName = Object.fromEntries(descriptors.map((d) => [d.name, d]));
-  // Each layer's class as its own, public or internal, wherever a template names it by the layer;
-  // and a React shell's props as the app's MUI theme sets them.
-  const classes = byPrefix(specs);
-  const own = (shell) =>
-    shell.path.endsWith('.dart')
-      ? shell
-      : {
-          ...shell,
-          text: withLayerClasses(
-            shell.path.endsWith('.stories.tsx')
-              ? shell.text
-              : withThemeProps(shell.text, shell.component),
-            classes,
-          ),
-        };
-  return specs
-    .flatMap((spec) => {
-      const name = spec.component;
-      const d = byName[name];
-      if (!d) throw new Error(`no descriptor for ${name}`);
-      const header = headerOf(name);
-      const story = {
-        path: join(stories, storyFileOf(name)),
-        text: `${header}\n${storyTemplate(name)}`,
-      };
-      const react = join(src, shellFileOf(name));
-      const widget = join(flutter, flutterFileOf(name));
-      // Checked as another component's state (Autocomplete Open, an open Autocomplete): no shells,
-      // but its story.
-      if (d.checkedAs) {
-        if (d.templates || d.owned)
-          throw new Error(
-            `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, so it has no shells, templates or owned files`,
-          );
-        if (!byName[d.checkedAs])
-          throw new Error(
-            `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, which is no component`,
-          );
-        return [story];
-      }
-      if (d.owned) {
-        if (d.templates)
-          throw new Error(
-            `src/components/${fileOfDescriptor(name)}: ${name} is owned, so its shells are files, not templates; delete its templates`,
-          );
-        for (const path of [react, widget]) {
-          if (!exists(path))
-            throw new Error(
-              `${name} is owned, but its shell ${path} does not exist`,
-            );
-          if (isGenerated(read(path)))
-            throw new Error(
-              `${name} is owned, but ${path} still starts with the generated header; remove the header to take it over`,
-            );
-        }
-        return [story];
-      }
-      if (!d.templates?.react || !d.templates?.flutter)
+  return specs.map((spec) => {
+    const name = spec.component;
+    const d = byName[name];
+    if (!d) throw new Error(`no descriptor for ${name}`);
+    const story = {
+      path: join(stories, storyFileOf(name)),
+      text: `${headerOf(name)}\n${storyTemplate(name)}`,
+    };
+    // Checked as another component's state (Autocomplete Open, an open Autocomplete): no shells,
+    // but its story.
+    if (d.checkedAs) {
+      if (!byName[d.checkedAs])
         throw new Error(
-          `src/components/${fileOfDescriptor(name)}: ${name} needs both shell templates, react and flutter, or owned: true`,
+          `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, which is no component`,
         );
-      return [
-        {
-          path: react,
-          component: name,
-          text: `${header}\n${d.templates.react(spec)}`,
-        },
-        { path: widget, text: `${header}\n${d.templates.flutter(spec)}` },
-        story,
-      ];
-    })
-    .map(own);
-}
-
-/**
- * A React shell reading its props through the app's MUI theme (`internal/theme.ts`), as MUI's own
- * components do: `components.Solar<Name>.defaultProps` and `styleOverrides.root`. Every shell
- * destructures its props in its render function (`function Button({ size, … }, ref)`, which the
- * parity test parses), and here takes them whole and destructures what the theme makes of them.
- */
-export function withThemeProps(text, component) {
-  const name = pascal(component);
-  const re = new RegExp(
-    `function ${name}(<[^>]*>)?\\(\\s*\\{([\\s\\S]*?)\\}(\\s*:\\s*[\\w<>]+)?\\s*,\\s*ref(\\s*:\\s*[\\w<>]+)?\\s*,?\\s*\\)\\s*\\{`,
-  );
-  const m = re.exec(text);
-  if (!m)
-    throw new Error(
-      `${component}: its React shell destructures no props in function ${name}(…, ref)`,
-    );
-  const [whole, generics = '', body, type = '', refType = ''] = m;
-  const typed = type ? `: ${type.replace(/^\s*:\s*/, '')}` : '';
-  const refTyped = refType ? `: ${refType.replace(/^\s*:\s*/, '')}` : '';
-  // A prop the shell goes on to reassign (a menu row's size, the menu's) is read into a `let` of
-  // its own name; every other stays a const.
-  const after = text.slice(m.index + whole.length);
-  const reassigned = new Set();
-  const entries = body.split(',').map((entry) => {
-    const n = /^\s*(\w+)\s*(=[^]*)?$/.exec(entry);
-    // A statement (`size = …;`), not a JSX attribute (`sx={…}`).
-    if (
-      !n ||
-      !new RegExp(
-        `(^|\\n)\\s*${n[1]}\\s*(\\?\\?)?=(?!=)[^\\n]*;[ \\t]*(\\n|$)`,
-      ).test(after)
-    )
-      return entry;
-    reassigned.add(n[1]);
-    return entry.replace(n[1], `${n[1]}: ${n[1]}Given`);
+      return story;
+    }
+    for (const path of [
+      join(src, shellFileOf(name)),
+      join(flutter, flutterFileOf(name)),
+    ]) {
+      if (!exists(path))
+        throw new Error(`${name}: its shell ${path} does not exist`);
+      if (isGenerated(read(path)))
+        throw new Error(
+          `${name}: ${path} starts with the generated header, but a shell is written by hand; remove the header`,
+        );
+    }
+    return story;
   });
-  const lets = [...reassigned]
-    .map((n) => `\n    let ${n} = ${n}Given;`)
-    .join('');
-  const replaced = `function ${name}${generics}(inProps${typed}, ref${refTyped}) {
-    // As the app's MUI theme sets them (components.Solar${name}), under the caller's own.
-    const {${entries.join(',')}} = useSolarProps(inProps, 'Solar${name}');${lets}`;
-  const out = text.replace(whole, replaced);
-  // Imported before the shell's first import.
-  const imp = "import { useSolarProps } from './internal/theme.js';\n";
-  const at = out.indexOf('\nimport ');
-  return at < 0 ? imp + out : out.slice(0, at + 1) + imp + out.slice(at + 1);
 }
 
 /**

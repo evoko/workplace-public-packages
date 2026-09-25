@@ -59,10 +59,7 @@ void main() {
 
     test('a missing background is transparent, not the Material default', () {
       expect(
-        background(
-          const SolarButtonProps(variant: SolarButtonVariant.tertiary),
-          {},
-        ),
+        background(const SolarButtonProps(prio: SolarButtonPrio.tertiary), {}),
         Colors.transparent,
       );
     });
@@ -142,7 +139,7 @@ void main() {
         SolarButtonRecipe.textStyle(light, 'label.typography', p, s);
 
     test('tertiary hover underlines it, and rest does not', () {
-      const tertiary = SolarButtonProps(variant: SolarButtonVariant.tertiary);
+      const tertiary = SolarButtonProps(prio: SolarButtonPrio.tertiary);
       expect(
         label(tertiary, {WidgetState.hovered})?.decoration,
         TextDecoration.underline,
@@ -159,7 +156,7 @@ void main() {
       () {
         // Figma's pressed tertiary is not underlined. A mouse press is hovered and pressed at once,
         // so hover's underline must not show through the state that has no typography of its own.
-        const tertiary = SolarButtonProps(variant: SolarButtonVariant.tertiary);
+        const tertiary = SolarButtonProps(prio: SolarButtonPrio.tertiary);
         expect(
           label(tertiary, {WidgetState.hovered, WidgetState.pressed}),
           SolarTypography.desktop.labelMd,

@@ -486,3 +486,18 @@ export function solarImageCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarImageCardTree: Record<string, string[]> = {
+  root: ['image', 'text', 'iconCircle', 'label'],
+  image: ['checkbox'],
+  text: ['title', 'icon', 'subtitle'],
+  iconCircle: ['iconPlus'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarImageCard-<slot>`, public. */
+export const solarImageCardSlots: Record<string, string> = {
+  title: 'title',
+  subtitle: 'subtitle',
+  label: 'label',
+};

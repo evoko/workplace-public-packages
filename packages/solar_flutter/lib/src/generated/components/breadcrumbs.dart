@@ -92,6 +92,21 @@ abstract final class SolarBreadcrumbsRecipe {
     'iconChevronRight4.color|base': 't:color.icon.secondary',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': [
+      'item1',
+      'iconChevronRight',
+      'item2',
+      'iconChevronRight2',
+      'current',
+      'item3',
+      'iconChevronRight3',
+      'item4',
+      'iconChevronRight4',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

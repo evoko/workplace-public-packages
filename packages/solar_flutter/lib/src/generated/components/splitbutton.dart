@@ -10,7 +10,7 @@ import 'package:flutter/material.dart'
 
 import '../tokens.dart';
 
-enum SolarSplitButtonVariant { primary, secondary }
+enum SolarSplitButtonPrio { primary, secondary }
 
 enum SolarSplitButtonSize { sm, md }
 
@@ -19,13 +19,13 @@ enum SolarSplitButtonSize { sm, md }
 @immutable
 class SolarSplitButtonProps {
   const SolarSplitButtonProps({
-    this.variant = SolarSplitButtonVariant.primary,
+    this.prio = SolarSplitButtonPrio.primary,
     this.size = SolarSplitButtonSize.md,
     this.disabled = false,
     this.loading = false,
   });
 
-  final SolarSplitButtonVariant variant;
+  final SolarSplitButtonPrio prio;
   final SolarSplitButtonSize size;
   final bool disabled;
   final bool loading;
@@ -51,35 +51,35 @@ abstract final class SolarSplitButtonRecipe {
     'root.width|base': 'k:HUG',
     'root.height|base': 'px:40',
     'root.height|size|sm': 'px:32',
-    'root.background|appearance|variant=secondary|default':
+    'root.background|appearance|prio=secondary|default':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|variant=secondary|hover':
+    'root.background|appearance|prio=secondary|hover':
         't:color.action.secondary.bg.hover',
-    'root.background|appearance|variant=secondary|pressed':
+    'root.background|appearance|prio=secondary|pressed':
         't:color.action.secondary.bg.active',
-    'root.shadow|appearance|variant=secondary|pressed': 'none',
-    'root.background|appearance|variant=secondary|disabled':
+    'root.shadow|appearance|prio=secondary|pressed': 'none',
+    'root.background|appearance|prio=secondary|disabled':
         't:color.action.secondary.bg.disabled',
-    'root.borderColor|appearance|variant=secondary|disabled':
+    'root.borderColor|appearance|prio=secondary|disabled':
         't:color.border.disabled',
-    'root.shadow|appearance|variant=secondary|disabled': 'none',
-    'root.background|appearance|variant=secondary|focus':
+    'root.shadow|appearance|prio=secondary|disabled': 'none',
+    'root.background|appearance|prio=secondary|focus':
         't:color.action.secondary.bg.default',
-    'root.shadow|appearance|variant=secondary|focus': 't:shadow.focus.default',
-    'root.background|appearance|variant=secondary|loading':
+    'root.shadow|appearance|prio=secondary|focus': 't:shadow.focus.default',
+    'root.background|appearance|prio=secondary|loading':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|variant=primary|hover':
+    'root.background|appearance|prio=primary|hover':
         't:color.action.primary.bg.hover',
-    'root.background|appearance|variant=primary|pressed':
+    'root.background|appearance|prio=primary|pressed':
         't:color.action.primary.bg.active',
-    'root.shadow|appearance|variant=primary|pressed': 'none',
-    'root.background|appearance|variant=primary|disabled':
+    'root.shadow|appearance|prio=primary|pressed': 'none',
+    'root.background|appearance|prio=primary|disabled':
         't:color.action.primary.bg.disabled',
-    'root.shadow|appearance|variant=primary|disabled': 'none',
-    'root.shadow|appearance|variant=primary|focus': 't:shadow.focus.default',
-    'root.background|combined|sm|variant=primary|focus':
+    'root.shadow|appearance|prio=primary|disabled': 'none',
+    'root.shadow|appearance|prio=primary|focus': 't:shadow.focus.default',
+    'root.background|combined|sm|prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.background|combined|md|variant=primary|focus':
+    'root.background|combined|md|prio=primary|focus':
         't:color.action.primary.bg.default',
     'action.present|base': 'b:true',
     'action.background|base': 'none',
@@ -98,25 +98,25 @@ abstract final class SolarSplitButtonRecipe {
     'action.height|base': 'k:FILL',
     'action.paddingRight|size|sm': 't:inset.sm',
     'action.paddingLeft|size|sm': 't:inset.sm',
-    'action.present|appearance|variant=primary|loading': 'b:false',
-    'action.present|appearance|variant=secondary|loading': 'b:false',
+    'action.present|appearance|prio=primary|loading': 'b:false',
+    'action.present|appearance|prio=secondary|loading': 'b:false',
     'label.present|base': 'b:true',
     'label.color|base': 't:color.action.primary.text.default',
     'label.typography|base': 't:typography.label.md',
     'label.typography|size|sm': 't:typography.label.sm',
-    'label.color|appearance|variant=secondary|default':
+    'label.color|appearance|prio=secondary|default':
         't:color.action.secondary.text.default',
-    'label.color|appearance|variant=secondary|hover':
+    'label.color|appearance|prio=secondary|hover':
         't:color.action.secondary.text.default',
-    'label.color|appearance|variant=secondary|pressed':
+    'label.color|appearance|prio=secondary|pressed':
         't:color.action.secondary.text.default',
-    'label.color|appearance|variant=secondary|disabled':
+    'label.color|appearance|prio=secondary|disabled':
         't:color.action.secondary.text.disabled',
-    'label.color|appearance|variant=secondary|focus':
+    'label.color|appearance|prio=secondary|focus':
         't:color.action.secondary.text.default',
-    'label.color|appearance|variant=secondary|loading':
+    'label.color|appearance|prio=secondary|loading':
         't:color.action.secondary.text.default',
-    'label.color|appearance|variant=primary|disabled':
+    'label.color|appearance|prio=primary|disabled':
         't:color.action.primary.text.disabled',
     'divider.present|base': 'b:true',
     'divider.background|base': 't:color.action.primary.text.default',
@@ -127,19 +127,19 @@ abstract final class SolarSplitButtonRecipe {
     'divider.borderWidth|base': 'none',
     'divider.width|base': 't:border.default',
     'divider.height|base': 'k:FILL',
-    'divider.present|appearance|variant=primary|loading': 'b:false',
-    'divider.present|appearance|variant=secondary|loading': 'b:false',
-    'divider.background|appearance|variant=secondary|loading':
+    'divider.present|appearance|prio=primary|loading': 'b:false',
+    'divider.present|appearance|prio=secondary|loading': 'b:false',
+    'divider.background|appearance|prio=secondary|loading':
         't:color.border.medium',
-    'divider.background|appearance|variant=secondary|default':
+    'divider.background|appearance|prio=secondary|default':
         't:color.border.medium',
-    'divider.background|appearance|variant=secondary|hover':
+    'divider.background|appearance|prio=secondary|hover':
         't:color.border.medium',
-    'divider.background|appearance|variant=secondary|pressed':
+    'divider.background|appearance|prio=secondary|pressed':
         't:color.border.medium',
-    'divider.background|appearance|variant=secondary|disabled':
+    'divider.background|appearance|prio=secondary|disabled':
         't:color.border.medium',
-    'divider.background|appearance|variant=secondary|focus':
+    'divider.background|appearance|prio=secondary|focus':
         't:color.border.medium',
     'trigger.present|base': 'b:true',
     'trigger.background|base': 'none',
@@ -158,8 +158,8 @@ abstract final class SolarSplitButtonRecipe {
     'trigger.height|base': 'k:FILL',
     'trigger.width|size|sm': 'px:32',
     'trigger.height|size|sm': 'px:32',
-    'trigger.present|appearance|variant=primary|loading': 'b:false',
-    'trigger.present|appearance|variant=secondary|loading': 'b:false',
+    'trigger.present|appearance|prio=primary|loading': 'b:false',
+    'trigger.present|appearance|prio=secondary|loading': 'b:false',
     'iconChevronDown.present|base': 'b:true',
     'iconChevronDown.component|base': 'k:Icon/ChevronDown',
     'iconChevronDown.variant.solid|base': 'k:false',
@@ -168,27 +168,27 @@ abstract final class SolarSplitButtonRecipe {
     'iconChevronDown.color|base': 't:color.action.primary.icon.default',
     'iconChevronDown.width|size|sm': 't:icon.sm',
     'iconChevronDown.height|size|sm': 't:icon.sm',
-    'iconChevronDown.color|appearance|variant=secondary|default':
+    'iconChevronDown.color|appearance|prio=secondary|default':
         't:color.action.secondary.icon.default',
-    'iconChevronDown.color|appearance|variant=secondary|hover':
+    'iconChevronDown.color|appearance|prio=secondary|hover':
         't:color.action.secondary.icon.hover',
-    'iconChevronDown.color|appearance|variant=secondary|pressed':
+    'iconChevronDown.color|appearance|prio=secondary|pressed':
         't:color.action.secondary.icon.active',
-    'iconChevronDown.color|appearance|variant=secondary|disabled':
+    'iconChevronDown.color|appearance|prio=secondary|disabled':
         't:color.action.secondary.icon.disabled',
-    'iconChevronDown.color|appearance|variant=secondary|focus':
+    'iconChevronDown.color|appearance|prio=secondary|focus':
         't:color.action.secondary.icon.default',
-    'iconChevronDown.color|appearance|variant=secondary|loading':
+    'iconChevronDown.color|appearance|prio=secondary|loading':
         't:color.action.secondary.icon.default',
-    'iconChevronDown.color|appearance|variant=primary|hover':
+    'iconChevronDown.color|appearance|prio=primary|hover':
         't:color.action.primary.icon.hover',
-    'iconChevronDown.color|appearance|variant=primary|pressed':
+    'iconChevronDown.color|appearance|prio=primary|pressed':
         't:color.action.primary.icon.active',
-    'iconChevronDown.color|appearance|variant=primary|disabled':
+    'iconChevronDown.color|appearance|prio=primary|disabled':
         't:color.action.primary.icon.disabled',
-    'iconChevronDown.color|combined|sm|variant=primary|focus':
+    'iconChevronDown.color|combined|sm|prio=primary|focus':
         't:color.action.primary.icon.default',
-    'iconChevronDown.color|combined|md|variant=primary|focus':
+    'iconChevronDown.color|combined|md|prio=primary|focus':
         't:color.action.primary.icon.default',
     'spinner.present|base': 'b:false',
     'spinner.component|base': 'k:Spinner',
@@ -196,10 +196,17 @@ abstract final class SolarSplitButtonRecipe {
     'spinner.width|base': 'k:HUG',
     'spinner.height|base': 'k:HUG',
     'spinner.variant.size|size|sm': 'k:sm',
-    'spinner.present|appearance|variant=primary|loading': 'b:true',
-    'spinner.variant.style|appearance|variant=primary|loading': 'k:inverse',
-    'spinner.present|appearance|variant=secondary|loading': 'b:true',
-    'spinner.variant.style|appearance|variant=secondary|loading': 'k:default',
+    'spinner.present|appearance|prio=primary|loading': 'b:true',
+    'spinner.variant.style|appearance|prio=primary|loading': 'k:inverse',
+    'spinner.present|appearance|prio=secondary|loading': 'b:true',
+    'spinner.variant.style|appearance|prio=secondary|loading': 'k:default',
+  };
+
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['action', 'divider', 'trigger', 'spinner'],
+    'action': ['label'],
+    'trigger': ['iconChevronDown'],
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
@@ -233,7 +240,7 @@ abstract final class SolarSplitButtonRecipe {
     SolarSplitButtonProps p,
     Set<WidgetState> s,
   ) {
-    final combo = 'variant=${p.variant.name}';
+    final combo = 'prio=${p.prio.name}';
     final size = p.size.name;
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;

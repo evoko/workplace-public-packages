@@ -285,3 +285,11 @@ export function solarSliderRangeCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSliderRangeTree: Record<string, string[]> = {
+  root: ['track', 'fill', 'handle', 'handle2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSliderRange-<slot>`, public. */
+export const solarSliderRangeSlots: Record<string, string> = {};

@@ -31,7 +31,7 @@ enum SolarIconButtonSize { lg, md, sm }
 
 enum SolarIconButtonShape { square, round }
 
-enum SolarIconButtonVariant { primary, secondary, tertiary }
+enum SolarIconButtonPrio { primary, secondary, tertiary }
 
 /// The props a SOLAR Icon Button takes. Hover, pressed and focus are not here: they are
 /// platform states, tracked by Flutter as [WidgetState]s.
@@ -40,14 +40,14 @@ class SolarIconButtonProps {
   const SolarIconButtonProps({
     this.size = SolarIconButtonSize.sm,
     this.shape = SolarIconButtonShape.square,
-    this.variant = SolarIconButtonVariant.primary,
+    this.prio = SolarIconButtonPrio.primary,
     this.disabled = false,
     this.loading = false,
   });
 
   final SolarIconButtonSize size;
   final SolarIconButtonShape shape;
-  final SolarIconButtonVariant variant;
+  final SolarIconButtonPrio prio;
   final bool disabled;
   final bool loading;
 }
@@ -75,382 +75,336 @@ abstract final class SolarIconButtonRecipe {
     'root.height|size|md': 'px:40',
     'root.width|size|lg': 'px:48',
     'root.height|size|lg': 'px:48',
-    'root.background|appearance|shape=square, variant=primary|hover':
+    'root.background|appearance|shape=square, prio=primary|hover':
         't:color.action.primary.bg.hover',
-    'root.borderColor|appearance|shape=square, variant=primary|hover': 'none',
-    'root.background|appearance|shape=square, variant=primary|pressed':
+    'root.borderColor|appearance|shape=square, prio=primary|hover': 'none',
+    'root.background|appearance|shape=square, prio=primary|pressed':
         't:color.action.primary.bg.active',
-    'root.borderColor|appearance|shape=square, variant=primary|pressed': 'none',
-    'root.background|appearance|shape=square, variant=primary|disabled':
+    'root.borderColor|appearance|shape=square, prio=primary|pressed': 'none',
+    'root.background|appearance|shape=square, prio=primary|disabled':
         't:color.action.primary.bg.disabled',
-    'root.borderColor|appearance|shape=square, variant=primary|disabled':
-        'none',
-    'root.background|appearance|shape=round, variant=primary|hover':
+    'root.borderColor|appearance|shape=square, prio=primary|disabled': 'none',
+    'root.background|appearance|shape=round, prio=primary|hover':
         't:color.action.primary.bg.hover',
-    'root.borderColor|appearance|shape=round, variant=primary|hover': 'none',
-    'root.background|appearance|shape=round, variant=primary|pressed':
+    'root.borderColor|appearance|shape=round, prio=primary|hover': 'none',
+    'root.background|appearance|shape=round, prio=primary|pressed':
         't:color.action.primary.bg.active',
-    'root.borderColor|appearance|shape=round, variant=primary|pressed': 'none',
-    'root.background|appearance|shape=round, variant=primary|disabled':
+    'root.borderColor|appearance|shape=round, prio=primary|pressed': 'none',
+    'root.background|appearance|shape=round, prio=primary|disabled':
         't:color.action.primary.bg.disabled',
-    'root.borderColor|appearance|shape=round, variant=primary|disabled': 'none',
-    'root.background|appearance|shape=square, variant=secondary|default':
+    'root.borderColor|appearance|shape=round, prio=primary|disabled': 'none',
+    'root.background|appearance|shape=square, prio=secondary|default':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|shape=square, variant=secondary|hover':
+    'root.background|appearance|shape=square, prio=secondary|hover':
         't:color.action.secondary.bg.hover',
-    'root.background|appearance|shape=square, variant=secondary|pressed':
+    'root.background|appearance|shape=square, prio=secondary|pressed':
         't:color.action.secondary.bg.active',
-    'root.background|appearance|shape=square, variant=secondary|disabled':
-        'none',
-    'root.borderColor|appearance|shape=square, variant=secondary|disabled':
+    'root.background|appearance|shape=square, prio=secondary|disabled': 'none',
+    'root.borderColor|appearance|shape=square, prio=secondary|disabled':
         't:color.border.disabled',
-    'root.background|appearance|shape=square, variant=secondary|focus':
+    'root.background|appearance|shape=square, prio=secondary|focus':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|shape=square, variant=secondary|loading':
+    'root.background|appearance|shape=square, prio=secondary|loading':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|shape=round, variant=secondary|default':
+    'root.background|appearance|shape=round, prio=secondary|default':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|shape=round, variant=secondary|hover':
+    'root.background|appearance|shape=round, prio=secondary|hover':
         't:color.action.secondary.bg.hover',
-    'root.background|appearance|shape=round, variant=secondary|pressed':
+    'root.background|appearance|shape=round, prio=secondary|pressed':
         't:color.action.secondary.bg.active',
-    'root.background|appearance|shape=round, variant=secondary|disabled':
-        'none',
-    'root.borderColor|appearance|shape=round, variant=secondary|disabled':
+    'root.background|appearance|shape=round, prio=secondary|disabled': 'none',
+    'root.borderColor|appearance|shape=round, prio=secondary|disabled':
         't:color.border.disabled',
-    'root.background|appearance|shape=round, variant=secondary|focus':
+    'root.background|appearance|shape=round, prio=secondary|focus':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|shape=round, variant=secondary|loading':
+    'root.background|appearance|shape=round, prio=secondary|loading':
         't:color.action.secondary.bg.default',
-    'root.background|appearance|shape=square, variant=tertiary|default':
+    'root.background|appearance|shape=square, prio=tertiary|default':
         't:color.action.tertiary.bg.default',
-    'root.borderColor|appearance|shape=square, variant=tertiary|default':
-        'none',
-    'root.background|appearance|shape=square, variant=tertiary|hover':
+    'root.borderColor|appearance|shape=square, prio=tertiary|default': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|hover':
         't:color.action.tertiary.bg.hover',
-    'root.borderColor|appearance|shape=square, variant=tertiary|hover': 'none',
-    'root.background|appearance|shape=square, variant=tertiary|pressed':
+    'root.borderColor|appearance|shape=square, prio=tertiary|hover': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|pressed':
         't:color.action.tertiary.bg.active',
-    'root.borderColor|appearance|shape=square, variant=tertiary|pressed':
-        'none',
-    'root.background|appearance|shape=square, variant=tertiary|disabled':
-        'none',
-    'root.borderColor|appearance|shape=square, variant=tertiary|disabled':
+    'root.borderColor|appearance|shape=square, prio=tertiary|pressed': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|disabled': 'none',
+    'root.borderColor|appearance|shape=square, prio=tertiary|disabled':
         't:color.border.disabled',
-    'root.background|appearance|shape=square, variant=tertiary|focus':
+    'root.background|appearance|shape=square, prio=tertiary|focus':
         't:color.action.tertiary.bg.default',
-    'root.borderColor|appearance|shape=square, variant=tertiary|focus': 'none',
-    'root.background|appearance|shape=square, variant=tertiary|loading':
+    'root.borderColor|appearance|shape=square, prio=tertiary|focus': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|loading':
         't:color.action.tertiary.bg.default',
-    'root.borderColor|appearance|shape=square, variant=tertiary|loading':
-        'none',
-    'root.background|appearance|shape=round, variant=tertiary|default':
+    'root.borderColor|appearance|shape=square, prio=tertiary|loading': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|default':
         't:color.action.tertiary.bg.default',
-    'root.borderColor|appearance|shape=round, variant=tertiary|default': 'none',
-    'root.background|appearance|shape=round, variant=tertiary|hover':
+    'root.borderColor|appearance|shape=round, prio=tertiary|default': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|hover':
         't:color.action.tertiary.bg.hover',
-    'root.borderColor|appearance|shape=round, variant=tertiary|hover': 'none',
-    'root.background|appearance|shape=round, variant=tertiary|pressed':
+    'root.borderColor|appearance|shape=round, prio=tertiary|hover': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|pressed':
         't:color.action.tertiary.bg.active',
-    'root.borderColor|appearance|shape=round, variant=tertiary|pressed': 'none',
-    'root.background|appearance|shape=round, variant=tertiary|disabled': 'none',
-    'root.borderColor|appearance|shape=round, variant=tertiary|disabled':
+    'root.borderColor|appearance|shape=round, prio=tertiary|pressed': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|disabled': 'none',
+    'root.borderColor|appearance|shape=round, prio=tertiary|disabled':
         't:color.border.disabled',
-    'root.background|appearance|shape=round, variant=tertiary|focus':
+    'root.background|appearance|shape=round, prio=tertiary|focus':
         't:color.action.tertiary.bg.default',
-    'root.borderColor|appearance|shape=round, variant=tertiary|focus': 'none',
-    'root.background|appearance|shape=round, variant=tertiary|loading':
+    'root.borderColor|appearance|shape=round, prio=tertiary|focus': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|loading':
         't:color.action.tertiary.bg.default',
-    'root.borderColor|appearance|shape=round, variant=tertiary|loading': 'none',
-    'root.shadow|combined|sm|shape=square, variant=primary|hover': 'none',
-    'root.borderWidth|combined|sm|shape=square, variant=primary|hover': 'none',
-    'root.shadow|combined|sm|shape=square, variant=primary|pressed':
+    'root.borderColor|appearance|shape=round, prio=tertiary|loading': 'none',
+    'root.shadow|combined|sm|shape=square, prio=primary|hover': 'none',
+    'root.borderWidth|combined|sm|shape=square, prio=primary|hover': 'none',
+    'root.shadow|combined|sm|shape=square, prio=primary|pressed':
         't:shadow.focus.default',
-    'root.borderWidth|combined|sm|shape=square, variant=primary|pressed':
-        'none',
-    'root.shadow|combined|sm|shape=square, variant=primary|disabled': 'none',
-    'root.borderWidth|combined|sm|shape=square, variant=primary|disabled':
-        'none',
-    'root.shadow|combined|sm|shape=square, variant=primary|focus':
+    'root.borderWidth|combined|sm|shape=square, prio=primary|pressed': 'none',
+    'root.shadow|combined|sm|shape=square, prio=primary|disabled': 'none',
+    'root.borderWidth|combined|sm|shape=square, prio=primary|disabled': 'none',
+    'root.shadow|combined|sm|shape=square, prio=primary|focus':
         't:shadow.focus.default',
-    'root.background|combined|sm|shape=square, variant=primary|focus':
+    'root.background|combined|sm|shape=square, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|sm|shape=square, variant=primary|focus':
+    'root.borderColor|combined|sm|shape=square, prio=primary|focus':
         't:color.border.medium',
-    'root.borderWidth|combined|sm|shape=square, variant=primary|focus':
+    'root.borderWidth|combined|sm|shape=square, prio=primary|focus':
         't:border.default',
-    'root.shadow|combined|sm|shape=round, variant=primary|hover': 'none',
-    'root.borderWidth|combined|sm|shape=round, variant=primary|hover': 'none',
-    'root.shadow|combined|sm|shape=round, variant=primary|pressed':
+    'root.shadow|combined|sm|shape=round, prio=primary|hover': 'none',
+    'root.borderWidth|combined|sm|shape=round, prio=primary|hover': 'none',
+    'root.shadow|combined|sm|shape=round, prio=primary|pressed':
         't:shadow.focus.default',
-    'root.borderWidth|combined|sm|shape=round, variant=primary|pressed': 'none',
-    'root.shadow|combined|sm|shape=round, variant=primary|disabled': 'none',
-    'root.borderWidth|combined|sm|shape=round, variant=primary|disabled':
-        'none',
-    'root.shadow|combined|sm|shape=round, variant=primary|focus':
+    'root.borderWidth|combined|sm|shape=round, prio=primary|pressed': 'none',
+    'root.shadow|combined|sm|shape=round, prio=primary|disabled': 'none',
+    'root.borderWidth|combined|sm|shape=round, prio=primary|disabled': 'none',
+    'root.shadow|combined|sm|shape=round, prio=primary|focus':
         't:shadow.focus.default',
-    'root.background|combined|sm|shape=round, variant=primary|focus':
+    'root.background|combined|sm|shape=round, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|sm|shape=round, variant=primary|focus':
+    'root.borderColor|combined|sm|shape=round, prio=primary|focus':
         't:color.border.medium',
-    'root.borderWidth|combined|sm|shape=round, variant=primary|focus':
+    'root.borderWidth|combined|sm|shape=round, prio=primary|focus':
         't:border.default',
-    'root.radius|combined|sm|shape=round, variant=primary|default':
+    'root.radius|combined|sm|shape=round, prio=primary|default':
         't:radius.pill',
-    'root.shadow|combined|sm|shape=square, variant=secondary|hover': 'none',
-    'root.shadow|combined|sm|shape=square, variant=secondary|pressed':
+    'root.shadow|combined|sm|shape=square, prio=secondary|hover': 'none',
+    'root.shadow|combined|sm|shape=square, prio=secondary|pressed':
         't:shadow.focus.default',
-    'root.shadow|combined|sm|shape=square, variant=secondary|disabled': 'none',
-    'root.shadow|combined|sm|shape=square, variant=secondary|focus':
+    'root.shadow|combined|sm|shape=square, prio=secondary|disabled': 'none',
+    'root.shadow|combined|sm|shape=square, prio=secondary|focus':
         't:shadow.focus.default',
-    'root.shadow|combined|sm|shape=round, variant=secondary|hover': 'none',
-    'root.shadow|combined|sm|shape=round, variant=secondary|pressed':
+    'root.shadow|combined|sm|shape=round, prio=secondary|hover': 'none',
+    'root.shadow|combined|sm|shape=round, prio=secondary|pressed':
         't:shadow.focus.default',
-    'root.shadow|combined|sm|shape=round, variant=secondary|disabled': 'none',
-    'root.shadow|combined|sm|shape=round, variant=secondary|focus':
+    'root.shadow|combined|sm|shape=round, prio=secondary|disabled': 'none',
+    'root.shadow|combined|sm|shape=round, prio=secondary|focus':
         't:shadow.focus.default',
-    'root.radius|combined|sm|shape=round, variant=secondary|default':
+    'root.radius|combined|sm|shape=round, prio=secondary|default':
         't:radius.pill',
-    'root.shadow|combined|sm|shape=square, variant=tertiary|default': 'none',
-    'root.borderWidth|combined|sm|shape=square, variant=tertiary|default':
-        'none',
-    'root.shadow|combined|sm|shape=square, variant=tertiary|hover': 'none',
-    'root.borderWidth|combined|sm|shape=square, variant=tertiary|hover': 'none',
-    'root.shadow|combined|sm|shape=square, variant=tertiary|pressed': 'none',
-    'root.borderWidth|combined|sm|shape=square, variant=tertiary|pressed':
-        'none',
-    'root.shadow|combined|sm|shape=square, variant=tertiary|disabled': 'none',
-    'root.borderWidth|combined|sm|shape=square, variant=tertiary|disabled':
+    'root.shadow|combined|sm|shape=square, prio=tertiary|default': 'none',
+    'root.borderWidth|combined|sm|shape=square, prio=tertiary|default': 'none',
+    'root.shadow|combined|sm|shape=square, prio=tertiary|hover': 'none',
+    'root.borderWidth|combined|sm|shape=square, prio=tertiary|hover': 'none',
+    'root.shadow|combined|sm|shape=square, prio=tertiary|pressed': 'none',
+    'root.borderWidth|combined|sm|shape=square, prio=tertiary|pressed': 'none',
+    'root.shadow|combined|sm|shape=square, prio=tertiary|disabled': 'none',
+    'root.borderWidth|combined|sm|shape=square, prio=tertiary|disabled':
         't:border.default',
-    'root.shadow|combined|sm|shape=square, variant=tertiary|focus':
+    'root.shadow|combined|sm|shape=square, prio=tertiary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|sm|shape=square, variant=tertiary|focus': 'none',
-    'root.shadow|combined|sm|shape=square, variant=tertiary|loading': 'none',
-    'root.borderWidth|combined|sm|shape=square, variant=tertiary|loading':
-        'none',
-    'root.shadow|combined|sm|shape=round, variant=tertiary|default': 'none',
-    'root.radius|combined|sm|shape=round, variant=tertiary|default':
+    'root.borderWidth|combined|sm|shape=square, prio=tertiary|focus': 'none',
+    'root.shadow|combined|sm|shape=square, prio=tertiary|loading': 'none',
+    'root.borderWidth|combined|sm|shape=square, prio=tertiary|loading': 'none',
+    'root.shadow|combined|sm|shape=round, prio=tertiary|default': 'none',
+    'root.radius|combined|sm|shape=round, prio=tertiary|default':
         't:radius.pill',
-    'root.borderWidth|combined|sm|shape=round, variant=tertiary|default':
-        'none',
-    'root.shadow|combined|sm|shape=round, variant=tertiary|hover': 'none',
-    'root.borderWidth|combined|sm|shape=round, variant=tertiary|hover': 'none',
-    'root.shadow|combined|sm|shape=round, variant=tertiary|pressed': 'none',
-    'root.borderWidth|combined|sm|shape=round, variant=tertiary|pressed':
-        'none',
-    'root.shadow|combined|sm|shape=round, variant=tertiary|disabled': 'none',
-    'root.borderWidth|combined|sm|shape=round, variant=tertiary|disabled':
+    'root.borderWidth|combined|sm|shape=round, prio=tertiary|default': 'none',
+    'root.shadow|combined|sm|shape=round, prio=tertiary|hover': 'none',
+    'root.borderWidth|combined|sm|shape=round, prio=tertiary|hover': 'none',
+    'root.shadow|combined|sm|shape=round, prio=tertiary|pressed': 'none',
+    'root.borderWidth|combined|sm|shape=round, prio=tertiary|pressed': 'none',
+    'root.shadow|combined|sm|shape=round, prio=tertiary|disabled': 'none',
+    'root.borderWidth|combined|sm|shape=round, prio=tertiary|disabled':
         't:border.default',
-    'root.shadow|combined|sm|shape=round, variant=tertiary|focus':
+    'root.shadow|combined|sm|shape=round, prio=tertiary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|sm|shape=round, variant=tertiary|focus': 'none',
-    'root.shadow|combined|sm|shape=round, variant=tertiary|loading': 'none',
-    'root.borderWidth|combined|sm|shape=round, variant=tertiary|loading':
-        'none',
-    'root.shadow|combined|md|shape=square, variant=primary|hover': 'none',
-    'root.borderWidth|combined|md|shape=square, variant=primary|hover': 'none',
-    'root.shadow|combined|md|shape=square, variant=primary|pressed':
+    'root.borderWidth|combined|sm|shape=round, prio=tertiary|focus': 'none',
+    'root.shadow|combined|sm|shape=round, prio=tertiary|loading': 'none',
+    'root.borderWidth|combined|sm|shape=round, prio=tertiary|loading': 'none',
+    'root.shadow|combined|md|shape=square, prio=primary|hover': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=primary|hover': 'none',
+    'root.shadow|combined|md|shape=square, prio=primary|pressed':
         't:shadow.focus.default',
-    'root.borderWidth|combined|md|shape=square, variant=primary|pressed':
-        'none',
-    'root.shadow|combined|md|shape=square, variant=primary|disabled': 'none',
-    'root.borderWidth|combined|md|shape=square, variant=primary|disabled':
-        'none',
-    'root.shadow|combined|md|shape=square, variant=primary|focus':
+    'root.borderWidth|combined|md|shape=square, prio=primary|pressed': 'none',
+    'root.shadow|combined|md|shape=square, prio=primary|disabled': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=primary|disabled': 'none',
+    'root.shadow|combined|md|shape=square, prio=primary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|md|shape=square, variant=primary|focus': 'none',
-    'root.background|combined|md|shape=square, variant=primary|focus':
+    'root.borderWidth|combined|md|shape=square, prio=primary|focus': 'none',
+    'root.background|combined|md|shape=square, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|md|shape=square, variant=primary|focus':
+    'root.borderColor|combined|md|shape=square, prio=primary|focus':
         't:color.border.medium',
-    'root.borderWidth|combined|md|shape=square, variant=primary|default':
-        'none',
-    'root.borderWidth|combined|md|shape=square, variant=primary|loading':
-        'none',
-    'root.shadow|combined|md|shape=round, variant=primary|hover': 'none',
-    'root.borderWidth|combined|md|shape=round, variant=primary|hover': 'none',
-    'root.shadow|combined|md|shape=round, variant=primary|pressed':
+    'root.borderWidth|combined|md|shape=square, prio=primary|default': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=primary|loading': 'none',
+    'root.shadow|combined|md|shape=round, prio=primary|hover': 'none',
+    'root.borderWidth|combined|md|shape=round, prio=primary|hover': 'none',
+    'root.shadow|combined|md|shape=round, prio=primary|pressed':
         't:shadow.focus.default',
-    'root.borderWidth|combined|md|shape=round, variant=primary|pressed': 'none',
-    'root.shadow|combined|md|shape=round, variant=primary|disabled': 'none',
-    'root.borderWidth|combined|md|shape=round, variant=primary|disabled':
-        'none',
-    'root.shadow|combined|md|shape=round, variant=primary|focus':
+    'root.borderWidth|combined|md|shape=round, prio=primary|pressed': 'none',
+    'root.shadow|combined|md|shape=round, prio=primary|disabled': 'none',
+    'root.borderWidth|combined|md|shape=round, prio=primary|disabled': 'none',
+    'root.shadow|combined|md|shape=round, prio=primary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|md|shape=round, variant=primary|focus': 'none',
-    'root.background|combined|md|shape=round, variant=primary|focus':
+    'root.borderWidth|combined|md|shape=round, prio=primary|focus': 'none',
+    'root.background|combined|md|shape=round, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|md|shape=round, variant=primary|focus':
+    'root.borderColor|combined|md|shape=round, prio=primary|focus':
         't:color.border.medium',
-    'root.radius|combined|md|shape=round, variant=primary|default':
+    'root.radius|combined|md|shape=round, prio=primary|default':
         't:radius.pill',
-    'root.borderWidth|combined|md|shape=round, variant=primary|default': 'none',
-    'root.borderWidth|combined|md|shape=round, variant=primary|loading': 'none',
-    'root.shadow|combined|md|shape=square, variant=secondary|hover': 'none',
-    'root.shadow|combined|md|shape=square, variant=secondary|pressed':
+    'root.borderWidth|combined|md|shape=round, prio=primary|default': 'none',
+    'root.borderWidth|combined|md|shape=round, prio=primary|loading': 'none',
+    'root.shadow|combined|md|shape=square, prio=secondary|hover': 'none',
+    'root.shadow|combined|md|shape=square, prio=secondary|pressed':
         't:shadow.focus.default',
-    'root.shadow|combined|md|shape=square, variant=secondary|disabled': 'none',
-    'root.shadow|combined|md|shape=square, variant=secondary|focus':
+    'root.shadow|combined|md|shape=square, prio=secondary|disabled': 'none',
+    'root.shadow|combined|md|shape=square, prio=secondary|focus':
         't:shadow.focus.default',
-    'root.shadow|combined|md|shape=round, variant=secondary|hover': 'none',
-    'root.shadow|combined|md|shape=round, variant=secondary|pressed':
+    'root.shadow|combined|md|shape=round, prio=secondary|hover': 'none',
+    'root.shadow|combined|md|shape=round, prio=secondary|pressed':
         't:shadow.focus.default',
-    'root.shadow|combined|md|shape=round, variant=secondary|disabled': 'none',
-    'root.shadow|combined|md|shape=round, variant=secondary|focus':
+    'root.shadow|combined|md|shape=round, prio=secondary|disabled': 'none',
+    'root.shadow|combined|md|shape=round, prio=secondary|focus':
         't:shadow.focus.default',
-    'root.radius|combined|md|shape=round, variant=secondary|default':
+    'root.radius|combined|md|shape=round, prio=secondary|default':
         't:radius.pill',
-    'root.shadow|combined|md|shape=square, variant=tertiary|default': 'none',
-    'root.borderWidth|combined|md|shape=square, variant=tertiary|default':
-        'none',
-    'root.shadow|combined|md|shape=square, variant=tertiary|hover': 'none',
-    'root.borderWidth|combined|md|shape=square, variant=tertiary|hover': 'none',
-    'root.shadow|combined|md|shape=square, variant=tertiary|pressed': 'none',
-    'root.borderWidth|combined|md|shape=square, variant=tertiary|pressed':
-        'none',
-    'root.shadow|combined|md|shape=square, variant=tertiary|disabled': 'none',
-    'root.borderWidth|combined|md|shape=square, variant=tertiary|disabled':
+    'root.shadow|combined|md|shape=square, prio=tertiary|default': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=tertiary|default': 'none',
+    'root.shadow|combined|md|shape=square, prio=tertiary|hover': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=tertiary|hover': 'none',
+    'root.shadow|combined|md|shape=square, prio=tertiary|pressed': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=tertiary|pressed': 'none',
+    'root.shadow|combined|md|shape=square, prio=tertiary|disabled': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=tertiary|disabled':
         't:border.default',
-    'root.shadow|combined|md|shape=square, variant=tertiary|focus':
+    'root.shadow|combined|md|shape=square, prio=tertiary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|md|shape=square, variant=tertiary|focus': 'none',
-    'root.shadow|combined|md|shape=square, variant=tertiary|loading': 'none',
-    'root.borderWidth|combined|md|shape=square, variant=tertiary|loading':
-        'none',
-    'root.shadow|combined|md|shape=round, variant=tertiary|default': 'none',
-    'root.radius|combined|md|shape=round, variant=tertiary|default':
+    'root.borderWidth|combined|md|shape=square, prio=tertiary|focus': 'none',
+    'root.shadow|combined|md|shape=square, prio=tertiary|loading': 'none',
+    'root.borderWidth|combined|md|shape=square, prio=tertiary|loading': 'none',
+    'root.shadow|combined|md|shape=round, prio=tertiary|default': 'none',
+    'root.radius|combined|md|shape=round, prio=tertiary|default':
         't:radius.pill',
-    'root.borderWidth|combined|md|shape=round, variant=tertiary|default':
-        'none',
-    'root.shadow|combined|md|shape=round, variant=tertiary|hover': 'none',
-    'root.borderWidth|combined|md|shape=round, variant=tertiary|hover': 'none',
-    'root.shadow|combined|md|shape=round, variant=tertiary|pressed': 'none',
-    'root.borderWidth|combined|md|shape=round, variant=tertiary|pressed':
-        'none',
-    'root.shadow|combined|md|shape=round, variant=tertiary|disabled': 'none',
-    'root.borderWidth|combined|md|shape=round, variant=tertiary|disabled':
+    'root.borderWidth|combined|md|shape=round, prio=tertiary|default': 'none',
+    'root.shadow|combined|md|shape=round, prio=tertiary|hover': 'none',
+    'root.borderWidth|combined|md|shape=round, prio=tertiary|hover': 'none',
+    'root.shadow|combined|md|shape=round, prio=tertiary|pressed': 'none',
+    'root.borderWidth|combined|md|shape=round, prio=tertiary|pressed': 'none',
+    'root.shadow|combined|md|shape=round, prio=tertiary|disabled': 'none',
+    'root.borderWidth|combined|md|shape=round, prio=tertiary|disabled':
         't:border.default',
-    'root.shadow|combined|md|shape=round, variant=tertiary|focus':
+    'root.shadow|combined|md|shape=round, prio=tertiary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|md|shape=round, variant=tertiary|focus': 'none',
-    'root.shadow|combined|md|shape=round, variant=tertiary|loading': 'none',
-    'root.borderWidth|combined|md|shape=round, variant=tertiary|loading':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=primary|default': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=primary|default':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=primary|hover': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=primary|hover': 'none',
-    'root.shadow|combined|lg|shape=square, variant=primary|pressed': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=primary|pressed':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=primary|disabled': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=primary|disabled':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=primary|focus':
+    'root.borderWidth|combined|md|shape=round, prio=tertiary|focus': 'none',
+    'root.shadow|combined|md|shape=round, prio=tertiary|loading': 'none',
+    'root.borderWidth|combined|md|shape=round, prio=tertiary|loading': 'none',
+    'root.shadow|combined|lg|shape=square, prio=primary|default': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=primary|default': 'none',
+    'root.shadow|combined|lg|shape=square, prio=primary|hover': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=primary|hover': 'none',
+    'root.shadow|combined|lg|shape=square, prio=primary|pressed': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=primary|pressed': 'none',
+    'root.shadow|combined|lg|shape=square, prio=primary|disabled': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=primary|disabled': 'none',
+    'root.shadow|combined|lg|shape=square, prio=primary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|lg|shape=square, variant=primary|focus': 'none',
-    'root.background|combined|lg|shape=square, variant=primary|focus':
+    'root.borderWidth|combined|lg|shape=square, prio=primary|focus': 'none',
+    'root.background|combined|lg|shape=square, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|lg|shape=square, variant=primary|focus':
+    'root.borderColor|combined|lg|shape=square, prio=primary|focus':
         't:color.border.medium',
-    'root.shadow|combined|lg|shape=square, variant=primary|loading': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=primary|loading':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=primary|default': 'none',
-    'root.radius|combined|lg|shape=round, variant=primary|default':
+    'root.shadow|combined|lg|shape=square, prio=primary|loading': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=primary|loading': 'none',
+    'root.shadow|combined|lg|shape=round, prio=primary|default': 'none',
+    'root.radius|combined|lg|shape=round, prio=primary|default':
         't:radius.pill',
-    'root.borderWidth|combined|lg|shape=round, variant=primary|default': 'none',
-    'root.shadow|combined|lg|shape=round, variant=primary|hover': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=primary|hover': 'none',
-    'root.shadow|combined|lg|shape=round, variant=primary|pressed': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=primary|pressed': 'none',
-    'root.shadow|combined|lg|shape=round, variant=primary|disabled': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=primary|disabled':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=primary|focus':
+    'root.borderWidth|combined|lg|shape=round, prio=primary|default': 'none',
+    'root.shadow|combined|lg|shape=round, prio=primary|hover': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=primary|hover': 'none',
+    'root.shadow|combined|lg|shape=round, prio=primary|pressed': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=primary|pressed': 'none',
+    'root.shadow|combined|lg|shape=round, prio=primary|disabled': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=primary|disabled': 'none',
+    'root.shadow|combined|lg|shape=round, prio=primary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|lg|shape=round, variant=primary|focus': 'none',
-    'root.background|combined|lg|shape=round, variant=primary|focus':
+    'root.borderWidth|combined|lg|shape=round, prio=primary|focus': 'none',
+    'root.background|combined|lg|shape=round, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|lg|shape=round, variant=primary|focus':
+    'root.borderColor|combined|lg|shape=round, prio=primary|focus':
         't:color.border.medium',
-    'root.shadow|combined|lg|shape=round, variant=primary|loading': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=primary|loading': 'none',
-    'root.shadow|combined|lg|shape=square, variant=secondary|default': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=secondary|default':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=secondary|hover': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=secondary|hover':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=secondary|pressed': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=secondary|pressed':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=secondary|disabled': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=secondary|disabled':
+    'root.shadow|combined|lg|shape=round, prio=primary|loading': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=primary|loading': 'none',
+    'root.shadow|combined|lg|shape=square, prio=secondary|default': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=secondary|default': 'none',
+    'root.shadow|combined|lg|shape=square, prio=secondary|hover': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=secondary|hover': 'none',
+    'root.shadow|combined|lg|shape=square, prio=secondary|pressed': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=secondary|pressed': 'none',
+    'root.shadow|combined|lg|shape=square, prio=secondary|disabled': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=secondary|disabled':
         't:border.default',
-    'root.shadow|combined|lg|shape=square, variant=secondary|focus':
+    'root.shadow|combined|lg|shape=square, prio=secondary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|lg|shape=square, variant=secondary|focus':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=secondary|loading': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=secondary|loading':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=secondary|default': 'none',
-    'root.radius|combined|lg|shape=round, variant=secondary|default':
+    'root.borderWidth|combined|lg|shape=square, prio=secondary|focus': 'none',
+    'root.shadow|combined|lg|shape=square, prio=secondary|loading': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=secondary|loading': 'none',
+    'root.shadow|combined|lg|shape=round, prio=secondary|default': 'none',
+    'root.radius|combined|lg|shape=round, prio=secondary|default':
         't:radius.pill',
-    'root.borderWidth|combined|lg|shape=round, variant=secondary|default':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=secondary|hover': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=secondary|hover': 'none',
-    'root.shadow|combined|lg|shape=round, variant=secondary|pressed': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=secondary|pressed':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=secondary|disabled': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=secondary|disabled':
+    'root.borderWidth|combined|lg|shape=round, prio=secondary|default': 'none',
+    'root.shadow|combined|lg|shape=round, prio=secondary|hover': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=secondary|hover': 'none',
+    'root.shadow|combined|lg|shape=round, prio=secondary|pressed': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=secondary|pressed': 'none',
+    'root.shadow|combined|lg|shape=round, prio=secondary|disabled': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=secondary|disabled':
         't:border.default',
-    'root.shadow|combined|lg|shape=round, variant=secondary|focus':
+    'root.shadow|combined|lg|shape=round, prio=secondary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|lg|shape=round, variant=secondary|focus': 'none',
-    'root.shadow|combined|lg|shape=round, variant=secondary|loading': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=secondary|loading':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=tertiary|default': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=tertiary|default':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=tertiary|hover': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=tertiary|hover': 'none',
-    'root.shadow|combined|lg|shape=square, variant=tertiary|pressed': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=tertiary|pressed':
-        'none',
-    'root.shadow|combined|lg|shape=square, variant=tertiary|disabled': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=tertiary|disabled':
+    'root.borderWidth|combined|lg|shape=round, prio=secondary|focus': 'none',
+    'root.shadow|combined|lg|shape=round, prio=secondary|loading': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=secondary|loading': 'none',
+    'root.shadow|combined|lg|shape=square, prio=tertiary|default': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=tertiary|default': 'none',
+    'root.shadow|combined|lg|shape=square, prio=tertiary|hover': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=tertiary|hover': 'none',
+    'root.shadow|combined|lg|shape=square, prio=tertiary|pressed': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=tertiary|pressed': 'none',
+    'root.shadow|combined|lg|shape=square, prio=tertiary|disabled': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=tertiary|disabled':
         't:border.default',
-    'root.shadow|combined|lg|shape=square, variant=tertiary|focus':
+    'root.shadow|combined|lg|shape=square, prio=tertiary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|lg|shape=square, variant=tertiary|focus': 'none',
-    'root.shadow|combined|lg|shape=square, variant=tertiary|loading': 'none',
-    'root.borderWidth|combined|lg|shape=square, variant=tertiary|loading':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=tertiary|default': 'none',
-    'root.radius|combined|lg|shape=round, variant=tertiary|default':
+    'root.borderWidth|combined|lg|shape=square, prio=tertiary|focus': 'none',
+    'root.shadow|combined|lg|shape=square, prio=tertiary|loading': 'none',
+    'root.borderWidth|combined|lg|shape=square, prio=tertiary|loading': 'none',
+    'root.shadow|combined|lg|shape=round, prio=tertiary|default': 'none',
+    'root.radius|combined|lg|shape=round, prio=tertiary|default':
         't:radius.pill',
-    'root.borderWidth|combined|lg|shape=round, variant=tertiary|default':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=tertiary|hover': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=tertiary|hover': 'none',
-    'root.shadow|combined|lg|shape=round, variant=tertiary|pressed': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=tertiary|pressed':
-        'none',
-    'root.shadow|combined|lg|shape=round, variant=tertiary|disabled': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=tertiary|disabled':
+    'root.borderWidth|combined|lg|shape=round, prio=tertiary|default': 'none',
+    'root.shadow|combined|lg|shape=round, prio=tertiary|hover': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=tertiary|hover': 'none',
+    'root.shadow|combined|lg|shape=round, prio=tertiary|pressed': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=tertiary|pressed': 'none',
+    'root.shadow|combined|lg|shape=round, prio=tertiary|disabled': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=tertiary|disabled':
         't:border.default',
-    'root.shadow|combined|lg|shape=round, variant=tertiary|focus':
+    'root.shadow|combined|lg|shape=round, prio=tertiary|focus':
         't:shadow.focus.default',
-    'root.borderWidth|combined|lg|shape=round, variant=tertiary|focus': 'none',
-    'root.shadow|combined|lg|shape=round, variant=tertiary|loading': 'none',
-    'root.borderWidth|combined|lg|shape=round, variant=tertiary|loading':
-        'none',
+    'root.borderWidth|combined|lg|shape=round, prio=tertiary|focus': 'none',
+    'root.shadow|combined|lg|shape=round, prio=tertiary|loading': 'none',
+    'root.borderWidth|combined|lg|shape=round, prio=tertiary|loading': 'none',
     'icon.present|base': 'b:true',
     'icon.component|base': 'k:Icon/None',
     'icon.variant.solid|base': 'k:false',
@@ -461,84 +415,83 @@ abstract final class SolarIconButtonRecipe {
     'icon.height|size|md': 't:icon.sm',
     'icon.width|size|lg': 't:icon.md',
     'icon.height|size|lg': 't:icon.md',
-    'icon.present|appearance|shape=square, variant=primary|loading': 'b:false',
-    'icon.color|appearance|shape=square, variant=primary|hover':
+    'icon.present|appearance|shape=square, prio=primary|loading': 'b:false',
+    'icon.color|appearance|shape=square, prio=primary|hover':
         't:color.action.primary.icon.hover',
-    'icon.color|appearance|shape=square, variant=primary|pressed':
+    'icon.color|appearance|shape=square, prio=primary|pressed':
         't:color.action.primary.icon.active',
-    'icon.color|appearance|shape=square, variant=primary|disabled':
+    'icon.color|appearance|shape=square, prio=primary|disabled':
         't:color.action.primary.icon.disabled',
-    'icon.present|appearance|shape=round, variant=primary|loading': 'b:false',
-    'icon.color|appearance|shape=round, variant=primary|hover':
+    'icon.present|appearance|shape=round, prio=primary|loading': 'b:false',
+    'icon.color|appearance|shape=round, prio=primary|hover':
         't:color.action.primary.icon.hover',
-    'icon.color|appearance|shape=round, variant=primary|pressed':
+    'icon.color|appearance|shape=round, prio=primary|pressed':
         't:color.action.primary.icon.active',
-    'icon.color|appearance|shape=round, variant=primary|disabled':
+    'icon.color|appearance|shape=round, prio=primary|disabled':
         't:color.action.primary.icon.disabled',
-    'icon.present|appearance|shape=square, variant=secondary|loading':
-        'b:false',
-    'icon.color|appearance|shape=square, variant=secondary|loading':
+    'icon.present|appearance|shape=square, prio=secondary|loading': 'b:false',
+    'icon.color|appearance|shape=square, prio=secondary|loading':
         't:color.action.secondary.icon.default',
-    'icon.color|appearance|shape=square, variant=secondary|default':
+    'icon.color|appearance|shape=square, prio=secondary|default':
         't:color.action.secondary.icon.default',
-    'icon.color|appearance|shape=square, variant=secondary|hover':
+    'icon.color|appearance|shape=square, prio=secondary|hover':
         't:color.action.secondary.icon.hover',
-    'icon.color|appearance|shape=square, variant=secondary|pressed':
+    'icon.color|appearance|shape=square, prio=secondary|pressed':
         't:color.action.secondary.icon.active',
-    'icon.color|appearance|shape=square, variant=secondary|disabled':
+    'icon.color|appearance|shape=square, prio=secondary|disabled':
         't:color.action.secondary.icon.disabled',
-    'icon.color|appearance|shape=square, variant=secondary|focus':
+    'icon.color|appearance|shape=square, prio=secondary|focus':
         't:color.action.secondary.icon.default',
-    'icon.present|appearance|shape=round, variant=secondary|loading': 'b:false',
-    'icon.color|appearance|shape=round, variant=secondary|loading':
+    'icon.present|appearance|shape=round, prio=secondary|loading': 'b:false',
+    'icon.color|appearance|shape=round, prio=secondary|loading':
         't:color.action.secondary.icon.default',
-    'icon.color|appearance|shape=round, variant=secondary|default':
+    'icon.color|appearance|shape=round, prio=secondary|default':
         't:color.action.secondary.icon.default',
-    'icon.color|appearance|shape=round, variant=secondary|hover':
+    'icon.color|appearance|shape=round, prio=secondary|hover':
         't:color.action.secondary.icon.hover',
-    'icon.color|appearance|shape=round, variant=secondary|pressed':
+    'icon.color|appearance|shape=round, prio=secondary|pressed':
         't:color.action.secondary.icon.active',
-    'icon.color|appearance|shape=round, variant=secondary|disabled':
+    'icon.color|appearance|shape=round, prio=secondary|disabled':
         't:color.action.secondary.icon.disabled',
-    'icon.color|appearance|shape=round, variant=secondary|focus':
+    'icon.color|appearance|shape=round, prio=secondary|focus':
         't:color.action.secondary.icon.default',
-    'icon.present|appearance|shape=square, variant=tertiary|loading': 'b:false',
-    'icon.color|appearance|shape=square, variant=tertiary|loading':
+    'icon.present|appearance|shape=square, prio=tertiary|loading': 'b:false',
+    'icon.color|appearance|shape=square, prio=tertiary|loading':
         't:color.action.tertiary.icon.default',
-    'icon.color|appearance|shape=square, variant=tertiary|default':
+    'icon.color|appearance|shape=square, prio=tertiary|default':
         't:color.action.tertiary.icon.default',
-    'icon.color|appearance|shape=square, variant=tertiary|hover':
+    'icon.color|appearance|shape=square, prio=tertiary|hover':
         't:color.action.tertiary.icon.hover',
-    'icon.color|appearance|shape=square, variant=tertiary|pressed':
+    'icon.color|appearance|shape=square, prio=tertiary|pressed':
         't:color.action.tertiary.icon.active',
-    'icon.color|appearance|shape=square, variant=tertiary|disabled':
+    'icon.color|appearance|shape=square, prio=tertiary|disabled':
         't:color.action.tertiary.icon.disabled',
-    'icon.color|appearance|shape=square, variant=tertiary|focus':
+    'icon.color|appearance|shape=square, prio=tertiary|focus':
         't:color.action.tertiary.icon.default',
-    'icon.present|appearance|shape=round, variant=tertiary|loading': 'b:false',
-    'icon.color|appearance|shape=round, variant=tertiary|loading':
+    'icon.present|appearance|shape=round, prio=tertiary|loading': 'b:false',
+    'icon.color|appearance|shape=round, prio=tertiary|loading':
         't:color.action.tertiary.icon.default',
-    'icon.color|appearance|shape=round, variant=tertiary|default':
+    'icon.color|appearance|shape=round, prio=tertiary|default':
         't:color.action.tertiary.icon.default',
-    'icon.color|appearance|shape=round, variant=tertiary|hover':
+    'icon.color|appearance|shape=round, prio=tertiary|hover':
         't:color.action.tertiary.icon.hover',
-    'icon.color|appearance|shape=round, variant=tertiary|pressed':
+    'icon.color|appearance|shape=round, prio=tertiary|pressed':
         't:color.action.tertiary.icon.active',
-    'icon.color|appearance|shape=round, variant=tertiary|disabled':
+    'icon.color|appearance|shape=round, prio=tertiary|disabled':
         't:color.action.tertiary.icon.disabled',
-    'icon.color|appearance|shape=round, variant=tertiary|focus':
+    'icon.color|appearance|shape=round, prio=tertiary|focus':
         't:color.action.tertiary.icon.default',
-    'icon.color|combined|lg|shape=square, variant=primary|focus':
+    'icon.color|combined|lg|shape=square, prio=primary|focus':
         't:color.action.primary.icon.default',
-    'icon.color|combined|lg|shape=round, variant=primary|focus':
+    'icon.color|combined|lg|shape=round, prio=primary|focus':
         't:color.action.primary.icon.default',
-    'icon.color|combined|md|shape=square, variant=primary|focus':
+    'icon.color|combined|md|shape=square, prio=primary|focus':
         't:color.action.primary.icon.default',
-    'icon.color|combined|md|shape=round, variant=primary|focus':
+    'icon.color|combined|md|shape=round, prio=primary|focus':
         't:color.action.primary.icon.default',
-    'icon.color|combined|sm|shape=square, variant=primary|focus':
+    'icon.color|combined|sm|shape=square, prio=primary|focus':
         't:color.action.primary.icon.default',
-    'icon.color|combined|sm|shape=round, variant=primary|focus':
+    'icon.color|combined|sm|shape=round, prio=primary|focus':
         't:color.action.primary.icon.default',
     'spinner.present|base': 'b:false',
     'spinner.component|base': 'k:Spinner',
@@ -547,29 +500,29 @@ abstract final class SolarIconButtonRecipe {
     'spinner.height|base': 'k:HUG',
     'spinner.variant.size|size|md': 'k:md',
     'spinner.variant.size|size|lg': 'k:lg',
-    'spinner.present|appearance|shape=square, variant=primary|loading':
-        'b:true',
-    'spinner.variant.style|appearance|shape=square, variant=primary|loading':
+    'spinner.present|appearance|shape=square, prio=primary|loading': 'b:true',
+    'spinner.variant.style|appearance|shape=square, prio=primary|loading':
         'k:inverse',
-    'spinner.present|appearance|shape=round, variant=primary|loading': 'b:true',
-    'spinner.variant.style|appearance|shape=round, variant=primary|loading':
+    'spinner.present|appearance|shape=round, prio=primary|loading': 'b:true',
+    'spinner.variant.style|appearance|shape=round, prio=primary|loading':
         'k:inverse',
-    'spinner.present|appearance|shape=square, variant=secondary|loading':
-        'b:true',
-    'spinner.variant.style|appearance|shape=square, variant=secondary|loading':
+    'spinner.present|appearance|shape=square, prio=secondary|loading': 'b:true',
+    'spinner.variant.style|appearance|shape=square, prio=secondary|loading':
         'k:default',
-    'spinner.present|appearance|shape=round, variant=secondary|loading':
-        'b:true',
-    'spinner.variant.style|appearance|shape=round, variant=secondary|loading':
+    'spinner.present|appearance|shape=round, prio=secondary|loading': 'b:true',
+    'spinner.variant.style|appearance|shape=round, prio=secondary|loading':
         'k:default',
-    'spinner.present|appearance|shape=square, variant=tertiary|loading':
-        'b:true',
-    'spinner.variant.style|appearance|shape=square, variant=tertiary|loading':
+    'spinner.present|appearance|shape=square, prio=tertiary|loading': 'b:true',
+    'spinner.variant.style|appearance|shape=square, prio=tertiary|loading':
         'k:default',
-    'spinner.present|appearance|shape=round, variant=tertiary|loading':
-        'b:true',
-    'spinner.variant.style|appearance|shape=round, variant=tertiary|loading':
+    'spinner.present|appearance|shape=round, prio=tertiary|loading': 'b:true',
+    'spinner.variant.style|appearance|shape=round, prio=tertiary|loading':
         'k:default',
+  };
+
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['icon', 'spinner'],
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
@@ -603,7 +556,7 @@ abstract final class SolarIconButtonRecipe {
     SolarIconButtonProps p,
     Set<WidgetState> s,
   ) {
-    final combo = 'shape=${p.shape.name}, variant=${p.variant.name}';
+    final combo = 'shape=${p.shape.name}, prio=${p.prio.name}';
     final size = p.size.name;
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;

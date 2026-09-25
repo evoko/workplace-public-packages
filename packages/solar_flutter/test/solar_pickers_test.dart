@@ -37,13 +37,13 @@ String fieldWords(WidgetTester tester) =>
 const fruit = [
   SolarSelectOption(value: 'apple', label: 'Apple'),
   SolarSelectOption(value: 'banana', label: 'Banana'),
-  SolarSelectOption(value: 'cherry', label: 'Cherry', disabled: true),
+  SolarSelectOption(value: 'cherry', label: 'Cherry', enabled: false),
 ];
 
 const moreFruit = [
   SolarDropdownOption(value: 'apple', label: 'Apple'),
   SolarDropdownOption(value: 'banana', label: 'Banana'),
-  SolarDropdownOption(value: 'cherry', label: 'Cherry', disabled: true),
+  SolarDropdownOption(value: 'cherry', label: 'Cherry', enabled: false),
 ];
 
 void main() {
@@ -53,7 +53,7 @@ void main() {
           builder: (context, setState) => SolarSelect<String>(
             label: 'Fruit',
             placeholder: 'Pick one',
-            disabled: disabled,
+            enabled: !disabled,
             options: fruit,
             value: chosen.lastOrNull,
             onChanged: (v) => setState(() => chosen.add(v)),
@@ -142,7 +142,7 @@ void main() {
           builder: (context, setState) => SolarDropdown<String>(
             label: 'Fruit',
             placeholder: 'Pick one',
-            disabled: disabled,
+            enabled: !disabled,
             options: moreFruit,
             value: chosen.lastOrNull,
             onChanged: (v) => setState(() => chosen.add(v)),
@@ -498,7 +498,7 @@ void main() {
     }) => StatefulBuilder(
       builder: (context, setState) => SolarDatePicker(
         label: 'Start',
-        disabled: disabled,
+        enabled: !disabled,
         value: chosen.isEmpty ? value : chosen.last,
         onDateChanged: (v) => setState(() => chosen.add(v)),
       ),

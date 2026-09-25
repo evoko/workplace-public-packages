@@ -663,3 +663,35 @@ export function solarStepperCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarStepperTree: Record<string, string[]> = {
+  root: [
+    'progress',
+    'steps',
+    'stepperIndicator',
+    'frame',
+    'stepperIndicator2',
+    'frame2',
+    'stepperIndicator3',
+    'rectangle1',
+    'rectangle2',
+    'rectangle3',
+    'rectangle4',
+    'rectangle5',
+    'stepCompleteHorizontal',
+    'step',
+    'step3',
+    'step4',
+    'step5',
+  ],
+  progress: ['progressRectangle2'],
+  steps: ['stepsStep', 'stepsStep2', 'stepsStep3'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarStepper-<slot>`, public. */
+export const solarStepperSlots: Record<string, string> = {
+  step3: 'step3',
+  step4: 'step4',
+  step5: 'step5',
+};

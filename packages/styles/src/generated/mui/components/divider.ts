@@ -248,3 +248,11 @@ export function solarDividerCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDividerTree: Record<string, string[]> = {
+  root: ['rule', 'label', 'rule2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDivider-<slot>`, public. */
+export const solarDividerSlots: Record<string, string> = {};

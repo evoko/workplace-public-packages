@@ -7,7 +7,6 @@ import 'probes.dart';
 /// SolarButtonGroup in one oracle variant, holding the Buttons Figma draws in it, in its order,
 /// each built as the Button check builds one (its probes included) and keyed by its layer: every
 /// one shown, and every one a prop shows though Figma hides it at rest (the tertiary). A Button's
-/// Figma `prio` is its `variant` prop.
 Widget buildButtonGroup(
   Map<String, dynamic> v,
   WidgetStatesController states, [
@@ -31,7 +30,7 @@ Widget buildButtonGroup(
           child: buildButton({
             'props': {
               'size': l['variant']['size'],
-              'variant': l['variant']['prio'],
+              'prio': l['variant']['prio'],
               'danger': l['variant']['danger'] == 'true',
               'disabled': false,
               'loading': false,
@@ -48,7 +47,11 @@ Widget buildButtonGroup(
         SolarButtonGroupOrientation.values,
         props['orientation'] as String,
       ),
-      fullWidth: props['fullWidth'] as bool,
+      type: enumNamed(
+        SolarButtonGroupType.values,
+        props['type'] as String,
+        (t) => t.figma,
+      ),
       children: children,
     ),
   );

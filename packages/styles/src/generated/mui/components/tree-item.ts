@@ -832,3 +832,34 @@ export function solarTreeItemCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTreeItemTree: Record<string, string[]> = {
+  root: [
+    'treeIndent',
+    'chevron',
+    'checkbox',
+    'leadingIcon',
+    'label',
+    'status',
+    'tag',
+    'counter',
+    'trailingIcon',
+    'buttons',
+    'renameInput',
+  ],
+  chevron: ['chevronChevron', 'iconChevronDown'],
+  buttons: ['iconMore', 'iconPlus'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTreeItem-<slot>`, public. */
+export const solarTreeItemSlots: Record<string, string> = {
+  chevronChevron: 'chevron',
+  checkbox: 'checkbox',
+  leadingIcon: 'leadingIcon',
+  status: 'status',
+  tag: 'tag',
+  counter: 'counter',
+  trailingIcon: 'trailingIcon',
+  buttons: 'buttons',
+};

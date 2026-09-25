@@ -287,3 +287,12 @@ export function solarSpinnerCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSpinnerTree: Record<string, string[]> = {
+  root: ['spinnerRing'],
+  spinnerRing: ['track', 'indicator'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSpinner-<slot>`, public. */
+export const solarSpinnerSlots: Record<string, string> = {};

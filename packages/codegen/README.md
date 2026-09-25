@@ -267,7 +267,7 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    - **More `set` and `rename`.** A `set` may add an appearance no layer draws, where its axes are
      another look's and its values Figma's (File Card's resting file tile), or `default` where no
      layer has any look (Launch Card); a `rename` may respell an axis's values, keeping its name.
-   - **The card shells** (`src/shells/card.mjs`): a card's title as its stretched action, its More
+   - **The card shells** (then `src/shells/card.mjs`; the shells are files since 2026-09-25): a card's title as its stretched action, its More
      menu, its loading and selection, its props' layers (several for one prop: `also`,
      `alsoTitle`), for eleven of the family; `SolarLayers` gained `clips`, a web glyph layer a
      `render`, and an auto layout holding only placed children keeps its gap.
@@ -418,22 +418,22 @@ hover's underline on a mouse press, and hover's colours on a focused primary und
 
 **Recipe and shell.** The recipe is what a component looks like; it regenerates on every run and
 is never edited. The shell — `packages/components/src/<Name>.tsx`: props, slots, loading,
-accessibility — its Flutter widget (`solar_flutter/lib/src/components/solar_<name>.dart`) and its
-story are generated too, on every run, from the two templates in the component's descriptor
-(`src/shells/index.mjs`). The templates are the hand-written behaviour: functions of the IR, so a
-slot or prop Figma adds reaches the shells, and a fix to a shared helper (`src/shells/drawn.mjs`,
-`field.mjs`, `target.mjs`) reaches every component that uses it, both proven by the rebuild CI
-runs. A generated shell's first line names its descriptor; it is never edited. A component whose
-shell must be edited as a file has `owned: true` in its descriptor and no templates: its shells are
-left alone, and must exist without the generated header, so taking one over is deliberate
-(remove the header, delete the templates, set `owned`). A stale generated shell, a component
-removed, is deleted by its header. Until 2026-09-24 the shells were written once by a
-`solar:scaffold` command and then hand-owned; every one was still exactly its template's output, so
-they became generated with no change but the header.
+accessibility — and its Flutter widget (`solar_flutter/lib/src/components/solar_<name>.dart`) are
+files written by hand, TSX by a React engineer and Dart by a Flutter engineer
+(docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md; owner decision 2026-09-25, the
+pipeline review's item 9); only its story is generated (`src/shells/index.mjs`, which also checks
+that both shells exist without the generated header). What the IR decides still reaches them with
+no edit: the props types, the layer tree (`solar<Name>Tree`, `Solar<Name>Recipe.tree`) and the slot
+names (`solar<Name>Slots`) are generated beside the recipe and imported, and the component-parity
+test fails a shell that leaves an IR prop, slot or icon unreached (`src/shells/api.mjs`,
+`src/shells/icons.mjs`), copies the tree, or reads its React props other than through the theme
+(`useSolarProps`). A fix to a runtime helper (`components/src/internal/`, `solar_flutter/lib/src/`)
+reaches every shell that imports it. Until 2026-09-25 the shells were generated from template
+strings in the descriptors; each file became hand-owned exactly as its template last rendered it.
 The rule of thumb for where a change goes:
 
 > **The overlay for a decision about one component, the normalizer for a rule about the system,
-> the shell's template for behaviour.**
+> the shell for behaviour.**
 
 **What Button's findings mean.** Button produced 11 findings (46 in the whole report, with Spinner's and Icon Button's, whose ten are all decided). Eight
 carry an overlay decision and stay in the report beside it: five bind a raw value to the token of
@@ -476,8 +476,10 @@ bin/solar-codegen.mjs      the CLI: builds every stage, then emits, reports, pru
 bin/solar-explain.mjs      why a component draws what it draws, cell by cell; writes nothing
 bin/solar-triage.mjs       which components come next, and what each needs; writes nothing
 src/stages/                one module per stage (tokens, icons, components): build(), emit()
-src/shells/                the shells, rendered from the descriptors' templates, and the helpers
-                           the templates share (drawn, field, alert, slider, target)
+src/shells/                the stories, the shells' check (index), how each platform reaches the
+                           IR (api) and the icons a shell draws (icons)
+src/components/            one descriptor per component, and in shared/ the MUI tables several
+                           share (drawn, field, card, menu, picker, typed, slider, alert, target)
 src/explain/               solar:explain: the recipe lookup, the rows, the report reading
 src/normalize/             css-contract.json -> the DTCG spec, solar-icons/ -> the icon spec,
                            solar-web/ -> the component IR (layers, recipe, overlay), the SVG
@@ -501,9 +503,8 @@ generated directories (`packages/styles/src/generated`, `packages/assets/src/gen
 `packages/solar_flutter/lib/src/generated`, `spec/components` and `spec/verify`) that the run did not write, and
 says so. Without it, an icon removed in Figma would keep its generated module forever,
 regenerating to the same bytes and invisible to CI. Nothing else in them is pruned:
-`spec/overlay/` is hand-written. The component shells share their directories with hand-written
-files (the package entry, `internal/`, an owned shell), so a stale shell is found by its generated
-header instead and deleted the same way.
+`spec/overlay/` is hand-written. The stories share their directory with hand-written files
+(`solar.tsx`), so a stale story is found by its generated header instead and deleted the same way.
 
 ## Changing it
 
@@ -518,9 +519,8 @@ header instead and deleted the same way.
   `flutter.style`…), which the emitters read as `MUI_SLOTS`, `MUI_RESETS`, `STATE_SELECTORS` and
   `FLUTTER_STYLE`.
 - **A component looks wrong, and Figma is right for it alone** → its overlay in `spec/overlay/`.
-- **A component behaves wrong** → its shell's template, `templates.react` or `templates.flutter` in
-  its descriptor (or the shared helper it calls), then `npm run solar:codegen`; the shell itself
-  is generated. An `owned` component's shell is the file itself.
+- **A component behaves wrong** → its shell, `packages/components/src/<Name>.tsx` or
+  `solar_flutter/lib/src/components/solar_<name>.dart`, or the runtime helper it calls.
 - **A visual check fails, or a value looks wrong** → `npm run solar:explain -- "<Name>"` lists the
   variants, every excused difference and the last runs' failures; `--variant <n | name |
 axis=value, …>` gives each layer and property of those variants as a chain: Figma's value, the
@@ -536,74 +536,40 @@ axis=value, …>` gives each layer and property of those variants as a chain: Fi
   1. Its descriptor, `src/components/<name>.mjs`. The index finds it, and `COMPONENTS` is the
      descriptors found. It holds the component's `name` (and its `address`, where that differs),
      its MUI tables (`slots`, and `resets`, `svgLayers`, `states`, `overlaps`, `restates` as it
-     needs them), its Flutter tables (`style` where its base takes a style object, `BUILDERS`, and
-     `shared`), and its two shell templates, `templates.react` and `templates.flutter`. Shared
-     template helpers are in `src/shells/helpers.mjs`. A component that draws its own layers
-     (the display primitives) has `slots: 'drawn'` (every IR layer, each with a class of its own,
-     `slotsOf`), `drawnResets`, and templates from `src/shells/drawn.mjs` (`drawnReact`,
-     `drawnFlutter`), which hand the layer tree to the shells' shared runtime helpers
-     (`packages/components/src/internal/layers.tsx`, `solar_flutter`'s `SolarLayers`) and draw a
-     SOLAR icon layer with its component from the assets. A shell may draw a layer as an element
-     of its own (`render` on the web, `builders` in Flutter: SplitButton's halves are buttons),
-     draw a layer that is another SOLAR component (Tag's StatusIndicator: `render` on the web, in
-     the layer's element; `composed` in Flutter, which the measure recognises by its keyed root),
-     let a text wrap (`wraps`), take a composing component's colours (`restyle`),
-     fill a slot with the caller's widget (`slots`: Link's icons), and hold the caller's children in
-     a layer in place of Figma's examples (`content`: Segmented Control's segments). A placed layer
-     is set in from its parent's outer edge, as Figma measures it: the recipe says each placing
-     layer's border as `--solar-placed-left` and `--solar-placed-top`, which its children step back
-     by. `drawnFlutter`'s `control` makes a widget a control always (Checkbox, Toggle), announced by
-     `SolarPressable` as a checkbox or a switch, and `values` gives the recipe a prop's value where
-     it is not the prop as given (a mixed box is drawn checked). Where a group decides a prop in
-     Flutter (Radio's `checked`, its RadioGroup's), `flutter.groupDecides` says so, and the widget
-     does not take it. `flutter.states` is a platform state's own test where it is not its
-     `WidgetState` alone, the Flutter side of `mui.states` (a Dropdown Item's hover holds while it
-     has the focus, as its web selector matches `.Mui-focusVisible`). A control that is a part of
-     another (a Dropdown Item's checkbox) is drawn in the other's states, inert: `control.drawnIn`
-     names the parameter that gives them in Flutter, and on the web the part's hover selector
-     also matches under a `SolarStatesScope` ancestor (`.SolarStatesScope:hover &`), the class the
-     row sets, as Flutter's `SolarStatesScope` shares a control's states. `content` (both helpers)
-     holds the caller's children in a layer in place of Figma's examples, and `before` (React)
-     draws something ahead of the layers (Options List's legend). The menus share
-     `src/shells/menu.mjs`: `menuReact`, their surface around MUI's MenuList floating where it is
-     anchored (`components/src/internal/float.tsx`), and `menuResets` with `MENU_MAX_HEIGHT`, the
-     one raw menu height, a governance gap; `menuReact` also builds rows of its own (`rowsFrom`:
-     TimePicker Dropdown's times, with `props`, `own`, `prelude`, a list `role` and `listRef`) and
-     gives its rows another menu's size (`sizedBy: 'DropdownMenuSizeContext'`). The pickers share
-     `src/shells/picker.mjs` (Select and Dropdown: MUI's Select on InputBase, the panel the
-     component's own layer or a Dropdown Menu; a drawn field under `SolarMenuAnchor` in Flutter)
-     and `src/shells/typed.mjs` (DatePicker and TimePicker: a field whose words are read back as
-     the value, its icon a button opening the panel, `error-focused` compound); `fieldFlutter`
-     takes `typeParams` and `around`, what the widget builds around its field (Autocomplete's
-     RawAutocomplete). Their dates and times are hand-written runtime helpers, not a picker
-     library: `components/src/internal/calendar.ts` and `clock.ts`, and `solar_flutter`'s
-     `lib/src/solar_time.dart` beside MaterialLocalizations. A descriptor's `checkedAs` names the
-     component a Figma component is the state of (Autocomplete Open, an open Autocomplete): it
-     has a recipe, a case on each platform and a story, but no shells, and the barrels leave it
-     out. `shells.slots` says how both shells name a slot they name otherwise (`required:
-'mandatory'`, `{react, flutter}`), or `null` where the shell fills it itself (Select's
-     chevron, the calendar's month). `drawnFlutter`'s `control` takes `focusNode` (a calendar's
-     day, which the arrow keys move to) and `target: false` (days that touch, as rows do). F8's
-     strip and rail share `solar_flutter`'s `lib/src/solar_tabs.dart` (`SolarTabsScope`, the strip's
-     size and choice, which a tab reads; `SolarTabList`, the tab bar and its arrow keys). A Counter
-     in a tab takes none of the tab's states (its selectors skip a `[role="tab"]` button, and in
-     Flutter it sits in a `SolarStatesScope` of its own). `drawnFlutter`'s `pressable: true` is
-     pressable wherever it is given a callback (a Step one can go back to). A drawn icon is marked `<prefix>-drawnIcon` on the
-     web, a class no layer is named, so a layer named `icon` (ListItem's) styles itself alone.
-     Every control's recipe gives it a 44 × 44 target that takes no room
-     (`src/shells/target.mjs`: `targetArea`, a pseudo-element, and `targetInput`, a native input
-     enlarged), and its widget a `SolarTarget`; `TARGET` there is the one raw target size, a
-     governance gap, until SOLAR publishes a variable for it. A value that is no Dart identifier
-     (`top-search`, `Default White`, `00`) is respelled for its enum (`dartEnumValue`), which then
-     carries Figma's spelling.
+     needs them), its Flutter tables (`style` where its base takes a style object, `shared`,
+     `states`), and its `api` table where a platform reaches a prop or slot by another name
+     (`src/shells/api.mjs`: a member, `{ not }` for a negation, `{ group }`, or null). A component
+     that draws its own layers has `slots: 'drawn'` (every IR layer, each with a class of its own)
+     and `drawnResets`; the tables several components share are in `src/components/shared/`
+     (`drawn`, `field`, `card`, `menu`, `picker`, `typed`, `slider`, `alert`, and `target`, the
+     44 × 44 target that takes no room: `targetArea`, `targetInput`, and `TARGET`, the one raw
+     target size, a governance gap until SOLAR publishes a variable). A descriptor's `checkedAs`
+     names the component a Figma component is the state of (Autocomplete Open, an open
+     Autocomplete): it has a recipe, a case on each platform and a story, but no shells, and the
+     barrels leave it out.
   2. Its overlay, `spec/overlay/<address>.yaml`.
-  3. `npm run solar:codegen`, which also writes every list the component is in, from the
-     descriptors (`src/emit/registries.mjs`): both packages' barrels of shells
-     (`packages/components/src/components.generated.ts`, `solar_flutter`'s
-     `lib/src/components/components.dart`), the web case registry
+  3. `npm run solar:codegen`, which writes its recipes (with its layer tree and slot names), its
+     story, and every list the component is in, from the descriptors (`src/emit/registries.mjs`):
+     both packages' barrels of shells (`packages/components/src/components.generated.ts`,
+     `solar_flutter`'s `lib/src/components/components.dart`), the MUI theme's types
+     (`components/src/theme.generated.ts`), the web case registry
      (`test/visual/cases/registry.generated.ts`), the Flutter one (`test/visual/cases/cases.dart`)
-     and the variant builders' (`variants/lib/src/registry.dart`, and its library).
-  4. Nothing: that run also wrote the shells and the story from the templates (step 1).
+     and the variant builders' (`variants/lib/src/registry.dart`, and its library). It fails
+     until both shells exist.
+  4. Its two shells, by hand: start from the nearest component's (a drawn one from Counter's, a
+     field from Text Input's, a card from Card's). A drawn shell hands the generated tree to the
+     runtime helpers, `drawChildren` (`packages/components/src/internal/layers.tsx`) and
+     `SolarLayers` (`solar_flutter`), whose options are the component's own: `text`, `icons`,
+     `render`/`builders` (a layer drawn as an element of its own: SplitButton's halves),
+     `composed` (another SOLAR component in a layer: Tag's StatusIndicator), `slots` (the caller's
+     widget), `content` (the caller's children in place of Figma's examples), `repeat`/`repeats`
+     (a layer the IR marks `repeat`, drawn once per item: the calendar's weekdays), `wraps`,
+     `fields`, `truncates`, `clips`. A React shell reads its props through `useSolarProps`
+     (`internal/theme.ts`), so an app themes it as it themes a stock MUI component. A Flutter
+     control is disabled as Flutter's are (a null `onPressed` or `onChanged`, a field's
+     `enabled`), pressed through `SolarPressable`, padded to its target by `SolarTarget`, and keeps
+     its own size in a stretching parent through `SolarOwnSize`. `npx vitest run
+test/component-parity.test.mjs` names whatever of the IR a shell does not reach yet.
   5. A visual case on each platform, in the files the registries name:
      `packages/components/test/visual/cases/<slug>.tsx`, a builder in `solar_flutter/variants/lib/src/`
      and a case in `solar_flutter/test/visual/cases/`. Until they exist, the typecheck and

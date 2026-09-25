@@ -11,7 +11,8 @@
  *   }
  *
  * A member is the name of the prop or parameter that reaches it (`label: 'title'`, a card's words;
- * `value: 'controller'`, a Flutter field's text), `{ group: '<Widget>' }` where a group the
+ * `value: 'controller'`, a Flutter field's text), `{ not: '<member>' }` where the member is the
+ * prop's negation (a Flutter field's `enabled`, its `disabled`), `{ group: '<Widget>' }` where a group the
  * platform provides decides it and the component takes no parameter for it (a Flutter Radio's
  * `checked`, its RadioGroup's), or null where the shell fills it itself from other members (Tree
  * Item's buttons, from their callbacks).
@@ -60,8 +61,8 @@ function conventional(spec, slot, platform) {
  * @param {object} spec the component's IR
  * @param {{react?: object, flutter?: object}} [given] a mapping in place of the descriptor's (a
  *   test's)
- * @returns {{react: Record<string, string | {group: string} | null>,
- *   flutter: Record<string, string | {group: string} | null>}}
+ * @returns {{react: Record<string, Member>, flutter: Record<string, Member>}} where a Member is
+ *   `string | {not: string} | {group: string} | null`
  */
 export function apiOf(spec, given) {
   const out = { react: {}, flutter: {} };
@@ -104,7 +105,8 @@ export function apiOf(spec, given) {
  * take (nor its `on<Member>` callback, which shows a slot such as Banner's close button), or, for
  * a group's, a parameter the shell takes anyway or a group it never names.
  *
- * @param {Record<string, string | {group: string} | null>} mapping one platform's, from apiOf
+ * @param {Record<string, string | {not: string} | {group: string} | null>} mapping one
+ *   platform's, from apiOf
  * @param {string[]} members what the shell takes: its destructured props, its parameters
  * @param {string} source the shell, for the group it names
  */
@@ -113,6 +115,8 @@ export function unreached(mapping, members, source) {
   return Object.entries(mapping)
     .filter(([name, member]) => {
       if (member === null) return false;
+      if (typeof member === 'object' && 'not' in member)
+        return !has.has(member.not);
       if (typeof member === 'object')
         return has.has(name) || !source.includes(member.group);
       const on = `on${member[0].toUpperCase()}${member.slice(1)}`;

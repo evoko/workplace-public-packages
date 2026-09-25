@@ -71,7 +71,7 @@ describe('text decoration and case, once the contract carries them', () => {
     const { styles } = renderMuiComponent(button, spec);
     expect(styles.root.textDecoration).toBe('none');
     expect(
-      styles.combined.md['variant=tertiary, danger=false']['&:hover']
+      styles.combined.md['prio=tertiary, danger=false']['&:hover']
         .textDecoration,
     ).toBe('underline');
   });

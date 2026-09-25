@@ -139,3 +139,11 @@ export function solarAutocompleteOpenCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarAutocompleteOpenTree: Record<string, string[]> = {
+  root: ['autocomplete', 'dropdownMenu'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarAutocompleteOpen-<slot>`, public. */
+export const solarAutocompleteOpenSlots: Record<string, string> = {};

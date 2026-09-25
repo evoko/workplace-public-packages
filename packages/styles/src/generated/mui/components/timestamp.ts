@@ -199,3 +199,9 @@ export function solarTimestampCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTimestampTree: Record<string, string[]> = { root: ['value'] };
+
+/** Each slot's layer, to the slot it is: its class is `SolarTimestamp-<slot>`, public. */
+export const solarTimestampSlots: Record<string, string> = {};

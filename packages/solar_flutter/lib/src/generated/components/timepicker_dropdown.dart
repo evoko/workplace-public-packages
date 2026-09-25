@@ -101,6 +101,19 @@ abstract final class SolarTimePickerDropdownRecipe {
     'dropdownItem6.variant.size|size|sm': 'k:sm',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['content'],
+    'content': [
+      'dropdownItem',
+      'dropdownItem2',
+      'dropdownItem3',
+      'dropdownItem4',
+      'dropdownItem5',
+      'dropdownItem6',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

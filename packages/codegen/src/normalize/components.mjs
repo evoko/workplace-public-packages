@@ -20,6 +20,7 @@ import {
   expandPatterns,
   followsOf,
   placeLayers,
+  repeatLayers,
   restylesOf,
   renameStates,
   sameLayers,
@@ -460,12 +461,22 @@ export function buildComponentSpec(
     namesOf(parents, slotsOf(resolved, set), set.name, given),
   );
   const layerNames = namesOf(parents, slots, set.name, given);
+  // Sample copies of one layer (a month's days), read as their first: the rest are no layers.
+  const { resolved: kept, repeats } = repeatLayers(
+    resolved,
+    overlay,
+    layerNames,
+  );
+  const keptPaths = new Set(kept.variants.flatMap((v) => [...v.layers.keys()]));
   // A rule's layer may be a pattern: expanded against the names, before any rule is read.
-  expandPatterns(overlay, [...layerNames.values()]);
+  expandPatterns(
+    overlay,
+    [...layerNames].filter(([path]) => keptPaths.has(path)).map(([, n]) => n),
+  );
   const pathOf = (name) =>
     [...layerNames].find(([, n]) => n === name)?.[0] ?? null;
 
-  const recipe = deriveRecipe(resolved, {
+  const recipe = deriveRecipe(kept, {
     names,
     follows: followsOf(overlay, pathOf),
     restyles: restylesOf(overlay, pathOf),
@@ -497,6 +508,7 @@ export function buildComponentSpec(
       path,
       parent: parent === null ? null : layerNames.get(parent),
       type,
+      ...(repeats[name] ? { repeat: repeats[name] } : {}),
     };
     const s = recipe.style[path];
     style[name] = {
@@ -549,7 +561,7 @@ export function buildComponentSpec(
     names,
     axes: recipe.axes,
     // The combinations Figma draws, for a `set` whose look is a pattern (`root.appearance.*…`).
-    drawn: resolved.variants.map((v) => v.props),
+    drawn: kept.variants.map((v) => v.props),
   });
   return applyDefaults(applied.spec, applied.deviations, defaults, {
     names,

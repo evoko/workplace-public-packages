@@ -20,7 +20,7 @@ Widget buildButton(
   return SolarButton(
     onPressed: props['disabled'] as bool ? null : () {},
     size: enumNamed(SolarButtonSize.values, props['size'] as String),
-    variant: enumNamed(SolarButtonVariant.values, props['variant'] as String),
+    prio: enumNamed(SolarButtonPrio.values, props['prio'] as String),
     danger: props['danger'] as bool,
     loading: props['loading'] as bool,
     statesController: states,

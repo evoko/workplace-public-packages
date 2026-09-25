@@ -78,6 +78,19 @@ abstract final class SolarPaginationRecipe {
     'next.height|base': 'none',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': [
+      'previous',
+      'page1',
+      'page2',
+      'page3',
+      'paginationEllipsis',
+      'page12',
+      'next',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

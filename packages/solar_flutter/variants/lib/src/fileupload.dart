@@ -14,7 +14,7 @@ Widget buildFileUpload(
   return SizedBox(
     width: 400,
     child: SolarFileUpload(
-      disabled: props['disabled'] as bool,
+      enabled: !(props['disabled'] as bool),
       error: props['error'] as bool,
       label: 'Upload a file',
       mandatory: true,

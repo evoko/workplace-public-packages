@@ -364,3 +364,16 @@ export function solarAccordionCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarAccordionTree: Record<string, string[]> = {
+  root: ['title', 'iconChevronDown', 'accordion', 'content'],
+  content: ['description'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarAccordion-<slot>`, public. */
+export const solarAccordionSlots: Record<string, string> = {
+  content: 'content',
+  title: 'title',
+  description: 'description',
+};

@@ -117,7 +117,9 @@ describe('solar:explain --propose', () => {
   });
 
   it('proposes one patterned rule where numbered siblings hold the same finding', () => {
+    // The days as Figma draws them, 35 numbered copies, not read as their first.
     const doc = overlayText('Date Picker Open', (d) => {
+      delete d.repeats;
       for (const at of Object.keys(d.set))
         if (/^dayGridDayCell\*/.test(at)) delete d.set[at];
     });

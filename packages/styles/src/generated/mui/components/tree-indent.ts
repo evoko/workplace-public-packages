@@ -1096,3 +1096,22 @@ export function solarTreeIndentCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTreeIndentTree: Record<string, string[]> = {
+  root: [
+    'unit1',
+    'unit2',
+    'unit3',
+    'unit4',
+    'unit5',
+    'unit6',
+    'unit7',
+    'unit8',
+    'unit10',
+    'unit9',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTreeIndent-<slot>`, public. */
+export const solarTreeIndentSlots: Record<string, string> = {};

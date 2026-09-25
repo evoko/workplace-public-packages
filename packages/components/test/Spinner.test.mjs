@@ -59,7 +59,7 @@ describe('the SOLAR Spinner shell', () => {
     );
     expect(primary.css).toContain('var(--solar-color-border-inverse-strong)');
     const secondary = render(
-      h(Button, { loading: true, variant: 'secondary' }, 'Save'),
+      h(Button, { loading: true, prio: 'secondary' }, 'Save'),
     );
     expect(secondary.css).toContain('var(--solar-color-border-strong)');
     expect(secondary.css).not.toContain('inverse');

@@ -13,11 +13,11 @@ Widget buildLaunchCard(
   Map<String, dynamic>? _,
 ]) {
   // The group's Buttons, as Figma draws them here: words alone, their icons and counter hidden.
-  Widget button(String layer, SolarButtonVariant variant) => KeyedSubtree(
+  Widget button(String layer, SolarButtonPrio prio) => KeyedSubtree(
     key: Key(layer),
     child: SolarButton(
       onPressed: () {},
-      variant: variant,
+      prio: prio,
       child: const Text('Label'),
     ),
   );
@@ -36,14 +36,14 @@ Widget buildLaunchCard(
         icon: const IconProbe(key: Key('icon')),
         semanticLabel: 'Favourite',
         shape: SolarIconButtonShape.round,
-        variant: SolarIconButtonVariant.tertiary,
+        prio: SolarIconButtonPrio.tertiary,
       ),
       actions: SolarButtonGroup(
         orientation: SolarButtonGroupOrientation.horizontal,
         // The tertiary, which Figma hides here, is not drawn.
         children: [
-          button('secondaryCTA', SolarButtonVariant.secondary),
-          button('button3', SolarButtonVariant.primary),
+          button('secondaryCTA', SolarButtonPrio.secondary),
+          button('button3', SolarButtonPrio.primary),
         ],
       ),
       onPressed: () {},

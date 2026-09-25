@@ -6,7 +6,7 @@
     "flutter": null
   },
   "api": {
-    "variant": {
+    "prio": {
       "values": ["primary", "secondary"],
       "default": "primary"
     },
@@ -153,7 +153,7 @@
         }
       },
       "appearance": {
-        "variant=secondary": {
+        "prio=secondary": {
           "default": {
             "background": {
               "token": "color.action.secondary.bg.default",
@@ -207,7 +207,7 @@
             }
           }
         },
-        "variant=primary": {
+        "prio=primary": {
           "hover": {
             "background": {
               "token": "color.action.primary.bg.hover",
@@ -321,7 +321,7 @@
         }
       },
       "appearance": {
-        "variant=primary": {
+        "prio=primary": {
           "loading": {
             "present": {
               "value": false,
@@ -329,7 +329,7 @@
             }
           }
         },
-        "variant=secondary": {
+        "prio=secondary": {
           "loading": {
             "present": {
               "value": false,
@@ -363,7 +363,7 @@
         }
       },
       "appearance": {
-        "variant=secondary": {
+        "prio=secondary": {
           "default": {
             "color": {
               "token": "color.action.secondary.text.default",
@@ -401,7 +401,7 @@
             }
           }
         },
-        "variant=primary": {
+        "prio=primary": {
           "disabled": {
             "color": {
               "token": "color.action.primary.text.disabled",
@@ -454,7 +454,7 @@
       },
       "size": {},
       "appearance": {
-        "variant=primary": {
+        "prio=primary": {
           "loading": {
             "present": {
               "value": false,
@@ -462,7 +462,7 @@
             }
           }
         },
-        "variant=secondary": {
+        "prio=secondary": {
           "loading": {
             "present": {
               "value": false,
@@ -590,7 +590,7 @@
         }
       },
       "appearance": {
-        "variant=primary": {
+        "prio=primary": {
           "loading": {
             "present": {
               "value": false,
@@ -598,7 +598,7 @@
             }
           }
         },
-        "variant=secondary": {
+        "prio=secondary": {
           "loading": {
             "present": {
               "value": false,
@@ -650,7 +650,7 @@
         }
       },
       "appearance": {
-        "variant=secondary": {
+        "prio=secondary": {
           "default": {
             "color": {
               "token": "color.action.secondary.icon.default",
@@ -688,7 +688,7 @@
             }
           }
         },
-        "variant=primary": {
+        "prio=primary": {
           "hover": {
             "color": {
               "token": "color.action.primary.icon.hover",
@@ -742,7 +742,7 @@
         }
       },
       "appearance": {
-        "variant=primary": {
+        "prio=primary": {
           "loading": {
             "present": {
               "value": true,
@@ -754,7 +754,7 @@
             }
           }
         },
-        "variant=secondary": {
+        "prio=secondary": {
           "loading": {
             "present": {
               "value": true,
@@ -787,11 +787,6 @@
         "rule": "base",
         "at": "base",
         "reason": "Bespoke on both platforms: two buttons in one joined control, the action and the chevron that opens its menu (\"two <button>s in a joined container\", says the description). Figma draws the states on the whole control, so the control takes the states of whichever half the pointer or the keyboard is on. No stock control is that; the menu is the caller's until Dropdown (F6)."
-      },
-      {
-        "rule": "rename",
-        "at": "prio",
-        "reason": "As Button, whose API names it `variant`; `prio` is the Figma property name."
       },
       {
         "rule": "bind",

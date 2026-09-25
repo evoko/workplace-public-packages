@@ -167,6 +167,13 @@ abstract final class SolarDragHandleRecipe {
     'col2Dot3.background|combined|md|default|focus': 't:color.icon.secondary',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['col1', 'col2'],
+    'col1': ['col1Dot', 'col1Dot2', 'col1Dot3'],
+    'col2': ['col2Dot', 'col2Dot2', 'col2Dot3'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = [
     'disabled',

@@ -382,3 +382,16 @@ export function solarFileUploadCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarFileUploadTree: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['uploadAFile', 'mandatory'],
+  field: ['iconFile', 'fileName', 'button', 'iconButton', 'iconButton2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarFileUpload-<slot>`, public. */
+export const solarFileUploadSlots: Record<string, string> = {
+  mandatory: 'mandatory',
+  helper: 'helper',
+};

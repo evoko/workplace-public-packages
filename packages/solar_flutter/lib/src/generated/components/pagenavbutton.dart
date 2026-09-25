@@ -123,6 +123,11 @@ abstract final class SolarPageNavButtonRecipe {
         't:color.action.secondary.icon.disabled',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['iconArrowLeft', 'label', 'iconArrowRight'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = [
     'disabled',

@@ -377,3 +377,24 @@ export function solarLaunchCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarLaunchCardTree: Record<string, string[]> = {
+  root: ['image', 'content'],
+  image: ['favourite'],
+  content: ['text', 'actions'],
+  text: ['headline', 'bodyText'],
+  headline: ['appIcon', 'name', 'tag', 'favouriteNoImage'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarLaunchCard-<slot>`, public. */
+export const solarLaunchCardSlots: Record<string, string> = {
+  image: 'image',
+  favourite: 'favourite',
+  tag: 'tag',
+  favouriteNoImage: 'favouriteNoImage',
+  bodyText: 'bodyText',
+  name: 'name',
+  appIcon: 'appIcon',
+  actions: 'actions',
+};

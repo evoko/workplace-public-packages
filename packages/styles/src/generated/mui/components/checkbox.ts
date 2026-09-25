@@ -419,3 +419,11 @@ export function solarCheckboxCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarCheckboxTree: Record<string, string[]> = {
+  root: ['icon', 'container'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarCheckbox-<slot>`, public. */
+export const solarCheckboxSlots: Record<string, string> = {};

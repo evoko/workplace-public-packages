@@ -499,3 +499,18 @@ export function solarTokenInputCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTokenInputTree: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['labelLabel', 'mandatory'],
+  field: ['tags', 'counter'],
+  tags: ['addItems', 'tag', 'tag2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarTokenInput-<slot>`, public. */
+export const solarTokenInputSlots: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+};

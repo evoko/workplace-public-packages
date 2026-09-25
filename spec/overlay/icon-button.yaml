@@ -13,11 +13,6 @@ base:
     supplies focus handling and keyboard activation; Flutter's IconButton takes a ButtonStyle, as
     FilledButton does for Button, so the same style builder restyles it.
 
-rename:
-  prio:
-    to: variant
-    reason: As Button, whose API names it `variant`; `prio` is the Figma property name.
-
 slots:
   iconNone:
     name: icon

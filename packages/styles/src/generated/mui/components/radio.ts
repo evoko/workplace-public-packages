@@ -224,3 +224,9 @@ export function solarRadioCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarRadioTree: Record<string, string[]> = { root: ['icon'] };
+
+/** Each slot's layer, to the slot it is: its class is `SolarRadio-<slot>`, public. */
+export const solarRadioSlots: Record<string, string> = {};

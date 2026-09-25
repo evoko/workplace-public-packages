@@ -28,6 +28,13 @@
  *                                                        siblings (Card's loading Skeleton, before
  *                                                        Content), which Figma's export loses: it
  *                                                        records an added layer after the others
+ *   repeats:      { <layer>: { reason } }               sibling copies of one layer Figma draws as a
+ *                                                        component's sample content (a month's 35
+ *                                                        Day Cells, `Day Cell`, `Day Cell#2`…), read
+ *                                                        as their first, which the IR marks
+ *                                                        `repeat: <count>`; the shell draws the real
+ *                                                        ones from its data. `<layer>` names the
+ *                                                        first, or a pattern of firsts (`*DayCell`)
  *   same:         { <Figma path>: { as, reason } }       a layer Figma draws anew in some variants that
  *                                                        is another (Inline Input's Confirm and Cancel,
  *                                                        framed again per edit state): read as `as`
@@ -161,6 +168,7 @@ const FIELDS = {
   layerNames: ['name'],
   places: ['before'],
   same: ['as'],
+  repeats: [],
   composes: ['name'],
 };
 const SECTIONS = [
@@ -835,6 +843,108 @@ export function placeLayers(layers, overlay, component) {
  * rule for a path no variant has, onto one that is not a sibling's, or where one variant has both,
  * fails.
  */
+/**
+ * The layers the overlay says repeat (`repeats`), read as their first: the variants without the
+ * other copies and what they hold, and each first's count, the most copies any variant draws.
+ * Figma names a copy after the first, `/DayGrid/Day Cell#2`, and the IR names it `dayGridDayCell2`;
+ * a rule names the first, by its IR name, or firsts by a pattern (`*DayCell`), and fails where one
+ * has no copies, or names a copy.
+ *
+ * @param {object} resolved the variants, as resolveVariants gives them
+ * @param {object | null} overlay
+ * @param {Map<string, string>} layerNames each Figma path's IR name
+ * @returns {{resolved: object, repeats: Record<string, number>}} the variants, and each first's
+ *   count by IR name
+ */
+export function repeatLayers(resolved, overlay, layerNames) {
+  const rules = Object.keys(overlay?.repeats ?? {});
+  if (!rules.length) return { resolved, repeats: {} };
+  const fail = (detail) => {
+    throw new Error(`${overlay.file}: ${detail}`);
+  };
+  const names = [...layerNames.values()];
+  const pathOf = new Map([...layerNames].map(([path, name]) => [name, path]));
+  const firsts = new Map();
+  for (const rule of rules) {
+    const shape = new RegExp(
+      `^${rule
+        .split('*')
+        .map((p) => p.replace(/[^A-Za-z0-9]/g, '\\$&'))
+        .join('[A-Za-z0-9]*')}$`,
+    );
+    const hits = names.filter((n) => shape.test(n));
+    if (!hits.length) fail(`repeats ${rule}: the component has no such layer`);
+    for (const name of hits) {
+      const path = pathOf.get(name);
+      // A pattern reaches the firsts alone: a copy's IR name is the first's and a number.
+      if (/#\d+$/.test(path)) {
+        if (!rule.includes('*'))
+          fail(
+            `repeats ${rule}: ${path} is a copy of ${path.replace(/#\d+$/, '')}; name the first`,
+          );
+        continue;
+      }
+      firsts.set(path, name);
+    }
+  }
+  const copyOf = (path) => {
+    for (const first of firsts.keys())
+      if (
+        path.startsWith(`${first}#`) &&
+        /^#\d+(\/|$)/.test(path.slice(first.length))
+      )
+        return first;
+    return null;
+  };
+  const repeats = {};
+  const variants = resolved.variants.map((v) => {
+    const count = new Map();
+    const layers = new Map();
+    const parents = new Map();
+    for (const [path, layer] of v.layers) {
+      const first = copyOf(path);
+      if (first) {
+        if (/^#\d+$/.test(path.slice(first.length)))
+          count.set(first, (count.get(first) ?? 1) + 1);
+        continue;
+      }
+      layers.set(path, layer);
+      parents.set(path, v.parents.get(path));
+    }
+    for (const [first, n] of count)
+      repeats[firsts.get(first)] = Math.max(repeats[firsts.get(first)] ?? 1, n);
+    return { ...v, layers, parents };
+  });
+  for (const [path, name] of firsts)
+    if (!repeats[name])
+      fail(`repeats ${name}: Figma draws no copy of ${path}; delete the rule`);
+  return { resolved: { ...resolved, variants }, repeats };
+}
+
+/**
+ * The variants without the copies of the layers the IR marks `repeat` (repeatLayers): what the
+ * oracle measures, the first standing for all.
+ */
+export function withoutRepeats(resolved, spec) {
+  const firsts = Object.values(spec.layers)
+    .filter((l) => l.repeat)
+    .map((l) => l.path);
+  if (!firsts.length) return resolved;
+  const copy = (path) =>
+    firsts.some(
+      (f) =>
+        path.startsWith(`${f}#`) && /^#\d+(\/|$)/.test(path.slice(f.length)),
+    );
+  return {
+    ...resolved,
+    variants: resolved.variants.map((v) => ({
+      ...v,
+      layers: new Map([...v.layers].filter(([path]) => !copy(path))),
+      parents: new Map([...v.parents].filter(([path]) => !copy(path))),
+    })),
+  };
+}
+
 export function sameLayers(resolved, overlay) {
   const rules = Object.entries(overlay?.same ?? {});
   if (!rules.length) return resolved;
@@ -991,6 +1101,10 @@ export function applyOverlay(
   // Layers were placed as the IR was built (placeLayers); here they are recorded.
   for (const [path, rule] of sorted('places'))
     record('places', `${path} before ${rule.before}`, rule.reason);
+
+  // Copies were read as their first before the recipe was derived (repeatLayers); here recorded.
+  for (const [at, rule] of sorted('repeats'))
+    record('repeats', at, rule.reason);
 
   // Layers read as one were merged before the recipe was derived (sameLayers); here recorded.
   for (const [path, rule] of sorted('same'))

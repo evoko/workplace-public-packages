@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import * as stage from '../src/stages/components.mjs';
-import { MENU_MAX_HEIGHT } from '../src/shells/menu.mjs';
+import { MENU_MAX_HEIGHT } from '../src/components/shared/menu.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
 const { built } = stage.build();

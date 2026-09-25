@@ -138,8 +138,10 @@ All of that is level 1 and level 2. None of it needs level 3.
    On the web it is reachable through `sx` **and** through the MUI theme
    ([review item 14](../plans/2026-09-25-solar-pipeline-review.md)); in Flutter through the
    generated recipe **and** through a component theme once one exists (item 22 below).
-5. **Names.** SOLAR's word where SOLAR names the thing; otherwise MUI's word on the web and
-   Flutter's word in Flutter. This is the answer to the review's item 17. **Owner:** confirm.
+5. **Names.** SOLAR's word where SOLAR's description names the thing; otherwise MUI's word on the
+   web and Flutter's word in Flutter. This is the answer to the review's item 17, confirmed by the
+   owner 2026-09-25: `helper` and `mandatory` stay, and a Flutter field takes `enabled`, since
+   whether a control takes input is behaviour (rule 3).
 6. **Accessibility is per platform and non-negotiable on both.** The 44 × 44 target, the
    accessible name, the role and the states are each platform's own mechanism (a pseudo-element
    or an enlarged input; `SolarTarget` and `Semantics`), checked by each platform's own tests.
@@ -259,8 +261,11 @@ gate):
 
 ## 9. Open for the owner
 
-- Rule 5's wording (SOLAR's word where SOLAR names the thing; otherwise the platform's).
+- ~~Rule 5's wording.~~ Confirmed 2026-09-25 (§5). The renames made before it: `prio` and Button
+  Group's `type` are SOLAR's words again; `style` → `variant` stays, the one exception, since React
+  reserves `style` (the design review asks Figma to rename it).
 - ~~Whether item 22's component themes should come before or after F11.~~ Settled 2026-09-25:
   done before F11, for the buttons (§8).
-- Whether `loading` should follow the platform too (a Flutter app may prefer to swap the child),
-  or stay a shared concept because SOLAR draws it as a state.
+- ~~Whether `loading` should follow the platform.~~ Decided 2026-09-25: it stays a prop on both,
+  since SOLAR draws it as a state (a Spinner per variant, the label hidden but keeping its room).
+- ~~Item 9, shells as real files.~~ Done 2026-09-25 (the review's item 9).

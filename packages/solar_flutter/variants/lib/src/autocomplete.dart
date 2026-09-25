@@ -15,7 +15,7 @@ Widget buildAutocomplete(
   final content = ((v['content'] as List?) ?? const []).cast<String>();
   return SolarAutocomplete<String>(
     size: enumNamed(SolarAutocompleteSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     options: const ['One', 'Two'],
     controller: TextEditingController(

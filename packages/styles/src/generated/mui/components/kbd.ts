@@ -165,3 +165,9 @@ export function solarKbdCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarKbdTree: Record<string, string[]> = { root: ['label'] };
+
+/** Each slot's layer, to the slot it is: its class is `SolarKbd-<slot>`, public. */
+export const solarKbdSlots: Record<string, string> = {};

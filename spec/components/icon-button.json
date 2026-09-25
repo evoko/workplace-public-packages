@@ -14,7 +14,7 @@
       "values": ["square", "round"],
       "default": "square"
     },
-    "variant": {
+    "prio": {
       "values": ["primary", "secondary", "tertiary"],
       "default": "primary"
     },
@@ -153,7 +153,7 @@
         }
       },
       "appearance": {
-        "shape=square, variant=primary": {
+        "shape=square, prio=primary": {
           "hover": {
             "background": {
               "token": "color.action.primary.bg.hover",
@@ -185,7 +185,7 @@
             }
           }
         },
-        "shape=round, variant=primary": {
+        "shape=round, prio=primary": {
           "hover": {
             "background": {
               "token": "color.action.primary.bg.hover",
@@ -217,7 +217,7 @@
             }
           }
         },
-        "shape=square, variant=secondary": {
+        "shape=square, prio=secondary": {
           "default": {
             "background": {
               "token": "color.action.secondary.bg.default",
@@ -259,7 +259,7 @@
             }
           }
         },
-        "shape=round, variant=secondary": {
+        "shape=round, prio=secondary": {
           "default": {
             "background": {
               "token": "color.action.secondary.bg.default",
@@ -301,7 +301,7 @@
             }
           }
         },
-        "shape=square, variant=tertiary": {
+        "shape=square, prio=tertiary": {
           "default": {
             "background": {
               "token": "color.action.tertiary.bg.default",
@@ -363,7 +363,7 @@
             }
           }
         },
-        "shape=round, variant=tertiary": {
+        "shape=round, prio=tertiary": {
           "default": {
             "background": {
               "token": "color.action.tertiary.bg.default",
@@ -428,7 +428,7 @@
       },
       "combined": {
         "sm": {
-          "shape=square, variant=primary": {
+          "shape=square, prio=primary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -466,7 +466,7 @@
               }
             }
           },
-          "shape=round, variant=primary": {
+          "shape=round, prio=primary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -510,7 +510,7 @@
               }
             }
           },
-          "shape=square, variant=secondary": {
+          "shape=square, prio=secondary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -536,7 +536,7 @@
               }
             }
           },
-          "shape=round, variant=secondary": {
+          "shape=round, prio=secondary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -568,7 +568,7 @@
               }
             }
           },
-          "shape=square, variant=tertiary": {
+          "shape=square, prio=tertiary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -630,7 +630,7 @@
               }
             }
           },
-          "shape=round, variant=tertiary": {
+          "shape=round, prio=tertiary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -698,7 +698,7 @@
           }
         },
         "md": {
-          "shape=square, variant=primary": {
+          "shape=square, prio=primary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -752,7 +752,7 @@
               }
             }
           },
-          "shape=round, variant=primary": {
+          "shape=round, prio=primary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -810,7 +810,7 @@
               }
             }
           },
-          "shape=square, variant=secondary": {
+          "shape=square, prio=secondary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -836,7 +836,7 @@
               }
             }
           },
-          "shape=round, variant=secondary": {
+          "shape=round, prio=secondary": {
             "hover": {
               "shadow": {
                 "none": true,
@@ -868,7 +868,7 @@
               }
             }
           },
-          "shape=square, variant=tertiary": {
+          "shape=square, prio=tertiary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -930,7 +930,7 @@
               }
             }
           },
-          "shape=round, variant=tertiary": {
+          "shape=round, prio=tertiary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -998,7 +998,7 @@
           }
         },
         "lg": {
-          "shape=square, variant=primary": {
+          "shape=square, prio=primary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -1060,7 +1060,7 @@
               }
             }
           },
-          "shape=round, variant=primary": {
+          "shape=round, prio=primary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -1126,7 +1126,7 @@
               }
             }
           },
-          "shape=square, variant=secondary": {
+          "shape=square, prio=secondary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -1188,7 +1188,7 @@
               }
             }
           },
-          "shape=round, variant=secondary": {
+          "shape=round, prio=secondary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -1254,7 +1254,7 @@
               }
             }
           },
-          "shape=square, variant=tertiary": {
+          "shape=square, prio=tertiary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -1316,7 +1316,7 @@
               }
             }
           },
-          "shape=round, variant=tertiary": {
+          "shape=round, prio=tertiary": {
             "default": {
               "shadow": {
                 "none": true,
@@ -1438,7 +1438,7 @@
         }
       },
       "appearance": {
-        "shape=square, variant=primary": {
+        "shape=square, prio=primary": {
           "loading": {
             "present": {
               "value": false,
@@ -1464,7 +1464,7 @@
             }
           }
         },
-        "shape=round, variant=primary": {
+        "shape=round, prio=primary": {
           "loading": {
             "present": {
               "value": false,
@@ -1490,7 +1490,7 @@
             }
           }
         },
-        "shape=square, variant=secondary": {
+        "shape=square, prio=secondary": {
           "loading": {
             "present": {
               "value": false,
@@ -1532,7 +1532,7 @@
             }
           }
         },
-        "shape=round, variant=secondary": {
+        "shape=round, prio=secondary": {
           "loading": {
             "present": {
               "value": false,
@@ -1574,7 +1574,7 @@
             }
           }
         },
-        "shape=square, variant=tertiary": {
+        "shape=square, prio=tertiary": {
           "loading": {
             "present": {
               "value": false,
@@ -1616,7 +1616,7 @@
             }
           }
         },
-        "shape=round, variant=tertiary": {
+        "shape=round, prio=tertiary": {
           "loading": {
             "present": {
               "value": false,
@@ -1698,7 +1698,7 @@
         }
       },
       "appearance": {
-        "shape=square, variant=primary": {
+        "shape=square, prio=primary": {
           "loading": {
             "present": {
               "value": true,
@@ -1710,7 +1710,7 @@
             }
           }
         },
-        "shape=round, variant=primary": {
+        "shape=round, prio=primary": {
           "loading": {
             "present": {
               "value": true,
@@ -1722,7 +1722,7 @@
             }
           }
         },
-        "shape=square, variant=secondary": {
+        "shape=square, prio=secondary": {
           "loading": {
             "present": {
               "value": true,
@@ -1734,7 +1734,7 @@
             }
           }
         },
-        "shape=round, variant=secondary": {
+        "shape=round, prio=secondary": {
           "loading": {
             "present": {
               "value": true,
@@ -1746,7 +1746,7 @@
             }
           }
         },
-        "shape=square, variant=tertiary": {
+        "shape=square, prio=tertiary": {
           "loading": {
             "present": {
               "value": true,
@@ -1758,7 +1758,7 @@
             }
           }
         },
-        "shape=round, variant=tertiary": {
+        "shape=round, prio=tertiary": {
           "loading": {
             "present": {
               "value": true,
@@ -1791,11 +1791,6 @@
         "rule": "base",
         "at": "base",
         "reason": "The closest stock control on each platform. MUI IconButton takes loading and disabled and supplies focus handling and keyboard activation; Flutter's IconButton takes a ButtonStyle, as FilledButton does for Button, so the same style builder restyles it."
-      },
-      {
-        "rule": "rename",
-        "at": "prio",
-        "reason": "As Button, whose API names it `variant`; `prio` is the Figma property name."
       },
       {
         "rule": "follows",

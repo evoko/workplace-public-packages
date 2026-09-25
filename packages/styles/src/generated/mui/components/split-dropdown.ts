@@ -227,3 +227,16 @@ export function solarSplitDropdownCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSplitDropdownTree: Record<string, string[]> = {
+  root: ['top', 'lower'],
+  top: ['topContent'],
+  lower: ['lowerContent'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSplitDropdown-<slot>`, public. */
+export const solarSplitDropdownSlots: Record<string, string> = {
+  topContent: 'topContent',
+  lowerContent: 'lowerContent',
+};

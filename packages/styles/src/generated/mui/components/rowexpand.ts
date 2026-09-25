@@ -342,3 +342,11 @@ export function solarRowExpandCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarRowExpandTree: Record<string, string[]> = {
+  root: ['iconChevronRight', 'iconChevronDown', 'container', 'container2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarRowExpand-<slot>`, public. */
+export const solarRowExpandSlots: Record<string, string> = {};

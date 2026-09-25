@@ -15,10 +15,7 @@ Widget buildSplitButton(
     label: 'Label',
     onPressed: props['disabled'] as bool ? null : () {},
     onMenuPressed: () {},
-    variant: enumNamed(
-      SolarSplitButtonVariant.values,
-      props['variant'] as String,
-    ),
+    prio: enumNamed(SolarSplitButtonPrio.values, props['prio'] as String),
     size: enumNamed(SolarSplitButtonSize.values, props['size'] as String),
     loading: props['loading'] as bool,
     statesController: states,

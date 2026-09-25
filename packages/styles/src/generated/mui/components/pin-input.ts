@@ -992,3 +992,24 @@ export function solarPINInputCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarPINInputTree: Record<string, string[]> = {
+  root: ['label', 'cells', 'helper', 'errorMessage'],
+  label: ['labelLabel', 'mandatory'],
+  cells: ['field', 'field2', 'field3', 'field4', 'field5', 'field6'],
+  field: ['placeholder', 'caret', 'digit'],
+  field2: ['placeholder2', 'digit2'],
+  field3: ['placeholder3', 'digit3'],
+  field4: ['placeholder4', 'digit4'],
+  field5: ['placeholder5', 'digit5'],
+  field6: ['placeholder6', 'digit6'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarPINInput-<slot>`, public. */
+export const solarPINInputSlots: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+  errorMessage: 'errorMessage',
+};

@@ -597,10 +597,12 @@ The seven steps, per component (from 3b-2, with M7's files):
       in `spec/overlay/<name>.yaml`. Unit tests for the IR: API, states, slots, layer names.
 - [ ] **2. Emitter tables.** In the descriptor: MUI slots, resets and state tables, and the Flutter
       style builder where the base has one. Unit tests for both recipes.
-- [ ] **3. Templates.** A React and a Flutter template in the descriptor, functions of the IR, holding
-      no design value.
-- [ ] **4. Shells.** `npm run solar:codegen` writes them from the templates, with the story.
-      Shell tests: behaviour, accessibility, composition from the recipe. When a check fails,
+- [ ] **3. Shells.** Since 2026-09-25 (the pipeline review's item 9), written by hand as files:
+      `packages/components/src/<Name>.tsx` and `solar_flutter/lib/src/components/solar_<name>.dart`,
+      from the nearest component's, importing the generated tree and slots and holding no design
+      value; sample copies Figma draws (a table's rows) opt into `repeats` in the overlay.
+- [ ] **4. Story and shell tests.** `npm run solar:codegen` writes the story and checks both shells
+      exist. Shell tests: behaviour, accessibility, composition from the recipe. When a check fails,
       `npm run solar:explain -- "<Name>" --variant …` says which recipe entry won and why.
 - [ ] **5. Parity.** The parity suite covers it through `COMPONENTS`; make it pass.
 - [ ] **6. Visual.** Its web case and Flutter builder and case. Every variant matches Figma or is excused

@@ -11,7 +11,7 @@
     {
       "figma": "prio=primary, size=md, state=default",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -103,7 +103,7 @@
     {
       "figma": "prio=secondary, size=md, state=default",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -195,7 +195,7 @@
     {
       "figma": "prio=primary, size=sm, state=default",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -288,7 +288,7 @@
     {
       "figma": "prio=secondary, size=sm, state=default",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -381,7 +381,7 @@
     {
       "figma": "prio=primary, size=md, state=hover",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -470,7 +470,7 @@
     {
       "figma": "prio=secondary, size=md, state=hover",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -572,7 +572,7 @@
     {
       "figma": "prio=primary, size=sm, state=hover",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -662,7 +662,7 @@
     {
       "figma": "prio=secondary, size=sm, state=hover",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -755,7 +755,7 @@
     {
       "figma": "prio=primary, size=md, state=pressed",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -853,7 +853,7 @@
     {
       "figma": "prio=secondary, size=md, state=pressed",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -944,7 +944,7 @@
     {
       "figma": "prio=primary, size=sm, state=pressed",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -1032,7 +1032,7 @@
     {
       "figma": "prio=secondary, size=sm, state=pressed",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -1124,7 +1124,7 @@
     {
       "figma": "prio=primary, size=md, state=disabled",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "md",
         "disabled": true,
         "loading": false
@@ -1212,7 +1212,7 @@
     {
       "figma": "prio=secondary, size=md, state=disabled",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "md",
         "disabled": true,
         "loading": false
@@ -1303,7 +1303,7 @@
     {
       "figma": "prio=primary, size=sm, state=disabled",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "sm",
         "disabled": true,
         "loading": false
@@ -1392,7 +1392,7 @@
     {
       "figma": "prio=secondary, size=sm, state=disabled",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "sm",
         "disabled": true,
         "loading": false
@@ -1484,7 +1484,7 @@
     {
       "figma": "prio=primary, size=md, state=focus",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -1575,7 +1575,7 @@
     {
       "figma": "prio=secondary, size=md, state=focus",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "md",
         "disabled": false,
         "loading": false
@@ -1666,7 +1666,7 @@
     {
       "figma": "prio=primary, size=sm, state=focus",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -1758,7 +1758,7 @@
     {
       "figma": "prio=secondary, size=sm, state=focus",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "sm",
         "disabled": false,
         "loading": false
@@ -1850,7 +1850,7 @@
     {
       "figma": "prio=primary, size=md, state=loading",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "md",
         "disabled": false,
         "loading": true
@@ -1988,7 +1988,7 @@
     {
       "figma": "prio=secondary, size=md, state=loading",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "md",
         "disabled": false,
         "loading": true
@@ -2126,7 +2126,7 @@
     {
       "figma": "prio=primary, size=sm, state=loading",
       "props": {
-        "variant": "primary",
+        "prio": "primary",
         "size": "sm",
         "disabled": false,
         "loading": true
@@ -2264,7 +2264,7 @@
     {
       "figma": "prio=secondary, size=sm, state=loading",
       "props": {
-        "variant": "secondary",
+        "prio": "secondary",
         "size": "sm",
         "disabled": false,
         "loading": true

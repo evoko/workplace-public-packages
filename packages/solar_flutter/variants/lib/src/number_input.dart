@@ -17,7 +17,7 @@ Widget buildNumberInput(
       SolarNumberInputStepper.values,
       props['stepper'] as String,
     ),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     label: 'Label',
     mandatory: true,

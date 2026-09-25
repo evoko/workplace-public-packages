@@ -351,3 +351,25 @@ export function solarSegmentedControlCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSegmentedControlTree: Record<string, string[]> = {
+  root: ['label', 'track', 'helper'],
+  label: ['labelLabel', 'mandatory'],
+  track: [
+    'segmentedControlItem',
+    'segmentedControlItem2',
+    'segmentedControlItem3',
+    'segmentedControlItem4',
+    'segmentedControlItem5',
+    'segmentedControlItem6',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSegmentedControl-<slot>`, public. */
+export const solarSegmentedControlSlots: Record<string, string> = {
+  labelLabel: 'label',
+  mandatory: 'mandatory',
+  track: 'track',
+  helper: 'helper',
+};

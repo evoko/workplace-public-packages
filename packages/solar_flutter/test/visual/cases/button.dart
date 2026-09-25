@@ -58,7 +58,7 @@ Layers measureButtonAt(WidgetTester tester, Finder at) {
     final b = tester.widget<SolarButton>(inside(find.byType(SolarButton)));
     return SolarButtonRecipe.dimension(
           'root.gap',
-          SolarButtonProps(size: b.size, variant: b.variant, danger: b.danger),
+          SolarButtonProps(size: b.size, prio: b.prio, danger: b.danger),
           const {},
         ) ??
         0;

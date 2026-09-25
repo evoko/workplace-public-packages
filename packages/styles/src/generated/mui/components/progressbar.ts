@@ -162,3 +162,11 @@ export function solarProgressBarCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarProgressBarTree: Record<string, string[]> = {
+  root: ['indicator'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarProgressBar-<slot>`, public. */
+export const solarProgressBarSlots: Record<string, string> = {};

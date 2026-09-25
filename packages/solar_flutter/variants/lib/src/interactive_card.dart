@@ -34,7 +34,7 @@ Widget buildInteractiveCard(
               onPressed: () {},
               icon: const IconProbe(key: Key('icon')),
               semanticLabel: 'Action',
-              variant: SolarIconButtonVariant.secondary,
+              prio: SolarIconButtonPrio.secondary,
             ),
           ),
       ],

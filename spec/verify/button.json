@@ -17,7 +17,7 @@
       "figma": "size=md, prio=primary, state=default, danger=false",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -106,7 +106,7 @@
       "figma": "size=md, prio=primary, state=default, danger=true",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -184,7 +184,7 @@
       "figma": "size=md, prio=secondary, state=default, danger=false",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -273,7 +273,7 @@
       "figma": "size=md, prio=secondary, state=default, danger=true",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -356,7 +356,7 @@
       "figma": "size=md, prio=tertiary, state=default, danger=false",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -440,7 +440,7 @@
       "figma": "size=md, prio=tertiary, state=default, danger=true",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -518,7 +518,7 @@
       "figma": "size=sm, prio=primary, state=default, danger=false",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -607,7 +607,7 @@
       "figma": "size=sm, prio=primary, state=default, danger=true",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -685,7 +685,7 @@
       "figma": "size=sm, prio=secondary, state=default, danger=false",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -783,7 +783,7 @@
       "figma": "size=sm, prio=secondary, state=default, danger=true",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -875,7 +875,7 @@
       "figma": "size=sm, prio=tertiary, state=default, danger=false",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -959,7 +959,7 @@
       "figma": "size=sm, prio=tertiary, state=default, danger=true",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -1037,7 +1037,7 @@
       "figma": "size=lg, prio=primary, state=default, danger=false",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -1126,7 +1126,7 @@
       "figma": "size=lg, prio=primary, state=default, danger=true",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -1198,7 +1198,7 @@
       "figma": "size=lg, prio=secondary, state=default, danger=false",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -1287,7 +1287,7 @@
       "figma": "size=lg, prio=secondary, state=default, danger=true",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -1370,7 +1370,7 @@
       "figma": "size=lg, prio=tertiary, state=default, danger=false",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -1478,7 +1478,7 @@
       "figma": "size=lg, prio=tertiary, state=default, danger=true",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -1580,7 +1580,7 @@
       "figma": "size=md, prio=primary, state=hover, danger=false",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -1663,7 +1663,7 @@
       "figma": "size=md, prio=primary, state=hover, danger=true",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -1743,7 +1743,7 @@
       "figma": "size=md, prio=secondary, state=hover, danger=false",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -1832,7 +1832,7 @@
       "figma": "size=md, prio=secondary, state=hover, danger=true",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -1915,7 +1915,7 @@
       "figma": "size=md, prio=tertiary, state=hover, danger=false",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -1999,7 +1999,7 @@
       "figma": "size=md, prio=tertiary, state=hover, danger=true",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -2080,7 +2080,7 @@
       "figma": "size=sm, prio=primary, state=hover, danger=false",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -2163,7 +2163,7 @@
       "figma": "size=sm, prio=primary, state=hover, danger=true",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -2243,7 +2243,7 @@
       "figma": "size=sm, prio=secondary, state=hover, danger=false",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -2332,7 +2332,7 @@
       "figma": "size=sm, prio=secondary, state=hover, danger=true",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -2415,7 +2415,7 @@
       "figma": "size=sm, prio=tertiary, state=hover, danger=false",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -2499,7 +2499,7 @@
       "figma": "size=sm, prio=tertiary, state=hover, danger=true",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -2580,7 +2580,7 @@
       "figma": "size=lg, prio=primary, state=hover, danger=false",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -2663,7 +2663,7 @@
       "figma": "size=lg, prio=primary, state=hover, danger=true",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -2743,7 +2743,7 @@
       "figma": "size=lg, prio=secondary, state=hover, danger=false",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -2841,7 +2841,7 @@
       "figma": "size=lg, prio=secondary, state=hover, danger=true",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -2924,7 +2924,7 @@
       "figma": "size=lg, prio=tertiary, state=hover, danger=false",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -3009,7 +3009,7 @@
       "figma": "size=lg, prio=tertiary, state=hover, danger=true",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -3091,7 +3091,7 @@
       "figma": "size=md, prio=primary, state=pressed, danger=false",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -3174,7 +3174,7 @@
       "figma": "size=md, prio=primary, state=pressed, danger=true",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -3252,7 +3252,7 @@
       "figma": "size=md, prio=secondary, state=pressed, danger=false",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -3341,7 +3341,7 @@
       "figma": "size=md, prio=secondary, state=pressed, danger=true",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -3424,7 +3424,7 @@
       "figma": "size=md, prio=tertiary, state=pressed, danger=false",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -3508,7 +3508,7 @@
       "figma": "size=md, prio=tertiary, state=pressed, danger=true",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -3586,7 +3586,7 @@
       "figma": "size=sm, prio=primary, state=pressed, danger=false",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -3669,7 +3669,7 @@
       "figma": "size=sm, prio=primary, state=pressed, danger=true",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -3747,7 +3747,7 @@
       "figma": "size=sm, prio=secondary, state=pressed, danger=false",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -3845,7 +3845,7 @@
       "figma": "size=sm, prio=secondary, state=pressed, danger=true",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -3937,7 +3937,7 @@
       "figma": "size=sm, prio=tertiary, state=pressed, danger=false",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -4021,7 +4021,7 @@
       "figma": "size=sm, prio=tertiary, state=pressed, danger=true",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -4099,7 +4099,7 @@
       "figma": "size=lg, prio=primary, state=pressed, danger=false",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -4182,7 +4182,7 @@
       "figma": "size=lg, prio=primary, state=pressed, danger=true",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -4254,7 +4254,7 @@
       "figma": "size=lg, prio=secondary, state=pressed, danger=false",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -4343,7 +4343,7 @@
       "figma": "size=lg, prio=secondary, state=pressed, danger=true",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -4426,7 +4426,7 @@
       "figma": "size=lg, prio=tertiary, state=pressed, danger=false",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -4534,7 +4534,7 @@
       "figma": "size=lg, prio=tertiary, state=pressed, danger=true",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -4636,7 +4636,7 @@
       "figma": "size=md, prio=primary, state=disabled, danger=false",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -4719,7 +4719,7 @@
       "figma": "size=md, prio=primary, state=disabled, danger=true",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -4802,7 +4802,7 @@
       "figma": "size=md, prio=secondary, state=disabled, danger=false",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -4890,7 +4890,7 @@
       "figma": "size=md, prio=secondary, state=disabled, danger=true",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -4978,7 +4978,7 @@
       "figma": "size=md, prio=tertiary, state=disabled, danger=false",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -5062,7 +5062,7 @@
       "figma": "size=md, prio=tertiary, state=disabled, danger=true",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -5146,7 +5146,7 @@
       "figma": "size=sm, prio=primary, state=disabled, danger=false",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -5229,7 +5229,7 @@
       "figma": "size=sm, prio=primary, state=disabled, danger=true",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -5312,7 +5312,7 @@
       "figma": "size=sm, prio=secondary, state=disabled, danger=false",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -5400,7 +5400,7 @@
       "figma": "size=sm, prio=secondary, state=disabled, danger=true",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -5488,7 +5488,7 @@
       "figma": "size=sm, prio=tertiary, state=disabled, danger=false",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -5572,7 +5572,7 @@
       "figma": "size=sm, prio=tertiary, state=disabled, danger=true",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -5656,7 +5656,7 @@
       "figma": "size=lg, prio=primary, state=disabled, danger=false",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -5739,7 +5739,7 @@
       "figma": "size=lg, prio=primary, state=disabled, danger=true",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -5822,7 +5822,7 @@
       "figma": "size=lg, prio=secondary, state=disabled, danger=false",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -5930,7 +5930,7 @@
       "figma": "size=lg, prio=secondary, state=disabled, danger=true",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -6018,7 +6018,7 @@
       "figma": "size=lg, prio=tertiary, state=disabled, danger=false",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false,
         "danger": false
@@ -6103,7 +6103,7 @@
       "figma": "size=lg, prio=tertiary, state=disabled, danger=true",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": true,
         "loading": false,
         "danger": true
@@ -6188,7 +6188,7 @@
       "figma": "size=md, prio=primary, state=focus, danger=false",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -6276,7 +6276,7 @@
       "figma": "size=md, prio=primary, state=focus, danger=true",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -6347,7 +6347,7 @@
       "figma": "size=md, prio=secondary, state=focus, danger=false",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -6435,7 +6435,7 @@
       "figma": "size=md, prio=secondary, state=focus, danger=true",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -6517,7 +6517,7 @@
       "figma": "size=md, prio=tertiary, state=focus, danger=false",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -6601,7 +6601,7 @@
       "figma": "size=md, prio=tertiary, state=focus, danger=true",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -6679,7 +6679,7 @@
       "figma": "size=sm, prio=primary, state=focus, danger=false",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -6767,7 +6767,7 @@
       "figma": "size=sm, prio=primary, state=focus, danger=true",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -6838,7 +6838,7 @@
       "figma": "size=sm, prio=secondary, state=focus, danger=false",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -6935,7 +6935,7 @@
       "figma": "size=sm, prio=secondary, state=focus, danger=true",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -7026,7 +7026,7 @@
       "figma": "size=sm, prio=tertiary, state=focus, danger=false",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -7110,7 +7110,7 @@
       "figma": "size=sm, prio=tertiary, state=focus, danger=true",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -7188,7 +7188,7 @@
       "figma": "size=lg, prio=primary, state=focus, danger=false",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -7277,7 +7277,7 @@
       "figma": "size=lg, prio=primary, state=focus, danger=true",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -7349,7 +7349,7 @@
       "figma": "size=lg, prio=secondary, state=focus, danger=false",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -7438,7 +7438,7 @@
       "figma": "size=lg, prio=secondary, state=focus, danger=true",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -7521,7 +7521,7 @@
       "figma": "size=lg, prio=tertiary, state=focus, danger=false",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": false
@@ -7629,7 +7629,7 @@
       "figma": "size=lg, prio=tertiary, state=focus, danger=true",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": false,
         "danger": true
@@ -7731,7 +7731,7 @@
       "figma": "size=md, prio=primary, state=loading, danger=false",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -7773,7 +7773,7 @@
       "figma": "size=md, prio=primary, state=loading, danger=true",
       "props": {
         "size": "md",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -7813,7 +7813,7 @@
       "figma": "size=md, prio=secondary, state=loading, danger=false",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -7855,7 +7855,7 @@
       "figma": "size=md, prio=secondary, state=loading, danger=true",
       "props": {
         "size": "md",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -7897,7 +7897,7 @@
       "figma": "size=md, prio=tertiary, state=loading, danger=false",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -7930,7 +7930,7 @@
       "figma": "size=md, prio=tertiary, state=loading, danger=true",
       "props": {
         "size": "md",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -7963,7 +7963,7 @@
       "figma": "size=sm, prio=primary, state=loading, danger=false",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -8005,7 +8005,7 @@
       "figma": "size=sm, prio=primary, state=loading, danger=true",
       "props": {
         "size": "sm",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -8045,7 +8045,7 @@
       "figma": "size=sm, prio=secondary, state=loading, danger=false",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -8096,7 +8096,7 @@
       "figma": "size=sm, prio=secondary, state=loading, danger=true",
       "props": {
         "size": "sm",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -8147,7 +8147,7 @@
       "figma": "size=sm, prio=tertiary, state=loading, danger=false",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -8180,7 +8180,7 @@
       "figma": "size=sm, prio=tertiary, state=loading, danger=true",
       "props": {
         "size": "sm",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -8213,7 +8213,7 @@
       "figma": "size=lg, prio=primary, state=loading, danger=false",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -8255,7 +8255,7 @@
       "figma": "size=lg, prio=primary, state=loading, danger=true",
       "props": {
         "size": "lg",
-        "variant": "primary",
+        "prio": "primary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -8289,7 +8289,7 @@
       "figma": "size=lg, prio=secondary, state=loading, danger=false",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -8331,7 +8331,7 @@
       "figma": "size=lg, prio=secondary, state=loading, danger=true",
       "props": {
         "size": "lg",
-        "variant": "secondary",
+        "prio": "secondary",
         "disabled": false,
         "loading": true,
         "danger": true
@@ -8373,7 +8373,7 @@
       "figma": "size=lg, prio=tertiary, state=loading, danger=false",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true,
         "danger": false
@@ -8434,7 +8434,7 @@
       "figma": "size=lg, prio=tertiary, state=loading, danger=true",
       "props": {
         "size": "lg",
-        "variant": "tertiary",
+        "prio": "tertiary",
         "disabled": false,
         "loading": true,
         "danger": true

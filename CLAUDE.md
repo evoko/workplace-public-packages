@@ -32,7 +32,7 @@ and `SolarVector` constants in `solar_flutter`. **It must never write to `docs/`
 Figma mirror; a write guard enforces this and CI re-checks it. When generated styling is wrong,
 fix the normalizer in `packages/codegen/src/normalize/` for a systemic rule, the single
 emitter in `src/emit/` for a target-specific one, or the component's descriptor in
-`src/components/<name>.mjs` (its MUI and Flutter tables and shell templates) for one component.
+`src/components/<name>.mjs` (its MUI and Flutter tables) for one component.
 Never edit a generated file to keep a change, and never edit `docs/` to make code look right. Run the command and commit its output after
 touching that package. Decisions about one component go in its hand-written overlay,
 `spec/overlay/<component>.yaml`: every rule needs a `reason`, and a rule that no
@@ -41,11 +41,14 @@ longer matches the IR fails the build. Every rule kind, with a real example, is 
 (`dayGridDayCell*.base.width`) and give another rule's reason (`reason: { as: … }`) rather than
 repeat it, and `npm run solar:overlay:audit` lists what the overlays decide more than once. A decision that holds for every component (an unbound `0`
 inset is `inset.none`) goes in `spec/overlay/defaults.yaml` instead, once; a component's own rule
-on the same cell wins. A component's shells (`packages/components/src/<Name>.tsx`, `solar_flutter`'s
-`lib/src/components/solar_<name>.dart`, and its story) are generated on every `solar:codegen` from
-the templates in its descriptor, which are the hand-written behaviour: edit the template, never
-the shell, whose first line names its descriptor. A component whose shell must be edited as a file
-opts out with `owned: true` (`packages/codegen/src/shells/index.mjs`). Its look is the generated
+on the same cell wins. Sibling copies of one layer that Figma draws as sample content (a month's
+Day Cells) are read as their first by an opt-in `repeats` rule, never automatically. A component's
+shells (`packages/components/src/<Name>.tsx` and `solar_flutter`'s
+`lib/src/components/solar_<name>.dart`) are files written by hand, TSX by a React engineer and Dart
+by a Flutter engineer (owner decision 2026-09-25); only its story is generated. What the IR decides
+still reaches them: the props types, the layer tree (`solar<Name>Tree`, `Solar<Name>Recipe.tree`)
+and the slot names are generated beside the recipe and imported, and the component-parity test fails
+a shell that leaves an IR prop, slot or icon unreached or copies the tree. Its look is the generated
 recipe, never values in the shell. Every variant is checked on both platforms, in Light and in Dark, against
 what Figma draws: `spec/verify/<name>.json` (the oracle, generated beside the IR, never from the
 recipe) and the visual checks (`npm run test:visual` for React in Chromium, `flutter test` for the
@@ -67,6 +70,10 @@ reaches the IR its own way (docs/superpowers/specs/2026-09-25-two-libraries-one-
 descriptor's `api` table declares where a prop or slot is not reached by its own name
 (`src/shells/api.mjs`), and the parity test checks reachability, not identical spelling. The stock
 MUI components the SOLAR theme styles from recipes are decided in `spec/overlay/mui-theme.yaml`.
+Names follow rule 5 of that spec: SOLAR's word where SOLAR's description names the thing (`helper`,
+`mandatory`, a Button's `prio`), otherwise MUI's on the web and Flutter's in Flutter (a Flutter
+field's `enabled`, a button's null `onPressed`). The one exception is Figma's `style`, which is
+`variant` in code because React reserves `style`.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type

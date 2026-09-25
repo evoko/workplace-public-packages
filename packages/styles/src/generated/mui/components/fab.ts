@@ -367,3 +367,14 @@ export function solarFABCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarFABTree: Record<string, string[]> = {
+  root: ['icon', 'spinner', 'label'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarFAB-<slot>`, public. */
+export const solarFABSlots: Record<string, string> = {
+  label: 'label',
+  icon: 'icon',
+};

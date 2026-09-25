@@ -416,3 +416,23 @@ export function solarInteractiveCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarInteractiveCardTree: Record<string, string[]> = {
+  root: ['dragHandle', 'toggle', 'radioButton', 'checkbox', 'text', 'actions'],
+  text: ['textIcon', 'description'],
+  textIcon: ['icon', 'title'],
+  actions: ['iconButton', 'iconButton2', 'iconButton3'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarInteractiveCard-<slot>`, public. */
+export const solarInteractiveCardSlots: Record<string, string> = {
+  dragHandle: 'dragHandle',
+  toggle: 'toggle',
+  radioButton: 'radioButton',
+  checkbox: 'checkbox',
+  icon: 'icon',
+  description: 'description',
+  actions: 'actions',
+  title: 'title',
+};

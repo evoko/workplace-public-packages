@@ -12,17 +12,27 @@ import '../tokens.dart';
 
 enum SolarButtonGroupOrientation { horizontal, vertical }
 
+enum SolarButtonGroupType {
+  regular('regular'),
+  fullWidth('full-width');
+
+  const SolarButtonGroupType(this.figma);
+
+  /// The value as Figma spells it, which the recipe is keyed by.
+  final String figma;
+}
+
 /// The props a SOLAR Button Group takes. Hover, pressed and focus are not here: they are
 /// platform states, tracked by Flutter as [WidgetState]s.
 @immutable
 class SolarButtonGroupProps {
   const SolarButtonGroupProps({
     this.orientation = SolarButtonGroupOrientation.horizontal,
-    this.fullWidth = false,
+    this.type = SolarButtonGroupType.regular,
   });
 
   final SolarButtonGroupOrientation orientation;
-  final bool fullWidth;
+  final SolarButtonGroupType type;
 }
 
 abstract final class SolarButtonGroupRecipe {
@@ -47,23 +57,23 @@ abstract final class SolarButtonGroupRecipe {
     'root.borderRightWidth|base': 'none',
     'root.borderBottomWidth|base': 'none',
     'root.borderLeftWidth|base': 'none',
-    'root.borderColor|appearance|orientation=horizontal, fullWidth=true|default':
+    'root.borderColor|appearance|orientation=horizontal, type=full-width|default':
         't:color.border.subtle',
-    'root.gap|appearance|orientation=horizontal, fullWidth=true|default':
+    'root.gap|appearance|orientation=horizontal, type=full-width|default':
         't:inset.none',
-    'root.paddingTop|appearance|orientation=horizontal, fullWidth=true|default':
+    'root.paddingTop|appearance|orientation=horizontal, type=full-width|default':
         't:inset.none',
-    'root.paddingRight|appearance|orientation=horizontal, fullWidth=true|default':
+    'root.paddingRight|appearance|orientation=horizontal, type=full-width|default':
         't:inset.none',
-    'root.paddingBottom|appearance|orientation=horizontal, fullWidth=true|default':
+    'root.paddingBottom|appearance|orientation=horizontal, type=full-width|default':
         't:inset.none',
-    'root.paddingLeft|appearance|orientation=horizontal, fullWidth=true|default':
+    'root.paddingLeft|appearance|orientation=horizontal, type=full-width|default':
         't:inset.none',
-    'root.borderTopWidth|appearance|orientation=horizontal, fullWidth=true|default':
+    'root.borderTopWidth|appearance|orientation=horizontal, type=full-width|default':
         't:border.default',
-    'root.direction|appearance|orientation=vertical, fullWidth=false|default':
+    'root.direction|appearance|orientation=vertical, type=regular|default':
         'k:VERTICAL',
-    'root.align|appearance|orientation=vertical, fullWidth=false|default':
+    'root.align|appearance|orientation=vertical, type=regular|default':
         'k:CENTER/MIN',
     'tertiaryCTA.present|base': 'b:false',
     'tertiaryCTA.component|base': 'k:Button',
@@ -73,17 +83,17 @@ abstract final class SolarButtonGroupRecipe {
     'tertiaryCTA.variant.danger|base': 'k:false',
     'tertiaryCTA.width|base': 'k:FILL',
     'tertiaryCTA.height|base': 'none',
-    'tertiaryCTA.present|appearance|orientation=vertical, fullWidth=false|default':
+    'tertiaryCTA.present|appearance|orientation=vertical, type=regular|default':
         'b:true',
-    'tertiaryCTA.variant.prio|appearance|orientation=vertical, fullWidth=false|default':
+    'tertiaryCTA.variant.prio|appearance|orientation=vertical, type=regular|default':
         'k:primary',
-    'tertiaryCTA.width|appearance|orientation=vertical, fullWidth=false|default':
+    'tertiaryCTA.width|appearance|orientation=vertical, type=regular|default':
         'k:FILL',
-    'tertiaryCTA.present|appearance|orientation=horizontal, fullWidth=true|default':
+    'tertiaryCTA.present|appearance|orientation=horizontal, type=full-width|default':
         'b:true',
-    'tertiaryCTA.variant.prio|appearance|orientation=horizontal, fullWidth=true|default':
+    'tertiaryCTA.variant.prio|appearance|orientation=horizontal, type=full-width|default':
         'k:secondary',
-    'tertiaryCTA.width|appearance|orientation=horizontal, fullWidth=true|default':
+    'tertiaryCTA.width|appearance|orientation=horizontal, type=full-width|default':
         'k:FILL',
     'secondaryCTA.present|base': 'b:true',
     'secondaryCTA.component|base': 'k:Button',
@@ -93,7 +103,7 @@ abstract final class SolarButtonGroupRecipe {
     'secondaryCTA.variant.danger|base': 'k:false',
     'secondaryCTA.width|base': 'k:FILL',
     'secondaryCTA.height|base': 'none',
-    'secondaryCTA.variant.prio|appearance|orientation=horizontal, fullWidth=true|default':
+    'secondaryCTA.variant.prio|appearance|orientation=horizontal, type=full-width|default':
         'k:primary',
     'button3.present|base': 'b:true',
     'button3.component|base': 'k:Button',
@@ -103,14 +113,19 @@ abstract final class SolarButtonGroupRecipe {
     'button3.variant.danger|base': 'k:false',
     'button3.width|base': 'k:FILL',
     'button3.height|base': 'none',
-    'button3.present|appearance|orientation=vertical, fullWidth=false|default':
+    'button3.present|appearance|orientation=vertical, type=regular|default':
         'b:false',
-    'button3.variant.prio|appearance|orientation=vertical, fullWidth=false|default':
+    'button3.variant.prio|appearance|orientation=vertical, type=regular|default':
         'k:tertiary',
-    'button3.width|appearance|orientation=vertical, fullWidth=false|default':
+    'button3.width|appearance|orientation=vertical, type=regular|default':
         'k:FILL',
-    'button3.present|appearance|orientation=horizontal, fullWidth=true|default':
+    'button3.present|appearance|orientation=horizontal, type=full-width|default':
         'b:false',
+  };
+
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['tertiaryCTA', 'secondaryCTA', 'button3'],
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
@@ -132,7 +147,7 @@ abstract final class SolarButtonGroupRecipe {
     SolarButtonGroupProps p,
     Set<WidgetState> s,
   ) {
-    final combo = 'orientation=${p.orientation.name}, fullWidth=${p.fullWidth}';
+    final combo = 'orientation=${p.orientation.name}, type=${p.type.figma}';
     const size = '';
     for (final state in statePrecedence) {
       if (!_holds(state, p, s)) continue;

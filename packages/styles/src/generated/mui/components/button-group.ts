@@ -3,15 +3,16 @@
 // Every value is a var(--solar-*) reference into tokens.css, which must be loaded.
 
 export type SolarButtonGroupOrientation = 'horizontal' | 'vertical';
+export type SolarButtonGroupType = 'regular' | 'full-width';
 
 export interface SolarButtonGroupProps {
   orientation?: SolarButtonGroupOrientation;
-  fullWidth?: boolean;
+  type?: SolarButtonGroupType;
 }
 
 export const solarButtonGroupDefaults = {
   orientation: 'horizontal',
-  fullWidth: false,
+  type: 'regular',
 } as const;
 
 /** Style by layer and state: `root` is the base, then per size, per appearance, and per size and appearance together. */
@@ -43,7 +44,7 @@ export const solarButtonGroupStyles = {
   },
   sizes: {},
   appearances: {
-    'orientation=horizontal, fullWidth=true': {
+    'orientation=horizontal, type=full-width': {
       borderColor: 'var(--solar-color-border-subtle)',
       gap: 'var(--solar-inset-none)',
       paddingTop: 'var(--solar-inset-none)',
@@ -56,7 +57,7 @@ export const solarButtonGroupStyles = {
         width: '100%',
       },
     },
-    'orientation=vertical, fullWidth=false': {
+    'orientation=vertical, type=regular': {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'flex-start',
@@ -85,13 +86,13 @@ export const solarButtonGroupComposition = {
       'variant.danger': 'false',
     },
     appearance: {
-      'orientation=vertical, fullWidth=false': {
+      'orientation=vertical, type=regular': {
         default: {
           present: true,
           'variant.prio': 'primary',
         },
       },
-      'orientation=horizontal, fullWidth=true': {
+      'orientation=horizontal, type=full-width': {
         default: {
           present: true,
           'variant.prio': 'secondary',
@@ -109,7 +110,7 @@ export const solarButtonGroupComposition = {
       'variant.danger': 'false',
     },
     appearance: {
-      'orientation=horizontal, fullWidth=true': {
+      'orientation=horizontal, type=full-width': {
         default: {
           'variant.prio': 'primary',
         },
@@ -126,13 +127,13 @@ export const solarButtonGroupComposition = {
       'variant.danger': 'false',
     },
     appearance: {
-      'orientation=vertical, fullWidth=false': {
+      'orientation=vertical, type=regular': {
         default: {
           present: false,
           'variant.prio': 'tertiary',
         },
       },
-      'orientation=horizontal, fullWidth=true': {
+      'orientation=horizontal, type=full-width': {
         default: {
           present: false,
         },
@@ -160,7 +161,7 @@ export function solarButtonGroupStyle(
 ): Style {
   const p: Record<string, unknown> = { ...solarButtonGroupDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `orientation=${p.orientation}, fullWidth=${p.fullWidth}`;
+  const key = `orientation=${p.orientation}, type=${p.type}`;
   const s = solarButtonGroupStyles as unknown as {
     reset: Style;
     root: Style;
@@ -202,7 +203,7 @@ export function solarButtonGroupCompose(
 ): Record<string, Parts> {
   const p: Record<string, unknown> = { ...solarButtonGroupDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `orientation=${p.orientation}, fullWidth=${p.fullWidth}`;
+  const key = `orientation=${p.orientation}, type=${p.type}`;
   const size = '';
   const out: Record<string, Parts> = {};
   for (const [layer, c] of Object.entries(
@@ -221,3 +222,14 @@ export function solarButtonGroupCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarButtonGroupTree: Record<string, string[]> = {
+  root: ['tertiaryCTA', 'secondaryCTA', 'button3'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarButtonGroup-<slot>`, public. */
+export const solarButtonGroupSlots: Record<string, string> = {
+  tertiaryCTA: 'tertiaryCTA',
+  secondaryCTA: 'secondaryCTA',
+};

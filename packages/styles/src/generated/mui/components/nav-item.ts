@@ -314,3 +314,14 @@ export function solarNavItemCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarNavItemTree: Record<string, string[]> = {
+  root: ['iconOutline', 'label'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarNavItem-<slot>`, public. */
+export const solarNavItemSlots: Record<string, string> = {
+  iconOutline: 'iconOutline',
+  label: 'label',
+};

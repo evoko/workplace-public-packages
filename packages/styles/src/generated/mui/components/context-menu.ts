@@ -263,3 +263,23 @@ export function solarContextMenuCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarContextMenuTree: Record<string, string[]> = {
+  root: ['content'],
+  content: [
+    'contextMenuItem',
+    'contextMenuItem2',
+    'contextMenuItem3',
+    'contextMenuItem4',
+    'contextMenuItem5',
+    'contextMenuItem6',
+    'divider',
+    'contextMenuItem7',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarContextMenu-<slot>`, public. */
+export const solarContextMenuSlots: Record<string, string> = {
+  content: 'content',
+};

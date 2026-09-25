@@ -16,6 +16,7 @@ import { join } from 'node:path';
 import { table as descriptorTable } from '../components/index.mjs';
 import { flattenSpec, recipeAxes } from '../spec.mjs';
 import { pascal, quote } from '../util/naming.mjs';
+import { treeOf } from '../util/tree.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { dartEnumValue, dartName, STATIC_CLASS } from './flutter.mjs';
@@ -496,6 +497,13 @@ abstract final class Solar${name}Recipe {
   static const Map<String, String> cells = {
 ${entries}
   };
+
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {${Object.entries(treeOf(spec))
+    .map(
+      ([l, kids]) => `\n    '${l}': [${kids.map((k) => `'${k}'`).join(', ')}],`,
+    )
+    .join('')}${Object.keys(treeOf(spec)).length ? '\n  ' : ''}};
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ${holds.length ? '' : '<String>'}[${holds.map((s) => `'${s}'`).join(', ')}];

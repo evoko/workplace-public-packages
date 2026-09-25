@@ -4,7 +4,7 @@
 // Each stage builds its spec in memory first and only then emits. Every stage is built before
 // any is emitted, and every write is held until all of them have emitted and the report is
 // written, so a throw from a normalizer or an emitter (Button's recipe refusing a literal, after
-// the shells were rendered) stops the run with nothing on disk rewritten.
+// the stories were rendered) stops the run with nothing on disk rewritten.
 // First, before anything else loads: the Node this needs (.nvmrc).
 import '../src/util/require-node.mjs';
 import { execSync } from 'node:child_process';
@@ -55,8 +55,8 @@ writeDeviationsReport(
 commitGenerated();
 
 const pruned = OWNED_DIRS.flatMap((dir) => pruneGenerated(dir));
-// The shells share their directories with hand-written files (the package entry, `internal/`, an
-// owned shell), so a stale one is told by its generated header instead.
+// The stories share their directory with hand-written files (`solar.tsx`), and the barrels the
+// shells', so a stale one is told by its generated header instead.
 for (const path of staleShells(wasWritten)) {
   removeGenerated(path);
   pruned.push(relative(repoRoot, path));
@@ -70,9 +70,9 @@ for (const path of pruned) console.log(`removed stale ${path}`);
 // SVG parser, and while it silently skips an .svg file found by expanding a directory, a glob
 // that matches one is an explicit request and fails with "No parser could be inferred". The
 // generated SVG files are written already formatted and need no pass.
-// The React shells and stories are named one by one, not globbed: they sit beside hand-written
-// files (an owned shell), which the generator must not rewrite.
-const shells = built[STAGES.indexOf(components)].shells
+// The stories are named one by one, not globbed: they sit beside hand-written files, which the
+// generator must not rewrite.
+const shells = built[STAGES.indexOf(components)].stories
   .map((s) => s.path)
   .filter((path) => path.endsWith('.tsx'))
   .map((path) => JSON.stringify(relative(repoRoot, path)));

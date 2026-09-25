@@ -25,17 +25,12 @@ import {
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 import {
-  FLUTTER_TEMPLATES,
   renderShells,
   shellFileOf,
   flutterFileOf,
-  TEMPLATES,
 } from '../src/shells/index.mjs';
-import {
-  requireTyped,
-  typedResets,
-  typedStates,
-} from '../src/shells/typed.mjs';
+import { typedResets, typedStates } from '../src/components/shared/typed.mjs';
+import { flat, flutterShell, reactShell } from './shell-files.mjs';
 import { packagesDir, specDir } from '../src/util/paths.mjs';
 import { hideInComposed } from '../src/verify/oracle.mjs';
 
@@ -337,12 +332,9 @@ describe('a text placed by position', () => {
 describe('checkedAs', () => {
   const at = { src: '/x', stories: '/x', flutter: '/x' };
 
-  it('gives Autocomplete Open no shells, no templates and no export, but a case on each platform', () => {
+  it('gives Autocomplete Open no shells and no export, but a case on each platform', () => {
     const d = DESCRIPTORS.find((x) => x.name === 'Autocomplete Open');
     expect(d.checkedAs).toBe('Autocomplete');
-    expect(d.templates).toBeUndefined();
-    expect(TEMPLATES['Autocomplete Open']).toBeUndefined();
-    expect(FLUTTER_TEMPLATES['Autocomplete Open']).toBeUndefined();
     expect(
       existsSync(
         join(packagesDir, 'components/src', shellFileOf('Autocomplete Open')),
@@ -396,21 +388,9 @@ describe('checkedAs', () => {
     );
   });
 
-  it('refuses one with templates or owned, or checked as no component', () => {
+  it('refuses one checked as no component', () => {
     const specs = [{ component: 'Autocomplete Open' }];
     const autocomplete = { name: 'Autocomplete' };
-    for (const extra of [{ templates: {} }, { owned: true }])
-      expect(() =>
-        renderShells(specs, {
-          ...at,
-          descriptors: [
-            autocomplete,
-            { name: 'Autocomplete Open', checkedAs: 'Autocomplete', ...extra },
-          ],
-        }),
-      ).toThrow(
-        /Autocomplete Open is checked as Autocomplete, so it has no shells, templates or owned files/,
-      );
     expect(() =>
       renderShells(specs, {
         ...at,
@@ -423,77 +403,52 @@ describe('checkedAs', () => {
   });
 });
 
-describe('menuReact', () => {
-  const timeList = TEMPLATES['TimePicker Dropdown'](
-    of('TimePicker Dropdown').spec,
-  );
-  const menu = TEMPLATES['Dropdown Menu'](of('Dropdown Menu').spec);
-  const omitOf = (text) => text.match(/Omit<BoxProps, ([^>]*)>/)[1];
+describe('the menus’ shells', () => {
+  const timeList = reactShell('TimePicker Dropdown');
+  const menu = reactShell('Dropdown Menu');
+  const omitOf = (text) => flat(text).match(/Omit<BoxProps, ([^>]*)>/)[1];
 
   it('gives TimePicker Dropdown its own rows in a listbox, sized by the Dropdown Menu’s context', () => {
-    expect(timeList).toContain('role="listbox"');
-    expect(timeList).toContain('ref={list}');
-    expect(timeList).toContain('content: { content: rows }');
-    expect(timeList).toContain(
-      "import { DropdownMenuSizeContext } from './DropdownMenu.js';",
+    expect(flat(timeList)).toContain(flat('role="listbox"'));
+    expect(flat(timeList)).toContain(flat('ref={list}'));
+    expect(flat(timeList)).toContain(flat('content: { content: rows }'));
+    expect(flat(timeList)).toContain(
+      flat("import { DropdownMenuSizeContext } from './DropdownMenu.js';"),
     );
-    expect(timeList).toContain(
-      "<DropdownMenuSizeContext.Provider value={size ?? 'md'}>",
+    expect(flat(timeList)).toContain(
+      flat("<DropdownMenuSizeContext.Provider value={size ?? 'md'}>"),
     );
     // It reads another menu's context, and declares none of its own.
-    expect(timeList).not.toContain('createContext');
-    expect(timeList).not.toContain('children: ReactNode');
+    expect(flat(timeList)).not.toContain(flat('createContext'));
+    expect(flat(timeList)).not.toContain(flat('children: ReactNode'));
     expect(omitOf(timeList)).toContain("'onChange'");
-    expect(timeList).toContain('onChange?: (value: string) => void;');
-    expect(timeList).toContain('value = null, onChange, step = 30');
-    expect(timeList).toContain('  useLayoutEffect,\n  useRef,\n');
+    expect(flat(timeList)).toContain(
+      flat('onChange?: (value: string) => void;'),
+    );
+    expect(flat(timeList)).toContain(flat('value = null, onChange, step = 30'));
+    expect(flat(timeList)).toContain(flat('  useLayoutEffect,\n  useRef,\n'));
     expect(timeList).toContain('const rows = timesOf(step');
   });
 
   it('leaves a Dropdown Menu the caller’s children, its onChange, and a context of its own', () => {
-    expect(menu).toContain('children: ReactNode;');
-    expect(menu).toContain('content: { content: children }');
-    expect(menu).not.toContain('role="listbox"');
-    expect(menu).not.toContain('ref={list}');
+    expect(flat(menu)).toContain(flat('children: ReactNode;'));
+    expect(flat(menu)).toContain(flat('content: { content: children }'));
+    expect(flat(menu)).not.toContain(flat('role="listbox"'));
+    expect(flat(menu)).not.toContain(flat('ref={list}'));
     expect(omitOf(menu)).not.toContain("'onChange'");
-    expect(menu).toContain(
-      "export const DropdownMenuSizeContext = createContext<SolarDropdownMenuProps['size'] | undefined>(undefined);",
+    expect(flat(menu)).toContain(
+      flat(
+        "export const DropdownMenuSizeContext = createContext<SolarDropdownMenuProps['size'] | undefined>(undefined);",
+      ),
     );
-    expect(menu).toContain(
-      "<DropdownMenuSizeContext.Provider value={size ?? 'md'}>",
+    expect(flat(menu)).toContain(
+      flat("<DropdownMenuSizeContext.Provider value={size ?? 'md'}>"),
     );
-    expect(menu).not.toContain("from './DropdownMenu.js'");
+    expect(flat(menu)).not.toContain(flat("from './DropdownMenu.js'"));
   });
 });
 
 describe('the typed pickers’ shell', () => {
-  const datePicker = of('DatePicker').spec;
-
-  it('accepts DatePicker and TimePicker as Figma draws them', () => {
-    expect(() => requireTyped(datePicker, 'iconCalendar')).not.toThrow();
-    expect(() =>
-      requireTyped(of('TimePicker').spec, 'iconClock'),
-    ).not.toThrow();
-  });
-
-  it('refuses a field without its icon, a filled not derived, and no error-focused', () => {
-    const noIcon = structuredClone(datePicker);
-    delete noIcon.layers.iconCalendar;
-    expect(() => requireTyped(noIcon, 'iconCalendar')).toThrow(
-      /DatePicker: field holds value, not iconCalendar, value/,
-    );
-    const notDerived = structuredClone(datePicker);
-    delete notDerived.derived.filled;
-    expect(() => requireTyped(notDerived, 'iconCalendar')).toThrow(
-      /DatePicker: its filled is not derived from its value/,
-    );
-    const noCompound = structuredClone(datePicker);
-    noCompound.states = noCompound.states.filter((s) => s !== 'error-focused');
-    expect(() => requireTyped(noCompound, 'iconCalendar')).toThrow(
-      /DatePicker: error-focused is not a state/,
-    );
-  });
-
   it('orders its states error-focused after error and disabled last', () => {
     const states = typedStates('DatePicker');
     expect(Object.keys(states)).toEqual([
@@ -532,25 +487,25 @@ describe('the typed pickers’ shell', () => {
 
 describe('the pickers’ shells', () => {
   it('make Select’s field MUI’s Select, its own icon none, its panel in the component as Figma draws it', () => {
-    const select = TEMPLATES.Select(of('Select').spec);
+    const select = reactShell('Select');
     expect(select).toContain("from '@mui/material/Select';");
     expect(select).toContain('IconComponent={NoIcon}');
     expect(select).toContain('disablePortal: true');
     expect(select).toContain(
-      "className: 'SolarSelect-dropdownMenu SolarSelect-box'",
+      "className: 'SolarSelect--dropdownMenu SolarSelect-box'",
     );
     expect(select).not.toContain('solarDropdownMenuStyle');
-    const widget = FLUTTER_TEMPLATES.Select(of('Select').spec);
+    const widget = flutterShell('Select');
     expect(widget).not.toContain('SolarDropdownMenu(');
   });
 
   it('make Dropdown’s panel a Dropdown Menu, since Figma draws it none', () => {
-    const dropdown = TEMPLATES.Dropdown(of('Dropdown').spec);
+    const dropdown = reactShell('Dropdown');
     expect(dropdown).toContain('IconComponent={NoIcon}');
     expect(dropdown).toContain('disablePortal: true');
     expect(dropdown).toContain("className: 'SolarDropdownMenu'");
     expect(dropdown).toContain('sx: solarDropdownMenuStyle({ size })');
-    const widget = FLUTTER_TEMPLATES.Dropdown(of('Dropdown').spec);
+    const widget = flutterShell('Dropdown');
     expect(widget).toContain('SolarDropdownMenu(');
     expect(widget).toContain("import 'solar_dropdown_menu.dart';");
   });

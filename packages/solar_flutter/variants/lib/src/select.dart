@@ -22,7 +22,7 @@ Widget buildSelect(
   return SolarSelect<String>(
     size: enumNamed(SolarSelectSize.values, props['size'] as String),
     open: props['open'] as bool,
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     label: 'Label',
     mandatory: true,
@@ -33,7 +33,7 @@ Widget buildSelect(
         SolarSelectOption(
           value: name,
           label: 'Option',
-          disabled: state == 'disabled',
+          enabled: !(state == 'disabled'),
           key: Key(name),
         ),
     ],

@@ -28,7 +28,7 @@ which corrected three of its readings and added items 19 and 20.
 
 | #   | Item                                                 | State                                                           |
 | --- | ---------------------------------------------------- | --------------------------------------------------------------- |
-| 1   | Repeated children in the IR                          | **Open.** Owner decision needed first.                          |
+| 1   | Repeated children in the IR                          | Done 2026-09-25: opt-in `repeats` rule (owner chose B).         |
 | 2   | Pattern addresses and reason references              | Done 2026-09-25.                                                |
 | 3   | Fail fast on the Node version                        | Done 2026-09-25.                                                |
 | 4   | Oracle in Dark                                       | Done 2026-09-25. Mobile type: recommend no third pass.          |
@@ -36,15 +36,15 @@ which corrected three of its readings and added items 19 and 20.
 | 6   | Rule proposer                                        | Done 2026-09-25 (`solar:explain --propose`).                    |
 | 7   | `solar:overlay:audit`                                | Done 2026-09-25; 7b done too (reasons in the overlay README).   |
 | 8   | Overlay reference and glossary                       | Done 2026-09-25 (`spec/overlay/README.md`).                     |
-| 9   | Shells as real files                                 | **Open.** Owner decision needed first.                          |
+| 9   | Shells as real files                                 | Done 2026-09-25: every shell a hand-written file (owner: A).    |
 | 10  | Stable public names                                  | Done 2026-09-25 (`-<slot>` public, `--<layer>` internal).       |
-| 11  | The spec says what the system is                     | Done 2026-09-25. One question open (MUI as peer dependency).    |
+| 11  | The spec says what the system is                     | Done 2026-09-25. MUI stays the peer dependency (owner).         |
 | 12  | Recipe packaging                                     | **Open.**                                                       |
-| 13  | What git carries                                     | **Open.** Owner decision needed first.                          |
+| 13  | What git carries                                     | Done 2026-09-25: `spec/verify/**` linguist-generated (owner: C). |
 | 14  | A stock-MUI theme generated from the recipes         | Started 2026-09-25: MuiButton, MuiIconButton; drawn ones open.   |
 | 15  | One mode switch for stock MUI and SOLAR components   | Done 2026-09-25 (MUI CSS variables on `data-theme`).            |
 | 16  | One-line setup for a consuming app                   | Done 2026-09-25 (`SolarProvider`).                              |
-| 17  | One vocabulary: Figma's words or MUI's               | **Open.** New. Owner decision needed first.                     |
+| 17  | One vocabulary: Figma's words or MUI's               | Done 2026-09-25: rule 5; `prio`, `type` back; `style` exception. |
 | 18  | Figma Code Connect and a Figma-ID manifest           | **Open.** The fetcher records variant IDs from the next sync.   |
 | 19  | Breakpoints, spacing and motion in the MUI theme     | Done 2026-09-25.                                                |
 | 20  | Install the packed packages in a clean app           | Done 2026-09-25 (`npm run smoke:install`, in CI).               |
@@ -109,6 +109,16 @@ adopts 2.0.
 ## Bucket 1 — before F11
 
 ### 1. Model repeated children in the IR
+
+> **Done 2026-09-25, owner decision: an opt-in overlay rule (option B), not an automatic
+> normalizer rule.** `repeats: { <first, or a pattern of firsts>: { reason } }`
+> (`repeatLayers` in `normalize/overlay.mjs`, `withoutRepeats` in the oracle; reference in
+> `spec/overlay/README.md`). Date Picker Open: 145 layers to 25, its oracle 4,380 lines shorter
+> (543 now), its MUI recipe 2,921 lines to 839 (the 800 target missed by the tree and slot
+> tables item 9 adds), 9 gaps per mode, 204 fewer findings; every other component's IR, recipe
+> and oracle unchanged. The runtime helpers draw a repeated text once per item (`repeat` on the
+> web, `repeats` in Flutter: the weekdays). F11's rows and F13's calendar parts opt in the same
+> way.
 
 **Owner decision required:** whether Figma's per-sample differences among repeated siblings (a
 selected day among disabled ones) are findings at all, or content excused wholesale.
@@ -273,6 +283,10 @@ rule; a test proves the snippet for a `bind` and for a `set` round-trips through
 
 ### 7. `solar:overlay:audit` — done; 7b. act on what it found
 
+> 2026-09-25: Date Picker Open's `set` the audit listed as agreeing with Figma is deleted (owner).
+> It also decided the root width's unbound-value finding, which is open again ("ask SOLAR for a
+> width token, or confirm 588"); the audit now counts a `set` that decides a finding as not idle.
+
 Done 2026-09-25: `npm run solar:overlay:audit` (`bin/solar-overlay-audit.mjs`,
 `src/report/overlay-audit.mjs`) reports rules repeated across three or more components,
 reasons repeated verbatim, `allowLiteral` cells whose literal now matches a token, and `set`
@@ -317,6 +331,16 @@ vocabulary. The codegen README points at it.
 ## Bucket 4 — structural, decide now
 
 ### 9. Shells as real files that import a generated module
+
+> **Done 2026-09-25, owner decision: option A.** Every shell (96 per platform) is a hand-written
+> file, taken over exactly as its template last rendered it; no descriptor has `templates` (the
+> index refuses one, and `owned`), and 16,400 descriptor lines of template strings are gone. The
+> MUI tables several descriptors share moved to `src/components/shared/`; `src/shells/` holds
+> the story writer and shell check (`index.mjs`), the mapping (`api.mjs`) and the icon analysis
+> (`icons.mjs`). Generated beside each recipe: `solar<Name>Tree`, `solar<Name>Slots`,
+> `Solar<Name>Recipe.tree`. The parity test gained three checks per component: the tree is the
+> generated one, each icon the IR names is drawn (a swapped icon fails, proven), and the React
+> props are read through `useSolarProps`.
 
 > Reoriented 2026-09-25 by [two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md):
 > under that decision a React shell in TSX and a Flutter widget in Dart, each written by an
@@ -401,7 +425,7 @@ not a contract.
 **Done when.** The components README lists each component's public hooks; a test asserts every
 public hook is a slot or `root`.
 
-### 11. The spec says what the system is — done; one question open
+### 11. The spec says what the system is — done
 
 Done 2026-09-25: the design spec's §3 carries "What it has become": a layer-tree renderer that
 borrows platform behaviour where it helps, 84 of 98 descriptors drawn. §13 records it and lists
@@ -444,6 +468,9 @@ measure again after it.
 **Done when.** An app importing `Button` alone bundles under 60 KB of recipe.
 
 ### 13. What git carries
+
+> **Done 2026-09-25, owner decision: option C.** `.gitattributes` marks `spec/verify/**`
+> `linguist-generated`; the files are still committed and diffed by CI.
 
 **Owner decision required.** `spec/components/` and `spec/verify/` are derived files,
 regenerated and diffed in CI, and the oracles now carry Dark beside Light. The stated reason to
@@ -500,7 +527,7 @@ large: lg } } }`, and the same for IconButton, Checkbox, Radio, Switch, Slider, 
   fixes one (`disableRipple`, `disableElevation`). A key whose mapping names a component that is
   not generated yet fails the build, so Dialog and Table join when F11 and F12 land.
 - A test renders a stock `<Button variant="outlined">` under the theme and asserts it computes
-  the same values as `<Button variant="secondary">` from `@bwp-web/components`, for the resting
+  the same values as `<Button prio="secondary">` from `@bwp-web/components`, for the resting
   state and hover, in Light and Dark.
 
 **Scope, checked 2026-09-25.** Deriving `styleOverrides` "from recipes we already generate"
@@ -567,6 +594,15 @@ only Tailwind.
 and a smoke test renders `Button` inside `SolarProvider` with no other setup.
 
 ### 17. One vocabulary: Figma's words or MUI's
+
+> **Rule decided 2026-09-25** (two-libraries spec, rule 5, as the owner confirmed it): SOLAR's
+> word where SOLAR's description names the thing; otherwise MUI's on the web and Flutter's in
+> Flutter. So `helper`, `mandatory`, `iconLeading` stay; the Flutter fields take `enabled`
+> (`{ not: 'enabled' }` in their `api` tables). The renames made before the rule, decided
+> 2026-09-25: Button, Icon Button and SplitButton take SOLAR's `prio` again, and Button Group its
+> `type` (`regular`, `full-width`); Alert, Alert Small and Spinner keep `variant` for Figma's
+> `style`, the one exception, since `style` is React's inline-style prop, and the design review
+> asks the designers to rename the property `variant`.
 
 > Proposed answer, 2026-09-25, in [two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md)
 > rule 5: SOLAR's word where SOLAR names the thing; otherwise MUI's word on the web and

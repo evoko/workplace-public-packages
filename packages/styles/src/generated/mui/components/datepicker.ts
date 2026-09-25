@@ -427,3 +427,18 @@ export function solarDatePickerCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarDatePickerTree: Record<string, string[]> = {
+  root: ['label', 'field', 'helper'],
+  label: ['labelLabel', 'required'],
+  field: ['iconCalendar', 'value'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarDatePicker-<slot>`, public. */
+export const solarDatePickerSlots: Record<string, string> = {
+  label: 'label',
+  required: 'required',
+  value: 'value',
+  helper: 'helper',
+};

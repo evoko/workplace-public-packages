@@ -1,6 +1,6 @@
 /**
  * The per-component descriptors (src/components/): one file per component, found by the index, and
- * the only place a component's tables and templates live.
+ * the only place a component's tables live; its shells are files of their own.
  */
 
 import { describe, expect, it } from 'vitest';
@@ -9,7 +9,6 @@ import { join } from 'node:path';
 import { DESCRIPTORS, table } from '../src/components/index.mjs';
 import { MUI_SLOTS, STATE_SELECTORS } from '../src/emit/mui-component.mjs';
 import { FLUTTER_STYLE } from '../src/emit/flutter-component.mjs';
-import { FLUTTER_TEMPLATES, TEMPLATES } from '../src/shells/index.mjs';
 import { COMPONENTS } from '../src/stages/components.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
@@ -25,7 +24,7 @@ describe('the component descriptors', () => {
     expect(COMPONENTS).toEqual(DESCRIPTORS.map((d) => d.address ?? d.name));
   });
 
-  it('are what the emitters’ and the shells’ tables read, by name', () => {
+  it('are what the emitters’ tables read, by name', () => {
     expect(Object.keys(MUI_SLOTS).sort()).toEqual(
       DESCRIPTORS.map((d) => d.name).sort(),
     );
@@ -40,10 +39,12 @@ describe('the component descriptors', () => {
     expect(table('mui', 'svgLayers')).toEqual({
       Spinner: ['track', 'indicator'],
     });
+  });
+
+  it('refuses a descriptor still holding templates, or owned, since every shell is a file', () => {
     for (const d of DESCRIPTORS) {
-      // One checked as another's state (Autocomplete Open) has no shells, so no templates.
-      expect(TEMPLATES[d.name], d.name).toBe(d.templates?.react);
-      expect(FLUTTER_TEMPLATES[d.name], d.name).toBe(d.templates?.flutter);
+      expect(d, d.name).not.toHaveProperty('templates');
+      expect(d, d.name).not.toHaveProperty('owned');
     }
   });
 });

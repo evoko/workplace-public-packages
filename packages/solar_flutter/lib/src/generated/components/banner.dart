@@ -124,6 +124,20 @@ abstract final class SolarBannerRecipe {
     'iconDanger.color|appearance|type=danger|default': 't:color.icon.primary',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': [
+      'iconInfo',
+      'description',
+      'actionGroup',
+      'close',
+      'iconSuccess',
+      'iconWarning',
+      'iconDanger',
+    ],
+    'actionGroup': ['primaryButton', 'secondaryButton', 'action'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

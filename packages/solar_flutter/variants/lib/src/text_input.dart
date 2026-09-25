@@ -15,7 +15,7 @@ Widget buildTextInput(
   final content = ((v['content'] as List?) ?? const []).cast<String>();
   return SolarTextInput(
     size: enumNamed(SolarTextInputSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     label: 'Label',
     mandatory: true,

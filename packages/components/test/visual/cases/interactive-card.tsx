@@ -28,7 +28,7 @@ export default {
           data-layer={layer}
           icon={icon}
           aria-label="Action"
-          variant="secondary"
+          prio="secondary"
         />
       ))}
       dragHandle

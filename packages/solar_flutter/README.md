@@ -80,8 +80,10 @@ control takes what a tap asks for as Flutter's do (`onChanged` on a `SolarCheckb
 `SolarToggle`, null disabling it), and is disabled as Flutter's are: a `SolarButton`,
 `SolarIconButton`, `SolarFAB`, `SolarBackButton`, `SolarSplitButton` or `SolarLink`, a menu or list
 row, a pagination item or a calendar's day by a null `onPressed`, with no `disabled` parameter
-(each has a `disabled` getter that says so). A card, a tab, a breadcrumb and the fields keep their
-`disabled`, a look of its own, not the absence of an action. A slider is on `min` to `max`, 0 to 1
+(each has a `disabled` getter that says so). A field (`SolarTextInput`, `SolarSelect`, the pickers
+and the rest of the text fields) takes Flutter's `enabled`, `true` by default, as `TextField` and
+`DropdownMenu` do, and so does a Select's or Dropdown's option; `disabled` is its getter. A card, a
+tab and a breadcrumb keep their `disabled`, a look of its own, not the absence of an action. A slider is on `min` to `max`, 0 to 1
 by default. A
 `SolarRadio<T>` and a `SolarSegmentedControlItem<T>` are checked by the `RadioGroup` around them,
 by their `value`, as Flutter's own Radio is, so they take no `checked` or `selected`; the group
@@ -147,7 +149,7 @@ their own inside it; its More menu takes `moreItems`, `SolarCardMoreItem`s. A ca
 
 ```dart
 SolarButton(
-  variant: SolarButtonVariant.secondary,
+  prio: SolarButtonPrio.secondary,
   size: SolarButtonSize.sm,
   loading: saving,
   onPressed: save,
@@ -155,9 +157,9 @@ SolarButton(
 )
 ```
 
-Each is a widget generated on every `npm run solar:codegen` from the Flutter template in its
-descriptor (`packages/codegen/src/components/`), which is where its behaviour is written, never in
-the widget itself (an `owned: true` component's widget is the exception), styled by a generated recipe it never copies values from. They read the `SolarTheme` the app
+Each is a widget written by hand, its behaviour in Dart, styled by a generated recipe it never
+copies values from; its layer tree is the recipe's too (`SolarButtonRecipe.tree`), so a layer Figma
+adds reaches it with no edit. They read the `SolarTheme` the app
 installed, or Light or Dark for the app's brightness if it installed none. An icon-only
 `SolarButton` needs a `semanticLabel`, and `SolarIconButton` requires one; either way the name and
 the button's tap action are one node for a screen reader. While loading the label keeps its room and its semantics
@@ -172,7 +174,7 @@ pressed at once, and draws Figma's pressed look):
 FilledButton(
   style: SolarButtonRecipe.style(
     Theme.of(context).extension<SolarTheme>()!,
-    const SolarButtonProps(variant: SolarButtonVariant.secondary, size: SolarButtonSize.sm),
+    const SolarButtonProps(prio: SolarButtonPrio.secondary, size: SolarButtonSize.sm),
   ),
   onPressed: save,
   child: const Text('Save changes'),

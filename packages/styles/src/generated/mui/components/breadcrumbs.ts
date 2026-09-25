@@ -246,3 +246,21 @@ export function solarBreadcrumbsCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarBreadcrumbsTree: Record<string, string[]> = {
+  root: [
+    'item1',
+    'iconChevronRight',
+    'item2',
+    'iconChevronRight2',
+    'current',
+    'item3',
+    'iconChevronRight3',
+    'item4',
+    'iconChevronRight4',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarBreadcrumbs-<slot>`, public. */
+export const solarBreadcrumbsSlots: Record<string, string> = {};

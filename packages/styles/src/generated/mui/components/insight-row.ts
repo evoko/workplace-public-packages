@@ -452,3 +452,17 @@ export function solarInsightRowCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarInsightRowTree: Record<string, string[]> = {
+  root: ['severityBar', 'content'],
+  content: ['body', 'action'],
+  body: ['title', 'meta', 'skeleton', 'skeleton2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarInsightRow-<slot>`, public. */
+export const solarInsightRowSlots: Record<string, string> = {
+  title: 'title',
+  meta: 'meta',
+  action: 'action',
+};

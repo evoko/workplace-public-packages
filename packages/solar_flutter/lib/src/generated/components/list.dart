@@ -128,6 +128,22 @@ abstract final class SolarListRecipe {
     'listItem5.width|appearance|inCard=false|default': 'k:FILL',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['items'],
+    'items': [
+      'listItem',
+      'divider',
+      'listItem2',
+      'divider2',
+      'listItem3',
+      'divider3',
+      'listItem4',
+      'divider4',
+      'listItem5',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

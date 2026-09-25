@@ -10,7 +10,7 @@
       "values": ["md", "sm", "lg"],
       "default": "md"
     },
-    "variant": {
+    "prio": {
       "values": ["primary", "secondary", "tertiary"],
       "default": "primary"
     },
@@ -225,7 +225,7 @@
         }
       },
       "appearance": {
-        "variant=primary, danger=true": {
+        "prio=primary, danger=true": {
           "default": {
             "background": {
               "token": "color.action.primary.bg.danger.default",
@@ -287,7 +287,7 @@
             }
           }
         },
-        "variant=secondary, danger=false": {
+        "prio=secondary, danger=false": {
           "default": {
             "background": {
               "token": "color.action.secondary.bg.default",
@@ -349,7 +349,7 @@
             }
           }
         },
-        "variant=secondary, danger=true": {
+        "prio=secondary, danger=true": {
           "default": {
             "background": {
               "token": "color.action.secondary.bg.danger.default",
@@ -411,7 +411,7 @@
             }
           }
         },
-        "variant=tertiary, danger=false": {
+        "prio=tertiary, danger=false": {
           "default": {
             "background": {
               "none": true,
@@ -473,7 +473,7 @@
             }
           }
         },
-        "variant=tertiary, danger=true": {
+        "prio=tertiary, danger=true": {
           "default": {
             "background": {
               "none": true,
@@ -535,7 +535,7 @@
             }
           }
         },
-        "variant=primary, danger=false": {
+        "prio=primary, danger=false": {
           "hover": {
             "background": {
               "token": "color.action.primary.bg.hover",
@@ -570,7 +570,7 @@
       },
       "combined": {
         "md": {
-          "variant=tertiary, danger=false": {
+          "prio=tertiary, danger=false": {
             "default": {
               "shadow": {
                 "none": true,
@@ -608,7 +608,7 @@
               }
             }
           },
-          "variant=tertiary, danger=true": {
+          "prio=tertiary, danger=true": {
             "default": {
               "shadow": {
                 "none": true,
@@ -646,7 +646,7 @@
               }
             }
           },
-          "variant=primary, danger=false": {
+          "prio=primary, danger=false": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.default",
@@ -654,7 +654,7 @@
               }
             }
           },
-          "variant=primary, danger=true": {
+          "prio=primary, danger=true": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.danger",
@@ -662,7 +662,7 @@
               }
             }
           },
-          "variant=secondary, danger=false": {
+          "prio=secondary, danger=false": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.default",
@@ -670,7 +670,7 @@
               }
             }
           },
-          "variant=secondary, danger=true": {
+          "prio=secondary, danger=true": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.danger",
@@ -680,7 +680,7 @@
           }
         },
         "sm": {
-          "variant=tertiary, danger=false": {
+          "prio=tertiary, danger=false": {
             "default": {
               "shadow": {
                 "none": true,
@@ -718,7 +718,7 @@
               }
             }
           },
-          "variant=tertiary, danger=true": {
+          "prio=tertiary, danger=true": {
             "default": {
               "shadow": {
                 "none": true,
@@ -756,7 +756,7 @@
               }
             }
           },
-          "variant=primary, danger=false": {
+          "prio=primary, danger=false": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.default",
@@ -764,7 +764,7 @@
               }
             }
           },
-          "variant=primary, danger=true": {
+          "prio=primary, danger=true": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.danger",
@@ -772,7 +772,7 @@
               }
             }
           },
-          "variant=secondary, danger=false": {
+          "prio=secondary, danger=false": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.default",
@@ -780,7 +780,7 @@
               }
             }
           },
-          "variant=secondary, danger=true": {
+          "prio=secondary, danger=true": {
             "focus": {
               "shadow": {
                 "token": "shadow.focus.danger",
@@ -790,7 +790,7 @@
           }
         },
         "lg": {
-          "variant=primary, danger=false": {
+          "prio=primary, danger=false": {
             "default": {
               "shadow": {
                 "none": true,
@@ -828,7 +828,7 @@
               }
             }
           },
-          "variant=primary, danger=true": {
+          "prio=primary, danger=true": {
             "default": {
               "shadow": {
                 "none": true,
@@ -866,7 +866,7 @@
               }
             }
           },
-          "variant=secondary, danger=false": {
+          "prio=secondary, danger=false": {
             "default": {
               "shadow": {
                 "none": true,
@@ -904,7 +904,7 @@
               }
             }
           },
-          "variant=secondary, danger=true": {
+          "prio=secondary, danger=true": {
             "default": {
               "shadow": {
                 "none": true,
@@ -942,7 +942,7 @@
               }
             }
           },
-          "variant=tertiary, danger=false": {
+          "prio=tertiary, danger=false": {
             "default": {
               "shadow": {
                 "none": true,
@@ -980,7 +980,7 @@
               }
             }
           },
-          "variant=tertiary, danger=true": {
+          "prio=tertiary, danger=true": {
             "default": {
               "shadow": {
                 "none": true,
@@ -1051,7 +1051,7 @@
       },
       "size": {},
       "appearance": {
-        "variant=primary, danger=true": {
+        "prio=primary, danger=true": {
           "default": {
             "color": {
               "token": "color.action.primary.icon.danger.default",
@@ -1083,7 +1083,7 @@
             }
           }
         },
-        "variant=secondary, danger=false": {
+        "prio=secondary, danger=false": {
           "default": {
             "color": {
               "token": "color.action.secondary.icon.default",
@@ -1115,7 +1115,7 @@
             }
           }
         },
-        "variant=secondary, danger=true": {
+        "prio=secondary, danger=true": {
           "default": {
             "color": {
               "token": "color.action.secondary.icon.danger.default",
@@ -1147,7 +1147,7 @@
             }
           }
         },
-        "variant=tertiary, danger=false": {
+        "prio=tertiary, danger=false": {
           "default": {
             "color": {
               "token": "color.action.tertiary.icon.default",
@@ -1179,7 +1179,7 @@
             }
           }
         },
-        "variant=tertiary, danger=true": {
+        "prio=tertiary, danger=true": {
           "default": {
             "color": {
               "token": "color.action.tertiary.icon.danger.default",
@@ -1211,7 +1211,7 @@
             }
           }
         },
-        "variant=primary, danger=false": {
+        "prio=primary, danger=false": {
           "hover": {
             "color": {
               "token": "color.action.primary.icon.hover",
@@ -1269,7 +1269,7 @@
         }
       },
       "appearance": {
-        "variant=primary, danger=false": {
+        "prio=primary, danger=false": {
           "loading": {
             "present": {
               "value": true,
@@ -1281,7 +1281,7 @@
             }
           }
         },
-        "variant=primary, danger=true": {
+        "prio=primary, danger=true": {
           "loading": {
             "present": {
               "value": true,
@@ -1293,7 +1293,7 @@
             }
           }
         },
-        "variant=secondary, danger=false": {
+        "prio=secondary, danger=false": {
           "loading": {
             "present": {
               "value": true,
@@ -1301,7 +1301,7 @@
             }
           }
         },
-        "variant=secondary, danger=true": {
+        "prio=secondary, danger=true": {
           "loading": {
             "present": {
               "value": true,
@@ -1309,7 +1309,7 @@
             }
           }
         },
-        "variant=tertiary, danger=false": {
+        "prio=tertiary, danger=false": {
           "loading": {
             "present": {
               "value": true,
@@ -1317,7 +1317,7 @@
             }
           }
         },
-        "variant=tertiary, danger=true": {
+        "prio=tertiary, danger=true": {
           "loading": {
             "present": {
               "value": true,
@@ -1355,7 +1355,7 @@
         }
       },
       "appearance": {
-        "variant=primary, danger=false": {
+        "prio=primary, danger=false": {
           "loading": {
             "present": {
               "value": false,
@@ -1381,7 +1381,7 @@
             }
           }
         },
-        "variant=primary, danger=true": {
+        "prio=primary, danger=true": {
           "loading": {
             "present": {
               "value": false,
@@ -1419,7 +1419,7 @@
             }
           }
         },
-        "variant=secondary, danger=false": {
+        "prio=secondary, danger=false": {
           "loading": {
             "present": {
               "value": false,
@@ -1457,7 +1457,7 @@
             }
           }
         },
-        "variant=secondary, danger=true": {
+        "prio=secondary, danger=true": {
           "loading": {
             "present": {
               "value": false,
@@ -1495,7 +1495,7 @@
             }
           }
         },
-        "variant=tertiary, danger=false": {
+        "prio=tertiary, danger=false": {
           "loading": {
             "present": {
               "value": false,
@@ -1533,7 +1533,7 @@
             }
           }
         },
-        "variant=tertiary, danger=true": {
+        "prio=tertiary, danger=true": {
           "loading": {
             "present": {
               "value": false,
@@ -1574,7 +1574,7 @@
       },
       "combined": {
         "sm": {
-          "variant=primary, danger=false": {
+          "prio=primary, danger=false": {
             "default": {
               "typography": {
                 "token": "typography.label.sm",
@@ -1606,7 +1606,7 @@
               }
             }
           },
-          "variant=primary, danger=true": {
+          "prio=primary, danger=true": {
             "default": {
               "typography": {
                 "token": "typography.label.sm",
@@ -1638,7 +1638,7 @@
               }
             }
           },
-          "variant=secondary, danger=false": {
+          "prio=secondary, danger=false": {
             "default": {
               "typography": {
                 "token": "typography.label.sm",
@@ -1670,7 +1670,7 @@
               }
             }
           },
-          "variant=secondary, danger=true": {
+          "prio=secondary, danger=true": {
             "default": {
               "typography": {
                 "token": "typography.label.sm",
@@ -1702,7 +1702,7 @@
               }
             }
           },
-          "variant=tertiary, danger=false": {
+          "prio=tertiary, danger=false": {
             "default": {
               "typography": {
                 "token": "typography.label.sm",
@@ -1734,7 +1734,7 @@
               }
             }
           },
-          "variant=tertiary, danger=true": {
+          "prio=tertiary, danger=true": {
             "default": {
               "typography": {
                 "token": "typography.label.sm",
@@ -1768,7 +1768,7 @@
           }
         },
         "md": {
-          "variant=tertiary, danger=false": {
+          "prio=tertiary, danger=false": {
             "hover": {
               "typography": {
                 "token": "typography.link.md.hover",
@@ -1778,7 +1778,7 @@
           }
         },
         "lg": {
-          "variant=secondary, danger=false": {
+          "prio=secondary, danger=false": {
             "hover": {
               "typography": {
                 "token": "typography.link.md.default",
@@ -1786,7 +1786,7 @@
               }
             }
           },
-          "variant=tertiary, danger=false": {
+          "prio=tertiary, danger=false": {
             "hover": {
               "typography": {
                 "token": "typography.link.md.default",
@@ -1827,7 +1827,7 @@
       },
       "size": {},
       "appearance": {
-        "variant=primary, danger=true": {
+        "prio=primary, danger=true": {
           "default": {
             "color": {
               "token": "color.action.primary.icon.danger.default",
@@ -1859,7 +1859,7 @@
             }
           }
         },
-        "variant=secondary, danger=false": {
+        "prio=secondary, danger=false": {
           "default": {
             "color": {
               "token": "color.action.secondary.icon.default",
@@ -1891,7 +1891,7 @@
             }
           }
         },
-        "variant=secondary, danger=true": {
+        "prio=secondary, danger=true": {
           "default": {
             "color": {
               "token": "color.action.secondary.icon.danger.default",
@@ -1923,7 +1923,7 @@
             }
           }
         },
-        "variant=tertiary, danger=false": {
+        "prio=tertiary, danger=false": {
           "default": {
             "color": {
               "token": "color.action.tertiary.icon.default",
@@ -1955,7 +1955,7 @@
             }
           }
         },
-        "variant=tertiary, danger=true": {
+        "prio=tertiary, danger=true": {
           "default": {
             "color": {
               "token": "color.action.tertiary.icon.danger.default",
@@ -1987,7 +1987,7 @@
             }
           }
         },
-        "variant=primary, danger=false": {
+        "prio=primary, danger=false": {
           "hover": {
             "color": {
               "token": "color.action.primary.icon.hover",
@@ -2039,7 +2039,7 @@
       },
       "size": {},
       "appearance": {
-        "variant=secondary, danger=false": {
+        "prio=secondary, danger=false": {
           "default": {
             "variant.type": {
               "keyword": "regular",
@@ -2083,7 +2083,7 @@
             }
           }
         },
-        "variant=secondary, danger=true": {
+        "prio=secondary, danger=true": {
           "default": {
             "variant.type": {
               "keyword": "regular",
@@ -2127,7 +2127,7 @@
             }
           }
         },
-        "variant=tertiary, danger=false": {
+        "prio=tertiary, danger=false": {
           "default": {
             "variant.type": {
               "keyword": "regular",
@@ -2171,7 +2171,7 @@
             }
           }
         },
-        "variant=tertiary, danger=true": {
+        "prio=tertiary, danger=true": {
           "default": {
             "variant.type": {
               "keyword": "regular",
@@ -2215,7 +2215,7 @@
             }
           }
         },
-        "variant=primary, danger=false": {
+        "prio=primary, danger=false": {
           "hover": {
             "variant.state": {
               "keyword": "hover",
@@ -2235,7 +2235,7 @@
             }
           }
         },
-        "variant=primary, danger=true": {
+        "prio=primary, danger=true": {
           "hover": {
             "variant.state": {
               "keyword": "hover",
@@ -2276,11 +2276,6 @@
         "rule": "base",
         "at": "base",
         "reason": "The closest stock control on each platform. MUI Button and Flutter FilledButton both take a variant, a size and a disabled state and supply focus, ripple and accessibility; the recipe restyles them. Flip to null (bespoke) if the recipe cannot express what SOLAR draws."
-      },
-      {
-        "rule": "rename",
-        "at": "prio",
-        "reason": "The docs-to-code design spec names the public prop `variant`, as MUI and most React libraries do; `prio` is the Figma property name."
       },
       {
         "rule": "follows",

@@ -42,8 +42,9 @@ grammar.json                  │                                         │
         npm run solar:codegen → spec/tokens.json → css · mui · tailwind · flutter
                               → spec/icons.json  → react · svg · flutter
                               → spec/components/*.json (+ spec/overlay/*.yaml) → mui · flutter recipes
-                              → the shells, from each descriptor's templates → packages/components/src/<Name>.tsx
-                                · stories/<Name>.stories.tsx · solar_flutter lib/src/components/solar_<name>.dart
+                              → each recipe's layer tree and slot names, which the shells import
+                              → stories/<Name>.stories.tsx (the shells, <Name>.tsx and
+                                solar_<name>.dart, are written by hand)
         npm run solar:explain -- "<Name>" → why each cell draws what it draws (writes nothing)
 ```
 
@@ -149,10 +150,9 @@ recorded rather than averaged away. A hand-written overlay in `spec/overlay/` ho
 about one component, each with a reason. Two emitters generate from the IR: a recipe for MUI in
 `@bwp-web/styles/mui` and one for Flutter in `solar_flutter`. The component itself — props, slots,
 loading, accessibility — is a **shell**, one per platform (a React component, a Flutter widget),
-generated on every run from the templates in its descriptor (`packages/codegen/src/components/`),
-which are the hand-written behaviour: a design change reaches it through the recipe, and a new
-slot or prop through the template, without anyone editing the shell. A component whose shell must
-be edited as a file opts out (`owned: true`).
+written by hand in that platform's language (owner decision 2026-09-25). A design change reaches it
+through the recipe and the generated layer tree it imports; a slot, prop or icon Figma adds fails
+the component-parity test until the shell reaches it.
 
 No target is transpiled from another; agreement is proved instead by parity suites that compare
 every token in every mode, every icon variant's geometry, and every component recipe entry and API

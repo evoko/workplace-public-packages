@@ -20,7 +20,7 @@ Widget buildTokenInput(
   final tags = ['tag', 'tag2'].where(drawn).length;
   return SolarTokenInput(
     size: enumNamed(SolarTokenInputSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
+    enabled: !(props['disabled'] as bool),
     error: props['error'] as bool,
     readonly: props['readonly'] as bool,
     label: 'Label',

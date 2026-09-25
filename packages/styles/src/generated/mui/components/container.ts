@@ -178,3 +178,13 @@ export function solarContainerCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarContainerTree: Record<string, string[]> = {
+  root: ['content'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarContainer-<slot>`, public. */
+export const solarContainerSlots: Record<string, string> = {
+  content: 'content',
+};

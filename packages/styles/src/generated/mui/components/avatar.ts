@@ -226,3 +226,9 @@ export function solarAvatarCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarAvatarTree: Record<string, string[]> = { root: ['initials'] };
+
+/** Each slot's layer, to the slot it is: its class is `SolarAvatar-<slot>`, public. */
+export const solarAvatarSlots: Record<string, string> = {};

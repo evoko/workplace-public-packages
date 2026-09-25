@@ -3,11 +3,11 @@
 // Every value is a var(--solar-*) reference into tokens.css, which must be loaded.
 
 export type SolarButtonSize = 'md' | 'sm' | 'lg';
-export type SolarButtonVariant = 'primary' | 'secondary' | 'tertiary';
+export type SolarButtonPrio = 'primary' | 'secondary' | 'tertiary';
 
 export interface SolarButtonProps {
   size?: SolarButtonSize;
-  variant?: SolarButtonVariant;
+  prio?: SolarButtonPrio;
   disabled?: boolean;
   loading?: boolean;
   danger?: boolean;
@@ -15,7 +15,7 @@ export interface SolarButtonProps {
 
 export const solarButtonDefaults = {
   size: 'md',
-  variant: 'primary',
+  prio: 'primary',
   disabled: false,
   loading: false,
   danger: false,
@@ -106,7 +106,7 @@ export const solarButtonStyles = {
     },
   },
   appearances: {
-    'variant=primary, danger=false': {
+    'prio=primary, danger=false': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
         borderColor: 'var(--solar-color-action-primary-border-hover)',
@@ -142,7 +142,7 @@ export const solarButtonStyles = {
         },
       },
     },
-    'variant=primary, danger=true': {
+    'prio=primary, danger=true': {
       backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
       borderColor: 'var(--solar-color-action-primary-border-danger-default)',
       '&:hover': {
@@ -201,7 +201,7 @@ export const solarButtonStyles = {
         color: 'var(--solar-color-action-primary-icon-danger-default)',
       },
     },
-    'variant=secondary, danger=false': {
+    'prio=secondary, danger=false': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       borderColor: 'var(--solar-color-action-secondary-border-default)',
       '&:hover': {
@@ -260,7 +260,7 @@ export const solarButtonStyles = {
         color: 'var(--solar-color-action-secondary-icon-default)',
       },
     },
-    'variant=secondary, danger=true': {
+    'prio=secondary, danger=true': {
       backgroundColor: 'var(--solar-color-action-secondary-bg-danger-default)',
       borderColor: 'var(--solar-color-action-secondary-border-danger-default)',
       '&:hover': {
@@ -324,7 +324,7 @@ export const solarButtonStyles = {
         color: 'var(--solar-color-action-secondary-icon-danger-default)',
       },
     },
-    'variant=tertiary, danger=false': {
+    'prio=tertiary, danger=false': {
       backgroundColor: 'transparent',
       borderColor: 'var(--solar-color-action-tertiary-border-default)',
       '&:hover': {
@@ -383,7 +383,7 @@ export const solarButtonStyles = {
         color: 'var(--solar-color-action-tertiary-icon-default)',
       },
     },
-    'variant=tertiary, danger=true': {
+    'prio=tertiary, danger=true': {
       backgroundColor: 'transparent',
       borderColor: 'var(--solar-color-action-tertiary-border-default)',
       '&:hover': {
@@ -445,7 +445,7 @@ export const solarButtonStyles = {
   },
   combined: {
     md: {
-      'variant=primary, danger=false': {
+      'prio=primary, danger=false': {
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
@@ -459,22 +459,22 @@ export const solarButtonStyles = {
           },
         },
       },
-      'variant=primary, danger=true': {
+      'prio=primary, danger=true': {
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-danger)',
         },
       },
-      'variant=secondary, danger=false': {
+      'prio=secondary, danger=false': {
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
       },
-      'variant=secondary, danger=true': {
+      'prio=secondary, danger=true': {
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-danger)',
         },
       },
-      'variant=tertiary, danger=false': {
+      'prio=tertiary, danger=false': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -510,7 +510,7 @@ export const solarButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'variant=tertiary, danger=true': {
+      'prio=tertiary, danger=true': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -530,7 +530,7 @@ export const solarButtonStyles = {
       },
     },
     sm: {
-      'variant=primary, danger=false': {
+      'prio=primary, danger=false': {
         '&:hover': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -580,7 +580,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
       },
-      'variant=primary, danger=true': {
+      'prio=primary, danger=true': {
         '&:hover': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -621,7 +621,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
       },
-      'variant=secondary, danger=false': {
+      'prio=secondary, danger=false': {
         '&:hover': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -662,7 +662,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
       },
-      'variant=secondary, danger=true': {
+      'prio=secondary, danger=true': {
         '&:hover': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -703,7 +703,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
       },
-      'variant=tertiary, danger=false': {
+      'prio=tertiary, danger=false': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -751,7 +751,7 @@ export const solarButtonStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      'variant=tertiary, danger=true': {
+      'prio=tertiary, danger=true': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -801,7 +801,7 @@ export const solarButtonStyles = {
       },
     },
     lg: {
-      'variant=primary, danger=false': {
+      'prio=primary, danger=false': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -828,7 +828,7 @@ export const solarButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'variant=primary, danger=true': {
+      'prio=primary, danger=true': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -846,7 +846,7 @@ export const solarButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'variant=secondary, danger=false': {
+      'prio=secondary, danger=false': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -882,7 +882,7 @@ export const solarButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'variant=secondary, danger=true': {
+      'prio=secondary, danger=true': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -900,7 +900,7 @@ export const solarButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'variant=tertiary, danger=false': {
+      'prio=tertiary, danger=false': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -936,7 +936,7 @@ export const solarButtonStyles = {
           boxShadow: 'none',
         },
       },
-      'variant=tertiary, danger=true': {
+      'prio=tertiary, danger=true': {
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 'none',
@@ -980,34 +980,34 @@ export const solarButtonComposition = {
       'variant.style': 'default',
     },
     appearance: {
-      'variant=primary, danger=false': {
+      'prio=primary, danger=false': {
         loading: {
           present: true,
           'variant.style': 'inverse',
         },
       },
-      'variant=primary, danger=true': {
+      'prio=primary, danger=true': {
         loading: {
           present: true,
           'variant.style': 'inverse',
         },
       },
-      'variant=secondary, danger=false': {
+      'prio=secondary, danger=false': {
         loading: {
           present: true,
         },
       },
-      'variant=secondary, danger=true': {
+      'prio=secondary, danger=true': {
         loading: {
           present: true,
         },
       },
-      'variant=tertiary, danger=false': {
+      'prio=tertiary, danger=false': {
         loading: {
           present: true,
         },
       },
-      'variant=tertiary, danger=true': {
+      'prio=tertiary, danger=true': {
         loading: {
           present: true,
         },
@@ -1024,32 +1024,32 @@ export const solarButtonComposition = {
       present: true,
     },
     appearance: {
-      'variant=primary, danger=false': {
+      'prio=primary, danger=false': {
         loading: {
           present: false,
         },
       },
-      'variant=primary, danger=true': {
+      'prio=primary, danger=true': {
         loading: {
           present: false,
         },
       },
-      'variant=secondary, danger=false': {
+      'prio=secondary, danger=false': {
         loading: {
           present: false,
         },
       },
-      'variant=secondary, danger=true': {
+      'prio=secondary, danger=true': {
         loading: {
           present: false,
         },
       },
-      'variant=tertiary, danger=false': {
+      'prio=tertiary, danger=false': {
         loading: {
           present: false,
         },
       },
-      'variant=tertiary, danger=true': {
+      'prio=tertiary, danger=true': {
         loading: {
           present: false,
         },
@@ -1071,7 +1071,7 @@ export const solarButtonComposition = {
       'variant.state': 'default',
     },
     appearance: {
-      'variant=secondary, danger=false': {
+      'prio=secondary, danger=false': {
         default: {
           'variant.type': 'regular',
         },
@@ -1091,7 +1091,7 @@ export const solarButtonComposition = {
           'variant.type': 'regular',
         },
       },
-      'variant=secondary, danger=true': {
+      'prio=secondary, danger=true': {
         default: {
           'variant.type': 'regular',
         },
@@ -1111,7 +1111,7 @@ export const solarButtonComposition = {
           'variant.type': 'regular',
         },
       },
-      'variant=tertiary, danger=false': {
+      'prio=tertiary, danger=false': {
         default: {
           'variant.type': 'regular',
         },
@@ -1131,7 +1131,7 @@ export const solarButtonComposition = {
           'variant.type': 'regular',
         },
       },
-      'variant=tertiary, danger=true': {
+      'prio=tertiary, danger=true': {
         default: {
           'variant.type': 'regular',
         },
@@ -1151,7 +1151,7 @@ export const solarButtonComposition = {
           'variant.type': 'regular',
         },
       },
-      'variant=primary, danger=false': {
+      'prio=primary, danger=false': {
         hover: {
           'variant.state': 'hover',
         },
@@ -1162,7 +1162,7 @@ export const solarButtonComposition = {
           'variant.state': 'disabled',
         },
       },
-      'variant=primary, danger=true': {
+      'prio=primary, danger=true': {
         hover: {
           'variant.state': 'hover',
         },
@@ -1194,7 +1194,7 @@ function merge(...styles: (Style | undefined)[]): Style {
 export function solarButtonStyle(props: SolarButtonProps = {}): Style {
   const p: Record<string, unknown> = { ...solarButtonDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `variant=${p.variant}, danger=${p.danger}`;
+  const key = `prio=${p.prio}, danger=${p.danger}`;
   const s = solarButtonStyles as unknown as {
     reset: Style;
     root: Style;
@@ -1243,7 +1243,7 @@ export function solarButtonCompose(
 ): Record<string, Parts> {
   const p: Record<string, unknown> = { ...solarButtonDefaults };
   for (const [k, v] of Object.entries(props)) if (v !== undefined) p[k] = v;
-  const key = `variant=${p.variant}, danger=${p.danger}`;
+  const key = `prio=${p.prio}, danger=${p.danger}`;
   const size = p.size as string;
   const out: Record<string, Parts> = {};
   for (const [layer, c] of Object.entries(
@@ -1262,3 +1262,16 @@ export function solarButtonCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarButtonTree: Record<string, string[]> = {
+  root: ['iconLeading', 'spinner', 'label', 'iconTrailing', 'counter'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarButton-<slot>`, public. */
+export const solarButtonSlots: Record<string, string> = {
+  iconLeading: 'iconLeading',
+  label: 'label',
+  iconTrailing: 'iconTrailing',
+  counter: 'counter',
+};

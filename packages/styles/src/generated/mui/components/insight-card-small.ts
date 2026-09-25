@@ -455,3 +455,16 @@ export function solarInsightCardSmallCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarInsightCardSmallTree: Record<string, string[]> = {
+  root: ['icon', 'content'],
+  icon: ['statusIndicator'],
+  content: ['title', 'description', 'skeleton', 'skeleton2'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarInsightCardSmall-<slot>`, public. */
+export const solarInsightCardSmallSlots: Record<string, string> = {
+  title: 'title',
+  description: 'description',
+};

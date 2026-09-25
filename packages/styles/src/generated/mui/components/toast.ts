@@ -279,3 +279,16 @@ export function solarToastCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarToastTree: Record<string, string[]> = {
+  root: ['tag', 'message', 'action', 'chevron'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarToast-<slot>`, public. */
+export const solarToastSlots: Record<string, string> = {
+  action: 'action',
+  chevron: 'chevron',
+  message: 'message',
+  tag: 'tag',
+};

@@ -146,7 +146,7 @@ void main() {
     ) async {
       await pump(
         tester,
-        const SolarTextInput(label: 'Name', helper: 'Required', disabled: true),
+        const SolarTextInput(label: 'Name', helper: 'Required', enabled: false),
       );
       await tester.tap(find.byKey(const Key('textInput.field')));
       await tester.pump();

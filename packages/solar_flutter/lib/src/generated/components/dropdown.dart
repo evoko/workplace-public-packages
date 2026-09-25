@@ -160,6 +160,19 @@ abstract final class SolarDropdownRecipe {
     'iconChevronUp.color|appearance|default|open': 't:color.icon.primary',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['label', 'field', 'helper'],
+    'label': ['labelLabel', 'mandatory'],
+    'field': [
+      'leadingIcon',
+      'fieldLabel',
+      'trailingIcon',
+      'iconChevronDown',
+      'iconChevronUp',
+    ],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = [
     'disabled',

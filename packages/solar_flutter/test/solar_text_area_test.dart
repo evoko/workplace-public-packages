@@ -57,7 +57,7 @@ void main() {
             attachment: SolarIconButton(
               key: const Key('attach'),
               semanticLabel: 'Attach',
-              variant: SolarIconButtonVariant.secondary,
+              prio: SolarIconButtonPrio.secondary,
               size: SolarIconButtonSize.sm,
               icon: const Icon(Icons.attach_file),
               onPressed: () {},

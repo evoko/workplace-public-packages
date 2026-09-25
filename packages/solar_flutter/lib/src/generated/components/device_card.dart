@@ -311,6 +311,23 @@ abstract final class SolarDeviceCardRecipe {
     'headlineContentSkeleton.shadow|appearance|type=batch|loading': 'none',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {
+    'root': ['icon', 'content', 'tag', 'button', 'headline', 'serialLocation'],
+    'icon': ['iconIconDevice', 'iconIconProgress'],
+    'content': ['contentName', 'details', 'contentSkeleton'],
+    'headline': ['headlineIcon', 'headlineContent', 'headlineTag'],
+    'headlineIcon': ['headlineIconIconDevice', 'headlineIconIconProgress'],
+    'headlineContent': [
+      'headlineContentName',
+      'contentCount',
+      'row',
+      'headlineContentSkeleton',
+    ],
+    'serialLocation': ['devices'],
+    'row': ['rowName', 'rowCount'],
+  };
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = ['loading', 'focus'];
 

@@ -204,3 +204,19 @@ export function solarPaginationCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarPaginationTree: Record<string, string[]> = {
+  root: [
+    'previous',
+    'page1',
+    'page2',
+    'page3',
+    'paginationEllipsis',
+    'page12',
+    'next',
+  ],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarPagination-<slot>`, public. */
+export const solarPaginationSlots: Record<string, string> = {};

@@ -64,6 +64,9 @@ abstract final class SolarSkeletonRecipe {
     'root.height|combined|sm|type=rectangular|default': 'px:80',
   };
 
+  /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
+  static const Map<String, List<String>> tree = {};
+
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.
   static const List<String> statePrecedence = <String>[];
 

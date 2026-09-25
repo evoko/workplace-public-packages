@@ -20,6 +20,7 @@ import { dartEnumValue } from '../src/emit/flutter.mjs';
 import { describe, expect, it } from 'vitest';
 import { OVERLAPS, STATE_SELECTORS } from '../src/emit/mui-component.mjs';
 import { apiOf, unreached } from '../src/shells/api.mjs';
+import { iconsOf } from '../src/shells/icons.mjs';
 
 const SELECTORS = STATE_SELECTORS.Button;
 import { flattenSpec } from '../src/spec.mjs';
@@ -140,7 +141,7 @@ describe('component parity: the API', () => {
         def.values.map(dartEnumValue),
       );
     }
-    expect(unions.map(([p]) => p).sort()).toEqual(['size', 'variant']);
+    expect(unions.map(([p]) => p).sort()).toEqual(['prio', 'size']);
   });
 
   // The defaults are Figma's default variant's, which is the contract: a default that differed on
@@ -460,8 +461,8 @@ describe('component parity: every entry, in place', () => {
 });
 
 // The widgets developers use, not the generated props classes alone: the React shell and the
-// Flutter widget are written by hand (as templates, or as an owned shell), so either can drift
-// from the IR, and this is what notices.
+// Flutter widget are written by hand, files of their own, so either can drift from the IR, and
+// this is what notices.
 describe('component parity: the React and Flutter widgets', () => {
   /** The names a React shell destructures from its props, as the app's theme gives them. */
   function reactProps(source, name) {
@@ -540,11 +541,45 @@ describe('component parity: the React and Flutter widgets', () => {
       ).toEqual([]);
     });
 
+    // What the IR decides of the drawing reaches the shells, which are written by hand, with no
+    // edit to them: the layer tree is the generated one, never a copy, and each icon Figma names
+    // is the one the shell draws.
+    it(`${spec.component}: draws the IR's layer tree, the generated one`, () => {
+      expect(reactSource).not.toMatch(/const TREE\b|tree: \{/);
+      expect(flutterSource).not.toMatch(/static const _tree\b|tree: const \{/);
+      if (/\btree:/.test(reactSource))
+        expect(reactSource).toContain(`tree: solar${name}Tree`);
+      if (/\btree:/.test(flutterSource))
+        expect(flutterSource).toContain(`tree: Solar${name}Recipe.tree`);
+    });
+
+    it(`${spec.component}: draws each icon its IR names, on both platforms`, () => {
+      for (const i of iconsOf(spec))
+        for (const x of i.byAxis ? Object.values(i.byAxis.values) : [i]) {
+          // Figma's placeholder where the caller's icon goes (Tag's, Number Input's): no SOLAR icon.
+          if (x.react === 'IconNone') continue;
+          expect(reactSource, i.layer).toMatch(new RegExp(`<${x.react}\\b`));
+          expect(flutterSource, i.layer).toContain(x.dart);
+        }
+    });
+
+    it(`${spec.component}: reads its React props through the app's MUI theme`, () => {
+      expect(reactSource).toMatch(
+        new RegExp(`useSolarProps\\(\\s*inProps,\\s*'Solar${name}'`),
+      );
+    });
+
     it(`${spec.component}: Flutter defaults to the IR's defaults where it takes the prop`, () => {
       for (const [prop, def] of Object.entries(spec.api)) {
         // A colour the caller gives (Avatar's) has no default on either platform; a prop reached
         // another way (a group's, a callback's) has none of its own.
-        if (def.type === 'color' || api.flutter[prop] !== prop) continue;
+        const member = api.flutter[prop];
+        // A negated member (a field's `enabled`) defaults to the negation of the IR's default.
+        if (member?.not && def.type === 'boolean') {
+          expect(flutter[member.not], member.not).toBe(String(!def.default));
+          continue;
+        }
+        if (def.type === 'color' || member !== prop) continue;
         // An enum value as the emitter spells it in Dart (`top-search` is `topSearch`).
         const expected =
           def.type === 'boolean'
@@ -582,6 +617,21 @@ describe('component parity: the mapping', () => {
     ]);
     const mapped = apiOf(tag, { flutter: { invert: 'inverted' } }).flutter;
     expect(unreached(mapped, spelled, '')).toEqual([]);
+  });
+
+  it('reaches a prop through its negation, where its mapping says so, and fails without it', () => {
+    const text = built.find((b) => b.spec.component === 'Text Input').spec;
+    const mapping = apiOf(text).flutter;
+    expect(mapping.disabled).toEqual({ not: 'enabled' });
+    const members = Object.values(mapping).map((m) => m?.not ?? m);
+    expect(unreached(mapping, members, '')).toEqual([]);
+    expect(
+      unreached(
+        mapping,
+        members.filter((m) => m !== 'enabled'),
+        '',
+      ),
+    ).toEqual(['disabled ({"not":"enabled"})']);
   });
 
   it('refuses a mapping of what the IR does not name, as a stale overlay rule is', () => {

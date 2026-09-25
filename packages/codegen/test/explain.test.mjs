@@ -38,7 +38,7 @@ describe('lookupCell', () => {
     const ctx = of('Button');
     const v = variant(ctx, 'size=md, prio=tertiary, state=focus, danger=false');
     expect(lookupCell(ctx.spec, 'root', 'shadow', v)).toEqual({
-      at: 'combined md · variant=tertiary, danger=false · focus',
+      at: 'combined md · prio=tertiary, danger=false · focus',
       entry: expect.objectContaining({ token: 'shadow.focus.default' }),
     });
   });

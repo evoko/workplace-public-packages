@@ -219,3 +219,14 @@ export function solarSectionNavItemCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarSectionNavItemTree: Record<string, string[]> = {
+  root: ['icon', 'label'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarSectionNavItem-<slot>`, public. */
+export const solarSectionNavItemSlots: Record<string, string> = {
+  icon: 'icon',
+  label: 'label',
+};

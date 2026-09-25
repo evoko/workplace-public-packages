@@ -474,3 +474,20 @@ export function solarFileCardCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarFileCardTree: Record<string, string[]> = {
+  root: ['thumbnail', 'footer', 'frame1', 'label'],
+  thumbnail: ['fileIcon'],
+  footer: ['text', 'iconMore'],
+  text: ['title', 'meta'],
+  frame1: ['iconPlus'],
+};
+
+/** Each slot's layer, to the slot it is: its class is `SolarFileCard-<slot>`, public. */
+export const solarFileCardSlots: Record<string, string> = {
+  fileIcon: 'fileIcon',
+  title: 'title',
+  meta: 'meta',
+  label: 'label',
+};

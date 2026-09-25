@@ -10,9 +10,9 @@
       "values": ["horizontal", "vertical"],
       "default": "horizontal"
     },
-    "fullWidth": {
-      "type": "boolean",
-      "default": false
+    "type": {
+      "values": ["regular", "full-width"],
+      "default": "regular"
     }
   },
   "states": [],
@@ -138,7 +138,7 @@
       },
       "size": {},
       "appearance": {
-        "orientation=horizontal, fullWidth=true": {
+        "orientation=horizontal, type=full-width": {
           "default": {
             "borderColor": {
               "token": "color.border.subtle",
@@ -174,7 +174,7 @@
             }
           }
         },
-        "orientation=vertical, fullWidth=false": {
+        "orientation=vertical, type=regular": {
           "default": {
             "direction": {
               "keyword": "VERTICAL",
@@ -233,7 +233,7 @@
       },
       "size": {},
       "appearance": {
-        "orientation=vertical, fullWidth=false": {
+        "orientation=vertical, type=regular": {
           "default": {
             "present": {
               "value": true,
@@ -249,7 +249,7 @@
             }
           }
         },
-        "orientation=horizontal, fullWidth=true": {
+        "orientation=horizontal, type=full-width": {
           "default": {
             "present": {
               "value": true,
@@ -308,7 +308,7 @@
       },
       "size": {},
       "appearance": {
-        "orientation=horizontal, fullWidth=true": {
+        "orientation=horizontal, type=full-width": {
           "default": {
             "variant.prio": {
               "keyword": "primary",
@@ -359,7 +359,7 @@
       },
       "size": {},
       "appearance": {
-        "orientation=vertical, fullWidth=false": {
+        "orientation=vertical, type=regular": {
           "default": {
             "present": {
               "value": false,
@@ -379,7 +379,7 @@
             }
           }
         },
-        "orientation=horizontal, fullWidth=true": {
+        "orientation=horizontal, type=full-width": {
           "default": {
             "present": {
               "value": false,
@@ -408,11 +408,6 @@
         "rule": "base",
         "at": "base",
         "reason": "Bespoke on both platforms: a flex row or column of the caller's Buttons. MUI's ButtonGroup joins its buttons into one bordered control, which SOLAR does not draw, and Flutter has no stock group; the recipe gives the layout directly."
-      },
-      {
-        "rule": "rename",
-        "at": "type",
-        "reason": "Figma's type has two values, regular and full-width, which is a boolean; `fullWidth` is the name MUI and most React libraries give it."
       },
       {
         "rule": "follows",

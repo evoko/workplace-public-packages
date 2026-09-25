@@ -20,7 +20,11 @@ import {
   resolveVariants,
 } from '../normalize/component-layers.mjs';
 import { PLATFORM_STATES } from '../normalize/components.mjs';
-import { renameStates, sameLayers } from '../normalize/overlay.mjs';
+import {
+  renameStates,
+  sameLayers,
+  withoutRepeats,
+} from '../normalize/overlay.mjs';
 import { drawnPaint } from '../normalize/paints.mjs';
 import { farEdgesOf, placementOf } from '../normalize/placement.mjs';
 import { featuresOf } from '../emit/text-features.mjs';
@@ -374,9 +378,13 @@ export function buildOracle(
   );
   const renameValue = (axis, value) =>
     overlay?.rename?.[axis]?.values?.[value] ?? value;
-  const resolved = sameLayers(
-    renameStates(foldStateAxes(resolveVariants(set)).resolved, overlay),
-    overlay,
+  // The copies of a repeated layer are not measured: its first stands for them (repeatLayers).
+  const resolved = withoutRepeats(
+    sameLayers(
+      renameStates(foldStateAxes(resolveVariants(set)).resolved, overlay),
+      overlay,
+    ),
+    spec,
   );
   const defaults = Object.fromEntries(
     Object.entries(spec.api).map(([p, d]) => [p, d.default]),

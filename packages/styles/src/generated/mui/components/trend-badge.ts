@@ -361,3 +361,9 @@ export function solarTrendBadgeCompose(
   }
   return out;
 }
+
+/** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
+export const solarTrendBadgeTree: Record<string, string[]> = { root: ['icon'] };
+
+/** Each slot's layer, to the slot it is: its class is `SolarTrendBadge-<slot>`, public. */
+export const solarTrendBadgeSlots: Record<string, string> = {};
