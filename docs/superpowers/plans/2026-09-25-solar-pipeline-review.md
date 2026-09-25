@@ -1,12 +1,13 @@
 # SOLAR design-to-code pipeline — review and priority backlog
 
 > **For agentic workers:** this is a review with a verified backlog, not an implementation plan.
-> Every open item has a **Check it out** section: run those commands first and confirm the
-> evidence still holds, since the tree moves fast. An item marked **Owner decision** must not be
-> started until the owner has answered. Once an item is confirmed and decided, write its own plan
-> with superpowers:writing-plans and carry it out with superpowers:subagent-driven-development or
-> superpowers:executing-plans. The repository owner handles all version control: no git write
-> commands, ever. "Commit" means stop and report.
+> The **open items** come first; each has a **Check it out** section: run those commands before
+> starting, since the tree moves fast. An item marked **Owner** must not be started until the
+> owner has answered. Write each item's own plan with superpowers:writing-plans and carry it out
+> with superpowers:subagent-driven-development or superpowers:executing-plans. The **resolved
+> items** are kept as a record of what landed and where, so a later reader knows why the code is
+> shaped as it is; do not reopen one without new evidence. The repository owner handles all
+> version control: no git write commands, ever. "Commit" means stop and report.
 
 **Goal:** make the pipeline cheaper to extend and to correct, and its output easy to adopt,
 without weakening the parts that make it trustworthy: the finding model, the oracle's
@@ -14,740 +15,318 @@ independence from the recipe, and the reason on every overlay rule.
 
 **Scope:** the generator (`packages/codegen`), its overlays (`spec/overlay`), the shells, the
 viewers, the checks, and what a consuming app receives. Not the Figma fetchers, not the token
-layer, which is in good shape.
+layer.
 
-**State reviewed:** first at commit `7579eec` (2026-09-24, F9 done, 79 components); revised at
-`21497a6` (2026-09-25, F10 Cards done, 97 components). Between the two, six items were done and
-four gaps this review had not seen were fixed (a text's `FILL`, the fetcher's hidden paths and
-the places of added layers, generated writes held until the run succeeds, the words check). Every
-number below is from `21497a6`; the **Check it out** commands recompute them. The comparison with
-`@biamp/solar-mui` (items 14–18, appendix) was checked against the package itself on 2026-09-25,
-which corrected three of its readings and added items 19 and 20.
+**State reviewed.** First at `7579eec` (2026-09-24, F9 done, 79 components). Revised at `21497a6`
+(2026-09-25, F10 done, 97 components), which added the comparison with `@biamp/solar-mui` and
+bucket 6. Revised again at **`d959c7a` (2026-09-25 16:20)** after four commits of refactoring
+carried out most of the backlog: every claim below was re-verified in the code, `npx vitest run`
+passes (136 files, 1,884 tests), and the last web and Flutter visual runs (16:14 and 16:16 the
+same day) report 0 failures in Light and Dark. Numbers are from `d959c7a`.
 
 ## Status at a glance
 
-| #   | Item                                                 | State                                                           |
-| --- | ---------------------------------------------------- | --------------------------------------------------------------- |
-| 1   | Repeated children in the IR                          | Done 2026-09-25: opt-in `repeats` rule (owner chose B).         |
-| 2   | Pattern addresses and reason references              | Done 2026-09-25.                                                |
-| 3   | Fail fast on the Node version                        | Done 2026-09-25.                                                |
-| 4   | Oracle in Dark                                       | Done 2026-09-25. Mobile type: recommend no third pass.          |
-| 5   | Excused-difference register in the viewers           | Done 2026-09-25 (badges in Storybook and Widgetbook).           |
-| 6   | Rule proposer                                        | Done 2026-09-25 (`solar:explain --propose`).                    |
-| 7   | `solar:overlay:audit`                                | Done 2026-09-25; 7b done too (reasons in the overlay README).   |
-| 8   | Overlay reference and glossary                       | Done 2026-09-25 (`spec/overlay/README.md`).                     |
-| 9   | Shells as real files                                 | Done 2026-09-25: every shell a hand-written file (owner: A).    |
-| 10  | Stable public names                                  | Done 2026-09-25 (`-<slot>` public, `--<layer>` internal).       |
-| 11  | The spec says what the system is                     | Done 2026-09-25. MUI stays the peer dependency (owner).         |
-| 12  | Recipe packaging                                     | **Open.**                                                       |
-| 13  | What git carries                                     | Done 2026-09-25: `spec/verify/**` linguist-generated (owner: C). |
-| 14  | A stock-MUI theme generated from the recipes         | Started 2026-09-25: MuiButton, MuiIconButton; drawn ones open.   |
-| 15  | One mode switch for stock MUI and SOLAR components   | Done 2026-09-25 (MUI CSS variables on `data-theme`).            |
-| 16  | One-line setup for a consuming app                   | Done 2026-09-25 (`SolarProvider`).                              |
-| 17  | One vocabulary: Figma's words or MUI's               | Done 2026-09-25: rule 5; `prio`, `type` back; `style` exception. |
-| 18  | Figma Code Connect and a Figma-ID manifest           | **Open.** The fetcher records variant IDs from the next sync.   |
-| 19  | Breakpoints, spacing and motion in the MUI theme     | Done 2026-09-25.                                                |
-| 20  | Install the packed packages in a clean app           | Done 2026-09-25 (`npm run smoke:install`, in CI).               |
-| 21  | Parity suite: reachability, not spelling             | Done 2026-09-25 (two-libraries spec; `src/shells/api.mjs`).     |
-| 22  | Flutter idiom: null callback, component themes       | Done 2026-09-25 for the buttons (two-libraries spec).           |
+| #   | Item                                              | State                                                                                   |
+| --- | ------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| 12  | Recipe packaging for consumers                    | **Open.** Unmeasured since the refactor.                                                |
+| 14  | Stock-MUI theme from the recipes                  | **Open for the drawn components.** Button and IconButton done.                          |
+| 18  | Figma Code Connect and a Figma-ID manifest        | **Open. Owner:** plan tier, and record variant IDs at the next sync.                    |
+| 22  | Flutter idiom pass                                | **Open beyond the buttons.** Null callbacks on 16 widgets, themes on 4.                 |
+| 23  | Housekeeping the refactor left behind             | **Open.** New: the design spec's status line, the stale `dist`, `SplitButton`'s reason. |
+| 1   | Repeated children in the IR                       | Resolved 2026-09-25 (opt-in `repeats`, owner's choice).                                 |
+| 2   | Pattern addresses and reason references           | Resolved 2026-09-25.                                                                    |
+| 3   | Fail fast on the Node version                     | Resolved 2026-09-25.                                                                    |
+| 4   | Oracle in Dark                                    | Resolved 2026-09-25. No Mobile pass, by recommendation.                                 |
+| 5   | Excused-difference register in the viewers        | Resolved 2026-09-25.                                                                    |
+| 6   | Rule proposer                                     | Resolved 2026-09-25 (`solar:explain --propose`).                                        |
+| 7   | `solar:overlay:audit`, and acting on its rows     | Resolved 2026-09-25.                                                                    |
+| 8   | Overlay reference and glossary                    | Resolved 2026-09-25.                                                                    |
+| 9   | Shells as hand-written files                      | Resolved 2026-09-25 (owner's choice A).                                                 |
+| 10  | Stable public class names                         | Resolved 2026-09-25.                                                                    |
+| 11  | The spec says what the system is                  | Resolved 2026-09-25. MUI stays the peer dependency (owner).                             |
+| 13  | What git carries                                  | Resolved 2026-09-25 (`linguist-generated`, owner's choice C).                           |
+| 15  | One mode switch                                   | Resolved 2026-09-25.                                                                    |
+| 16  | One-line setup                                    | Resolved 2026-09-25 (`SolarProvider`).                                                  |
+| 17  | One vocabulary                                    | Resolved 2026-09-25 (rule 5, owner-confirmed).                                          |
+| 19  | Breakpoints, spacing and motion in the MUI theme  | Resolved 2026-09-25.                                                                    |
+| 20  | Install the packed packages in a clean app        | Resolved 2026-09-25 (`smoke:install`, in CI).                                           |
+| 21  | Parity suite checks reachability, not spelling    | Resolved 2026-09-25 (`api` tables, `shells/api.mjs`).                                   |
 
 ---
 
-## Verdict, in short
+## Verdict, revised at `d959c7a`
 
-The architecture is right for design-to-code, and more rigorous than most: one normalizer over
-the Figma mirror, independent emitters, an oracle built from Figma layers rather than from the
-recipe, rendered checks on both platforms in both colour modes, deterministic rebuilds in CI, and
-every human decision recorded with a reason. Keep all of that.
+The architecture was right at the first review and is unchanged: one normalizer over the Figma
+mirror, independent emitters, an oracle built from Figma layers rather than from the recipe,
+rendered checks on both platforms in both modes, deterministic rebuilds in CI, and every human
+decision recorded with a reason. The three costs the first review named have each moved:
 
-The costs that remain pool in three places:
+1. **Repeated children** are modelled by an opt-in `repeats` rule. Date Picker Open went from 145
+   layers to 25, its recipe from 2,751 lines to 839, its gaps from 281 to 9 per mode.
+2. **Behaviour is in real files.** The 16,400 lines of TSX and Dart inside template strings are
+   gone; descriptors fell from 20,169 lines to 3,895 and hold only tables. The shells are
+   ordinary code in each platform's language, and the parity suite proves they reach every IR
+   prop, slot and icon and draw the generated tree.
+3. **Delivery caught up.** One provider, one mode switch, stock MUI reading the same recipes,
+   the theme's breakpoints, spacing and motion from tokens, a packed-install smoke test in CI,
+   and the excused-difference ledger visible in both viewers. Every React shell reads its props
+   through MUI's own `useThemeProps`, so an app themes a SOLAR component as it themes a stock one.
 
-1. **Repeated children are not modelled**, so Figma's sample counts (35 day cells, 7 weekdays)
-   become distinct layers, recipe entries, oracle entries and gaps. Item 2 removed the overlay
-   pain; the IR, recipe and oracle bloat remains.
-2. **Behaviour is written in template strings** (61% of 20,169 descriptor lines) behind an option
-   vocabulary of 87 keys across the shell helpers. F12 Dialogs is the family that will pay most.
-3. **Delivery is thinner than generation.** The components are measured against Figma on two
-   platforms in two modes, but a consuming app gets a four-step setup, two dark-mode switches,
-   stock MUI components that only get palette and typography, and a 1 MB recipe module. A
-   comparison with a theme-only third-party package (`@biamp/solar-mui`, appendix) shows what
-   the delivery side should borrow.
+What the refactor did **not** touch, and must not: the oracle is still independent of the
+recipe, every overlay rule still needs a reason, `docs/` is still write-guarded, and the open
+Figma findings are the same 30 per mode on the same four components.
 
-| Measure (2026-09-25, `21497a6`)                                           | Value            |
-| ------------------------------------------------------------------------- | ---------------- |
-| Components generated (exported) · oracle variants                         | 97 (96) · 1,102  |
-| Visual failures on the last web run, Light and Dark                       | 0                |
-| Excused differences on the web, both modes: decided · open Figma findings | 3,241 · 60       |
-| Open findings per mode (Button 18, Text Input 8, Number Input 3, FileUpload 1) | 30          |
-| Overlay rule kinds, each with a heading in `spec/overlay/README.md`       | 24               |
-| Descriptor lines inside template strings (of 20,169)                      | 61%              |
-| Option keys the shell helpers take (`o.<key>` in `src/shells/*.mjs`)      | 87               |
-| Descriptors with `slots: 'drawn'` (bespoke layer trees)                   | 84 of 98         |
-| Overlays naming a MUI base · a Flutter base                               | 34 · 15          |
-| Hand-written Flutter runtime, `lib/src/*.dart` outside `components`       | ~2,200 lines     |
-| Generated MUI recipes · `@bwp-web/styles` `mui.js` after `npm run build`  | 41,591 lines · 1,012 KB |
-| JS tests · Flutter tests (F10 done note)                                  | 1,639 · 463      |
-
----
-
-## How the buckets are ordered
-
-By payoff against cost, and by **when the cost is paid**. F11 Tables and F13 Calendar parts
-repeat children; F12 Dialogs is the family with the most behaviour to write; F14 Charts carries
-sample geometry. Bucket 6 is the consumer's experience, which matters as soon as the first app
-adopts 2.0.
-
-- **Bucket 1:** before F11. Every later family pays for it.
-- **Bucket 2:** assurance gaps. Small changes, large coverage.
-- **Bucket 3:** the developer loop.
-- **Bucket 4:** structural. Decide now, do between families.
-- **Bucket 5:** before publishing 2.0.
-- **Bucket 6:** the consumer's experience. From the comparison in the appendix.
+| Measure (2026-09-25, `d959c7a`)                                              | Value              |
+| ---------------------------------------------------------------------------- | ------------------ |
+| Components generated (exported) · oracle variants                            | 97 (96) · 1,102    |
+| Visual failures, last runs, web and Flutter, Light and Dark                  | 0 · 0              |
+| Excused differences, web, both modes: decided · open Figma findings          | 2,697 · 60         |
+| Open findings per mode (Button 18, Text Input 8, Number Input 3, FileUpload 1) | 30               |
+| Descriptor lines · of them inside template strings                           | 3,895 · 0          |
+| Hand-written shells: React TSX · Flutter Dart                                | 13,473 · 12,741    |
+| Descriptors with `slots: 'drawn'` (bespoke layer trees)                      | 84 of 97           |
+| Hand-written Flutter runtime, `lib/src/*.dart` outside `components`          | ~2,600 lines       |
+| Generated MUI recipes                                                        | 40,942 lines       |
+| JS tests · Flutter tests (F10 done note)                                     | 1,884 · 463        |
 
 ---
 
-## Bucket 1 — before F11
-
-### 1. Model repeated children in the IR
-
-> **Done 2026-09-25, owner decision: an opt-in overlay rule (option B), not an automatic
-> normalizer rule.** `repeats: { <first, or a pattern of firsts>: { reason } }`
-> (`repeatLayers` in `normalize/overlay.mjs`, `withoutRepeats` in the oracle; reference in
-> `spec/overlay/README.md`). Date Picker Open: 145 layers to 25, its oracle 4,380 lines shorter
-> (543 now), its MUI recipe 2,921 lines to 839 (the 800 target missed by the tree and slot
-> tables item 9 adds), 9 gaps per mode, 204 fewer findings; every other component's IR, recipe
-> and oracle unchanged. The runtime helpers draw a repeated text once per item (`repeat` on the
-> web, `repeats` in Flutter: the weekdays). F11's rows and F13's calendar parts opt in the same
-> way.
-
-**Owner decision required:** whether Figma's per-sample differences among repeated siblings (a
-selected day among disabled ones) are findings at all, or content excused wholesale.
-
-**Why.** Figma draws a component's sample content as sibling instances: a month's 35 day cells,
-seven weekdays. `namesOf` (`packages/codegen/src/normalize/components.mjs`) names them
-`dayGridDayCell`, `dayGridDayCell2`… and from there every stage treats them as 35 layers: the
-recipe derives 35 style blobs, the MUI recipe writes 35 selector blocks, the oracle measures 35
-layers per variant in both modes, and the shell carries a 35-entry `TREE`. The shells never use
-the samples: `DatePickerOpen.tsx` builds the real month and fills `dayGrid` through `content`.
-Item 2's patterns took the overlay from 711 lines to 99, so the remaining cost is in the IR, the
-recipes, the oracle and the gap reports. F11's Row, Table and PropertyList, and F13's calendar
-parts, repeat children the same way.
-
-**Check it out.**
-
-```bash
-node -e '
-const ir=JSON.parse(require("fs").readFileSync("spec/components/date-picker-open.json","utf8"));
-const cells=Object.keys(ir.layers).filter(k=>/^dayGridDayCell\d*$/.test(k));
-const norm=(s)=>JSON.stringify(s,(k,v)=>k==="from"?undefined:v);
-console.log(Object.keys(ir.layers).length,"layers;",cells.length,"day cells;",
-  new Set(cells.map(c=>norm(ir.style[c]))).size,"distinct style blobs");'
-wc -l spec/overlay/date-picker-open.yaml packages/styles/src/generated/mui/components/date-picker-open.ts
-node -e 'const g=JSON.parse(require("fs").readFileSync("packages/components/test/visual/.out/date-picker-open-gaps.json","utf8")); console.log(g.length,"gaps")'
-```
-
-Expected: 145 layers, 35 day cells, 5 blobs; a 99-line overlay beside a 2,751-line recipe; the
-largest gap count of any component.
-
-**What to change.** A normalizer rule, not an overlay: repeated siblings that are instances of
-the same component (or the same node type with the same name stem) collapse into **one layer**
-with a `repeat` count and, where their samples differ, one `sample` axis whose variants are
-excused as content. Touch points, in pipeline order:
-
-- `normalize/components.mjs` `namesOf`: name the group once; record `repeat` and the member paths.
-- `normalize/recipe.mjs` `deriveRecipe`: read one layer's cells from the first member; a member
-  that differs is a **sample** finding, not an axis finding (compare `samples` in the overlay).
-- `verify/oracle.mjs` `buildOracle` and `withDark`: one entry per group, measured against the
-  first member the shell draws; both harnesses (`packages/components/test/visual/components.spec.mjs`
-  `targets`, `packages/solar_flutter/test/visual/harness.dart`) already measure held children
-  through `data-layer` and `measureHeld`, so a repeated layer measures as a held slot.
-- `emit/mui-component.mjs`, `emit/flutter-component.mjs`: one selector or one cell key per group.
-- `shells/drawn.mjs` `treeOf`, `packages/components/src/internal/layers.tsx` `drawChildren`,
-  `packages/solar_flutter/lib/src/solar_layers.dart`: a repeated layer draws its `content`, or its
-  first sample where the shell gives none.
-- Overlays: the patterned rules on `dayGridDayCell*` become one rule on the group, or go.
-
-**Done when.** `date-picker-open.json` has under 60 layers; its recipe is under 800 lines; its
-gap count is under 30 per mode; every other component's IR, recipe and oracle is byte-identical
-(diff `spec/` and `packages/*/src/generated` before and after); `npx vitest run`, both visual
-checks in both modes and `flutter test` pass; two `npm run solar:rebuild` runs leave the tree
-unchanged.
-
-### 2. Pattern addresses and reason references — done
-
-Done 2026-09-25 (`spec/overlay/README.md`, "Addresses"): a rule's layer may be a pattern
-(`dayGridDayCell*.base.width`), a full address wins over a pattern on the same cell, a pattern
-matching nothing fails as a stale rule does, and a reason may be another rule's
-(`reason: { as: "set root.base.width" }`), replaced by that rule's text in the IR so the
-deviations report and `solar:explain` still read a sentence. 327 numbered rules were folded and
-the focus ring became one patterned rule per overlay. Generated output did not change.
-
-### 3. Fail fast on the Node version — done
-
-Done 2026-09-25: `packages/codegen/src/util/node-version.mjs` reads `.nvmrc`;
-`util/require-node.mjs` is the first import of every CLI under `packages/codegen/bin/`, so a
-Node older than the pin exits with one line instead of a `TypeError` from the iterator helpers.
-
----
-
-## Bucket 2 — assurance gaps
-
-### 4. Oracle in Dark — done, one question open
-
-Done 2026-09-25: each oracle variant carries `dark`, what Dark draws otherwise (the layers whose
-values differ, and its excuses where they differ), and both checks run every variant in Light
-and in Dark (`withDark` in `verify/oracle.mjs`; `inMode` in the web spec; `_dark` in the Flutter
-harness). The gap reports are per mode (`<name>-dark-gaps.json`).
-
-**Owner decision still open:** whether the Mobile type mode should be measured too (a third pass
-on the type mode), or left to the token parity suite. SOLAR changes only `display`, `title` and
-`code` between the two, so the token suite already proves the values; a third pass would prove
-the components read them.
-
-**Recommendation:** no third pass. Every recipe reads type through `var(--solar-type-size-*)`
-and `var(--solar-type-line-height-*)`, which one media query in `tokens.css` reassigns at
-767.98px, and the Light pass already proves each component reads the variables rather than a
-number. A Mobile pass would add half again to the check's time to re-prove that one media query.
-
-### 5. Show the excused-difference register in both viewers
-
-**Why.** 3,241 decided excuses and 60 open findings across both modes are the project's
-design-debt ledger. Today they live in `packages/components/test/visual/.out/*-gaps.json`,
-`packages/solar_flutter/build/visual/*-gaps.json` and a 1,567-row table in `spec/deviations.md`.
-The Storybook tile shows Figma's values as JSON but not what differs, so a reviewer cannot tell
-an excused tile from a matching one, nor a Dark-only excuse from a Light one.
-
-**Check it out.**
-
-```bash
-node -e '
-const fs=require("fs"); const dir="packages/components/test/visual/.out"; let open=0,dec=0;
-for (const n of fs.readdirSync(dir)) if (n.endsWith("-gaps.json"))
-  for (const g of JSON.parse(fs.readFileSync(dir+"/"+n,"utf8"))) g.decision?dec++:open++;
-console.log({decided:dec, open});'
-grep -n -i 'excus\|gaps' packages/components/stories/solar.tsx packages/components/.storybook/main.ts
-```
-
-Expected: about 3,241 decided and 60 open; no mention of excuses or gaps in the viewer.
-
-**What to change.** `packages/components/.storybook/main.ts` `solarData()` already serves the IR
-and state tables as `virtual:solar`; add each oracle's `excused` lists (Light, and each variant's
-`dark.excused`) and, when present, the last gap and failure reports. In
-`packages/components/stories/solar.tsx` `Tile`, badge a variant with its excused count, colour
-the badge by whether every excuse has a `decision`, and list each excused cell with its reason
-under the "Figma values" details, marking the Dark-only ones. Mirror it in the Widgetbook app,
-which already receives the oracles through `scripts/widgetbook.mjs`.
-
-**Done when.** Opening Button's Variants story shows the 18 open-finding tiles marked, with the
-finding text under each, in both themes; the Storybook and Widgetbook builds in CI still succeed.
-
----
-
-## Bucket 3 — the developer loop
-
-### 6. A rule proposer, before a live editor
-
-**Why.** The design spec's tweak panel (edit a value, save an overlay rule) is not built and
-would need a browser-to-repository write path. Most of its value is choosing the right rule kind
-and spelling the address correctly, which is mechanical from data the pipeline already has: the
-cell, its class, whether a token of the same value exists, what Figma drew, and which variants
-the cell reaches. With item 2's patterns the proposer can also say when a pattern covers the
-siblings.
-
-**Check it out.**
-
-```bash
-grep -n -i 'propose' packages/codegen/bin/solar-explain.mjs packages/codegen/src/explain/index.mjs
-```
-
-Expected: nothing.
-
-**What to change.** First in the CLI: `solar:explain -- "<Name>" --variant … --propose
-<layer>.<property>` prints a YAML snippet ready to paste into `spec/overlay/<address>.yaml`:
-
-- an unbound value with a token of the same value → `bind` with `literal` and `token`;
-- an unbound value with no token → `allowLiteral` with a reason placeholder naming the
-  governance gap;
-- an axis finding → `follows` listing the axes the value actually varies with, computed from the
-  oracle, or `accept` where it varies with none;
-- a cell to change → `set` with the full address and Figma's value as `replaced`;
-- where sibling layers hold the same finding, one patterned address instead of several.
-
-Implementation in `packages/codegen/src/explain/index.mjs`, next to `lookupCell`, reusing
-`tokenNames(contract)` from `normalize/recipe.mjs` for the same-value lookup. Then the same
-function behind a button on the Storybook tile (item 5), copying the snippet to the clipboard.
-
-**Done when.** For each of Button's three open findings the proposer prints a snippet that, once
-pasted with a reason, builds and changes the oracle's excuse from `decision: null` to the new
-rule; a test proves the snippet for a `bind` and for a `set` round-trips through `parseOverlay`.
-
-### 7. `solar:overlay:audit` — done; 7b. act on what it found
-
-> 2026-09-25: Date Picker Open's `set` the audit listed as agreeing with Figma is deleted (owner).
-> It also decided the root width's unbound-value finding, which is open again ("ask SOLAR for a
-> width token, or confirm 588"); the audit now counts a `set` that decides a finding as not idle.
-
-Done 2026-09-25: `npm run solar:overlay:audit` (`bin/solar-overlay-audit.mjs`,
-`src/report/overlay-audit.mjs`) reports rules repeated across three or more components,
-reasons repeated verbatim, `allowLiteral` cells whose literal now matches a token, and `set`
-rules whose `replaced` value Figma no longer draws.
-
-**7b. Follow up on its first run.** The audit's top rows are decisions repeated across half the
-corpus:
-
-| Components | Decision                                          |
-| ---------- | ------------------------------------------------- |
-| 45         | `set root.base.width = FILL`                      |
-| 38         | `allowLiteral root.height = any`                  |
-| 23         | `set root.appearance.*.focus.shadow = shadow.focus.default` |
-| 15         | `allowLiteral root.width = any`                   |
-| 11         | `set root.size.sm.width = FILL`                   |
-
-The overlay README already records why the focus ring is **not** a default (the text fields draw
-theirs on the field, Context Menu Item as a fill). The other four need the same question asked:
-does "a component fills its container" hold for every component it would reach, and is "SOLAR
-publishes no control height token" one governance gap or 38? If a default is right, add it to
-`spec/overlay/defaults.yaml` with the reason and delete the per-component rules; if it is not,
-write the reason in the README's "Beside the overlays" so the audit's row stops being a
-question. Either way, the design review's control-height item should count once.
-
-**Check it out.**
-
-```bash
-npm run solar:overlay:audit 2>/dev/null | sed -n 1,20p
-```
-
-**Done when.** Each of the top five audit rows is either a default or has a written reason for
-not being one, and generated output is unchanged.
-
-### 8. Overlay reference and glossary — done
-
-Done 2026-09-25: `spec/overlay/README.md`, a heading per rule in the order they apply, with
-patterns, reason references, `defaults.yaml`, `excluded.yaml` and a glossary of the house
-vocabulary. The codegen README points at it.
-
----
-
-## Bucket 4 — structural, decide now
-
-### 9. Shells as real files that import a generated module
-
-> **Done 2026-09-25, owner decision: option A.** Every shell (96 per platform) is a hand-written
-> file, taken over exactly as its template last rendered it; no descriptor has `templates` (the
-> index refuses one, and `owned`), and 16,400 descriptor lines of template strings are gone. The
-> MUI tables several descriptors share moved to `src/components/shared/`; `src/shells/` holds
-> the story writer and shell check (`index.mjs`), the mapping (`api.mjs`) and the icon analysis
-> (`icons.mjs`). Generated beside each recipe: `solar<Name>Tree`, `solar<Name>Slots`,
-> `Solar<Name>Recipe.tree`. The parity test gained three checks per component: the tree is the
-> generated one, each icon the IR names is drawn (a swapped icon fails, proven), and the React
-> props are read through `useSolarProps`.
-
-> Reoriented 2026-09-25 by [two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md):
-> under that decision a React shell in TSX and a Flutter widget in Dart, each written by an
-> engineer of that platform, are how each library stays native. The argument below stands and
-> is stronger.
-
-**Owner decision required.** The owner chose generated shells on 2026-09-24 ("Between F5 and
-F6") so that a shared helper's fix and a slot Figma adds reach every component, and so the two
-platforms cannot drift unseen. This item argues for keeping those two guarantees by another
-means, and reverses that choice, so it needs an explicit yes.
-
-**Why.** 61% of the 20,169 descriptor lines are TSX and Dart inside template strings: no
-highlighting, no type checking until after a run, escaped backticks, and an option vocabulary of
-87 keys across `shells/drawn.mjs`, `field.mjs`, `picker.mjs`, `typed.mjs`, `menu.mjs`, `card.mjs`
-and `insight.mjs` to avoid repeating the strings. F10 added `card.mjs` (773 lines) to that
-vocabulary. F12 Dialogs and Overlays is the family with the most behaviour to write (portals,
-focus traps, Escape, focus return) and will be the most expensive place to write it in strings.
-
-**Check it out.**
-
-```bash
-node -e '
-const fs=require("fs"); let tpl=0,total=0;
-for (const f of fs.readdirSync("packages/codegen/src/components")) {
-  const t=fs.readFileSync("packages/codegen/src/components/"+f,"utf8"); let inT=false;
-  for (const line of t.split("\n")) { total++; const n=(line.match(/(?<!\\)`/g)||[]).length; if(inT) tpl++; if(n%2) inT=!inT; } }
-console.log({total, inTemplates: tpl, share: (tpl/total).toFixed(2)});'
-grep -oE '\bo\.[a-zA-Z]+' packages/codegen/src/shells/*.mjs | sed 's/.*://' | sort -u | wc -l
-```
-
-**What to change.** Keep generating what is a function of the IR, and stop generating what is
-hand-written behaviour:
-
-- Emit `solar<Name>Tree` (today `treeOf(spec)` inlined into the shell) and the slot-name table
-  into the MUI recipe module, and `Solar<Name>Tree` into the Flutter recipe, beside the props
-  types and `Parts` that are already there.
-- Turn every shell into a hand-owned file that imports them: the mechanism exists as
-  `owned: true` (`shells/index.mjs`, `renderShells`), so the migration is: render each shell once
-  more, strip the header, delete the descriptor's `templates`, set `owned`. Each file already
-  equals its template's output, so the migration produces no behaviour change.
-- Keep the two guarantees: a slot or prop Figma adds becomes a **typecheck error** in the shell,
-  since the generated props type and tree gain a member the shell does not use (add a test in
-  `test/component-parity.test.mjs`, which already parses the shells, that every IR slot is
-  referenced); a shared-helper fix reaches every shell because the helpers are runtime modules
-  (`components/src/internal/*`, `solar_flutter/lib/src/*.dart`) that the shells import, which is
-  already how `layers.tsx` and `SolarLayers` work. Only the string-assembling helpers go away,
-  replaced by runtime helpers where they hold logic and by nothing where they only concatenate.
-
-**Done when.** No descriptor has `templates`; `packages/codegen/src/shells/` holds only
-`index.mjs`'s owned-shell check and `target.mjs`; every shell typechecks and analyses; both
-visual checks and all unit tests pass unchanged; the parity test fails when an IR slot is removed
-from a shell.
-
-**Alternative if the owner keeps generated shells.** Move each template to a
-`packages/codegen/src/components/<name>.react.tsx.tmpl` and `.flutter.dart.tmpl` file with a
-small placeholder syntax, so editors highlight them, and add a step that typechecks the rendered
-output before writing it. Cheaper, but the option vocabulary stays.
-
-### 10. Stable public names, not Figma layer names
-
-**Why.** Class names (`SolarStatusIndicator-frame3InnerPath`, `SolarTag-iconNone`) and Flutter
-keys (`tabItem.counter`) are built from Figma layer names by `namesOf`. A designer renaming a
-layer fails the build by design (overlay rules go stale), which is good, but a fix that renames
-the layer also renames a CSS hook a consuming app may target with `sx`, which is a silent break
-for consumers.
-
-**Check it out.**
-
-```bash
-grep -oE 'Solar[A-Z][A-Za-z]+-[a-z][A-Za-z0-9]+' packages/styles/src/generated/mui/components/statusindicator.ts | sort -u | head
-```
-
-Expected: classes named after Figma layers (`frame3InnerPath`, `containerUnion`).
-
-**What to change.** Two name spaces: **public** hooks are slot names and `root` only, stable
-across syncs and documented in the components README; **internal** layer classes take a prefix
-that says so (`SolarTag--iconNone`) or a stable overlay-given name via `layerNames`. `slotsOf`
-in `emit/mui-component.mjs` and `drawnResets` in `shells/drawn.mjs` write the classes; the web
-visual spec's `targets` reads the same table, so it follows. Document that internal classes are
-not a contract.
-
-**Done when.** The components README lists each component's public hooks; a test asserts every
-public hook is a slot or `root`.
-
-### 11. The spec says what the system is — done
-
-Done 2026-09-25: the design spec's §3 carries "What it has become": a layer-tree renderer that
-borrows platform behaviour where it helps, 84 of 98 descriptors drawn. §13 records it and lists
-two questions for the owner:
-
-- Does MUI 9 with Emotion earn its place as `@bwp-web/components`' peer dependency, for what is
-  mostly `Box`, `ButtonBase` and `InputBase`?
-- The MUI theme holds literal hex while every recipe holds `var(--solar-*)`, so a stock MUI
-  widget and a SOLAR component on one page switch modes by different mechanisms.
-
-The second is item 15 below, since the comparison made it a consumer-facing defect rather than a
-purity question, and item 15 settled it on 2026-09-25.
-
----
-
-## Bucket 5 — before publishing 2.0
+## Open items
 
 ### 12. Recipe packaging for consumers
 
-**Why.** `@bwp-web/styles/mui` bundles every component's recipe into one module: 1,012 KB after
-`npm run build` at 97 components, most of it repeated `var(--solar-…)` strings. Named ESM
-exports tree-shake, but each recipe object is one large literal that a bundler keeps or drops
-whole, and `@bwp-web/components` imports the barrel, so an app importing three components pays
-for the index's re-export graph.
+**Why.** `@bwp-web/styles/mui` bundles every component's recipe into one module, and
+`@bwp-web/components` imports that barrel. Named ESM exports tree-shake, but each recipe object
+is one large literal a bundler keeps or drops whole. The last build of `dist/mui.js` (14:52,
+before the last two commits) was 1,032 KB. Item 1 shrank the largest recipe, items 9 and 10
+added the tree and slot tables to each; the net has not been measured.
 
 **Check it out.**
 
 ```bash
-ls -la packages/styles/dist/mui.js 2>/dev/null || (npm run build -w @bwp-web/styles && ls -la packages/styles/dist/mui.js)
+npm run build -w @bwp-web/styles && ls -la packages/styles/dist/mui.js
 wc -l packages/styles/src/generated/mui/components/*.ts | tail -1
 grep -oE "from ?['\"]@bwp-web/styles/mui['\"]" packages/components/dist/index.js | wc -l
 ```
 
 **What to change.** Per-component subpath exports (`@bwp-web/styles/mui/button`) written by
 `emitMuiComponents` into `packages/styles/package.json`'s `exports` and `tsup.config.ts`'s entry
-list, with the shells importing their own recipe module; or a compact encoding (token name once,
-`var()` built at call time in `solar<Name>Style`). Item 1 shrinks the largest recipes first;
-measure again after it.
+list, with each shell importing its own recipe module; or a compact encoding (token name once,
+`var()` built at call time in `solar<Name>Style`). Measure with a real bundler on the smoke app
+(`scripts/smoke-install.mjs` already installs the packed packages), not on `dist` alone.
 
-**Done when.** An app importing `Button` alone bundles under 60 KB of recipe.
+**Done when.** The smoke app importing `Button` alone bundles under 60 KB of recipe, and the
+styles README states the per-component entry.
 
-### 13. What git carries
+### 14. Stock-MUI theme from the recipes — the drawn components
 
-> **Done 2026-09-25, owner decision: option C.** `.gitattributes` marks `spec/verify/**`
-> `linguist-generated`; the files are still committed and diffed by CI.
+**Done so far (2026-09-25).** `spec/overlay/mui-theme.yaml` decides which stock MUI components
+take a SOLAR recipe, with a reason each; `emit/mui-theme-components.mjs` writes
+`theme-components.ts`, `variants` per MUI prop combination from the recipe, restating what MUI's
+own variants would change by state. `MuiButton` and `MuiIconButton` are in, and a stock
+`<Button variant="outlined">` under the theme passes the Figma check in both modes, as a case of
+Button's `prio=secondary` oracle variants.
 
-**Owner decision required.** `spec/components/` and `spec/verify/` are derived files,
-regenerated and diffed in CI, and the oracles now carry Dark beside Light. The stated reason to
-commit them is that a Figma change becomes a reviewable diff of the contract, and the viewers
-read the oracles without a codegen run (`scripts/widgetbook.mjs`, `.storybook/main.ts`). Both
-hold. The cost is review noise: a sync touches thousands of oracle lines. Options: keep both
-(status quo); keep the IR and rebuild the oracles in the viewer scripts; or keep both but mark
-`spec/verify/**` `linguist-generated` in `.gitattributes` so PR review collapses them.
-Recommend the last, since it changes nothing else.
+**What is left.** Every other SOLAR component is drawn (84 of 97), so its recipe's selectors are
+our layer classes (`.SolarTag--iconClose`), which MUI's own markup does not have
+(`.MuiChip-deleteIcon`). Each needs a hand map from our layers onto MUI's slots in the decision
+file, one family at a time, in the order an app is likeliest to reach for the stock component:
 
-**Check it out.**
-
-```bash
-du -sh spec/components spec/verify; ls spec/verify | wc -l; cat .gitattributes 2>/dev/null || echo "no .gitattributes"
-```
-
----
-
-## Bucket 6 — the consumer's experience
-
-From the comparison with `@biamp/solar-mui` (appendix). That package is a theme, a token export
-and icons for stock MUI, with no components; it is weaker at fidelity and stronger at adoption.
-These items take its strengths without its approximations.
-
-### 14. A stock-MUI theme generated from the recipes
-
-**Why.** `createSolarThemeOptions` (`packages/styles/src/generated/mui/theme.ts`) returns
-palette, shape, z-index and typography, and no `components` block. Any app using our components
-will also use stock MUI for what we have not built (Dialog, Table, Tooltip until F11 and F12)
-and for what we never will (Grid, Drawer variants), and those get MUI's look. The third-party
-package themes 49 MUI keys by hand; we can derive the same block from recipes we already
-generate, since `solar<Name>Style()` is documented as usable in `styleOverrides.root`, and MUI 9's
-`variants: [{ props, style }]` takes a SOLAR appearance per MUI prop combination.
+1. `MuiChip` (Tag), `MuiBadge` (Counter), `MuiSwitch` (Toggle), `MuiCheckbox`, `MuiRadio`;
+2. `MuiTextField` and its parts (Text Input's label, field, helper), `MuiSelect`, `MuiMenuItem`
+   (Dropdown Item), `MuiTabs` and `MuiTab`;
+3. `MuiAlert`, `MuiTooltip`, `MuiDialog` parts, `MuiCard` parts, `MuiAccordion` parts,
+   `MuiTableCell`, as F11 and F12 land.
 
 **Check it out.**
 
 ```bash
-grep -n 'components' packages/styles/src/generated/mui/theme.ts   # expected: nothing
-grep -c 'Mui[A-Z][A-Za-z]*: {' ~/Downloads/package/dist/theme.js 2>/dev/null   # the third party's coverage, if the package is present
+grep -E '^Mui[A-Za-z]+:' spec/overlay/mui-theme.yaml
+grep -c "Mui[A-Z][A-Za-z]*: {" packages/styles/src/generated/mui/theme-components.ts
 ```
 
-**What to change.**
+Expected: two keys.
 
-- A decision file, `spec/overlay/mui-theme.yaml` (or a section of `defaults.yaml`), mapping each
-  MUI component key with a SOLAR counterpart to the recipe and the prop mapping, each with a
-  reason: `MuiButton: { component: Button, props: { variant: { contained: primary, outlined:
-secondary, text: tertiary }, color: { error: { danger: true } }, size: { small: sm, medium: md,
-large: lg } } }`, and the same for IconButton, Checkbox, Radio, Switch, Slider, Tab and Tabs,
-  MenuItem, Select, Chip (Tag), Badge (Counter), LinearProgress, CircularProgress, Skeleton,
-  Avatar, Link, Breadcrumbs, PaginationItem, Stepper parts, Alert, Tooltip, Dialog parts, Card
-  parts, Accordion parts, TableCell.
-- `emit/mui.mjs` writes `components.<Key>.styleOverrides` and `variants` from the mapped
-  recipes, `var(--solar-*)` values as the recipes hold them, and `defaultProps` where SOLAR
-  fixes one (`disableRipple`, `disableElevation`). A key whose mapping names a component that is
-  not generated yet fails the build, so Dialog and Table join when F11 and F12 land.
-- A test renders a stock `<Button variant="outlined">` under the theme and asserts it computes
-  the same values as `<Button prio="secondary">` from `@bwp-web/components`, for the resting
-  state and hover, in Light and Dark.
+**Keep it honest the way the components are.** Each themed stock component is a case of the SOLAR
+component's oracle in the web visual check, so the theme is measured against Figma, never against
+our components.
 
-**Scope, checked 2026-09-25.** Deriving `styleOverrides` "from recipes we already generate"
-works directly only where our shell sits on the same MUI component (Button on MUI `Button`,
-Dropdown Item on `MenuItem`, ListItem on `ListItemButton`: the overlays naming a MUI base). For the
-84 drawn components the recipe's selectors are our layer classes (`.SolarTag-label`), which MUI's
-DOM does not have (`.MuiChip-label`), so each MUI key needs a hand map from our layers to its
-slots in the decision file, with a reason per layer. Start with the keys whose SOLAR counterpart
-already sits on the MUI component, then the drawn ones one family at a time.
-
-**Keep it honest the way the components are.** Their parity check exists because a hand theme
-drifts. Ours can do better at little cost: add the themed stock MUI components to the web visual
-check as cases of the same oracles (a stock `<Button variant="outlined">` is a case of Button's
-`prio=secondary` variants), so the theme is measured against Figma, not against our components.
-
-**Done when.** A stock MUI `Button`, `TextField`, `Checkbox`, `Switch`, `Tabs`, `Chip` and
-`MenuItem` under the theme pass the visual check against their SOLAR component's oracle in both
-modes, and the theme's coverage table is generated into `packages/styles/README.md`.
-
-### 15. One mode switch
-
-**Why.** Our components switch with `data-theme="dark"` on any subtree; stock MUI switches with
-`palette.mode` in the theme object. A consumer must set both and keep them in sync. The
-third-party package has one switch because it has only MUI. MUI 9's CSS-variables theme mode
-(`cssVariables: { colorSchemeSelector: 'data-theme' }`, with `colorSchemes: { light, dark }`)
-makes MUI read the same attribute our tokens do, and lets `palette` values be `var(--solar-*)`
-where MUI does not run `alpha()` or `darken()` on them.
-
-**Check it out.**
-
-```bash
-grep -n 'cssVariables\|colorSchemes\|data-theme' packages/styles/src/generated/mui/theme.ts packages/styles/README.md
-```
-
-Expected: `data-theme` only in the README's CSS section, nothing in the theme.
-
-**What to change.** `emit/mui.mjs`: emit `colorSchemes.light` and `colorSchemes.dark` from
-`solarMuiPalette`, and set `cssVariables: { colorSchemeSelector: '[data-theme="%s"]' }`, so MUI
-writes its own `--mui-palette-*` variables under the attribute our tokens switch on. Keep the
-palette values literal, one set per scheme, as `solarMuiPalette` already has them: MUI derives
-channels and shades from the palette (`alpha()`, `darken()`, `--mui-palette-*-mainChannel`), which a
-`var(--solar-*)` value breaks. The switch is the selector, not the values. Where an app lets MUI
-set the attribute (`useColorScheme`), server rendering needs `InitColorSchemeScript`; where the app
-sets `data-theme` itself, as for our tokens, it does not. Test:
-render under `data-theme="dark"` with no `palette.mode` and assert MUI's `background.paper`
-resolves to the Dark surface token's value.
-
-**Done when.** The styles README's MUI section shows one snippet with one switch, and a stock MUI
-`Paper` and a SOLAR `Card` in one `data-theme="dark"` subtree draw the same surface.
-
-### 16. One-line setup for a consuming app
-
-**Why.** Today: import `tokens.css`, import `fonts.css`, `createTheme(createSolarThemeOptions('light'))`
-in a `ThemeProvider`, then import components. Four steps across two packages. The third-party
-package is one call. Nothing in ours requires four steps.
-
-**What to change.** A `SolarProvider` in `@bwp-web/components` (or `createSolarTheme()` in
-`@bwp-web/styles/mui` returning a ready `Theme`, once item 15 lands) that installs the theme,
-and a documented single snippet at the top of `packages/components/README.md` that imports the
-two stylesheets and wraps the app. Keep the granular entries for apps that want only tokens or
-only Tailwind.
-
-**Done when.** The components README's "Getting started" is one code block a new app can paste,
-and a smoke test renders `Button` inside `SolarProvider` with no other setup.
-
-### 17. One vocabulary: Figma's words or MUI's
-
-> **Rule decided 2026-09-25** (two-libraries spec, rule 5, as the owner confirmed it): SOLAR's
-> word where SOLAR's description names the thing; otherwise MUI's on the web and Flutter's in
-> Flutter. So `helper`, `mandatory`, `iconLeading` stay; the Flutter fields take `enabled`
-> (`{ not: 'enabled' }` in their `api` tables). The renames made before the rule, decided
-> 2026-09-25: Button, Icon Button and SplitButton take SOLAR's `prio` again, and Button Group its
-> `type` (`regular`, `full-width`); Alert, Alert Small and Spinner keep `variant` for Figma's
-> `style`, the one exception, since `style` is React's inline-style prop, and the design review
-> asks the designers to rename the property `variant`.
-
-> Proposed answer, 2026-09-25, in [two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md)
-> rule 5: SOLAR's word where SOLAR names the thing; otherwise MUI's word on the web and
-> Flutter's word in Flutter, never one spelling forced on both. Pending the owner's confirmation.
-
-**Owner decision required.** We rename Figma's `prio` to `variant` for MUI's sake, and keep
-`helper`, `mandatory`, `iconLeading` and `count` where MUI says `helperText`, `required`,
-`startIcon` and `badgeContent`. Either rule is defensible. Applying both is what a consumer
-coming from MUI will stumble on, and it is cheap to fix now and expensive after 2.0 ships.
-
-**Check it out.**
-
-```bash
-grep -hoE '^\| `[a-zA-Z]+`' packages/components/README.md | sort | uniq -c | sort -rn | head -30
-```
-
-**What to change.** Decide the rule (Figma's words where SOLAR's description names a prop, MUI's
-where SOLAR is silent, is the likeliest), record it in `spec/overlay/README.md` beside `rename`,
-and apply it through `rename` rules and the descriptors' `shells.slots` tables. Where a MUI name
-is dropped, consider a typed alias for one minor version.
-
-**Both platforms.** The rule must hold in Flutter too, where the parity test already asserts one
-vocabulary: MUI's `helperText` and `startIcon` are not Flutter's words either
-(`InputDecoration.helperText` is, `startIcon` is not), so "MUI's name" means the web and Flutter
-diverge unless the rule is "MUI's name where Flutter's agrees, SOLAR's otherwise". Decide with
-both prop tables open.
-
-**Done when.** The components README's prop tables follow one stated rule, and the parity test
-asserts both platforms use the same names.
+**Done when.** The keys in group 1 and 2 pass the visual check against their SOLAR component's
+oracle in both modes, and the styles README's coverage table is generated from the decision file.
 
 ### 18. Figma Code Connect and a Figma-ID manifest
 
-**Why.** The third-party package ships Code Connect templates for 26 components and a manifest
-from Figma family and variant IDs to export names, so a designer in Dev Mode sees the real props
-and a rename in Figma does not move the code name. Our IR already holds each component's Figma
-node (`provenance`), its API and its prop mapping (`rename`), so both are generator outputs, and
-for a design-to-code product they are a large part of what a designer experiences.
+**Owner:** two questions before work starts. Is SOLAR Web's library on a Figma Organization or
+Enterprise plan (Code Connect publishing needs one)? Should the fetcher record each variant's node
+ID at the next `solar:sync`? The fetcher change is in place; the IDs arrive with the sync.
+
+**Why.** A designer in Dev Mode should see our real props, and a rename in Figma should not move a
+code name. The IR holds each component set's Figma node (`provenance.figmaNode`), its API and its
+`rename` mapping, so a Code Connect template per component is a generator output. A per-variant
+manifest needs the variant IDs the raw data does not yet hold.
 
 **Check it out.**
 
 ```bash
 node -e 'const ir=JSON.parse(require("fs").readFileSync("spec/components/button.json","utf8")); console.log(ir.provenance)'
 ls packages/components/codeconnect 2>/dev/null || echo "no Code Connect"
+grep -n 'id' docs/solar-web/raw/fetch-rest.mjs | grep -i variant | head -3
 ```
 
 **What to change.** A `codeconnect` emitter in `packages/codegen/src/emit/` writing
-`packages/components/codeconnect/<Name>.figma.tsx` from the IR: the Figma node URL, each axis
-mapped through its `rename` to the shell's prop, each slot to `figma.instance` or
-`figma.string`, and derived axes left out. A `manifest` emitter writing
-`packages/components/src/generated/manifest.ts` from `provenance`. `@figma/code-connect` as a
-dev dependency and a `codeconnect:check` script that parses the templates in CI; publishing
-stays a deliberate local action, like `solar:sync`.
-
-**Checked 2026-09-25.** `provenance.figmaNode` is the component set's node, which is all Code
-Connect needs. A per-variant manifest needs each variant's node ID, which the raw data does not
-record (a raw variant has `variant`, `size`, paints and `overrides`, no `id`): the fetcher must
-record it (`digest` in `docs/solar-web/raw/fetch-rest.mjs`), and the IDs arrive with the owner's
-next `solar:sync`. Their README notes that publishing needs the components in a team library on a
-Figma Organization or Enterprise plan.
-
-**Owner questions:** is SOLAR Web's library on such a plan, and should the variant IDs be
-recorded at the next sync?
+`packages/components/codeconnect/<Name>.figma.tsx` from the IR (the node URL, each axis through
+its `api` mapping to the shell's prop, each slot to `figma.instance` or `figma.string`, derived
+axes left out); a `manifest` emitter once variant IDs exist; `@figma/code-connect` as a dev
+dependency with a `codeconnect:check` script in CI. Publishing stays a deliberate local action.
 
 **Done when.** `figma connect parse` passes for every exported component, and the manifest
 resolves every generated component's Figma node to its export name.
 
-### 19. Breakpoints, spacing and motion in the MUI theme
+### 22. Flutter idiom pass — beyond the buttons
 
-**Why.** `createSolarThemeOptions` returns palette, shape, z-index and typography only. MUI's own
-defaults fill the rest, and they disagree with SOLAR: MUI's breakpoints are 600, 900, 1200 and
-1536px, where SOLAR's viewport tokens are its own and our typography already switches to Mobile at
-767.98px (`@media (max-width: 767.98px)` in the theme and in `tokens.css`), so an app's
-`theme.breakpoints.down('md')` and SOLAR's Mobile type change at different widths. MUI's 8px
-spacing unit and its transition durations and easings are not SOLAR's either. The third-party
-theme derives all three from the tokens.
+**Done so far (2026-09-25).** Sixteen widgets are disabled by a null `onPressed` or `onChanged`
+with a `disabled` getter and no parameter: the buttons, the menu and list rows, the paging
+controls, the calendar's day, Checkbox and Toggle. The fields take `enabled` (rule 5). Component
+themes exist for the four button widgets (`solar_button_themes.dart`: `SolarButtonThemeData`,
+`SolarIconButtonThemeData`, `SolarFABThemeData`, `SolarBackButtonThemeData`, each a
+`ThemeExtension` merged over the recipe). `SolarOwnSize` keeps Figma's size in a stretching
+layout; `SolarIcon` inherits the icon theme.
 
-**Check it out.**
+**What is left.**
 
-```bash
-grep -n 'breakpoints\|spacing\|transitions' packages/styles/src/generated/mui/theme.ts   # expected: nothing
-node -e 'const t=JSON.parse(require("fs").readFileSync("spec/tokens.json","utf8")); console.log(Object.keys(t.viewport ?? {}), Object.keys(t.motion ?? {}))'
-```
-
-**What to change.** `emit/mui.mjs`: `breakpoints.values` from the `viewport.*` tokens (`xs: 0`,
-as MUI requires, the rest SOLAR's, with `sm` the Mobile switch the type already uses);
-`spacing` from SOLAR's base inset unit; `transitions.duration` and `transitions.easing` from the
-`motion.*` tokens, as `var(--solar-motion-*)` where MUI accepts a string and numbers where it
-computes. A test asserts `theme.breakpoints.values.sm` equals the width the type's media query
-switches at.
-
-**Done when.** The theme's breakpoints, spacing and motion trace to tokens, and the styles README
-says so.
-
-### 20. Install the packed packages in a clean app
-
-**Why.** `packages/codegen/test/packaging.test.mjs` checks each `package.json` (`exports`,
-`sideEffects`), but nothing installs what `npm pack` produces. A file missing from `files`, an
-export pointing at a path the build does not write, a CSS entry the bundler drops, or a module that
-touches `window` at import all pass today and fail in the first consuming app. The third-party
-package installs its packed archive in a clean app with React 18 and renders it on the server.
+- Slider, Slider Range, Radio and Option Row still take `disabled` beside a callback; the spec
+  names them as candidates for the null-callback rule.
+- Seven widgets keep both `disabled` and a callback: Accordion, Breadcrumb Item, Card, Counter,
+  Status Card, Tab Item and SplitButton. The spec's §8 justifies the cards, Tab Item, Breadcrumb
+  Item and Counter as a look of their own. **SplitButton is not named there**; write its reason
+  in the spec or apply the rule.
+- Component themes for the other wrapped controls (the fields on `TextField`, Radio, Slider), so
+  a Flutter app overrides them with `copyWith` as it does the buttons.
 
 **Check it out.**
 
 ```bash
-grep -rn 'npm pack\|renderToString' packages/codegen/test/packaging.test.mjs   # expected: nothing
+for f in packages/solar_flutter/lib/src/components/solar_*.dart; do grep -q 'this.disabled = false' "$f" && grep -q 'onPressed\|onChanged' "$f" && basename "$f"; done
+grep -n 'class Solar.*ThemeData' packages/solar_flutter/lib/src/*.dart
 ```
 
-**What to change.** A script (`scripts/smoke-install.mjs`, run in CI after `npm run build`) that
-packs `@bwp-web/styles`, `@bwp-web/assets` and `@bwp-web/components` into a temporary directory,
-installs them into a fresh app with the lowest supported React (18) and MUI 9, imports every
-public entry (`tokens.css`, `fonts.css`, `/mui`, `/svg/*`), and renders a Button, a Text Input and
-an icon with `renderToString`.
+**Done when.** Every widget with both a `disabled` parameter and a callback is named in the spec's
+§8 with a reason; the fields, Radio and Slider have component themes; `flutter analyze` and
+`flutter test` pass and the Flutter visual check is unchanged.
 
-**Done when.** The script passes in CI, and fails when a file is removed from a package's `files`.
+### 23. Housekeeping the refactor left behind
+
+Small, no decision needed, and worth doing before F11 so the record matches the code:
+
+- `docs/superpowers/specs/2026-09-21-solar-docs-to-code-design.md` line 3 still reads
+  "approved in discussion 2026-09-21, not yet implemented". It is implemented through milestone
+  4 F10 with the superseded notes inside; say so.
+- `packages/styles/dist` and `packages/components/dist` predate the last two commits. Rebuild
+  before measuring anything (item 12) or running the smoke install locally.
+- The two-libraries spec's §3 evidence table still describes the pre-refactor state (31 widgets,
+  97 string-keyed lookups, no `useTheme`, 41 exception tables). Mark it as the baseline it was
+  taken from, so a reader does not take it for the current state.
+- `SplitButton`'s `disabled` parameter (item 22).
+
+**Done when.** The three documents read true against `d959c7a`, and a rebuilt `dist` is measured
+in item 12.
 
 ---
 
-## Bucket 7 — two libraries, one contract
+## Resolved items — the record
 
-The owner's stated intent (2026-09-25): each library matches its Figma design on its own; the
-two need not match each other, and neither adopts the other's conventions. The decision, the
-evidence, the rules for writing a component and the detail of these two items are in
-[two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md). Read it before
-starting either item, or items 9, 14, 15 and 17, which it reorients.
+Each entry says what landed and where, so the reason for the code's shape is findable. Verified in
+the code at `d959c7a`, not from a status line.
 
-### 21. Demote the parity suite to the contract — done
+**1. Repeated children.** Owner chose an opt-in overlay rule over an automatic normalizer rule:
+`repeats: { <first layer, or a pattern of firsts>: { reason } }` (`repeatLayers` in
+`normalize/overlay.mjs`, `withoutRepeats` in the oracle, reference in `spec/overlay/README.md`).
+The first sibling stands for the copies and the IR marks it `repeat: <count>`; the copies are no
+layers, so recipe, oracle and tree carry one. Date Picker Open: 145 layers to 25, recipe 2,751 to
+839 lines, 9 gaps per mode; no other component's output moved. F11's rows and F13's calendar parts
+opt in the same way.
 
-Done 2026-09-25: the descriptors' `api` tables and `src/shells/api.mjs`; see the spec's §8.
+**2. Pattern addresses and reason references.** A rule's layer may be a pattern
+(`dayGridDayCell*.base.width`), a full address wins over a pattern on the same cell, a pattern
+matching nothing fails as a stale rule does, and a reason may be another rule's
+(`reason: { as: "set root.base.width" }`), replaced by that rule's text in the IR. 327 numbered
+rules folded; generated output unchanged.
 
-Keep the level-1 checks in `packages/codegen/test/component-parity.test.mjs` (every IR entry on
-both platforms, same states in the same order, same appearance combinations, no colour literal).
-Replace the API-identity checks ("same props", "spelled the same", "label as their child") with
-reachability through a declared per-platform mapping, and turn the descriptors' exception tables
-(`shells.label`, `shells.flutter`, `shells.slots`, `flutter.groupDecides`) into that mapping.
-Detail and done-when: the spec's §6, item 21.
+**3. Node version.** `util/node-version.mjs` reads `.nvmrc`; `util/require-node.mjs` is the first
+import of every CLI under `packages/codegen/bin/`.
 
-### 22. A Flutter idiom pass — done for the buttons
+**4. Oracle in Dark.** Each oracle variant carries `dark`, what Dark draws otherwise and its
+excuses; both checks run every variant in both modes (`withDark` in the oracle, `inMode` in the
+web spec, `_dark` in the Flutter harness); gap reports per mode. No Mobile type pass, by
+recommendation: every recipe reads type through `var(--solar-type-*)`, which one media query in
+`tokens.css` reassigns, and the Light pass proves each component reads the variable.
 
-Done 2026-09-25: null callbacks disable 16 widgets, and the four button widgets have component
-themes; Slider, Slider Range, Radio and Option Row could follow. See the spec's §8.
+**5. Excused-difference register.** Storybook and Widgetbook badge each variant with its excused
+count, coloured by whether every excuse has a decision, list each excused cell with its reason,
+mark Dark-only excuses, and show the last check's failures (`stories/solar.tsx`, `virtual:solar`).
 
-A pressable is disabled by `onPressed: null` (31 widgets carry both a `disabled` parameter and a
-callback today); wrapped controls expose their recipe as a component theme in `SolarTheme`; the
-string-keyed lookup stays for drawn widgets. Detail, the check-it-out commands and done-when: the
-spec's §6, item 22. Owner questions in its §8.
+**6. Rule proposer.** `npm run solar:explain -- "<Name>" [--variant …] --propose <layer>.<cell>`
+prints the overlay rule that decides a cell (`bind`, `allowLiteral`, `follows` with the axes the
+value varies with, `set` with `replaced`, or `accept`), reasons left as `TODO(reason)`, which the
+build refuses until a person writes one (`explain/propose.mjs`).
+
+**7. Overlay audit, and its rows.** `npm run solar:overlay:audit` (`report/overlay-audit.mjs`)
+lists decisions repeated across three or more components, verbatim reasons, `allowLiteral` cells
+whose literal now matches a token, and `set` rules Figma no longer needs. Its first rows were
+answered in `spec/overlay/README.md`, "Beside the overlays": which repeated decisions are defaults
+and which are not, with reasons (the focus ring is not, since the fields draw theirs on the
+field). One idle `set` it found in Date Picker Open was deleted and its finding reopened for SOLAR.
+
+**8. Overlay reference.** `spec/overlay/README.md`: a heading per rule kind in the order they
+apply, addresses, patterns, reason references, `defaults.yaml`, `excluded.yaml`, a glossary.
+
+**9. Shells as hand-written files.** Owner chose A. Every shell (96 per platform) is a hand-written
+file, taken over exactly as its template last rendered it; no descriptor has `templates` and the
+index refuses one. `src/shells/` holds the story writer and shell-exists check (`index.mjs`), the
+API mapping (`api.mjs`) and the icon analysis (`icons.mjs`). Generated beside each recipe and
+imported by the shells: `solar<Name>Tree`, `solar<Name>Slots`, `Solar<Name>Recipe.tree`. The
+parity suite fails a shell that leaves an IR prop, slot or icon unreached, copies the tree, or does
+not read its props through the theme.
+
+**10. Class names.** `util/classes.mjs`: a slot's layer carries `Solar<Name>-<slot>` (public,
+stable across syncs), every other layer `Solar<Name>--<layer>` (internal, Figma's name, not a
+contract). The recipe and the visual check share the table.
+
+**11. The spec says what the system is.** The design spec's §3 and §13 describe a layer-tree
+renderer borrowing platform behaviour; §5 says shells are hand-written. Owner: MUI 9 stays the
+peer dependency of `@bwp-web/components`.
+
+**13. Git.** Owner chose C: `.gitattributes` marks `spec/verify/**` `linguist-generated`; still
+committed and diffed by CI.
+
+**15. One mode switch.** The MUI theme uses `cssVariables: { colorSchemeSelector: '[data-theme="%s"]' }`
+with `colorSchemes.light` and `.dark`, so `data-theme="dark"` on any element switches stock MUI
+and SOLAR components together. Palette values stay literal per scheme, since MUI derives
+channels and shades from them.
+
+**16. One-line setup.** `SolarProvider` in `@bwp-web/components`: the SOLAR theme in a
+`ThemeProvider`, built once, merging an app's own options; the components README's first snippet.
+
+**17. One vocabulary.** Rule 5 of the two-libraries spec, owner-confirmed: SOLAR's word where
+SOLAR's description names the thing (`helper`, `mandatory`, a Button's `prio`, Button Group's
+`type`), otherwise MUI's on the web and Flutter's in Flutter (a field's `enabled`, a button's null
+`onPressed`). One exception: Figma's `style` is `variant` in code, since React reserves `style`;
+the design review asks Figma to rename it.
+
+**19. Breakpoints, spacing and motion.** `solarMuiBreakpoints`, `solarMuiSpacing` and
+`solarMuiTransitions` in the theme, from the viewport, inset and motion tokens; `sm` is the width
+the Mobile type switches at.
+
+**20. Packed install.** `npm run smoke:install` (`scripts/smoke-install.mjs`) packs the three
+packages, installs them into a clean app and renders components on the server; `main.yml` runs it
+after the build.
+
+**21. Parity by reachability.** Each descriptor's `api` table, `{ react: {…}, flutter: {…} }`,
+says how a platform reaches an IR prop or slot where not by its own name (`value: 'controller'`,
+`disabled: { not: 'enabled' }`, `checked: { group: 'RadioGroup' }`), resolved by
+`shells/api.mjs` with each platform's conventions as defaults. The suite proves every IR prop and
+slot reachable, keeps defaults shared (they are Figma's), refuses a mapping of what the IR does
+not name, and has tests for a missing member failing and a different spelling passing.
 
 ---
 
@@ -765,6 +344,8 @@ about making them cheaper to live with or easier to adopt:
   cell.
 - Visual checks that reach states the way a user does, on both platforms, in both modes, against
   Figma.
+- The two-libraries decision: share the IR and the rendering model, not API spellings or
+  platform mechanisms ([spec](../specs/2026-09-25-two-libraries-one-contract.md)).
 
 ---
 
@@ -780,33 +361,36 @@ Checked against the package: the theme is **hand-written but token-driven**. It 
 colour and spacing by token name when the theme is created (`c['action/primary/bg/default']`), so
 colours follow the tokens; what is hand-written is the mapping onto MUI and about 64 raw sizes
 (`minHeight: 40`, `width: 16`) and heuristics (`hairline = 0.6`, which fills `action()` makes
-transparent). Its icon set is ours: 340 icons and the same three logo families (OS Logo, Biamp
-Logo, App Icon). Its manifest labels both of Support's variants "solid"; our fetch reads them as
-`solid=false` and `solid=true`, so the duplicate is not in our data.
+transparent). Its icon set is ours: 340 icons and the same three logo families. Its manifest
+labels both of Support's variants "solid"; our fetch reads them as `solid=false` and
+`solid=true`, so the duplicate is not in our data.
 
-| Aspect                     | `@biamp/solar-mui`                                                                                                                                                | Ours                                                                                                                                          |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Setup                      | `createSolarTheme()` in a `ThemeProvider`.                                                                                                                        | Two stylesheets, a theme call, component imports (item 16).                                                                                   |
-| API                        | Native MUI props; MUI's docs are the docs.                                                                                                                        | Props from Figma's vocabulary, documented per component (item 17).                                                                            |
-| Stock MUI components       | Themed for 49 keys, including Dialog, Table, Tooltip, Card, Accordion.                                                                                            | Palette, shape, z-index and typography only (item 14).                                                                                        |
-| Breakpoints, spacing, motion | From the viewport, inset and motion tokens.                                                                                                                     | MUI's defaults, which disagree with the Mobile type switch at 768 px (item 19).                                                               |
-| Install check              | The packed archive installed in a clean app, React 18, server rendering.                                                                                         | `package.json` checks only (item 20).                                                                                                         |
-| Dark mode                  | A second theme object; JS only.                                                                                                                                   | `data-theme` on any subtree, CSS only; stock MUI needs `palette.mode` too (item 15).                                                          |
-| Coverage of SOLAR Web      | About 39 names mapped onto about 30 MUI components; SOLAR-only components absent or approximated (Counter as `Badge`, round Icon Button via `sx`).               | 97 of 132 generated, including everything MUI lacks.                                                                                          |
-| Fidelity                   | Hand-encoded heuristics (`action()` deciding transparent fills, `hairline = 0.6`, about 60 raw pixel literals, a fixed `2px solid` focus outline).               | Measured per variant against Figma layers: 1,102 variants, two platforms, two modes, 0 failures, every difference excused by a named finding. |
-| Figma's own mistakes       | Not caught: the Tabs indicator is 1 px (`border/default`) where Figma draws the selected underline 2 px; the colour, `border/strong`, is the same as ours.         | Figma's misbound focus colour caught as a finding, decided in `tab-item.yaml`; 2 px as Figma draws it.                                        |
-| Text tracking              | One rule: body and label text at `-0.02em`, titles at `-0.03em`.                                                                                                  | Each text style as Figma authors it: `body/md`, `link/md` and `display/xs` are a fixed `-0.32px` (`-0.02286em` at 14px), not `-2%`.          |
-| Change flow                | Someone re-reads Figma and edits `theme.js`.                                                                                                                      | `solar:sync`, `solar:codegen`.                                                                                                                |
-| Icons                      | MUI `SvgIcon` (`fontSize`, `color`, `sx`, `titleAccess`); needs MUI. Figma-ID manifest.                                                                           | Plain `<svg>`, `size` from the `icon.*` ladder, `title`; no MUI needed; 1.5 KB per icon. No manifest (item 18).                                |
-| Figma Code Connect         | Templates for 26 components.                                                                                                                                      | None (item 18).                                                                                                                               |
-| Bundle                     | 30 KB theme, per-icon deep imports.                                                                                                                               | 1 MB recipe module (item 12).                                                                                                                 |
-| Accessibility              | MUI's defaults plus a focus outline.                                                                                                                              | 44 px targets on every control, names required or warned, roles per shell.                                                                    |
-| Flutter                    | None.                                                                                                                                                             | Full parity.                                                                                                                                  |
+The table records the comparison as it stood at `21497a6`, and in the last column what has
+changed since.
 
-**Reading.** The generation side of ours is correct and ahead; the delivery side should borrow
-their strengths: a full stock-MUI theme derived from the recipes, one mode switch, one-line
-setup, Code Connect. Their theme is fast to write and impossible to keep honest, which is the
-drift our pipeline exists to prevent; do not copy its method, only its surface.
+| Aspect                       | `@biamp/solar-mui`                                                                                                                                  | Ours at `21497a6`                                                                                                    | At `d959c7a`                                                                              |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Setup                        | `createSolarTheme()` in a `ThemeProvider`.                                                                                                          | Two stylesheets, a theme call, component imports.                                                                    | `SolarProvider` plus the two stylesheets (item 16).                                       |
+| API                          | Native MUI props; MUI's docs are the docs.                                                                                                          | Props from Figma's vocabulary, two spellings at once.                                                                | One rule: SOLAR's word where SOLAR names it, else the platform's (item 17).               |
+| Stock MUI components         | Themed for 49 keys, including Dialog, Table, Tooltip, Card, Accordion.                                                                              | Palette, shape, z-index and typography only.                                                                         | `MuiButton` and `MuiIconButton` from the recipes, Figma-checked; the rest open (item 14). |
+| Breakpoints, spacing, motion | From the viewport, inset and motion tokens.                                                                                                         | MUI's defaults.                                                                                                      | From the tokens (item 19).                                                                |
+| Install check                | The packed archive installed in a clean app, React 18, server rendering.                                                                            | `package.json` checks only.                                                                                          | `smoke:install` in CI (item 20).                                                          |
+| Dark mode                    | A second theme object; JS only.                                                                                                                     | `data-theme` for SOLAR components, `palette.mode` for stock MUI.                                                     | One switch, `data-theme`, for both (item 15).                                             |
+| Coverage of SOLAR Web        | About 39 names mapped onto about 30 MUI components; SOLAR-only components absent or approximated (Counter as `Badge`, round Icon Button via `sx`). | 97 of 132 generated, including everything MUI lacks.                                                                 | Unchanged; F11 to F14 next.                                                               |
+| Fidelity                     | Hand-encoded heuristics (`action()`, `hairline = 0.6`, about 60 raw pixel literals, a fixed `2px solid` focus outline).                             | Measured per variant against Figma layers: 1,102 variants, two platforms, two modes, 0 failures, every difference excused by a named finding. | Unchanged.                                                       |
+| Figma's own mistakes         | Not caught: the Tabs indicator is 1 px where Figma draws the selected underline 2 px.                                                                | Caught as a finding, decided in `tab-item.yaml`; 2 px as Figma draws it.                                             | Unchanged.                                                                                |
+| Text tracking                | One rule: body and label at `-0.02em`, titles at `-0.03em`.                                                                                         | Each text style as Figma authors it (`body/md` is a fixed `-0.32px`, not `-2%`).                                    | Unchanged.                                                                                |
+| Change flow                  | Someone re-reads Figma and edits `theme.js`.                                                                                                        | `solar:sync`, `solar:codegen`.                                                                                       | Unchanged.                                                                                |
+| Icons                        | MUI `SvgIcon`; needs MUI. Figma-ID manifest.                                                                                                        | Plain `<svg>`, `size` from the `icon.*` ladder, `title`; no MUI needed; 1.5 KB per icon. No manifest.               | Manifest open (item 18).                                                                  |
+| Figma Code Connect           | Templates for 26 components.                                                                                                                        | None.                                                                                                                | Open (item 18).                                                                           |
+| Bundle                       | 30 KB theme, per-icon deep imports.                                                                                                                 | 1 MB recipe module.                                                                                                  | Unmeasured since the refactor (item 12).                                                  |
+| Accessibility                | MUI's defaults plus a focus outline.                                                                                                                | 44 px targets on every control, names required or warned, roles per shell.                                           | Unchanged.                                                                                |
+| Flutter                      | None.                                                                                                                                               | Full parity.                                                                                                         | Unchanged, now platform-idiomatic for the buttons (item 22).                              |
+
+**Reading.** The generation side of ours was correct and ahead at the first comparison; the
+delivery side has since taken their strengths (one setup, one switch, stock MUI from the recipes,
+a packed install) without their method. Their theme is fast to write and impossible to keep
+honest, which is the drift our pipeline exists to prevent.
 
 ---
 
@@ -821,6 +405,7 @@ npm run solar:rebuild && npm run solar:rebuild && git status --porcelain   # mus
 npm run test:visual
 (cd packages/solar_flutter && flutter analyze && dart format --output=none --set-exit-if-changed lib test variants/lib widgetbook/lib && flutter test)
 npm run solar:overlay:audit
+npm run build && npm run smoke:install
 ```
 
 Generated output of every component not named by the item must be byte-identical before and
