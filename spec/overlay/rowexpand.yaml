@@ -7,8 +7,9 @@ component: RowExpand
 base:
   reason: >-
     Bespoke on both platforms: a table row's expand cell and the connector drawn beside its child
-    rows, drawn from its layers. Decorative: the row it belongs to is the control that expands and
-    says so (aria-expanded), as Table (F11) will.
+    rows, drawn from its layers. Decorative on its own: a top Row draws it as its expand button,
+    which says whether the group is shown (aria-expanded), and a flat row's cell is drawn empty
+    (no chevron), as Figma hides it there.
 
 drawing:
   reason: >-

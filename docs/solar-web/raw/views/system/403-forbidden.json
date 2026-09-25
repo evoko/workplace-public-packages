@@ -131,6 +131,7 @@
                       8.4,
                       8.4
                     ],
+                    "constraints": "SCALE/SCALE",
                     "fills": [
                       "{Color:icon/inverse}"
                     ],

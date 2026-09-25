@@ -157,7 +157,10 @@ function measure(root, { list, composed }) {
             borderWidth: cs.strokeWidth,
           }
         : {
-            background: cs.backgroundColor,
+            // A layer painted with a gradient (Table's fade) shows it over its colour.
+            background: cs.backgroundImage.startsWith('linear-gradient(')
+              ? cs.backgroundImage
+              : cs.backgroundColor,
             borderColor: cs.borderTopColor,
             borderWidth:
               cs.borderTopStyle === 'none' ? '0px' : cs.borderTopWidth,

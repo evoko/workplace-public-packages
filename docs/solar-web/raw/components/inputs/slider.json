@@ -45,6 +45,7 @@
               0,
               8
             ],
+            "constraints": "LEFT_RIGHT/CENTER",
             "fills": [
               "{Color:surface/muted}"
             ],
@@ -89,6 +90,7 @@
               152,
               2
             ],
+            "constraints": "CENTER/CENTER",
             "fills": [
               "{Color:surface/base}"
             ],
@@ -128,9 +130,13 @@
           "overrides": {
             "changed": {
               "/Fill": {
+                "constraints": "LEFT/CENTER",
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ]
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
               }
             }
           }
@@ -145,9 +151,13 @@
           "overrides": {
             "changed": {
               "/Fill": {
+                "constraints": "LEFT/CENTER",
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ]
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
               }
             }
           }
@@ -162,6 +172,7 @@
           "overrides": {
             "changed": {
               "/Fill": {
+                "constraints": "LEFT/CENTER",
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ]
@@ -175,6 +186,7 @@
                   153,
                   3
                 ],
+                "constraints": "LEFT/CENTER",
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
@@ -202,6 +214,12 @@
             "changed": {
               "/": {
                 "effectStyle": "shadow/focus/default"
+              },
+              "/Fill": {
+                "constraints": "LEFT/CENTER"
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
               }
             }
           }
@@ -212,7 +230,17 @@
           "size": [
             320,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Fill": {
+                "constraints": "LEFT/CENTER"
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
+              }
+            }
+          }
         },
         {
           "variant": "state=error",
@@ -220,7 +248,17 @@
           "size": [
             320,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Fill": {
+                "constraints": "LEFT/CENTER"
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
+              }
+            }
+          }
         }
       ]
     },
@@ -265,6 +303,7 @@
               0,
               8
             ],
+            "constraints": "LEFT_RIGHT/CENTER",
             "fills": [
               "{Color:surface/muted}"
             ],
@@ -287,6 +326,7 @@
               80,
               8
             ],
+            "constraints": "SCALE/CENTER",
             "fills": [
               "{Color:action/primary/bg/default}"
             ],
@@ -309,6 +349,7 @@
               72,
               2
             ],
+            "constraints": "LEFT/CENTER",
             "fills": [
               "{Color:surface/base}"
             ],
@@ -336,6 +377,7 @@
               232,
               2
             ],
+            "constraints": "LEFT/CENTER",
             "fills": [
               "{Color:surface/base}"
             ],

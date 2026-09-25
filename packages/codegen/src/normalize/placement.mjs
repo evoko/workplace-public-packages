@@ -1,10 +1,11 @@
 /**
  * Where a layer its parent's auto layout does not place sits, and from which of the parent's
- * edges. Figma records where a layer is, not what it is pinned to: along an axis the parent grows
- * on (it fills or hugs, so its size is not the one drawn), a layer keeps its distance from the
- * parent's nearer edge -- Text Area's send button, 8px in from the field's right, stays in that
- * corner however wide the field is. Along a fixed axis the two are one, and the place is kept from
- * the left and the top.
+ * edges. Where Figma pins it to one edge (its constraint, which the fetcher records where it is not
+ * the left and the top: Table's mobile fade, `RIGHT/TOP`), that edge. Otherwise, along an axis the
+ * parent grows on (it fills or hugs, so its size is not the one drawn), a layer keeps its distance
+ * from the parent's nearer edge -- Text Area's send button, 8px in from the field's right, stays in
+ * that corner however wide the field is. Along a fixed axis the two are one, and the place is kept
+ * from the left and the top.
  *
  * Read from Figma alone, so the recipe (recipe.mjs) and the oracle (verify/oracle.mjs) both place a
  * layer by it, and neither reads the other.
@@ -17,8 +18,23 @@ const sizingOf = (layer) =>
 /** A distance, clear of Figma's float noise, as positions are drawn. */
 const clean = (n) => Math.round(n * 1e4) / 1e4;
 
+/**
+ * Along axis `i`, what Figma pins the layer to, where the fetcher recorded a constraint other than
+ * its default (`RIGHT/TOP`, Table's mobile fade): true for the far edge (RIGHT, BOTTOM), false for
+ * the near one (LEFT, TOP), and null where it pins neither alone (CENTER, SCALE, both edges), which
+ * the layer's place decides as before.
+ */
+function pinnedFar(layer, i) {
+  const c = layer.constraints?.split('/')[i];
+  if (c === 'RIGHT' || c === 'BOTTOM') return true;
+  if (c === 'LEFT' || c === 'TOP') return false;
+  return null;
+}
+
 /** Along axis `i`: whether the layer is nearer its parent's far edge, in a parent that grows. */
 function nearerFar(layer, parent, i) {
+  const pinned = pinnedFar(layer, i);
+  if (pinned !== null) return pinned;
   const grows = sizingOf(parent)[i];
   const room = parent?.size?.[i];
   if (!grows || grows === 'FIXED' || room === undefined) return false;

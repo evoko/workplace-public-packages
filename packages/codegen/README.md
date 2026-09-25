@@ -247,6 +247,26 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      each added layer's `index`; where the data has them, a composed child hides exactly its own
      layers and an added layer sits where Figma draws it, and the overlay's `hides` and `places`
      rules they replace fail as stale. The data has them from the next `solar:sync`.
+     What F11 (tables and properties) added:
+   - **Gradients.** The fetcher records a linear gradient as its handles and its stops
+     (`linear-gradient(0,0.68 → 1,0.68: {…} 0%, {…} 100%)`, `src/normalize/gradient.mjs` reads
+     it); the recipe keeps each stop's colour token and place, a stop bound to
+     `color.alpha.transparent` read as the colour beside it faded out (`alpha: 0`), so no primitive
+     reaches the code and the fade is the surface's in Light and Dark. CSS draws it as a
+     `linear-gradient` (the faded stop `transparent`, which CSS blends premultiplied), Flutter as a
+     `LinearGradient` between Figma's handles (a recipe with one gains `gradient()`, which
+     `SolarLayerRecipe` takes), and the oracle and both checks compare one canonical form. A
+     gradient that runs neither across nor down its box fails, naming the layer.
+   - **Figma's constraints.** The fetcher records a placed layer's constraint where it is not the
+     left and the top (Table's fade, `RIGHT/TOP`), and placement pins the layer to that edge; a
+     constraint that pins neither edge alone (CENTER, SCALE) leaves the place to decide, as
+     before. A placed layer that fills an axis spans to its parent's far edge.
+   - **A hover a description asks for.** A `set` may add a hover Figma draws none of, as it may a
+     focus (Row's, on a pressable row).
+   - **Composed children in a row.** `SolarLayers` boxes a composed child at the fixed size its
+     parent's recipe gives it (a TableHeader's 240px SearchField) and lays one the recipe hugs in
+     a row at its intrinsic width (a TableFooter's Dropdown); the Flutter check compares the box a
+     composed child gives its own composed children, and a case may take a larger `surface`.
      What F10 (the cards) added:
    - **A layer one variant adds, in its place.** Figma's export records a layer only one variant
      draws after its siblings (Card's loading title placeholder); the overlay's `places` puts it
@@ -542,8 +562,8 @@ axis=value, …>` gives each layer and property of those variants as a chain: Fi
      that draws its own layers has `slots: 'drawn'` (every IR layer, each with a class of its own)
      and `drawnResets`; the tables several components share are in `src/components/shared/`
      (`drawn`, `field`, `card`, `menu`, `picker`, `typed`, `slider`, `alert`, and `target`, the
-     44 × 44 target that takes no room: `targetArea`, `targetInput`, and `TARGET`, the one raw
-     target size, a governance gap until SOLAR publishes a variable). A descriptor's `checkedAs`
+     44 × 44 target that takes no room: `targetArea`, `targetInput`, and `TARGET`, SOLAR's
+     `size.target.min`). A descriptor's `checkedAs`
      names the component a Figma component is the state of (Autocomplete Open, an open
      Autocomplete): it has a recipe, a case on each platform and a story, but no shells, and the
      barrels leave it out.

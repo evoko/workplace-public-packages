@@ -1,0 +1,45 @@
+# Hand-written decisions about SOLAR RowSelect, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: RowSelect
+
+base:
+  reason: >-
+    A Table row's select cell, as the description says: a SOLAR Checkbox, centred in its 40px
+    cell, that selects its row, or in the header row every row (checked, unchecked or mixed, where
+    some are). Bespoke on both platforms, drawn with the shared layer helpers; a cell to a screen
+    reader inside a Row, the Checkbox named for what it selects. Whether the row is selected is the
+    caller's, as the description leaves selection state to the table's owner.
+
+rename:
+  title-row:
+    to: header
+    reason: >-
+      A prop in code is one word; title-row=true is the header row's cell, as Column Item's
+      title=true is its header (`header`).
+
+defaults:
+  title-row:
+    value: false
+    reason: >-
+      A row's cell selects its row unless it is the header row's: Figma's default variant is the
+      header's, one row of a table's many.
+
+set:
+  checkbox.base.width:
+    none: true
+    reason: >-
+      The Checkbox is a SOLAR Checkbox, whose 16px box is its own: the cell places it, and never
+      sizes it.
+  checkbox.base.height:
+    none: true
+    reason: { as: set checkbox.base.width }
+
+allowLiteral:
+  root.width:
+    reason: >-
+      The cell is a 40px square, bound to nothing: SOLAR has no size for a table's select column,
+      as it has none for a row's height (Column Item's, RowExpand's).
+  root.height:
+    reason: { as: allowLiteral root.width }

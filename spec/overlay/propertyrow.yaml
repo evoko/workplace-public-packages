@@ -1,0 +1,115 @@
+# Hand-written decisions about SOLAR PropertyRow, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: PropertyRow
+
+base:
+  reason: >-
+    One label–value row of a PropertyList, as the description says: an optional leading icon, the
+    label and an optional description, and a trailing control the caller gives (a Button, a
+    Toggle, a Select, an Icon Button, a Segmented Control or a Tag), which carries its own states.
+    Bespoke on both platforms, drawn with the shared layer helpers; on the web its words are a
+    <dt> and its control a <dd> inside the PropertyList's <dl>, as the description says, so label
+    and value stay paired; in Flutter the row is read as one, its words then its control.
+
+rename:
+  in-card:
+    to: inCard
+    reason: >-
+      A prop in code is one word, as the platforms spell a flag, and as List's is: `inCard`.
+
+slots:
+  button:
+    name: button
+    type: component
+    reason: An action row's control is the caller's SOLAR Button (md, secondary); Figma records no prop.
+  toggle:
+    name: toggle
+    type: component
+    reason: A setting row's control is the caller's SOLAR Toggle, on or off by the setting.
+  select:
+    name: select
+    type: component
+    reason: A choice row's control is the caller's SOLAR Select (md), its value the setting's.
+  iconButton:
+    name: iconButton
+    type: component
+    reason: An icon row's control is the caller's SOLAR Icon Button (md, square, secondary).
+  segmentedControl:
+    name: segmentedControl
+    type: component
+    reason: A mode row's control is the caller's SOLAR Segmented Control (md), its value the setting's.
+  tag:
+    name: tag
+    type: component
+    reason: A status row's value is the caller's SOLAR Tag, its status and words the property's.
+
+derive:
+  trailing:
+    when:
+      - value: action
+        given: [button]
+      - value: toggle
+        given: [toggle]
+      - value: select
+        given: [select]
+      - value: icon-button
+        given: [iconButton]
+      - value: segmented-control
+        given: [segmentedControl]
+      - value: tag
+        given: [tag]
+      - value: none
+    reason: >-
+      A row's trailing follows from the control it is given, as a Column Item's type does (owner
+      decision 2026-09-25): a Button is an action row, a Toggle a toggle row, and so on, and a row
+      given none has none; so it is no prop the caller could set against what it holds.
+
+follows:
+  root.paddingLeft:
+    axes: [in-card]
+    reason: >-
+      A row in a card is inset from the card's edge (inset.md), and one on its own flush, as
+      Figma draws each.
+  root.paddingRight:
+    axes: [in-card]
+    reason: { as: follows root.paddingLeft }
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row spans its list, as a list's rows do: Figma draws it 505 wide, a sample.
+  button.base.height:
+    none: true
+    reason: >-
+      The action is a SOLAR Button (md), whose 40px height is its own: the row places it, and
+      never sizes it.
+  iconButton.base.width:
+    none: true
+    reason: The action is a SOLAR Icon Button (md), whose 40px box is its own.
+  iconButton.base.height:
+    none: true
+    reason: { as: set iconButton.base.width }
+  tag.base.height:
+    none: true
+    reason: The status is a SOLAR Tag, whose 24px height is its own.
+  toggle.base.width:
+    none: true
+    reason: The setting is a SOLAR Toggle, whose 32 × 18 track is its own.
+  toggle.base.height:
+    none: true
+    reason: { as: set toggle.base.width }
+
+bind:
+  leading.height:
+    literal: 24
+    token: icon.lg
+    reason: Same value, governed token; the icon's width is already bound to it.
+
+allowLiteral:
+  select.width:
+    reason: >-
+      The choice's Select is 160 wide, bound to nothing: a field fills what holds it, and SOLAR
+      has no width for a row's field; carried as Figma's number, the sizes with no variable.

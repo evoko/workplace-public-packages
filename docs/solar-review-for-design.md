@@ -58,10 +58,10 @@ If you take only a few items, take these:
 
 ## At a glance
 
-| #                                                  | What                                        | Count                                                                                                                                                                                                                                                                                                                                                                                                                                             | File      |
-| -------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| [1](#1-control-heights-to-bind--18-components)     | Control heights to bind to `size/control/*` | 18                                                                                                                                                                                                                                                                                                                                                                                                                                                | SOLAR Web |
-| [2](#2-the-components-we-build-variant-by-variant) | The components we build, in detail          | Button 2 fixes and 2 questions, Spinner 2, Icon Button 2, Button Group 1, StatusIndicator 1, the display primitives 1 fix and 1 question, the selection controls 2 fixes, the tags and messages 2 fixes and 1 question, the text fields 1 fix and 5 questions, the menus and lists 2 questions, the pickers 1 fix and 5 questions, navigation 1 fix and 6 questions, paging and steps 2 fixes and 2 questions, the cards 12 fixes and 7 questions | SOLAR Web |
+| #                                                  | What                                        | Count                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | File      |
+| -------------------------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| [1](#1-control-heights-to-bind--18-components)     | Control heights to bind to `size/control/*` | 18                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | SOLAR Web |
+| [2](#2-the-components-we-build-variant-by-variant) | The components we build, in detail          | Button 2 fixes and 2 questions, Spinner 2, Icon Button 2, Button Group 1, StatusIndicator 1, the display primitives 1 fix and 1 question, the selection controls 2 fixes, the tags and messages 2 fixes and 1 question, the text fields 1 fix and 5 questions, the menus and lists 2 questions, the pickers 1 fix and 5 questions, navigation 1 fix and 6 questions, paging and steps 2 fixes and 2 questions, the cards 12 fixes and 7 questions, the tables and properties 4 fixes and 7 questions | SOLAR Web |
 
 ---
 
@@ -356,6 +356,35 @@ Card Full Screen is built with slots.
 | **A focus ring for every card**: none is drawn in Figma.                                                                                                                                                                                                    | SOLAR's focus ring, shadow/focus/default, on a pressable card. |
 | **Insight Card and Insight Card Small** draw info's tile neutral and its More info, and Status Card says neutral where they say info. One vocabulary?                                                                                                       | As drawn.                                                      |
 
+### Tables and properties: Column Item, RowSelect, Row, Table, TableHeader, TableFooter, PropertyRow and PropertyList
+
+A Table is built as its header row and the caller's rows; it tells each row whether it draws its
+select and expand cells, and each part is a table, row or cell to a screen reader. A cell's type
+follows from what it holds, words, an Avatar, a Tag, a field or a control (owner decision), and the
+breakpoint is the app's to give. A top row's expand cell is the button that shows its group. A
+PropertyList is a description list, each row a term and its value, as its description says.
+
+**Fix** — these look like accidents:
+
+| Component                                                                                    | What                                                                                                                                                                                                                                           | Variants |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **Table** · [6165:13091](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6165-13091) | **The mobile fade is 38 wide** in the table with neither select nor expand cells, and 32 in the other two. We draw 32 in all.                                                                                                                  | 1        |
+| **Table** · [6165:13091](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6165-13091) | **The fade starts at `color/alpha/transparent`**, a primitive: in Dark it fades from transparent white into the dark surface. `surface/base` at 0% is the same fade in every mode; we draw that.                                               | 3        |
+| **Table**, **TableHeader**, **TableFooter**                                                  | **The side paddings bind `stack/none`**, where a padding is an `inset`: `inset/none`, the same 0.                                                                                                                                              | all      |
+| **Row** · [4458:3569](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4458-3569)     | **A top row draws its chevron collapsed** even where its group shows beneath it (Table's default variant: a top row, then middle rows). There is no expanded top row: we turn the chevron down (RowExpand's `expanded`) where the group shows. | 5        |
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                                                                                                                                                                                     | What we do meanwhile                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **A row's height**: Row draws a data row 44 tall, and Table resizes its rows to 40. Which is meant?                                                                                                                                                                                                                          | Row's own, 44.                                                               |
+| **Row's hover**: its description says "Hover renders at runtime as a surface/hover overlay", and no variant draws it.                                                                                                                                                                                                        | `surface/hover`, only on a row given something to do (owner decision).       |
+| **A sortable header** (Column Item's description: "the sortable column header") draws no sort arrow or sorted state.                                                                                                                                                                                                         | A header that sorts says so to a screen reader; no arrow is drawn.           |
+| **Numeric columns**: Column Item's description says numeric text right-aligns; no variant draws one.                                                                                                                                                                                                                         | A numeric column's words sit at the end.                                     |
+| **The mobile Table** ([6165:13091](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6165-13091)): its description says mobile "collapses rows to a card-style list"; Figma draws the same rows, narrower, with a fade at the right edge. Which? And what does the fade mean, where no column is wider than the table? | Figma's fitted rows and its fade, no sideways scroll.                        |
+| **TableHeader's title and count**: its description names them, and mobile "stacks the actions under the title"; neither is drawn, and mobile draws no search. Meant?                                                                                                                                                         | As drawn: search, views and actions on desktop, views and actions on mobile. |
+| **PropertyList's `in-card`** ([7739:29013](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=7739-29013)): its description says true "removes the outer chrome for placement inside Card"; Figma draws the chrome on true and none on false, as List does.                                                             | As drawn, as List's.                                                         |
+
 ---
 
 # Decisions we need from you
@@ -370,8 +399,10 @@ The questions we cannot answer ourselves, most far-reaching first.
    tree rows, a labelled Divider, the selection controls (Checkbox's box, Radio's ring, Toggle's
    track and thumb, a slider's track and handle, DragHandle's dots), PIN Input's cells, Number
    Input's side stepper, a date picker's 36px day cells and 32px month headers, and a menu's
-   ~300px maximum height, which Dropdown Menu's description asks for (we cap at one raw 300): one
-   family of size variables, as `size/control/*` is for controls? Sections 1 and 2.
+   ~300px maximum height, which Dropdown Menu's description asks for (we cap at one raw 300), and
+   a table's: its 40px select column and row heights, a header cell's 26px separator, the
+   toolbar's 240px search, a property's 160px Select and the mobile fade's 32: one family of size
+   variables, as `size/control/*` is for controls? Sections 1 and 2.
 
 **Components**
 
@@ -387,6 +418,8 @@ The questions we cannot answer ourselves, most far-reaching first.
    Section 2.
 7. **Ranges** — Date Picker Open's double calendar draws a range, and Day Cell a range's roles:
    are range pickers coming, and should a floating calendar show two months? Section 2.
+8. **Tables** — a row's height (44 or 40), Row's hover, a sort arrow and a numeric column, and the
+   mobile table: a card-style list, or the fitted rows and fade Figma draws? Section 2.
 
 ---
 

@@ -927,7 +927,7 @@
                   "sizing": "FILL/HUG"
                 },
                 "fills": [
-                  "GRADIENT_LINEAR"
+                  "linear-gradient(0.5,1 → 0.5,0: #ffffff 0%, #fef2f2 100%)"
                 ],
                 "strokes": [
                   "{Color:border/subtle}"

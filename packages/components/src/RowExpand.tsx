@@ -7,8 +7,9 @@
  * each type’s chevron or connector, their colours and places.
  *
  * Bespoke: an expandable table row’s cell, drawn from Figma’s layer tree (`internal/layers.tsx`):
- * the chevron on the parent row, and the connector beside each child row. Decorative: the row it
- * belongs to is the control that expands, and says so (`aria-expanded`). The app must load
+ * the chevron on the parent row, and the connector beside each child row. Decorative on its own:
+ * a top Row draws it as its expand button (`component="button"`), which says whether the group is
+ * shown (`aria-expanded`); a flat row's cell is drawn without its `chevron`. The app must load
  * `@bwp-web/styles/tokens.css`.
  */
 
@@ -29,13 +30,29 @@ export interface RowExpandProps
   extends
     SolarRowExpandProps,
     // MUI types BoxProps' ref for any element; the component's own comes from forwardRef.
-    Omit<BoxProps, keyof SolarRowExpandProps | 'children' | 'ref'> {}
+    Omit<BoxProps, keyof SolarRowExpandProps | 'children' | 'ref'> {
+  /** Whether a collapsed or expanded cell draws its chevron; a flat row's cell is empty. */
+  chevron?: boolean;
+}
 
 export const RowExpand = forwardRef<HTMLSpanElement, RowExpandProps>(
   function RowExpand(inProps, ref) {
     // As the app's MUI theme sets them (components.SolarRowExpand), under the caller's own.
-    const { type, sx, ...rest } = useSolarProps(inProps, 'SolarRowExpand');
-    const parts = solarRowExpandCompose({ type });
+    const {
+      type,
+      chevron = true,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarRowExpand');
+    const composed = solarRowExpandCompose({ type });
+    // A flat row in a table that expands keeps the cell, empty (Row's non-expandable).
+    const parts = chevron
+      ? composed
+      : {
+          ...composed,
+          iconChevronRight: { ...composed.iconChevronRight, present: false },
+          iconChevronDown: { ...composed.iconChevronDown, present: false },
+        };
     return (
       <Box
         component="span"

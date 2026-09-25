@@ -83,11 +83,74 @@ bool _sameShadows(List<BoxShadow> a, List<BoxShadow> b) =>
             sameColour(a[i].color, b[i].color),
     ].every((ok) => ok);
 
+/// A painted [LinearGradient] as the oracle writes one (the codegen's `normalize/gradient.mjs`):
+/// where it runs, CSS's `to right`, and each stop's colour at its place along the box, from edge to
+/// edge, a stop with no alpha `transparent`. Its begin and end are Figma's handles, in the box's
+/// own fractions.
+String paintedGradient(LinearGradient g) {
+  final begin = g.begin as Alignment;
+  final end = g.end as Alignment;
+  final (x0, y0, x1, y1) = (
+    (begin.x + 1) / 2,
+    (begin.y + 1) / 2,
+    (end.x + 1) / 2,
+    (end.y + 1) / 2,
+  );
+  final across = (y0 - y1).abs() < 0.01;
+  final (a0, a1) = across ? (x0, x1) : (y0, y1);
+  final forward = a1 > a0;
+  final direction = across
+      ? (forward ? 'to right' : 'to left')
+      : (forward ? 'to bottom' : 'to top');
+  final stops =
+      g.stops ??
+      [for (var i = 0; i < g.colors.length; i++) i / (g.colors.length - 1)];
+  String colour(Color c) => c.a < 0.005
+      ? 'transparent'
+      : '#${[c.r, c.g, c.b].map((v) => _eight(v).toRadixString(16).padLeft(2, '0')).join()}'
+            '${c.a < 1 ? _eight(c.a).toRadixString(16).padLeft(2, '0') : ''}';
+  final parts = [
+    for (var i = 0; i < g.colors.length; i++)
+      '${colour(g.colors[i])} ${_percent(forward ? a0 + stops[i] * (a1 - a0) : 1 - (a0 + stops[i] * (a1 - a0)))}',
+  ];
+  return 'linear-gradient($direction, ${parts.join(', ')})';
+}
+
+String _percent(double at) {
+  final v = (at * 10000).round() / 100;
+  return '${v == v.roundToDouble() ? v.round() : v}%';
+}
+
+/// Two gradients as the oracle writes them agree: one direction, and each stop's colour and place.
+bool _sameGradient(String a, String b) {
+  final shape = RegExp(r'^linear-gradient\((to [a-z]+), (.*)\)$');
+  final x = shape.firstMatch(a);
+  final y = shape.firstMatch(b);
+  if (x == null || y == null || x[1] != y[1]) return false;
+  final xs = x[2]!.split(', ');
+  final ys = y[2]!.split(', ');
+  if (xs.length != ys.length) return false;
+  for (var i = 0; i < xs.length; i++) {
+    final [xc, xp] = xs[i].split(' ');
+    final [yc, yp] = ys[i].split(' ');
+    double at(String p) => double.parse(p.substring(0, p.length - 1));
+    if ((at(xp) - at(yp)).abs() > 0.5) return false;
+    if (!sameColour(oracleColour(xc), oracleColour(yc))) return false;
+  }
+  return true;
+}
+
 /// Whether a painted value is what the oracle expects for a property.
 bool agrees(String property, Object? figma, Object? painted) {
   if (painted == null) return false;
   switch (property) {
     case 'background':
+      // A gradient is compared as one (Table's fade); a colour as a colour.
+      if (figma is String && figma.startsWith('linear-gradient(')) {
+        return painted is String && _sameGradient(figma, painted);
+      }
+      if (painted is String) return false;
+      return sameColour(oracleColour(figma! as String), painted as Color);
     case 'borderColor':
     case 'color':
       return sameColour(oracleColour(figma! as String), painted as Color);

@@ -126,6 +126,7 @@ export const solarTextAreaStyles = {
       '--solar-placed-left': 'var(--solar-border-default)',
       '--solar-placed-top': 'var(--solar-border-default)',
       '--solar-placed-right': 'var(--solar-border-default)',
+      '--solar-placed-bottom': 'var(--solar-border-default)',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
@@ -153,14 +154,14 @@ export const solarTextAreaStyles = {
       height: '32px',
       position: 'absolute',
       right: 'calc(8px - var(--solar-placed-right, 0px))',
-      top: 'calc(80px - var(--solar-placed-top, 0px))',
+      bottom: 'calc(8px - var(--solar-placed-bottom, 0px))',
     },
     '& .SolarTextArea-attachment': {
       width: '32px',
       height: '32px',
       position: 'absolute',
       left: 'calc(8px - var(--solar-placed-left, 0px))',
-      top: 'calc(80px - var(--solar-placed-top, 0px))',
+      bottom: 'calc(8px - var(--solar-placed-bottom, 0px))',
     },
     '& .SolarTextArea-footer': {
       backgroundColor: 'transparent',
@@ -308,58 +309,7 @@ export const solarTextAreaStyles = {
       },
     },
   },
-  combined: {
-    sm: {
-      default: {
-        '& .SolarTextArea-cta': {
-          top: 'calc(60px - var(--solar-placed-top, 0px))',
-        },
-        '&:has(.SolarTextArea--field:hover)': {
-          '& .SolarTextArea-cta': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-          '& .SolarTextArea-attachment': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-        },
-        '&:has(.SolarTextArea--field.Mui-focused)': {
-          '& .SolarTextArea-cta': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-          '& .SolarTextArea-attachment': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-        },
-        '&.SolarTextArea-filled': {
-          '& .SolarTextArea-cta': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-          '& .SolarTextArea-attachment': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-        },
-        '&.SolarTextArea-error': {
-          '& .SolarTextArea-cta': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-          '& .SolarTextArea-attachment': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-        },
-        '&.SolarTextArea-disabled': {
-          '& .SolarTextArea-cta': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-          '& .SolarTextArea-attachment': {
-            top: 'calc(60px - var(--solar-placed-top, 0px))',
-          },
-        },
-        '& .SolarTextArea-attachment': {
-          top: 'calc(60px - var(--solar-placed-top, 0px))',
-        },
-      },
-    },
-  },
+  combined: {},
 } as const;
 
 /** What the shell renders rather than styles: which layers show, and which variant each child takes. */

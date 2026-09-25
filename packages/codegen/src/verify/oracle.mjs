@@ -25,6 +25,7 @@ import {
   sameLayers,
   withoutRepeats,
 } from '../normalize/overlay.mjs';
+import { parseGradient, percent, runOf } from '../normalize/gradient.mjs';
 import { drawnPaint } from '../normalize/paints.mjs';
 import { farEdgesOf, placementOf } from '../normalize/placement.mjs';
 import { featuresOf } from '../emit/text-features.mjs';
@@ -207,6 +208,23 @@ export function buildOracle(
     if (!paints || paints.length === 0) return { value: 'transparent' };
     // What Figma draws of a stack: the top paint, where it covers the rest.
     const { paint } = drawnPaint(paints, names, `${where} ${at}`);
+    // A gradient: where it runs, and each stop's colour at its place along it, a stop with no
+    // alpha `transparent`, whatever colour Figma records under it (both platforms blend it so).
+    const gradient = parseGradient(paint);
+    if (gradient) {
+      const { direction, place } = runOf(gradient, `${where} ${at}`);
+      const stops = [];
+      for (const s of gradient.stops) {
+        const c = colour([s.paint], at);
+        if (c.value === null) return c;
+        const clear =
+          /^#[0-9a-f]{6}00$/.test(c.value) || c.value === 'transparent';
+        stops.push(
+          `${clear ? 'transparent' : c.value} ${percent(place(s.position))}`,
+        );
+      }
+      return { value: `linear-gradient(${direction}, ${stops.join(', ')})` };
+    }
     const ref = /^\{(.+)\}$/.exec(paint);
     if (!ref) return { value: hex(paint) };
     const doc = names.variable(ref[1]);

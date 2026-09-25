@@ -22,6 +22,7 @@ class SolarLayerRecipe {
     required this.textStyle,
     required this.present,
     required this.glyph,
+    this.gradient,
   });
 
   /// The raw entry for a cell: a token (`t:`), a keyword (`k:`), `none`, a length (`px:`).
@@ -44,6 +45,10 @@ class SolarLayerRecipe {
 
   /// The layer's outline where it draws one in this variant.
   final SolarGlyph? Function(String layer) glyph;
+
+  /// A background cell's gradient, where it is painted with one (Table's mobile fade); null for a
+  /// recipe with none.
+  final Gradient? Function(String cell)? gradient;
 }
 
 /// Draws a bespoke component's layers as Figma nests them: each layer as a glyph
@@ -275,7 +280,18 @@ class SolarLayers {
         'width',
         'height',
       ].any((a) => _fills('$name.$a') || _extent('$name.$a') != null);
-      return sized ? SolarFill(child: child) : child;
+      if (!sized) return child;
+      // A box of a fixed size (a TableHeader's 240px SearchField) is that size wherever it is laid
+      // out, a row's unbounded length among them; one that fills takes what its layout gives it.
+      double? fixed(String a) => switch (_extent('$name.$a')) {
+        final v? when v.isFinite && !_fills('$name.$a') => v,
+        _ => null,
+      };
+      final (width, height) = (fixed('width'), fixed('height'));
+      final filled = SolarFill(child: child);
+      return width == null && height == null
+          ? filled
+          : SizedBox(width: width, height: height, child: filled);
     }
     final field = fields[name];
     if (field != null) return field(_textStyle(name));
@@ -359,12 +375,17 @@ class SolarLayers {
   Widget _placed(String child, EdgeInsets inset) {
     if (!_isPlaced(child)) return layer(child);
     final x = _extent('$child.x');
-    final right = _extent('$child.right');
-    final bottom = _extent('$child.bottom');
+    // A placed layer that fills an axis spans from its place to the parent's far edge (Table's
+    // mobile fade, as tall as the table), as the web's 100% of its containing box does.
+    final right = _fills('$child.width') ? 0.0 : _extent('$child.right');
+    final bottom = _fills('$child.height') ? 0.0 : _extent('$child.bottom');
+    final spans = _fills('$child.height');
     return Positioned(
       left: x == null ? null : x - inset.left,
       right: right == null ? null : right - inset.right,
-      top: bottom != null ? null : (_extent('$child.y') ?? 0) - inset.top,
+      top: bottom != null && !spans
+          ? null
+          : (_extent('$child.y') ?? 0) - inset.top,
       bottom: bottom == null ? null : bottom - inset.bottom,
       child: layer(child),
     );
@@ -397,6 +418,14 @@ class SolarLayers {
       );
     }
     drawn = _built(child, drawn);
+    // A composed child the recipe hugs across a row (a TableFooter's Dropdown) is as wide as what
+    // it holds, as Figma hugs it, even where the child fills what holds it alone (a field): a row
+    // gives it no width to fill.
+    if (horizontal &&
+        composed.containsKey(child) &&
+        recipe.lookup('$child.width') == 'k:HUG') {
+      drawn = IntrinsicWidth(child: drawn);
+    }
     // A field in a row that hugs its content (Number Input's inline number) is as wide as its
     // words; in any other, it takes the room its row leaves.
     if (fields.containsKey(child) && hugs) return IntrinsicWidth(child: drawn);
@@ -543,6 +572,7 @@ class SolarLayers {
         color: recipe.lookup('$name.background') == null
             ? null
             : recipe.color('$name.background'),
+        gradient: recipe.gradient?.call('$name.background'),
         border: _border(name),
         borderRadius: _corners(name),
         boxShadow: recipe.lookup('$name.shadow') == null

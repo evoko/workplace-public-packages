@@ -18,6 +18,7 @@ export 'src/solar_icon.dart';
 export 'src/solar_layers.dart';
 export 'src/solar_own_size.dart';
 export 'src/solar_list.dart';
+export 'src/solar_table.dart';
 export 'src/solar_menu.dart';
 export 'src/solar_tabs.dart';
 export 'src/solar_slider_input.dart';

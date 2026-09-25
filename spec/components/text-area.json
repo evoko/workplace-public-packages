@@ -594,8 +594,8 @@
           "position": 8,
           "from": "size=md, state=default"
         },
-        "y": {
-          "position": 80,
+        "bottom": {
+          "position": 8,
           "from": "size=md, state=default"
         }
       },
@@ -618,48 +618,6 @@
             "variant.state": {
               "keyword": "default",
               "from": "size=md, state=focus"
-            }
-          }
-        }
-      },
-      "combined": {
-        "sm": {
-          "default": {
-            "default": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=default"
-              }
-            },
-            "hover": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=hover"
-              }
-            },
-            "filled": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=filled"
-              }
-            },
-            "disabled": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=disabled"
-              }
-            },
-            "error": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=error"
-              }
-            },
-            "focus": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=focus"
-              }
             }
           }
         }
@@ -705,8 +663,8 @@
           "position": 8,
           "from": "size=md, state=default"
         },
-        "y": {
-          "position": 80,
+        "bottom": {
+          "position": 8,
           "from": "size=md, state=default"
         }
       },
@@ -717,48 +675,6 @@
             "variant.state": {
               "keyword": "disabled",
               "from": "size=md, state=disabled"
-            }
-          }
-        }
-      },
-      "combined": {
-        "sm": {
-          "default": {
-            "default": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=default"
-              }
-            },
-            "hover": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=hover"
-              }
-            },
-            "filled": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=filled"
-              }
-            },
-            "disabled": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=disabled"
-              }
-            },
-            "error": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=error"
-              }
-            },
-            "focus": {
-              "y": {
-                "position": 60,
-                "from": "size=sm, state=focus"
-              }
             }
           }
         }

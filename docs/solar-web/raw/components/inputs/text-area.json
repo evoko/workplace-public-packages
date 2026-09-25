@@ -250,6 +250,7 @@
                   240,
                   80
                 ],
+                "constraints": "RIGHT/BOTTOM",
                 "layout": {
                   "dir": "HORIZONTAL",
                   "gap": 0,
@@ -303,6 +304,7 @@
                   8,
                   80
                 ],
+                "constraints": "LEFT/BOTTOM",
                 "layout": {
                   "dir": "HORIZONTAL",
                   "gap": 0,

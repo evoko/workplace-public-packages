@@ -177,6 +177,7 @@
                   9,
                   6
                 ],
+                "constraints": "CENTER/SCALE",
                 "sizing": null,
                 "geometry": [
                   {
@@ -202,6 +203,7 @@
                     0,
                     1.44
                   ],
+                  "constraints": "CENTER/SCALE",
                   "fills": [
                     "{Color:surface/feedback/warning/strong}"
                   ],
@@ -265,6 +267,7 @@
                   7.2,
                   4.8
                 ],
+                "constraints": "CENTER/SCALE",
                 "sizing": null,
                 "geometry": [
                   {
@@ -290,6 +293,7 @@
                     0,
                     1
                   ],
+                  "constraints": "CENTER/SCALE",
                   "fills": [
                     "{Color:surface/feedback/warning/strong}"
                   ],
@@ -353,6 +357,7 @@
                   5,
                   5
                 ],
+                "constraints": "CENTER/CENTER",
                 "sizing": null,
                 "geometry": [
                   {
@@ -378,6 +383,7 @@
                     0,
                     0
                   ],
+                  "constraints": "CENTER/SCALE",
                   "fills": [
                     "{Color:surface/feedback/danger/strong}"
                   ],
@@ -441,6 +447,7 @@
                   4,
                   4
                 ],
+                "constraints": "CENTER/CENTER",
                 "sizing": null,
                 "geometry": [
                   {
@@ -466,6 +473,7 @@
                     0,
                     0
                   ],
+                  "constraints": "CENTER/SCALE",
                   "fills": [
                     "{Color:surface/feedback/danger/strong}"
                   ],

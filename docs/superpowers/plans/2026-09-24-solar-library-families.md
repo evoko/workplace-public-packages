@@ -1444,6 +1444,61 @@ components, 96 exported.
   - TableFooter: composes Button, Dropdown and Pagination;
   - PropertyRow and PropertyList.
 - **Sorting, selection state and pagination logic** are the caller's. The components draw them.
+- **Owner decisions (2026-09-25):**
+  - a Column Item's content decides its type, as a Tag's does: words, an Avatar beside them, or
+    one of the caller's SOLAR components (Tag, icon, Text Input, Dropdown, Button, Toggle), no
+    `type` prop; a PropertyRow's trailing follows its control the same way;
+  - `breakpoint` (desktop, mobile) is a prop the app sets from its own layout, not a width the
+    component measures;
+  - a Row draws `color.surface.hover`, as its description asks, only where it is pressable (given
+    `onClick`/`onPressed`), as a card draws its hover; a plain data row stays still;
+  - a sortable header is semantics with no arrow: `sort` sets `aria-sort`, `onSort` makes its words
+    a button; no indicator is drawn until SOLAR draws one.
+
+**F11 done 2026-09-25.** Column Item, RowSelect and Row (the pioneer), Table, TableHeader,
+TableFooter, PropertyRow and PropertyList, every variant matching Figma on both platforms, every
+finding decided (none left open). 105 components, 104 exported.
+
+- **Taken here, open to the owner:**
+  - a part takes its table role only inside its parent, where it is valid (Flutter checks them):
+    a Table is a table, a Row in it a row, a Column Item or RowSelect in a row a cell or a column
+    header; a Row drawn alone is a box;
+  - a Table tells its rows whether they draw their select and expand cells (`selectable`,
+    `expandable`), both off by default; a top row's expand cell is the button (`aria-expanded`,
+    "Show rows"/"Hide rows"), a flat row's expand cell drawn empty, as Figma hides its chevron;
+  - a table row is dense: in Flutter a control in a cell is its own target, not padded to 44, SOLAR's
+    accepted exception for dense rows (Material's `shrinkWrap`); the web's targets take no room;
+  - Table's rows keep Row's own 44 (Figma's Table resizes them to 40); mobile draws Figma's fade,
+    the table's full height at its right edge, and no sideways scroll, as Figma gives the columns no
+    width to overflow; the fade's 38 in one mobile variant read as the others' 32;
+  - TableHeader and TableFooter fill whichever layers the breakpoint draws with the caller's one
+    Segmented Control, Dropdown or Pagination; the footer's action is two slots (`button` on
+    desktop, `iconButton` on mobile), as Figma draws two components; the toolbar's search is
+    Figma's 240 and a PropertyRow's Select its 160, sizes with no variable;
+  - a PropertyList is a `<dl>`, a Divider between its rows, its rows' words a `<dt>` and their
+    control a `<dd>` inside one; its `inCard` drawn as Figma draws it, as List's is (the description
+    says the opposite).
+- **Machinery:**
+  - gradients: the fetcher records a linear gradient's handles and bound stops, the recipe reads it
+    (a stop bound to `color.alpha.transparent` is the colour beside it faded out, so no primitive
+    reaches the code), CSS draws `linear-gradient`, Flutter a `LinearGradient` (a recipe with one
+    gains a `gradient()`, and `SolarLayerRecipe` takes it), and both checks compare one canonical
+    form;
+  - constraints: the fetcher records a placed layer's constraint where it is not the left and the
+    top, and placement pins the layer to that edge (Table's fade, `RIGHT/TOP`; Text Area's buttons
+    now pinned to the field's bottom, as Figma constrains them, one offset for both sizes);
+  - `set` may add a hover Figma does not draw, as it may a focus; a placed layer that fills an axis
+    spans to its parent's far edge in Flutter, as CSS's 100% does;
+  - SolarLayers boxes a composed child at the fixed size its parent's recipe gives it, and lays out
+    one it hugs in a row at its intrinsic width; the Flutter check compares a composed child's own
+    composed children's boxes, and a case may give itself a larger `surface`;
+  - `fetch-rest.mjs --expect-version` rebuilds the mirror from the cache of the version it already
+    holds, and writes nothing if Figma has moved on.
+- **Checks:** 1,980 JS tests, both visual checks (222 on the web, 704 Flutter tests), lint,
+  typecheck, format, all three Flutter packages analysed and formatted, both viewers built, the
+  personal-data scan, and a rebuild that reproduces the tree. The checks found and fixed: a
+  Flutter Dropdown in a 40px cell padding its target to 44 and overflowing it; a cell in a
+  Flutter row with no width to fill; a SearchField boxed by its parent at 240 laid out unbounded.
 
 ### F12: Overlays and dialogs
 

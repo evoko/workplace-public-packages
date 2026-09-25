@@ -1,0 +1,44 @@
+# Hand-written decisions about SOLAR PropertyList, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: PropertyList
+
+base:
+  reason: >-
+    The container of an entity's read-only label–value pairs, as the description says: the
+    caller's PropertyRows, a Divider between each two. On the web a <dl>, so each row's label and
+    value stay paired; in Flutter a list of its rows. Bespoke on both, drawn with the shared layer
+    helpers; its rows take its in-card look.
+
+rename:
+  in-card:
+    to: inCard
+    reason: >-
+      A prop in code is one word, as the platforms spell a flag, and as List's is: `inCard`.
+
+follows:
+  root.borderWidth:
+    axes: [in-card]
+    reason: >-
+      Drawn as Figma draws it, as List's is (owner decision 2026-09-24): in-card=true has the edge,
+      the fill and the corners, in-card=false none, though the description says the opposite
+      ("true removes the outer chrome for placement inside Card"). The design review asks SOLAR
+      which is meant.
+  root.radius:
+    axes: [in-card]
+    reason: { as: follows root.borderWidth }
+
+bind:
+  root.borderWidth:
+    literal: 1
+    token: border.default
+    reason: >-
+      Same value, governed token: the list's edge is SOLAR's default border, as List's is.
+
+set:
+  divider*.base.height:
+    none: true
+    reason: >-
+      The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never
+      sizes it.

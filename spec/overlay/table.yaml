@@ -1,0 +1,140 @@
+# Hand-written decisions about SOLAR Table, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Table
+
+base:
+  mui: Table
+  reason: >-
+    A data table's chassis, as the description says: the header row and the caller's rows, edged
+    along its foot. MUI's Table on the web, as a <div role="table"> whose rows are flex boxes; a
+    Semantics table in Flutter, each Row in it a row. It tells its rows whether they draw their
+    select and expand cells (selectable, expandable), so the caller sets them once. The breakpoint
+    is the app's to give (owner decision 2026-09-25); on mobile the table draws Figma's fade at its
+    right edge. Sorting, selection and what a group shows are the caller's.
+
+slots:
+  row:
+    name: header
+    type: component
+    reason: >-
+      The header row is the caller's SOLAR Row (type title), its header cells the table's columns;
+      Figma records no prop for it.
+
+defaults:
+  expandable:
+    value: false
+    reason: >-
+      A table is a plain table unless it asks for more: Figma's default variant draws the select
+      and expand cells both, one of its six.
+  selectable:
+    value: false
+    reason: { as: defaults expandable }
+
+repeats:
+  row:
+    reason: >-
+      The fifteen Rows are Figma's sample rows: the caller gives the table's rows, as many as its
+      data has. The first stands for them, checked as Figma draws it; a row's every type is
+      checked where it is Row's own.
+
+follows:
+  root.align:
+    axes: [breakpoint]
+    reason: >-
+      The mobile table centres its rows across it, the desktop one starts them at its edge; both
+      draw alike, the rows spanning the table.
+  rows.align:
+    axes: [breakpoint]
+    reason: { as: follows root.align }
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A table spans what holds it: Figma draws it 1020 wide on desktop and 361 on mobile, each a
+      sample of a page's width.
+  root.appearance.*.default.width:
+    keyword: FILL
+    reason: { as: set root.base.width }
+  root.appearance.*.default.height:
+    keyword: HUG
+    reason: >-
+      A table is as tall as its rows: Figma draws it 640 tall, room for its fifteen sample rows.
+  root.base.height:
+    keyword: HUG
+    reason: { as: set root.appearance.*.default.height }
+  rows.appearance.*.default.height:
+    keyword: HUG
+    reason: { as: set root.appearance.*.default.height }
+  rows.base.height:
+    keyword: HUG
+    reason: { as: set root.appearance.*.default.height }
+  dimming.base.height:
+    keyword: FILL
+    reason: >-
+      The mobile fade runs the table's full height, as Figma draws it (640, the table's): pinned
+      to the table's right edge (Figma's constraint), it spans a table of any number of rows.
+  header.base.height:
+    none: true
+    reason: >-
+      The header row is a SOLAR Row, whose 40px height is its own: the table places it, and never
+      sizes it.
+  row.base.height:
+    none: true
+    reason: >-
+      A row is a SOLAR Row, whose height is its own, 44 for a data row: Figma resizes the table's
+      rows to 40, where Row draws them 44, and the code draws Row's. The design review asks which
+      is meant.
+
+allowLiteral:
+  dimming.width:
+    reason: >-
+      The mobile fade is 32px wide, bound to nothing: SOLAR has no size for a scroll fade.
+
+accept:
+  component.table.dimming.width@breakpoint=mobile, expandable=false, selectable=false:
+    reason: >-
+      The fade is 38 wide in the mobile table with neither select nor expand cells, and 32 in the
+      other two: a slip, the same fade at the same edge. The code draws 32 in all; the design review
+      lists it.
+  component.table.rows.height@breakpoint=desktop, expandable=false, selectable=false:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.rows.height@breakpoint=desktop, expandable=false, selectable=true:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.rows.height@breakpoint=mobile, expandable=false, selectable=false:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.rows.height@breakpoint=mobile, expandable=false, selectable=true:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.rows.height@breakpoint=mobile, expandable=true, selectable=true:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.root.height@breakpoint=desktop, expandable=false, selectable=false:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.root.height@breakpoint=desktop, expandable=false, selectable=true:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.root.height@breakpoint=mobile, expandable=false, selectable=false:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.root.height@breakpoint=mobile, expandable=false, selectable=true:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.root.height@breakpoint=mobile, expandable=true, selectable=true:
+    reason:
+      as: set root.appearance.*.default.height
+  component.table.root.width@breakpoint=mobile, expandable=false, selectable=false:
+    reason:
+      as: set root.base.width
+  component.table.root.width@breakpoint=mobile, expandable=false, selectable=true:
+    reason:
+      as: set root.base.width
+  component.table.root.width@breakpoint=mobile, expandable=true, selectable=true:
+    reason:
+      as: set root.base.width

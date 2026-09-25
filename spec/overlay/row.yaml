@@ -1,0 +1,114 @@
+# Hand-written decisions about SOLAR Row, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Row
+
+base:
+  mui: TableRow
+  reason: >-
+    One row of a Table, as the description says: the header row (type=title), a flat row
+    (non-expandable), or the top, a middle or the bottom row of a group that expands. MUI's
+    TableRow on the web, as a <div role="row"> inside a Table, whose rows are flex boxes of their
+    cells; bespoke in Flutter, a Semantics row inside a SolarTable. Its cells are the caller's
+    Column Items; its select cell (a RowSelect) and expand cell (a RowExpand) are its own, drawn
+    where it is selectable and expandable. A top row that expands says so: its expand cell is a
+    button (aria-expanded), its own box its target, as a dense row's controls are. Selection and
+    what a group shows are the caller's.
+
+same:
+  /Row Content:
+    as: /TitleRowContent
+    reason: >-
+      The header row's cells and a data row's are one slot, the row's cells, in the same place:
+      Figma names it TitleRowContent in the header row and Row Content in the others.
+
+repeats:
+  columnItem:
+    reason: >-
+      The five Column Items are Figma's sample cells, one of each: the caller gives the row's
+      cells, as many as its table has columns. The first stands for them, checked as Figma draws
+      it; a cell's every type is checked where it is Column Item's own.
+
+defaults:
+  type:
+    value: non-expandable
+    reason: >-
+      A row is a flat data row unless it heads the table or belongs to a group: Figma's default
+      variant is the header row, one of a table's many rows.
+
+follows:
+  root.height:
+    axes: [type]
+    reason: >-
+      The header row is 40 tall and a data row 44, as Figma draws each: a row's height is its
+      type's.
+  root.radius:
+    axes: [type]
+    reason: >-
+      The header row's corners are rounded (radius.container), the top of the table, and a data
+      row's are square, as Figma draws each.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row spans its table, as Figma's rows fill theirs: the set draws it 1055 wide, a sample.
+  root.appearance.type=non-expandable.hover.background:
+    token: color.surface.hover
+    reason: >-
+      Figma draws no hover; the description says "Hover renders at runtime as a surface/hover
+      overlay". Owner decision 2026-09-25: a row given something to do (pressable) draws
+      color.surface.hover under the pointer, as a pressable card draws its hover; a plain data
+      row stays still, and a selected row keeps its fill.
+  root.appearance.type=top.hover.background:
+    token: color.surface.hover
+    reason:
+      as: set root.appearance.type=non-expandable.hover.background
+  root.appearance.type=middle.hover.background:
+    token: color.surface.hover
+    reason:
+      as: set root.appearance.type=non-expandable.hover.background
+  root.appearance.type=bottom.hover.background:
+    token: color.surface.hover
+    reason:
+      as: set root.appearance.type=non-expandable.hover.background
+  checkBox.base.width:
+    none: true
+    reason: >-
+      The select cell is a SOLAR RowSelect, whose 40px square is its own: the row places it, and
+      never sizes it.
+  checkBox.base.height:
+    none: true
+    reason: { as: set checkBox.base.width }
+  expand.base.width:
+    none: true
+    reason: >-
+      The expand cell is a SOLAR RowExpand, whose 16px column is its own: the row places it, and
+      never sizes it.
+  expand.base.height:
+    none: true
+    reason: >-
+      As its width, the RowExpand's own; it is as tall as a table row, as the row's header cells
+      are.
+  titleRowContent.base.height:
+    keyword: FILL
+    reason: >-
+      The cells' row is as tall as the row: Figma's data rows fill it, and the header row's hugs
+      its 40px cells in its 40px row, the same.
+  columnItem.base.width:
+    keyword: FILL
+    reason: >-
+      A cell takes its share of the row, as Figma's cells fill theirs: drawn 200 wide, a sample of
+      a table's column.
+  columnItem.base.height:
+    keyword: FILL
+    reason: >-
+      A cell is as tall as its row, as Figma's data cells fill theirs (a header cell is fixed at
+      the header row's 40, the same).
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A table row is 40 tall (the header) or 44 (a data row), bound to nothing: SOLAR publishes no
+      row height, as for RowExpand's and Column Item's.

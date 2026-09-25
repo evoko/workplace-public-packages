@@ -33547,7 +33547,11 @@
           "overrides": {
             "changed": {
               "/Fill": {
+                "constraints": "LEFT/CENTER",
                 "fills": ["{Color:action/primary/bg/hover}"]
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
               }
             }
           }
@@ -33559,7 +33563,11 @@
           "overrides": {
             "changed": {
               "/Fill": {
+                "constraints": "LEFT/CENTER",
                 "fills": ["{Color:action/primary/bg/active}"]
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
               }
             }
           }
@@ -33571,11 +33579,13 @@
           "overrides": {
             "changed": {
               "/Fill": {
+                "constraints": "LEFT/CENTER",
                 "fills": ["{Color:action/primary/bg/disabled}"]
               },
               "/Handle": {
                 "size": [14, 14],
                 "position": [153, 3],
+                "constraints": "LEFT/CENTER",
                 "fills": ["{Color:action/primary/bg/disabled}"],
                 "strokes": ["{Color:border/subtle}"],
                 "strokeWeight": 1,
@@ -33596,6 +33606,12 @@
             "changed": {
               "/": {
                 "effectStyle": "shadow/focus/default"
+              },
+              "/Fill": {
+                "constraints": "LEFT/CENTER"
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
               }
             }
           }
@@ -33603,12 +33619,32 @@
         {
           "variant": "state=filled",
           "id": "6074:381",
-          "size": [320, 20]
+          "size": [320, 20],
+          "overrides": {
+            "changed": {
+              "/Fill": {
+                "constraints": "LEFT/CENTER"
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
+              }
+            }
+          }
         },
         {
           "variant": "state=error",
           "id": "6074:385",
-          "size": [320, 20]
+          "size": [320, 20],
+          "overrides": {
+            "changed": {
+              "/Fill": {
+                "constraints": "LEFT/CENTER"
+              },
+              "/Handle": {
+                "constraints": "LEFT/CENTER"
+              }
+            }
+          }
         }
       ],
       "variantsTruncated": false,
@@ -47315,6 +47351,7 @@
               "/inner-path": {
                 "size": [2, 9],
                 "position": [9, 6],
+                "constraints": "CENTER/SCALE",
                 "sizing": null,
                 "geometry": [
                   {
@@ -47334,6 +47371,7 @@
                   "type": "VECTOR",
                   "size": [20, 17],
                   "position": [0, 1.44],
+                  "constraints": "CENTER/SCALE",
                   "fills": ["{Color:surface/feedback/warning/strong}"],
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
@@ -47384,6 +47422,7 @@
               "/inner-path": {
                 "size": [2, 7],
                 "position": [7.2, 4.8],
+                "constraints": "CENTER/SCALE",
                 "sizing": null,
                 "geometry": [
                   {
@@ -47403,6 +47442,7 @@
                   "type": "VECTOR",
                   "size": [16, 14],
                   "position": [0, 1],
+                  "constraints": "CENTER/SCALE",
                   "fills": ["{Color:surface/feedback/warning/strong}"],
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
@@ -47453,6 +47493,7 @@
               "/inner-path": {
                 "size": [10, 10],
                 "position": [5, 5],
+                "constraints": "CENTER/CENTER",
                 "sizing": null,
                 "geometry": [
                   {
@@ -47472,6 +47513,7 @@
                   "type": "VECTOR",
                   "size": [20, 20],
                   "position": [0, 0],
+                  "constraints": "CENTER/SCALE",
                   "fills": ["{Color:surface/feedback/danger/strong}"],
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
@@ -47522,6 +47564,7 @@
               "/inner-path": {
                 "size": [8, 8],
                 "position": [4, 4],
+                "constraints": "CENTER/CENTER",
                 "sizing": null,
                 "geometry": [
                   {
@@ -47541,6 +47584,7 @@
                   "type": "VECTOR",
                   "size": [16, 16],
                   "position": [0, 0],
+                  "constraints": "CENTER/SCALE",
                   "fills": ["{Color:surface/feedback/danger/strong}"],
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
@@ -48598,6 +48642,7 @@
                   "type": "VECTOR",
                   "size": [8, 20],
                   "position": [8, 0],
+                  "constraints": "RIGHT/TOP",
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
                   "strokeGeometry": [
@@ -48640,6 +48685,7 @@
                   "type": "VECTOR",
                   "size": [8, 20],
                   "position": [8.25, 0],
+                  "constraints": "RIGHT/TOP",
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
                   "strokeGeometry": [
@@ -48662,6 +48708,7 @@
                   "type": "VECTOR",
                   "size": [0, 20],
                   "position": [8.25, 20],
+                  "constraints": "RIGHT/TOP",
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
                   "strokeGeometry": [
@@ -48700,6 +48747,7 @@
                   "type": "VECTOR",
                   "size": [0, 40],
                   "position": [8.25, 0],
+                  "constraints": "RIGHT/TOP",
                   "strokes": ["{Color:border/medium}"],
                   "strokeWeight": 1,
                   "strokeGeometry": [
@@ -51222,8 +51270,11 @@
                   "type": "RECTANGLE",
                   "size": [32, 640],
                   "position": [329, 0],
+                  "constraints": "RIGHT/TOP",
                   "sizing": "FIXED/FIXED",
-                  "fills": ["GRADIENT_LINEAR"]
+                  "fills": [
+                    "linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base} 100%)"
+                  ]
                 }
               }
             ]
@@ -51386,8 +51437,11 @@
                   "type": "RECTANGLE",
                   "size": [32, 640],
                   "position": [329, 0],
+                  "constraints": "RIGHT/TOP",
                   "sizing": "FIXED/FIXED",
-                  "fills": ["GRADIENT_LINEAR"]
+                  "fills": [
+                    "linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base} 100%)"
+                  ]
                 }
               }
             ]
@@ -51582,8 +51636,11 @@
                   "type": "RECTANGLE",
                   "size": [38, 640],
                   "position": [323, 0],
+                  "constraints": "RIGHT/TOP",
                   "sizing": "FIXED/FIXED",
-                  "fills": ["GRADIENT_LINEAR"]
+                  "fills": [
+                    "linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base} 100%)"
+                  ]
                 }
               }
             ]
@@ -67946,6 +68003,7 @@
               "/arrow": {
                 "size": [3, 7],
                 "position": [-3, 9],
+                "constraints": "LEFT/CENTER",
                 "geometry": [
                   {
                     "path": "M3 0L3 7L0.738966 4.70412C0.329532 4.28838 0.124815 4.08051 0.0495557 3.83423C-0.0165186 3.61801 -0.0165186 3.38199 0.0495557 3.16577C0.124815 2.91949 0.329532 2.71162 0.738966 2.29588L3 0Z",
@@ -67971,6 +68029,7 @@
               "/arrow": {
                 "size": [3, 7],
                 "position": [-3, 14],
+                "constraints": "LEFT/CENTER",
                 "geometry": [
                   {
                     "path": "M3 0L3 7L0.738966 4.70412C0.329532 4.28838 0.124815 4.08051 0.0495557 3.83423C-0.0165186 3.61801 -0.0165186 3.38199 0.0495557 3.16577C0.124815 2.91949 0.329532 2.71162 0.738966 2.29588L3 0Z",
@@ -68010,6 +68069,7 @@
             "changed": {
               "/arrow": {
                 "position": [20, -3],
+                "constraints": "CENTER/TOP",
                 "geometry": [
                   {
                     "path": "M7 3L0 3L2.29588 0.738966C2.71162 0.329532 2.91949 0.124814 3.16577 0.0495557C3.38199 -0.0165186 3.61801 -0.0165186 3.83423 0.0495558C4.08051 0.124815 4.28838 0.329532 4.70412 0.738966L7 3Z",
@@ -68029,6 +68089,7 @@
             "changed": {
               "/arrow": {
                 "position": [26, -3],
+                "constraints": "CENTER/TOP",
                 "geometry": [
                   {
                     "path": "M7 3L0 3L2.29588 0.738966C2.71162 0.329532 2.91949 0.124814 3.16577 0.0495557C3.38199 -0.0165186 3.61801 -0.0165186 3.83423 0.0495558C4.08051 0.124815 4.28838 0.329532 4.70412 0.738966L7 3Z",
@@ -68074,6 +68135,7 @@
               "/arrow": {
                 "size": [3, 7],
                 "position": [47, 8.84],
+                "constraints": "RIGHT/CENTER",
                 "geometry": [
                   {
                     "path": "M7 3L0 3L2.29588 0.738966C2.71162 0.329532 2.91949 0.124814 3.16577 0.0495557C3.38199 -0.0165186 3.61801 -0.0165186 3.83423 0.0495558C4.08051 0.124815 4.28838 0.329532 4.70412 0.738966L7 3Z",
@@ -68119,6 +68181,7 @@
               "/arrow": {
                 "size": [3, 7],
                 "position": [59, 13.34],
+                "constraints": "RIGHT/CENTER",
                 "geometry": [
                   {
                     "path": "M7 3L0 3L2.29588 0.738966C2.71162 0.329532 2.91949 0.124814 3.16577 0.0495557C3.38199 -0.0165186 3.61801 -0.0165186 3.83423 0.0495558C4.08051 0.124815 4.28838 0.329532 4.70412 0.738966L7 3Z",
@@ -68345,6 +68408,7 @@
                   },
                   "size": [40, 40],
                   "position": [424, 16],
+                  "constraints": "RIGHT/TOP",
                   "layout": {
                     "dir": "HORIZONTAL",
                     "gap": 0,
@@ -79102,6 +79166,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [13, 14],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/inverse}"],
                   "strokes": ["{Color:border/strong}"],
                   "strokeWeight": 1,
@@ -79128,6 +79193,7 @@
                   "type": "VECTOR",
                   "size": [13, 14],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79146,6 +79212,7 @@
                   "type": "VECTOR",
                   "size": [1, 4],
                   "position": [6, 6],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79164,6 +79231,7 @@
                   "type": "VECTOR",
                   "size": [1, 4],
                   "position": [8, 6],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79182,6 +79250,7 @@
                   "type": "VECTOR",
                   "size": [1, 4],
                   "position": [10, 6],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79247,6 +79316,7 @@
                   "type": "VECTOR",
                   "size": [16, 16],
                   "position": [5, 8],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/link/default}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79273,6 +79343,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [16, 16],
                   "position": [5, 8],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Primitives:color/blue/400}"],
                   "geometry": [
                     {
@@ -79291,6 +79362,7 @@
                   "type": "VECTOR",
                   "size": [8, 8],
                   "position": [8, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79309,6 +79381,7 @@
                   "type": "VECTOR",
                   "size": [8, 8],
                   "position": [0, 8],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79356,6 +79429,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [16, 16],
                   "position": [4.59, 7.54],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79382,6 +79456,7 @@
                   "type": "VECTOR",
                   "size": [9, 9],
                   "position": [2, 4.52],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79400,6 +79475,7 @@
                   "type": "VECTOR",
                   "size": [9, 9],
                   "position": [4.52, 2],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79418,6 +79494,7 @@
                   "type": "VECTOR",
                   "size": [16, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79450,6 +79527,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [18, 18],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79476,6 +79554,7 @@
                   "type": "VECTOR",
                   "size": [10, 10],
                   "position": [4, 4],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79494,6 +79573,7 @@
                   "type": "VECTOR",
                   "size": [6, 4],
                   "position": [6, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79512,6 +79592,7 @@
                   "type": "VECTOR",
                   "size": [4, 6],
                   "position": [0, 6],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79530,6 +79611,7 @@
                   "type": "VECTOR",
                   "size": [4, 6],
                   "position": [14, 6],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79548,6 +79630,7 @@
                   "type": "VECTOR",
                   "size": [6, 4],
                   "position": [6, 14],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79581,6 +79664,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [18, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79607,6 +79691,7 @@
                   "type": "VECTOR",
                   "size": [10, 16],
                   "position": [4, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79625,6 +79710,7 @@
                   "type": "VECTOR",
                   "size": [4, 6],
                   "position": [0, 5],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79643,6 +79729,7 @@
                   "type": "VECTOR",
                   "size": [4, 6],
                   "position": [14, 5],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79676,6 +79763,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [16, 18],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79702,6 +79790,7 @@
                   "type": "VECTOR",
                   "size": [16, 10],
                   "position": [0, 4],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79720,6 +79809,7 @@
                   "type": "VECTOR",
                   "size": [6, 4],
                   "position": [5, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79738,6 +79828,7 @@
                   "type": "VECTOR",
                   "size": [6, 4],
                   "position": [5, 14],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79771,6 +79862,7 @@
                   "type": "VECTOR",
                   "size": [8, 19],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79812,6 +79904,7 @@
                   "type": "VECTOR",
                   "size": [8, 15],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79853,6 +79946,7 @@
                   "type": "VECTOR",
                   "size": [16, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79894,6 +79988,7 @@
                   "type": "VECTOR",
                   "size": [13, 13],
                   "position": [1.64, 1.64],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79935,6 +80030,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [8, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -79961,6 +80057,7 @@
                   "type": "VECTOR",
                   "size": [2, 14],
                   "position": [3, 1],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79979,6 +80076,7 @@
                   "type": "VECTOR",
                   "size": [3, 2],
                   "position": [5, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -79997,6 +80095,7 @@
                   "type": "VECTOR",
                   "size": [3, 2],
                   "position": [5, 14],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80015,6 +80114,7 @@
                   "type": "VECTOR",
                   "size": [3, 2],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80033,6 +80133,7 @@
                   "type": "VECTOR",
                   "size": [3, 2],
                   "position": [0, 14],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80066,6 +80167,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [16, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -80092,6 +80194,7 @@
                   "type": "VECTOR",
                   "size": [9, 9],
                   "position": [2, 4.52],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80110,6 +80213,7 @@
                   "type": "VECTOR",
                   "size": [9, 9],
                   "position": [4.52, 2],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80128,6 +80232,7 @@
                   "type": "VECTOR",
                   "size": [16, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80161,6 +80266,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [16, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -80187,6 +80293,7 @@
                   "type": "VECTOR",
                   "size": [14, 14],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80205,6 +80312,7 @@
                   "type": "RECTANGLE",
                   "size": [8, 8],
                   "position": [8.26, 8.26],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"]
                 }
               },
@@ -80217,6 +80325,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [10, 10],
                   "position": [2.02, 2.02],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/inverse}"],
                   "geometry": [
                     {
@@ -80235,6 +80344,7 @@
                   "type": "VECTOR",
                   "size": [10, 10],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80253,6 +80363,7 @@
                   "type": "RECTANGLE",
                   "size": [2, 6],
                   "position": [3.98, 1.98],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"]
                 }
               },
@@ -80265,6 +80376,7 @@
                   "type": "RECTANGLE",
                   "size": [6, 2],
                   "position": [1.98, 3.98],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"]
                 }
               }
@@ -80292,6 +80404,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [16, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -80318,6 +80431,7 @@
                   "type": "VECTOR",
                   "size": [14, 14],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80336,6 +80450,7 @@
                   "type": "RECTANGLE",
                   "size": [8, 8],
                   "position": [8.26, 8.26],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"]
                 }
               },
@@ -80348,6 +80463,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [10, 10],
                   "position": [2.02, 2.02],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/inverse}"],
                   "geometry": [
                     {
@@ -80366,6 +80482,7 @@
                   "type": "VECTOR",
                   "size": [10, 10],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80384,6 +80501,7 @@
                   "type": "RECTANGLE",
                   "size": [6, 2],
                   "position": [1.98, 3.98],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"]
                 }
               }
@@ -80411,6 +80529,7 @@
                   "type": "VECTOR",
                   "size": [19, 8],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -80452,6 +80571,7 @@
                   "type": "VECTOR",
                   "size": [13, 13],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -80493,6 +80613,7 @@
                   "type": "VECTOR",
                   "size": [13, 13],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/primary}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -80549,6 +80670,7 @@
                   "type": "VECTOR",
                   "size": [16, 16],
                   "position": [4.59, 7.54],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Primitives:color/green/400}"],
                   "strokes": ["{Color:icon/inverse}"],
                   "strokeWeight": 1,
@@ -80575,6 +80697,7 @@
                   "type": "VECTOR",
                   "size": [10, 10],
                   "position": [7.59, 10.54],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/inverse}"],
                   "geometry": [
                     {
@@ -80607,6 +80730,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [14, 17],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/inverse}"],
                   "strokes": ["{Color:border/strong}"],
                   "strokeWeight": 1,
@@ -80633,6 +80757,7 @@
                   "type": "VECTOR",
                   "size": [14, 17],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80651,6 +80776,7 @@
                   "type": "VECTOR",
                   "size": [1, 4],
                   "position": [10.85, 9],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80669,6 +80795,7 @@
                   "type": "VECTOR",
                   "size": [1, 4],
                   "position": [8.85, 9],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80687,6 +80814,7 @@
                   "type": "VECTOR",
                   "size": [1, 4],
                   "position": [6.85, 9],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80720,6 +80848,7 @@
                   "type": "BOOLEAN_OPERATION",
                   "size": [11, 16],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:icon/inverse}"],
                   "strokes": ["{Color:border/strong}"],
                   "strokeWeight": 1,
@@ -80746,6 +80875,7 @@
                   "type": "VECTOR",
                   "size": [9, 12],
                   "position": [1, 2],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80764,6 +80894,7 @@
                   "type": "VECTOR",
                   "size": [11, 1],
                   "position": [0, 0],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80782,6 +80913,7 @@
                   "type": "VECTOR",
                   "size": [11, 1],
                   "position": [0, 15],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80800,6 +80932,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [2, 12],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80818,6 +80951,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [4, 12],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80836,6 +80970,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [3, 11],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80854,6 +80989,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [5, 11],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80872,6 +81008,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [7, 11],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80890,6 +81027,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [6, 10],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80908,6 +81046,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [4, 10],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80926,6 +81065,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [5, 9],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80944,6 +81084,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [5, 7],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80962,6 +81103,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [6, 5],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80980,6 +81122,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [5, 4],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -80998,6 +81141,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [3, 4],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -81016,6 +81160,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [7, 4],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -81034,6 +81179,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [4, 5],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -81052,6 +81198,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [6, 12],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -81070,6 +81217,7 @@
                   "type": "VECTOR",
                   "size": [1, 1],
                   "position": [8, 12],
+                  "constraints": "SCALE/SCALE",
                   "fills": ["{Color:surface/muted}"],
                   "geometry": [
                     {
@@ -98088,7 +98236,8 @@
             "changed": {
               "/Connector": {
                 "size": [100, 7],
-                "position": [-100, 82]
+                "position": [-100, 82],
+                "constraints": "LEFT/CENTER"
               },
               "/Connector/Origin Dot": {
                 "position": [97, 1]

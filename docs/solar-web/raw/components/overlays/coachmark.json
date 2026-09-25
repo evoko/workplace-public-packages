@@ -40,6 +40,7 @@
               3,
               3
             ],
+            "constraints": "SCALE/CENTER",
             "fills": [
               "{Color:surface/feedback/info/strong}"
             ],
@@ -56,6 +57,7 @@
               3,
               3
             ],
+            "constraints": "SCALE/CENTER",
             "fills": [
               "{Color:surface/feedback/info/strong}"
             ]
@@ -226,6 +228,7 @@
                       124,
                       2.5
                     ],
+                    "constraints": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED",
                     "fills": [
                       "{Color:text/inverse}"
@@ -320,6 +323,7 @@
               320,
               83
             ],
+            "constraints": "RIGHT/CENTER",
             "layout": {
               "dir": "HORIZONTAL",
               "gap": 16,
@@ -365,6 +369,7 @@
                   -3,
                   0
                 ],
+                "constraints": "LEFT/CENTER",
                 "sizing": "FIXED/FIXED",
                 "fills": [
                   "{Color:surface/feedback/info/strong}"
@@ -385,6 +390,7 @@
                   94,
                   -3
                 ],
+                "constraints": "RIGHT/CENTER",
                 "sizing": "FIXED/FIXED"
               }
             ]
@@ -460,7 +466,8 @@
                 "position": [
                   -100,
                   82
-                ]
+                ],
+                "constraints": "LEFT/CENTER"
               },
               "/Connector/Origin Dot": {
                 "position": [

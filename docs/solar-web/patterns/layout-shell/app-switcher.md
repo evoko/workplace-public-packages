@@ -136,7 +136,7 @@ Uses: App Icon ×8, AppSwitcherItem ×7, SplitButton ×7, Icon/ExternalLink ×7,
     - **Divider** · frame · row gap 12 pad 0/0/0/0 FILL/FIXED · 532×20  
       itemSpacing `stack.sm`
     - **AppSwitcherItem** · frame · row gap 12 pad 16/16/16/16 FILL/HUG · 532×64  
-      fill `GRADIENT_LINEAR` ⚠️ hard-coded · stroke `color.border.subtle` 1px · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
+      fill `linear-gradient(0.5,1 → 0.5,0: #ffffff 0%, #fef2f2 100%)` ⚠️ hard-coded · stroke `color.border.subtle` 1px · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
   - **Frame 12** · frame · column gap 8 pad 16/16/16/16 FILL/HUG · 564×196  
     stroke `color.border.subtle` mixedpx · itemSpacing `inset.xs` · padding `spatial.scale.4`
     - **Divider** · frame · row gap 12 pad 0/0/0/0 FILL/FIXED · 532×20  

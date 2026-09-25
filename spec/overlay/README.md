@@ -163,9 +163,10 @@ A raw value to the token of the same value (`literal`, `token`), or one per size
 One entry changed: to a `token`, to `none` (the cell is not drawn by this layer: a composed
 child's own size, a stray fill), or to a `keyword` (`FILL`, `HUG`, or a composed child's
 `variant.*`). What Figma had is kept as `replaced`, and the oracle excuses the variants that draw
-it. A `set` may add an entry the IR lacks: a state Figma draws as at rest (a focus ring), a look no
-layer has where its axes are another look's and its values Figma's, `default` where no layer has
-any, or a size.
+it. A `set` may add an entry the IR lacks: a state Figma draws as at rest (a focus ring), a focus
+or a hover Figma draws none of (Row's hover, which its description asks for), a look no layer has
+where its axes are another look's and its values Figma's, `default` where no layer has any, or a
+size.
 
 ### `allowLiteral`
 

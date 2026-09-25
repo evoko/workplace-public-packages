@@ -13,6 +13,10 @@
 //
 // --vars      (re)build raw/_variables.json from GET /v1/files/KEY/variables/local
 //             (needs a token with the file_variables:read scope)
+// --expect-version V
+//             stop before writing anything unless Figma's current version is V: rebuilds the
+//             mirror from the cache of the version it already holds (after a change to this
+//             script), never a newer one
 // --cache     directory for raw REST responses (default: $TMPDIR/solar-web-rest-cache)
 // --out       output root (default: docs/solar-web/raw). Use a temp dir to compare.
 // Token: $FIGMA_TOKEN or ~/.config/figma/token.
@@ -54,6 +58,13 @@ const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
 // ---------- file version + manifest sync ----------
 const file = await openFile(FILE, { cacheRoot: CACHE, fresh: FRESH });
 const { head, version } = file;
+const EXPECT = opt('--expect-version', null);
+if (EXPECT && version !== EXPECT) {
+  console.error(
+    `Figma's version is ${version}, not ${EXPECT}: nothing written (run solar:sync to take it)`,
+  );
+  process.exit(1);
+}
 const TOP = {
   '◼︎ TOKENS': 'tokens',
   '❖ COMPONENTS': 'components',
@@ -201,9 +212,29 @@ function paints(arr) {
           ? '{' + vname(b.id) + '}'
           : hex(p.color) + (op < 1 ? ' a=' + op.toFixed(2) : ''),
       );
-    } else r.push(p.type);
+    } else if (p.type === 'GRADIENT_LINEAR') r.push(linearGradient(p));
+    else r.push(p.type);
   }
   return r.length ? r : undefined;
+}
+/**
+ * A linear gradient as one string: where it runs, its start and end handles as fractions of the
+ * layer's box (x,y, Figma's gradientHandlePositions), then each stop's colour, bound as a solid
+ * paint's is or as a hex with its alpha, at its position:
+ * `linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base} 100%)`.
+ */
+function linearGradient(p) {
+  const at = (h) => `${+h.x.toFixed(2)},${+h.y.toFixed(2)}`;
+  const [from, to] = p.gradientHandlePositions ?? [];
+  const stops = (p.gradientStops ?? []).map((s) => {
+    const b = s.boundVariables && s.boundVariables.color;
+    const alpha = s.color.a ?? 1;
+    const colour = b
+      ? '{' + vname(b.id) + '}'
+      : hex(s.color) + (alpha < 1 ? ' a=' + alpha.toFixed(2) : '');
+    return `${colour} ${+(s.position * 100).toFixed(2)}%`;
+  });
+  return `linear-gradient(${at(from)} → ${at(to)}: ${stops.join(', ')})`;
 }
 const KEYMAP = {
   BORDER_TOP_WEIGHT: 'strokeTopWeight',
@@ -329,6 +360,11 @@ function layer(n, parent, depth, maxDepth, ctx) {
       at(n.absoluteBoundingBox.x, parent.absoluteBoundingBox.x),
       at(n.absoluteBoundingBox.y, parent.absoluteBoundingBox.y),
     ];
+    // What it is pinned to, `horizontal/vertical` (Table's mobile fade: `RIGHT/TOP`), where that is
+    // not Figma's default, the left and the top.
+    const c = n.constraints;
+    if (c && (c.horizontal !== 'LEFT' || c.vertical !== 'TOP'))
+      o.constraints = `${c.horizontal}/${c.vertical}`;
   }
   const hasLayout = n.layoutMode && n.layoutMode !== 'NONE';
   if (hasLayout)

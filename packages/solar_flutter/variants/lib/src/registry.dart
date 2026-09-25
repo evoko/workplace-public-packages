@@ -17,6 +17,7 @@ import 'button.dart';
 import 'button_group.dart';
 import 'card.dart';
 import 'checkbox.dart';
+import 'column_item.dart';
 import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
@@ -66,8 +67,12 @@ import 'paginationitem.dart';
 import 'paginationnav.dart';
 import 'password_input.dart';
 import 'progressbar.dart';
+import 'propertylist.dart';
+import 'propertyrow.dart';
 import 'radio.dart';
+import 'row.dart';
 import 'rowexpand.dart';
+import 'rowselect.dart';
 import 'searchfield.dart';
 import 'section_nav_group_header.dart';
 import 'section_nav_item.dart';
@@ -86,6 +91,9 @@ import 'step.dart';
 import 'stepper.dart';
 import 'stepper_indicator.dart';
 import 'tab_item.dart';
+import 'table.dart';
+import 'tablefooter.dart';
+import 'tableheader.dart';
 import 'tabs.dart';
 import 'tag.dart';
 import 'text_area.dart';
@@ -116,6 +124,7 @@ const builders = <String, VariantBuilder>{
   'Button Group': buildButtonGroup,
   'Card': buildCard,
   'Checkbox': buildCheckbox,
+  'Column Item': buildColumnItem,
   'Container': buildContainer,
   'Context Menu': buildContextMenu,
   'Context Menu Item': buildContextMenuItem,
@@ -165,8 +174,12 @@ const builders = <String, VariantBuilder>{
   'PaginationNav': buildPaginationNav,
   'Password Input': buildPasswordInput,
   'ProgressBar': buildProgressBar,
+  'PropertyList': buildPropertyList,
+  'PropertyRow': buildPropertyRow,
   'Radio': buildRadio,
+  'Row': buildRow,
   'RowExpand': buildRowExpand,
+  'RowSelect': buildRowSelect,
   'SearchField': buildSearchField,
   'Section Nav Group Header': buildSectionNavGroupHeader,
   'Section Nav Item': buildSectionNavItem,
@@ -185,6 +198,9 @@ const builders = <String, VariantBuilder>{
   'Stepper': buildStepper,
   'Stepper Indicator': buildStepperIndicator,
   'Tab Item': buildTabItem,
+  'Table': buildTable,
+  'TableFooter': buildTableFooter,
+  'TableHeader': buildTableHeader,
   'Tabs': buildTabs,
   'Tag': buildTag,
   'Text Area': buildTextArea,

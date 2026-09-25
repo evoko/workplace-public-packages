@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
+import 'compare.dart';
 import 'harness.dart';
 
 /// Every layer SolarLayers keyed `<prefix>.<layer>` inside [at]: a glyph's colours and stroke width
@@ -127,7 +128,10 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
         _ => wrapped,
       };
       values.addAll({
-        'background': d.color ?? Colors.transparent,
+        // A layer painted with a gradient (Table's fade) shows it over its colour.
+        'background': d.gradient is LinearGradient
+            ? paintedGradient(d.gradient! as LinearGradient)
+            : d.color ?? Colors.transparent,
         // The colour of a side that is drawn, where only some are (Number Input's side stepper).
         'borderColor':
             [border?.top, border?.right, border?.bottom, border?.left]

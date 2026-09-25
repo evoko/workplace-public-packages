@@ -360,6 +360,7 @@
               520,
               322
             ],
+            "constraints": "CENTER/CENTER",
             "layout": {
               "dir": "VERTICAL",
               "gap": 0,

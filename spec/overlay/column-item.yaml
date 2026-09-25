@@ -1,0 +1,158 @@
+# Hand-written decisions about SOLAR Column Item, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Column Item
+
+base:
+  reason: >-
+    One cell of a Table's Row, as the description says: a column header or a data cell. Bespoke on
+    both platforms, drawn with the shared layer helpers; on the web a <div role="columnheader"> or
+    <div role="cell"> (MUI's TableCell as a div, the rows being flex boxes), in Flutter a
+    Semantics cell or column header, each only inside a Row, where the role is valid. A header
+    that sorts (owner decision 2026-09-25) says so (aria-sort) and its words are then a button; no
+    arrow is drawn, as Figma draws none.
+
+rename:
+  title:
+    to: header
+    reason: >-
+      The description calls title=true "the sortable column header": `header` is its word, and
+      React's `title` is an element's tooltip, a string.
+
+slots:
+  avatar:
+    name: avatar
+    type: component
+    reason: >-
+      A user cell's Avatar (sm) is the caller's SOLAR Avatar, its colour and initials the user's;
+      Figma records no prop.
+  tag:
+    name: tag
+    type: component
+    reason: A status cell's Tag is the caller's SOLAR Tag, its status and words the row's.
+  iconMore:
+    name: icon
+    type: icon
+    reason: >-
+      An icon cell's icon is the caller's: Figma draws Icon/More, a sample of what a column
+      shows.
+  textInput:
+    name: textInput
+    type: component
+    reason: An input cell's field is the caller's SOLAR Text Input (sm), its value the row's.
+  dropdown:
+    name: dropdown
+    type: component
+    reason: A select cell's field is the caller's SOLAR Dropdown (sm), its choice the row's.
+  button:
+    name: button
+    type: component
+    reason: A button cell's action is the caller's SOLAR Button (sm), what it does the row's.
+  toggle:
+    name: toggle
+    type: component
+    reason: A toggle cell's setting is the caller's SOLAR Toggle, on or off by the row.
+  danielSalmonsson:
+    name: name
+    type: text
+    reason: >-
+      A user cell's name, beside its Avatar, is the caller's; Figma records no text prop and names
+      the layer after its sample.
+
+derive:
+  type:
+    when:
+      - value: user
+        given: [avatar]
+      - value: status
+        given: [tag]
+      - value: icon
+        given: [icon]
+      - value: input
+        given: [textInput]
+      - value: select
+        given: [dropdown]
+      - value: button
+        given: [button]
+      - value: toggle
+        given: [toggle]
+      - value: text
+    reason: >-
+      Owner decision 2026-09-25: a cell's type follows from its content, as a Tag's does. A cell
+      given an Avatar is a user cell, one given a Tag, an icon, a Text Input, a Dropdown, a Button
+      or a Toggle that type's, and one given words alone a text cell; the padding is the same in
+      all, so the type is no prop the caller could set against what it holds.
+
+defaults:
+  title:
+    value: false
+    reason: >-
+      A cell is a data cell unless it heads its column: Figma's default variant is the header, one
+      cell of a row's many.
+
+follows:
+  root.paddingLeft:
+    axes: [title]
+    reason: >-
+      A header starts with its separator, the column's edge, and a data cell with its padding
+      (inset.sm); the header's words sit the separator and the gap in, inset.sm from its edge as a
+      data cell's do.
+  label.typography:
+    axes: [title]
+    reason: >-
+      A header's words are label/md, a data cell's body/md/regular, as Figma draws each.
+
+set:
+  root.appearance.*.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws no focus state. A header that sorts (owner decision 2026-09-25) is a button a
+      keyboard user reaches, and needs to see it, SOLAR's floor: while the keyboard is on it the
+      cell draws SOLAR's focus ring, as a pressable card does.
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A cell takes its share of the row, as Figma's cells fill their Row: the set draws it 176
+      wide, a sample.
+  tag.base.height:
+    none: true
+    reason: >-
+      The status is the caller's SOLAR Tag, whose 24px height is its own: the cell places it, and
+      never sizes it.
+  avatar.base.width:
+    none: true
+    reason: The user is the caller's SOLAR Avatar, sm, whose 24px box is its own.
+  avatar.base.height:
+    none: true
+    reason: { as: set avatar.base.width }
+  button.base.height:
+    none: true
+    reason: The action is the caller's SOLAR Button, sm, whose 32px height is its own.
+  toggle.base.width:
+    none: true
+    reason: The setting is the caller's SOLAR Toggle, whose 32 × 18 track is its own.
+  toggle.base.height:
+    none: true
+    reason: { as: set toggle.base.width }
+
+bind:
+  icon.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's height is already bound to it.
+  separator.width:
+    literal: 1
+    token: border.default
+    reason: >-
+      The separator is the column's edge, a 1px rule: border.default, the same value.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A table cell is 40 tall, bound to nothing: SOLAR publishes no row height (RowExpand's and a
+      tree row's are the same gap). In a Row it fills the row.
+  separator.height:
+    reason: >-
+      The separator is 26 tall, centred in the 40px cell, bound to nothing: SOLAR has no size for
+      a column rule.

@@ -60,6 +60,7 @@
               0,
               0
             ],
+            "constraints": "SCALE/SCALE",
             "fills": [
               "{Color:icon/primary}"
             ],
@@ -123,6 +124,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/inverse}"
                   ],
@@ -159,6 +161,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -185,6 +188,7 @@
                     6,
                     6
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -211,6 +215,7 @@
                     8,
                     6
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -237,6 +242,7 @@
                     10,
                     6
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -328,6 +334,7 @@
                     5,
                     8
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/link/default}"
                   ],
@@ -364,6 +371,7 @@
                     5,
                     8
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Primitives:color/blue/400}"
                   ],
@@ -390,6 +398,7 @@
                     8,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -416,6 +425,7 @@
                     0,
                     8
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -477,6 +487,7 @@
                     4.59,
                     7.54
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -513,6 +524,7 @@
                     2,
                     4.52
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -539,6 +551,7 @@
                     4.52,
                     2
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -565,6 +578,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -608,6 +622,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -644,6 +659,7 @@
                     4,
                     4
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -670,6 +686,7 @@
                     6,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -696,6 +713,7 @@
                     0,
                     6
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -722,6 +740,7 @@
                     14,
                     6
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -748,6 +767,7 @@
                     6,
                     14
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -794,6 +814,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -830,6 +851,7 @@
                     4,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -856,6 +878,7 @@
                     0,
                     5
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -882,6 +905,7 @@
                     14,
                     5
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -928,6 +952,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -964,6 +989,7 @@
                     0,
                     4
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -990,6 +1016,7 @@
                     5,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1016,6 +1043,7 @@
                     5,
                     14
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1062,6 +1090,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1118,6 +1147,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1174,6 +1204,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1230,6 +1261,7 @@
                     1.64,
                     1.64
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1286,6 +1318,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1322,6 +1355,7 @@
                     3,
                     1
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1348,6 +1382,7 @@
                     5,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1374,6 +1409,7 @@
                     5,
                     14
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1400,6 +1436,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1426,6 +1463,7 @@
                     0,
                     14
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1472,6 +1510,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1508,6 +1547,7 @@
                     2,
                     4.52
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1534,6 +1574,7 @@
                     4.52,
                     2
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1560,6 +1601,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1606,6 +1648,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1642,6 +1685,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1668,6 +1712,7 @@
                     8.26,
                     8.26
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ]
@@ -1688,6 +1733,7 @@
                     2.02,
                     2.02
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/inverse}"
                   ],
@@ -1714,6 +1760,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1740,6 +1787,7 @@
                     3.98,
                     1.98
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ]
@@ -1760,6 +1808,7 @@
                     1.98,
                     3.98
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ]
@@ -1800,6 +1849,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -1836,6 +1886,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1862,6 +1913,7 @@
                     8.26,
                     8.26
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ]
@@ -1882,6 +1934,7 @@
                     2.02,
                     2.02
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/inverse}"
                   ],
@@ -1908,6 +1961,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -1934,6 +1988,7 @@
                     1.98,
                     3.98
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ]
@@ -1974,6 +2029,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -2030,6 +2086,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -2086,6 +2143,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/primary}"
                   ],
@@ -2160,6 +2218,7 @@
                     4.59,
                     7.54
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Primitives:color/green/400}"
                   ],
@@ -2196,6 +2255,7 @@
                     7.59,
                     10.54
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/inverse}"
                   ],
@@ -2239,6 +2299,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/inverse}"
                   ],
@@ -2275,6 +2336,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2301,6 +2363,7 @@
                     10.85,
                     9
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2327,6 +2390,7 @@
                     8.85,
                     9
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2353,6 +2417,7 @@
                     6.85,
                     9
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2399,6 +2464,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:icon/inverse}"
                   ],
@@ -2435,6 +2501,7 @@
                     1,
                     2
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2461,6 +2528,7 @@
                     0,
                     0
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2487,6 +2555,7 @@
                     0,
                     15
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2513,6 +2582,7 @@
                     2,
                     12
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2539,6 +2609,7 @@
                     4,
                     12
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2565,6 +2636,7 @@
                     3,
                     11
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2591,6 +2663,7 @@
                     5,
                     11
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2617,6 +2690,7 @@
                     7,
                     11
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2643,6 +2717,7 @@
                     6,
                     10
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2669,6 +2744,7 @@
                     4,
                     10
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2695,6 +2771,7 @@
                     5,
                     9
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2721,6 +2798,7 @@
                     5,
                     7
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2747,6 +2825,7 @@
                     6,
                     5
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2773,6 +2852,7 @@
                     5,
                     4
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2799,6 +2879,7 @@
                     3,
                     4
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2825,6 +2906,7 @@
                     7,
                     4
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2851,6 +2933,7 @@
                     4,
                     5
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2877,6 +2960,7 @@
                     6,
                     12
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],
@@ -2903,6 +2987,7 @@
                     8,
                     12
                   ],
+                  "constraints": "SCALE/SCALE",
                   "fills": [
                     "{Color:surface/muted}"
                   ],

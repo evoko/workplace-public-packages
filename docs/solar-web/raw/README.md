@@ -20,6 +20,11 @@ prints the read-only Plugin API script that names them (run it through the Figma
 tool in this file), and merges the names it returns (`--add`); then run the fetch again, which
 reads the cache.
 
+After a change to the fetcher itself, `--expect-version <v>` rebuilds the mirror from the cache
+of the version it already holds (`_meta.json`), and stops, writing nothing, where Figma's current
+version is another: the change is taken alone, never mixed with a design change a sync would
+bring.
+
 ```bash
 node docs/solar-web/raw/fetch-rest.mjs                 # all pages (REST responses cached in $TMPDIR)
 node docs/solar-web/raw/fetch-rest.mjs --only-missing  # only pages without a JSON yet
@@ -70,21 +75,22 @@ for any design-to-code generator. Regenerate them rather than editing them.
 
 ### Layer tree nodes (`defaultVariantTree`, `components[].tree`, `frames[].tree`)
 
-| Field                                              | Meaning                                                                                                                                                                   |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`, `type`                                     | Layer name and Figma node type                                                                                                                                            |
-| `hidden`                                           | `true` when the layer is invisible in this variant (usually a boolean-prop-controlled slot)                                                                               |
-| `main`                                             | For instances: the name of the component (or component set) the instance comes from                                                                                       |
-| `variant`                                          | For instances: the variant properties applied                                                                                                                             |
-| `text`, `textStyle`                                | For text: first 80 characters and the bound text style                                                                                                                    |
-| `size`                                             | `[width, height]` in px                                                                                                                                                   |
-| `layout`                                           | Auto-layout: `dir`, `gap`, `pad` `[top, right, bottom, left]`, `align` `primary/counter`, `sizing` `horizontal/vertical`                                                  |
-| `sizing`                                           | For non-auto-layout children of an auto-layout parent: `horizontal/vertical` sizing                                                                                       |
-| `fills`, `strokes`                                 | Visible solid paints. `{Collection:path}` means bound to a variable; a bare `#hex` is a **hard-coded value**                                                              |
-| `strokeWeight`, `radius`, `opacity`, `effectStyle` | As in Figma; `radius` is a 4-array when corners differ                                                                                                                    |
-| `vars`                                             | Every other bound variable on the node, `property → Collection:path` (padding, gap, radius, stroke weight, width/height, font size, line height, font family, font style) |
-| `propRefs`                                         | Component property references: which prop controls `visible`, `characters`, or `mainComponent` on this layer                                                              |
-| `children`                                         | Child layers (instances are not expanded; their internals belong to their own component page)                                                                             |
+| Field                                              | Meaning                                                                                                                                                                                                                                        |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`, `type`                                     | Layer name and Figma node type                                                                                                                                                                                                                 |
+| `hidden`                                           | `true` when the layer is invisible in this variant (usually a boolean-prop-controlled slot)                                                                                                                                                    |
+| `main`                                             | For instances: the name of the component (or component set) the instance comes from                                                                                                                                                            |
+| `variant`                                          | For instances: the variant properties applied                                                                                                                                                                                                  |
+| `text`, `textStyle`                                | For text: first 80 characters and the bound text style                                                                                                                                                                                         |
+| `size`                                             | `[width, height]` in px                                                                                                                                                                                                                        |
+| `layout`                                           | Auto-layout: `dir`, `gap`, `pad` `[top, right, bottom, left]`, `align` `primary/counter`, `sizing` `horizontal/vertical`                                                                                                                       |
+| `sizing`                                           | For non-auto-layout children of an auto-layout parent: `horizontal/vertical` sizing                                                                                                                                                            |
+| `fills`, `strokes`                                 | Visible paints. `{Collection:path}` means bound to a variable; a bare `#hex` is a **hard-coded value**; a linear gradient is `linear-gradient(<start> → <end>: <stop> <at>%, …)`, its handles as fractions of the box ([schema](../schema.md)) |
+| `constraints`                                      | For a layer placed by `position`: what Figma pins it to, `horizontal/vertical` (`RIGHT/TOP`), where that is not the left and the top                                                                                                           |
+| `strokeWeight`, `radius`, `opacity`, `effectStyle` | As in Figma; `radius` is a 4-array when corners differ                                                                                                                                                                                         |
+| `vars`                                             | Every other bound variable on the node, `property → Collection:path` (padding, gap, radius, stroke weight, width/height, font size, line height, font family, font style)                                                                      |
+| `propRefs`                                         | Component property references: which prop controls `visible`, `characters`, or `mainComponent` on this layer                                                                                                                                   |
+| `children`                                         | Child layers (instances are not expanded; their internals belong to their own component page)                                                                                                                                                  |
 
 ### `frames[]`
 

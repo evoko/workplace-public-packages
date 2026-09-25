@@ -18,6 +18,7 @@ import 'button.dart';
 import 'button_group.dart';
 import 'card.dart';
 import 'checkbox.dart';
+import 'column_item.dart';
 import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
@@ -67,8 +68,12 @@ import 'paginationitem.dart';
 import 'paginationnav.dart';
 import 'password_input.dart';
 import 'progressbar.dart';
+import 'propertylist.dart';
+import 'propertyrow.dart';
 import 'radio.dart';
+import 'row.dart';
 import 'rowexpand.dart';
+import 'rowselect.dart';
 import 'searchfield.dart';
 import 'section_nav_group_header.dart';
 import 'section_nav_item.dart';
@@ -87,6 +92,9 @@ import 'step.dart';
 import 'stepper.dart';
 import 'stepper_indicator.dart';
 import 'tab_item.dart';
+import 'table.dart';
+import 'tablefooter.dart';
+import 'tableheader.dart';
 import 'tabs.dart';
 import 'tag.dart';
 import 'text_area.dart';
@@ -117,6 +125,7 @@ final cases = <String, VisualCase>{
   'Button Group': buttonGroupCase,
   'Card': cardCase,
   'Checkbox': checkboxCase,
+  'Column Item': columnItemCase,
   'Container': containerCase,
   'Context Menu': contextMenuCase,
   'Context Menu Item': contextMenuItemCase,
@@ -166,8 +175,12 @@ final cases = <String, VisualCase>{
   'PaginationNav': paginationNavCase,
   'Password Input': passwordInputCase,
   'ProgressBar': progressBarCase,
+  'PropertyList': propertyListCase,
+  'PropertyRow': propertyRowCase,
   'Radio': radioCase,
+  'Row': rowCase,
   'RowExpand': rowExpandCase,
+  'RowSelect': rowSelectCase,
   'SearchField': searchFieldCase,
   'Section Nav Group Header': sectionNavGroupHeaderCase,
   'Section Nav Item': sectionNavItemCase,
@@ -186,6 +199,9 @@ final cases = <String, VisualCase>{
   'Stepper': stepperCase,
   'Stepper Indicator': stepperIndicatorCase,
   'Tab Item': tabItemCase,
+  'Table': tableCase,
+  'TableFooter': tableFooterCase,
+  'TableHeader': tableHeaderCase,
   'Tabs': tabsCase,
   'Tag': tagCase,
   'Text Area': textAreaCase,

@@ -1230,10 +1230,12 @@ export function applyOverlay(
     // A state the IR keeps no entry for, because Figma draws it as at rest (FAB's focus), may be
     // given one, under an appearance the IR has, for a state the component has. So may focus
     // where Figma draws none at all (Toggle's): a visible focus is SOLAR's floor, and the state
-    // joins the component's.
+    // joins the component's. So may hover, where a description asks for one Figma does not draw
+    // (Row's "Hover renders at runtime as a surface/hover overlay", owner decision 2026-09-25).
     const states = new Set([
       'default',
       'focus',
+      'hover',
       ...spec.states,
       ...Object.keys(spec.api).filter((p) => BOOLEAN_STATES.includes(p)),
     ]);
@@ -1277,8 +1279,8 @@ export function applyOverlay(
         node[key] = {};
       if (!node?.[key] && last && node && states.has(key)) {
         node[key] = {};
-        if (key === 'focus' && !spec.states.includes('focus'))
-          spec.states.push('focus');
+        if ((key === 'focus' || key === 'hover') && !spec.states.includes(key))
+          spec.states.push(key);
       }
       if (!node?.[key]) fail(`set ${at}: the IR has no ${section} ${key}`);
       node = node[key];

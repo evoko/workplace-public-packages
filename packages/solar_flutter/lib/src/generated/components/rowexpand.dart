@@ -109,7 +109,7 @@ abstract final class SolarRowExpandRecipe {
     'container.radius|appearance|type=bottom-row|default': 't:radius.control',
     'container.borderWidth|appearance|type=bottom-row|default':
         't:border.default',
-    'container.x|appearance|type=bottom-row|default': 'px:8',
+    'container.right|appearance|type=bottom-row|default': 'px:0',
     'container.y|appearance|type=bottom-row|default': 'px:0',
     'container.present|appearance|type=middle-row|default': 'b:true',
     'container.glyph|appearance|type=middle-row|default': 'g:1',
@@ -120,7 +120,7 @@ abstract final class SolarRowExpandRecipe {
     'container.radius|appearance|type=middle-row|default': 'none',
     'container.borderWidth|appearance|type=middle-row|default':
         't:border.default',
-    'container.x|appearance|type=middle-row|default': 'px:8.25',
+    'container.right|appearance|type=middle-row|default': 'px:-0.25',
     'container.y|appearance|type=middle-row|default': 'px:0',
     'container.present|appearance|type=vertical-only|default': 'b:true',
     'container.glyph|appearance|type=vertical-only|default': 'g:2',
@@ -131,7 +131,7 @@ abstract final class SolarRowExpandRecipe {
     'container.radius|appearance|type=vertical-only|default': 'none',
     'container.borderWidth|appearance|type=vertical-only|default':
         't:border.default',
-    'container.x|appearance|type=vertical-only|default': 'px:8.25',
+    'container.right|appearance|type=vertical-only|default': 'px:7.75',
     'container.y|appearance|type=vertical-only|default': 'px:0',
     'container2.present|base': 'b:false',
     'container2.present|appearance|type=middle-row|default': 'b:true',
@@ -143,7 +143,7 @@ abstract final class SolarRowExpandRecipe {
     'container2.radius|appearance|type=middle-row|default': 'none',
     'container2.borderWidth|appearance|type=middle-row|default':
         't:border.default',
-    'container2.x|appearance|type=middle-row|default': 'px:8.25',
+    'container2.right|appearance|type=middle-row|default': 'px:7.75',
     'container2.y|appearance|type=middle-row|default': 'px:20',
   };
 

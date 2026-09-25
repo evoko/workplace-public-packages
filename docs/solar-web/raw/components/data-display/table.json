@@ -309,6 +309,7 @@
                     8,
                     0
                   ],
+                  "constraints": "RIGHT/TOP",
                   "strokes": [
                     "{Color:border/medium}"
                   ],
@@ -362,6 +363,7 @@
                     8.25,
                     0
                   ],
+                  "constraints": "RIGHT/TOP",
                   "strokes": [
                     "{Color:border/medium}"
                   ],
@@ -392,6 +394,7 @@
                     8.25,
                     20
                   ],
+                  "constraints": "RIGHT/TOP",
                   "strokes": [
                     "{Color:border/medium}"
                   ],
@@ -441,6 +444,7 @@
                     8.25,
                     0
                   ],
+                  "constraints": "RIGHT/TOP",
                   "strokes": [
                     "{Color:border/medium}"
                   ],
@@ -4420,9 +4424,10 @@
                     329,
                     0
                   ],
+                  "constraints": "RIGHT/TOP",
                   "sizing": "FIXED/FIXED",
                   "fills": [
-                    "GRADIENT_LINEAR"
+                    "linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base} 100%)"
                   ]
                 }
               }
@@ -4667,9 +4672,10 @@
                     329,
                     0
                   ],
+                  "constraints": "RIGHT/TOP",
                   "sizing": "FIXED/FIXED",
                   "fills": [
-                    "GRADIENT_LINEAR"
+                    "linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base} 100%)"
                   ]
                 }
               }
@@ -4948,9 +4954,10 @@
                     323,
                     0
                   ],
+                  "constraints": "RIGHT/TOP",
                   "sizing": "FIXED/FIXED",
                   "fills": [
-                    "GRADIENT_LINEAR"
+                    "linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base} 100%)"
                   ]
                 }
               }

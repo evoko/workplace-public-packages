@@ -91,6 +91,57 @@ function sameShadow(a, b) {
   );
 }
 
+/** Splits a CSS list on its commas, not the ones inside a colour function. */
+function listOf(v) {
+  const parts = [];
+  let depth = 0;
+  let start = 0;
+  for (let i = 0; i < v.length; i++) {
+    if (v[i] === '(') depth++;
+    if (v[i] === ')') depth--;
+    if (v[i] === ',' && depth === 0) {
+      parts.push(v.slice(start, i).trim());
+      start = i + 1;
+    }
+  }
+  parts.push(v.slice(start).trim());
+  return parts;
+}
+
+/**
+ * A `linear-gradient(…)`, the browser's or the oracle's, as its direction and its stops, each a
+ * colour at a place in percent; null for a value that is none.
+ */
+export function gradient(value) {
+  const m = /^linear-gradient\((.*)\)$/.exec(String(value).trim());
+  if (!m) return null;
+  const parts = listOf(m[1]);
+  const direction = /^(to |-?[\d.]+deg$)/.test(parts[0])
+    ? parts.shift()
+    : 'to bottom';
+  const stops = parts.map((p) => {
+    const i = p.lastIndexOf(' ');
+    return { colour: p.slice(0, i), at: Number.parseFloat(p.slice(i + 1)) };
+  });
+  return { direction, stops };
+}
+
+/** Two gradients agree: one direction, and each stop's colour and place, within rounding. */
+function sameGradient(a, b) {
+  const [x, y] = [gradient(a), gradient(b)];
+  return Boolean(
+    x &&
+    y &&
+    x.direction === y.direction &&
+    x.stops.length === y.stops.length &&
+    x.stops.every(
+      (s, i) =>
+        Math.abs(s.at - y.stops[i].at) <= 0.5 &&
+        sameColour(s.colour, y.stops[i].colour),
+    ),
+  );
+}
+
 /** The first family in a CSS font-family list, unquoted. */
 const firstFamily = (list) =>
   String(list)
@@ -105,6 +156,10 @@ const firstFamily = (list) =>
 export function matches(property, figma, rendered) {
   switch (property) {
     case 'background':
+      // A gradient is compared as one (Table's fade); a colour as a colour.
+      if (String(figma).startsWith('linear-gradient('))
+        return sameGradient(figma, rendered);
+      return sameColour(figma, rendered);
     case 'borderColor':
     case 'color':
       return sameColour(figma, rendered);

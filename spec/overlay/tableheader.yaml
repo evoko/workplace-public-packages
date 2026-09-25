@@ -1,0 +1,79 @@
+# Hand-written decisions about SOLAR TableHeader, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: TableHeader
+
+base:
+  reason: >-
+    The toolbar above a Table, as the description says: on desktop a SearchField, a Segmented
+    Control and the caller's actions (Icon Buttons for filters and bulk actions), spread across it;
+    on mobile the Segmented Control and the actions alone, as Figma draws it (no search). Bespoke on
+    both platforms, drawn with the shared layer helpers, each part the caller's SOLAR component. The
+    breakpoint is the app's to give (owner decision 2026-09-25). The description's title and count
+    are not drawn, and the code draws none; the design review asks.
+
+slots:
+  searchField:
+    name: search
+    type: component
+    reason: >-
+      The search is the caller's SOLAR SearchField (md), what it filters the caller's; Figma
+      records no prop.
+  containerSegmentedControl:
+    name: segmentedControl
+    type: component
+    reason: >-
+      The views are the caller's SOLAR Segmented Control (md), which the table shows by them;
+      Figma records no prop.
+  segmentedControl:
+    name: segmentedControlMobile
+    type: component
+    reason: >-
+      On mobile, the same Segmented Control, at the start of the strip: Figma draws it anew there,
+      out of the desktop strip's container, and the shell draws the caller's one control in
+      whichever the breakpoint draws.
+  actions:
+    name: actionsMobile
+    type: content
+    reason: >-
+      On mobile, the same actions, beside the Segmented Control: Figma draws them in a frame of
+      their own there, and the shell draws the caller's actions in whichever the breakpoint draws.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      The strip spans its table, as Figma's does (FILL on desktop): the mobile one is fixed at
+      377, a sample of a phone's width.
+  root.appearance.breakpoint=mobile.default.width:
+    keyword: FILL
+    reason: { as: set root.base.width }
+  search.base.height:
+    none: true
+    reason: >-
+      The search is a SOLAR SearchField, whose 40px height at md is its own: the strip places it,
+      and never sizes it.
+  actions.base.width:
+    keyword: HUG
+    reason: >-
+      The actions are as wide as the caller's buttons, packed to the strip's end: Figma fixes the
+      frame at 240 for its three samples.
+  '*IconButton*.base.width':
+    none: true
+    reason: >-
+      Each action is the caller's SOLAR Icon Button (md, square, secondary), whose 40px box is its
+      own: the strip places it, and never sizes it.
+  '*IconButton*.base.height':
+    none: true
+    reason: { as: set *IconButton*.base.width }
+
+allowLiteral:
+  search.width:
+    reason: >-
+      The toolbar's search is 240 wide, bound to nothing: a field fills what holds it, and SOLAR
+      has no width for a toolbar's field; carried as Figma's number, the sizes with no variable.
+
+accept:
+  component.tableheader.root.width@breakpoint=mobile:
+    reason: { as: set root.base.width }

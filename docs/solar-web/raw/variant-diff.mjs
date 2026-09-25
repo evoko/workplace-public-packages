@@ -13,6 +13,7 @@ export const DIFF_KEYS = [
   'variant',
   'size',
   'position',
+  'constraints',
   'layout',
   'sizing',
   'fills',

@@ -77,8 +77,9 @@ values are in [../solar/tokens/css-contract.json](../solar/tokens/css-contract.j
 
 Keys of `changed` are layer paths in the default variant's tree (`/` is the root; `#2`
 marks the second sibling of the same name). Values hold only the fields that differ:
-`hidden`, `text`, `textStyle`, `main`, `variant`, `size`, `position`, `layout`, `sizing`, `fills`,
-`strokes`, `strokeWeight`, `strokeWeights`, `radius`, `effectStyle`, `opacity`, `vars`. For `vars` and
+`hidden`, `text`, `textStyle`, `main`, `variant`, `size`, `position`, `constraints`, `layout`,
+`sizing`, `fills`, `strokes`, `strokeWeight`, `strokeWeights`, `radius`, `effectStyle`, `opacity`,
+`vars`. For `vars` and
 `layout` only the changed sub-keys appear; `null` means the default had it and the variant
 does not. This is the input for generating per-variant styles: start from the default tree,
 apply `changed`, add and remove the listed layers.
@@ -109,7 +110,17 @@ A layer its parent's auto layout does not place, a child of a frame with no auto
 positioned absolutely inside one, has `position`: its top-left, `[x, y]` in pixels to the
 hundredth, relative to its parent's, from the two bounding boxes (StatusIndicator's `!` inside its
 triangle, a Toggle's knob). A layer auto layout places has none: its place follows from the
-layout. Data fetched before 2026-09-24 has no positions.
+layout. Data fetched before 2026-09-24 has no positions. Where Figma pins such a layer to other
+than its parent's left and top, it has `constraints`, `horizontal/vertical` as Figma spells them
+(Table's mobile fade, `RIGHT/TOP`: it stays at the table's right edge); codegen pins it there.
+Data fetched before 2026-09-25 has none, and codegen then pins a layer by where it sits.
+
+A paint is a colour: `{Collection:path}` where it is bound, `#rrggbb` (with ` a=<alpha>` where it
+is translucent) where it is not. A linear gradient is one string, its start and end handles as
+fractions of the layer's box, then each stop's colour, written as a paint is, at its place:
+`linear-gradient(0,0.68 → 1,0.68: {Primitives:color/alpha/transparent} 0%, {Color:surface/base}
+100%)`. Data fetched before 2026-09-25 records a gradient as `GRADIENT_LINEAR` alone. Any other
+paint (an image, another gradient) is its type: `IMAGE`.
 
 An `INSTANCE` of an icon (`main` starting `Icon/`) records `iconFills`: the distinct fills of the
 vectors inside it, which the tree does not descend into. It is diffed like any other property,

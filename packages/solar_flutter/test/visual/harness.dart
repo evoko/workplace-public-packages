@@ -22,7 +22,12 @@ typedef Layers = Map<String, Map<String, Object?>>;
 
 /// How the checks render and measure one component.
 class VisualCase {
-  const VisualCase({required this.build, required this.measure, this.layersAt});
+  const VisualCase({
+    required this.build,
+    required this.measure,
+    this.layersAt,
+    this.surface,
+  });
 
   /// The widget in one oracle variant (`builders/`, shared with the Widgetbook app).
   final VariantBuilder build;
@@ -32,6 +37,10 @@ class VisualCase {
 
   /// This component's layers where another draws it (Button's spinner), found at [at].
   final Layers Function(WidgetTester tester, Finder at)? layersAt;
+
+  /// The logical size of the screen it is pumped on, where the test's 800 × 600 is too small for
+  /// what Figma draws in it (a TableHeader's controls, each at its own size); null for that.
+  final Size? surface;
 }
 
 /// Every oracle the codegen generated, by component: one per component it generates.
@@ -210,6 +219,10 @@ Future<(List<Difference>, List<Difference>)> check(
       .map(inMode)
       .toList();
   final atRest = variants.first['layers'] as Map<String, dynamic>;
+  if (kase.surface case final size?) {
+    tester.view.physicalSize = size * tester.view.devicePixelRatio;
+    addTearDown(tester.view.resetPhysicalSize);
+  }
   for (final v in variants) {
     final name = v['figma'] as String;
     if (only != null && !only.contains(name)) continue;
@@ -353,8 +366,31 @@ void checkChild(
       failures.add(Difference(variant, layer, '$part.present', true, false));
       continue;
     }
+    // A part that is itself a composed child (a PropertyList row's Select): what the child decides
+    // of it, its box, against that child's root; the grandchild's own look is its own check's.
+    final nested = measured['layers'];
     final own = <Difference>[];
-    compareLayer(variant, part, spec, measured, excused, own, <Difference>[]);
+    compareLayer(
+      variant,
+      part,
+      nested is Layers
+          ? {
+              for (final MapEntry(:key, :value) in spec.entries)
+                if (!const {
+                  'component',
+                  'variant',
+                  'figmaVariant',
+                  'hidden',
+                  'hides',
+                }.contains(key))
+                  key: value,
+            }
+          : spec,
+      nested is Layers ? (nested['root'] ?? const {}) : measured,
+      excused,
+      own,
+      <Difference>[],
+    );
     for (final d in own) {
       failures.add(
         Difference(variant, layer, '$part.${d.property}', d.figma, d.painted),

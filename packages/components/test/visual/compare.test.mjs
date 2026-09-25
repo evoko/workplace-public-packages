@@ -122,3 +122,42 @@ describe('a layer placed by position', () => {
     ]);
   });
 });
+
+describe('a gradient', () => {
+  const figma = 'linear-gradient(to right, transparent 0%, #ffffff 100%)';
+
+  it('agrees with the browser’s where its direction, stops and places do', () => {
+    expect(
+      matches(
+        'background',
+        figma,
+        'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%)',
+      ),
+    ).toBe(true);
+  });
+
+  it('differs where its direction, a stop’s colour or its place does', () => {
+    expect(
+      matches(
+        'background',
+        figma,
+        'linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%)',
+      ),
+    ).toBe(false);
+    expect(
+      matches(
+        'background',
+        figma,
+        'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%)',
+      ),
+    ).toBe(false);
+    expect(
+      matches(
+        'background',
+        figma,
+        'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 100%)',
+      ),
+    ).toBe(false);
+    expect(matches('background', figma, 'rgb(255, 255, 255)')).toBe(false);
+  });
+});

@@ -70,7 +70,10 @@ and `SolarFileUpload`), and the menus and lists (`SolarDropdownItem`, `SolarDrop
 `SolarStatusCard`, `SolarInsightCard`, `SolarInsightCardSmall`, `SolarInsightRow`,
 `SolarExpandableCard`, `SolarAccordion`, `SolarEventRow`, `SolarOptionCard`, `SolarFileCard`,
 `SolarImageCard`, `SolarActionCard`, `SolarInteractiveCard`, `SolarDeviceCard`, `SolarLaunchCard`
-and `SolarLaunchCardFullScreen`) take the same props as the React components
+and `SolarLaunchCardFullScreen`), and the tables and properties (`SolarTable`, `SolarRow`,
+`SolarColumnItem`, `SolarRowSelect`, `SolarTableHeader`, `SolarTableFooter`, `SolarPropertyList`
+and `SolarPropertyRow`; a table's parts take their semantics roles only inside it, and a control
+in a table's cell is its own target, a dense row's) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes

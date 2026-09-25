@@ -469,6 +469,7 @@
                     424,
                     16
                   ],
+                  "constraints": "RIGHT/TOP",
                   "layout": {
                     "dir": "HORIZONTAL",
                     "gap": 0,

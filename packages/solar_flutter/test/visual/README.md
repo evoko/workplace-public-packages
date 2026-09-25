@@ -33,7 +33,12 @@ run by `flutter test` with the rest of the package.
   check does (a calendar's days, through `dayBuilder`; a time list's rows, `optionBuilder`). The
   layers of a child the parent's instance hides (the oracle's `hides`) must not be drawn. A
   layer's corners are measured each (`radiusTopLeft`…), as a range's day draws them, and a placed
-  layer from each edge of its parent, `x`, `y`, `right` and `bottom`.
+  layer from each edge of its parent, `x`, `y`, `right` and `bottom`. A composed child's own
+  composed children (a PropertyList row's Select) are compared for the box the child gives them,
+  their own look being their own check's. A gradient background is measured as the oracle writes
+  one (`paintedGradient`), its direction and each stop's colour at its place. A case whose widget
+  is wider than the test's 800 × 600 screen (a TableHeader, each control at its own size) gives
+  itself a `surface`.
 
 - **States** are forced through a `WidgetStatesController` (hover, pressed, focus), as a user
   reaches them: a pressed widget is hovered too, as a pointer pressing it is and as the web check

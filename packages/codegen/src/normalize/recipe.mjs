@@ -14,6 +14,7 @@
  */
 
 import { farEdgesOf, placementOf } from './placement.mjs';
+import { parseGradient } from './gradient.mjs';
 import { drawnPaint } from './paints.mjs';
 import { checkPathData } from './svg.mjs';
 
@@ -228,6 +229,8 @@ function paint(paints, names, where, onCovered) {
   // A stack is the paint on top when that one covers the rest; what it covers is reported.
   const { paint: p, covered } = drawnPaint(paints, names, where);
   if (covered.length) onCovered?.(covered, p);
+  const gradient = parseGradient(p);
+  if (gradient) return gradientPaint(p, gradient, names);
   const ref = /^\{(.+)\}$/.exec(p);
   if (!ref) return { literal: p };
   const token = names.variable(ref[1]);
@@ -237,6 +240,30 @@ function paint(paints, names, where, onCovered) {
   if (token && !token.startsWith('color.'))
     return { literal: p, binding: ref[1], misbound: true };
   return token ? { token } : { literal: p, binding: ref[1] };
+}
+
+/**
+ * A linear gradient as one paint: each stop's colour token and place, and where it runs. A stop
+ * bound to `color.alpha.transparent` is the colour beside it, faded out (`alpha: 0`): the fade is
+ * that colour's, in Light and in Dark, and no primitive reaches the code. A gradient with a stop
+ * bound to nothing, or to a variable that is not a colour, is a literal, reported as any unbound
+ * paint is.
+ */
+function gradientPaint(p, gradient, names) {
+  const stops = gradient.stops.map((s) => {
+    const ref = /^\{(.+)\}$/.exec(s.paint);
+    const token = ref && names.variable(ref[1]);
+    return { token, position: s.position };
+  });
+  if (stops.some((s) => !s.token?.startsWith('color.'))) return { literal: p };
+  const faded = stops.map((s, i) =>
+    s.token === 'color.alpha.transparent'
+      ? { ...s, token: (stops[i + 1] ?? stops[i - 1]).token, alpha: 0 }
+      : s,
+  );
+  if (faded.some((s) => s.token === 'color.alpha.transparent'))
+    return { literal: p };
+  return { gradient: { from: gradient.from, to: gradient.to, stops: faded } };
 }
 
 const style = (name, lookup) => {
@@ -955,11 +982,13 @@ export function deriveRecipe(
         const value = read(v, path, cell);
         if (!value || value.literal === undefined || cls === undefined)
           continue;
+        // A paint that is no colour (an image) is not a value to bind; a hex or a gradient is.
         if (
           typeof value.literal === 'string' &&
           !value.binding &&
           cls === 'paint' &&
-          !value.literal.startsWith('#')
+          !value.literal.startsWith('#') &&
+          !value.literal.startsWith('linear-gradient(')
         )
           continue;
         const kind = value.misbound

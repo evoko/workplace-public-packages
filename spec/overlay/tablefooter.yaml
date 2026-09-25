@@ -1,0 +1,88 @@
+# Hand-written decisions about SOLAR TableFooter, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: TableFooter
+
+base:
+  reason: >-
+    The strip under a Table, as the description says: how many rows a page shows (the caller's
+    Dropdown, with its words on desktop), the caller's Pagination, and an optional action (a
+    Button on desktop, an Icon Button on mobile), spread across it. Bespoke on both platforms,
+    drawn with the shared layer helpers, each part the caller's SOLAR component. The breakpoint is
+    the app's to give (owner decision 2026-09-25). Paging itself is the caller's.
+
+slots:
+  containerDropdown:
+    name: rowsPerPage
+    type: component
+    reason: >-
+      How many rows a page shows is the caller's SOLAR Dropdown (md); Figma records no prop.
+  rowsPerPage:
+    name: rowsPerPageLabel
+    type: text
+    reason: >-
+      The Dropdown's words ("rows per page") are the caller's, in the app's language; Figma
+      records no text prop.
+  dropdown:
+    name: rowsPerPageMobile
+    type: component
+    reason: >-
+      On mobile, the same Dropdown, at the start of the strip: Figma draws it anew there, out of
+      the desktop strip's container, and the shell draws the caller's one Dropdown in whichever the
+      breakpoint draws.
+  pagination:
+    name: paginationMobile
+    type: component
+    reason: >-
+      On mobile, the same Pagination, drawn anew as the Dropdown is; the shell draws the caller's
+      one in whichever the breakpoint draws.
+  containerPagination:
+    name: pagination
+    type: component
+    reason: >-
+      The pages are the caller's SOLAR Pagination, its page and count the caller's; Figma records
+      no prop.
+  iconButton:
+    name: iconButton
+    type: component
+    reason: >-
+      On mobile the action is the caller's SOLAR Icon Button (md, square, primary), where desktop
+      draws a Button: two components, so two slots the caller fills by breakpoint.
+
+follows:
+  root.align:
+    axes: [breakpoint]
+    reason: >-
+      On desktop the strip holds one container, centred, which spreads its parts; on mobile the
+      strip spreads its parts itself, as Figma draws each.
+  root.gap:
+    axes: [breakpoint]
+    reason: { as: follows root.align }
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      The strip spans its table, as Figma's does (FILL on desktop): the mobile one is fixed at
+      377, a sample of a phone's width.
+  root.appearance.breakpoint=mobile.default.width:
+    keyword: FILL
+    reason: { as: set root.base.width }
+  button.base.height:
+    none: true
+    reason: >-
+      The action is a SOLAR Button (md), whose 40px height is its own: the strip places it, and
+      never sizes it.
+  iconButton.base.width:
+    none: true
+    reason: >-
+      On mobile the action is a SOLAR Icon Button (md), whose 40px box is its own: the strip
+      places it, and never sizes it.
+  iconButton.base.height:
+    none: true
+    reason: { as: set iconButton.base.width }
+
+accept:
+  component.tablefooter.root.width@breakpoint=mobile:
+    reason: { as: set root.base.width }

@@ -17,6 +17,7 @@ import { pascal } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { BOOLEAN_STATES } from '../normalize/component-layers.mjs';
+import { percent, runOf } from '../normalize/gradient.mjs';
 import { PLACES } from '../normalize/recipe.mjs';
 import { canonical, letterSpacingEm } from './manifest.mjs';
 import { cssTextFeatures, featuresOf } from './text-features.mjs';
@@ -242,6 +243,31 @@ function context(spec, tokens) {
       ]),
   );
 
+  /**
+   * A gradient as CSS: its direction and each stop's colour at its place along it. A stop faded
+   * out (`alpha: 0`) is `transparent`, which CSS blends in premultiplied colour, so the fade is the
+   * colour beside it in any mode.
+   */
+  const gradient = (g, at) => {
+    const { direction, place } = runOf(g, `${where} ${at}`);
+    const stops = g.stops.map((s) => {
+      const colour =
+        s.alpha === 0
+          ? 'transparent'
+          : s.alpha !== undefined
+            ? `color-mix(in srgb, ${ref(s.token, at)} ${percent(s.alpha)}, transparent)`
+            : ref(s.token, at);
+      return `${colour} ${percent(place(s.position))}`;
+    });
+    return `linear-gradient(${direction}, ${stops.join(', ')})`;
+  };
+  // A layer painted with a gradient in some entry: its solid entries clear the gradient.
+  const graded = new Set(
+    Object.entries(spec.style)
+      .filter(([, st]) => JSON.stringify(st).includes('"gradient":'))
+      .map(([layer]) => layer),
+  );
+
   /** One IR cell as CSS declarations. */
   const declare = (cell, entry, at, layer, glyph = false) => {
     if (controlDrawn.get(layer)?.includes(cell)) return {};
@@ -297,7 +323,14 @@ function context(spec, tokens) {
       }
     switch (cell) {
       case 'background':
-        return paint('backgroundColor');
+        if (entry.gradient)
+          return {
+            backgroundColor: 'transparent',
+            backgroundImage: gradient(entry.gradient, at),
+          };
+        return graded.has(layer)
+          ? { ...paint('backgroundColor'), backgroundImage: 'none' }
+          : paint('backgroundColor');
       case 'borderColor':
         return paint('borderColor');
       case 'color':

@@ -128,6 +128,7 @@
               560,
               8
             ],
+            "constraints": "CENTER/CENTER",
             "layout": {
               "dir": "HORIZONTAL",
               "gap": 12,

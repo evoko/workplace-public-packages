@@ -125,7 +125,7 @@ function encode(entry, at) {
 }
 
 /** The IR flattened to `<layer>.<cell>|<scope…>` keys, in a stable order. */
-function flatten(spec, glyphs = []) {
+function flatten(spec, glyphs = [], gradients = []) {
   const cells = {};
   // A glyph is structured data, not a string: the cell holds its index in the recipe's glyph
   // list, one entry per distinct drawing.
@@ -138,12 +138,21 @@ function flatten(spec, glyphs = []) {
   // A layer with no auto-layout in a variant (the recipe writes it `none`) has no gap or padding:
   // inset.none, as the MUI recipe has it, so a shell reads a length there like any other.
   const insets = /\.(gap|padding(Top|Right|Bottom|Left))\|/;
+  // A gradient too: `lg:<n>`, the nth of the recipe's gradients.
+  const gradientIndex = (gradient) => {
+    const key = JSON.stringify(gradient);
+    let i = gradients.findIndex((g) => JSON.stringify(g) === key);
+    if (i < 0) i = gradients.push(gradient) - 1;
+    return `lg:${i}`;
+  };
   const put = (key, entry) =>
     (cells[key] = entry.glyph
       ? glyphIndex(entry.glyph)
-      : entry.none && insets.test(key)
-        ? 't:inset.none'
-        : encode(entry, key));
+      : entry.gradient
+        ? gradientIndex(entry.gradient)
+        : entry.none && insets.test(key)
+          ? 't:inset.none'
+          : encode(entry, key));
   for (const [layer, s] of Object.entries(spec.style)) {
     for (const [cell, e] of Object.entries(s.base))
       put(`${layer}.${cell}|base`, e);
@@ -182,7 +191,12 @@ export function renderFlutterComponent(spec, tokens) {
   const glyphs = [];
   // Read through the overlaps, as the MUI recipe is: a pressed control is hovered too, and each
   // cell is looked up in the strongest state that has it.
-  const cells = flatten({ ...spec, style: restateOverlaps(spec) }, glyphs);
+  const gradients = [];
+  const cells = flatten(
+    { ...spec, style: restateOverlaps(spec) },
+    glyphs,
+    gradients,
+  );
   const cellNames = new Set(Object.keys(cells).map((k) => k.split('|')[0]));
   for (const [prop, cell] of Object.entries(table))
     if (!cellNames.has(cell))
@@ -346,9 +360,11 @@ export function renderFlutterComponent(spec, tokens) {
     .join('\n');
 
   const shown = [
+    ...(gradients.length ? ['Alignment'] : []),
     'BoxShadow',
     'Color',
     'Colors',
+    ...(gradients.length ? ['Gradient', 'LinearGradient'] : []),
     'TextStyle',
     'WidgetState',
     ...(builderOf === 'ButtonStyle'
@@ -444,6 +460,44 @@ ${optional(
   // The shapes the component draws itself, Figma's path data byte for byte.
   const pathDart = (p) =>
     `SolarVectorPath(${quote(p.d)}${p.evenOdd ? ', evenOdd: true' : ''})`;
+  // A gradient's stops, each its colour token (faded out where the IR says so) at its place along
+  // the line from the start handle to the end, as Figma places them: a LinearGradient's begin and
+  // end are the handles, in the box's own fractions.
+  const colourOf = (token, at) => {
+    const t = all.get(token);
+    if (!t || t.type !== 'color' || !t.modes)
+      throw new Error(
+        `${spec.component} ${at}: ${token} is no semantic colour for a gradient`,
+      );
+    return `c.${dartName(token.split('.').slice(1).join('.'))}`;
+  };
+  const alignment = ([x, y]) =>
+    `const Alignment(${(x * 2 - 1).toFixed(2)}, ${(y * 2 - 1).toFixed(2)})`;
+  const gradientDart = gradients.length
+    ? `
+  /// The gradient a layer's background is painted with (a cell's \`lg:<n>\` is the nth), or null
+  /// where it is a colour.
+  static Gradient? gradient(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) {
+    final c = t.colors;
+    return switch (lookup(cell, p, s)) {
+${gradients
+  .map(
+    (g, i) =>
+      `      'lg:${i}' => LinearGradient(begin: ${alignment(g.from)}, end: ${alignment(g.to)}, colors: [${g.stops
+        .map(
+          (st) =>
+            `${colourOf(st.token, `gradient ${i}`)}${st.alpha !== undefined ? `.withValues(alpha: ${st.alpha.toFixed(2)})` : ''}`,
+        )
+        .join(
+          ', ',
+        )}], stops: const [${g.stops.map((st) => st.position.toFixed(2)).join(', ')}]),`,
+  )
+  .join('\n')}
+      _ => null,
+    };
+  }
+`
+    : '';
   const glyphDart = glyphs.length
     ? `
   /// The shapes the layers draw themselves (a cell's \`g:<n>\` is the nth), Figma's path data.
@@ -534,7 +588,7 @@ ${holds.map((st) => `        '${st}' => ${stateTest(spec, st)},`).join('\n')}
   static Color color(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) {
 ${colors.length ? '    final c = t.colors;\n' : ''}    return switch (lookup(cell, p, s)) {
       'none' => Colors.transparent,
-${colors.join('\n')}
+${gradients.length ? "      final v? when v.startsWith('lg:') => Colors.transparent,\n" : ''}${colors.join('\n')}
       final v => throw StateError('$cell: no colour for $v'),
     };
   }
@@ -568,7 +622,7 @@ ${typography.join('\n')}
   /// Whether a layer is drawn: the shell reads this, the style does not.
   static bool present(String layer, Solar${name}Props p, Set<WidgetState> s) =>
       lookup('$layer.present', p, s) != 'b:false';
-${glyphDart}
+${glyphDart}${gradientDart}
 ${builder}}
 `;
   return {

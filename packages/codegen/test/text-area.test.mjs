@@ -21,21 +21,24 @@ describe('the Text Area IR', () => {
     expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
-  it('pins the send button to the field’s right, the attachment to its left', () => {
+  it('pins the send button to the field’s bottom right, the attachment to its bottom left', () => {
+    // Figma's constraints (RIGHT/BOTTOM, LEFT/BOTTOM), which the fetcher records since 2026-09-25:
+    // the buttons stay in the field's corners whatever its height, one offset for both sizes.
     expect(spec.style.cta.base).toMatchObject({
       right: { position: 8 },
-      y: { position: 80 },
+      bottom: { position: 8 },
     });
     expect(spec.style.cta.base.x).toBeUndefined();
+    expect(spec.style.cta.base.y).toBeUndefined();
     expect(spec.style.attachment.base).toMatchObject({
       x: { position: 8 },
-      y: { position: 80 },
+      bottom: { position: 8 },
     });
     const md = oracle.variants.find(
       (v) => v.figma === 'size=md, state=default',
     );
-    expect(md.layers.cta).toMatchObject({ right: 8, y: 80 });
-    expect(md.layers.attachment).toMatchObject({ x: 8, y: 80 });
+    expect(md.layers.cta).toMatchObject({ right: 8, bottom: 8 });
+    expect(md.layers.attachment).toMatchObject({ x: 8, bottom: 8 });
   });
 
   it('rings the field alone when focused, as Figma draws it', () => {
@@ -55,7 +58,7 @@ describe('the Text Area recipe', () => {
     expect(styles.root['& .SolarTextArea-cta']).toMatchObject({
       position: 'absolute',
       right: 'calc(8px - var(--solar-placed-right, 0px))',
-      top: 'calc(80px - var(--solar-placed-top, 0px))',
+      bottom: 'calc(8px - var(--solar-placed-bottom, 0px))',
     });
     expect(styles.root['& .SolarTextArea-attachment'].left).toBe(
       'calc(8px - var(--solar-placed-left, 0px))',
@@ -76,6 +79,27 @@ describe('a layer placed in a parent that grows', () => {
       x: 8,
       y: 80,
     });
+  });
+
+  it('is pinned to the edge Figma constrains it to, wherever it sits', () => {
+    const pinned = (constraints) => ({ ...at(8, 8), constraints });
+    const variant = (layer) => ({
+      layers: new Map([
+        ['/', parent],
+        ['/B', layer],
+      ]),
+      parents: new Map([['/B', '/']]),
+    });
+    // Nearer the left and the top, and pinned right and to the bottom (Table's fade, `RIGHT/TOP`).
+    expect(farEdgesOf([variant(pinned('RIGHT/BOTTOM'))], '/B')).toEqual([
+      true,
+      true,
+    ]);
+    // A constraint that pins neither edge alone leaves the place to decide.
+    expect(farEdgesOf([variant(pinned('CENTER/SCALE'))], '/B')).toEqual([
+      false,
+      false,
+    ]);
   });
 
   it('is pinned far only where every variant places it nearer that edge', () => {

@@ -17,6 +17,7 @@ import button from './button.js';
 import buttonGroup from './button-group.js';
 import card from './card.js';
 import checkbox from './checkbox.js';
+import columnItem from './column-item.js';
 import container from './container.js';
 import contextMenu from './context-menu.js';
 import contextMenuItem from './context-menu-item.js';
@@ -66,8 +67,12 @@ import paginationItem from './paginationitem.js';
 import paginationNav from './paginationnav.js';
 import passwordInput from './password-input.js';
 import progressBar from './progressbar.js';
+import propertyList from './propertylist.js';
+import propertyRow from './propertyrow.js';
 import radio from './radio.js';
+import row from './row.js';
 import rowExpand from './rowexpand.js';
+import rowSelect from './rowselect.js';
 import searchField from './searchfield.js';
 import sectionNavGroupHeader from './section-nav-group-header.js';
 import sectionNavItem from './section-nav-item.js';
@@ -86,6 +91,9 @@ import step from './step.js';
 import stepper from './stepper.js';
 import stepperIndicator from './stepper-indicator.js';
 import tabItem from './tab-item.js';
+import table from './table.js';
+import tableFooter from './tablefooter.js';
+import tableHeader from './tableheader.js';
 import tabs from './tabs.js';
 import tag from './tag.js';
 import textArea from './text-area.js';
@@ -117,6 +125,7 @@ export const CASES: Record<string, VisualCase> = {
   'Button Group': buttonGroup,
   Card: card,
   Checkbox: checkbox,
+  'Column Item': columnItem,
   Container: container,
   'Context Menu': contextMenu,
   'Context Menu Item': contextMenuItem,
@@ -166,8 +175,12 @@ export const CASES: Record<string, VisualCase> = {
   PaginationNav: paginationNav,
   'Password Input': passwordInput,
   ProgressBar: progressBar,
+  PropertyList: propertyList,
+  PropertyRow: propertyRow,
   Radio: radio,
+  Row: row,
   RowExpand: rowExpand,
+  RowSelect: rowSelect,
   SearchField: searchField,
   'Section Nav Group Header': sectionNavGroupHeader,
   'Section Nav Item': sectionNavItem,
@@ -186,6 +199,9 @@ export const CASES: Record<string, VisualCase> = {
   Stepper: stepper,
   'Stepper Indicator': stepperIndicator,
   'Tab Item': tabItem,
+  Table: table,
+  TableFooter: tableFooter,
+  TableHeader: tableHeader,
   Tabs: tabs,
   Tag: tag,
   'Text Area': textArea,

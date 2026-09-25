@@ -142,7 +142,7 @@
           "borderWidth": 1,
           "width": 8,
           "height": 20,
-          "x": 8,
+          "right": 0,
           "y": 0
         }
       },
@@ -182,7 +182,7 @@
           "borderWidth": 1,
           "width": 8,
           "height": 20,
-          "x": 8.25,
+          "right": -0.25,
           "y": 0
         },
         "container2": {
@@ -195,7 +195,7 @@
           "borderWidth": 1,
           "width": 0,
           "height": 20,
-          "x": 8.25,
+          "right": 7.75,
           "y": 20
         }
       },
@@ -236,7 +236,7 @@
           "borderWidth": 1,
           "width": 0,
           "height": 40,
-          "x": 8.25,
+          "right": 7.75,
           "y": 0
         }
       },

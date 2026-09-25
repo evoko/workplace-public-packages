@@ -1045,6 +1045,36 @@ words yours), its `favourite` (your Icon Button) on the image, or beside the nam
 Launch Card Full Screen is its page (owner decision: built with slots): `image`, `appIcon`,
 `favourite`, `name`, `intro`, up to three `features`, and your `action`.
 
+## Table, Row, Column Item and RowSelect
+
+A Table is a chassis: its `header` (a Row of `type="title"`) and its rows (`children`), with the
+`breakpoint` your layout gives it (owner decision: a prop; on mobile Figma's fade at its right
+edge). It tells its rows whether they draw their select and expand cells (`selectable`,
+`expandable`), and each part is a table, row, cell or column header to a screen reader only
+inside it. Sorting, selection and which rows a group shows are yours.
+
+| Component   | What it takes                                                                                                                                                                                                                                                    |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Row         | `type` (`title` · `non-expandable` · `top` · `middle` · `bottom`), `selected`, `onSelectedChange`, `mixed` (the header row's), `expanded` and `onExpandedChange` (a top row's expand button); `onClick` makes it pressable, and only then does it draw its hover |
+| Column Item | `header`, and what it holds decides its type (owner decision): words (`children`), an `avatar`, a `tag`, an `icon`, a `textInput`, a `dropdown`, a `button` or a `toggle`; `numeric` sets its words at the end; a header's `onSort` and `sort` (`aria-sort`)     |
+| RowSelect   | `header`, `checked`, `mixed`, `onChange`, `label`; a Row draws its own                                                                                                                                                                                           |
+
+## TableHeader and TableFooter
+
+The strips above and under a Table, each with the `breakpoint` its Table has. A TableHeader takes
+your `search` (a SearchField, desktop only, as Figma draws it), `segmentedControl` and actions
+(Icon Buttons, `children`). A TableFooter takes your `rowsPerPage` (a Dropdown) and its words
+(`rowsPerPageLabel`, desktop only), your `pagination`, and an action: a `button` on desktop, an
+`iconButton` on mobile, as Figma draws two components.
+
+## PropertyList and PropertyRow
+
+A PropertyList is a `<dl>` of your PropertyRows, a Divider between each two unless `dividers` is
+false; `inCard` draws it surfaced and edged, as Figma draws it (its description says the
+opposite), and its rows with it. A PropertyRow takes its words (`children`, a `<dt>`), a
+`description`, a `leading` icon, and one control, which decides its trailing (a `<dd>`): a
+`button`, `toggle`, `select`, `iconButton`, `segmentedControl` or `tag`.
+
 ## Checked against Figma
 
 `npm run test:visual` renders every variant of every component here in Chromium, puts each into
