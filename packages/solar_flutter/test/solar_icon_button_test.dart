@@ -98,7 +98,8 @@ void main() {
         ),
       );
       expect(
-        tester.getSemantics(find.byType(SolarIconButton)),
+        // By its name: the button keeps its own size inside a box that may be wider.
+        tester.getSemantics(find.bySemanticsLabel('Delete')),
         matchesSemantics(
           label: 'Delete',
           isButton: true,
@@ -149,11 +150,10 @@ void main() {
     ) async {
       await pump(
         tester,
-        SolarIconButton(
-          onPressed: () {},
+        const SolarIconButton(
+          onPressed: null,
           icon: icon,
           semanticLabel: 'Save',
-          disabled: true,
           loading: true,
         ),
       );

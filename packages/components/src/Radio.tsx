@@ -14,6 +14,7 @@
  * layer tree (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiRadio, {
   type RadioProps as MuiRadioProps,
 } from '@mui/material/Radio';
@@ -43,40 +44,47 @@ export interface RadioProps
       keyof SolarRadioProps | 'icon' | 'checkedIcon' | 'color' | 'size' | 'ref'
     > {}
 
-export const Radio = forwardRef<HTMLButtonElement, RadioProps>(function Radio(
-  { checked: checkedProp, disabled = false, value, sx, ...rest },
-  ref,
-) {
-  const group = useRadioGroup();
-  // As MUI decides it: the prop where given, and otherwise whether its group holds its value.
-  const checked =
-    checkedProp ??
-    (group?.value != null &&
-      value != null &&
-      String(group.value) === String(value));
-  const look = { checked, disabled };
-  // Hover and focus draw the dot as at rest; a disabled radio draws Figma's own outline of it.
-  const marks = (
-    <Marks>
-      {drawChildren('root', {
-        prefix: 'SolarRadio',
-        tree: TREE,
-        slots: SLOTS,
-        parts: solarRadioCompose(look, disabled ? 'disabled' : 'default'),
-      })}
-    </Marks>
-  );
-  return (
-    <MuiRadio
-      ref={ref}
-      {...rest}
-      value={value}
-      checked={checkedProp}
-      disabled={disabled}
-      disableRipple
-      icon={marks}
-      checkedIcon={marks}
-      sx={[solarRadioStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
-    />
-  );
-});
+export const Radio = forwardRef<HTMLButtonElement, RadioProps>(
+  function Radio(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarRadio), under the caller's own.
+    const {
+      checked: checkedProp,
+      disabled = false,
+      value,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarRadio');
+    const group = useRadioGroup();
+    // As MUI decides it: the prop where given, and otherwise whether its group holds its value.
+    const checked =
+      checkedProp ??
+      (group?.value != null &&
+        value != null &&
+        String(group.value) === String(value));
+    const look = { checked, disabled };
+    // Hover and focus draw the dot as at rest; a disabled radio draws Figma's own outline of it.
+    const marks = (
+      <Marks>
+        {drawChildren('root', {
+          prefix: 'SolarRadio',
+          tree: TREE,
+          slots: SLOTS,
+          parts: solarRadioCompose(look, disabled ? 'disabled' : 'default'),
+        })}
+      </Marks>
+    );
+    return (
+      <MuiRadio
+        ref={ref}
+        {...rest}
+        value={value}
+        checked={checkedProp}
+        disabled={disabled}
+        disableRipple
+        icon={marks}
+        checkedIcon={marks}
+        sx={[solarRadioStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      />
+    );
+  },
+);

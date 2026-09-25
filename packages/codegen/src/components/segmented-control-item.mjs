@@ -59,9 +59,11 @@ export default {
     },
     overlaps: { focus: ['hover'] },
   },
-  flutter: {
-    // Its RadioGroup selects it, by its value, as it checks a SolarRadio.
-    groupDecides: ['selected'],
+  flutter: {},
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Its RadioGroup selects it, by its value, as it checks a SolarRadio.
+  api: {
+    flutter: { selected: { group: 'RadioGroup' } },
   },
   templates: {
     react: (spec) => {

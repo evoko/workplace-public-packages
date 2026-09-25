@@ -13,6 +13,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { IconCheck } from '@bwp-web/assets';
 import { forwardRef } from 'react';
@@ -41,7 +42,12 @@ export interface StepperIndicatorProps
 export const StepperIndicator = forwardRef<
   HTMLSpanElement,
   StepperIndicatorProps
->(function StepperIndicator({ status, number, sx, ...rest }, ref) {
+>(function StepperIndicator(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarStepperIndicator), under the caller's own.
+  const { status, number, sx, ...rest } = useSolarProps(
+    inProps,
+    'SolarStepperIndicator',
+  );
   const parts = solarStepperIndicatorCompose({ status });
   return (
     <Box

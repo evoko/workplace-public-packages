@@ -30,7 +30,6 @@ class SolarDropdownItem extends StatelessWidget {
     super.key,
     this.size = SolarDropdownItemSize.md,
     this.selected = false,
-    this.disabled = false,
     required this.label,
     required this.onPressed,
     this.helper,
@@ -41,7 +40,6 @@ class SolarDropdownItem extends StatelessWidget {
 
   final SolarDropdownItemSize size;
   final bool selected;
-  final bool disabled;
 
   /// The row's words.
   final String label;
@@ -57,6 +55,10 @@ class SolarDropdownItem extends StatelessWidget {
 
   /// Shows a checkbox before the words, checked where the row is selected: a choice of several.
   final bool checkbox;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;
@@ -104,13 +106,6 @@ class SolarDropdownItem extends StatelessWidget {
                 states,
               ) ==
               'k:true',
-          disabled:
-              SolarDropdownItemRecipe.lookup(
-                'checkbox.variant.disabled',
-                p,
-                states,
-              ) ==
-              'k:true',
           onChanged: null,
           inStates: {
             if (SolarDropdownItemRecipe.lookup(
@@ -120,6 +115,13 @@ class SolarDropdownItem extends StatelessWidget {
                 ) ==
                 'k:true')
               WidgetState.hovered,
+            if (SolarDropdownItemRecipe.lookup(
+                  'checkbox.variant.disabled',
+                  p,
+                  states,
+                ) ==
+                'k:true')
+              WidgetState.disabled,
           },
         ),
       },

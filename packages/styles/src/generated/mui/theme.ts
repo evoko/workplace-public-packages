@@ -8,6 +8,7 @@ import {
   solarTokens,
   solarZIndex,
 } from '../tokens.js';
+import { solarMuiComponents } from './theme-components.js';
 
 // MUI's own palette slots and typography variants, resolved to SOLAR roles, so a stock MUI
 // component renders in SOLAR rather than in MUI's defaults. See spec/deviations.md, mui.theme.
@@ -261,5 +262,7 @@ export function createSolarThemeOptions() {
     shape: { borderRadius: parseFloat(solarTokens.light['radius.control']) },
     zIndex: solarZIndex,
     typography: { ...solarResponsiveTypography, ...solarMuiTypography },
+    // Stock MUI components drawn from SOLAR recipes (spec/overlay/mui-theme.yaml).
+    components: solarMuiComponents,
   };
 }

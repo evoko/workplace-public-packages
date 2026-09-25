@@ -38,10 +38,6 @@ export default {
     }),
   },
   flutter: {},
-  shells: {
-    // A step's words are its `label`.
-    label: 'label',
-  },
   templates: {
     react: (spec) => {
       requireLayers(spec);

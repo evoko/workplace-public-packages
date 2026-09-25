@@ -52,8 +52,9 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'label',
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { label: 'label' },
   },
   templates: {
     react: (spec) => {

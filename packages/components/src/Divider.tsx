@@ -13,6 +13,7 @@
  * must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -36,7 +37,12 @@ export interface DividerProps
 }
 
 export const Divider = forwardRef<HTMLDivElement, DividerProps>(
-  function Divider({ orientation, type, children, sx, ...rest }, ref) {
+  function Divider(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDivider), under the caller's own.
+    const { orientation, type, children, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarDivider',
+    );
     const parts = solarDividerCompose({ orientation, type });
     return (
       <Box

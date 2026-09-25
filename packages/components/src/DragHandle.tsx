@@ -15,6 +15,7 @@
  * The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
 import {
@@ -39,10 +40,16 @@ export interface DragHandleProps
     Omit<BoxProps, keyof SolarDragHandleProps | 'children' | 'ref'> {}
 
 export const DragHandle = forwardRef<HTMLSpanElement, DragHandleProps>(
-  function DragHandle(
-    { size, disabled, 'aria-label': label = 'Reorder', className, sx, ...rest },
-    ref,
-  ) {
+  function DragHandle(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDragHandle), under the caller's own.
+    const {
+      size,
+      disabled,
+      'aria-label': label = 'Reorder',
+      className,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarDragHandle');
     const parts = solarDragHandleCompose({ size, disabled });
     return (
       <Box

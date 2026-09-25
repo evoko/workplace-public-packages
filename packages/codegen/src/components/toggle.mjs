@@ -49,6 +49,11 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own controls: by a null onChanged.
+  api: {
+    flutter: { disabled: 'onChanged' },
+  },
   templates: {
     react: (spec) => {
       requireLayers(spec);
@@ -151,6 +156,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
     flutter: (spec) => {
       requireLayers(spec);
       return drawnFlutter(spec, {
+        disabledBy: 'onChanged',
         look: 'the track’s fill and edge by state, and the thumb’s, where it sits on and off, read cell by cell',
         about: `Bespoke: Flutter's Switch paints its own track and thumb and cannot take Figma's. They are
 drawn from Figma's layer tree with [SolarLayers], pressable, and announced as a switch. A setting,

@@ -368,11 +368,25 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  *   answer, an expression in `l` (a slot left empty is not drawn)
  * @param {string} [o.text] the text layers' words, a map literal by layer
  * @param {string} [o.wrap] the returned widget, around `mark` (the drawn root)
+ * @param {string} [o.disabledBy] the callback whose absence disables it, as Flutter's own controls
+ *   are disabled (`onPressed`, `onChanged`): the widget takes no `disabled`, and the recipe reads
+ *   it as that callback's being null, or as `o.disabledWhen` where it is more (a Checkbox drawn
+ *   in a row, by the row's disabled state). The descriptor's `api.flutter.disabled` names the
+ *   same callback, for the parity test.
+ * @param {string} [o.disabledWhen] the expression that is `disabled`, where not the callback's
+ *   being null
  */
 export function drawnFlutter(spec, o) {
   const name = spec.component;
   const P = pascal(name);
   const api = Object.entries(spec.api);
+  // The props the widget takes as parameters: all the IR's, but one a callback's absence says.
+  const own = o.disabledBy ? api.filter(([prop]) => prop !== 'disabled') : api;
+  const disabledGetter = o.disabledBy
+    ? `/// Whether it is disabled: by a null [${o.disabledBy}], as Flutter's own controls are, not a
+/// parameter of its own.
+bool get disabled => ${o.disabledWhen ?? `${o.disabledBy} == null`};`
+    : null;
   const glyphs = hasGlyphs(spec);
   const tree = Object.entries(treeOf(spec))
     .map(
@@ -396,7 +410,7 @@ export function drawnFlutter(spec, o) {
       .map(([k, v]) => `${k}: ${v}`),
   ];
   const params = [
-    ...api.map(([prop, def]) => `    ${dartParam(P, prop, def)},`),
+    ...own.map(([prop, def]) => `    ${dartParam(P, prop, def)},`),
     ...(o.params ? [indent(o.params, 4)] : []),
     ...(o.pressable
       ? ['    this.onPressed,', '    this.statesController,']
@@ -417,6 +431,7 @@ final WidgetStatesController? statesController;`;
 final Map<String, Color> restyle;`;
   const fields = [
     o.fields,
+    disabledGetter,
     o.pressable ? pressableFields : null,
     o.control ? controlFields : null,
     o.restyle ? restyleFields : null,
@@ -489,7 +504,7 @@ class Solar${P} extends StatelessWidget {
 ${params}
   });
 
-${api.map(([prop, def]) => dartField(P, prop, def)).join('\n')}
+${own.map(([prop, def]) => dartField(P, prop, def)).join('\n')}
 ${fields ? `\n${indent(fields, 2)}\n` : ''}
   /// Each layer's children, as Figma nests them.
   static const _tree = <String, List<String>>{

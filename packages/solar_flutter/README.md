@@ -77,7 +77,12 @@ does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `va
 the app's words (`text`) with no `DateTime`, since Flutter has no machine-readable time, and a
 drawn component (`SolarSplitButton`, `SolarLink`) takes its words as a `String`, `label`. A
 control takes what a tap asks for as Flutter's do (`onChanged` on a `SolarCheckbox` or
-`SolarToggle`, null disabling it), and a slider is on `min` to `max`, 0 to 1 by default. A
+`SolarToggle`, null disabling it), and is disabled as Flutter's are: a `SolarButton`,
+`SolarIconButton`, `SolarFAB`, `SolarBackButton`, `SolarSplitButton` or `SolarLink`, a menu or list
+row, a pagination item or a calendar's day by a null `onPressed`, with no `disabled` parameter
+(each has a `disabled` getter that says so). A card, a tab, a breadcrumb and the fields keep their
+`disabled`, a look of its own, not the absence of an action. A slider is on `min` to `max`, 0 to 1
+by default. A
 `SolarRadio<T>` and a `SolarSegmentedControlItem<T>` are checked by the `RadioGroup` around them,
 by their `value`, as Flutter's own Radio is, so they take no `checked` or `selected`; the group
 also moves between them with the arrow keys. A `SolarTextInput` holds its words in a
@@ -225,6 +230,36 @@ Every variant of every widget is checked against what Figma draws (`spec/verify/
 and Dark, and a playground with a knob per prop ([widgetbook/README.md](widgetbook/README.md)). How
 a widget is built in one variant is shared by both, in the small `variants/` package
 (`solar_flutter_variants`), a dev dependency only.
+
+**Component themes.** The widgets on Flutter's buttons take a component theme the Flutter way, a
+`ThemeExtension` in the app's `ThemeData` whose `ButtonStyle` is merged over the recipe (what it
+sets wins, what it leaves null is Figma's): `SolarButtonThemeData`, `SolarIconButtonThemeData`,
+`SolarFABThemeData` and `SolarBackButtonThemeData` (`lib/src/solar_button_themes.dart`). Flutter's
+own `filledButtonTheme` cannot do it, since a button's own style, the recipe, wins over it.
+
+```dart
+ThemeData(extensions: [
+  SolarTheme.light,
+  const SolarButtonThemeData(
+    style: ButtonStyle(minimumSize: WidgetStatePropertyAll(Size(120, 40))),
+  ),
+])
+```
+
+**Size in a layout that stretches.** Every widget keeps Figma's size wherever it is put: in a
+`ListView`, which makes each child as wide as the list, a `SolarCheckbox` is still 16px, a
+`SolarTag` hugs its words, and a `SolarButton` or `SolarIconButton` hugs its label or icon, unlike
+Flutter's own buttons, which span the list (owner decision 2026-09-25). What fills in Figma fills
+(a card, a field, a progress bar's width). A widget given more room than it takes sits at the
+room's start, top and leading edge, and a tap there reaches it only within its 44 × 44 target
+(`SolarOwnSize`, `lib/src/solar_own_size.dart`). A parent that sizes a SOLAR widget itself wraps it
+in `SolarFill`, as `SolarButtonGroup` does for its buttons.
+
+**Icons take their colour and size from the icon theme around them**, as Flutter's `Icon` does: a
+`SolarIcon` in a `SolarIconButton` is the button's ink at the button's size. Outside any widget
+that tints it, it is the app theme's icon colour; set `iconTheme: IconThemeData(color:
+SolarTheme.light.colors.iconPrimary)` in the app's `ThemeData` (and Dark's) for SOLAR's
+`color.icon.primary` there.
 
 **Keys.** A drawn widget keys each layer `<component>.<layer>` (`tabItem.counter`), after
 SOLAR's Figma layer names, so the visual check can measure it. They are test hooks, not an API: a

@@ -17,6 +17,7 @@
  * load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import MuiSelect, {
@@ -103,158 +104,159 @@ export interface SelectProps
   children: ReactNode;
 }
 
-export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
-  {
-    size,
-    open: openProp,
-    disabled = false,
-    error = false,
-    label,
-    mandatory = false,
-    helper,
-    placeholder,
-    value: valueProp,
-    defaultValue,
-    onChange,
-    onOpen,
-    onClose,
-    children,
-    id: idProp,
-    MenuProps,
-    className,
-    style,
-    sx,
-    ...rest
-  },
-  ref,
-) {
-  const own = useId();
-  const id = idProp ?? own;
-  const [value, setValue] = useControlled<string>({
-    controlled: valueProp,
-    default: defaultValue ?? '',
-    name: 'Select',
-    state: 'value',
-  });
-  const [open, setOpen] = useControlled<boolean>({
-    controlled: openProp,
-    default: false,
-    name: 'Select',
-    state: 'open',
-  });
-  const look = { size, open, disabled, error };
-  // What shows depends on whether it is open (Dropdown's chevron turns up).
-  const parts = solarSelectCompose(look, open ? 'open' : 'default');
-  // The chosen row's words, or the placeholder.
-  const chosen = Children.toArray(children).find(
-    (row) =>
-      isValidElement<{ value?: unknown }>(row) && row.props.value === value,
-  );
-  const words = isValidElement<{ children?: ReactNode }>(chosen)
-    ? chosen.props.children
-    : placeholder;
-  const drawing: LayerDrawing = {
-    prefix: 'SolarSelect',
-    tree: TREE,
-    slots: SLOTS,
-    // A part left empty is not drawn; the panel is MUI's menu, drawn below.
-    parts: {
-      ...parts,
-      label: { ...parts.label, present: label != null },
-      mandatory: { ...parts.mandatory, present: mandatory },
-      helper: { ...parts.helper, present: helper != null },
-      dropdownMenu: { ...parts.dropdownMenu, present: false },
-    },
-    text: {
-      labelLabel: label,
-      mandatory: <span aria-hidden>*</span>,
-      placeholder: words,
-    },
-    icons: {
-      trailingIcon: <IconChevronDown />,
-    },
-    render: {
-      label: (layer) => <label id={`${id}-label`} htmlFor={id} {...layer} />,
-      // The field is MUI's InputBase around its Select, the combobox the choice's words are in.
-      // Its rows take its size, as a Dropdown Menu's do.
-      field: (layer) => (
-        <DropdownMenuSizeContext.Provider value={size ?? 'md'}>
-          <MuiSelect
-            {...rest}
-            input={
-              <InputBase className={layer.className} style={layer.style} />
-            }
-            id={id}
-            labelId={label != null ? `${id}-label` : undefined}
-            value={value}
-            displayEmpty
-            // The combobox draws the field's parts, as Figma nests them: the choice's words and the
-            // chevron, which is no icon of MUI's.
-            renderValue={() => drawChildren('field', drawing)}
-            IconComponent={NoIcon}
-            open={open}
-            onOpen={(event) => {
-              setOpen(true);
-              onOpen?.(event);
-            }}
-            onClose={(event) => {
-              setOpen(false);
-              onClose?.(event);
-            }}
-            onChange={(event) => {
-              setValue(event.target.value);
-              onChange?.(event, event.target.value);
-            }}
-            disabled={disabled}
-            error={error}
-            SelectDisplayProps={{
-              'aria-describedby': helper != null ? `${id}-helper` : undefined,
-            }}
-            MenuProps={{
-              ...MenuProps,
-              // In the component, so the recipe reaches the panel.
-              disablePortal: true,
-              slotProps: {
-                ...MenuProps?.slotProps,
-                paper: {
-                  className: 'SolarSelect--dropdownMenu SolarSelect-box',
+export const Select = forwardRef<HTMLDivElement, SelectProps>(
+  function Select(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSelect), under the caller's own.
+    const {
+      size,
+      open: openProp,
+      disabled = false,
+      error = false,
+      label,
+      mandatory = false,
+      helper,
+      placeholder,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      onOpen,
+      onClose,
+      children,
+      id: idProp,
+      MenuProps,
+      className,
+      style,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarSelect');
+    const own = useId();
+    const id = idProp ?? own;
+    const [value, setValue] = useControlled<string>({
+      controlled: valueProp,
+      default: defaultValue ?? '',
+      name: 'Select',
+      state: 'value',
+    });
+    const [open, setOpen] = useControlled<boolean>({
+      controlled: openProp,
+      default: false,
+      name: 'Select',
+      state: 'open',
+    });
+    const look = { size, open, disabled, error };
+    // What shows depends on whether it is open (Dropdown's chevron turns up).
+    const parts = solarSelectCompose(look, open ? 'open' : 'default');
+    // The chosen row's words, or the placeholder.
+    const chosen = Children.toArray(children).find(
+      (row) =>
+        isValidElement<{ value?: unknown }>(row) && row.props.value === value,
+    );
+    const words = isValidElement<{ children?: ReactNode }>(chosen)
+      ? chosen.props.children
+      : placeholder;
+    const drawing: LayerDrawing = {
+      prefix: 'SolarSelect',
+      tree: TREE,
+      slots: SLOTS,
+      // A part left empty is not drawn; the panel is MUI's menu, drawn below.
+      parts: {
+        ...parts,
+        label: { ...parts.label, present: label != null },
+        mandatory: { ...parts.mandatory, present: mandatory },
+        helper: { ...parts.helper, present: helper != null },
+        dropdownMenu: { ...parts.dropdownMenu, present: false },
+      },
+      text: {
+        labelLabel: label,
+        mandatory: <span aria-hidden>*</span>,
+        placeholder: words,
+      },
+      icons: {
+        trailingIcon: <IconChevronDown />,
+      },
+      render: {
+        label: (layer) => <label id={`${id}-label`} htmlFor={id} {...layer} />,
+        // The field is MUI's InputBase around its Select, the combobox the choice's words are in.
+        // Its rows take its size, as a Dropdown Menu's do.
+        field: (layer) => (
+          <DropdownMenuSizeContext.Provider value={size ?? 'md'}>
+            <MuiSelect
+              {...rest}
+              input={
+                <InputBase className={layer.className} style={layer.style} />
+              }
+              id={id}
+              labelId={label != null ? `${id}-label` : undefined}
+              value={value}
+              displayEmpty
+              // The combobox draws the field's parts, as Figma nests them: the choice's words and the
+              // chevron, which is no icon of MUI's.
+              renderValue={() => drawChildren('field', drawing)}
+              IconComponent={NoIcon}
+              open={open}
+              onOpen={(event) => {
+                setOpen(true);
+                onOpen?.(event);
+              }}
+              onClose={(event) => {
+                setOpen(false);
+                onClose?.(event);
+              }}
+              onChange={(event) => {
+                setValue(event.target.value);
+                onChange?.(event, event.target.value);
+              }}
+              disabled={disabled}
+              error={error}
+              SelectDisplayProps={{
+                'aria-describedby': helper != null ? `${id}-helper` : undefined,
+              }}
+              MenuProps={{
+                ...MenuProps,
+                // In the component, so the recipe reaches the panel.
+                disablePortal: true,
+                slotProps: {
+                  ...MenuProps?.slotProps,
+                  paper: {
+                    className: 'SolarSelect--dropdownMenu SolarSelect-box',
+                  },
+                  list: { disablePadding: true },
                 },
-                list: { disablePadding: true },
-              },
-            }}
+              }}
+            >
+              {children}
+            </MuiSelect>
+          </DropdownMenuSizeContext.Provider>
+        ),
+        helper: (layer) => (
+          <span
+            id={`${id}-helper`}
+            className={layer.className}
+            style={layer.style}
           >
-            {children}
-          </MuiSelect>
-        </DropdownMenuSizeContext.Provider>
-      ),
-      helper: (layer) => (
-        <span
-          id={`${id}-helper`}
-          className={layer.className}
-          style={layer.style}
-        >
-          {helper}
-        </span>
-      ),
-    },
-  };
-  return (
-    <Box
-      ref={ref}
-      className={
-        [
-          open ? 'SolarSelect-open' : null,
-          error ? 'SolarSelect-error' : null,
-          disabled ? 'SolarSelect-disabled' : null,
-          className,
-        ]
-          .filter(Boolean)
-          .join(' ') || undefined
-      }
-      style={style}
-      sx={[solarSelectStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
-      {drawChildren('root', drawing)}
-    </Box>
-  );
-});
+            {helper}
+          </span>
+        ),
+      },
+    };
+    return (
+      <Box
+        ref={ref}
+        className={
+          [
+            open ? 'SolarSelect-open' : null,
+            error ? 'SolarSelect-error' : null,
+            disabled ? 'SolarSelect-disabled' : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        style={style}
+        sx={[solarSelectStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', drawing)}
+      </Box>
+    );
+  },
+);

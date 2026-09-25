@@ -16,6 +16,7 @@
  * with an icon, use an Option Card. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, useId, type ChangeEvent, type ReactNode } from 'react';
 import {
@@ -63,8 +64,9 @@ export interface OptionRowProps
 }
 
 export const OptionRow = forwardRef<HTMLLabelElement, OptionRowProps>(
-  function OptionRow(
-    {
+  function OptionRow(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarOptionRow), under the caller's own.
+    const {
       control,
       children,
       supportingText,
@@ -78,9 +80,7 @@ export const OptionRow = forwardRef<HTMLLabelElement, OptionRowProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarOptionRow');
     const look = { control };
     const composed = solarOptionRowCompose(look);
     // A slot left empty is not drawn.

@@ -19,6 +19,7 @@
  * arrow keys across rows, is the caller's for now. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import {
   IconChevronDown,
@@ -122,8 +123,9 @@ export interface TreeItemProps
 }
 
 export const TreeItem = forwardRef<HTMLDivElement, TreeItemProps>(
-  function TreeItem(
-    {
+  function TreeItem(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTreeItem), under the caller's own.
+    const {
       selected = false,
       expanded = false,
       edit = false,
@@ -154,9 +156,7 @@ export const TreeItem = forwardRef<HTMLDivElement, TreeItemProps>(
       onKeyDown,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarTreeItem');
     // Which parts show depends on the row's state, the pointer's and the keyboard's among them.
     const [hovered, setHovered] = useState(false);
     const [focused, setFocused] = useState(false);

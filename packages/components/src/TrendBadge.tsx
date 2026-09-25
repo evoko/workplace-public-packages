@@ -12,6 +12,7 @@
  * beside it, or name it (`label="Up 12%"`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
 import {
@@ -38,7 +39,12 @@ export interface TrendBadgeProps
 }
 
 export const TrendBadge = forwardRef<HTMLSpanElement, TrendBadgeProps>(
-  function TrendBadge({ type, size, label, sx, ...rest }, ref) {
+  function TrendBadge(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTrendBadge), under the caller's own.
+    const { type, size, label, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarTrendBadge',
+    );
     const parts = solarTrendBadgeCompose({ type, size });
     return (
       <Box

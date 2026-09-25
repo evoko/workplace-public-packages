@@ -29,9 +29,11 @@ export default {
     }),
   },
   flutter: {},
-  shells: {
-    // Its rows are its times, which the shell builds.
-    slots: { content: null },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Its rows are its times, which the shell builds.
+  api: {
+    react: { content: null },
+    flutter: { content: null },
   },
   templates: {
     react: (spec) => {

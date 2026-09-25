@@ -138,15 +138,10 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'name',
-    slots: {
-      name: { react: 'name', flutter: 'name' },
-      details: { react: 'details', flutter: 'details' },
-      count: { react: 'count', flutter: 'count' },
-      button: { react: 'action', flutter: 'action' },
-      devices: { react: 'devices', flutter: 'devices' },
-    },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { button: 'action' },
+    flutter: { button: 'action' },
   },
   templates: {
     react: (spec) => {

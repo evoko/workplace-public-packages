@@ -20,6 +20,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { IconArrowLeft, IconArrowRight } from '@bwp-web/assets';
 import {
@@ -273,8 +274,9 @@ export interface DatePickerOpenProps
 }
 
 export const DatePickerOpen = forwardRef<HTMLDivElement, DatePickerOpenProps>(
-  function DatePickerOpen(
-    {
+  function DatePickerOpen(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDatePickerOpen), under the caller's own.
+    const {
       inline,
       type,
       value: valueProp,
@@ -297,9 +299,7 @@ export const DatePickerOpen = forwardRef<HTMLDivElement, DatePickerOpenProps>(
       onClose,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarDatePickerOpen');
     const [own, setOwn] = useState<string | null>(defaultValue);
     const value = valueProp !== undefined ? valueProp : own;
     const chosen = parseIso(value);

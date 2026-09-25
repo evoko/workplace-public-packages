@@ -14,6 +14,7 @@
  * loses its href, and says it is disabled. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiLink, { type LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -52,55 +53,56 @@ export interface LinkProps
   trailingIcon?: ReactNode;
 }
 
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
-  {
-    size,
-    disabled,
-    children,
-    leadingIcon,
-    trailingIcon,
-    href,
-    className,
-    sx,
-    ...rest
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  function Link(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarLink), under the caller's own.
+    const {
+      size,
+      disabled,
+      children,
+      leadingIcon,
+      trailingIcon,
+      href,
+      className,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarLink');
+    const parts = solarLinkCompose({ size, disabled });
+    // A slot left empty is not drawn.
+    const drawn = {
+      ...parts,
+      leadingIcon: { ...parts.leadingIcon, present: leadingIcon != null },
+      trailingIcon: { ...parts.trailingIcon, present: trailingIcon != null },
+    };
+    return (
+      <MuiLink
+        ref={ref}
+        href={disabled ? undefined : href}
+        aria-disabled={disabled || undefined}
+        className={
+          [disabled ? 'SolarLink-disabled' : null, className]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        {...rest}
+        underline="none"
+        sx={[
+          solarLinkStyle({ size, disabled }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarLink',
+          tree: TREE,
+          slots: SLOTS,
+          parts: drawn,
+          text: { label: children },
+          icons: {
+            leadingIcon: <span>{leadingIcon}</span>,
+            trailingIcon: <span>{trailingIcon}</span>,
+          },
+        })}
+      </MuiLink>
+    );
   },
-  ref,
-) {
-  const parts = solarLinkCompose({ size, disabled });
-  // A slot left empty is not drawn.
-  const drawn = {
-    ...parts,
-    leadingIcon: { ...parts.leadingIcon, present: leadingIcon != null },
-    trailingIcon: { ...parts.trailingIcon, present: trailingIcon != null },
-  };
-  return (
-    <MuiLink
-      ref={ref}
-      href={disabled ? undefined : href}
-      aria-disabled={disabled || undefined}
-      className={
-        [disabled ? 'SolarLink-disabled' : null, className]
-          .filter(Boolean)
-          .join(' ') || undefined
-      }
-      {...rest}
-      underline="none"
-      sx={[
-        solarLinkStyle({ size, disabled }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      {drawChildren('root', {
-        prefix: 'SolarLink',
-        tree: TREE,
-        slots: SLOTS,
-        parts: drawn,
-        text: { label: children },
-        icons: {
-          leadingIcon: <span>{leadingIcon}</span>,
-          trailingIcon: <span>{trailingIcon}</span>,
-        },
-      })}
-    </MuiLink>
-  );
-});
+);

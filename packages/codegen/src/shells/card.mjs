@@ -670,8 +670,7 @@ ${tree}
               builder: (context) => SolarDropdownItem(
                 label: item.label,
                 icon: item.icon,
-                disabled: item.disabled,
-                onPressed: () {
+                onPressed: item.disabled ? null : () {
                   MenuController.maybeOf(context)?.close();
                   item.onSelected();
                 },

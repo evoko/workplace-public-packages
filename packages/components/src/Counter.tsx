@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
 import {
@@ -38,37 +39,47 @@ export interface CounterProps
   max?: number;
 }
 
-export const Counter = forwardRef<HTMLElement, CounterProps>(function Counter(
-  { type, disabled, count, max = 99, onClick, className, sx, ...rest },
-  ref,
-) {
-  if (count <= 0) return null;
-  const parts = solarCounterCompose({ type, disabled });
-  return (
-    <Box
-      component={onClick ? 'button' : 'span'}
-      ref={ref}
-      onClick={onClick}
-      type={onClick ? 'button' : undefined}
-      disabled={onClick ? disabled : undefined}
-      className={
-        [disabled ? 'SolarCounter-disabled' : null, className]
-          .filter(Boolean)
-          .join(' ') || undefined
-      }
-      {...rest}
-      sx={[
-        solarCounterStyle({ type, disabled }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      {drawChildren('root', {
-        prefix: 'SolarCounter',
-        tree: TREE,
-        slots: SLOTS,
-        parts,
-        text: { value: count > max ? `${max}+` : String(count) },
-      })}
-    </Box>
-  );
-});
+export const Counter = forwardRef<HTMLElement, CounterProps>(
+  function Counter(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarCounter), under the caller's own.
+    const {
+      type,
+      disabled,
+      count,
+      max = 99,
+      onClick,
+      className,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarCounter');
+    if (count <= 0) return null;
+    const parts = solarCounterCompose({ type, disabled });
+    return (
+      <Box
+        component={onClick ? 'button' : 'span'}
+        ref={ref}
+        onClick={onClick}
+        type={onClick ? 'button' : undefined}
+        disabled={onClick ? disabled : undefined}
+        className={
+          [disabled ? 'SolarCounter-disabled' : null, className]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        {...rest}
+        sx={[
+          solarCounterStyle({ type, disabled }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarCounter',
+          tree: TREE,
+          slots: SLOTS,
+          parts,
+          text: { value: count > max ? `${max}+` : String(count) },
+        })}
+      </Box>
+    );
+  },
+);

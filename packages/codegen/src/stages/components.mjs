@@ -17,6 +17,8 @@ import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { emitFlutterComponents } from '../emit/flutter-component.mjs';
 import { emitRegistries } from '../emit/registries.mjs';
+import { emitMuiThemeComponents } from '../emit/mui-theme-components.mjs';
+import { pascal } from '../util/naming.mjs';
 import { renderShells } from '../shells/index.mjs';
 import { buildOracle, hideInComposed, withDark } from '../verify/oracle.mjs';
 import { specDir } from '../util/paths.mjs';
@@ -151,11 +153,21 @@ export function emit({ built, tokens, shells }) {
       specs: built.length,
       oracles: built.length,
       mui: emitMuiComponents(specs, tokens),
+      muiTheme: emitMuiThemeComponents(specs),
       flutter: emitFlutterComponents(specs, tokens),
       shells: shells.length,
       registries: emitRegistries(
         specs.map((s) => s.component),
-        { shelled },
+        {
+          shelled,
+          // Whose props type takes a type argument (Autocomplete's value, `<T>`).
+          generic: (n) =>
+            shells.some(
+              (s) =>
+                s.component === n &&
+                new RegExp(`export interface ${pascal(n)}Props<`).test(s.text),
+            ),
+        },
       ),
     },
     deviations: built.flatMap((b) => b.deviations),

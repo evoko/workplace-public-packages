@@ -181,12 +181,13 @@ class _SolarSelectState<T> extends State<SolarSelect<T>> {
             label: option.label,
             helper: option.helper,
             icon: option.icon,
-            disabled: option.disabled,
             selected: option.value == w.value,
-            onPressed: () {
-              _menu.close();
-              w.onChanged?.call(option.value);
-            },
+            onPressed: option.disabled
+                ? null
+                : () {
+                    _menu.close();
+                    w.onChanged?.call(option.value);
+                  },
           ),
         ),
     ];

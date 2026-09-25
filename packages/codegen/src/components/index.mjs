@@ -8,14 +8,12 @@
  *   mui        slots (or 'drawn': every layer the shell draws, from the IR), resets, svgLayers,
  *              states, overlaps, restates (src/emit/mui-component.mjs)
  *   flutter    style, shared, states (src/emit/flutter-component.mjs: a platform state's own
- *              test, the Flutter side of mui.states), and groupDecides: the props a group decides
- *              in Flutter, not the widget (Radio's checked, its RadioGroup's)
- *   shells     how the shells name what the IR names otherwise, where they do: `label: 'label'`, a
- *              label that is a prop, not the children (a field's), and `flutter`, the props
- *              Flutter takes by another name (a field's `value` is its `controller`'s), and
- *              `slots`, how both name a slot where they name it otherwise: one name
- *              (`required: 'mandatory'`), one per platform (`{react, flutter}`), or null where the
- *              shell fills it itself (Select's chevron, a calendar's month)
+ *              test, the Flutter side of mui.states)
+ *   api        how each platform reaches what the IR names, where not by its own name or its
+ *              platform's convention: `{ react: {…}, flutter: {…} }`, each IR prop or slot to the
+ *              member that reaches it (`label: 'title'`; `value: 'controller'`, a Flutter field's),
+ *              `{ group: 'RadioGroup' }` where a platform group decides it, or null where the shell
+ *              fills it itself (src/shells/api.mjs, which the component-parity test checks)
  *   templates  react and flutter: functions of the IR that solar:codegen renders into the shells
  *              on every run (src/shells/); the shells are never edited, the templates are
  *   owned      true for a component whose shells are hand-edited files instead: it has no

@@ -13,6 +13,7 @@
  * pickers; for data in columns, use a Table. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import {
   Children,
@@ -62,46 +63,53 @@ export interface ListProps
   dividers?: boolean;
 }
 
-export const List = forwardRef<HTMLDivElement, ListProps>(function List(
-  { inCard, children, dividers = true, sx, ...rest },
-  ref,
-) {
-  const look = { inCard };
-  const parts = solarListCompose(look);
-  // The rows' compactness, as the recipe says Figma draws them in this list.
-  const compact = parts.listItem?.['variant.compact'] === 'true';
-  const rows = Children.toArray(children);
-  return (
-    <ListContext.Provider value={compact}>
-      <Box
-        ref={ref}
-        {...rest}
-        sx={[solarListStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
-      >
-        {drawChildren('root', {
-          prefix: 'SolarList',
-          tree: TREE,
-          slots: SLOTS,
-          parts,
-          content: {
-            items: rows.map((row, i) => (
-              <li key={i}>
-                {row}
-                {dividers && i < rows.length - 1 ? (
-                  <Divider aria-hidden />
-                ) : null}
-              </li>
-            )),
-          },
-          render: {
-            items: ({ className, style, children: items }) => (
-              <ul className={className} style={style}>
-                {items}
-              </ul>
-            ),
-          },
-        })}
-      </Box>
-    </ListContext.Provider>
-  );
-});
+export const List = forwardRef<HTMLDivElement, ListProps>(
+  function List(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarList), under the caller's own.
+    const {
+      inCard,
+      children,
+      dividers = true,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarList');
+    const look = { inCard };
+    const parts = solarListCompose(look);
+    // The rows' compactness, as the recipe says Figma draws them in this list.
+    const compact = parts.listItem?.['variant.compact'] === 'true';
+    const rows = Children.toArray(children);
+    return (
+      <ListContext.Provider value={compact}>
+        <Box
+          ref={ref}
+          {...rest}
+          sx={[solarListStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+        >
+          {drawChildren('root', {
+            prefix: 'SolarList',
+            tree: TREE,
+            slots: SLOTS,
+            parts,
+            content: {
+              items: rows.map((row, i) => (
+                <li key={i}>
+                  {row}
+                  {dividers && i < rows.length - 1 ? (
+                    <Divider aria-hidden />
+                  ) : null}
+                </li>
+              )),
+            },
+            render: {
+              items: ({ className, style, children: items }) => (
+                <ul className={className} style={style}>
+                  {items}
+                </ul>
+              ),
+            },
+          })}
+        </Box>
+      </ListContext.Provider>
+    );
+  },
+);

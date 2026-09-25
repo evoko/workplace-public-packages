@@ -18,6 +18,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { forwardRef, type MouseEvent, type ReactNode } from 'react';
@@ -88,8 +89,9 @@ export interface InteractiveCardProps
 }
 
 export const InteractiveCard = forwardRef<HTMLDivElement, InteractiveCardProps>(
-  function InteractiveCard(
-    {
+  function InteractiveCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarInteractiveCard), under the caller's own.
+    const {
       selected = false,
       dragging = false,
       control = 'none',
@@ -105,9 +107,7 @@ export const InteractiveCard = forwardRef<HTMLDivElement, InteractiveCardProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarInteractiveCard');
     const look = { selected, dragging, control };
     const composed = solarInteractiveCardCompose(look);
     const pressable = onClick != null || href != null;

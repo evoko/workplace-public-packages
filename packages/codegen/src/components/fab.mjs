@@ -69,6 +69,11 @@ export default {
       iconSize: 'icon.width',
     },
   },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own buttons: by a null onPressed.
+  api: {
+    flutter: { disabled: 'onPressed' },
+  },
   templates: {
     react: (spec) => {
       requireSlots(spec);
@@ -138,6 +143,8 @@ export const FAB = forwardRef<HTMLButtonElement, FABProps>(function FAB(
 
   return (
     <MuiButton
+      // Its own recipe, not the SOLAR theme's for a stock MUI one (spec/overlay/mui-theme.yaml).
+      data-solar=""
       ref={ref}
       {...rest}
       disabled={disabled}
@@ -192,6 +199,8 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/fab.dart';
 import '../generated/components/spinner.dart';
+import '../solar_button_themes.dart';
+import '../solar_own_size.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -201,7 +210,10 @@ class SolarFAB extends StatelessWidget {
     required this.onPressed,
     required this.icon,
     this.child,
-${api.map(([prop, def]) => `    ${dartParam('FAB', prop, def)},`).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => `    ${dartParam('FAB', prop, def)},`)
+  .join('\n')}
     this.semanticLabel,
     this.focusNode,
     this.autofocus = false,
@@ -218,7 +230,10 @@ ${api.map(([prop, def]) => `    ${dartParam('FAB', prop, def)},`).join('\n')}
   /// The label, which makes it an extended FAB.
   final Widget? child;
 
-${api.map(([prop, def]) => dartField('FAB', prop, def)).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => dartField('FAB', prop, def))
+  .join('\n')}
 
   /// The accessible name, required when there is no label.
   final String? semanticLabel;
@@ -226,6 +241,10 @@ ${api.map(([prop, def]) => dartField('FAB', prop, def)).join('\n')}
   final FocusNode? focusNode;
   final bool autofocus;
   final WidgetStatesController? statesController;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -258,7 +277,8 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
 
     Widget button = FilledButton(
       onPressed: disabled || busy ? null : onPressed,
-      style: SolarFABRecipe.style(t, p),
+      // The recipe, under the app's SolarFABThemeData where its theme has one.
+        style: SolarFABThemeData.styled(context, SolarFABRecipe.style(t, p)),
       focusNode: focusNode,
       autofocus: autofocus,
       statesController: statesController,
@@ -285,7 +305,9 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
         child: Semantics(label: semanticLabel, child: button),
       );
     }
-    return button;
+    // Its own size wherever it is put, as Figma draws it, not the width a ListView forces on a
+    // Flutter button (owner decision 2026-09-25); a parent that shares its row gives SolarFill.
+    return SolarOwnSize(child: button);
   }
 }
 `;

@@ -43,3 +43,32 @@ describe('SolarProvider', () => {
     expect(theme.breakpoints.values.sm).toBe(768);
   });
 });
+
+describe('a SOLAR component in the MUI theme', () => {
+  it('takes the theme’s defaultProps where the caller leaves a prop unset', () => {
+    const theme = {
+      components: { SolarButton: { defaultProps: { disabled: true } } },
+    };
+    const themed = renderToString(
+      h(SolarProvider, { theme }, h(Button, null, 'Continue')),
+    );
+    expect(themed).toMatch(/<button[^>]*disabled=""/);
+    // The caller's own prop wins over the theme's.
+    const own = renderToString(
+      h(SolarProvider, { theme }, h(Button, { disabled: false }, 'Continue')),
+    );
+    expect(own).not.toMatch(/<button[^>]*disabled=""/);
+  });
+
+  it('draws the theme’s styleOverrides.root over the recipe', () => {
+    const theme = {
+      components: {
+        SolarButton: { styleOverrides: { root: { outlineOffset: '7px' } } },
+      },
+    };
+    const html = renderToString(
+      h(SolarProvider, { theme }, h(Button, null, 'Continue')),
+    );
+    expect(html).toContain('outline-offset:7px');
+  });
+});

@@ -14,6 +14,7 @@
  * make it a link. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiButton, {
   type ButtonProps as MuiButtonProps,
 } from '@mui/material/Button';
@@ -46,10 +47,16 @@ export interface BackButtonProps
 }
 
 export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
-  function BackButton(
-    { size, disabled, loading, children = 'Back', sx, ...rest },
-    ref,
-  ) {
+  function BackButton(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarBackButton), under the caller's own.
+    const {
+      size,
+      disabled,
+      loading,
+      children = 'Back',
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarBackButton');
     const busy = Boolean(loading && !disabled);
     // What the loading state hides, keeping its room, and the Spinner it shows, as Figma picks it.
     const parts = solarBackButtonCompose(
@@ -62,6 +69,8 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
     ).spinner;
     return (
       <MuiButton
+        // Its own recipe, not the SOLAR theme's for a stock MUI one (spec/overlay/mui-theme.yaml).
+        data-solar=""
         ref={ref}
         aria-label={children == null ? 'Back' : undefined}
         {...rest}

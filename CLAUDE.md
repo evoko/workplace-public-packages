@@ -62,7 +62,11 @@ design spec describes (edit a value in the viewer, save an overlay rule) is **no
 On the web a slot's layer carries `Solar<Name>-<slot>`, public, and every other layer
 `Solar<Name>--<layer>`, internal (`packages/codegen/src/util/classes.mjs`); a descriptor may name a
 layer's class by the layer, and the codegen writes the right one. `npm run smoke:install` packs the
-published packages and installs them into a clean app (CI runs it after the build).
+published packages and installs them into a clean app (CI runs it after the build). Each platform
+reaches the IR its own way (docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md): a
+descriptor's `api` table declares where a prop or slot is not reached by its own name
+(`src/shells/api.mjs`), and the parity test checks reachability, not identical spelling. The stock
+MUI components the SOLAR theme styles from recipes are decided in `spec/overlay/mui-theme.yaml`.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type

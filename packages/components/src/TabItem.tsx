@@ -17,6 +17,7 @@
  * app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Tab, { type TabProps } from '@mui/material/Tab';
 import {
   forwardRef,
@@ -75,8 +76,9 @@ export interface TabItemProps
 }
 
 export const TabItem = forwardRef<HTMLDivElement, TabItemProps>(
-  function TabItem(
-    {
+  function TabItem(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTabItem), under the caller's own.
+    const {
       size,
       selected = false,
       disabled = false,
@@ -89,9 +91,7 @@ export const TabItem = forwardRef<HTMLDivElement, TabItemProps>(
       onBlur,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarTabItem');
     // In a strip, the strip's size, as Figma draws its tabs.
     const look = { size: useTabsSize() ?? size, selected, disabled };
     const composed = solarTabItemCompose(look);

@@ -53,10 +53,11 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // A field's label is its `label`, as MUI's TextField and Flutter's InputDecoration name it.
-    label: 'label',
-    // Flutter holds a field's value in its controller.
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // A field's label is its `label`, as MUI's TextField and Flutter's InputDecoration name it.
+  // Flutter holds a field's value in its controller.
+  api: {
+    react: { label: 'label' },
     flutter: { value: 'controller' },
   },
   templates: {

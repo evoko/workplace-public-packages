@@ -185,12 +185,13 @@ class _SolarDropdownState<T> extends State<SolarDropdown<T>> {
             label: option.label,
             helper: option.helper,
             icon: option.icon,
-            disabled: option.disabled,
             selected: option.value == w.value,
-            onPressed: () {
-              _menu.close();
-              w.onChanged?.call(option.value);
-            },
+            onPressed: option.disabled
+                ? null
+                : () {
+                    _menu.close();
+                    w.onChanged?.call(option.value);
+                  },
           ),
         ),
     ];

@@ -18,6 +18,8 @@ import '../generated/components/backbutton.dart';
 import '../generated/components/spinner.dart';
 import '../generated/icons.dart';
 import '../solar_icon.dart';
+import '../solar_button_themes.dart';
+import '../solar_own_size.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -28,7 +30,6 @@ class SolarBackButton extends StatelessWidget {
     this.child = const Text('Back'),
     this.semanticLabel = 'Back',
     this.size = SolarBackButtonSize.md,
-    this.disabled = false,
     this.loading = false,
     this.focusNode,
     this.autofocus = false,
@@ -45,12 +46,15 @@ class SolarBackButton extends StatelessWidget {
   final String semanticLabel;
 
   final SolarBackButtonSize size;
-  final bool disabled;
   final bool loading;
 
   final FocusNode? focusNode;
   final bool autofocus;
   final WidgetStatesController? statesController;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +88,11 @@ class SolarBackButton extends StatelessWidget {
 
     Widget button = FilledButton(
       onPressed: disabled || busy ? null : onPressed,
-      style: SolarBackButtonRecipe.style(t, p),
+      // The recipe, under the app's SolarBackButtonThemeData where its theme has one.
+      style: SolarBackButtonThemeData.styled(
+        context,
+        SolarBackButtonRecipe.style(t, p),
+      ),
       focusNode: focusNode,
       autofocus: autofocus,
       statesController: statesController,
@@ -121,7 +129,9 @@ class SolarBackButton extends StatelessWidget {
         child: Semantics(label: semanticLabel, child: button),
       );
     }
-    return button;
+    // Its own size wherever it is put, as Figma draws it, not the width a ListView forces on a
+    // Flutter button (owner decision 2026-09-25); a parent that shares its row gives SolarFill.
+    return SolarOwnSize(child: button);
   }
 }
 

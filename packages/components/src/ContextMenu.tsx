@@ -16,6 +16,7 @@
  * />`. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import MenuList, { type MenuListProps } from '@mui/material/MenuList';
 import { forwardRef, type KeyboardEvent, type ReactNode } from 'react';
@@ -59,8 +60,9 @@ export interface ContextMenuProps
 }
 
 export const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
-  function ContextMenu(
-    {
+  function ContextMenu(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarContextMenu), under the caller's own.
+    const {
       children,
       anchorEl,
       anchorPosition,
@@ -71,9 +73,7 @@ export const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
       listProps,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarContextMenu');
     const floating = floats({ anchorEl, anchorPosition });
     const parts = solarContextMenuCompose({});
     // Tab leaves a floating menu, as MUI's Menu does: it closes, and the focus moves on.

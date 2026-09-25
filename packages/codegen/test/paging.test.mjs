@@ -26,6 +26,7 @@ import {
   reactIcon,
 } from '../src/shells/drawn.mjs';
 import { FLUTTER_TEMPLATES, TEMPLATES } from '../src/shells/index.mjs';
+import { apiOf } from '../src/shells/api.mjs';
 import { packagesDir, specDir } from '../src/util/paths.mjs';
 import { buildOracle } from '../src/verify/oracle.mjs';
 
@@ -461,11 +462,12 @@ describe('Stepper', () => {
   });
 
   it('draws its steps as the caller gives them, Figma’s showStep slots its own', () => {
-    expect(descriptor('Stepper').shells.slots).toEqual({
-      step3: null,
-      step4: null,
-      step5: null,
-    });
+    for (const platform of ['react', 'flutter'])
+      expect(apiOf(of('Stepper').spec)[platform]).toMatchObject({
+        step3: null,
+        step4: null,
+        step5: null,
+      });
   });
 });
 
@@ -583,9 +585,8 @@ describe('the pagination’s items', () => {
   });
 
   it('name a PaginationItem’s page its children in React and its page in Flutter', () => {
-    expect(descriptor('PaginationItem').shells.slots).toEqual({
-      page: { react: 'children', flutter: 'page' },
-    });
+    const api = apiOf(of('PaginationItem').spec);
+    expect([api.react.page, api.flutter.page]).toEqual(['children', 'page']);
   });
 });
 
@@ -600,8 +601,10 @@ describe('Pagination and PageNavigator', () => {
   });
 
   it('name the PageNavigator’s position its indicator', () => {
-    expect(descriptor('PageNavigator').shells.slots).toEqual({
-      pageIndicator: 'indicator',
-    });
+    const api = apiOf(of('PageNavigator').spec);
+    expect([api.react.pageIndicator, api.flutter.pageIndicator]).toEqual([
+      'indicator',
+      'indicator',
+    ]);
   });
 });

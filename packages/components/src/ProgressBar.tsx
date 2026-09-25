@@ -12,6 +12,7 @@
  * asks. It fills its container. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import LinearProgress, {
   type LinearProgressProps,
 } from '@mui/material/LinearProgress';
@@ -39,7 +40,12 @@ export interface ProgressBarProps
 }
 
 export const ProgressBar = forwardRef<HTMLSpanElement, ProgressBarProps>(
-  function ProgressBar({ feedback, value, sx, ...rest }, ref) {
+  function ProgressBar(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarProgressBar), under the caller's own.
+    const { feedback, value, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarProgressBar',
+    );
     return (
       <LinearProgress
         ref={ref}

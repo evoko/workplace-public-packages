@@ -14,6 +14,7 @@
  * hover. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -41,10 +42,10 @@ export interface TimestampProps
 }
 
 export const Timestamp = forwardRef<HTMLTimeElement, TimestampProps>(
-  function Timestamp(
-    { format, size, emphasis, dateTime, children, detail, sx, ...rest },
-    ref,
-  ) {
+  function Timestamp(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTimestamp), under the caller's own.
+    const { format, size, emphasis, dateTime, children, detail, sx, ...rest } =
+      useSolarProps(inProps, 'SolarTimestamp');
     const parts = solarTimestampCompose({ format, size, emphasis });
     return (
       <Box

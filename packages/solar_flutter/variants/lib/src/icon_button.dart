@@ -12,7 +12,7 @@ Widget buildIconButton(
 ]) {
   final props = v['props'] as Map<String, dynamic>;
   return SolarIconButton(
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     semanticLabel: 'Icon',
     size: enumNamed(SolarIconButtonSize.values, props['size'] as String),
     shape: enumNamed(SolarIconButtonShape.values, props['shape'] as String),
@@ -20,7 +20,6 @@ Widget buildIconButton(
       SolarIconButtonVariant.values,
       props['variant'] as String,
     ),
-    disabled: props['disabled'] as bool,
     loading: props['loading'] as bool,
     statesController: states,
     icon: const IconProbe(key: Key('icon')),

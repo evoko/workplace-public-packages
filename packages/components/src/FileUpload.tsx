@@ -15,6 +15,7 @@
  * and types, and sets `error`. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import { IconDelete, IconFile, IconRefresh } from '@bwp-web/assets';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { useControlled } from '@mui/material/utils';
@@ -75,8 +76,9 @@ export interface FileUploadProps
 }
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  function FileUpload(
-    {
+  function FileUpload(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarFileUpload), under the caller's own.
+    const {
       error,
       disabled,
       label,
@@ -94,9 +96,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarFileUpload');
     const id = useId();
     const input = useRef<HTMLInputElement>(null);
     const [files, setFiles] = useControlled<File[]>({

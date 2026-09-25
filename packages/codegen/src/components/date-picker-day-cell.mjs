@@ -46,9 +46,11 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // The day's figure is the React child, and Flutter's label, a String, as a drawn one's is.
-    slots: { day: { react: 'children', flutter: 'label' } },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // The day's figure is the React child, and Flutter's label, a String, as a drawn one's is.
+  api: {
+    react: { day: 'children' },
+    flutter: { disabled: 'onPressed', day: 'label' },
   },
   templates: {
     react: (spec) => {
@@ -86,6 +88,7 @@ ${flags.map((f) => `    ${f} ? '${P}-${f}' : null,`).join('\n')}
     flutter: (spec) => {
       requireLayers(spec);
       return drawnFlutter(spec, {
+        disabledBy: 'onPressed',
         look: 'the day’s fill, edge and ink by state and range role, read cell by cell',
         about: `Bespoke: one day of a SolarDatePickerOpen's grid, drawn from Figma's layer tree with
 [SolarLayers], pressable and focusable, announced selected, and named by [semanticLabel], the

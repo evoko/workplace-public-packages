@@ -15,6 +15,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { IconChevronRight } from '@bwp-web/assets';
 import {
@@ -64,17 +65,16 @@ export interface BreadcrumbsProps extends Omit<BoxProps, 'children' | 'ref'> {
 }
 
 export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
-  function Breadcrumbs(
-    {
+  function Breadcrumbs(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarBreadcrumbs), under the caller's own.
+    const {
       children,
       maxItems = 5,
       expandLabel = 'Show the hidden pages',
       'aria-label': label = 'Breadcrumb',
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarBreadcrumbs');
     const items = Children.toArray(children).filter(
       isValidElement,
     ) as ReactElement<BreadcrumbItemProps>[];

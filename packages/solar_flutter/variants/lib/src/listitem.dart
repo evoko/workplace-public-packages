@@ -17,7 +17,6 @@ Widget buildListItem(
   final content = ((v['content'] as List?) ?? const []).cast<String>();
   return SolarListItem(
     selected: props['selected'] as bool,
-    disabled: props['disabled'] as bool,
     compact: props['compact'] as bool,
     label: 'Label',
     helper: 'Supporting text',
@@ -31,7 +30,7 @@ Widget buildListItem(
           )
         : null,
     trailing: const IconProbe(),
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     statesController: states,
   );
 }

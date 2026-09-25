@@ -16,6 +16,7 @@
  * across the product, use a GlobalSearch. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import { IconSearch } from '@bwp-web/assets';
 import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
 import { useControlled } from '@mui/material/utils';
@@ -56,8 +57,9 @@ export interface SearchFieldProps
 }
 
 export const SearchField = forwardRef<HTMLDivElement, SearchFieldProps>(
-  function SearchField(
-    {
+  function SearchField(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSearchField), under the caller's own.
+    const {
       error,
       disabled,
       size,
@@ -69,9 +71,7 @@ export const SearchField = forwardRef<HTMLDivElement, SearchFieldProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarSearchField');
     const [value, setValue] = useControlled<unknown>({
       controlled: valueProp,
       default: defaultValue ?? '',

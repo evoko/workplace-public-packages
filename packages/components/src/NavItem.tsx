@@ -15,6 +15,7 @@
  * text). A focused item draws SOLAR's focus ring. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import ButtonBase, { type ButtonBaseProps } from '@mui/material/ButtonBase';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -46,8 +47,9 @@ export interface NavItemProps
 }
 
 export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
-  function NavItem(
-    {
+  function NavItem(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarNavItem), under the caller's own.
+    const {
       selected = false,
       expanded = false,
       label,
@@ -56,9 +58,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarNavItem');
     const look = { selected, expanded };
     const parts = solarNavItemCompose(look);
     return (

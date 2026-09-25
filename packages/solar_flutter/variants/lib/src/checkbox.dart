@@ -12,8 +12,7 @@ Widget buildCheckbox(
   return SolarCheckbox(
     checked: props['checked'] as bool,
     mixed: props['mixed'] as bool,
-    disabled: props['disabled'] as bool,
-    onChanged: (_) {},
+    onChanged: props['disabled'] as bool ? null : (_) {},
     semanticLabel: 'Option',
     statesController: states,
   );

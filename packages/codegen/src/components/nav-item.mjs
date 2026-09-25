@@ -50,9 +50,10 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // An item's words are its `label`, which names it collapsed, where they are not drawn.
-    label: 'label',
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // An item's words are its `label`, which names it collapsed, where they are not drawn.
+  api: {
+    react: { label: 'label' },
   },
   templates: {
     react: (spec) => {

@@ -11,9 +11,8 @@ Widget buildPaginationItem(
   final props = v['props'] as Map<String, dynamic>;
   return SolarPaginationItem(
     selected: props['selected'] as bool,
-    disabled: props['disabled'] as bool,
     page: 1,
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     statesController: states,
   );
 }

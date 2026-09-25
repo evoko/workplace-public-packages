@@ -30,10 +30,11 @@ export default {
     overlaps: { focus: ['hover'], 'error-focused': ['hover'] },
   },
   flutter: { states: TYPED_FLUTTER_STATES },
-  shells: {
-    label: 'label',
-    // Figma's showRequired is a field's `mandatory`, as Text Input names it.
-    slots: { required: 'mandatory' },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Figma's showRequired is a field's `mandatory`, as Text Input names it.
+  api: {
+    react: { label: 'label', required: 'mandatory' },
+    flutter: { required: 'mandatory' },
   },
   templates: {
     react: (spec) => {

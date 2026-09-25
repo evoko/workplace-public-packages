@@ -71,13 +71,9 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'title',
-    slots: {
-      title: { react: 'title', flutter: 'title' },
-      subtitle: { react: 'subtitle', flutter: 'subtitle' },
-      label: { react: 'label', flutter: 'label' },
-    },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { label: 'label' },
   },
   templates: {
     react: (spec) => {
@@ -408,8 +404,7 @@ ${tree}
               builder: (context) => SolarDropdownItem(
                 label: item.label,
                 icon: item.icon,
-                disabled: item.disabled,
-                onPressed: () {
+                onPressed: item.disabled ? null : () {
                   MenuController.maybeOf(context)?.close();
                   item.onSelected();
                 },

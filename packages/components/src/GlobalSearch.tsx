@@ -15,6 +15,7 @@
  * must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import { IconSearch } from '@bwp-web/assets';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
@@ -48,8 +49,9 @@ export interface GlobalSearchProps
 }
 
 export const GlobalSearch = forwardRef<HTMLButtonElement, GlobalSearchProps>(
-  function GlobalSearch(
-    {
+  function GlobalSearch(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarGlobalSearch), under the caller's own.
+    const {
       error,
       size,
       placeholder = 'Search',
@@ -58,9 +60,7 @@ export const GlobalSearch = forwardRef<HTMLButtonElement, GlobalSearchProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarGlobalSearch');
     // Filled where it shows a query, whose words are then the query's, not the placeholder's.
     const filled = query != null && query !== '';
     const look = { error, size, filled };

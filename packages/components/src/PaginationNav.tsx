@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import ButtonBase, { type ButtonBaseProps } from '@mui/material/ButtonBase';
 import { IconChevronLeft, IconChevronRight } from '@bwp-web/assets';
 import { forwardRef } from 'react';
@@ -37,10 +38,14 @@ export interface PaginationNavProps
 }
 
 export const PaginationNav = forwardRef<HTMLButtonElement, PaginationNavProps>(
-  function PaginationNav(
-    { direction = 'previous', disabled = false, sx, ...rest },
-    ref,
-  ) {
+  function PaginationNav(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarPaginationNav), under the caller's own.
+    const {
+      direction = 'previous',
+      disabled = false,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarPaginationNav');
     const look = { direction, disabled };
     const parts = solarPaginationNavCompose(look);
     return (

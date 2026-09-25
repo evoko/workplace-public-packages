@@ -74,10 +74,12 @@ export default {
     }),
   },
   flutter: {},
-  shells: {
-    // The steps are the caller's labels, which the shell draws; Figma's showStep booleans say how
-    // many.
-    slots: { step3: null, step4: null, step5: null },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // The steps are the caller's labels, which the shell draws; Figma's showStep booleans say how
+  // many.
+  api: {
+    react: { step3: null, step4: null, step5: null },
+    flutter: { step3: null, step4: null, step5: null },
   },
   templates: {
     react: (spec) => {

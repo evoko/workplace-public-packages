@@ -44,6 +44,11 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own controls: by a null onChanged.
+  api: {
+    flutter: { disabled: 'onChanged' },
+  },
   templates: {
     react: (spec) => {
       requireLayers(spec);
@@ -144,6 +149,9 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
     flutter: (spec) => {
       requireLayers(spec);
       return drawnFlutter(spec, {
+        disabledBy: 'onChanged',
+        disabledWhen:
+          'inStates?.contains(WidgetState.disabled) ?? onChanged == null',
         look: 'the box’s fill and edge by state, and the tick and dash, Figma’s own outlines, read cell by cell',
         about: `Bespoke: Flutter's Checkbox paints a tick of its own and cannot take Figma's. The box, tick
 and dash are drawn from Figma's layer tree with [SolarLayers], pressable, and announced as a
@@ -170,11 +178,10 @@ final Set<WidgetState>? inStates;`,
 mixed: mixed,`,
           drawnIn: 'inStates',
         },
-        // Figma draws a mixed box only as a checked one, and a box with nothing to do as disabled,
-        // but for one a row draws, which has nothing to do of its own.
+        // Figma draws a mixed box only as a checked one. A box with nothing to do is disabled, as
+        // Flutter's own Checkbox is, but for one a row draws, disabled where the row is.
         values: {
           checked: 'checked || mixed',
-          disabled: 'disabled || (inStates == null && onChanged == null)',
         },
         wrap: `semanticLabel == null
         ? mark

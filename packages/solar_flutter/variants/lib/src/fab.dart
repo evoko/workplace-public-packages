@@ -13,9 +13,8 @@ Widget buildFAB(
   final props = v['props'] as Map<String, dynamic>;
   final extended = ((v['content'] as List?) ?? const []).contains('label');
   return SolarFAB(
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     size: enumNamed(SolarFABSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
     loading: props['loading'] as bool,
     statesController: states,
     icon: const IconProbe(key: Key('icon')),

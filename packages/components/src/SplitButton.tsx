@@ -15,6 +15,7 @@
  * (`aria-haspopup`, `aria-expanded`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconChevronDown } from '@bwp-web/assets';
@@ -81,8 +82,9 @@ export interface SplitButtonProps
 }
 
 export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(
-  function SplitButton(
-    {
+  function SplitButton(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSplitButton), under the caller's own.
+    const {
       variant,
       size,
       disabled,
@@ -96,9 +98,7 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarSplitButton');
     const busy = Boolean(loading && !disabled);
     const inactive = Boolean(disabled) || busy;
     const parts = solarSplitButtonCompose(

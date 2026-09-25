@@ -315,14 +315,12 @@ ${tree}
             : SolarCheckbox(
                 checked: w.checked,
                 mixed: w.mixed,
-                disabled: w.disabled,
-                onChanged: w.onChanged,
+                onChanged: w.disabled ? null : w.onChanged,
                 statesController: _hover,
               ),
         'toggle': SolarToggle(
           selected: w.checked,
-          disabled: w.disabled,
-          onChanged: w.onChanged,
+          onChanged: w.disabled ? null : w.onChanged,
           statesController: _hover,
         ),
       },

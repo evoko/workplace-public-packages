@@ -14,6 +14,7 @@
  * avatar. It is named by `name`, always. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiAvatar, {
   type AvatarProps as MuiAvatarProps,
 } from '@mui/material/Avatar';
@@ -58,39 +59,41 @@ export function initialsOf(name: string): string {
   return (first + last).toUpperCase();
 }
 
-export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
-  { size, type, color, name, children, textColor, src, sx, ...rest },
-  ref,
-) {
-  const parts = solarAvatarCompose({ size, type });
-  const picture = parts.root?.image === true;
-  const ink = textColor ?? (color ? inkOn(color) : null);
-  return (
-    <MuiAvatar
-      ref={ref}
-      alt={name}
-      src={picture ? src : undefined}
-      // Initials are text a screen reader would spell out; the avatar is named instead.
-      role={picture ? undefined : 'img'}
-      aria-label={picture ? undefined : name}
-      {...rest}
-      slotProps={{
-        ...rest.slotProps,
-        // A photo fills the circle; a logo is centred, not cropped.
-        img: { style: { objectFit: type === 'logo' ? 'contain' : 'cover' } },
-      }}
-      sx={[
-        solarAvatarStyle({ size, type }),
-        color ? { backgroundColor: color } : null,
-        ink ? { '& .SolarAvatar--initials': { color: ink } } : null,
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      {parts.initials?.present === false ? undefined : (
-        <span className="SolarAvatar--initials">
-          {children ?? initialsOf(name)}
-        </span>
-      )}
-    </MuiAvatar>
-  );
-});
+export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+  function Avatar(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarAvatar), under the caller's own.
+    const { size, type, color, name, children, textColor, src, sx, ...rest } =
+      useSolarProps(inProps, 'SolarAvatar');
+    const parts = solarAvatarCompose({ size, type });
+    const picture = parts.root?.image === true;
+    const ink = textColor ?? (color ? inkOn(color) : null);
+    return (
+      <MuiAvatar
+        ref={ref}
+        alt={name}
+        src={picture ? src : undefined}
+        // Initials are text a screen reader would spell out; the avatar is named instead.
+        role={picture ? undefined : 'img'}
+        aria-label={picture ? undefined : name}
+        {...rest}
+        slotProps={{
+          ...rest.slotProps,
+          // A photo fills the circle; a logo is centred, not cropped.
+          img: { style: { objectFit: type === 'logo' ? 'contain' : 'cover' } },
+        }}
+        sx={[
+          solarAvatarStyle({ size, type }),
+          color ? { backgroundColor: color } : null,
+          ink ? { '& .SolarAvatar--initials': { color: ink } } : null,
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {parts.initials?.present === false ? undefined : (
+          <span className="SolarAvatar--initials">
+            {children ?? initialsOf(name)}
+          </span>
+        )}
+      </MuiAvatar>
+    );
+  },
+);

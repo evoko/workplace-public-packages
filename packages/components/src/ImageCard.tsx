@@ -17,6 +17,7 @@
  * tree (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconPlus } from '@bwp-web/assets';
@@ -80,8 +81,9 @@ export interface ImageCardProps
 }
 
 export const ImageCard = forwardRef<HTMLDivElement, ImageCardProps>(
-  function ImageCard(
-    {
+  function ImageCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarImageCard), under the caller's own.
+    const {
       filled = true,
       selected = false,
       title,
@@ -101,9 +103,7 @@ export const ImageCard = forwardRef<HTMLDivElement, ImageCardProps>(
       onFocus,
       onBlur,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarImageCard');
     const look = { filled, selected };
     const composed = solarImageCardCompose(look);
     const pressable = onClick != null || href != null;

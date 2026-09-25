@@ -248,11 +248,10 @@ void main() {
       var pressed = 0;
       await pump(
         tester,
-        SolarSectionNavItem(
+        const SolarSectionNavItem(
           label: 'Profile',
-          disabled: true,
-          icon: const SizedBox.square(dimension: 20),
-          onPressed: () => pressed++,
+          icon: SizedBox.square(dimension: 20),
+          onPressed: null,
         ),
       );
       await tester.tap(find.text('Profile'), warnIfMissed: false);

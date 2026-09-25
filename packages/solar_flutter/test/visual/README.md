@@ -7,6 +7,10 @@ run by `flutter test` with the rest of the package.
 
 - **Words.** A text Figma draws words in (the oracle's `words`) must paint some (`paragraphValues`,
   `wordsIn`); one painted in its style with none fails, which a self-test proves.
+- **In a stretching parent** (`own_size_test.dart`). Each variant is pumped again in a parent that
+  forces a size on it, as a `ListView` or a stretched `Column` does, and must measure the same on
+  every axis its IR does not mark FILL: the visual check pumps a widget where it is free to size
+  itself, and could not see a Checkbox drawn as a full-width bar.
 - **Both modes.** Every widget is checked twice, under `SolarTheme.light` and `SolarTheme.dark`,
   each variant read in Dark with its `dark` over it (`inMode`), as the web check does; a self-test
   proves a Light drawing fails there. Dark's reports are `<name>_dark-gaps.json` and

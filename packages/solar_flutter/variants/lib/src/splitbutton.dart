@@ -13,14 +13,13 @@ Widget buildSplitButton(
   final props = v['props'] as Map<String, dynamic>;
   return SolarSplitButton(
     label: 'Label',
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     onMenuPressed: () {},
     variant: enumNamed(
       SolarSplitButtonVariant.values,
       props['variant'] as String,
     ),
     size: enumNamed(SolarSplitButtonSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
     loading: props['loading'] as bool,
     statesController: states,
   );

@@ -119,7 +119,13 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
           : null;
       final padding = (inner?.padding ?? container.padding ?? EdgeInsets.zero)
           .resolve(TextDirection.ltr);
-      final content = inner?.child ?? container.child;
+      // A layer that hugs a child filling across it is its Flex in an IntrinsicWidth or
+      // IntrinsicHeight (SolarLayers), whose gap is the Flex's.
+      final wrapped = inner?.child ?? container.child;
+      final content = switch (wrapped) {
+        IntrinsicWidth(:final child) || IntrinsicHeight(:final child) => child,
+        _ => wrapped,
+      };
       values.addAll({
         'background': d.color ?? Colors.transparent,
         // The colour of a side that is drawn, where only some are (Number Input's side stepper).

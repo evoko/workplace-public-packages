@@ -15,6 +15,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiSlider, {
   type SliderProps as MuiSliderProps,
 } from '@mui/material/Slider';
@@ -36,20 +37,27 @@ export interface SliderProps
       | 'ref'
     > {}
 
-export const Slider = forwardRef<HTMLSpanElement, SliderProps>(function Slider(
-  { disabled = false, filled = false, error = false, sx, ...rest },
-  ref,
-) {
-  return (
-    <MuiSlider
-      ref={ref}
-      {...rest}
-      disabled={disabled}
-      aria-invalid={error || undefined}
-      sx={[
-        solarSliderStyle({ disabled, filled, error }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    />
-  );
-});
+export const Slider = forwardRef<HTMLSpanElement, SliderProps>(
+  function Slider(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSlider), under the caller's own.
+    const {
+      disabled = false,
+      filled = false,
+      error = false,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarSlider');
+    return (
+      <MuiSlider
+        ref={ref}
+        {...rest}
+        disabled={disabled}
+        aria-invalid={error || undefined}
+        sx={[
+          solarSliderStyle({ disabled, filled, error }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      />
+    );
+  },
+);

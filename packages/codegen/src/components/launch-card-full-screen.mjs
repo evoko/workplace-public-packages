@@ -58,16 +58,6 @@ export default {
     }),
   },
   flutter: {},
-  shells: {
-    label: 'name',
-    slots: {
-      name: { react: 'name', flutter: 'name' },
-      intro: { react: 'intro', flutter: 'intro' },
-      appIcon: { react: 'appIcon', flutter: 'appIcon' },
-      favourite: { react: 'favourite', flutter: 'favourite' },
-      action: { react: 'action', flutter: 'action' },
-    },
-  },
   templates: {
     react: (spec) => {
       requireLayers(spec);

@@ -48,7 +48,11 @@ describe('renderRegistries', () => {
 
   it('matches what is committed for today’s components', () => {
     // The stage writes them on every solar:codegen; CI's rebuild check holds them to it.
-    for (const [file, text] of Object.entries(files(NAMES, { shelled }))) {
+    // Autocomplete's props take its value's type, as the stage finds in its shell.
+    const generic = (n) => n === 'Autocomplete';
+    for (const [file, text] of Object.entries(
+      files(NAMES, { shelled, generic }),
+    )) {
       const path = join(packagesDir, file);
       expect(existsSync(path), file).toBe(true);
       expect(readFileSync(path, 'utf8'), file).toBe(text);

@@ -13,6 +13,7 @@
  * (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -45,7 +46,12 @@ export interface SplitDropdownProps
 }
 
 export const SplitDropdown = forwardRef<HTMLDivElement, SplitDropdownProps>(
-  function SplitDropdown({ top, lower, sx, ...rest }, ref) {
+  function SplitDropdown(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSplitDropdown), under the caller's own.
+    const { top, lower, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarSplitDropdown',
+    );
     const parts = solarSplitDropdownCompose({});
     return (
       <Box

@@ -15,6 +15,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -43,7 +44,12 @@ export interface OptionsListProps
 }
 
 export const OptionsList = forwardRef<HTMLFieldSetElement, OptionsListProps>(
-  function OptionsList({ label, children, sx, ...rest }, ref) {
+  function OptionsList(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarOptionsList), under the caller's own.
+    const { label, children, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarOptionsList',
+    );
     const parts = solarOptionsListCompose({});
     return (
       <Box

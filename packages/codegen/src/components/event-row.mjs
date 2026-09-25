@@ -96,15 +96,17 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'title',
-    slots: {
-      leading: { react: 'leading', flutter: 'leading' },
-      title: { react: 'title', flutter: 'title' },
-      productTag: { react: 'product', flutter: 'product' },
-      metaText: { react: 'meta', flutter: 'meta' },
-      timestamp: { react: 'timestamp', flutter: 'timestamp' },
-      more: { react: 'moreItems', flutter: 'moreItems' },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: {
+      productTag: 'product',
+      metaText: 'meta',
+      more: 'moreItems',
+    },
+    flutter: {
+      productTag: 'product',
+      metaText: 'meta',
+      more: 'moreItems',
     },
   },
   templates: {

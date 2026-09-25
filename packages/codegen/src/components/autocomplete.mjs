@@ -37,10 +37,11 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'label',
-    // Its words, typed or the caller's, are its controller's.
-    flutter: { value: 'controller', inputValue: 'controller' },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Its words, typed or the caller's, are its controller's.
+  api: {
+    react: { label: 'label' },
+    flutter: { inputValue: 'controller' },
   },
   templates: {
     react: (spec) => {

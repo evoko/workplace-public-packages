@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, useId, type ChangeEvent, type ReactNode } from 'react';
 import {
@@ -70,8 +71,9 @@ export interface SegmentedControlProps
 export const SegmentedControl = forwardRef<
   HTMLSpanElement,
   SegmentedControlProps
->(function SegmentedControl(
-  {
+>(function SegmentedControl(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarSegmentedControl), under the caller's own.
+  const {
     size,
     children,
     value,
@@ -82,9 +84,7 @@ export const SegmentedControl = forwardRef<
     name,
     sx,
     ...rest
-  },
-  ref,
-) {
+  } = useSolarProps(inProps, 'SolarSegmentedControl');
   const id = useId();
   const parts = solarSegmentedControlCompose({ size });
   // Figma hides the label and helper, which show where the caller gives them.

@@ -17,6 +17,7 @@
  * rows scroll, as a Dropdown Menu's. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import MenuList, { type MenuListProps } from '@mui/material/MenuList';
 import { forwardRef, useLayoutEffect, useRef, type KeyboardEvent } from 'react';
@@ -84,8 +85,9 @@ export interface TimePickerDropdownProps
 export const TimePickerDropdown = forwardRef<
   HTMLDivElement,
   TimePickerDropdownProps
->(function TimePickerDropdown(
-  {
+>(function TimePickerDropdown(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarTimePickerDropdown), under the caller's own.
+  const {
     size,
     value = null,
     onChange,
@@ -103,9 +105,7 @@ export const TimePickerDropdown = forwardRef<
     listProps,
     sx,
     ...rest
-  },
-  ref,
-) {
+  } = useSolarProps(inProps, 'SolarTimePickerDropdown');
   const floating = floats({ anchorEl, anchorPosition });
   const parts = solarTimePickerDropdownCompose({ size });
   const chosen = parseHhmm(value);

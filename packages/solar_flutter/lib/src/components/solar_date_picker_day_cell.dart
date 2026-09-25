@@ -24,7 +24,6 @@ class SolarDatePickerDayCell extends StatelessWidget {
     super.key,
     this.selected = false,
     this.today = false,
-    this.disabled = false,
     this.filled = false,
     this.error = false,
     this.rangeRole = SolarDatePickerDayCellRangeRole.none,
@@ -37,7 +36,6 @@ class SolarDatePickerDayCell extends StatelessWidget {
 
   final bool selected;
   final bool today;
-  final bool disabled;
   final bool filled;
   final bool error;
   final SolarDatePickerDayCellRangeRole rangeRole;
@@ -53,6 +51,10 @@ class SolarDatePickerDayCell extends StatelessWidget {
 
   /// Its focus, which the grid moves with the arrow keys.
   final FocusNode? focusNode;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

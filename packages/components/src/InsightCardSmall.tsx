@@ -16,6 +16,7 @@
  * tree (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { forwardRef, type MouseEvent, type ReactNode } from 'react';
@@ -69,8 +70,9 @@ export interface InsightCardSmallProps
 export const InsightCardSmall = forwardRef<
   HTMLDivElement,
   InsightCardSmallProps
->(function InsightCardSmall(
-  {
+>(function InsightCardSmall(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarInsightCardSmall), under the caller's own.
+  const {
     severity = 'success',
     loading = false,
     title,
@@ -81,9 +83,7 @@ export const InsightCardSmall = forwardRef<
     className,
     sx,
     ...rest
-  },
-  ref,
-) {
+  } = useSolarProps(inProps, 'SolarInsightCardSmall');
   // Figma draws a loading one, with no status: its look is the same for all.
   const look = { severity: loading ? ('info' as const) : severity, loading };
   const composed = solarInsightCardSmallCompose(look);

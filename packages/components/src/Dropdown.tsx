@@ -17,6 +17,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import MuiSelect, {
@@ -110,8 +111,9 @@ export interface DropdownProps
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
-  function Dropdown(
-    {
+  function Dropdown(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDropdown), under the caller's own.
+    const {
       size,
       disabled = false,
       error = false,
@@ -134,9 +136,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarDropdown');
     const own = useId();
     const id = idProp ?? own;
     const [value, setValue] = useControlled<string>({

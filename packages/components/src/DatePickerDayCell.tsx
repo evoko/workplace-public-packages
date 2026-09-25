@@ -15,6 +15,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -40,8 +41,9 @@ export interface DatePickerDayCellProps
 export const DatePickerDayCell = forwardRef<
   HTMLDivElement,
   DatePickerDayCellProps
->(function DatePickerDayCell(
-  {
+>(function DatePickerDayCell(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarDatePickerDayCell), under the caller's own.
+  const {
     selected,
     today,
     disabled,
@@ -53,9 +55,7 @@ export const DatePickerDayCell = forwardRef<
     onClick,
     sx,
     ...rest
-  },
-  ref,
-) {
+  } = useSolarProps(inProps, 'SolarDatePickerDayCell');
   const parts = solarDatePickerDayCellCompose({
     selected,
     today,

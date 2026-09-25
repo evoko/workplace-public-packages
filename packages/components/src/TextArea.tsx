@@ -17,6 +17,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box from '@mui/material/Box';
 import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
 import { useControlled } from '@mui/material/utils';
@@ -85,8 +86,9 @@ export interface TextAreaProps
 }
 
 export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
-  function TextArea(
-    {
+  function TextArea(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTextArea), under the caller's own.
+    const {
       size,
       disabled,
       error,
@@ -106,9 +108,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarTextArea');
     const own = useId();
     const id = idProp ?? own;
     const [value, setValue] = useControlled<unknown>({

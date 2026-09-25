@@ -17,6 +17,7 @@
  * must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconMore } from '@bwp-web/assets';
@@ -93,8 +94,9 @@ export interface ActionCardProps
 }
 
 export const ActionCard = forwardRef<HTMLDivElement, ActionCardProps>(
-  function ActionCard(
-    {
+  function ActionCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarActionCard), under the caller's own.
+    const {
       status = 'default',
       title,
       icon,
@@ -109,9 +111,7 @@ export const ActionCard = forwardRef<HTMLDivElement, ActionCardProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarActionCard');
     const look = { status };
     const composed = solarActionCardCompose(look);
     const pressable = onClick != null || href != null;

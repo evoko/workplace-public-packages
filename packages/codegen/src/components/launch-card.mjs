@@ -169,18 +169,10 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'name',
-    slots: {
-      image: { react: 'image', flutter: 'image' },
-      favourite: { react: 'favourite', flutter: 'favourite' },
-      favouriteNoImage: { react: 'favourite', flutter: 'favourite' },
-      tag: { react: 'tag', flutter: 'tag' },
-      bodyText: { react: 'body', flutter: 'body' },
-      name: { react: 'name', flutter: 'name' },
-      appIcon: { react: 'appIcon', flutter: 'appIcon' },
-      actions: { react: 'actions', flutter: 'actions' },
-    },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { favouriteNoImage: 'favourite', bodyText: 'body' },
+    flutter: { favouriteNoImage: 'favourite', bodyText: 'body' },
   },
   templates: {
     react: (spec) => {

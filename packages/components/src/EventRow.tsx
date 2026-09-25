@@ -16,6 +16,7 @@
  * (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconMore } from '@bwp-web/assets';
@@ -90,8 +91,9 @@ export interface EventRowProps
 }
 
 export const EventRow = forwardRef<HTMLDivElement, EventRowProps>(
-  function EventRow(
-    {
+  function EventRow(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarEventRow), under the caller's own.
+    const {
       title,
       leading,
       product,
@@ -105,9 +107,7 @@ export const EventRow = forwardRef<HTMLDivElement, EventRowProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarEventRow');
     const look = {};
     const composed = solarEventRowCompose(look);
     const pressable = onClick != null || href != null;

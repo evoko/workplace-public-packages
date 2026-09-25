@@ -43,10 +43,11 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'label',
-    // The trailing icon is the chevron, which the shell draws.
-    slots: { trailingIcon: null },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // The trailing icon is the chevron, which the shell draws.
+  api: {
+    react: { label: 'label', trailingIcon: null },
+    flutter: { trailingIcon: null },
   },
   templates: {
     react: (spec) => {

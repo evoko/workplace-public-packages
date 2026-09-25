@@ -216,14 +216,7 @@ void main() {
 
     testWidgets('a disabled one is not pressed', (tester) async {
       var pressed = 0;
-      await pump(
-        tester,
-        SolarPaginationItem(
-          page: 7,
-          disabled: true,
-          onPressed: () => pressed++,
-        ),
-      );
+      await pump(tester, const SolarPaginationItem(page: 7, onPressed: null));
       await tester.tap(find.text('7'), warnIfMissed: false);
       expect(pressed, 0);
     });
@@ -236,8 +229,7 @@ void main() {
       var pressed = 0;
       Widget nav({required bool disabled}) => SolarPaginationNav(
         direction: SolarPaginationNavDirection.next,
-        disabled: disabled,
-        onPressed: () => pressed++,
+        onPressed: disabled ? null : () => pressed++,
       );
       await pump(tester, nav(disabled: false));
       await tester.tap(find.byType(SolarPaginationNav));
@@ -251,7 +243,7 @@ void main() {
       tester,
     ) async {
       final handle = tester.ensureSemantics();
-      await pump(tester, SolarPaginationNav(disabled: true, onPressed: () {}));
+      await pump(tester, const SolarPaginationNav(onPressed: null));
       expect(
         tester.getSemantics(find.bySemanticsLabel('Previous page')),
         isSemantics(
@@ -396,10 +388,7 @@ void main() {
 
     testWidgets('a disabled one is not pressed', (tester) async {
       var pressed = 0;
-      await pump(
-        tester,
-        SolarPageNavButton(disabled: true, onPressed: () => pressed++),
-      );
+      await pump(tester, const SolarPageNavButton(onPressed: null));
       await tester.tap(find.text('Previous'), warnIfMissed: false);
       expect(pressed, 0);
     });

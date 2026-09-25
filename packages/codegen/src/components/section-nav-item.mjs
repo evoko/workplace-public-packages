@@ -51,9 +51,11 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // An item's words are its `label`, as a Nav Item's are.
-    label: 'label',
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // An item's words are its `label`, as a Nav Item's are.
+  api: {
+    react: { label: 'label' },
+    flutter: { disabled: 'onPressed' },
   },
   templates: {
     react: (spec) => {
@@ -130,6 +132,7 @@ export const SectionNavItem = forwardRef<HTMLButtonElement, SectionNavItemProps>
     flutter: (spec) => {
       requireLayers(spec);
       return drawnFlutter(spec, {
+        disabledBy: 'onPressed',
         look: 'the item’s fill and focus ring by state, and its icon’s and label’s ink, read cell by cell',
         about: `Bespoke: one item of a section nav rail, the settings and admin sub-navigation (a sidebar's destinations are SolarNavItems), drawn from Figma's layer tree with [SolarLayers], pressable and focusable. The [selected] one is the current page, announced selected, drawn by its fill, not colour alone. It spans its rail. Group them under SolarSectionNavGroupHeaders.`,
         params: `required this.label,

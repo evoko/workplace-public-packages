@@ -13,6 +13,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { IconChevronDown, IconChevronRight } from '@bwp-web/assets';
 import { forwardRef } from 'react';
@@ -36,7 +37,9 @@ export interface RowExpandProps
     Omit<BoxProps, keyof SolarRowExpandProps | 'children' | 'ref'> {}
 
 export const RowExpand = forwardRef<HTMLSpanElement, RowExpandProps>(
-  function RowExpand({ type, sx, ...rest }, ref) {
+  function RowExpand(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarRowExpand), under the caller's own.
+    const { type, sx, ...rest } = useSolarProps(inProps, 'SolarRowExpand');
     const parts = solarRowExpandCompose({ type });
     return (
       <Box

@@ -16,6 +16,7 @@
  * The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { useControlled } from '@mui/material/utils';
@@ -58,8 +59,9 @@ export interface ExpandableCardProps
 }
 
 export const ExpandableCard = forwardRef<HTMLDivElement, ExpandableCardProps>(
-  function ExpandableCard(
-    {
+  function ExpandableCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarExpandableCard), under the caller's own.
+    const {
       expanded: expandedProp,
       defaultExpanded = false,
       onExpandedChange,
@@ -68,9 +70,7 @@ export const ExpandableCard = forwardRef<HTMLDivElement, ExpandableCardProps>(
       children,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarExpandableCard');
     const [expanded, setExpanded] = useControlled({
       controlled: expandedProp,
       default: defaultExpanded,

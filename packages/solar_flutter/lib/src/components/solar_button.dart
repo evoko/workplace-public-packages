@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/button.dart';
 import '../generated/components/spinner.dart';
+import '../solar_button_themes.dart';
+import '../solar_own_size.dart';
 import '../solar_states.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
@@ -26,7 +28,6 @@ class SolarButton extends StatelessWidget {
     this.child,
     this.size = SolarButtonSize.md,
     this.variant = SolarButtonVariant.primary,
-    this.disabled = false,
     this.loading = false,
     this.danger = false,
     this.iconLeading,
@@ -49,7 +50,6 @@ class SolarButton extends StatelessWidget {
 
   final SolarButtonSize size;
   final SolarButtonVariant variant;
-  final bool disabled;
   final bool loading;
   final bool danger;
 
@@ -68,6 +68,10 @@ class SolarButton extends StatelessWidget {
   final FocusNode? focusNode;
   final bool autofocus;
   final WidgetStatesController? statesController;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +126,11 @@ class SolarButton extends StatelessWidget {
       controller: statesController,
       builder: (context, states) => FilledButton(
         onPressed: disabled || busy ? null : onPressed,
-        style: SolarButtonRecipe.style(t, p),
+        // The recipe, under the app's SolarButtonThemeData where its theme has one.
+        style: SolarButtonThemeData.styled(
+          context,
+          SolarButtonRecipe.style(t, p),
+        ),
         focusNode: focusNode,
         autofocus: autofocus,
         statesController: states,
@@ -164,6 +172,8 @@ class SolarButton extends StatelessWidget {
         child: Semantics(label: semanticLabel, child: button),
       );
     }
-    return button;
+    // Its own size wherever it is put, as Figma draws it, not the width a ListView forces on a
+    // Flutter button (owner decision 2026-09-25); a parent that shares its row gives SolarFill.
+    return SolarOwnSize(child: button);
   }
 }

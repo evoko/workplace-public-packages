@@ -15,6 +15,7 @@
  * rail. Group them under SectionNavGroupHeaders. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import ButtonBase, { type ButtonBaseProps } from '@mui/material/ButtonBase';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -43,10 +44,17 @@ export interface SectionNavItemProps
 export const SectionNavItem = forwardRef<
   HTMLButtonElement,
   SectionNavItemProps
->(function SectionNavItem(
-  { selected = false, disabled = false, label, icon, className, sx, ...rest },
-  ref,
-) {
+>(function SectionNavItem(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarSectionNavItem), under the caller's own.
+  const {
+    selected = false,
+    disabled = false,
+    label,
+    icon,
+    className,
+    sx,
+    ...rest
+  } = useSolarProps(inProps, 'SolarSectionNavItem');
   const look = { selected, disabled };
   const parts = solarSectionNavItemCompose(look);
   return (

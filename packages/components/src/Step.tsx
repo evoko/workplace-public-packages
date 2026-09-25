@@ -14,6 +14,7 @@
  * load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { StepperIndicator } from './StepperIndicator.js';
 import { forwardRef, type MouseEventHandler, type ReactNode } from 'react';
@@ -43,49 +44,53 @@ export interface StepProps
   onClick?: MouseEventHandler<HTMLElement>;
 }
 
-export const Step = forwardRef<HTMLElement, StepProps>(function Step(
-  { status, type, label, number, onClick, sx, ...rest },
-  ref,
-) {
-  const composed = solarStepCompose({ status, type });
-  const parts = {
-    ...composed,
-    step: { ...composed.step, present: composed.step?.present !== false },
-  };
-  return (
-    <Box
-      component={onClick ? 'button' : 'span'}
-      ref={ref}
-      type={onClick ? 'button' : undefined}
-      onClick={onClick}
-      {...rest}
-      sx={[
-        solarStepStyle({ status, type }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      {drawChildren('root', {
-        prefix: 'SolarStep',
-        tree: TREE,
-        slots: SLOTS,
-        parts,
-        text: {
-          step: label,
-          label: (
-            <>
-              {number}. {label}
-            </>
-          ),
-        },
-        content: {
-          stepperIndicator: (
-            <StepperIndicator
-              number={number}
-              status={composed.stepperIndicator['variant.status'] as never}
-            />
-          ),
-        },
-      })}
-    </Box>
-  );
-});
+export const Step = forwardRef<HTMLElement, StepProps>(
+  function Step(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarStep), under the caller's own.
+    const { status, type, label, number, onClick, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarStep',
+    );
+    const composed = solarStepCompose({ status, type });
+    const parts = {
+      ...composed,
+      step: { ...composed.step, present: composed.step?.present !== false },
+    };
+    return (
+      <Box
+        component={onClick ? 'button' : 'span'}
+        ref={ref}
+        type={onClick ? 'button' : undefined}
+        onClick={onClick}
+        {...rest}
+        sx={[
+          solarStepStyle({ status, type }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarStep',
+          tree: TREE,
+          slots: SLOTS,
+          parts,
+          text: {
+            step: label,
+            label: (
+              <>
+                {number}. {label}
+              </>
+            ),
+          },
+          content: {
+            stepperIndicator: (
+              <StepperIndicator
+                number={number}
+                status={composed.stepperIndicator['variant.status'] as never}
+              />
+            ),
+          },
+        })}
+      </Box>
+    );
+  },
+);

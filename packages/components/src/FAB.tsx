@@ -13,6 +13,7 @@
  * floats (usually the bottom right) is the app's. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiButton, {
   type ButtonProps as MuiButtonProps,
 } from '@mui/material/Button';
@@ -49,58 +50,62 @@ const DEV =
   (globalThis as { process?: { env?: { NODE_ENV?: string } } }).process?.env
     ?.NODE_ENV !== 'production';
 
-export const FAB = forwardRef<HTMLButtonElement, FABProps>(function FAB(
-  { size, disabled, loading, icon, children, sx, ...rest },
-  ref,
-) {
-  // Extended where it has a label, as SOLAR says; the icon FAB's name is its aria-label.
-  const extended = children != null && children !== false && children !== '';
-  if (DEV && !extended && !rest['aria-label'] && !rest['aria-labelledby'])
-    // eslint-disable-next-line no-console -- a development-only accessibility warning, on purpose
-    console.warn('SOLAR FAB: an icon FAB needs an aria-label.');
-  const recipe = {
-    size,
-    disabled,
-    loading,
-    type: extended ? 'extended' : 'icon',
-  } as const;
-  const busy = Boolean(loading && !disabled);
-  // Which Spinner the loading state shows, as Figma picks it per size, and what it hides: the icon
-  // and the label, which keep their room so the FAB does not resize.
-  const parts = solarFABCompose(recipe, busy ? 'loading' : 'default');
-  const spinner = solarFABCompose(recipe, 'loading').spinner;
+export const FAB = forwardRef<HTMLButtonElement, FABProps>(
+  function FAB(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarFAB), under the caller's own.
+    const { size, disabled, loading, icon, children, sx, ...rest } =
+      useSolarProps(inProps, 'SolarFAB');
+    // Extended where it has a label, as SOLAR says; the icon FAB's name is its aria-label.
+    const extended = children != null && children !== false && children !== '';
+    if (DEV && !extended && !rest['aria-label'] && !rest['aria-labelledby'])
+      // eslint-disable-next-line no-console -- a development-only accessibility warning, on purpose
+      console.warn('SOLAR FAB: an icon FAB needs an aria-label.');
+    const recipe = {
+      size,
+      disabled,
+      loading,
+      type: extended ? 'extended' : 'icon',
+    } as const;
+    const busy = Boolean(loading && !disabled);
+    // Which Spinner the loading state shows, as Figma picks it per size, and what it hides: the icon
+    // and the label, which keep their room so the FAB does not resize.
+    const parts = solarFABCompose(recipe, busy ? 'loading' : 'default');
+    const spinner = solarFABCompose(recipe, 'loading').spinner;
 
-  return (
-    <MuiButton
-      ref={ref}
-      {...rest}
-      disabled={disabled}
-      // Disabled wins over loading, as in Figma's state order.
-      loading={busy}
-      startIcon={icon}
-      loadingIndicator={
-        <Spinner
-          size={spinner['variant.size'] as SolarSpinnerSize}
-          variant={spinner['variant.style'] as SolarSpinnerVariant}
-        />
-      }
-      // SOLAR's states have their own colours and shadows; MUI's ripple and elevation would paint
-      // over them, so its own variant is pinned to text, as Button's is.
-      variant="text"
-      disableRipple
-      sx={[
-        solarFABStyle(recipe),
-        parts.icon?.present === false
-          ? { '& .MuiButton-startIcon': { visibility: 'hidden' } }
-          : null,
-        // Under the loading class the recipe's own colour rule is, so this one, later, wins.
-        parts.label?.present === false
-          ? { '&.MuiButton-loading': { color: 'transparent' } }
-          : null,
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
-      {extended ? children : null}
-    </MuiButton>
-  );
-});
+    return (
+      <MuiButton
+        // Its own recipe, not the SOLAR theme's for a stock MUI one (spec/overlay/mui-theme.yaml).
+        data-solar=""
+        ref={ref}
+        {...rest}
+        disabled={disabled}
+        // Disabled wins over loading, as in Figma's state order.
+        loading={busy}
+        startIcon={icon}
+        loadingIndicator={
+          <Spinner
+            size={spinner['variant.size'] as SolarSpinnerSize}
+            variant={spinner['variant.style'] as SolarSpinnerVariant}
+          />
+        }
+        // SOLAR's states have their own colours and shadows; MUI's ripple and elevation would paint
+        // over them, so its own variant is pinned to text, as Button's is.
+        variant="text"
+        disableRipple
+        sx={[
+          solarFABStyle(recipe),
+          parts.icon?.present === false
+            ? { '& .MuiButton-startIcon': { visibility: 'hidden' } }
+            : null,
+          // Under the loading class the recipe's own colour rule is, so this one, later, wins.
+          parts.label?.present === false
+            ? { '&.MuiButton-loading': { color: 'transparent' } }
+            : null,
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
+        {extended ? children : null}
+      </MuiButton>
+    );
+  },
+);

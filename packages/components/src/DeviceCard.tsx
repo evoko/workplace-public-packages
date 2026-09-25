@@ -18,6 +18,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconDevice, IconProgress } from '@bwp-web/assets';
@@ -92,8 +93,9 @@ export interface DeviceCardProps
 }
 
 export const DeviceCard = forwardRef<HTMLDivElement, DeviceCardProps>(
-  function DeviceCard(
-    {
+  function DeviceCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDeviceCard), under the caller's own.
+    const {
       loading = false,
       type = 'single',
       name,
@@ -108,9 +110,7 @@ export const DeviceCard = forwardRef<HTMLDivElement, DeviceCardProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarDeviceCard');
     const look = { loading, type };
     const composed = solarDeviceCardCompose(
       look,

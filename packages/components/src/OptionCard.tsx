@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconPlus } from '@bwp-web/assets';
@@ -46,10 +47,17 @@ export interface OptionCardProps
 }
 
 export const OptionCard = forwardRef<HTMLDivElement, OptionCardProps>(
-  function OptionCard(
-    { selected = false, label, onClick, href, className, sx, ...rest },
-    ref,
-  ) {
+  function OptionCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarOptionCard), under the caller's own.
+    const {
+      selected = false,
+      label,
+      onClick,
+      href,
+      className,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarOptionCard');
     const look = { selected };
     const composed = solarOptionCardCompose(look);
     const pressable = onClick != null || href != null;

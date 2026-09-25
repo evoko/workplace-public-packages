@@ -17,6 +17,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import { IconEye, IconEyeOff } from '@bwp-web/assets';
 import Box from '@mui/material/Box';
 import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
@@ -77,8 +78,9 @@ export interface PasswordInputProps
 }
 
 export const PasswordInput = forwardRef<HTMLDivElement, PasswordInputProps>(
-  function PasswordInput(
-    {
+  function PasswordInput(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarPasswordInput), under the caller's own.
+    const {
       size,
       disabled,
       error,
@@ -96,9 +98,7 @@ export const PasswordInput = forwardRef<HTMLDivElement, PasswordInputProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarPasswordInput');
     const own = useId();
     const id = idProp ?? own;
     const [value, setValue] = useControlled<unknown>({

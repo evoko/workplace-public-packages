@@ -19,6 +19,7 @@
  * (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconMore } from '@bwp-web/assets';
@@ -108,183 +109,188 @@ export interface CardProps
   href?: string;
 }
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-  {
-    disabled = false,
-    status = 'none',
-    loading = false,
-    title,
-    icon,
-    helper,
-    description,
-    children,
-    tag,
-    moreItems,
-    moreLabel = 'More actions',
-    onClick,
-    href,
-    className,
-    sx,
-    ...rest
-  },
-  ref,
-) {
-  // Figma draws a loading card, and a disabled one, with no status: its look is the same for all.
-  const look = {
-    disabled,
-    status: loading || disabled ? ('none' as const) : status,
-    loading,
-  };
-  const composed = solarCardCompose(look);
-  // Pressable while it loads too, as Figma draws a loading card hovered: its title, the action,
-  // is then its name alone.
-  const pressable = (onClick != null || href != null) && !disabled;
-  const menu = moreItems != null && moreItems.length > 0;
-  const t = composed.tag;
-  // A slot left empty is not drawn, and one Figma hides at rest is drawn where it is given.
-  const parts = {
-    ...composed,
-    icon: { ...composed.icon, present: icon != null },
-    helper: { ...composed.helper, present: helper != null },
-    description: {
-      ...composed.description,
-      present: composed.description?.present !== false && description != null,
-    },
-    tag: {
-      ...composed.tag,
-      present: composed.tag?.present !== false && tag != null,
-    },
-    more: {
-      ...composed.more,
-      present: composed.more?.present !== false && menu,
-    },
-  };
-  const [open, setOpen] = useState(false);
-  const moreRef = useRef<HTMLButtonElement>(null);
-  // Pressable, its title is its action, stretched over the card.
-  const titled = pressable ? (
-    <ButtonBase
-      className="SolarCard-press"
-      disableRipple
-      {...(href != null ? { href } : {})}
-      onClick={onClick}
-    >
-      {title}
-    </ButtonBase>
-  ) : (
-    title
-  );
-  // Loading, where its title is not drawn (Card's; a Device Card's is), the action is drawn in
-  // its place, its name alone.
-  const waiting =
-    pressable &&
-    loading &&
-    !['titleTitle'].some((l) => composed[l]?.present !== false) ? (
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  function Card(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarCard), under the caller's own.
+    const {
+      disabled = false,
+      status = 'none',
+      loading = false,
+      title,
+      icon,
+      helper,
+      description,
+      children,
+      tag,
+      moreItems,
+      moreLabel = 'More actions',
+      onClick,
+      href,
+      className,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarCard');
+    // Figma draws a loading card, and a disabled one, with no status: its look is the same for all.
+    const look = {
+      disabled,
+      status: loading || disabled ? ('none' as const) : status,
+      loading,
+    };
+    const composed = solarCardCompose(look);
+    // Pressable while it loads too, as Figma draws a loading card hovered: its title, the action,
+    // is then its name alone.
+    const pressable = (onClick != null || href != null) && !disabled;
+    const menu = moreItems != null && moreItems.length > 0;
+    const t = composed.tag;
+    // A slot left empty is not drawn, and one Figma hides at rest is drawn where it is given.
+    const parts = {
+      ...composed,
+      icon: { ...composed.icon, present: icon != null },
+      helper: { ...composed.helper, present: helper != null },
+      description: {
+        ...composed.description,
+        present: composed.description?.present !== false && description != null,
+      },
+      tag: {
+        ...composed.tag,
+        present: composed.tag?.present !== false && tag != null,
+      },
+      more: {
+        ...composed.more,
+        present: composed.more?.present !== false && menu,
+      },
+    };
+    const [open, setOpen] = useState(false);
+    const moreRef = useRef<HTMLButtonElement>(null);
+    // Pressable, its title is its action, stretched over the card.
+    const titled = pressable ? (
       <ButtonBase
         className="SolarCard-press"
         disableRipple
         {...(href != null ? { href } : {})}
         onClick={onClick}
       >
-        <span className="SolarCard-name">{title}</span>
+        {title}
       </ButtonBase>
-    ) : null;
-  return (
-    <>
-      <Box
-        ref={ref}
-        aria-busy={loading || undefined}
-        aria-disabled={disabled || undefined}
-        className={
-          [
-            pressable ? 'SolarCard-pressable' : null,
-            disabled ? 'SolarCard-disabled' : null,
-            className,
-          ]
-            .filter(Boolean)
-            .join(' ') || undefined
-        }
-        {...rest}
-        sx={[solarCardStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
-      >
-        {waiting}
-        {drawChildren('root', {
-          prefix: 'SolarCard',
-          tree: TREE,
-          slots: SLOTS,
-          parts,
-          text: { titleTitle: titled, helper, description },
-          icons: {
-            icon: <span>{icon}</span>,
-            more: (
-              <ButtonBase
-                ref={moreRef}
-                disableRipple
-                disabled={disabled}
-                aria-label={moreLabel}
-                aria-haspopup="menu"
-                aria-expanded={open}
-                onClick={() => setOpen(true)}
-              >
-                <IconMore />
-              </ButtonBase>
-            ),
-          },
-          render: {
-            // The content: Figma's description (or, loading, its placeholder lines), then the caller's
-            // children.
-            content: ({ className: c, style, children: drawn }: DrawnLayer) => (
-              <div className={c} style={style}>
-                {drawn}
-                {loading ? null : children}
-              </div>
-            ),
-            // A SOLAR Tag, in the variant the recipe names, in its layer's element; loading, it is the
-            // Tag's placeholder, its words hidden and keeping their room, on the fill the recipe draws it on.
-            tag: ({ className: c, style }: DrawnLayer) => (
-              <span
-                className={c}
-                style={style}
-                aria-hidden={loading || undefined}
-              >
-                <Tag
-                  status={t['variant.status'] as TagProps['status']}
-                  {...(t['variant.invert'] === 'true'
-                    ? { invert: true as const }
-                    : {})}
-                >
-                  {loading ? (
-                    <span style={{ visibility: 'hidden' }}>{tag}</span>
-                  ) : (
-                    tag
-                  )}
-                </Tag>
-              </span>
-            ),
-          },
-        })}
-      </Box>
-      {menu ? (
-        <DropdownMenu
-          anchorEl={moreRef.current}
-          open={open}
-          onClose={() => setOpen(false)}
+    ) : (
+      title
+    );
+    // Loading, where its title is not drawn (Card's; a Device Card's is), the action is drawn in
+    // its place, its name alone.
+    const waiting =
+      pressable &&
+      loading &&
+      !['titleTitle'].some((l) => composed[l]?.present !== false) ? (
+        <ButtonBase
+          className="SolarCard-press"
+          disableRipple
+          {...(href != null ? { href } : {})}
+          onClick={onClick}
         >
-          {moreItems.map((item, i) => (
-            <DropdownItem
-              key={i}
-              disabled={item.disabled}
-              icon={item.icon}
-              onClick={() => {
-                setOpen(false);
-                item.onSelect();
-              }}
-            >
-              {item.label}
-            </DropdownItem>
-          ))}
-        </DropdownMenu>
-      ) : null}
-    </>
-  );
-});
+          <span className="SolarCard-name">{title}</span>
+        </ButtonBase>
+      ) : null;
+    return (
+      <>
+        <Box
+          ref={ref}
+          aria-busy={loading || undefined}
+          aria-disabled={disabled || undefined}
+          className={
+            [
+              pressable ? 'SolarCard-pressable' : null,
+              disabled ? 'SolarCard-disabled' : null,
+              className,
+            ]
+              .filter(Boolean)
+              .join(' ') || undefined
+          }
+          {...rest}
+          sx={[solarCardStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+        >
+          {waiting}
+          {drawChildren('root', {
+            prefix: 'SolarCard',
+            tree: TREE,
+            slots: SLOTS,
+            parts,
+            text: { titleTitle: titled, helper, description },
+            icons: {
+              icon: <span>{icon}</span>,
+              more: (
+                <ButtonBase
+                  ref={moreRef}
+                  disableRipple
+                  disabled={disabled}
+                  aria-label={moreLabel}
+                  aria-haspopup="menu"
+                  aria-expanded={open}
+                  onClick={() => setOpen(true)}
+                >
+                  <IconMore />
+                </ButtonBase>
+              ),
+            },
+            render: {
+              // The content: Figma's description (or, loading, its placeholder lines), then the caller's
+              // children.
+              content: ({
+                className: c,
+                style,
+                children: drawn,
+              }: DrawnLayer) => (
+                <div className={c} style={style}>
+                  {drawn}
+                  {loading ? null : children}
+                </div>
+              ),
+              // A SOLAR Tag, in the variant the recipe names, in its layer's element; loading, it is the
+              // Tag's placeholder, its words hidden and keeping their room, on the fill the recipe draws it on.
+              tag: ({ className: c, style }: DrawnLayer) => (
+                <span
+                  className={c}
+                  style={style}
+                  aria-hidden={loading || undefined}
+                >
+                  <Tag
+                    status={t['variant.status'] as TagProps['status']}
+                    {...(t['variant.invert'] === 'true'
+                      ? { invert: true as const }
+                      : {})}
+                  >
+                    {loading ? (
+                      <span style={{ visibility: 'hidden' }}>{tag}</span>
+                    ) : (
+                      tag
+                    )}
+                  </Tag>
+                </span>
+              ),
+            },
+          })}
+        </Box>
+        {menu ? (
+          <DropdownMenu
+            anchorEl={moreRef.current}
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            {moreItems.map((item, i) => (
+              <DropdownItem
+                key={i}
+                disabled={item.disabled}
+                icon={item.icon}
+                onClick={() => {
+                  setOpen(false);
+                  item.onSelect();
+                }}
+              >
+                {item.label}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        ) : null}
+      </>
+    );
+  },
+);

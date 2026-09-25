@@ -69,13 +69,11 @@ class SolarPageNavigator extends StatelessWidget {
       composed: {
         'prevButton': SolarPageNavButton(
           direction: SolarPageNavButtonDirection.prev,
-          disabled: page <= 1,
-          onPressed: () => onChanged?.call(page - 1),
+          onPressed: page <= 1 ? null : () => onChanged?.call(page - 1),
         ),
         'nextButton': SolarPageNavButton(
           direction: SolarPageNavButtonDirection.next,
-          disabled: page >= count,
-          onPressed: () => onChanged?.call(page + 1),
+          onPressed: page >= count ? null : () => onChanged?.call(page + 1),
         ),
       },
       // Where the reader is, announced as it changes.

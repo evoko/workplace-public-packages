@@ -16,6 +16,7 @@
  * app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase, { type ButtonBaseProps } from '@mui/material/ButtonBase';
 import { useControlled } from '@mui/material/utils';
@@ -57,8 +58,9 @@ export interface AccordionProps
 }
 
 export const Accordion = forwardRef<HTMLElement, AccordionProps>(
-  function Accordion(
-    {
+  function Accordion(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarAccordion), under the caller's own.
+    const {
       disabled = false,
       expanded: expandedProp,
       defaultExpanded = false,
@@ -69,9 +71,7 @@ export const Accordion = forwardRef<HTMLElement, AccordionProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarAccordion');
     const [expanded, setExpanded] = useControlled({
       controlled: expandedProp,
       default: defaultExpanded,

@@ -100,9 +100,11 @@ export default {
     }),
   },
   flutter: {},
-  shells: {
-    // The month is the one shown, which the shell writes itself.
-    slots: { month: null },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // The month is the one shown, which the shell writes itself.
+  api: {
+    react: { month: null },
+    flutter: { month: null },
   },
   templates: {
     react: (spec) => {
@@ -630,9 +632,8 @@ ${tree}
                       semanticLabel: l.formatFullDate(d),
                       selected: chosen == d,
                       today: today == d,
-                      disabled: off,
                       focusNode: outside ? null : (_nodes[d] ??= FocusNode()),
-                      onPressed: () {
+                      onPressed: off ? null : () {
                         setState(() => _focus = d);
                         widget.onChanged?.call(d);
                       },

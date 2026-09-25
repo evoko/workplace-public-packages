@@ -136,11 +136,7 @@ void main() {
               shortcut: '⌘C',
               onPressed: () => copied++,
             ),
-            SolarContextMenuItem(
-              label: 'Paste',
-              disabled: true,
-              onPressed: () => copied++,
-            ),
+            const SolarContextMenuItem(label: 'Paste', onPressed: null),
           ],
         ),
       );

@@ -15,6 +15,7 @@
  * load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import {
   IconClose,
@@ -72,72 +73,73 @@ export interface BannerProps
   closeLabel?: string;
 }
 
-export const Banner = forwardRef<HTMLDivElement, BannerProps>(function Banner(
-  {
-    type,
-    description,
-    primaryButton,
-    secondaryButton,
-    action,
-    onAction,
-    onClose,
-    closeLabel = 'Dismiss',
-    sx,
-    ...rest
+export const Banner = forwardRef<HTMLDivElement, BannerProps>(
+  function Banner(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarBanner), under the caller's own.
+    const {
+      type,
+      description,
+      primaryButton,
+      secondaryButton,
+      action,
+      onAction,
+      onClose,
+      closeLabel = 'Dismiss',
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarBanner');
+    const parts = solarBannerCompose({ type });
+    // A slot left empty is not drawn.
+    const drawn = {
+      ...parts,
+      primaryButton: { ...parts.primaryButton, present: primaryButton != null },
+      secondaryButton: {
+        ...parts.secondaryButton,
+        present: secondaryButton != null,
+      },
+      action: { ...parts.action, present: action != null },
+      close: { ...parts.close, present: onClose != null },
+    };
+    return (
+      <Box
+        ref={ref}
+        role={type === 'danger' || type === 'warning' ? 'alert' : 'status'}
+        {...rest}
+        sx={[solarBannerStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarBanner',
+          tree: TREE,
+          slots: SLOTS,
+          parts: drawn,
+          text: { description },
+          icons: {
+            iconInfo: <IconInfo />,
+            iconSuccess: <IconSuccess />,
+            iconWarning: <IconWarning />,
+            iconDanger: <IconDanger />,
+            primaryButton: <span>{primaryButton}</span>,
+            secondaryButton: <span>{secondaryButton}</span>,
+            close: (
+              <button type="button" aria-label={closeLabel} onClick={onClose}>
+                <IconClose />
+              </button>
+            ),
+          },
+          render: {
+            action: ({ className, style }) => (
+              <button
+                type="button"
+                className={className}
+                style={style}
+                onClick={onAction}
+              >
+                {action}
+              </button>
+            ),
+          },
+        })}
+      </Box>
+    );
   },
-  ref,
-) {
-  const parts = solarBannerCompose({ type });
-  // A slot left empty is not drawn.
-  const drawn = {
-    ...parts,
-    primaryButton: { ...parts.primaryButton, present: primaryButton != null },
-    secondaryButton: {
-      ...parts.secondaryButton,
-      present: secondaryButton != null,
-    },
-    action: { ...parts.action, present: action != null },
-    close: { ...parts.close, present: onClose != null },
-  };
-  return (
-    <Box
-      ref={ref}
-      role={type === 'danger' || type === 'warning' ? 'alert' : 'status'}
-      {...rest}
-      sx={[solarBannerStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
-      {drawChildren('root', {
-        prefix: 'SolarBanner',
-        tree: TREE,
-        slots: SLOTS,
-        parts: drawn,
-        text: { description },
-        icons: {
-          iconInfo: <IconInfo />,
-          iconSuccess: <IconSuccess />,
-          iconWarning: <IconWarning />,
-          iconDanger: <IconDanger />,
-          primaryButton: <span>{primaryButton}</span>,
-          secondaryButton: <span>{secondaryButton}</span>,
-          close: (
-            <button type="button" aria-label={closeLabel} onClick={onClose}>
-              <IconClose />
-            </button>
-          ),
-        },
-        render: {
-          action: ({ className, style }) => (
-            <button
-              type="button"
-              className={className}
-              style={style}
-              onClick={onAction}
-            >
-              {action}
-            </button>
-          ),
-        },
-      })}
-    </Box>
-  );
-});
+);

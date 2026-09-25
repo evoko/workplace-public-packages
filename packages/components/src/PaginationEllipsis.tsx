@@ -12,6 +12,7 @@
  * static text, never a 'jump' trigger"). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
 import {
@@ -34,7 +35,9 @@ export interface PaginationEllipsisProps
 export const PaginationEllipsis = forwardRef<
   HTMLSpanElement,
   PaginationEllipsisProps
->(function PaginationEllipsis({ sx, ...rest }, ref) {
+>(function PaginationEllipsis(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarPaginationEllipsis), under the caller's own.
+  const { sx, ...rest } = useSolarProps(inProps, 'SolarPaginationEllipsis');
   const parts = solarPaginationEllipsisCompose({});
   return (
     <Box

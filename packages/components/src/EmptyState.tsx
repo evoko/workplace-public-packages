@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -51,7 +52,12 @@ export interface EmptyStateProps
 }
 
 export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
-  function EmptyState({ icon, title, description, action, sx, ...rest }, ref) {
+  function EmptyState(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarEmptyState), under the caller's own.
+    const { icon, title, description, action, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarEmptyState',
+    );
     const composed = solarEmptyStateCompose({});
     const parts = {
       ...composed,

@@ -23,7 +23,6 @@ class SolarSectionNavItem extends StatelessWidget {
   const SolarSectionNavItem({
     super.key,
     this.selected = false,
-    this.disabled = false,
     required this.label,
     required this.icon,
     required this.onPressed,
@@ -31,7 +30,6 @@ class SolarSectionNavItem extends StatelessWidget {
   });
 
   final bool selected;
-  final bool disabled;
 
   /// Where it goes.
   final String label;
@@ -41,6 +39,10 @@ class SolarSectionNavItem extends StatelessWidget {
 
   /// Called when it is chosen; null disables it.
   final VoidCallback? onPressed;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

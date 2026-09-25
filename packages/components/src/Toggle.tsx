@@ -15,6 +15,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiSwitch, {
   type SwitchProps as MuiSwitchProps,
 } from '@mui/material/Switch';
@@ -68,8 +69,9 @@ export interface ToggleProps
 }
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
-  function Toggle(
-    {
+  function Toggle(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarToggle), under the caller's own.
+    const {
       selected: selectedProp,
       defaultSelected,
       disabled = false,
@@ -78,9 +80,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
       slotProps,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarToggle');
     const [selected, setSelected] = useControlled({
       controlled: selectedProp,
       default: Boolean(defaultSelected),

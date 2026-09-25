@@ -41,13 +41,15 @@ which corrected three of its readings and added items 19 and 20.
 | 11  | The spec says what the system is                     | Done 2026-09-25. Its two questions are open for the owner.      |
 | 12  | Recipe packaging                                     | **Open.**                                                       |
 | 13  | What git carries                                     | **Open.** Owner decision needed first.                          |
-| 14  | A stock-MUI theme generated from the recipes         | **Open.** New, from the comparison with `@biamp/solar-mui`.     |
+| 14  | A stock-MUI theme generated from the recipes         | Started 2026-09-25: MuiButton, MuiIconButton; drawn ones open.   |
 | 15  | One mode switch for stock MUI and SOLAR components   | Done 2026-09-25 (MUI CSS variables on `data-theme`).            |
 | 16  | One-line setup for a consuming app                   | Done 2026-09-25 (`SolarProvider`).                              |
 | 17  | One vocabulary: Figma's words or MUI's               | **Open.** New. Owner decision needed first.                     |
 | 18  | Figma Code Connect and a Figma-ID manifest           | **Open.** The fetcher records variant IDs from the next sync.   |
 | 19  | Breakpoints, spacing and motion in the MUI theme     | Done 2026-09-25.                                                |
 | 20  | Install the packed packages in a clean app           | Done 2026-09-25 (`npm run smoke:install`, in CI).               |
+| 21  | Parity suite: reachability, not spelling             | Done 2026-09-25 (two-libraries spec; `src/shells/api.mjs`).     |
+| 22  | Flutter idiom: null callback, component themes       | Done 2026-09-25 for the buttons (two-libraries spec).           |
 | 21  | Demote the parity suite to the contract              | **Open.** New, from [two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md). |
 | 22  | A Flutter idiom pass                                 | **Open.** New, from the same decision. Owner questions there.   |
 

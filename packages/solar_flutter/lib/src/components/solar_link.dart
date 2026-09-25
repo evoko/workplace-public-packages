@@ -23,7 +23,6 @@ class SolarLink extends StatelessWidget {
   const SolarLink({
     super.key,
     this.size = SolarLinkSize.md,
-    this.disabled = false,
     required this.label,
     this.leadingIcon,
     this.trailingIcon,
@@ -32,7 +31,6 @@ class SolarLink extends StatelessWidget {
   });
 
   final SolarLinkSize size;
-  final bool disabled;
 
   /// The link's words, which say where it goes.
   final String label;
@@ -42,6 +40,10 @@ class SolarLink extends StatelessWidget {
 
   /// An icon after the words: outbound, or a new tab.
   final Widget? trailingIcon;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Called when it is tapped, which makes it a control of its own; without it, it takes the
   /// states of the control around it (a Button's).

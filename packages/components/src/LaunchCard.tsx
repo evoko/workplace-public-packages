@@ -16,6 +16,7 @@
  * (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { forwardRef, type MouseEvent, type ReactNode } from 'react';
@@ -84,8 +85,9 @@ export interface LaunchCardProps
 }
 
 export const LaunchCard = forwardRef<HTMLDivElement, LaunchCardProps>(
-  function LaunchCard(
-    {
+  function LaunchCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarLaunchCard), under the caller's own.
+    const {
       name,
       body,
       appIcon,
@@ -98,9 +100,7 @@ export const LaunchCard = forwardRef<HTMLDivElement, LaunchCardProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarLaunchCard');
     const look = {};
     const composed = solarLaunchCardCompose(look);
     const pressable = onClick != null || href != null;

@@ -142,12 +142,17 @@ Widget _labelled(String? semanticLabel, Widget child) => Semantics(
 /// `currentColor` works on the web. The first of these that is set wins:
 ///
 /// 1. the explicit [color];
-/// 2. the ambient [SolarTheme] extension's `colors.iconPrimary`;
-/// 3. `IconTheme.of(context).color`, so an icon inside a button or a list tile matches the
-///    Material icons beside it;
-/// 4. black, which is only reached if a caller has removed the default icon theme.
+/// 2. `IconTheme.of(context).color`, as Flutter's own [Icon] reads it: an icon in a SolarButton or
+///    a SolarIconButton is the button's ink, in a list tile the tile's;
+/// 3. the ambient [SolarTheme] extension's `colors.iconPrimary`, where no icon theme has a colour;
+/// 4. black.
 ///
-/// **Size.** [size] is the side of a square box and defaults to [SolarIconSize.lg] (24). The
+/// Outside any widget that tints it, an icon is the app theme's icon colour: give the app's
+/// ThemeData `iconTheme: IconThemeData(color: SolarTheme.light.colors.iconPrimary)` (and Dark's)
+/// for SOLAR's `color.icon.primary` there.
+///
+/// **Size.** [size] is the side of a square box. Without it, `IconTheme.of(context).size` (a sm
+/// Icon Button's 12), and [SolarIconSize.lg] (24) where the icon theme has none. The
 /// drawing is scaled to fit that box with its aspect ratio kept, so a variant that is not square
 /// is letterboxed rather than stretched.
 ///
@@ -178,11 +183,12 @@ class SolarIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double side = size ?? SolarIconSize.lg;
+    final inherited = IconTheme.of(context);
+    final double side = size ?? inherited.size ?? SolarIconSize.lg;
     final Color resolved =
         color ??
+        inherited.color ??
         Theme.of(context).extension<SolarTheme>()?.colors.iconPrimary ??
-        IconTheme.of(context).color ??
         const Color(0xFF000000);
 
     return _labelled(

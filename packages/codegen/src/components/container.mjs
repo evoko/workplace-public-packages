@@ -31,9 +31,6 @@ export default {
     }),
   },
   flutter: {},
-  shells: {
-    slots: { content: { react: 'children', flutter: 'children' } },
-  },
   templates: {
     react: (spec) => {
       requireLayers(spec);

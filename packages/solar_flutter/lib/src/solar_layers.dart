@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart' show OverflowBoxFit;
 
 import 'solar_glyph.dart';
 import 'solar_icon.dart';
+import 'solar_own_size.dart';
 import 'solar_target.dart';
 
 /// One component's recipe as a bespoke widget reads it, under one set of props and states: each
@@ -166,9 +167,59 @@ class SolarLayers {
 
   bool _fills(String cell) => recipe.lookup(cell) == 'k:FILL';
 
+  /// Whether [name] is as long along [axis] (`width`, `height`) as what it holds: it has no size of
+  /// its own there, and either does not fill or fills a layer that hugs, which Figma resolves as a
+  /// hug (a month filling a double calendar that hugs its months). A root that fills takes what
+  /// the app gives it.
+  bool _hugs(String name, String axis) {
+    // A fill's extent is infinite: no size of its own.
+    final extent = _extent('$name.$axis');
+    if (extent != null && extent.isFinite) return false;
+    if (!_fills('$name.$axis')) return true;
+    final parent = _parentOf(name);
+    return parent != null && _hugs(parent, axis);
+  }
+
+  /// A box's size along [axis]: the recipe's, but none where it fills along a parent that hugs
+  /// along that axis, since the parent is as long as its children (a month in a double calendar
+  /// that hugs its months). Filling across a parent that hugs, it keeps the fill, and the parent,
+  /// sized to its widest child, gives it that width (the flex builder's IntrinsicWidth).
+  double? _size(String name, String axis) {
+    final extent = _extent('$name.$axis');
+    final parent = _parentOf(name);
+    if (!_fills('$name.$axis') || parent == null) return extent;
+    final direction = recipe.lookup('$parent.direction');
+    final along = direction == 'k:HORIZONTAL'
+        ? 'width'
+        : direction == 'k:VERTICAL'
+        ? 'height'
+        : null;
+    return along == axis && _hugs(parent, axis) ? null : extent;
+  }
+
+  String? _parentOf(String name) {
+    for (final MapEntry(:key, :value) in tree.entries) {
+      if (value.contains(name)) return key;
+    }
+    return null;
+  }
+
   /// The layer [name], keyed, drawn as this variant draws it: translucent where the recipe gives it
-  /// an opacity (Node End's halo).
-  Widget layer(String name) => _built(name, _keyed(name));
+  /// an opacity (Node End's halo). The root keeps its own size on each axis it does not fill,
+  /// whatever its parent gives it ([SolarOwnSize]): a Checkbox in a ListView is 16px, not a bar.
+  Widget layer(String name) {
+    final drawn = _built(name, _keyed(name));
+    if (name != 'root') return drawn;
+    final fillsWidth = _fills('root.width');
+    final fillsHeight = _fills('root.height');
+    return fillsWidth && fillsHeight
+        ? drawn
+        : SolarOwnSize(
+            fillsWidth: fillsWidth,
+            fillsHeight: fillsHeight,
+            child: drawn,
+          );
+  }
 
   /// The layer, keyed, as drawn.
   Widget _keyed(String name) {
@@ -189,7 +240,15 @@ class SolarLayers {
 
   Widget _drawn(String name) {
     final child = composed[name];
-    if (child != null) return child;
+    // A composed child in a box its parent's recipe sizes (a Button filling its card's row) takes
+    // that box, not its own size; one the parent leaves unsized keeps its own.
+    if (child != null) {
+      final sized = [
+        'width',
+        'height',
+      ].any((a) => _fills('$name.$a') || _extent('$name.$a') != null);
+      return sized ? SolarFill(child: child) : child;
+    }
     final field = fields[name];
     if (field != null) return field(_textStyle(name));
     final glyph = recipe.glyph(name);
@@ -313,11 +372,15 @@ class SolarLayers {
     // A field in a row that hugs its content (Number Input's inline number) is as wide as its
     // words; in any other, it takes the room its row leaves.
     if (fields.containsKey(child) && hugs) return IntrinsicWidth(child: drawn);
-    return _fills('$child.$along') ||
-            fields.containsKey(child) ||
-            (horizontal && truncates.contains(child))
-        ? Expanded(child: drawn)
-        : drawn;
+    final fills =
+        _fills('$child.$along') ||
+        fields.containsKey(child) ||
+        (horizontal && truncates.contains(child));
+    if (!fills) return drawn;
+    // In a layer that hugs its content, a child that fills takes the room the others leave it and
+    // no more, as Figma resolves a fill inside a hug (a Segmented Control's label, its words): the
+    // layer is as long as what it holds, not as long as its parent allows.
+    return hugs ? Flexible(child: drawn) : Expanded(child: drawn);
   }
 
   /// A layer's edge: one width all round, or one per side where Figma gives each its own (Number
@@ -357,8 +420,18 @@ class SolarLayers {
       final horizontal = direction == 'k:HORIZONTAL';
       final along = horizontal ? 'width' : 'height';
       final align = recipe.lookup('$name.align')!.substring(2).split('/');
-      final hugs = recipe.lookup('$name.$along') == 'k:HUG';
-      return Flex(
+      // Hugging, where nothing sizes the layer along its axis (_hugs).
+      final hugs =
+          recipe.lookup('$name.$along') == 'k:HUG' || _hugs(name, along);
+      // Hugging across its axis with a child that fills across it (EmptyState's words under its
+      // icon): as wide as its widest child, the filling one spanning that, as a shrink-to-fit box
+      // lays out a child at 100% on the web; not as wide as its parent allows.
+      final across = horizontal ? 'height' : 'width';
+      final wraps =
+          given == null &&
+          _hugs(name, across) &&
+          laidOut.any((c) => _fills('$c.$across'));
+      final laidFlex = Flex(
         direction: horizontal ? Axis.horizontal : Axis.vertical,
         // A layer that hugs its content is as long as its children, as Figma's auto layout is.
         mainAxisSize: hugs ? MainAxisSize.min : MainAxisSize.max,
@@ -370,6 +443,10 @@ class SolarLayers {
             given ??
             [for (final c in laidOut) _inFlex(c, horizontal, hugs: hugs)],
       );
+      if (!wraps) return laidFlex;
+      return horizontal
+          ? IntrinsicHeight(child: laidFlex)
+          : IntrinsicWidth(child: laidFlex);
     }
 
     final padding = EdgeInsets.fromLTRB(
@@ -420,8 +497,8 @@ class SolarLayers {
       );
     }
     return Container(
-      width: _extent('$name.width'),
-      height: _extent('$name.height'),
+      width: _size(name, 'width'),
+      height: _size(name, 'height'),
       padding: padded ? padding : EdgeInsets.zero,
       clipBehavior: clips.contains(name) ? Clip.antiAlias : Clip.none,
       decoration: BoxDecoration(

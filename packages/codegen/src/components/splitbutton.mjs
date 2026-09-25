@@ -61,6 +61,11 @@ export default {
     overlaps: { pressed: ['hover'], focus: ['hover', 'pressed'] },
   },
   flutter: {},
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own buttons: by a null onPressed.
+  api: {
+    flutter: { disabled: 'onPressed' },
+  },
   templates: {
     react: (spec) => {
       requireLayers(spec);
@@ -338,7 +343,10 @@ class SolarSplitButton extends StatelessWidget {
     this.onMenuPressed,
     this.items,
     this.menuLabel = 'More options',
-${api.map(([prop, def]) => `    ${dartParam('SplitButton', prop, def)},`).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => `    ${dartParam('SplitButton', prop, def)},`)
+  .join('\n')}
     this.statesController,
   });
 
@@ -357,7 +365,10 @@ ${api.map(([prop, def]) => `    ${dartParam('SplitButton', prop, def)},`).join('
   /// The chevron's accessible name.
   final String menuLabel;
 
-${api.map(([prop, def]) => dartField('SplitButton', prop, def)).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => dartField('SplitButton', prop, def))
+  .join('\n')}
 
   /// The control's states, where the caller keeps them.
   final WidgetStatesController? statesController;
@@ -368,6 +379,10 @@ ${tree}
   };
 
   static const _halves = {'action', 'divider', 'trigger'};
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -383,8 +398,7 @@ ${tree}
               builder: (context) => SolarDropdownItem(
                 label: item.label,
                 icon: item.icon,
-                disabled: item.disabled,
-                onPressed: () {
+                onPressed: item.disabled ? null : () {
                   MenuController.maybeOf(context)?.close();
                   item.onSelected();
                 },

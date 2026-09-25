@@ -16,6 +16,7 @@
  * reader with `aria-labelledby`, its trigger's id. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import MenuList, { type MenuListProps } from '@mui/material/MenuList';
 import {
@@ -72,8 +73,9 @@ export interface DropdownMenuProps
 }
 
 export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
-  function DropdownMenu(
-    {
+  function DropdownMenu(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDropdownMenu), under the caller's own.
+    const {
       size,
       children,
       anchorEl,
@@ -85,9 +87,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
       listProps,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarDropdownMenu');
     const floating = floats({ anchorEl, anchorPosition });
     const parts = solarDropdownMenuCompose({ size });
     // Tab leaves a floating menu, as MUI's Menu does: it closes, and the focus moves on.

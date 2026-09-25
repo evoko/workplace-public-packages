@@ -17,13 +17,12 @@ Widget buildContextMenuItem(
     child: Semantics(
       role: SemanticsRole.menu,
       child: SolarContextMenuItem(
-        disabled: props['disabled'] as bool,
         destructive: props['destructive'] as bool,
         label: 'Action',
         leadingIcon: const IconProbe(),
         trailingIcon: const IconProbe(),
         shortcut: '⌘K',
-        onPressed: () {},
+        onPressed: props['disabled'] as bool ? null : () {},
         statesController: states,
       ),
     ),

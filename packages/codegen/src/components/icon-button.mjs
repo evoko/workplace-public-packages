@@ -58,6 +58,11 @@ export default {
       iconSize: 'icon.width',
     },
   },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own buttons: by a null onPressed.
+  api: {
+    flutter: { disabled: 'onPressed' },
+  },
   templates: {
     react: (spec) => {
       const api = Object.keys(spec.api);
@@ -146,6 +151,8 @@ ${api.map((p) => `    ${p},`).join('\n')}
 
   return (
     <MuiIconButton
+      // Its own recipe, not the SOLAR theme's for a stock MUI one (spec/overlay/mui-theme.yaml).
+      data-solar=""
       ref={ref}
       {...rest}
       disabled={disabled}
@@ -186,6 +193,8 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/icon_button.dart';
 import '../generated/components/spinner.dart';
+import '../solar_button_themes.dart';
+import '../solar_own_size.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -195,7 +204,10 @@ class SolarIconButton extends StatelessWidget {
     required this.onPressed,
     required this.icon,
     required this.semanticLabel,
-${api.map(([prop, def]) => `    ${dartParam('IconButton', prop, def)},`).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => `    ${dartParam('IconButton', prop, def)},`)
+  .join('\n')}
     this.focusNode,
     this.autofocus = false,
     this.statesController,
@@ -210,11 +222,18 @@ ${api.map(([prop, def]) => `    ${dartParam('IconButton', prop, def)},`).join('\
   /// The accessible name. An icon alone is not a name, so it is required.
   final String semanticLabel;
 
-${api.map(([prop, def]) => dartField('IconButton', prop, def)).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => dartField('IconButton', prop, def))
+  .join('\n')}
 
   final FocusNode? focusNode;
   final bool autofocus;
   final WidgetStatesController? statesController;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -231,7 +250,8 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
     // Semantics label alone makes a second node, and the button inside it stays unnamed.
     final Widget button = IconButton(
         onPressed: disabled || busy ? null : onPressed,
-        style: SolarIconButtonRecipe.style(t, p),
+        // The recipe, under the app's SolarIconButtonThemeData where its theme has one.
+        style: SolarIconButtonThemeData.styled(context, SolarIconButtonRecipe.style(t, p)),
         focusNode: focusNode,
         autofocus: autofocus,
         statesController: statesController,
@@ -263,8 +283,12 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
           ],
         ),
       );
-    return MergeSemantics(
-      child: Semantics(label: semanticLabel, child: button),
+    // Its own size wherever it is put, as Figma draws it, not the width a ListView forces on a
+    // Flutter button (owner decision 2026-09-25); a parent that sizes it gives SolarFill.
+    return SolarOwnSize(
+      child: MergeSemantics(
+        child: Semantics(label: semanticLabel, child: button),
+      ),
     );
   }
 }

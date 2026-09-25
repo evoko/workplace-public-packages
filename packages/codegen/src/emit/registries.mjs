@@ -32,7 +32,10 @@ const key = (name) => (/^[A-Za-z]\w*$/.test(name) ? name : `'${name}'`);
  * @param {string[]} names
  * @returns {Array<{file: string, text: string}>}
  */
-export function renderRegistries(names, { shelled = () => true } = {}) {
+export function renderRegistries(
+  names,
+  { shelled = () => true, generic = () => false } = {},
+) {
   const sorted = [...names].sort();
   // A component checked as another's state (Autocomplete Open, Autocomplete's) has no shells of
   // its own: it has a case, a builder and a story, and nothing to export.
@@ -98,10 +101,44 @@ export function renderRegistries(names, { shelled = () => true } = {}) {
     '',
     ...own.map((n) => `export '${flutterFileOf(n)}';`),
   ];
+  // Each component's key in an MUI theme's `components`, typed as MUI types its own: what the
+  // shells read through internal/theme.ts.
+  const themed = [
+    HEADER,
+    "// The SOLAR components' keys in an MUI theme's `components`, typed as MUI's own are:",
+    '// `defaultProps` fill what the caller leaves unset, and `styleOverrides.root` styles the root',
+    "// over the recipe, under the caller's `sx` (internal/theme.ts reads them).",
+    '',
+    "import type { CSSObject, Theme } from '@mui/material/styles';",
+    ...own.map(
+      (n) =>
+        `import type { ${pascal(n)}Props } from './${shellFileOf(n).replace(/\.tsx$/, '.js')}';`,
+    ),
+    '',
+    'interface SolarThemeEntry<P> {',
+    '  defaultProps?: Partial<P>;',
+    '  styleOverrides?: {',
+    '    root?: CSSObject | ((args: { ownerState: P; theme: Theme }) => CSSObject);',
+    '  };',
+    '}',
+    '',
+    "declare module '@mui/material/styles' {",
+    '  interface Components {',
+    ...own.map(
+      (n) =>
+        `    Solar${pascal(n)}?: SolarThemeEntry<${pascal(n)}Props${generic(n) ? '<unknown>' : ''}>;`,
+    ),
+    '  }',
+    '}',
+  ];
   return [
     {
       file: 'components/src/components.generated.ts',
       text: [HEADER, ...components].join('\n'),
+    },
+    {
+      file: 'components/src/theme.generated.ts',
+      text: themed.join('\n'),
     },
     {
       file: 'components/test/visual/cases/registry.generated.ts',

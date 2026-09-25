@@ -12,6 +12,7 @@
  * `@bwp-web/styles/tokens.css`, since every recipe value is a `var(--solar-*)`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiIconButton, {
   type IconButtonProps as MuiIconButtonProps,
 } from '@mui/material/IconButton';
@@ -59,10 +60,10 @@ const DEV =
     ?.NODE_ENV !== 'production';
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  function IconButton(
-    { size, shape, variant, disabled, loading, icon, sx, ...rest },
-    ref,
-  ) {
+  function IconButton(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarIconButton), under the caller's own.
+    const { size, shape, variant, disabled, loading, icon, sx, ...rest } =
+      useSolarProps(inProps, 'SolarIconButton');
     // For JavaScript callers, whom the types do not reach.
     if (DEV && !rest['aria-label'] && !rest['aria-labelledby'])
       // eslint-disable-next-line no-console -- a development-only accessibility warning, on purpose
@@ -81,6 +82,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
 
     return (
       <MuiIconButton
+        // Its own recipe, not the SOLAR theme's for a stock MUI one (spec/overlay/mui-theme.yaml).
+        data-solar=""
         ref={ref}
         {...rest}
         disabled={disabled}

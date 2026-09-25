@@ -25,16 +25,18 @@ class SolarPaginationNav extends StatelessWidget {
   const SolarPaginationNav({
     super.key,
     this.direction = SolarPaginationNavDirection.previous,
-    this.disabled = false,
     required this.onPressed,
     this.statesController,
   });
 
   final SolarPaginationNavDirection direction;
-  final bool disabled;
 
   /// Called when it is chosen; null disables it.
   final VoidCallback? onPressed;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

@@ -75,11 +75,12 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // A tab's words are its `label`, as MUI's Tab names them.
-    label: 'label',
-    // The counter is a count, which the shell draws as a SOLAR Counter in the recipe's variant.
-    slots: { counter: 'count' },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // A tab's words are its `label`, as MUI's Tab names them.
+  // The counter is a count, which the shell draws as a SOLAR Counter in the recipe's variant.
+  api: {
+    react: { label: 'label', counter: 'count' },
+    flutter: { counter: 'count' },
   },
   templates: {
     react: (spec) => {

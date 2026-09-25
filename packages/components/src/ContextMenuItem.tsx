@@ -15,6 +15,7 @@
  * submenus: one level. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MenuItem, { type MenuItemProps } from '@mui/material/MenuItem';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -59,8 +60,9 @@ export interface ContextMenuItemProps
 }
 
 export const ContextMenuItem = forwardRef<HTMLLIElement, ContextMenuItemProps>(
-  function ContextMenuItem(
-    {
+  function ContextMenuItem(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarContextMenuItem), under the caller's own.
+    const {
       disabled = false,
       destructive = false,
       children,
@@ -69,9 +71,7 @@ export const ContextMenuItem = forwardRef<HTMLLIElement, ContextMenuItemProps>(
       shortcut,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarContextMenuItem');
     const look = { disabled, destructive };
     const composed = solarContextMenuItemCompose(look);
     // A slot left empty is not drawn.

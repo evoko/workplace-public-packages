@@ -23,20 +23,22 @@ class SolarPaginationItem extends StatelessWidget {
   const SolarPaginationItem({
     super.key,
     this.selected = false,
-    this.disabled = false,
     required this.page,
     required this.onPressed,
     this.statesController,
   });
 
   final bool selected;
-  final bool disabled;
 
   /// The page's number.
   final int page;
 
   /// Called when it is chosen; null disables it.
   final VoidCallback? onPressed;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

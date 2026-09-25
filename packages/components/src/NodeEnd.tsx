@@ -13,6 +13,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
 import {
@@ -33,7 +34,9 @@ export interface NodeEndProps
     Omit<BoxProps, keyof SolarNodeEndProps | 'children' | 'ref'> {}
 
 export const NodeEnd = forwardRef<HTMLSpanElement, NodeEndProps>(
-  function NodeEnd({ halo, sx, ...rest }, ref) {
+  function NodeEnd(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarNodeEnd), under the caller's own.
+    const { halo, sx, ...rest } = useSolarProps(inProps, 'SolarNodeEnd');
     const parts = solarNodeEndCompose({ halo });
     return (
       <Box

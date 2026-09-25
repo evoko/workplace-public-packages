@@ -32,11 +32,10 @@ export default {
     }),
   },
   flutter: {},
-  shells: {
-    slots: {
-      topContent: { react: 'top', flutter: 'top' },
-      lowerContent: { react: 'lower', flutter: 'lower' },
-    },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { topContent: 'top', lowerContent: 'lower' },
+    flutter: { topContent: 'top', lowerContent: 'lower' },
   },
   templates: {
     react: (spec) => {

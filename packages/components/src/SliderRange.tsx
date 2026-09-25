@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiSlider, {
   type SliderProps as MuiSliderProps,
 } from '@mui/material/Slider';
@@ -39,7 +40,13 @@ export interface SliderRangeProps
     > {}
 
 export const SliderRange = forwardRef<HTMLSpanElement, SliderRangeProps>(
-  function SliderRange({ disabled = false, sx, ...rest }, ref) {
+  function SliderRange(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSliderRange), under the caller's own.
+    const {
+      disabled = false,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarSliderRange');
     return (
       <MuiSlider
         ref={ref}

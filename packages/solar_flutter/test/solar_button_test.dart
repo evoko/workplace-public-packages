@@ -164,12 +164,7 @@ void main() {
     ) async {
       await pump(
         tester,
-        SolarButton(
-          onPressed: () {},
-          disabled: true,
-          loading: true,
-          child: const Text('Save'),
-        ),
+        const SolarButton(onPressed: null, loading: true, child: Text('Save')),
       );
       expect(face(tester).color, light.actionPrimaryBgDisabled);
       expect(find.byType(SolarSpinner), findsNothing);
@@ -189,7 +184,8 @@ void main() {
           ),
         );
         expect(
-          tester.getSemantics(find.byType(SolarButton)),
+          // By its name: the button keeps its own size inside a box that may be wider.
+          tester.getSemantics(find.bySemanticsLabel('Delete')),
           matchesSemantics(
             label: 'Delete',
             isButton: true,

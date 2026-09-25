@@ -27,7 +27,6 @@ import 'solar_theme_of.dart';
 class SolarContextMenuItem extends StatelessWidget {
   const SolarContextMenuItem({
     super.key,
-    this.disabled = false,
     this.destructive = false,
     required this.label,
     required this.onPressed,
@@ -37,7 +36,6 @@ class SolarContextMenuItem extends StatelessWidget {
     this.statesController,
   });
 
-  final bool disabled;
   final bool destructive;
 
   /// The action's words.
@@ -54,6 +52,10 @@ class SolarContextMenuItem extends StatelessWidget {
 
   /// The action's keyboard shortcut, as the platform writes it (⌘C, Ctrl+C).
   final String? shortcut;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

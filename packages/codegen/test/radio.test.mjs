@@ -20,7 +20,7 @@ describe('the Radio IR', () => {
 
   it('is checked by its group in Flutter, not by a parameter', () => {
     const radio = DESCRIPTORS.find((d) => d.name === 'Radio');
-    expect(radio.flutter.groupDecides).toEqual(['checked']);
+    expect(radio.api.flutter.checked).toEqual({ group: 'RadioGroup' });
   });
 });
 

@@ -66,14 +66,13 @@ Widget buildDatePickerOpen(
           semanticLabel: cell.semanticLabel,
           selected: state == 'selected',
           today: state == 'today',
-          disabled: state == 'disabled',
           rangeRole: enumNamed(
             SolarDatePickerDayCellRangeRole.values,
             variant['range-role'] as String,
             (r) => r.figma,
           ),
           focusNode: cell.focusNode,
-          onPressed: cell.onPressed,
+          onPressed: state == 'disabled' ? null : cell.onPressed,
         ),
       );
     },

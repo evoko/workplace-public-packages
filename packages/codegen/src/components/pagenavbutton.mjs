@@ -52,6 +52,11 @@ export default {
     overlaps: { pressed: ['hover'], focus: ['hover'] },
   },
   flutter: {},
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own controls: by a null onPressed.
+  api: {
+    flutter: { disabled: 'onPressed' },
+  },
   templates: {
     react: (spec) => {
       requireLayers(spec);
@@ -118,6 +123,7 @@ export const PageNavButton = forwardRef<HTMLButtonElement, PageNavButtonProps>(
     flutter: (spec) => {
       requireLayers(spec);
       return drawnFlutter(spec, {
+        disabledBy: 'onPressed',
         look: 'the button’s fill, edge and ring by state, and its words’ and arrow’s ink, read cell by cell',
         about: `Bespoke: the previous or next button of a SolarPageNavigator, drawn from Figma's layer tree with [SolarLayers], pressable and focusable: its arrow before "Previous" or after "Next" ([label] replaces the words, which SOLAR asks to keep), disabled at the ends of the sequence rather than hidden. Its arrows are mirrored in a right-to-left layout.`,
         params: `required this.onPressed,

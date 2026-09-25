@@ -13,6 +13,7 @@
  * only where a menu has three or more kinds of row. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { useDropdownMenuSize } from './DropdownMenu.js';
 import { forwardRef, type ReactNode } from 'react';
@@ -39,7 +40,15 @@ export interface DropdownGroupLabelProps
 export const DropdownGroupLabel = forwardRef<
   HTMLLIElement,
   DropdownGroupLabelProps
->(function DropdownGroupLabel({ size, children, sx, ...rest }, ref) {
+>(function DropdownGroupLabel(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarDropdownGroupLabel), under the caller's own.
+  const {
+    size: sizeGiven,
+    children,
+    sx,
+    ...rest
+  } = useSolarProps(inProps, 'SolarDropdownGroupLabel');
+  let size = sizeGiven;
   // In a menu, the menu's size, as Figma draws its rows.
   size = useDropdownMenuSize() ?? size;
   const parts = solarDropdownGroupLabelCompose({ size });

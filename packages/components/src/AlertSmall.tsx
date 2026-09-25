@@ -11,6 +11,7 @@
  * (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -50,10 +51,10 @@ export interface AlertSmallProps
 }
 
 export const AlertSmall = forwardRef<HTMLDivElement, AlertSmallProps>(
-  function AlertSmall(
-    { type, variant, title, description, action, onAction, sx, ...rest },
-    ref,
-  ) {
+  function AlertSmall(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarAlertSmall), under the caller's own.
+    const { type, variant, title, description, action, onAction, sx, ...rest } =
+      useSolarProps(inProps, 'SolarAlertSmall');
     const parts = solarAlertSmallCompose({ type, variant });
     const dot = parts.statusIndicator;
     // A slot left empty is not drawn.

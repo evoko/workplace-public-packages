@@ -11,6 +11,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { Children, forwardRef, isValidElement, type ReactNode } from 'react';
 import {
@@ -36,7 +37,12 @@ const DEV =
     ?.NODE_ENV !== 'production';
 
 export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
-  function ButtonGroup({ orientation, fullWidth, children, sx, ...rest }, ref) {
+  function ButtonGroup(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarButtonGroup), under the caller's own.
+    const { orientation, fullWidth, children, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarButtonGroup',
+    );
     if (DEV) {
       // SOLAR: the buttons of a group share one size. (Figma's description says one priority too,
       // but every group it draws mixes secondary and primary, so only the size is checked.)

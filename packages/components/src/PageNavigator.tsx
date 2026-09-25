@@ -14,6 +14,7 @@
  * must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { useControlled } from '@mui/material/utils';
 import { forwardRef, type ReactNode } from 'react';
@@ -47,8 +48,9 @@ export interface PageNavigatorProps extends Omit<
 }
 
 export const PageNavigator = forwardRef<HTMLDivElement, PageNavigatorProps>(
-  function PageNavigator(
-    {
+  function PageNavigator(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarPageNavigator), under the caller's own.
+    const {
       count,
       page: pageProp,
       defaultPage = 1,
@@ -56,9 +58,7 @@ export const PageNavigator = forwardRef<HTMLDivElement, PageNavigatorProps>(
       indicator,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarPageNavigator');
     const [page, setPage] = useControlled({
       controlled: pageProp,
       default: defaultPage,

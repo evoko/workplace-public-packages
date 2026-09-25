@@ -272,11 +272,7 @@ void main() {
       expect(pressed, 1);
       await pump(
         tester,
-        SolarDatePickerDayCell(
-          label: '11',
-          disabled: true,
-          onPressed: () => pressed++,
-        ),
+        const SolarDatePickerDayCell(label: '11', onPressed: null),
       );
       await tester.tap(find.text('11'));
       expect(pressed, 1);

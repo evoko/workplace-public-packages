@@ -11,9 +11,8 @@ Widget buildBackButton(
 ]) {
   final props = v['props'] as Map<String, dynamic>;
   return SolarBackButton(
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     size: enumNamed(SolarBackButtonSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
     loading: props['loading'] as bool,
     statesController: states,
   );

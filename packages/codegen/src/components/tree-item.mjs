@@ -99,12 +99,18 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'label',
-    // How both take what Figma's slots show: the chevron by whether the row has children, the
-    // checkbox by its checked state, the counter by its count; the actions are the shell's own,
-    // drawn where the caller gives them their callbacks.
-    slots: {
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // How both take what Figma's slots show: the chevron by whether the row has children, the
+  // checkbox by its checked state, the counter by its count; the actions are the shell's own,
+  // drawn where the caller gives them their callbacks.
+  api: {
+    react: {
+      chevron: 'expandable',
+      checkbox: 'checked',
+      counter: 'count',
+      buttons: null,
+    },
+    flutter: {
       chevron: 'expandable',
       checkbox: 'checked',
       counter: 'count',

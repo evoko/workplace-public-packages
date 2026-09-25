@@ -102,14 +102,6 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'title',
-    slots: {
-      title: { react: 'title', flutter: 'title' },
-      meta: { react: 'meta', flutter: 'meta' },
-      action: { react: 'action', flutter: 'action' },
-    },
-  },
   templates: {
     react: (spec) => {
       requireLayers(spec);

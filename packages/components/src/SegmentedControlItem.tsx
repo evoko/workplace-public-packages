@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import {
   createContext,
@@ -71,8 +72,9 @@ export interface SegmentedControlItemProps
 export const SegmentedControlItem = forwardRef<
   HTMLLabelElement,
   SegmentedControlItemProps
->(function SegmentedControlItem(
-  {
+>(function SegmentedControlItem(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarSegmentedControlItem), under the caller's own.
+  const {
     selected: selectedProp,
     size,
     value,
@@ -82,9 +84,7 @@ export const SegmentedControlItem = forwardRef<
     onChange,
     sx,
     ...rest
-  },
-  ref,
-) {
+  } = useSolarProps(inProps, 'SolarSegmentedControlItem');
   const group = useContext(SegmentedControlContext);
   // Its prop where given, and otherwise whether its control's value is its own.
   const selected = selectedProp ?? group?.value === value;

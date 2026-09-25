@@ -18,6 +18,7 @@
  * must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { useControlled } from '@mui/material/utils';
 import {
@@ -102,8 +103,9 @@ export interface PINInputProps
 }
 
 export const PINInput = forwardRef<HTMLDivElement, PINInputProps>(
-  function PINInput(
-    {
+  function PINInput(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarPINInput), under the caller's own.
+    const {
       size,
       disabled,
       error,
@@ -122,9 +124,7 @@ export const PINInput = forwardRef<HTMLDivElement, PINInputProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarPINInput');
     const id = useId();
     const [value, setValue] = useControlled<string>({
       controlled: valueProp,

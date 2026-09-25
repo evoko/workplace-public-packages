@@ -335,7 +335,8 @@ export function renderMui(spec) {
     `// Plain data on purpose: this module imports nothing from MUI, so @bwp-web/styles stays dependency free.\n` +
     `// Pass the result of createSolarThemeOptions() to MUI's createTheme. Light and Dark are both in it,\n` +
     `// switched by the ${THEME_ATTRIBUTE} attribute the tokens switch on, so one attribute changes both.\n\n` +
-    `import {\n  solarResponsiveTypography,\n  solarTokens,\n  solarZIndex,\n} from '../tokens.js';\n\n` +
+    `import {\n  solarResponsiveTypography,\n  solarTokens,\n  solarZIndex,\n} from '../tokens.js';\n` +
+    `import { solarMuiComponents } from './theme-components.js';\n\n` +
     `// MUI's own palette slots and typography variants, resolved to SOLAR roles, so a stock MUI\n` +
     `// component renders in SOLAR rather than in MUI's defaults. See spec/deviations.md, mui.theme.\n` +
     `export const solarMuiPalette = ${JSON.stringify(data.palette, null, 2)} as const;\n\n` +
@@ -363,6 +364,8 @@ export function renderMui(spec) {
     `    shape: { borderRadius: parseFloat(solarTokens.light['radius.control']) },\n` +
     `    zIndex: solarZIndex,\n` +
     `    typography: { ...solarResponsiveTypography, ...solarMuiTypography },\n` +
+    `    // Stock MUI components drawn from SOLAR recipes (spec/overlay/mui-theme.yaml).\n` +
+    `    components: solarMuiComponents,\n` +
     `  };\n` +
     `}\n`;
   const ts = tokensTs + themeTs;

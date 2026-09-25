@@ -15,6 +15,7 @@
  * load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { IconChevronRight } from '@bwp-web/assets';
 import { forwardRef, type ReactNode } from 'react';
@@ -53,55 +54,68 @@ export interface ToastProps
   chevron?: boolean;
 }
 
-export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
-  { status, message, tag, action, onAction, chevron = false, sx, ...rest },
-  ref,
-) {
-  const parts = solarToastCompose({ status });
-  const t = parts.tag;
-  // A slot left empty is not drawn.
-  const drawn = {
-    ...parts,
-    tag: { ...t, present: tag != null },
-    action: { ...parts.action, present: action != null },
-    chevron: { ...parts.chevron, present: action != null && chevron },
-  };
-  return (
-    <Box
-      ref={ref}
-      role={status === 'danger' ? 'alert' : 'status'}
-      {...rest}
-      sx={[solarToastStyle({ status }), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
-      {drawChildren('root', {
-        prefix: 'SolarToast',
-        tree: TREE,
-        slots: SLOTS,
-        parts: drawn,
-        text: { message },
-        icons: { chevron: <IconChevronRight /> },
-        render: {
-          // A SOLAR Tag, in the variant the recipe names, in its layer's element; the recipe draws
-          // it on the toast's surface and edge.
-          tag: ({ className, style }) => (
-            <span className={className} style={style}>
-              <Tag status={t['variant.status'] as TagProps['status']} indicator>
-                {tag}
-              </Tag>
-            </span>
-          ),
-          action: ({ className, style }) => (
-            <button
-              type="button"
-              className={className}
-              style={style}
-              onClick={onAction}
-            >
-              {action}
-            </button>
-          ),
-        },
-      })}
-    </Box>
-  );
-});
+export const Toast = forwardRef<HTMLDivElement, ToastProps>(
+  function Toast(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarToast), under the caller's own.
+    const {
+      status,
+      message,
+      tag,
+      action,
+      onAction,
+      chevron = false,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarToast');
+    const parts = solarToastCompose({ status });
+    const t = parts.tag;
+    // A slot left empty is not drawn.
+    const drawn = {
+      ...parts,
+      tag: { ...t, present: tag != null },
+      action: { ...parts.action, present: action != null },
+      chevron: { ...parts.chevron, present: action != null && chevron },
+    };
+    return (
+      <Box
+        ref={ref}
+        role={status === 'danger' ? 'alert' : 'status'}
+        {...rest}
+        sx={[solarToastStyle({ status }), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarToast',
+          tree: TREE,
+          slots: SLOTS,
+          parts: drawn,
+          text: { message },
+          icons: { chevron: <IconChevronRight /> },
+          render: {
+            // A SOLAR Tag, in the variant the recipe names, in its layer's element; the recipe draws
+            // it on the toast's surface and edge.
+            tag: ({ className, style }) => (
+              <span className={className} style={style}>
+                <Tag
+                  status={t['variant.status'] as TagProps['status']}
+                  indicator
+                >
+                  {tag}
+                </Tag>
+              </span>
+            ),
+            action: ({ className, style }) => (
+              <button
+                type="button"
+                className={className}
+                style={style}
+                onClick={onAction}
+              >
+                {action}
+              </button>
+            ),
+          },
+        })}
+      </Box>
+    );
+  },
+);

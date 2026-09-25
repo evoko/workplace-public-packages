@@ -108,6 +108,7 @@ library;
 import 'package:flutter/material.dart';
 
 import '../generated/components/button_group.dart';
+import '../solar_own_size.dart';
 import 'solar_theme_of.dart';
 
 class SolarButtonGroup extends StatelessWidget {
@@ -187,8 +188,14 @@ ${api.map(([prop, def]) => dartField('ButtonGroup', prop, def)).join('\n')}
                   : CrossAxisAlignment.center,
               spacing: length('root.gap'),
               children: [
+                // Each button its share of the row, or the column's width: sized here, so it fills
+                // what it is given (SolarFill), not its own size.
                 for (final child in children)
-                  horizontal && fills ? Expanded(child: child) : child,
+                  horizontal && fills
+                      ? Expanded(child: SolarFill(child: child))
+                      : fills
+                      ? SolarFill(child: child)
+                      : child,
               ],
             ),
           ),

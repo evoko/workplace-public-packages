@@ -19,6 +19,7 @@ import { join } from 'node:path';
 import { DESCRIPTORS, fileOfDescriptor } from '../components/index.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { byPrefix, withLayerClasses } from '../util/classes.mjs';
+import { pascal } from '../util/naming.mjs';
 
 export const componentsSrc = join(packagesDir, 'components', 'src');
 export const storiesDir = join(packagesDir, 'components', 'stories');
@@ -116,12 +117,21 @@ export function renderShells(
   } = {},
 ) {
   const byName = Object.fromEntries(descriptors.map((d) => [d.name, d]));
-  // Each layer's class as its own, public or internal, wherever a template names it by the layer.
+  // Each layer's class as its own, public or internal, wherever a template names it by the layer;
+  // and a React shell's props as the app's MUI theme sets them.
   const classes = byPrefix(specs);
   const own = (shell) =>
     shell.path.endsWith('.dart')
       ? shell
-      : { ...shell, text: withLayerClasses(shell.text, classes) };
+      : {
+          ...shell,
+          text: withLayerClasses(
+            shell.path.endsWith('.stories.tsx')
+              ? shell.text
+              : withThemeProps(shell.text, shell.component),
+            classes,
+          ),
+        };
   return specs
     .flatMap((spec) => {
       const name = spec.component;
@@ -169,12 +179,65 @@ export function renderShells(
           `src/components/${fileOfDescriptor(name)}: ${name} needs both shell templates, react and flutter, or owned: true`,
         );
       return [
-        { path: react, text: `${header}\n${d.templates.react(spec)}` },
+        {
+          path: react,
+          component: name,
+          text: `${header}\n${d.templates.react(spec)}`,
+        },
         { path: widget, text: `${header}\n${d.templates.flutter(spec)}` },
         story,
       ];
     })
     .map(own);
+}
+
+/**
+ * A React shell reading its props through the app's MUI theme (`internal/theme.ts`), as MUI's own
+ * components do: `components.Solar<Name>.defaultProps` and `styleOverrides.root`. Every shell
+ * destructures its props in its render function (`function Button({ size, … }, ref)`, which the
+ * parity test parses), and here takes them whole and destructures what the theme makes of them.
+ */
+export function withThemeProps(text, component) {
+  const name = pascal(component);
+  const re = new RegExp(
+    `function ${name}(<[^>]*>)?\\(\\s*\\{([\\s\\S]*?)\\}(\\s*:\\s*[\\w<>]+)?\\s*,\\s*ref(\\s*:\\s*[\\w<>]+)?\\s*,?\\s*\\)\\s*\\{`,
+  );
+  const m = re.exec(text);
+  if (!m)
+    throw new Error(
+      `${component}: its React shell destructures no props in function ${name}(…, ref)`,
+    );
+  const [whole, generics = '', body, type = '', refType = ''] = m;
+  const typed = type ? `: ${type.replace(/^\s*:\s*/, '')}` : '';
+  const refTyped = refType ? `: ${refType.replace(/^\s*:\s*/, '')}` : '';
+  // A prop the shell goes on to reassign (a menu row's size, the menu's) is read into a `let` of
+  // its own name; every other stays a const.
+  const after = text.slice(m.index + whole.length);
+  const reassigned = new Set();
+  const entries = body.split(',').map((entry) => {
+    const n = /^\s*(\w+)\s*(=[^]*)?$/.exec(entry);
+    // A statement (`size = …;`), not a JSX attribute (`sx={…}`).
+    if (
+      !n ||
+      !new RegExp(
+        `(^|\\n)\\s*${n[1]}\\s*(\\?\\?)?=(?!=)[^\\n]*;[ \\t]*(\\n|$)`,
+      ).test(after)
+    )
+      return entry;
+    reassigned.add(n[1]);
+    return entry.replace(n[1], `${n[1]}: ${n[1]}Given`);
+  });
+  const lets = [...reassigned]
+    .map((n) => `\n    let ${n} = ${n}Given;`)
+    .join('');
+  const replaced = `function ${name}${generics}(inProps${typed}, ref${refTyped}) {
+    // As the app's MUI theme sets them (components.Solar${name}), under the caller's own.
+    const {${entries.join(',')}} = useSolarProps(inProps, 'Solar${name}');${lets}`;
+  const out = text.replace(whole, replaced);
+  // Imported before the shell's first import.
+  const imp = "import { useSolarProps } from './internal/theme.js';\n";
+  const at = out.indexOf('\nimport ');
+  return at < 0 ? imp + out : out.slice(0, at + 1) + imp + out.slice(at + 1);
 }
 
 /**

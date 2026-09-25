@@ -13,6 +13,7 @@
  * load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import ButtonBase, { type ButtonBaseProps } from '@mui/material/ButtonBase';
 import { IconArrowLeft, IconArrowRight } from '@bwp-web/assets';
 import { forwardRef, type ReactNode } from 'react';
@@ -38,10 +39,15 @@ export interface PageNavButtonProps
 }
 
 export const PageNavButton = forwardRef<HTMLButtonElement, PageNavButtonProps>(
-  function PageNavButton(
-    { direction = 'prev', disabled = false, children, sx, ...rest },
-    ref,
-  ) {
+  function PageNavButton(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarPageNavButton), under the caller's own.
+    const {
+      direction = 'prev',
+      disabled = false,
+      children,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarPageNavButton');
     const look = { direction, disabled };
     const parts = solarPageNavButtonCompose(look);
     return (

@@ -18,6 +18,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MenuItem, { type MenuItemProps } from '@mui/material/MenuItem';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -63,8 +64,9 @@ export interface DropdownItemProps
 }
 
 export const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(
-  function DropdownItem(
-    {
+  function DropdownItem(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDropdownItem), under the caller's own.
+    const {
       size,
       selected = false,
       disabled = false,
@@ -76,9 +78,7 @@ export const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarDropdownItem');
     // In a menu, the menu's size, as Figma draws its rows.
     const look = { size: useDropdownMenuSize() ?? size, selected, disabled };
     const composed = solarDropdownItemCompose(look);

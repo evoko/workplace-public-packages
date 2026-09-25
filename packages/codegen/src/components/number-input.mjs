@@ -104,9 +104,10 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // A field's label is its `label`, as Text Input's is.
-    label: 'label',
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // A field's label is its `label`, as Text Input's is.
+  api: {
+    react: { label: 'label' },
   },
   templates: {
     react: (spec) => {

@@ -16,6 +16,7 @@
  * Input. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box from '@mui/material/Box';
 import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
 import { useControlled } from '@mui/material/utils';
@@ -77,8 +78,9 @@ export interface TextInputProps
 }
 
 export const TextInput = forwardRef<HTMLDivElement, TextInputProps>(
-  function TextInput(
-    {
+  function TextInput(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTextInput), under the caller's own.
+    const {
       size,
       disabled,
       error,
@@ -96,9 +98,7 @@ export const TextInput = forwardRef<HTMLDivElement, TextInputProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarTextInput');
     const own = useId();
     const id = idProp ?? own;
     const [value, setValue] = useControlled<unknown>({

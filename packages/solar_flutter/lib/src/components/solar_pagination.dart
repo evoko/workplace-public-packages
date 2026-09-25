@@ -95,8 +95,7 @@ class SolarPagination extends StatelessWidget {
         'previous',
         SolarPaginationNav(
           direction: SolarPaginationNavDirection.previous,
-          disabled: page <= 1,
-          onPressed: () => go(page - 1),
+          onPressed: page <= 1 ? null : () => go(page - 1),
         ),
       ),
     ];
@@ -126,8 +125,7 @@ class SolarPagination extends StatelessWidget {
       'next',
       SolarPaginationNav(
         direction: SolarPaginationNavDirection.next,
-        disabled: page >= count,
-        onPressed: () => go(page + 1),
+        onPressed: page >= count ? null : () => go(page + 1),
       ),
     ));
     Widget layerOf((String, Widget) d) => SolarLayers(

@@ -24,20 +24,22 @@ class SolarPageNavButton extends StatelessWidget {
   const SolarPageNavButton({
     super.key,
     this.direction = SolarPageNavButtonDirection.prev,
-    this.disabled = false,
     required this.onPressed,
     this.label,
     this.statesController,
   });
 
   final SolarPageNavButtonDirection direction;
-  final bool disabled;
 
   /// Called when it is chosen; null disables it.
   final VoidCallback? onPressed;
 
   /// Its words, "Previous" or "Next" by its direction.
   final String? label;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

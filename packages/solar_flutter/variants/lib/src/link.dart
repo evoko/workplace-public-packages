@@ -13,11 +13,10 @@ Widget buildLink(
   final props = v['props'] as Map<String, dynamic>;
   return SolarLink(
     size: enumNamed(SolarLinkSize.values, props['size'] as String),
-    disabled: props['disabled'] as bool,
     label: 'Link text',
     leadingIcon: const IconProbe(),
     trailingIcon: const IconProbe(),
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     statesController: states,
   );
 }

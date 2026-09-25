@@ -23,6 +23,7 @@ import {
   slotsOf,
 } from '../../../codegen/src/emit/mui-component.mjs';
 import { NAMES, fileOf } from '../../../codegen/src/stages/components.mjs';
+import { solarMuiThemeDecisions } from '../../../styles/src/generated/mui/theme-components.ts';
 import {
   byPrefix,
   withLayerClasses,
@@ -56,9 +57,13 @@ const STILL =
  * mark a layer's element with `data-layer` instead, where the slot table names several layers with
  * one selector (Button Group's buttons are all `& > *`).
  */
-function targets(component) {
+function targets(component, moved = {}) {
   const svg = new Set(MUI_SVG_LAYERS[component] ?? []);
-  return Object.entries(slotsOf(specs[component])).map(([layer, selector]) => ({
+  return Object.entries({
+    ...slotsOf(specs[component]),
+    // Where a layer is in a stock MUI component's own markup (spec/overlay/mui-theme.yaml).
+    ...moved,
+  }).map(([layer, selector]) => ({
     layer,
     selector: selector === '&' ? null : selector.replace(/^&\s*/, ':scope '),
     svg: svg.has(layer),
@@ -283,7 +288,7 @@ async function open(page, hash = '') {
   await page.goto(`http://solar.test/index.html${hash}`);
   await page.addStyleTag({ content: STILL });
   await page
-    .locator(hash ? '[data-probe]' : '[data-case]')
+    .locator(hash === '#theme' ? '[data-probe]' : '[data-case]')
     .first()
     .waitFor();
   await page.evaluate(() => document.fonts.ready);
@@ -293,7 +298,11 @@ async function open(page, hash = '') {
  * Every variant of `component`, measured and compared. `only` limits it to some variants, for the
  * self-check below.
  */
-async function check(page, component, { only, dark = false } = {}) {
+async function check(
+  page,
+  component,
+  { only, dark = false, prefix = slug(component), slots = {} } = {},
+) {
   mode = dark ? 'dark' : 'light';
   // Dark as the app turns it on: the tokens' Dark values, by the root's data-theme.
   await page.evaluate(
@@ -304,7 +313,7 @@ async function check(page, component, { only, dark = false } = {}) {
     dark,
   );
   const oracle = oracles[component];
-  const list = targets(component);
+  const list = targets(component, slots);
   const composed = children(component);
   // Where the table marks focus with a class (MUI's focus-visible), the state is proven reached.
   const focusClass = /^&\.([\w-]+)/.exec(
@@ -315,7 +324,9 @@ async function check(page, component, { only, dark = false } = {}) {
   for (const [i, entry] of oracle.variants.entries()) {
     const variant = inMode(entry);
     if (only && !only.includes(variant.figma)) continue;
-    const kase = page.locator(`[data-case="${slug(component)}:${i}"]`);
+    const kase = page.locator(`[data-case="${prefix}:${i}"]`);
+    // A variant the page draws no case for (a stock component's MUI props reach no loading one).
+    if (prefix !== slug(component) && (await kase.count()) === 0) continue;
     // The component's root: Button's <button>, Spinner's box; or, where the case holds it in what
     // it always sits in (a Dropdown Item in a menu), the element the case marks as the root.
     const marked = kase.locator('[data-case-root]');
@@ -530,6 +541,51 @@ test('one attribute turns a stock MUI component and a SOLAR one to Dark together
   expect(dark.paper).toBe(dark.card);
   expect(dark.paper).not.toBe(light.paper);
 });
+
+// Stock MUI components under the SOLAR theme, each measured against the oracle of the SOLAR
+// component whose recipe the theme gives it (spec/overlay/mui-theme.yaml): an app's own MUI Button
+// draws what Figma draws, as @bwp-web/components' Button does.
+for (const [key, component] of [
+  ['MuiButton', 'Button'],
+  ['MuiIconButton', 'Icon Button'],
+])
+  for (const dark of [false, true])
+    test(`a stock ${key} under the SOLAR theme draws what Figma draws${dark ? ' in Dark' : ''}`, async ({
+      page,
+    }) => {
+      test.setTimeout(120_000);
+      await open(page, '#stock');
+      const prefix = `stock-${slug(component)}`;
+      expect(
+        await page.locator(`[data-case^="${prefix}:"]`).count(),
+        `${key}: cases on the #stock page`,
+      ).toBeGreaterThan(0);
+      const { failures } = await check(page, component, {
+        dark,
+        prefix,
+        slots: solarMuiThemeDecisions[key].slots,
+      });
+      writeFileSync(
+        out(`${prefix}${dark ? '-dark' : ''}-failures.json`),
+        `${JSON.stringify(failures, null, 2)}\n`,
+      );
+      expect(failures).toEqual([]);
+      mode = 'light';
+    });
+
+// And the SOLAR components those stock ones share an MUI base with, under the same theme: each
+// draws its own recipe, not the theme's for a stock one (data-solar), in every variant.
+for (const component of ['Button', 'Icon Button'])
+  test(`the SOLAR ${component} under the SOLAR theme still draws what Figma draws`, async ({
+    page,
+  }) => {
+    test.setTimeout(120_000);
+    await open(page, '#stock');
+    const { failures } = await check(page, component, {
+      prefix: `themed-${slug(component)}`,
+    });
+    expect(failures).toEqual([]);
+  });
 
 test('in Dark, the page is drawn in Dark: Light values fail', async ({
   page,

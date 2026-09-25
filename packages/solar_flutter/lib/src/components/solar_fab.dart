@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/fab.dart';
 import '../generated/components/spinner.dart';
+import '../solar_button_themes.dart';
+import '../solar_own_size.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -26,7 +28,6 @@ class SolarFAB extends StatelessWidget {
     required this.icon,
     this.child,
     this.size = SolarFABSize.sm,
-    this.disabled = false,
     this.loading = false,
     this.semanticLabel,
     this.focusNode,
@@ -47,7 +48,6 @@ class SolarFAB extends StatelessWidget {
   final Widget? child;
 
   final SolarFABSize size;
-  final bool disabled;
   final bool loading;
 
   /// The accessible name, required when there is no label.
@@ -56,6 +56,10 @@ class SolarFAB extends StatelessWidget {
   final FocusNode? focusNode;
   final bool autofocus;
   final WidgetStatesController? statesController;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +94,8 @@ class SolarFAB extends StatelessWidget {
 
     Widget button = FilledButton(
       onPressed: disabled || busy ? null : onPressed,
-      style: SolarFABRecipe.style(t, p),
+      // The recipe, under the app's SolarFABThemeData where its theme has one.
+      style: SolarFABThemeData.styled(context, SolarFABRecipe.style(t, p)),
       focusNode: focusNode,
       autofocus: autofocus,
       statesController: statesController,
@@ -123,6 +128,8 @@ class SolarFAB extends StatelessWidget {
         child: Semantics(label: semanticLabel, child: button),
       );
     }
-    return button;
+    // Its own size wherever it is put, as Figma draws it, not the width a ListView forces on a
+    // Flutter button (owner decision 2026-09-25); a parent that shares its row gives SolarFill.
+    return SolarOwnSize(child: button);
   }
 }

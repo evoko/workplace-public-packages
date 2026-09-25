@@ -44,6 +44,11 @@ export default {
     overlaps: { pressed: ['hover'], focus: ['hover', 'pressed'] },
   },
   flutter: {},
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own controls: by a null onPressed.
+  api: {
+    flutter: { disabled: 'onPressed' },
+  },
   templates: {
     react: (spec) => {
       requireLayers(spec);
@@ -128,6 +133,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     flutter: (spec) => {
       requireLayers(spec);
       return drawnFlutter(spec, {
+        disabledBy: 'onPressed',
         look: 'each size’s text style, underlined on hover, its colours by state, and its icons’ sizes, read cell by cell',
         about: `Bespoke: Flutter has no link. Its words and icons are drawn from Figma's layer tree with
 [SolarLayers], pressable, and announced as a link. For navigation; an action that changes

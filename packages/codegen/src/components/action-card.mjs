@@ -118,14 +118,15 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'title',
-    slots: {
-      icon: { react: 'icon', flutter: 'icon' },
-      title: { react: 'title', flutter: 'title' },
-      description: { react: 'description', flutter: 'description' },
-      primaryCTA: { react: 'primaryAction', flutter: 'primaryAction' },
-      secondaryCTA: { react: 'secondaryAction', flutter: 'secondaryAction' },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: {
+      primaryCTA: 'primaryAction',
+      secondaryCTA: 'secondaryAction',
+    },
+    flutter: {
+      primaryCTA: 'primaryAction',
+      secondaryCTA: 'secondaryAction',
     },
   },
   templates: {

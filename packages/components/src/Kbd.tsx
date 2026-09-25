@@ -13,6 +13,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -35,25 +36,26 @@ export interface KbdProps
   children: ReactNode;
 }
 
-export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(
-  { type, children, sx, ...rest },
-  ref,
-) {
-  const parts = solarKbdCompose({ type });
-  return (
-    <Box
-      component="kbd"
-      ref={ref}
-      {...rest}
-      sx={[solarKbdStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
-      {drawChildren('root', {
-        prefix: 'SolarKbd',
-        tree: TREE,
-        slots: SLOTS,
-        parts,
-        text: { label: children },
-      })}
-    </Box>
-  );
-});
+export const Kbd = forwardRef<HTMLElement, KbdProps>(
+  function Kbd(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarKbd), under the caller's own.
+    const { type, children, sx, ...rest } = useSolarProps(inProps, 'SolarKbd');
+    const parts = solarKbdCompose({ type });
+    return (
+      <Box
+        component="kbd"
+        ref={ref}
+        {...rest}
+        sx={[solarKbdStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarKbd',
+          tree: TREE,
+          slots: SLOTS,
+          parts,
+          text: { label: children },
+        })}
+      </Box>
+    );
+  },
+);

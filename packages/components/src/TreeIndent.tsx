@@ -12,6 +12,7 @@
  * (`aria-level`) say how deep a row is. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
 import {
@@ -45,7 +46,9 @@ export interface TreeIndentProps
     Omit<BoxProps, keyof SolarTreeIndentProps | 'children' | 'ref'> {}
 
 export const TreeIndent = forwardRef<HTMLSpanElement, TreeIndentProps>(
-  function TreeIndent({ depth, sx, ...rest }, ref) {
+  function TreeIndent(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTreeIndent), under the caller's own.
+    const { depth, sx, ...rest } = useSolarProps(inProps, 'SolarTreeIndent');
     const parts = solarTreeIndentCompose({ depth });
     return (
       <Box

@@ -213,17 +213,17 @@ export default {
     overlaps: { focus: ['hover', 'selected'], hover: ['selected'] },
   },
   flutter: {},
-  shells: {
-    label: 'title',
-    slots: {
-      dragHandle: { react: 'dragHandle', flutter: 'dragHandle' },
-      toggle: { react: 'control', flutter: 'control' },
-      radioButton: { react: 'control', flutter: 'control' },
-      checkbox: { react: 'control', flutter: 'control' },
-      icon: { react: 'icon', flutter: 'icon' },
-      description: { react: 'description', flutter: 'description' },
-      actions: { react: 'actions', flutter: 'actions' },
-      title: { react: 'title', flutter: 'title' },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: {
+      toggle: 'control',
+      radioButton: 'control',
+      checkbox: 'control',
+    },
+    flutter: {
+      toggle: 'control',
+      radioButton: 'control',
+      checkbox: 'control',
     },
   },
   templates: {

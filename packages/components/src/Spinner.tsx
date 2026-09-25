@@ -12,6 +12,7 @@
  * style the recipe could not override. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box from '@mui/material/Box';
 import CircularProgress, {
   type CircularProgressProps,
@@ -35,7 +36,12 @@ export interface SpinnerProps
     > {}
 
 export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(
-  function Spinner({ size, variant, sx, ...rest }, ref) {
+  function Spinner(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSpinner), under the caller's own.
+    const { size, variant, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarSpinner',
+    );
     return (
       <Box
         component="span"

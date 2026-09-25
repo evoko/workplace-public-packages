@@ -13,6 +13,7 @@
  * image. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
 import {
@@ -45,7 +46,12 @@ export interface StatusIndicatorProps
 export const StatusIndicator = forwardRef<
   HTMLSpanElement,
   StatusIndicatorProps
->(function StatusIndicator({ type, size, label, sx, ...rest }, ref) {
+>(function StatusIndicator(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarStatusIndicator), under the caller's own.
+  const { type, size, label, sx, ...rest } = useSolarProps(
+    inProps,
+    'SolarStatusIndicator',
+  );
   const parts = solarStatusIndicatorCompose({ type, size });
   return (
     <Box

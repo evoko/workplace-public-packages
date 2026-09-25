@@ -25,7 +25,6 @@ class SolarListItem extends StatelessWidget {
   const SolarListItem({
     super.key,
     this.selected = false,
-    this.disabled = false,
     this.compact = false,
     required this.label,
     required this.onPressed,
@@ -37,7 +36,6 @@ class SolarListItem extends StatelessWidget {
   });
 
   final bool selected;
-  final bool disabled;
   final bool compact;
 
   /// The row's words.
@@ -57,6 +55,10 @@ class SolarListItem extends StatelessWidget {
 
   /// An icon after the words: a chevron, where the row opens something.
   final Widget? trailing;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onPressed == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

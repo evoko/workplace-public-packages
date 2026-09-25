@@ -93,6 +93,16 @@ type turns Mobile; `theme.spacing(n)` is n × SOLAR's 4px `inset.2xs`; and MUI's
 easings are SOLAR's nearest `motion.*`. The tables are exported as `solarMuiBreakpoints`,
 `solarMuiSpacing` and `solarMuiTransitions`.
 
+**Stock MUI components drawn from SOLAR recipes.** Where a SOLAR component is an MUI component
+itself, the theme gives the stock one its recipe (`components.MuiButton.variants`, one per MUI
+variant, colour and size), so an app's own `<Button variant="outlined">` draws SOLAR's secondary
+Button, checked against Figma by the visual check as `@bwp-web/components`' is: MUI's `Button`
+(contained, outlined and text are SOLAR's primary, secondary and tertiary; `color="error"` its
+danger) and `IconButton` (`color` primary, secondary and default). The decisions, each with a
+reason, are `spec/overlay/mui-theme.yaml`; the block is `solarMuiComponents`, and the mapping
+`solarMuiThemeDecisions`. A SOLAR shell on the same MUI component carries `data-solar` and draws
+its own recipe. The drawn components (Tag and MUI's Chip) come one family at a time.
+
 Stock MUI components render in SOLAR without any per-component work. The theme fills MUI's own
 palette slots and typography variants with SOLAR roles: `primary`, `secondary` and `error` from
 the `action.*.bg` fills, `warning`, `info` and `success` from `surface.feedback.*.strong`,

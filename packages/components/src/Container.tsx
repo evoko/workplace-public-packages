@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -37,7 +38,12 @@ export interface ContainerProps
 }
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  function Container({ type, children, sx, ...rest }, ref) {
+  function Container(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarContainer), under the caller's own.
+    const { type, children, sx, ...rest } = useSolarProps(
+      inProps,
+      'SolarContainer',
+    );
     const parts = solarContainerCompose({ type });
     return (
       <Box

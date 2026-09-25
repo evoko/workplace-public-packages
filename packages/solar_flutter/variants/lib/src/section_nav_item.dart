@@ -13,10 +13,9 @@ Widget buildSectionNavItem(
   final props = v['props'] as Map<String, dynamic>;
   return SolarSectionNavItem(
     selected: props['selected'] as bool,
-    disabled: props['disabled'] as bool,
     label: 'Label',
     icon: const IconProbe(),
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     statesController: states,
   );
 }

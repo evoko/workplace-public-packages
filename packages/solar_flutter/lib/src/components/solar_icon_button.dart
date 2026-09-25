@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/icon_button.dart';
 import '../generated/components/spinner.dart';
+import '../solar_button_themes.dart';
+import '../solar_own_size.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
 
@@ -27,7 +29,6 @@ class SolarIconButton extends StatelessWidget {
     this.size = SolarIconButtonSize.sm,
     this.shape = SolarIconButtonShape.square,
     this.variant = SolarIconButtonVariant.primary,
-    this.disabled = false,
     this.loading = false,
     this.focusNode,
     this.autofocus = false,
@@ -46,12 +47,15 @@ class SolarIconButton extends StatelessWidget {
   final SolarIconButtonSize size;
   final SolarIconButtonShape shape;
   final SolarIconButtonVariant variant;
-  final bool disabled;
   final bool loading;
 
   final FocusNode? focusNode;
   final bool autofocus;
   final WidgetStatesController? statesController;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +76,11 @@ class SolarIconButton extends StatelessWidget {
     // Semantics label alone makes a second node, and the button inside it stays unnamed.
     final Widget button = IconButton(
       onPressed: disabled || busy ? null : onPressed,
-      style: SolarIconButtonRecipe.style(t, p),
+      // The recipe, under the app's SolarIconButtonThemeData where its theme has one.
+      style: SolarIconButtonThemeData.styled(
+        context,
+        SolarIconButtonRecipe.style(t, p),
+      ),
       focusNode: focusNode,
       autofocus: autofocus,
       statesController: statesController,
@@ -114,8 +122,12 @@ class SolarIconButton extends StatelessWidget {
         ],
       ),
     );
-    return MergeSemantics(
-      child: Semantics(label: semanticLabel, child: button),
+    // Its own size wherever it is put, as Figma draws it, not the width a ListView forces on a
+    // Flutter button (owner decision 2026-09-25); a parent that sizes it gives SolarFill.
+    return SolarOwnSize(
+      child: MergeSemantics(
+        child: Semantics(label: semanticLabel, child: button),
+      ),
     );
   }
 }

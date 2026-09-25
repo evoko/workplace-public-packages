@@ -15,6 +15,7 @@
  * load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -64,10 +65,19 @@ export interface LaunchCardFullScreenProps
 export const LaunchCardFullScreen = forwardRef<
   HTMLDivElement,
   LaunchCardFullScreenProps
->(function LaunchCardFullScreen(
-  { name, intro, features, image, appIcon, favourite, action, sx, ...rest },
-  ref,
-) {
+>(function LaunchCardFullScreen(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarLaunchCardFullScreen), under the caller's own.
+  const {
+    name,
+    intro,
+    features,
+    image,
+    appIcon,
+    favourite,
+    action,
+    sx,
+    ...rest
+  } = useSolarProps(inProps, 'SolarLaunchCardFullScreen');
   const composed = solarLaunchCardFullScreenCompose({});
   const parts = {
     ...composed,

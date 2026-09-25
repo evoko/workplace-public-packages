@@ -165,15 +165,10 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'title',
-    slots: {
-      icon: { react: 'icon', flutter: 'icon' },
-      helper: { react: 'helper', flutter: 'helper' },
-      more: { react: 'moreItems', flutter: 'moreItems' },
-      content: { react: 'children', flutter: 'children' },
-      tag: { react: 'tag', flutter: 'tag' },
-    },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { more: 'moreItems' },
+    flutter: { more: 'moreItems' },
   },
   templates: {
     react: (spec) => {

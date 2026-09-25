@@ -38,9 +38,11 @@ export default {
     overlaps: { pressed: ['hover'], focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // The page's number is the React child, and Flutter's `page`, an int.
-    slots: { page: { react: 'children', flutter: 'page' } },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // The page's number is the React child, and Flutter's `page`, an int.
+  api: {
+    react: { page: 'children' },
+    flutter: { disabled: 'onPressed' },
   },
   templates: {
     react: (spec) => {
@@ -105,6 +107,7 @@ export const PaginationItem = forwardRef<HTMLButtonElement, PaginationItemProps>
     flutter: (spec) => {
       requireLayers(spec);
       return drawnFlutter(spec, {
+        disabledBy: 'onPressed',
         look: 'the page’s fill and ring by state, and its number’s ink, read cell by cell',
         about: `Bespoke: one page of a SolarPagination, drawn from Figma's layer tree with [SolarLayers], pressable and focusable, named "Page 3" for a screen reader; the [selected] one is the current page, announced selected. Its own 24 × 24 box is its target: the pages sit 4px apart. Use it inside a SolarPagination.`,
         params: `required this.page,

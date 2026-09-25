@@ -429,8 +429,7 @@ ${api.map(([prop]) => `          ${prop}: widget.${prop},`).join('\n')}
             'button': SolarButton(
               variant: SolarButtonVariant.secondary,
               size: SolarButtonSize.md,
-              disabled: widget.disabled,
-              onPressed: enabled ? widget.onBrowse : null,
+              onPressed: widget.disabled ? null : enabled ? widget.onBrowse : null,
               child: Text(widget.browseLabel),
             ),
             'iconButton': SolarIconButton(

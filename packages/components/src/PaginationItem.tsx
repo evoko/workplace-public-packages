@@ -14,6 +14,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import ButtonBase, { type ButtonBaseProps } from '@mui/material/ButtonBase';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -40,10 +41,15 @@ export interface PaginationItemProps
 export const PaginationItem = forwardRef<
   HTMLButtonElement,
   PaginationItemProps
->(function PaginationItem(
-  { selected = false, disabled = false, children, sx, ...rest },
-  ref,
-) {
+>(function PaginationItem(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarPaginationItem), under the caller's own.
+  const {
+    selected = false,
+    disabled = false,
+    children,
+    sx,
+    ...rest
+  } = useSolarProps(inProps, 'SolarPaginationItem');
   const look = { selected, disabled };
   const parts = solarPaginationItemCompose(look);
   return (

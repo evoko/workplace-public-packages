@@ -1,0 +1,61 @@
+# The stock MUI components the SOLAR MUI theme styles, each from a SOLAR component's recipe, so an
+# app's own MUI Button draws what Figma draws, as `@bwp-web/components`' Button does. Read by
+# `npm run solar:codegen` (packages/codegen/src/emit/mui-theme-components.mjs), which writes the
+# theme's `components` block; every entry needs a reason, and one naming a component, an axis or a
+# value the IR does not have fails the build.
+#
+#   <MuiKey>:
+#     component: the SOLAR component whose recipe it takes
+#     props:     each MUI prop the look follows, to the SOLAR axis it is and its values
+#                (`variant: { axis: variant, values: { contained: primary } }`)
+#     fixed:     SOLAR axes MUI has no prop for, at the value the theme draws
+#     slots:     a layer's selector in the recipe, to where it is in MUI's own markup
+#     restate:   root properties MUI's own variants change by state, which the theme states in
+#                every state at their resting value where the recipe leaves them as at rest
+#     defaultProps: MUI props the theme sets, where SOLAR fixes one
+#
+# Only components whose SOLAR shell is the MUI component itself are here: their recipe is written
+# for MUI's own markup. A drawn one (Tag and MUI's Chip) needs its layers mapped onto MUI's slots
+# first, one family at a time (the pipeline review's item 14).
+
+MuiButton:
+  component: Button
+  props:
+    variant:
+      axis: variant
+      values: { contained: primary, outlined: secondary, text: tertiary }
+    color:
+      axis: danger
+      values: { primary: false, error: true }
+    size:
+      axis: size
+      values: { small: sm, medium: md, large: lg }
+  restate: [boxShadow, borderWidth, borderStyle, borderColor]
+  defaultProps: { disableRipple: true }
+  reason: >-
+    SOLAR's Button is MUI's Button, the recipe its sx: a stock one takes the same recipe for each
+    MUI variant, colour and size. Contained is the primary action, outlined the secondary, text the
+    tertiary, as MUI ranks its own; error is the destructive one, SOLAR's danger. Other colours
+    keep MUI's look. SOLAR's states are its own colours, so no ripple. MUI's contained and outlined
+    variants change the shadow and the edge on hover, press and disabled, which SOLAR draws as at
+    rest: restated, so they stay (not disableElevation, a default prop that would reach SOLAR's own
+    Button too, and take its shadow off on hover).
+
+MuiIconButton:
+  component: Icon Button
+  props:
+    color:
+      axis: variant
+      values: { primary: primary, secondary: secondary, default: tertiary }
+    size:
+      axis: size
+      values: { small: sm, medium: md, large: lg }
+  fixed: { shape: square }
+  slots:
+    icon: '& > svg'
+  defaultProps: { disableRipple: true }
+  reason: >-
+    SOLAR's Icon Button is MUI's IconButton, the recipe its sx, its icon wrapped in a box of its
+    own; a stock one holds the icon itself, which is where the recipe sizes and tints it. MUI's
+    default colour is SOLAR's tertiary, the plain one. MUI has no shape: a stock one is SOLAR's
+    square, and a round one is @bwp-web/components' IconButton, `shape="round"`.

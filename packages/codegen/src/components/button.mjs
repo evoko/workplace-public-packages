@@ -72,6 +72,11 @@ export default {
       'iconLeading.width': 'iconTrailing.width',
     },
   },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter disables it as its own buttons: by a null onPressed.
+  api: {
+    flutter: { disabled: 'onPressed' },
+  },
   templates: {
     react: (spec) => {
       const api = Object.keys(spec.api);
@@ -156,6 +161,8 @@ ${api.map((p) => `    ${p},`).join('\n')}
 
   return (
     <MuiButton
+      // Its own recipe, not the SOLAR theme's for a stock MUI one (spec/overlay/mui-theme.yaml).
+      data-solar=""
       ref={ref}
       {...rest}
       disabled={disabled}
@@ -214,6 +221,8 @@ import 'package:flutter/material.dart';
 
 import '../generated/components/button.dart';
 import '../generated/components/spinner.dart';
+import '../solar_button_themes.dart';
+import '../solar_own_size.dart';
 import '../solar_states.dart';
 import 'solar_spinner.dart';
 import 'solar_theme_of.dart';
@@ -223,7 +232,10 @@ class SolarButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     this.child,
-${api.map(([prop, def]) => `    ${dartParam('Button', prop, def)},`).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => `    ${dartParam('Button', prop, def)},`)
+  .join('\n')}
     this.iconLeading,
     this.iconTrailing,
     this.counter,
@@ -240,7 +252,10 @@ ${api.map(([prop, def]) => `    ${dartParam('Button', prop, def)},`).join('\n')}
   /// The label.
   final Widget? child;
 
-${api.map(([prop, def]) => dartField('Button', prop, def)).join('\n')}
+${api
+  .filter(([prop]) => prop !== 'disabled')
+  .map(([prop, def]) => dartField('Button', prop, def))
+  .join('\n')}
 
   /// The icon before the label. It reinforces the action: a bin beside "Delete".
   final Widget? iconLeading;
@@ -257,6 +272,10 @@ ${api.map(([prop, def]) => dartField('Button', prop, def)).join('\n')}
   final FocusNode? focusNode;
   final bool autofocus;
   final WidgetStatesController? statesController;
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +326,8 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
       controller: statesController,
       builder: (context, states) => FilledButton(
       onPressed: disabled || busy ? null : onPressed,
-      style: SolarButtonRecipe.style(t, p),
+      // The recipe, under the app's SolarButtonThemeData where its theme has one.
+        style: SolarButtonThemeData.styled(context, SolarButtonRecipe.style(t, p)),
       focusNode: focusNode,
       autofocus: autofocus,
       statesController: states,
@@ -339,7 +359,9 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'loading' ? 'busy' : prop},`).j
         child: Semantics(label: semanticLabel, child: button),
       );
     }
-    return button;
+    // Its own size wherever it is put, as Figma draws it, not the width a ListView forces on a
+    // Flutter button (owner decision 2026-09-25); a parent that shares its row gives SolarFill.
+    return SolarOwnSize(child: button);
   }
 }
 `;

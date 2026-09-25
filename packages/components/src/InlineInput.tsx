@@ -16,6 +16,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import { IconCheck, IconClose, IconEdit } from '@bwp-web/assets';
 import Box, { type BoxProps } from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
@@ -60,8 +61,9 @@ export interface InlineInputProps
 }
 
 export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
-  function InlineInput(
-    {
+  function InlineInput(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarInlineInput), under the caller's own.
+    const {
       error,
       disabled,
       value,
@@ -74,9 +76,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
       onClick,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarInlineInput');
     const [editing, setEditing] = useState(defaultEditing && !disabled);
     const [draft, setDraft] = useState(value);
     const [focused, setFocused] = useState(false);

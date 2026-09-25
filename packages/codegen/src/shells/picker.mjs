@@ -554,9 +554,8 @@ ${api.map(([prop]) => `      ${prop}: ${prop === 'open' ? 'true' : prop === 'dis
             label: option.label,
             helper: option.helper,
             icon: option.icon,
-            disabled: option.disabled,
             selected: option.value == w.value,
-            onPressed: () {
+            onPressed: option.disabled ? null : () {
               _menu.close();
               w.onChanged?.call(option.value);
             },

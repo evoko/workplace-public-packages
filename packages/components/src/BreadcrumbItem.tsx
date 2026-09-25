@@ -15,6 +15,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type MouseEventHandler, type ReactNode } from 'react';
 import {
@@ -45,10 +46,10 @@ export interface BreadcrumbItemProps
 }
 
 export const BreadcrumbItem = forwardRef<HTMLElement, BreadcrumbItemProps>(
-  function BreadcrumbItem(
-    { type, disabled, children, href, onClick, className, sx, ...rest },
-    ref,
-  ) {
+  function BreadcrumbItem(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarBreadcrumbItem), under the caller's own.
+    const { type, disabled, children, href, onClick, className, sx, ...rest } =
+      useSolarProps(inProps, 'SolarBreadcrumbItem');
     // A link, a button, or the words alone: the current page, and a disabled link, are no control.
     const current = type === 'current';
     const control = !current && !disabled;

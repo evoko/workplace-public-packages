@@ -23,6 +23,7 @@ import {
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 import { FLUTTER_TEMPLATES, TEMPLATES } from '../src/shells/index.mjs';
+import { apiOf } from '../src/shells/api.mjs';
 import { packagesDir, specDir } from '../src/util/paths.mjs';
 
 const { built } = stage.build();
@@ -246,7 +247,11 @@ describe('Tab Item', () => {
   });
 
   it('names its counter a count, and draws its words in MUI’s Tab label, rippleless', () => {
-    expect(descriptor('Tab Item').shells.slots).toEqual({ counter: 'count' });
+    const api = apiOf(of('Tab Item').spec);
+    expect([api.react.counter, api.flutter.counter]).toEqual([
+      'count',
+      'count',
+    ]);
     const react = TEMPLATES['Tab Item'](spec);
     expect(react).toContain(
       "import Tab, { type TabProps } from '@mui/material/Tab';",
@@ -524,11 +529,12 @@ describe('Tree Item', () => {
   });
 
   it('maps Figma’s slots to what the shells take, its actions its own', () => {
-    expect(descriptor('Tree Item').shells.slots).toEqual({
-      chevron: 'expandable',
-      checkbox: 'checked',
-      counter: 'count',
-      buttons: null,
-    });
+    for (const platform of ['react', 'flutter'])
+      expect(apiOf(of('Tree Item').spec)[platform]).toMatchObject({
+        chevron: 'expandable',
+        checkbox: 'checked',
+        counter: 'count',
+        buttons: null,
+      });
   });
 });

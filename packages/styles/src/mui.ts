@@ -13,4 +13,8 @@ export {
   createSolarThemeOptions,
 } from './generated/mui/theme.js';
 export type { SolarMode } from './generated/tokens.js';
+export {
+  solarMuiComponents,
+  solarMuiThemeDecisions,
+} from './generated/mui/theme-components.js';
 export * from './generated/mui/components/index.js';

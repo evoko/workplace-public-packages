@@ -17,6 +17,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import {
   IconChevronDown,
   IconChevronUp,
@@ -115,8 +116,9 @@ export interface NumberInputProps
 }
 
 export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
-  function NumberInput(
-    {
+  function NumberInput(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarNumberInput), under the caller's own.
+    const {
       size,
       disabled,
       error,
@@ -137,9 +139,7 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarNumberInput');
     const own = useId();
     const id = idProp ?? own;
     const [value, setValue] = useControlled<number | null>({

@@ -19,12 +19,11 @@ Widget buildDropdownItem(
       child: SolarDropdownItem(
         size: enumNamed(SolarDropdownItemSize.values, props['size'] as String),
         selected: props['selected'] as bool,
-        disabled: props['disabled'] as bool,
         label: 'Label',
         helper: 'Description',
         icon: const IconProbe(),
         checkbox: true,
-        onPressed: () {},
+        onPressed: props['disabled'] as bool ? null : () {},
         statesController: states,
       ),
     ),

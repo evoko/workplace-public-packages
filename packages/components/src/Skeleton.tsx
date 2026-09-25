@@ -13,6 +13,7 @@
  * the region loading with `aria-busy`. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiSkeleton, {
   type SkeletonProps as MuiSkeletonProps,
 } from '@mui/material/Skeleton';
@@ -35,7 +36,9 @@ export interface SkeletonProps
     > {}
 
 export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
-  function Skeleton({ type, size, sx, ...rest }, ref) {
+  function Skeleton(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarSkeleton), under the caller's own.
+    const { type, size, sx, ...rest } = useSolarProps(inProps, 'SolarSkeleton');
     return (
       <MuiSkeleton
         ref={ref}

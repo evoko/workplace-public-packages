@@ -57,9 +57,9 @@ export default {
     overlaps: { focus: ['hover', 'selected'], hover: ['selected'] },
   },
   flutter: {},
-  shells: {
-    label: 'label',
-    slots: { label: { react: 'label', flutter: 'label' } },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { label: 'label' },
   },
   templates: {
     react: (spec) => {

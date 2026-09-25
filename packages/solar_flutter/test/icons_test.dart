@@ -288,36 +288,64 @@ void main() {
       expect(SolarIconSize.lg, 24.0);
     });
 
-    testWidgets('takes the ambient SolarTheme icon colour', (
+    testWidgets(
+      'takes the colour of the icon theme around it, as Flutter’s Icon does',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          Theme(
+            data: ThemeData(
+              extensions: const <ThemeExtension<dynamic>>[SolarTheme.light],
+            ),
+            child: const Center(
+              child: IconTheme(
+                data: IconThemeData(color: Color(0xFF0000FF), size: 12),
+                child: SolarIcon(SolarIcons.chevronRightOutline),
+              ),
+            ),
+          ),
+        );
+        expect(painterIn(tester).color, const Color(0xFF0000FF));
+        expect(tester.getSize(find.byType(SolarIcon)), const Size(12, 12));
+      },
+    );
+
+    testWidgets('is the button’s ink in a SolarIconButton', (
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        Theme(
-          data: ThemeData(
+        MaterialApp(
+          theme: ThemeData(
             extensions: const <ThemeExtension<dynamic>>[SolarTheme.light],
           ),
-          child: const SolarIcon(SolarIcons.chevronRightOutline),
+          home: Center(
+            child: SolarIconButton(
+              onPressed: () {},
+              icon: const SolarIcon(SolarIcons.plusOutline),
+              semanticLabel: 'Add',
+            ),
+          ),
         ),
       );
-      expect(painterIn(tester).color, SolarColors.light.iconPrimary);
+      // A primary Icon Button's icon is inverse, on its dark face, and sm is 12.
+      expect(painterIn(tester).color, SolarColors.light.iconInverse);
+      expect(tester.getSize(find.byType(SolarIcon)), const Size(12, 12));
     });
 
-    testWidgets('prefers an explicit colour to the theme', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(
-        Theme(
-          data: ThemeData(
-            extensions: const <ThemeExtension<dynamic>>[SolarTheme.light],
+    testWidgets(
+      'outside any widget that tints it, is the app’s icon colour, SOLAR’s where the app sets it',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          Theme(
+            data: ThemeData(
+              iconTheme: IconThemeData(color: SolarColors.light.iconPrimary),
+              extensions: const <ThemeExtension<dynamic>>[SolarTheme.light],
+            ),
+            child: const SolarIcon(SolarIcons.chevronRightOutline),
           ),
-          child: const SolarIcon(
-            SolarIcons.chevronRightOutline,
-            color: Color(0xFF00FF00),
-          ),
-        ),
-      );
-      expect(painterIn(tester).color, const Color(0xFF00FF00));
-    });
+        );
+        expect(painterIn(tester).color, SolarColors.light.iconPrimary);
+      },
+    );
 
     testWidgets('falls back to the IconTheme when SOLAR is not installed', (
       WidgetTester tester,

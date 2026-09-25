@@ -18,11 +18,10 @@ Widget buildButton(
               as Map<String, dynamic>?)?['variant']
           as Map<String, dynamic>?;
   return SolarButton(
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     size: enumNamed(SolarButtonSize.values, props['size'] as String),
     variant: enumNamed(SolarButtonVariant.values, props['variant'] as String),
     danger: props['danger'] as bool,
-    disabled: props['disabled'] as bool,
     loading: props['loading'] as bool,
     statesController: states,
     iconLeading: const IconProbe(key: Key('lead')),

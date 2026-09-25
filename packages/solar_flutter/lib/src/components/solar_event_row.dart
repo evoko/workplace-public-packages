@@ -91,11 +91,12 @@ class SolarEventRow extends StatelessWidget {
               builder: (context) => SolarDropdownItem(
                 label: item.label,
                 icon: item.icon,
-                disabled: item.disabled,
-                onPressed: () {
-                  MenuController.maybeOf(context)?.close();
-                  item.onSelected();
-                },
+                onPressed: item.disabled
+                    ? null
+                    : () {
+                        MenuController.maybeOf(context)?.close();
+                        item.onSelected();
+                      },
               ),
             ),
         ],

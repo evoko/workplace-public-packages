@@ -24,7 +24,6 @@ class SolarCheckbox extends StatelessWidget {
   const SolarCheckbox({
     super.key,
     this.checked = false,
-    this.disabled = false,
     this.mixed = false,
     required this.onChanged,
     this.semanticLabel,
@@ -33,7 +32,6 @@ class SolarCheckbox extends StatelessWidget {
   });
 
   final bool checked;
-  final bool disabled;
   final bool mixed;
 
   /// Called with the value a tap asks for, the opposite of [checked]; null disables it.
@@ -46,6 +44,11 @@ class SolarCheckbox extends StatelessWidget {
   /// Item's box, in the row's hover): it takes no input and says nothing, the row announcing its
   /// choice. Null for a checkbox of its own.
   final Set<WidgetState>? inStates;
+
+  /// Whether it is disabled: by a null [onChanged], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled =>
+      inStates?.contains(WidgetState.disabled) ?? onChanged == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;
@@ -60,7 +63,7 @@ class SolarCheckbox extends StatelessWidget {
     final t = solarThemeOf(context);
     final p = SolarCheckboxProps(
       checked: checked || mixed,
-      disabled: disabled || (inStates == null && onChanged == null),
+      disabled: disabled,
       mixed: mixed,
     );
     Widget draw(Set<WidgetState> states) => SolarLayers(

@@ -1,5 +1,10 @@
 /**
- * Component parity: the MUI and Flutter Buttons expose the same API and draw from the same recipe.
+ * Component parity: both platforms reach every part of Figma's contract, the IR, and draw from the
+ * same recipe. What is shared is the contract (docs/superpowers/specs/
+ * 2026-09-25-two-libraries-one-contract.md): each recipe is the IR, entry for entry, in the same
+ * states, resolved in the same order; each shell reaches every prop and slot of the IR through its
+ * descriptor's declared mapping (src/shells/api.mjs), in its platform's own spelling and mechanism,
+ * never required to match the other platform's.
  *
  * Read from the artifacts -- the generated TypeScript and Dart, and the shells -- and
  * never from an emitter's own account of what it wrote. Milestone 1 learned why: three token
@@ -10,22 +15,13 @@
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { DESCRIPTORS, table } from '../src/components/index.mjs';
+import { DESCRIPTORS } from '../src/components/index.mjs';
 import { dartEnumValue } from '../src/emit/flutter.mjs';
 import { describe, expect, it } from 'vitest';
-import {
-  MUI_SLOTS,
-  OVERLAPS,
-  STATE_SELECTORS,
-} from '../src/emit/mui-component.mjs';
+import { OVERLAPS, STATE_SELECTORS } from '../src/emit/mui-component.mjs';
+import { apiOf, unreached } from '../src/shells/api.mjs';
 
 const SELECTORS = STATE_SELECTORS.Button;
-const GROUP_DECIDES = table('flutter', 'groupDecides');
-// How a component's shells name what the IR names otherwise (Text Input's label, a prop, and its
-// value, Flutter's controller).
-const LABEL_PROP = table('shells', 'label');
-const FLUTTER_NAMES = table('shells', 'flutter');
-const SLOT_NAMES = table('shells', 'slots');
 import { flattenSpec } from '../src/spec.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { flutterFileOf, shellFileOf } from '../src/shells/index.mjs';
@@ -136,16 +132,20 @@ describe('component parity: the API', () => {
     ([, d]) => d.type === 'boolean',
   );
 
-  it('offers the same values for every choice, spelled the same, in both targets', () => {
+  it('offers every value of every choice on each platform, in its own spelling', () => {
     for (const [prop, def] of unions) {
       const type = `SolarButton${prop[0].toUpperCase()}${prop.slice(1)}`;
       expect(tsUnion(muiTs, type), `${prop} in MUI`).toEqual(def.values);
-      expect(dartEnum(dart, type), `${prop} in Flutter`).toEqual(def.values);
+      expect(dartEnum(dart, type), `${prop} in Flutter`).toEqual(
+        def.values.map(dartEnumValue),
+      );
     }
     expect(unions.map(([p]) => p).sort()).toEqual(['size', 'variant']);
   });
 
-  it('has the same props, and the same defaults, in both targets', () => {
+  // The defaults are Figma's default variant's, which is the contract: a default that differed on
+  // one platform would draw another variant there.
+  it('takes every IR prop in both recipes, with the IR’s default', () => {
     const expected = Object.fromEntries(
       Object.entries(ir.api).map(([p, d]) => [p, d.default]),
     );
@@ -327,10 +327,11 @@ describe('component parity: the recipe', () => {
 });
 
 describe('component parity: slots', () => {
-  it('the shell takes a prop for every slot the IR has, and the label is its children', () => {
+  it('the React shell reaches every slot the IR has, through its mapping', () => {
+    const { react } = apiOf(ir);
     for (const slot of Object.keys(ir.slots))
-      if (slot === 'label') expect(shell).toContain('{children}');
-      else expect(shell).toMatch(new RegExp(`\\b${slot}\\?: ReactNode`));
+      if (react[slot] === 'children') expect(shell).toContain('{children}');
+      else expect(shell).toMatch(new RegExp(`\\b${react[slot]}\\?: ReactNode`));
   });
 
   it('Flutter can answer whether each slot is drawn', () => {
@@ -462,13 +463,15 @@ describe('component parity: every entry, in place', () => {
 // Flutter widget are written by hand (as templates, or as an owned shell), so either can drift
 // from the IR, and this is what notices.
 describe('component parity: the React and Flutter widgets', () => {
-  /** The names a React shell destructures from its props. */
+  /** The names a React shell destructures from its props, as the app's theme gives them. */
   function reactProps(source, name) {
     const m = new RegExp(
-      // A generic shell (Autocomplete<T>) names its type parameters first, and types its props.
-      `function ${name}(?:<[^>]*>)?\\(\\s*\\{([\\s\\S]*?)\\}(?:\\s*:\\s*[\\w<>]+)?\\s*,\\s*ref`,
+      `const \\{([\\s\\S]*?)\\}\\s*=\\s*useSolarProps\\(\\s*inProps,\\s*'Solar${name}',?\\s*\\)`,
     ).exec(source);
-    if (!m) throw new Error(`${name}: no destructured props in the shell`);
+    if (!m)
+      throw new Error(
+        `${name}: no props read through useSolarProps in the shell`,
+      );
     return (
       m[1]
         .split(',')
@@ -515,34 +518,33 @@ describe('component parity: the React and Flutter widgets', () => {
       name,
     );
 
-    // A prop a Flutter group decides (Radio's checked, its RadioGroup's) is no parameter there.
-    const fromGroup = new Set(GROUP_DECIDES[spec.component] ?? []);
+    const reactSource = read('components', 'src', shellFileOf(spec.component));
+    const flutterSource = read(
+      'solar_flutter',
+      'lib',
+      'src',
+      'components',
+      flutterFileOf(spec.component),
+    );
+    const api = apiOf(spec);
 
-    it(`${spec.component}: both take every prop of the IR`, () => {
-      for (const prop of Object.keys(spec.api)) {
-        expect(react, `${prop} in React`).toContain(prop);
-        if (fromGroup.has(prop))
-          expect(flutter, `${prop} in Flutter`).not.toHaveProperty(prop);
-        else expect(flutter, `${prop} in Flutter`).toHaveProperty(prop);
-      }
+    // Every prop and slot of the IR, and every prop a derived axis follows from, is reached on
+    // each platform, by the member its mapping names: its spelling and mechanism are its own.
+    it(`${spec.component}: React reaches every prop and slot of the IR`, () => {
+      expect(unreached(api.react, react, reactSource)).toEqual([]);
     });
 
-    it(`${spec.component}: both take the props its derived axes follow from`, () => {
-      // Tag's type follows from `indicator` and `onClose`, which both shells must take; Text
-      // Input's filled from its value, which Flutter holds in its controller.
-      for (const d of Object.values(spec.derived ?? {}))
-        for (const w of d.when)
-          for (const prop of w.props ?? []) {
-            expect(react, `${prop} in React`).toContain(prop);
-            const there = FLUTTER_NAMES[spec.component]?.[prop] ?? prop;
-            expect(flutter, `${there} in Flutter`).toHaveProperty(there);
-          }
+    it(`${spec.component}: Flutter reaches every prop and slot of the IR`, () => {
+      expect(
+        unreached(api.flutter, Object.keys(flutter), flutterSource),
+      ).toEqual([]);
     });
 
-    it(`${spec.component}: Flutter defaults to the IR's defaults`, () => {
+    it(`${spec.component}: Flutter defaults to the IR's defaults where it takes the prop`, () => {
       for (const [prop, def] of Object.entries(spec.api)) {
-        // A colour the caller gives (Avatar's) has no default on either platform.
-        if (def.type === 'color' || fromGroup.has(prop)) continue;
+        // A colour the caller gives (Avatar's) has no default on either platform; a prop reached
+        // another way (a group's, a callback's) has none of its own.
+        if (def.type === 'color' || api.flutter[prop] !== prop) continue;
         // An enum value as the emitter spells it in Dart (`top-search` is `topSearch`).
         const expected =
           def.type === 'boolean'
@@ -552,64 +554,39 @@ describe('component parity: the React and Flutter widgets', () => {
         else expect(flutter[prop].endsWith(expected), prop).toBe(true);
       }
     });
-
-    it(`${spec.component}: both take every slot, the label as their child`, () => {
-      // A slot that only holds other slots (Text Area's footer, around its helper and count) is
-      // shown by them, and no prop of its own.
-      const layerOf = (slot) =>
-        Object.keys(spec.layers).find(
-          (l) => spec.layers[l].path === spec.slots[slot].layer,
-        );
-      const holdsSlots = (slot) => {
-        const kids = Object.keys(spec.layers).filter(
-          (l) => spec.layers[l].parent === layerOf(slot),
-        );
-        return kids.length > 0 && kids.every((k) => k in spec.slots);
-      };
-      for (const slot of Object.keys(spec.slots)) {
-        if (holdsSlots(slot)) continue;
-        // The label is the child; a slot styled as one of the root's children (Button Group's
-        // example Buttons, all `& > *`) is one of the caller's children.
-        // A drawn component (SplitButton) draws its label's words itself, so Flutter takes them
-        // as a String, `label`.
-        // A content slot (Segmented Control's track of segments) is the children on both, and a
-        // label beside it names the whole, `label`, as a field's label does (Text Input's).
-        const content = Object.values(spec.slots).some(
-          (s) => s.type === 'content',
-        );
-        // A slot the shells name otherwise, or fill themselves (the descriptor's shells.slots).
-        const named = SLOT_NAMES[spec.component] ?? {};
-        if (named[slot] === null) continue;
-        const [inReact, inFlutter] =
-          typeof named[slot] === 'string'
-            ? [named[slot], named[slot]]
-            : named[slot]
-              ? [named[slot].react, named[slot].flutter]
-              : spec.slots[slot].type === 'content'
-                ? ['children', 'children']
-                : slot === 'label' && (content || LABEL_PROP[spec.component])
-                  ? ['label', 'label']
-                  : slot === 'label'
-                    ? [
-                        'children',
-                        MUI_SLOTS[spec.component] === 'drawn'
-                          ? 'label'
-                          : 'child',
-                      ]
-                    : MUI_SLOTS[spec.component]?.[slot] === '& > *'
-                      ? ['children', 'children']
-                      : [slot, slot];
-        // A slot a callback shows (Banner's close button, by `onClose`) is that callback.
-        const on = `on${inReact[0].toUpperCase()}${inReact.slice(1)}`;
-        expect(
-          react.includes(inReact) || react.includes(on),
-          `${slot} in React`,
-        ).toBe(true);
-        expect(
-          inFlutter in flutter || on in flutter,
-          `${slot} in Flutter`,
-        ).toBe(true);
-      }
-    });
   }
+});
+
+describe('component parity: the mapping', () => {
+  const tag = built.find((b) => b.spec.component === 'Tag').spec;
+  const flutterTag = [
+    'status',
+    'invert',
+    'label',
+    'icon',
+    'indicator',
+    'onClose',
+  ];
+
+  it('fails a shell that does not reach a slot, naming the slot', () => {
+    const without = flutterTag.filter((p) => p !== 'icon');
+    expect(unreached(apiOf(tag).flutter, without, '')).toEqual([
+      'icon ("icon")',
+    ]);
+  });
+
+  it('passes a platform that spells a prop its own way, where its mapping says so', () => {
+    const spelled = flutterTag.map((p) => (p === 'invert' ? 'inverted' : p));
+    expect(unreached(apiOf(tag).flutter, spelled, '')).toEqual([
+      'invert ("invert")',
+    ]);
+    const mapped = apiOf(tag, { flutter: { invert: 'inverted' } }).flutter;
+    expect(unreached(mapped, spelled, '')).toEqual([]);
+  });
+
+  it('refuses a mapping of what the IR does not name, as a stale overlay rule is', () => {
+    expect(() => apiOf(tag, { flutter: { nothing: 'x' } })).toThrow(
+      /maps what its IR does not name/,
+    );
+  });
 });

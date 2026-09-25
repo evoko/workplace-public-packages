@@ -17,6 +17,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiTabs, { type TabsProps as MuiTabsProps } from '@mui/material/Tabs';
 import { useControlled } from '@mui/material/utils';
 import {
@@ -69,48 +70,49 @@ export interface TabsProps
   onChange?: (event: SyntheticEvent, value: unknown) => void;
 }
 
-export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
-  {
-    size,
-    children,
-    value: valueProp,
-    defaultValue = false,
-    onChange,
-    slotProps,
-    sx,
-    ...rest
+export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
+  function Tabs(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTabs), under the caller's own.
+    const {
+      size,
+      children,
+      value: valueProp,
+      defaultValue = false,
+      onChange,
+      slotProps,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarTabs');
+    const [value, setValue] = useControlled<unknown>({
+      controlled: valueProp,
+      default: defaultValue,
+      name: 'Tabs',
+      state: 'value',
+    });
+    const look = { size };
+    // The recipe's composition, read for its presence alone: the strip draws the caller's tabs.
+    void solarTabsCompose(look);
+    return (
+      <TabsSizeContext.Provider value={size ?? 'sm'}>
+        <MuiTabs
+          ref={ref}
+          {...rest}
+          value={value}
+          onChange={(event, next) => {
+            setValue(next);
+            onChange?.(event, next);
+          }}
+          variant="standard"
+          // The tabs layer is Tabs' list, as Figma lays the tabs out in it.
+          slotProps={{
+            ...slotProps,
+            list: { className: 'SolarTabs-tabs SolarTabs-box' },
+          }}
+          sx={[solarTabsStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+        >
+          {children}
+        </MuiTabs>
+      </TabsSizeContext.Provider>
+    );
   },
-  ref,
-) {
-  const [value, setValue] = useControlled<unknown>({
-    controlled: valueProp,
-    default: defaultValue,
-    name: 'Tabs',
-    state: 'value',
-  });
-  const look = { size };
-  // The recipe's composition, read for its presence alone: the strip draws the caller's tabs.
-  void solarTabsCompose(look);
-  return (
-    <TabsSizeContext.Provider value={size ?? 'sm'}>
-      <MuiTabs
-        ref={ref}
-        {...rest}
-        value={value}
-        onChange={(event, next) => {
-          setValue(next);
-          onChange?.(event, next);
-        }}
-        variant="standard"
-        // The tabs layer is Tabs' list, as Figma lays the tabs out in it.
-        slotProps={{
-          ...slotProps,
-          list: { className: 'SolarTabs-tabs SolarTabs-box' },
-        }}
-        sx={[solarTabsStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
-      >
-        {children}
-      </MuiTabs>
-    </TabsSizeContext.Provider>
-  );
-});
+);

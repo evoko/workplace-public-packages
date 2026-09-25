@@ -104,6 +104,7 @@ library;
 import 'package:flutter/material.dart';
 
 import '../generated/components/progressbar.dart';
+import '../solar_own_size.dart';
 import 'solar_theme_of.dart';
 
 class SolarProgressBar extends StatelessWidget {
@@ -127,7 +128,10 @@ ${api.map(([prop, def]) => dartField('ProgressBar', prop, def)).join('\n')}
     final t = solarThemeOf(context);
     final p = SolarProgressBarProps(${api.map(([prop]) => `${prop}: ${prop}`).join(', ')});
     const rest = <WidgetState>{};
-    return LinearProgressIndicator(
+    // Its own height wherever it is put, as Figma draws it; its width is its parent's.
+    return SolarOwnSize(
+      fillsWidth: true,
+      child: LinearProgressIndicator(
       value: value,
       minHeight: SolarProgressBarRecipe.dimension('root.height', p, rest),
       backgroundColor: SolarProgressBarRecipe.color(t, 'root.background', p, rest),
@@ -136,6 +140,7 @@ ${api.map(([prop, def]) => dartField('ProgressBar', prop, def)).join('\n')}
         SolarProgressBarRecipe.dimension('root.radius', p, rest)!,
       ),
       semanticsLabel: semanticsLabel,
+      ),
     );
   }
 }

@@ -13,6 +13,7 @@
  * The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, type ReactNode } from 'react';
 import {
@@ -40,7 +41,14 @@ export interface SectionNavGroupHeaderProps
 export const SectionNavGroupHeader = forwardRef<
   HTMLDivElement,
   SectionNavGroupHeaderProps
->(function SectionNavGroupHeader({ children, level = 3, sx, ...rest }, ref) {
+>(function SectionNavGroupHeader(inProps, ref) {
+  // As the app's MUI theme sets them (components.SolarSectionNavGroupHeader), under the caller's own.
+  const {
+    children,
+    level = 3,
+    sx,
+    ...rest
+  } = useSolarProps(inProps, 'SolarSectionNavGroupHeader');
   const parts = solarSectionNavGroupHeaderCompose({});
   return (
     <Box

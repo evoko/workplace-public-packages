@@ -20,6 +20,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import { type MenuListProps } from '@mui/material/MenuList';
@@ -96,7 +97,11 @@ export interface AutocompleteProps<T>
 }
 
 export const Autocomplete = forwardRef(function Autocomplete<T>(
-  {
+  inProps: AutocompleteProps<T>,
+  ref: Ref<HTMLDivElement>,
+) {
+  // As the app's MUI theme sets them (components.SolarAutocomplete), under the caller's own.
+  const {
     size,
     disabled,
     error,
@@ -114,9 +119,7 @@ export const Autocomplete = forwardRef(function Autocomplete<T>(
     className,
     style,
     ...rest
-  }: AutocompleteProps<T>,
-  ref: Ref<HTMLDivElement>,
-) {
+  } = useSolarProps(inProps, 'SolarAutocomplete');
   const own = useId();
   const id = idProp ?? own;
   // A data- attribute is the root element's (a case marks it with its layer); the rest the hook's.

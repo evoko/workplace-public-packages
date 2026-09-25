@@ -59,7 +59,6 @@ class SolarSplitButton extends StatelessWidget {
     this.menuLabel = 'More options',
     this.variant = SolarSplitButtonVariant.primary,
     this.size = SolarSplitButtonSize.md,
-    this.disabled = false,
     this.loading = false,
     this.statesController,
   });
@@ -81,7 +80,6 @@ class SolarSplitButton extends StatelessWidget {
 
   final SolarSplitButtonVariant variant;
   final SolarSplitButtonSize size;
-  final bool disabled;
   final bool loading;
 
   /// The control's states, where the caller keeps them.
@@ -95,6 +93,10 @@ class SolarSplitButton extends StatelessWidget {
   };
 
   static const _halves = {'action', 'divider', 'trigger'};
+
+  /// Whether it is disabled: by a null [onPressed], as Flutter's own buttons are, not a parameter of
+  /// its own.
+  bool get disabled => onPressed == null;
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +112,12 @@ class SolarSplitButton extends StatelessWidget {
               builder: (context) => SolarDropdownItem(
                 label: item.label,
                 icon: item.icon,
-                disabled: item.disabled,
-                onPressed: () {
-                  MenuController.maybeOf(context)?.close();
-                  item.onSelected();
-                },
+                onPressed: item.disabled
+                    ? null
+                    : () {
+                        MenuController.maybeOf(context)?.close();
+                        item.onSelected();
+                      },
               ),
             ),
         ],

@@ -17,6 +17,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import { IconMore } from '@bwp-web/assets';
@@ -79,8 +80,9 @@ export interface StatusCardProps
 }
 
 export const StatusCard = forwardRef<HTMLDivElement, StatusCardProps>(
-  function StatusCard(
-    {
+  function StatusCard(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarStatusCard), under the caller's own.
+    const {
       status = 'success',
       disabled = false,
       loading = false,
@@ -94,9 +96,7 @@ export const StatusCard = forwardRef<HTMLDivElement, StatusCardProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarStatusCard');
     const look = { status, disabled, loading };
     const composed = solarStatusCardCompose(look);
     // Pressable while it loads too, as Figma draws a loading card hovered: its title, the action,

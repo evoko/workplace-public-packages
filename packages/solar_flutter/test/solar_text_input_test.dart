@@ -113,7 +113,8 @@ void main() {
       expect(find.bySemanticsLabel('As on your ID'), findsNothing);
       // A control in the field (a clear button) stays its own.
       expect(
-        tester.getSemantics(find.byType(SolarIconButton)),
+        // By its name: the button keeps its own size inside a box that may be wider.
+        tester.getSemantics(find.bySemanticsLabel('Clear')),
         matchesSemantics(
           label: 'Clear',
           isButton: true,

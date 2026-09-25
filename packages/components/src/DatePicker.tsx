@@ -18,6 +18,7 @@
  * The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box from '@mui/material/Box';
 import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
 import { useControlled, useForkRef } from '@mui/material/utils';
@@ -119,8 +120,9 @@ export interface DatePickerProps
 }
 
 export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
-  function DatePicker(
-    {
+  function DatePicker(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarDatePicker), under the caller's own.
+    const {
       size,
       disabled,
       error,
@@ -149,9 +151,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       style,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarDatePicker');
     const own = useId();
     const id = idProp ?? own;
     const [value, setValue] = useControlled<string | null>({

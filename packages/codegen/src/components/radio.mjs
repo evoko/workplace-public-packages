@@ -38,9 +38,11 @@ export default {
     },
     overlaps: { focus: ['hover'] },
   },
-  flutter: {
-    // Its RadioGroup checks it, by its value, as it checks Flutter's own Radio.
-    groupDecides: ['checked'],
+  flutter: {},
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Its RadioGroup checks it, by its value, as it checks Flutter's own Radio.
+  api: {
+    flutter: { checked: { group: 'RadioGroup' } },
   },
   templates: {
     react: (spec) => {

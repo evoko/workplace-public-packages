@@ -31,11 +31,7 @@ void main() {
       expect(chosen, 1);
       await pump(
         tester,
-        SolarDropdownItem(
-          label: 'Rename',
-          disabled: true,
-          onPressed: () => chosen++,
-        ),
+        const SolarDropdownItem(label: 'Rename', onPressed: null),
       );
       await tester.tap(find.text('Rename'));
       expect(chosen, 1);

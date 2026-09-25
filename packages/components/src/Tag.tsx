@@ -15,6 +15,7 @@
  * load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { IconClose } from '@bwp-web/assets';
 import { forwardRef, type ReactNode } from 'react';
@@ -66,68 +67,69 @@ function typeOf(p: {
   return 'text-only';
 }
 
-export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
-  {
-    status,
-    invert,
-    indicator,
-    children,
-    icon,
-    onClose,
-    closeLabel = 'Remove',
-    sx,
-    ...rest
+export const Tag = forwardRef<HTMLSpanElement, TagProps>(
+  function Tag(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarTag), under the caller's own.
+    const {
+      status,
+      invert,
+      indicator,
+      children,
+      icon,
+      onClose,
+      closeLabel = 'Remove',
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarTag');
+    const label = children != null && children !== false && children !== '';
+    const look: SolarTagRecipeProps = {
+      status,
+      invert,
+      type: typeOf({ indicator, onClose, icon, label }),
+    };
+    const words = typeof children === 'string' ? ` ${children}` : '';
+    const parts = solarTagCompose(look);
+    const dot = parts.statusIndicator;
+    return (
+      <Box
+        component="span"
+        ref={ref}
+        {...rest}
+        sx={[solarTagStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {drawChildren('root', {
+          prefix: 'SolarTag',
+          tree: TREE,
+          slots: SLOTS,
+          parts,
+          text: { label: children },
+          // The dot is a StatusIndicator, in the type and size the recipe names for the status, in
+          // its layer's element; decorative, as the words say the status.
+          render: {
+            statusIndicator: ({ className, style }) => (
+              <span className={className} style={style}>
+                <StatusIndicator
+                  type={dot['variant.type'] as StatusIndicatorProps['type']}
+                  size={dot['variant.size'] as StatusIndicatorProps['size']}
+                />
+              </span>
+            ),
+          },
+          icons: {
+            icon: <span>{icon}</span>,
+            iconNone: <span>{icon}</span>,
+            iconClose: (
+              <button
+                type="button"
+                aria-label={`${closeLabel}${words}`}
+                onClick={onClose}
+              >
+                <IconClose />
+              </button>
+            ),
+          },
+        })}
+      </Box>
+    );
   },
-  ref,
-) {
-  const label = children != null && children !== false && children !== '';
-  const look: SolarTagRecipeProps = {
-    status,
-    invert,
-    type: typeOf({ indicator, onClose, icon, label }),
-  };
-  const words = typeof children === 'string' ? ` ${children}` : '';
-  const parts = solarTagCompose(look);
-  const dot = parts.statusIndicator;
-  return (
-    <Box
-      component="span"
-      ref={ref}
-      {...rest}
-      sx={[solarTagStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
-      {drawChildren('root', {
-        prefix: 'SolarTag',
-        tree: TREE,
-        slots: SLOTS,
-        parts,
-        text: { label: children },
-        // The dot is a StatusIndicator, in the type and size the recipe names for the status, in
-        // its layer's element; decorative, as the words say the status.
-        render: {
-          statusIndicator: ({ className, style }) => (
-            <span className={className} style={style}>
-              <StatusIndicator
-                type={dot['variant.type'] as StatusIndicatorProps['type']}
-                size={dot['variant.size'] as StatusIndicatorProps['size']}
-              />
-            </span>
-          ),
-        },
-        icons: {
-          icon: <span>{icon}</span>,
-          iconNone: <span>{icon}</span>,
-          iconClose: (
-            <button
-              type="button"
-              aria-label={`${closeLabel}${words}`}
-              onClick={onClose}
-            >
-              <IconClose />
-            </button>
-          ),
-        },
-      })}
-    </Box>
-  );
-});
+);

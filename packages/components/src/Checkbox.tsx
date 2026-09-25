@@ -14,6 +14,7 @@
  * not with `defaultChecked`. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import MuiCheckbox, {
   type CheckboxProps as MuiCheckboxProps,
 } from '@mui/material/Checkbox';
@@ -51,8 +52,9 @@ export interface CheckboxProps
     > {}
 
 export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
-  function Checkbox(
-    {
+  function Checkbox(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarCheckbox), under the caller's own.
+    const {
       checked: checkedProp,
       defaultChecked,
       mixed = false,
@@ -60,9 +62,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
       onChange,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarCheckbox');
     const [on, setOn] = useControlled({
       controlled: checkedProp,
       default: Boolean(defaultChecked),

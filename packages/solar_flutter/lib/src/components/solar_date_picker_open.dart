@@ -380,12 +380,13 @@ class _SolarDatePickerOpenState extends State<SolarDatePickerOpen> {
                     semanticLabel: l.formatFullDate(d),
                     selected: chosen == d,
                     today: today == d,
-                    disabled: off,
                     focusNode: outside ? null : (_nodes[d] ??= FocusNode()),
-                    onPressed: () {
-                      setState(() => _focus = d);
-                      widget.onChanged?.call(d);
-                    },
+                    onPressed: off
+                        ? null
+                        : () {
+                            setState(() => _focus = d);
+                            widget.onChanged?.call(d);
+                          },
                   );
                   return widget.dayBuilder?.call(d, month, cell) ?? cell;
                 },

@@ -49,8 +49,9 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    // Flutter holds a field's value in its controller.
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  // Flutter holds a field's value in its controller.
+  api: {
     flutter: { value: 'controller' },
   },
   templates: {

@@ -14,7 +14,6 @@ Widget buildDatePickerDayCell(
   return SolarDatePickerDayCell(
     selected: props['selected'] as bool,
     today: props['today'] as bool,
-    disabled: props['disabled'] as bool,
     filled: props['filled'] as bool,
     error: props['error'] as bool,
     rangeRole: enumNamed(
@@ -24,7 +23,7 @@ Widget buildDatePickerDayCell(
     ),
     label: '24',
     semanticLabel: '24 April 2026',
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     statesController: states,
   );
 }

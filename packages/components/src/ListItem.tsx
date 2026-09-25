@@ -16,6 +16,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import ListItemButton, {
   type ListItemButtonProps,
 } from '@mui/material/ListItemButton';
@@ -68,8 +69,9 @@ export interface ListItemProps
 }
 
 export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
-  function ListItem(
-    {
+  function ListItem(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarListItem), under the caller's own.
+    const {
       selected = false,
       disabled = false,
       compact: compactProp,
@@ -82,9 +84,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
       className,
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarListItem');
     // In a List, the list's compactness, as Figma draws its rows; its type from what it is given.
     const compact = useListCompact() ?? compactProp;
     const look = {

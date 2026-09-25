@@ -24,20 +24,22 @@ class SolarToggle extends StatelessWidget {
   const SolarToggle({
     super.key,
     this.selected = false,
-    this.disabled = false,
     required this.onChanged,
     this.semanticLabel,
     this.statesController,
   });
 
   final bool selected;
-  final bool disabled;
 
   /// Called with the value a tap asks for, the opposite of [selected]; null disables it.
   final ValueChanged<bool>? onChanged;
 
   /// What it turns on, for a screen reader, where no label beside it says so.
   final String? semanticLabel;
+
+  /// Whether it is disabled: by a null [onChanged], as Flutter's own controls are, not a
+  /// parameter of its own.
+  bool get disabled => onChanged == null;
 
   /// Its states, where the caller keeps them.
   final WidgetStatesController? statesController;

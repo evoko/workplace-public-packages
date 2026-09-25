@@ -16,6 +16,7 @@
  * `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { useControlled } from '@mui/material/utils';
 import { forwardRef } from 'react';
@@ -79,8 +80,9 @@ export interface PaginationProps extends Omit<
 }
 
 export const Pagination = forwardRef<HTMLElement, PaginationProps>(
-  function Pagination(
-    {
+  function Pagination(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarPagination), under the caller's own.
+    const {
       count,
       page: pageProp,
       defaultPage = 1,
@@ -89,9 +91,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
       'aria-label': label = 'Pagination',
       sx,
       ...rest
-    },
-    ref,
-  ) {
+    } = useSolarProps(inProps, 'SolarPagination');
     const [page, setPage] = useControlled({
       controlled: pageProp,
       default: defaultPage,

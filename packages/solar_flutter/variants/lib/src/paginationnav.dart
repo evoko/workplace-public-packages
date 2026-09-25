@@ -16,8 +16,7 @@ Widget buildPaginationNav(
       SolarPaginationNavDirection.values,
       props['direction'] as String,
     ),
-    disabled: props['disabled'] as bool,
-    onPressed: () {},
+    onPressed: props['disabled'] as bool ? null : () {},
     statesController: states,
   );
 }

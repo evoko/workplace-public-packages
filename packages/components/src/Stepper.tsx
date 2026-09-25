@@ -16,6 +16,7 @@
  * the Multi-step Wizard's, not the Stepper's. The app must load `@bwp-web/styles/tokens.css`.
  */
 
+import { useSolarProps } from './internal/theme.js';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { forwardRef, Fragment, type ReactNode } from 'react';
 import {
@@ -76,163 +77,165 @@ export interface StepperProps
   onStepClick?: (index: number) => void;
 }
 
-export const Stepper = forwardRef<HTMLElement, StepperProps>(function Stepper(
-  {
-    type = 'with label',
-    steps,
-    activeStep,
-    errorStep,
-    onStepClick,
-    'aria-label': label = 'Progress',
-    sx,
-    ...rest
-  },
-  ref,
-) {
-  const parts = solarStepperCompose({ type });
-  const status = (i: number): Status =>
-    i === errorStep
-      ? 'error'
-      : i < activeStep
-        ? 'complete'
-        : i === activeStep
-          ? 'active'
-          : 'upcoming';
-  const n = steps.length;
-  const cls = (layer: string, box = false) =>
-    `${CLASS[layer]}${box ? ' SolarStepper-box' : ''}`;
-  const current = (i: number) =>
-    i === activeStep ? ('step' as const) : undefined;
-  const name = (i: number) => (
-    <span className="SolarStepper-name">{steps[i]}</span>
-  );
-  const step = (i: number, round: boolean) => (
-    <Step
-      status={status(i)}
-      type={round ? 'round' : 'horizontal'}
-      label={steps[i]}
-      number={i + 1}
-      onClick={
-        onStepClick && status(i) === 'complete'
-          ? () => onStepClick(i)
-          : undefined
-      }
-    />
-  );
-  const root = (children: ReactNode, list = true) => (
-    <Box
-      component={list ? 'ol' : 'div'}
-      ref={ref}
-      aria-label={label}
-      {...rest}
-      sx={[solarStepperStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
-      {children}
-    </Box>
-  );
-  // Each part in the layer Figma draws for its status, or at its place.
-  const byStatus = (
-    i: number,
-    complete: string,
-    active: string,
-    upcoming: string,
-  ) => ({ complete, active, error: active, upcoming })[status(i)];
+export const Stepper = forwardRef<HTMLElement, StepperProps>(
+  function Stepper(inProps, ref) {
+    // As the app's MUI theme sets them (components.SolarStepper), under the caller's own.
+    const {
+      type = 'with label',
+      steps,
+      activeStep,
+      errorStep,
+      onStepClick,
+      'aria-label': label = 'Progress',
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarStepper');
+    const parts = solarStepperCompose({ type });
+    const status = (i: number): Status =>
+      i === errorStep
+        ? 'error'
+        : i < activeStep
+          ? 'complete'
+          : i === activeStep
+            ? 'active'
+            : 'upcoming';
+    const n = steps.length;
+    const cls = (layer: string, box = false) =>
+      `${CLASS[layer]}${box ? ' SolarStepper-box' : ''}`;
+    const current = (i: number) =>
+      i === activeStep ? ('step' as const) : undefined;
+    const name = (i: number) => (
+      <span className="SolarStepper-name">{steps[i]}</span>
+    );
+    const step = (i: number, round: boolean) => (
+      <Step
+        status={status(i)}
+        type={round ? 'round' : 'horizontal'}
+        label={steps[i]}
+        number={i + 1}
+        onClick={
+          onStepClick && status(i) === 'complete'
+            ? () => onStepClick(i)
+            : undefined
+        }
+      />
+    );
+    const root = (children: ReactNode, list = true) => (
+      <Box
+        component={list ? 'ol' : 'div'}
+        ref={ref}
+        aria-label={label}
+        {...rest}
+        sx={[solarStepperStyle({ type }), ...(Array.isArray(sx) ? sx : [sx])]}
+      >
+        {children}
+      </Box>
+    );
+    // Each part in the layer Figma draws for its status, or at its place.
+    const byStatus = (
+      i: number,
+      complete: string,
+      active: string,
+      upcoming: string,
+    ) => ({ complete, active, error: active, upcoming })[status(i)];
 
-  if (type === 'with label') {
-    const fill = n > 1 ? Math.min(Math.max(activeStep, 0), n - 1) / (n - 1) : 0;
-    const top = parts.progress?.y;
-    return root(
-      <>
-        <div
-          aria-hidden
-          className={cls('progress', true)}
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top:
-              typeof top === 'number'
-                ? `calc(${top}px - var(--solar-placed-top, 0px))`
-                : undefined,
-          }}
-        >
+    if (type === 'with label') {
+      const fill =
+        n > 1 ? Math.min(Math.max(activeStep, 0), n - 1) / (n - 1) : 0;
+      const top = parts.progress?.y;
+      return root(
+        <>
           <div
-            className={cls('progressRectangle2', true)}
-            style={{ width: `${fill * 100}%` }}
-          />
-        </div>
-        <ol className={cls('steps', true)}>
-          {steps.map((_, i) => (
+            aria-hidden
+            className={cls('progress', true)}
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top:
+                typeof top === 'number'
+                  ? `calc(${top}px - var(--solar-placed-top, 0px))`
+                  : undefined,
+            }}
+          >
+            <div
+              className={cls('progressRectangle2', true)}
+              style={{ width: `${fill * 100}%` }}
+            />
+          </div>
+          <ol className={cls('steps', true)}>
+            {steps.map((_, i) => (
+              <li
+                key={i}
+                className={cls(
+                  byStatus(i, 'stepsStep', 'stepsStep2', 'stepsStep3'),
+                )}
+                aria-current={current(i)}
+              >
+                {step(i, true)}
+              </li>
+            ))}
+          </ol>
+        </>,
+        false,
+      );
+    }
+    if (type === 'no label')
+      return root(
+        steps.map((_, i) => (
+          <Fragment key={i}>
+            {i > 0 ? (
+              <li
+                aria-hidden
+                className={cls(i - 1 < activeStep ? 'frame' : 'frame2', true)}
+              />
+            ) : null}
             <li
-              key={i}
               className={cls(
-                byStatus(i, 'stepsStep', 'stepsStep2', 'stepsStep3'),
+                byStatus(
+                  i,
+                  'stepperIndicator',
+                  'stepperIndicator2',
+                  'stepperIndicator3',
+                ),
               )}
               aria-current={current(i)}
             >
-              {step(i, true)}
+              <StepperIndicator number={i + 1} status={INDICATOR[status(i)]} />
+              {name(i)}
             </li>
-          ))}
-        </ol>
-      </>,
-      false,
-    );
-  }
-  if (type === 'no label')
-    return root(
-      steps.map((_, i) => (
-        <Fragment key={i}>
-          {i > 0 ? (
-            <li
-              aria-hidden
-              className={cls(i - 1 < activeStep ? 'frame' : 'frame2', true)}
-            />
-          ) : null}
+          </Fragment>
+        )),
+      );
+    if (type === 'line')
+      return root(
+        steps.map((_, i) => (
           <li
+            key={i}
             className={cls(
-              byStatus(
-                i,
-                'stepperIndicator',
-                'stepperIndicator2',
-                'stepperIndicator3',
-              ),
+              i <= activeStep ? 'rectangle1' : `rectangle${i + 1}`,
+              true,
             )}
             aria-current={current(i)}
           >
-            <StepperIndicator number={i + 1} status={INDICATOR[status(i)]} />
             {name(i)}
           </li>
-        </Fragment>
-      )),
-    );
-  if (type === 'line')
+        )),
+      );
     return root(
       steps.map((_, i) => (
         <li
           key={i}
           className={cls(
-            i <= activeStep ? 'rectangle1' : `rectangle${i + 1}`,
-            true,
+            status(i) === 'complete'
+              ? 'stepCompleteHorizontal'
+              : (['step', 'step', 'step3', 'step4', 'step5'][i] ?? 'step5'),
           )}
           aria-current={current(i)}
         >
-          {name(i)}
+          {step(i, false)}
         </li>
       )),
     );
-  return root(
-    steps.map((_, i) => (
-      <li
-        key={i}
-        className={cls(
-          status(i) === 'complete'
-            ? 'stepCompleteHorizontal'
-            : (['step', 'step', 'step3', 'step4', 'step5'][i] ?? 'step5'),
-        )}
-        aria-current={current(i)}
-      >
-        {step(i, false)}
-      </li>
-    )),
-  );
-});
+  },
+);

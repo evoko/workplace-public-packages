@@ -39,6 +39,25 @@ SOLAR MUI theme, so the stock MUI components beside them match, and takes the ap
 options (`<SolarProvider theme={…}>`), merged over SOLAR's. Apps that want only the tokens, or
 Tailwind, use `@bwp-web/styles` alone.
 
+## Theming
+
+A SOLAR component reads its props through the app's MUI theme, as MUI's own do:
+`components.SolarButton.defaultProps` fill what the caller leaves unset, and
+`components.SolarButton.styleOverrides.root` styles its root over the recipe, under the caller's own
+`sx`. The keys are typed (`Solar<Name>`, from each component's props), so the theme options
+typecheck.
+
+```tsx
+<SolarProvider
+  theme={{
+    components: {
+      SolarButton: { defaultProps: { size: 'sm' } },
+      SolarCard: { styleOverrides: { root: { maxWidth: 480 } } },
+    },
+  }}
+>
+```
+
 ## Styling hooks
 
 Style a component through its root, with `className`, `style` or `sx`, which every component

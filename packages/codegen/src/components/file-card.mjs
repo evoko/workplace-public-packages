@@ -92,14 +92,10 @@ export default {
     overlaps: { focus: ['hover'] },
   },
   flutter: {},
-  shells: {
-    label: 'title',
-    slots: {
-      fileIcon: { react: 'fileIcon', flutter: 'fileIcon' },
-      title: { react: 'title', flutter: 'title' },
-      meta: { react: 'meta', flutter: 'meta' },
-      label: { react: 'title', flutter: 'title' },
-    },
+  // How each platform reaches what the IR names, where not by its own name (src/shells/api.mjs).
+  api: {
+    react: { label: 'title' },
+    flutter: { label: 'title' },
   },
   templates: {
     react: (spec) => {

@@ -11,8 +11,7 @@ Widget buildToggle(
   final props = v['props'] as Map<String, dynamic>;
   return SolarToggle(
     selected: props['selected'] as bool,
-    disabled: props['disabled'] as bool,
-    onChanged: (_) {},
+    onChanged: props['disabled'] as bool ? null : (_) {},
     semanticLabel: 'Setting',
     statesController: states,
   );
