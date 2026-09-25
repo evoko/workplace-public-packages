@@ -270,7 +270,8 @@
                     "path": "M0 10L10 10L0 0L0 10Z",
                     "windingRule": "NONZERO"
                   }
-                ]
+                ],
+                "order": 0
               },
               "/Content": {
                 "size": [
@@ -300,7 +301,8 @@
                   "paddingBottom": "Spatial:inset/sm",
                   "topLeftRadius": "Spatial:radius/none",
                   "bottomLeftRadius": "Spatial:radius/container"
-                }
+                },
+                "order": 1
               },
               "/Content/Title": {
                 "textStyle": "body/sm/medium",
@@ -347,7 +349,8 @@
                     "path": "M0 10L10 10L0 0L0 10Z",
                     "windingRule": "NONZERO"
                   }
-                ]
+                ],
+                "order": 0
               },
               "/Content": {
                 "radius": [
@@ -359,7 +362,8 @@
                 "vars": {
                   "topLeftRadius": "Spatial:radius/none",
                   "bottomLeftRadius": "Spatial:radius/container"
-                }
+                },
+                "order": 1
               }
             }
           }
@@ -513,7 +517,8 @@
                     "path": "M10 0L10 10L0 0L10 0Z",
                     "windingRule": "NONZERO"
                   }
-                ]
+                ],
+                "order": 0
               },
               "/Content": {
                 "size": [
@@ -543,7 +548,8 @@
                   "paddingBottom": "Spatial:inset/sm",
                   "topLeftRadius": "Spatial:radius/none",
                   "bottomLeftRadius": "Spatial:radius/container"
-                }
+                },
+                "order": 1
               },
               "/Content/Title": {
                 "textStyle": "body/sm/medium",
@@ -595,7 +601,8 @@
                     "path": "M10 0L10 10L0 0L10 0Z",
                     "windingRule": "NONZERO"
                   }
-                ]
+                ],
+                "order": 0
               },
               "/Content": {
                 "radius": [
@@ -607,7 +614,8 @@
                 "vars": {
                   "topLeftRadius": "Spatial:radius/none",
                   "bottomLeftRadius": "Spatial:radius/container"
-                }
+                },
+                "order": 1
               }
             }
           }

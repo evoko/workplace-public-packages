@@ -127,6 +127,27 @@ function measure(root, { list, composed }) {
       // From the far edges too, for a layer pinned to them (placementOf).
       own.right = parent.left + parent.width - (own.left + own.width);
       own.bottom = parent.top + parent.height - (own.top + own.height);
+      // And from its centre, for a layer pinned to the parent's (a Tooltip's arrow).
+      own.centerX = own.left + own.width / 2 - (parent.left + parent.width / 2);
+      own.centerY = own.top + own.height / 2 - (parent.top + parent.height / 2);
+    }
+    // Its rank among the siblings its parent lays out, by where each falls along the parent's
+    // axis, for a layer whose variants lay them out in different orders (a Popover's tip).
+    for (const t of targets) {
+      const own = got[t.layer];
+      const parent = t.parent && got[t.parent];
+      if (!own?.flows || !own.drawn || !parent) continue;
+      const along = parent.direction.startsWith('row') ? 'left' : 'top';
+      own.order = targets.filter((s) => {
+        const sib = got[s.layer];
+        return (
+          s.parent === t.parent &&
+          sib !== own &&
+          sib?.flows &&
+          sib.drawn &&
+          sib[along] < own[along]
+        );
+      }).length;
     }
     return got;
   };
@@ -207,6 +228,9 @@ function measure(root, { list, composed }) {
       top: box.top,
       drawn:
         box.width > 0 && cs.visibility !== 'hidden' && cs.display !== 'none',
+      // Whether its parent's layout places it, and which way it lays out its own children.
+      flows: cs.position !== 'absolute' && cs.position !== 'fixed',
+      direction: cs.flexDirection,
     };
   };
   const out = within(root, list);
@@ -224,6 +248,8 @@ function measure(root, { list, composed }) {
       own.y = own.top - parent.top;
       own.right = parent.left + parent.width - (own.left + own.width);
       own.bottom = parent.top + parent.height - (own.top + own.height);
+      own.centerX = own.left + own.width / 2 - (parent.left + parent.width / 2);
+      own.centerY = own.top + own.height / 2 - (parent.top + parent.height / 2);
     }
   }
   return out;

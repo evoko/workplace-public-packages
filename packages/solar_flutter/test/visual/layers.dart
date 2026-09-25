@@ -14,9 +14,14 @@ import 'harness.dart';
 /// and each one's place from its parent layer's corner. A layer that is another drawn component
 /// (Tag's StatusIndicator, Toast's Tag), whose own root is keyed `<its prefix>.root`, is measured
 /// as its own check measures it, at any depth, for the harness to check against its own oracle.
+/// Where a layer is placed from its parent, each edge as the oracle names it.
+const _places = ['x', 'y', 'right', 'bottom', 'centerX', 'centerY'];
+
 Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
   final lead = '$prefix.';
   final out = <String, Map<String, Object?>>{};
+  // Each laid-out layer's Flex (its parent's layout) and where it starts along it, for its rank.
+  final flows = <String, (Element, double)>{};
   for (final keyed in tester.widgetList<KeyedSubtree>(
     find.descendant(of: at, matching: find.byType(KeyedSubtree)),
   )) {
@@ -32,14 +37,6 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
           find.ancestor(of: here, matching: find.byType(Visibility)),
         )
         .any((v) => !v.visible);
-    final inner = _composedPrefix(tester, keyed, here);
-    if (inner != null) {
-      out[name] = {
-        'drawn': !hidden,
-        'layers': measureLayers(tester, here, inner),
-      };
-      continue;
-    }
     final values = <String, Object?>{
       'drawn': !hidden,
       'width': size.width,
@@ -65,6 +62,39 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
       values['right'] = origin.dx + box.size.width - (corner.dx + size.width);
       values['bottom'] =
           origin.dy + box.size.height - (corner.dy + size.height);
+      // And from its centre, for a layer pinned to the parent's (a Tooltip's arrow).
+      values['centerX'] =
+          corner.dx + size.width / 2 - (origin.dx + box.size.width / 2);
+      values['centerY'] =
+          corner.dy + size.height / 2 - (origin.dy + box.size.height / 2);
+      // Laid out by its parent's Flex, where one holds it before the parent does; a placed layer
+      // is in the parent's Stack instead.
+      Element? flex;
+      tester.element(here).visitAncestorElements((e) {
+        if (e == parent) return false;
+        if (e.widget is Flex) {
+          flex = e;
+          return false;
+        }
+        return true;
+      });
+      if (flex != null && !hidden) {
+        final horizontal = (flex!.widget as Flex).direction == Axis.horizontal;
+        flows[name] = (flex!, horizontal ? corner.dx : corner.dy);
+      }
+    }
+    final inner = _composedPrefix(tester, keyed, here);
+    if (inner != null) {
+      // Its look as its own check measures it; where its parent puts it, on its root, as the web
+      // check has it (a Coachmark's Node End, at its connector's end).
+      final layers = measureLayers(tester, here, inner);
+      layers['root'] = {
+        ...?layers['root'],
+        for (final edge in _places)
+          if (values[edge] != null) edge: values[edge],
+      };
+      out[name] = {'drawn': !hidden, 'layers': layers};
+      continue;
     }
     // A translucent layer (Node End's halo) is its drawing inside an Opacity.
     var child = keyed.child;
@@ -159,6 +189,19 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
       });
     }
     out[name] = values;
+  }
+  // Its rank among the siblings its parent lays out, by where each falls along the parent's axis,
+  // for a layer whose variants lay them out in different orders (a Popover's tip).
+  for (final MapEntry(key: name, value: (flex, at)) in flows.entries) {
+    final rank = flows.values.where((f) => f.$1 == flex && f.$2 < at).length;
+    final own = out[name]!;
+    // A composed child's, on its root, as its place is.
+    final composed = own['layers'] as Layers?;
+    if (composed != null) {
+      composed['root'] = {...?composed['root'], 'order': rank};
+    } else {
+      own['order'] = rank;
+    }
   }
   return out;
 }

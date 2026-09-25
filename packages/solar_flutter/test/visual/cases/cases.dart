@@ -18,7 +18,9 @@ import 'button.dart';
 import 'button_group.dart';
 import 'card.dart';
 import 'checkbox.dart';
+import 'coachmark.dart';
 import 'column_item.dart';
+import 'confirmationdialog.dart';
 import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
@@ -27,8 +29,10 @@ import 'date_picker_day_cell.dart';
 import 'date_picker_open.dart';
 import 'datepicker.dart';
 import 'device_card.dart';
+import 'dialog.dart';
 import 'divider.dart';
 import 'draghandle.dart';
+import 'drawer.dart';
 import 'dropdown.dart';
 import 'dropdown_group_label.dart';
 import 'dropdown_item.dart';
@@ -67,6 +71,7 @@ import 'paginationellipsis.dart';
 import 'paginationitem.dart';
 import 'paginationnav.dart';
 import 'password_input.dart';
+import 'popover.dart';
 import 'progressbar.dart';
 import 'propertylist.dart';
 import 'propertyrow.dart';
@@ -74,6 +79,7 @@ import 'radio.dart';
 import 'row.dart';
 import 'rowexpand.dart';
 import 'rowselect.dart';
+import 'scrim.dart';
 import 'searchfield.dart';
 import 'section_nav_group_header.dart';
 import 'section_nav_item.dart';
@@ -84,6 +90,7 @@ import 'skeleton.dart';
 import 'slider.dart';
 import 'slider_range.dart';
 import 'spinner.dart';
+import 'split_dialog.dart';
 import 'split_dropdown.dart';
 import 'splitbutton.dart';
 import 'status_card.dart';
@@ -105,6 +112,7 @@ import 'timestamp.dart';
 import 'toast.dart';
 import 'toggle.dart';
 import 'token_input.dart';
+import 'tooltip.dart';
 import 'tree_indent.dart';
 import 'tree_item.dart';
 import 'trend_badge.dart';
@@ -125,7 +133,9 @@ final cases = <String, VisualCase>{
   'Button Group': buttonGroupCase,
   'Card': cardCase,
   'Checkbox': checkboxCase,
+  'Coachmark': coachmarkCase,
   'Column Item': columnItemCase,
+  'ConfirmationDialog': confirmationDialogCase,
   'Container': containerCase,
   'Context Menu': contextMenuCase,
   'Context Menu Item': contextMenuItemCase,
@@ -134,8 +144,10 @@ final cases = <String, VisualCase>{
   'Date Picker Open': datePickerOpenCase,
   'DatePicker': datePickerCase,
   'Device Card': deviceCardCase,
+  'Dialog': dialogCase,
   'Divider': dividerCase,
   'DragHandle': dragHandleCase,
+  'Drawer': drawerCase,
   'Dropdown': dropdownCase,
   'Dropdown Group Label': dropdownGroupLabelCase,
   'Dropdown Item': dropdownItemCase,
@@ -174,6 +186,7 @@ final cases = <String, VisualCase>{
   'PaginationItem': paginationItemCase,
   'PaginationNav': paginationNavCase,
   'Password Input': passwordInputCase,
+  'Popover': popoverCase,
   'ProgressBar': progressBarCase,
   'PropertyList': propertyListCase,
   'PropertyRow': propertyRowCase,
@@ -181,6 +194,7 @@ final cases = <String, VisualCase>{
   'Row': rowCase,
   'RowExpand': rowExpandCase,
   'RowSelect': rowSelectCase,
+  'Scrim': scrimCase,
   'SearchField': searchFieldCase,
   'Section Nav Group Header': sectionNavGroupHeaderCase,
   'Section Nav Item': sectionNavItemCase,
@@ -191,6 +205,7 @@ final cases = <String, VisualCase>{
   'Slider': sliderCase,
   'Slider Range': sliderRangeCase,
   'Spinner': spinnerCase,
+  'Split Dialog': splitDialogCase,
   'Split Dropdown': splitDropdownCase,
   'SplitButton': splitButtonCase,
   'Status Card': statusCardCase,
@@ -212,6 +227,7 @@ final cases = <String, VisualCase>{
   'Toast': toastCase,
   'Toggle': toggleCase,
   'Token Input': tokenInputCase,
+  'Tooltip': tooltipCase,
   'Tree Indent': treeIndentCase,
   'Tree Item': treeItemCase,
   'Trend Badge': trendBadgeCase,

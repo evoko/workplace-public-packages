@@ -225,7 +225,7 @@ export const solarRowExpandComposition = {
             fill: [],
             stroke: [
               {
-                d: 'M0 0L-0.5 0L-0.5 40L0 40L0.5 40L0.5 0L0 0Z',
+                d: 'M0 40L0.5 40L0.5 0L0 0L-0.5 0L-0.5 40L0 40Z',
                 evenOdd: false,
               },
             ],
@@ -250,7 +250,7 @@ export const solarRowExpandComposition = {
             fill: [],
             stroke: [
               {
-                d: 'M0 0L-0.5 0L-0.5 20L0 20L0.5 20L0.5 0L0 0Z',
+                d: 'M0 20L0.5 20L0.5 0L0 0L-0.5 0L-0.5 20L0 20Z',
                 evenOdd: false,
               },
             ],

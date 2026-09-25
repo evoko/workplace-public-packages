@@ -17,7 +17,9 @@ import button from './button.js';
 import buttonGroup from './button-group.js';
 import card from './card.js';
 import checkbox from './checkbox.js';
+import coachmark from './coachmark.js';
 import columnItem from './column-item.js';
+import confirmationDialog from './confirmationdialog.js';
 import container from './container.js';
 import contextMenu from './context-menu.js';
 import contextMenuItem from './context-menu-item.js';
@@ -26,8 +28,10 @@ import datePickerDayCell from './date-picker-day-cell.js';
 import datePickerOpen from './date-picker-open.js';
 import datePicker from './datepicker.js';
 import deviceCard from './device-card.js';
+import dialog from './dialog.js';
 import divider from './divider.js';
 import dragHandle from './draghandle.js';
+import drawer from './drawer.js';
 import dropdown from './dropdown.js';
 import dropdownGroupLabel from './dropdown-group-label.js';
 import dropdownItem from './dropdown-item.js';
@@ -66,6 +70,7 @@ import paginationEllipsis from './paginationellipsis.js';
 import paginationItem from './paginationitem.js';
 import paginationNav from './paginationnav.js';
 import passwordInput from './password-input.js';
+import popover from './popover.js';
 import progressBar from './progressbar.js';
 import propertyList from './propertylist.js';
 import propertyRow from './propertyrow.js';
@@ -73,6 +78,7 @@ import radio from './radio.js';
 import row from './row.js';
 import rowExpand from './rowexpand.js';
 import rowSelect from './rowselect.js';
+import scrim from './scrim.js';
 import searchField from './searchfield.js';
 import sectionNavGroupHeader from './section-nav-group-header.js';
 import sectionNavItem from './section-nav-item.js';
@@ -83,6 +89,7 @@ import skeleton from './skeleton.js';
 import slider from './slider.js';
 import sliderRange from './slider-range.js';
 import spinner from './spinner.js';
+import splitDialog from './split-dialog.js';
 import splitDropdown from './split-dropdown.js';
 import splitButton from './splitbutton.js';
 import statusCard from './status-card.js';
@@ -104,6 +111,7 @@ import timestamp from './timestamp.js';
 import toast from './toast.js';
 import toggle from './toggle.js';
 import tokenInput from './token-input.js';
+import tooltip from './tooltip.js';
 import treeIndent from './tree-indent.js';
 import treeItem from './tree-item.js';
 import trendBadge from './trend-badge.js';
@@ -125,7 +133,9 @@ export const CASES: Record<string, VisualCase> = {
   'Button Group': buttonGroup,
   Card: card,
   Checkbox: checkbox,
+  Coachmark: coachmark,
   'Column Item': columnItem,
+  ConfirmationDialog: confirmationDialog,
   Container: container,
   'Context Menu': contextMenu,
   'Context Menu Item': contextMenuItem,
@@ -134,8 +144,10 @@ export const CASES: Record<string, VisualCase> = {
   'Date Picker Open': datePickerOpen,
   DatePicker: datePicker,
   'Device Card': deviceCard,
+  Dialog: dialog,
   Divider: divider,
   DragHandle: dragHandle,
+  Drawer: drawer,
   Dropdown: dropdown,
   'Dropdown Group Label': dropdownGroupLabel,
   'Dropdown Item': dropdownItem,
@@ -174,6 +186,7 @@ export const CASES: Record<string, VisualCase> = {
   PaginationItem: paginationItem,
   PaginationNav: paginationNav,
   'Password Input': passwordInput,
+  Popover: popover,
   ProgressBar: progressBar,
   PropertyList: propertyList,
   PropertyRow: propertyRow,
@@ -181,6 +194,7 @@ export const CASES: Record<string, VisualCase> = {
   Row: row,
   RowExpand: rowExpand,
   RowSelect: rowSelect,
+  Scrim: scrim,
   SearchField: searchField,
   'Section Nav Group Header': sectionNavGroupHeader,
   'Section Nav Item': sectionNavItem,
@@ -191,6 +205,7 @@ export const CASES: Record<string, VisualCase> = {
   Slider: slider,
   'Slider Range': sliderRange,
   Spinner: spinner,
+  'Split Dialog': splitDialog,
   'Split Dropdown': splitDropdown,
   SplitButton: splitButton,
   'Status Card': statusCard,
@@ -212,6 +227,7 @@ export const CASES: Record<string, VisualCase> = {
   Toast: toast,
   Toggle: toggle,
   'Token Input': tokenInput,
+  Tooltip: tooltip,
   'Tree Indent': treeIndent,
   'Tree Item': treeItem,
   'Trend Badge': trendBadge,

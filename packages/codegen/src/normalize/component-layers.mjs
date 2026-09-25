@@ -63,6 +63,51 @@ function applyChange(layer, change) {
 }
 
 /**
+ * Puts each layer a variant draws in another place among its siblings where it draws it: the
+ * fetcher's `order` is its rank among the siblings the variant shares with the default (Popover's
+ * tip, before its content where it points up), and the siblings it does not move keep their order
+ * around it. The layers are rewritten depth first, so a parent still comes before its children.
+ */
+function reorder(layers, parents, variant) {
+  const moved = [...layers].filter(([, l]) => l.order !== undefined);
+  if (!moved.length) return;
+  const kids = new Map();
+  for (const path of layers.keys()) {
+    const parent = parents.get(path);
+    if (parent != null) kids.set(parent, [...(kids.get(parent) ?? []), path]);
+  }
+  for (const [path, layer] of moved) {
+    const siblings = kids.get(parents.get(path));
+    if (!Number.isInteger(layer.order) || layer.order >= siblings.length)
+      throw new Error(
+        `${variant}: puts ${path} at ${layer.order}, among ${siblings.length} siblings`,
+      );
+  }
+  for (const [parent, siblings] of kids) {
+    const at = siblings.filter((p) => layers.get(p).order !== undefined);
+    if (!at.length) continue;
+    const slots = new Array(siblings.length);
+    for (const p of at) slots[layers.get(p).order] = p;
+    const rest = siblings.filter((p) => !at.includes(p));
+    for (let i = 0; i < slots.length; i++) slots[i] ??= rest.shift();
+    kids.set(parent, slots);
+  }
+  const order = [];
+  const visit = (path) => {
+    order.push(path);
+    for (const child of kids.get(path) ?? []) visit(child);
+  };
+  visit('/');
+  const kept = new Map(layers);
+  layers.clear();
+  for (const path of order) {
+    const layer = kept.get(path);
+    delete layer.order;
+    layers.set(path, layer);
+  }
+}
+
+/**
  * The VARIANT-type props of a set: its axes, with their options in Figma's order. A standalone
  * component (one Figma drew with no variants, loaded as a set of one by `componentOf`) has none;
  * a set with none is a fetch gone wrong.
@@ -170,6 +215,7 @@ export function resolveVariants(set) {
         );
       applyChange(layers.get(path), change);
     }
+    reorder(layers, parents, raw.variant);
 
     // A layer that exists only in this variant, recorded with its properties and its parent
     // (`{path, parent, layer}`), so it resolves like any other.

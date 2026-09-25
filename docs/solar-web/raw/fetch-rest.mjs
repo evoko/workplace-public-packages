@@ -38,6 +38,7 @@ import {
   cleanTitle,
   writeMeta,
 } from '../../_shared/figma-rest.mjs';
+import { drawnPath } from './drawn-path.mjs';
 import { hiddenPathsOf, overrides } from './variant-diff.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
@@ -314,9 +315,12 @@ const GEOMETRY_TYPES = new Set([
   'STAR',
   'REGULAR_POLYGON',
 ]);
-const geometry = (list) =>
+const geometry = (list, n) =>
   list?.length
-    ? list.map((g) => ({ path: g.path, windingRule: g.windingRule }))
+    ? list.map((g) => ({
+        path: drawnPath(g.path, n),
+        windingRule: g.windingRule,
+      }))
     : null;
 function layer(n, parent, depth, maxDepth, ctx) {
   const o = { name: n.name, type: n.type };
@@ -414,9 +418,9 @@ function layer(n, parent, depth, maxDepth, ctx) {
   // A drawn shape's outline, in the layer's own coordinates, for the node types whose shape is not
   // already described by their size and radius (a rectangle or an ellipse is).
   if (GEOMETRY_TYPES.has(n.type)) {
-    const g = geometry(n.fillGeometry);
+    const g = geometry(n.fillGeometry, n);
     if (g) o.geometry = g;
-    const sg = s ? geometry(n.strokeGeometry) : null;
+    const sg = s ? geometry(n.strokeGeometry, n) : null;
     if (sg) o.strokeGeometry = sg;
   }
   const b = bindings(n);

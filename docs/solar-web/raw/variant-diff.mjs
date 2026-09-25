@@ -79,14 +79,24 @@ export function hiddenPathsOf(node) {
 }
 
 /**
- * What a variant's tree changes relative to the default's: the layers it changes, those it adds
- * (with where it adds each, `index` among its siblings in this variant) and those it removes; or
- * null where it changes nothing.
+ * What a variant's tree changes relative to the default's: the layers it changes (with `order`, its
+ * rank among the siblings both trees share, where the variant draws them in another order), those
+ * it adds (with where it adds each, `index` among its siblings in this variant) and those it
+ * removes; or null where it changes nothing.
  */
 export function overrides(baseTree, varTree) {
-  const a = flatten(baseTree),
+  const baseParents = {},
+    a = flatten(baseTree, '', {}, baseParents),
     parents = {},
     b = flatten(varTree, '', {}, parents);
+  // A layer's rank among the siblings both trees have: where a variant draws them in another order
+  // (a Popover's tip, before its content where it points up), the variant's rank is its `order`.
+  const rank = (tree, ps, path, other) => {
+    const siblings = Object.keys(tree).filter(
+      (p) => ps[p] === ps[path] && p in other,
+    );
+    return siblings.indexOf(path);
+  };
   const changed = {},
     added = [],
     removed = [];
@@ -123,6 +133,11 @@ export function overrides(baseTree, varTree) {
         diff[k] = sub;
       } else diff[k] = bn[k] ?? null;
     }
+    if (
+      path !== '/' &&
+      rank(a, baseParents, path, b) !== rank(b, parents, path, a)
+    )
+      diff.order = rank(b, parents, path, a);
     if (Object.keys(diff).length) changed[path] = diff;
   }
   for (const path of Object.keys(a)) if (!b[path]) removed.push(path);

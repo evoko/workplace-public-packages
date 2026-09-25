@@ -127,6 +127,20 @@ const COMPOSITION = (cell) =>
 
 const PLACED = (cell) => PLACES.includes(cell);
 
+/**
+ * A place cell a variant writes `AUTO` (recipe.mjs): the layer is placed from another edge there
+ * (Coachmark's connector, from the right on one side and the left on the other), so not from this
+ * one, and still placed.
+ */
+const AUTO_PLACE = {
+  x: { left: 'auto' },
+  y: { top: 'auto' },
+  right: { right: 'auto' },
+  bottom: { bottom: 'auto' },
+  centerX: { '--solar-placed-cx': '0px' },
+  centerY: { '--solar-placed-cy': '0px' },
+};
+
 /** Figma layers whose outline Figma records with their corners already rounded. */
 const VECTORS = new Set([
   'VECTOR',
@@ -321,6 +335,7 @@ function context(spec, tokens) {
             throw new Error(`${where} ${at}: an SVG shape cannot take ${cell}`);
           return {};
       }
+    if (PLACED(cell) && entry.keyword === 'AUTO') return AUTO_PLACE[cell];
     switch (cell) {
       case 'background':
         if (entry.gradient)
@@ -371,7 +386,8 @@ function context(spec, tokens) {
         return { boxShadow: entry.none ? 'none' : ref(entry.token, at) };
       // A box its parent's auto layout does not place: at Figma's position, from the parent's
       // edge. Positions are the drawing's coordinates, as a glyph's outline is, not spacing, so
-      // they are pixels. `none` is a variant whose auto layout places it after all.
+      // they are pixels. `none` is a variant whose auto layout places it after all; `AUTO` one
+      // that places it from another edge (recipe.mjs), so not from this one (AUTO_PLACE).
       case 'x':
         return entry.none
           ? { position: 'static' }
@@ -396,6 +412,32 @@ function context(spec, tokens) {
           ? {}
           : {
               bottom: `calc(${entry.position}px - var(--solar-placed-bottom, 0px))`,
+            };
+      // Where variants lay its parent's children out in different orders (Popover's tip, before its
+      // content where it points up): its rank among them, which the flex layout draws it at.
+      case 'order':
+        return { order: entry.position };
+      // One pinned to its parent's centre, however large the parent (placementOf): its centre that
+      // far from the parent's, half its own size back.
+      case 'centerX':
+        return entry.none
+          ? { '--solar-placed-cx': '0px' }
+          : {
+              position: 'absolute',
+              left: `calc(50% + ${entry.position}px)`,
+              '--solar-placed-cx': '-50%',
+              translate:
+                'var(--solar-placed-cx, 0px) var(--solar-placed-cy, 0px)',
+            };
+      case 'centerY':
+        return entry.none
+          ? { '--solar-placed-cy': '0px' }
+          : {
+              position: 'absolute',
+              top: `calc(50% + ${entry.position}px)`,
+              '--solar-placed-cy': '-50%',
+              translate:
+                'var(--solar-placed-cx, 0px) var(--solar-placed-cy, 0px)',
             };
       // A layer with no auto-layout in this variant (the recipe writes it `none`) has no gap or
       // padding, which is inset.none, as a `none` radius is radius.none. Written, not left out, so
@@ -685,7 +727,12 @@ export function renderMuiComponent(spec, tokens, specs = [spec]) {
       'glyph' in cells
         ? Boolean(cells.glyph?.glyph)
         : baseGlyph(spec.style[layer]);
-    for (const [cell, entry] of Object.entries(cells)) {
+    // A place cell written `AUTO` first, so an edge the layer is placed from in the same variant
+    // (a Tooltip's arrow, centred across and `AUTO` from the left) wins where both set one side.
+    const auto = ([, e]) => (e?.keyword === 'AUTO' ? 0 : 1);
+    for (const [cell, entry] of Object.entries(cells).sort(
+      (a, b) => auto(a) - auto(b),
+    )) {
       const here = `${layer}.${at}.${cell}`;
       if (composed(layer, cell)) continue;
       // A text the root draws itself (the words MUI renders in Button's root) has no box of its

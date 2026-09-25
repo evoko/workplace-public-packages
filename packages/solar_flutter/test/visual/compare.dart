@@ -170,7 +170,9 @@ bool agrees(String property, Object? figma, Object? painted) {
       return ((painted as num) - (figma! as num)).abs() <= 0.02;
     case 'opacity':
       return ((painted as num) - (figma! as num)).abs() <= 0.01;
+    // Words drawn or not, and a rank among siblings, are one or another, never nearly.
     case 'words':
+    case 'order':
       return painted == figma;
     default:
       return ((painted as num) - (figma! as num)).abs() <= 0.5;
@@ -203,6 +205,9 @@ const measured = [
   'y',
   'right',
   'bottom',
+  'centerX',
+  'centerY',
+  'order',
   'opacity',
   'color',
   'fontFamily',

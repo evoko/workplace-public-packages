@@ -1,0 +1,47 @@
+# Hand-written decisions about SOLAR Tooltip, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Tooltip
+
+base:
+  mui: Tooltip
+  reason: >-
+    A brief label shown on hover or keyboard focus, as the description says: the drawn bubble and
+    its arrow, pointing at its trigger from the side `position` names (top by default), after a
+    hover delay (motion.duration.slow, the nearest duration to the description's ~500ms), never
+    holding the focus, describing its trigger (aria-describedby). MUI's Tooltip on the web, its
+    title the drawn bubble; in Flutter drawn in an overlay (owner decision 2026-09-25: Flutter's
+    Tooltip draws no arrow), shown on hover, long press or focus. Without a trigger it is the
+    bubble alone, drawn in place, as the visual checks draw it.
+
+follows:
+  root.direction:
+    axes: [position]
+    reason: >-
+      A tooltip beside its trigger (right, left) lays its bubble out in a row, one above or below
+      it in a column, as Figma draws each; the arrow is placed over either.
+  arrow.width:
+    axes: [position]
+    reason: >-
+      The arrow is 7 × 3 pointing up or down (top, bottom) and 3 × 7 pointing sideways (right,
+      left): its box turns with it.
+  arrow.height:
+    axes: [position]
+    reason: { as: follows arrow.width }
+
+set:
+  arrow.base.shadow:
+    none: true
+    reason: >-
+      Figma puts shadow/raised on the arrow, which the bubble it points from does not carry. A
+      shadow token is a box shadow, which a glyph's outline cannot take, and SOLAR has no
+      drop-shadow token, as for StatusIndicator's marks; not drawn, and the design review asks.
+
+allowLiteral:
+  arrow.width:
+    reason: >-
+      The arrow is 7 × 3, bound to nothing: SOLAR has no size for an overlay's arrow, one of the
+      sizes with no variable.
+  arrow.height:
+    reason: { as: allowLiteral arrow.width }

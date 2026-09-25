@@ -546,7 +546,8 @@
                   "dir": "VERTICAL",
                   "align": "SPACE_BETWEEN/MAX",
                   "sizing": "FILL/FILL"
-                }
+                },
+                "order": 0
               },
               "/Ticks/Tick": {
                 "size": [
@@ -590,11 +591,15 @@
                   "align": "MAX/CENTER"
                 }
               },
+              "/Ticks/Tick#3/50": {
+                "order": 0
+              },
               "/Ticks/Tick#3/Tick Mark": {
                 "size": [
                   4,
                   1
-                ]
+                ],
+                "order": 1
               },
               "/Ticks/Tick#4": {
                 "size": [
@@ -633,7 +638,8 @@
                   1,
                   280
                 ],
-                "sizing": "FIXED/FILL"
+                "sizing": "FIXED/FILL",
+                "order": 1
               }
             },
             "added": [
@@ -773,7 +779,8 @@
                   "dir": "VERTICAL",
                   "align": "SPACE_BETWEEN/MAX",
                   "sizing": "FILL/FILL"
-                }
+                },
+                "order": 0
               },
               "/Ticks/Tick": {
                 "size": [
@@ -844,7 +851,8 @@
                   1,
                   220
                 ],
-                "sizing": "FIXED/FILL"
+                "sizing": "FIXED/FILL",
+                "order": 1
               }
             },
             "added": [

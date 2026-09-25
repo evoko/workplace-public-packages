@@ -22,12 +22,13 @@ import {
 import { PLATFORM_STATES } from '../normalize/components.mjs';
 import {
   renameStates,
+  exampleLayers,
   sameLayers,
   withoutRepeats,
 } from '../normalize/overlay.mjs';
 import { parseGradient, percent, runOf } from '../normalize/gradient.mjs';
 import { drawnPaint } from '../normalize/paints.mjs';
-import { farEdgesOf, placementOf } from '../normalize/placement.mjs';
+import { farEdgesOf, ordersOf, placementOf } from '../normalize/placement.mjs';
 import { featuresOf } from '../emit/text-features.mjs';
 
 /** Each IR cell a finding can name, as the oracle properties it covers. */
@@ -397,9 +398,13 @@ export function buildOracle(
   const renameValue = (axis, value) =>
     overlay?.rename?.[axis]?.values?.[value] ?? value;
   // The copies of a repeated layer are not measured: its first stands for them (repeatLayers).
+  // Nor a slot's sample content (exampleLayers), which the caller's children replace.
   const resolved = withoutRepeats(
-    sameLayers(
-      renameStates(foldStateAxes(resolveVariants(set)).resolved, overlay),
+    exampleLayers(
+      sameLayers(
+        renameStates(foldStateAxes(resolveVariants(set)).resolved, overlay),
+        overlay,
+      ),
       overlay,
     ),
     spec,
@@ -595,6 +600,9 @@ export function buildOracle(
     },
   );
 
+  // Where variants lay a parent's children out in different orders (Popover's tip, before its
+  // content where it points up), each child's rank among them, as Figma draws them.
+  const ranks = ordersOf(resolved.variants);
   const variants = resolved.variants.map((v) => {
     const layers = {};
     const excused = [];
@@ -626,6 +634,7 @@ export function buildOracle(
             delete out.words;
             break;
           }
+      if (ranks.get(path)?.has(v.name)) out.order = ranks.get(path).get(v.name);
       layers[name] = out;
       for (const e of excuses) {
         if (e.layer !== name || (e.variant !== null && e.variant !== v.name))

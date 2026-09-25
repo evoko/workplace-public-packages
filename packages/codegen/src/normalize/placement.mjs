@@ -63,21 +63,79 @@ export function farEdgesOf(variants, path) {
 
 /**
  * The place of a layer placed by position: `x` or `right`, `y` or `bottom`, by the edges it is
- * pinned to (farEdgesOf); nothing where its parent's auto layout places it.
+ * pinned to (farEdgesOf), or `centerX`, `centerY` where Figma pins it to its parent's centre (a
+ * Tooltip's arrow, `CENTER/BOTTOM`): how far its centre sits from the parent's, so it stays in the
+ * middle of a parent of any size. Nothing where its parent's auto layout places it.
  *
- * @returns {{x?: number, y?: number, right?: number, bottom?: number}}
+ * @returns {{x?: number, y?: number, right?: number, bottom?: number, centerX?: number,
+ *   centerY?: number}}
  */
 export function placementOf(layer, parent, far = [false, false]) {
   if (!layer.position) return {};
   const out = {};
   [
-    ['x', 'right'],
-    ['y', 'bottom'],
-  ].forEach(([near, farCell], i) => {
+    ['x', 'right', 'centerX'],
+    ['y', 'bottom', 'centerY'],
+  ].forEach(([near, farCell, centre], i) => {
     const at = layer.position[i];
-    if (far[i])
+    // Figma's constraint, where it records one, is this variant's: a Tooltip's arrow is pinned to
+    // the centre, the left or the right by where the tooltip points.
+    const pinned = pinnedFar(layer, i);
+    // Pinned to the centre along an axis the parent grows on (a Tooltip's, which hugs its words);
+    // along a fixed one the centre and the place are one, and the place is kept as before.
+    const grows = sizingOf(parent)[i];
+    if (
+      layer.constraints?.split('/')[i] === 'CENTER' &&
+      parent?.size &&
+      grows &&
+      grows !== 'FIXED'
+    )
+      out[centre] = clean(at + (layer.size?.[i] ?? 0) / 2 - parent.size[i] / 2);
+    else if (pinned ?? far[i])
       out[farCell] = clean(parent.size[i] - at - (layer.size?.[i] ?? 0));
     else out[near] = at;
   });
   return out;
+}
+
+/**
+ * Where variants lay a parent's children out in different orders (a Popover's tip, before its
+ * content where it points up or left, after it elsewhere), each laid-out child's rank among them,
+ * per variant: `path -> variant name -> rank`. A parent whose variants all draw its children in one
+ * order has none, and neither has a child its auto layout does not place (Tooltip's arrow, placed
+ * by position, however Figma lists it).
+ *
+ * @param {Array<{name: string, layers: Map<string, object>, parents: Map<string, string>}>} variants
+ * @returns {Map<string, Map<string, number>>}
+ */
+export function ordersOf(variants) {
+  const flow = (v) => {
+    const byParent = new Map();
+    for (const [path, layer] of v.layers) {
+      const parent = v.parents.get(path);
+      if (parent == null || layer.position) continue;
+      byParent.set(parent, [...(byParent.get(parent) ?? []), path]);
+    }
+    return byParent;
+  };
+  const flows = variants.map((v) => [v.name, flow(v)]);
+  // Two siblings one variant lays out one way round and another the other.
+  const before = new Map();
+  const reorders = new Set();
+  for (const [, byParent] of flows)
+    for (const [parent, children] of byParent)
+      children.forEach((a, i) => {
+        for (const b of children.slice(i + 1)) {
+          if (before.get(`${b}|${a}`)) reorders.add(parent);
+          before.set(`${a}|${b}`, true);
+        }
+      });
+  const ranks = new Map();
+  for (const [name, byParent] of flows)
+    for (const parent of reorders)
+      (byParent.get(parent) ?? []).forEach((path, rank) => {
+        if (!ranks.has(path)) ranks.set(path, new Map());
+        ranks.get(path).set(name, rank);
+      });
+  return ranks;
 }

@@ -1,0 +1,25 @@
+# Hand-written decisions about SOLAR Scrim, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Scrim
+
+base:
+  mui: Backdrop
+  reason: >-
+    The translucent layer behind a Dialog, a Drawer and any blocking surface, as the description
+    says: color.surface.scrim over the whole viewport, a click on it dismissing the surface above
+    unless that one is not dismissible. MUI's Backdrop on the web, which the Dialog and the Drawer
+    take as theirs; in Flutter a ModalBarrier of its colour, the barrier the dialog and drawer
+    routes draw. Never decorative: it says the user's attention is bound to the layer above.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      The scrim covers the viewport, whatever its size: Figma draws it at the lg breakpoint's
+      width (layout.breakpoint.lg, 1440), a sample of a screen.
+  root.base.height:
+    keyword: FILL
+    reason: >-
+      As its width, the viewport's height: Figma draws it 800 tall, a sample of a screen.

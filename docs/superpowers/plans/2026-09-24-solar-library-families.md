@@ -1514,6 +1514,62 @@ finding decided (none left open). 105 components, 104 exported.
   - Tooltip: MUI `Tooltip`, Flutter `Tooltip` with its theme;
   - Popover: after M5; MUI `Popover`, Flutter `OverlayPortal`;
   - Coachmark: composes Button Group and Node End.
+- **Owner decisions (2026-09-25):**
+  - a Dialog's type follows from what it is given, as a Column Item's does: an image makes the
+    image dialog, a Stepper the wizard, neither the default; no `type` prop;
+  - the Flutter Tooltip is drawn, with its arrow, in an overlay over its trigger: Flutter's own
+    Tooltip draws no arrow.
+
+**F12 done 2026-09-25.** Dialog (the pioneer), Scrim, ConfirmationDialog, Split Dialog, Drawer,
+Tooltip, Popover and Coachmark, every variant matching Figma on both platforms, every finding
+decided (none left open). 113 components, 112 exported.
+
+- **Taken here, open to the owner:**
+  - the modal surfaces are MUI's Dialog and Drawer on the web, SOLAR's Scrim their backdrop, and
+    in Flutter surface widgets that `showSolarDialog` and `showSolarDrawer` (sliding in from the
+    right, instantly under reduced motion) show over the Scrim's colour; each takes `inline` (the
+    web) or is drawn alone (Flutter), as the checks and a page showing one draw it;
+  - each dialog draws its own close button, a md round tertiary Icon Button, where it is given
+    `onClose`; a ConfirmationDialog is an alert dialog with its own Cancel and Continue (lg,
+    secondary and primary, Continue danger for the danger intent);
+  - Figma's sample content is the caller's slot (`examples`): Split Dialog's panes, Drawer's
+    content; a Split Dialog's `left` and `right` are two props, its actions under the left pane
+    with `cta="regular"`, and its narrow stacked layout is not drawn, as Figma draws none;
+  - the Tooltip's delay is `motion.duration.slow` (600ms), the nearest to the description's
+    ~500ms; its arrow carries no shadow (Figma's `shadow/raised` needs a drop shadow);
+  - a Popover's shadow is `shadow.overlay` on its bubble, the description's, its tip unshadowed:
+    Figma's `shadow/dialog` on its unfilled frame draws only a soft shadow following bubble and tip,
+    which no box shadow draws; it is placed with its tip's corner at its trigger's, takes the focus
+    only where it holds controls, and Escape closes it wherever the focus is;
+  - a Coachmark is a dialog that is not modal (on MUI's Popper), announced politely, the focus
+    moved to it on each step, Escape ending the tour wherever the focus is; its close icon is a
+    button with a 44 × 44 target, its connector decorative, its actions and tour the caller's;
+  - a ConfirmationDialog is 400 wide, as Figma draws it (`set` with a literal): Figma records its
+    frame hugging where everything in it fills;
+  - the sizes with no variable join decision 1: dialog widths 480, 640 and 400, the Drawer's 348,
+    the Popover's 320 and 240, the Coachmark's 320, 100px connector and 6px dot, the arrow and tip.
+- **Machinery:**
+  - turned outlines: the fetcher turns a vector's path by its node's transform
+    (`docs/solar-web/raw/drawn-path.mjs`), so Tooltip's side arrows point sideways;
+  - centre pins: a layer constrained to its parent's CENTER, in a parent that grows along the
+    axis, is pinned there (`centerX`, `centerY`) on both platforms and in both checks; a variant
+    placing a layer from another edge than the next writes the unused edge `AUTO`;
+  - a child order per variant: the fetcher records a reordered layer's `order`, each variant is
+    resolved in its own order, a reordering parent's laid-out children carry an `order` cell (a flex
+    `order` in CSS, the flow's order in SolarLayers), and both checks measure the rank, a check
+    shown to fail on either platform with the order removed;
+  - the overlay's `examples` (a slot's sample content) and `set`'s `literal` (with the cell's
+    `allowLiteral`);
+  - `internal/modal.tsx` on the web; the Flutter check measures a composed child's place on its
+    root, as the web check does.
+- **Checks:** 2,075 JS tests, both visual checks (238 on the web, 738 Flutter tests), lint,
+  typecheck, format, all three Flutter packages analysed and formatted, both viewers built,
+  `smoke:install`, the personal-data scan, and a rebuild that reproduces the tree. The checks
+  found and fixed: Popover's tip drawn last in every variant, where Figma draws it first in bottom
+  and right; Coachmark's connector placed from both edges at once; a ConfirmationDialog as wide as
+  its words, on both platforms; Split Dialog's and Drawer's content unreached by its own name; and
+  the Scrim's case, fixed over the whole page, taking every other case's pointer (it is now drawn
+  in a box of Figma's size).
 
 ### F13: Calendar parts
 

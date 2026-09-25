@@ -161,8 +161,10 @@ A raw value to the token of the same value (`literal`, `token`), or one per size
 ### `set`
 
 One entry changed: to a `token`, to `none` (the cell is not drawn by this layer: a composed
-child's own size, a stray fill), or to a `keyword` (`FILL`, `HUG`, or a composed child's
-`variant.*`). What Figma had is kept as `replaced`, and the oracle excuses the variants that draw
+child's own size, a stray fill), to a `keyword` (`FILL`, `HUG`, or a composed child's
+`variant.*`), or to a `literal`, a size Figma draws but does not record (ConfirmationDialog's 400:
+Figma records its frame hugging, where everything in it fills), which the cell's `allowLiteral`
+must allow as well, as any raw value. What Figma had is kept as `replaced`, and the oracle excuses the variants that draw
 it. A `set` may add an entry the IR lacks: a state Figma draws as at rest (a focus ring), a focus
 or a hover Figma draws none of (Row's hover, which its description asks for), a look no layer has
 where its axes are another look's and its values Figma's, `default` where no layer has any, or a
@@ -298,6 +300,21 @@ grid) takes them through `content`.
 
 A layer Figma draws anew in some variants that is another: read as `as` (Insight Card Small's
 `/Container`, the tile `/Icon` is elsewhere). A variant that has both fails.
+
+### `examples`
+
+A layer, by Figma path, whose children are Figma's sample of what the caller puts there (Split
+Dialog's panes, their title, words and Text Input; Drawer's content): none of them is a layer of
+the component, in the IR, the oracle or the recipe, and the layer is the caller's slot of content.
+A path no variant has, or one that holds nothing, fails.
+
+```yaml
+examples:
+  /Body/right:
+    reason: >-
+      The right pane's words ("Supporting panel") are Figma's sample of what it holds: the caller's
+      content replaces them.
+```
 
 ### `composes`
 

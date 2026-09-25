@@ -1,0 +1,97 @@
+# Hand-written decisions about SOLAR Coachmark, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Coachmark
+
+base:
+  mui: Popper
+  reason: >-
+    One step of a guided product tour, as the description says: a card beside the element the step
+    is about, a connector running from its edge (the `side` it leaves from) to that element. A
+    dialog that is not modal (role=dialog, aria-modal=false), labelled by its title, the focus
+    moving to it on each step and its words announced politely; Escape and its close button
+    dismiss the tour. Which step it is, and what Back and Next do, are the caller's: its actions
+    are the caller's SOLAR Button Group. MUI's Popper on the web, placed off its anchor by the
+    connector's length; in Flutter drawn in an overlay over it. Without an anchor it is the card
+    alone, drawn in place, as the visual checks draw it.
+
+layerNames:
+  /Card/Header/Icon/Close:
+    name: close
+    reason: >-
+      The header's close icon is the coachmark's close button, which dismisses the tour, as a
+      Dialog's: a button the shell draws the icon in, its target 44 × 44 (size.target.min).
+
+slots:
+  title:
+    name: title
+    type: text
+    reason: >-
+      The step's title, which names the coachmark, is the caller's; Figma records no text prop.
+  body:
+    name: body
+    type: text
+    reason: The step's words are the caller's; Figma records no text prop.
+  counter:
+    name: counter
+    type: text
+    reason: >-
+      Which step of how many ("1 / 6 steps") is the caller's, in its own words: the tour is the
+      caller's; Figma records no text prop.
+  buttonGroup:
+    name: actions
+    type: component
+    reason: >-
+      Back and Next are the caller's SOLAR Button Group (regular, two md secondary Buttons), what
+      they do the tour's; Figma records no prop.
+
+follows:
+  connector.height:
+    axes: [side]
+    reason: >-
+      Figma draws the left connector turned half round, 7 tall where the right one is 6, its dot
+      and node end placed in the turned box; each side is drawn as Figma draws it, half a pixel
+      apart (the design review lists it).
+
+set:
+  nodeEnd.base.width:
+    none: true
+    reason: >-
+      The connector's end is a SOLAR Node End (halo), whose 12px box is its own: the coachmark
+      places it, and never sizes it.
+  nodeEnd.base.height:
+    none: true
+    reason: { as: set nodeEnd.base.width }
+
+bind:
+  close.height:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's width is already bound to it.
+  line.height:
+    literal: 1
+    token: border.default
+    reason: >-
+      The connector's line is a hairline, 1px, border.default's width, the same value, as a
+      Divider's rule.
+
+allowLiteral:
+  card.width:
+    reason: >-
+      A coachmark's card is 320 wide, bound to nothing: SOLAR has no overlay width, one of the sizes
+      with no variable. Its words wrap within it.
+  connector.width:
+    reason: >-
+      The connector is 100 long, bound to nothing: SOLAR has no length for it. The card sits that
+      far from the element the step is about.
+  connector.height:
+    reason: >-
+      The connector's box is as tall as its dot, in the drawing's own coordinates: part of the
+      drawing, not a size of the system.
+  originDot.width:
+    reason: >-
+      The dot the connector leaves the card from is 6px, part of the drawing, as Node End's dot:
+      SOLAR has no marker size.
+  originDot.height:
+    reason: { as: allowLiteral originDot.width }

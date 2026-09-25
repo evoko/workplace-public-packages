@@ -1,0 +1,64 @@
+# Hand-written decisions about SOLAR Drawer, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Drawer
+
+base:
+  mui: Drawer
+  reason: >-
+    A panel that slides in from the viewport's edge for a secondary task that keeps the page in
+    context, as the description says: its title and close button, the caller's content, and an
+    optional footer (a Button Group). It traps the focus as a dialog does, Escape closing it and the
+    focus returning to its trigger, over the Scrim. MUI's Drawer on the web, anchored at the end
+    edge; in Flutter the panel is a widget (SolarDrawer), shown by showSolarDrawer or as a
+    Scaffold's end drawer. Drawn in place where the caller asks (`inline`).
+
+layerNames:
+  /Header/Icon Button:
+    name: close
+    reason: The header's Icon Button is the drawer's close button, drawn where it can close.
+
+examples:
+  /content:
+    reason: >-
+      The content's words ("Drawer content goes here…") are Figma's sample: the caller's content
+      replaces them.
+
+set:
+  root.base.height:
+    keyword: FILL
+    reason: >-
+      A drawer runs the viewport's full height, from its edge: Figma draws it 800 tall, a sample of
+      a screen.
+  header.base.height:
+    keyword: HUG
+    reason: >-
+      The header is as tall as its close button and padding (8 + 40 + 8): Figma fixes it at 56, the
+      same.
+  close.base.width:
+    none: true
+    reason: >-
+      The close button is a SOLAR Icon Button (md, square, tertiary), whose 40px box is its own: the
+      drawer places it, and never sizes it.
+  close.base.height:
+    none: true
+    reason: { as: set close.base.width }
+
+bind:
+  root.radiusTopRight:
+    literal: 0
+    token: radius.none
+    reason: >-
+      Same value, governed token: the drawer is square along the viewport's edge, rounded
+      (radius.dialog) on the side it opens into.
+  root.radiusBottomRight:
+    literal: 0
+    token: radius.none
+    reason: { as: bind root.radiusTopRight }
+
+allowLiteral:
+  root.width:
+    reason: >-
+      A drawer is 348 wide, bound to nothing: SOLAR has no panel width, one of the sizes with no
+      variable.

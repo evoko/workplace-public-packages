@@ -1,0 +1,173 @@
+# Hand-written decisions about SOLAR Dialog, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Dialog
+
+base:
+  mui: Dialog
+  reason: >-
+    A modal dialog centred over the Scrim, as the description says: role=dialog, aria-modal,
+    labelled by its title, the focus trapped in it, Escape closing it and the focus returning to
+    its trigger. MUI's Dialog on the web, its paper the drawn surface and its backdrop SOLAR's
+    Scrim; in Flutter the surface is a widget (SolarDialog) and showSolarDialog shows it over the
+    Scrim's colour. Its close button is its own, drawn where it is given onClose; its content and
+    footer actions (a Button Group) are the caller's. Drawn in place where the caller asks
+    (`inline`), as the visual checks and a page showing a dialog's content draw it.
+
+layerNames:
+  /Header/Text/Icon:
+    name: leading
+    reason: >-
+      The frame the title's icon sits in; its own name, Icon, is the icon's, which is the caller's
+      slot.
+  /Header/Text/Icon Button:
+    name: close
+    reason: The header's Icon Button is the dialog's close button, drawn where it can close.
+  /image/Icon Button:
+    name: imageClose
+    reason: >-
+      The image dialog's close button, over its image's top right corner: the header's close
+      button, where the image dialog has no header.
+
+slots:
+  iconEmpty:
+    name: icon
+    type: icon
+    reason: >-
+      The icon before the title is the caller's: Figma draws Icon/Empty, a placeholder.
+  stepper:
+    name: stepper
+    type: component
+    reason: >-
+      A wizard's steps are the caller's SOLAR Stepper (line+text), its step the caller's; Figma
+      records no prop.
+  dialogTitle:
+    name: imageTitle
+    type: text
+    reason: >-
+      The image dialog draws its title here, at the head of its content under the image, where the
+      others draw it in the header: the caller's one title, drawn where the dialog's type puts it.
+      Figma names the text after its sample.
+  biampDeliversProfessionalAudioVisualSolutionsThatHelpPeopleConnectCommunicateAndCollaborateMoreEffectivelyAcrossWorkplacesVenuesAndPublicSpaces:
+    name: description
+    type: text
+    reason: >-
+      The image dialog's words under its title are the caller's; Figma records no prop, and names
+      the text after its sample.
+  buttonGroup:
+    name: actions
+    type: component
+    reason: >-
+      The footer's actions are the caller's SOLAR Button Group (full-width), what they do the
+      caller's; Figma records no prop.
+
+derive:
+  type:
+    when:
+      - value: image
+        given: [modalImage]
+      - value: wizard
+        given: [stepper]
+      - value: default
+    reason: >-
+      Owner decision 2026-09-25: a dialog's type follows from what it is given, as a Column Item's
+      does: an image makes the image dialog, a Stepper the wizard, and neither the default; so it
+      is no prop the caller could set against its content.
+
+follows:
+  text.align:
+    axes: [type]
+    reason: >-
+      The wizard's title row packs its icon, title and close button together, the default's
+      spreads them; both draw the title filling the row, as Figma draws each.
+  text.gap:
+    axes: [type]
+    reason: >-
+      The wizard's title row is tighter (inset.xs), with its Stepper under it; the default's is
+      inset.md, as Figma draws each.
+  content.align:
+    axes: [type]
+    reason: >-
+      The image dialog centres its title and words under the picture; the others start them at the
+      content's edge, as Figma draws each.
+  content.gap:
+    axes: [type]
+    reason: >-
+      The image dialog spaces its content by stack.lg, the others by stack.md, as Figma draws each.
+  content.paddingTop:
+    axes: [type]
+    reason: >-
+      Figma binds the image dialog's content padding to stack.lg and the others' to inset.lg, both
+      20: a padding is an inset (the design review lists the image dialog's).
+  content.paddingRight:
+    axes: [type]
+    reason: { as: follows content.paddingTop }
+  content.paddingBottom:
+    axes: [type]
+    reason: { as: follows content.paddingTop }
+  content.paddingLeft:
+    axes: [type]
+    reason: { as: follows content.paddingTop }
+
+set:
+  icon.base.color:
+    token: color.icon.primary
+    reason: >-
+      Figma leaves the placeholder icon on the icon master's color/neutral/900, a primitive, the
+      library default every placed icon rebinds (SOLAR, 2026-09-25): the icon ink of the same
+      value, color.icon.primary.
+  root.base.height:
+    keyword: HUG
+    reason: >-
+      A dialog is as tall as what it holds: Figma fixes the default and the wizard at 464, room for
+      their sample content, and hugs the image dialog's.
+  content.base.height:
+    keyword: HUG
+    reason: { as: set root.base.height }
+  close.base.width:
+    none: true
+    reason: >-
+      The close button is a SOLAR Icon Button (md, round, tertiary), whose 40px box is its own: the
+      dialog places it, and never sizes it.
+  close.base.height:
+    none: true
+    reason: { as: set close.base.width }
+  imageClose.base.width:
+    none: true
+    reason: { as: set close.base.width }
+  imageClose.base.height:
+    none: true
+    reason: { as: set close.base.width }
+
+bind:
+  icon.width:
+    literal: 12
+    token: icon.xs
+    reason: Same value, governed token; the icon's height is already bound to it.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      A dialog is 480 wide, bound to nothing: SOLAR has no dialog width, one of the sizes with no
+      variable. The page may be narrower, and the dialog then fits it.
+  leading.width:
+    reason: >-
+      The title's icon sits in a 36px box, bound to nothing: SOLAR has no size for it.
+  leading.height:
+    reason: { as: allowLiteral leading.width }
+  modalImage.height:
+    reason: >-
+      The image dialog's picture is 279 tall, bound to nothing: SOLAR has no media size.
+
+accept:
+  component.dialog.close.width@type=wizard:
+    reason: >-
+      The wizard's close button is resized to 36 where the default's is the Icon Button's own 40:
+      a slip, the same button. The code draws the Icon Button's own; the design review lists it.
+  component.dialog.close.height@type=wizard:
+    reason: { as: accept component.dialog.close.width@type=wizard }
+  component.dialog.root.height@type=image:
+    reason: { as: set root.base.height }
+  component.dialog.content.height@type=image:
+    reason: { as: set root.base.height }

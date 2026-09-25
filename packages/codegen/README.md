@@ -247,6 +247,29 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      each added layer's `index`; where the data has them, a composed child hides exactly its own
      layers and an added layer sits where Figma draws it, and the overlay's `hides` and `places`
      rules they replace fail as stale. The data has them from the next `solar:sync`.
+     What F12 (overlays and dialogs) added:
+   - **Turned outlines.** REST gives a vector's path in the node's own coordinates; the fetcher
+     (`docs/solar-web/raw/drawn-path.mjs`) turns each point by the node's transform and moves it
+     back into its box, so Tooltip's side arrows point sideways, as Figma draws them.
+   - **Centre pins.** A placed layer Figma constrains to its parent's CENTER, in a parent that
+     grows along the axis, is pinned there (`centerX`, `centerY`; `placement.mjs`): Tooltip's
+     arrow, Coachmark's title. An explicit constraint decides per variant, and a variant placing a
+     layer from another edge than the next (Coachmark's connector, from the right on one side and
+     the left on the other) writes the edge it does not use `AUTO`: `left: auto` on the web, no
+     edge in Flutter.
+   - **A child order per variant.** The fetcher records `order`, a layer's rank among the siblings
+     a variant shares with the default, where it differs (Popover's tip, before its content where
+     it points up); `resolveVariants` draws each variant in its own order, and `ordersOf`
+     (`placement.mjs`) gives every laid-out child of a reordering parent an `order` cell, a flex
+     item's `order` in CSS and the flow's order in SolarLayers. Both checks measure it, from where
+     each layer falls along its parent's axis.
+   - **Sample content.** The overlay's `examples` names a layer whose children are Figma's sample
+     of what the caller puts there (Split Dialog's panes, Drawer's content): none of them reaches
+     the IR, the oracle or the recipe.
+   - **Modal and anchored surfaces.** On the web, `internal/modal.tsx` (MUI's Dialog, SOLAR's Scrim
+     its backdrop, or the surface in place); in Flutter, `showSolarDialog`, `showSolarDrawer` and
+     an OverlayPortal following its trigger. The Flutter check measures where a composed child's
+     parent puts it (Coachmark's Node End), on the child's root, as the web check does.
      What F11 (tables and properties) added:
    - **Gradients.** The fetcher records a linear gradient as its handles and its stops
      (`linear-gradient(0,0.68 → 1,0.68: {…} 0%, {…} 100%)`, `src/normalize/gradient.mjs` reads

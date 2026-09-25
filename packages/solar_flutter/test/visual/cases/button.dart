@@ -19,7 +19,9 @@ Layers measureButton(WidgetTester tester) =>
 
 /// Every oracle layer of the SolarButton at [at], alone or inside another widget (Button Group's).
 Layers measureButtonAt(WidgetTester tester, Finder at) {
-  Finder inside(Finder f) => find.descendant(of: at, matching: f);
+  // At the Button itself too (a ConfirmationDialog's, found by its words), or a widget holding it.
+  Finder inside(Finder f) =>
+      find.descendant(of: at, matching: f, matchRoot: true);
   final inButton = inside(find.byType(FilledButton));
   final faceFinder = find
       .descendant(of: inButton, matching: find.byType(DecoratedBox))

@@ -13,7 +13,7 @@
  * Values bound to no variable, or to one that is not a SOLAR token, are recorded the same way.
  */
 
-import { farEdgesOf, placementOf } from './placement.mjs';
+import { farEdgesOf, ordersOf, placementOf } from './placement.mjs';
 import { parseGradient } from './gradient.mjs';
 import { drawnPaint } from './paints.mjs';
 import { checkPathData } from './svg.mjs';
@@ -554,8 +554,8 @@ const LAYOUT_CELLS = [
   ...PADDING.map((side) => `padding${side}`),
 ];
 const SIDE_CELLS = PADDING.map((side) => `border${side}Width`);
-/** The cells that place a layer, from its parent's near edges or its far ones (placementOf). */
-export const PLACES = ['x', 'y', 'right', 'bottom'];
+/** The cells that place a layer, from its parent's near edges, its far ones or its centre (placementOf). */
+export const PLACES = ['x', 'y', 'right', 'bottom', 'centerX', 'centerY'];
 
 /**
  * A cell one variant of a layer has and another lacks says something, and the comparison can only
@@ -565,7 +565,8 @@ export const PLACES = ['x', 'y', 'right', 'bottom'];
  * - no auto-layout (Checkbox's box in some states only) is a layout of `none`, which the emitters
  *   draw as no flex, and no gap or padding (`inset.none`);
  * - no recorded sizing is the size the layer is drawn at, bound as any size is;
- * - no position, where another variant has one, is a layer its auto layout places (`none`);
+ * - no position, where another variant has one, is a layer its auto layout places (`none`), or,
+ *   where this variant places it from another edge, not from that one (`AUTO`);
  * - one border width where another variant has a width per side (Tab Item) is that width on
  *   every side, so the sides are compared side by side, and one radius where another variant has
  *   one per corner is that radius on every corner.
@@ -602,9 +603,14 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
           continue;
         if (LAYOUT_CELLS.includes(c))
           own[c] = { cls: 'geometry', value: { none: true } };
-        // Where another variant places the layer by position and this one's auto layout places it.
+        // Where another variant places the layer by position and this one's auto layout places it;
+        // or, where this one places it too, from another edge (Coachmark's connector, pinned to
+        // the right on one side and the left on the other): not from this one (`AUTO`).
         else if (PLACES.includes(c))
-          own[c] = { cls: 'shape', value: { none: true } };
+          own[c] = {
+            cls: 'shape',
+            value: layer.position ? { keyword: 'AUTO' } : { none: true },
+          };
         // Where another variant's text fills its row and this one's does not (Button's label, in
         // the lg button's spread): it hugs its words, which is no size of Figma's sample to keep.
         else if ((c === 'width' || c === 'height') && layer.type === 'TEXT')
@@ -761,6 +767,15 @@ export function deriveRecipe(
       return [v.name, perLayer];
     }),
   );
+  // Where variants lay a parent's children out in different orders (Popover's tip, before its
+  // content where it points up), each child's rank among them in every variant: the drawing's
+  // order, as a position is its coordinate.
+  for (const [path, ranks] of ordersOf(resolved.variants))
+    for (const [variant, rank] of ranks)
+      cells.get(variant).get(path).order = {
+        cls: 'shape',
+        value: { position: rank },
+      };
   sayWhatAbsenceMeans(resolved, cells, layers, names, component);
   const read = (variant, path, cell) => {
     if (!variant.layers.has(path))

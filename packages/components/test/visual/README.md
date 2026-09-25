@@ -49,7 +49,10 @@ npx playwright install chromium  # once, on a new machine
   component in what it always sits in (a Dropdown Item in a MUI MenuList). The layers of a child
   the parent's instance hides (the oracle's `hides`: a Select's rows draw no checkbox, icon or
   helper) must not be drawn. A placed layer is measured from each edge of its parent, `x`, `y`,
-  `right` and `bottom`, and each is compared.
+  `right` and `bottom`, and from its centre (`centerX`, `centerY`: a Tooltip's arrow), and each the
+  oracle names is compared. Where variants lay a parent's children out in different orders (a
+  Popover's tip), each laid-out child's rank among them (`order`) is measured from where it falls
+  along the parent's axis, and compared exactly.
 - **Excused entries on a layer the variant does not draw** (a Button hidden in one group) cannot be
   reached, so the count of gaps expected leaves them out.
 - **Comparing** (`compare.mjs`): colours in sRGB within one 8-bit step, lengths within half a

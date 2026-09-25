@@ -1075,6 +1075,49 @@ opposite), and its rows with it. A PropertyRow takes its words (`children`, a `<
 `description`, a `leading` icon, and one control, which decides its trailing (a `<dd>`): a
 `button`, `toggle`, `select`, `iconButton`, `segmentedControl` or `tag`.
 
+## Dialog, ConfirmationDialog and Split Dialog
+
+Modal surfaces on MUI's Dialog, over SOLAR's Scrim: each is a dialog labelled by its `title`, the
+focus trapped in it, Escape and a click on the Scrim calling `onClose` (a ConfirmationDialog's
+`onCancel`), and the focus back on its trigger once closed. Shown while `open`; `inline` draws the
+surface in place instead, not modal. Each draws its own close button, where it is given `onClose`
+(named by `closeLabel`).
+
+- A **Dialog**'s type follows from what you give it: an `image` (an `<img>`, a video) makes the
+  image dialog, its title and `description` under the picture; a `stepper` (a SOLAR Stepper,
+  line+text) the wizard; neither the default, with an `icon` before its title. Its content is
+  `children`, its footer `actions`, a full-width Button Group.
+- A **ConfirmationDialog** is an alert dialog (`role="alertdialog"`) asking one thing: its
+  `description`, then its own Cancel and Continue (`cancelLabel`, `confirmLabel`), Continue a
+  danger Button where `intent` is danger. `confirmButtonProps` and `cancelButtonProps` reach the
+  Buttons (`autoFocus`, `loading`).
+- A **Split Dialog** has two panes, `left` and `right`; its `actions` run across its foot, or,
+  with `cta="regular"`, under the left pane.
+
+## Drawer and Scrim
+
+A **Drawer** slides in from the page's right edge, on MUI's Drawer: a dialog labelled by its
+`title`, its content `children`, its footer `actions`, as a Dialog's, over the Scrim; `inline`
+draws it in place. The **Scrim** is MUI's Backdrop in `color.surface.scrim`, the layer the Dialog
+and the Drawer draw under themselves; on its own it is shown by default (`open`).
+
+## Tooltip, Popover and Coachmark
+
+Each is drawn with its arrow, tip or connector, and alone, in place, where it has no trigger.
+
+- A **Tooltip** is MUI's Tooltip, its `title` drawn in SOLAR's bubble, pointing at its trigger
+  (`children`) from the side `position` names. It shows after a hover delay (motion.duration.slow)
+  or on focus, never takes the focus, and describes its trigger.
+- A **Popover** is MUI's Popover, shown while `open` beside its trigger (`anchorEl`), its tip
+  pointing at it from the side `placement` names: a dialog labelled by its `title`, its `body`, and
+  your controls (`children`) under them. Escape and a click outside it call `onClose`; the focus
+  moves into it only where it holds controls.
+- A **Coachmark** is one step of a tour, on MUI's Popper, beside the element the step is about
+  (`anchorEl`), its connector's length off it, from the card's `side`. Its `title`, `body`,
+  `counter` ("1 / 6 steps", in your words) and `actions` (Back and Next, a regular Button Group)
+  are yours, as is the tour. It is a dialog that is not modal, announced politely, the focus moving
+  to it on each step; Escape and its close button call `onClose`, which ends the tour.
+
 ## Checked against Figma
 
 `npm run test:visual` renders every variant of every component here in Chromium, puts each into

@@ -33,7 +33,11 @@ run by `flutter test` with the rest of the package.
   check does (a calendar's days, through `dayBuilder`; a time list's rows, `optionBuilder`). The
   layers of a child the parent's instance hides (the oracle's `hides`) must not be drawn. A
   layer's corners are measured each (`radiusTopLeft`…), as a range's day draws them, and a placed
-  layer from each edge of its parent, `x`, `y`, `right` and `bottom`. A composed child's own
+  layer from each edge of its parent, `x`, `y`, `right` and `bottom`, and from its centre
+  (`centerX`, `centerY`). A composed child's place is measured on its root, as the web check has
+  it (a Coachmark's Node End). Where variants lay a parent's children out in different orders (a
+  Popover's tip), each laid-out child's rank (`order`) is measured from where it falls along its
+  parent's Flex, and compared exactly. A composed child's own
   composed children (a PropertyList row's Select) are compared for the box the child gives them,
   their own look being their own check's. A gradient background is measured as the oracle writes
   one (`paintedGradient`), its direction and each stop's colour at its place. A case whose widget

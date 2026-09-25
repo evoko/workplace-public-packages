@@ -191,14 +191,20 @@ class SolarLayers {
     return recipe.dimension(cell) ?? 0;
   }
 
-  /// A size, or null where the layer hugs its content or has no size of its own.
+  /// A size, or null where the layer hugs its content or has no size of its own; a place, or null
+  /// where the layer is not placed from that edge (`AUTO`: placed from another, as Coachmark's
+  /// connector is from the right on one side and the left on the other).
   double? _extent(String cell) {
     final v = recipe.lookup(cell);
-    if (v == null || v == 'none') return null;
+    if (v == null || v == 'none' || v == 'k:AUTO') return null;
     return recipe.dimension(cell);
   }
 
   bool _fills(String cell) => recipe.lookup(cell) == 'k:FILL';
+
+  /// Where variants lay [child]'s siblings out in different orders, its rank among them; 0, as
+  /// CSS's default order, where they do not.
+  int _rank(String child) => _extent('$child.order')?.toInt() ?? 0;
 
   /// Whether [name] is as long along [axis] (`width`, `height`) as what it holds: it has no size of
   /// its own there, and either does not fill or fills a layer that hugs, which Figma resolves as a
@@ -366,7 +372,10 @@ class SolarLayers {
   /// Whether Figma places [child] by position rather than its parent's auto layout: from the
   /// parent's left, or its right where it is pinned there (a parent that grows).
   bool _isPlaced(String child) =>
-      _extent('$child.x') != null || _extent('$child.right') != null;
+      _extent('$child.x') != null ||
+      _extent('$child.right') != null ||
+      _extent('$child.centerX') != null ||
+      _extent('$child.centerY') != null;
 
   /// A child where Figma put it: at its position where its parent does not lay it out, from the
   /// edges it is pinned to (Text Area's buttons, to the field's bottom corners). Figma measures the
@@ -374,6 +383,38 @@ class SolarLayers {
   /// children in from it.
   Widget _placed(String child, EdgeInsets inset) {
     if (!_isPlaced(child)) return layer(child);
+    // Pinned to the parent's centre along an axis (a Tooltip's arrow): in a strip the parent's
+    // size along it, from its outer edges, in the strip's middle, that far off it.
+    final cx = _extent('$child.centerX');
+    final cy = _extent('$child.centerY');
+    if (cx != null || cy != null) {
+      final x = _extent('$child.x');
+      final right = _extent('$child.right');
+      final bottom = _extent('$child.bottom');
+      final y = _extent('$child.y');
+      return Positioned(
+        left: cx != null ? -inset.left : (x == null ? null : x - inset.left),
+        right: cx != null
+            ? -inset.right
+            : (right == null ? null : right - inset.right),
+        top: cy != null
+            ? -inset.top
+            : (bottom != null ? null : (y ?? 0) - inset.top),
+        bottom: cy != null
+            ? -inset.bottom
+            : (bottom == null ? null : bottom - inset.bottom),
+        child: Align(
+          alignment: Alignment(
+            cx != null ? 0 : (right != null && x == null ? 1 : -1),
+            cy != null ? 0 : (bottom != null ? 1 : -1),
+          ),
+          child: Transform.translate(
+            offset: Offset(cx ?? 0, cy ?? 0),
+            child: layer(child),
+          ),
+        ),
+      );
+    }
     final x = _extent('$child.x');
     // A placed layer that fills an axis spans from its place to the parent's far edge (Table's
     // mobile fade, as tall as the table), as the web's 100% of its containing box does.
@@ -472,7 +513,18 @@ class SolarLayers {
     final direction = recipe.lookup('$name.direction');
     final laid = direction == 'k:HORIZONTAL' || direction == 'k:VERTICAL';
     final placed = children.where(_isPlaced).toList();
-    final flow = children.where((c) => !_isPlaced(c)).toList();
+    // Where variants lay the children out in different orders (Popover's tip, before its content
+    // where it points up), each at its rank, the `order` cell, as a flex item's order is on the web;
+    // otherwise as Figma nests them.
+    final ranked =
+        [
+          for (final (i, c) in children.where((c) => !_isPlaced(c)).indexed)
+            (i, c),
+        ]..sort((a, b) {
+          final by = _rank(a.$2).compareTo(_rank(b.$2));
+          return by != 0 ? by : a.$1.compareTo(b.$1);
+        });
+    final flow = [for (final (_, c) in ranked) c];
     Widget flex(List<String> laidOut) {
       final horizontal = direction == 'k:HORIZONTAL';
       final along = horizontal ? 'width' : 'height';
@@ -529,7 +581,7 @@ class SolarLayers {
     // An auto layout is one even with nothing in it (RowExpand's empty title cell): its gap and
     // alignment are still the layer's.
     if (laid && placed.isEmpty) {
-      content = flex(children);
+      content = flex(flow);
     } else if (laid && given == null) {
       // An auto layout with children placed over it (Text Area's buttons, in the field's corners),
       // or with only placed ones (Launch Card's image, its favourite in a corner, its gap its own):

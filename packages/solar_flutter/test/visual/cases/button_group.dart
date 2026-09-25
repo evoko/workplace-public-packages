@@ -12,7 +12,10 @@ const buttonGroupCase = VisualCase(
 
 /// The group's frame, and each Button it holds by its layer, measured as the Button check measures
 /// one.
-Layers measureButtonGroup(WidgetTester tester) {
+Layers measureButtonGroup(
+  WidgetTester tester, {
+  Map<String, Finder> buttons = const {},
+}) {
   final group = find.byType(SolarButtonGroup);
   final decoration =
       tester
@@ -37,8 +40,9 @@ Layers measureButtonGroup(WidgetTester tester) {
   final sides = [border.top, border.right, border.bottom, border.left];
   final drawn = sides.where((s) => s.style != BorderStyle.none);
 
+  // Each Button by its layer's key, or where the caller finds it (a ConfirmationDialog's own).
   Map<String, Object?> child(String layer) {
-    final at = find.byKey(Key(layer));
+    final at = buttons[layer] ?? find.byKey(Key(layer));
     return at.evaluate().isEmpty
         ? {'drawn': false}
         : {'drawn': true, 'layers': measureButtonAt(tester, at)};

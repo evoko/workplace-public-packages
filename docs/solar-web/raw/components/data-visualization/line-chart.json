@@ -308,13 +308,15 @@
                 ],
                 "layout": {
                   "align": "MIN/CENTER"
-                }
+                },
+                "order": 0
               },
               "/Plot": {
                 "size": [
                   600,
                   176
-                ]
+                ],
+                "order": 1
               },
               "/Plot/Line A": {
                 "size": [
@@ -702,13 +704,15 @@
                 ],
                 "layout": {
                   "align": "MIN/CENTER"
-                }
+                },
+                "order": 0
               },
               "/Plot": {
                 "size": [
                   343,
                   136
-                ]
+                ],
+                "order": 1
               },
               "/Plot/Line A": {
                 "size": [

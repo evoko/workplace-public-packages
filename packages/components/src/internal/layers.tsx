@@ -102,15 +102,30 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
     typeof at === 'number'
       ? { [edge]: `calc(${at}px - var(--solar-placed-${edge}, 0px))` }
       : {};
+  // A layer pinned to its parent's centre (a Tooltip's arrow) sits that far from the middle, half
+  // its own size back.
+  const cx = typeof p.centerX === 'number' ? p.centerX : undefined;
+  const cy = typeof p.centerY === 'number' ? p.centerY : undefined;
   const place: CSSProperties | undefined =
-    typeof p.x === 'number' || typeof p.right === 'number'
+    typeof p.x === 'number' ||
+    typeof p.right === 'number' ||
+    cx !== undefined ||
+    cy !== undefined
       ? {
           position: 'absolute',
           ...from('left', p.x),
           ...from('right', p.right),
-          ...(typeof p.bottom === 'number'
-            ? from('bottom', p.bottom)
-            : from('top', typeof p.y === 'number' ? p.y : 0)),
+          ...(cx !== undefined ? { left: `calc(50% + ${cx}px)` } : {}),
+          ...(cy !== undefined
+            ? { top: `calc(50% + ${cy}px)` }
+            : typeof p.bottom === 'number'
+              ? from('bottom', p.bottom)
+              : from('top', typeof p.y === 'number' ? p.y : 0)),
+          ...(cx !== undefined || cy !== undefined
+            ? {
+                translate: `${cx !== undefined ? '-50%' : '0'} ${cy !== undefined ? '-50%' : '0'}`,
+              }
+            : {}),
         }
       : undefined;
   const className = d.slots?.[name]

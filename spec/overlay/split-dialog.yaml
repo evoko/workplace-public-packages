@@ -1,0 +1,107 @@
+# Hand-written decisions about SOLAR Split Dialog, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Split Dialog
+
+base:
+  mui: Dialog
+  reason: >-
+    A modal dialog with two panes, as the description says: the caller's content on the left and
+    on the right, its title over them, its actions (a Button Group) across its foot or, for
+    `cta=regular`, under the left pane. The same contract as Dialog: role=dialog, aria-modal,
+    labelled by its title, the focus trapped, Escape closing it and the focus returning to its
+    trigger. MUI's Dialog on the web; in Flutter the surface is a widget, shown by showSolarDialog.
+    Drawn in place where the caller asks (`inline`). The description's stacked pane on narrow
+    viewports is not drawn, and the code draws none; the design review asks.
+
+layerNames:
+  /Header/Text/Icon:
+    name: leading
+    reason: >-
+      The frame the title's icon sits in; its own name, Icon, is the icon's, which is the caller's
+      slot.
+  /Header/Text/Icon Button:
+    name: close
+    reason: The header's Icon Button is the dialog's close button, drawn where it can close.
+
+examples:
+  /Body/left:
+    reason: >-
+      The left pane's title, description and Text Input are Figma's sample of what a pane holds:
+      the caller's content replaces them.
+  /Body/Container/left:
+    reason: >-
+      As the full-width dialog's left pane, the regular one's words are Figma's sample.
+  /Body/right:
+    reason: >-
+      The right pane's words ("Supporting panel") are Figma's sample of what it holds: the caller's
+      content replaces them.
+
+slots:
+  iconEmpty:
+    name: icon
+    type: icon
+    reason: >-
+      The icon before the title is the caller's: Figma draws Icon/Empty, a placeholder.
+  title:
+    name: title
+    type: text
+    reason: >-
+      The title, which names the dialog, is the caller's; Figma records no text prop here, as
+      Dialog's does.
+  containerLeft:
+    name: leftRegular
+    type: content
+    reason: >-
+      With its actions under it (cta=regular), the left pane is drawn anew beside them: the
+      caller's one left content, drawn in whichever the cta draws.
+  buttonGroup:
+    name: actions
+    type: component
+    reason: >-
+      The actions are the caller's SOLAR Button Group, full-width across the dialog's foot; Figma
+      records no prop.
+  containerButtonGroup:
+    name: actionsRegular
+    type: component
+    reason: >-
+      For cta=regular, the same actions, a regular Button Group under the left pane: the caller's
+      one Button Group, drawn where the cta puts it.
+
+set:
+  icon.base.color:
+    token: color.icon.primary
+    reason: >-
+      Figma leaves the placeholder icon on the icon master's color/neutral/900, a primitive, the
+      library default every placed icon rebinds (SOLAR, 2026-09-25): the icon ink of the same
+      value, color.icon.primary.
+  root.base.height:
+    keyword: HUG
+    reason: >-
+      A split dialog is as tall as its panes: Figma fixes it at 480, room for its sample content.
+  close.base.width:
+    none: true
+    reason: >-
+      The close button is a SOLAR Icon Button (md, round, tertiary), whose 40px box is its own: the
+      dialog places it, and never sizes it.
+  close.base.height:
+    none: true
+    reason: { as: set close.base.width }
+
+bind:
+  icon.width:
+    literal: 12
+    token: icon.xs
+    reason: Same value, governed token; the icon's height is already bound to it.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      A split dialog is 640 wide, bound to nothing: SOLAR has no dialog width, one of the sizes with
+      no variable. The page may be narrower, and the dialog then fits it.
+  leading.width:
+    reason: >-
+      The title's icon sits in a 36px box, bound to nothing: SOLAR has no size for it, as Dialog's.
+  leading.height:
+    reason: { as: allowLiteral leading.width }

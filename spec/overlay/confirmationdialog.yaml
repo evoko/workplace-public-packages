@@ -1,0 +1,30 @@
+# Hand-written decisions about SOLAR ConfirmationDialog, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: ConfirmationDialog
+
+base:
+  mui: Dialog
+  reason: >-
+    A dialog for an action that needs explicit approval, as the description says: its title, its
+    description, and its own two lg Buttons, a secondary to cancel and a primary to confirm, the
+    confirm Button danger where the intent is (Figma draws the intent as that Button's danger
+    alone). Modal as Dialog is, over the Scrim, the focus in it and Escape cancelling; announced as
+    an alert dialog, described by its description. MUI's Dialog on the web; in Flutter the surface
+    is a widget, shown by showSolarDialog. Drawn in place where the caller asks (`inline`).
+
+set:
+  root.base.width:
+    literal: 400
+    reason: >-
+      A confirmation dialog is 400 wide, as Figma draws it: Figma records its frame hugging, but
+      everything in it fills its width, so there is nothing for it to hug, and Figma keeps the 400
+      it was drawn at. Hugging in code would make it as wide as its words run on one line; its words
+      wrap within 400 instead.
+
+allowLiteral:
+  root.width:
+    reason: >-
+      SOLAR has no dialog width, one of the sizes with no variable, as Dialog's 480 and Split
+      Dialog's 640. The page may be narrower, and the dialog then fits it.

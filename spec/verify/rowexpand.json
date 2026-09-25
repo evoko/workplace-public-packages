@@ -188,7 +188,7 @@
         "container2": {
           "glyph": {
             "fill": [],
-            "stroke": ["M0 0L-0.5 0L-0.5 20L0 20L0.5 20L0.5 0L0 0Z"]
+            "stroke": ["M0 20L0.5 20L0.5 0L0 0L-0.5 0L-0.5 20L0 20Z"]
           },
           "background": "transparent",
           "borderColor": "#00000033",
@@ -229,7 +229,7 @@
         "container": {
           "glyph": {
             "fill": [],
-            "stroke": ["M0 0L-0.5 0L-0.5 40L0 40L0.5 40L0.5 0L0 0Z"]
+            "stroke": ["M0 40L0.5 40L0.5 0L0 0L-0.5 0L-0.5 40L0 40Z"]
           },
           "background": "transparent",
           "borderColor": "#00000033",

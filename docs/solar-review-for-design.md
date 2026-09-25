@@ -58,10 +58,10 @@ If you take only a few items, take these:
 
 ## At a glance
 
-| #                                                  | What                                        | Count                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | File      |
-| -------------------------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| [1](#1-control-heights-to-bind--18-components)     | Control heights to bind to `size/control/*` | 18                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | SOLAR Web |
-| [2](#2-the-components-we-build-variant-by-variant) | The components we build, in detail          | Button 2 fixes and 2 questions, Spinner 2, Icon Button 2, Button Group 1, StatusIndicator 1, the display primitives 1 fix and 1 question, the selection controls 2 fixes, the tags and messages 2 fixes and 1 question, the text fields 1 fix and 5 questions, the menus and lists 2 questions, the pickers 1 fix and 5 questions, navigation 1 fix and 6 questions, paging and steps 2 fixes and 2 questions, the cards 12 fixes and 7 questions, the tables and properties 4 fixes and 7 questions | SOLAR Web |
+| #                                                  | What                                        | Count                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | File      |
+| -------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+| [1](#1-control-heights-to-bind--18-components)     | Control heights to bind to `size/control/*` | 18                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | SOLAR Web |
+| [2](#2-the-components-we-build-variant-by-variant) | The components we build, in detail          | Button 2 fixes and 2 questions, Spinner 2, Icon Button 2, Button Group 1, StatusIndicator 1, the display primitives 1 fix and 1 question, the selection controls 2 fixes, the tags and messages 2 fixes and 1 question, the text fields 1 fix and 5 questions, the menus and lists 2 questions, the pickers 1 fix and 5 questions, navigation 1 fix and 6 questions, paging and steps 2 fixes and 2 questions, the cards 12 fixes and 7 questions, the tables and properties 4 fixes and 7 questions, the overlays and dialogs 5 fixes and 5 questions | SOLAR Web |
 
 ---
 
@@ -385,6 +385,33 @@ PropertyList is a description list, each row a term and its value, as its descri
 | **TableHeader's title and count**: its description names them, and mobile "stacks the actions under the title"; neither is drawn, and mobile draws no search. Meant?                                                                                                                                                         | As drawn: search, views and actions on desktop, views and actions on mobile. |
 | **PropertyList's `in-card`** ([7739:29013](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=7739-29013)): its description says true "removes the outer chrome for placement inside Card"; Figma draws the chrome on true and none on false, as List does.                                                             | As drawn, as List's.                                                         |
 
+### Overlays and dialogs: Dialog, ConfirmationDialog, Split Dialog, Drawer, Scrim, Tooltip, Popover and Coachmark
+
+A Dialog, ConfirmationDialog, Split Dialog and Drawer are modal: over the Scrim, the focus held in
+them, Escape closing them. A Dialog's type follows from what it holds, a picture, a Stepper or
+neither (owner decision). A Tooltip, Popover and Coachmark are drawn beside what they point at,
+with their arrow, tip or connector, in Flutter as on the web (owner decision for the Tooltip).
+
+**Fix** — these look like accidents:
+
+| Component                                                                                          | What                                                                                                                                                                      | Variants |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **Dialog** · [5888:18256](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5888-18256)      | **The wizard's close button is resized to 36**; the default's is the Icon Button's own 40. We draw the Icon Button's own.                                                 | 1        |
+| **Dialog** · [5888:18256](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5888-18256)      | **The image dialog's content padding binds `stack/lg`**, where a padding is an `inset`: `inset/lg`, the same 20, as the other types bind.                                 | 1        |
+| **Split Dialog** · [6774:9620](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=6774-9620)  | **With `cta=regular`, the left pane draws a 1px edge on its left**, against the dialog's own edge: the right pane's divider, copied. We draw it as Figma does.            | 1        |
+| **Tooltip** · [3377:34](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=3377-34)           | **The md left arrow sits 1px into the bubble** (2 past its edge, where sm's is 3). We draw each as Figma does.                                                            | 1        |
+| **Coachmark** · [10813:32930](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=10813-32930) | **The left connector is 7 tall, the right 6**: it is the right one turned half round, and its dot and node end sit half a pixel off the line. We draw each as Figma does. | 1        |
+
+**⚠️ Decide:**
+
+| Question                                                                                                                                                                                                                                                                                                                                                                    | What we do meanwhile                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **Popover's shadow** ([4572:120](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4572-120)): Figma binds `shadow/dialog` on its frame, which has no fill, so Figma draws only the soft shadow the bubble and tip cast together, not the style's 2px ring; the description says `shadow/overlay`. Which? A shadow that follows the tip needs a drop-shadow variable. | `shadow/overlay` on the bubble; the tip casts none.                        |
+| **Tooltip's arrow shadow**: the arrow carries `shadow/raised`, which the bubble does not. Meant? As StatusIndicator's marks, it needs a drop-shadow variable (decision 3).                                                                                                                                                                                                  | No shadow on the arrow.                                                    |
+| **Tooltip's delay**: the description says "~500ms"; the nearest duration is `motion/duration/slow`, 600ms. A duration of its own, or 600?                                                                                                                                                                                                                                   | `motion/duration/slow`.                                                    |
+| **Split Dialog on a narrow viewport**: its description says the panes stack; no variant draws it.                                                                                                                                                                                                                                                                           | Side by side at any width.                                                 |
+| **Coachmark's close** is a bare 20px icon, where a Dialog's is an Icon Button, and its title is centred over the header, where a long title would run under the icon. Meant?                                                                                                                                                                                                | A button around the icon, its target 44 × 44; the title centred, as drawn. |
+
 ---
 
 # Decisions we need from you
@@ -401,15 +428,20 @@ The questions we cannot answer ourselves, most far-reaching first.
    Input's side stepper, a date picker's 36px day cells and 32px month headers, and a menu's
    ~300px maximum height, which Dropdown Menu's description asks for (we cap at one raw 300), and
    a table's: its 40px select column and row heights, a header cell's 26px separator, the
-   toolbar's 240px search, a property's 160px Select and the mobile fade's 32: one family of size
+   toolbar's 240px search, a property's 160px Select and the mobile fade's 32, and an overlay's:
+   a Dialog's 480 and a Split Dialog's 640 width, a Drawer's 348, a Popover's 320 and 240 and a
+   Coachmark's 320, a dialog title's 36px icon box and its image's 279, a Tooltip's 7 × 3 arrow, a
+   Popover's 10px tip, and a Coachmark's 100px connector and 6px dot: one family of size
    variables, as `size/control/*` is for controls? Sections 1 and 2.
 
 **Components**
 
 2. **Button's tertiary underline and lg fill** — the underline is not drawn on a danger tertiary
    hover and is drawn on lg's secondary hover; lg tertiary alone is filled. Section 2.
-3. **StatusIndicator's marks** — `shadow/raised` is a box shadow, where a mark needs a drop
-   shadow: a drop-shadow variable, or none? Section 2.
+3. **Drop shadows** — StatusIndicator's marks and Tooltip's arrow carry `shadow/raised`, and
+   Popover's frame `shadow/dialog`, each a box shadow where the shape needs a drop shadow: a
+   drop-shadow variable, or none? And is Popover's `shadow/dialog` or, as its description says,
+   `shadow/overlay`? Section 2.
 4. **Focus where none is drawn** — Tree Item's focus is its edit state, and no card draws a focus
    ring. Section 2.
 5. **A Dropdown Item's height** — 34px at md without its optional parts, as its description and
@@ -420,6 +452,8 @@ The questions we cannot answer ourselves, most far-reaching first.
    are range pickers coming, and should a floating calendar show two months? Section 2.
 8. **Tables** — a row's height (44 or 40), Row's hover, a sort arrow and a numeric column, and the
    mobile table: a card-style list, or the fitted rows and fade Figma draws? Section 2.
+9. **Overlays** — Tooltip's delay, a Split Dialog on a narrow viewport, and Coachmark's close and
+   title. Section 2.
 
 ---
 

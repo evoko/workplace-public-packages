@@ -276,7 +276,7 @@ abstract final class SolarRowExpandRecipe {
       height: 40.0,
       fill: <SolarVectorPath>[],
       stroke: <SolarVectorPath>[
-        SolarVectorPath('M0 0L-0.5 0L-0.5 40L0 40L0.5 40L0.5 0L0 0Z'),
+        SolarVectorPath('M0 40L0.5 40L0.5 0L0 0L-0.5 0L-0.5 40L0 40Z'),
       ],
     ),
     SolarGlyph(
@@ -284,7 +284,7 @@ abstract final class SolarRowExpandRecipe {
       height: 20.0,
       fill: <SolarVectorPath>[],
       stroke: <SolarVectorPath>[
-        SolarVectorPath('M0 0L-0.5 0L-0.5 20L0 20L0.5 20L0.5 0L0 0Z'),
+        SolarVectorPath('M0 20L0.5 20L0.5 0L0 0L-0.5 0L-0.5 20L0 20Z'),
       ],
     ),
   ];

@@ -79,7 +79,7 @@ Keys of `changed` are layer paths in the default variant's tree (`/` is the root
 marks the second sibling of the same name). Values hold only the fields that differ:
 `hidden`, `text`, `textStyle`, `main`, `variant`, `size`, `position`, `constraints`, `layout`,
 `sizing`, `fills`, `strokes`, `strokeWeight`, `strokeWeights`, `radius`, `effectStyle`, `opacity`,
-`vars`. For `vars` and
+`vars`, `order`. For `vars` and
 `layout` only the changed sub-keys appear; `null` means the default had it and the variant
 does not. This is the input for generating per-variant styles: start from the default tree,
 apply `changed`, add and remove the listed layers.
@@ -91,6 +91,13 @@ alone, which codegen refuses. `index` is where the layer sits among its parent's
 variant (Card's loading title placeholder, first, above the content); data fetched before
 2026-09-25 lacks it, and codegen then puts the layer after its siblings, which an overlay's
 `places` corrects.
+
+A changed layer the variant draws in another place among its siblings has `order`: its rank among
+the siblings the variant shares with the default, from 0 (Popover's tip, `0` where it points up,
+before its content). A sibling only one of the two trees has moves no rank, so an added or removed
+layer records no `order` on the others. Codegen draws each variant in its own order, and gives a
+parent's laid-out children an `order` where its variants disagree. Data fetched before 2026-09-25
+has none, and every variant is read in the default's order.
 
 The digest's `hidden` names every layer the variant hides, at any depth and inside the instances
 the tree does not descend into; `hiddenPaths` gives the same layers by path, in the tree's
@@ -135,7 +142,11 @@ Sparkline's sample line): `geometry`, Figma's `fillGeometry`, and `strokeGeometr
 has strokes, each a list of `{path, windingRule}` with SVG path data in the layer's own coordinates
 (its `size` is the box). A rectangle or an ellipse records none, since its size and radius
 describe it. Both are diffed per variant like any other property. The fetcher asks for them with
-`geometry=paths`; data fetched before 2026-09-23 has neither.
+`geometry=paths`; data fetched before 2026-09-23 has neither. REST gives a path before the node's
+transform; where the transform turns or flips the layer (Tooltip's side arrows, a quarter turn of
+its bottom one), the fetcher turns each point by it and moves the outline back into the box
+(`drawn-path.mjs`), so the path draws as Figma shows it, its `H` and `V` written as `L`. Data
+fetched before 2026-09-25 has the paths unturned.
 
 A colour bound to a variable carries no opacity suffix. For a bound paint REST reports the
 variable's own alpha as the paint's opacity, and the token already holds it: in all 1742 bound

@@ -175,7 +175,9 @@ export function matches(property, figma, rendered) {
       return Math.abs(pixels(rendered) - figma) <= 0.02;
     case 'opacity':
       return Math.abs(Number(rendered) - figma) <= 0.01;
+    // Words drawn or not, and a rank among siblings, are one or another, never nearly.
     case 'words':
+    case 'order':
       return rendered === figma;
     default:
       return Math.abs(pixels(rendered) - figma) <= 0.5;
@@ -208,6 +210,9 @@ export const MEASURED = [
   'y',
   'right',
   'bottom',
+  'centerX',
+  'centerY',
+  'order',
   'opacity',
   'color',
   'fontFamily',

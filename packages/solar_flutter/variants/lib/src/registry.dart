@@ -17,7 +17,9 @@ import 'button.dart';
 import 'button_group.dart';
 import 'card.dart';
 import 'checkbox.dart';
+import 'coachmark.dart';
 import 'column_item.dart';
+import 'confirmationdialog.dart';
 import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
@@ -26,8 +28,10 @@ import 'date_picker_day_cell.dart';
 import 'date_picker_open.dart';
 import 'datepicker.dart';
 import 'device_card.dart';
+import 'dialog.dart';
 import 'divider.dart';
 import 'draghandle.dart';
+import 'drawer.dart';
 import 'dropdown.dart';
 import 'dropdown_group_label.dart';
 import 'dropdown_item.dart';
@@ -66,6 +70,7 @@ import 'paginationellipsis.dart';
 import 'paginationitem.dart';
 import 'paginationnav.dart';
 import 'password_input.dart';
+import 'popover.dart';
 import 'progressbar.dart';
 import 'propertylist.dart';
 import 'propertyrow.dart';
@@ -73,6 +78,7 @@ import 'radio.dart';
 import 'row.dart';
 import 'rowexpand.dart';
 import 'rowselect.dart';
+import 'scrim.dart';
 import 'searchfield.dart';
 import 'section_nav_group_header.dart';
 import 'section_nav_item.dart';
@@ -83,6 +89,7 @@ import 'skeleton.dart';
 import 'slider.dart';
 import 'slider_range.dart';
 import 'spinner.dart';
+import 'split_dialog.dart';
 import 'split_dropdown.dart';
 import 'splitbutton.dart';
 import 'status_card.dart';
@@ -104,6 +111,7 @@ import 'timestamp.dart';
 import 'toast.dart';
 import 'toggle.dart';
 import 'token_input.dart';
+import 'tooltip.dart';
 import 'tree_indent.dart';
 import 'tree_item.dart';
 import 'trend_badge.dart';
@@ -124,7 +132,9 @@ const builders = <String, VariantBuilder>{
   'Button Group': buildButtonGroup,
   'Card': buildCard,
   'Checkbox': buildCheckbox,
+  'Coachmark': buildCoachmark,
   'Column Item': buildColumnItem,
+  'ConfirmationDialog': buildConfirmationDialog,
   'Container': buildContainer,
   'Context Menu': buildContextMenu,
   'Context Menu Item': buildContextMenuItem,
@@ -133,8 +143,10 @@ const builders = <String, VariantBuilder>{
   'Date Picker Open': buildDatePickerOpen,
   'DatePicker': buildDatePicker,
   'Device Card': buildDeviceCard,
+  'Dialog': buildDialog,
   'Divider': buildDivider,
   'DragHandle': buildDragHandle,
+  'Drawer': buildDrawer,
   'Dropdown': buildDropdown,
   'Dropdown Group Label': buildDropdownGroupLabel,
   'Dropdown Item': buildDropdownItem,
@@ -173,6 +185,7 @@ const builders = <String, VariantBuilder>{
   'PaginationItem': buildPaginationItem,
   'PaginationNav': buildPaginationNav,
   'Password Input': buildPasswordInput,
+  'Popover': buildPopover,
   'ProgressBar': buildProgressBar,
   'PropertyList': buildPropertyList,
   'PropertyRow': buildPropertyRow,
@@ -180,6 +193,7 @@ const builders = <String, VariantBuilder>{
   'Row': buildRow,
   'RowExpand': buildRowExpand,
   'RowSelect': buildRowSelect,
+  'Scrim': buildScrim,
   'SearchField': buildSearchField,
   'Section Nav Group Header': buildSectionNavGroupHeader,
   'Section Nav Item': buildSectionNavItem,
@@ -190,6 +204,7 @@ const builders = <String, VariantBuilder>{
   'Slider': buildSlider,
   'Slider Range': buildSliderRange,
   'Spinner': buildSpinner,
+  'Split Dialog': buildSplitDialog,
   'Split Dropdown': buildSplitDropdown,
   'SplitButton': buildSplitButton,
   'Status Card': buildStatusCard,
@@ -211,6 +226,7 @@ const builders = <String, VariantBuilder>{
   'Toast': buildToast,
   'Toggle': buildToggle,
   'Token Input': buildTokenInput,
+  'Tooltip': buildTooltip,
   'Tree Indent': buildTreeIndent,
   'Tree Item': buildTreeItem,
   'Trend Badge': buildTrendBadge,

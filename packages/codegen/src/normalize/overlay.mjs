@@ -35,6 +35,10 @@
  *                                                        `repeat: <count>`; the shell draws the real
  *                                                        ones from its data. `<layer>` names the
  *                                                        first, or a pattern of firsts (`*DayCell`)
+ *   examples:     { <Figma path>: { reason } }           a slot whose children Figma draws as sample
+ *                                                        content (Split Dialog's panes, a title and a
+ *                                                        field in each): no layers; the shell draws
+ *                                                        the caller's children there
  *   same:         { <Figma path>: { as, reason } }       a layer Figma draws anew in some variants that
  *                                                        is another (Inline Input's Confirm and Cancel,
  *                                                        framed again per edit state): read as `as`
@@ -46,8 +50,9 @@
  *   follows:      { <layer>.<cell>: { axes, reason } }    a cell that follows other axes than its class
  *   bind:         { <layer>.<cell>: { literal, token, reason } }  a raw value to the token of that value,
  *                 or { tokens: { <literal>: <token>, … }, reason } where the value differs by size
- *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none | keyword, reason } }  one entry,
- *                                                        changed
+ *   set:          { <layer>.<section>.<keys…>.<cell>: { token | none | keyword | literal, reason } }
+ *                                                        one entry, changed; a `literal` only where
+ *                                                        `allowLiteral` allows the cell too
  *   allowLiteral: { <layer>.<cell>: { values?, reason } }  a raw value there is no token for;
  *                                                        `values` allows those alone, where a bind
  *                                                        takes the rest (StatusIndicator's 8px dot)
@@ -152,7 +157,7 @@ const FIELDS = {
   rename: ['to', 'values'],
   follows: ['axes'],
   bind: ['literal', 'token', 'tokens'],
-  set: ['token', 'none', 'keyword'],
+  set: ['token', 'none', 'keyword', 'literal'],
   allowLiteral: ['values'],
   controlDraws: ['cells'],
   shownBy: ['slot'],
@@ -169,6 +174,7 @@ const FIELDS = {
   places: ['before'],
   same: ['as'],
   repeats: [],
+  examples: [],
   composes: ['name'],
 };
 const SECTIONS = [
@@ -945,6 +951,45 @@ export function withoutRepeats(resolved, spec) {
   };
 }
 
+/**
+ * The layers the overlay says are a slot's sample content (`examples`: Split Dialog's panes, which
+ * hold a title, a description and a field Figma draws to show them): in every variant, what the
+ * slot holds is no layer, so the recipe, the oracle and the tree carry the slot alone, and the
+ * shell draws the caller's children in it. Applied to the resolved variants, before the recipe is
+ * derived, as `same` is. A rule for a path no variant has, or for one that holds nothing, fails.
+ */
+export function exampleLayers(resolved, overlay) {
+  const paths = Object.keys(overlay?.examples ?? {});
+  if (!paths.length) return resolved;
+  const fail = (detail) => {
+    throw new Error(`${overlay.file}: ${detail}`);
+  };
+  // Whether a layer is under one of the slots, by its parents, as a path cannot be split.
+  const under = (v, path) => {
+    for (let p = v.parents.get(path); p != null; p = v.parents.get(p))
+      if (paths.includes(p)) return true;
+    return false;
+  };
+  for (const path of paths) {
+    if (!resolved.variants.some((v) => v.layers.has(path)))
+      fail(`examples ${path}: no variant has the layer`);
+    if (
+      !resolved.variants.some((v) =>
+        [...v.layers.keys()].some((p) => v.parents.get(p) === path),
+      )
+    )
+      fail(`examples ${path}: it holds nothing; delete the rule`);
+  }
+  return {
+    ...resolved,
+    variants: resolved.variants.map((v) => ({
+      ...v,
+      layers: new Map([...v.layers].filter(([p]) => !under(v, p))),
+      parents: new Map([...v.parents].filter(([p]) => !under(v, p))),
+    })),
+  };
+}
+
 export function sameLayers(resolved, overlay) {
   const rules = Object.entries(overlay?.same ?? {});
   if (!rules.length) return resolved;
@@ -1109,6 +1154,9 @@ export function applyOverlay(
   // Layers read as one were merged before the recipe was derived (sameLayers); here recorded.
   for (const [path, rule] of sorted('same'))
     record('same', `${path} → ${rule.as}`, rule.reason);
+  // A slot's sample content was dropped before the recipe was derived (exampleLayers); here recorded.
+  for (const [path, rule] of sorted('examples'))
+    record('examples', path, rule.reason);
 
   // Slots were declared before the layers were named (see declareSlots); here they are recorded.
   for (const [at, rule] of sorted('slots'))
@@ -1303,6 +1351,15 @@ export function applyOverlay(
     };
     if (rule.token !== undefined && !names.has(rule.token))
       fail(`set ${at}: ${rule.token} is not a SOLAR token`);
+    // A size Figma draws but does not record (ConfirmationDialog's 400, a hug whose children all
+    // fill): a raw value, which the cell's allowLiteral must allow, as any is.
+    if (rule.literal !== undefined && typeof rule.literal !== 'number')
+      fail(`set ${at}: literal must be a number`);
+    if (
+      rule.literal !== undefined &&
+      !Object.keys(overlay.allowLiteral ?? {}).includes(`${layer}.${cell}`)
+    )
+      fail(`set ${at}: a literal needs allowLiteral ${layer}.${cell}`);
     // A composed child's variant is a keyword of the child's own (Toast's Tag: `status`, where
     // Figma names one Tag no longer has); any other keyword is a size's.
     if (
@@ -1326,7 +1383,9 @@ export function applyOverlay(
         ? { token: rule.token }
         : rule.keyword !== undefined
           ? { keyword: rule.keyword }
-          : { none: true }),
+          : rule.literal !== undefined
+            ? { literal: rule.literal }
+            : { none: true }),
       from: 'overlay',
       reason: rule.reason,
       ...(replaced && Object.keys(replaced).length ? { replaced } : {}),
@@ -1341,7 +1400,9 @@ export function applyOverlay(
             found.literal === names.value(rule.token))
         : rule.keyword !== undefined
           ? found?.keyword === rule.keyword
-          : Boolean(found?.none);
+          : rule.literal !== undefined
+            ? found?.literal === rule.literal
+            : Boolean(found?.none);
     const stateOf = (props) =>
       overlay.states?.rename?.[props.state]?.to ?? props.state ?? 'default';
     const looksLike = (combo, props) =>

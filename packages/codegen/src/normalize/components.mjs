@@ -23,6 +23,7 @@ import {
   repeatLayers,
   restylesOf,
   renameStates,
+  exampleLayers,
   sameLayers,
   sampleAxes,
 } from './overlay.mjs';
@@ -422,8 +423,12 @@ export function buildComponentSpec(
   // Axes that are samples of what the caller gives (Avatar's colours) are dropped, keeping the
   // variants at the values the overlay names.
   // And the layers the overlay reads as one (Inline Input's action frames, drawn anew per state).
+  // And a slot's sample content, which is no layer (Split Dialog's panes).
   const resolved = sampleAxes(
-    sameLayers(renameStates(folded.resolved, overlay), overlay),
+    exampleLayers(
+      sameLayers(renameStates(folded.resolved, overlay), overlay),
+      overlay,
+    ),
     overlay,
   );
   // The variant the rest are read against: Figma's default, or, where the samples dropped it
