@@ -339,6 +339,10 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
  * @param {string} [o.wraps] the texts that wrap, and how their lines align, a map literal by layer
  * @param {string} [o.truncates] the texts that take their row's room and are cut short, a set
  *   literal (GlobalSearch's words)
+ * @param {string} [o.clips] the boxes whose content is cut to their rounded corners, a set
+ *   literal (Split Dropdown's root)
+ * @param {string} [o.images] the pictures boxes show, a map literal by layer (Launch Card Full
+ *   Screen's image)
  * @param {boolean} [o.restyle] takes the colours a composing component draws it in (Toast's Tag:
  *   its root's fill and edge), a `restyle` map by cell
  * @param {string} [o.slots] the slots the caller fills, a map literal by layer (Link's icons)
@@ -414,7 +418,7 @@ final Map<String, Color> restyle;`;
         glyph: ${glyphs ? `(l) => ${R}.glyph(l, p, ${states})` : '(_) => null'},
       ),
       tree: _tree,
-      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.content ? `\n      content: ${o.content},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${o.truncates ? `\n      truncates: ${o.truncates},` : ''}${icons.length ? `\n      icons: ${icons.some((i) => i.byAxis) ? '' : 'const '}{${icons.map((i) => `'${i.layer}': ${dartIcon(i, spec)}`).join(', ')}},` : ''}
+      keyPrefix: '${keyPrefixOf(name)}',${o.text ? `\n      text: ${o.text},` : ''}${o.slots ? `\n      slots: ${o.slots},` : ''}${o.content ? `\n      content: ${o.content},` : ''}${o.builders ? `\n      builders: ${o.builders},` : ''}${o.composed ? `\n      composed: ${o.composed},` : ''}${o.wraps ? `\n      wraps: ${o.wraps},` : ''}${o.truncates ? `\n      truncates: ${o.truncates},` : ''}${o.clips ? `\n      clips: ${o.clips},` : ''}${o.images ? `\n      images: ${o.images},` : ''}${icons.length ? `\n      icons: ${icons.some((i) => i.byAxis) ? '' : 'const '}{${icons.map((i) => `'${i.layer}': ${dartIcon(i, spec)}`).join(', ')}},` : ''}
     ).layer('root')`;
   const draw = o.control
     ? `    Widget draw(Set<WidgetState> states) => ${layers('states')};

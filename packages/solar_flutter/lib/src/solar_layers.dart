@@ -68,6 +68,7 @@ class SolarLayers {
     this.wraps = const {},
     this.fields = const {},
     this.truncates = const {},
+    this.clips = const {},
   });
 
   /// The component's recipe under its props and states.
@@ -116,6 +117,10 @@ class SolarLayers {
   /// A text that takes the room its row leaves, and is cut short with an ellipsis where it runs out
   /// (GlobalSearch's words, beside its Kbd), by layer.
   final Set<String> truncates;
+
+  /// A box whose content is cut to its rounded corners (Split Dropdown's, whose two zones are
+  /// tinted), by layer, as CSS's `overflow: hidden` cuts it.
+  final Set<String> clips;
 
   static const _main = {
     'MIN': MainAxisAlignment.start,
@@ -381,8 +386,9 @@ class SolarLayers {
     // alignment are still the layer's.
     if (laid && placed.isEmpty) {
       content = flex(children);
-    } else if (laid && flow.isNotEmpty && given == null) {
-      // An auto layout with children placed over it (Text Area's buttons, in the field's corners):
+    } else if (laid && given == null) {
+      // An auto layout with children placed over it (Text Area's buttons, in the field's corners),
+      // or with only placed ones (Launch Card's image, its favourite in a corner, its gap its own):
       // the laid-out ones in it, the placed ones where Figma put them, from inside the border, so
       // a placed child reaching into the padding is hit there too.
       padded = false;
@@ -417,6 +423,7 @@ class SolarLayers {
       width: _extent('$name.width'),
       height: _extent('$name.height'),
       padding: padded ? padding : EdgeInsets.zero,
+      clipBehavior: clips.contains(name) ? Clip.antiAlias : Clip.none,
       decoration: BoxDecoration(
         color: recipe.lookup('$name.background') == null
             ? null

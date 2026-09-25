@@ -1,0 +1,88 @@
+# Hand-written decisions about SOLAR File Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: File Card
+
+base:
+  reason: >-
+    Bespoke on both: a tile of the card family (shells/card.mjs), one file of a file browser's
+    grid, drawn from Figma's layers, its thumbnail the caller's and its More a menu of its own;
+    or, as `create`, the tile that adds one (owner decision 2026-09-25: Figma's New Asset Tile,
+    kept as drawn). Pressable where it is given something to do, its name then the stretched
+    action, the card named by it, as its description says.
+
+rename:
+  type:
+    to: type
+    values:
+      File Card: file
+      New Asset Tile: create
+    reason: >-
+      Figma's values name the component and a tile; in code they are what the tile is, a file or
+      the one that creates one.
+
+follows:
+  root.align:
+    axes: [type]
+    reason: >-
+      A file's tile packs its thumbnail and footer from the top; the create tile centres its Plus
+      and label, as Figma draws each.
+  root.gap:
+    axes: [type]
+    reason: >-
+      A file's thumbnail and footer touch; the create tile's Plus and label are 12 apart
+      (stack.sm), as Figma draws each.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A tile spans its cell of the grid: Figma draws it 308 wide, a sample. The caller sizes it.
+  root.appearance.type=File Card.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws File Card no focus state, where its description lists one; a pressable tile,
+      focused on its name, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR
+      to draw it.
+  root.appearance.type=New Asset Tile.focus.shadow:
+    token: shadow.focus.default
+    reason: As the file's tile's, the focus ring.
+
+bind:
+  thumbnail.radiusBottomLeft:
+    literal: 0
+    token: radius.none
+    reason: >-
+      The thumbnail's bottom corners are square, where it meets the footer; its top ones are the
+      card's (radius.container). Same value, governed token.
+  thumbnail.radiusBottomRight:
+    literal: 0
+    token: radius.none
+    reason: As the bottom left corner's.
+  fileIcon.height:
+    literal: 24
+    token: icon.lg
+    reason: Same value, governed token; the file icon's width is already bound to it.
+  iconPlus.height:
+    literal: 24
+    token: icon.lg
+    reason: Same value, governed token; the Plus's width is already bound to it.
+  iconMore.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the More icon's height is already bound to it.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A tile is 222 tall, bound to nothing, its thumbnail taking what the footer leaves: SOLAR has
+      no tile size token. Carried as Figma's number, and raised as a governance gap.
+
+accept:
+  component.file card.root.borderWidth@type=New Asset Tile:
+    reason: >-
+      The create tile's edge is 1px, bound to nothing, where the file's tile's is border.default,
+      also 1px: the same edge. The code draws border.default on both.
+  component.file card.root.borderWidth#unbound:
+    reason: As the create tile's edge's, border.default's value, which the code draws.

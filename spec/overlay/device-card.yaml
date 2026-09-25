@@ -1,0 +1,166 @@
+# Hand-written decisions about SOLAR Device Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Device Card
+
+base:
+  reason: >-
+    Bespoke on both: a card of the family (shells/card.mjs), one device or a batch of them, drawn
+    from Figma's layers, each type from its own (owner decision 2026-09-25: one component, its
+    type single or batch); its health a SOLAR Tag of the status the caller gives, its action the
+    caller's Button, and a batch's device list the caller's Dropdown.
+
+slots:
+  contentName:
+    name: name
+    type: text
+    reason: >-
+      The device's name ("Cambridge Qt X") is the caller's; Figma records no text prop, and draws
+      it in a layer of each type's own (the batch's headline, and its loading row).
+  description:
+    name: details
+    type: text
+    reason: >-
+      What and where it is ("Sound masking · PL5432109 · Auditorium 100") is the caller's; Figma
+      records no text prop.
+  contentCount:
+    name: count
+    type: text
+    reason: How many a batch holds ("3 devices") is the caller's; Figma records no text prop.
+  dropdown:
+    name: devices
+    type: component
+    reason: >-
+      A batch's devices, by serial and location, are the caller's SOLAR Dropdown (md), which the
+      card places; Figma records no prop for it.
+
+follows:
+  root.direction:
+    axes: [type]
+    reason: >-
+      One device's card is a row (its icon, its words, its Tag); a batch's is a column, its
+      headline over its devices, as Figma draws each.
+  root.align:
+    axes: [type]
+    reason: As its direction, the row centred and the column packed.
+  root.gap:
+    axes: [type]
+    reason: >-
+      As its direction: the row's parts 16 apart (stack.md), the column's headline and devices
+      touching, as Figma draws each.
+  root.paddingTop:
+    axes: [type]
+    reason: >-
+      One device's card is padded; a batch's is not, its headline padded in its own right and its
+      devices by their own padding, as Figma draws each.
+  root.paddingRight:
+    axes: [type]
+    reason: As the top padding.
+  root.paddingBottom:
+    axes: [type]
+    reason: As the top padding.
+  root.paddingLeft:
+    axes: [type]
+    reason: As the top padding.
+  headlineContent.direction:
+    axes: [state]
+    reason: >-
+      A batch's name and count sit on a line; loading, its name and count over a placeholder, in
+      a column, as Figma draws each.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the list it is in: Figma draws it 560 wide, a sample. The caller sizes it.
+  tag.base.height:
+    none: true
+    reason: >-
+      The health is a SOLAR Tag, whose 24px height is its own: the card places it, and never
+      sizes it.
+  headlineTag.base.height:
+    none: true
+    reason: As the single card's Tag, its own height.
+  button.base.height:
+    none: true
+    reason: >-
+      The action is the caller's Button ("Try again"), sm as Figma draws it, whose height is its
+      own: the card places it and never sizes it.
+  root.appearance.type=single.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Device Card no focus state; a pressable card, focused on its name, draws SOLAR's
+      focus ring, as Card's does; the design review asks SOLAR to draw it.
+  root.appearance.type=batch.focus.shadow:
+    token: shadow.focus.default
+    reason: As the single card's, the focus ring.
+
+bind:
+  iconIconDevice.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token.
+  iconIconDevice.height:
+    literal: 20
+    token: icon.md
+    reason: As its width.
+  iconIconProgress.width:
+    literal: 20
+    token: icon.md
+    reason: As the device icon's.
+  iconIconProgress.height:
+    literal: 20
+    token: icon.md
+    reason: As the device icon's.
+  headlineIconIconDevice.width:
+    literal: 20
+    token: icon.md
+    reason: As the single card's device icon.
+  headlineIconIconDevice.height:
+    literal: 20
+    token: icon.md
+    reason: As the single card's device icon.
+  headlineIconIconProgress.width:
+    literal: 20
+    token: icon.md
+    reason: As the single card's device icon.
+  headlineIconIconProgress.height:
+    literal: 20
+    token: icon.md
+    reason: As the single card's device icon.
+
+allowLiteral:
+  icon.width:
+    reason: >-
+      The device's tile is a 52px square, bound to nothing: SOLAR has no size token for it (as for
+      Insight Card's); carried as Figma's number, and raised as a governance gap.
+  icon.height:
+    reason: As the tile's width, a square.
+  headlineIcon.width:
+    reason: As the single card's tile, a batch's 40px square, carried as Figma's number.
+  headlineIcon.height:
+    reason: As its width, a square.
+  contentSkeleton.width:
+    reason: >-
+      The loading placeholder is Figma's drawing of a line to come (334 × 10), no measure of
+      anything: carried as drawn. SOLAR has no skeleton size tokens.
+  contentSkeleton.height:
+    reason: As its width, carried as drawn.
+  headlineContentSkeleton.width:
+    reason: As the single card's placeholder, carried as drawn.
+  headlineContentSkeleton.height:
+    reason: As the single card's placeholder, carried as drawn.
+
+hides:
+  headlineTag:
+    not: [label]
+    reason: >-
+      A batch's Tag draws its words (Figma's instance shows its Label, 99 wide): Figma records the
+      batch variant's hidden layers by name alone, and its Dropdown's hidden label is named Label
+      too, which the Tag's words are.
+  devices:
+    not: [fieldLabel]
+    reason: >-
+      A batch's Dropdown draws its field's words (Figma's instance shows them, 488 wide); it hides
+      the label above the field, named Label as the words are, which Figma records by name alone.

@@ -1,0 +1,109 @@
+# Hand-written decisions about SOLAR Image Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Image Card
+
+base:
+  reason: >-
+    Bespoke on both: a tile of the card family, an image with its title, drawn from Figma's
+    layers, its selection a SOLAR Checkbox and its More a menu of its own; or, unfilled, the tile
+    that adds one (owner decision 2026-09-25: kept as Figma draws it). Pressable where it is given
+    something to do, its title then the stretched action (owner decision 2026-09-25).
+
+slots:
+  title:
+    name: title
+    type: text
+    reason: The image's name is the caller's; Figma records no text prop.
+  subtitle:
+    name: subtitle
+    type: text
+    reason: Its details ("Last modified 2h ago") are the caller's; Figma records no text prop.
+  label:
+    name: label
+    type: text
+    reason: What the unfilled tile adds ("Create new") is the caller's; Figma records no text prop.
+
+follows:
+  root.align:
+    axes: [filled]
+    reason: >-
+      An image's tile packs its image and words from the top; the unfilled one centres its Plus
+      and label, as Figma draws each.
+  root.gap:
+    axes: [filled]
+    reason: >-
+      The image and its words touch; the unfilled tile's Plus and label are 16 apart (stack.lg),
+      as Figma draws each.
+  root.paddingTop:
+    axes: [filled]
+    reason: >-
+      The image reaches the tile's edge; the unfilled tile is padded 24 above and below
+      (inset.lg), as Figma draws each.
+  root.paddingBottom:
+    axes: [filled]
+    reason: As the top padding.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A tile spans its cell of a grid: Figma draws it 200 wide, a sample. The caller sizes it.
+  checkbox.base.width:
+    none: true
+    reason: >-
+      The selection is a SOLAR Checkbox, whose 16px box is its own: the tile places it, and never
+      sizes it.
+  checkbox.base.height:
+    none: true
+    reason: As its width, the Checkbox's own.
+  root.appearance.filled=true, selected=true.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Image Card no focus state; a pressable tile, focused on its title, draws SOLAR's
+      focus ring, as Card's does; the design review asks SOLAR to draw it.
+  root.appearance.filled=true, selected=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the selected tile's, the focus ring.
+  root.appearance.filled=false, selected=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the selected tile's, the focus ring.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A tile is 190 tall, bound to nothing, its image taking what its words leave: SOLAR has no
+      tile size token. Carried as Figma's number, and raised as a governance gap.
+  iconCircle.width:
+    reason: >-
+      The unfilled tile's Plus sits in a 44px circle, bound to nothing: SOLAR has no size token for
+      it (as for Option Card's 64); carried as Figma's number, and raised as a governance gap.
+  iconCircle.height:
+    reason: As the circle's width, a circle.
+  iconPlus.width:
+    reason: >-
+      The Plus is 22px, between the icon ladder's lg (24) and md (20), bound to nothing: carried
+      as Figma's number, and raised as a governance gap (a size off the ladder).
+  iconPlus.height:
+    reason: As the Plus's width.
+  icon.width:
+    reason: >-
+      The More mark is Figma's drawing (a vector, 3 × 14), not a SOLAR icon: carried as drawn, the
+      button around it given a 44 × 44 target. The design review asks SOLAR to use Icon/More.
+  icon.height:
+    reason: As the mark's width, carried as drawn.
+
+accept:
+  component.image card.sparse@filled=false:
+    reason: >-
+      The unfilled tile adds an image and has none to select: Figma draws it unselected alone,
+      which is the look it has. Figma's default is selected (true), which the code's is not: a
+      tile starts unselected.
+
+defaults:
+  selected:
+    value: false
+    reason: >-
+      A tile starts unselected, as a selection does: Figma's default variant is the selected one,
+      a sample of the look.

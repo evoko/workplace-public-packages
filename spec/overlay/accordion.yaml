@@ -1,0 +1,83 @@
+# Hand-written decisions about SOLAR Accordion, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Accordion
+
+base:
+  reason: >-
+    Bespoke on both: one item of an accordion drawn from Figma's layers with the shared helpers.
+    Collapsed, the item is its header, a disclosure button; expanded, Figma draws it as its own
+    collapsed header over the content, which the shells draw so, the header a button announced
+    expanded. MUI's Accordion draws a Paper, a summary and transitions of its own, which fight
+    Figma's; Flutter's ExpansionTile its own tile.
+
+slots:
+  title:
+    name: title
+    type: text
+    reason: What the item is about, its header's words, is the caller's; Figma records no prop.
+  contentText:
+    name: description
+    type: text
+    reason: >-
+      The content's words, Figma's example in the content slot, are the caller's; it draws them
+      in the secondary ink, as Card's description.
+
+follows:
+  root.direction:
+    axes: [expanded]
+    reason: >-
+      Collapsed, the item is its header, a row of its title and chevron; expanded, a column of
+      its header (the collapsed item, nested) over its content, as Figma draws each.
+  root.align:
+    axes: [expanded]
+    reason: As its direction, the row centred and the column packed.
+  root.gap:
+    axes: [expanded]
+    reason: >-
+      As its direction: the header's 8 between its title and chevron, none between the expanded
+      item's header and content, whose padding spaces them.
+  root.paddingTop:
+    axes: [expanded]
+    reason: >-
+      The collapsed item is padded, a header; the expanded one is not, its nested header padded
+      in its own right and its content by its own padding.
+  root.paddingRight:
+    axes: [expanded]
+    reason: As the top padding.
+  root.paddingBottom:
+    axes: [expanded]
+    reason: As the top padding.
+  root.paddingLeft:
+    axes: [expanded]
+    reason: As the top padding.
+  root.borderTopWidth:
+    axes: [expanded]
+    reason: >-
+      The rule above each item is its header's: the collapsed item draws it, the expanded one
+      draws it once, on its nested header.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      An item spans the accordion it is in: Figma draws it 400 wide, a sample. The caller sizes
+      it.
+  title.base.width:
+    keyword: FILL
+    reason: >-
+      The title fills the header, the chevron at its end, as Figma sizes it (FILL, 344 of 368):
+      a text's sizing the IR does not read, set here.
+  root.appearance.expanded=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Accordion no focus state; a keyboard user needs to see its header focused,
+      SOLAR's floor. The header draws SOLAR's focus ring, as Card's does; the design review asks
+      SOLAR to draw it.
+
+bind:
+  iconChevronDown.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the chevron's height is already bound to it.

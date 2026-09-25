@@ -46,7 +46,8 @@ export interface LayerDrawing {
   content?: Record<string, ReactNode>;
   /**
    * A layer the shell draws as an element of its own, by layer (SplitButton's halves, two buttons):
-   * given the class and place the recipe gives the layer, and its children drawn.
+   * given the class and place the recipe gives the layer, and its children drawn. A glyph keeps the
+   * layer's class, its element given `<layer>Control` and the glyph's place, the glyph its child.
    */
   render?: Record<string, (layer: DrawnLayer) => ReactNode>;
   /** The SOLAR icon each icon layer draws, by layer (RowExpand's chevrons). */
@@ -97,8 +98,9 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
         }
       : undefined;
   const className = `${d.prefix}-${name}`;
-  if (isGlyph(p.glyph))
-    return (
+  const own = d.render?.[name];
+  if (isGlyph(p.glyph)) {
+    const svg = (
       <svg
         key={name}
         className={`${className} ${d.prefix}-glyph`}
@@ -107,13 +109,27 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
         // placed by position); a size the recipe gives in CSS wins over these.
         width={p.glyph.width}
         height={p.glyph.height}
-        style={place}
+        style={own ? undefined : place}
         aria-hidden
       >
         {paths(p.glyph.fill, 'SolarGlyph-fill', 'f')}
         {paths(p.glyph.stroke, 'SolarGlyph-stroke', 's')}
       </svg>
     );
+    // A glyph the shell makes a control (Image Card's More, a drawn mark): its element holds the
+    // glyph, which keeps the layer's class, and sits where the glyph would.
+    return own ? (
+      <Fragment key={name}>
+        {own({
+          className: `${className}Control`,
+          style: place,
+          children: [svg],
+        })}
+      </Fragment>
+    ) : (
+      svg
+    );
+  }
   const icon = d.icons?.[name];
   // Marked as a drawn icon, by a class no layer is named (a layer named \`icon\`, ListItem's, would
   // otherwise style every icon of its component: its trailing one too).
@@ -133,7 +149,6 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
         {d.text[name]}
       </span>
     );
-  const own = d.render?.[name];
   if (own)
     return (
       <Fragment key={name}>

@@ -2,6 +2,8 @@
 // The web registry: a case per generated component, by its name. The spec requires one for
 // every component in the codegen’s `COMPONENTS`, so a new component cannot go unmeasured.
 
+import accordion from './accordion.js';
+import actionCard from './action-card.js';
 import alert from './alert.js';
 import alertSmall from './alert-small.js';
 import autocomplete from './autocomplete.js';
@@ -13,13 +15,16 @@ import breadcrumbItem from './breadcrumb-item.js';
 import breadcrumbs from './breadcrumbs.js';
 import button from './button.js';
 import buttonGroup from './button-group.js';
+import card from './card.js';
 import checkbox from './checkbox.js';
+import container from './container.js';
 import contextMenu from './context-menu.js';
 import contextMenuItem from './context-menu-item.js';
 import counter from './counter.js';
 import datePickerDayCell from './date-picker-day-cell.js';
 import datePickerOpen from './date-picker-open.js';
 import datePicker from './datepicker.js';
+import deviceCard from './device-card.js';
 import divider from './divider.js';
 import dragHandle from './draghandle.js';
 import dropdown from './dropdown.js';
@@ -27,18 +32,29 @@ import dropdownGroupLabel from './dropdown-group-label.js';
 import dropdownItem from './dropdown-item.js';
 import dropdownMenu from './dropdown-menu.js';
 import emptyState from './emptystate.js';
+import eventRow from './event-row.js';
+import expandableCard from './expandable-card.js';
 import fab from './fab.js';
+import fileCard from './file-card.js';
 import fileUpload from './fileupload.js';
 import globalSearch from './globalsearch.js';
 import iconButton from './icon-button.js';
+import imageCard from './image-card.js';
 import inlineInput from './inline-input.js';
+import insightCard from './insight-card.js';
+import insightCardSmall from './insight-card-small.js';
+import insightRow from './insight-row.js';
+import interactiveCard from './interactive-card.js';
 import kbd from './kbd.js';
+import launchCard from './launch-card.js';
+import launchCardFullScreen from './launch-card-full-screen.js';
 import link from './link.js';
 import list from './list.js';
 import listItem from './listitem.js';
 import navItem from './nav-item.js';
 import nodeEnd from './node-end.js';
 import numberInput from './number-input.js';
+import optionCard from './option-card.js';
 import optionRow from './option-row.js';
 import optionsList from './options-list.js';
 import pinInput from './pin-input.js';
@@ -62,7 +78,9 @@ import skeleton from './skeleton.js';
 import slider from './slider.js';
 import sliderRange from './slider-range.js';
 import spinner from './spinner.js';
+import splitDropdown from './split-dropdown.js';
 import splitButton from './splitbutton.js';
+import statusCard from './status-card.js';
 import statusIndicator from './statusindicator.js';
 import step from './step.js';
 import stepper from './stepper.js';
@@ -84,6 +102,8 @@ import trendBadge from './trend-badge.js';
 import type { VisualCase } from './types.js';
 
 export const CASES: Record<string, VisualCase> = {
+  Accordion: accordion,
+  'Action Card': actionCard,
   Alert: alert,
   'Alert Small': alertSmall,
   Autocomplete: autocomplete,
@@ -95,13 +115,16 @@ export const CASES: Record<string, VisualCase> = {
   Breadcrumbs: breadcrumbs,
   Button: button,
   'Button Group': buttonGroup,
+  Card: card,
   Checkbox: checkbox,
+  Container: container,
   'Context Menu': contextMenu,
   'Context Menu Item': contextMenuItem,
   Counter: counter,
   'Date Picker Day Cell': datePickerDayCell,
   'Date Picker Open': datePickerOpen,
   DatePicker: datePicker,
+  'Device Card': deviceCard,
   Divider: divider,
   DragHandle: dragHandle,
   Dropdown: dropdown,
@@ -109,18 +132,29 @@ export const CASES: Record<string, VisualCase> = {
   'Dropdown Item': dropdownItem,
   'Dropdown Menu': dropdownMenu,
   EmptyState: emptyState,
+  'Event Row': eventRow,
+  'Expandable Card': expandableCard,
   FAB: fab,
+  'File Card': fileCard,
   FileUpload: fileUpload,
   GlobalSearch: globalSearch,
   'Icon Button': iconButton,
+  'Image Card': imageCard,
   'Inline Input': inlineInput,
+  'Insight Card': insightCard,
+  'Insight Card Small': insightCardSmall,
+  'Insight Row': insightRow,
+  'Interactive Card': interactiveCard,
   Kbd: kbd,
+  'Launch Card': launchCard,
+  'Launch Card Full Screen': launchCardFullScreen,
   Link: link,
   List: list,
   ListItem: listItem,
   'Nav Item': navItem,
   'Node End': nodeEnd,
   'Number Input': numberInput,
+  'Option Card': optionCard,
   'Option Row': optionRow,
   'Options List': optionsList,
   'PIN Input': pinInput,
@@ -144,7 +178,9 @@ export const CASES: Record<string, VisualCase> = {
   Slider: slider,
   'Slider Range': sliderRange,
   Spinner: spinner,
+  'Split Dropdown': splitDropdown,
   SplitButton: splitButton,
+  'Status Card': statusCard,
   StatusIndicator: statusIndicator,
   Step: step,
   Stepper: stepper,

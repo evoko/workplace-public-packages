@@ -1,0 +1,115 @@
+# Hand-written decisions about SOLAR Launch Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Launch Card
+
+base:
+  reason: >-
+    Bespoke on both: a card of the family (shells/card.mjs), an app to open, drawn from Figma's
+    layers: its image, its App Icon and name, a Tag, its words, and its actions the caller's
+    Button Group (owner decision 2026-09-25), its favourite the caller's Icon Button; pressable
+    where it is given something to do, its name then the stretched action.
+
+samples:
+  access:
+    keep: ['true']
+    reason: >-
+      Owner decision 2026-09-25: the actions are the caller's, a Button Group drawn where Figma
+      draws one; Figma's access changes only that group's words (Open and Learn more, or Request
+      access), which are the caller's. The API loses it; each Figma variant is still checked.
+
+slots:
+  appName:
+    name: name
+    type: text
+    reason: The app's name is the caller's; Figma records no text prop.
+  appIcon:
+    name: appIcon
+    type: component
+    reason: >-
+      The app's icon, an App Icon of the library's assets, is the caller's (an image); Figma
+      records no prop for it.
+  buttonGroup:
+    name: actions
+    type: component
+    reason: >-
+      The actions are the caller's SOLAR Button Group (owner decision 2026-09-25); Figma records
+      no prop for it.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the space it is put in: Figma draws it 340 wide, a sample. The caller sizes
+      it.
+  headline.base.height:
+    keyword: HUG
+    reason: >-
+      The headline is as tall as what it holds: Figma fixes it at 24, its App Icon's and Tag's
+      height, where the favourite it holds without an image is 32. It hugs them, drawing Figma's
+      24 for an icon and a Tag.
+  actions.base.width:
+    keyword: FILL
+    reason: >-
+      The actions span the card's content: Figma fixes the group at 310 in a content 308 wide, a
+      sample. The Button Group fills it.
+  favourite.base.width:
+    none: true
+    reason: >-
+      The favourite is the caller's Icon Button (sm, round, tertiary), whose 32px box is its own:
+      the card places it, and never sizes it.
+  favourite.base.height:
+    none: true
+    reason: As its width, the Icon Button's own.
+  favouriteNoImage.base.width:
+    none: true
+    reason: As the favourite on the image, the Icon Button's own.
+  favouriteNoImage.base.height:
+    none: true
+    reason: As the favourite on the image, the Icon Button's own.
+  tag.base.height:
+    none: true
+    reason: >-
+      The Tag is a SOLAR Tag, whose 24px height is its own: the card places it, and never sizes
+      it.
+  root.appearance.default.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Launch Card no focus state, and its hover as its rest ("reserved"); a pressable
+      card, focused on its name, draws SOLAR's focus ring, as Card's does; the design review asks
+      SOLAR to draw it.
+
+allowLiteral:
+  image.height:
+    reason: >-
+      The image is 160 tall, bound to nothing: SOLAR has no media size token. Carried as Figma's
+      number, and raised as a governance gap.
+  appIcon.width:
+    reason: >-
+      The App Icon is 24px, bound to nothing: an app icon is an image of the assets, not a SOLAR
+      icon of the ladder's. Carried as Figma's number.
+  appIcon.height:
+    reason: As its width, a square.
+
+hides:
+  favouriteNoImage:
+    not: [icon]
+    reason: As the favourite on the image's, its icon drawn.
+  favourite:
+    not: [icon]
+    reason: >-
+      The favourite draws its icon, a bookmark, as Figma draws it: Figma records the variant's
+      hidden layers by name alone, and the Button Group's Buttons hide their icons, named Icon/None
+      as the favourite's is.
+
+choice:
+  favouritePlace:
+    layers:
+      image: favourite
+      headline: favouriteNoImage
+    content: image
+    reason: >-
+      One favourite, the caller's (Figma's favourite and favouriteNoImage are one control in two
+      places): on the image where the card has one, beside its name where it has none. Each Figma
+      variant is checked with an image, and without one.

@@ -1,0 +1,77 @@
+# Hand-written decisions about SOLAR Action Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Action Card
+
+base:
+  reason: >-
+    Bespoke on both: a card of the family (shells/card.mjs), drawn from Figma's layers, its calls
+    to action the caller's Buttons and its More a menu of its own; pressable where it is given
+    something to do, its title then the stretched action, its Buttons reachable above it (owner
+    decision 2026-09-25). Its description's "the surface itself is the control, not a
+    Button-in-a-Card" is what the stretched title gives, with the Buttons Figma draws.
+
+samples:
+  layout:
+    keep: [vertical]
+    reason: >-
+      Figma draws one layout, vertical: an axis of one value is no choice. The API loses it, and
+      gains it when SOLAR draws another.
+
+slots:
+  titleTitle:
+    name: title
+    type: text
+    reason: What the action is is the caller's; Figma records no text prop.
+  description:
+    name: description
+    type: text
+    reason: >-
+      Its words, Figma's example in the content slot, are the caller's; drawn in the secondary
+      ink, as Card's description.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the space it is put in: Figma draws it 300 wide, a sample. The caller sizes
+      it.
+  titleTitle.base.width:
+    keyword: FILL
+    reason: >-
+      The title fills its row, the More menu at the row's end, as Figma sizes it (FILL): a text's
+      sizing the IR does not read, set here.
+  primaryCTA.base.height:
+    none: true
+    reason: >-
+      The calls to action are the caller's Buttons, sm as Figma draws them, whose height is their
+      own: the card places them and never sizes them.
+  secondaryCTA.base.height:
+    none: true
+    reason: As the primary Button's, the Button's own height.
+  button.base.height:
+    none: true
+    reason: As the primary Button's, the Button's own height.
+  root.appearance.status=default.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Action Card no focus state; its description says focus is Card's. A pressable
+      card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks
+      SOLAR to draw it.
+  root.appearance.status=done.focus.shadow:
+    token: shadow.focus.default
+    reason: As the default card's, the focus ring.
+  root.appearance.status=danger.focus.shadow:
+    token: shadow.focus.default
+    reason: As the default card's, the focus ring.
+
+bind:
+  icon.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the icon's height is already bound to it.
+  iconMore.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the More icon's height is already bound to it.

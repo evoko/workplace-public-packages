@@ -1378,6 +1378,58 @@ both platforms, every finding decided (none left open). 79 components, 78 export
   - Launch Card, and Launch Card Full Screen (standalone);
   - Split Dropdown (standalone);
   - Event Row (composes Avatar).
+- **Owner decisions (2026-09-25):**
+  - a pressable card (given `onClick` or `href`) is a stretched main action: its title is the
+    button or link, its hit area the whole card, its own controls above it and reachable; hover
+    and focus are drawn only when it is pressable;
+  - a card's More glyph is a menu the card draws (`moreItems`), a "More actions" button with a
+    44 × 44 target opening the F6 Dropdown Menu, as SplitButton's items;
+  - `loading` everywhere: Figma's `ghost` (Status Card, the Insight parts) is renamed, a boolean
+    independent of status or severity, drawing each component's own skeleton frames, with
+    `aria-busy`;
+  - Interactive Card takes one `control` (none, checkbox, radio, toggle), not Figma's four
+    booleans;
+  - Option Card and the create variants of File Card and Image Card are built as Figma draws
+    them (create tiles), the contradiction with Option Card's docs in the design review;
+  - Launch Card Full Screen is built, with slots;
+  - Launch Card takes its actions as a slot, drawn in the Button Group's place; `access` goes;
+  - Device Card stays one component, `type` single or batch, each layout from its own layers.
+
+**F10 done 2026-09-25.** Card (pioneer), Container, Split Dropdown, Status Card, Insight Card,
+Insight Card Small, Insight Row, Expandable Card, Accordion, Event Row, Option Card, File Card,
+Image Card, Action Card, Interactive Card, Device Card, Launch Card and Launch Card Full Screen,
+every variant matching Figma on both platforms, every finding decided (none left open). 97
+components, 96 exported.
+
+- **Taken here, open to the owner:**
+  - a card draws what Figma draws: hover and focus as Figma's look, only where the card is
+    pressable, SOLAR's focus ring added; each fills its width (Figma's are samples);
+  - loading and disabled Cards, and loading Insight parts, are drawn at the one status Figma draws
+    them at (none, info), whatever the status;
+  - a loading card stays pressable (Figma draws a loading Insight Card hovered), its action named
+    by its title;
+  - the status or severity is read, not only seen: the StatusIndicator (and Insight Row's colour
+    bar) named by its word (`statusLabel`, `severityLabel`);
+  - Expandable Card and Accordion are disclosures, their header the button; the Accordion's
+    nested header drawn as Figma nests it, its chevron turned up (Figma's points down);
+  - Image Card's Checkbox shows while the keyboard is on the tile as well as the pointer;
+    Interactive Card's Radio is a group of its own in Flutter;
+  - single-value axes dropped as samples (Event Row's density, Action Card's layout); Action
+    Card's done and danger draw the primary action alone; Device Card's health is `tagStatus`;
+    Launch Card's two favourites are one; Launch Card Full Screen takes up to three features;
+  - Insight Row's fixed 64 hugs its words (76 at their line heights); Event Row's white focus fill
+    dropped; Interactive Card's primitive icon ink rebound to color/icon/primary.
+- **Machinery:** the overlay's `places` (a layer one variant adds, in its place), `choice` (layers
+  the caller picks one of, or the content does; the oracle checks each), `hides` (what a child
+  draws, whatever name Figma records hidden); `set` adding a resting appearance, a values-only
+  `rename`; both checks measuring a detached or unbuilt child's box, and never a parent's layer
+  inside a child; the card shells (`src/shells/card.mjs`); SolarLayers `clips`, an auto layout of
+  placed children keeping its gap; a web glyph layer taking a `render`.
+- **Checks:** 1639 JS tests, both visual checks (100 on the web, 463 Flutter tests), lint,
+  typecheck, format, all three Flutter packages analysed and formatted, both viewers built, the
+  personal-data scan, and a rebuild that reproduces the tree. The tests found and fixed: a loading
+  Device Card, which still draws its name, named twice in Flutter and given two stretched actions on
+  the web; and a disabled card, in Flutter, not announced disabled.
 
 ### F11: Tables and properties
 

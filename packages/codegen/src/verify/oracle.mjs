@@ -665,7 +665,7 @@ export function buildOracle(
         [nameOf.get(spec.slots[rule.slot].layer), `filled ${rule.slot}`],
       ]),
     ]),
-    variants,
+    variants: chosen(variants, overlay, spec),
   };
 }
 
@@ -697,8 +697,11 @@ const nodeNames = (spec) =>
  * @param {object} spec the component's IR
  * @param {object} set the raw component set
  * @param {Record<string, object>} specs every IR, by component name
+ * @param {object} [overlay] the component's, whose \`hides\` says what a child draws whatever
+ *   name Figma records hidden (Device Card's Tag, whose words are named as the Dropdown's hidden
+ *   label is)
  */
-export function hideInComposed(oracle, spec, set, specs) {
+export function hideInComposed(oracle, spec, set, specs, overlay = null) {
   const own = new Set(Object.values(nodeNames(spec)));
   // The fetcher records a variant's hidden names only where they differ from the default's.
   const byDefault =
@@ -711,14 +714,90 @@ export function hideInComposed(oracle, spec, set, specs) {
       (hiddenIn.get(variant.figma) ?? []).filter((n) => !own.has(n)),
     );
     if (!hidden.size) continue;
-    for (const entry of Object.values(variant.layers)) {
+    for (const [at, entry] of Object.entries(variant.layers)) {
       const child = entry.component && specs[entry.component];
       if (!child) continue;
+      const shown = new Set(overlay?.hides?.[at]?.not ?? []);
       const hides = Object.entries(nodeNames(child))
-        .filter(([name, node]) => name !== 'root' && hidden.has(node))
+        .filter(
+          ([name, node]) =>
+            name !== 'root' && hidden.has(node) && !shown.has(name),
+        )
         .map(([name]) => name)
         .sort();
       if (hides.length) entry.hides = hides;
     }
   }
+  // Each rule names a composed child, and a layer of it Figma would have hidden.
+  for (const [layer, rule] of Object.entries(overlay?.hides ?? {})) {
+    const entries = oracle.variants
+      .map((v) => v.layers[layer])
+      .filter((e) => e?.component);
+    if (!entries.length)
+      throw new Error(
+        `${overlay.file}: hides ${layer}: no composed child there`,
+      );
+    const names = new Set(Object.keys(nodeNames(specs[entries[0].component])));
+    for (const name of rule.not)
+      if (!names.has(name))
+        throw new Error(
+          `${overlay.file}: hides ${layer}: ${entries[0].component} has no layer ${name}`,
+        );
+  }
+}
+
+/**
+ * The variants to check where the overlay makes layers Figma draws together a choice (Interactive
+ * Card's controls): each Figma variant once per value of the prop, with the value the caller
+ * gives, and every layer of the choice but the chosen one not drawn.
+ */
+function chosen(variants, overlay, spec) {
+  const shown = ({ hidden: _hidden, ...e }) => e;
+  // Whether a layer is inside another, by the IR's tree.
+  const under = (_, layer, above) => {
+    for (let l = spec?.layers[layer]?.parent; l; l = spec.layers[l]?.parent)
+      if (l === above) return true;
+    return false;
+  };
+  let out = variants;
+  for (const [prop, rule] of Object.entries(overlay?.choice ?? {}).sort(
+    ([a], [b]) => (a < b ? -1 : 1),
+  )) {
+    const values = [
+      ...(rule.none ? ['none'] : []),
+      ...Object.keys(rule.layers),
+    ];
+    const layers = new Set(Object.values(rule.layers));
+    // A choice the content makes: its first value where the caller fills the slot, the second
+    // where not, the slot's layer then not drawn.
+    const filled = (value) => value === values[0];
+    out = out.flatMap((v) =>
+      values.map((value) => ({
+        ...v,
+        ...(rule.content
+          ? {
+              content: filled(value)
+                ? [...(v.content ?? []), rule.content]
+                : (v.content ?? []),
+            }
+          : { props: { ...v.props, [prop]: value } }),
+        layers: Object.fromEntries(
+          Object.entries(v.layers).map(([layer, e]) => [
+            layer,
+            // Not drawn, as a choice not made: no prop's layer hidden at rest.
+            (layers.has(layer) && rule.layers[value] !== layer) ||
+            (layer === rule.content && !filled(value)) ||
+            (rule.content && !filled(value) && under(v, layer, rule.content))
+              ? { ...e, hidden: true, unchosen: true }
+              : // The chosen layer is drawn, whatever Figma hides at rest (Launch Card's
+                // favourite beside the name, which a designer shows by a boolean).
+                layers.has(layer) && rule.layers[value] === layer
+                ? shown(e)
+                : e,
+          ]),
+        ),
+      })),
+    );
+  }
+  return out;
 }

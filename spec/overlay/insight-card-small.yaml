@@ -1,0 +1,84 @@
+# Hand-written decisions about SOLAR Insight Card Small, applied over its IR by `npm run
+# solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Insight Card Small
+
+base:
+  reason: >-
+    Bespoke on both: a card of the family (shells/card.mjs), drawn from Figma's layers, its
+    StatusIndicator composed in a tile of its severity; pressable where it is given something to
+    do, its title then the stretched action (owner decision 2026-09-25).
+
+rename:
+  ghost:
+    to: loading
+    reason: >-
+      Figma's ghost is the card loading, its placeholders drawn: `loading`, as Card's is, a
+      boolean of its own beside the severity (owner decision 2026-09-25). Figma draws it at info
+      alone, which the shells draw it as, whatever the severity.
+
+same:
+  /Container:
+    as: /Icon
+    reason: >-
+      The severity's tile, drawn anew as Container in every variant but the resting success one,
+      which draws it as Icon: one tile, in the same place, the same size and radius, its fill the
+      severity's. The design review asks SOLAR to draw it as one layer.
+
+slots:
+  count:
+    name: title
+    type: text
+    reason: >-
+      What the insight is, in Figma's first line, is the caller's; Figma records no text prop.
+  description:
+    name: description
+    type: text
+    reason: What it means, in the second line, is the caller's; Figma records no text prop.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the space it is put in: Figma draws it 320 wide, a sample. The caller sizes
+      it.
+  statusIndicator.base.width:
+    none: true
+    reason: >-
+      The mark is a StatusIndicator, whose md, 20px is its own: the tile centres it, and never
+      sizes it.
+  statusIndicator.base.height:
+    none: true
+    reason: As its width, the StatusIndicator's own.
+  root.appearance.severity=success, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Insight Card Small no focus state; a pressable card, focused on its title, draws
+      SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.
+  root.appearance.severity=danger, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+  root.appearance.severity=warning, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+  root.appearance.severity=info, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+
+allowLiteral:
+  icon.width:
+    reason: >-
+      The severity's tile is a 40px square, bound to nothing: SOLAR has no size token for it (as
+      for Insight Card's 52); carried as Figma's number, and raised as a governance gap.
+  icon.height:
+    reason: As the tile's width, a square.
+  skeleton.height:
+    reason: >-
+      The loading placeholders are Figma's drawing of two lines to come (the first filling the
+      content, the second 170 wide; 12 tall), no measure of anything: carried as drawn. SOLAR has
+      no skeleton size tokens.
+  skeleton2.width:
+    reason: As the first placeholder's height, carried as drawn.
+  skeleton2.height:
+    reason: As the first placeholder's, carried as drawn.

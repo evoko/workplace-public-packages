@@ -1,0 +1,90 @@
+# Hand-written decisions about SOLAR Insight Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Insight Card
+
+base:
+  reason: >-
+    Bespoke on both: a card of the family (shells/card.mjs), drawn from Figma's layers, its
+    StatusIndicator composed in a tile of its severity and its More a menu of its own; pressable
+    where it is given something to do, its title then the stretched action (owner decision
+    2026-09-25).
+
+rename:
+  ghost:
+    to: loading
+    reason: >-
+      Figma's ghost is the card loading, its placeholders drawn: `loading`, as Card's is, a
+      boolean of its own beside the severity (owner decision 2026-09-25). Figma draws it at info
+      alone, which the shells draw it as, whatever the severity.
+
+slots:
+  count:
+    name: title
+    type: text
+    reason: >-
+      What the insight is ("3 rooms over capacity"), in Figma's first line, is the caller's;
+      Figma records no text prop.
+  description:
+    name: description
+    type: text
+    reason: What it means, in the second line, is the caller's; Figma records no text prop.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the space it is put in, as a list's row: Figma draws it 320 wide, a sample.
+      The caller sizes it.
+  statusIndicator.base.width:
+    none: true
+    reason: >-
+      The mark is a StatusIndicator, whose md, 20px is its own: the tile centres it, and never
+      sizes it.
+  statusIndicator.base.height:
+    none: true
+    reason: As its width, the StatusIndicator's own.
+  root.appearance.severity=success, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Insight Card no focus state; a pressable card, focused on its title, draws
+      SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.
+  root.appearance.severity=danger, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+  root.appearance.severity=warning, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+  root.appearance.severity=info, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+
+bind:
+  iconMore.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the More icon's height is already bound to it.
+
+allowLiteral:
+  icon.width:
+    reason: >-
+      The severity's tile is a 52px square, bound to nothing: SOLAR has no size token for it (as
+      for Avatar's sizes); carried as Figma's number, and raised as a governance gap.
+  icon.height:
+    reason: As the tile's width, a square.
+  skeleton.height:
+    reason: >-
+      The loading placeholders are Figma's drawing of two lines to come (the first filling the
+      content, the second 170 wide; 12 tall), no measure of anything: carried as drawn. SOLAR has
+      no skeleton size tokens.
+  skeleton2.width:
+    reason: As the first placeholder's height, carried as drawn.
+  skeleton2.height:
+    reason: As the first placeholder's, carried as drawn.
+
+accept:
+  component.insight card.root.background#covered:
+    reason: >-
+      The selected card is painted twice, surface/background over surface/base; the top paint is
+      what shows, and what the code draws. The design review asks SOLAR to leave the one fill.

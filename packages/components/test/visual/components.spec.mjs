@@ -100,10 +100,20 @@ function measure(root, { list, composed }) {
     }
     return got;
   };
+  // A layer of `at`'s own is never one of a composed child's (an Accordion's header, the collapsed
+  // Accordion drawn in the expanded one, has a title of its own).
+  const inChild = (el, at) => {
+    for (let e = el.parentElement; e && e !== at; e = e.parentElement)
+      if (e.hasAttribute('data-layer')) return true;
+    return false;
+  };
   const one = (at, { layer, selector, svg }) => {
     const el =
       at.querySelector(`:scope [data-layer="${layer}"]`) ??
-      (selector ? at.querySelector(selector) : at);
+      (selector
+        ? ([...at.querySelectorAll(selector)].find((e) => !inChild(e, at)) ??
+          null)
+        : at);
     if (!el) return null;
     const cs = getComputedStyle(el);
     const box = el.getBoundingClientRect();
@@ -283,8 +293,7 @@ async function check(page, component, { only } = {}) {
       const got = rendered[layer];
       // Shown by a prop (hidden at rest in Figma): measured whenever it is rendered. Hidden only
       // in this variant: the state removes it, so it must not be drawn.
-      const byProp =
-        layer in oracle.slots && oracle.variants[0].layers[layer]?.hidden;
+      const byProp = layer in oracle.slots && hiddenAtRest(oracle, layer);
       if (expected.hidden && !byProp) {
         // A text layer MUI renders in the root itself (Button's label) is hidden by its colour.
         const inRoot =
@@ -362,13 +371,18 @@ const NAMING = new Set([
 ]);
 function checkChild(expected, got, excusedHere, fail, gap) {
   if (!got) return fail({ property: 'present', figma: true, rendered: false });
-  const child = childVariant(oracles[expected.component], expected.variant);
   const box = Object.fromEntries(
     Object.entries(expected).filter(([p]) => !NAMING.has(p)),
   );
   const own = compareLayer(box, got.layers.root ?? {}, excusedHere);
   own.failures.forEach(fail);
   own.gaps.forEach(gap);
+  // Detached in this variant (Card's loading Tag, a plain placeholder where the Tag is): Figma
+  // draws a box there, no variant of the child, and its box is all there is to check. So for a
+  // child no component of the library draws (Launch Card's App Icon, an asset the caller gives):
+  // its box is the parent's, and it has no look of its own to check.
+  if (!expected.component || !oracles[expected.component]) return;
+  const child = childVariant(oracles[expected.component], expected.variant);
   for (const [layer, want] of Object.entries(child.layers)) {
     if (want.hidden) continue;
     const measured = got.layers[layer];
@@ -394,16 +408,24 @@ function checkChild(expected, got, excusedHere, fail, gap) {
   }
 }
 
+/**
+ * Whether Figma hides a layer at rest, a prop showing it: in the first variant, unless only a
+ * choice the oracle makes hides it there (Interactive Card's controls, one drawn at a time).
+ */
+const hiddenAtRest = (oracle, layer) => {
+  const rest = oracle.variants[0].layers[layer];
+  return Boolean(rest?.hidden && !rest.unchosen);
+};
+
 /** The excused entries a check reaches: those on layers the variant draws, or a prop shows. */
 function reachableExcuses(oracle) {
-  const rest = oracle.variants[0].layers;
   return oracle.variants.reduce(
     (n, v) =>
       n +
       (v.excused ?? []).filter(
         (e) =>
           !v.layers[e.layer]?.hidden ||
-          (e.layer in oracle.slots && rest[e.layer]?.hidden),
+          (e.layer in oracle.slots && hiddenAtRest(oracle, e.layer)),
       ).length,
     0,
   );

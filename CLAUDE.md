@@ -13,8 +13,9 @@ what is not built yet (Button, Icon Button, Button Group, FAB, BackButton, Split
 Spinner, F1's display primitives, from StatusIndicator to Tree Indent, F3's selection controls,
 from Checkbox to Segmented Control, F4's tags and messages, from Tag to EmptyState, F5's text
 fields, from Text Input to FileUpload, F6's menus and lists, from Dropdown Item to List, F7's
-pickers, from Select to TimePicker Dropdown, F8's navigation, from Tab Item to Tree Item, and F9's
-paging and steps, from PaginationItem to Stepper, are the components so far; Cursor is left out by decision, `spec/overlay/excluded.yaml`).
+pickers, from Select to TimePicker Dropdown, F8's navigation, from Tab Item to Tree Item, F9's
+paging and steps, from PaginationItem to Stepper, and F10's cards, from Card to Launch Card Full
+Screen, are the components so far; Cursor is left out by decision, `spec/overlay/excluded.yaml`).
 CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
 and fails if the result differs from what is committed, and scans for credentials and
 unreviewed personal data. `npm run solar:sync` does the whole chain — fetch, docs, derived tokens, code — and
@@ -117,7 +118,7 @@ rule) is **not built yet**.
   `@bwp-web/components` (SOLAR components for React, on MUI; Button, Icon Button, Button Group,
   FAB, BackButton, SplitButton, Link, Spinner, the F1 display primitives, the F3 selection
   controls, the F4 tags and messages, the F5 text fields, the F6 menus and lists, the F7
-  pickers, the F8 navigation and the F9 paging and steps so far), all at
+  pickers, the F8 navigation, the F9 paging and steps and the F10 cards so far), all at
   `2.0.0-alpha.0`; canvas is still an empty skeleton. Plus
   `@bwp-web/codegen` (private build tool) and `solar_flutter` (a Dart package, outside the npm
   workspace, formatted by `dart format` and pinned to the Flutter version in `solar.yml`).

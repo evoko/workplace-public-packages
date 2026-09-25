@@ -1,0 +1,73 @@
+# Hand-written decisions about SOLAR Launch Card Full Screen, applied over its IR by `npm run
+# solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Launch Card Full Screen
+
+base:
+  reason: >-
+    Bespoke on both: an app's page, built with slots (owner decision 2026-09-25), drawn from
+    Figma's layers with the shared helpers: its image beside its App Icon, favourite, name, words
+    and features, and its action the caller's Button.
+
+slots:
+  appName:
+    name: name
+    type: text
+    reason: The app's name is the caller's; Figma records no text prop.
+  intro:
+    name: intro
+    type: text
+    reason: What the app is, its first paragraph, is the caller's; Figma records no text prop.
+  appIcon:
+    name: appIcon
+    type: component
+    reason: >-
+      The app's icon, an App Icon of the library's assets, is the caller's (an image); Figma
+      records no prop for it.
+  favourite:
+    name: favourite
+    type: component
+    reason: The favourite is the caller's Icon Button (md, round, tertiary); Figma records no prop.
+  button:
+    name: action
+    type: component
+    reason: The action ("Open") is the caller's SOLAR Button (md, primary); Figma records no prop.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      The page spans the space it is shown in: Figma draws it 979 wide, a sample. The caller sizes
+      it; its words' column takes what the image leaves.
+  favourite.base.width:
+    none: true
+    reason: >-
+      The favourite is the caller's Icon Button, md, whose 40px box is its own: the page places
+      it, and never sizes it.
+  favourite.base.height:
+    none: true
+    reason: As its width, the Icon Button's own.
+  action.base.height:
+    none: true
+    reason: >-
+      The action is the caller's Button, md, whose height is its own: the page places it, and
+      never sizes it.
+
+allowLiteral:
+  image.width:
+    reason: >-
+      The image is 520 × 420, bound to nothing: SOLAR has no media size token. Carried as Figma's
+      numbers (the owner kept its columns as drawn), and raised as a governance gap.
+  image.height:
+    reason: As the image's width.
+  text.height:
+    reason: >-
+      The words' column is as tall as the image (420), its action at the column's foot, as Figma
+      draws it: carried as Figma's number, with the image's.
+  appIcon.width:
+    reason: >-
+      The App Icon is 40px, bound to nothing: an app icon is an image of the assets, not a SOLAR
+      icon of the ladder's. Carried as Figma's number.
+  appIcon.height:
+    reason: As its width, a square.

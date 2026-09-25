@@ -81,15 +81,19 @@ export function build() {
       overlay,
       fileVersion: catalog.fileVersion,
     });
-    return { spec, deviations, oracle, set: loaded.set };
+    return { spec, deviations, oracle, set: loaded.set, overlay };
   });
   // What an instance of another component hides of it, once every IR is built (a child may come
   // after its parent in the list).
   const specs = Object.fromEntries(
     built.map((b) => [b.spec.component, b.spec]),
   );
-  for (const b of built) hideInComposed(b.oracle, b.spec, b.set, specs);
-  for (const b of built) delete b.set;
+  for (const b of built)
+    hideInComposed(b.oracle, b.spec, b.set, specs, b.overlay);
+  for (const b of built) {
+    delete b.set;
+    delete b.overlay;
+  }
   // Every file and class is named after the component, so two by one name would overwrite each
   // other: a Figma name two components share needs an overlay codeName for each.
   assertDistinct(built.map((b) => b.spec.component));

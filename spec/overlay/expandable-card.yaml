@@ -1,0 +1,69 @@
+# Hand-written decisions about SOLAR Expandable Card, applied over its IR by `npm run
+# solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Expandable Card
+
+base:
+  reason: >-
+    Bespoke on both: a card drawn from Figma's layers with the shared helpers, its header the
+    button that shows and hides its content (a disclosure, announced expanded or collapsed), the
+    card's edge following the header's states. MUI's Accordion draws a Paper, a summary and
+    transitions of its own, which fight Figma's.
+
+slots:
+  title:
+    name: title
+    type: text
+    reason: What the card is about is the caller's; Figma records no text prop for it.
+  contentContent:
+    name: description
+    type: text
+    reason: >-
+      The content's words, Figma's example in the content slot, are the caller's; it draws them
+      in the secondary ink, as Card's description.
+
+follows:
+  root.direction:
+    axes: [expanded]
+    reason: >-
+      Collapsed, the card is its header alone, laid out in a row; expanded, the header and the
+      content under it, in a column, as Figma draws each.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the space it is put in: Figma draws it 320 wide, a sample. The caller sizes
+      it.
+  title.base.width:
+    keyword: FILL
+    reason: >-
+      The title fills its header, the chevron at the header's end, as Figma sizes it (FILL, 260
+      of the header's 288): a text's sizing the IR does not read, set here.
+  root.appearance.expanded=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Expandable Card no focus state; a keyboard user needs to see its header focused,
+      SOLAR's floor. The card draws SOLAR's focus ring, as Card's does; the design review asks
+      SOLAR to draw it.
+  root.appearance.expanded=true.focus.shadow:
+    token: shadow.focus.default
+    reason: As the collapsed card's, the focus ring.
+
+bind:
+  iconChevronDown.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the chevron's height is already bound to it.
+  iconChevronUp.width:
+    literal: 16
+    token: icon.sm
+    reason: As the down chevron's.
+
+accept:
+  component.expandable card.header.align@expanded=false, state=hover:
+    reason: >-
+      The hovered collapsed card spreads its header (SPACE_BETWEEN), every other packs it (MIN):
+      the title fills the header, so the chevron sits at its end in both, and they draw alike.
+      The code packs it in all; the design review lists it.

@@ -210,6 +210,30 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      rows a shell gives it (`content`) by the gap.
    - **A text placed by position** (the double calendar's month labels) has `x` and `y` cells, as
      any placed layer; before, a text's position was dropped, though the oracle measured it.
+     What F10 (the cards) added:
+   - **A layer one variant adds, in its place.** Figma's export records a layer only one variant
+     draws after its siblings (Card's loading title placeholder); the overlay's `places` puts it
+     back before the sibling it precedes.
+   - **Layers the caller picks one of.** The overlay's `choice` makes layers Figma draws together
+     (Interactive Card's Checkbox, Radio and Toggle) one prop picking one (`control`), or, with
+     `content`, a choice the content makes (Launch Card's favourite, on its image or beside its
+     name); the oracle checks each Figma variant once per value, the layers not chosen expected
+     undrawn (`unchosen`, which neither check reads as a prop's layer hidden at rest).
+   - **What a child draws, whatever Figma records hidden.** A variant's hidden layers are recorded
+     by name alone, and a composed child's hidden layer may share a name with another's shown one
+     (Device Card's Dropdown label and Tag words, both "Label"); the overlay's `hides` names the
+     layers a child draws all the same.
+   - **A detached or unbuilt child.** Where a variant detaches an instance (Card's loading Tag, a
+     plain placeholder) or the child is no component of the library (Launch Card's App Icon, an
+     asset), both checks measure its box alone; a parent's own layers are never read inside a
+     composed child's element (an Accordion's nested header).
+   - **More `set` and `rename`.** A `set` may add an appearance no layer draws, where its axes are
+     another look's and its values Figma's (File Card's resting file tile), or `default` where no
+     layer has any look (Launch Card); a `rename` may respell an axis's values, keeping its name.
+   - **The card shells** (`src/shells/card.mjs`): a card's title as its stretched action, its More
+     menu, its loading and selection, its props' layers (several for one prop: `also`,
+     `alsoTitle`), for eleven of the family; `SolarLayers` gained `clips`, a web glyph layer a
+     `render`, and an auto layout holding only placed children keeps its gap.
      What F9 (paging and steps) added:
    - **An icon that follows one axis.** `iconsOf` gives a layer whose icon changes with one axis
      (PaginationNav's chevron, by its direction) `byAxis`, the icon at each value, which

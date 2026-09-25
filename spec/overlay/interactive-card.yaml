@@ -1,0 +1,116 @@
+# Hand-written decisions about SOLAR Interactive Card, applied over its IR by `npm run
+# solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Interactive Card
+
+base:
+  reason: >-
+    Bespoke on both: a selectable row card of the family (shells/card.mjs), drawn from Figma's
+    layers, its selection one SOLAR control (a Checkbox, a Radio or a Toggle) following
+    `selected`, its drag handle a DragHandle and its actions the caller's Icon Buttons; pressable
+    where it is given something to do, its headline then the stretched action (owner decision
+    2026-09-25).
+
+rename:
+  drag:
+    to: dragging
+    reason: >-
+      Figma's drag is the card being dragged, a look it has while it moves: `dragging`, as the
+      state it is, not the drag handle it shows (`dragHandle`).
+
+choice:
+  control:
+    layers:
+      checkbox: checkbox
+      radio: radioButton
+      toggle: toggle
+    none: true
+    reason: >-
+      Owner decision 2026-09-25: one control, the caller's choice, where Figma shows its Toggle,
+      Radio and Checkbox at once (all on by default) and its description says to show exactly
+      one. Each Figma variant is checked once with each, and with none.
+
+slots:
+  headline:
+    name: title
+    type: text
+    reason: What the card is ("Meeting room"), its headline, is the caller's; Figma records no prop.
+
+follows:
+  root.borderWidth:
+    axes: [drag]
+    reason: >-
+      The card being dragged is edged 2px (border.strong), in the focus colour, where at rest it
+      is 1px (border.default), as Figma draws each. The design review asks why dragging looks as
+      focus does.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the list it is in: Figma draws it 423 wide, a sample. The caller sizes it.
+  toggle.base.width:
+    none: true
+    reason: >-
+      The controls are SOLAR's own, sized by their own recipes (the Toggle 32 × 18, the Radio 18,
+      the Checkbox 16): the card places them, and never sizes them.
+  toggle.base.height:
+    none: true
+    reason: As the Toggle's width, its own.
+  radioButton.base.width:
+    none: true
+    reason: As the Toggle's, the Radio's own size.
+  radioButton.base.height:
+    none: true
+    reason: As the Toggle's, the Radio's own size.
+  checkbox.base.width:
+    none: true
+    reason: As the Toggle's, the Checkbox's own size.
+  checkbox.base.height:
+    none: true
+    reason: As the Toggle's, the Checkbox's own size.
+  iconButton.base.width:
+    none: true
+    reason: >-
+      The actions are the caller's Icon Buttons, sm, whose 32px box is their own: the card places
+      them and never sizes them.
+  iconButton.base.height:
+    none: true
+    reason: As its width, the Icon Button's own.
+  iconButton2.base.width:
+    none: true
+    reason: As the first Icon Button's, its own.
+  iconButton2.base.height:
+    none: true
+    reason: As the first Icon Button's, its own.
+  iconButton3.base.width:
+    none: true
+    reason: As the first Icon Button's, its own.
+  iconButton3.base.height:
+    none: true
+    reason: As the first Icon Button's, its own.
+  icon.base.color:
+    token: color.icon.primary
+    reason: >-
+      Figma binds the headline's icon to a primitive, color/neutral/900, where component code
+      takes semantic tokens only (CLR-002): the icon ink of the same value, color.icon.primary.
+      The design review asks SOLAR to rebind it.
+  root.appearance.selected=false, drag=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Interactive Card no focus state; a pressable card, focused on its headline,
+      draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.
+  root.appearance.selected=true, drag=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the unselected card's, the focus ring.
+
+bind:
+  icon.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token.
+  icon.height:
+    literal: 16
+    token: icon.sm
+    reason: As the icon's width.

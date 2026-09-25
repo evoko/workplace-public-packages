@@ -1,0 +1,88 @@
+# Hand-written decisions about SOLAR Status Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Status Card
+
+base:
+  reason: >-
+    Bespoke on both: a card of the family (shells/card.mjs), drawn from Figma's layers, its
+    StatusIndicator composed and its More a menu of its own; pressable where it is given
+    something to do, its title then the stretched action (owner decision 2026-09-25).
+
+rename:
+  ghost:
+    to: loading
+    reason: >-
+      Figma's ghost is the card loading, its placeholders drawn: `loading`, as Card's is, a
+      boolean of its own beside the status (owner decision 2026-09-25).
+
+slots:
+  titleTitle:
+    name: title
+    type: text
+    reason: What the card counts ("Open incidents") is the caller's; Figma records no text prop.
+  trendValue:
+    name: value
+    type: text
+    reason: The count or figure ("5") is the caller's; Figma records no text prop.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the space it is put in, as a grid's cell: Figma draws it 240 wide, a sample.
+      The caller sizes it.
+  statusIndicator.base.width:
+    none: true
+    reason: >-
+      The mark is a StatusIndicator, whose md, 20px is its own: the card places it, and never
+      sizes it.
+  statusIndicator.base.height:
+    none: true
+    reason: As its width, the StatusIndicator's own.
+  root.appearance.status=success, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Status Card no focus state; a pressable card, focused on its title, draws
+      SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.
+  root.appearance.status=warning, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+  root.appearance.status=danger, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+  root.appearance.status=neutral, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success card's, the focus ring.
+
+bind:
+  iconMore.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the More icon's height is already bound to it.
+
+allowLiteral:
+  title.opacity:
+    reason: >-
+      A disabled card's title and figure are drawn at 20% opacity. SOLAR has no opacity scale, as
+      for Card's disabled 40%; carried as Figma's number, and raised as a governance gap.
+  trend.opacity:
+    reason: As the title's, carried as Figma's number.
+  skeleton.width:
+    reason: >-
+      The loading placeholders are Figma's drawing of a title and a figure to come (170 × 12 and
+      62 × 24), no measure of anything: carried as drawn. SOLAR has no skeleton size tokens.
+  skeleton.height:
+    reason: As the placeholders' widths, carried as drawn.
+  skeleton2.width:
+    reason: As the title placeholder's, carried as drawn.
+  skeleton2.height:
+    reason: As the title placeholder's, carried as drawn.
+
+accept:
+  component.status card.title.align@status=warning, state=disabled, ghost=false:
+    reason: >-
+      The disabled warning card packs its title row to the start (MIN), where every other variant
+      spreads it (SPACE_BETWEEN), its More at the end: a slip in one of sixteen. The code spreads
+      it in all; the design review lists it.

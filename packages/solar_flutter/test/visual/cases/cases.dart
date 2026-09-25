@@ -3,6 +3,8 @@
 // for every oracle under spec/verify/, so a new component cannot go unmeasured.
 
 import '../harness.dart';
+import 'accordion.dart';
+import 'action_card.dart';
 import 'alert.dart';
 import 'alert_small.dart';
 import 'autocomplete.dart';
@@ -14,13 +16,16 @@ import 'breadcrumb_item.dart';
 import 'breadcrumbs.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'card.dart';
 import 'checkbox.dart';
+import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
 import 'counter.dart';
 import 'date_picker_day_cell.dart';
 import 'date_picker_open.dart';
 import 'datepicker.dart';
+import 'device_card.dart';
 import 'divider.dart';
 import 'draghandle.dart';
 import 'dropdown.dart';
@@ -28,18 +33,29 @@ import 'dropdown_group_label.dart';
 import 'dropdown_item.dart';
 import 'dropdown_menu.dart';
 import 'emptystate.dart';
+import 'event_row.dart';
+import 'expandable_card.dart';
 import 'fab.dart';
+import 'file_card.dart';
 import 'fileupload.dart';
 import 'globalsearch.dart';
 import 'icon_button.dart';
+import 'image_card.dart';
 import 'inline_input.dart';
+import 'insight_card.dart';
+import 'insight_card_small.dart';
+import 'insight_row.dart';
+import 'interactive_card.dart';
 import 'kbd.dart';
+import 'launch_card.dart';
+import 'launch_card_full_screen.dart';
 import 'link.dart';
 import 'list.dart';
 import 'listitem.dart';
 import 'nav_item.dart';
 import 'node_end.dart';
 import 'number_input.dart';
+import 'option_card.dart';
 import 'option_row.dart';
 import 'options_list.dart';
 import 'pin_input.dart';
@@ -63,7 +79,9 @@ import 'skeleton.dart';
 import 'slider.dart';
 import 'slider_range.dart';
 import 'spinner.dart';
+import 'split_dropdown.dart';
 import 'splitbutton.dart';
+import 'status_card.dart';
 import 'statusindicator.dart';
 import 'step.dart';
 import 'stepper.dart';
@@ -84,6 +102,8 @@ import 'tree_item.dart';
 import 'trend_badge.dart';
 
 final cases = <String, VisualCase>{
+  'Accordion': accordionCase,
+  'Action Card': actionCardCase,
   'Alert': alertCase,
   'Alert Small': alertSmallCase,
   'Autocomplete': autocompleteCase,
@@ -95,13 +115,16 @@ final cases = <String, VisualCase>{
   'Breadcrumbs': breadcrumbsCase,
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
+  'Card': cardCase,
   'Checkbox': checkboxCase,
+  'Container': containerCase,
   'Context Menu': contextMenuCase,
   'Context Menu Item': contextMenuItemCase,
   'Counter': counterCase,
   'Date Picker Day Cell': datePickerDayCellCase,
   'Date Picker Open': datePickerOpenCase,
   'DatePicker': datePickerCase,
+  'Device Card': deviceCardCase,
   'Divider': dividerCase,
   'DragHandle': dragHandleCase,
   'Dropdown': dropdownCase,
@@ -109,18 +132,29 @@ final cases = <String, VisualCase>{
   'Dropdown Item': dropdownItemCase,
   'Dropdown Menu': dropdownMenuCase,
   'EmptyState': emptyStateCase,
+  'Event Row': eventRowCase,
+  'Expandable Card': expandableCardCase,
   'FAB': fabCase,
+  'File Card': fileCardCase,
   'FileUpload': fileUploadCase,
   'GlobalSearch': globalSearchCase,
   'Icon Button': iconButtonCase,
+  'Image Card': imageCardCase,
   'Inline Input': inlineInputCase,
+  'Insight Card': insightCardCase,
+  'Insight Card Small': insightCardSmallCase,
+  'Insight Row': insightRowCase,
+  'Interactive Card': interactiveCardCase,
   'Kbd': kbdCase,
+  'Launch Card': launchCardCase,
+  'Launch Card Full Screen': launchCardFullScreenCase,
   'Link': linkCase,
   'List': listCase,
   'ListItem': listItemCase,
   'Nav Item': navItemCase,
   'Node End': nodeEndCase,
   'Number Input': numberInputCase,
+  'Option Card': optionCardCase,
   'Option Row': optionRowCase,
   'Options List': optionsListCase,
   'PIN Input': pinInputCase,
@@ -144,7 +178,9 @@ final cases = <String, VisualCase>{
   'Slider': sliderCase,
   'Slider Range': sliderRangeCase,
   'Spinner': spinnerCase,
+  'Split Dropdown': splitDropdownCase,
   'SplitButton': splitButtonCase,
+  'Status Card': statusCardCase,
   'StatusIndicator': statusIndicatorCase,
   'Step': stepCase,
   'Stepper': stepperCase,

@@ -18,6 +18,7 @@ import {
   applyDefaults,
   applyOverlay,
   followsOf,
+  placeLayers,
   restylesOf,
   renameStates,
   sameLayers,
@@ -485,7 +486,9 @@ export function buildComponentSpec(
 
   const layers = {};
   const style = {};
-  for (const [path, { parent, type }] of Object.entries(recipe.layers)) {
+  for (const [path, { parent, type }] of Object.entries(
+    placeLayers(recipe.layers, overlay, set.name),
+  )) {
     const name = layerNames.get(path);
     layers[name] = {
       path,

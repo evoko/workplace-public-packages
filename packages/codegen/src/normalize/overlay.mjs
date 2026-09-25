@@ -24,6 +24,10 @@
  *                                                        detects from its parts, as a platform one
  *   layerNames:   { <Figma path>: { name, reason } }     a layer's IR name, where Figma's cannot give one
  *                                                        (a glyph for a name, or two that reduce to one)
+ *   places:       { <Figma path>: { before, reason } }   where a layer one variant adds sits among its
+ *                                                        siblings (Card's loading Skeleton, before
+ *                                                        Content), which Figma's export loses: it
+ *                                                        records an added layer after the others
  *   same:         { <Figma path>: { as, reason } }       a layer Figma draws anew in some variants that
  *                                                        is another (Inline Input's Confirm and Cancel,
  *                                                        framed again per edit state): read as `as`
@@ -40,6 +44,28 @@
  *   allowLiteral: { <layer>.<cell>: { values?, reason } }  a raw value there is no token for;
  *                                                        `values` allows those alone, where a bind
  *                                                        takes the rest (StatusIndicator's 8px dot)
+ *   choice:       { <prop>: { layers: { <value>: <layer> }, none?, content?, reason } }  layers
+ *                                                        Figma draws together that the caller
+ *                                                        picks one of (Interactive Card's Checkbox,
+ *                                                        Radio and Toggle): the API gains the prop,
+ *                                                        `none` among its values where given; the
+ *                                                        oracle checks each Figma variant once per
+ *                                                        value, the layers not chosen not drawn.
+ *                                                        With `content`, a slot, the choice follows
+ *                                                        from it instead, no prop: the first value
+ *                                                        where the caller fills it, the second
+ *                                                        where not, its layer then not drawn
+ *                                                        (Launch Card's favourite, on its image or
+ *                                                        beside its name)
+ *   defaults:     { <prop>: { value, reason } }          a prop's default in the API, where it is not
+ *                                                        Figma's default variant's (Image Card's
+ *                                                        selected: a tile starts unselected)
+ *   hides:        { <layer>: { not: [layers], reason } }  the composed child at `layer` draws
+ *                                                        these, whatever names Figma records
+ *                                                        hidden in the variant: its record is by
+ *                                                        name alone, and one child's hidden layer
+ *                                                        may share a name with another's shown one
+ *                                                        (Device Card's Dropdown label and Tag)
  *   samples:      { <axis>: { keep: [values], reason } }  an axis whose values are samples of what
  *                                                        the caller gives (Avatar's colours): the API
  *                                                        loses it, the recipe keeps those variants
@@ -117,11 +143,15 @@ const FIELDS = {
   shownBy: ['slot'],
   restyles: ['cells'],
   samples: ['keep'],
+  choice: ['layers', 'none', 'content'],
+  hides: ['not'],
+  defaults: ['value'],
   caller: ['prop', 'from'],
   accept: [],
   slots: ['name', 'type'],
   derive: ['when'],
   layerNames: ['name'],
+  places: ['before'],
   same: ['as'],
   composes: ['name'],
 };
@@ -291,6 +321,29 @@ export function parseOverlay(text, file) {
       !rule.keep.every((v) => typeof v === 'string')
     )
       fail(`samples.${axis}: keep must list the values the recipe keeps`);
+  for (const [layer, rule] of Object.entries(doc.hides ?? {}))
+    if (
+      !Array.isArray(rule.not) ||
+      rule.not.length === 0 ||
+      rule.not.some((n) => typeof n !== 'string')
+    )
+      fail(`hides.${layer}: not must list the child's layers it draws`);
+  for (const [prop, rule] of Object.entries(doc.choice ?? {})) {
+    if (!/^[a-z][a-zA-Z0-9]*$/.test(prop))
+      fail(`choice.${prop}: the prop must be a name in code`);
+    const layers = Object.entries(rule.layers ?? {});
+    if (layers.length < 2 || layers.some(([, l]) => typeof l !== 'string'))
+      fail(`choice.${prop}: layers must name two layers or more, by value`);
+    if (rule.none !== undefined && rule.none !== true)
+      fail(`choice.${prop}: none is true or absent`);
+    if (
+      rule.content !== undefined &&
+      (typeof rule.content !== 'string' || layers.length !== 2 || rule.none)
+    )
+      fail(
+        `choice.${prop}: content names one slot, for two layers and no none`,
+      );
+  }
   for (const [at, rule] of Object.entries(doc.caller ?? {})) {
     if ((rule.prop === undefined) === (rule.from === undefined))
       fail(`caller.${at}: give prop or from, one of them`);
@@ -307,6 +360,13 @@ export function parseOverlay(text, file) {
     )
       fail(`layerNames.${path}: name must be words of letters and digits`);
   }
+  for (const [path, rule] of Object.entries(doc.places ?? {}))
+    if (
+      !path.startsWith('/') ||
+      typeof rule.before !== 'string' ||
+      !rule.before.startsWith('/')
+    )
+      fail(`places.${path}: address both layers by their Figma paths, from /`);
   for (const [layer, rule] of Object.entries(doc.slots ?? {})) {
     if (typeof rule.name !== 'string' || !rule.name)
       fail(`slots.${layer} names no slot`);
@@ -624,6 +684,30 @@ export function renameStates(resolved, overlay) {
 }
 
 /**
+ * The layer tree, `{<Figma path>: {parent, …}}` in Figma's order, with each layer the overlay
+ * `places` moved to sit just before its sibling: Figma's export records a layer one variant adds
+ * after the others, whatever its place (Card's loading Skeleton, drawn above its Content). A rule
+ * for a layer the tree lacks, or before one that is not its sibling, fails.
+ */
+export function placeLayers(layers, overlay, component) {
+  const rules = Object.entries(overlay?.places ?? {});
+  if (!rules.length) return layers;
+  const order = Object.keys(layers);
+  for (const [path, { before }] of rules) {
+    const fail = (detail) => {
+      throw new Error(`${component}: places ${path}: ${detail}`);
+    };
+    if (!layers[path]) fail('the component has no such layer');
+    if (!layers[before]) fail(`the component has no layer ${before}`);
+    if (layers[path].parent !== layers[before].parent)
+      fail(`${before} is not its sibling`);
+    order.splice(order.indexOf(path), 1);
+    order.splice(order.indexOf(before), 0, path);
+  }
+  return Object.fromEntries(order.map((p) => [p, layers[p]]));
+}
+
+/**
  * Reads the layers the overlay says are one (`same`: Inline Input's action frames, drawn anew in
  * each edit state) as the one they are: in every variant, a layer at a `same` path, and each layer
  * inside it, takes the path `as` names, so the recipe and the oracle see one layer where Figma
@@ -779,6 +863,10 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   for (const [path, rule] of sorted('layerNames'))
     record('layerNames', `${path} → ${rule.name}`, rule.reason);
 
+  // Layers were placed as the IR was built (placeLayers); here they are recorded.
+  for (const [path, rule] of sorted('places'))
+    record('places', `${path} before ${rule.before}`, rule.reason);
+
   // Layers read as one were merged before the recipe was derived (sameLayers); here recorded.
   for (const [path, rule] of sorted('same'))
     record('same', `${path} → ${rule.as}`, rule.reason);
@@ -884,6 +972,19 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     const looks = new Set(
       Object.values(spec.style).flatMap((st) => Object.keys(st[section] ?? {})),
     );
+    // And one no layer has, where every layer draws it as at rest (File Card's file tile, whose
+    // layers change in the create tile alone): a combination of the axes another has, each at a
+    // value Figma draws.
+    const pairsOf = (key) => key.split(', ').map((p) => p.split('='));
+    const axesOf = (key) =>
+      pairsOf(key)
+        .map(([a]) => a)
+        .join(', ');
+    // Where no layer has one (Launch Card's, which no axis restyles), the one look is `default`.
+    const drawnLook = (key) =>
+      (looks.size === 0 && key === 'default') ||
+      ([...looks].some((l) => axesOf(l) === axesOf(key)) &&
+        pairsOf(key).every(([a, v]) => axes[a]?.options.includes(v)));
     keys.forEach((key, i) => {
       const last = i === keys.length - 1 && section !== 'size';
       if (
@@ -891,7 +992,7 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
         i === 0 &&
         section === 'appearance' &&
         node &&
-        looks.has(key)
+        (looks.has(key) || drawnLook(key))
       )
         node[key] = {};
       // And a size the layer draws as at rest, where the component has the size (SearchField's
@@ -1094,6 +1195,50 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
   for (const [axis, rule] of sorted('samples'))
     record('samples', `${axis}: ${rule.keep.join(', ')}`, rule.reason);
 
+  // A default of the API's own, where Figma's default variant's is not the one a caller wants.
+  for (const [prop, rule] of sorted('defaults')) {
+    const def = spec.api[prop];
+    if (!def) fail(`defaults ${prop}: the API has no ${prop}`);
+    const ok =
+      def.type === 'boolean'
+        ? typeof rule.value === 'boolean'
+        : def.values?.includes(rule.value);
+    if (!ok) fail(`defaults ${prop}: ${rule.value} is no value of ${prop}`);
+    def.default = rule.value;
+    record('defaults', `${prop}: ${rule.value}`, rule.reason);
+  }
+
+  // What a composed child draws whatever names Figma records hidden: applied as the oracle reads
+  // the children's hidden layers (hideInComposed); here recorded.
+  for (const [layer, rule] of sorted('hides'))
+    record('hides', `${layer} draws ${rule.not.join(', ')}`, rule.reason);
+
+  // A choice of layers is a prop of the API, picking one of them; the shells draw the one chosen.
+  for (const [prop, rule] of sorted('choice')) {
+    for (const layer of [
+      ...Object.values(rule.layers),
+      ...(rule.content ? [rule.content] : []),
+    ])
+      if (!spec.layers[layer])
+        fail(`choice ${prop}: the IR has no layer ${layer}`);
+    // A choice the content makes is no prop: the shells read it from the slot.
+    if (!rule.content) {
+      if (spec.api[prop]) fail(`choice ${prop}: the API already has ${prop}`);
+      const values = [
+        ...(rule.none ? ['none'] : []),
+        ...Object.keys(rule.layers),
+      ];
+      spec.api[prop] = { values, default: values[0] };
+    }
+    record(
+      'choice',
+      `${prop}: ${Object.entries(rule.layers)
+        .map(([v, l]) => `${v} → ${l}`)
+        .join(', ')}`,
+      rule.reason,
+    );
+  }
+
   // A cell whose value is the caller's (Avatar's colour): the API gains the prop, and the IR says
   // which cells take it, or follow from it, so the oracle and the shells read the same. The
   // recipe's own value there is what is drawn when the caller gives none.
@@ -1149,7 +1294,9 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
       );
     for (const [from, { to, values }] of renames) {
       if (!spec.api[from]) fail(`rename ${from}: the API has no ${from}`);
-      if (spec.api[to]) fail(`rename ${from}: the API already has ${to}`);
+      // Its values alone may be respelled, the axis keeping its name (File Card's type).
+      if (spec.api[to] && !(to === from && values))
+        fail(`rename ${from}: the API already has ${to}`);
       // Figma's two-valued axis (Button Group's type: regular, full-width) as the boolean it is.
       const renamed = (def) => {
         if (!values) return def;

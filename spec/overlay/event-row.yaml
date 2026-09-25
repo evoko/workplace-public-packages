@@ -1,0 +1,48 @@
+# Hand-written decisions about SOLAR Event Row, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Event Row
+
+base:
+  reason: >-
+    Bespoke on both: a row of the card family (shells/card.mjs), one event of an activity feed,
+    drawn from Figma's layers, its leading Avatar the caller's and its More a menu of its own;
+    pressable where it is given something to do, its title then the stretched action (owner
+    decision 2026-09-25), hovered and focused only then, as its description says.
+
+samples:
+  density:
+    keep: [default]
+    reason: >-
+      Figma draws one density, default; the expanded one its description names (a second meta
+      line for device telemetry) is not drawn. An axis of one value is no choice: the API loses
+      it, and gains it when SOLAR draws the other.
+
+set:
+  leading.base.width:
+    none: true
+    reason: >-
+      The leading slot holds the caller's Avatar (md, 32px) or icon, whose size is its own: the
+      row places it and never sizes it.
+  leading.base.height:
+    none: true
+    reason: As its width, the leading Avatar's own.
+  meta.appearance.default.focus.background:
+    none: true
+    reason: >-
+      Figma's focused row fills its meta line white (#ffffff, bound to nothing) and draws no focus
+      ring: a stray fill, unseen on the row's own white, where its description asks for a 2px ring
+      (shadow/focus/default). The code draws no fill there, and the ring below; the design review
+      lists it.
+  root.appearance.default.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      The focused row draws SOLAR's focus ring, as its description asks ("a 2px focus ring via
+      shadow/focus/default") and Figma does not draw; the design review asks SOLAR to draw it.
+
+bind:
+  more.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the More icon's height is already bound to it.

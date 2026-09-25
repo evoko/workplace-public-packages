@@ -887,6 +887,114 @@ where `onStepClick` is given). Steps before the active one are complete, it acti
 (`aria-current="step"`), those after upcoming. Where a type draws no words (`no label`, `line`),
 each step's label is read, not drawn. Each part is drawn in the layer Figma draws for its status.
 
+## Cards: what they share
+
+Every card of the family (Card, Status Card, the Insight parts, Event Row, Option Card, File Card,
+Image Card, Action Card, Interactive Card, Device Card, Launch Card) is pressable where it is given
+`onClick` or `href` (owner decision): its title is then the button or link, and its hit area the
+whole card (the title's `::after`), so its own controls (a More menu, Buttons, a Checkbox) stay
+reachable above it; the card is hovered and focused only then, and draws SOLAR's focus ring, which
+Figma draws none of. A card with a More glyph takes `moreItems` (`{ label, onSelect, disabled,
+icon }`, the exported `CardMoreItem`): a "More actions" button (`moreLabel`) with a 44 × 44 target,
+opening a Dropdown Menu. `loading` (Figma's `ghost` in Status Card and the Insight parts) draws
+Figma's placeholders, `aria-busy`, and keeps a pressable card pressable, its title then its
+action's name alone. Each fills the space it is put in (Figma's widths are samples).
+
+## Card
+
+| Prop                     | Values                                             | Default |
+| ------------------------ | -------------------------------------------------- | ------- |
+| `title`                  | what the card is                                   | —       |
+| `status`                 | `none` · `danger` · `warning` · `success` · `info` | `none`  |
+| `disabled` · `loading`   | booleans; either draws no status, as Figma does    | `false` |
+| `icon` · `helper`        | before and after the title                         | none    |
+| `description` · children | the content's words, in Figma's look, then yours   | none    |
+| `tag`                    | a Tag's words, in the status's look                | none    |
+
+The raised surface of the family. Loading, its Tag is a placeholder of the Tag's size.
+
+## Container and Split Dropdown
+
+A Container groups content inside a larger surface (`type`: `default`, no paint; `outlined`, on
+the raised surface with an edge); a Split Dropdown is a box of two zones, `top` (the control) and
+`lower` (its details), cut to its corners. Neither is a control.
+
+## Status Card, Insight Card, Insight Card Small and Insight Row
+
+| Prop                                                  | Values                                             | Default   |
+| ----------------------------------------------------- | -------------------------------------------------- | --------- |
+| `status` (Status Card)                                | `success` · `neutral` · `danger` · `warning`       | `success` |
+| `severity` (Insight parts)                            | `danger` · `warning` · `info` · `success`          | `success` |
+| `statusLabel` · `severityLabel`                       | the word the StatusIndicator or the bar is read as | its word  |
+| `selected` (Insight Card)                             | the current one of its set (`aria-current`)        | `false`   |
+| `title` · `value` · `description` · `meta` · `action` | their words; Insight Row's Button                  | —         |
+
+The status or severity is read as well as seen: the StatusIndicator (or Insight Row's bar, colour
+alone in Figma) is named by its word. Figma draws the Insight parts loading at info alone, which
+they are drawn as whatever the severity.
+
+## Expandable Card and Accordion
+
+| Prop                                                | Values                                | Default |
+| --------------------------------------------------- | ------------------------------------- | ------- |
+| `title`                                             | the header's words, its button's name | —       |
+| `expanded` · `defaultExpanded` · `onExpandedChange` | whether the content shows             | `false` |
+| `description` · children                            | the content                           | none    |
+| `disabled` (Accordion)                              | boolean                               | `false` |
+
+A disclosure: the header is the button (`aria-expanded`, `aria-controls`), the content under it.
+Expanded, an Accordion draws its header as the collapsed item is, as Figma nests it, its chevron
+turned up; the card's look follows its header's hover and focus.
+
+## Event Row
+
+`leading` (an Avatar, md), `title`, `product`, `meta`, `timestamp` with `dateTime` (a `<time>`),
+and a More menu: one event of an activity feed, which the feed lists in order. Its single-value
+`density` is gone (a sample, until SOLAR draws another).
+
+## Option Card, File Card and Image Card
+
+Tiles of a grid, each as Figma draws it (owner decision). An Option Card is a create tile, a Plus
+over its `label`, `selected` the current one. A File Card is a file (`thumbnail` or `fileIcon`,
+`title`, `meta`, a More menu) or, `type="create"`, the tile that adds one. An Image Card is an
+`image` with its `title` and `subtitle` and a More menu; given `onSelectedChange` it is selectable
+by a Checkbox (`selectLabel`), shown where it is `selected` and while the pointer or the keyboard is
+on it; not `filled`, it is the tile that adds one.
+
+## Action Card
+
+| Prop                                        | Values                                                       | Default   |
+| ------------------------------------------- | ------------------------------------------------------------ | --------- |
+| `status`                                    | `default` · `done` · `danger`                                | `default` |
+| `primaryAction` · `secondaryAction`         | your Buttons (sm); once done or in danger, the primary alone | none      |
+| `icon` · `title` · `description` · children | as Card's                                                    | —         |
+
+## Interactive Card
+
+| Prop                                            | Values                                                    | Default |
+| ----------------------------------------------- | --------------------------------------------------------- | ------- |
+| `control`                                       | `none` · `checkbox` · `radio` · `toggle` (owner decision) | `none`  |
+| `selected` · `onSelectedChange` · `selectLabel` | the control's value, change and name                      | `false` |
+| `dragHandle` · `dragging`                       | shows a DragHandle; draws it lifted, as it moves          | `false` |
+| `actions`                                       | your Icon Buttons (sm)                                    | none    |
+
+## Device Card
+
+| Prop                         | Values                                             | Default   |
+| ---------------------------- | -------------------------------------------------- | --------- |
+| `type`                       | `single` · `batch`, each drawn from its own layers | `single`  |
+| `name` · `details` · `count` | a device's name and details, a batch's count       | —         |
+| `tag` · `tagStatus`          | its health: a Tag's words and status               | `success` |
+| `action` · `devices`         | your Button ("Try again"); a batch's Dropdown (md) | none      |
+
+## Launch Card and Launch Card Full Screen
+
+A Launch Card is an app to open: `image`, `appIcon` (an App Icon of `@bwp-web/assets`, an `<img>`),
+`name`, `tag`, `body`, and your `actions` (a Button Group; owner decision: `access` is gone, its
+words yours), its `favourite` (your Icon Button) on the image, or beside the name without one. A
+Launch Card Full Screen is its page (owner decision: built with slots): `image`, `appIcon`,
+`favourite`, `name`, `intro`, up to three `features`, and your `action`.
+
 ## Checked against Figma
 
 `npm run test:visual` renders every variant of every component here in Chromium, puts each into

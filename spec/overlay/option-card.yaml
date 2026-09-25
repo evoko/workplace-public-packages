@@ -1,0 +1,48 @@
+# Hand-written decisions about SOLAR Option Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Option Card
+
+base:
+  reason: >-
+    Bespoke on both: a tile of the card family (shells/card.mjs), drawn from Figma's layers as
+    Figma draws it, a Plus in a circle over its label, a tile to create something new (owner
+    decision 2026-09-25: its description's radio or checkbox card is not what Figma draws; the
+    design review asks SOLAR which it is). Pressable where it is given something to do, its label
+    then the stretched action; selected, it is the current one of its set.
+
+slots:
+  label:
+    name: label
+    type: text
+    reason: What the tile creates ("New design") is the caller's; Figma records no text prop.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A tile spans its cell of a grid: Figma draws it 240 wide, a sample. The caller sizes it.
+  root.appearance.default.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Option Card no focus state; a pressable tile, focused on its label, draws SOLAR's
+      focus ring, as Card's does; the design review asks SOLAR to draw it.
+
+bind:
+  iconPlus.height:
+    literal: 24
+    token: icon.lg
+    reason: Same value, governed token; the Plus's width is already bound to it.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A tile is 228 tall, bound to nothing: SOLAR has no tile size token. Carried as Figma's
+      number, and raised as a governance gap.
+  container.width:
+    reason: >-
+      The Plus sits in a 64px circle, bound to nothing: SOLAR has no size token for it (as for
+      Insight Card's tile); carried as Figma's number, and raised as a governance gap.
+  container.height:
+    reason: As the circle's width, a circle.

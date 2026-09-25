@@ -1,0 +1,108 @@
+# Hand-written decisions about SOLAR Card, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Card
+
+base:
+  reason: >-
+    Bespoke on both: the raised surface of the card family, drawn from Figma's layers with the
+    shared helpers, its Tag composed and its More a menu of its own. MUI's Card is a Paper with
+    an elevation, radius and padding of its own, which fight Figma's; Flutter's Card is Material's.
+    Pressable where it is given something to do (owner decision 2026-09-25): its title is then the
+    button or link, stretched over the card, so its own controls stay reachable above it.
+
+places:
+  /Skeleton:
+    before: /Content
+    reason: >-
+      The loading card's title placeholder is drawn where the title is, above the content, as
+      Figma draws it (y 16, the content at 44); Figma's export records a layer one variant adds
+      after the others.
+
+follows:
+  content.gap:
+    axes: [loading]
+    reason: >-
+      The loading card's skeleton lines are 12px apart (stack.sm), the loaded content's parts 8
+      (stack.xs), as Figma draws each.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A card spans the space it is put in, as a grid's or a column's cell: Figma draws it 320
+      wide, a sample. The caller sizes it.
+  root.appearance.status=none, loading=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Card no focus state; its description gates "the focus ring" on its being
+      clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on
+      its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR
+      to draw it.
+  root.appearance.status=danger, loading=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the card with no status's, the focus ring.
+  root.appearance.status=warning, loading=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the card with no status's, the focus ring.
+  root.appearance.status=success, loading=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the card with no status's, the focus ring.
+  root.appearance.status=info, loading=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the card with no status's, the focus ring.
+  titleTitle.base.width:
+    keyword: FILL
+    reason: >-
+      The title fills its row, the More menu at the row's end, as Figma sizes it (FILL, 260 of the
+      row's 288): a text's sizing the IR does not read, set here.
+  tag.base.height:
+    none: true
+    reason: >-
+      The Tag is a SOLAR Tag, whose 24px height is its own: the card places it, and never sizes
+      it.
+
+bind:
+  more.width:
+    literal: 20
+    token: icon.md
+    reason: Same value, governed token; the More icon's height is already bound to it.
+  icon.width:
+    literal: 16
+    token: icon.sm
+    reason: Same value, governed token; the icon's height is already bound to it.
+
+allowLiteral:
+  root.opacity:
+    reason: >-
+      A disabled card is drawn at 40% opacity. SOLAR has no opacity scale, as for Section Nav
+      Item's disabled 40% and Link's 50%; carried as Figma's number, and raised as a governance
+      gap.
+  skeleton.width:
+    reason: >-
+      The loading placeholders are Figma's drawing of a title and three lines to come (140, 260,
+      260 and 200 wide; 16 and 12 tall), no measure of anything: carried as drawn. SOLAR has no
+      skeleton size tokens.
+  skeleton.height:
+    reason: As the placeholders' widths, carried as drawn.
+  contentSkeleton.width:
+    reason: As the title placeholder's, carried as drawn.
+  contentSkeleton.height:
+    reason: As the title placeholder's, carried as drawn.
+  contentSkeleton2.width:
+    reason: As the title placeholder's, carried as drawn.
+  contentSkeleton2.height:
+    reason: As the title placeholder's, carried as drawn.
+  contentSkeleton3.width:
+    reason: As the title placeholder's, carried as drawn.
+  contentSkeleton3.height:
+    reason: As the title placeholder's, carried as drawn.
+
+restyles:
+  tag:
+    cells: [background]
+    reason: >-
+      The loading card draws its Tag as a placeholder of the Tag's size, the Tag detached and
+      filled `surface/muted`, with no words (its label hidden, keeping its room); loaded, the fill
+      Figma paints is the Tag's own. Read from the instance, and checked there.

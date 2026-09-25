@@ -2,6 +2,8 @@
 // How each generated widget is built in one oracle variant, by its name (see builders.dart).
 
 import 'builders.dart';
+import 'accordion.dart';
+import 'action_card.dart';
 import 'alert.dart';
 import 'alert_small.dart';
 import 'autocomplete.dart';
@@ -13,13 +15,16 @@ import 'breadcrumb_item.dart';
 import 'breadcrumbs.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'card.dart';
 import 'checkbox.dart';
+import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
 import 'counter.dart';
 import 'date_picker_day_cell.dart';
 import 'date_picker_open.dart';
 import 'datepicker.dart';
+import 'device_card.dart';
 import 'divider.dart';
 import 'draghandle.dart';
 import 'dropdown.dart';
@@ -27,18 +32,29 @@ import 'dropdown_group_label.dart';
 import 'dropdown_item.dart';
 import 'dropdown_menu.dart';
 import 'emptystate.dart';
+import 'event_row.dart';
+import 'expandable_card.dart';
 import 'fab.dart';
+import 'file_card.dart';
 import 'fileupload.dart';
 import 'globalsearch.dart';
 import 'icon_button.dart';
+import 'image_card.dart';
 import 'inline_input.dart';
+import 'insight_card.dart';
+import 'insight_card_small.dart';
+import 'insight_row.dart';
+import 'interactive_card.dart';
 import 'kbd.dart';
+import 'launch_card.dart';
+import 'launch_card_full_screen.dart';
 import 'link.dart';
 import 'list.dart';
 import 'listitem.dart';
 import 'nav_item.dart';
 import 'node_end.dart';
 import 'number_input.dart';
+import 'option_card.dart';
 import 'option_row.dart';
 import 'options_list.dart';
 import 'pin_input.dart';
@@ -62,7 +78,9 @@ import 'skeleton.dart';
 import 'slider.dart';
 import 'slider_range.dart';
 import 'spinner.dart';
+import 'split_dropdown.dart';
 import 'splitbutton.dart';
+import 'status_card.dart';
 import 'statusindicator.dart';
 import 'step.dart';
 import 'stepper.dart';
@@ -83,6 +101,8 @@ import 'tree_item.dart';
 import 'trend_badge.dart';
 
 const builders = <String, VariantBuilder>{
+  'Accordion': buildAccordion,
+  'Action Card': buildActionCard,
   'Alert': buildAlert,
   'Alert Small': buildAlertSmall,
   'Autocomplete': buildAutocomplete,
@@ -94,13 +114,16 @@ const builders = <String, VariantBuilder>{
   'Breadcrumbs': buildBreadcrumbs,
   'Button': buildButton,
   'Button Group': buildButtonGroup,
+  'Card': buildCard,
   'Checkbox': buildCheckbox,
+  'Container': buildContainer,
   'Context Menu': buildContextMenu,
   'Context Menu Item': buildContextMenuItem,
   'Counter': buildCounter,
   'Date Picker Day Cell': buildDatePickerDayCell,
   'Date Picker Open': buildDatePickerOpen,
   'DatePicker': buildDatePicker,
+  'Device Card': buildDeviceCard,
   'Divider': buildDivider,
   'DragHandle': buildDragHandle,
   'Dropdown': buildDropdown,
@@ -108,18 +131,29 @@ const builders = <String, VariantBuilder>{
   'Dropdown Item': buildDropdownItem,
   'Dropdown Menu': buildDropdownMenu,
   'EmptyState': buildEmptyState,
+  'Event Row': buildEventRow,
+  'Expandable Card': buildExpandableCard,
   'FAB': buildFAB,
+  'File Card': buildFileCard,
   'FileUpload': buildFileUpload,
   'GlobalSearch': buildGlobalSearch,
   'Icon Button': buildIconButton,
+  'Image Card': buildImageCard,
   'Inline Input': buildInlineInput,
+  'Insight Card': buildInsightCard,
+  'Insight Card Small': buildInsightCardSmall,
+  'Insight Row': buildInsightRow,
+  'Interactive Card': buildInteractiveCard,
   'Kbd': buildKbd,
+  'Launch Card': buildLaunchCard,
+  'Launch Card Full Screen': buildLaunchCardFullScreen,
   'Link': buildLink,
   'List': buildList,
   'ListItem': buildListItem,
   'Nav Item': buildNavItem,
   'Node End': buildNodeEnd,
   'Number Input': buildNumberInput,
+  'Option Card': buildOptionCard,
   'Option Row': buildOptionRow,
   'Options List': buildOptionsList,
   'PIN Input': buildPINInput,
@@ -143,7 +177,9 @@ const builders = <String, VariantBuilder>{
   'Slider': buildSlider,
   'Slider Range': buildSliderRange,
   'Spinner': buildSpinner,
+  'Split Dropdown': buildSplitDropdown,
   'SplitButton': buildSplitButton,
+  'Status Card': buildStatusCard,
   'StatusIndicator': buildStatusIndicator,
   'Step': buildStep,
   'Stepper': buildStepper,

@@ -1,0 +1,67 @@
+# Hand-written decisions about SOLAR Insight Row, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Insight Row
+
+base:
+  reason: >-
+    Bespoke on both: a card of the family (shells/card.mjs), drawn from Figma's layers, its
+    severity a bar named by its word and its action the caller's Button; pressable where it is
+    given something to do, its title then the stretched action (owner decision 2026-09-25).
+
+rename:
+  ghost:
+    to: loading
+    reason: >-
+      Figma's ghost is the row loading, its placeholders drawn: `loading`, as Card's is, a boolean
+      of its own beside the severity (owner decision 2026-09-25). Figma draws it at info alone,
+      which the shells draw it as, whatever the severity.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row spans the feed or panel it is in: Figma draws it 480 wide, a sample. The caller
+      sizes it.
+  root.base.height:
+    keyword: HUG
+    reason: >-
+      Figma fixes the row at 64, bound to nothing, its words' boxes drawn shorter than their lines
+      (the body 27 tall, for a 20 and a 16 line 8 apart): at their own line heights the words
+      need 76, and a fixed 64 would cut them. The row hugs its words, each cut short on one line;
+      the design review asks SOLAR for the row's height.
+  action.base.height:
+    none: true
+    reason: >-
+      The action is the caller's Button, sm as Figma draws it, whose height is its own: the row
+      places it and never sizes it.
+  root.appearance.severity=success, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: >-
+      Figma draws Insight Row no focus state; a pressable row, focused on its title, draws SOLAR's
+      focus ring, as Card's does; the design review asks SOLAR to draw it.
+  root.appearance.severity=danger, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success row's, the focus ring.
+  root.appearance.severity=warning, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success row's, the focus ring.
+  root.appearance.severity=info, ghost=false.focus.shadow:
+    token: shadow.focus.default
+    reason: As the success row's, the focus ring.
+
+allowLiteral:
+  severityBar.width:
+    reason: >-
+      The severity's bar is 4px wide, bound to nothing: SOLAR has no size token for an accent bar;
+      carried as Figma's number, and raised as a governance gap.
+  skeleton.height:
+    reason: >-
+      The loading placeholders are Figma's drawing of two lines to come (the first filling the
+      body, the second 140 wide; 12 tall), no measure of anything: carried as drawn. SOLAR has no
+      skeleton size tokens.
+  skeleton2.width:
+    reason: As the first placeholder's height, carried as drawn.
+  skeleton2.height:
+    reason: As the first placeholder's, carried as drawn.

@@ -66,7 +66,11 @@ and `SolarFileUpload`), and the menus and lists (`SolarDropdownItem`, `SolarDrop
 `SolarBreadcrumbs`, `SolarBreadcrumbItem` and `SolarTreeItem`), and paging and steps
 (`SolarPagination`, `SolarPaginationItem`, `SolarPaginationNav`, `SolarPaginationEllipsis`,
 `SolarPageNavigator`, `SolarPageNavButton`, `SolarStepper`, `SolarStep` and
-`SolarStepperIndicator`) take the same props as the React components
+`SolarStepperIndicator`), and the cards (`SolarCard`, `SolarContainer`, `SolarSplitDropdown`,
+`SolarStatusCard`, `SolarInsightCard`, `SolarInsightCardSmall`, `SolarInsightRow`,
+`SolarExpandableCard`, `SolarAccordion`, `SolarEventRow`, `SolarOptionCard`, `SolarFileCard`,
+`SolarImageCard`, `SolarActionCard`, `SolarInteractiveCard`, `SolarDeviceCard`, `SolarLaunchCard`
+and `SolarLaunchCardFullScreen`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes
@@ -127,7 +131,13 @@ the menu of a collapsed trail's middle. A `SolarTreeItem` holds its rename's wor
 of its own, starting from its label. A `SolarPagination` and a `SolarPageNavigator` take `page` and
 `count` and call `onChanged` (`solarPagesOf` says which pages show); their arrows are named by
 MaterialLocalizations and mirrored right to left. A `SolarStepper` takes `steps` (labels) and
-`activeStep`, and a `SolarStepperIndicator` its step's `number`.
+`activeStep`, and a `SolarStepperIndicator` its step's `number`. A pressable card (given `onPressed`) is a button
+as a whole, named by its title, its own controls (a More menu, Buttons, a Checkbox) controls of
+their own inside it; its More menu takes `moreItems`, `SolarCardMoreItem`s. A card's pictures are
+`ImageProvider`s, its caller's parts (Buttons, a Dropdown, an Avatar) widgets, and its content
+(`children`, an Interactive Card's `actions`) a list laid out as Figma lays it out. A
+`SolarExpandableCard` and a `SolarAccordion` take `expanded` and call `onExpandedChanged`; a
+`SolarImageCard` and a `SolarInteractiveCard` take `selected` and call `onSelectedChanged`.
 `SolarFAB` is a FilledButton, which a Scaffold's `floatingActionButton` takes:
 
 ```dart

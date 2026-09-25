@@ -130,7 +130,7 @@ int reachableExcuses(Map<String, dynamic> oracle) {
       final layer = e['layer'] as String;
       final hidden = (layers[layer] as Map?)?['hidden'] == true;
       final byProp =
-          slots.containsKey(layer) && (rest[layer] as Map?)?['hidden'] == true;
+          slots.containsKey(layer) && hiddenAtRest(rest[layer] as Map?);
       if (!hidden || byProp) n++;
     }
   }
@@ -177,7 +177,7 @@ Future<(List<Difference>, List<Difference>)> check(
       // not drawn (Number Input's leading icon), as the web check reads it.
       final byProp =
           (oracle['slots'] as Map).containsKey(layer) &&
-          (atRest[layer] as Map<String, dynamic>?)?['hidden'] == true;
+          hiddenAtRest(atRest[layer] as Map?);
       if (expected['hidden'] == true && !byProp) {
         if (got?['drawn'] == true) {
           failures.add(Difference(name, layer, 'hidden', true, false));
@@ -203,6 +203,21 @@ Future<(List<Difference>, List<Difference>)> check(
             gaps,
           );
         }
+        continue;
+      }
+      // Detached in this variant (Card's loading Tag, a plain placeholder where the Tag is): Figma
+      // draws a box there, no variant of the child, and the child's root is that box.
+      final detached = got['layers'];
+      if (detached is Layers) {
+        compareLayer(
+          name,
+          layer,
+          expected,
+          detached['root'] ?? const {},
+          excused,
+          failures,
+          gaps,
+        );
         continue;
       }
       compareLayer(name, layer, expected, got, excused, failures, gaps);
@@ -290,3 +305,9 @@ void checkChild(
     }
   }
 }
+
+/// Whether Figma hides a layer at rest (its entry in the first variant), a prop showing it; not
+/// where only a choice the oracle makes hides it there (Interactive Card's controls, one drawn at a
+/// time).
+bool hiddenAtRest(Map? rest) =>
+    rest?['hidden'] == true && rest?['unchosen'] != true;
