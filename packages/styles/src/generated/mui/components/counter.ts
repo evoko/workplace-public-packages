@@ -31,6 +31,10 @@ export const solarCounterStyles = {
     '& .SolarCounter-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarCounter-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

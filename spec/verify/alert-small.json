@@ -60,7 +60,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -69,7 +70,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#24791d",
@@ -78,7 +80,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -173,7 +176,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -182,7 +186,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#24791d",
@@ -191,7 +196,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -286,7 +292,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -295,7 +302,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#b33200",
@@ -304,7 +312,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -399,7 +408,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -408,7 +418,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#b33200",
@@ -417,7 +428,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -512,7 +524,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -521,7 +534,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#c00024",
@@ -530,7 +544,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -625,7 +640,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -634,7 +650,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#c00024",
@@ -643,7 +660,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -738,7 +756,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -747,7 +766,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#065f6a",
@@ -756,7 +776,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -851,7 +872,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -860,7 +882,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#065f6a",
@@ -869,7 +892,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -964,7 +988,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -973,7 +998,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#111111",
@@ -982,7 +1008,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -1077,7 +1104,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#111111",
@@ -1086,7 +1114,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "color": "#111111",
@@ -1095,7 +1124,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [

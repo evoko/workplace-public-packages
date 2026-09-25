@@ -417,8 +417,7 @@
         },
         "width": {
           "keyword": "FILL",
-          "from": "overlay",
-          "reason": "The title fills its row, the More menu at the row's end, as Figma sizes it (FILL): a text's sizing the IR does not read, set here."
+          "from": "status=default, state=default, layout=vertical"
         }
       },
       "size": {},
@@ -595,6 +594,10 @@
         },
         "typography": {
           "token": "typography.body.md.regular",
+          "from": "status=default, state=default, layout=vertical"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "status=default, state=default, layout=vertical"
         }
       },
@@ -1013,11 +1016,6 @@
         "rule": "set",
         "at": "secondaryCTA.base.height",
         "reason": "As the primary Button's, the Button's own height."
-      },
-      {
-        "rule": "set",
-        "at": "titleTitle.base.width",
-        "reason": "The title fills its row, the More menu at the row's end, as Figma sizes it (FILL): a text's sizing the IR does not read, set here."
       },
       {
         "rule": "samples",

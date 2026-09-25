@@ -218,6 +218,7 @@ abstract final class SolarCardRecipe {
     'description.present|base': 'b:true',
     'description.color|base': 't:color.text.secondary',
     'description.typography|base': 't:typography.body.md.regular',
+    'description.width|base': 'k:FILL',
     'description.present|appearance|status=none, loading=true|default':
         'b:false',
     'description.color|appearance|status=none, loading=false|disabled':

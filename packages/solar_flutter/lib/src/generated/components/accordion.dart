@@ -114,6 +114,7 @@ abstract final class SolarAccordionRecipe {
     'content.background|appearance|expanded=true|focus': 'none',
     'description.present|base': 'b:false',
     'description.typography|base': 't:typography.body.md.regular',
+    'description.width|base': 'k:FILL',
     'description.present|appearance|expanded=true|default': 'b:true',
     'description.color|appearance|expanded=true|default':
         't:color.text.secondary',

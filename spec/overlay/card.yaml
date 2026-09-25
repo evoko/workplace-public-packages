@@ -40,11 +40,6 @@ set:
       clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on
       its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR
       to draw it.
-  titleTitle.base.width:
-    keyword: FILL
-    reason: >-
-      The title fills its row, the More menu at the row's end, as Figma sizes it (FILL, 260 of the
-      row's 288): a text's sizing the IR does not read, set here.
   tag.base.height:
     none: true
     reason: >-

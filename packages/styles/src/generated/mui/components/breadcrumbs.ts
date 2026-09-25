@@ -23,6 +23,10 @@ export const solarBreadcrumbsStyles = {
     '& .SolarBreadcrumbs-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarBreadcrumbs-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

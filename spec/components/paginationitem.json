@@ -184,6 +184,10 @@
         "typography": {
           "token": "typography.label.md",
           "from": "selected=false, state=default"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "selected=false, state=default"
         }
       },
       "size": {},

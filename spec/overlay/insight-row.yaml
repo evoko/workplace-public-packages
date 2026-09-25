@@ -56,3 +56,19 @@ allowLiteral:
     reason: As the first placeholder's height, carried as drawn.
   skeleton2.height:
     reason: As the first placeholder's, carried as drawn.
+
+accept:
+  component.insight row.title.width@severity=info, state=default, ghost=true:
+    reason: >-
+      Figma sizes the loading info row's title to hug at rest and on hover, where every other row's
+      fills it: a slip in two of ten, which draws the same, since the title's placeholder is its
+      own width. The title fills in every row; the design review lists it.
+  component.insight row.title.width@severity=info, state=hover, ghost=true:
+    reason:
+      as: accept component.insight row.title.width@severity=info, state=default, ghost=true
+  component.insight row.meta.width@severity=info, state=default, ghost=true:
+    reason: >-
+      As the title's, the meta line hugs in the same two variants, where every other row's fills.
+  component.insight row.meta.width@severity=info, state=hover, ghost=true:
+    reason:
+      as: accept component.insight row.meta.width@severity=info, state=default, ghost=true

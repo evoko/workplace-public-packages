@@ -21,6 +21,8 @@ npx playwright install chromium  # once, on a new machine
   `solar:codegen` from the codegen's component list, and every component must have one: a
   component with no case file fails the typecheck, and one with no cases fails its check, naming
   the file to add.
+- **Words.** A text Figma draws words in (the oracle's `words`) must show some: its own, or a
+  field's value or placeholder; one drawn in its style with none fails, which a self-test proves.
 - **Both modes.** Every component is checked twice, in Light and in Dark: the Dark pass sets the
   page root's `data-theme="dark"`, as an app does, and reads each variant with its `dark` over it
   (the oracle's Dark values where they differ, and its excuses where they differ). A self-test

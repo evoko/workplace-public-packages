@@ -213,6 +213,14 @@
         "typography": {
           "token": "typography.label.md",
           "from": "state=default"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "overlay",
+          "reason": "The words take the room the item leaves beside its icon, as Figma draws them in every state but rest, where the item hugs them and they are fixed at 180: as the item's width, the rest is the odd one.",
+          "replaced": {
+            "keyword": "HUG"
+          }
         }
       },
       "size": {},
@@ -257,6 +265,11 @@
         "rule": "bind",
         "at": "icon.width",
         "reason": "Same value, governed token; the icon's height is already bound to it."
+      },
+      {
+        "rule": "set",
+        "at": "label.base.width",
+        "reason": "The words take the room the item leaves beside its icon, as Figma draws them in every state but rest, where the item hugs them and they are fixed at 180: as the item's width, the rest is the odd one."
       },
       {
         "rule": "set",

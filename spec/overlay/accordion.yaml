@@ -64,11 +64,6 @@ set:
     reason: >-
       An item spans the accordion it is in: Figma draws it 400 wide, a sample. The caller sizes
       it.
-  title.base.width:
-    keyword: FILL
-    reason: >-
-      The title fills the header, the chevron at its end, as Figma sizes it (FILL, 344 of 368):
-      a text's sizing the IR does not read, set here.
   root.appearance.expanded=false.focus.shadow:
     token: shadow.focus.default
     reason: >-

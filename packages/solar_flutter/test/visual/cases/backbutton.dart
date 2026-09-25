@@ -70,7 +70,7 @@ Layers measureBackButton(WidgetTester tester) {
       'drawn': visibilityOf(arrow).visible,
     },
     'label': {
-      ...textValues(tester.renderObject<RenderParagraph>(label).text.style!),
+      ...paragraphValues(tester.renderObject<RenderParagraph>(label)),
       'drawn': visibilityOf(label).visible,
     },
     'spinner': spinners.evaluate().isEmpty

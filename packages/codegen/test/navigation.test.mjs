@@ -382,8 +382,13 @@ describe('Nav Item', () => {
 describe('Section Nav Item and its group header', () => {
   const { spec } = of('Section Nav Item');
 
-  it('spans its rail, the 220 Figma draws in every state but rest accepted', () => {
+  it('spans its rail, the 220 Figma draws in every state but rest accepted, its words filling it', () => {
     expect(spec.style.root.base.width).toMatchObject({
+      keyword: 'FILL',
+      from: 'overlay',
+      replaced: { keyword: 'HUG' },
+    });
+    expect(spec.style.label.base.width).toMatchObject({
       keyword: 'FILL',
       from: 'overlay',
       replaced: { keyword: 'HUG' },

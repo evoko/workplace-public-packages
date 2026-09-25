@@ -31,6 +31,10 @@ export const solarCheckboxStyles = {
     '& .SolarCheckbox-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarCheckbox-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

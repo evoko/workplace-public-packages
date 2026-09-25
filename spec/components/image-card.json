@@ -597,6 +597,10 @@
         "typography": {
           "token": "typography.body.sm.regular",
           "from": "filled=true, selected=true, hover=false"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "filled=true, selected=true, hover=false"
         }
       },
       "size": {},

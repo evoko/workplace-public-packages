@@ -318,6 +318,10 @@
         "typography": {
           "token": "typography.body.md.regular",
           "from": "state=default, size=md"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "state=default, size=md"
         }
       },
       "size": {

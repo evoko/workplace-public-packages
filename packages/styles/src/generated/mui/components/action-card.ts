@@ -29,6 +29,10 @@ export const solarActionCardStyles = {
     '& .SolarActionCard-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarActionCard-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -174,6 +178,7 @@ export const solarActionCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarActionCard-cta': {
       backgroundColor: 'transparent',

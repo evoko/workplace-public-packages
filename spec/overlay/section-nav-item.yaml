@@ -19,6 +19,12 @@ set:
     reason: >-
       An item spans its rail, as a section nav lays its items out: Figma draws it 220 wide in every
       state but rest, where it hugs its words (the design review asks). The rail sizes it.
+  label.base.width:
+    keyword: FILL
+    reason: >-
+      The words take the room the item leaves beside its icon, as Figma draws them in every state
+      but rest, where the item hugs them and they are fixed at 180: as the item's width, the rest
+      is the odd one.
 
 accept:
   component.section nav item.root.width@state=hover:

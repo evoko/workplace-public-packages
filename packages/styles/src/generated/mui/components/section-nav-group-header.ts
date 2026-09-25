@@ -23,6 +23,10 @@ export const solarSectionNavGroupHeaderStyles = {
     '& .SolarSectionNavGroupHeader-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarSectionNavGroupHeader-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -53,6 +57,7 @@ export const solarSectionNavGroupHeaderStyles = {
       letterSpacing: '0.08em',
       textDecoration: 'none',
       textTransform: 'uppercase',
+      width: '100%',
     },
   },
   sizes: {},

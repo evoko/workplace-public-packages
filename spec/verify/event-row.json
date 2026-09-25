@@ -56,7 +56,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "meta": {
           "background": "transparent",
@@ -76,7 +77,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "metaText": {
           "color": "#646464",
@@ -85,7 +87,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "timestamp": {
           "color": "#a8a8a8",
@@ -94,7 +97,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "more": {
           "color": "#646464",
@@ -201,7 +205,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "meta": {
           "background": "transparent",
@@ -221,7 +226,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "metaText": {
           "color": "#646464",
@@ -230,7 +236,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "timestamp": {
           "color": "#a8a8a8",
@@ -239,7 +246,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "more": {
           "color": "#646464",
@@ -346,7 +354,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "meta": {
           "background": "#ffffff",
@@ -366,7 +375,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "metaText": {
           "color": "#646464",
@@ -375,7 +385,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "timestamp": {
           "color": "#a8a8a8",
@@ -384,7 +395,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "more": {
           "color": "#646464",

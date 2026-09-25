@@ -133,6 +133,7 @@ abstract final class SolarAlertRecipe {
     'title.present|base': 'b:true',
     'title.color|base': 't:color.text.feedback.success',
     'title.typography|base': 't:typography.body.lg.medium',
+    'title.width|base': 'k:FILL',
     'title.color|appearance|type=warning, variant=filled|default':
         't:color.text.feedback.warning',
     'title.color|appearance|type=warning, variant=outlined|default':
@@ -152,6 +153,7 @@ abstract final class SolarAlertRecipe {
     'description.present|base': 'b:true',
     'description.color|base': 't:color.text.primary',
     'description.typography|base': 't:typography.body.md.regular',
+    'description.width|base': 'k:FILL',
     'action.present|base': 'b:true',
     'action.color|base': 't:color.text.feedback.success',
     'action.typography|base': 't:typography.body.md.medium',

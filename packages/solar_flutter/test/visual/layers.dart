@@ -84,13 +84,10 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
       });
     } else if (child is Text) {
       values.addAll(
-        textValues(
-          tester
-              .renderObject<RenderParagraph>(
-                find.descendant(of: here, matching: find.byType(RichText)),
-              )
-              .text
-              .style!,
+        paragraphValues(
+          tester.renderObject<RenderParagraph>(
+            find.descendant(of: here, matching: find.byType(RichText)),
+          ),
         ),
       );
     } else if (child is! Container) {
@@ -102,7 +99,10 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
         matching: find.byType(EditableText),
       );
       if (words.evaluate().isNotEmpty) {
-        values.addAll(textValues(tester.widget<EditableText>(words).style));
+        values.addAll({
+          ...textValues(tester.widget<EditableText>(words).style),
+          'words': wordsIn(tester, here),
+        });
       }
     } else {
       final container = child;

@@ -3,6 +3,7 @@ import {
   existsSync,
   mkdirSync,
   mkdtempSync,
+  readdirSync,
   readFileSync,
   rmSync,
   writeFileSync,
@@ -10,7 +11,12 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { repoRoot } from '../src/util/paths.mjs';
-import { pruneGenerated, writeGenerated } from '../src/util/write.mjs';
+import {
+  commitGenerated,
+  deferWrites,
+  pruneGenerated,
+  writeGenerated,
+} from '../src/util/write.mjs';
 
 // The guard only allows writes inside the repository, so the one positive test has to create a
 // real directory here. It cleans up after itself rather than leaving that to a manual step.
@@ -41,6 +47,37 @@ describe('writeGenerated', () => {
     const file = join(dir, 'nested', 'out.txt');
     writeGenerated(file, 'hello');
     expect(readFileSync(file, 'utf8')).toBe('hello');
+  });
+});
+
+describe('deferWrites', () => {
+  it('holds every write until committed, so a run that throws first rewrites nothing', () => {
+    const dir = mkdtempSync(join(repoRoot, 'packages', 'codegen', 'tmp-'));
+    scratch.push(dir);
+    const file = join(dir, 'Alert.tsx');
+    writeFileSync(file, 'committed');
+    deferWrites();
+    try {
+      writeGenerated(file, 'this run');
+      writeGenerated(join(dir, 'new', 'Card.tsx'), 'this run');
+      expect(readFileSync(file, 'utf8')).toBe('committed');
+      expect(existsSync(join(dir, 'new'))).toBe(false);
+    } finally {
+      expect(commitGenerated()).toBe(2);
+    }
+    expect(readFileSync(file, 'utf8')).toBe('this run');
+    expect(readFileSync(join(dir, 'new', 'Card.tsx'), 'utf8')).toBe('this run');
+  });
+
+  it('leaves no partial file beside what it wrote', () => {
+    const dir = mkdtempSync(join(repoRoot, 'packages', 'codegen', 'tmp-'));
+    scratch.push(dir);
+    writeGenerated(join(dir, 'out.txt'), 'whole');
+    expect(readdirSync(dir)).toEqual(['out.txt']);
+  });
+
+  it('refuses a commit with nothing deferred', () => {
+    expect(() => commitGenerated()).toThrow(/no writes are deferred/);
   });
 });
 

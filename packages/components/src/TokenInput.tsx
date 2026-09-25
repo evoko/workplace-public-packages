@@ -187,7 +187,8 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(
                   key="input"
                   className="SolarTokenInput-words"
                   value={draft}
-                  placeholder={filled ? undefined : placeholder}
+                  // Beside the Tags only while disabled, as Figma draws it (the design review asks).
+                  placeholder={filled && !disabled ? undefined : placeholder}
                   onChange={(event) => type(event.target.value)}
                   disabled={disabled}
                   error={error}

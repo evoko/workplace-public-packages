@@ -36,7 +36,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -79,7 +80,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -122,7 +124,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -165,7 +168,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -208,7 +212,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -251,7 +256,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -294,7 +300,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -337,7 +344,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -380,7 +388,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -419,7 +428,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -459,7 +469,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -498,7 +509,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -541,7 +553,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -584,7 +597,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -627,7 +641,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -670,7 +685,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {

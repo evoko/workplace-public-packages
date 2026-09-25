@@ -34,6 +34,7 @@ import {
   cleanTitle,
   writeMeta,
 } from '../../_shared/figma-rest.mjs';
+import { hiddenPathsOf, overrides } from './variant-diff.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const opt = (k, d) => {
@@ -411,7 +412,7 @@ function census(root, ctx) {
     }
   return c;
 }
-function digest(v, ctx, baseHidden) {
+function digest(v, ctx, baseHidden, basePaths) {
   const d = { variant: v.name, size: box(v) };
   const f = paints(v.fills);
   if (f) d.fills = f;
@@ -446,6 +447,11 @@ function digest(v, ctx, baseHidden) {
   const hs = [...hd].sort().join('|');
   if (baseHidden === undefined) d.hidden = [...hd].sort();
   else if (hs !== baseHidden) d.hidden = [...hd].sort();
+  // The same layers by path, which tells a composed child's hidden layer from the component's own
+  // of the same name; recorded as the names are, where they differ from the default's.
+  const paths = hiddenPathsOf(v);
+  if (basePaths === undefined || paths.join('|') !== basePaths)
+    d.hiddenPaths = paths;
   return d;
 }
 function linkParents(n, p = null) {
@@ -453,95 +459,7 @@ function linkParents(n, p = null) {
   for (const c of n.children || []) linkParents(c, n);
 }
 // ---- per-variant overrides: what a variant changes relative to the default variant ----
-// Both trees come from layer(); layers are addressed by a path of names, with #k appended
-// when siblings share a name. Only the fields below are compared.
-const DIFF_KEYS = [
-  'hidden',
-  'text',
-  'textStyle',
-  'main',
-  'variant',
-  'size',
-  'position',
-  'layout',
-  'sizing',
-  'fills',
-  'strokes',
-  'strokeWeight',
-  'strokeWeights',
-  'radius',
-  'effectStyle',
-  'opacity',
-  'vars',
-  'iconFills',
-  'geometry',
-  'strokeGeometry',
-];
-// Paths name layers (`/Icon/None#2`), and layer names contain `/` themselves, so a path cannot be
-// split to find its parent. `parents` records it as the tree is walked.
-function flatten(tree, prefix = '', out = {}, parents = {}, parent = null) {
-  const path = prefix || '/';
-  out[path] = tree;
-  parents[path] = parent;
-  const seen = {};
-  for (const c of tree.children || []) {
-    const k = (seen[c.name] = (seen[c.name] || 0) + 1);
-    flatten(
-      c,
-      prefix + '/' + c.name + (k > 1 ? '#' + k : ''),
-      out,
-      parents,
-      path,
-    );
-  }
-  return out;
-}
-function overrides(baseTree, varTree) {
-  const a = flatten(baseTree),
-    parents = {},
-    b = flatten(varTree, '', {}, parents);
-  const changed = {},
-    added = [],
-    removed = [];
-  for (const [path, bn] of Object.entries(b)) {
-    const an = a[path];
-    if (!an) {
-      // The layer itself, not only its path: a layer that exists in this variant alone has no
-      // properties anywhere else. Its children are added paths of their own.
-      const { children: _children, ...own } = bn;
-      added.push({ path, parent: parents[path], layer: own });
-      continue;
-    }
-    const diff = {};
-    for (const k of DIFF_KEYS) {
-      if (k === 'size' && path === '/') continue; // root size is in the digest
-      const x = JSON.stringify(an[k] ?? null),
-        y = JSON.stringify(bn[k] ?? null);
-      if (x === y) continue;
-      // vars and layout are objects: report only the sub-keys that differ (null = removed)
-      if ((k === 'vars' || k === 'layout') && an[k] && bn[k]) {
-        const sub = {};
-        for (const kk of new Set([
-          ...Object.keys(an[k]),
-          ...Object.keys(bn[k]),
-        ]))
-          if (
-            JSON.stringify(an[k][kk] ?? null) !==
-            JSON.stringify(bn[k][kk] ?? null)
-          )
-            sub[kk] = bn[k][kk] ?? null;
-        diff[k] = sub;
-      } else diff[k] = bn[k] ?? null;
-    }
-    if (Object.keys(diff).length) changed[path] = diff;
-  }
-  for (const path of Object.keys(a)) if (!b[path]) removed.push(path);
-  const o = {};
-  if (Object.keys(changed).length) o.changed = changed;
-  if (added.length) o.added = added;
-  if (removed.length) o.removed = removed;
-  return Object.keys(o).length ? o : null;
-}
+// In variant-diff.mjs, which the codegen's tests load without calling the API.
 const props = (defs) =>
   Object.fromEntries(
     Object.entries(defs || {}).map(([k, v]) => [
@@ -592,6 +510,7 @@ function transformPage(resp, pageId) {
       const base = digest(dv, ctx);
       set.variants = [base];
       const bh = (base.hidden || []).join('|');
+      const bp = (base.hiddenPaths || []).join('|');
       const depth = nc > 300 ? 3 : 6;
       let k = 0;
       for (const c of n.children) {
@@ -600,7 +519,7 @@ function transformPage(resp, pageId) {
           set.variantsTruncated = true;
           break;
         }
-        const d = digest(c, ctx, bh);
+        const d = digest(c, ctx, bh, bp);
         const ov = overrides(
           set.defaultVariantTree,
           layer(c, n, 0, depth, ctx),

@@ -43,7 +43,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -99,7 +100,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "line": {
           "background": "#111111",
@@ -155,7 +157,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -211,7 +214,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "line": {
           "background": "#111111",
@@ -267,7 +271,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -323,7 +328,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "line": {
           "background": "#e0e0e0",
@@ -379,7 +385,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -435,7 +442,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "line": {
           "background": "#e0032d",

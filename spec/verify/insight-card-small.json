@@ -69,7 +69,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -78,7 +79,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -165,7 +167,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -174,7 +177,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "icon": {
           "background": "#ffe4df",
@@ -283,7 +287,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -292,7 +297,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "icon": {
           "background": "#ffeeda",
@@ -401,7 +407,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -410,7 +417,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "icon": {
           "background": "#f5f5f5",
@@ -609,7 +617,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -618,7 +627,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "icon": {
           "background": "#ecffe9",
@@ -727,7 +737,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -736,7 +747,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "icon": {
           "background": "#ffe4df",
@@ -845,7 +857,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -854,7 +867,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "icon": {
           "background": "#ffeeda",
@@ -963,7 +977,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "description": {
           "color": "#646464",
@@ -972,7 +987,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "icon": {
           "background": "#f5f5f5",

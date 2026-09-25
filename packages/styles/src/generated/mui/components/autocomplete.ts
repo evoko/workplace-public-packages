@@ -39,6 +39,10 @@ export const solarAutocompleteStyles = {
     '& .SolarAutocomplete-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarAutocomplete-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -159,6 +163,7 @@ export const solarAutocompleteStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarAutocomplete-trailingIcon': {
       width: 'var(--solar-icon-sm)',
@@ -173,6 +178,7 @@ export const solarAutocompleteStyles = {
       lineHeight: 'var(--solar-type-line-height-helper-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {

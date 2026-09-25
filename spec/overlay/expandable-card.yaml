@@ -36,11 +36,6 @@ set:
     reason: >-
       A card spans the space it is put in: Figma draws it 320 wide, a sample. The caller sizes
       it.
-  title.base.width:
-    keyword: FILL
-    reason: >-
-      The title fills its header, the chevron at the header's end, as Figma sizes it (FILL, 260
-      of the header's 288): a text's sizing the IR does not read, set here.
   root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-

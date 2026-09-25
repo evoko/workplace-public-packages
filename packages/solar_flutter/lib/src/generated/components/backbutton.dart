@@ -100,6 +100,7 @@ abstract final class SolarBackButtonRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.action.tertiary.text.default',
     'label.typography|base': 't:typography.label.md',
+    'label.width|base': 'k:FILL',
     'label.typography|size|sm': 't:typography.label.sm',
     'label.present|appearance|default|loading': 'b:false',
     'label.color|appearance|default|hover':

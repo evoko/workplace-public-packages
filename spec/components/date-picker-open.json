@@ -1025,6 +1025,10 @@
         "typography": {
           "token": "typography.body.md.medium",
           "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=false, type=single"
         }
       },
       "size": {},
@@ -1171,6 +1175,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=false, type=single"
         }
       },
       "size": {},
@@ -1197,6 +1205,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=false, type=single"
         }
       },
@@ -1225,6 +1237,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=false, type=single"
         }
       },
       "size": {},
@@ -1251,6 +1267,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=false, type=single"
         }
       },
@@ -1279,6 +1299,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=false, type=single"
         }
       },
       "size": {},
@@ -1306,6 +1330,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=false, type=single"
         }
       },
       "size": {},
@@ -1332,6 +1360,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=false, type=single"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=false, type=single"
         }
       },
@@ -3394,6 +3426,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -3420,6 +3456,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=true, type=double"
         }
       },
@@ -3448,6 +3488,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -3474,6 +3518,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=true, type=double"
         }
       },
@@ -3502,6 +3550,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -3529,6 +3581,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -3555,6 +3611,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=true, type=double"
         }
       },
@@ -5621,6 +5681,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -5647,6 +5711,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=true, type=double"
         }
       },
@@ -5675,6 +5743,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -5701,6 +5773,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=true, type=double"
         }
       },
@@ -5729,6 +5805,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -5756,6 +5836,10 @@
         "typography": {
           "token": "typography.body.sm.medium",
           "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "inline=true, type=double"
         }
       },
       "size": {},
@@ -5782,6 +5866,10 @@
         },
         "typography": {
           "token": "typography.body.sm.medium",
+          "from": "inline=true, type=double"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "inline=true, type=double"
         }
       },

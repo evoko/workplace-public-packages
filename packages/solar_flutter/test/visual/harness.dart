@@ -128,6 +128,27 @@ Map<String, Object?> textValues(TextStyle s) => {
       : 'none',
 };
 
+/// A paragraph's painted style, and whether it paints any words: a text in the right style with
+/// none in it draws nothing, and would pass on its style alone.
+Map<String, Object?> paragraphValues(RenderParagraph p) => {
+  ...textValues(p.text.style!),
+  'words': p.text.toPlainText().trim().isNotEmpty,
+};
+
+/// Whether anything under [at] shows words: a paragraph (a field's hint among them), or the text
+/// in a field.
+bool wordsIn(WidgetTester tester, Finder at) =>
+    tester
+        .renderObjectList<RenderParagraph>(
+          find.descendant(of: at, matching: find.byType(RichText)),
+        )
+        .any((p) => p.text.toPlainText().trim().isNotEmpty) ||
+    tester
+        .widgetList<EditableText>(
+          find.descendant(of: at, matching: find.byType(EditableText)),
+        )
+        .any((e) => e.controller.text.trim().isNotEmpty);
+
 /// The child oracle's variant a parent's layer names: every axis it gives, by Figma's spelling.
 Map<String, dynamic> childVariant(
   Map<String, dynamic> oracle,

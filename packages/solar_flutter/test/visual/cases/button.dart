@@ -96,7 +96,7 @@ Layers measureButtonAt(WidgetTester tester, Finder at) {
       'height': root.height,
     },
     'label': {
-      ...textValues(tester.renderObject<RenderParagraph>(words).text.style!),
+      ...paragraphValues(tester.renderObject<RenderParagraph>(words)),
       'drawn': visibility.visible,
     },
     // Where the button holds none (FileUpload's Browse), an icon or a counter is not drawn.

@@ -45,7 +45,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -111,7 +112,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -177,7 +179,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -242,7 +245,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -307,7 +311,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -364,7 +369,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "iconArrowRight": {
           "color": "#111111",
@@ -438,7 +444,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "iconArrowRight": {
           "color": "#111111",
@@ -512,7 +519,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "iconArrowRight": {
           "color": "#111111",
@@ -585,7 +593,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "iconArrowRight": {
           "color": "#111111",
@@ -658,7 +667,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "iconArrowRight": {
           "color": "#a8a8a8",

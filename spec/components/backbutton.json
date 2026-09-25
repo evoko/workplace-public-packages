@@ -255,6 +255,10 @@
         "typography": {
           "token": "typography.label.md",
           "from": "size=md, state=default"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "size=md, state=default"
         }
       },
       "size": {

@@ -107,6 +107,10 @@
         "typography": {
           "token": "typography.label.md",
           "from": ""
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": ""
         }
       },
       "size": {},

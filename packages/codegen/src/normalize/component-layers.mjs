@@ -111,6 +111,7 @@ function parseVariantName(name, axes) {
  *     layers: Map<string, object>,
  *     parents: Map<string, string | null>,
  *     removed: string[],
+ *     placed: Set<string>,
  *   }>,
  * }}
  */
@@ -185,6 +186,32 @@ export function resolveVariants(set) {
         throw new Error(
           `${raw.variant}: adds ${added.path} under ${added.parent}, which it does not have`,
         );
+    // Where the fetcher records it (`index`, among the layer's siblings in this variant), an added
+    // layer sits where Figma draws it (Card's loading title placeholder, above the content), not
+    // after the default's layers; `placed` names it, for the layer tree across variants to keep.
+    const placed = new Set();
+    const order = [...layers.keys()];
+    for (const added of (overrides.added ?? [])
+      .filter((a) => Number.isInteger(a.index))
+      .sort((a, b) => a.index - b.index)) {
+      const parent = parents.get(added.path);
+      order.splice(order.indexOf(added.path), 1);
+      const siblings = order.filter((p) => parents.get(p) === parent);
+      const next = siblings[added.index];
+      order.splice(
+        next === undefined
+          ? order.indexOf(siblings.at(-1) ?? parent) + 1
+          : order.indexOf(next),
+        0,
+        added.path,
+      );
+      placed.add(added.path);
+    }
+    if (placed.size) {
+      const kept = new Map(layers);
+      layers.clear();
+      for (const path of order) layers.set(path, kept.get(path));
+    }
 
     // A boolean operation is drawn as one shape, the outline Figma records on it;
     // its children are its operands, which Figma never draws, so they are no layers of the
@@ -209,6 +236,7 @@ export function resolveVariants(set) {
       layers,
       parents,
       removed,
+      placed,
     };
   });
 

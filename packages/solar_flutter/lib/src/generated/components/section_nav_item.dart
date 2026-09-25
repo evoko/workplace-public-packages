@@ -59,6 +59,7 @@ abstract final class SolarSectionNavItemRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.secondary',
     'label.typography|base': 't:typography.label.md',
+    'label.width|base': 'k:FILL',
     'label.color|appearance|default|hover': 't:color.text.primary',
     'label.color|appearance|default|selected': 't:color.text.primary',
     'label.color|appearance|default|focus': 't:color.text.secondary',

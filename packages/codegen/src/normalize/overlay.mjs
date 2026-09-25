@@ -800,6 +800,15 @@ export function placeLayers(layers, overlay, component) {
     if (!layers[before]) fail(`the component has no layer ${before}`);
     if (layers[path].parent !== layers[before].parent)
       fail(`${before} is not its sibling`);
+    // Where Figma's export already records it there (the fetcher's `index`), the rule decides
+    // nothing, and is stale.
+    const siblings = order.filter(
+      (p) => layers[p].parent === layers[path].parent,
+    );
+    if (siblings.indexOf(path) === siblings.indexOf(before) - 1)
+      fail(
+        `the layer is already before ${before}, as Figma's export records it: delete the rule`,
+      );
     order.splice(order.indexOf(path), 1);
     order.splice(order.indexOf(before), 0, path);
   }

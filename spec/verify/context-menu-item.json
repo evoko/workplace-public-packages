@@ -49,7 +49,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "shortcut": {
           "color": "#a8a8a8",
@@ -58,7 +59,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "hidden": true,
@@ -134,7 +136,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "shortcut": {
           "color": "#a8a8a8",
@@ -143,7 +146,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "hidden": true,
@@ -222,7 +226,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "shortcut": {
           "color": "#a8a8a8",
@@ -231,7 +236,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "hidden": true,
@@ -310,7 +316,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "shortcut": {
           "color": "#00000033",
@@ -319,7 +326,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "hidden": true,
@@ -395,7 +403,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "shortcut": {
           "color": "#c00024",
@@ -404,7 +413,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "hidden": true,

@@ -447,6 +447,10 @@
         "typography": {
           "token": "typography.body.lg.medium",
           "from": "type=success, style=filled"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "type=success, style=filled"
         }
       },
       "size": {},
@@ -529,6 +533,10 @@
         },
         "typography": {
           "token": "typography.body.md.regular",
+          "from": "type=success, style=filled"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "type=success, style=filled"
         }
       },

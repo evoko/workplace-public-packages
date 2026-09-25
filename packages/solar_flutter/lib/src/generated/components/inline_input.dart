@@ -78,6 +78,7 @@ abstract final class SolarInlineInputRecipe {
     'value.present|base': 'b:true',
     'value.color|base': 't:color.text.primary',
     'value.typography|base': 't:typography.body.md.regular',
+    'value.width|base': 'k:FILL',
     'value.color|appearance|default|disabled': 't:color.text.disabled',
     'iconButton.present|base': 'b:false',
     'iconButton.component|base': 'k:Icon Button',

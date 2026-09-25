@@ -55,7 +55,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#065f6a",
@@ -64,7 +65,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -93,7 +95,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -118,7 +121,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -202,7 +206,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#065f6a",
@@ -211,7 +216,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -240,7 +246,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -265,7 +272,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -349,7 +357,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#065f6a",
@@ -358,7 +367,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -387,7 +397,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -412,7 +423,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -496,7 +508,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#065f6a",
@@ -505,7 +518,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -534,7 +548,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -559,7 +574,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -643,7 +659,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#065f6a",
@@ -652,7 +669,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -681,7 +699,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -698,7 +717,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "iconChevronUp": {
           "color": "#111111",
@@ -790,7 +810,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#065f6a",
@@ -799,7 +820,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -828,7 +850,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -845,7 +868,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "iconChevronUp": {
           "color": "#111111",
@@ -937,7 +961,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#00000033",
@@ -946,7 +971,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#f5f5f5",
@@ -975,7 +1001,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#00000033",
@@ -1000,7 +1027,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -1084,7 +1112,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#00000033",
@@ -1093,7 +1122,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#f5f5f5",
@@ -1122,7 +1152,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#00000033",
@@ -1147,7 +1178,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -1231,7 +1263,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#c00024",
@@ -1240,7 +1273,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -1269,7 +1303,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -1294,7 +1329,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -1378,7 +1414,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "mandatory": {
           "color": "#c00024",
@@ -1387,7 +1424,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "field": {
           "background": "#ffffff",
@@ -1416,7 +1454,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "trailingIcon": {
           "color": "#111111",
@@ -1441,7 +1480,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [

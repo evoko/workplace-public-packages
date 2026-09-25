@@ -29,6 +29,10 @@ export const solarImageCardStyles = {
     '& .SolarImageCard-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarImageCard-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -180,6 +184,7 @@ export const solarImageCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarImageCard-iconCircle': {
       borderRadius: 'var(--solar-radius-pill)',

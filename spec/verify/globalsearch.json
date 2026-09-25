@@ -46,7 +46,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -118,7 +119,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -190,7 +192,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -262,7 +265,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -334,7 +338,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -406,7 +411,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -478,7 +484,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -550,7 +557,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -622,7 +630,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",
@@ -695,7 +704,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "kbd": {
           "component": "Kbd",

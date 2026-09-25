@@ -193,12 +193,14 @@ abstract final class SolarInsightCardRecipe {
     'title.present|base': 'b:true',
     'title.color|base': 't:color.text.primary',
     'title.typography|base': 't:typography.body.md.medium',
+    'title.width|base': 'k:FILL',
     'title.present|appearance|severity=info, loading=true|default': 'b:false',
     'title.present|appearance|severity=info, loading=true|hover': 'b:false',
     'title.present|appearance|severity=info, loading=true|selected': 'b:false',
     'description.present|base': 'b:true',
     'description.color|base': 't:color.text.secondary',
     'description.typography|base': 't:typography.body.md.regular',
+    'description.width|base': 'k:FILL',
     'description.present|appearance|severity=info, loading=true|default':
         'b:false',
     'description.present|appearance|severity=info, loading=true|hover':

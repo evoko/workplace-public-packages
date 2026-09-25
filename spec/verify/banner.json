@@ -49,7 +49,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actionGroup": {
           "background": "transparent",
@@ -93,7 +94,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "close": {
           "color": "#111111",
@@ -186,7 +188,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actionGroup": {
           "background": "transparent",
@@ -230,7 +233,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "close": {
           "color": "#111111",
@@ -315,7 +319,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actionGroup": {
           "background": "transparent",
@@ -359,7 +364,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "close": {
           "color": "#111111",
@@ -452,7 +458,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actionGroup": {
           "background": "transparent",
@@ -496,7 +503,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "close": {
           "color": "#111111",
@@ -589,7 +597,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actionGroup": {
           "background": "transparent",
@@ -633,7 +642,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "close": {
           "color": "#111111",

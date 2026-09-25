@@ -53,7 +53,6 @@ export default {
         whiteSpace: 'normal',
         minWidth: '0',
       },
-      [`& .${P}-drawnIcon`]: { flexShrink: '0' },
       [`&.${P}-expanded > .${P}-accordion .${P}-iconChevronDown`]: {
         transform: 'rotate(180deg)',
       },

@@ -276,8 +276,7 @@
         },
         "width": {
           "keyword": "FILL",
-          "from": "overlay",
-          "reason": "The title fills its header, the chevron at the header's end, as Figma sizes it (FILL, 260 of the header's 288): a text's sizing the IR does not read, set here."
+          "from": "expanded=false, hover=false"
         }
       },
       "size": {},
@@ -490,6 +489,10 @@
         "typography": {
           "token": "typography.body.md.regular",
           "from": "expanded=true, hover=false"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "expanded=true, hover=false"
         }
       },
       "size": {},
@@ -567,11 +570,6 @@
         "rule": "set",
         "at": "root.base.width",
         "reason": "A card spans the space it is put in: Figma draws it 320 wide, a sample. The caller sizes it."
-      },
-      {
-        "rule": "set",
-        "at": "title.base.width",
-        "reason": "The title fills its header, the chevron at the header's end, as Figma sizes it (FILL, 260 of the header's 288): a text's sizing the IR does not read, set here."
       },
       {
         "rule": "accept",

@@ -501,6 +501,10 @@
         "typography": {
           "token": "typography.body.md.regular",
           "from": "size=md, state=default"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "size=md, state=default"
         }
       },
       "size": {

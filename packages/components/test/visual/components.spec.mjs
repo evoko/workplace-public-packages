@@ -181,6 +181,12 @@ function measure(root, { list, composed }) {
       lineHeight: cs.lineHeight,
       letterSpacing: cs.letterSpacing,
       textDecoration: cs.textDecorationLine,
+      // Whether it shows any words: its own, or a field's value or placeholder.
+      words:
+        Boolean((el.innerText ?? el.textContent ?? '').trim()) ||
+        [el, ...el.querySelectorAll('input, textarea')].some((f) =>
+          Boolean((f.value || f.placeholder || '').trim()),
+        ),
       width: box.width,
       height: box.height,
       left: box.left,
@@ -537,6 +543,29 @@ test('a difference nobody decided on fails, naming the variant and the property'
       layer: 'root',
       property: 'background',
       rendered: 'rgb(255, 0, 0)',
+    }),
+  ]);
+});
+
+test('a text drawn in its style with no words in it fails', async ({
+  page,
+}) => {
+  await open(page);
+  const card = 'status=success, state=default, ghost=false';
+  const i = oracles['Status Card'].variants.findIndex((v) => v.figma === card);
+  // A Status Card whose value never reached its text: the text is there, styled, and empty.
+  await page
+    .locator(`[data-case="status-card:${i}"] .SolarStatusCard-value`)
+    .evaluate((el) => {
+      el.textContent = '';
+    });
+  const { failures } = await check(page, 'Status Card', { only: [card] });
+  expect(failures).toEqual([
+    expect.objectContaining({
+      variant: card,
+      layer: 'value',
+      property: 'words',
+      rendered: false,
     }),
   ]);
 });

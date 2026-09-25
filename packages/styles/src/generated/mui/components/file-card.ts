@@ -29,6 +29,10 @@ export const solarFileCardStyles = {
     '& .SolarFileCard-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarFileCard-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -185,6 +189,7 @@ export const solarFileCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarFileCard-meta': {
       color: 'var(--solar-color-text-secondary)',
@@ -194,6 +199,7 @@ export const solarFileCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarFileCard-iconMore': {
       width: 'var(--solar-icon-md)',

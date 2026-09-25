@@ -92,6 +92,8 @@ export default {
         color: 'inherit',
         cursor: 'pointer',
         minWidth: '0',
+        // Its icon's size beside the month's name, which fills the header.
+        flexShrink: '0',
         '& > svg': { display: 'block', width: '100%', height: '100%' },
       },
     }),

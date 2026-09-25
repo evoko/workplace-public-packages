@@ -79,6 +79,7 @@ abstract final class SolarSearchFieldRecipe {
     'search.present|base': 'b:true',
     'search.color|base': 't:color.text.secondary',
     'search.typography|base': 't:typography.body.md.regular',
+    'search.width|base': 'k:FILL',
     'search.typography|size|sm': 't:typography.body.sm.regular',
     'search.color|appearance|default|filled': 't:color.text.primary',
     'search.color|appearance|default|focus': 't:color.text.primary',

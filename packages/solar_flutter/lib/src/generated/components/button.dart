@@ -393,6 +393,8 @@ abstract final class SolarButtonRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.action.primary.text.default',
     'label.typography|base': 't:typography.label.md',
+    'label.width|base': 'k:FILL',
+    'label.width|size|lg': 'k:HUG',
     'label.present|appearance|variant=primary, danger=false|loading': 'b:false',
     'label.color|appearance|variant=primary, danger=false|hover':
         't:color.action.primary.text.hover',

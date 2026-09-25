@@ -33,6 +33,10 @@ export const solarStatusIndicatorStyles = {
     '& .SolarStatusIndicator-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarStatusIndicator-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

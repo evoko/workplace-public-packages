@@ -39,6 +39,7 @@ abstract final class SolarPaginationEllipsisRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.secondary',
     'label.typography|base': 't:typography.label.md',
+    'label.width|base': 'k:FILL',
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.

@@ -31,6 +31,10 @@ export const solarDeviceCardStyles = {
     '& .SolarDeviceCard-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarDeviceCard-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -138,6 +142,7 @@ export const solarDeviceCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarDeviceCard-details': {
       color: 'var(--solar-color-text-secondary)',
@@ -147,6 +152,7 @@ export const solarDeviceCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarDeviceCard-iconIconProgress': {
       width: 'var(--solar-icon-md)',

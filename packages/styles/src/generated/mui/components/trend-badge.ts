@@ -32,6 +32,10 @@ export const solarTrendBadgeStyles = {
     '& .SolarTrendBadge-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarTrendBadge-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

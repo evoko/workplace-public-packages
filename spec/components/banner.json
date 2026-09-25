@@ -295,6 +295,10 @@
         "typography": {
           "token": "typography.body.md.medium",
           "from": "type=neutral"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "type=neutral"
         }
       },
       "size": {},

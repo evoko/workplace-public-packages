@@ -23,6 +23,10 @@ export const solarLaunchCardFullScreenStyles = {
     '& .SolarLaunchCardFullScreen-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarLaunchCardFullScreen-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -157,6 +161,7 @@ export const solarLaunchCardFullScreenStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarLaunchCardFullScreen-feature': {
       color: 'var(--solar-color-text-primary)',
@@ -166,6 +171,7 @@ export const solarLaunchCardFullScreenStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarLaunchCardFullScreen-feature2': {
       color: 'var(--solar-color-text-primary)',
@@ -175,6 +181,7 @@ export const solarLaunchCardFullScreenStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarLaunchCardFullScreen-feature3': {
       color: 'var(--solar-color-text-primary)',
@@ -184,6 +191,7 @@ export const solarLaunchCardFullScreenStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {},

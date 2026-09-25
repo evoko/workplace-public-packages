@@ -103,6 +103,7 @@ abstract final class SolarFileUploadRecipe {
     'fileName.present|base': 'b:true',
     'fileName.color|base': 't:color.text.tertiary',
     'fileName.typography|base': 't:typography.body.md.regular',
+    'fileName.width|base': 'k:FILL',
     'fileName.color|appearance|default|error': 't:color.text.feedback.danger',
     'fileName.color|appearance|default|disabled': 't:color.text.disabled',
     'fileName.color|appearance|default|filled': 't:color.text.primary',

@@ -614,6 +614,10 @@
         "typography": {
           "token": "typography.title.xs",
           "from": "hover=false, access=true"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "hover=false, access=true"
         }
       },
       "size": {},
@@ -715,6 +719,10 @@
         },
         "typography": {
           "token": "typography.body.sm.regular",
+          "from": "hover=false, access=true"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "hover=false, access=true"
         }
       },

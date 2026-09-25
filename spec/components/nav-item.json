@@ -351,6 +351,10 @@
         "typography": {
           "token": "typography.label.md",
           "from": "selected=false, hover=false, expanded=true"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "selected=false, hover=false, expanded=true"
         }
       },
       "size": {},

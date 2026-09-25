@@ -22,6 +22,10 @@ export const solarSplitDropdownStyles = {
     '& .SolarSplitDropdown-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarSplitDropdown-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

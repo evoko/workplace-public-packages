@@ -266,6 +266,10 @@
         "typography": {
           "token": "typography.label.md",
           "from": "state=default, destructive=false"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "state=default, destructive=false"
         }
       },
       "size": {},

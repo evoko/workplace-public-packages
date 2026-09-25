@@ -622,6 +622,10 @@
         "typography": {
           "token": "typography.body.sm.regular",
           "from": ""
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": ""
         }
       },
       "size": {},
@@ -639,6 +643,10 @@
         },
         "typography": {
           "token": "typography.body.sm.regular",
+          "from": ""
+        },
+        "width": {
+          "keyword": "FILL",
           "from": ""
         }
       },
@@ -658,6 +666,10 @@
         "typography": {
           "token": "typography.body.sm.regular",
           "from": ""
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": ""
         }
       },
       "size": {},
@@ -675,6 +687,10 @@
         },
         "typography": {
           "token": "typography.body.sm.regular",
+          "from": ""
+        },
+        "width": {
+          "keyword": "FILL",
           "from": ""
         }
       },

@@ -107,6 +107,7 @@ abstract final class SolarSelectRecipe {
     'placeholder.present|base': 'b:true',
     'placeholder.color|base': 't:color.text.primary',
     'placeholder.typography|base': 't:typography.body.md.regular',
+    'placeholder.width|base': 'k:FILL',
     'placeholder.typography|size|sm': 't:typography.body.sm.regular',
     'placeholder.color|appearance|default|disabled': 't:color.text.disabled',
     'trailingIcon.present|base': 'b:true',

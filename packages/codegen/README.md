@@ -221,6 +221,21 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      variant's Dark differences beside it (`withDark`), and both visual checks measure both.
    - **The Node check.** Every CLI stops in one line on a Node older than `.nvmrc`
      (`src/util/require-node.mjs`), before anything loads.
+   - **Nothing written until everything is built.** `deferWrites` and `commitGenerated`
+     (`src/util/write.mjs`) hold every output until every stage has emitted and the report is
+     written, so a stage that throws one emitter in (Button's recipe refusing a literal, after the
+     shells were rendered) rewrites nothing; each file is written beside itself and renamed over.
+   - **A text that fills its row.** Figma's FILL on a text is layout, and recorded (a card's title,
+     its More at the row's end); where another variant's fills and this one's does not, it hugs.
+     A text the root draws itself (Button's label) is given no size of its own, and a drawn icon or
+     glyph keeps its size beside what fills (`drawnResets`).
+   - **Words, checked.** The oracle marks a text Figma draws words in (`words`), and both checks
+     fail one drawn in its style with none (Status Card's value, its words never passed on).
+   - **Hidden layers by path, an added layer in its place.** The fetcher
+     (`docs/solar-web/raw/variant-diff.mjs`) records each hidden layer by path (`hiddenPaths`) and
+     each added layer's `index`; where the data has them, a composed child hides exactly its own
+     layers and an added layer sits where Figma draws it, and the overlay's `hides` and `places`
+     rules they replace fail as stale. The data has them from the next `solar:sync`.
      What F10 (the cards) added:
    - **A layer one variant adds, in its place.** Figma's export records a layer only one variant
      draws after its siblings (Card's loading title placeholder); the overlay's `places` puts it

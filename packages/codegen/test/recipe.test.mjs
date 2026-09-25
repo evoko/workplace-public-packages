@@ -884,3 +884,11 @@ describe('deriveRecipe: a layer placed by position', () => {
     });
   });
 });
+
+describe('deriveRecipe: a text that fills its row', () => {
+  it('records Figma’s FILL as layout, and hugs where another variant does not fill', () => {
+    // md and sm fill the button; lg spreads its label and icons, the label hugging its words.
+    expect(label.base.width).toMatchObject({ keyword: 'FILL' });
+    expect(label.size.lg.width).toMatchObject({ keyword: 'HUG' });
+  });
+});

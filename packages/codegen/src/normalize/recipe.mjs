@@ -369,6 +369,12 @@ function cellsOf(
       ),
     );
     put('typography', 'geometry', style(layer.textStyle, names.textStyle));
+    // A text's size follows from its font and its words, but one that fills its row (a card's
+    // title, its More at the row's end) takes the room its parent leaves, as a frame that fills
+    // does: that is layout, and recorded. Its fixed and hugging sizes are Figma's drawing of the
+    // sample words, and are not.
+    const sizing = sizingOf(layer);
+    if (sizing?.[0] === 'FILL') put('width', 'geometry', { keyword: 'FILL' });
     // A text placed by position is where Figma put it, as any layer is; its size follows from its
     // font.
     if (layer.position) place();
@@ -572,6 +578,10 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
         // Where another variant places the layer by position and this one's auto layout places it.
         else if (PLACES.includes(c))
           own[c] = { cls: 'shape', value: { none: true } };
+        // Where another variant's text fills its row and this one's does not (Button's label, in
+        // the lg button's spread): it hugs its words, which is no size of Figma's sample to keep.
+        else if ((c === 'width' || c === 'height') && layer.type === 'TEXT')
+          own[c] = { cls: 'geometry', value: { keyword: 'HUG' } };
         else if ((c === 'width' || c === 'height') && layer.size) {
           const i = c === 'width' ? 0 : 1;
           own[c] = {
@@ -588,6 +598,23 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
       }
     }
   }
+}
+
+/**
+ * The layer tree with `path` put where variant `v` draws it: before the first sibling after it in
+ * `v` that the tree already has (Card's placeholder before the content, as Figma draws it); after
+ * them all where none follows it.
+ */
+function placedAmong(layers, path, entry, v) {
+  const keys = Object.keys(layers);
+  const inV = [...v.layers.keys()].filter(
+    (p) => v.parents.get(p) === entry.parent,
+  );
+  const next = inV.slice(inV.indexOf(path) + 1).find((p) => layers[p]);
+  keys.splice(next ? keys.indexOf(next) : keys.length, 0, path);
+  return Object.fromEntries(
+    keys.map((k) => [k, k === path ? entry : layers[k]]),
+  );
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -640,15 +667,21 @@ export function deriveRecipe(
   );
   const defaultVariant = byKey.get(keyOf(defaults, axisNames));
 
-  // The layer tree, in the default variant's order, plus any layer a variant adds.
-  const layers = {};
+  // The layer tree, in the default variant's order, plus any layer a variant adds: after the
+  // others, or, where Figma's export records its place (`placed`), after the sibling it follows
+  // in that variant.
+  let layers = {};
   for (const v of [defaultVariant, ...resolved.variants])
-    for (const [path, layer] of v.layers)
-      if (!layers[path])
-        layers[path] = {
-          parent: v.parents.get(path) ?? null,
-          type: layer.type ?? null,
-        };
+    for (const [path, layer] of v.layers) {
+      if (layers[path]) continue;
+      const entry = {
+        parent: v.parents.get(path) ?? null,
+        type: layer.type ?? null,
+      };
+      layers = v.placed?.has(path)
+        ? placedAmong(layers, path, entry, v)
+        : { ...layers, [path]: entry };
+    }
 
   // Every variant's cells, once, and per icon layer the variants whose colour cannot be one cell.
   const unattributed = new Map();

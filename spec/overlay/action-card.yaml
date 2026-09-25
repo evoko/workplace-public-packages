@@ -37,11 +37,6 @@ set:
     reason: >-
       A card spans the space it is put in: Figma draws it 300 wide, a sample. The caller sizes
       it.
-  titleTitle.base.width:
-    keyword: FILL
-    reason: >-
-      The title fills its row, the More menu at the row's end, as Figma sizes it (FILL): a text's
-      sizing the IR does not read, set here.
   primaryCTA.base.height:
     none: true
     reason: >-

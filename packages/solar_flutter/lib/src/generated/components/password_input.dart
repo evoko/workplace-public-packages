@@ -108,6 +108,7 @@ abstract final class SolarPasswordInputRecipe {
     'maskedValue.present|base': 'b:true',
     'maskedValue.color|base': 't:color.text.tertiary',
     'maskedValue.typography|base': 't:typography.body.md.regular',
+    'maskedValue.width|base': 'k:FILL',
     'maskedValue.typography|size|sm': 't:typography.body.sm.regular',
     'maskedValue.color|appearance|default|hover': 't:color.text.primary',
     'maskedValue.color|appearance|default|focus': 't:color.text.primary',
@@ -125,12 +126,14 @@ abstract final class SolarPasswordInputRecipe {
     'helper.present|base': 'b:true',
     'helper.color|base': 't:color.text.secondary',
     'helper.typography|base': 't:typography.helper.md',
+    'helper.width|base': 'k:FILL',
     'helper.typography|size|sm': 't:typography.helper.sm',
     'helper.color|appearance|default|disabled': 't:color.text.disabled',
     'helper.color|appearance|default|error': 't:color.text.feedback.danger',
     'forgotPassword.present|base': 'b:false',
     'forgotPassword.color|base': 't:color.text.secondary',
     'forgotPassword.typography|base': 't:typography.body.md.regular',
+    'forgotPassword.width|base': 'k:FILL',
     'forgotPassword.present|appearance|default|focus': 'b:true',
   };
 

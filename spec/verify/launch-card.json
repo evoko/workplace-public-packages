@@ -108,7 +108,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -142,7 +143,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",
@@ -333,7 +335,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -365,7 +368,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",
@@ -552,7 +556,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -586,7 +591,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",
@@ -777,7 +783,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -809,7 +816,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",
@@ -996,7 +1004,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -1030,7 +1039,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",
@@ -1221,7 +1231,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -1253,7 +1264,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",
@@ -1440,7 +1452,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -1474,7 +1487,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",
@@ -1665,7 +1679,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.48,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "tag": {
           "hidden": true,
@@ -1697,7 +1712,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "actions": {
           "component": "Button Group",

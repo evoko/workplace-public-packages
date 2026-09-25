@@ -119,6 +119,10 @@
         "typography": {
           "token": "typography.title.2xs",
           "from": ""
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": ""
         }
       },
       "size": {},

@@ -39,6 +39,10 @@ export const solarTextInputStyles = {
     '& .SolarTextInput-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarTextInput-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -159,6 +163,7 @@ export const solarTextInputStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarTextInput-trailingIcon': {
       width: 'var(--solar-icon-md)',
@@ -173,6 +178,7 @@ export const solarTextInputStyles = {
       lineHeight: 'var(--solar-type-line-height-helper-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {

@@ -23,6 +23,10 @@ export const solarEmptyStateStyles = {
     '& .SolarEmptyState-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarEmptyState-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

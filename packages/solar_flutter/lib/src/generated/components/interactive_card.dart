@@ -137,6 +137,7 @@ abstract final class SolarInteractiveCardRecipe {
     'description.present|base': 'b:true',
     'description.color|base': 't:color.text.secondary',
     'description.typography|base': 't:typography.body.md.regular',
+    'description.width|base': 'k:FILL',
     'description.color|appearance|selected=true, dragging=false|default':
         't:color.text.primary',
     'actions.present|base': 'b:false',

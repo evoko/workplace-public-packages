@@ -239,6 +239,16 @@ describe('renderMuiComponent on Spinner', () => {
   });
 });
 
+describe('a text the root draws itself', () => {
+  it('has no size of its own: Button’s label fills or hugs, and the root is sized alone', () => {
+    // The IR has the label's FILL and lg's HUG; MUI renders the words in the root, so declaring
+    // them would size the button itself.
+    expect(button.style.label.base.width).toMatchObject({ keyword: 'FILL' });
+    expect(styles.root.width).toBeUndefined();
+    expect(styles.sizes.lg.width).toBe('200px');
+  });
+});
+
 describe('the generated compose lookup', () => {
   // Loaded as the module a shell imports, so it is the artifact, not the emitter, under test.
   const dir = mkdtempSync(join(tmpdir(), 'solar-compose-'));

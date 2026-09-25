@@ -23,6 +23,10 @@ export const solarPageNavigatorStyles = {
     '& .SolarPageNavigator-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarPageNavigator-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

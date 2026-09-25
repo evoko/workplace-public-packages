@@ -27,6 +27,10 @@ export const solarExpandableCardStyles = {
     '& .SolarExpandableCard-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarExpandableCard-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -41,9 +45,6 @@ export const solarExpandableCardStyles = {
       margin: '0',
       font: 'inherit',
       color: 'inherit',
-    },
-    '& .SolarExpandableCard-drawnIcon': {
-      flexShrink: '0',
     },
   },
   root: {
@@ -117,6 +118,7 @@ export const solarExpandableCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {},

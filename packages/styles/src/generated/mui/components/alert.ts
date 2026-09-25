@@ -33,6 +33,10 @@ export const solarAlertStyles = {
     '& .SolarAlert-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarAlert-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -90,6 +94,7 @@ export const solarAlertStyles = {
       lineHeight: 'var(--solar-type-line-height-body-lg)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarAlert-description': {
       color: 'var(--solar-color-text-primary)',
@@ -99,6 +104,7 @@ export const solarAlertStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarAlert-action': {
       color: 'var(--solar-color-text-feedback-success)',

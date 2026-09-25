@@ -65,6 +65,7 @@ abstract final class SolarContextMenuItemRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.primary',
     'label.typography|base': 't:typography.label.md',
+    'label.width|base': 'k:FILL',
     'label.color|appearance|destructive=false|disabled':
         't:color.text.disabled',
     'label.color|appearance|destructive=true|default':

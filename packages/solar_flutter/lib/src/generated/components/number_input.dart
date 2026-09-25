@@ -184,6 +184,7 @@ abstract final class SolarNumberInputRecipe {
     'helper.present|base': 'b:true',
     'helper.color|base': 't:color.text.secondary',
     'helper.typography|base': 't:typography.helper.md',
+    'helper.width|base': 'k:FILL',
     'helper.typography|size|sm': 't:typography.helper.sm',
     'helper.color|appearance|stepper=inline|disabled': 't:color.text.disabled',
     'helper.color|appearance|stepper=inline|error':
@@ -203,6 +204,7 @@ abstract final class SolarNumberInputRecipe {
         't:color.icon.disabled',
     'value.present|base': 'b:false',
     'value.typography|base': 't:typography.body.md.medium',
+    'value.width|base': 'k:FILL',
     'value.typography|size|sm': 't:typography.body.sm.medium',
     'value.present|appearance|stepper=side|default': 'b:true',
     'value.color|appearance|stepper=side|default': 't:color.text.primary',

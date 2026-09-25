@@ -70,6 +70,29 @@ const oracleOf = (component, overlay = loadOverlay(component)) => {
   };
 };
 
+describe('a text that fills its row', () => {
+  it('fills as Figma sizes it, with no overlay rule: a card’s title, its More at the row’s end', () => {
+    for (const [component, layer] of [
+      ['Card', 'titleTitle'],
+      ['Action Card', 'titleTitle'],
+      ['Expandable Card', 'title'],
+      ['Accordion', 'title'],
+    ])
+      expect(
+        of(component).spec.style[layer].base.width,
+        `${component} ${layer}`,
+      ).toMatchObject({
+        keyword: 'FILL',
+        from: expect.not.stringMatching(/^overlay$/),
+      });
+  });
+
+  it('is given no size where it hugs its words, which are Figma’s sample', () => {
+    // Status Card's value hugs in every variant.
+    expect(of('Status Card').spec.style.value.base.width).toBeUndefined();
+  });
+});
+
 describe('places', () => {
   it('reads a rule that addresses both layers by their Figma paths', () => {
     const o = yaml(`

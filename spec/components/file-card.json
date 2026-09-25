@@ -523,6 +523,10 @@
         "typography": {
           "token": "typography.body.md.medium",
           "from": "type=File Card"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "type=File Card"
         }
       },
       "size": {},
@@ -549,6 +553,10 @@
         },
         "typography": {
           "token": "typography.body.sm.regular",
+          "from": "type=File Card"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "type=File Card"
         }
       },

@@ -39,6 +39,10 @@ export const solarTextAreaStyles = {
     '& .SolarTextArea-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarTextArea-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -142,6 +146,7 @@ export const solarTextAreaStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarTextArea-cta': {
       width: '32px',
@@ -181,6 +186,7 @@ export const solarTextAreaStyles = {
       lineHeight: 'var(--solar-type-line-height-helper-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarTextArea-charCount': {
       color: 'var(--solar-color-text-secondary)',

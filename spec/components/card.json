@@ -558,8 +558,7 @@
         },
         "width": {
           "keyword": "FILL",
-          "from": "overlay",
-          "reason": "The title fills its row, the More menu at the row's end, as Figma sizes it (FILL, 260 of the row's 288): a text's sizing the IR does not read, set here."
+          "from": "state=default, status=none, loading=false"
         }
       },
       "size": {},
@@ -924,6 +923,10 @@
         },
         "typography": {
           "token": "typography.body.md.regular",
+          "from": "state=default, status=none, loading=false"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "state=default, status=none, loading=false"
         }
       },
@@ -1339,11 +1342,6 @@
         "rule": "set",
         "at": "tag.base.height",
         "reason": "The Tag is a SOLAR Tag, whose 24px height is its own: the card places it, and never sizes it."
-      },
-      {
-        "rule": "set",
-        "at": "titleTitle.base.width",
-        "reason": "The title fills its row, the More menu at the row's end, as Figma sizes it (FILL, 260 of the row's 288): a text's sizing the IR does not read, set here."
       },
       {
         "rule": "allowLiteral",

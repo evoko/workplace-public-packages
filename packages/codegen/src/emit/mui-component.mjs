@@ -644,6 +644,14 @@ export function renderMuiComponent(spec, tokens) {
     for (const [cell, entry] of Object.entries(cells)) {
       const here = `${layer}.${at}.${cell}`;
       if (composed(layer, cell)) continue;
+      // A text the root draws itself (the words MUI renders in Button's root) has no box of its
+      // own: its size is the root's.
+      if (
+        slots[layer] === '&' &&
+        spec.layers[layer]?.type === 'TEXT' &&
+        (cell === 'width' || cell === 'height')
+      )
+        continue;
       if (PLACED(cell) && entry.position !== undefined)
         placing.add(spec.layers[layer].parent);
       const decl = {

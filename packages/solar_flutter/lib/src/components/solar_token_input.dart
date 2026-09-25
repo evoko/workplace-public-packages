@@ -193,7 +193,11 @@ class SolarTokenInput extends StatelessWidget {
                           style: style,
                           maxLines: 1,
                           decoration: InputDecoration.collapsed(
-                            hintText: value.isEmpty ? placeholder : null,
+                            // Beside the Tags only while disabled, as Figma draws it (the
+                            // design review asks).
+                            hintText: value.isEmpty || disabled
+                                ? placeholder
+                                : null,
                             hintStyle: style,
                           ),
                         ),

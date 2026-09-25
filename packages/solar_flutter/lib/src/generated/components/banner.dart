@@ -60,6 +60,7 @@ abstract final class SolarBannerRecipe {
     'description.present|base': 'b:true',
     'description.color|base': 't:color.text.primary',
     'description.typography|base': 't:typography.body.md.medium',
+    'description.width|base': 'k:FILL',
     'actionGroup.present|base': 'b:true',
     'actionGroup.background|base': 'none',
     'actionGroup.borderColor|base': 'none',

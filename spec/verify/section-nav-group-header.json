@@ -34,7 +34,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": 0.96,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [

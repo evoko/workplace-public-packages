@@ -94,3 +94,7 @@ accept:
       lists it.
   component.fab.root.paddingRight@state=loading:
     reason: As its width, the loading FAB keeps the padding it has at rest.
+  component.fab.label.width@type=extended, state=loading:
+    reason: >-
+      Loading hides the label, keeping its room: Figma sizes the hidden words to hug, where the
+      shown ones fill the FAB, which draws nothing either way. The label fills in every state.

@@ -90,11 +90,13 @@ abstract final class SolarDropdownItemRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.primary',
     'label.typography|base': 't:typography.body.md.medium',
+    'label.width|base': 'k:FILL',
     'label.typography|size|sm': 't:typography.body.sm.medium',
     'label.color|appearance|default|disabled': 't:color.text.disabled',
     'helper.present|base': 'b:true',
     'helper.color|base': 't:color.text.secondary',
     'helper.typography|base': 't:typography.body.sm.regular',
+    'helper.width|base': 'k:FILL',
     'helper.color|appearance|default|disabled': 't:color.text.disabled',
   };
 

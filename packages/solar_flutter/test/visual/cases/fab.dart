@@ -71,7 +71,7 @@ Layers measureFAB(WidgetTester tester) {
     },
     if (label.evaluate().isNotEmpty)
       'label': {
-        ...textValues(tester.renderObject<RenderParagraph>(label).text.style!),
+        ...paragraphValues(tester.renderObject<RenderParagraph>(label)),
         'drawn': visibilityOf(label).visible,
       },
     'spinner': spinners.evaluate().isEmpty

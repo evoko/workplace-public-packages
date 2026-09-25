@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // Generates spec/ from docs/, then emits every target. Reads docs/, never writes it.
 //
-// Each stage builds its spec in memory first and only then writes. Every stage is built before
-// any is emitted, so a throw from one normalizer stops the run before half the targets have been
-// rewritten.
+// Each stage builds its spec in memory first and only then emits. Every stage is built before
+// any is emitted, and every write is held until all of them have emitted and the report is
+// written, so a throw from a normalizer or an emitter (Button's recipe refusing a literal, after
+// the shells were rendered) stops the run with nothing on disk rewritten.
 // First, before anything else loads: the Node this needs (.nvmrc).
 import '../src/util/require-node.mjs';
 import { execSync } from 'node:child_process';
@@ -15,6 +16,8 @@ import { writeDeviationsReport } from '../src/report/deviations.mjs';
 import { packagesDir, repoRoot } from '../src/util/paths.mjs';
 import { staleShells } from '../src/shells/index.mjs';
 import {
+  commitGenerated,
+  deferWrites,
   pruneGenerated,
   removeGenerated,
   wasWritten,
@@ -35,6 +38,7 @@ const OWNED_DIRS = [
   join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated'),
 ];
 
+deferWrites();
 const built = STAGES.map((stage) => stage.build());
 const results = STAGES.map((stage, i) => ({
   name: stage.name,
@@ -48,6 +52,7 @@ writeDeviationsReport(
   results.flatMap((r) => r.deviations),
   built[0].contract.generatedFrom?.exportedOn ?? 'unknown',
 );
+commitGenerated();
 
 const pruned = OWNED_DIRS.flatMap((dir) => pruneGenerated(dir));
 // The shells share their directories with hand-written files (the package entry, `internal/`, an

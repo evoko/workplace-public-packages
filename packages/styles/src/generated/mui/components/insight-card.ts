@@ -34,6 +34,10 @@ export const solarInsightCardStyles = {
     '& .SolarInsightCard-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarInsightCard-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -152,6 +156,7 @@ export const solarInsightCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarInsightCard-description': {
       color: 'var(--solar-color-text-secondary)',
@@ -161,6 +166,7 @@ export const solarInsightCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarInsightCard-iconMore': {
       width: 'var(--solar-icon-md)',

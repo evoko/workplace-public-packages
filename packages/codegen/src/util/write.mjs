@@ -1,6 +1,7 @@
 import {
   mkdirSync,
   readdirSync,
+  renameSync,
   rmdirSync,
   unlinkSync,
   writeFileSync,
@@ -30,12 +31,44 @@ function guard(absolutePath) {
   }
 }
 
+// The writes a run holds until it commits them, or null where each write goes straight to disk.
+let pending = null;
+
+/**
+ * One file, whole or not at all: written beside itself and renamed over the old one, so a run
+ * stopped mid-write never leaves a file cut short.
+ */
+function put(absolutePath, contents) {
+  mkdirSync(dirname(absolutePath), { recursive: true });
+  const partial = `${absolutePath}.${process.pid}.partial`;
+  writeFileSync(partial, contents);
+  renameSync(partial, absolutePath);
+}
+
 export function writeGenerated(absolutePath, contents) {
   guard(absolutePath);
-  mkdirSync(dirname(absolutePath), { recursive: true });
-  writeFileSync(absolutePath, contents);
+  if (pending) pending.set(absolutePath, contents);
+  else put(absolutePath, contents);
   written.add(absolutePath);
   return absolutePath;
+}
+
+/**
+ * Holds every write from here on in memory until `commitGenerated`. The codegen does this so
+ * that a stage that throws, one emitter in, leaves the committed outputs as they were rather than
+ * half of them rewritten (a shell from this run beside a recipe from the last).
+ */
+export function deferWrites() {
+  pending = new Map();
+}
+
+/** Writes what `deferWrites` held, each file whole; returns how many. */
+export function commitGenerated() {
+  if (!pending) throw new Error('commitGenerated: no writes are deferred');
+  const held = pending;
+  pending = null;
+  for (const [path, contents] of held) put(path, contents);
+  return held.size;
 }
 
 /** Deletes one generated file, under the same guard as a write. */

@@ -1340,9 +1340,20 @@
         "typography": {
           "token": "typography.label.md",
           "from": "size=md, prio=primary, state=default, danger=false"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "size=md, prio=primary, state=default, danger=false"
         }
       },
-      "size": {},
+      "size": {
+        "lg": {
+          "width": {
+            "keyword": "HUG",
+            "from": "size=lg, prio=primary, state=default, danger=false"
+          }
+        }
+      },
       "appearance": {
         "variant=primary, danger=false": {
           "loading": {

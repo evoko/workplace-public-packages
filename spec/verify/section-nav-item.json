@@ -44,7 +44,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "dark": {
@@ -95,7 +96,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -159,7 +161,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -220,7 +223,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [
@@ -285,7 +289,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.28,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         }
       },
       "excused": [

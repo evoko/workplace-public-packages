@@ -72,6 +72,15 @@ dayGridDayCell*.base.height:
   reason: { as: set dayGridDayCell*.base.width }
 ```
 
+An address with commas in it (a finding's variant, a look) is written in the block form, since a
+comma ends a value in the braces:
+
+```yaml
+component.insight row.title.width@severity=info, state=hover, ghost=true:
+  reason:
+    as: accept component.insight row.title.width@severity=info, state=default, ghost=true
+```
+
 ## The rules, in the order they apply
 
 ### `codeName`
@@ -197,9 +206,11 @@ choice:
 ### `hides`
 
 A composed child that draws these layers whatever names Figma records hidden in the variant:
-Figma's record is by name alone, and one child's hidden layer may share a name with another's
-shown one (Device Card's Dropdown label and Tag words, both `Label`). `not` lists the child's
-layers.
+Figma's record is by name alone in data fetched before 2026-09-25, and one child's hidden layer
+may share a name with another's shown one (Device Card's Dropdown label and Tag words, both
+`Label`). `not` lists the child's layers. Data fetched since records each hidden layer by path
+(`hiddenPaths`), which tells them apart: a name the export no longer records hidden fails as
+stale, and the rule is deleted.
 
 ### `defaults`
 
@@ -242,8 +253,10 @@ to one. Addressed by the Figma path.
 
 ### `places`
 
-Where a layer one variant adds sits among its siblings: Figma's export records such a layer after
-the others (Card's loading title placeholder, `before: /Content`).
+Where a layer one variant adds sits among its siblings: data fetched before 2026-09-25 records such
+a layer after the others (Card's loading title placeholder, `before: /Content`). Data fetched
+since records its place (the added layer's `index`), and a rule that moves a layer to where it
+already is fails as stale.
 
 ### `same`
 

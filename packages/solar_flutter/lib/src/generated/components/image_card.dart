@@ -132,6 +132,7 @@ abstract final class SolarImageCardRecipe {
     'subtitle.present|base': 'b:true',
     'subtitle.color|base': 't:color.text.secondary',
     'subtitle.typography|base': 't:typography.body.sm.regular',
+    'subtitle.width|base': 'k:FILL',
     'subtitle.present|appearance|filled=false, selected=false|default':
         'b:false',
     'iconCircle.present|base': 'b:false',

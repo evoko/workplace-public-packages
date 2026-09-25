@@ -61,6 +61,7 @@ abstract final class SolarPaginationItemRecipe {
     'page.present|base': 'b:true',
     'page.color|base': 't:color.text.primary',
     'page.typography|base': 't:typography.label.md',
+    'page.width|base': 'k:FILL',
     'page.color|appearance|selected=false|disabled': 't:color.text.disabled',
     'page.color|appearance|selected=true|default':
         't:color.action.primary.text.default',

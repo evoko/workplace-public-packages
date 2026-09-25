@@ -507,6 +507,10 @@
         "typography": {
           "token": "typography.body.md.medium",
           "from": "severity=success, state=default, ghost=false"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "severity=success, state=default, ghost=false"
         }
       },
       "size": {},
@@ -539,6 +543,10 @@
         },
         "typography": {
           "token": "typography.body.sm.regular",
+          "from": "severity=success, state=default, ghost=false"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "severity=success, state=default, ghost=false"
         }
       },
@@ -834,6 +842,26 @@
         "rule": "allowLiteral",
         "at": "skeleton2.width",
         "reason": "As the first placeholder's height, carried as drawn."
+      },
+      {
+        "rule": "accept",
+        "at": "component.insight row.meta.width@severity=info, state=default, ghost=true",
+        "reason": "As the title's, the meta line hugs in the same two variants, where every other row's fills."
+      },
+      {
+        "rule": "accept",
+        "at": "component.insight row.meta.width@severity=info, state=hover, ghost=true",
+        "reason": "As the title's, the meta line hugs in the same two variants, where every other row's fills."
+      },
+      {
+        "rule": "accept",
+        "at": "component.insight row.title.width@severity=info, state=default, ghost=true",
+        "reason": "Figma sizes the loading info row's title to hug at rest and on hover, where every other row's fills it: a slip in two of ten, which draws the same, since the title's placeholder is its own width. The title fills in every row; the design review lists it."
+      },
+      {
+        "rule": "accept",
+        "at": "component.insight row.title.width@severity=info, state=hover, ghost=true",
+        "reason": "Figma sizes the loading info row's title to hug at rest and on hover, where every other row's fills it: a slip in two of ten, which draws the same, since the title's placeholder is its own width. The title fills in every row; the design review lists it."
       },
       {
         "rule": "bind",

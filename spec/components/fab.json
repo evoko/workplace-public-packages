@@ -432,6 +432,10 @@
         "typography": {
           "token": "typography.label.sm",
           "from": "type=extended, size=sm, state=default"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "type=extended, size=sm, state=default"
         }
       },
       "size": {
@@ -598,6 +602,11 @@
         "rule": "allowLiteral",
         "at": "root.width",
         "reason": "An icon FAB is a circle, so its width is its height, under the same decision."
+      },
+      {
+        "rule": "accept",
+        "at": "component.fab.label.width@type=extended, state=loading",
+        "reason": "Loading hides the label, keeping its room: Figma sizes the hidden words to hug, where the shown ones fill the FAB, which draws nothing either way. The label fills in every state."
       },
       {
         "rule": "accept",

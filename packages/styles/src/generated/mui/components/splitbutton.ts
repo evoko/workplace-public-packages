@@ -36,6 +36,10 @@ export const solarSplitButtonStyles = {
     '& .SolarSplitButton-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarSplitButton-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

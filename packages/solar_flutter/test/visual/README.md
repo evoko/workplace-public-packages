@@ -5,6 +5,8 @@ Every generated widget, pumped once per oracle variant, measured against what Fi
 of `packages/components/test/visual/`, with the same oracle and tolerances; native widget tests,
 run by `flutter test` with the rest of the package.
 
+- **Words.** A text Figma draws words in (the oracle's `words`) must paint some (`paragraphValues`,
+  `wordsIn`); one painted in its style with none fails, which a self-test proves.
 - **Both modes.** Every widget is checked twice, under `SolarTheme.light` and `SolarTheme.dark`,
   each variant read in Dark with its `dark` over it (`inMode`), as the web check does; a self-test
   proves a Light drawing fails there. Dark's reports are `<name>_dark-gaps.json` and

@@ -55,7 +55,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "monthHeaderIconArrowRight": {
           "color": "#111111",
@@ -83,7 +84,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday2": {
           "color": "#a8a8a8",
@@ -92,7 +94,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday3": {
           "color": "#a8a8a8",
@@ -101,7 +104,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday4": {
           "color": "#a8a8a8",
@@ -110,7 +114,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday5": {
           "color": "#a8a8a8",
@@ -119,7 +124,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday6": {
           "color": "#a8a8a8",
@@ -128,7 +134,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday7": {
           "color": "#a8a8a8",
@@ -137,7 +144,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "dayGrid": {
           "background": "transparent",
@@ -1115,7 +1123,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "monthHeaderIconArrowRight": {
           "color": "#111111",
@@ -1143,7 +1152,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday2": {
           "color": "#a8a8a8",
@@ -1152,7 +1162,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday3": {
           "color": "#a8a8a8",
@@ -1161,7 +1172,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday4": {
           "color": "#a8a8a8",
@@ -1170,7 +1182,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday5": {
           "color": "#a8a8a8",
@@ -1179,7 +1192,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday6": {
           "color": "#a8a8a8",
@@ -1188,7 +1202,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "weekdayRowWeekday7": {
           "color": "#a8a8a8",
@@ -1197,7 +1212,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "dayGrid": {
           "background": "transparent",
@@ -2183,6 +2199,7 @@
           "lineHeight": 20,
           "letterSpacing": -0.32,
           "textDecoration": "none",
+          "words": true,
           "x": 32,
           "y": 11
         },
@@ -2204,7 +2221,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "containerWeekdayRowWeekday2": {
           "color": "#a8a8a8",
@@ -2213,7 +2231,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "containerWeekdayRowWeekday3": {
           "color": "#a8a8a8",
@@ -2222,7 +2241,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "containerWeekdayRowWeekday4": {
           "color": "#a8a8a8",
@@ -2231,7 +2251,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "containerWeekdayRowWeekday5": {
           "color": "#a8a8a8",
@@ -2240,7 +2261,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "containerWeekdayRowWeekday6": {
           "color": "#a8a8a8",
@@ -2249,7 +2271,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "containerWeekdayRowWeekday7": {
           "color": "#a8a8a8",
@@ -2258,7 +2281,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "containerDayGrid": {
           "background": "transparent",
@@ -2625,6 +2649,7 @@
           "lineHeight": 20,
           "letterSpacing": -0.32,
           "textDecoration": "none",
+          "words": true,
           "x": 32,
           "y": 11
         },
@@ -2646,7 +2671,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "container2WeekdayRowWeekday2": {
           "color": "#a8a8a8",
@@ -2655,7 +2681,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "container2WeekdayRowWeekday3": {
           "color": "#a8a8a8",
@@ -2664,7 +2691,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "container2WeekdayRowWeekday4": {
           "color": "#a8a8a8",
@@ -2673,7 +2701,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "container2WeekdayRowWeekday5": {
           "color": "#a8a8a8",
@@ -2682,7 +2711,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "container2WeekdayRowWeekday6": {
           "color": "#a8a8a8",
@@ -2691,7 +2721,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "container2WeekdayRowWeekday7": {
           "color": "#a8a8a8",
@@ -2700,7 +2731,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "container2DayGrid": {
           "background": "transparent",

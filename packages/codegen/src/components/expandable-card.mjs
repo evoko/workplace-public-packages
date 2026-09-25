@@ -53,7 +53,6 @@ export default {
         font: 'inherit',
         color: 'inherit',
       },
-      [`& .${P}-drawnIcon`]: { flexShrink: '0' },
     }),
     // Hovered as the pointer is on its header, focused as the keyboard is (MUI marks it
     // focus-visible): the card's look follows its header's.

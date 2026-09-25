@@ -39,6 +39,7 @@ abstract final class SolarSectionNavGroupHeaderRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.tertiary',
     'label.typography|base': 't:typography.title.2xs',
+    'label.width|base': 'k:FILL',
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.

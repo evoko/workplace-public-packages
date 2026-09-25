@@ -125,6 +125,7 @@ abstract final class SolarActionCardRecipe {
     'description.present|base': 'b:true',
     'description.color|base': 't:color.text.secondary',
     'description.typography|base': 't:typography.body.md.regular',
+    'description.width|base': 'k:FILL',
     'cta.present|base': 'b:true',
     'cta.background|base': 'none',
     'cta.borderColor|base': 'none',

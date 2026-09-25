@@ -31,6 +31,10 @@ export const solarPaginationNavStyles = {
     '& .SolarPaginationNav-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarPaginationNav-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

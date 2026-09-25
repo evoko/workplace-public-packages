@@ -35,6 +35,10 @@ export const solarSelectStyles = {
     '& .SolarSelect-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarSelect-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -166,6 +170,7 @@ export const solarSelectStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarSelect-trailingIcon': {
       width: 'var(--solar-icon-sm)',

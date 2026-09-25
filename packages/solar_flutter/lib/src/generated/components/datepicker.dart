@@ -120,6 +120,7 @@ abstract final class SolarDatePickerRecipe {
     'helper.present|base': 'b:true',
     'helper.color|base': 't:color.text.secondary',
     'helper.typography|base': 't:typography.helper.md',
+    'helper.width|base': 'k:FILL',
     'helper.typography|size|sm': 't:typography.helper.sm',
     'helper.color|appearance|default|disabled': 't:color.text.disabled',
     'helper.color|appearance|default|error': 't:color.text.feedback.danger',

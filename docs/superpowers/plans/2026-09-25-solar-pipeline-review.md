@@ -12,8 +12,10 @@
 rules folded, 33 empty reasons referred, the focus ring one patterned rule per overlay, `*` looks),
 #3 (the Node check), #4 (Dark measured on both platforms), #7 (`npm run solar:overlay:audit`; the
 focus ring did not become a global default, see `spec/overlay/README.md`), #8
-(`spec/overlay/README.md`) and #11 (the spec's notes; its two questions open for the owner). Not
-started: #1, #5, #6, #9, #10, #12, #13.
+(`spec/overlay/README.md`) and #11 (the spec's notes; its two questions open for the owner); and
+the four gaps this review missed (a text's FILL, the fetcher's hidden paths and added layers'
+places, writes held until the run succeeds, the words check). Not started: #1, #5, #6, #9, #10,
+#12, #13.
 
 **Goal:** make the pipeline cheaper to extend and to correct, without weakening the parts that
 make it trustworthy: the finding model, the oracle's independence from the recipe, and the reason

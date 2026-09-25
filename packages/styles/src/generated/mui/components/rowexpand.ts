@@ -35,13 +35,13 @@ export const solarRowExpandStyles = {
     '& .SolarRowExpand-glyph': {
       display: 'block',
       overflow: 'visible',
-    },
-    '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
-      stroke: 'none',
+      flexShrink: '0',
     },
     '& .SolarRowExpand-drawnIcon': {
       display: 'block',
-      flexShrink: '0',
+    },
+    '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
+      stroke: 'none',
     },
   },
   root: {

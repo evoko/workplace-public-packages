@@ -36,6 +36,10 @@ export const solarNumberInputStyles = {
     '& .SolarNumberInput-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarNumberInput-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -236,6 +240,7 @@ export const solarNumberInputStyles = {
       lineHeight: 'var(--solar-type-line-height-helper-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarNumberInput-leadingIcon': {
       width: 'var(--solar-icon-md)',
@@ -249,6 +254,7 @@ export const solarNumberInputStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarNumberInput-stepper': {
       borderRadius: 'var(--solar-radius-none)',

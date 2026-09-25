@@ -75,6 +75,7 @@ abstract final class SolarGlobalSearchRecipe {
     'searchWorkplace.present|base': 'b:true',
     'searchWorkplace.color|base': 't:color.text.tertiary',
     'searchWorkplace.typography|base': 't:typography.body.md.regular',
+    'searchWorkplace.width|base': 'k:FILL',
     'searchWorkplace.typography|size|sm': 't:typography.body.sm.regular',
     'searchWorkplace.color|appearance|default|hover': 't:color.text.secondary',
     'searchWorkplace.color|appearance|default|filled': 't:color.text.primary',

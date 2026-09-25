@@ -35,6 +35,10 @@ export const solarDropdownStyles = {
     '& .SolarDropdown-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarDropdown-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -163,6 +167,7 @@ export const solarDropdownStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarDropdown-trailingIcon': {
       width: 'var(--solar-icon-md)',
@@ -182,6 +187,7 @@ export const solarDropdownStyles = {
       lineHeight: 'var(--solar-type-line-height-helper-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarDropdown-iconChevronUp': {
       width: 'var(--solar-icon-sm)',

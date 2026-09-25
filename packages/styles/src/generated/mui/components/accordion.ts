@@ -29,6 +29,10 @@ export const solarAccordionStyles = {
     '& .SolarAccordion-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarAccordion-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -41,9 +45,6 @@ export const solarAccordionStyles = {
     '& .SolarAccordion-title, & .SolarAccordion-description': {
       whiteSpace: 'normal',
       minWidth: '0',
-    },
-    '& .SolarAccordion-drawnIcon': {
-      flexShrink: '0',
     },
     '&.SolarAccordion-expanded > .SolarAccordion-accordion .SolarAccordion-iconChevronDown':
       {
@@ -107,6 +108,7 @@ export const solarAccordionStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {},

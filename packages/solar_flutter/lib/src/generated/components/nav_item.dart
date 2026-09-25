@@ -105,6 +105,7 @@ abstract final class SolarNavItemRecipe {
         't:color.icon.secondary',
     'label.present|base': 'b:false',
     'label.typography|base': 't:typography.label.md',
+    'label.width|base': 'k:FILL',
     'label.present|appearance|selected=false, expanded=true|default': 'b:true',
     'label.color|appearance|selected=false, expanded=true|default':
         't:color.text.secondary',

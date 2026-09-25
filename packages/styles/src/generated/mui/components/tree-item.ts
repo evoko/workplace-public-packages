@@ -31,6 +31,10 @@ export const solarTreeItemStyles = {
     '& .SolarTreeItem-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarTreeItem-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -120,6 +124,7 @@ export const solarTreeItemStyles = {
       lineHeight: 'var(--solar-type-line-height-label-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarTreeItem-trailingIcon': {
       width: 'var(--solar-icon-sm)',
@@ -153,6 +158,7 @@ export const solarTreeItemStyles = {
       lineHeight: 'var(--solar-type-line-height-label-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarTreeItem-iconChevronDown': {
       width: 'var(--solar-icon-sm)',

@@ -329,6 +329,10 @@
         "typography": {
           "token": "typography.body.md.medium",
           "from": "density=default, state=default"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "density=default, state=default"
         }
       },
       "size": {},
@@ -447,6 +451,10 @@
         },
         "typography": {
           "token": "typography.body.sm.regular",
+          "from": "density=default, state=default"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "density=default, state=default"
         }
       },

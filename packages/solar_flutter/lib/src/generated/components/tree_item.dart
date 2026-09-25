@@ -190,6 +190,7 @@ abstract final class SolarTreeItemRecipe {
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.secondary',
     'label.typography|base': 't:typography.label.md',
+    'label.width|base': 'k:FILL',
     'label.present|appearance|selected=false, expanded=false|edit': 'b:false',
     'label.present|appearance|selected=false, expanded=true|edit': 'b:false',
     'label.present|appearance|selected=true, expanded=false|edit': 'b:false',
@@ -378,6 +379,7 @@ abstract final class SolarTreeItemRecipe {
     'iconPlus.present|appearance|selected=true, expanded=true|edit': 'b:false',
     'renameInput.present|base': 'b:false',
     'renameInput.typography|base': 't:typography.label.md',
+    'renameInput.width|base': 'k:FILL',
     'renameInput.present|appearance|selected=false, expanded=false|edit':
         'b:true',
     'renameInput.color|appearance|selected=false, expanded=false|edit':

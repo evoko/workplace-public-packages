@@ -50,6 +50,11 @@ accept:
     reason: >-
       Read-only, there is no input at all: the entries are shown, and cannot be changed. The code
       draws none, as Figma draws none.
+  component.token input.addItems.width@state=disabled:
+    reason: >-
+      The disabled field draws its placeholder beside its Tag, hugging its words, where the resting
+      field's fills the row; the words sit at the same place either way. The input takes the room
+      the Tags leave, in every state.
 
 set:
   root.base.width:

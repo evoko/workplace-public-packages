@@ -29,6 +29,10 @@ export const solarPaginationItemStyles = {
     '& .SolarPaginationItem-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarPaginationItem-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -58,6 +62,7 @@ export const solarPaginationItemStyles = {
       lineHeight: 'var(--solar-type-line-height-label-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {},

@@ -632,6 +632,10 @@
         "typography": {
           "token": "typography.body.md.medium",
           "from": "severity=success, state=default, ghost=false"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "severity=success, state=default, ghost=false"
         }
       },
       "size": {},
@@ -670,6 +674,10 @@
         },
         "typography": {
           "token": "typography.body.md.regular",
+          "from": "severity=success, state=default, ghost=false"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "severity=success, state=default, ghost=false"
         }
       },

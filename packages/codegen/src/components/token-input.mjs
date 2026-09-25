@@ -238,7 +238,8 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(function T
                 key="input"
                 className="${P}-words"
                 value={draft}
-                placeholder={filled ? undefined : placeholder}
+                // Beside the Tags only while disabled, as Figma draws it (the design review asks).
+                placeholder={filled && !disabled ? undefined : placeholder}
                 onChange={(event) => type(event.target.value)}
                 disabled={disabled}
                 error={error}
@@ -457,7 +458,11 @@ ${api.map(([prop]) => `          ${prop}: ${prop},`).join('\n')}
                           style: style,
                           maxLines: 1,
                           decoration: InputDecoration.collapsed(
-                            hintText: value.isEmpty ? placeholder : null,
+                            // Beside the Tags only while disabled, as Figma draws it (the
+                            // design review asks).
+                            hintText: value.isEmpty || disabled
+                                ? placeholder
+                                : null,
                             hintStyle: style,
                           ),
                         ),

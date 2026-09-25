@@ -29,6 +29,10 @@ export const solarOptionRowStyles = {
     '& .SolarOptionRow-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarOptionRow-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -80,6 +84,7 @@ export const solarOptionRowStyles = {
       lineHeight: 'var(--solar-type-line-height-label-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarOptionRow-supportingText': {
       color: 'var(--solar-color-text-secondary)',
@@ -89,6 +94,7 @@ export const solarOptionRowStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {},

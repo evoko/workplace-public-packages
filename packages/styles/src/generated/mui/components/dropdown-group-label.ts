@@ -29,6 +29,10 @@ export const solarDropdownGroupLabelStyles = {
     '& .SolarDropdownGroupLabel-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarDropdownGroupLabel-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

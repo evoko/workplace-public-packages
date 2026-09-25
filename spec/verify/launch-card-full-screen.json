@@ -95,7 +95,8 @@
           "fontSize": 20,
           "lineHeight": 28,
           "letterSpacing": -0.6,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "bodyCopy": {
           "background": "transparent",
@@ -115,7 +116,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "feature": {
           "color": "#111111",
@@ -124,7 +126,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "feature2": {
           "color": "#111111",
@@ -133,7 +136,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "feature3": {
           "color": "#111111",
@@ -142,7 +146,8 @@
           "fontSize": 12,
           "lineHeight": 16,
           "letterSpacing": -0.24,
-          "textDecoration": "none"
+          "textDecoration": "none",
+          "words": true
         },
         "action": {
           "component": "Button",

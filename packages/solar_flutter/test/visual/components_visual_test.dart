@@ -6,7 +6,9 @@
 //
 // Generic over the components (harness.dart); what is particular to one is its case, cases/.
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:solar_flutter/solar_flutter.dart';
 
 import 'cases/cases.dart';
 import 'compare.dart';
@@ -103,6 +105,37 @@ void main() {
       ]);
     },
   );
+
+  testWidgets('a text drawn in its style with no words in it fails', (
+    tester,
+  ) async {
+    const card = 'status=success, state=default, ghost=false';
+    // A Status Card whose value never reached its text: the text is there, styled, and empty.
+    final empty = VisualCase(
+      build: (v, states, [_]) => SizedBox(
+        width: 240,
+        child: SolarStatusCard(
+          status: SolarStatusCardStatus.success,
+          title: 'Label',
+          value: '',
+          moreItems: [SolarCardMoreItem(label: 'Edit', onSelected: () {})],
+          onPressed: () {},
+          statesController: states,
+        ),
+      ),
+      measure: cases['Status Card']!.measure,
+    );
+    final (failures, _) = await check(
+      tester,
+      'Status Card',
+      {...cases, 'Status Card': empty},
+      oracles,
+      only: {card},
+    );
+    expect(failures.map((f) => '${f.variant} ${f.layer}.${f.property}'), [
+      '$card value.words',
+    ]);
+  });
 
   testWidgets(
     'a composed child is checked against its own oracle, naming the layer inside it',

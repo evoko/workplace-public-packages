@@ -283,6 +283,10 @@
         "typography": {
           "token": "typography.label.md",
           "from": "control=checkbox"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "control=checkbox"
         }
       },
       "size": {},
@@ -300,6 +304,10 @@
         },
         "typography": {
           "token": "typography.body.sm.regular",
+          "from": "control=checkbox"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "control=checkbox"
         }
       },

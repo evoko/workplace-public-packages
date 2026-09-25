@@ -35,6 +35,10 @@ export const solarInlineInputStyles = {
     '& .SolarInlineInput-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarInlineInput-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -89,6 +93,7 @@ export const solarInlineInputStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarInlineInput-frame1': {
       borderRadius: 'var(--solar-radius-none)',

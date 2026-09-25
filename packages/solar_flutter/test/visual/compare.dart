@@ -107,6 +107,8 @@ bool agrees(String property, Object? figma, Object? painted) {
       return ((painted as num) - (figma! as num)).abs() <= 0.02;
     case 'opacity':
       return ((painted as num) - (figma! as num)).abs() <= 0.01;
+    case 'words':
+      return painted == figma;
     default:
       return ((painted as num) - (figma! as num)).abs() <= 0.5;
   }
@@ -146,6 +148,7 @@ const measured = [
   'lineHeight',
   'letterSpacing',
   'textDecoration',
+  'words',
 ];
 
 /// One difference: a failure, or an excused gap when [finding] is set.

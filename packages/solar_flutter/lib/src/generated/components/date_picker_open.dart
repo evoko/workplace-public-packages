@@ -88,6 +88,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'month.present|base': 'b:true',
     'month.color|base': 't:color.text.primary',
     'month.typography|base': 't:typography.body.md.medium',
+    'month.width|base': 'k:FILL',
     'month.present|appearance|inline=true, type=double|default': 'b:false',
     'monthHeaderIconArrowRight.present|base': 'b:true',
     'monthHeaderIconArrowRight.component|base': 'k:Icon/ArrowRight',
@@ -117,36 +118,43 @@ abstract final class SolarDatePickerOpenRecipe {
     'weekdayRowWeekday.present|base': 'b:true',
     'weekdayRowWeekday.color|base': 't:color.text.tertiary',
     'weekdayRowWeekday.typography|base': 't:typography.body.sm.medium',
+    'weekdayRowWeekday.width|base': 'k:FILL',
     'weekdayRowWeekday.present|appearance|inline=true, type=double|default':
         'b:false',
     'weekdayRowWeekday2.present|base': 'b:true',
     'weekdayRowWeekday2.color|base': 't:color.text.tertiary',
     'weekdayRowWeekday2.typography|base': 't:typography.body.sm.medium',
+    'weekdayRowWeekday2.width|base': 'k:FILL',
     'weekdayRowWeekday2.present|appearance|inline=true, type=double|default':
         'b:false',
     'weekdayRowWeekday3.present|base': 'b:true',
     'weekdayRowWeekday3.color|base': 't:color.text.tertiary',
     'weekdayRowWeekday3.typography|base': 't:typography.body.sm.medium',
+    'weekdayRowWeekday3.width|base': 'k:FILL',
     'weekdayRowWeekday3.present|appearance|inline=true, type=double|default':
         'b:false',
     'weekdayRowWeekday4.present|base': 'b:true',
     'weekdayRowWeekday4.color|base': 't:color.text.tertiary',
     'weekdayRowWeekday4.typography|base': 't:typography.body.sm.medium',
+    'weekdayRowWeekday4.width|base': 'k:FILL',
     'weekdayRowWeekday4.present|appearance|inline=true, type=double|default':
         'b:false',
     'weekdayRowWeekday5.present|base': 'b:true',
     'weekdayRowWeekday5.color|base': 't:color.text.tertiary',
     'weekdayRowWeekday5.typography|base': 't:typography.body.sm.medium',
+    'weekdayRowWeekday5.width|base': 'k:FILL',
     'weekdayRowWeekday5.present|appearance|inline=true, type=double|default':
         'b:false',
     'weekdayRowWeekday6.present|base': 'b:true',
     'weekdayRowWeekday6.color|base': 't:color.text.tertiary',
     'weekdayRowWeekday6.typography|base': 't:typography.body.sm.medium',
+    'weekdayRowWeekday6.width|base': 'k:FILL',
     'weekdayRowWeekday6.present|appearance|inline=true, type=double|default':
         'b:false',
     'weekdayRowWeekday7.present|base': 'b:true',
     'weekdayRowWeekday7.color|base': 't:color.text.tertiary',
     'weekdayRowWeekday7.typography|base': 't:typography.body.sm.medium',
+    'weekdayRowWeekday7.width|base': 'k:FILL',
     'weekdayRowWeekday7.present|appearance|inline=true, type=double|default':
         'b:false',
     'dayGrid.present|base': 'b:true',
@@ -524,6 +532,7 @@ abstract final class SolarDatePickerOpenRecipe {
         'none',
     'containerWeekdayRowWeekday.present|base': 'b:false',
     'containerWeekdayRowWeekday.typography|base': 't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday.width|base': 'k:FILL',
     'containerWeekdayRowWeekday.present|appearance|inline=true, type=double|default':
         'b:true',
     'containerWeekdayRowWeekday.color|appearance|inline=true, type=double|default':
@@ -531,6 +540,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'containerWeekdayRowWeekday2.present|base': 'b:false',
     'containerWeekdayRowWeekday2.typography|base':
         't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday2.width|base': 'k:FILL',
     'containerWeekdayRowWeekday2.present|appearance|inline=true, type=double|default':
         'b:true',
     'containerWeekdayRowWeekday2.color|appearance|inline=true, type=double|default':
@@ -538,6 +548,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'containerWeekdayRowWeekday3.present|base': 'b:false',
     'containerWeekdayRowWeekday3.typography|base':
         't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday3.width|base': 'k:FILL',
     'containerWeekdayRowWeekday3.present|appearance|inline=true, type=double|default':
         'b:true',
     'containerWeekdayRowWeekday3.color|appearance|inline=true, type=double|default':
@@ -545,6 +556,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'containerWeekdayRowWeekday4.present|base': 'b:false',
     'containerWeekdayRowWeekday4.typography|base':
         't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday4.width|base': 'k:FILL',
     'containerWeekdayRowWeekday4.present|appearance|inline=true, type=double|default':
         'b:true',
     'containerWeekdayRowWeekday4.color|appearance|inline=true, type=double|default':
@@ -552,6 +564,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'containerWeekdayRowWeekday5.present|base': 'b:false',
     'containerWeekdayRowWeekday5.typography|base':
         't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday5.width|base': 'k:FILL',
     'containerWeekdayRowWeekday5.present|appearance|inline=true, type=double|default':
         'b:true',
     'containerWeekdayRowWeekday5.color|appearance|inline=true, type=double|default':
@@ -559,6 +572,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'containerWeekdayRowWeekday6.present|base': 'b:false',
     'containerWeekdayRowWeekday6.typography|base':
         't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday6.width|base': 'k:FILL',
     'containerWeekdayRowWeekday6.present|appearance|inline=true, type=double|default':
         'b:true',
     'containerWeekdayRowWeekday6.color|appearance|inline=true, type=double|default':
@@ -566,6 +580,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'containerWeekdayRowWeekday7.present|base': 'b:false',
     'containerWeekdayRowWeekday7.typography|base':
         't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday7.width|base': 'k:FILL',
     'containerWeekdayRowWeekday7.present|appearance|inline=true, type=double|default':
         'b:true',
     'containerWeekdayRowWeekday7.color|appearance|inline=true, type=double|default':
@@ -1021,6 +1036,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2WeekdayRowWeekday.present|base': 'b:false',
     'container2WeekdayRowWeekday.typography|base':
         't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday.width|base': 'k:FILL',
     'container2WeekdayRowWeekday.present|appearance|inline=true, type=double|default':
         'b:true',
     'container2WeekdayRowWeekday.color|appearance|inline=true, type=double|default':
@@ -1028,6 +1044,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2WeekdayRowWeekday2.present|base': 'b:false',
     'container2WeekdayRowWeekday2.typography|base':
         't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday2.width|base': 'k:FILL',
     'container2WeekdayRowWeekday2.present|appearance|inline=true, type=double|default':
         'b:true',
     'container2WeekdayRowWeekday2.color|appearance|inline=true, type=double|default':
@@ -1035,6 +1052,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2WeekdayRowWeekday3.present|base': 'b:false',
     'container2WeekdayRowWeekday3.typography|base':
         't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday3.width|base': 'k:FILL',
     'container2WeekdayRowWeekday3.present|appearance|inline=true, type=double|default':
         'b:true',
     'container2WeekdayRowWeekday3.color|appearance|inline=true, type=double|default':
@@ -1042,6 +1060,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2WeekdayRowWeekday4.present|base': 'b:false',
     'container2WeekdayRowWeekday4.typography|base':
         't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday4.width|base': 'k:FILL',
     'container2WeekdayRowWeekday4.present|appearance|inline=true, type=double|default':
         'b:true',
     'container2WeekdayRowWeekday4.color|appearance|inline=true, type=double|default':
@@ -1049,6 +1068,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2WeekdayRowWeekday5.present|base': 'b:false',
     'container2WeekdayRowWeekday5.typography|base':
         't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday5.width|base': 'k:FILL',
     'container2WeekdayRowWeekday5.present|appearance|inline=true, type=double|default':
         'b:true',
     'container2WeekdayRowWeekday5.color|appearance|inline=true, type=double|default':
@@ -1056,6 +1076,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2WeekdayRowWeekday6.present|base': 'b:false',
     'container2WeekdayRowWeekday6.typography|base':
         't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday6.width|base': 'k:FILL',
     'container2WeekdayRowWeekday6.present|appearance|inline=true, type=double|default':
         'b:true',
     'container2WeekdayRowWeekday6.color|appearance|inline=true, type=double|default':
@@ -1063,6 +1084,7 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2WeekdayRowWeekday7.present|base': 'b:false',
     'container2WeekdayRowWeekday7.typography|base':
         't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday7.width|base': 'k:FILL',
     'container2WeekdayRowWeekday7.present|appearance|inline=true, type=double|default':
         'b:true',
     'container2WeekdayRowWeekday7.color|appearance|inline=true, type=double|default':

@@ -31,6 +31,10 @@ export const solarInsightRowStyles = {
     '& .SolarInsightRow-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarInsightRow-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -146,6 +150,7 @@ export const solarInsightRowStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarInsightRow-meta': {
       color: 'var(--solar-color-text-secondary)',
@@ -155,6 +160,7 @@ export const solarInsightRowStyles = {
       lineHeight: 'var(--solar-type-line-height-body-sm)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarInsightRow-skeleton': {
       borderRadius: 'var(--solar-radius-control)',

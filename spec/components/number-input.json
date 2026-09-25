@@ -884,6 +884,10 @@
         "typography": {
           "token": "typography.helper.md",
           "from": "size=md, state=default, stepper=inline"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "size=md, state=default, stepper=inline"
         }
       },
       "size": {
@@ -985,6 +989,10 @@
         },
         "typography": {
           "token": "typography.body.md.medium",
+          "from": "size=md, state=default, stepper=side"
+        },
+        "width": {
+          "keyword": "FILL",
           "from": "size=md, state=default, stepper=side"
         }
       },

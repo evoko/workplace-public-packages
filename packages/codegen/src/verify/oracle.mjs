@@ -277,6 +277,9 @@ export function buildOracle(
       paint('color', layer.fills);
       if (layer.textStyle)
         Object.assign(out, typography(layer.textStyle, path));
+      // That it draws words at all: a text in the right style with none in it (Status Card's value,
+      // its words never passed on) draws nothing, and would pass on its style alone.
+      if (layer.text?.trim()) out.words = true;
       // A text placed by position: where it starts; its size follows from its font.
       if (placedBox) Object.assign(out, placementOf(layer, parent, far));
       return { out, unresolved };
@@ -589,6 +592,14 @@ export function buildOracle(
           out.figmaVariant ??= { ...(out.variant ?? {}) };
           out.variant = { ...out.variant, [d.axis]: d.keyword };
         }
+      // Words are drawn only where the text is: not inside a layer this variant hides
+      // (SplitButton's label, in the half its loading state hides).
+      if (out.words)
+        for (let at = v.parents.get(path); at; at = v.parents.get(at))
+          if (v.layers.get(at)?.hidden) {
+            delete out.words;
+            break;
+          }
       layers[name] = out;
       for (const e of excuses) {
         if (e.layer !== name || (e.variant !== null && e.variant !== v.name))
@@ -688,48 +699,61 @@ const nodeNames = (spec) =>
 
 /**
  * What an instance of another component hides of it, in each variant (a Select's rows: the
- * Dropdown Item's checkbox, second line and icon), from the names Figma records hidden in the
- * variant (`hidden` on the raw variant), as `hides` on the composed child's entry, for the checks
- * to expect undrawn. A second pass once every component's IR is built, since a child's layers are
- * its own IR's; its names alone, never its recipe. A name the component's own layers also carry is
- * the component's (Segmented Control's `Label`), not a child's.
+ * Dropdown Item's checkbox, second line and icon), as `hides` on the composed child's entry, for
+ * the checks to expect undrawn. A second pass once every component's IR is built, since a child's
+ * layers are its own IR's; its paths and names alone, never its recipe.
+ *
+ * Figma's export records the hidden layers of a variant by path (`hiddenPaths`), and, as it did
+ * before, by name (`hidden`). By path, a child hides exactly the layers under its own. By name, a
+ * name may be another layer's: one the component's own layers also carry is the component's
+ * (Segmented Control's `Label`), not a child's, and the overlay's `hides` says what a child draws
+ * whatever its names (Device Card's Tag, whose words are named as the Dropdown's hidden label is).
  *
  * @param {object} oracle the component's, changed in place
  * @param {object} spec the component's IR
  * @param {object} set the raw component set
  * @param {Record<string, object>} specs every IR, by component name
- * @param {object} [overlay] the component's, whose \`hides\` says what a child draws whatever
- *   name Figma records hidden (Device Card's Tag, whose words are named as the Dropdown's hidden
- *   label is)
+ * @param {object} [overlay] the component's
  */
 export function hideInComposed(oracle, spec, set, specs, overlay = null) {
   const own = new Set(Object.values(nodeNames(spec)));
-  // The fetcher records a variant's hidden names only where they differ from the default's.
-  const byDefault =
-    set.variants.find((v) => v.variant === set.defaultVariant)?.hidden ?? [];
+  // The fetcher records a variant's hidden layers only where they differ from the default's.
+  const defaultRaw = set.variants.find((v) => v.variant === set.defaultVariant);
+  const byPath = Boolean(defaultRaw?.hiddenPaths);
+  const record = byPath ? 'hiddenPaths' : 'hidden';
+  const byDefault = defaultRaw?.[record] ?? [];
   const hiddenIn = new Map(
-    set.variants.map((v) => [v.variant, v.hidden ?? byDefault]),
+    set.variants.map((v) => [v.variant, v[record] ?? byDefault]),
   );
+  // The names each rule of the overlay's `hides` kept drawn, which must be some.
+  const kept = new Map();
   for (const variant of oracle.variants) {
     const hidden = new Set(
-      (hiddenIn.get(variant.figma) ?? []).filter((n) => !own.has(n)),
+      (hiddenIn.get(variant.figma) ?? []).filter((n) => byPath || !own.has(n)),
     );
     if (!hidden.size) continue;
     for (const [at, entry] of Object.entries(variant.layers)) {
       const child = entry.component && specs[entry.component];
       if (!child) continue;
       const shown = new Set(overlay?.hides?.[at]?.not ?? []);
-      const hides = Object.entries(nodeNames(child))
-        .filter(
-          ([name, node]) =>
-            name !== 'root' && hidden.has(node) && !shown.has(name),
-        )
-        .map(([name]) => name)
-        .sort();
-      if (hides.length) entry.hides = hides;
+      const under = spec.layers[at].path;
+      const keys = byPath
+        ? Object.entries(child.layers).map(([name, l]) => [
+            name,
+            under + (l.path === '/' ? '' : l.path),
+          ])
+        : Object.entries(nodeNames(child));
+      const hides = [];
+      for (const [name, key] of keys) {
+        if (name === 'root' || !hidden.has(key)) continue;
+        if (shown.has(name))
+          kept.set(at, (kept.get(at) ?? new Set()).add(name));
+        else hides.push(name);
+      }
+      if (hides.length) entry.hides = hides.sort();
     }
   }
-  // Each rule names a composed child, and a layer of it Figma would have hidden.
+  // Each rule names a composed child, and a layer of it Figma records hidden and the child draws.
   for (const [layer, rule] of Object.entries(overlay?.hides ?? {})) {
     const entries = oracle.variants
       .map((v) => v.layers[layer])
@@ -739,11 +763,16 @@ export function hideInComposed(oracle, spec, set, specs, overlay = null) {
         `${overlay.file}: hides ${layer}: no composed child there`,
       );
     const names = new Set(Object.keys(nodeNames(specs[entries[0].component])));
-    for (const name of rule.not)
+    for (const name of rule.not) {
       if (!names.has(name))
         throw new Error(
           `${overlay.file}: hides ${layer}: ${entries[0].component} has no layer ${name}`,
         );
+      if (!kept.get(layer)?.has(name))
+        throw new Error(
+          `${overlay.file}: hides ${layer}: Figma records no ${name} of it hidden${byPath ? ', by its path' : ''}: delete it from the rule`,
+        );
+    }
   }
 }
 

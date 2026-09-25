@@ -697,6 +697,10 @@
         "typography": {
           "token": "typography.body.md.regular",
           "from": "selected=false, drag=false"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "selected=false, drag=false"
         }
       },
       "size": {},

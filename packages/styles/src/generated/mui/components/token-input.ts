@@ -43,6 +43,10 @@ export const solarTokenInputStyles = {
     '& .SolarTokenInput-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarTokenInput-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -168,6 +172,7 @@ export const solarTokenInputStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarTokenInput-helper': {
       color: 'var(--solar-color-text-secondary)',
@@ -177,6 +182,7 @@ export const solarTokenInputStyles = {
       lineHeight: 'var(--solar-type-line-height-helper-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {

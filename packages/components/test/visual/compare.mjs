@@ -120,6 +120,8 @@ export function matches(property, figma, rendered) {
       return Math.abs(pixels(rendered) - figma) <= 0.02;
     case 'opacity':
       return Math.abs(Number(rendered) - figma) <= 0.01;
+    case 'words':
+      return rendered === figma;
     default:
       return Math.abs(pixels(rendered) - figma) <= 0.5;
   }
@@ -159,6 +161,7 @@ export const MEASURED = [
   'lineHeight',
   'letterSpacing',
   'textDecoration',
+  'words',
 ];
 
 /**

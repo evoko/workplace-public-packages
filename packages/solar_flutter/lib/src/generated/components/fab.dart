@@ -143,6 +143,7 @@ abstract final class SolarFABRecipe {
     'spinner.variant.style|appearance|type=extended|loading': 'k:inverse',
     'label.present|base': 'b:false',
     'label.typography|base': 't:typography.label.sm',
+    'label.width|base': 'k:FILL',
     'label.typography|size|md': 't:typography.label.md',
     'label.present|appearance|type=extended|default': 'b:true',
     'label.color|appearance|type=extended|default':

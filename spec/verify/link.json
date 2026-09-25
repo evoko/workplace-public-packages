@@ -46,7 +46,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -106,7 +107,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2569fd",
@@ -166,7 +168,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -227,7 +230,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#878787",
@@ -287,7 +291,8 @@
           "fontSize": 16,
           "lineHeight": 24,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -357,7 +362,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -417,7 +423,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2569fd",
@@ -477,7 +484,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -538,7 +546,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#878787",
@@ -598,7 +607,8 @@
           "fontSize": 14,
           "lineHeight": 20,
           "letterSpacing": -0.32,
-          "textDecoration": "underline"
+          "textDecoration": "underline",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -662,7 +672,8 @@
           "height": 12
         },
         "label": {
-          "color": "#2658d5"
+          "color": "#2658d5",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -716,7 +727,8 @@
           "height": 12
         },
         "label": {
-          "color": "#2569fd"
+          "color": "#2569fd",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2569fd",
@@ -770,7 +782,8 @@
           "height": 12
         },
         "label": {
-          "color": "#2658d5"
+          "color": "#2658d5",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",
@@ -825,7 +838,8 @@
           "height": 12
         },
         "label": {
-          "color": "#878787"
+          "color": "#878787",
+          "words": true
         },
         "trailingIcon": {
           "color": "#878787",
@@ -879,7 +893,8 @@
           "height": 12
         },
         "label": {
-          "color": "#2658d5"
+          "color": "#2658d5",
+          "words": true
         },
         "trailingIcon": {
           "color": "#2658d5",

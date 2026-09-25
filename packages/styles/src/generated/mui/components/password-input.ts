@@ -39,6 +39,10 @@ export const solarPasswordInputStyles = {
     '& .SolarPasswordInput-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarPasswordInput-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
@@ -172,6 +176,7 @@ export const solarPasswordInputStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarPasswordInput-icon': {
       width: 'var(--solar-icon-sm)',
@@ -186,6 +191,7 @@ export const solarPasswordInputStyles = {
       lineHeight: 'var(--solar-type-line-height-helper-md)',
       letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarPasswordInput-forgotPassword': {
       color: 'var(--solar-color-text-secondary)',
@@ -195,6 +201,7 @@ export const solarPasswordInputStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+      width: '100%',
     },
   },
   sizes: {

@@ -29,6 +29,10 @@ export const solarDropdownMenuStyles = {
     '& .SolarDropdownMenu-glyph': {
       display: 'block',
       overflow: 'visible',
+      flexShrink: '0',
+    },
+    '& .SolarDropdownMenu-drawnIcon': {
+      flexShrink: '0',
     },
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',

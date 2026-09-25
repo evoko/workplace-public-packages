@@ -250,8 +250,7 @@
         },
         "width": {
           "keyword": "FILL",
-          "from": "overlay",
-          "reason": "The title fills the header, the chevron at its end, as Figma sizes it (FILL, 344 of 368): a text's sizing the IR does not read, set here."
+          "from": "state=default, expanded=false"
         }
       },
       "size": {},
@@ -525,6 +524,10 @@
         "typography": {
           "token": "typography.body.md.regular",
           "from": "state=default, expanded=true"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "state=default, expanded=true"
         }
       },
       "size": {},
@@ -637,11 +640,6 @@
         "rule": "set",
         "at": "root.base.width",
         "reason": "An item spans the accordion it is in: Figma draws it 400 wide, a sample. The caller sizes it."
-      },
-      {
-        "rule": "set",
-        "at": "title.base.width",
-        "reason": "The title fills the header, the chevron at its end, as Figma sizes it (FILL, 344 of 368): a text's sizing the IR does not read, set here."
       },
       {
         "rule": "slots",
