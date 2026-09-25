@@ -47,7 +47,7 @@
             0,
             12
           ],
-          "align": "MIN/CENTER",
+          "align": "SPACE_BETWEEN/CENTER",
           "sizing": "FIXED/FIXED"
         },
         "fills": [
@@ -117,6 +117,7 @@
       "variants": [
         {
           "variant": "direction=prev, state=default",
+          "id": "4581:80",
           "size": [
             112,
             36
@@ -134,10 +135,12 @@
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "direction=prev, state=hover",
+          "id": "4581:83",
           "size": [
             112,
             36
@@ -158,9 +161,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ]
@@ -175,6 +175,7 @@
         },
         {
           "variant": "direction=prev, state=pressed",
+          "id": "4581:86",
           "size": [
             112,
             36
@@ -194,9 +195,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "fills": [
                   "{Color:action/secondary/bg/active}"
                 ],
@@ -212,6 +210,7 @@
         },
         {
           "variant": "direction=prev, state=focus",
+          "id": "4581:89",
           "size": [
             112,
             36
@@ -232,9 +231,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "effectStyle": "shadow/focus/default"
               }
             }
@@ -242,6 +238,7 @@
         },
         {
           "variant": "direction=prev, state=disabled",
+          "id": "4581:92",
           "size": [
             112,
             36
@@ -284,6 +281,7 @@
         },
         {
           "variant": "direction=next, state=default",
+          "id": "4581:95",
           "size": [
             112,
             36
@@ -304,11 +302,8 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "vars": {
-                  "itemSpacing": null
+                  "itemSpacing": "Spatial:inset/xs"
                 }
               },
               "/Label": {
@@ -323,6 +318,7 @@
               {
                 "path": "/Icon/ArrowRight",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ArrowRight",
                   "type": "INSTANCE",
@@ -351,6 +347,7 @@
         },
         {
           "variant": "direction=next, state=hover",
+          "id": "4581:98",
           "size": [
             112,
             36
@@ -371,14 +368,11 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ],
                 "vars": {
-                  "itemSpacing": null
+                  "itemSpacing": "Spatial:inset/xs"
                 }
               },
               "/Label": {
@@ -393,6 +387,7 @@
               {
                 "path": "/Icon/ArrowRight",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ArrowRight",
                   "type": "INSTANCE",
@@ -421,6 +416,7 @@
         },
         {
           "variant": "direction=next, state=pressed",
+          "id": "4581:101",
           "size": [
             112,
             36
@@ -440,15 +436,12 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "fills": [
                   "{Color:action/secondary/bg/active}"
                 ],
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null
+                  "itemSpacing": "Spatial:inset/xs"
                 }
               },
               "/Label": {
@@ -463,6 +456,7 @@
               {
                 "path": "/Icon/ArrowRight",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ArrowRight",
                   "type": "INSTANCE",
@@ -491,6 +485,7 @@
         },
         {
           "variant": "direction=next, state=focus",
+          "id": "4581:104",
           "size": [
             112,
             36
@@ -511,12 +506,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "itemSpacing": null
+                  "itemSpacing": "Spatial:inset/xs"
                 }
               },
               "/Label": {
@@ -531,6 +523,7 @@
               {
                 "path": "/Icon/ArrowRight",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ArrowRight",
                   "type": "INSTANCE",
@@ -559,6 +552,7 @@
         },
         {
           "variant": "direction=next, state=disabled",
+          "id": "4581:107",
           "size": [
             112,
             36
@@ -578,9 +572,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "SPACE_BETWEEN/CENTER"
-                },
                 "fills": [
                   "{Color:action/secondary/bg/disabled}"
                 ],
@@ -589,7 +580,7 @@
                 ],
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null
+                  "itemSpacing": "Spatial:inset/xs"
                 }
               },
               "/Label": {
@@ -607,6 +598,7 @@
               {
                 "path": "/Icon/ArrowRight",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ArrowRight",
                   "type": "INSTANCE",
@@ -677,7 +669,7 @@
             "main": "PageNavButton",
             "variant": {
               "direction": "prev",
-              "state": "default"
+              "state": "disabled"
             },
             "size": [
               112,
@@ -692,18 +684,17 @@
                 0,
                 12
               ],
-              "align": "MIN/CENTER",
+              "align": "SPACE_BETWEEN/CENTER",
               "sizing": "FIXED/FIXED"
             },
             "fills": [
-              "{Color:action/secondary/bg/default}"
+              "{Color:action/secondary/bg/disabled}"
             ],
             "strokes": [
-              "{Color:border/medium}"
+              "{Color:border/disabled}"
             ],
             "strokeWeight": 1,
             "radius": 6,
-            "effectStyle": "shadow/control",
             "vars": {
               "itemSpacing": "Spatial:stack/xs",
               "paddingLeft": "Spatial:inset/sm",
@@ -775,6 +766,7 @@
             "radius": 6,
             "effectStyle": "shadow/control",
             "vars": {
+              "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Spatial:inset/sm",
               "paddingRight": "Spatial:inset/sm",
               "strokeTopWeight": "Spatial:border/default",

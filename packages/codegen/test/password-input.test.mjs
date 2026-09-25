@@ -32,11 +32,9 @@ describe('the Password Input IR', () => {
     );
   });
 
-  it('leaves only Figma’s centred sm fields open', () => {
-    expect(deviations.filter((d) => !d.decision).map((d) => d.token)).toEqual([
-      'component.password input.field.align@state=disabled',
-      'component.password input.field.align@state=error',
-    ]);
+  it('leaves nothing open, and shows its link when focused', () => {
+    // Figma's centred sm fields, open until 2026-09-25, are aligned as the others since.
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
     const focus = oracle.variants.find(
       (v) => v.figma === 'size=md, state=focus',
     );

@@ -16,11 +16,11 @@ Fixed-length numeric code entry (4–6 digits) for one-time codes and verificati
 | `mandatory` | boolean | default `true`                                          |
 | `hasLabel`  | boolean | default `true`                                          |
 
-Default variant: `size=md, state=default` · 12 variants · default size 236×84px
+Default variant: `size=md, state=default` · 12 variants · default size 236×76px
 
 ### Anatomy (default variant)
 
-- **size=md, state=default** · component · column gap 8 pad 0/0/0/0 FILL/HUG · 236×84  
+- **size=md, state=default** · component · column gap 8 pad 0/0/0/0 FILL/HUG · 236×76  
   itemSpacing `stack.xs`
   - **Label** · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 48×10  
     itemSpacing `inset.2xs` · prop visible←hasLabel
@@ -28,7 +28,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 236×84
       fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500`
     - **\*** · text `label/md` "\*" · HUG/HUG · 8×10  
       fill `color.text.feedback.info` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500` · prop visible←mandatory
-  - **Cells** · frame · row gap 4 pad 0/0/0/0 HUG/FIXED · 236×48  
+  - **Cells** · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 236×40  
     itemSpacing `stack.2xs`
     - **Field** · frame · row gap 8 pad 0/12/0/12 FIXED/FIXED · 36×40  
       fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm`, `inset.none` · strokeWeight `border.default` · radius `radius.control`
@@ -83,7 +83,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 236×84
 
 | size | state    | size   | fill | stroke | effect | text                                                                                                  | icon |
 | ---- | -------- | ------ | ---- | ------ | ------ | ----------------------------------------------------------------------------------------------------- | ---- |
-| md   | default  | 236×84 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` |      |
+| md   | default  | 236×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` |      |
 | sm   | default  | 188×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` |      |
 | md   | hover    | 236×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` |      |
 | sm   | hover    | 188×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` |      |

@@ -53,7 +53,7 @@ Default variant: `size=md, state=default, stepper=inline` · 20 variants · defa
 | Border width    | `border.default`                                                                                                                                                                                                                  |
 | Sizes           | `icon.md`                                                                                                                                                                                                                         |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.helper.md`, `type.line-height.label.md`, `type.size.body.md`, `type.size.helper.md`, `type.size.label.md` |
-| Effects         | `shadow/control`, `shadow/focus/default`                                                                                                                                                                                          |
+| Effects         | `shadow/control`                                                                                                                                                                                                                  |
 | Text styles     | `body/md/medium`, `helper/md`, `label/md`                                                                                                                                                                                         |
 
 ### Slots and prop-controlled layers
@@ -71,28 +71,28 @@ Default variant: `size=md, state=default, stepper=inline` · 20 variants · defa
 
 ### Variant matrix
 
-| size | state    | stepper | size  | fill | stroke | effect                 | text                                                                         | icon                  |
-| ---- | -------- | ------- | ----- | ---- | ------ | ---------------------- | ---------------------------------------------------------------------------- | --------------------- |
-| md   | default  | inline  | 98×76 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| sm   | default  | inline  | 72×66 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| md   | default  | side    | 88×76 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| sm   | default  | side    | 68×66 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| md   | focus    | inline  | 98×76 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| sm   | focus    | inline  | 72×66 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| md   | focus    | side    | 88×76 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| sm   | focus    | side    | 68×66 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| md   | hover    | inline  | 98×76 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| sm   | hover    | inline  | 72×66 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| md   | hover    | side    | 88×76 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| sm   | hover    | side    | 68×66 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
-| md   | disabled | inline  | 98×76 |      |        |                        | `color.text.disabled`                                                        | `color.icon.disabled` |
-| sm   | disabled | inline  | 72×66 |      |        |                        | `color.text.disabled`                                                        | `color.icon.disabled` |
-| md   | disabled | side    | 88×76 |      |        |                        | `color.text.disabled`                                                        | `color.icon.disabled` |
-| sm   | disabled | side    | 68×66 |      |        |                        | `color.text.disabled`                                                        | `color.icon.disabled` |
-| md   | error    | inline  | 98×76 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
-| sm   | error    | inline  | 72×66 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
-| md   | error    | side    | 88×76 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
-| sm   | error    | side    | 68×66 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
+| size | state    | stepper | size  | fill | stroke | effect | text                                                                         | icon                  |
+| ---- | -------- | ------- | ----- | ---- | ------ | ------ | ---------------------------------------------------------------------------- | --------------------- |
+| md   | default  | inline  | 98×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| sm   | default  | inline  | 72×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| md   | default  | side    | 88×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| sm   | default  | side    | 68×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| md   | focus    | inline  | 98×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| sm   | focus    | inline  | 72×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| md   | focus    | side    | 88×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| sm   | focus    | side    | 68×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| md   | hover    | inline  | 98×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| sm   | hover    | inline  | 72×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| md   | hover    | side    | 88×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| sm   | hover    | side    | 68×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| md   | disabled | inline  | 98×76 |      |        |        | `color.text.disabled`                                                        | `color.icon.disabled` |
+| sm   | disabled | inline  | 72×66 |      |        |        | `color.text.disabled`                                                        | `color.icon.disabled` |
+| md   | disabled | side    | 88×76 |      |        |        | `color.text.disabled`                                                        | `color.icon.disabled` |
+| sm   | disabled | side    | 68×66 |      |        |        | `color.text.disabled`                                                        | `color.icon.disabled` |
+| md   | error    | inline  | 98×76 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
+| sm   | error    | inline  | 72×66 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
+| md   | error    | side    | 88×76 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
+| sm   | error    | side    | 68×66 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
 
 ## Documentation card
 

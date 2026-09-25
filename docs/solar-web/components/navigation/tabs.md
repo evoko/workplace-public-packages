@@ -37,7 +37,7 @@ Default variant: `size=md, state=default` · 10 variants · default size 138×40
 | Role            | Tokens                                                                                                                          |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Fills           | `color.action.secondary.bg.default`                                                                                             |
-| Strokes         | `color.border.strong`, `color.border.subtle`, `border.strong`                                                                   |
+| Strokes         | `color.border.strong`, `color.border.subtle`                                                                                    |
 | Text color      | `color.action.primary.text.default`, `color.text.disabled`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
 | Icon color      | `color.icon.disabled`, `color.icon.primary`, `color.icon.secondary`                                                             |
 | Spacing         | `inset.md`, `inset.sm`, `inset.xs`, `stack.xs`                                                                                  |
@@ -72,14 +72,10 @@ Default variant: `size=md, state=default` · 10 variants · default size 138×40
 | sm   | hover    | 118×32 |      |                       |                        | `color.text.primary`<br>`color.text.tertiary`                | `color.icon.primary`   |
 | md   | selected | 138×40 |      | `color.border.strong` |                        | `color.text.primary`<br>`color.action.primary.text.default`  | `color.icon.primary`   |
 | sm   | selected | 118×32 |      | `color.border.strong` |                        | `color.text.primary`<br>`color.action.primary.text.default`  | `color.icon.primary`   |
-| md   | focus    | 138×40 |      | `border.strong`       | `shadow/focus/default` | `color.text.primary`<br>`color.action.primary.text.default`  | `color.icon.primary`   |
-| sm   | focus    | 118×32 |      | `border.strong`       | `shadow/focus/default` | `color.text.primary`<br>`color.action.primary.text.default`  | `color.icon.primary`   |
+| md   | focus    | 138×40 |      | `color.border.strong` | `shadow/focus/default` | `color.text.primary`<br>`color.action.primary.text.default`  | `color.icon.primary`   |
+| sm   | focus    | 118×32 |      | `color.border.strong` | `shadow/focus/default` | `color.text.primary`<br>`color.action.primary.text.default`  | `color.icon.primary`   |
 | md   | disabled | 138×40 |      |                       |                        | `color.text.disabled`<br>`color.action.primary.text.default` | `color.icon.disabled`  |
 | sm   | disabled | 118×32 |      |                       |                        | `color.text.disabled`<br>`color.action.primary.text.default` | `color.icon.disabled`  |
-
-### Issues detected
-
-- Non-color variable bound as a color: `border.strong`.
 
 ## Component set: Tabs
 

@@ -12,7 +12,7 @@ base:
     MUI's ButtonBase on the web, as a PaginationItem's; bespoke in Flutter. At 24 × 24,
       its target is its own box: the items sit 4px apart, where 44 × 44 targets would cover each
       other (owner decision 2026-09-24, as Tree Item's actions), which meets WCAG 2.2's 24px
-      minimum; the design review asks SOLAR for room.
+      minimum; SOLAR accepted the exception on 2026-09-25.
 
 follows:
   icon.component:

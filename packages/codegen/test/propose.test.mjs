@@ -39,9 +39,10 @@ const overlayText = (component, change = () => {}) => {
 };
 
 /** Everything the proposer reads, built from an overlay document. */
-function build(component, doc) {
+function build(component, doc, change = () => {}) {
   const overlay = parseOverlay(stringify(doc), 'test.yaml');
-  const loaded = loadComponent(catalog, component);
+  const loaded = structuredClone(loadComponent(catalog, component));
+  change(loaded.set);
   const { spec, deviations } = buildComponentSpec(loaded, {
     names,
     fileVersion: catalog.fileVersion,
@@ -68,6 +69,20 @@ function paste(doc, proposal) {
   return doc;
 }
 
+/**
+ * Button's set as Figma drew it until 2026-09-25: the lg disabled secondary label in the danger
+ * colour, the one variant that did.
+ */
+const lgSlip = (set) => {
+  const v = set.variants.find(
+    (x) =>
+      x.variant === 'size=lg, prio=secondary, state=disabled, danger=false',
+  );
+  v.overrides.changed['/Label'].fills = [
+    '{Color:action/secondary/text/danger/disabled}',
+  ];
+};
+
 const decided = (ctx, token) =>
   ctx.deviations.find((d) => d.token === token)?.decision?.rule;
 
@@ -92,10 +107,10 @@ describe('solar:explain --propose', () => {
 
   it('proposes accept for a difference no variant draws, which decides it', () => {
     const doc = overlayText('Button');
-    const ctx = build('Button', doc);
+    const ctx = build('Button', doc, lgSlip);
     const proposal = proposeRule(ctx, { layer: 'label', cell: 'color' });
     expect(proposal).toContain('what they draw does not');
-    const after = build('Button', paste(doc, proposal));
+    const after = build('Button', paste(doc, proposal), lgSlip);
     expect(decided(after, 'component.button.label.color@size=lg')).toBe(
       'accept',
     );
@@ -164,7 +179,7 @@ describe('solar:explain --propose', () => {
 
   it('leaves the reason to a person: a pasted placeholder fails the build', () => {
     const doc = overlayText('Button');
-    const ctx = build('Button', doc);
+    const ctx = build('Button', doc, lgSlip);
     const rules = parse(proposeRule(ctx, { layer: 'label', cell: 'color' }));
     doc.accept = { ...doc.accept, ...rules.accept };
     expect(() => parseOverlay(stringify(doc), 'test.yaml')).toThrow(

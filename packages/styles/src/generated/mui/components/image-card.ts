@@ -81,8 +81,8 @@ export const solarImageCardStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarImageCard--iconControl > svg': {
@@ -200,10 +200,6 @@ export const solarImageCardStyles = {
       width: '44px',
       height: '44px',
     },
-    '& .SolarImageCard--iconPlus': {
-      width: '22px',
-      height: '22px',
-    },
     '& .SolarImageCard-label': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -211,6 +207,10 @@ export const solarImageCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+    },
+    '& .SolarImageCard--iconPlus': {
+      width: '22px',
+      height: '22px',
     },
   },
   sizes: {},
@@ -232,11 +232,11 @@ export const solarImageCardStyles = {
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarImageCard--iconPlus': {
-        color: 'var(--solar-color-icon-primary)',
-      },
       '& .SolarImageCard-label': {
         color: 'var(--solar-color-text-primary)',
+      },
+      '& .SolarImageCard--iconPlus': {
+        color: 'var(--solar-color-icon-primary)',
       },
     },
     'filled=false, selected=true': {
@@ -380,6 +380,18 @@ export const solarImageCardComposition = {
       },
     },
   },
+  label: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'filled=false, selected=false': {
+        default: {
+          present: true,
+        },
+      },
+    },
+  },
   iconPlus: {
     base: {
       present: false,
@@ -390,18 +402,6 @@ export const solarImageCardComposition = {
         default: {
           present: true,
           'variant.solid': 'false',
-        },
-      },
-    },
-  },
-  label: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'filled=false, selected=false': {
-        default: {
-          present: true,
         },
       },
     },

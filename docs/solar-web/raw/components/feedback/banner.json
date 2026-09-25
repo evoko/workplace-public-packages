@@ -298,6 +298,7 @@
       "variants": [
         {
           "variant": "type=neutral",
+          "id": "2764:578",
           "size": [
             458,
             44
@@ -320,10 +321,23 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/action group/Button",
+            "/action group/Button#2",
+            "/action group/Button#2/Counter",
+            "/action group/Button#2/Icon/None",
+            "/action group/Button#2/Icon/None#2",
+            "/action group/Button#2/Spinner",
+            "/action group/Button/Counter",
+            "/action group/Button/Icon/None",
+            "/action group/Button/Icon/None#2",
+            "/action group/Button/Spinner"
           ]
         },
         {
           "variant": "type=info",
+          "id": "2764:588",
           "size": [
             458,
             44
@@ -353,6 +367,7 @@
         },
         {
           "variant": "type=success",
+          "id": "2764:598",
           "size": [
             458,
             44
@@ -382,6 +397,7 @@
               {
                 "path": "/Icon/Success",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Success",
                   "type": "INSTANCE",
@@ -410,6 +426,7 @@
         },
         {
           "variant": "type=warning",
+          "id": "2764:607",
           "size": [
             458,
             44
@@ -439,6 +456,7 @@
               {
                 "path": "/Icon/Warning",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Warning",
                   "type": "INSTANCE",
@@ -467,6 +485,7 @@
         },
         {
           "variant": "type=danger",
+          "id": "2764:617",
           "size": [
             458,
             44
@@ -496,6 +515,7 @@
               {
                 "path": "/Icon/Danger",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Danger",
                   "type": "INSTANCE",

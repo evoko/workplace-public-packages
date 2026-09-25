@@ -81,6 +81,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "9642:2912",
           "size": [
             240,
             40
@@ -88,10 +89,12 @@
           "textFills": [
             "{Color:text/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover",
+          "id": "9642:2913",
           "size": [
             240,
             40
@@ -141,6 +144,7 @@
               {
                 "path": "/Icon Button",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -167,9 +171,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -188,6 +193,7 @@
         },
         {
           "variant": "state=focus",
+          "id": "9642:2933",
           "size": [
             240,
             40
@@ -250,6 +256,7 @@
               {
                 "path": "/Frame 1",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Frame 1",
                   "type": "FRAME",
@@ -274,6 +281,7 @@
               {
                 "path": "/Frame 1/Confirm",
                 "parent": "/Frame 1",
+                "index": 0,
                 "layer": {
                   "name": "Confirm",
                   "type": "INSTANCE",
@@ -300,9 +308,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -319,6 +328,7 @@
               {
                 "path": "/Frame 1/Cancel",
                 "parent": "/Frame 1",
+                "index": 1,
                 "layer": {
                   "name": "Cancel",
                   "type": "INSTANCE",
@@ -345,9 +355,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -366,6 +377,7 @@
         },
         {
           "variant": "state=filled",
+          "id": "9647:28959",
           "size": [
             240,
             40
@@ -428,6 +440,7 @@
               {
                 "path": "/Frame 2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Frame 2",
                   "type": "FRAME",
@@ -452,6 +465,7 @@
               {
                 "path": "/Frame 2/Confirm",
                 "parent": "/Frame 2",
+                "index": 0,
                 "layer": {
                   "name": "Confirm",
                   "type": "INSTANCE",
@@ -478,9 +492,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -497,6 +512,7 @@
               {
                 "path": "/Frame 2/Cancel",
                 "parent": "/Frame 2",
+                "index": 1,
                 "layer": {
                   "name": "Cancel",
                   "type": "INSTANCE",
@@ -523,9 +539,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -544,6 +561,7 @@
         },
         {
           "variant": "state=error",
+          "id": "9647:28963",
           "size": [
             240,
             40
@@ -606,6 +624,7 @@
               {
                 "path": "/Frame 3",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Frame 3",
                   "type": "FRAME",
@@ -630,6 +649,7 @@
               {
                 "path": "/Frame 3/Confirm",
                 "parent": "/Frame 3",
+                "index": 0,
                 "layer": {
                   "name": "Confirm",
                   "type": "INSTANCE",
@@ -656,9 +676,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -675,6 +696,7 @@
               {
                 "path": "/Frame 3/Cancel",
                 "parent": "/Frame 3",
+                "index": 1,
                 "layer": {
                   "name": "Cancel",
                   "type": "INSTANCE",
@@ -701,9 +723,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -722,6 +745,7 @@
         },
         {
           "variant": "state=disabled",
+          "id": "9647:28967",
           "size": [
             240,
             40

@@ -376,6 +376,7 @@
                   "{Color:surface/background}"
                 ],
                 "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
                   "paddingLeft": "Spatial:inset/sm",
                   "paddingTop": "Spatial:inset/none",
                   "paddingRight": "Spatial:inset/sm",
@@ -572,6 +573,7 @@
                   "{Color:surface/background}"
                 ],
                 "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
                   "paddingLeft": "Spatial:inset/sm",
                   "paddingTop": "Spatial:inset/none",
                   "paddingRight": "Spatial:inset/sm",
@@ -752,6 +754,7 @@
       "variants": [
         {
           "variant": "state=default, ghost=false",
+          "id": "5808:14525",
           "size": [
             400,
             470
@@ -777,10 +780,17 @@
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/ResultsBody/Dropdown Group Label#2/Link/Icon/None",
+            "/ResultsBody/Dropdown Group Label#2/Link/Icon/None#2",
+            "/ResultsBody/Dropdown Group Label/Link/Icon/None",
+            "/ResultsBody/Dropdown Group Label/Link/Icon/None#2"
           ]
         },
         {
           "variant": "state=no-results, ghost=false",
+          "id": "7258:3291",
           "size": [
             400,
             300
@@ -806,6 +816,12 @@
             "Icon/None",
             "Icon/Refresh",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/EmptyBody/EmptyState/Button/Counter",
+            "/EmptyBody/EmptyState/Button/Icon/None",
+            "/EmptyBody/EmptyState/Button/Icon/Refresh",
+            "/EmptyBody/EmptyState/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -878,6 +894,7 @@
               {
                 "path": "/EmptyBody",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "EmptyBody",
                   "type": "FRAME",
@@ -909,6 +926,7 @@
               {
                 "path": "/EmptyBody/EmptyState",
                 "parent": "/EmptyBody",
+                "index": 0,
                 "layer": {
                   "name": "EmptyState",
                   "type": "INSTANCE",
@@ -960,6 +978,7 @@
         },
         {
           "variant": "state=default, ghost=true",
+          "id": "7258:3292",
           "size": [
             400,
             396
@@ -969,6 +988,7 @@
           ],
           "effect": "shadow/dialog",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -992,6 +1012,7 @@
               {
                 "path": "/Frame",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1023,6 +1044,7 @@
               {
                 "path": "/Frame/Rectangle",
                 "parent": "/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1036,16 +1058,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame/Frame",
                 "parent": "/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1073,6 +1096,7 @@
               {
                 "path": "/Frame/Frame/Rectangle",
                 "parent": "/Frame/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1086,16 +1110,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame/Frame/Rectangle#2",
                 "parent": "/Frame/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1109,16 +1134,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame/Frame/Rectangle#3",
                 "parent": "/Frame/Frame",
+                "index": 2,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1132,16 +1158,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1166,6 +1193,7 @@
               {
                 "path": "/Frame#2/Frame",
                 "parent": "/Frame#2",
+                "index": 0,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1197,6 +1225,7 @@
               {
                 "path": "/Frame#2/Frame/Rectangle",
                 "parent": "/Frame#2/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1214,6 +1243,7 @@
               {
                 "path": "/Frame#2/Frame/Frame",
                 "parent": "/Frame#2/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1241,6 +1271,7 @@
               {
                 "path": "/Frame#2/Frame/Frame/Rectangle",
                 "parent": "/Frame#2/Frame/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1254,16 +1285,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame/Frame/Rectangle#2",
                 "parent": "/Frame#2/Frame/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1277,16 +1309,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#2",
                 "parent": "/Frame#2",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1318,6 +1351,7 @@
               {
                 "path": "/Frame#2/Frame#2/Rectangle",
                 "parent": "/Frame#2/Frame#2",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1335,6 +1369,7 @@
               {
                 "path": "/Frame#2/Frame#2/Frame",
                 "parent": "/Frame#2/Frame#2",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1362,6 +1397,7 @@
               {
                 "path": "/Frame#2/Frame#2/Frame/Rectangle",
                 "parent": "/Frame#2/Frame#2/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1375,16 +1411,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#2/Frame/Rectangle#2",
                 "parent": "/Frame#2/Frame#2/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1398,16 +1435,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#3",
                 "parent": "/Frame#2",
+                "index": 2,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1439,6 +1477,7 @@
               {
                 "path": "/Frame#2/Frame#3/Rectangle",
                 "parent": "/Frame#2/Frame#3",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1456,6 +1495,7 @@
               {
                 "path": "/Frame#2/Frame#3/Frame",
                 "parent": "/Frame#2/Frame#3",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1483,6 +1523,7 @@
               {
                 "path": "/Frame#2/Frame#3/Frame/Rectangle",
                 "parent": "/Frame#2/Frame#3/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1496,16 +1537,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#3/Frame/Rectangle#2",
                 "parent": "/Frame#2/Frame#3/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1519,16 +1561,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#4",
                 "parent": "/Frame#2",
+                "index": 3,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1560,6 +1603,7 @@
               {
                 "path": "/Frame#2/Frame#4/Rectangle",
                 "parent": "/Frame#2/Frame#4",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1577,6 +1621,7 @@
               {
                 "path": "/Frame#2/Frame#4/Frame",
                 "parent": "/Frame#2/Frame#4",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1604,6 +1649,7 @@
               {
                 "path": "/Frame#2/Frame#4/Frame/Rectangle",
                 "parent": "/Frame#2/Frame#4/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1617,16 +1663,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#4/Frame/Rectangle#2",
                 "parent": "/Frame#2/Frame#4/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1640,16 +1687,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#5",
                 "parent": "/Frame#2",
+                "index": 4,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1681,6 +1729,7 @@
               {
                 "path": "/Frame#2/Frame#5/Rectangle",
                 "parent": "/Frame#2/Frame#5",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1698,6 +1747,7 @@
               {
                 "path": "/Frame#2/Frame#5/Frame",
                 "parent": "/Frame#2/Frame#5",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1725,6 +1775,7 @@
               {
                 "path": "/Frame#2/Frame#5/Frame/Rectangle",
                 "parent": "/Frame#2/Frame#5/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1738,16 +1789,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame#2/Frame#5/Frame/Rectangle#2",
                 "parent": "/Frame#2/Frame#5/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle",
                   "type": "RECTANGLE",
@@ -1761,10 +1813,10 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               }
@@ -1794,6 +1846,7 @@
         },
         {
           "variant": "state=empty, ghost=false",
+          "id": "7258:3326",
           "size": [
             400,
             308
@@ -1818,6 +1871,11 @@
             "Icon/None",
             "Spinner"
           ],
+          "hiddenPaths": [
+            "/Frame#2/EmptyBody/EmptyState/Button/Counter",
+            "/Frame#2/EmptyBody/EmptyState/Button/Icon/None",
+            "/Frame#2/EmptyBody/EmptyState/Button/Spinner"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -1841,6 +1899,7 @@
               {
                 "path": "/Frame",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1871,6 +1930,7 @@
               {
                 "path": "/Frame/Frame",
                 "parent": "/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1901,16 +1961,17 @@
                   "vars": {
                     "paddingLeft": "Spatial:inset/sm",
                     "paddingRight": "Spatial:inset/sm",
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Frame/Frame/Search",
                 "parent": "/Frame/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Search",
                   "type": "TEXT",
@@ -1935,6 +1996,7 @@
               {
                 "path": "/Frame#2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1966,6 +2028,7 @@
               {
                 "path": "/Frame#2/EmptyBody",
                 "parent": "/Frame#2",
+                "index": 0,
                 "layer": {
                   "name": "EmptyBody",
                   "type": "FRAME",
@@ -1997,6 +2060,7 @@
               {
                 "path": "/Frame#2/EmptyBody/EmptyState",
                 "parent": "/Frame#2/EmptyBody",
+                "index": 0,
                 "layer": {
                   "name": "EmptyState",
                   "type": "INSTANCE",

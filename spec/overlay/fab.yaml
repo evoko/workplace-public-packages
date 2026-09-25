@@ -72,18 +72,10 @@ bind:
 allowLiteral:
   root.height:
     reason: >-
-      As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
-      governance gap). Drawn 44 and 56, as the description says.
+      Drawn 44 and 56, as the description says, bound to nothing: neither is one of SOLAR's
+      control heights (size.control: 32, 40, 48), so carried as drawn; the design review asks.
   root.width:
     reason: An icon FAB is a circle, so its width is its height, under the same decision.
-
-set:
-  root.appearance.*.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      Figma's focus state draws no focus ring, only the resting shadow/overlay, where the
-      description says "Focus ring via shadow/focus/default" and WCAG's visible focus is SOLAR's
-      floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it.
 
 accept:
   component.fab.root.width@state=loading:

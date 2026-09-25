@@ -155,6 +155,7 @@
       "variants": [
         {
           "variant": "control=checkbox",
+          "id": "10102:10993",
           "size": [
             320,
             51
@@ -163,10 +164,12 @@
             "{Color:text/primary}",
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "control=radio",
+          "id": "10102:10992",
           "size": [
             320,
             51
@@ -196,6 +199,7 @@
         },
         {
           "variant": "control=toggle",
+          "id": "10106:11020",
           "size": [
             320,
             51
@@ -229,6 +233,7 @@
               {
                 "path": "/Toggle",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Toggle",
                   "type": "INSTANCE",
@@ -275,7 +280,7 @@
     {
       "name": "Options List",
       "id": "10291:22366",
-      "description": "Vertical stack of Option Rows that share one question — the fieldset around a group of checkboxes, radios or toggles. Single variant; Content is a slot for Option Row instances. Keep one control type per list and wrap it in fieldset + legend. Above five mutually exclusive options use Select.",
+      "description": "Vertical stack of Option Rows that share one question — the fieldset around a group of checkboxes, radios or toggles. Single variant; Content is a slot for Option Row instances. Wrap it in fieldset + legend; the legend is visually hidden when the question already appears as a heading. Keep one control type per list. Above five mutually exclusive options use Select.",
       "props": {
         "Content#10291:26": {
           "type": "SLOT",

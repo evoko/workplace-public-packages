@@ -5,9 +5,9 @@
     {
       "name": "Avatar",
       "id": "2578:1831",
-      "description": "User/entity avatar showing initials, photo, or company logo. 114 variants: size (xs, sm, md, lg) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark shade inverts colors for dark surfaces and inverse cards; Image and Logo are the content modes for photo and logo. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.",
+      "description": "User/entity avatar showing initials, photo, or company logo. 115 variants: size (xs 16, sm 24, md 32, lg 44) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 seeds for initial-based avatars; seed from a stable hash of user ID — never random. Initials must reach 4.5:1 on their fill; where a sample pairing does not, darken or lighten the initials within the same hue. Use in activity feeds, comment threads, user lists and presence indicators. See also: Badge / Status for small inline status dots.",
       "docLinks": [],
-      "variantCount": 114,
+      "variantCount": 115,
       "props": {
         "size": {
           "type": "VARIANT",
@@ -120,6 +120,7 @@
       "variants": [
         {
           "variant": "size=lg, type=text, color=neutral, shade=Light",
+          "id": "7028:43005",
           "size": [
             44,
             44
@@ -133,10 +134,12 @@
           "textFills": [
             "{Primitives:color/neutral/700}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=md, type=text, color=neutral, shade=Light",
+          "id": "2578:1837",
           "size": [
             32,
             32
@@ -169,6 +172,7 @@
         },
         {
           "variant": "size=sm, type=text, color=neutral, shade=Light",
+          "id": "5612:4111",
           "size": [
             24,
             24
@@ -201,6 +205,7 @@
         },
         {
           "variant": "size=xs, type=text, color=neutral, shade=Light",
+          "id": "8711:8273",
           "size": [
             16,
             16
@@ -233,6 +238,7 @@
         },
         {
           "variant": "size=lg, type=text, color=neutral, shade=Dark",
+          "id": "7028:43043",
           "size": [
             44,
             44
@@ -263,6 +269,7 @@
         },
         {
           "variant": "size=lg, type=text, color=neutral, shade=Medium",
+          "id": "9860:9635",
           "size": [
             44,
             44
@@ -293,6 +300,7 @@
         },
         {
           "variant": "size=md, type=text, color=neutral, shade=Dark",
+          "id": "2578:1839",
           "size": [
             32,
             32
@@ -333,6 +341,7 @@
         },
         {
           "variant": "size=md, type=text, color=neutral, shade=Medium",
+          "id": "9860:9637",
           "size": [
             32,
             32
@@ -373,6 +382,7 @@
         },
         {
           "variant": "size=sm, type=text, color=neutral, shade=Dark",
+          "id": "5612:4113",
           "size": [
             24,
             24
@@ -413,6 +423,7 @@
         },
         {
           "variant": "size=sm, type=text, color=neutral, shade=Medium",
+          "id": "9860:9639",
           "size": [
             24,
             24
@@ -453,6 +464,7 @@
         },
         {
           "variant": "size=xs, type=text, color=neutral, shade=Dark",
+          "id": "8711:254",
           "size": [
             16,
             16
@@ -493,6 +505,7 @@
         },
         {
           "variant": "size=xs, type=text, color=neutral, shade=Medium",
+          "id": "9860:9641",
           "size": [
             16,
             16
@@ -533,6 +546,7 @@
         },
         {
           "variant": "size=lg, type=photo, color=neutral, shade=Image",
+          "id": "7028:43063",
           "size": [
             44,
             44
@@ -564,6 +578,7 @@
         },
         {
           "variant": "size=md, type=photo, color=neutral, shade=Image",
+          "id": "2451:11566",
           "size": [
             32,
             32
@@ -595,6 +610,7 @@
         },
         {
           "variant": "size=sm, type=photo, color=neutral, shade=Image",
+          "id": "5612:4147",
           "size": [
             24,
             24
@@ -626,6 +642,7 @@
         },
         {
           "variant": "size=xs, type=photo, color=neutral, shade=Image",
+          "id": "9849:32070",
           "size": [
             16,
             16
@@ -657,6 +674,7 @@
         },
         {
           "variant": "size=md, type=logo, color=neutral, shade=Logo",
+          "id": "2475:11650",
           "size": [
             32,
             32
@@ -695,6 +713,7 @@
         },
         {
           "variant": "size=sm, type=logo, color=neutral, shade=Logo",
+          "id": "5612:4149",
           "size": [
             24,
             24
@@ -733,6 +752,7 @@
         },
         {
           "variant": "size=lg, type=text, color=red, shade=Light",
+          "id": "7028:43007",
           "size": [
             44,
             44
@@ -763,6 +783,7 @@
         },
         {
           "variant": "size=md, type=text, color=red, shade=Light",
+          "id": "2451:11569",
           "size": [
             32,
             32
@@ -803,6 +824,7 @@
         },
         {
           "variant": "size=sm, type=text, color=red, shade=Light",
+          "id": "5612:4115",
           "size": [
             24,
             24
@@ -843,6 +865,7 @@
         },
         {
           "variant": "size=xs, type=text, color=red, shade=Light",
+          "id": "8711:8275",
           "size": [
             16,
             16
@@ -883,6 +906,7 @@
         },
         {
           "variant": "size=lg, type=text, color=red, shade=Dark",
+          "id": "7028:43045",
           "size": [
             44,
             44
@@ -913,6 +937,7 @@
         },
         {
           "variant": "size=lg, type=text, color=red, shade=Medium",
+          "id": "9860:9643",
           "size": [
             44,
             44
@@ -943,6 +968,7 @@
         },
         {
           "variant": "size=md, type=text, color=red, shade=Dark",
+          "id": "2451:11638",
           "size": [
             32,
             32
@@ -983,6 +1009,7 @@
         },
         {
           "variant": "size=md, type=text, color=red, shade=Medium",
+          "id": "9860:9645",
           "size": [
             32,
             32
@@ -1023,6 +1050,7 @@
         },
         {
           "variant": "size=sm, type=text, color=red, shade=Dark",
+          "id": "5612:4117",
           "size": [
             24,
             24
@@ -1063,6 +1091,7 @@
         },
         {
           "variant": "size=sm, type=text, color=red, shade=Medium",
+          "id": "9860:9647",
           "size": [
             24,
             24
@@ -1103,6 +1132,7 @@
         },
         {
           "variant": "size=xs, type=text, color=red, shade=Dark",
+          "id": "8711:256",
           "size": [
             16,
             16
@@ -1143,6 +1173,7 @@
         },
         {
           "variant": "size=xs, type=text, color=red, shade=Medium",
+          "id": "9860:9649",
           "size": [
             16,
             16
@@ -1183,6 +1214,7 @@
         },
         {
           "variant": "size=lg, type=text, color=orange, shade=Light",
+          "id": "7028:43009",
           "size": [
             44,
             44
@@ -1213,6 +1245,7 @@
         },
         {
           "variant": "size=md, type=text, color=orange, shade=Light",
+          "id": "2451:11593",
           "size": [
             32,
             32
@@ -1253,6 +1286,7 @@
         },
         {
           "variant": "size=sm, type=text, color=orange, shade=Light",
+          "id": "5612:4119",
           "size": [
             24,
             24
@@ -1293,6 +1327,7 @@
         },
         {
           "variant": "size=xs, type=text, color=orange, shade=Light",
+          "id": "8711:8277",
           "size": [
             16,
             16
@@ -1333,6 +1368,7 @@
         },
         {
           "variant": "size=lg, type=text, color=orange, shade=Dark",
+          "id": "7028:43047",
           "size": [
             44,
             44
@@ -1363,6 +1399,7 @@
         },
         {
           "variant": "size=lg, type=text, color=orange, shade=Medium",
+          "id": "9860:9651",
           "size": [
             44,
             44
@@ -1393,6 +1430,7 @@
         },
         {
           "variant": "size=md, type=text, color=orange, shade=Dark",
+          "id": "2451:11637",
           "size": [
             32,
             32
@@ -1433,6 +1471,7 @@
         },
         {
           "variant": "size=md, type=text, color=orange, shade=Medium",
+          "id": "9860:9653",
           "size": [
             32,
             32
@@ -1473,6 +1512,7 @@
         },
         {
           "variant": "size=sm, type=text, color=orange, shade=Dark",
+          "id": "5612:4121",
           "size": [
             24,
             24
@@ -1513,6 +1553,7 @@
         },
         {
           "variant": "size=sm, type=text, color=orange, shade=Medium",
+          "id": "9860:9655",
           "size": [
             24,
             24
@@ -1553,6 +1594,7 @@
         },
         {
           "variant": "size=xs, type=text, color=orange, shade=Dark",
+          "id": "8711:258",
           "size": [
             16,
             16
@@ -1593,6 +1635,7 @@
         },
         {
           "variant": "size=xs, type=text, color=orange, shade=Medium",
+          "id": "9860:9657",
           "size": [
             16,
             16
@@ -1633,6 +1676,7 @@
         },
         {
           "variant": "size=lg, type=text, color=yellow, shade=Light",
+          "id": "7028:43011",
           "size": [
             44,
             44
@@ -1663,6 +1707,7 @@
         },
         {
           "variant": "size=md, type=text, color=yellow, shade=Light",
+          "id": "2451:11594",
           "size": [
             32,
             32
@@ -1703,6 +1748,7 @@
         },
         {
           "variant": "size=sm, type=text, color=yellow, shade=Light",
+          "id": "5612:4123",
           "size": [
             24,
             24
@@ -1743,6 +1789,7 @@
         },
         {
           "variant": "size=xs, type=text, color=yellow, shade=Light",
+          "id": "8711:8279",
           "size": [
             16,
             16
@@ -1783,6 +1830,7 @@
         },
         {
           "variant": "size=lg, type=text, color=yellow, shade=Dark",
+          "id": "7028:43049",
           "size": [
             44,
             44
@@ -1813,6 +1861,7 @@
         },
         {
           "variant": "size=lg, type=text, color=yellow, shade=Medium",
+          "id": "9860:9659",
           "size": [
             44,
             44
@@ -1843,6 +1892,7 @@
         },
         {
           "variant": "size=md, type=text, color=yellow, shade=Dark",
+          "id": "2451:11636",
           "size": [
             32,
             32
@@ -1883,6 +1933,7 @@
         },
         {
           "variant": "size=md, type=text, color=yellow, shade=Medium",
+          "id": "9860:9661",
           "size": [
             32,
             32
@@ -1923,6 +1974,7 @@
         },
         {
           "variant": "size=sm, type=text, color=yellow, shade=Dark",
+          "id": "5612:4125",
           "size": [
             24,
             24
@@ -1963,6 +2015,7 @@
         },
         {
           "variant": "size=sm, type=text, color=yellow, shade=Medium",
+          "id": "9860:9663",
           "size": [
             24,
             24
@@ -2003,6 +2056,7 @@
         },
         {
           "variant": "size=xs, type=text, color=yellow, shade=Dark",
+          "id": "8711:260",
           "size": [
             16,
             16
@@ -2043,6 +2097,7 @@
         },
         {
           "variant": "size=xs, type=text, color=yellow, shade=Medium",
+          "id": "9860:9665",
           "size": [
             16,
             16
@@ -2083,6 +2138,7 @@
         },
         {
           "variant": "size=lg, type=text, color=green, shade=Light",
+          "id": "7028:43013",
           "size": [
             44,
             44
@@ -2113,6 +2169,7 @@
         },
         {
           "variant": "size=md, type=text, color=green, shade=Light",
+          "id": "2451:11568",
           "size": [
             32,
             32
@@ -2153,6 +2210,7 @@
         },
         {
           "variant": "size=sm, type=text, color=green, shade=Light",
+          "id": "5612:4127",
           "size": [
             24,
             24
@@ -2193,6 +2251,7 @@
         },
         {
           "variant": "size=xs, type=text, color=green, shade=Light",
+          "id": "8711:8281",
           "size": [
             16,
             16
@@ -2233,6 +2292,7 @@
         },
         {
           "variant": "size=lg, type=text, color=green, shade=Dark",
+          "id": "7028:43051",
           "size": [
             44,
             44
@@ -2263,6 +2323,7 @@
         },
         {
           "variant": "size=lg, type=text, color=green, shade=Medium",
+          "id": "9860:9667",
           "size": [
             44,
             44
@@ -2293,6 +2354,7 @@
         },
         {
           "variant": "size=md, type=text, color=green, shade=Dark",
+          "id": "2451:11635",
           "size": [
             32,
             32
@@ -2333,6 +2395,7 @@
         },
         {
           "variant": "size=md, type=text, color=green, shade=Medium",
+          "id": "9860:9669",
           "size": [
             32,
             32
@@ -2373,6 +2436,7 @@
         },
         {
           "variant": "size=sm, type=text, color=green, shade=Dark",
+          "id": "5612:4129",
           "size": [
             24,
             24
@@ -2413,6 +2477,7 @@
         },
         {
           "variant": "size=sm, type=text, color=green, shade=Medium",
+          "id": "9860:9671",
           "size": [
             24,
             24
@@ -2453,6 +2518,7 @@
         },
         {
           "variant": "size=xs, type=text, color=green, shade=Dark",
+          "id": "8711:262",
           "size": [
             16,
             16
@@ -2493,6 +2559,7 @@
         },
         {
           "variant": "size=xs, type=text, color=green, shade=Medium",
+          "id": "9860:9673",
           "size": [
             16,
             16
@@ -2533,6 +2600,7 @@
         },
         {
           "variant": "size=lg, type=text, color=turquoise, shade=Light",
+          "id": "7028:43015",
           "size": [
             44,
             44
@@ -2563,6 +2631,7 @@
         },
         {
           "variant": "size=md, type=text, color=turquoise, shade=Light",
+          "id": "2451:11595",
           "size": [
             32,
             32
@@ -2603,6 +2672,7 @@
         },
         {
           "variant": "size=sm, type=text, color=turquoise, shade=Light",
+          "id": "5612:4131",
           "size": [
             24,
             24
@@ -2643,6 +2713,7 @@
         },
         {
           "variant": "size=xs, type=text, color=turquoise, shade=Light",
+          "id": "8711:8283",
           "size": [
             16,
             16
@@ -2683,6 +2754,7 @@
         },
         {
           "variant": "size=lg, type=text, color=turquoise, shade=Dark",
+          "id": "7028:43053",
           "size": [
             44,
             44
@@ -2713,6 +2785,7 @@
         },
         {
           "variant": "size=lg, type=text, color=turquoise, shade=Medium",
+          "id": "9860:9675",
           "size": [
             44,
             44
@@ -2743,6 +2816,7 @@
         },
         {
           "variant": "size=md, type=text, color=turquoise, shade=Dark",
+          "id": "2451:11640",
           "size": [
             32,
             32
@@ -2783,6 +2857,7 @@
         },
         {
           "variant": "size=md, type=text, color=turquoise, shade=Medium",
+          "id": "9860:9677",
           "size": [
             32,
             32
@@ -2823,6 +2898,7 @@
         },
         {
           "variant": "size=sm, type=text, color=turquoise, shade=Dark",
+          "id": "5612:4133",
           "size": [
             24,
             24
@@ -2863,6 +2939,7 @@
         },
         {
           "variant": "size=sm, type=text, color=turquoise, shade=Medium",
+          "id": "9860:9679",
           "size": [
             24,
             24
@@ -2903,6 +2980,7 @@
         },
         {
           "variant": "size=xs, type=text, color=turquoise, shade=Dark",
+          "id": "8711:264",
           "size": [
             16,
             16
@@ -2943,6 +3021,7 @@
         },
         {
           "variant": "size=xs, type=text, color=turquoise, shade=Medium",
+          "id": "9860:9681",
           "size": [
             16,
             16
@@ -2983,6 +3062,7 @@
         },
         {
           "variant": "size=lg, type=text, color=blue, shade=Light",
+          "id": "7028:43017",
           "size": [
             44,
             44
@@ -3013,6 +3093,7 @@
         },
         {
           "variant": "size=md, type=text, color=blue, shade=Light",
+          "id": "2451:11567",
           "size": [
             32,
             32
@@ -3053,6 +3134,7 @@
         },
         {
           "variant": "size=sm, type=text, color=blue, shade=Light",
+          "id": "5612:4135",
           "size": [
             24,
             24
@@ -3093,6 +3175,7 @@
         },
         {
           "variant": "size=xs, type=text, color=blue, shade=Light",
+          "id": "8711:8285",
           "size": [
             16,
             16
@@ -3133,6 +3216,7 @@
         },
         {
           "variant": "size=lg, type=text, color=blue, shade=Dark",
+          "id": "7028:43055",
           "size": [
             44,
             44
@@ -3163,6 +3247,7 @@
         },
         {
           "variant": "size=lg, type=text, color=blue, shade=Medium",
+          "id": "9860:9683",
           "size": [
             44,
             44
@@ -3193,6 +3278,7 @@
         },
         {
           "variant": "size=md, type=text, color=blue, shade=Dark",
+          "id": "2451:11641",
           "size": [
             32,
             32
@@ -3233,6 +3319,7 @@
         },
         {
           "variant": "size=md, type=text, color=blue, shade=Medium",
+          "id": "9860:9685",
           "size": [
             32,
             32
@@ -3273,6 +3360,7 @@
         },
         {
           "variant": "size=sm, type=text, color=blue, shade=Dark",
+          "id": "5612:4137",
           "size": [
             24,
             24
@@ -3313,6 +3401,7 @@
         },
         {
           "variant": "size=sm, type=text, color=blue, shade=Medium",
+          "id": "9860:9687",
           "size": [
             24,
             24
@@ -3353,6 +3442,7 @@
         },
         {
           "variant": "size=xs, type=text, color=blue, shade=Dark",
+          "id": "8711:266",
           "size": [
             16,
             16
@@ -3393,6 +3483,7 @@
         },
         {
           "variant": "size=xs, type=text, color=blue, shade=Medium",
+          "id": "9860:9689",
           "size": [
             16,
             16
@@ -3433,6 +3524,7 @@
         },
         {
           "variant": "size=lg, type=text, color=purple, shade=Light",
+          "id": "7028:43019",
           "size": [
             44,
             44
@@ -3463,6 +3555,7 @@
         },
         {
           "variant": "size=md, type=text, color=purple, shade=Light",
+          "id": "2451:11596",
           "size": [
             32,
             32
@@ -3503,6 +3596,7 @@
         },
         {
           "variant": "size=sm, type=text, color=purple, shade=Light",
+          "id": "5612:4139",
           "size": [
             24,
             24
@@ -3543,6 +3637,7 @@
         },
         {
           "variant": "size=xs, type=text, color=purple, shade=Light",
+          "id": "8711:8287",
           "size": [
             16,
             16
@@ -3583,6 +3678,7 @@
         },
         {
           "variant": "size=lg, type=text, color=purple, shade=Dark",
+          "id": "7028:43057",
           "size": [
             44,
             44
@@ -3613,6 +3709,7 @@
         },
         {
           "variant": "size=lg, type=text, color=purple, shade=Medium",
+          "id": "9860:9691",
           "size": [
             44,
             44
@@ -3643,6 +3740,7 @@
         },
         {
           "variant": "size=md, type=text, color=purple, shade=Dark",
+          "id": "2451:11642",
           "size": [
             32,
             32
@@ -3683,6 +3781,7 @@
         },
         {
           "variant": "size=md, type=text, color=purple, shade=Medium",
+          "id": "9860:9693",
           "size": [
             32,
             32
@@ -3723,6 +3822,7 @@
         },
         {
           "variant": "size=sm, type=text, color=purple, shade=Dark",
+          "id": "5612:4141",
           "size": [
             24,
             24
@@ -3763,6 +3863,7 @@
         },
         {
           "variant": "size=sm, type=text, color=purple, shade=Medium",
+          "id": "9860:9695",
           "size": [
             24,
             24
@@ -3803,6 +3904,7 @@
         },
         {
           "variant": "size=xs, type=text, color=purple, shade=Dark",
+          "id": "8711:268",
           "size": [
             16,
             16
@@ -3843,6 +3945,7 @@
         },
         {
           "variant": "size=xs, type=text, color=purple, shade=Medium",
+          "id": "9860:9697",
           "size": [
             16,
             16
@@ -3883,6 +3986,7 @@
         },
         {
           "variant": "size=lg, type=text, color=pink, shade=Light",
+          "id": "7028:43021",
           "size": [
             44,
             44
@@ -3913,6 +4017,7 @@
         },
         {
           "variant": "size=md, type=text, color=pink, shade=Light",
+          "id": "2451:11597",
           "size": [
             32,
             32
@@ -3953,6 +4058,7 @@
         },
         {
           "variant": "size=sm, type=text, color=pink, shade=Light",
+          "id": "5612:4143",
           "size": [
             24,
             24
@@ -3993,6 +4099,7 @@
         },
         {
           "variant": "size=xs, type=text, color=pink, shade=Light",
+          "id": "8711:8289",
           "size": [
             16,
             16
@@ -4033,6 +4140,7 @@
         },
         {
           "variant": "size=lg, type=text, color=pink, shade=Dark",
+          "id": "7028:43059",
           "size": [
             44,
             44
@@ -4063,6 +4171,7 @@
         },
         {
           "variant": "size=lg, type=text, color=pink, shade=Medium",
+          "id": "9860:9699",
           "size": [
             44,
             44
@@ -4093,6 +4202,7 @@
         },
         {
           "variant": "size=md, type=text, color=pink, shade=Dark",
+          "id": "2451:11644",
           "size": [
             32,
             32
@@ -4133,6 +4243,7 @@
         },
         {
           "variant": "size=md, type=text, color=pink, shade=Medium",
+          "id": "9860:9701",
           "size": [
             32,
             32
@@ -4173,6 +4284,7 @@
         },
         {
           "variant": "size=sm, type=text, color=pink, shade=Dark",
+          "id": "5612:4145",
           "size": [
             24,
             24
@@ -4213,6 +4325,7 @@
         },
         {
           "variant": "size=sm, type=text, color=pink, shade=Medium",
+          "id": "9860:9703",
           "size": [
             24,
             24
@@ -4253,6 +4366,7 @@
         },
         {
           "variant": "size=xs, type=text, color=pink, shade=Dark",
+          "id": "8711:270",
           "size": [
             16,
             16
@@ -4293,6 +4407,7 @@
         },
         {
           "variant": "size=xs, type=text, color=pink, shade=Medium",
+          "id": "9860:9705",
           "size": [
             16,
             16
@@ -4329,6 +4444,36 @@
                 }
               }
             }
+          }
+        },
+        {
+          "variant": "size=lg, type=logo, color=neutral, shade=Logo",
+          "id": "11066:29966",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "IMAGE"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                },
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": 11,
+                "vars": null
+              }
+            },
+            "removed": [
+              "/DS"
+            ]
           }
         }
       ]

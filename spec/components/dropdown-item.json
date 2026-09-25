@@ -352,22 +352,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -452,7 +452,7 @@
     }
   },
   "docs": {
-    "description": "Single row inside a Dropdown Menu. States: default, hover, selected, disabled. Pair with optional leading icon (20px), description line, and trailing metadata — never two trailing elements at once. Current variant set lacks an explicit focus state — keyboard navigation uses the aria-activedescendant pattern with hover styling.",
+    "description": "Single row inside a Dropdown Menu. 8 variants: size (md, sm) × state (default, hover, selected, disabled). Optional leading icon (20px), checkbox and description line; rows that hide them are 34px (md). Keyboard focus follows the aria-activedescendant pattern and draws the hover look — no separate ring. Rows under 44px rely on their own box as the target (WCAG 2.2 minimum 24px).",
     "figmaIssues": []
   },
   "provenance": {
@@ -460,7 +460,7 @@
     "pageId": "2202:1223",
     "figmaNode": "2781:994",
     "defaultVariant": "size=md, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/dropdown-item.yaml",
@@ -498,7 +498,7 @@
       {
         "rule": "bind",
         "at": "content.paddingTop, content.paddingRight, content.paddingBottom, content.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

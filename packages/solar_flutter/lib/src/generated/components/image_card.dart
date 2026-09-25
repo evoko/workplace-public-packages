@@ -154,6 +154,11 @@ abstract final class SolarImageCardRecipe {
     'iconCircle.borderColor|appearance|filled=false, selected=false|default':
         'none',
     'iconCircle.shadow|appearance|filled=false, selected=false|default': 'none',
+    'label.present|base': 'b:false',
+    'label.typography|base': 't:typography.body.md.medium',
+    'label.present|appearance|filled=false, selected=false|default': 'b:true',
+    'label.color|appearance|filled=false, selected=false|default':
+        't:color.text.primary',
     'iconPlus.present|base': 'b:false',
     'iconPlus.component|base': 'k:Icon/Plus',
     'iconPlus.width|base': 'px:22',
@@ -164,11 +169,6 @@ abstract final class SolarImageCardRecipe {
         'k:false',
     'iconPlus.color|appearance|filled=false, selected=false|default':
         't:color.icon.primary',
-    'label.present|base': 'b:false',
-    'label.typography|base': 't:typography.body.md.medium',
-    'label.present|appearance|filled=false, selected=false|default': 'b:true',
-    'label.color|appearance|filled=false, selected=false|default':
-        't:color.text.primary',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).

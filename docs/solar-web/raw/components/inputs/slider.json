@@ -5,7 +5,7 @@
     {
       "name": "Slider",
       "id": "5475:48",
-      "description": "Single-thumb slider for selecting one value in a continuous range. 7 variants: state (default, hover, pressed, focus, filled, error, disabled). Use for visual, approximate value selection (volume, zoom, opacity) where precision is secondary to responsiveness. For exact numeric entry pair with a Number Input. For ranges use Slider Range.",
+      "description": "Single-thumb slider for selecting one value in a continuous range. 7 variants: state (default, hover, pressed, focus, filled, error, disabled). filled and error are drawn as default — error is announced and carried by the paired helper text, not by the slider itself. The handle does not change on hover or press. Use for approximate values (volume, zoom, opacity); for exact entry pair with Number Input. For ranges use Slider Range.",
       "docLinks": [],
       "variantCount": 7,
       "props": {
@@ -86,7 +86,7 @@
               16
             ],
             "position": [
-              150,
+              152,
               2
             ],
             "fills": [
@@ -110,14 +110,17 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "5475:28",
           "size": [
             320,
             20
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover",
+          "id": "5475:32",
           "size": [
             320,
             20
@@ -134,6 +137,7 @@
         },
         {
           "variant": "state=pressed",
+          "id": "5475:40",
           "size": [
             320,
             20
@@ -150,6 +154,7 @@
         },
         {
           "variant": "state=disabled",
+          "id": "5475:44",
           "size": [
             320,
             20
@@ -167,7 +172,7 @@
                   14
                 ],
                 "position": [
-                  151,
+                  153,
                   3
                 ],
                 "fills": [
@@ -187,6 +192,7 @@
         },
         {
           "variant": "state=focus",
+          "id": "6074:377",
           "size": [
             320,
             20
@@ -202,6 +208,7 @@
         },
         {
           "variant": "state=filled",
+          "id": "6074:381",
           "size": [
             320,
             20
@@ -209,6 +216,7 @@
         },
         {
           "variant": "state=error",
+          "id": "6074:385",
           "size": [
             320,
             20
@@ -219,9 +227,9 @@
     {
       "name": "Slider Range",
       "id": "5475:74",
-      "description": "Dual-thumb slider for selecting a range between two values. 4 variants: state (default, hover, pressed, disabled). Use for min/max filtering (price range, date range, size range) where both endpoints matter. Always show the current range values as labels alongside. For single-value selection use Slider.",
+      "description": "Dual-thumb slider for selecting a range between two values. 5 variants: state (default, hover, pressed, focus, disabled). Handles take the hover and pressed look; focus rings the handle with shadow/focus/default. Use for min/max filtering where both endpoints matter. Always show the current range values alongside. For single-value selection use Slider.",
       "docLinks": [],
-      "variantCount": 4,
+      "variantCount": 5,
       "props": {
         "state": {
           "type": "VARIANT",
@@ -230,7 +238,8 @@
             "default",
             "hover",
             "pressed",
-            "disabled"
+            "disabled",
+            "focus"
           ]
         }
       },
@@ -297,7 +306,7 @@
               16
             ],
             "position": [
-              70,
+              72,
               2
             ],
             "fills": [
@@ -324,7 +333,7 @@
               16
             ],
             "position": [
-              230,
+              232,
               2
             ],
             "fills": [
@@ -348,14 +357,17 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "5475:49",
           "size": [
             320,
             20
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover",
+          "id": "5475:54",
           "size": [
             320,
             20
@@ -384,6 +396,7 @@
         },
         {
           "variant": "state=pressed",
+          "id": "5475:64",
           "size": [
             320,
             20
@@ -410,6 +423,7 @@
         },
         {
           "variant": "state=disabled",
+          "id": "5475:69",
           "size": [
             320,
             20
@@ -427,7 +441,7 @@
                   14
                 ],
                 "position": [
-                  71,
+                  73,
                   3
                 ],
                 "fills": [
@@ -448,7 +462,7 @@
                   14
                 ],
                 "position": [
-                  231,
+                  233,
                   3
                 ],
                 "fills": [
@@ -462,6 +476,24 @@
                 "vars": {
                   "strokeWeight": null
                 }
+              }
+            }
+          }
+        },
+        {
+          "variant": "state=focus",
+          "id": "11066:29877",
+          "size": [
+            320,
+            20
+          ],
+          "overrides": {
+            "changed": {
+              "/Handle": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Handle#2": {
+                "effectStyle": "shadow/focus/default"
               }
             }
           }

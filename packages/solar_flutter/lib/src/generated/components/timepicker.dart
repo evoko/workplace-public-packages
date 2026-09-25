@@ -85,11 +85,11 @@ abstract final class SolarTimePickerRecipe {
     'field.paddingBottom|base': 't:inset.none',
     'field.paddingLeft|base': 't:inset.sm',
     'field.width|base': 'k:FILL',
-    'field.height|base': 'px:40',
+    'field.height|base': 't:size.control.md',
     'field.gap|size|sm': 't:inset.2xs',
     'field.paddingRight|size|sm': 't:inset.xs',
     'field.paddingLeft|size|sm': 't:inset.xs',
-    'field.height|size|sm': 'px:32',
+    'field.height|size|sm': 't:size.control.sm',
     'field.background|appearance|default|disabled':
         't:color.surface.background',
     'field.borderColor|appearance|default|disabled': 't:color.border.disabled',
@@ -241,6 +241,8 @@ abstract final class SolarTimePickerRecipe {
       't:inset.sm' => SolarInset.sm,
       't:inset.xs' => SolarInset.xs,
       't:radius.control' => SolarRadius.control,
+      't:size.control.md' => SolarSize.controlMd,
+      't:size.control.sm' => SolarSize.controlSm,
       't:stack.xs' => SolarStack.xs,
       _ => throw StateError('$cell: no length for $v'),
     };

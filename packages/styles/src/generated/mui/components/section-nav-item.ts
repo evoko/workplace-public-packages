@@ -62,7 +62,7 @@ export const solarSectionNavItemStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-xs)',
     width: '100%',
-    height: '32px',
+    height: 'var(--solar-size-control-sm)',
     '& .SolarSectionNavItem-icon': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',

@@ -95,6 +95,7 @@ export const STATIC_CLASS = {
   radius: 'SolarRadius',
   border: 'SolarBorder',
   icon: 'SolarIconSize',
+  size: 'SolarSize',
   layout: 'SolarLayout',
   motion: 'SolarMotion',
   viewport: 'SolarViewport',

@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-23
-  figmaVersion: '2402389239778582681'
+  reviewed: 2026-09-25
+  figmaVersion: '2403083104633531037'
   sources:
-    documentation/iconography: 5b3c541fe140
+    documentation/iconography: f97c90b95641
 ---
 
 # 09 · Iconography
@@ -96,9 +96,7 @@ the filled twin.
 - Fill is the `solid` boolean, not a name: there is no `/Solid` suffix and no size
   variant property.
 
-Two slides on the page still describe the retired scheme — a `/Solid` suffix and a
-component set "with Size and Style variants". The Naming slide and the page context
-supersede them, and the shipped library agrees: see
+Every slide on the page now describes this scheme, and the shipped library agrees: see
 [../solar-icons/catalog.json](../solar-icons/catalog.json), where every entry is a single
 24 × 24 set with `outline` and `solid` variants under a PascalCase name.
 
@@ -126,8 +124,9 @@ Icon color tokens mirror text color tokens exactly (see [05-color.md](05-color.m
 - One icon per action; leading icons before the label, trailing after; never mix
   positions within one component type.
 - Never use icons as decoration; whitespace beats a meaningless icon.
-- Touch: the tap area is ≥ 44 × 44 px even when the glyph is 20 px; ≥ 8 px between
-  adjacent icon buttons.
+- Touch: the tap area is at least `size.target.min` (44 × 44 px,
+  `--solar-size-target-min`) even when the glyph is 20 px; ≥ 8 px between adjacent icon
+  buttons.
 
 ## Accessibility
 
@@ -150,19 +149,19 @@ Icon color tokens mirror text color tokens exactly (see [05-color.md](05-color.m
 - Page status legend in the icon file: no emoji = not started, 🟡 WIP, 🟠 draft (pending
   review), 🟢 done (promoted by the Gatekeeper).
 
-**Acceptance checklist** (every item must pass). The Gatekeeper-checklist slide still
-carries the pre-2026-09 wording — "at every size", "canvas matches the rendered size",
-"identical across sizes" — which the Sizing, Grid and Naming slides retired; read it
-against the single 24 × 24 canvas:
+**Acceptance checklist** (every item must pass):
 
-1. Sourced from the approved source set; no Nova, no Phosphor, no custom SVGs.
-2. Drawn on the 24 × 24 canvas; live area respected.
+1. Sourced from Remix, drawn once on the 24 × 24 canvas; no Nova, no Phosphor, no custom
+   SVGs.
+2. 24 × 24 canvas; the rendered size comes from the `icon/*` variables. Live area
+   respected.
 3. Strokes expanded to filled paths; paths combined; integer pixels only.
-4. Stroke and fill colour bound to semantic tokens (`color.icon.*` or
-   `color.action.*.icon.*`), never hard-coded hex.
+4. Master fill bound to `color/neutral/900`, the library default, never raw hex; every
+   placed instance rebinds to `color.icon.*` or `color.action.*.icon.*`.
 5. Outline and solid pair present on one component set, with the same name, canvas and
    optical volume.
-6. Name follows the `Icon/{PascalCaseName}` element–modifier grammar and carries no size.
+6. Name follows the `Icon/{PascalCaseName}` element–modifier grammar: one name for both
+   fills, no size.
 7. Does not override, rename, or detach any existing protected icon.
 8. Reviewed and approved by the SOLAR Gatekeeper.
 

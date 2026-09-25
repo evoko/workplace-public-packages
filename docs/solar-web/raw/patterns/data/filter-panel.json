@@ -562,6 +562,7 @@
       "variants": [
         {
           "variant": "type=checkbox-list, state=default",
+          "id": "5674:3",
           "size": [
             288,
             184
@@ -574,10 +575,12 @@
             "{Color:icon/secondary}",
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=checkbox-list, state=loading",
+          "id": "5674:26",
           "size": [
             288,
             184
@@ -593,6 +596,7 @@
               {
                 "path": "/Body/SkeletonRow",
                 "parent": "/Body",
+                "index": 0,
                 "layer": {
                   "name": "SkeletonRow",
                   "type": "FRAME",
@@ -623,6 +627,7 @@
               {
                 "path": "/Body/SkeletonRow/SkeletonBar",
                 "parent": "/Body/SkeletonRow",
+                "index": 0,
                 "layer": {
                   "name": "SkeletonBar",
                   "type": "RECTANGLE",
@@ -646,6 +651,7 @@
               {
                 "path": "/Body/SkeletonRow#2",
                 "parent": "/Body",
+                "index": 1,
                 "layer": {
                   "name": "SkeletonRow",
                   "type": "FRAME",
@@ -676,6 +682,7 @@
               {
                 "path": "/Body/SkeletonRow#2/SkeletonBar",
                 "parent": "/Body/SkeletonRow#2",
+                "index": 0,
                 "layer": {
                   "name": "SkeletonBar",
                   "type": "RECTANGLE",
@@ -699,6 +706,7 @@
               {
                 "path": "/Body/SkeletonRow#3",
                 "parent": "/Body",
+                "index": 2,
                 "layer": {
                   "name": "SkeletonRow",
                   "type": "FRAME",
@@ -729,6 +737,7 @@
               {
                 "path": "/Body/SkeletonRow#3/SkeletonBar",
                 "parent": "/Body/SkeletonRow#3",
+                "index": 0,
                 "layer": {
                   "name": "SkeletonBar",
                   "type": "RECTANGLE",
@@ -752,6 +761,7 @@
               {
                 "path": "/Body/SkeletonRow#4",
                 "parent": "/Body",
+                "index": 3,
                 "layer": {
                   "name": "SkeletonRow",
                   "type": "FRAME",
@@ -782,6 +792,7 @@
               {
                 "path": "/Body/SkeletonRow#4/SkeletonBar",
                 "parent": "/Body/SkeletonRow#4",
+                "index": 0,
                 "layer": {
                   "name": "SkeletonBar",
                   "type": "RECTANGLE",
@@ -825,6 +836,7 @@
         },
         {
           "variant": "type=checkbox-list, state=empty",
+          "id": "5674:38",
           "size": [
             288,
             82
@@ -848,6 +860,7 @@
               {
                 "path": "/Body/EmptyState",
                 "parent": "/Body",
+                "index": 0,
                 "layer": {
                   "name": "EmptyState",
                   "type": "FRAME",
@@ -878,6 +891,7 @@
               {
                 "path": "/Body/EmptyState/No options",
                 "parent": "/Body/EmptyState",
+                "index": 0,
                 "layer": {
                   "name": "No options",
                   "type": "TEXT",
@@ -1731,6 +1745,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "5674:47",
           "size": [
             320,
             720
@@ -1763,10 +1778,24 @@
             "Helper text",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Button Group/Button#2/Icon/None",
+            "/Button Group/Button#2/Icon/None#2",
+            "/Button Group/Button#2/Spinner",
+            "/Button Group/Button/Counter",
+            "/Button Group/Button/Icon/None",
+            "/Button Group/Button/Icon/None#2",
+            "/Button Group/Button/Spinner",
+            "/content/SectionDateRange/Dropdown/Field/Icon/None",
+            "/content/SectionDateRange/Dropdown/Field/Icon/None#2",
+            "/content/SectionDateRange/Dropdown/Helper text",
+            "/content/SectionDateRange/Dropdown/Label/*"
           ]
         },
         {
           "variant": "state=loading",
+          "id": "5674:144",
           "size": [
             320,
             720
@@ -1796,6 +1825,21 @@
             "SkeletonRow",
             "Spinner"
           ],
+          "hiddenPaths": [
+            "/Button Group/Button#2/Icon/None",
+            "/Button Group/Button#2/Icon/None#2",
+            "/Button Group/Button#2/Spinner",
+            "/Button Group/Button/Counter",
+            "/Button Group/Button/Icon/None",
+            "/Button Group/Button/Icon/None#2",
+            "/Button Group/Button/Spinner",
+            "/content/FilterSection#3/Body/SkeletonRow",
+            "/content/FilterSection#3/Body/SkeletonRow#2",
+            "/content/FilterSection#3/Body/SkeletonRow#3",
+            "/content/FilterSection#4/Body/SkeletonRow",
+            "/content/FilterSection#4/Body/SkeletonRow#2",
+            "/content/FilterSection#4/Body/SkeletonRow#3"
+          ],
           "overrides": {
             "changed": {
               "/Header/TitleGroup": {
@@ -1821,6 +1865,7 @@
               {
                 "path": "/content/FilterSection#3",
                 "parent": "/content",
+                "index": 2,
                 "layer": {
                   "name": "FilterSection",
                   "type": "INSTANCE",
@@ -1863,6 +1908,7 @@
               {
                 "path": "/content/FilterSection#4",
                 "parent": "/content",
+                "index": 3,
                 "layer": {
                   "name": "FilterSection",
                   "type": "INSTANCE",
@@ -1921,6 +1967,7 @@
         },
         {
           "variant": "state=empty",
+          "id": "5674:205",
           "size": [
             320,
             720
@@ -1948,6 +1995,15 @@
             "Icon/None",
             "Spinner"
           ],
+          "hiddenPaths": [
+            "/Button Group/Button#2/Icon/None",
+            "/Button Group/Button#2/Icon/None#2",
+            "/Button Group/Button#2/Spinner",
+            "/Button Group/Button/Counter",
+            "/Button Group/Button/Icon/None",
+            "/Button Group/Button/Icon/None#2",
+            "/Button Group/Button/Spinner"
+          ],
           "overrides": {
             "changed": {
               "/Header/TitleGroup": {
@@ -1966,6 +2022,7 @@
               {
                 "path": "/content/PanelEmptyState",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "PanelEmptyState",
                   "type": "FRAME",
@@ -1996,6 +2053,7 @@
               {
                 "path": "/content/PanelEmptyState/No filters match this content",
                 "parent": "/content/PanelEmptyState",
+                "index": 0,
                 "layer": {
                   "name": "No filters match this content",
                   "type": "TEXT",

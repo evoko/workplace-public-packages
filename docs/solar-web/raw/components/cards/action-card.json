@@ -378,6 +378,7 @@
       "variants": [
         {
           "variant": "status=default, state=default, layout=vertical",
+          "id": "3044:2",
           "size": [
             300,
             166
@@ -404,10 +405,21 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/CTA/Button#2/Counter",
+            "/CTA/Button#2/Icon/None",
+            "/CTA/Button#2/Icon/None#2",
+            "/CTA/Button#2/Spinner",
+            "/CTA/Button/Counter",
+            "/CTA/Button/Icon/None",
+            "/CTA/Button/Icon/None#2",
+            "/CTA/Button/Spinner"
           ]
         },
         {
           "variant": "status=done, state=default, layout=vertical",
+          "id": "3044:27",
           "size": [
             300,
             166
@@ -427,6 +439,12 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:action/secondary/icon/default}"
+          ],
+          "hiddenPaths": [
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -450,6 +468,7 @@
               {
                 "path": "/Button",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -510,6 +529,7 @@
         },
         {
           "variant": "status=danger, state=default, layout=vertical",
+          "id": "5900:20448",
           "size": [
             300,
             166
@@ -531,6 +551,12 @@
             "{Color:icon/feedback/danger}",
             "{Color:icon/secondary}",
             "{Color:action/primary/icon/danger/default}"
+          ],
+          "hiddenPaths": [
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -559,6 +585,7 @@
               {
                 "path": "/Button",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -622,6 +649,7 @@
         },
         {
           "variant": "status=default, state=hover, layout=vertical",
+          "id": "3034:2414",
           "size": [
             300,
             166
@@ -647,6 +675,7 @@
         },
         {
           "variant": "status=done, state=hover, layout=vertical",
+          "id": "3034:2435",
           "size": [
             300,
             166
@@ -666,6 +695,12 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:action/secondary/icon/default}"
+          ],
+          "hiddenPaths": [
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -694,6 +729,7 @@
               {
                 "path": "/Button",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -754,6 +790,7 @@
         },
         {
           "variant": "status=danger, state=hover, layout=vertical",
+          "id": "5900:20456",
           "size": [
             300,
             166
@@ -775,6 +812,12 @@
             "{Color:icon/feedback/danger}",
             "{Color:icon/secondary}",
             "{Color:action/primary/icon/danger/default}"
+          ],
+          "hiddenPaths": [
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -807,6 +850,7 @@
               {
                 "path": "/Button",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",

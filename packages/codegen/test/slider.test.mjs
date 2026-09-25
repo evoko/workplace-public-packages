@@ -68,12 +68,16 @@ describe('the Slider recipe', () => {
 describe('the Slider Range IR', () => {
   const { spec, deviations } = of('Slider Range');
 
-  it('takes disabled, with a handle for each end, and gains the focus Figma does not draw', () => {
+  it('takes disabled, with a handle for each end, and rings its handles as Figma draws', () => {
+    // Figma drew no focus until 2026-09-25, when the overlay ringed the whole slider; it rings
+    // the handles since.
     expect(Object.keys(spec.api)).toEqual(['disabled']);
     expect(spec.states).toContain('focus');
-    expect(spec.style.root.appearance.default.focus.shadow).toMatchObject({
-      token: 'shadow.focus.default',
-    });
+    for (const handle of ['handle', 'handle2'])
+      expect(spec.style[handle].appearance.default.focus.shadow.token).toBe(
+        'shadow.focus.default',
+      );
+    expect(spec.style.root.appearance?.default?.focus).toBeUndefined();
     expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 

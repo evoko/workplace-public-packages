@@ -44,14 +44,17 @@ describe('the Avatar IR', () => {
 
 describe('the Avatar oracle', () => {
   it('checks every Figma variant, each in the colour Figma samples as the caller’s', () => {
-    expect(oracle.variants).toHaveLength(114);
+    // 115 since 2026-09-25, when Figma added the lg logo avatar.
+    expect(oracle.variants).toHaveLength(115);
     const red = oracle.variants.find(
       (v) => v.figma === 'size=lg, type=text, color=red, shade=Dark',
     );
     expect(red.props).toEqual({ size: 'lg', type: 'text', color: '#410001' });
     expect(red.layers.root.background).toBe('#410001');
-    // The background is compared; the ink, the shell's rule, is not.
+    // The background is compared; the ink, the shell's rule, is not. The radius a set decides
+    // (the lg logo's slip, 2026-09-25) is excused wherever Figma's value appears, as any set's is.
     expect(red.excused.map((e) => [e.layer, e.property, e.decision])).toEqual([
+      ['root', 'radius', 'set'],
       ['initials', 'color', 'caller'],
     ]);
   });

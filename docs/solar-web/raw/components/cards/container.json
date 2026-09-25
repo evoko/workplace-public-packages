@@ -90,14 +90,17 @@
       "variants": [
         {
           "variant": "type=default",
+          "id": "3447:6",
           "size": [
             440,
             112
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=outlined",
+          "id": "3447:14",
           "size": [
             440,
             112

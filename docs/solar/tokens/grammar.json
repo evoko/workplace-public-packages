@@ -103,6 +103,7 @@
       "radius": ["container", "control", "dialog", "none", "pill", "subtle"],
       "borderWidth": ["default", "emphasis", "none", "strong"],
       "icon": ["2xl", "lg", "md", "sm", "xl", "xs"],
+      "size": ["control.lg", "control.md", "control.sm", "target.min"],
       "scaleIndex": [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
         20, 21, 22
@@ -222,6 +223,7 @@
     "radius": "^radius\\.(none|subtle|control|container|dialog|pill)$",
     "border (width)": "^border\\.(none|default|strong|emphasis)$",
     "icon.size": "^icon\\.(size\\.)?(xs|sm|md|lg|xl|2xl)$",
+    "size": "^size\\.(control\\.(sm|md|lg)|target\\.min)$",
     "spatial primitive": "^spatial\\.(scale\\.(\\d|1\\d|2[0-2])|border-width\\.(none|sm|md|lg)|border-radius\\.(none|sm|md|lg|xl|full))$",
     "viewport": "^viewport\\.(xs|sm|md|lg|xl)$",
     "layout (SOLAR Web)": "^layout\\.(grid\\.(columns|margin|gutter)|breakpoint)\\.(xs|sm|md|lg|xl)$",

@@ -38,10 +38,11 @@ describe('the Text Area IR', () => {
     expect(md.layers.attachment).toMatchObject({ x: 8, y: 80 });
   });
 
-  it('rings the field alone when focused, not the whole component as Figma does', () => {
-    expect(spec.style.root.appearance.default.focus.shadow).toMatchObject({
-      none: true,
-    });
+  it('rings the field alone when focused, as Figma draws it', () => {
+    // Figma ringed the whole component too until 2026-09-25, which the overlay removed.
+    expect(
+      spec.style.root.appearance?.default?.focus?.shadow?.token,
+    ).toBeUndefined();
   });
 });
 

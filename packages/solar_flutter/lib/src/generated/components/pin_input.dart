@@ -88,7 +88,6 @@ abstract final class SolarPINInputRecipe {
     'cells.paddingLeft|base': 't:inset.none',
     'cells.width|base': 'k:HUG',
     'cells.height|base': 'k:HUG',
-    'cells.height|size|sm': 'k:HUG',
     'field.present|base': 'b:true',
     'field.background|base': 't:color.surface.base',
     'field.borderColor|base': 't:color.border.subtle',

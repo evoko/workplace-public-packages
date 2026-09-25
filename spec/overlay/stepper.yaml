@@ -14,13 +14,6 @@ base:
     where it is given `onStepClick` (owner decision 2026-09-24). Drawn with the shared layer
     helpers on both platforms.
 
-composes:
-  Step/complete/horizontal:
-    name: Step
-    reason: >-
-      The line+text stepper's first step is an instance of the Step variant itself, named by its
-      variant (`Step/complete/horizontal`): it is a Step, complete and horizontal.
-
 follows:
   root.direction:
     axes: [type]
@@ -48,18 +41,6 @@ set:
       The progress bar's 225px right padding is Figma presentation only (design team,
       2026-09-24), the room its sample fill leaves: not reproduced. The shell draws the fill's
       width from the active step.
-  stepCompleteHorizontal.base.variant.status:
-    keyword: complete
-    reason: As its name says, the first step complete.
-  stepCompleteHorizontal.base.variant.type:
-    keyword: horizontal
-    reason: As its name says, a horizontal Step.
-  step.appearance.type=line+text.default.variant.status:
-    keyword: active
-    reason: >-
-      Figma draws the line+text stepper's second step upcoming after a complete first, with no step
-      active; a stepper always has one (its active index), the step after the completed ones. The
-      design review asks SOLAR to draw it.
   stepperIndicator*.base.width:
     none: true
     reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.

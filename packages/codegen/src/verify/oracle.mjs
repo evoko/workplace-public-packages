@@ -752,8 +752,17 @@ export function hideInComposed(oracle, spec, set, specs, overlay = null) {
           ])
         : Object.entries(nodeNames(child));
       const hides = [];
+      // By path, a hidden layer inside the child hides what it holds too (Device Card's Dropdown's
+      // label, and the words in it), which the export does not list again. The child's own root,
+      // hidden, is its slot left empty, which the check fills: it hides nothing of it.
+      const isHidden = (key) =>
+        hidden.has(key) ||
+        (byPath &&
+          [...hidden].some(
+            (h) => h.startsWith(`${under}/`) && key.startsWith(`${h}/`),
+          ));
       for (const [name, key] of keys) {
-        if (name === 'root' || !hidden.has(key)) continue;
+        if (name === 'root' || !isHidden(key)) continue;
         if (shown.has(name))
           kept.set(at, (kept.get(at) ?? new Set()).add(name));
         else hides.push(name);

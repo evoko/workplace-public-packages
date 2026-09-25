@@ -480,7 +480,7 @@ describe('the typed pickers’ shell', () => {
     });
     expect(resets['& .SolarDatePicker-iconCalendar::after']).toMatchObject({
       position: 'absolute',
-      width: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
     });
   });
 });

@@ -40,11 +40,11 @@ Default variant: `size=md, state=default` · 12 variants · default size 280×15
     - **Enter text...** · text `body/md/regular` "Enter text..." · FILL/FILL · 256×96  
       fill `color.text.tertiary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
     - **Icon Button** · instance of **Icon Button** (size=sm, shape=square, prio=primary, state=disabled) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
-      fill `color.action.primary.bg.disabled` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasCTA
+      fill `color.action.primary.bg.disabled` · stroke `color.action.primary.border.disabled` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasCTA
     - **Icon Button** · instance of **Icon Button** (size=sm, shape=square, prio=secondary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
-      fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasAttachment
-  - **Footer** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 280×10  
-    prop visible←hasFooter
+      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasAttachment
+  - **Footer** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 280×10  
+    itemSpacing `inset.md` · prop visible←hasFooter
     - **Helper text** · text `helper/md` "Helper text" · FILL/HUG · 241×10  
       fill `color.text.secondary` · lineHeight `type.line-height.helper.md` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.md` · fontStyle `type.font-weight.400` · prop visible←hasHelper, characters←helper
     - **CharCount** · text `body/md/regular` "0/500" · HUG/HUG · 39×10  
@@ -54,15 +54,15 @@ Default variant: `size=md, state=default` · 12 variants · default size 280×15
 
 | Role            | Tokens                                                                                                                                                                                                                            |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.primary.bg.disabled`, `color.action.secondary.bg.default`, `color.surface.base`                                                                                                                                     |
-| Strokes         | `color.border.medium`, `color.border.subtle`                                                                                                                                                                                      |
+| Fills           | `color.action.primary.bg.disabled`, `color.surface.base`                                                                                                                                                                          |
+| Strokes         | `color.action.primary.border.disabled`, `color.action.secondary.border.default`, `color.border.subtle`                                                                                                                            |
 | Text color      | `color.text.disabled`, `color.text.feedback.danger`, `color.text.feedback.info`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary`                                                                              |
 | Icon color      | `color.action.primary.icon.default`, `color.action.primary.icon.disabled`, `color.action.secondary.icon.default`, `color.action.secondary.icon.disabled`                                                                          |
-| Spacing         | `inset.2xs`, `inset.sm`, `stack.xs`                                                                                                                                                                                               |
+| Spacing         | `inset.2xs`, `inset.md`, `inset.sm`, `stack.xs`                                                                                                                                                                                   |
 | Radius          | `radius.control`                                                                                                                                                                                                                  |
 | Border width    | `border.default`                                                                                                                                                                                                                  |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.helper.md`, `type.line-height.label.md`, `type.size.body.md`, `type.size.helper.md`, `type.size.label.md` |
-| Effects         | `shadow/control`, `shadow/focus/default`                                                                                                                                                                                          |
+| Effects         | `shadow/control`                                                                                                                                                                                                                  |
 | Text styles     | `body/md/regular`, `helper/md`, `label/md`                                                                                                                                                                                        |
 
 ### Slots and prop-controlled layers
@@ -86,20 +86,20 @@ Default variant: `size=md, state=default` · 12 variants · default size 280×15
 
 ### Variant matrix
 
-| size | state    | size    | fill | stroke | effect                 | text                                                                                                  | icon                                                                           |
-| ---- | -------- | ------- | ---- | ------ | ---------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| md   | default  | 280×156 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
-| sm   | default  | 200×134 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
-| md   | hover    | 280×156 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
-| sm   | hover    | 200×134 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
-| md   | filled   | 280×156 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
-| sm   | filled   | 200×134 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
-| md   | disabled | 280×156 |      |        |                        | `color.text.disabled`                                                                                 | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.disabled` |
-| sm   | disabled | 200×134 |      |        |                        | `color.text.disabled`                                                                                 | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.disabled` |
-| md   | error    | 280×156 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                                                  | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
-| sm   | error    | 200×134 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                                                  | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
-| md   | focus    | 280×156 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
-| sm   | focus    | 200×134 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
+| size | state    | size    | fill | stroke | effect | text                                                                                                  | icon                                                                           |
+| ---- | -------- | ------- | ---- | ------ | ------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| md   | default  | 280×156 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
+| sm   | default  | 200×134 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
+| md   | hover    | 280×156 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
+| sm   | hover    | 200×134 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.default`  |
+| md   | filled   | 280×156 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
+| sm   | filled   | 200×134 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`                          | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
+| md   | disabled | 280×156 |      |        |        | `color.text.disabled`                                                                                 | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.disabled` |
+| sm   | disabled | 200×134 |      |        |        | `color.text.disabled`                                                                                 | `color.action.primary.icon.disabled`<br>`color.action.secondary.icon.disabled` |
+| md   | error    | 280×156 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                                                  | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
+| sm   | error    | 200×134 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                                                  | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
+| md   | focus    | 280×156 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
+| sm   | focus    | 200×134 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.text.secondary` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`   |
 
 ## Documentation card
 

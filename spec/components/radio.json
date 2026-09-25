@@ -80,6 +80,16 @@
               "from": "state=hover, checked=false"
             }
           },
+          "disabled": {
+            "background": {
+              "token": "color.surface.muted",
+              "from": "state=disabled, checked=false"
+            },
+            "borderColor": {
+              "token": "color.border.disabled",
+              "from": "state=disabled, checked=false"
+            }
+          },
           "focus": {
             "background": {
               "token": "color.surface.base",
@@ -98,12 +108,6 @@
             "borderColor": {
               "token": "color.border.medium",
               "from": "state=default, checked=false"
-            }
-          },
-          "disabled": {
-            "borderColor": {
-              "token": "color.border.medium",
-              "from": "state=disabled, checked=false"
             }
           }
         },
@@ -226,7 +230,7 @@
     }
   },
   "docs": {
-    "description": "Single-select from a group of 2–5 options. 8 variants: state (default, hover, focus, disabled) × checked (true, false). Used only as part of a group — a solo radio is a bug, and one option is always selected. Commit on click; a selected radio cannot be cleared by clicking it again. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke. There is no pressed state. Pair with an adjacent label, or use Option Row, which composes this with a label and optional supporting text. For 6+ options use Select; for a yes/no setting use Toggle.",
+    "description": "Single-select from a group of 2–5 options. 8 variants: state (default, hover, focus, disabled) × checked (true, false). Used only as part of a group — a solo radio is a bug, and one option is always selected. disabled uses border/disabled on a surface/muted fill so it reads as unavailable. focus combines shadow/focus/default with a border/feedback/focus/strong stroke. No pressed state. Pair with a label, or use Option Row. For 6+ options use Select; for a yes/no setting use Toggle.",
     "figmaIssues": []
   },
   "provenance": {
@@ -234,7 +238,7 @@
     "pageId": "2163:3702",
     "figmaNode": "2203:3333",
     "defaultVariant": "state=default, checked=true",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/radio.yaml",

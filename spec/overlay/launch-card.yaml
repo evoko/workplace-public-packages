@@ -92,17 +92,6 @@ allowLiteral:
   appIcon.height:
     reason: As its width, a square.
 
-hides:
-  favouriteNoImage:
-    not: [icon]
-    reason: As the favourite on the image's, its icon drawn.
-  favourite:
-    not: [icon]
-    reason: >-
-      The favourite draws its icon, a bookmark, as Figma draws it: Figma records the variant's
-      hidden layers by name alone, and the Button Group's Buttons hide their icons, named Icon/None
-      as the favourite's is.
-
 choice:
   favouritePlace:
     layers:

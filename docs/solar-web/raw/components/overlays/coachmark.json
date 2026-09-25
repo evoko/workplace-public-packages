@@ -65,14 +65,17 @@
       "variants": [
         {
           "variant": "halo=false",
+          "id": "10802:2283",
           "size": [
             12,
             12
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "halo=true",
+          "id": "10802:2286",
           "size": [
             12,
             12
@@ -391,6 +394,7 @@
       "variants": [
         {
           "variant": "side=right",
+          "id": "10813:32929",
           "size": [
             320,
             171
@@ -411,10 +415,26 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Card/Button Group/Button",
+            "/Card/Button Group/Button#2/Counter",
+            "/Card/Button Group/Button#2/Icon/None",
+            "/Card/Button Group/Button#2/Icon/None#2",
+            "/Card/Button Group/Button#2/Spinner",
+            "/Card/Button Group/Button#3/Counter",
+            "/Card/Button Group/Button#3/Icon/None",
+            "/Card/Button Group/Button#3/Icon/None#2",
+            "/Card/Button Group/Button#3/Spinner",
+            "/Card/Button Group/Button/Counter",
+            "/Card/Button Group/Button/Icon/None",
+            "/Card/Button Group/Button/Icon/None#2",
+            "/Card/Button Group/Button/Spinner"
           ]
         },
         {
           "variant": "side=left",
+          "id": "10813:32928",
           "size": [
             320,
             171

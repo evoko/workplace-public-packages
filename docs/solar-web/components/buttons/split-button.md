@@ -4,7 +4,7 @@
 
 ## Component set: SplitButton
 
-Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 32px, md 40px) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.
+Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 32px, md 40px) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code. focus rings the whole control. The rule between the halves is the label colour at 30% opacity. Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.
 
 ### Props
 
@@ -66,10 +66,10 @@ Default variant: `prio=primary, size=md, state=default` · 24 variants · defaul
 | primary   | sm   | default  | 88×32  | `color.action.primary.bg.default`    | `color.border.medium`   | `shadow/control`       | `color.action.primary.text.default`    | `color.action.primary.icon.default`    |
 | secondary | sm   | default  | 88×32  | `color.action.secondary.bg.default`  | `color.border.medium`   | `shadow/control`       | `color.action.secondary.text.default`  | `color.action.secondary.icon.default`  |
 | primary   | md   | hover    | 112×40 | `color.action.primary.bg.hover`      | `color.border.medium`   | `shadow/control`       | `color.action.primary.text.default`    | `color.action.primary.icon.hover`      |
-| secondary | md   | hover    | 113×40 | `color.action.secondary.bg.hover`    | `color.border.medium`   | `shadow/control`       | `color.action.secondary.text.default`  | `color.action.secondary.icon.hover`    |
+| secondary | md   | hover    | 112×40 | `color.action.secondary.bg.hover`    | `color.border.medium`   | `shadow/control`       | `color.action.secondary.text.default`  | `color.action.secondary.icon.hover`    |
 | primary   | sm   | hover    | 88×32  | `color.action.primary.bg.hover`      | `color.border.medium`   | `shadow/control`       | `color.action.primary.text.default`    | `color.action.primary.icon.hover`      |
 | secondary | sm   | hover    | 88×32  | `color.action.secondary.bg.hover`    | `color.border.medium`   | `shadow/control`       | `color.action.secondary.text.default`  | `color.action.secondary.icon.hover`    |
-| primary   | md   | pressed  | 113×40 | `color.action.primary.bg.active`     | `color.border.medium`   |                        | `color.action.primary.text.default`    | `color.action.primary.icon.active`     |
+| primary   | md   | pressed  | 112×40 | `color.action.primary.bg.active`     | `color.border.medium`   |                        | `color.action.primary.text.default`    | `color.action.primary.icon.active`     |
 | secondary | md   | pressed  | 112×40 | `color.action.secondary.bg.active`   | `color.border.medium`   |                        | `color.action.secondary.text.default`  | `color.action.secondary.icon.active`   |
 | primary   | sm   | pressed  | 88×32  | `color.action.primary.bg.active`     | `color.border.medium`   |                        | `color.action.primary.text.default`    | `color.action.primary.icon.active`     |
 | secondary | sm   | pressed  | 88×32  | `color.action.secondary.bg.active`   | `color.border.medium`   |                        | `color.action.secondary.text.default`  | `color.action.secondary.icon.active`   |

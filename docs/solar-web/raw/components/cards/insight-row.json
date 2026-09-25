@@ -271,6 +271,7 @@
       "variants": [
         {
           "variant": "severity=success, state=default, ghost=false",
+          "id": "6902:4",
           "size": [
             480,
             64
@@ -295,10 +296,17 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Content/Action/Counter",
+            "/Content/Action/Icon/None",
+            "/Content/Action/Icon/None#2",
+            "/Content/Action/Spinner"
           ]
         },
         {
           "variant": "severity=danger, state=default, ghost=false",
+          "id": "6903:12",
           "size": [
             480,
             64
@@ -331,6 +339,7 @@
         },
         {
           "variant": "severity=warning, state=default, ghost=false",
+          "id": "6903:19",
           "size": [
             480,
             64
@@ -363,6 +372,7 @@
         },
         {
           "variant": "severity=info, state=default, ghost=false",
+          "id": "6903:26",
           "size": [
             480,
             64
@@ -395,6 +405,7 @@
         },
         {
           "variant": "severity=info, state=default, ghost=true",
+          "id": "6903:33",
           "size": [
             480,
             64
@@ -420,6 +431,15 @@
             "Meta",
             "Spinner",
             "Title"
+          ],
+          "hiddenPaths": [
+            "/Content/Action",
+            "/Content/Action/Counter",
+            "/Content/Action/Icon/None",
+            "/Content/Action/Icon/None#2",
+            "/Content/Action/Spinner",
+            "/Content/Body/Meta",
+            "/Content/Body/Title"
           ],
           "overrides": {
             "changed": {
@@ -458,6 +478,7 @@
               {
                 "path": "/Content/Body/Skeleton",
                 "parent": "/Content/Body",
+                "index": 2,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -481,6 +502,7 @@
               {
                 "path": "/Content/Body/Skeleton#2",
                 "parent": "/Content/Body",
+                "index": 3,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -506,6 +528,7 @@
         },
         {
           "variant": "severity=success, state=hover, ghost=false",
+          "id": "6903:40",
           "size": [
             480,
             64
@@ -538,6 +561,7 @@
         },
         {
           "variant": "severity=danger, state=hover, ghost=false",
+          "id": "6903:47",
           "size": [
             480,
             64
@@ -575,6 +599,7 @@
         },
         {
           "variant": "severity=warning, state=hover, ghost=false",
+          "id": "6903:54",
           "size": [
             480,
             64
@@ -612,6 +637,7 @@
         },
         {
           "variant": "severity=info, state=hover, ghost=false",
+          "id": "6903:61",
           "size": [
             480,
             64
@@ -649,6 +675,7 @@
         },
         {
           "variant": "severity=info, state=hover, ghost=true",
+          "id": "6903:68",
           "size": [
             480,
             64
@@ -674,6 +701,15 @@
             "Meta",
             "Spinner",
             "Title"
+          ],
+          "hiddenPaths": [
+            "/Content/Action",
+            "/Content/Action/Counter",
+            "/Content/Action/Icon/None",
+            "/Content/Action/Icon/None#2",
+            "/Content/Action/Spinner",
+            "/Content/Body/Meta",
+            "/Content/Body/Title"
           ],
           "overrides": {
             "changed": {
@@ -717,6 +753,7 @@
               {
                 "path": "/Content/Body/Skeleton",
                 "parent": "/Content/Body",
+                "index": 2,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -740,6 +777,7 @@
               {
                 "path": "/Content/Body/Skeleton#2",
                 "parent": "/Content/Body",
+                "index": 3,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",

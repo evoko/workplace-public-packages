@@ -11,8 +11,9 @@ bind:
     token: inset.none
     reason: >-
       Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token
-      for no inset. It is the one answer in every component, so it is decided once here and raised
-      with SOLAR once, as a whole, not per component.
+      for no inset. It is the one answer in every component, so it is decided once here. SOLAR
+      decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn,
+      and to have them read this way.
   zero-gaps:
     cells: [gap]
     literal: 0

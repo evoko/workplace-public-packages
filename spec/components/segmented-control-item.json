@@ -100,7 +100,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.sm",
@@ -109,7 +109,7 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.sm",
@@ -122,7 +122,7 @@
         "height": {
           "literal": 32,
           "from": "selected=true, state=default, size=md",
-          "allowed": "A segment is 32 tall at md and 24 at sm, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
+          "allowed": "A segment is 32 tall at md and 24 at sm, bound to nothing: 24 is none of SOLAR's control heights (size.control: 32, 40, 48), and the two stay one decision; the design review asks."
         }
       },
       "size": {
@@ -138,7 +138,7 @@
           "height": {
             "literal": 24,
             "from": "selected=true, state=default, size=sm",
-            "allowed": "A segment is 32 tall at md and 24 at sm, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
+            "allowed": "A segment is 32 tall at md and 24 at sm, bound to nothing: 24 is none of SOLAR's control heights (size.control: 32, 40, 48), and the two stay one decision; the design review asks."
           }
         }
       },
@@ -173,13 +173,17 @@
             }
           },
           "focus": {
+            "background": {
+              "none": true,
+              "from": "selected=false, state=focus, size=md"
+            },
+            "borderColor": {
+              "none": true,
+              "from": "selected=false, state=focus, size=md"
+            },
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws no focus state (\"handled by the parent assembly treating the segment as a radio\", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
+              "from": "selected=false, state=focus, size=md"
             }
           }
         },
@@ -193,11 +197,7 @@
           "focus": {
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws no focus state (\"handled by the parent assembly treating the segment as a radio\", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "token": "shadow.control"
-              }
+              "from": "selected=true, state=focus, size=md"
             }
           }
         }
@@ -252,6 +252,12 @@
               "from": "selected=false, state=default, size=md"
             }
           },
+          "focus": {
+            "color": {
+              "token": "color.icon.secondary",
+              "from": "selected=false, state=focus, size=md"
+            }
+          },
           "hover": {
             "color": {
               "token": "color.icon.primary",
@@ -290,6 +296,12 @@
             "color": {
               "token": "color.text.secondary",
               "from": "selected=false, state=default, size=md"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.text.secondary",
+              "from": "selected=false, state=focus, size=md"
             }
           },
           "hover": {
@@ -350,6 +362,12 @@
               "from": "selected=false, state=default, size=md"
             }
           },
+          "focus": {
+            "color": {
+              "token": "color.icon.secondary",
+              "from": "selected=false, state=focus, size=md"
+            }
+          },
           "hover": {
             "color": {
               "token": "color.icon.primary",
@@ -361,7 +379,7 @@
     }
   },
   "docs": {
-    "description": "Single segment inside Segmented Control. 8 variants: selected (false/true) × state (default, hover) × size (md, sm). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.",
+    "description": "Single segment inside Segmented Control. 12 variants: selected (false, true) × state (default, hover, focus) × size (md, sm). Selection is persistent — a click commits, not previews. focus carries shadow/focus/default. Optional leading/trailing icons via boolean. Disabled is set on the whole Segmented Control, not per segment.",
     "figmaIssues": []
   },
   "provenance": {
@@ -369,7 +387,7 @@
     "pageId": "2163:3704",
     "figmaNode": "2488:12014",
     "defaultVariant": "selected=true, state=default, size=md",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/segmented-control-item.yaml",
@@ -390,24 +408,19 @@
         "reason": "As the leading icon's."
       },
       {
-        "rule": "set",
-        "at": "root.appearance.selected=false.focus.shadow",
-        "reason": "Figma draws no focus state (\"handled by the parent assembly treating the segment as a radio\", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.selected=true.focus.shadow",
-        "reason": "Figma draws no focus state (\"handled by the parent assembly treating the segment as a radio\", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it."
-      },
-      {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "A segment is 32 tall at md and 24 at sm, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
+        "reason": "A segment is 32 tall at md and 24 at sm, bound to nothing: 24 is none of SOLAR's control heights (size.control: 32, 40, 48), and the two stay one decision; the design review asks."
       },
       {
         "rule": "accept",
         "at": "component.segmented control item.root.borderWidth@selected=false, state=default",
         "reason": "An unselected segment has no edge in Figma, where a border takes no room. In CSS it takes a pixel a side of a segment that hugs its words, so the code keeps the edge, transparent, and a segment does not grow when it is chosen."
+      },
+      {
+        "rule": "accept",
+        "at": "component.segmented control item.root.borderWidth@selected=false, state=focus",
+        "reason": "As at rest, a transparent edge; the focus ring is the shadow."
       },
       {
         "rule": "accept",
@@ -417,7 +430,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingBottom",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

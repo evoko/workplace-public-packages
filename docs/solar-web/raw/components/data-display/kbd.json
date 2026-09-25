@@ -88,6 +88,7 @@
       "variants": [
         {
           "variant": "type=default",
+          "id": "5117:5829",
           "size": [
             28,
             17
@@ -101,10 +102,12 @@
           "textFills": [
             "{Color:text/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=top-search",
+          "id": "5117:6322",
           "size": [
             28,
             17

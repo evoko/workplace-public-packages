@@ -18,7 +18,7 @@ Default variant: `state=default` · 5 variants · default size 220×32px
 
 ### Anatomy (default variant)
 
-- **state=default** · component · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+- **state=default** · component · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
   itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
   - **Icon/None** · instance of **Icon/None** (solid=false) · FIXED/FIXED · 16×16  
     height `icon.sm` · prop mainComponent←icon

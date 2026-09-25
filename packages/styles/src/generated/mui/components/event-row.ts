@@ -78,8 +78,8 @@ export const solarEventRowStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarEventRow-more > svg': {

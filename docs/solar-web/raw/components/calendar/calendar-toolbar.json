@@ -37,6 +37,7 @@
           "{Color:surface/base}"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/md",
           "paddingTop": "Spatial:inset/sm",
           "paddingRight": "Spatial:inset/md",
@@ -116,9 +117,10 @@
                       "align": "CENTER/CENTER",
                       "sizing": "FIXED/FIXED"
                     },
-                    "fills": [
-                      "{Color:action/tertiary/bg/default}"
+                    "strokes": [
+                      "{Color:action/tertiary/border/default}"
                     ],
+                    "strokeWeight": 1,
                     "radius": 6,
                     "vars": {
                       "strokeTopWeight": "Spatial:border/default",
@@ -157,9 +159,10 @@
                       "align": "CENTER/CENTER",
                       "sizing": "FIXED/FIXED"
                     },
-                    "fills": [
-                      "{Color:action/tertiary/bg/default}"
+                    "strokes": [
+                      "{Color:action/tertiary/border/default}"
                     ],
+                    "strokeWeight": 1,
                     "radius": 6,
                     "vars": {
                       "strokeTopWeight": "Spatial:border/default",

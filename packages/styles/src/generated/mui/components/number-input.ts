@@ -69,8 +69,8 @@ export const solarNumberInputStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
@@ -113,8 +113,8 @@ export const solarNumberInputStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& button.SolarNumberInput--fieldIncrement': {
@@ -125,8 +125,8 @@ export const solarNumberInputStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& button.SolarNumberInput--stepperIncrement, & button.SolarNumberInput--stepperDecrement':
@@ -211,7 +211,12 @@ export const solarNumberInputStyles = {
       paddingRight: 'var(--solar-inset-sm)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
-      height: '40px',
+      height: 'var(--solar-size-control-md)',
+    },
+    '& .SolarNumberInput--leadingIcon': {
+      width: 'var(--solar-icon-md)',
+      height: 'var(--solar-icon-md)',
+      color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarNumberInput--fieldDecrement': {
       width: 'var(--solar-icon-md)',
@@ -241,11 +246,6 @@ export const solarNumberInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
-    },
-    '& .SolarNumberInput--leadingIcon': {
-      width: 'var(--solar-icon-md)',
-      height: 'var(--solar-icon-md)',
-      color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarNumberInput--value': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -336,7 +336,11 @@ export const solarNumberInputStyles = {
         textDecoration: 'none',
       },
       '& .SolarNumberInput--field': {
-        height: '32px',
+        height: 'var(--solar-size-control-sm)',
+      },
+      '& .SolarNumberInput--leadingIcon': {
+        width: 'var(--solar-icon-sm)',
+        height: 'var(--solar-icon-sm)',
       },
       '& .SolarNumberInput--fieldDecrement': {
         width: 'var(--solar-icon-sm)',
@@ -361,10 +365,6 @@ export const solarNumberInputStyles = {
         lineHeight: 'var(--solar-type-line-height-helper-sm)',
         letterSpacing: '-0.02em',
         textDecoration: 'none',
-      },
-      '& .SolarNumberInput--leadingIcon': {
-        width: 'var(--solar-icon-sm)',
-        height: 'var(--solar-icon-sm)',
       },
       '& .SolarNumberInput--value': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -395,7 +395,6 @@ export const solarNumberInputStyles = {
         },
       },
       '&:has(.SolarNumberInput--field .Mui-focused)': {
-        boxShadow: 'none',
         '& .SolarNumberInput--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
@@ -427,6 +426,9 @@ export const solarNumberInputStyles = {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
+        '& .SolarNumberInput--leadingIcon': {
+          color: 'var(--solar-color-icon-disabled)',
+        },
         '& .SolarNumberInput--fieldDecrement': {
           color: 'var(--solar-color-icon-disabled)',
         },
@@ -438,9 +440,6 @@ export const solarNumberInputStyles = {
         },
         '& .SolarNumberInput-helper': {
           color: 'var(--solar-color-text-disabled)',
-        },
-        '& .SolarNumberInput--leadingIcon': {
-          color: 'var(--solar-color-icon-disabled)',
         },
       },
     },
@@ -480,7 +479,6 @@ export const solarNumberInputStyles = {
         },
       },
       '&:has(.SolarNumberInput--field .Mui-focused)': {
-        boxShadow: 'none',
         '& .SolarNumberInput--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
@@ -692,6 +690,13 @@ export const solarNumberInputComposition = {
       present: true,
     },
   },
+  leadingIcon: {
+    base: {
+      present: false,
+      component: 'Icon/None',
+      'variant.solid': 'false',
+    },
+  },
   fieldDecrement: {
     base: {
       present: true,
@@ -771,13 +776,6 @@ export const solarNumberInputComposition = {
   helper: {
     base: {
       present: true,
-    },
-  },
-  leadingIcon: {
-    base: {
-      present: false,
-      component: 'Icon/None',
-      'variant.solid': 'false',
     },
   },
   value: {
@@ -1055,10 +1053,10 @@ export const solarNumberInputTree: Record<string, string[]> = {
   root: ['label', 'field', 'helper'],
   label: ['labelLabel', 'mandatory'],
   field: [
+    'leadingIcon',
     'fieldDecrement',
     'inlineValue',
     'fieldIncrement',
-    'leadingIcon',
     'value',
     'stepper',
   ],

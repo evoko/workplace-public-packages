@@ -158,9 +158,10 @@
                   "align": "CENTER/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
+                "strokeWeight": 1,
                 "radius": 6,
                 "vars": {
                   "strokeTopWeight": "Spatial:border/default",

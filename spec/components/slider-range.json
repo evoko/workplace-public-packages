@@ -82,20 +82,7 @@
         }
       },
       "size": {},
-      "appearance": {
-        "default": {
-          "focus": {
-            "shadow": {
-              "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring around the whole slider, as Slider's own focus is drawn; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
-            }
-          }
-        }
-      }
+      "appearance": {}
     },
     "track": {
       "base": {
@@ -255,7 +242,7 @@
           "allowed": "As the slider's height."
         },
         "x": {
-          "position": 70,
+          "position": 72,
           "from": "state=default"
         },
         "y": {
@@ -294,7 +281,7 @@
               "allowed": "As the slider's height."
             },
             "x": {
-              "position": 71,
+              "position": 73,
               "from": "state=disabled"
             },
             "y": {
@@ -316,6 +303,12 @@
             "borderColor": {
               "token": "color.action.primary.border.active",
               "from": "state=pressed"
+            }
+          },
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "state=focus"
             }
           }
         }
@@ -359,7 +352,7 @@
           "allowed": "As the slider's height."
         },
         "x": {
-          "position": 230,
+          "position": 232,
           "from": "state=default"
         },
         "y": {
@@ -398,7 +391,7 @@
               "allowed": "As the slider's height."
             },
             "x": {
-              "position": 231,
+              "position": 233,
               "from": "state=disabled"
             },
             "y": {
@@ -421,13 +414,19 @@
               "token": "color.action.primary.border.active",
               "from": "state=pressed"
             }
+          },
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "state=focus"
+            }
           }
         }
       }
     }
   },
   "docs": {
-    "description": "Dual-thumb slider for selecting a range between two values. 4 variants: state (default, hover, pressed, disabled). Use for min/max filtering (price range, date range, size range) where both endpoints matter. Always show the current range values as labels alongside. For single-value selection use Slider.",
+    "description": "Dual-thumb slider for selecting a range between two values. 5 variants: state (default, hover, pressed, focus, disabled). Handles take the hover and pressed look; focus rings the handle with shadow/focus/default. Use for min/max filtering where both endpoints matter. Always show the current range values alongside. For single-value selection use Slider.",
     "figmaIssues": []
   },
   "provenance": {
@@ -435,7 +434,7 @@
     "pageId": "2163:3706",
     "figmaNode": "5475:74",
     "defaultVariant": "state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/slider-range.yaml",
@@ -474,11 +473,6 @@
         "rule": "follows",
         "at": "handle2.width",
         "reason": "As the first handle's, 14px disabled."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.default.focus.shadow",
-        "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring around the whole slider, as Slider's own focus is drawn; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

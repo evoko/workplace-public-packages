@@ -364,6 +364,12 @@ const grammar = {
           .filter((k) => k.startsWith('icon/'))
           .map((k) => k.split('/')[1]),
       ),
+      // size/control/{sm,md,lg} and size/target/min, added 2026-09-25.
+      size: uniq(
+        Object.keys(inv.spatial)
+          .filter((k) => k.startsWith('size/'))
+          .map((k) => k.split('/').slice(1).join('.')),
+      ),
       scaleIndex: Object.keys(inv.primitives['spatial/scale']).map(Number),
       viewport: Object.keys(inv.primitives.viewport),
     },
@@ -419,6 +425,7 @@ const grammar = {
     radius: '^radius\\.(none|subtle|control|container|dialog|pill)$',
     'border (width)': '^border\\.(none|default|strong|emphasis)$',
     'icon.size': '^icon\\.(size\\.)?(xs|sm|md|lg|xl|2xl)$',
+    size: '^size\\.(control\\.(sm|md|lg)|target\\.min)$',
     'spatial primitive':
       '^spatial\\.(scale\\.(\\d|1\\d|2[0-2])|border-width\\.(none|sm|md|lg)|border-radius\\.(none|sm|md|lg|xl|full))$',
     viewport: '^viewport\\.(xs|sm|md|lg|xl)$',

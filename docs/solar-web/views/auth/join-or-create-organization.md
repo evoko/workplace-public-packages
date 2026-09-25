@@ -14,10 +14,10 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Anatomy (default variant)
 
-- **breakpoint=desktop** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
-  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
+- **breakpoint=desktop** · component · column gap 16 pad 0/0/24/0 FIXED/FIXED · 1440×800  
+  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · itemSpacing `inset.md` · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
   - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
-    padding `stack.md`
+    itemSpacing `inset.sm` · padding `stack.md`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×227  
     itemSpacing `stack.lg`
     - **Join organization** · text `title/sm` "Join organization" · HUG/HUG · 155×15  
@@ -40,7 +40,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 | Strokes         | `color.border.subtle`                                                                                                                                                                                                                               |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`, `color.text.feedback.info`, `color.text.inverse`, `color.text.primary`, `color.text.tertiary`, `color.purple.700`                 |
 | Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.inverse`, `color.icon.primary`, `color.icon.secondary`, `color.icon.tertiary`, `color.brand.red`, `color.brand.white` |
-| Spacing         | `inset.md`, `inset.none`, `inset.xl`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                                                            |
+| Spacing         | `inset.md`, `inset.none`, `inset.sm`, `inset.xl`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                                                |
 | Radius          | `radius.dialog`                                                                                                                                                                                                                                     |
 | Border width    | `border.default`                                                                                                                                                                                                                                    |
 | Sizes           | `breakpoint.lg`                                                                                                                                                                                                                                     |
@@ -78,10 +78,10 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Anatomy (default variant)
 
-- **breakpoint=desktop** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
-  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
+- **breakpoint=desktop** · component · column gap 16 pad 0/0/24/0 FIXED/FIXED · 1440×800  
+  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · itemSpacing `inset.md` · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
   - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
-    padding `stack.md`
+    itemSpacing `inset.sm` · padding `stack.md`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×325  
     itemSpacing `stack.lg`
     - **Create organization** · text `title/sm` "Create organization" · HUG/HUG · 178×15  
@@ -104,7 +104,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 | Strokes         | `color.border.subtle`                                                                                                                                                                                                                               |
 | Text color      | `text.primary`, `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`, `color.text.feedback.info`, `color.text.inverse`, `color.text.primary`, `color.text.tertiary`, `color.purple.700` |
 | Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.inverse`, `color.icon.primary`, `color.icon.secondary`, `color.icon.tertiary`, `color.brand.red`, `color.brand.white` |
-| Spacing         | `inset.md`, `inset.none`, `inset.xl`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                                                            |
+| Spacing         | `inset.md`, `inset.none`, `inset.sm`, `inset.xl`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                                                |
 | Radius          | `radius.dialog`                                                                                                                                                                                                                                     |
 | Border width    | `border.default`                                                                                                                                                                                                                                    |
 | Sizes           | `breakpoint.lg`                                                                                                                                                                                                                                     |

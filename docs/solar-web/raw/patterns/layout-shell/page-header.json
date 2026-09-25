@@ -125,6 +125,9 @@
               "align": "SPACE_BETWEEN/CENTER",
               "sizing": "FILL/HUG"
             },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
+            },
             "children": [
               {
                 "name": "TextStack",
@@ -531,6 +534,7 @@
       "variants": [
         {
           "variant": "type=left-aligned, breakpoint=desktop",
+          "id": "4541:80",
           "size": [
             1368,
             166
@@ -560,10 +564,47 @@
             "Spinner",
             "Tag",
             "TrailingIcon"
+          ],
+          "hiddenPaths": [
+            "/Container/CTA",
+            "/Container/CTA/Button#2/Counter",
+            "/Container/CTA/Button#2/Icon/None",
+            "/Container/CTA/Button#2/Icon/None#2",
+            "/Container/CTA/Button#2/Spinner",
+            "/Container/CTA/Button/Counter",
+            "/Container/CTA/Button/Icon/None",
+            "/Container/CTA/Button/Icon/None#2",
+            "/Container/CTA/Button/Spinner",
+            "/Container/TextStack/Container/Tag",
+            "/Tabs/Tabs/Tab Item#2/Counter",
+            "/Tabs/Tabs/Tab Item#2/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#2/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#3/Counter",
+            "/Tabs/Tabs/Tab Item#3/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#3/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#4/Counter",
+            "/Tabs/Tabs/Tab Item#4/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#4/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#5/Counter",
+            "/Tabs/Tabs/Tab Item#5/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#5/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#6/Counter",
+            "/Tabs/Tabs/Tab Item#6/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#6/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#7/Counter",
+            "/Tabs/Tabs/Tab Item#7/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#7/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#8/Counter",
+            "/Tabs/Tabs/Tab Item#8/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#8/TrailingIcon",
+            "/Tabs/Tabs/Tab Item/Counter",
+            "/Tabs/Tabs/Tab Item/LeadingIcon",
+            "/Tabs/Tabs/Tab Item/TrailingIcon"
           ]
         },
         {
           "variant": "type=left-aligned, breakpoint=mobile",
+          "id": "6592:32222",
           "size": [
             377,
             150
@@ -589,6 +630,34 @@
             "LeadingIcon",
             "Tag",
             "TrailingIcon"
+          ],
+          "hiddenPaths": [
+            "/Tabs/Tabs/Tab Item#2/Counter",
+            "/Tabs/Tabs/Tab Item#2/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#2/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#3/Counter",
+            "/Tabs/Tabs/Tab Item#3/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#3/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#4/Counter",
+            "/Tabs/Tabs/Tab Item#4/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#4/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#5/Counter",
+            "/Tabs/Tabs/Tab Item#5/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#5/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#6/Counter",
+            "/Tabs/Tabs/Tab Item#6/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#6/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#7/Counter",
+            "/Tabs/Tabs/Tab Item#7/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#7/TrailingIcon",
+            "/Tabs/Tabs/Tab Item#8/Counter",
+            "/Tabs/Tabs/Tab Item#8/LeadingIcon",
+            "/Tabs/Tabs/Tab Item#8/TrailingIcon",
+            "/Tabs/Tabs/Tab Item/Counter",
+            "/Tabs/Tabs/Tab Item/LeadingIcon",
+            "/Tabs/Tabs/Tab Item/TrailingIcon",
+            "/TextStack/Container/Icon/More",
+            "/TextStack/Container/Tag"
           ],
           "overrides": {
             "changed": {
@@ -617,6 +686,7 @@
               {
                 "path": "/TextStack",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "TextStack",
                   "type": "FRAME",
@@ -646,6 +716,7 @@
               {
                 "path": "/TextStack/Breadcrumbs",
                 "parent": "/TextStack",
+                "index": 0,
                 "layer": {
                   "name": "Breadcrumbs",
                   "type": "INSTANCE",
@@ -680,6 +751,7 @@
               {
                 "path": "/TextStack/Container",
                 "parent": "/TextStack",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -707,6 +779,7 @@
               {
                 "path": "/TextStack/Container/Icon/Building",
                 "parent": "/TextStack/Container",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Building",
                   "type": "INSTANCE",
@@ -733,6 +806,7 @@
               {
                 "path": "/TextStack/Container/Title",
                 "parent": "/TextStack/Container",
+                "index": 1,
                 "layer": {
                   "name": "Title",
                   "type": "TEXT",
@@ -760,6 +834,7 @@
               {
                 "path": "/TextStack/Container/Tag",
                 "parent": "/TextStack/Container",
+                "index": 2,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -817,6 +892,7 @@
               {
                 "path": "/TextStack/Container/Icon/More",
                 "parent": "/TextStack/Container",
+                "index": 3,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -844,6 +920,7 @@
               {
                 "path": "/TextStack/Description",
                 "parent": "/TextStack",
+                "index": 2,
                 "layer": {
                   "name": "Description",
                   "type": "TEXT",
@@ -887,6 +964,7 @@
         },
         {
           "variant": "type=centered, breakpoint=desktop",
+          "id": "6186:21244",
           "size": [
             1368,
             174
@@ -907,6 +985,42 @@
             "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
+          ],
+          "hiddenPaths": [
+            "/Container/Container/CTA",
+            "/Container/Container/CTA/Button#2/Counter",
+            "/Container/Container/CTA/Button#2/Icon/None",
+            "/Container/Container/CTA/Button#2/Icon/None#2",
+            "/Container/Container/CTA/Button#2/Spinner",
+            "/Container/Container/CTA/Button/Counter",
+            "/Container/Container/CTA/Button/Icon/None",
+            "/Container/Container/CTA/Button/Icon/None#2",
+            "/Container/Container/CTA/Button/Spinner",
+            "/Container/Container/TextStack/Container/Tag",
+            "/Container/Tabs/Tabs/Tab Item#2/Counter",
+            "/Container/Tabs/Tabs/Tab Item#2/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item#2/TrailingIcon",
+            "/Container/Tabs/Tabs/Tab Item#3/Counter",
+            "/Container/Tabs/Tabs/Tab Item#3/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item#3/TrailingIcon",
+            "/Container/Tabs/Tabs/Tab Item#4/Counter",
+            "/Container/Tabs/Tabs/Tab Item#4/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item#4/TrailingIcon",
+            "/Container/Tabs/Tabs/Tab Item#5/Counter",
+            "/Container/Tabs/Tabs/Tab Item#5/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item#5/TrailingIcon",
+            "/Container/Tabs/Tabs/Tab Item#6/Counter",
+            "/Container/Tabs/Tabs/Tab Item#6/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item#6/TrailingIcon",
+            "/Container/Tabs/Tabs/Tab Item#7/Counter",
+            "/Container/Tabs/Tabs/Tab Item#7/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item#7/TrailingIcon",
+            "/Container/Tabs/Tabs/Tab Item#8/Counter",
+            "/Container/Tabs/Tabs/Tab Item#8/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item#8/TrailingIcon",
+            "/Container/Tabs/Tabs/Tab Item/Counter",
+            "/Container/Tabs/Tabs/Tab Item/LeadingIcon",
+            "/Container/Tabs/Tabs/Tab Item/TrailingIcon"
           ],
           "overrides": {
             "changed": {
@@ -946,6 +1060,7 @@
               {
                 "path": "/Container/Container",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -973,6 +1088,7 @@
               {
                 "path": "/Container/Container/TextStack",
                 "parent": "/Container/Container",
+                "index": 0,
                 "layer": {
                   "name": "TextStack",
                   "type": "FRAME",
@@ -1002,6 +1118,7 @@
               {
                 "path": "/Container/Container/TextStack/Breadcrumbs",
                 "parent": "/Container/Container/TextStack",
+                "index": 0,
                 "layer": {
                   "name": "Breadcrumbs",
                   "type": "INSTANCE",
@@ -1036,6 +1153,7 @@
               {
                 "path": "/Container/Container/TextStack/Container",
                 "parent": "/Container/Container/TextStack",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1063,6 +1181,7 @@
               {
                 "path": "/Container/Container/TextStack/Container/Icon/Building",
                 "parent": "/Container/Container/TextStack/Container",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Building",
                   "type": "INSTANCE",
@@ -1089,6 +1208,7 @@
               {
                 "path": "/Container/Container/TextStack/Container/Title",
                 "parent": "/Container/Container/TextStack/Container",
+                "index": 1,
                 "layer": {
                   "name": "Title",
                   "type": "TEXT",
@@ -1116,6 +1236,7 @@
               {
                 "path": "/Container/Container/TextStack/Container/Tag",
                 "parent": "/Container/Container/TextStack/Container",
+                "index": 2,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1173,6 +1294,7 @@
               {
                 "path": "/Container/Container/TextStack/Description",
                 "parent": "/Container/Container/TextStack",
+                "index": 2,
                 "layer": {
                   "name": "Description",
                   "type": "TEXT",
@@ -1200,6 +1322,7 @@
               {
                 "path": "/Container/Container/CTA",
                 "parent": "/Container/Container",
+                "index": 1,
                 "layer": {
                   "name": "CTA",
                   "type": "FRAME",
@@ -1231,6 +1354,7 @@
               {
                 "path": "/Container/Container/CTA/Button",
                 "parent": "/Container/Container/CTA",
+                "index": 0,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -1287,6 +1411,7 @@
               {
                 "path": "/Container/Container/CTA/Button#2",
                 "parent": "/Container/Container/CTA",
+                "index": 1,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -1343,6 +1468,7 @@
               {
                 "path": "/Container/Tabs",
                 "parent": "/Container",
+                "index": 1,
                 "layer": {
                   "name": "Tabs",
                   "type": "INSTANCE",

@@ -83,7 +83,8 @@ set:
     reason: >-
       Figma binds the headline's icon to a primitive, color/neutral/900, where component code
       takes semantic tokens only (CLR-002): the icon ink of the same value, color.icon.primary.
-      The design review asks SOLAR to rebind it.
+      SOLAR keeps icon masters on neutral/900 by design, the library default, and every placed
+      icon takes a color.icon.* or color.action.*.icon.* token (SOLAR, 2026-09-25).
   root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-

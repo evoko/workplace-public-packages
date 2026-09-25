@@ -531,22 +531,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -601,22 +601,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -657,7 +657,7 @@
         "color": {
           "token": "color.icon.primary",
           "from": "overlay",
-          "reason": "Figma binds the headline's icon to a primitive, color/neutral/900, where component code takes semantic tokens only (CLR-002): the icon ink of the same value, color.icon.primary. The design review asks SOLAR to rebind it.",
+          "reason": "Figma binds the headline's icon to a primitive, color/neutral/900, where component code takes semantic tokens only (CLR-002): the icon ink of the same value, color.icon.primary. SOLAR keeps icon masters on neutral/900 by design, the library default, and every placed icon takes a color.icon.* or color.action.*.icon.* token (SOLAR, 2026-09-25).",
           "replaced": {
             "token": "color.neutral.900"
           }
@@ -756,22 +756,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "HUG",
@@ -935,7 +935,7 @@
     "pageId": "10395:2",
     "figmaNode": "10400:504",
     "defaultVariant": "selected=false, drag=false",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/interactive-card.yaml",
@@ -978,7 +978,7 @@
       {
         "rule": "set",
         "at": "icon.base.color",
-        "reason": "Figma binds the headline's icon to a primitive, color/neutral/900, where component code takes semantic tokens only (CLR-002): the icon ink of the same value, color.icon.primary. The design review asks SOLAR to rebind it."
+        "reason": "Figma binds the headline's icon to a primitive, color/neutral/900, where component code takes semantic tokens only (CLR-002): the icon ink of the same value, color.icon.primary. SOLAR keeps icon masters on neutral/900 by design, the library default, and every placed icon takes a color.icon.* or color.action.*.icon.* token (SOLAR, 2026-09-25)."
       },
       {
         "rule": "set",
@@ -1063,7 +1063,7 @@
       {
         "rule": "bind",
         "at": "text.paddingTop, text.paddingRight, text.paddingBottom, text.paddingLeft, textIcon.paddingTop, textIcon.paddingRight, textIcon.paddingBottom, textIcon.paddingLeft, actions.paddingTop, actions.paddingRight, actions.paddingBottom, actions.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

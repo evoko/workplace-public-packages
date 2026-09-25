@@ -254,7 +254,7 @@
           "allowed": "As the slider's height."
         },
         "x": {
-          "position": 150,
+          "position": 152,
           "from": "state=default"
         },
         "y": {
@@ -293,7 +293,7 @@
               "allowed": "As the slider's height."
             },
             "x": {
-              "position": 151,
+              "position": 153,
               "from": "state=disabled"
             },
             "y": {
@@ -306,7 +306,7 @@
     }
   },
   "docs": {
-    "description": "Single-thumb slider for selecting one value in a continuous range. 7 variants: state (default, hover, pressed, focus, filled, error, disabled). Use for visual, approximate value selection (volume, zoom, opacity) where precision is secondary to responsiveness. For exact numeric entry pair with a Number Input. For ranges use Slider Range.",
+    "description": "Single-thumb slider for selecting one value in a continuous range. 7 variants: state (default, hover, pressed, focus, filled, error, disabled). filled and error are drawn as default — error is announced and carried by the paired helper text, not by the slider itself. The handle does not change on hover or press. Use for approximate values (volume, zoom, opacity); for exact entry pair with Number Input. For ranges use Slider Range.",
     "figmaIssues": []
   },
   "provenance": {
@@ -314,7 +314,7 @@
     "pageId": "2163:3706",
     "figmaNode": "5475:48",
     "defaultVariant": "state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/slider.yaml",

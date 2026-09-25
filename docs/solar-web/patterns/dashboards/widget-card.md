@@ -56,7 +56,8 @@ Default variant: `state=default, action=more` · 8 variants · default size 360�
 
 - **state=default, action=more** · component · column gap 16 pad 16/16/16/16 FIXED/HUG · 360×99  
   fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/raised` · itemSpacing `stack.md` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
-  - **Header** · frame · row gap 12 pad 0/0/0/0 FILL/HUG · 328×16
+  - **Header** · frame · row gap 12 pad 0/0/0/0 FILL/HUG · 328×16  
+    itemSpacing `inset.sm`
     - **Container** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 33×12  
       itemSpacing `stack.xs`
       - ~~**Trend Badge**~~ (hidden by default) · instance of **Trend Badge** (type=incline, size=xs) · FIXED/FIXED · 8×8  
@@ -82,7 +83,7 @@ Default variant: `state=default, action=more` · 8 variants · default size 360�
 | Strokes         | `color.border.medium`, `color.border.subtle`                                                                                                                                                                                  |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`, `color.text.primary`, `color.text.secondary`                                                                |
 | Icon color      | `color.action.secondary.icon.default`, `color.icon.primary`                                                                                                                                                                   |
-| Spacing         | `inset.md`, `stack.md`, `stack.xs`                                                                                                                                                                                            |
+| Spacing         | `inset.md`, `inset.sm`, `stack.md`, `stack.xs`                                                                                                                                                                                |
 | Radius          | `radius.container`, `radius.pill`                                                                                                                                                                                             |
 | Border width    | `border.default`                                                                                                                                                                                                              |
 | Sizes           | `icon.sm`                                                                                                                                                                                                                     |
@@ -118,10 +119,6 @@ Default variant: `state=default, action=more` · 8 variants · default size 360�
 | error   | link   | 360×160 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.action.tertiary.text.default`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default` |
 | empty   | link   | 360×160 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.action.tertiary.text.default`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default` |
 
-### Issues detected
-
-- Hard-coded gap `12px` on layer _Header_
-
 ## Compositions and examples on this page
 
 ### Icon/None (instance of Icon/None, 16×16)
@@ -135,7 +132,8 @@ Uses: Icon/None ×1
 
 Uses: Spinner ×1
 
-- ~~**Spinner**~~ (hidden by default) · instance of **Spinner** (size=sm, style=default) · column gap 0 pad 0/0/0/0 HUG/HUG · 16×16
+- ~~**Spinner**~~ (hidden by default) · instance of **Spinner** (size=sm, style=default) · column gap 0 pad 0/0/0/0 HUG/HUG · 16×16  
+  width `icon.sm` · height `icon.sm`
 
 ### Counter (instance of Counter, 25×20)
 

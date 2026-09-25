@@ -249,6 +249,7 @@
       "variants": [
         {
           "variant": "severity=success, state=default, ghost=false",
+          "id": "3188:3608",
           "size": [
             320,
             68
@@ -268,10 +269,12 @@
             "{Color:icon/inverse}",
             "{Color:icon/feedback/success}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "severity=danger, state=default, ghost=false",
+          "id": "3148:2",
           "size": [
             320,
             68
@@ -332,6 +335,7 @@
         },
         {
           "variant": "severity=warning, state=default, ghost=false",
+          "id": "3149:2",
           "size": [
             320,
             68
@@ -392,6 +396,7 @@
         },
         {
           "variant": "severity=info, state=default, ghost=false",
+          "id": "3150:2",
           "size": [
             320,
             68
@@ -451,6 +456,7 @@
         },
         {
           "variant": "severity=info, state=default, ghost=true",
+          "id": "3188:3728",
           "size": [
             320,
             68
@@ -480,6 +486,7 @@
               {
                 "path": "/Content/Skeleton",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -503,6 +510,7 @@
               {
                 "path": "/Content/Skeleton#2",
                 "parent": "/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -534,6 +542,7 @@
         },
         {
           "variant": "severity=success, state=hover, ghost=false",
+          "id": "3188:3615",
           "size": [
             320,
             68
@@ -565,6 +574,7 @@
         },
         {
           "variant": "severity=danger, state=hover, ghost=false",
+          "id": "3188:3544",
           "size": [
             320,
             68
@@ -630,6 +640,7 @@
         },
         {
           "variant": "severity=warning, state=hover, ghost=false",
+          "id": "3188:3550",
           "size": [
             320,
             68
@@ -695,6 +706,7 @@
         },
         {
           "variant": "severity=info, state=hover, ghost=false",
+          "id": "3188:3746",
           "size": [
             320,
             68
@@ -759,6 +771,7 @@
         },
         {
           "variant": "severity=info, state=hover, ghost=true",
+          "id": "3188:3556",
           "size": [
             320,
             68
@@ -793,6 +806,7 @@
               {
                 "path": "/Content/Skeleton",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -816,6 +830,7 @@
               {
                 "path": "/Content/Skeleton#2",
                 "parent": "/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -847,6 +862,7 @@
         },
         {
           "variant": "severity=success, state=selected, ghost=false",
+          "id": "10013:2",
           "size": [
             320,
             68
@@ -880,6 +896,7 @@
         },
         {
           "variant": "severity=danger, state=selected, ghost=false",
+          "id": "10013:9",
           "size": [
             320,
             68
@@ -947,6 +964,7 @@
         },
         {
           "variant": "severity=warning, state=selected, ghost=false",
+          "id": "10013:16",
           "size": [
             320,
             68
@@ -1014,6 +1032,7 @@
         },
         {
           "variant": "severity=info, state=selected, ghost=false",
+          "id": "10013:23",
           "size": [
             320,
             68
@@ -1080,6 +1099,7 @@
         },
         {
           "variant": "severity=info, state=selected, ghost=true",
+          "id": "10013:30",
           "size": [
             320,
             68
@@ -1116,6 +1136,7 @@
               {
                 "path": "/Content/Skeleton",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1139,6 +1160,7 @@
               {
                 "path": "/Content/Skeleton#2",
                 "parent": "/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1397,6 +1419,7 @@
       "variants": [
         {
           "variant": "severity=success, state=default, ghost=false",
+          "id": "9240:30554",
           "size": [
             320,
             56
@@ -1415,10 +1438,12 @@
           "iconFills": [
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "severity=danger, state=default, ghost=false",
+          "id": "9240:30561",
           "size": [
             320,
             56
@@ -1443,6 +1468,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1478,6 +1504,7 @@
               {
                 "path": "/Container/StatusIndicator",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -1505,6 +1532,7 @@
         },
         {
           "variant": "severity=warning, state=default, ghost=false",
+          "id": "9240:30568",
           "size": [
             320,
             56
@@ -1529,6 +1557,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1564,6 +1593,7 @@
               {
                 "path": "/Container/StatusIndicator",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -1591,6 +1621,7 @@
         },
         {
           "variant": "severity=info, state=default, ghost=false",
+          "id": "9240:30575",
           "size": [
             320,
             56
@@ -1614,6 +1645,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1649,6 +1681,7 @@
               {
                 "path": "/Container/StatusIndicator",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -1676,6 +1709,7 @@
         },
         {
           "variant": "severity=info, state=default, ghost=true",
+          "id": "9240:30582",
           "size": [
             320,
             56
@@ -1700,6 +1734,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1735,6 +1770,7 @@
               {
                 "path": "/Content/Skeleton",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1758,6 +1794,7 @@
               {
                 "path": "/Content/Skeleton#2",
                 "parent": "/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1789,6 +1826,7 @@
         },
         {
           "variant": "severity=success, state=hover, ghost=false",
+          "id": "9240:30587",
           "size": [
             320,
             56
@@ -1819,6 +1857,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1854,6 +1893,7 @@
               {
                 "path": "/Container/StatusIndicator",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -1908,6 +1948,7 @@
         },
         {
           "variant": "severity=danger, state=hover, ghost=false",
+          "id": "9240:30594",
           "size": [
             320,
             56
@@ -1939,6 +1980,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1974,6 +2016,7 @@
               {
                 "path": "/Container/StatusIndicator",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -2001,6 +2044,7 @@
         },
         {
           "variant": "severity=warning, state=hover, ghost=false",
+          "id": "9240:30601",
           "size": [
             320,
             56
@@ -2032,6 +2076,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -2067,6 +2112,7 @@
               {
                 "path": "/Container/StatusIndicator",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -2094,6 +2140,7 @@
         },
         {
           "variant": "severity=info, state=hover, ghost=false",
+          "id": "9240:30608",
           "size": [
             320,
             56
@@ -2124,6 +2171,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -2159,6 +2207,7 @@
               {
                 "path": "/Container/StatusIndicator",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -2186,6 +2235,7 @@
         },
         {
           "variant": "severity=info, state=hover, ghost=true",
+          "id": "9240:30615",
           "size": [
             320,
             56
@@ -2215,6 +2265,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -2250,6 +2301,7 @@
               {
                 "path": "/Content/Skeleton",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -2273,6 +2325,7 @@
               {
                 "path": "/Content/Skeleton#2",
                 "parent": "/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",

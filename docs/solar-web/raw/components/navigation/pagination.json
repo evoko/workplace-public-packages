@@ -90,6 +90,7 @@
       "variants": [
         {
           "variant": "selected=false, state=default",
+          "id": "3652:2",
           "size": [
             24,
             24
@@ -97,10 +98,12 @@
           "textFills": [
             "{Color:text/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "selected=false, state=hover",
+          "id": "3652:4",
           "size": [
             24,
             24
@@ -123,6 +126,7 @@
         },
         {
           "variant": "selected=false, state=pressed",
+          "id": "3652:6",
           "size": [
             24,
             24
@@ -145,6 +149,7 @@
         },
         {
           "variant": "selected=false, state=focus",
+          "id": "3652:8",
           "size": [
             24,
             24
@@ -163,6 +168,7 @@
         },
         {
           "variant": "selected=false, state=disabled",
+          "id": "3652:10",
           "size": [
             24,
             24
@@ -182,6 +188,7 @@
         },
         {
           "variant": "selected=true, state=default",
+          "id": "3652:12",
           "size": [
             24,
             24
@@ -209,6 +216,7 @@
         },
         {
           "variant": "selected=true, state=hover",
+          "id": "3652:14",
           "size": [
             24,
             24
@@ -236,6 +244,7 @@
         },
         {
           "variant": "selected=true, state=pressed",
+          "id": "3652:16",
           "size": [
             24,
             24
@@ -263,6 +272,7 @@
         },
         {
           "variant": "selected=true, state=focus",
+          "id": "3652:18",
           "size": [
             24,
             24
@@ -292,6 +302,7 @@
         },
         {
           "variant": "selected=true, state=disabled",
+          "id": "3652:20",
           "size": [
             24,
             24
@@ -399,6 +410,7 @@
       "variants": [
         {
           "variant": "direction=previous, state=default",
+          "id": "3653:2",
           "size": [
             24,
             24
@@ -406,10 +418,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "direction=previous, state=hover",
+          "id": "3653:4",
           "size": [
             24,
             24
@@ -432,6 +446,7 @@
         },
         {
           "variant": "direction=previous, state=pressed",
+          "id": "3653:6",
           "size": [
             24,
             24
@@ -454,6 +469,7 @@
         },
         {
           "variant": "direction=previous, state=focus",
+          "id": "3653:8",
           "size": [
             24,
             24
@@ -472,6 +488,7 @@
         },
         {
           "variant": "direction=previous, state=disabled",
+          "id": "3653:10",
           "size": [
             24,
             24
@@ -491,6 +508,7 @@
         },
         {
           "variant": "direction=next, state=default",
+          "id": "3653:12",
           "size": [
             24,
             24
@@ -508,6 +526,7 @@
         },
         {
           "variant": "direction=next, state=hover",
+          "id": "3653:14",
           "size": [
             24,
             24
@@ -533,6 +552,7 @@
         },
         {
           "variant": "direction=next, state=pressed",
+          "id": "3653:16",
           "size": [
             24,
             24
@@ -558,6 +578,7 @@
         },
         {
           "variant": "direction=next, state=focus",
+          "id": "3653:18",
           "size": [
             24,
             24
@@ -579,6 +600,7 @@
         },
         {
           "variant": "direction=next, state=disabled",
+          "id": "3653:20",
           "size": [
             24,
             24
@@ -660,7 +682,7 @@
     {
       "name": "Pagination",
       "id": "3655:2",
-      "description": "Composed page selector — prev nav + page items (+ ellipsis gaps) + next nav. Use on paginated lists, tables, and search results where the total page count is known and random access matters. For linear step-through (wizards, detail pages) use Page Navigator. Collapse to a bare prev/next pair only when the collection size is unknown.",
+      "description": "Composed page selector — previous arrow, page items with ellipsis gaps, next arrow. Shows the first page, the last page, the current page ± 1, and three pages at the end the current page is near (1 2 3 … 12). The previous arrow is disabled on the first page and the next arrow on the last. Items are 24px squares, above WCAG 2.2's 24px minimum target. Use where the total page count is known and random access matters; for linear step-through use Page Navigator.",
       "props": {},
       "nodeCount": 16,
       "tree": {
@@ -692,7 +714,7 @@
             "main": "PaginationNav",
             "variant": {
               "direction": "previous",
-              "state": "default"
+              "state": "disabled"
             },
             "size": [
               24,

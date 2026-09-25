@@ -36,7 +36,7 @@ abstract final class SolarPageNavButtonRecipe {
     'root.radius|base': 't:radius.control',
     'root.borderWidth|base': 't:border.default',
     'root.direction|base': 'k:HORIZONTAL',
-    'root.align|base': 'k:MIN/CENTER',
+    'root.align|base': 'k:SPACE_BETWEEN/CENTER',
     'root.gap|base': 't:stack.xs',
     'root.paddingTop|base': 't:inset.none',
     'root.paddingRight|base': 't:inset.sm',

@@ -85,6 +85,7 @@
       "variants": [
         {
           "variant": "emphasis=default, density=comfortable",
+          "id": "6643:4",
           "size": [
             56,
             48
@@ -95,10 +96,12 @@
           "textFills": [
             "{Color:text/tertiary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "emphasis=now, density=comfortable",
+          "id": "6643:7",
           "size": [
             56,
             48
@@ -121,6 +124,7 @@
         },
         {
           "variant": "emphasis=default, density=compact",
+          "id": "6643:10",
           "size": [
             56,
             32
@@ -134,6 +138,7 @@
         },
         {
           "variant": "emphasis=now, density=compact",
+          "id": "6643:13",
           "size": [
             56,
             32

@@ -24,14 +24,14 @@ Default variant: `type=incline, size=md` · 9 variants · default size 20×20px
 
 ### Tokens used
 
-| Role         | Tokens                                                                                                                                                 |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Fills        | `color.icon.feedback.danger`, `color.surface.feedback.danger.strong`, `color.surface.feedback.neutral.strong`, `color.surface.feedback.success.strong` |
-| Strokes      | `color.border.medium`                                                                                                                                  |
-| Icon color   | `color.icon.inverse`                                                                                                                                   |
-| Spacing      | `stack.none`                                                                                                                                           |
-| Radius       | `radius.pill`                                                                                                                                          |
-| Border width | `border.default`                                                                                                                                       |
+| Role         | Tokens                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| Fills        | `color.surface.feedback.danger.strong`, `color.surface.feedback.neutral.strong`, `color.surface.feedback.success.strong` |
+| Strokes      | `color.border.medium`                                                                                                    |
+| Icon color   | `color.icon.inverse`                                                                                                     |
+| Spacing      | `stack.none`                                                                                                             |
+| Radius       | `radius.pill`                                                                                                            |
+| Border width | `border.default`                                                                                                         |
 
 ### Variant matrix
 
@@ -44,7 +44,7 @@ Default variant: `type=incline, size=md` · 9 variants · default size 20×20px
 | decline | sm   | 16×16 | `color.surface.feedback.danger.strong`  | `color.border.medium` |        |      |      |
 | neutral | sm   | 16×16 | `color.surface.feedback.neutral.strong` | `color.border.medium` |        |      |      |
 | incline | xs   | 8×8   | `color.surface.feedback.success.strong` | `color.border.medium` |        |      |      |
-| decline | xs   | 8×8   | `color.icon.feedback.danger`            | `color.border.medium` |        |      |      |
+| decline | xs   | 8×8   | `color.surface.feedback.danger.strong`  | `color.border.medium` |        |      |      |
 | neutral | xs   | 8×8   | `color.surface.feedback.neutral.strong` | `color.border.medium` |        |      |      |
 
 ## Documentation card

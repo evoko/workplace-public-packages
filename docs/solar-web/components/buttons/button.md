@@ -7,18 +7,18 @@
 Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).
 
 Variants (108):
-• size — sm (32px) | md (40px, default) | lg (48px)
+• size — sm (32px) | md (40px, default) | lg (48px, 200px fixed-width variant) — heights are size/control/{sm,md,lg}
 • prio — primary | secondary | tertiary
 • state — default | hover | pressed | focus | loading | disabled
 • danger — false | true (destructive/irreversible actions: delete, remove, revoke)
 
-focus carries the shared effect style shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission.
+secondary has no background: hover and disabled change only the border and label; danger turns border and label red, and danger hover adds the red tint (action/secondary/bg/danger/hover). tertiary hover underlines the label. lg is a distinct button: fixed 200px wide with the label centred, square (radius/none), borderless and flat — only focus draws a ring. Use it where a wide menu-style action is needed, not as a bigger md.
 
-Sizing: Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). sm and md both render below 44px — reserve sm for dense tables and toolbars. There is no xs or xl size; size=xl was renamed lg on 2026-09-23.
+focus carries shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code.
 
-Labels: write as actions — “Save changes” not “OK”, “Delete project” not “Yes”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.
+Labels: write as actions — “Save changes” not “OK”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.
 
-Rules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Never place two primary buttons side by side. Tertiary should not stand alone as the sole action.
+Rules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Tertiary should not stand alone as the sole action.
 
 ### Props
 
@@ -43,12 +43,13 @@ Default variant: `size=md, prio=primary, state=default, danger=false` · 108 var
 - **size=md, prio=primary, state=default, danger=false** · component · row gap 8 pad 0/12/0/12 HUG/FIXED · 80×40  
   fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
   - ~~**Icon/None**~~ (hidden by default) · instance of **Icon/None** (solid=false) · FIXED/FIXED · 16×16  
-    width `icon.sm` · prop visible←hasIconLeading, mainComponent←icon-leading
-  - ~~**Spinner**~~ (hidden by default) · instance of **Spinner** (size=sm, style=default) · column gap 0 pad 0/0/0/0 HUG/HUG · 16×16
+    height `icon.sm` · prop visible←hasIconLeading, mainComponent←icon-leading
+  - ~~**Spinner**~~ (hidden by default) · instance of **Spinner** (size=sm, style=default) · column gap 0 pad 0/0/0/0 HUG/HUG · 16×16  
+    width `icon.sm` · height `icon.sm`
   - **Label** · text `label/md` "Label" · FILL/HUG · 56×10  
     fill `color.action.primary.text.default` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500` · prop visible←hasLabel, characters←Label
   - ~~**Icon/None**~~ (hidden by default) · instance of **Icon/None** (solid=false) · FIXED/FIXED · 16×16  
-    width `icon.sm` · prop visible←hasIconTrailing, mainComponent←icon-trailing
+    height `icon.sm` · prop visible←hasIconTrailing, mainComponent←icon-trailing
   - ~~**Counter**~~ (hidden by default) · instance of **Counter** (type=inverted, state=default) · row gap 0 pad 0/8/0/8 HUG/FIXED · 25×20  
     fill `color.action.secondary.bg.default` · stroke `color.border.medium` 0px · padding `inset.xs` · strokeWeight `border.none` · radius `radius.pill` · prop visible←hasCounter
 
@@ -158,7 +159,7 @@ Default variant: `size=md, prio=primary, state=default, danger=false` · 108 var
 | sm   | tertiary  | disabled | true   | 64×32  |                                            | `color.action.tertiary.border.default`          |                        | `color.action.tertiary.text.danger.disabled`<br>`color.action.primary.text.disabled`  | `color.action.tertiary.icon.danger.disabled`  |
 | lg   | primary   | disabled | false  | 200×48 | `color.action.primary.bg.disabled`         | `color.action.primary.border.disabled`          |                        | `color.action.primary.text.disabled`<br>`color.action.secondary.text.disabled`        | `color.action.primary.icon.disabled`          |
 | lg   | primary   | disabled | true   | 200×48 | `color.action.primary.bg.danger.disabled`  | `color.action.primary.border.danger.disabled`   |                        | `color.action.primary.text.danger.disabled`<br>`color.action.secondary.text.disabled` | `color.action.primary.icon.danger.disabled`   |
-| lg   | secondary | disabled | false  | 200×48 |                                            | `color.action.secondary.border.disabled`        |                        | `color.action.secondary.text.danger.disabled`<br>`color.action.primary.text.disabled` | `color.action.secondary.icon.disabled`        |
+| lg   | secondary | disabled | false  | 200×48 |                                            | `color.action.secondary.border.disabled`        |                        | `color.action.secondary.text.disabled`<br>`color.action.primary.text.disabled`        | `color.action.secondary.icon.disabled`        |
 | lg   | secondary | disabled | true   | 200×48 |                                            | `color.action.secondary.border.danger.disabled` |                        | `color.action.secondary.text.danger.disabled`<br>`color.action.primary.text.disabled` | `color.action.secondary.icon.danger.disabled` |
 | lg   | tertiary  | disabled | false  | 200×48 |                                            | `color.action.tertiary.border.default`          |                        | `color.action.tertiary.text.disabled`<br>`color.action.primary.text.disabled`         | `color.action.tertiary.icon.disabled`         |
 | lg   | tertiary  | disabled | true   | 200×48 |                                            | `color.action.tertiary.border.default`          |                        | `color.action.tertiary.text.danger.disabled`<br>`color.action.primary.text.disabled`  | `color.action.tertiary.icon.danger.disabled`  |

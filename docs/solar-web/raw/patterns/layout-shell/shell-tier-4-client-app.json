@@ -110,6 +110,7 @@
               "{Color:surface/background}"
             ],
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:stack/md",
               "paddingRight": "Spatial:stack/md"
             }
@@ -450,6 +451,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "6498:5748",
           "size": [
             1440,
             800
@@ -471,10 +473,15 @@
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "6499:6676",
           "size": [
             393,
             800
@@ -490,6 +497,7 @@
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -517,9 +525,9 @@
                   "align": "MIN/CENTER"
                 },
                 "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:stack/xs",
-                  "paddingRight": "Spatial:stack/xs",
-                  "itemSpacing": "Spatial:stack/sm"
+                  "paddingRight": "Spatial:stack/xs"
                 }
               },
               "/App Content": {
@@ -545,6 +553,7 @@
               {
                 "path": "/App Content/center",
                 "parent": "/App Content",
+                "index": 0,
                 "layer": {
                   "name": "center",
                   "type": "SLOT",
@@ -579,6 +588,7 @@
               {
                 "path": "/App Content/center/Container",
                 "parent": "/App Content/center",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -618,6 +628,7 @@
               {
                 "path": "/App Content/center/Container#2",
                 "parent": "/App Content/center",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -645,6 +656,7 @@
               {
                 "path": "/App Content/center/Container#2/Container",
                 "parent": "/App Content/center/Container#2",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -684,6 +696,7 @@
               {
                 "path": "/App Content/center/Container#2/Container#2",
                 "parent": "/App Content/center/Container#2",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -723,6 +736,7 @@
               {
                 "path": "/App Content/center/Container#3",
                 "parent": "/App Content/center",
+                "index": 2,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",

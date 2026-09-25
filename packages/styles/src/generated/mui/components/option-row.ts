@@ -136,21 +136,6 @@ export const solarOptionRowComposition = {
       },
     },
   },
-  text: {
-    base: {
-      present: true,
-    },
-  },
-  label: {
-    base: {
-      present: true,
-    },
-  },
-  supportingText: {
-    base: {
-      present: true,
-    },
-  },
   toggle: {
     base: {
       present: false,
@@ -164,6 +149,21 @@ export const solarOptionRowComposition = {
           'variant.state': 'default',
         },
       },
+    },
+  },
+  text: {
+    base: {
+      present: true,
+    },
+  },
+  label: {
+    base: {
+      present: true,
+    },
+  },
+  supportingText: {
+    base: {
+      present: true,
     },
   },
 } as const;
@@ -249,7 +249,7 @@ export function solarOptionRowCompose(
 
 /** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
 export const solarOptionRowTree: Record<string, string[]> = {
-  root: ['control', 'text', 'toggle'],
+  root: ['control', 'toggle', 'text'],
   text: ['label', 'supportingText'],
 };
 

@@ -5,7 +5,7 @@
     {
       "name": "Tag",
       "id": "3502:2108",
-      "description": "Compact label for status, category, or user-entered content. 45 variants: type (status, icon-only, icon+text, closable, text-only) × status (success, neutral, warning, danger, info) × invert × show icon-leading. type=status for read-only state (Active, Pending); type=closable for user-entered tokens with ×; type=icon-only for pure glyph tags. Keep text to 1–3 words.",
+      "description": "Compact label for status, category, or user-entered content. 45 variants: type (status, icon-only, icon+text, closable, text-only) × status (success, neutral, warning, danger, info) × invert (false, true). type=status shows a status dot for read-only state (Active, Pending); on an inverted tag the dot is omitted, since it would match the fill. type=closable is for user-entered tokens with ×; type=icon-only for pure glyph tags. Keep text to 1–3 words.",
       "docLinks": [],
       "variantCount": 45,
       "props": {
@@ -142,6 +142,7 @@
       "variants": [
         {
           "variant": "status=success, type=status, invert=false",
+          "id": "3502:2109",
           "size": [
             67,
             24
@@ -155,10 +156,12 @@
           "textFills": [
             "{Color:text/feedback/success}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "status=success, type=icon-only, invert=false",
+          "id": "3502:2124",
           "size": [
             24,
             24
@@ -197,6 +200,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -226,6 +230,7 @@
         },
         {
           "variant": "status=success, type=icon+text, invert=false",
+          "id": "3502:2134",
           "size": [
             67,
             24
@@ -257,6 +262,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -286,6 +292,7 @@
         },
         {
           "variant": "status=success, type=closable, invert=false",
+          "id": "5117:6394",
           "size": [
             67,
             24
@@ -325,6 +332,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -353,6 +361,7 @@
         },
         {
           "variant": "status=success, type=text-only, invert=false",
+          "id": "5296:1286",
           "size": [
             55,
             24
@@ -391,6 +400,7 @@
         },
         {
           "variant": "status=success, type=icon-only, invert=true",
+          "id": "5299:1579",
           "size": [
             24,
             24
@@ -435,6 +445,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -464,6 +475,7 @@
         },
         {
           "variant": "status=success, type=icon+text, invert=true",
+          "id": "5299:1581",
           "size": [
             67,
             24
@@ -506,6 +518,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -535,6 +548,7 @@
         },
         {
           "variant": "status=success, type=closable, invert=true",
+          "id": "5299:1584",
           "size": [
             67,
             24
@@ -585,6 +599,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -613,6 +628,7 @@
         },
         {
           "variant": "status=success, type=text-only, invert=true",
+          "id": "5299:1587",
           "size": [
             55,
             24
@@ -662,6 +678,7 @@
         },
         {
           "variant": "status=warning, type=status, invert=false",
+          "id": "3502:2112",
           "size": [
             67,
             24
@@ -704,6 +721,7 @@
         },
         {
           "variant": "status=warning, type=icon-only, invert=false",
+          "id": "3502:2126",
           "size": [
             24,
             24
@@ -748,6 +766,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -777,6 +796,7 @@
         },
         {
           "variant": "status=warning, type=icon+text, invert=false",
+          "id": "3502:2137",
           "size": [
             67,
             24
@@ -819,6 +839,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -848,6 +869,7 @@
         },
         {
           "variant": "status=warning, type=closable, invert=false",
+          "id": "5117:6397",
           "size": [
             67,
             24
@@ -898,6 +920,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -926,6 +949,7 @@
         },
         {
           "variant": "status=warning, type=text-only, invert=false",
+          "id": "5296:1289",
           "size": [
             55,
             24
@@ -975,6 +999,7 @@
         },
         {
           "variant": "status=warning, type=icon-only, invert=true",
+          "id": "5299:1589",
           "size": [
             24,
             24
@@ -1019,6 +1044,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1048,6 +1074,7 @@
         },
         {
           "variant": "status=warning, type=icon+text, invert=true",
+          "id": "5299:1591",
           "size": [
             67,
             24
@@ -1090,6 +1117,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -1119,6 +1147,7 @@
         },
         {
           "variant": "status=warning, type=closable, invert=true",
+          "id": "5299:1594",
           "size": [
             67,
             24
@@ -1169,6 +1198,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -1197,6 +1227,7 @@
         },
         {
           "variant": "status=warning, type=text-only, invert=true",
+          "id": "5299:1597",
           "size": [
             55,
             24
@@ -1246,6 +1277,7 @@
         },
         {
           "variant": "status=danger, type=status, invert=false",
+          "id": "3502:2115",
           "size": [
             67,
             24
@@ -1288,6 +1320,7 @@
         },
         {
           "variant": "status=danger, type=icon-only, invert=false",
+          "id": "3502:2128",
           "size": [
             24,
             24
@@ -1332,6 +1365,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1361,6 +1395,7 @@
         },
         {
           "variant": "status=danger, type=icon+text, invert=false",
+          "id": "3502:2140",
           "size": [
             67,
             24
@@ -1403,6 +1438,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -1432,6 +1468,7 @@
         },
         {
           "variant": "status=danger, type=closable, invert=false",
+          "id": "5117:6400",
           "size": [
             67,
             24
@@ -1482,6 +1519,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -1510,6 +1548,7 @@
         },
         {
           "variant": "status=danger, type=text-only, invert=false",
+          "id": "5296:1292",
           "size": [
             55,
             24
@@ -1559,6 +1598,7 @@
         },
         {
           "variant": "status=danger, type=icon-only, invert=true",
+          "id": "5299:1599",
           "size": [
             24,
             24
@@ -1603,6 +1643,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1632,6 +1673,7 @@
         },
         {
           "variant": "status=danger, type=icon+text, invert=true",
+          "id": "5299:1601",
           "size": [
             67,
             24
@@ -1674,6 +1716,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -1703,6 +1746,7 @@
         },
         {
           "variant": "status=danger, type=closable, invert=true",
+          "id": "5299:1604",
           "size": [
             67,
             24
@@ -1753,6 +1797,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -1781,6 +1826,7 @@
         },
         {
           "variant": "status=danger, type=text-only, invert=true",
+          "id": "5299:1607",
           "size": [
             55,
             24
@@ -1830,6 +1876,7 @@
         },
         {
           "variant": "status=info, type=status, invert=false",
+          "id": "3502:2118",
           "size": [
             67,
             24
@@ -1872,6 +1919,7 @@
         },
         {
           "variant": "status=info, type=icon-only, invert=false",
+          "id": "3502:2130",
           "size": [
             24,
             24
@@ -1916,6 +1964,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1945,6 +1994,7 @@
         },
         {
           "variant": "status=info, type=icon+text, invert=false",
+          "id": "3502:2143",
           "size": [
             67,
             24
@@ -1987,6 +2037,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -2016,6 +2067,7 @@
         },
         {
           "variant": "status=info, type=closable, invert=false",
+          "id": "5117:6403",
           "size": [
             67,
             24
@@ -2066,6 +2118,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -2094,6 +2147,7 @@
         },
         {
           "variant": "status=info, type=text-only, invert=false",
+          "id": "5296:1295",
           "size": [
             55,
             24
@@ -2143,6 +2197,7 @@
         },
         {
           "variant": "status=info, type=icon-only, invert=true",
+          "id": "5299:1609",
           "size": [
             24,
             24
@@ -2187,6 +2242,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -2216,6 +2272,7 @@
         },
         {
           "variant": "status=info, type=icon+text, invert=true",
+          "id": "5299:1611",
           "size": [
             67,
             24
@@ -2258,6 +2315,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -2287,6 +2345,7 @@
         },
         {
           "variant": "status=info, type=closable, invert=true",
+          "id": "5299:1614",
           "size": [
             67,
             24
@@ -2337,6 +2396,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -2365,6 +2425,7 @@
         },
         {
           "variant": "status=info, type=text-only, invert=true",
+          "id": "5299:1617",
           "size": [
             55,
             24
@@ -2414,6 +2475,7 @@
         },
         {
           "variant": "status=neutral, type=status, invert=false",
+          "id": "3502:2121",
           "size": [
             67,
             24
@@ -2456,6 +2518,7 @@
         },
         {
           "variant": "status=neutral, type=icon-only, invert=false",
+          "id": "3502:2132",
           "size": [
             24,
             24
@@ -2500,6 +2563,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -2529,6 +2593,7 @@
         },
         {
           "variant": "status=neutral, type=icon+text, invert=false",
+          "id": "3502:2146",
           "size": [
             67,
             24
@@ -2571,6 +2636,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -2600,6 +2666,7 @@
         },
         {
           "variant": "status=neutral, type=closable, invert=false",
+          "id": "5117:6406",
           "size": [
             67,
             24
@@ -2650,6 +2717,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -2678,6 +2746,7 @@
         },
         {
           "variant": "status=neutral, type=text-only, invert=false",
+          "id": "5296:1298",
           "size": [
             55,
             24
@@ -2727,6 +2796,7 @@
         },
         {
           "variant": "status=neutral, type=icon-only, invert=true",
+          "id": "5299:1619",
           "size": [
             24,
             24
@@ -2771,6 +2841,7 @@
               {
                 "path": "/Icon/Plus",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -2800,6 +2871,7 @@
         },
         {
           "variant": "status=neutral, type=icon+text, invert=true",
+          "id": "5299:1621",
           "size": [
             67,
             24
@@ -2842,6 +2914,7 @@
               {
                 "path": "/Icon/None",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/None",
                   "type": "INSTANCE",
@@ -2871,6 +2944,7 @@
         },
         {
           "variant": "status=neutral, type=closable, invert=true",
+          "id": "5299:1624",
           "size": [
             67,
             24
@@ -2921,6 +2995,7 @@
               {
                 "path": "/Icon/Close",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Close",
                   "type": "INSTANCE",
@@ -2949,6 +3024,7 @@
         },
         {
           "variant": "status=neutral, type=text-only, invert=true",
+          "id": "5299:1627",
           "size": [
             55,
             24

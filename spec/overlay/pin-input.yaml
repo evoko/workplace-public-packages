@@ -92,18 +92,6 @@ follows:
       As a digit's, the error's colour, color.text.feedback.danger, which Figma gives it where it
       draws it, in error.
 
-set:
-  cells.base.height:
-    keyword: HUG
-    reason: >-
-      The row of cells hugs them, as Figma draws it in every md state but the resting one, whose
-      row is 48 tall around 40px cells: a slip the design review lists.
-  placeholder.size.sm.typography:
-    token: typography.body.md.medium
-    reason: >-
-      The sm cells' placeholders are body.md.medium, as Figma draws them in every cell and state
-      but the resting and hovered first cell, whose helper.sm is a slip the design review lists.
-
 allowLiteral:
   field*.width:
     reason: >-

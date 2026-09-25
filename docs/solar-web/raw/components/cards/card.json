@@ -335,6 +335,7 @@
       "variants": [
         {
           "variant": "state=default, status=none, loading=false",
+          "id": "3059:2",
           "size": [
             320,
             150
@@ -357,10 +358,15 @@
           "hidden": [
             "Helper",
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Title/Helper",
+            "/Title/Icon/None"
           ]
         },
         {
           "variant": "state=default, status=danger, loading=false",
+          "id": "3059:13",
           "size": [
             320,
             150
@@ -417,6 +423,7 @@
         },
         {
           "variant": "state=default, status=warning, loading=false",
+          "id": "3059:24",
           "size": [
             320,
             150
@@ -473,6 +480,7 @@
         },
         {
           "variant": "state=default, status=success, loading=false",
+          "id": "9213:30167",
           "size": [
             320,
             150
@@ -529,6 +537,7 @@
         },
         {
           "variant": "state=hover, status=none, loading=false",
+          "id": "3059:46",
           "size": [
             320,
             150
@@ -560,6 +569,7 @@
         },
         {
           "variant": "state=hover, status=danger, loading=false",
+          "id": "3059:57",
           "size": [
             320,
             150
@@ -619,6 +629,7 @@
         },
         {
           "variant": "state=hover, status=warning, loading=false",
+          "id": "3059:68",
           "size": [
             320,
             150
@@ -678,6 +689,7 @@
         },
         {
           "variant": "state=hover, status=success, loading=false",
+          "id": "3059:79",
           "size": [
             320,
             150
@@ -737,6 +749,7 @@
         },
         {
           "variant": "state=disabled, status=none, loading=false",
+          "id": "3112:3101",
           "size": [
             320,
             150
@@ -782,6 +795,7 @@
         },
         {
           "variant": "state=default, status=none, loading=true",
+          "id": "3059:200",
           "size": [
             320,
             156
@@ -794,6 +808,7 @@
           ],
           "effect": "shadow/raised",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/Content": {
@@ -822,6 +837,7 @@
               {
                 "path": "/Skeleton",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "FRAME",
@@ -845,6 +861,7 @@
               {
                 "path": "/Content/Skeleton",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "FRAME",
@@ -868,6 +885,7 @@
               {
                 "path": "/Content/Skeleton#2",
                 "parent": "/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "FRAME",
@@ -891,6 +909,7 @@
               {
                 "path": "/Content/Skeleton#3",
                 "parent": "/Content",
+                "index": 2,
                 "layer": {
                   "name": "Skeleton",
                   "type": "FRAME",
@@ -924,6 +943,7 @@
         },
         {
           "variant": "state=hover, status=info, loading=false",
+          "id": "9213:30209",
           "size": [
             320,
             150
@@ -983,6 +1003,7 @@
         },
         {
           "variant": "state=default, status=info, loading=false",
+          "id": "9213:30229",
           "size": [
             320,
             150

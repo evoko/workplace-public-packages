@@ -93,6 +93,7 @@
               "{Color:surface/background}"
             ],
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:stack/md",
               "paddingRight": "Spatial:stack/md"
             }
@@ -307,6 +308,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "6498:4754",
           "size": [
             1440,
             800
@@ -332,10 +334,25 @@
             "Icon/None",
             "Label",
             "Nav Item"
+          ],
+          "hiddenPaths": [
+            "/App Content/Page Content/left/Segmented Control/Helper text",
+            "/App Content/Page Content/left/Segmented Control/Label",
+            "/App Content/Page Content/left/Segmented Control/Label/Label",
+            "/App Content/Page Content/left/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/App Content/Page Content/left/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/App Content/Page Content/left/Segmented Control/Track/Segmented Control Item#3/Icon/None",
+            "/App Content/Page Content/left/Segmented Control/Track/Segmented Control Item#3/Icon/None#2",
+            "/App Content/Page Content/left/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/App Content/Page Content/left/Segmented Control/Track/Segmented Control Item/Icon/None#2",
+            "/Top Bar/Right Zone/Container/Nav Item#3",
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "6499:6447",
           "size": [
             393,
             800
@@ -357,6 +374,17 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/left/Segmented Control/Helper text",
+            "/left/Segmented Control/Label",
+            "/left/Segmented Control/Label/Label",
+            "/left/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/left/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/left/Segmented Control/Track/Segmented Control Item#3/Icon/None",
+            "/left/Segmented Control/Track/Segmented Control Item#3/Icon/None#2",
+            "/left/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/left/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ],
           "overrides": {
             "changed": {
@@ -442,6 +470,7 @@
               {
                 "path": "/left",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "left",
                   "type": "SLOT",
@@ -489,6 +518,7 @@
               {
                 "path": "/left/Frame 1",
                 "parent": "/left",
+                "index": 0,
                 "layer": {
                   "name": "Frame 1",
                   "type": "FRAME",
@@ -518,6 +548,7 @@
               {
                 "path": "/left/Frame 1/Rectangle 1",
                 "parent": "/left/Frame 1",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 1",
                   "type": "RECTANGLE",
@@ -541,6 +572,7 @@
               {
                 "path": "/left/Segmented Control",
                 "parent": "/left",
+                "index": 1,
                 "layer": {
                   "name": "Segmented Control",
                   "type": "INSTANCE",

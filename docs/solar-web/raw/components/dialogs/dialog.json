@@ -46,7 +46,7 @@
         }
       },
       "defaultVariant": "type=default",
-      "defaultVariantNodeCount": 34,
+      "defaultVariantNodeCount": 35,
       "defaultVariantTree": {
         "name": "type=default",
         "type": "COMPONENT",
@@ -125,7 +125,7 @@
                 ],
                 "layout": {
                   "dir": "HORIZONTAL",
-                  "gap": 0,
+                  "gap": 16,
                   "pad": [
                     0,
                     0,
@@ -134,6 +134,9 @@
                   ],
                   "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -166,6 +169,9 @@
                         "variant": {
                           "solid": "false"
                         },
+                        "iconFills": [
+                          "{Primitives:color/neutral/900}"
+                        ],
                         "size": [
                           12,
                           12
@@ -226,6 +232,10 @@
                       "align": "CENTER/CENTER",
                       "sizing": "FIXED/FIXED"
                     },
+                    "strokes": [
+                      "{Color:action/tertiary/border/default}"
+                    ],
+                    "strokeWeight": 1,
                     "radius": 9999,
                     "vars": {
                       "strokeTopWeight": "Spatial:border/default",
@@ -317,6 +327,7 @@
       "variants": [
         {
           "variant": "type=default",
+          "id": "4008:22",
           "size": [
             480,
             464
@@ -331,6 +342,7 @@
             "{Color:action/primary/text/default}"
           ],
           "iconFills": [
+            "{Primitives:color/neutral/900}",
             "{Color:action/tertiary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
@@ -339,10 +351,21 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Button Group/Button#2/Counter",
+            "/Button Group/Button#2/Icon/None",
+            "/Button Group/Button#2/Icon/None#2",
+            "/Button Group/Button#2/Spinner",
+            "/Button Group/Button/Counter",
+            "/Button Group/Button/Icon/None",
+            "/Button Group/Button/Icon/None#2",
+            "/Button Group/Button/Spinner"
           ]
         },
         {
           "variant": "type=image",
+          "id": "2229:6455",
           "size": [
             480,
             452
@@ -391,6 +414,7 @@
               {
                 "path": "/image",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "image",
                   "type": "SLOT",
@@ -426,6 +450,7 @@
               {
                 "path": "/image/Icon Button",
                 "parent": "/image",
+                "index": 0,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -456,9 +481,10 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/tertiary/bg/default}"
+                  "strokes": [
+                    "{Color:action/tertiary/border/default}"
                   ],
+                  "strokeWeight": 1,
                   "radius": 9999,
                   "vars": {
                     "strokeTopWeight": "Spatial:border/default",
@@ -475,6 +501,7 @@
               {
                 "path": "/content/Dialog Title",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "Dialog Title",
                   "type": "TEXT",
@@ -499,6 +526,7 @@
               {
                 "path": "/content/Biamp delivers professional audio-visual solutions that help people connect, communicate, and collaborate more effectively across workplaces, venues, and public spaces.",
                 "parent": "/content",
+                "index": 1,
                 "layer": {
                   "name": "Biamp delivers professional audio-visual solutions that help people connect, communicate, and collaborate more effectively across workplaces, venues, and public spaces.",
                   "type": "TEXT",
@@ -533,6 +561,7 @@
         },
         {
           "variant": "type=wizard",
+          "id": "5888:18186",
           "size": [
             480,
             464
@@ -544,12 +573,13 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/tertiary}",
-            "{Color:action/secondary/text/danger/disabled}",
+            "{Color:action/secondary/text/disabled}",
             "{Color:action/primary/text/disabled}",
             "{Color:action/primary/text/default}",
             "{Color:action/secondary/text/default}"
           ],
           "iconFills": [
+            "{Primitives:color/neutral/900}",
             "{Color:action/tertiary/icon/default}",
             "{Color:action/secondary/icon/disabled}",
             "{Color:action/primary/icon/default}"
@@ -601,6 +631,7 @@
               {
                 "path": "/Header/Stepper",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Stepper",
                   "type": "INSTANCE",

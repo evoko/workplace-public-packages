@@ -31,27 +31,6 @@ set:
   root.size.sm.width:
     keyword: FILL
     reason: As md's, the sm field's 200 a sample.
-  root.appearance.default.hover.borderColor:
-    token: color.border.medium
-    reason: >-
-      Figma edges the hovered sm field in color.border.medium, as every hovered Text Input is, and
-      leaves the md one's edge as at rest: drawn at both sizes as the sm one and Text Input are. The
-      design review asks SOLAR to edge the md one.
-
-  iconSearch.size.sm.width:
-    token: icon.xs
-    reason: >-
-      The sm field's icons are icon.xs, 12, as Figma draws them in five of its six states: its
-      resting variant keeps md's 16, a slip the design review lists.
-  iconSearch.size.sm.height:
-    token: icon.xs
-    reason: As its width.
-  filter.size.sm.width:
-    token: icon.xs
-    reason: As the search icon's.
-  filter.size.sm.height:
-    token: icon.xs
-    reason: As its width.
 
 follows:
   root.shadow:
@@ -62,19 +41,16 @@ follows:
       design review asks whether that is meant.
 
 bind:
-  iconSearch.width:
-    literal: 16
-    token: icon.sm
-    reason: >-
-      Same value, governed token; the icon's height is already bound to it. The sm field's are set
-      to icon.xs, below.
-  filter.width:
-    literal: 16
-    token: icon.sm
-    reason: As the search icon's.
-
-allowLiteral:
   root.height:
+    tokens: { 32: size.control.sm, 40: size.control.md }
     reason: >-
-      As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,
-      raised as a governance gap). Drawn 40 (md) and 32 (sm).
+      As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25;
+      Figma leaves the height unbound, which the design review asks SOLAR to bind.
+  iconSearch.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: >-
+      Same values, governed tokens: the icon's height is already bound to them, icon.sm in the md
+      field and icon.xs in the sm one.
+  filter.width:
+    tokens: { 16: icon.sm, 12: icon.xs }
+    reason: { as: bind iconSearch.width }

@@ -35,8 +35,8 @@ export const solarSliderStyles = {
         display: 'none',
       },
       '&::after': {
-        width: '44px',
-        height: '44px',
+        width: 'var(--solar-size-target-min)',
+        height: 'var(--solar-size-target-min)',
       },
     },
     '&': {
@@ -47,8 +47,8 @@ export const solarSliderStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },

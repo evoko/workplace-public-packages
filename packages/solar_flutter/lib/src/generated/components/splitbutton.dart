@@ -49,8 +49,8 @@ abstract final class SolarSplitButtonRecipe {
     'root.paddingBottom|base': 't:inset.none',
     'root.paddingLeft|base': 't:inset.none',
     'root.width|base': 'k:HUG',
-    'root.height|base': 'px:40',
-    'root.height|size|sm': 'px:32',
+    'root.height|base': 't:size.control.md',
+    'root.height|size|sm': 't:size.control.sm',
     'root.background|appearance|prio=secondary|default':
         't:color.action.secondary.bg.default',
     'root.background|appearance|prio=secondary|hover':
@@ -157,7 +157,7 @@ abstract final class SolarSplitButtonRecipe {
     'trigger.width|base': 'px:40',
     'trigger.height|base': 'k:FILL',
     'trigger.width|size|sm': 'px:32',
-    'trigger.height|size|sm': 'px:32',
+    'trigger.height|size|sm': 't:size.control.sm',
     'trigger.present|appearance|prio=primary|loading': 'b:false',
     'trigger.present|appearance|prio=secondary|loading': 'b:false',
     'iconChevronDown.present|base': 'b:true',
@@ -320,6 +320,8 @@ abstract final class SolarSplitButtonRecipe {
       't:inset.none' => SolarInset.none,
       't:inset.sm' => SolarInset.sm,
       't:radius.control' => SolarRadius.control,
+      't:size.control.md' => SolarSize.controlMd,
+      't:size.control.sm' => SolarSize.controlSm,
       't:stack.xs' => SolarStack.xs,
       _ => throw StateError('$cell: no length for $v'),
     };

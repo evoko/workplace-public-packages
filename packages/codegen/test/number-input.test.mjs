@@ -36,12 +36,9 @@ describe('the Number Input IR', () => {
     );
   });
 
-  it('leaves only Figma’s md error inline spacing open', () => {
-    expect(deviations.filter((d) => !d.decision).map((d) => d.token)).toEqual([
-      'component.number input.field.gap@state=error',
-      'component.number input.field.paddingLeft@state=error',
-      'component.number input.field.paddingRight@state=error',
-    ]);
+  it('leaves nothing open', () => {
+    // Figma's md error inline spacing, open until 2026-09-25, is the other states' since.
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
   it('is focused as the InputBase inside its field is', () => {

@@ -214,19 +214,11 @@ describe('deriveRecipe on Button: deviations', () => {
     ).toHaveLength(1);
   });
 
-  it('pins the one lg disabled label that borrows the danger colour', () => {
-    const d = deviation('/Label', 'color', { size: 'lg' });
-    expect(d.variants).toEqual([
-      {
-        variant: 'size=lg, prio=secondary, state=disabled, danger=false',
-        expected: expect.objectContaining({
-          token: 'color.action.secondary.text.disabled',
-        }),
-        found: expect.objectContaining({
-          token: 'color.action.secondary.text.danger.disabled',
-        }),
-      },
-    ]);
+  it('finds no lg label colour of its own, since Figma drew the disabled one as the others', () => {
+    // Until 2026-09-25 the lg disabled secondary label borrowed the danger colour, a finding.
+    expect(
+      recipe.deviations.some((d) => d.token.includes('/Label.color@size=lg')),
+    ).toBe(false);
   });
 
   it('reports the tertiary hover underline as a disagreement for a human, not a rule', () => {
@@ -450,6 +442,14 @@ describe('deriveRecipe on Spinner: strokes', () => {
   });
 
   it('reports a colour bound to a variable that is not a colour, and never paints it', () => {
+    // The indicator as Figma drew it until 2026-09-25: its colour bound to a width variable.
+    const slip = structuredClone(spinnerSet);
+    const indicator = (n) =>
+      n.name === 'Indicator'
+        ? n
+        : (n.children ?? []).map(indicator).find(Boolean);
+    indicator(slip.defaultVariantTree).strokes = ['{Spatial:border/strong}'];
+    const r = deriveRecipe(resolveVariants(slip), { names });
     const cell = r.style['/SpinnerRing/Indicator'].base.borderColor;
     expect(cell).not.toHaveProperty('token');
     expect(cell).toMatchObject({ misbound: true });

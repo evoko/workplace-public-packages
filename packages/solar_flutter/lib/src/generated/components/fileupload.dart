@@ -44,7 +44,6 @@ abstract final class SolarFileUploadRecipe {
     'root.paddingLeft|base': 't:inset.none',
     'root.width|base': 'k:FILL',
     'root.height|base': 'k:HUG',
-    'root.shadow|appearance|default|focus': 'none',
     'label.present|base': 'b:true',
     'label.background|base': 'none',
     'label.borderColor|base': 'none',

@@ -116,39 +116,39 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "HUG",
           "from": "prio=primary, size=md, state=default"
         },
         "height": {
-          "literal": 40,
-          "from": "prio=primary, size=md, state=default",
-          "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 and 32; the description's 44 and 36 disagree, which the design review lists (section 3, described sizes)."
+          "token": "size.control.md",
+          "from": "overlay",
+          "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
         }
       },
       "size": {
         "sm": {
           "height": {
-            "literal": 32,
-            "from": "prio=primary, size=sm, state=default",
-            "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 and 32; the description's 44 and 36 disagree, which the design review lists (section 3, described sizes)."
+            "token": "size.control.sm",
+            "from": "overlay",
+            "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
           }
         }
       },
@@ -284,7 +284,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.md",
@@ -293,7 +293,7 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.md",
@@ -432,7 +432,7 @@
         "opacity": {
           "literal": 0.3,
           "from": "prio=primary, size=md, state=default",
-          "allowed": "The rule is the label's colour at 30% opacity. SOLAR has no opacity scale, as for Node End's halo; carried as Figma's number, and raised as a governance gap."
+          "allowed": "The rule is the label's colour at 30% opacity. SOLAR has no opacity scale, as for Node End's halo (SOLAR's decision, 2026-09-25); carried as Figma's number."
         },
         "radius": {
           "none": true,
@@ -548,22 +548,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "literal": 40,
@@ -583,9 +583,9 @@
             "allowed": "The chevron's half is square, 40 and 32, the control's height, under the same decision."
           },
           "height": {
-            "literal": 32,
-            "from": "prio=primary, size=sm, state=default",
-            "allowed": "At sm, the chevron's half is fixed at the control's 32, under the same decision."
+            "token": "size.control.sm",
+            "from": "overlay",
+            "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
           }
         }
       },
@@ -770,7 +770,7 @@
     }
   },
   "docs": {
-    "description": "Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 32px, md 40px) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.",
+    "description": "Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 32px, md 40px) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code. focus rings the whole control. The rule between the halves is the label colour at 30% opacity. Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.",
     "figmaIssues": []
   },
   "provenance": {
@@ -778,7 +778,7 @@
     "pageId": "3611:5",
     "figmaNode": "4569:200",
     "defaultVariant": "prio=primary, size=md, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/splitbutton.yaml",
@@ -799,19 +799,19 @@
         "reason": "Same values, governed tokens, a step of the icon ladder per size; the chevron's height is already bound to them."
       },
       {
+        "rule": "bind",
+        "at": "root.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
+      },
+      {
+        "rule": "bind",
+        "at": "trigger.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
+      },
+      {
         "rule": "allowLiteral",
         "at": "divider.opacity",
-        "reason": "The rule is the label's colour at 30% opacity. SOLAR has no opacity scale, as for Node End's halo; carried as Figma's number, and raised as a governance gap."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "root.height",
-        "reason": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 and 32; the description's 44 and 36 disagree, which the design review lists (section 3, described sizes)."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "trigger.height",
-        "reason": "At sm, the chevron's half is fixed at the control's 32, under the same decision."
+        "reason": "The rule is the label's colour at 30% opacity. SOLAR has no opacity scale, as for Node End's halo (SOLAR's decision, 2026-09-25); carried as Figma's number."
       },
       {
         "rule": "allowLiteral",
@@ -870,16 +870,6 @@
       },
       {
         "rule": "accept",
-        "at": "component.splitbutton.trigger.width@prio=primary, state=pressed",
-        "reason": "Figma widens the chevron's half by 4px (44 beside 40) in pressed primary and hovered secondary at md alone, which looks like an accident: the halves keep their size in every state here. The design review lists it."
-      },
-      {
-        "rule": "accept",
-        "at": "component.splitbutton.trigger.width@prio=secondary, state=hover",
-        "reason": "As pressed primary's, the chevron's half keeps its size."
-      },
-      {
-        "rule": "accept",
         "at": "component.splitbutton.trigger.width@prio=secondary, state=loading",
         "reason": "As its height, hidden while loading."
       },
@@ -893,7 +883,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft, action.paddingTop, action.paddingBottom, trigger.paddingTop, trigger.paddingRight, trigger.paddingBottom, trigger.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

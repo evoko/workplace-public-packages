@@ -18,6 +18,8 @@ Widget buildIconButton(
     shape: enumNamed(SolarIconButtonShape.values, props['shape'] as String),
     prio: enumNamed(SolarIconButtonPrio.values, props['prio'] as String),
     loading: props['loading'] as bool,
+    // A toggle where Figma draws it switched on; an ordinary action otherwise.
+    active: props['active'] == true ? true : null,
     statesController: states,
     icon: const IconProbe(key: Key('icon')),
   );

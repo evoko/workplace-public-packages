@@ -106,6 +106,10 @@ export const solarContextMenuItemStyles = {
       },
       '&.Mui-focusVisible': {
         backgroundColor: 'var(--solar-color-surface-hover)',
+        borderColor: 'var(--solar-color-border-feedback-focus-strong)',
+        boxShadow: 'var(--solar-shadow-focus-default)',
+        borderWidth: 'var(--solar-border-default)',
+        borderStyle: 'solid',
       },
       '&.Mui-disabled': {
         '& .SolarContextMenuItem-leadingIcon': {
@@ -125,9 +129,37 @@ export const solarContextMenuItemStyles = {
     'destructive=true': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-surface-hover)',
+        '& .SolarContextMenuItem-leadingIcon': {
+          color: 'var(--solar-color-icon-feedback-danger)',
+        },
+        '& .SolarContextMenuItem-label': {
+          color: 'var(--solar-color-text-feedback-danger)',
+        },
+        '& .SolarContextMenuItem-shortcut': {
+          color: 'var(--solar-color-text-tertiary)',
+        },
+        '& .SolarContextMenuItem-trailingIcon': {
+          color: 'var(--solar-color-icon-primary)',
+        },
       },
       '&.Mui-focusVisible': {
         backgroundColor: 'var(--solar-color-surface-hover)',
+        borderColor: 'var(--solar-color-border-feedback-focus-strong)',
+        boxShadow: 'var(--solar-shadow-focus-default)',
+        borderWidth: 'var(--solar-border-default)',
+        borderStyle: 'solid',
+        '& .SolarContextMenuItem-leadingIcon': {
+          color: 'var(--solar-color-icon-feedback-danger)',
+        },
+        '& .SolarContextMenuItem-label': {
+          color: 'var(--solar-color-text-feedback-danger)',
+        },
+        '& .SolarContextMenuItem-shortcut': {
+          color: 'var(--solar-color-text-tertiary)',
+        },
+        '& .SolarContextMenuItem-trailingIcon': {
+          color: 'var(--solar-color-icon-primary)',
+        },
       },
       '& .SolarContextMenuItem-leadingIcon': {
         color: 'var(--solar-color-icon-feedback-danger)',

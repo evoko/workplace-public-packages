@@ -40,9 +40,3 @@ set:
   next.base.height:
     none: true
     reason: As the previous arrow's, its own.
-  previous.base.variant.state:
-    keyword: disabled
-    reason: >-
-      Figma draws the previous arrow enabled on the first page, where the description disables it
-      there ("Disable prev/next at the boundaries rather than hiding them"): the code disables it,
-      and the design review asks SOLAR to draw it so.

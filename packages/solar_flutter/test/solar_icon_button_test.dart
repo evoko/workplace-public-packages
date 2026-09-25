@@ -1,3 +1,5 @@
+import 'dart:ui' show Tristate;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/solar_flutter.dart';
@@ -160,5 +162,51 @@ void main() {
       expect(face(tester).color, light.actionPrimaryBgDisabled);
       expect(find.byType(SolarSpinner), findsNothing);
     });
+
+    testWidgets(
+      'is a toggle only where given active: its active colours when on, selected for a reader, as Flutter’s own',
+      (tester) async {
+        final handle = tester.ensureSemantics();
+        await pump(
+          tester,
+          SolarIconButton(
+            onPressed: () {},
+            icon: icon,
+            semanticLabel: 'Bold',
+            active: true,
+          ),
+        );
+        // Figma's active state, the persistent on state: the pressed colours at rest.
+        expect(face(tester).color, light.actionPrimaryBgActive);
+        expect(
+          tester.getSemantics(find.bySemanticsLabel('Bold')),
+          matchesSemantics(
+            label: 'Bold',
+            isButton: true,
+            isEnabled: true,
+            hasEnabledState: true,
+            isFocusable: true,
+            hasTapAction: true,
+            hasFocusAction: true,
+            hasSelectedState: true,
+            isSelected: true,
+          ),
+        );
+        await pump(
+          tester,
+          SolarIconButton(onPressed: () {}, icon: icon, semanticLabel: 'Add'),
+        );
+        // No toggle: it has no selected state at all.
+        expect(
+          tester
+              .getSemantics(find.bySemanticsLabel('Add'))
+              .getSemanticsData()
+              .flagsCollection
+              .isSelected,
+          Tristate.none,
+        );
+        handle.dispose();
+      },
+    );
   });
 }

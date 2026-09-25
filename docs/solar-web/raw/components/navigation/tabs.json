@@ -194,6 +194,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "3414:51",
           "size": [
             138,
             40
@@ -205,10 +206,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=default",
+          "id": "3414:31",
           "size": [
             118,
             32
@@ -274,6 +277,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "3414:55",
           "size": [
             138,
             40
@@ -307,6 +311,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "3414:35",
           "size": [
             118,
             32
@@ -381,6 +386,7 @@
         },
         {
           "variant": "size=md, state=selected",
+          "id": "3414:59",
           "size": [
             138,
             40
@@ -444,6 +450,7 @@
         },
         {
           "variant": "size=sm, state=selected",
+          "id": "3414:39",
           "size": [
             118,
             32
@@ -544,12 +551,13 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "3414:63",
           "size": [
             138,
             40
           ],
           "strokes": [
-            "{Spatial:border/strong}"
+            "{Color:border/strong}"
           ],
           "effect": "shadow/focus/default",
           "textFills": [
@@ -563,7 +571,7 @@
             "changed": {
               "/": {
                 "strokes": [
-                  "{Spatial:border/strong}"
+                  "{Color:border/strong}"
                 ],
                 "strokeWeight": "mixed",
                 "strokeWeights": [
@@ -609,12 +617,13 @@
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "3414:43",
           "size": [
             118,
             32
           ],
           "strokes": [
-            "{Spatial:border/strong}"
+            "{Color:border/strong}"
           ],
           "effect": "shadow/focus/default",
           "textFills": [
@@ -636,7 +645,7 @@
                   ]
                 },
                 "strokes": [
-                  "{Spatial:border/strong}"
+                  "{Color:border/strong}"
                 ],
                 "strokeWeight": "mixed",
                 "strokeWeights": [
@@ -711,6 +720,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "3414:67",
           "size": [
             138,
             40
@@ -756,6 +766,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "3414:47",
           "size": [
             118,
             32
@@ -1201,6 +1212,7 @@
       "variants": [
         {
           "variant": "size=sm",
+          "id": "3645:1370",
           "size": [
             456,
             32
@@ -1222,10 +1234,37 @@
             "Counter",
             "LeadingIcon",
             "TrailingIcon"
+          ],
+          "hiddenPaths": [
+            "/Tabs/Tab Item#2/Counter",
+            "/Tabs/Tab Item#2/LeadingIcon",
+            "/Tabs/Tab Item#2/TrailingIcon",
+            "/Tabs/Tab Item#3/Counter",
+            "/Tabs/Tab Item#3/LeadingIcon",
+            "/Tabs/Tab Item#3/TrailingIcon",
+            "/Tabs/Tab Item#4/Counter",
+            "/Tabs/Tab Item#4/LeadingIcon",
+            "/Tabs/Tab Item#4/TrailingIcon",
+            "/Tabs/Tab Item#5/Counter",
+            "/Tabs/Tab Item#5/LeadingIcon",
+            "/Tabs/Tab Item#5/TrailingIcon",
+            "/Tabs/Tab Item#6/Counter",
+            "/Tabs/Tab Item#6/LeadingIcon",
+            "/Tabs/Tab Item#6/TrailingIcon",
+            "/Tabs/Tab Item#7/Counter",
+            "/Tabs/Tab Item#7/LeadingIcon",
+            "/Tabs/Tab Item#7/TrailingIcon",
+            "/Tabs/Tab Item#8/Counter",
+            "/Tabs/Tab Item#8/LeadingIcon",
+            "/Tabs/Tab Item#8/TrailingIcon",
+            "/Tabs/Tab Item/Counter",
+            "/Tabs/Tab Item/LeadingIcon",
+            "/Tabs/Tab Item/TrailingIcon"
           ]
         },
         {
           "variant": "size=md",
+          "id": "6165:12201",
           "size": [
             456,
             40

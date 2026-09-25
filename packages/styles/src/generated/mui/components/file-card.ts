@@ -89,8 +89,8 @@ export const solarFileCardStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarFileCard--iconMore > svg': {
@@ -218,10 +218,6 @@ export const solarFileCardStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-md)',
     },
-    '& .SolarFileCard--iconPlus': {
-      width: 'var(--solar-icon-lg)',
-      height: 'var(--solar-icon-lg)',
-    },
     '& .SolarFileCard-label': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -229,6 +225,10 @@ export const solarFileCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+    },
+    '& .SolarFileCard--iconPlus': {
+      width: 'var(--solar-icon-lg)',
+      height: 'var(--solar-icon-lg)',
     },
   },
   sizes: {},
@@ -250,11 +250,11 @@ export const solarFileCardStyles = {
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarFileCard--iconPlus': {
-        color: 'var(--solar-color-icon-tertiary)',
-      },
       '& .SolarFileCard-label': {
         color: 'var(--solar-color-text-primary)',
+      },
+      '& .SolarFileCard--iconPlus': {
+        color: 'var(--solar-color-icon-tertiary)',
       },
     },
   },
@@ -368,6 +368,18 @@ export const solarFileCardComposition = {
       },
     },
   },
+  label: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'type=create': {
+        default: {
+          present: true,
+        },
+      },
+    },
+  },
   iconPlus: {
     base: {
       present: false,
@@ -378,18 +390,6 @@ export const solarFileCardComposition = {
         default: {
           present: true,
           'variant.solid': 'false',
-        },
-      },
-    },
-  },
-  label: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'type=create': {
-        default: {
-          present: true,
         },
       },
     },

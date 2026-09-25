@@ -4,16 +4,16 @@
 
 ## Component set: Toggle
 
-Binary on/off switch. 6 variants: selected (false, true) × state (default, hover, disabled). Commits on click — no confirm. Represents persistent state, not a transient action (use Button for the latter). The on/off affordance reads via position AND color so the state is not carried by color alone (WCAG 1.4.1). For two labeled states, use Segmented Control.
+Binary on/off switch. 8 variants: selected (false, true) × state (default, hover, focus, disabled). Commits on click — no confirm. focus rings the track with shadow/focus/default. Represents persistent state, not a transient action (use Button for the latter). The on/off state reads via position AND colour (WCAG 1.4.1). For two labelled states use Segmented Control.
 
 ### Props
 
-| Prop       | Type    | Options / default              |
-| ---------- | ------- | ------------------------------ |
-| `selected` | variant | **false** · true               |
-| `state`    | variant | **default** · hover · disabled |
+| Prop       | Type    | Options / default                      |
+| ---------- | ------- | -------------------------------------- |
+| `selected` | variant | **false** · true                       |
+| `state`    | variant | **default** · hover · disabled · focus |
 
-Default variant: `selected=false, state=default` · 6 variants · default size 32×18px
+Default variant: `selected=false, state=default` · 8 variants · default size 32×18px
 
 ### Anatomy (default variant)
 
@@ -27,21 +27,23 @@ Default variant: `selected=false, state=default` · 6 variants · default size 3
 | Role         | Tokens                                                                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Fills        | `color.action.primary.bg.default`, `color.action.primary.bg.disabled`, `color.action.primary.bg.hover`, `color.action.primary.icon.default`, `color.surface.muted` |
-| Strokes      | `color.border.medium`, `color.border.subtle`                                                                                                                       |
+| Strokes      | `color.border.feedback.focus.strong`, `color.border.medium`, `color.border.subtle`                                                                                 |
 | Radius       | `radius.pill`                                                                                                                                                      |
 | Border width | `border.default`                                                                                                                                                   |
-| Effects      | `shadow/control`                                                                                                                                                   |
+| Effects      | `shadow/control`, `shadow/focus/default`                                                                                                                           |
 
 ### Variant matrix
 
-| selected | state    | size  | fill                               | stroke                | effect | text | icon |
-| -------- | -------- | ----- | ---------------------------------- | --------------------- | ------ | ---- | ---- |
-| false    | default  | 32×18 | `color.surface.muted`              | `color.border.subtle` |        |      |      |
-| false    | hover    | 32×18 | `color.surface.muted`              | `color.border.medium` |        |      |      |
-| false    | disabled | 32×18 | `color.surface.muted`              | `color.border.subtle` |        |      |      |
-| true     | default  | 32×18 | `color.action.primary.bg.default`  | `color.border.subtle` |        |      |      |
-| true     | hover    | 32×18 | `color.action.primary.bg.hover`    | `color.border.medium` |        |      |      |
-| true     | disabled | 32×18 | `color.action.primary.bg.disabled` | `color.border.subtle` |        |      |      |
+| selected | state    | size  | fill                               | stroke                               | effect                 | text | icon |
+| -------- | -------- | ----- | ---------------------------------- | ------------------------------------ | ---------------------- | ---- | ---- |
+| false    | default  | 32×18 | `color.surface.muted`              | `color.border.subtle`                |                        |      |      |
+| false    | hover    | 32×18 | `color.surface.muted`              | `color.border.medium`                |                        |      |      |
+| false    | disabled | 32×18 | `color.surface.muted`              | `color.border.subtle`                |                        |      |      |
+| true     | default  | 32×18 | `color.action.primary.bg.default`  | `color.border.subtle`                |                        |      |      |
+| true     | hover    | 32×18 | `color.action.primary.bg.hover`    | `color.border.medium`                |                        |      |      |
+| true     | disabled | 32×18 | `color.action.primary.bg.disabled` | `color.border.subtle`                |                        |      |      |
+| false    | focus    | 32×18 | `color.surface.muted`              | `color.border.feedback.focus.strong` | `shadow/focus/default` |      |      |
+| true     | focus    | 32×18 | `color.action.primary.bg.default`  | `color.border.feedback.focus.strong` | `shadow/focus/default` |      |      |
 
 ## Documentation card
 

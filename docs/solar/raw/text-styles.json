@@ -1,7 +1,7 @@
 {
   "_note": "Text style definitions read over REST by fetch-rest.mjs, for the properties the Plugin API capture does not record: textDecoration (NONE | UNDERLINE | STRIKETHROUGH) and textCase (ORIGINAL | UPPER | LOWER | TITLE | SMALL_CAPS | SMALL_CAPS_FORCED). Font, size, line height and letter spacing (px) are kept to cross-check the capture. Merged into css-contract.json by tokens/build-derived.mjs.",
   "file": "Y21OGpk2z6ig9cRMc5cl9L",
-  "version": "2402389239778582681",
+  "version": "2403083104633531037",
   "styles": {
     "body/2xs/bold": {
       "textDecoration": "NONE",

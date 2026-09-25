@@ -4,7 +4,7 @@
 
 ## Component set: Toast
 
-Transient notification for background operation results. Appears top-right or bottom-right, auto-dismisses after 4–7s (danger status longer). Variants: neutral, success, warning, danger, info. Use for async operation outcomes ('File saved', 'Connection lost'). Pair with a StatusIndicator icon and optional action ('Undo'). Never use for critical errors requiring confirmation — use Dialog. See also: Alert for inline callouts, Banner for persistent page-level messages.
+Transient notification for background operation results. Appears top-right or bottom-right and auto-dismisses after 4–7s (danger longer). 5 variants: status (neutral, success, warning, danger, info); each carries a standard status Tag of its own status. Props: show Action, show Chevron. Use for async outcomes (“File saved”, “Connection lost”); never for critical errors that need confirmation — use Dialog. See also: Alert for inline callouts, Banner for page-level messages.
 
 ### Props
 
@@ -20,7 +20,7 @@ Default variant: `status=success` · 5 variants · default size 264×32px
 
 - **status=success** · component · row gap 8 pad 4/12/4/4 HUG/HUG · 264×32  
   fill `color.surface.feedback.success.subtle` · stroke `color.border.feedback.success.subtle` 1px · effect `shadow/raised` · itemSpacing `inset.xs` · padding `inset.2xs`, `inset.sm` · strokeWeight `border.default` · radius `radius.pill`
-  - **Tag** · instance of **Tag** (status=neutral, type=pill) · row gap 8 pad 0/12/0/8 HUG/FIXED · 67×24  
+  - **Tag** · instance of **Tag** (status=success, type=status, invert=false) · row gap 8 pad 0/12/0/8 HUG/FIXED · 67×24  
     fill `color.surface.overlay` · stroke `color.border.feedback.success.subtle` 1px · itemSpacing `inset.xs` · padding `inset.xs`, `inset.none`, `inset.sm` · strokeWeight `border.default` · radius `radius.pill`
   - **Message goes here** · text `body/sm/medium` "Message goes here" · HUG/HUG · 109×9  
     fill `color.text.primary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.500`

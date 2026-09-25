@@ -150,6 +150,7 @@
       "variants": [
         {
           "variant": "expanded=false, hover=false",
+          "id": "3161:3",
           "size": [
             320,
             48
@@ -167,10 +168,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "expanded=true, hover=false",
+          "id": "3167:2",
           "size": [
             320,
             70
@@ -201,6 +204,7 @@
               {
                 "path": "/Header/Icon/ChevronUp",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ChevronUp",
                   "type": "INSTANCE",
@@ -224,6 +228,7 @@
               {
                 "path": "/Content",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Content",
                   "type": "SLOT",
@@ -251,6 +256,7 @@
               {
                 "path": "/Content/Content",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Content",
                   "type": "TEXT",
@@ -280,6 +286,7 @@
         },
         {
           "variant": "expanded=false, hover=true",
+          "id": "3188:3787",
           "size": [
             320,
             48
@@ -320,6 +327,7 @@
         },
         {
           "variant": "expanded=true, hover=true",
+          "id": "3188:3792",
           "size": [
             320,
             70
@@ -353,6 +361,7 @@
               {
                 "path": "/Header/Icon/ChevronUp",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ChevronUp",
                   "type": "INSTANCE",
@@ -376,6 +385,7 @@
               {
                 "path": "/Content",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Content",
                   "type": "SLOT",
@@ -403,6 +413,7 @@
               {
                 "path": "/Content/Content",
                 "parent": "/Content",
+                "index": 0,
                 "layer": {
                   "name": "Content",
                   "type": "TEXT",

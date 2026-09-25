@@ -45,7 +45,11 @@ const valueOf = (kind, rule) =>
   kind === 'set'
     ? (rule.token ?? rule.keyword ?? (rule.none ? 'none' : '?'))
     : kind === 'bind'
-      ? `${rule.literal} → ${rule.token ?? JSON.stringify(rule.tokens)}`
+      ? rule.tokens
+        ? Object.entries(rule.tokens)
+            .map(([literal, token]) => `${literal} → ${token}`)
+            .join(', ')
+        : `${rule.literal} → ${rule.token}`
       : `${(rule.values ?? ['any']).join(', ')}`;
 
 /**

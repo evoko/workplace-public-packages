@@ -162,6 +162,7 @@
       "variants": [
         {
           "variant": "series=single",
+          "id": "7308:3",
           "size": [
             77,
             50
@@ -176,10 +177,12 @@
           "textFills": [
             "{Color:text/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "series=multi",
+          "id": "7308:8",
           "size": [
             156,
             84
@@ -216,6 +219,7 @@
               {
                 "path": "/Frame/Frame",
                 "parent": "/Frame",
+                "index": 0,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -243,6 +247,7 @@
               {
                 "path": "/Frame/Frame/StatusIndicator",
                 "parent": "/Frame/Frame",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -279,6 +284,7 @@
               {
                 "path": "/Frame/Frame/Label",
                 "parent": "/Frame/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -303,6 +309,7 @@
               {
                 "path": "/Frame#2",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -330,6 +337,7 @@
               {
                 "path": "/Frame#2/Frame",
                 "parent": "/Frame#2",
+                "index": 0,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -357,6 +365,7 @@
               {
                 "path": "/Frame#2/Frame/StatusIndicator",
                 "parent": "/Frame#2/Frame",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -393,6 +402,7 @@
               {
                 "path": "/Frame#2/Frame/Label",
                 "parent": "/Frame#2/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -417,6 +427,7 @@
               {
                 "path": "/Frame#2/Value",
                 "parent": "/Frame#2",
+                "index": 1,
                 "layer": {
                   "name": "Value",
                   "type": "TEXT",
@@ -441,6 +452,7 @@
               {
                 "path": "/Frame#3",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -468,6 +480,7 @@
               {
                 "path": "/Frame#3/Frame",
                 "parent": "/Frame#3",
+                "index": 0,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -495,6 +508,7 @@
               {
                 "path": "/Frame#3/Frame/StatusIndicator",
                 "parent": "/Frame#3/Frame",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -531,6 +545,7 @@
               {
                 "path": "/Frame#3/Frame/Label",
                 "parent": "/Frame#3/Frame",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -555,6 +570,7 @@
               {
                 "path": "/Frame#3/Value",
                 "parent": "/Frame#3",
+                "index": 1,
                 "layer": {
                   "name": "Value",
                   "type": "TEXT",

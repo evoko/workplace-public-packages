@@ -190,14 +190,17 @@
       "variants": [
         {
           "variant": "size=sm, state=default",
+          "id": "4583:80",
           "size": [
             26,
             33
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "4583:89",
           "size": [
             26,
             33
@@ -239,6 +242,7 @@
         },
         {
           "variant": "size=sm, state=pressed",
+          "id": "4583:98",
           "size": [
             26,
             33
@@ -280,6 +284,7 @@
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "4583:107",
           "size": [
             26,
             33
@@ -295,6 +300,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "4583:116",
           "size": [
             26,
             33
@@ -336,6 +342,7 @@
         },
         {
           "variant": "size=md, state=default",
+          "id": "4583:125",
           "size": [
             28,
             36
@@ -395,6 +402,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "4583:134",
           "size": [
             28,
             36
@@ -472,6 +480,7 @@
         },
         {
           "variant": "size=md, state=pressed",
+          "id": "4583:143",
           "size": [
             28,
             36
@@ -549,6 +558,7 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "4583:152",
           "size": [
             28,
             36
@@ -612,6 +622,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "4583:161",
           "size": [
             28,
             36

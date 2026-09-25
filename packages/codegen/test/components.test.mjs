@@ -514,9 +514,18 @@ describe('states drawn as false/true axes', () => {
   });
 
   it('reads a variant with two states at once as the stronger, and says so once', () => {
-    const found = checkbox.deviations.filter(
-      (d) => d.kind === 'compound-state',
-    );
+    // Figma drew the disabled mixed box under the pointer (hover=true) until 2026-09-25; the set
+    // as it was, to read it.
+    const loaded = structuredClone(loadComponent(catalog, 'Checkbox'));
+    const was =
+      'checked=true, disabled=true, hover=true, mixed=true, focus=false';
+    for (const v of loaded.set.variants)
+      if (v.variant === was.replace('hover=true', 'hover=false'))
+        v.variant = was;
+    const found = buildComponentSpec(loaded, {
+      names,
+      fileVersion: catalog.fileVersion,
+    }).deviations.filter((d) => d.kind === 'compound-state');
     expect(found).toHaveLength(1);
     expect(found[0]).toMatchObject({
       token: 'component.checkbox.state#compound',

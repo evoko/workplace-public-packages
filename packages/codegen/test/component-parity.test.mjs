@@ -283,6 +283,10 @@ describe('component parity: the recipe', () => {
       v.startsWith('--solar-type-font-family-'),
     );
     for (const f of families) expected.add(f);
+    // The 44 × 44 target is SOLAR's size/target/min, which the descriptor's resets name
+    // (src/components/shared/target.mjs), not the IR.
+    if (used.has('--solar-size-target-min'))
+      expected.add('--solar-size-target-min');
     expect(
       [...used].filter((v) => !expected.has(v)),
       'in MUI, not implied by the IR',
@@ -580,6 +584,14 @@ describe('component parity: the React and Flutter widgets', () => {
           continue;
         }
         if (def.type === 'color' || member !== prop) continue;
+        // A toggle's on state (Icon Button's active) is null where the control is no toggle, as
+        // Flutter's own isSelected is: a nullable parameter, no default of its own.
+        if (
+          def.type === 'boolean' &&
+          flutter[prop] == null &&
+          new RegExp(`final bool\\? ${prop};`).test(flutterSource)
+        )
+          continue;
         // An enum value as the emitter spells it in Dart (`top-search` is `topSearch`).
         const expected =
           def.type === 'boolean'

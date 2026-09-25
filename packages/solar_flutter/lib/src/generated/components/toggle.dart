@@ -39,13 +39,15 @@ abstract final class SolarToggleRecipe {
     'root.borderColor|appearance|selected=true|hover': 't:color.border.medium',
     'root.background|appearance|selected=true|disabled':
         't:color.action.primary.bg.disabled',
-    'root.shadow|appearance|selected=true|focus': 't:shadow.focus.default',
     'root.background|appearance|selected=true|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|appearance|selected=true|focus': 't:color.border.subtle',
+    'root.borderColor|appearance|selected=true|focus':
+        't:color.border.feedback.focus.strong',
+    'root.shadow|appearance|selected=true|focus': 't:shadow.focus.default',
     'root.borderColor|appearance|selected=false|hover': 't:color.border.medium',
+    'root.borderColor|appearance|selected=false|focus':
+        't:color.border.feedback.focus.strong',
     'root.shadow|appearance|selected=false|focus': 't:shadow.focus.default',
-    'root.borderColor|appearance|selected=false|focus': 't:color.border.subtle',
     'thumb.present|base': 'b:true',
     'thumb.background|base': 't:color.action.primary.icon.default',
     'thumb.borderColor|base': 't:color.border.subtle',
@@ -72,6 +74,7 @@ abstract final class SolarToggleRecipe {
     'thumb.borderColor|appearance|selected=true|hover': 't:color.border.medium',
     'thumb.x|appearance|selected=true|hover': 'px:17',
     'thumb.x|appearance|selected=true|default': 'px:17',
+    'thumb.x|appearance|selected=true|focus': 'px:17',
     'thumb.borderColor|appearance|selected=true|focus': 't:color.border.subtle',
   };
 
@@ -124,6 +127,7 @@ abstract final class SolarToggleRecipe {
       't:color.action.primary.bg.hover' => c.actionPrimaryBgHover,
       't:color.action.primary.icon.default' => c.actionPrimaryIconDefault,
       't:color.action.primary.icon.disabled' => c.actionPrimaryIconDisabled,
+      't:color.border.feedback.focus.strong' => c.borderFeedbackFocusStrong,
       't:color.border.medium' => c.borderMedium,
       't:color.border.subtle' => c.borderSubtle,
       't:color.surface.muted' => c.surfaceMuted,

@@ -15,7 +15,7 @@
       "default": false
     }
   },
-  "states": ["default", "hover", "focus"],
+  "states": ["default", "focus", "hover"],
   "slots": {
     "iconOutline": {
       "layer": "/Icon/Home",
@@ -59,65 +59,65 @@
       "base": {
         "present": {
           "value": true,
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "background": {
           "none": true,
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "borderColor": {
           "none": true,
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "shadow": {
           "none": true,
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "radius": {
           "token": "radius.control",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "borderWidth": {
           "none": true,
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "direction": {
           "keyword": "HORIZONTAL",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "align": {
           "keyword": "CENTER/CENTER",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "gap": {
           "token": "inset.none",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "paddingTop": {
           "token": "inset.none",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "paddingRight": {
           "token": "inset.none",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "paddingBottom": {
           "token": "inset.none",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "paddingLeft": {
           "token": "inset.none",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "width": {
           "literal": 40,
-          "from": "selected=false, hover=false, expanded=false",
+          "from": "selected=false, hover=false, expanded=false, focus=false",
           "allowed": "Collapsed, the item is as wide as it is tall, a 40px square around its icon, as its description says (\"40×40 collapsed (icon-only)\"); expanded, it fills its sidebar."
         },
         "height": {
-          "literal": 40,
-          "from": "selected=false, hover=false, expanded=false",
-          "allowed": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). An item is drawn 40 tall, as its description says."
+          "token": "size.control.md",
+          "from": "overlay",
+          "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
         }
       },
       "size": {},
@@ -126,17 +126,13 @@
           "hover": {
             "background": {
               "token": "color.surface.hover",
-              "from": "selected=false, hover=true, expanded=false"
+              "from": "selected=false, hover=true, expanded=false, focus=false"
             }
           },
           "focus": {
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
+              "from": "selected=false, hover=false, expanded=false, focus=true"
             }
           }
         },
@@ -144,21 +140,27 @@
           "hover": {
             "background": {
               "token": "color.surface.hover",
-              "from": "selected=false, hover=true, expanded=true"
+              "from": "selected=false, hover=true, expanded=true, focus=false"
+            }
+          },
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "selected=false, hover=false, expanded=true, focus=true"
             }
           },
           "default": {
             "gap": {
               "token": "inset.sm",
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             },
             "paddingRight": {
               "token": "inset.sm",
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             },
             "paddingLeft": {
               "token": "inset.sm",
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             },
             "width": {
               "keyword": "FILL",
@@ -168,39 +170,29 @@
                 "literal": 182
               }
             }
-          },
-          "focus": {
-            "shadow": {
-              "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
-            }
           }
         },
         "selected=true, expanded=false": {
           "default": {
             "background": {
               "token": "color.surface.active",
-              "from": "selected=true, hover=false, expanded=false"
+              "from": "selected=true, hover=false, expanded=false, focus=false"
             }
           },
           "hover": {
             "background": {
               "token": "color.surface.active",
-              "from": "selected=true, hover=true, expanded=false"
+              "from": "selected=true, hover=true, expanded=false, focus=false"
             }
           },
           "focus": {
+            "background": {
+              "token": "color.surface.active",
+              "from": "selected=true, hover=false, expanded=false, focus=true"
+            },
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
+              "from": "selected=true, hover=false, expanded=false, focus=true"
             }
           }
         },
@@ -208,19 +200,19 @@
           "default": {
             "background": {
               "token": "color.surface.active",
-              "from": "selected=true, hover=false, expanded=true"
+              "from": "selected=true, hover=false, expanded=true, focus=false"
             },
             "gap": {
               "token": "inset.sm",
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             },
             "paddingRight": {
               "token": "inset.sm",
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             },
             "paddingLeft": {
               "token": "inset.sm",
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             },
             "width": {
               "keyword": "FILL",
@@ -234,17 +226,17 @@
           "hover": {
             "background": {
               "token": "color.surface.active",
-              "from": "selected=true, hover=true, expanded=true"
+              "from": "selected=true, hover=true, expanded=true, focus=false"
             }
           },
           "focus": {
+            "background": {
+              "token": "color.surface.active",
+              "from": "selected=true, hover=false, expanded=true, focus=true"
+            },
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
+              "from": "selected=true, hover=false, expanded=true, focus=true"
             }
           }
         }
@@ -254,19 +246,19 @@
       "base": {
         "present": {
           "value": true,
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "component": {
           "keyword": "Icon/Home",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "variant.solid": {
           "keyword": "false",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "width": {
           "token": "icon.md",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "height": {
           "token": "icon.md",
@@ -275,7 +267,7 @@
         },
         "color": {
           "token": "color.icon.secondary",
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         }
       },
       "size": {},
@@ -284,21 +276,31 @@
           "default": {
             "variant.solid": {
               "keyword": "true",
-              "from": "selected=true, hover=false, expanded=false"
+              "from": "selected=true, hover=false, expanded=false, focus=false"
             },
             "color": {
               "token": "color.icon.primary",
-              "from": "selected=true, hover=false, expanded=false"
+              "from": "selected=true, hover=false, expanded=false, focus=false"
             }
           },
           "hover": {
             "variant.solid": {
               "keyword": "true",
-              "from": "selected=true, hover=true, expanded=false"
+              "from": "selected=true, hover=true, expanded=false, focus=false"
             },
             "color": {
               "token": "color.icon.primary",
-              "from": "selected=true, hover=true, expanded=false"
+              "from": "selected=true, hover=true, expanded=false, focus=false"
+            }
+          },
+          "focus": {
+            "variant.solid": {
+              "keyword": "true",
+              "from": "selected=true, hover=false, expanded=false, focus=true"
+            },
+            "color": {
+              "token": "color.icon.primary",
+              "from": "selected=true, hover=false, expanded=false, focus=true"
             }
           }
         },
@@ -306,21 +308,31 @@
           "default": {
             "variant.solid": {
               "keyword": "true",
-              "from": "selected=true, hover=false, expanded=true"
+              "from": "selected=true, hover=false, expanded=true, focus=false"
             },
             "color": {
               "token": "color.icon.primary",
-              "from": "selected=true, hover=false, expanded=true"
+              "from": "selected=true, hover=false, expanded=true, focus=false"
             }
           },
           "hover": {
             "variant.solid": {
               "keyword": "true",
-              "from": "selected=true, hover=true, expanded=true"
+              "from": "selected=true, hover=true, expanded=true, focus=false"
             },
             "color": {
               "token": "color.icon.primary",
-              "from": "selected=true, hover=true, expanded=true"
+              "from": "selected=true, hover=true, expanded=true, focus=false"
+            }
+          },
+          "focus": {
+            "variant.solid": {
+              "keyword": "true",
+              "from": "selected=true, hover=false, expanded=true, focus=true"
+            },
+            "color": {
+              "token": "color.icon.primary",
+              "from": "selected=true, hover=false, expanded=true, focus=true"
             }
           }
         },
@@ -328,7 +340,7 @@
           "hover": {
             "color": {
               "token": "color.icon.primary",
-              "from": "selected=false, hover=true, expanded=false"
+              "from": "selected=false, hover=true, expanded=false, focus=false"
             }
           }
         },
@@ -336,7 +348,7 @@
           "hover": {
             "color": {
               "token": "color.icon.primary",
-              "from": "selected=false, hover=true, expanded=true"
+              "from": "selected=false, hover=true, expanded=true, focus=false"
             }
           }
         }
@@ -346,15 +358,15 @@
       "base": {
         "present": {
           "value": false,
-          "from": "selected=false, hover=false, expanded=false"
+          "from": "selected=false, hover=false, expanded=false, focus=false"
         },
         "typography": {
           "token": "typography.label.md",
-          "from": "selected=false, hover=false, expanded=true"
+          "from": "selected=false, hover=false, expanded=true, focus=false"
         },
         "width": {
           "keyword": "FILL",
-          "from": "selected=false, hover=false, expanded=true"
+          "from": "selected=false, hover=false, expanded=true, focus=false"
         }
       },
       "size": {},
@@ -363,21 +375,31 @@
           "default": {
             "present": {
               "value": true,
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             },
             "color": {
               "token": "color.text.secondary",
-              "from": "selected=false, hover=false, expanded=true"
+              "from": "selected=false, hover=false, expanded=true, focus=false"
             }
           },
           "hover": {
             "present": {
               "value": true,
-              "from": "selected=false, hover=true, expanded=true"
+              "from": "selected=false, hover=true, expanded=true, focus=false"
             },
             "color": {
               "token": "color.text.primary",
-              "from": "selected=false, hover=true, expanded=true"
+              "from": "selected=false, hover=true, expanded=true, focus=false"
+            }
+          },
+          "focus": {
+            "present": {
+              "value": true,
+              "from": "selected=false, hover=false, expanded=true, focus=true"
+            },
+            "color": {
+              "token": "color.text.secondary",
+              "from": "selected=false, hover=false, expanded=true, focus=true"
             }
           }
         },
@@ -385,21 +407,31 @@
           "default": {
             "present": {
               "value": true,
-              "from": "selected=true, hover=false, expanded=true"
+              "from": "selected=true, hover=false, expanded=true, focus=false"
             },
             "color": {
               "token": "color.text.primary",
-              "from": "selected=true, hover=false, expanded=true"
+              "from": "selected=true, hover=false, expanded=true, focus=false"
             }
           },
           "hover": {
             "present": {
               "value": true,
-              "from": "selected=true, hover=true, expanded=true"
+              "from": "selected=true, hover=true, expanded=true, focus=false"
             },
             "color": {
               "token": "color.text.primary",
-              "from": "selected=true, hover=true, expanded=true"
+              "from": "selected=true, hover=true, expanded=true, focus=false"
+            }
+          },
+          "focus": {
+            "present": {
+              "value": true,
+              "from": "selected=true, hover=false, expanded=true, focus=true"
+            },
+            "color": {
+              "token": "color.text.primary",
+              "from": "selected=true, hover=false, expanded=true, focus=true"
             }
           }
         }
@@ -407,15 +439,15 @@
     }
   },
   "docs": {
-    "description": "Nav Item — generic interactive nav primitive used in both Sidebar and Top Bar (and any other nav surface).\n\nAnatomy: 40×40 collapsed (icon-only) / full-width × 40 expanded (icon + label). 20×20 icon slot.\n\nVariant axes (lowercase):\n  selected — true/false — drives outline (false) ↔ solid (true) icon swap\n  hover    — true/false — hover background\n  expanded — true/false — collapsed (icon-only) vs expanded (icon + label)\n\nIcon swap (two-property pattern, required by Figma constraint — see auto-memory feedback_figma_instance_swap_variant_override.md):\n  iconOutline — INSTANCE_SWAP. Bound to selected=false variants.\n  iconSolid   — INSTANCE_SWAP. Bound to selected=true variants.\n  Designers set BOTH to matching outline+solid pair of one Icon/* metaphor.\n\nConsumers: Sidebar (Layout & Shell), Top Bar (Layout & Shell). 540+ instances across views.\n\n— KNOWN GAPS (1.0 promotion gate) —\nClass D states incomplete. Per CLAUDE.md §7 Class D requires {default, hover, focus, disabled, selected} as MUTUALLY EXCLUSIVE states (single `state` axis with 5 values), but current structure has selected/hover as INDEPENDENT booleans. Adding focus+disabled as booleans would be conceptually wrong (32-variant matrix of misleading state combinations). Correct fix is a structural restructure to a single `state` axis — breaking change requiring instance-override migration script. Designer-led.\n\nOptical fineness pass at 12/16/20px on icon ramps. Strokes scale mathematically (1.5px × scale = 0.75 at size=12) which is too thin for crisp small-size rendering. Each size needs hand-tuned per-size stroke weight. Designer-led.\n\nRenamed from Sidebar Item 2026-05-04. Component key b7d724b6… preserved.",
+    "description": "Nav Item — generic interactive nav primitive used in Sidebar and Top Bar.\n\nAnatomy: 40×40 collapsed (icon-only) / full-width × 40 expanded (icon + label). 20×20 icon slot.\n\n12 variants — axes: selected (outline ↔ solid icon), hover, expanded (icon-only vs icon + label), focus (shadow/focus/default ring; drawn on rest rows). A link where it navigates; the current page carries aria-current=\"page\".\n\nIcon swap: iconOutline (selected=false) and iconSolid (selected=true) — set both to the matching pair of one Icon/* metaphor.\n\nKNOWN GAP: Class D wants one mutually exclusive state axis (default, hover, focus, disabled, selected); moving to it is a breaking restructure, designer-led.",
     "figmaIssues": []
   },
   "provenance": {
     "page": "components/navigation",
     "pageId": "6481:69",
     "figmaNode": "2663:774",
-    "defaultVariant": "selected=false, hover=false, expanded=false",
-    "fileVersion": "2402761872194862831"
+    "defaultVariant": "selected=false, hover=false, expanded=false, focus=false",
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/nav-item.yaml",
@@ -451,9 +483,9 @@
         "reason": "Same value, governed token; the icon's width is already bound to it."
       },
       {
-        "rule": "set",
-        "at": "root.appearance.selected=false, expanded=false.focus.shadow",
-        "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it."
+        "rule": "bind",
+        "at": "root.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
       },
       {
         "rule": "set",
@@ -462,28 +494,8 @@
       },
       {
         "rule": "set",
-        "at": "root.appearance.selected=false, expanded=true.focus.shadow",
-        "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.selected=true, expanded=false.focus.shadow",
-        "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it."
-      },
-      {
-        "rule": "set",
         "at": "root.appearance.selected=true, expanded=true.default.width",
         "reason": "As the unselected expanded item's, it spans its sidebar."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.selected=true, expanded=true.focus.shadow",
-        "reason": "Figma draws Nav Item no focus state, and its description argues against one as a boolean axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR to draw it."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "root.height",
-        "reason": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). An item is drawn 40 tall, as its description says."
       },
       {
         "rule": "allowLiteral",

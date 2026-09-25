@@ -65,14 +65,17 @@
       "variants": [
         {
           "variant": "trend=up, size=sm",
+          "id": "7312:2",
           "size": [
             115,
             32
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "trend=up, size=md",
+          "id": "7312:4",
           "size": [
             115,
             32
@@ -97,6 +100,7 @@
         },
         {
           "variant": "trend=down, size=sm",
+          "id": "7312:6",
           "size": [
             115,
             32
@@ -119,6 +123,7 @@
         },
         {
           "variant": "trend=down, size=md",
+          "id": "7312:8",
           "size": [
             115,
             32
@@ -146,6 +151,7 @@
         },
         {
           "variant": "trend=flat, size=sm",
+          "id": "7312:10",
           "size": [
             115,
             32
@@ -168,6 +174,7 @@
         },
         {
           "variant": "trend=flat, size=md",
+          "id": "7312:12",
           "size": [
             115,
             32

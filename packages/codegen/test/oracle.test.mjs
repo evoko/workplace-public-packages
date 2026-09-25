@@ -105,8 +105,9 @@ describe('the Button oracle', () => {
   it('excuses nothing no finding names, and every excuse names a real one', () => {
     const findings = new Set(button.deviations.map((d) => d.token));
     const excused = oracle.variants.flatMap((v) => v.excused ?? []);
-    // The three open axis findings: 1 + 8 + 9 variants.
-    expect(excused).toHaveLength(18);
+    // The two background axis findings, 8 + 9 variants (lg's disabled label, a third, is gone
+    // since 2026-09-25).
+    expect(excused).toHaveLength(17);
     for (const e of excused) expect(findings).toContain(e.finding);
     expect(
       variant('size=md, prio=primary, state=default, danger=false'),
@@ -160,23 +161,18 @@ describe('the Button oracle', () => {
 describe('the Spinner oracle', () => {
   const { oracle: spinner } = of('Spinner');
 
-  it('records a colour Figma binds to no colour as unreadable, excused by the overlay', () => {
+  it('reads the default indicator’s colour, which Figma binds to a colour since 2026-09-25', () => {
+    // Bound to a width variable until then: unreadable, and excused by an overlay set.
     const v = spinner.variants.find(
       (x) => x.figma === 'size=sm, style=default',
     );
     expect(v.props).toEqual({ size: 'sm', variant: 'default' });
-    expect(v.layers.indicator.borderColor).toBeNull();
+    expect(v.layers.indicator.borderColor).toBe('#000000cc');
     expect(
-      v.excused.filter(
+      (v.excused ?? []).filter(
         (e) => e.layer === 'indicator' && e.property === 'borderColor',
       ),
-    ).toEqual([
-      expect.objectContaining({
-        layer: 'indicator',
-        property: 'borderColor',
-        decision: 'set',
-      }),
-    ]);
+    ).toEqual([]);
     const inverse = spinner.variants.find(
       (x) => x.figma === 'size=sm, style=inverse',
     );

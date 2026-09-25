@@ -130,6 +130,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "4549:105",
           "size": [
             89,
             40
@@ -147,10 +148,12 @@
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=default",
+          "id": "4549:80",
           "size": [
             68,
             32
@@ -211,6 +214,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "4549:110",
           "size": [
             89,
             40
@@ -250,6 +254,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "4549:85",
           "size": [
             68,
             32
@@ -319,6 +324,7 @@
         },
         {
           "variant": "size=md, state=pressed",
+          "id": "4549:115",
           "size": [
             89,
             40
@@ -358,6 +364,7 @@
         },
         {
           "variant": "size=sm, state=pressed",
+          "id": "4549:90",
           "size": [
             68,
             32
@@ -427,6 +434,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "4549:125",
           "size": [
             89,
             40
@@ -466,6 +474,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "4549:100",
           "size": [
             68,
             32
@@ -535,6 +544,7 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "6043:121",
           "size": [
             89,
             40
@@ -562,6 +572,7 @@
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "6043:118",
           "size": [
             68,
             32
@@ -623,6 +634,7 @@
         },
         {
           "variant": "size=md, state=loading",
+          "id": "6044:236",
           "size": [
             48,
             40
@@ -640,6 +652,9 @@
           "hidden": [
             "Icon/ArrowLeft"
           ],
+          "hiddenPaths": [
+            "/Icon/ArrowLeft"
+          ],
           "overrides": {
             "changed": {
               "/Icon/ArrowLeft": {
@@ -650,6 +665,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -673,6 +689,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -684,6 +704,7 @@
         },
         {
           "variant": "size=sm, state=loading",
+          "id": "6044:228",
           "size": [
             32,
             32
@@ -700,6 +721,9 @@
           ],
           "hidden": [
             "Icon/ArrowLeft"
+          ],
+          "hiddenPaths": [
+            "/Icon/ArrowLeft"
           ],
           "overrides": {
             "changed": {
@@ -734,6 +758,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -757,6 +782,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }

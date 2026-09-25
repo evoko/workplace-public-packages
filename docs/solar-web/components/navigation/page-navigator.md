@@ -73,21 +73,21 @@ Linear prev/next pager for sequential content (wizards, docs, multi-step detail 
 
 - **PageNavigator** · component · row gap 16 pad 0/0/0/0 HUG/HUG · 298×36  
   itemSpacing `stack.md`
-  - **PrevButton** · instance of **PageNavButton** (direction=prev, state=default) · row gap 8 pad 0/12/0/12 FIXED/FIXED · 112×36  
-    fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · itemSpacing `stack.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
+  - **PrevButton** · instance of **PageNavButton** (direction=prev, state=disabled) · row gap 8 pad 0/12/0/12 FIXED/FIXED · 112×36  
+    fill `color.action.secondary.bg.disabled` · stroke `color.border.disabled` 1px · itemSpacing `stack.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
   - **PageIndicator** · text `body/md/medium` "1 of 10" · HUG/HUG · 42×10  
     fill `color.text.secondary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500` · prop characters←pageIndicator
   - **NextButton** · instance of **PageNavButton** (direction=next, state=default) · row gap 8 pad 0/12/0/12 FIXED/FIXED · 112×36  
-    fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
+    fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
 
 ### Tokens used
 
 | Role            | Tokens                                                                                            |
 | --------------- | ------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.secondary.bg.default`                                                               |
-| Strokes         | `color.border.medium`                                                                             |
+| Fills           | `color.action.secondary.bg.default`, `color.action.secondary.bg.disabled`                         |
+| Strokes         | `color.border.disabled`, `color.border.medium`                                                    |
 | Text color      | `color.text.secondary`                                                                            |
-| Spacing         | `inset.sm`, `stack.md`, `stack.xs`                                                                |
+| Spacing         | `inset.sm`, `inset.xs`, `stack.md`, `stack.xs`                                                    |
 | Radius          | `radius.control`                                                                                  |
 | Border width    | `border.default`                                                                                  |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.body.md`, `type.size.body.md` |

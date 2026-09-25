@@ -146,6 +146,7 @@
       "variants": [
         {
           "variant": "state=default, size=md",
+          "id": "5826:15688",
           "size": [
             240,
             40
@@ -163,10 +164,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=default, size=sm",
+          "id": "3773:238",
           "size": [
             200,
             32
@@ -194,15 +197,33 @@
                   "itemSpacing": "Spatial:inset/xs"
                 }
               },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
               "/Search": {
                 "textStyle": "body/sm/regular",
                 "size": [
-                  128,
+                  136,
                   9
                 ],
                 "vars": {
                   "lineHeight": "Type:line-height/body/sm",
                   "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Icon/Filter": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
                 }
               }
             }
@@ -210,6 +231,7 @@
         },
         {
           "variant": "state=hover, size=md",
+          "id": "5826:15692",
           "size": [
             240,
             40
@@ -218,7 +240,7 @@
             "{Color:surface/base}"
           ],
           "strokes": [
-            "{Color:border/subtle}"
+            "{Color:border/medium}"
           ],
           "effect": "shadow/control",
           "textFills": [
@@ -230,6 +252,11 @@
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
               "/Icon/Filter": {
                 "iconFills": [
                   "{Color:icon/primary}"
@@ -240,6 +267,7 @@
         },
         {
           "variant": "state=hover, size=sm",
+          "id": "3773:251",
           "size": [
             200,
             32
@@ -308,6 +336,7 @@
         },
         {
           "variant": "state=filled, size=md",
+          "id": "5973:21765",
           "size": [
             240,
             40
@@ -347,6 +376,7 @@
         },
         {
           "variant": "state=filled, size=sm",
+          "id": "5973:21769",
           "size": [
             200,
             32
@@ -417,6 +447,7 @@
         },
         {
           "variant": "state=focus, size=md",
+          "id": "5826:15696",
           "size": [
             240,
             40
@@ -462,6 +493,7 @@
         },
         {
           "variant": "state=focus, size=sm",
+          "id": "3773:264",
           "size": [
             200,
             32
@@ -536,6 +568,7 @@
         },
         {
           "variant": "state=error, size=md",
+          "id": "5826:15700",
           "size": [
             240,
             40
@@ -556,9 +589,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "CENTER/CENTER"
-                },
                 "strokes": [
                   "{Color:border/feedback/danger/strong}"
                 ],
@@ -584,6 +614,7 @@
         },
         {
           "variant": "state=error, size=sm",
+          "id": "3773:277",
           "size": [
             200,
             32
@@ -605,8 +636,7 @@
             "changed": {
               "/": {
                 "layout": {
-                  "gap": 8,
-                  "align": "CENTER/CENTER"
+                  "gap": 8
                 },
                 "strokes": [
                   "{Color:border/feedback/danger/strong}"
@@ -659,6 +689,7 @@
         },
         {
           "variant": "state=disabled, size=md",
+          "id": "6074:282",
           "size": [
             240,
             40
@@ -698,6 +729,7 @@
         },
         {
           "variant": "state=disabled, size=sm",
+          "id": "6074:286",
           "size": [
             200,
             32
@@ -931,6 +963,7 @@
       "variants": [
         {
           "variant": "state=default, size=md",
+          "id": "5971:21328",
           "size": [
             240,
             40
@@ -948,10 +981,12 @@
           "iconFills": [
             "{Color:icon/tertiary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=default, size=sm",
+          "id": "3781:1597",
           "size": [
             200,
             32
@@ -1004,6 +1039,7 @@
         },
         {
           "variant": "state=hover, size=md",
+          "id": "5971:21333",
           "size": [
             240,
             40
@@ -1046,6 +1082,7 @@
         },
         {
           "variant": "state=hover, size=sm",
+          "id": "3781:1603",
           "size": [
             200,
             32
@@ -1110,6 +1147,7 @@
         },
         {
           "variant": "state=filled, size=md",
+          "id": "5973:21741",
           "size": [
             240,
             40
@@ -1149,6 +1187,7 @@
         },
         {
           "variant": "state=filled, size=sm",
+          "id": "5973:21745",
           "size": [
             200,
             32
@@ -1210,6 +1249,7 @@
         },
         {
           "variant": "state=focus, size=md",
+          "id": "5971:21338",
           "size": [
             240,
             40
@@ -1254,6 +1294,7 @@
         },
         {
           "variant": "state=focus, size=sm",
+          "id": "3781:1609",
           "size": [
             200,
             32
@@ -1320,6 +1361,7 @@
         },
         {
           "variant": "state=error, size=md",
+          "id": "5971:21343",
           "size": [
             240,
             40
@@ -1341,9 +1383,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "align": "CENTER/CENTER"
-                },
                 "fills": [
                   "{Color:surface/base}"
                 ],
@@ -1367,6 +1406,7 @@
         },
         {
           "variant": "state=error, size=sm",
+          "id": "3781:1615",
           "size": [
             200,
             32
@@ -1389,8 +1429,7 @@
             "changed": {
               "/": {
                 "layout": {
-                  "gap": 8,
-                  "align": "CENTER/CENTER"
+                  "gap": 8
                 },
                 "fills": [
                   "{Color:surface/base}"

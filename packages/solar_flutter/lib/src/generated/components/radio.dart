@@ -37,13 +37,15 @@ abstract final class SolarRadioRecipe {
     'root.background|appearance|checked=false|hover':
         't:color.surface.background',
     'root.borderColor|appearance|checked=false|hover': 't:color.border.medium',
+    'root.background|appearance|checked=false|disabled':
+        't:color.surface.muted',
+    'root.borderColor|appearance|checked=false|disabled':
+        't:color.border.disabled',
     'root.background|appearance|checked=false|focus': 't:color.surface.base',
     'root.borderColor|appearance|checked=false|focus':
         't:color.border.feedback.focus.strong',
     'root.shadow|appearance|checked=false|focus': 't:shadow.focus.default',
     'root.borderColor|appearance|checked=false|default':
-        't:color.border.medium',
-    'root.borderColor|appearance|checked=false|disabled':
         't:color.border.medium',
     'root.background|appearance|checked=true|focus': 't:color.surface.base',
     'root.borderColor|appearance|checked=true|focus':
@@ -112,6 +114,7 @@ abstract final class SolarRadioRecipe {
     final c = t.colors;
     return switch (lookup(cell, p, s)) {
       'none' => Colors.transparent,
+      't:color.border.disabled' => c.borderDisabled,
       't:color.border.feedback.focus.strong' => c.borderFeedbackFocusStrong,
       't:color.border.medium' => c.borderMedium,
       't:color.border.subtle' => c.borderSubtle,
@@ -119,6 +122,7 @@ abstract final class SolarRadioRecipe {
       't:color.icon.primary' => c.iconPrimary,
       't:color.surface.background' => c.surfaceBackground,
       't:color.surface.base' => c.surfaceBase,
+      't:color.surface.muted' => c.surfaceMuted,
       final v => throw StateError('$cell: no colour for $v'),
     };
   }

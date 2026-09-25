@@ -5,7 +5,7 @@
     {
       "name": "Button",
       "id": "2087:2544",
-      "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (108):\n• size — sm (32px) | md (40px, default) | lg (48px)\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | focus | loading | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nfocus carries the shared effect style shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission.\n\nSizing: Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). sm and md both render below 44px — reserve sm for dense tables and toolbars. There is no xs or xl size; size=xl was renamed lg on 2026-09-23.\n\nLabels: write as actions — “Save changes” not “OK”, “Delete project” not “Yes”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Never place two primary buttons side by side. Tertiary should not stand alone as the sole action.",
+      "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (108):\n• size — sm (32px) | md (40px, default) | lg (48px, 200px fixed-width variant) — heights are size/control/{sm,md,lg}\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | focus | loading | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nsecondary has no background: hover and disabled change only the border and label; danger turns border and label red, and danger hover adds the red tint (action/secondary/bg/danger/hover). tertiary hover underlines the label. lg is a distinct button: fixed 200px wide with the label centred, square (radius/none), borderless and flat — only focus draws a ring. Use it where a wide menu-style action is needed, not as a bigger md.\n\nfocus carries shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code.\n\nLabels: write as actions — “Save changes” not “OK”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Tertiary should not stand alone as the sole action.",
       "docLinks": [],
       "variantCount": 108,
       "props": {
@@ -137,7 +137,7 @@
             ],
             "sizing": "FIXED/FIXED",
             "vars": {
-              "width": "Spatial:icon/sm"
+              "height": "Spatial:icon/sm"
             },
             "propRefs": {
               "visible": "hasIconLeading#2063:0",
@@ -168,6 +168,10 @@
               ],
               "align": "CENTER/CENTER",
               "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "width": "Spatial:icon/sm",
+              "height": "Spatial:icon/sm"
             }
           },
           {
@@ -211,7 +215,7 @@
             ],
             "sizing": "FIXED/FIXED",
             "vars": {
-              "width": "Spatial:icon/sm"
+              "height": "Spatial:icon/sm"
             },
             "propRefs": {
               "visible": "hasIconTrailing#2063:33",
@@ -272,6 +276,7 @@
       "variants": [
         {
           "variant": "size=md, prio=primary, state=default, danger=false",
+          "id": "2087:2545",
           "size": [
             80,
             40
@@ -294,10 +299,17 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Counter",
+            "/Icon/None",
+            "/Icon/None#2",
+            "/Spinner"
           ]
         },
         {
           "variant": "size=md, prio=primary, state=default, danger=true",
+          "id": "2087:2549",
           "size": [
             80,
             40
@@ -346,6 +358,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=default, danger=false",
+          "id": "2087:2553",
           "size": [
             80,
             40
@@ -410,6 +423,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=default, danger=true",
+          "id": "2087:2557",
           "size": [
             80,
             40
@@ -474,6 +488,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=default, danger=false",
+          "id": "2399:8185",
           "size": [
             80,
             40
@@ -533,6 +548,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=default, danger=true",
+          "id": "2399:8189",
           "size": [
             80,
             40
@@ -592,6 +608,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=default, danger=false",
+          "id": "2087:2561",
           "size": [
             64,
             32
@@ -642,6 +659,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=default, danger=true",
+          "id": "2087:2565",
           "size": [
             64,
             32
@@ -711,6 +729,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=default, danger=false",
+          "id": "2087:2569",
           "size": [
             64,
             32
@@ -791,6 +810,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=default, danger=true",
+          "id": "2087:2573",
           "size": [
             64,
             32
@@ -871,6 +891,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=default, danger=false",
+          "id": "2399:8281",
           "size": [
             64,
             32
@@ -951,6 +972,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=default, danger=true",
+          "id": "2399:8285",
           "size": [
             64,
             32
@@ -1031,6 +1053,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=default, danger=false",
+          "id": "2087:2673",
           "size": [
             200,
             48
@@ -1059,14 +1082,13 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "strokeWeight": 0,
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -1087,7 +1109,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -1101,6 +1127,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=default, danger=true",
+          "id": "2087:2677",
           "size": [
             200,
             48
@@ -1129,7 +1156,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -1142,7 +1168,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -1168,7 +1194,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -1190,6 +1220,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=default, danger=false",
+          "id": "2087:2681",
           "size": [
             200,
             48
@@ -1218,7 +1249,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -1231,7 +1261,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -1257,7 +1287,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -1295,6 +1329,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=default, danger=true",
+          "id": "2087:2685",
           "size": [
             200,
             48
@@ -1323,7 +1358,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -1336,7 +1370,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -1362,7 +1396,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -1400,6 +1438,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=default, danger=false",
+          "id": "5367:86",
           "size": [
             200,
             48
@@ -1428,7 +1467,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -1441,7 +1479,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -1467,7 +1505,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -1505,6 +1547,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=default, danger=true",
+          "id": "5367:101",
           "size": [
             200,
             48
@@ -1533,7 +1576,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -1546,7 +1588,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -1572,7 +1614,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -1610,6 +1656,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=hover, danger=false",
+          "id": "2087:2577",
           "size": [
             80,
             40
@@ -1667,6 +1714,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=hover, danger=true",
+          "id": "2087:2581",
           "size": [
             80,
             40
@@ -1724,6 +1772,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=hover, danger=false",
+          "id": "2087:2585",
           "size": [
             80,
             40
@@ -1788,6 +1837,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=hover, danger=true",
+          "id": "2087:2589",
           "size": [
             80,
             40
@@ -1852,6 +1902,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=hover, danger=false",
+          "id": "2399:8193",
           "size": [
             80,
             40
@@ -1916,6 +1967,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=hover, danger=true",
+          "id": "2399:8197",
           "size": [
             80,
             40
@@ -1980,6 +2032,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=hover, danger=false",
+          "id": "2087:2593",
           "size": [
             64,
             32
@@ -2058,6 +2111,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=hover, danger=true",
+          "id": "2087:2597",
           "size": [
             64,
             32
@@ -2136,6 +2190,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=hover, danger=false",
+          "id": "2087:2601",
           "size": [
             64,
             32
@@ -2221,6 +2276,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=hover, danger=true",
+          "id": "2087:2605",
           "size": [
             64,
             32
@@ -2306,6 +2362,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=hover, danger=false",
+          "id": "2399:8289",
           "size": [
             64,
             32
@@ -2386,6 +2443,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=hover, danger=true",
+          "id": "2399:8293",
           "size": [
             64,
             32
@@ -2471,6 +2529,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=hover, danger=false",
+          "id": "2087:2689",
           "size": [
             200,
             48
@@ -2499,7 +2558,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -2512,7 +2570,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -2538,7 +2596,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -2569,6 +2631,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=hover, danger=true",
+          "id": "2087:2693",
           "size": [
             200,
             48
@@ -2597,7 +2660,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -2610,7 +2672,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -2636,7 +2698,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -2667,6 +2733,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=hover, danger=false",
+          "id": "2087:2697",
           "size": [
             200,
             48
@@ -2692,7 +2759,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": null,
@@ -2703,7 +2769,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -2729,7 +2795,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "textStyle": "link/md/default",
@@ -2772,6 +2842,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=hover, danger=true",
+          "id": "2087:2701",
           "size": [
             200,
             48
@@ -2800,7 +2871,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -2813,7 +2883,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -2839,7 +2909,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -2877,6 +2951,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=hover, danger=false",
+          "id": "5367:116",
           "size": [
             200,
             48
@@ -2902,7 +2977,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": null,
@@ -2913,7 +2987,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -2939,7 +3013,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "textStyle": "link/md/default",
@@ -2982,6 +3060,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=hover, danger=true",
+          "id": "5367:131",
           "size": [
             200,
             48
@@ -3010,7 +3089,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -3023,7 +3101,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -3049,7 +3127,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -3087,6 +3169,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=pressed, danger=false",
+          "id": "2087:2609",
           "size": [
             80,
             40
@@ -3144,6 +3227,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=pressed, danger=true",
+          "id": "2087:2613",
           "size": [
             80,
             40
@@ -3201,6 +3285,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=pressed, danger=false",
+          "id": "2087:2617",
           "size": [
             80,
             40
@@ -3265,6 +3350,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=pressed, danger=true",
+          "id": "2087:2621",
           "size": [
             80,
             40
@@ -3329,6 +3415,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=pressed, danger=false",
+          "id": "2399:8201",
           "size": [
             80,
             40
@@ -3388,6 +3475,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=pressed, danger=true",
+          "id": "2399:8205",
           "size": [
             80,
             40
@@ -3447,6 +3535,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=pressed, danger=false",
+          "id": "2087:2625",
           "size": [
             64,
             32
@@ -3525,6 +3614,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=pressed, danger=true",
+          "id": "2087:2629",
           "size": [
             64,
             32
@@ -3603,6 +3693,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=pressed, danger=false",
+          "id": "2087:2633",
           "size": [
             64,
             32
@@ -3683,6 +3774,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=pressed, danger=true",
+          "id": "2087:2637",
           "size": [
             64,
             32
@@ -3763,6 +3855,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=pressed, danger=false",
+          "id": "2399:8297",
           "size": [
             64,
             32
@@ -3843,6 +3936,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=pressed, danger=true",
+          "id": "2399:8301",
           "size": [
             64,
             32
@@ -3923,6 +4017,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=pressed, danger=false",
+          "id": "2087:2705",
           "size": [
             200,
             48
@@ -3951,7 +4046,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -3964,7 +4058,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -3990,7 +4084,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -4021,6 +4119,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=pressed, danger=true",
+          "id": "2087:2709",
           "size": [
             200,
             48
@@ -4049,7 +4148,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -4062,7 +4160,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -4088,7 +4186,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -4119,6 +4221,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=pressed, danger=false",
+          "id": "2087:2713",
           "size": [
             200,
             48
@@ -4147,7 +4250,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -4160,7 +4262,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -4186,7 +4288,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -4224,6 +4330,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=pressed, danger=true",
+          "id": "2087:2717",
           "size": [
             200,
             48
@@ -4252,7 +4359,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -4265,7 +4371,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -4291,7 +4397,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -4329,6 +4439,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=pressed, danger=false",
+          "id": "5367:146",
           "size": [
             200,
             48
@@ -4357,7 +4468,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -4370,7 +4480,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -4396,7 +4506,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -4434,6 +4548,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=pressed, danger=true",
+          "id": "5367:161",
           "size": [
             200,
             48
@@ -4462,7 +4577,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -4475,7 +4589,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -4501,7 +4615,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -4539,6 +4657,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=disabled, danger=false",
+          "id": "2087:2641",
           "size": [
             80,
             40
@@ -4596,6 +4715,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=disabled, danger=true",
+          "id": "2087:2645",
           "size": [
             80,
             40
@@ -4653,6 +4773,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=disabled, danger=false",
+          "id": "2087:2649",
           "size": [
             80,
             40
@@ -4712,6 +4833,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=disabled, danger=true",
+          "id": "2087:2653",
           "size": [
             80,
             40
@@ -4771,6 +4893,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=disabled, danger=false",
+          "id": "2399:8209",
           "size": [
             80,
             40
@@ -4830,6 +4953,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=disabled, danger=true",
+          "id": "2399:8213",
           "size": [
             80,
             40
@@ -4889,6 +5013,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=disabled, danger=false",
+          "id": "2087:2657",
           "size": [
             64,
             32
@@ -4967,6 +5092,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=disabled, danger=true",
+          "id": "2087:2661",
           "size": [
             64,
             32
@@ -5045,6 +5171,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=disabled, danger=false",
+          "id": "2087:2665",
           "size": [
             64,
             32
@@ -5125,6 +5252,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=disabled, danger=true",
+          "id": "2087:2669",
           "size": [
             64,
             32
@@ -5205,6 +5333,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=disabled, danger=false",
+          "id": "2399:8305",
           "size": [
             64,
             32
@@ -5285,6 +5414,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=disabled, danger=true",
+          "id": "2399:8309",
           "size": [
             64,
             32
@@ -5365,6 +5495,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=disabled, danger=false",
+          "id": "2087:2721",
           "size": [
             200,
             48
@@ -5393,7 +5524,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -5406,7 +5536,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -5432,7 +5562,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -5463,6 +5597,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=disabled, danger=true",
+          "id": "2087:2725",
           "size": [
             200,
             48
@@ -5491,7 +5626,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -5504,7 +5638,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -5530,7 +5664,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -5561,6 +5699,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=disabled, danger=false",
+          "id": "2087:2729",
           "size": [
             200,
             48
@@ -5569,7 +5708,7 @@
             "{Color:action/secondary/border/disabled}"
           ],
           "textFills": [
-            "{Color:action/secondary/text/danger/disabled}",
+            "{Color:action/secondary/text/disabled}",
             "{Color:action/primary/text/disabled}"
           ],
           "iconFills": [
@@ -5586,7 +5725,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": null,
@@ -5597,7 +5735,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -5623,7 +5761,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -5632,7 +5774,7 @@
                 ],
                 "sizing": "HUG/HUG",
                 "fills": [
-                  "{Color:action/secondary/text/danger/disabled}"
+                  "{Color:action/secondary/text/disabled}"
                 ]
               },
               "/Icon/None#2": {
@@ -5661,6 +5803,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=disabled, danger=true",
+          "id": "2087:2733",
           "size": [
             200,
             48
@@ -5686,7 +5829,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": null,
@@ -5697,7 +5839,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -5723,7 +5865,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -5761,6 +5907,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=disabled, danger=false",
+          "id": "5367:176",
           "size": [
             200,
             48
@@ -5786,7 +5933,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": null,
@@ -5797,7 +5943,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -5823,7 +5969,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -5861,6 +6011,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=disabled, danger=true",
+          "id": "5367:191",
           "size": [
             200,
             48
@@ -5886,7 +6037,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": null,
@@ -5897,7 +6047,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -5923,7 +6073,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -5961,6 +6115,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=focus, danger=false",
+          "id": "6038:194",
           "size": [
             80,
             40
@@ -5989,6 +6144,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=focus, danger=true",
+          "id": "6038:215",
           "size": [
             80,
             40
@@ -6038,6 +6194,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=focus, danger=false",
+          "id": "6038:236",
           "size": [
             80,
             40
@@ -6103,6 +6260,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=focus, danger=true",
+          "id": "6038:254",
           "size": [
             80,
             40
@@ -6168,6 +6326,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=focus, danger=false",
+          "id": "6038:272",
           "size": [
             80,
             40
@@ -6228,6 +6387,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=focus, danger=true",
+          "id": "6038:290",
           "size": [
             80,
             40
@@ -6288,6 +6448,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=focus, danger=false",
+          "id": "6038:308",
           "size": [
             64,
             32
@@ -6339,6 +6500,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=focus, danger=true",
+          "id": "6038:329",
           "size": [
             64,
             32
@@ -6409,6 +6571,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=focus, danger=false",
+          "id": "6038:350",
           "size": [
             64,
             32
@@ -6490,6 +6653,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=focus, danger=true",
+          "id": "6038:368",
           "size": [
             64,
             32
@@ -6571,6 +6735,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=focus, danger=false",
+          "id": "6038:386",
           "size": [
             64,
             32
@@ -6652,6 +6817,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=focus, danger=true",
+          "id": "6038:404",
           "size": [
             64,
             32
@@ -6733,6 +6899,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=focus, danger=false",
+          "id": "6038:536",
           "size": [
             200,
             48
@@ -6762,14 +6929,13 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "strokeWeight": 0,
                 "radius": null,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -6790,7 +6956,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -6804,6 +6974,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=focus, danger=true",
+          "id": "6038:557",
           "size": [
             200,
             48
@@ -6833,7 +7004,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -6846,7 +7016,7 @@
                 "radius": null,
                 "effectStyle": "shadow/focus/danger",
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -6872,7 +7042,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -6894,6 +7068,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=focus, danger=false",
+          "id": "6038:578",
           "size": [
             200,
             48
@@ -6923,7 +7098,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -6936,7 +7110,7 @@
                 "radius": null,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -6962,7 +7136,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -7000,6 +7178,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=focus, danger=true",
+          "id": "6038:596",
           "size": [
             200,
             48
@@ -7029,7 +7208,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -7042,7 +7220,7 @@
                 "radius": null,
                 "effectStyle": "shadow/focus/danger",
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -7068,7 +7246,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -7106,6 +7288,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=focus, danger=false",
+          "id": "6038:614",
           "size": [
             200,
             48
@@ -7135,7 +7318,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -7148,7 +7330,7 @@
                 "radius": null,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -7174,7 +7356,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -7212,6 +7398,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=focus, danger=true",
+          "id": "6038:632",
           "size": [
             200,
             48
@@ -7241,7 +7428,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -7254,7 +7440,7 @@
                 "radius": null,
                 "effectStyle": "shadow/focus/danger",
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -7280,7 +7466,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               },
               "/Label": {
                 "size": [
@@ -7318,6 +7508,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=loading, danger=false",
+          "id": "6038:200",
           "size": [
             80,
             40
@@ -7330,6 +7521,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/Spinner": {
@@ -7350,6 +7542,7 @@
         },
         {
           "variant": "size=md, prio=primary, state=loading, danger=true",
+          "id": "6038:221",
           "size": [
             80,
             40
@@ -7362,6 +7555,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7390,6 +7584,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=loading, danger=false",
+          "id": "6038:242",
           "size": [
             80,
             40
@@ -7402,6 +7597,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7426,6 +7622,7 @@
         },
         {
           "variant": "size=md, prio=secondary, state=loading, danger=true",
+          "id": "6038:260",
           "size": [
             80,
             40
@@ -7438,6 +7635,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7462,6 +7660,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=loading, danger=false",
+          "id": "6038:278",
           "size": [
             80,
             40
@@ -7470,6 +7669,7 @@
             "{Color:action/tertiary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7493,6 +7693,7 @@
         },
         {
           "variant": "size=md, prio=tertiary, state=loading, danger=true",
+          "id": "6038:296",
           "size": [
             80,
             40
@@ -7501,6 +7702,7 @@
             "{Color:action/tertiary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7524,6 +7726,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=loading, danger=false",
+          "id": "6038:314",
           "size": [
             64,
             32
@@ -7536,6 +7739,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7570,6 +7774,7 @@
         },
         {
           "variant": "size=sm, prio=primary, state=loading, danger=true",
+          "id": "6038:335",
           "size": [
             64,
             32
@@ -7582,6 +7787,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7622,6 +7828,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=loading, danger=false",
+          "id": "6038:356",
           "size": [
             64,
             32
@@ -7631,6 +7838,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7665,6 +7873,7 @@
         },
         {
           "variant": "size=sm, prio=secondary, state=loading, danger=true",
+          "id": "6038:374",
           "size": [
             64,
             32
@@ -7674,6 +7883,7 @@
           ],
           "effect": "shadow/control",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7708,6 +7918,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=loading, danger=false",
+          "id": "6038:392",
           "size": [
             64,
             32
@@ -7716,6 +7927,7 @@
             "{Color:action/tertiary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7751,6 +7963,7 @@
         },
         {
           "variant": "size=sm, prio=tertiary, state=loading, danger=true",
+          "id": "6038:410",
           "size": [
             64,
             32
@@ -7759,6 +7972,7 @@
             "{Color:action/tertiary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7794,6 +8008,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=loading, danger=false",
+          "id": "6038:542",
           "size": [
             200,
             48
@@ -7805,6 +8020,7 @@
             "{Color:action/primary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7816,14 +8032,13 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "strokeWeight": 0,
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -7845,7 +8060,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               }
             },
             "removed": [
@@ -7858,6 +8077,7 @@
         },
         {
           "variant": "size=lg, prio=primary, state=loading, danger=true",
+          "id": "6038:563",
           "size": [
             200,
             48
@@ -7869,6 +8089,7 @@
             "{Color:action/primary/border/danger/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7880,7 +8101,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -7893,7 +8113,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -7915,7 +8135,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               }
             },
             "removed": [
@@ -7928,6 +8152,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=loading, danger=false",
+          "id": "6038:584",
           "size": [
             200,
             48
@@ -7939,6 +8164,7 @@
             "{Color:action/secondary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -7950,7 +8176,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -7963,7 +8188,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -7985,7 +8210,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               }
             },
             "removed": [
@@ -7998,6 +8227,7 @@
         },
         {
           "variant": "size=lg, prio=secondary, state=loading, danger=true",
+          "id": "6038:602",
           "size": [
             200,
             48
@@ -8009,6 +8239,7 @@
             "{Color:action/secondary/border/danger/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -8020,7 +8251,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -8033,7 +8263,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -8055,7 +8285,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               }
             },
             "removed": [
@@ -8068,6 +8302,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=loading, danger=false",
+          "id": "6038:620",
           "size": [
             200,
             48
@@ -8079,6 +8314,7 @@
             "{Color:action/tertiary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -8090,7 +8326,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -8103,7 +8338,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -8125,7 +8360,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               }
             },
             "removed": [
@@ -8138,6 +8377,7 @@
         },
         {
           "variant": "size=lg, prio=tertiary, state=loading, danger=true",
+          "id": "6038:638",
           "size": [
             200,
             48
@@ -8149,6 +8389,7 @@
             "{Color:action/tertiary/border/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -8160,7 +8401,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
                 "fills": [
@@ -8173,7 +8413,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -8195,7 +8435,11 @@
                 "size": [
                   24,
                   24
-                ]
+                ],
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
               }
             },
             "removed": [

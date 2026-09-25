@@ -15,15 +15,15 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
 ### Anatomy (default variant)
 
 - **Calendar Toolbar** · component · row gap 16 pad 12/16/12/16 FIXED/HUG · 1280×56  
-  fill `color.surface.base` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
+  fill `color.surface.base` · itemSpacing `inset.md` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
   - **Left** · frame · row gap 12 pad 0/0/0/0 HUG/FIXED · 320×32  
     itemSpacing `inset.sm`
     - **Nav** · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 84×40  
       itemSpacing `inset.2xs`
       - **Prev** · instance of **Icon Button** (size=md, shape=square, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        fill `color.action.tertiary.bg.default` · strokeWeight `border.default` · radius `radius.control`
+        stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.control`
       - **Next** · instance of **Icon Button** (size=md, shape=square, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        fill `color.action.tertiary.bg.default` · strokeWeight `border.default` · radius `radius.control`
+        stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.control`
     - **Today Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 64×32  
       stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
     - **Range** · text `title/xs` "October 5 – 11, 2026" · HUG/HUG · 148×12  
@@ -39,8 +39,8 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
 
 | Role            | Tokens                                                                                              |
 | --------------- | --------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.tertiary.bg.default`, `color.surface.base`                                            |
-| Strokes         | `color.action.secondary.border.default`                                                             |
+| Fills           | `color.surface.base`                                                                                |
+| Strokes         | `color.action.secondary.border.default`, `color.action.tertiary.border.default`                     |
 | Text color      | `color.text.primary`                                                                                |
 | Spacing         | `inset.2xs`, `inset.md`, `inset.sm`, `inset.xs`                                                     |
 | Radius          | `radius.control`                                                                                    |
@@ -60,10 +60,6 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
 - Button
 - Icon Button
 - Segmented Control
-
-### Issues detected
-
-- Hard-coded gap `16px` on layer _Calendar Toolbar_
 
 ## Documentation card
 

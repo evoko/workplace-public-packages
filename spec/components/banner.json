@@ -75,6 +75,21 @@
       "parent": "root",
       "type": "INSTANCE"
     },
+    "iconSuccess": {
+      "path": "/Icon/Success",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
+    "iconWarning": {
+      "path": "/Icon/Warning",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
+    "iconDanger": {
+      "path": "/Icon/Danger",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
     "description": {
       "path": "/message",
       "parent": "root",
@@ -102,21 +117,6 @@
     },
     "close": {
       "path": "/Icon/Close",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
-    "iconSuccess": {
-      "path": "/Icon/Success",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
-    "iconWarning": {
-      "path": "/Icon/Warning",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
-    "iconDanger": {
-      "path": "/Icon/Danger",
       "parent": "root",
       "type": "INSTANCE"
     }
@@ -187,7 +187,7 @@
         "height": {
           "literal": 44,
           "from": "type=neutral",
-          "allowed": "A banner is 44 tall, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
+          "allowed": "A banner is 44 tall, bound to nothing, and on none of SOLAR's control heights (size.control: 32, 40, 48); carried as drawn, the design review asks."
         }
       },
       "size": {},
@@ -282,6 +282,126 @@
         }
       }
     },
+    "iconSuccess": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "type=neutral"
+        },
+        "component": {
+          "keyword": "Icon/Success",
+          "from": "type=success"
+        },
+        "width": {
+          "token": "icon.md",
+          "from": "type=success"
+        },
+        "height": {
+          "token": "icon.md",
+          "from": "overlay",
+          "reason": "As the info icon's."
+        }
+      },
+      "size": {},
+      "appearance": {
+        "type=success": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "type=success"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "type=success"
+            },
+            "color": {
+              "token": "color.icon.primary",
+              "from": "type=success"
+            }
+          }
+        }
+      }
+    },
+    "iconWarning": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "type=neutral"
+        },
+        "component": {
+          "keyword": "Icon/Warning",
+          "from": "type=warning"
+        },
+        "width": {
+          "token": "icon.md",
+          "from": "type=warning"
+        },
+        "height": {
+          "token": "icon.md",
+          "from": "overlay",
+          "reason": "As the info icon's."
+        }
+      },
+      "size": {},
+      "appearance": {
+        "type=warning": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "type=warning"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "type=warning"
+            },
+            "color": {
+              "token": "color.icon.primary",
+              "from": "type=warning"
+            }
+          }
+        }
+      }
+    },
+    "iconDanger": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "type=neutral"
+        },
+        "component": {
+          "keyword": "Icon/Danger",
+          "from": "type=danger"
+        },
+        "width": {
+          "token": "icon.md",
+          "from": "type=danger"
+        },
+        "height": {
+          "token": "icon.md",
+          "from": "overlay",
+          "reason": "As the info icon's."
+        }
+      },
+      "size": {},
+      "appearance": {
+        "type=danger": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "type=danger"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "type=danger"
+            },
+            "color": {
+              "token": "color.icon.primary",
+              "from": "type=danger"
+            }
+          }
+        }
+      }
+    },
     "description": {
       "base": {
         "present": {
@@ -345,22 +465,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "HUG",
@@ -506,126 +626,6 @@
       },
       "size": {},
       "appearance": {}
-    },
-    "iconSuccess": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "type=neutral"
-        },
-        "component": {
-          "keyword": "Icon/Success",
-          "from": "type=success"
-        },
-        "width": {
-          "token": "icon.md",
-          "from": "type=success"
-        },
-        "height": {
-          "token": "icon.md",
-          "from": "overlay",
-          "reason": "As the info icon's."
-        }
-      },
-      "size": {},
-      "appearance": {
-        "type=success": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "type=success"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "type=success"
-            },
-            "color": {
-              "token": "color.icon.primary",
-              "from": "type=success"
-            }
-          }
-        }
-      }
-    },
-    "iconWarning": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "type=neutral"
-        },
-        "component": {
-          "keyword": "Icon/Warning",
-          "from": "type=warning"
-        },
-        "width": {
-          "token": "icon.md",
-          "from": "type=warning"
-        },
-        "height": {
-          "token": "icon.md",
-          "from": "overlay",
-          "reason": "As the info icon's."
-        }
-      },
-      "size": {},
-      "appearance": {
-        "type=warning": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "type=warning"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "type=warning"
-            },
-            "color": {
-              "token": "color.icon.primary",
-              "from": "type=warning"
-            }
-          }
-        }
-      }
-    },
-    "iconDanger": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "type=neutral"
-        },
-        "component": {
-          "keyword": "Icon/Danger",
-          "from": "type=danger"
-        },
-        "width": {
-          "token": "icon.md",
-          "from": "type=danger"
-        },
-        "height": {
-          "token": "icon.md",
-          "from": "overlay",
-          "reason": "As the info icon's."
-        }
-      },
-      "size": {},
-      "appearance": {
-        "type=danger": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "type=danger"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "type=danger"
-            },
-            "color": {
-              "token": "color.icon.primary",
-              "from": "type=danger"
-            }
-          }
-        }
-      }
     }
   },
   "docs": {
@@ -637,7 +637,7 @@
     "pageId": "2797:1322",
     "figmaNode": "2764:627",
     "defaultVariant": "type=neutral",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/banner.yaml",
@@ -690,12 +690,12 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "A banner is 44 tall, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
+        "reason": "A banner is 44 tall, bound to nothing, and on none of SOLAR's control heights (size.control: 32, 40, 48); carried as drawn, the design review asks."
       },
       {
         "rule": "bind",
         "at": "actionGroup.paddingTop, actionGroup.paddingRight, actionGroup.paddingBottom, actionGroup.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

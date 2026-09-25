@@ -24,10 +24,9 @@ describe('the GlobalSearch IR', () => {
     expect(filled.content).toEqual(['query']);
   });
 
-  it('composes a Kbd, and leaves only Figma’s centred error trigger open', () => {
+  it('composes a Kbd, and leaves nothing open', () => {
     expect(spec.style.kbd.base.component.keyword).toBe('Kbd');
-    expect(deviations.filter((d) => !d.decision).map((d) => d.token)).toEqual([
-      'component.globalsearch.root.align@state=error',
-    ]);
+    // Figma's centred error trigger, open until 2026-09-25, is aligned as the others since.
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 });

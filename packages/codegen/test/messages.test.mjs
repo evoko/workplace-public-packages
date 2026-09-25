@@ -87,14 +87,15 @@ describe('the EmptyState', () => {
 describe('the Toast', () => {
   const { spec, oracle } = of('Toast');
 
-  it('draws its Tag as a status tag, where Figma names a type Tag no longer has', () => {
-    expect(spec.style.tag.base['variant.type']).toMatchObject({
+  it('draws its Tag as a status tag, as Figma now names it', () => {
+    // Figma named a type Tag no longer has (pill) until 2026-09-25; a status tag since.
+    expect(spec.style.tag.base['variant.type']).toEqual({
       keyword: 'status',
-      replaced: { keyword: 'pill' },
+      from: 'status=success',
     });
     const tag = oracle.variants[0].layers.tag;
     expect(tag.variant.type).toBe('status');
-    expect(tag.figmaVariant.type).toBe('pill');
+    expect(tag.figmaVariant).toBeUndefined();
     expect(open('Toast')).toEqual([]);
   });
 

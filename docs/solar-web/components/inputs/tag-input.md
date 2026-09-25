@@ -4,7 +4,7 @@
 
 ## Component set: Token Input
 
-Multi-value (token) input. Collects discrete entries as removable Token chips with an optional overflow Counter. Class B form input. Variants: size (md, sm) × state (default, hover, focus, filled, disabled, error, readonly). Properties: label, helper, show label, show helper, show mandatory. Built from SOLAR Web primitives; chips = local .Token; counter = Counter.
+Multi-value (token) input. Collects discrete entries as removable Tag chips with an optional overflow Counter. Class B form input. 16 variants: size (md, sm) × state (default, hover, focus, active, filled, disabled, error, readonly). In readonly and disabled the chips are text-only — they cannot be removed. Props: label, helper, show label, show helper, show mandatory, Tags (slot).
 
 ### Props
 
@@ -79,12 +79,12 @@ Default variant: `size=md, state=default` · 16 variants · default size 240×76
 | sm   | focus    | 160×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`                                        | `color.icon.feedback.neutral` |
 | md   | filled   | 240×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.action.primary.text.default`<br>`color.text.secondary` | `color.icon.feedback.neutral` |
 | sm   | filled   | 160×94 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.action.primary.text.default`<br>`color.text.secondary` | `color.icon.feedback.neutral` |
-| md   | disabled | 240×76 |      |        |        | `color.text.disabled`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`                                                                 | `color.icon.feedback.neutral` |
-| sm   | disabled | 160×66 |      |        |        | `color.text.disabled`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`                                                                 | `color.icon.feedback.neutral` |
+| md   | disabled | 240×76 |      |        |        | `color.text.disabled`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`                                                                 |                               |
+| sm   | disabled | 160×66 |      |        |        | `color.text.disabled`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`                                                                 |                               |
 | md   | error    | 240×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.feedback.danger`                                  | `color.icon.feedback.neutral` |
 | sm   | error    | 160×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.feedback.danger`                                  | `color.icon.feedback.neutral` |
-| md   | readonly | 240×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`                                        | `color.icon.feedback.neutral` |
-| sm   | readonly | 160×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`                                        | `color.icon.feedback.neutral` |
+| md   | readonly | 240×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`                                        |                               |
+| sm   | readonly | 160×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`                                        |                               |
 
 ## Documentation card
 

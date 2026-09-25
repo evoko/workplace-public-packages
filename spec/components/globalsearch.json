@@ -103,9 +103,9 @@
           }
         },
         "height": {
-          "literal": 40,
-          "from": "state=default, size=md",
-          "allowed": "As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 (md) and 32 (sm)."
+          "token": "size.control.md",
+          "from": "overlay",
+          "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
         }
       },
       "size": {
@@ -123,9 +123,9 @@
             }
           },
           "height": {
-            "literal": 32,
-            "from": "state=default, size=sm",
-            "allowed": "As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 (md) and 32 (sm)."
+            "token": "size.control.sm",
+            "from": "overlay",
+            "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
           }
         }
       },
@@ -340,7 +340,7 @@
     "pageId": "2163:3703",
     "figmaNode": "3781:1596",
     "defaultVariant": "state=default, size=md",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "derived": {
     "filled": {
@@ -374,6 +374,11 @@
         "reason": "Same values, governed tokens, a step of the icon ladder per size; the icon's height is already bound to them."
       },
       {
+        "rule": "bind",
+        "at": "root.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
+      },
+      {
         "rule": "set",
         "at": "root.base.width",
         "reason": "The trigger spans the room the app's header gives it: Figma draws it 240 wide (md) and 200 (sm), samples. The caller sizes it, as a field."
@@ -382,11 +387,6 @@
         "rule": "set",
         "at": "root.size.sm.width",
         "reason": "As md's, the sm trigger's 200 a sample."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "root.height",
-        "reason": "As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 (md) and 32 (sm)."
       },
       {
         "rule": "derive",

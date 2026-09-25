@@ -50,5 +50,5 @@ bind:
 allowLiteral:
   root.height:
     reason: >-
-      A banner is 44 tall, bound to nothing: SOLAR has no control height token (the design
-      review's question on control heights, as Button's is).
+      A banner is 44 tall, bound to nothing, and on none of SOLAR's control heights
+      (size.control: 32, 40, 48); carried as drawn, the design review asks.

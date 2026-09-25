@@ -24,7 +24,8 @@ Default variant: `type=default` · 3 variants · default size 480×464px
   fill `color.surface.dialog` · effect `shadow/dialog` · radius `radius.dialog`
   - **Header** · frame · column gap 8 pad 8/8/8/8 FILL/HUG · 480×56  
     stroke `color.border.subtle` mixedpx · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default`
-    - **Text** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 464×40
+    - **Text** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 464×40  
+      itemSpacing `inset.md`
       - **Icon** · frame · row gap 8 pad 0/0/0/0 FIXED/FIXED · 36×36  
         itemSpacing `stack.xs`
         - **Icon/Empty** · instance of **Icon/Empty** (solid=false) · FIXED/FIXED · 12×12  
@@ -32,7 +33,7 @@ Default variant: `type=default` · 3 variants · default size 480×464px
       - **Title** · text `title/sm` "Dialog Title" · FILL/HUG · 388×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500` · prop characters←title
       - **Icon Button** · instance of **Icon Button** (size=md, shape=round, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        strokeWeight `border.default` · radius `radius.pill`
+        stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.pill`
   - **content** · slot · column gap 16 pad 20/20/20/20 FILL/FILL · 480×360  
     itemSpacing `stack.md` · padding `inset.lg` · prop slotContentId←content
   - **Button Group** · instance of **Button Group** (orientation=horizontal, type=full-width) · row gap 0 pad 0/0/0/0 FILL/HUG · 480×48  
@@ -40,19 +41,19 @@ Default variant: `type=default` · 3 variants · default size 480×464px
 
 ### Tokens used
 
-| Role            | Tokens                                                                                                                                                                                                       |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Fills           | `color.surface.dialog`                                                                                                                                                                                       |
-| Strokes         | `color.border.subtle`                                                                                                                                                                                        |
-| Text color      | `color.action.primary.text.default`, `color.action.primary.text.disabled`, `color.action.secondary.text.danger.disabled`, `color.action.secondary.text.default`, `color.text.primary`, `color.text.tertiary` |
-| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.secondary.icon.disabled`, `color.action.tertiary.icon.default`                                                     |
-| Spacing         | `inset.lg`, `inset.none`, `inset.xs`, `stack.md`, `stack.xs`                                                                                                                                                 |
-| Radius          | `radius.dialog`, `radius.pill`                                                                                                                                                                               |
-| Border width    | `border.default`                                                                                                                                                                                             |
-| Sizes           | `icon.xs`                                                                                                                                                                                                    |
-| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.title.sm`, `type.size.title.sm`                                                                                                          |
-| Effects         | `shadow/dialog`                                                                                                                                                                                              |
-| Text styles     | `title/sm`                                                                                                                                                                                                   |
+| Role            | Tokens                                                                                                                                                                                                |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fills           | `color.surface.dialog`                                                                                                                                                                                |
+| Strokes         | `color.action.tertiary.border.default`, `color.border.subtle`                                                                                                                                         |
+| Text color      | `color.action.primary.text.default`, `color.action.primary.text.disabled`, `color.action.secondary.text.default`, `color.action.secondary.text.disabled`, `color.text.primary`, `color.text.tertiary` |
+| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.secondary.icon.disabled`, `color.action.tertiary.icon.default`, `color.neutral.900`                         |
+| Spacing         | `inset.lg`, `inset.md`, `inset.none`, `inset.xs`, `stack.md`, `stack.xs`                                                                                                                              |
+| Radius          | `radius.dialog`, `radius.pill`                                                                                                                                                                        |
+| Border width    | `border.default`                                                                                                                                                                                      |
+| Sizes           | `icon.xs`                                                                                                                                                                                             |
+| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.title.sm`, `type.size.title.sm`                                                                                                   |
+| Effects         | `shadow/dialog`                                                                                                                                                                                       |
+| Text styles     | `title/sm`                                                                                                                                                                                            |
 
 ### Slots and prop-controlled layers
 
@@ -69,11 +70,15 @@ Default variant: `type=default` · 3 variants · default size 480×464px
 
 ### Variant matrix
 
-| type    | size    | fill                   | stroke | effect          | text                                                                                                                                                                                                                   | icon                                                                                                                  |
-| ------- | ------- | ---------------------- | ------ | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| default | 480×464 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                                                                                   | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`  |
-| image   | 480×452 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                                                                                   | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`  |
-| wizard  | 480×464 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.tertiary`<br>`color.action.secondary.text.danger.disabled`<br>`color.action.primary.text.disabled`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.disabled`<br>`color.action.primary.icon.default` |
+| type    | size    | fill                   | stroke | effect          | text                                                                                                                                                                                                            | icon                                                                                                                                         |
+| ------- | ------- | ---------------------- | ------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| default | 480×464 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                                                                            | `color.neutral.900`<br>`color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`  |
+| image   | 480×452 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                                                                            | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                         |
+| wizard  | 480×464 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.tertiary`<br>`color.action.secondary.text.disabled`<br>`color.action.primary.text.disabled`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.neutral.900`<br>`color.action.tertiary.icon.default`<br>`color.action.secondary.icon.disabled`<br>`color.action.primary.icon.default` |
+
+### Issues detected
+
+- Primitive color bound directly (CLR-002): `color.neutral.900`.
 
 ## Documentation card
 

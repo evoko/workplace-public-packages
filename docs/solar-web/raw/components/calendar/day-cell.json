@@ -286,6 +286,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "6637:15",
           "size": [
             160,
             120
@@ -306,10 +307,17 @@
           "hidden": [
             "Icon/Repeat",
             "Time"
+          ],
+          "hiddenPaths": [
+            "/Events/Event Chip#2/Content/Icon/Repeat",
+            "/Events/Event Chip/Content/Icon/Repeat",
+            "/Events/Event/Content/Icon/Repeat",
+            "/Events/Event/Content/Time"
           ]
         },
         {
           "variant": "state=today",
+          "id": "6637:16",
           "size": [
             160,
             120
@@ -327,6 +335,12 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
+          ],
+          "hiddenPaths": [
+            "/Events/Event#2/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Time",
+            "/Events/Event/Content/Icon/Repeat"
           ],
           "overrides": {
             "changed": {
@@ -363,6 +377,7 @@
               {
                 "path": "/Events/Event#2",
                 "parent": "/Events",
+                "index": 1,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",
@@ -401,6 +416,7 @@
               {
                 "path": "/Events/Event#3",
                 "parent": "/Events",
+                "index": 2,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",
@@ -445,6 +461,7 @@
         },
         {
           "variant": "state=today-column",
+          "id": "6663:82",
           "size": [
             160,
             120
@@ -461,6 +478,12 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
+          ],
+          "hiddenPaths": [
+            "/Events/Event#2/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Time",
+            "/Events/Event/Content/Icon/Repeat"
           ],
           "overrides": {
             "changed": {
@@ -480,6 +503,7 @@
               {
                 "path": "/Events/Event#2",
                 "parent": "/Events",
+                "index": 1,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",
@@ -518,6 +542,7 @@
               {
                 "path": "/Events/Event#3",
                 "parent": "/Events",
+                "index": 2,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",
@@ -562,6 +587,7 @@
         },
         {
           "variant": "state=selected",
+          "id": "6637:24",
           "size": [
             160,
             120
@@ -578,6 +604,12 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
+          ],
+          "hiddenPaths": [
+            "/Events/Event#2/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Time",
+            "/Events/Event/Content/Icon/Repeat"
           ],
           "overrides": {
             "changed": {
@@ -597,6 +629,7 @@
               {
                 "path": "/Events/Event#2",
                 "parent": "/Events",
+                "index": 1,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",
@@ -635,6 +668,7 @@
               {
                 "path": "/Events/Event#3",
                 "parent": "/Events",
+                "index": 2,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",
@@ -679,6 +713,7 @@
         },
         {
           "variant": "state=other-month",
+          "id": "6637:40",
           "size": [
             160,
             120
@@ -696,6 +731,12 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
+          ],
+          "hiddenPaths": [
+            "/Events/Event#2/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Icon/Repeat",
+            "/Events/Event#3/Content/Time",
+            "/Events/Event/Content/Icon/Repeat"
           ],
           "overrides": {
             "changed": {
@@ -723,6 +764,7 @@
               {
                 "path": "/Events/Event#2",
                 "parent": "/Events",
+                "index": 1,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",
@@ -761,6 +803,7 @@
               {
                 "path": "/Events/Event#3",
                 "parent": "/Events",
+                "index": 2,
                 "layer": {
                   "name": "Event",
                   "type": "INSTANCE",

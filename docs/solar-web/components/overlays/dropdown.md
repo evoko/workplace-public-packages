@@ -4,21 +4,21 @@
 
 ## Component set: Dropdown
 
-Form control that opens a list of options on click. Single-select. Use for ≤10 predictable options — use a Combobox (autocomplete) above that. Sizes: md (default), sm (dense tables, inline filters). States cover default, hover, disabled. Notes: state=active is legacy — migrate to `pressed`; state=error should migrate to feedback.danger conventions. See also: Combobox for search-within-options, Select for native HTML fallback.
+Form control that opens a Dropdown Menu of options on click. Single-select. 12 variants: size (md, sm) × state (default, hover, pressed, focus, disabled, error). focus matches Select's focus edge and ring. Select and Dropdown are one control drawn two ways — Select owns its panel, Dropdown opens a Dropdown Menu; pick one per product. Use for ≤10 predictable options — above that use Autocomplete.
 
 ### Props
 
-| Prop              | Type    | Options / default                                |
-| ----------------- | ------- | ------------------------------------------------ |
-| `size`            | variant | **md** · sm                                      |
-| `state`           | variant | **default** · hover · disabled · error · pressed |
-| `hasLabel`        | boolean | default `true`                                   |
-| `hasHelper`       | boolean | default `true`                                   |
-| `hasLeadingIcon`  | boolean | default `true`                                   |
-| `hasTrailingIcon` | boolean | default `true`                                   |
-| `mandatory`       | boolean | default `true`                                   |
+| Prop              | Type    | Options / default                                        |
+| ----------------- | ------- | -------------------------------------------------------- |
+| `size`            | variant | **md** · sm                                              |
+| `state`           | variant | **default** · hover · disabled · error · pressed · focus |
+| `hasLabel`        | boolean | default `true`                                           |
+| `hasHelper`       | boolean | default `true`                                           |
+| `hasLeadingIcon`  | boolean | default `true`                                           |
+| `hasTrailingIcon` | boolean | default `true`                                           |
+| `mandatory`       | boolean | default `true`                                           |
 
-Default variant: `size=md, state=default` · 10 variants · default size 240×76px
+Default variant: `size=md, state=default` · 12 variants · default size 240×76px
 
 ### Anatomy (default variant)
 
@@ -88,10 +88,12 @@ Default variant: `size=md, state=default` · 10 variants · default size 240×76
 | sm   | disabled | 160×66 |      |        |        | `color.text.disabled`                                                        | `color.icon.disabled` |
 | md   | error    | 240×76 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
 | sm   | error    | 160×66 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
+| md   | focus    | 240×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
+| sm   | focus    | 160×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary` | `color.icon.primary`  |
 
 ## Component set: Dropdown Item
 
-Single row inside a Dropdown Menu. States: default, hover, selected, disabled. Pair with optional leading icon (20px), description line, and trailing metadata — never two trailing elements at once. Current variant set lacks an explicit focus state — keyboard navigation uses the aria-activedescendant pattern with hover styling.
+Single row inside a Dropdown Menu. 8 variants: size (md, sm) × state (default, hover, selected, disabled). Optional leading icon (20px), checkbox and description line; rows that hide them are 34px (md). Keyboard focus follows the aria-activedescendant pattern and draws the hover look — no separate ring. Rows under 44px rely on their own box as the target (WCAG 2.2 minimum 24px).
 
 ### Props
 

@@ -141,6 +141,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "5760:4606",
           "size": [
             640,
             56
@@ -152,10 +153,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover",
+          "id": "5760:4607",
           "size": [
             640,
             56
@@ -196,6 +199,7 @@
               {
                 "path": "/Kbd",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Kbd",
                   "type": "INSTANCE",

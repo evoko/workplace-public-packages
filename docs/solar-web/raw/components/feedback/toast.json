@@ -5,7 +5,7 @@
     {
       "name": "Toast",
       "id": "2578:450",
-      "description": "Transient notification for background operation results. Appears top-right or bottom-right, auto-dismisses after 4–7s (danger status longer). Variants: neutral, success, warning, danger, info. Use for async operation outcomes ('File saved', 'Connection lost'). Pair with a StatusIndicator icon and optional action ('Undo'). Never use for critical errors requiring confirmation — use Dialog. See also: Alert for inline callouts, Banner for persistent page-level messages.",
+      "description": "Transient notification for background operation results. Appears top-right or bottom-right and auto-dismisses after 4–7s (danger longer). 5 variants: status (neutral, success, warning, danger, info); each carries a standard status Tag of its own status. Props: show Action, show Chevron. Use for async outcomes (“File saved”, “Connection lost”); never for critical errors that need confirmation — use Dialog. See also: Alert for inline callouts, Banner for page-level messages.",
       "docLinks": [],
       "variantCount": 5,
       "props": {
@@ -80,8 +80,9 @@
             "type": "INSTANCE",
             "main": "Tag",
             "variant": {
-              "status": "neutral",
-              "type": "pill"
+              "status": "success",
+              "type": "status",
+              "invert": "false"
             },
             "size": [
               67,
@@ -193,6 +194,7 @@
       "variants": [
         {
           "variant": "status=success",
+          "id": "2578:445",
           "size": [
             264,
             32
@@ -211,10 +213,12 @@
           "iconFills": [
             "{Color:icon/feedback/success}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "status=warning",
+          "id": "2578:446",
           "size": [
             264,
             32
@@ -244,6 +248,11 @@
                 ]
               },
               "/Tag": {
+                "variant": {
+                  "status": "warning",
+                  "type": "status",
+                  "invert": "false"
+                },
                 "strokes": [
                   "{Color:border/feedback/warning/subtle}"
                 ]
@@ -263,6 +272,7 @@
         },
         {
           "variant": "status=danger",
+          "id": "2578:447",
           "size": [
             264,
             32
@@ -292,8 +302,13 @@
                 ]
               },
               "/Tag": {
+                "variant": {
+                  "status": "danger",
+                  "type": "status",
+                  "invert": "false"
+                },
                 "strokes": [
-                  "{Color:border/feedback/warning/subtle}"
+                  "{Color:border/feedback/danger/subtle}"
                 ]
               },
               "/Action": {
@@ -311,6 +326,7 @@
         },
         {
           "variant": "status=info",
+          "id": "2578:448",
           "size": [
             264,
             32
@@ -340,6 +356,11 @@
                 ]
               },
               "/Tag": {
+                "variant": {
+                  "status": "info",
+                  "type": "status",
+                  "invert": "false"
+                },
                 "strokes": [
                   "{Color:border/feedback/info/subtle}"
                 ]
@@ -359,6 +380,7 @@
         },
         {
           "variant": "status=neutral",
+          "id": "2578:449",
           "size": [
             264,
             32
@@ -388,6 +410,11 @@
                 ]
               },
               "/Tag": {
+                "variant": {
+                  "status": "neutral",
+                  "type": "status",
+                  "invert": "false"
+                },
                 "strokes": [
                   "{Color:border/subtle}"
                 ]

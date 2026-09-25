@@ -394,9 +394,6 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput--cells': {
-        height: 'auto',
-      },
       '& .SolarPINInput--field': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',

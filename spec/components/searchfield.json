@@ -117,9 +117,9 @@
           }
         },
         "height": {
-          "literal": 40,
-          "from": "state=default, size=md",
-          "allowed": "As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 (md) and 32 (sm)."
+          "token": "size.control.md",
+          "from": "overlay",
+          "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
         }
       },
       "size": {
@@ -137,14 +137,20 @@
             }
           },
           "height": {
-            "literal": 32,
-            "from": "state=default, size=sm",
-            "allowed": "As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 (md) and 32 (sm)."
+            "token": "size.control.sm",
+            "from": "overlay",
+            "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
           }
         }
       },
       "appearance": {
         "default": {
+          "hover": {
+            "borderColor": {
+              "token": "color.border.medium",
+              "from": "state=hover, size=md"
+            }
+          },
           "focus": {
             "borderColor": {
               "token": "color.border.feedback.focus.strong",
@@ -155,16 +161,6 @@
             "borderColor": {
               "token": "color.border.feedback.danger.strong",
               "from": "state=error, size=md"
-            }
-          },
-          "hover": {
-            "borderColor": {
-              "token": "color.border.medium",
-              "from": "overlay",
-              "reason": "Figma edges the hovered sm field in color.border.medium, as every hovered Text Input is, and leaves the md one's edge as at rest: drawn at both sizes as the sm one and Text Input are. The design review asks SOLAR to edge the md one.",
-              "replaced": {
-                "token": "color.border.subtle"
-              }
             }
           }
         }
@@ -245,7 +241,7 @@
         "width": {
           "token": "icon.sm",
           "from": "overlay",
-          "reason": "Same value, governed token; the icon's height is already bound to it. The sm field's are set to icon.xs, below."
+          "reason": "Same values, governed tokens: the icon's height is already bound to them, icon.sm in the md field and icon.xs in the sm one."
         },
         "height": {
           "token": "icon.sm",
@@ -258,21 +254,14 @@
       },
       "size": {
         "sm": {
-          "height": {
-            "token": "icon.xs",
-            "from": "overlay",
-            "reason": "As its width.",
-            "replaced": {
-              "token": "icon.sm"
-            }
-          },
           "width": {
             "token": "icon.xs",
             "from": "overlay",
-            "reason": "The sm field's icons are icon.xs, 12, as Figma draws them in five of its six states: its resting variant keeps md's 16, a slip the design review lists.",
-            "replaced": {
-              "token": "icon.sm"
-            }
+            "reason": "Same values, governed tokens: the icon's height is already bound to them, icon.sm in the md field and icon.xs in the sm one."
+          },
+          "height": {
+            "token": "icon.xs",
+            "from": "state=default, size=sm"
           }
         }
       },
@@ -378,7 +367,7 @@
         "width": {
           "token": "icon.sm",
           "from": "overlay",
-          "reason": "As the search icon's."
+          "reason": "Same values, governed tokens: the icon's height is already bound to them, icon.sm in the md field and icon.xs in the sm one."
         },
         "height": {
           "token": "icon.sm",
@@ -391,21 +380,14 @@
       },
       "size": {
         "sm": {
-          "height": {
-            "token": "icon.xs",
-            "from": "overlay",
-            "reason": "As its width.",
-            "replaced": {
-              "token": "icon.sm"
-            }
-          },
           "width": {
             "token": "icon.xs",
             "from": "overlay",
-            "reason": "As the search icon's.",
-            "replaced": {
-              "token": "icon.sm"
-            }
+            "reason": "Same values, governed tokens: the icon's height is already bound to them, icon.sm in the md field and icon.xs in the sm one."
+          },
+          "height": {
+            "token": "icon.xs",
+            "from": "state=default, size=sm"
           }
         }
       },
@@ -454,7 +436,7 @@
     "pageId": "2163:3703",
     "figmaNode": "3773:278",
     "defaultVariant": "state=default, size=md",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "derived": {
     "filled": {
@@ -490,37 +472,17 @@
       {
         "rule": "bind",
         "at": "filter.width",
-        "reason": "As the search icon's."
+        "reason": "Same values, governed tokens: the icon's height is already bound to them, icon.sm in the md field and icon.xs in the sm one."
       },
       {
         "rule": "bind",
         "at": "iconSearch.width",
-        "reason": "Same value, governed token; the icon's height is already bound to it. The sm field's are set to icon.xs, below."
+        "reason": "Same values, governed tokens: the icon's height is already bound to them, icon.sm in the md field and icon.xs in the sm one."
       },
       {
-        "rule": "set",
-        "at": "filter.size.sm.height",
-        "reason": "As its width."
-      },
-      {
-        "rule": "set",
-        "at": "filter.size.sm.width",
-        "reason": "As the search icon's."
-      },
-      {
-        "rule": "set",
-        "at": "iconSearch.size.sm.height",
-        "reason": "As its width."
-      },
-      {
-        "rule": "set",
-        "at": "iconSearch.size.sm.width",
-        "reason": "The sm field's icons are icon.xs, 12, as Figma draws them in five of its six states: its resting variant keeps md's 16, a slip the design review lists."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.default.hover.borderColor",
-        "reason": "Figma edges the hovered sm field in color.border.medium, as every hovered Text Input is, and leaves the md one's edge as at rest: drawn at both sizes as the sm one and Text Input are. The design review asks SOLAR to edge the md one."
+        "rule": "bind",
+        "at": "root.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
       },
       {
         "rule": "set",
@@ -531,11 +493,6 @@
         "rule": "set",
         "at": "root.size.sm.width",
         "reason": "As md's, the sm field's 200 a sample."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "root.height",
-        "reason": "As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 40 (md) and 32 (sm)."
       },
       {
         "rule": "derive",

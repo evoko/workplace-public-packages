@@ -9,7 +9,7 @@
 - **Resource View** · component · column gap 0 pad 0/0/0/0 FIXED/FIXED · 1280×744  
   fill `color.surface.base`
   - **Calendar Toolbar** · instance of **Calendar Toolbar** · row gap 16 pad 12/16/12/16 FILL/HUG · 1280×56  
-    fill `color.surface.base` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
+    fill `color.surface.base` · itemSpacing `inset.md` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
   - **Calendar Body** · frame · column gap 0 pad 20/20/20/20 FILL/HUG · 1280×401  
     padding `inset.lg`
     - **Calendar Surface** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 1240×361  

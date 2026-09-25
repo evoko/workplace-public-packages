@@ -6,20 +6,20 @@
 
 One segment of a breadcrumb trail.
 
-Variants (4):
+Variants (5):
 • type — link | current (current is the terminal, non-interactive item)
-• state — default | hover | disabled (applies to type=link only)
+• state — default | hover | focus | disabled (type=link only; focus carries shadow/focus/default)
 
 Use inside the Breadcrumbs wrapper — not standalone.
 
 ### Props
 
-| Prop    | Type    | Options / default              |
-| ------- | ------- | ------------------------------ |
-| `type`  | variant | **link** · current             |
-| `state` | variant | **default** · hover · disabled |
+| Prop    | Type    | Options / default                      |
+| ------- | ------- | -------------------------------------- |
+| `type`  | variant | **link** · current                     |
+| `state` | variant | **default** · hover · disabled · focus |
 
-Default variant: `type=link, state=default` · 4 variants · default size 36×10px
+Default variant: `type=link, state=default` · 5 variants · default size 36×10px
 
 ### Anatomy (default variant)
 
@@ -35,25 +35,27 @@ Default variant: `type=link, state=default` · 4 variants · default size 36×10
 | Text color      | `color.text.disabled`, `color.text.primary`, `color.text.secondary`                                 |
 | Spacing         | `inset.none`                                                                                        |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.label.md`, `type.size.label.md` |
+| Effects         | `shadow/focus/default`                                                                              |
 | Text styles     | `label/md`                                                                                          |
 
 ### Variant matrix
 
-| type    | state    | size  | fill | stroke | effect | text                   | icon |
-| ------- | -------- | ----- | ---- | ------ | ------ | ---------------------- | ---- |
-| link    | default  | 36×10 |      |        |        | `color.text.secondary` |      |
-| link    | hover    | 36×10 |      |        |        | `color.text.primary`   |      |
-| link    | disabled | 36×10 |      |        |        | `color.text.disabled`  |      |
-| current | default  | 36×10 |      |        |        | `color.text.primary`   |      |
+| type    | state    | size  | fill | stroke | effect                 | text                   | icon |
+| ------- | -------- | ----- | ---- | ------ | ---------------------- | ---------------------- | ---- |
+| link    | default  | 36×10 |      |        |                        | `color.text.secondary` |      |
+| link    | hover    | 36×10 |      |        |                        | `color.text.primary`   |      |
+| link    | disabled | 36×10 |      |        |                        | `color.text.disabled`  |      |
+| current | default  | 36×10 |      |        |                        | `color.text.primary`   |      |
+| link    | focus    | 36×10 |      |        | `shadow/focus/default` | `color.text.primary`   |      |
 
 ## Component set: Breadcrumbs
 
-Shows the user's location in a navigational hierarchy and allows quick jumps to ancestors.
+Shows the user’s location in a navigational hierarchy and allows quick jumps to ancestors.
 
 Variants (5):
-• items — 2 | 3 | 4 | 5 | multiple (use 'multiple' when the trail exceeds 5 levels — middle collapses to an ellipsis menu)
+• items — 2 | 3 | 4 | 5 | multiple (use multiple when the trail exceeds 5 levels — the middle collapses to an ellipsis; compose the ellipsis with a Dropdown Menu listing the hidden pages)
 
-Accessibility: wrap in `<nav aria-label="Breadcrumb">`. The final item uses aria-current="page" and is not a link. Separators are aria-hidden.
+Accessibility: wrap in `<nav aria-label="Breadcrumb">`. The final item uses aria-current="page" and is not a link. Separators are aria-hidden. Breadcrumb Item carries a focus state.
 
 Use for deep page trees, not for linear progress (see Stepper) or single-level flows (omit entirely).
 

@@ -65,8 +65,8 @@ export const solarDatePickerOpenStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
@@ -163,18 +163,17 @@ export const solarDatePickerOpenStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarDatePickerOpen--container': {
-      borderRadius: 'var(--solar-radius-none)',
-      borderStyle: 'none',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      gap: 'var(--solar-inset-sm)',
-      paddingTop: 'var(--solar-inset-none)',
-      paddingRight: 'var(--solar-inset-none)',
-      paddingBottom: 'var(--solar-inset-none)',
-      paddingLeft: 'var(--solar-inset-none)',
-      width: '100%',
+    '& .SolarDatePickerOpen--containerMonthHeaderIconArrowLeft': {
+      width: 'var(--solar-icon-md)',
+      height: 'var(--solar-icon-md)',
+    },
+    '& .SolarDatePickerOpen--containerMonthHeaderMonthLabel': {
+      fontFamily: 'var(--solar-type-font-family-inter)',
+      fontWeight: 'var(--solar-type-font-weight-500)',
+      fontSize: 'var(--solar-type-size-body-md)',
+      lineHeight: 'var(--solar-type-line-height-body-md)',
+      letterSpacing: '-0.02286em',
+      textDecoration: 'none',
     },
     '& .SolarDatePickerOpen--containerMonthHeader': {
       borderRadius: 'var(--solar-radius-none)',
@@ -193,17 +192,14 @@ export const solarDatePickerOpenStyles = {
       height: '32px',
       position: 'relative',
     },
-    '& .SolarDatePickerOpen--containerMonthHeaderIconArrowLeft': {
-      width: 'var(--solar-icon-md)',
-      height: 'var(--solar-icon-md)',
-    },
-    '& .SolarDatePickerOpen--containerMonthHeaderMonthLabel': {
+    '& .SolarDatePickerOpen--containerWeekdayRowWeekday': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
-      fontSize: 'var(--solar-type-size-body-md)',
-      lineHeight: 'var(--solar-type-line-height-body-md)',
-      letterSpacing: '-0.02286em',
+      fontSize: 'var(--solar-type-size-body-sm)',
+      lineHeight: 'var(--solar-type-line-height-body-sm)',
+      letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarDatePickerOpen--containerWeekdayRow': {
       borderRadius: 'var(--solar-radius-none)',
@@ -218,15 +214,6 @@ export const solarDatePickerOpenStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarDatePickerOpen--containerWeekdayRowWeekday': {
-      fontFamily: 'var(--solar-type-font-family-inter)',
-      fontWeight: 'var(--solar-type-font-weight-500)',
-      fontSize: 'var(--solar-type-size-body-sm)',
-      lineHeight: 'var(--solar-type-line-height-body-sm)',
-      letterSpacing: '-0.02em',
-      textDecoration: 'none',
-      width: '100%',
-    },
     '& .SolarDatePickerOpen--containerDayGrid': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
@@ -238,6 +225,19 @@ export const solarDatePickerOpenStyles = {
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
+    },
+    '& .SolarDatePickerOpen--container': {
+      borderRadius: 'var(--solar-radius-none)',
+      borderStyle: 'none',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      gap: 'var(--solar-inset-sm)',
+      paddingTop: 'var(--solar-inset-none)',
+      paddingRight: 'var(--solar-inset-none)',
+      paddingBottom: 'var(--solar-inset-none)',
+      paddingLeft: 'var(--solar-inset-none)',
+      width: '100%',
     },
     '& .SolarDatePickerOpen--container2': {
       borderRadius: 'var(--solar-radius-none)',
@@ -251,6 +251,18 @@ export const solarDatePickerOpenStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+    },
+    '& .SolarDatePickerOpen--container2MonthHeaderIconArrowRight': {
+      width: 'var(--solar-icon-md)',
+      height: 'var(--solar-icon-md)',
+    },
+    '& .SolarDatePickerOpen--container2MonthHeaderMonthLabel': {
+      fontFamily: 'var(--solar-type-font-family-inter)',
+      fontWeight: 'var(--solar-type-font-weight-500)',
+      fontSize: 'var(--solar-type-size-body-md)',
+      lineHeight: 'var(--solar-type-line-height-body-md)',
+      letterSpacing: '-0.02286em',
+      textDecoration: 'none',
     },
     '& .SolarDatePickerOpen--container2MonthHeader': {
       borderRadius: 'var(--solar-radius-none)',
@@ -269,17 +281,14 @@ export const solarDatePickerOpenStyles = {
       height: '32px',
       position: 'relative',
     },
-    '& .SolarDatePickerOpen--container2MonthHeaderIconArrowRight': {
-      width: 'var(--solar-icon-md)',
-      height: 'var(--solar-icon-md)',
-    },
-    '& .SolarDatePickerOpen--container2MonthHeaderMonthLabel': {
+    '& .SolarDatePickerOpen--container2WeekdayRowWeekday': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
-      fontSize: 'var(--solar-type-size-body-md)',
-      lineHeight: 'var(--solar-type-line-height-body-md)',
-      letterSpacing: '-0.02286em',
+      fontSize: 'var(--solar-type-size-body-sm)',
+      lineHeight: 'var(--solar-type-line-height-body-sm)',
+      letterSpacing: '-0.02em',
       textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarDatePickerOpen--container2WeekdayRow': {
       borderRadius: 'var(--solar-radius-none)',
@@ -292,15 +301,6 @@ export const solarDatePickerOpenStyles = {
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
-      width: '100%',
-    },
-    '& .SolarDatePickerOpen--container2WeekdayRowWeekday': {
-      fontFamily: 'var(--solar-type-font-family-inter)',
-      fontWeight: 'var(--solar-type-font-weight-500)',
-      fontSize: 'var(--solar-type-size-body-sm)',
-      lineHeight: 'var(--solar-type-line-height-body-sm)',
-      letterSpacing: '-0.02em',
-      textDecoration: 'none',
       width: '100%',
     },
     '& .SolarDatePickerOpen--container2DayGrid': {
@@ -335,16 +335,6 @@ export const solarDatePickerOpenStyles = {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       flexDirection: 'row',
-      '& .SolarDatePickerOpen--container': {
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-        boxShadow: 'none',
-      },
-      '& .SolarDatePickerOpen--containerMonthHeader': {
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-        boxShadow: 'none',
-      },
       '& .SolarDatePickerOpen--containerMonthHeaderIconArrowLeft': {
         color: 'var(--solar-color-action-tertiary-icon-default)',
       },
@@ -354,7 +344,7 @@ export const solarDatePickerOpenStyles = {
         left: 'calc(32px - var(--solar-placed-left, 0px))',
         top: 'calc(11px - var(--solar-placed-top, 0px))',
       },
-      '& .SolarDatePickerOpen--containerWeekdayRow': {
+      '& .SolarDatePickerOpen--containerMonthHeader': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -362,17 +352,22 @@ export const solarDatePickerOpenStyles = {
       '& .SolarDatePickerOpen--containerWeekdayRowWeekday': {
         color: 'var(--solar-color-text-tertiary)',
       },
+      '& .SolarDatePickerOpen--containerWeekdayRow': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        boxShadow: 'none',
+      },
       '& .SolarDatePickerOpen--containerDayGrid': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarDatePickerOpen--container2': {
+      '& .SolarDatePickerOpen--container': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarDatePickerOpen--container2MonthHeader': {
+      '& .SolarDatePickerOpen--container2': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -386,13 +381,18 @@ export const solarDatePickerOpenStyles = {
         left: 'calc(32px - var(--solar-placed-left, 0px))',
         top: 'calc(11px - var(--solar-placed-top, 0px))',
       },
-      '& .SolarDatePickerOpen--container2WeekdayRow': {
+      '& .SolarDatePickerOpen--container2MonthHeader': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
       '& .SolarDatePickerOpen--container2WeekdayRowWeekday': {
         color: 'var(--solar-color-text-tertiary)',
+      },
+      '& .SolarDatePickerOpen--container2WeekdayRow': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        boxShadow: 'none',
       },
       '& .SolarDatePickerOpen--container2DayGrid': {
         backgroundColor: 'transparent',
@@ -514,30 +514,6 @@ export const solarDatePickerOpenComposition = {
       },
     },
   },
-  container: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'inline=true, type=double': {
-        default: {
-          present: true,
-        },
-      },
-    },
-  },
-  containerMonthHeader: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'inline=true, type=double': {
-        default: {
-          present: true,
-        },
-      },
-    },
-  },
   containerMonthHeaderIconArrowLeft: {
     base: {
       present: false,
@@ -564,7 +540,7 @@ export const solarDatePickerOpenComposition = {
       },
     },
   },
-  containerWeekdayRow: {
+  containerMonthHeader: {
     base: {
       present: false,
     },
@@ -577,6 +553,18 @@ export const solarDatePickerOpenComposition = {
     },
   },
   containerWeekdayRowWeekday: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'inline=true, type=double': {
+        default: {
+          present: true,
+        },
+      },
+    },
+  },
+  containerWeekdayRow: {
     base: {
       present: false,
     },
@@ -615,7 +603,7 @@ export const solarDatePickerOpenComposition = {
       },
     },
   },
-  container2: {
+  container: {
     base: {
       present: false,
     },
@@ -627,7 +615,7 @@ export const solarDatePickerOpenComposition = {
       },
     },
   },
-  container2MonthHeader: {
+  container2: {
     base: {
       present: false,
     },
@@ -665,7 +653,7 @@ export const solarDatePickerOpenComposition = {
       },
     },
   },
-  container2WeekdayRow: {
+  container2MonthHeader: {
     base: {
       present: false,
     },
@@ -678,6 +666,18 @@ export const solarDatePickerOpenComposition = {
     },
   },
   container2WeekdayRowWeekday: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'inline=true, type=double': {
+        default: {
+          present: true,
+        },
+      },
+    },
+  },
+  container2WeekdayRow: {
     base: {
       present: false,
     },
@@ -809,25 +809,25 @@ export const solarDatePickerOpenTree: Record<string, string[]> = {
   ],
   weekdayRow: ['weekdayRowWeekday'],
   dayGrid: ['dayGridDayCell'],
+  containerMonthHeader: [
+    'containerMonthHeaderIconArrowLeft',
+    'containerMonthHeaderMonthLabel',
+  ],
   container: [
     'containerMonthHeader',
     'containerWeekdayRow',
     'containerDayGrid',
   ],
-  containerMonthHeader: [
-    'containerMonthHeaderIconArrowLeft',
-    'containerMonthHeaderMonthLabel',
-  ],
   containerWeekdayRow: ['containerWeekdayRowWeekday'],
   containerDayGrid: ['containerDayGridDayCell'],
+  container2MonthHeader: [
+    'container2MonthHeaderIconArrowRight',
+    'container2MonthHeaderMonthLabel',
+  ],
   container2: [
     'container2MonthHeader',
     'container2WeekdayRow',
     'container2DayGrid',
-  ],
-  container2MonthHeader: [
-    'container2MonthHeaderIconArrowRight',
-    'container2MonthHeaderMonthLabel',
   ],
   container2WeekdayRow: ['container2WeekdayRowWeekday'],
   container2DayGrid: ['container2DayGridDayCell'],

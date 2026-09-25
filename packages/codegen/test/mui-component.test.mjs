@@ -89,7 +89,8 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
     expect(Object.keys(styles.sizes)).toEqual(['sm', 'lg']);
     expect(styles.sizes.sm.paddingLeft).toBe('var(--solar-inset-xs)');
     expect(styles.sizes.lg.borderRadius).toBe('var(--solar-radius-none)');
-    expect(styles.sizes.lg.justifyContent).toBe('space-between');
+    // Centred as the other sizes since 2026-09-25, where Figma spread lg's content before.
+    expect(styles.sizes.lg.justifyContent).toBeUndefined();
   });
 
   it('draws lg flat, as Figma does: no appearance of lg inherits the base shadow', () => {

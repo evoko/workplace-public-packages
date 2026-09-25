@@ -1,10 +1,10 @@
 ---
 solar:
-  reviewed: 2026-09-22
-  figmaVersion: '2402047167094879156'
+  reviewed: 2026-09-25
+  figmaVersion: '2403083104633531037'
   sources:
-    documentation/agentic-reference: 6e99bfa09cd4
-    page-context: 0cb2e3a20820
+    documentation/agentic-reference: 5891c57427aa
+    page-context: 4e700237ae6f
 ---
 
 # 18 · Agent Reference
@@ -55,7 +55,7 @@ holds every value.
 6. Every easing → `motion.ease.*`; never raw cubic-bezier.
 7. Every border radius → `radius.*` (semantic) or `spatial.border-radius.*`; never raw px.
 8. Every z-index → a defined level (0 / 100 / 200 / 300 / 400 / 500 / 600); never arbitrary.
-9. Every interactive element → minimum 44 × 44 px touch target.
+9. Every interactive element → minimum touch target `size.target.min` (44 × 44 px).
 10. Every interactive element → visible focus ring on `:focus-visible`.
 
 If a property is not covered by a token, **flag it as a gap**; never use a raw value and
@@ -74,23 +74,21 @@ Color collection (`text/primary` = `color.text.primary`).
 
 ## Color token grammar (verified)
 
-| Category | Pattern                                                                                                     | Variants that exist                                                                                                                                                                                                                                                                             |
-| -------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| surface  | `color.surface.{variant}`                                                                                   | `background`, `base`, `raised`, `overlay`, `dialog`, `scrim`, `muted`, `inverse`, `hover`, `active`, `feedback.{success\|warning\|danger\|info\|neutral}.{subtle\|subtle-alpha\|medium\|strong}`                                                                                                |
-| text     | `color.text.{variant}`                                                                                      | `primary`, `secondary`, `tertiary`, `disabled`, `inverse`, `feedback.{type}`, `link.{default\|hover\|active\|disabled}`                                                                                                                                                                         |
-| icon     | `color.icon.{variant}`                                                                                      | same as text                                                                                                                                                                                                                                                                                    |
-| border   | `color.border.{variant}`                                                                                    | `subtle`, `medium`, `strong`, `disabled`, `inverse`, `inverse.subtle`, `inverse.strong`, `surface`, `highlight`, `feedback.{focus\|success\|warning\|danger\|info\|neutral}.{subtle\|medium\|strong}`                                                                                           |
-| shadow   | `color.shadow.{variant}`                                                                                    | `subtle`, `strong`, `feedback.{focus\|danger\|warning\|success\|info\|neutral}` (colors only; composites are effect styles)                                                                                                                                                                     |
-| action   | `color.action.{intent}.{property}.{state}`                                                                  | intent `primary\|secondary\|tertiary` (+ `danger` variant, written `primary-danger` in docs, stored `action/primary/{property}/danger/{state}`); property `bg\|text\|icon\|border`; state `default\|hover\|active\|disabled` (⚠️ the page now writes `focus\|pressed`; no such variables exist) |
-| data     | `color.data.{type}.{id}`                                                                                    | `category.01…08.{strong\|subtle}`, `scale.100…900`, `delta.{neutral\|negative-100\|negative-300\|negative-500\|positive-100\|positive-300\|positive-500}`                                                                                                                                       |
-| brand    | `color.brand.{primary\|secondary\|tertiary}`                                                                | red, black, white                                                                                                                                                                                                                                                                               |
-| meter    | `color.meter.{nominal\|warning\|peak}`                                                                      | audio meters                                                                                                                                                                                                                                                                                    |
-| control  | `color.control.{neutral\|mute\|solo\|phantom\|phase}.{bg\|border\|icon}.{default\|hover\|active\|disabled}` | audio channel-strip controls                                                                                                                                                                                                                                                                    |
+| Category | Pattern                                                                                                     | Variants that exist                                                                                                                                                                                                                                                                                  |
+| -------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| surface  | `color.surface.{variant}`                                                                                   | `background`, `base`, `raised`, `overlay`, `dialog`, `scrim`, `muted`, `inverse`, `hover`, `active`, `feedback.{success\|warning\|danger\|info\|neutral}.{subtle\|subtle-alpha\|medium\|strong}`                                                                                                     |
+| text     | `color.text.{variant}`                                                                                      | `primary`, `secondary`, `tertiary`, `disabled`, `inverse`, `feedback.{type}`, `link.{default\|hover\|active\|disabled}`                                                                                                                                                                              |
+| icon     | `color.icon.{variant}`                                                                                      | same as text                                                                                                                                                                                                                                                                                         |
+| border   | `color.border.{variant}`                                                                                    | `subtle`, `medium`, `strong`, `disabled`, `inverse`, `inverse.subtle`, `inverse.strong`, `surface`, `highlight`, `feedback.{focus\|success\|warning\|danger\|info\|neutral}.{subtle\|medium\|strong}`                                                                                                |
+| shadow   | `color.shadow.{variant}`                                                                                    | `subtle`, `strong`, `feedback.{focus\|danger\|warning\|success\|info\|neutral}` (colors only; composites are effect styles)                                                                                                                                                                          |
+| action   | `color.action.{intent}.{property}.{state}`                                                                  | intent `primary\|secondary\|tertiary` (+ `danger` variant, written `primary-danger` in docs, stored `action/primary/{property}/danger/{state}`); property `bg\|text\|icon\|border`; state `default\|hover\|active\|disabled` (the variant value `pressed` binds `active`; focus is `shadow/focus/*`) |
+| data     | `color.data.{type}.{id}`                                                                                    | `category.01…08.{strong\|subtle}`, `scale.100…900`, `delta.{neutral\|negative-100\|negative-300\|negative-500\|positive-100\|positive-300\|positive-500}`                                                                                                                                            |
+| brand    | `color.brand.{primary\|secondary\|tertiary}`                                                                | red, black, white                                                                                                                                                                                                                                                                                    |
+| meter    | `color.meter.{nominal\|warning\|peak}`                                                                      | audio meters                                                                                                                                                                                                                                                                                         |
+| control  | `color.control.{neutral\|mute\|solo\|phantom\|phase}.{bg\|border\|icon}.{default\|hover\|active\|disabled}` | audio channel-strip controls                                                                                                                                                                                                                                                                         |
 
-⚠️ The page's `[COLOR_TOKEN_GRAMMAR]` still writes the sequential ramp as
-`data … scale.01-08`. The variables are `color.data.scale.100 … 900`. `category.01-08` in
-the same line is correct. This is the one value-level conflict left in the Foundations
-file; see [source-discrepancies.md](source-discrepancies.md).
+The page's `[COLOR_TOKEN_GRAMMAR]` now matches the variables, including the sequential
+ramp `scale.100-900` (it used to print `scale.01-08`).
 
 ## Banned segments and phantom tokens
 
@@ -120,6 +118,7 @@ file; see [source-discrepancies.md](source-discrepancies.md).
 | `dataviz.color.categorical/sequential/diverging.*`          | `color.data.category.NN.*`, `color.data.scale.*`, `color.data.delta.*`                |
 | `{component}.space.{property}` (e.g. `button.space.inline`) | `inset.*` / `stack.*` — no component-scoped spacing tokens                            |
 | `icon.size.xxl`, 40 px / 48 px icons                        | `icon.size.xl` 28, `icon.size.2xl` 32                                                 |
+| `color.action.*.*.pressed`, `color.action.*.*.focus`        | `color.action.*.*.active`; the focus ring is `shadow/focus/*`                         |
 
 **Phantom token protocol**: when a referenced token does not exist in the inventory,
 flag it with ⚠️ and log it in the Variable Audit Report / discrepancies file rather than
@@ -141,11 +140,16 @@ silently using it. Gaps are governance issues, not agent decisions.
 | `radius.dialog`    | 12   | `spatial.border-radius.xl`   |
 | `radius.pill`      | 9999 | `spatial.border-radius.full` |
 
+Sizes (scope width/height): `size.control.sm` 32, `size.control.md` 40, `size.control.lg`
+48 (control sizes); `size.target.min` 44, the minimum touch target on both axes. CSS
+`--solar-size-control-{sm,md,lg}`, `--solar-size-target-min`.
+
 Border width: `border.none` 0, `border.default` 1, `border.strong` 2, `border.emphasis` 4.
 Primitive scale: `spatial.scale.0…22` = 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48,
 52, 56, 64, 72, 80, 96, 112, 128, 144, 160.
 
-The page's own `[SPATIAL_SYSTEM]` block now prints these same values. Retired spellings:
+The page's own `[SPATIAL_SYSTEM]` block now prints these same values, but does not yet list
+the `size.*` tokens. Retired spellings:
 `inset: 2xs=2 … xl=32`, `icon.size: xs=16 … xl=40`, a 40 px or 48 px icon size, an `xxl`
 icon step, `border-radius.{sm|md|lg|xl}` as semantic names, and any `gap.*` family
 (horizontal auto-layout gaps bind to `inset.*`).
@@ -186,7 +190,9 @@ no bands, no `modal` level. Stacking: Tooltip > Toast > Dialog > Overlay > Dropd
 | Tooltip        | `<div role="tooltip">`       | `color.surface.inverse`, `color.text.inverse`, z 600                                   | —                             |
 | Menu           | `<div role="menu">`          | `shadow/overlay`, z 200                                                                | 44 × 36 (item)                |
 
-Full ARIA requirements: [03-accessibility.md](03-accessibility.md#component-aria-reference).
+The target sizes are as the page gives them. Its heights below 44 contradict rule 9 and
+`size.target.min`, and none of them names a `size.*` token. Full ARIA requirements:
+[03-accessibility.md](03-accessibility.md#component-aria-reference).
 
 ## Breakpoints and grid (verified)
 
@@ -237,7 +243,7 @@ Always honour `prefers-reduced-motion` (collapse to instant; remove decorative m
 | Color               | Answer with token paths not hex; verify contrast both modes; draft a proposal for missing roles; data-viz palette only for data                                   |
 | Typography          | Named text styles only; Desktop and Mobile both; semantic text color tokens                                                                                       |
 | Elevation           | Give shadow token + z-index level; scrim with dialogs; test both modes                                                                                            |
-| States              | Verify default/hover/active/focus/disabled all defined and visually distinct; focus always on top; touch has no hover                                             |
+| States              | Verify default/hover/pressed/focus/disabled all defined and visually distinct (pressed binds `active`); focus always on top; touch has no hover                   |
 | Iconography         | Reference icon by system name + size token; accessible name on icon buttons; one style per context                                                                |
 | Data visualization  | Justify chart type; data tokens only; text alternative; y-axis at zero for bars; series distinguishable without color                                             |
 | Layout / responsive | Mobile-first; describe each breakpoint; column spans not px; no horizontal overflow; reading order = visual order                                                 |
@@ -261,7 +267,7 @@ Accessibility
 
 - [ ] Text contrast ≥ 4.5:1 / 3:1 large; non-text ≥ 3:1, in Light **and** Dark (CLR-003/004)
 - [ ] Focus ring visible on every interactive element, not clipped (A11Y-003)
-- [ ] Touch targets ≥ 44 × 44 px (A11Y-001)
+- [ ] Touch targets ≥ `size.target.min` (44 × 44 px) (A11Y-001)
 - [ ] Correct HTML element and ARIA per the component reference (CMP-001…004)
 - [ ] Color never the sole differentiator; dialogs trap and return focus
 - [ ] `prefers-reduced-motion` respected (MOT-003)
@@ -280,7 +286,7 @@ Governance
 
 **Do**: semantic tokens for every visual property; include the `feedback` segment for
 status colors; use `bg|text|icon|border` in action tokens; reference named text styles;
-run the checklist before every handoff; 44 × 44 targets; visible focus rings.
+run the checklist before every handoff; `size.target.min` targets; visible focus rings.
 
 **Don't**: hex, primitives, hard-coded px/rem; skip the `feedback` segment; `foreground`
 or `background`; mix separator styles; arbitrary z-index; silently use phantom tokens;

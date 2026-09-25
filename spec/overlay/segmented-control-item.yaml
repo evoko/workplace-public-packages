@@ -12,14 +12,6 @@ base:
     segments with the arrow keys; Flutter's RawRadio under a RadioGroup, which does the same.
     Both draw Figma's segment with the shared layer helpers.
 
-set:
-  root.appearance.*.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      Figma draws no focus state ("handled by the parent assembly treating the segment as a
-      radio", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with
-      SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it.
-
 bind:
   iconLeading.width:
     tokens: { 16: icon.sm, 12: icon.xs }
@@ -33,10 +25,12 @@ bind:
 allowLiteral:
   root.height:
     reason: >-
-      A segment is 32 tall at md and 24 at sm, bound to nothing: SOLAR has no control height
-      token (the design review's question on control heights, as Button's is).
+      A segment is 32 tall at md and 24 at sm, bound to nothing: 24 is none of SOLAR's control
+      heights (size.control: 32, 40, 48), and the two stay one decision; the design review asks.
 
 accept:
+  component.segmented control item.root.borderWidth@selected=false, state=focus:
+    reason: As at rest, a transparent edge; the focus ring is the shadow.
   component.segmented control item.root.borderWidth@selected=false, state=default:
     reason: >-
       An unselected segment has no edge in Figma, where a border takes no room. In CSS it takes

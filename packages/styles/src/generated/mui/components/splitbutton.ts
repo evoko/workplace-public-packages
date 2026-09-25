@@ -56,8 +56,8 @@ export const solarSplitButtonStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarSplitButton--trigger': {
@@ -68,8 +68,8 @@ export const solarSplitButtonStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarSplitButton--spinner': {
@@ -95,7 +95,7 @@ export const solarSplitButtonStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    height: '40px',
+    height: 'var(--solar-size-control-md)',
     '& .SolarSplitButton--action': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
@@ -156,7 +156,7 @@ export const solarSplitButtonStyles = {
   },
   sizes: {
     sm: {
-      height: '32px',
+      height: 'var(--solar-size-control-sm)',
       '& .SolarSplitButton--action': {
         paddingRight: 'var(--solar-inset-sm)',
         paddingLeft: 'var(--solar-inset-sm)',
@@ -171,7 +171,7 @@ export const solarSplitButtonStyles = {
       },
       '& .SolarSplitButton--trigger': {
         width: '32px',
-        height: '32px',
+        height: 'var(--solar-size-control-sm)',
       },
       '& .SolarSplitButton--iconChevronDown': {
         width: 'var(--solar-icon-sm)',

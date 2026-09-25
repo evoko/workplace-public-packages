@@ -145,7 +145,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.sm",
@@ -154,7 +154,7 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.sm",
@@ -165,9 +165,9 @@
           "from": "size=md, prio=primary, state=default, danger=false"
         },
         "height": {
-          "literal": 40,
-          "from": "size=md, prio=primary, state=default, danger=false",
-          "allowed": "Owner decision 2026-09-23: carry the fixed heights (40, 32, 48) as literals. SOLAR publishes no control height token; raised as a governance gap."
+          "token": "size.control.md",
+          "from": "overlay",
+          "reason": "Same values, governed tokens: size.control, which SOLAR added to Spatial on 2026-09-25 (Button's description: \"heights are size/control/{sm,md,lg}\"). Figma leaves the heights unbound; the design review asks SOLAR to bind them."
         }
       },
       "size": {
@@ -180,14 +180,9 @@
             "token": "border.none",
             "from": "size=lg, prio=primary, state=default, danger=false"
           },
-          "align": {
-            "keyword": "SPACE_BETWEEN/CENTER",
-            "from": "size=lg, prio=primary, state=default, danger=false"
-          },
           "gap": {
             "token": "inset.sm",
-            "from": "overlay",
-            "reason": "Same value, governed token. Only lg leaves its gap unbound; every other size binds an inset token."
+            "from": "size=lg, prio=primary, state=default, danger=false"
           },
           "paddingRight": {
             "token": "inset.lg",
@@ -203,9 +198,9 @@
             "allowed": "lg is fixed at 200 wide and SOLAR publishes no control width token. Treated like the heights under the same decision; raised as a governance gap."
           },
           "height": {
-            "literal": 48,
-            "from": "size=lg, prio=primary, state=default, danger=false",
-            "allowed": "Owner decision 2026-09-23: carry the fixed heights (40, 32, 48) as literals. SOLAR publishes no control height token; raised as a governance gap."
+            "token": "size.control.lg",
+            "from": "overlay",
+            "reason": "Same values, governed tokens: size.control, which SOLAR added to Spatial on 2026-09-25 (Button's description: \"heights are size/control/{sm,md,lg}\"). Figma leaves the heights unbound; the design review asks SOLAR to bind them."
           }
         },
         "sm": {
@@ -218,9 +213,9 @@
             "from": "size=sm, prio=primary, state=default, danger=false"
           },
           "height": {
-            "literal": 32,
-            "from": "size=sm, prio=primary, state=default, danger=false",
-            "allowed": "Owner decision 2026-09-23: carry the fixed heights (40, 32, 48) as literals. SOLAR publishes no control height token; raised as a governance gap."
+            "token": "size.control.sm",
+            "from": "overlay",
+            "reason": "Same values, governed tokens: size.control, which SOLAR added to Spatial on 2026-09-25 (Button's description: \"heights are size/control/{sm,md,lg}\"). Figma leaves the heights unbound; the design review asks SOLAR to bind them."
           }
         }
       },
@@ -1037,12 +1032,12 @@
         },
         "width": {
           "token": "icon.sm",
-          "from": "size=md, prio=primary, state=default, danger=false"
+          "from": "overlay",
+          "reason": "The icon is square and its height is already bound to icon.sm."
         },
         "height": {
           "token": "icon.sm",
-          "from": "overlay",
-          "reason": "The icon is square and its width is already bound to icon.sm."
+          "from": "size=md, prio=primary, state=default, danger=false"
         },
         "color": {
           "token": "color.action.primary.icon.default",
@@ -1813,12 +1808,12 @@
         },
         "width": {
           "token": "icon.sm",
-          "from": "size=md, prio=primary, state=default, danger=false"
+          "from": "overlay",
+          "reason": "The icon is square and its height is already bound to icon.sm."
         },
         "height": {
           "token": "icon.sm",
-          "from": "overlay",
-          "reason": "The icon is square and its width is already bound to icon.sm."
+          "from": "size=md, prio=primary, state=default, danger=false"
         },
         "color": {
           "token": "color.action.primary.icon.default",
@@ -2259,7 +2254,7 @@
     }
   },
   "docs": {
-    "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (108):\n• size — sm (32px) | md (40px, default) | lg (48px)\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | focus | loading | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nfocus carries the shared effect style shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission.\n\nSizing: Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). sm and md both render below 44px — reserve sm for dense tables and toolbars. There is no xs or xl size; size=xl was renamed lg on 2026-09-23.\n\nLabels: write as actions — “Save changes” not “OK”, “Delete project” not “Yes”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Never place two primary buttons side by side. Tertiary should not stand alone as the sole action.",
+    "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (108):\n• size — sm (32px) | md (40px, default) | lg (48px, 200px fixed-width variant) — heights are size/control/{sm,md,lg}\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | focus | loading | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nsecondary has no background: hover and disabled change only the border and label; danger turns border and label red, and danger hover adds the red tint (action/secondary/bg/danger/hover). tertiary hover underlines the label. lg is a distinct button: fixed 200px wide with the label centred, square (radius/none), borderless and flat — only focus draws a ring. Use it where a wide menu-style action is needed, not as a bigger md.\n\nfocus carries shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code.\n\nLabels: write as actions — “Save changes” not “OK”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Tertiary should not stand alone as the sole action.",
     "figmaIssues": []
   },
   "provenance": {
@@ -2267,7 +2262,7 @@
     "pageId": "2049:578",
     "figmaNode": "2087:2544",
     "defaultVariant": "size=md, prio=primary, state=default, danger=false",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/button.yaml",
@@ -2289,28 +2284,23 @@
       },
       {
         "rule": "bind",
-        "at": "iconLeading.height",
-        "reason": "The icon is square and its width is already bound to icon.sm."
+        "at": "iconLeading.width",
+        "reason": "The icon is square and its height is already bound to icon.sm."
       },
       {
         "rule": "bind",
-        "at": "iconTrailing.height",
-        "reason": "The icon is square and its width is already bound to icon.sm."
+        "at": "iconTrailing.width",
+        "reason": "The icon is square and its height is already bound to icon.sm."
       },
       {
         "rule": "bind",
-        "at": "root.gap",
-        "reason": "Same value, governed token. Only lg leaves its gap unbound; every other size binds an inset token."
+        "at": "root.height",
+        "reason": "Same values, governed tokens: size.control, which SOLAR added to Spatial on 2026-09-25 (Button's description: \"heights are size/control/{sm,md,lg}\"). Figma leaves the heights unbound; the design review asks SOLAR to bind them."
       },
       {
         "rule": "allowLiteral",
         "at": "counter.height",
         "reason": "The counter badge is fixed at 20 tall and bound to nothing; no SOLAR token names a badge height. Raised as a governance gap."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "root.height",
-        "reason": "Owner decision 2026-09-23: carry the fixed heights (40, 32, 48) as literals. SOLAR publishes no control height token; raised as a governance gap."
       },
       {
         "rule": "allowLiteral",
@@ -2320,7 +2310,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingBottom",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

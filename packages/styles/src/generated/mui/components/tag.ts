@@ -67,8 +67,8 @@ export const solarTagStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
@@ -88,6 +88,10 @@ export const solarTagStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-xs)',
     height: '24px',
+    '& .SolarTag--iconNone': {
+      width: 'var(--solar-icon-xs)',
+      height: 'var(--solar-icon-xs)',
+    },
     '& .SolarTag-label': {
       color: 'var(--solar-color-text-feedback-success)',
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -98,10 +102,6 @@ export const solarTagStyles = {
       textDecoration: 'none',
     },
     '& .SolarTag-icon': {
-      width: 'var(--solar-icon-xs)',
-      height: 'var(--solar-icon-xs)',
-    },
-    '& .SolarTag--iconNone': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
     },
@@ -156,11 +156,11 @@ export const solarTagStyles = {
       backgroundColor: 'var(--solar-color-surface-feedback-success-strong)',
       borderColor: 'var(--solar-color-border-medium)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-inverse)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-inverse)',
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
@@ -254,22 +254,22 @@ export const solarTagStyles = {
       backgroundColor: 'var(--solar-color-surface-feedback-neutral-subtle)',
       borderColor: 'var(--solar-color-border-medium)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-feedback-neutral)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-neutral)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-feedback-neutral)',
       },
     },
     'status=neutral, type=icon+text, invert=true': {
       backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
       borderColor: 'var(--solar-color-border-medium)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-inverse)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-inverse)',
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
@@ -373,22 +373,22 @@ export const solarTagStyles = {
       backgroundColor: 'var(--solar-color-surface-feedback-warning-subtle)',
       borderColor: 'var(--solar-color-border-feedback-warning-subtle)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-feedback-warning)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-warning)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-feedback-warning)',
       },
     },
     'status=warning, type=icon+text, invert=true': {
       backgroundColor: 'var(--solar-color-surface-feedback-warning-strong)',
       borderColor: 'var(--solar-color-border-medium)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-inverse)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-inverse)',
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
@@ -492,22 +492,22 @@ export const solarTagStyles = {
       backgroundColor: 'var(--solar-color-surface-feedback-danger-subtle)',
       borderColor: 'var(--solar-color-border-feedback-danger-subtle)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-feedback-danger)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-danger)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-feedback-danger)',
       },
     },
     'status=danger, type=icon+text, invert=true': {
       backgroundColor: 'var(--solar-color-surface-feedback-danger-strong)',
       borderColor: 'var(--solar-color-border-medium)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-inverse)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-inverse)',
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
@@ -611,22 +611,22 @@ export const solarTagStyles = {
       backgroundColor: 'var(--solar-color-surface-feedback-info-subtle)',
       borderColor: 'var(--solar-color-border-feedback-info-subtle)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-feedback-info)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-info)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-feedback-info)',
       },
     },
     'status=info, type=icon+text, invert=true': {
       backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
       borderColor: 'var(--solar-color-border-medium)',
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-label': {
-        color: 'var(--solar-color-text-inverse)',
-      },
       '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
+      },
+      '& .SolarTag-label': {
+        color: 'var(--solar-color-text-inverse)',
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
@@ -924,6 +924,74 @@ export const solarTagComposition = {
       },
     },
   },
+  iconNone: {
+    base: {
+      present: false,
+      component: 'Icon/None',
+    },
+    appearance: {
+      'status=success, type=icon+text, invert=false': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=success, type=icon+text, invert=true': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=warning, type=icon+text, invert=false': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=warning, type=icon+text, invert=true': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=danger, type=icon+text, invert=false': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=danger, type=icon+text, invert=true': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=info, type=icon+text, invert=false': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=info, type=icon+text, invert=true': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=neutral, type=icon+text, invert=false': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+      'status=neutral, type=icon+text, invert=true': {
+        default: {
+          present: true,
+          'variant.solid': 'false',
+        },
+      },
+    },
+  },
   label: {
     base: {
       present: true,
@@ -1042,74 +1110,6 @@ export const solarTagComposition = {
         },
       },
       'status=neutral, type=icon-only, invert=true': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-    },
-  },
-  iconNone: {
-    base: {
-      present: false,
-      component: 'Icon/None',
-    },
-    appearance: {
-      'status=success, type=icon+text, invert=false': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=success, type=icon+text, invert=true': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=warning, type=icon+text, invert=false': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=warning, type=icon+text, invert=true': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=danger, type=icon+text, invert=false': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=danger, type=icon+text, invert=true': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=info, type=icon+text, invert=false': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=info, type=icon+text, invert=true': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=neutral, type=icon+text, invert=false': {
-        default: {
-          present: true,
-          'variant.solid': 'false',
-        },
-      },
-      'status=neutral, type=icon+text, invert=true': {
         default: {
           present: true,
           'variant.solid': 'false',
@@ -1268,7 +1268,7 @@ export function solarTagCompose(
 
 /** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
 export const solarTagTree: Record<string, string[]> = {
-  root: ['statusIndicator', 'label', 'icon', 'iconNone', 'iconClose'],
+  root: ['statusIndicator', 'iconNone', 'label', 'icon', 'iconClose'],
 };
 
 /** Each slot's layer, to the slot it is: its class is `SolarTag-<slot>`, public. */

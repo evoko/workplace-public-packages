@@ -404,6 +404,7 @@
       "variants": [
         {
           "variant": "selected=false, expanded=false, state=default",
+          "id": "2422:9952",
           "size": [
             200,
             32
@@ -422,10 +423,19 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
+          ],
+          "hiddenPaths": [
+            "/Checkbox",
+            "/Counter",
+            "/Icon/None",
+            "/Icon/None#2",
+            "/StatusIndicator",
+            "/Tag"
           ]
         },
         {
           "variant": "selected=false, expanded=false, state=hover",
+          "id": "2422:9943",
           "size": [
             200,
             32
@@ -468,6 +478,7 @@
               {
                 "path": "/CTAs",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "CTAs",
                   "type": "FRAME",
@@ -498,6 +509,7 @@
               {
                 "path": "/CTAs/Icon/More",
                 "parent": "/CTAs",
+                "index": 0,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -521,6 +533,7 @@
               {
                 "path": "/CTAs/Icon/Plus",
                 "parent": "/CTAs",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -546,6 +559,7 @@
         },
         {
           "variant": "selected=false, expanded=false, state=edit",
+          "id": "10229:18265",
           "size": [
             200,
             32
@@ -572,6 +586,12 @@
             "StatusIndicator",
             "Tag"
           ],
+          "hiddenPaths": [
+            "/Counter",
+            "/Icon/None",
+            "/StatusIndicator",
+            "/Tag"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -584,8 +604,8 @@
                 "strokeWeight": 1,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "paddingTop": "Spatial:stack/none",
-                  "paddingBottom": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
@@ -602,6 +622,7 @@
               {
                 "path": "/|Label",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "|Label",
                   "type": "TEXT",
@@ -637,6 +658,7 @@
         },
         {
           "variant": "selected=false, expanded=true, state=default",
+          "id": "2428:10348",
           "size": [
             200,
             32
@@ -654,6 +676,7 @@
               {
                 "path": "/Chevron/Icon/ChevronDown",
                 "parent": "/Chevron",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronDown",
                   "type": "INSTANCE",
@@ -685,6 +708,7 @@
         },
         {
           "variant": "selected=false, expanded=true, state=edit",
+          "id": "10229:18273",
           "size": [
             200,
             32
@@ -711,6 +735,12 @@
             "StatusIndicator",
             "Tag"
           ],
+          "hiddenPaths": [
+            "/Counter",
+            "/Icon/None",
+            "/StatusIndicator",
+            "/Tag"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -723,8 +753,8 @@
                 "strokeWeight": 1,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "paddingTop": "Spatial:stack/none",
-                  "paddingBottom": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
@@ -736,6 +766,7 @@
               {
                 "path": "/Chevron/Icon/ChevronDown",
                 "parent": "/Chevron",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronDown",
                   "type": "INSTANCE",
@@ -762,6 +793,7 @@
               {
                 "path": "/|Label",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "|Label",
                   "type": "TEXT",
@@ -798,6 +830,7 @@
         },
         {
           "variant": "selected=false, expanded=true, state=hover",
+          "id": "2428:10353",
           "size": [
             200,
             32
@@ -840,6 +873,7 @@
               {
                 "path": "/Chevron/Icon/ChevronDown",
                 "parent": "/Chevron",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronDown",
                   "type": "INSTANCE",
@@ -866,6 +900,7 @@
               {
                 "path": "/CTAs",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "CTAs",
                   "type": "FRAME",
@@ -896,6 +931,7 @@
               {
                 "path": "/CTAs/Icon/More",
                 "parent": "/CTAs",
+                "index": 0,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -919,6 +955,7 @@
               {
                 "path": "/CTAs/Icon/Plus",
                 "parent": "/CTAs",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -947,6 +984,7 @@
         },
         {
           "variant": "selected=true, expanded=false, state=default",
+          "id": "2422:9954",
           "size": [
             200,
             32
@@ -1007,6 +1045,7 @@
               {
                 "path": "/CTAs",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "CTAs",
                   "type": "FRAME",
@@ -1037,6 +1076,7 @@
               {
                 "path": "/CTAs/Icon/More",
                 "parent": "/CTAs",
+                "index": 0,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -1060,6 +1100,7 @@
               {
                 "path": "/CTAs/Icon/Plus",
                 "parent": "/CTAs",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1085,6 +1126,7 @@
         },
         {
           "variant": "selected=true, expanded=false, state=hover",
+          "id": "2422:9958",
           "size": [
             200,
             32
@@ -1145,6 +1187,7 @@
               {
                 "path": "/CTAs",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "CTAs",
                   "type": "FRAME",
@@ -1175,6 +1218,7 @@
               {
                 "path": "/CTAs/Icon/More",
                 "parent": "/CTAs",
+                "index": 0,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -1198,6 +1242,7 @@
               {
                 "path": "/CTAs/Icon/Plus",
                 "parent": "/CTAs",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1223,6 +1268,7 @@
         },
         {
           "variant": "selected=true, expanded=false, state=edit",
+          "id": "10229:18332",
           "size": [
             200,
             32
@@ -1248,6 +1294,12 @@
             "StatusIndicator",
             "Tag"
           ],
+          "hiddenPaths": [
+            "/Counter",
+            "/Icon/None",
+            "/StatusIndicator",
+            "/Tag"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -1260,8 +1312,8 @@
                 "strokeWeight": 1,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "paddingTop": "Spatial:stack/none",
-                  "paddingBottom": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
@@ -1292,6 +1344,7 @@
               {
                 "path": "/|Label",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "|Label",
                   "type": "TEXT",
@@ -1327,6 +1380,7 @@
         },
         {
           "variant": "selected=true, expanded=true, state=default",
+          "id": "2428:10358",
           "size": [
             200,
             32
@@ -1382,6 +1436,7 @@
               {
                 "path": "/Chevron/Icon/ChevronDown",
                 "parent": "/Chevron",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronDown",
                   "type": "INSTANCE",
@@ -1408,6 +1463,7 @@
               {
                 "path": "/CTAs",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "CTAs",
                   "type": "FRAME",
@@ -1438,6 +1494,7 @@
               {
                 "path": "/CTAs/Icon/More",
                 "parent": "/CTAs",
+                "index": 0,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -1461,6 +1518,7 @@
               {
                 "path": "/CTAs/Icon/Plus",
                 "parent": "/CTAs",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1489,6 +1547,7 @@
         },
         {
           "variant": "selected=true, expanded=true, state=edit",
+          "id": "10229:18371",
           "size": [
             200,
             32
@@ -1514,6 +1573,12 @@
             "StatusIndicator",
             "Tag"
           ],
+          "hiddenPaths": [
+            "/Counter",
+            "/Icon/None",
+            "/StatusIndicator",
+            "/Tag"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -1526,8 +1591,8 @@
                 "strokeWeight": 1,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
-                  "paddingTop": "Spatial:stack/none",
-                  "paddingBottom": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
@@ -1553,6 +1618,7 @@
               {
                 "path": "/Chevron/Icon/ChevronDown",
                 "parent": "/Chevron",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronDown",
                   "type": "INSTANCE",
@@ -1579,6 +1645,7 @@
               {
                 "path": "/|Label",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "|Label",
                   "type": "TEXT",
@@ -1615,6 +1682,7 @@
         },
         {
           "variant": "selected=true, expanded=true, state=hover",
+          "id": "2428:10363",
           "size": [
             200,
             32
@@ -1670,6 +1738,7 @@
               {
                 "path": "/Chevron/Icon/ChevronDown",
                 "parent": "/Chevron",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronDown",
                   "type": "INSTANCE",
@@ -1696,6 +1765,7 @@
               {
                 "path": "/CTAs",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "CTAs",
                   "type": "FRAME",
@@ -1726,6 +1796,7 @@
               {
                 "path": "/CTAs/Icon/More",
                 "parent": "/CTAs",
+                "index": 0,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -1749,6 +1820,7 @@
               {
                 "path": "/CTAs/Icon/Plus",
                 "parent": "/CTAs",
+                "index": 1,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -1817,14 +1889,17 @@
       "variants": [
         {
           "variant": "depth=00",
+          "id": "10229:19636",
           "size": [
             0,
             32
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "depth=01",
+          "id": "10229:19889",
           "size": [
             16,
             32
@@ -1851,12 +1926,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -1866,6 +1942,7 @@
         },
         {
           "variant": "depth=02",
+          "id": "10229:19640",
           "size": [
             32,
             32
@@ -1892,12 +1969,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -1905,12 +1983,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -1920,6 +1999,7 @@
         },
         {
           "variant": "depth=03",
+          "id": "10229:19643",
           "size": [
             48,
             32
@@ -1946,12 +2026,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -1959,12 +2040,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -1972,12 +2054,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -1987,6 +2070,7 @@
         },
         {
           "variant": "depth=04",
+          "id": "10229:19637",
           "size": [
             64,
             32
@@ -2013,12 +2097,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2026,12 +2111,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2039,12 +2125,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2052,12 +2139,13 @@
               {
                 "path": "/4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "4",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2067,6 +2155,7 @@
         },
         {
           "variant": "depth=05",
+          "id": "10229:19638",
           "size": [
             80,
             32
@@ -2093,12 +2182,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2106,12 +2196,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2119,12 +2210,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2132,12 +2224,13 @@
               {
                 "path": "/4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "4",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2145,12 +2238,13 @@
               {
                 "path": "/5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "5",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2160,6 +2254,7 @@
         },
         {
           "variant": "depth=06",
+          "id": "10229:19639",
           "size": [
             96,
             32
@@ -2186,12 +2281,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2199,12 +2295,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2212,12 +2309,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2225,12 +2323,13 @@
               {
                 "path": "/4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "4",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2238,12 +2337,13 @@
               {
                 "path": "/5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "5",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2251,12 +2351,13 @@
               {
                 "path": "/6",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "6",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2266,6 +2367,7 @@
         },
         {
           "variant": "depth=07",
+          "id": "10229:19641",
           "size": [
             112,
             32
@@ -2292,12 +2394,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2305,12 +2408,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2318,12 +2422,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2331,12 +2436,13 @@
               {
                 "path": "/4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "4",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2344,12 +2450,13 @@
               {
                 "path": "/5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "5",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2357,12 +2464,13 @@
               {
                 "path": "/6",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "6",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2370,12 +2478,13 @@
               {
                 "path": "/7",
                 "parent": "/",
+                "index": 6,
                 "layer": {
                   "name": "7",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2385,6 +2494,7 @@
         },
         {
           "variant": "depth=08",
+          "id": "10229:19644",
           "size": [
             128,
             32
@@ -2411,12 +2521,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2424,12 +2535,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2437,12 +2549,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2450,12 +2563,13 @@
               {
                 "path": "/4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "4",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2463,12 +2577,13 @@
               {
                 "path": "/5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "5",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2476,12 +2591,13 @@
               {
                 "path": "/6",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "6",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2489,12 +2605,13 @@
               {
                 "path": "/7",
                 "parent": "/",
+                "index": 6,
                 "layer": {
                   "name": "7",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2502,12 +2619,13 @@
               {
                 "path": "/8",
                 "parent": "/",
+                "index": 7,
                 "layer": {
                   "name": "8",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2517,6 +2635,7 @@
         },
         {
           "variant": "depth=09",
+          "id": "10229:19645",
           "size": [
             144,
             32
@@ -2543,12 +2662,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2556,12 +2676,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2569,12 +2690,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2582,12 +2704,13 @@
               {
                 "path": "/4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "4",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2595,12 +2718,13 @@
               {
                 "path": "/5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "5",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2608,12 +2732,13 @@
               {
                 "path": "/6",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "6",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2621,12 +2746,13 @@
               {
                 "path": "/7",
                 "parent": "/",
+                "index": 6,
                 "layer": {
                   "name": "7",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2634,12 +2760,13 @@
               {
                 "path": "/8",
                 "parent": "/",
+                "index": 7,
                 "layer": {
                   "name": "8",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2647,12 +2774,13 @@
               {
                 "path": "/10",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "10",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2662,6 +2790,7 @@
         },
         {
           "variant": "depth=10",
+          "id": "10229:19646",
           "size": [
             160,
             32
@@ -2688,12 +2817,13 @@
               {
                 "path": "/1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "1",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2701,12 +2831,13 @@
               {
                 "path": "/2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "2",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2714,12 +2845,13 @@
               {
                 "path": "/3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "3",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2727,12 +2859,13 @@
               {
                 "path": "/4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "4",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2740,12 +2873,13 @@
               {
                 "path": "/5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "5",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2753,12 +2887,13 @@
               {
                 "path": "/6",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "6",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2766,12 +2901,13 @@
               {
                 "path": "/7",
                 "parent": "/",
+                "index": 6,
                 "layer": {
                   "name": "7",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2779,12 +2915,13 @@
               {
                 "path": "/8",
                 "parent": "/",
+                "index": 7,
                 "layer": {
                   "name": "8",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2792,12 +2929,13 @@
               {
                 "path": "/9",
                 "parent": "/",
+                "index": 8,
                 "layer": {
                   "name": "9",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }
@@ -2805,12 +2943,13 @@
               {
                 "path": "/10",
                 "parent": "/",
+                "index": 9,
                 "layer": {
                   "name": "10",
                   "type": "FRAME",
                   "size": [
                     16,
-                    39
+                    32
                   ],
                   "sizing": "FIXED/FIXED"
                 }

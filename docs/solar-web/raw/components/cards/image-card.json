@@ -249,6 +249,7 @@
       "variants": [
         {
           "variant": "filled=true, selected=true, hover=false",
+          "id": "10401:2",
           "size": [
             200,
             190
@@ -267,10 +268,12 @@
           "iconFills": [
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "filled=true, selected=false, hover=true",
+          "id": "10401:10",
           "size": [
             200,
             190
@@ -308,6 +311,7 @@
         },
         {
           "variant": "filled=true, selected=false, hover=false",
+          "id": "10401:17",
           "size": [
             200,
             190
@@ -331,6 +335,7 @@
         },
         {
           "variant": "filled=false, selected=false, hover=false",
+          "id": "10401:23",
           "size": [
             200,
             190
@@ -373,6 +378,7 @@
               {
                 "path": "/IconCircle",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "IconCircle",
                   "type": "FRAME",
@@ -407,6 +413,7 @@
               {
                 "path": "/IconCircle/Icon/Plus",
                 "parent": "/IconCircle",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -427,6 +434,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",

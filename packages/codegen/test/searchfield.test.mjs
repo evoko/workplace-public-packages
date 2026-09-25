@@ -27,10 +27,9 @@ describe('the SearchField IR', () => {
     expect(Object.keys(spec.slots)).toEqual(['filter']);
   });
 
-  it('leaves only Figma’s centred error field open', () => {
-    expect(deviations.filter((d) => !d.decision).map((d) => d.token)).toEqual([
-      'component.searchfield.root.align@state=error',
-    ]);
+  it('leaves nothing open', () => {
+    // Figma's centred error field, open until 2026-09-25, is aligned as the others since.
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
   it('draws the sm field flat, its icons icon.xs, and every hovered field edged', () => {
@@ -53,8 +52,14 @@ describe('the SearchField IR', () => {
 describe('set, beyond the entries the IR has', () => {
   const catalog = loadWebCatalog();
   const names = tokenNames(loadContract());
+  // The set as Figma drew it until 2026-09-25: the resting sm field kept md's 16px search icon,
+  // where its five other states drew 12, so the recipe had no sm size for the icon.
+  const loaded = structuredClone(loadComponent(catalog, 'SearchField'));
+  for (const v of loaded.set.variants)
+    if (v.variant === 'state=default, size=sm')
+      delete v.overrides.changed['/Icon/Search'];
   const on = (text) =>
-    buildComponentSpec(loadComponent(catalog, 'SearchField'), {
+    buildComponentSpec(loaded, {
       names,
       fileVersion: catalog.fileVersion,
       overlay: parseOverlay(`component: SearchField\n${text}`, 'test.yaml'),

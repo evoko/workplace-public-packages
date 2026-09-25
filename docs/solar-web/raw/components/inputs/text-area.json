@@ -265,7 +265,12 @@
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
+                "strokes": [
+                  "{Color:action/primary/border/disabled}"
+                ],
+                "strokeWeight": 1,
                 "radius": 6,
+                "effectStyle": "shadow/control",
                 "vars": {
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
@@ -310,11 +315,8 @@
                   "align": "CENTER/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
-                ],
                 "strokes": [
-                  "{Color:border/medium}"
+                  "{Color:action/secondary/border/default}"
                 ],
                 "strokeWeight": 1,
                 "radius": 6,
@@ -344,7 +346,7 @@
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 0,
+              "gap": 16,
               "pad": [
                 0,
                 0,
@@ -353,6 +355,9 @@
               ],
               "align": "SPACE_BETWEEN/MIN",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
             },
             "propRefs": {
               "visible": "hasFooter#8552:0"
@@ -413,6 +418,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "3888:2",
           "size": [
             280,
             156
@@ -427,10 +433,12 @@
             "{Color:action/primary/icon/disabled}",
             "{Color:action/secondary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=default",
+          "id": "3888:65",
           "size": [
             200,
             134
@@ -537,6 +545,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "3888:11",
           "size": [
             280,
             156
@@ -563,6 +572,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "3888:74",
           "size": [
             200,
             134
@@ -672,6 +682,7 @@
         },
         {
           "variant": "size=md, state=filled",
+          "id": "3888:29",
           "size": [
             280,
             156
@@ -703,16 +714,15 @@
                   "{Color:action/primary/bg/default}"
                 ],
                 "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
+                  "{Color:action/primary/border/default}"
+                ]
               }
             }
           }
         },
         {
           "variant": "size=sm, state=filled",
+          "id": "3888:92",
           "size": [
             200,
             134
@@ -791,10 +801,8 @@
                   "{Color:action/primary/bg/default}"
                 ],
                 "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
+                  "{Color:action/primary/border/default}"
+                ]
               },
               "/Field/Icon Button#2": {
                 "position": [
@@ -835,6 +843,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "3888:38",
           "size": [
             280,
             156
@@ -878,11 +887,9 @@
                   "prio": "secondary",
                   "state": "disabled"
                 },
-                "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
-                ],
-                "effectStyle": null
+                  "{Color:action/secondary/border/disabled}"
+                ]
               },
               "/Footer/Helper text": {
                 "fills": [
@@ -899,6 +906,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "3888:101",
           "size": [
             200,
             134
@@ -989,11 +997,9 @@
                   8,
                   60
                 ],
-                "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
-                ],
-                "effectStyle": null
+                  "{Color:action/secondary/border/disabled}"
+                ]
               },
               "/Footer": {
                 "size": [
@@ -1034,6 +1040,7 @@
         },
         {
           "variant": "size=md, state=error",
+          "id": "3888:47",
           "size": [
             280,
             156
@@ -1080,10 +1087,8 @@
                   "{Color:action/primary/bg/default}"
                 ],
                 "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
+                  "{Color:action/primary/border/default}"
+                ]
               },
               "/Footer/Helper text": {
                 "fills": [
@@ -1100,6 +1105,7 @@
         },
         {
           "variant": "size=sm, state=error",
+          "id": "3888:110",
           "size": [
             200,
             134
@@ -1187,10 +1193,8 @@
                   "{Color:action/primary/bg/default}"
                 ],
                 "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
+                  "{Color:action/primary/border/default}"
+                ]
               },
               "/Field/Icon Button#2": {
                 "position": [
@@ -1237,11 +1241,11 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "6074:389",
           "size": [
             280,
             156
           ],
-          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/feedback/info}",
@@ -1254,9 +1258,6 @@
           ],
           "overrides": {
             "changed": {
-              "/": {
-                "effectStyle": "shadow/focus/default"
-              },
               "/Field": {
                 "strokes": [
                   "{Color:border/feedback/focus/strong}"
@@ -1274,21 +1275,19 @@
                   "{Color:action/primary/bg/default}"
                 ],
                 "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
+                  "{Color:action/primary/border/default}"
+                ]
               }
             }
           }
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "6074:398",
           "size": [
             200,
             134
           ],
-          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/feedback/info}",
@@ -1301,9 +1300,6 @@
           ],
           "overrides": {
             "changed": {
-              "/": {
-                "effectStyle": "shadow/focus/default"
-              },
               "/Label": {
                 "size": [
                   42,
@@ -1368,10 +1364,8 @@
                   "{Color:action/primary/bg/default}"
                 ],
                 "strokes": [
-                  "{Color:border/medium}"
-                ],
-                "strokeWeight": 1,
-                "effectStyle": "shadow/control"
+                  "{Color:action/primary/border/default}"
+                ]
               },
               "/Field/Icon Button#2": {
                 "position": [

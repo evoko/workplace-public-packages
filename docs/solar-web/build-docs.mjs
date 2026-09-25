@@ -222,7 +222,10 @@ function descriptionChecks(desc, set, analysis) {
     );
     const mm = re.exec(d);
     if (!mm) continue;
+    // The values end where a second dash starts a note about them ("lg (48px) — heights are
+    // size/control/{sm,md,lg}"), which is no value.
     const claimed = mm[1]
+      .split(/\s+[—–]\s+/)[0]
       .replace(/\(.*?\)/g, '')
       .split(/\s*[|·,]\s*|\s+or\s+/)
       .map((s) => s.trim().split(/\s+/)[0])

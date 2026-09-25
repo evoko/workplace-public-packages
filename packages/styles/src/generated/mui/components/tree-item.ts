@@ -126,10 +126,14 @@ export const solarTreeItemStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarTreeItem-trailingIcon': {
-      width: 'var(--solar-icon-sm)',
-      height: 'var(--solar-icon-sm)',
-      color: 'var(--solar-color-icon-secondary)',
+    '& .SolarTreeItem--renameInput': {
+      fontFamily: 'var(--solar-type-font-family-inter)',
+      fontWeight: 'var(--solar-type-font-weight-500)',
+      fontSize: 'var(--solar-type-size-label-md)',
+      lineHeight: 'var(--solar-type-line-height-label-md)',
+      letterSpacing: '-0.02em',
+      textDecoration: 'none',
+      width: '100%',
     },
     '& .SolarTreeItem-buttons': {
       borderRadius: 'var(--solar-radius-none)',
@@ -143,6 +147,11 @@ export const solarTreeItemStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
+    '& .SolarTreeItem-trailingIcon': {
+      width: 'var(--solar-icon-sm)',
+      height: 'var(--solar-icon-sm)',
+      color: 'var(--solar-color-icon-secondary)',
+    },
     '& .SolarTreeItem--iconMore': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
@@ -150,15 +159,6 @@ export const solarTreeItemStyles = {
     '& .SolarTreeItem--iconPlus': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
-    },
-    '& .SolarTreeItem--renameInput': {
-      fontFamily: 'var(--solar-type-font-family-inter)',
-      fontWeight: 'var(--solar-type-font-weight-500)',
-      fontSize: 'var(--solar-type-size-label-md)',
-      lineHeight: 'var(--solar-type-line-height-label-md)',
-      letterSpacing: '-0.02em',
-      textDecoration: 'none',
-      width: '100%',
     },
     '& .SolarTreeItem--iconChevronDown': {
       width: 'var(--solar-icon-sm)',
@@ -258,13 +258,13 @@ export const solarTreeItemStyles = {
         '& .SolarTreeItem--label': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarTreeItem-trailingIcon': {
-          color: 'var(--solar-color-icon-primary)',
-        },
         '& .SolarTreeItem-buttons': {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           boxShadow: 'none',
+        },
+        '& .SolarTreeItem-trailingIcon': {
+          color: 'var(--solar-color-icon-primary)',
         },
         '& .SolarTreeItem--iconMore': {
           color: 'var(--solar-color-icon-primary)',
@@ -304,13 +304,13 @@ export const solarTreeItemStyles = {
       '& .SolarTreeItem--label': {
         color: 'var(--solar-color-text-primary)',
       },
-      '& .SolarTreeItem-trailingIcon': {
-        color: 'var(--solar-color-icon-primary)',
-      },
       '& .SolarTreeItem-buttons': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
+      },
+      '& .SolarTreeItem-trailingIcon': {
+        color: 'var(--solar-color-icon-primary)',
       },
       '& .SolarTreeItem--iconMore': {
         color: 'var(--solar-color-icon-primary)',
@@ -329,13 +329,13 @@ export const solarTreeItemStyles = {
         '& .SolarTreeItem--label': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarTreeItem-trailingIcon': {
-          color: 'var(--solar-color-icon-primary)',
-        },
         '& .SolarTreeItem-buttons': {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           boxShadow: 'none',
+        },
+        '& .SolarTreeItem-trailingIcon': {
+          color: 'var(--solar-color-icon-primary)',
         },
         '& .SolarTreeItem--iconMore': {
           color: 'var(--solar-color-icon-primary)',
@@ -375,13 +375,13 @@ export const solarTreeItemStyles = {
       '& .SolarTreeItem--label': {
         color: 'var(--solar-color-text-primary)',
       },
-      '& .SolarTreeItem-trailingIcon': {
-        color: 'var(--solar-color-icon-primary)',
-      },
       '& .SolarTreeItem-buttons': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
+      },
+      '& .SolarTreeItem-trailingIcon': {
+        color: 'var(--solar-color-icon-primary)',
       },
       '& .SolarTreeItem--iconMore': {
         color: 'var(--solar-color-icon-primary)',
@@ -492,6 +492,33 @@ export const solarTreeItemComposition = {
       },
     },
   },
+  renameInput: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'selected=false, expanded=false': {
+        edit: {
+          present: true,
+        },
+      },
+      'selected=false, expanded=true': {
+        edit: {
+          present: true,
+        },
+      },
+      'selected=true, expanded=false': {
+        edit: {
+          present: true,
+        },
+      },
+      'selected=true, expanded=true': {
+        edit: {
+          present: true,
+        },
+      },
+    },
+  },
   status: {
     base: {
       present: false,
@@ -551,13 +578,6 @@ export const solarTreeItemComposition = {
       },
     },
   },
-  trailingIcon: {
-    base: {
-      present: false,
-      component: 'Icon/None',
-      'variant.solid': 'false',
-    },
-  },
   buttons: {
     base: {
       present: false,
@@ -595,6 +615,13 @@ export const solarTreeItemComposition = {
           present: false,
         },
       },
+    },
+  },
+  trailingIcon: {
+    base: {
+      present: false,
+      component: 'Icon/None',
+      'variant.solid': 'false',
     },
   },
   iconMore: {
@@ -685,33 +712,6 @@ export const solarTreeItemComposition = {
         },
         edit: {
           present: false,
-        },
-      },
-    },
-  },
-  renameInput: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'selected=false, expanded=false': {
-        edit: {
-          present: true,
-        },
-      },
-      'selected=false, expanded=true': {
-        edit: {
-          present: true,
-        },
-      },
-      'selected=true, expanded=false': {
-        edit: {
-          present: true,
-        },
-      },
-      'selected=true, expanded=true': {
-        edit: {
-          present: true,
         },
       },
     },
@@ -841,12 +841,12 @@ export const solarTreeItemTree: Record<string, string[]> = {
     'checkbox',
     'leadingIcon',
     'label',
+    'renameInput',
     'status',
     'tag',
     'counter',
-    'trailingIcon',
     'buttons',
-    'renameInput',
+    'trailingIcon',
   ],
   chevron: ['chevronChevron', 'iconChevronDown'],
   buttons: ['iconMore', 'iconPlus'],

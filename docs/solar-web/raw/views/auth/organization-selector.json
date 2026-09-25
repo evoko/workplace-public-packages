@@ -37,7 +37,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             0,
             0,
@@ -53,6 +53,7 @@
           "IMAGE"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/none",
           "paddingRight": "Spatial:inset/none",
@@ -86,6 +87,7 @@
               "sizing": "FILL/FIXED"
             },
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:stack/md",
               "paddingRight": "Spatial:stack/md"
             }
@@ -267,6 +269,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop, filled=True",
+          "id": "9449:927",
           "size": [
             1440,
             800
@@ -299,10 +302,22 @@
             "Icon/None",
             "Nav Item",
             "Supporting"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/List#2/Items/ListItem#2/Body/Supporting",
+            "/Center Stack/Container/content/List#2/Items/ListItem/Body/Supporting",
+            "/Center Stack/Container/content/SearchField/Icon/Filter",
+            "/Top Bar/GlobalSearch",
+            "/Top Bar/Right Zone/Container/Nav Item#3",
+            "/Top Bar/Right Zone/Container/Nav Item#4",
+            "/Top Bar/Right Zone/Field",
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile, filled=True",
+          "id": "9449:936",
           "size": [
             393,
             800
@@ -331,6 +346,12 @@
             "Icon Button",
             "Icon/Filter",
             "Supporting"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/List#2/Items/ListItem#2/Body/Supporting",
+            "/Center Stack/Container/content/List#2/Items/ListItem/Body/Supporting",
+            "/Center Stack/Container/content/SearchField/Icon/Filter",
+            "/Top Bar/Icon Button"
           ],
           "overrides": {
             "changed": {
@@ -402,6 +423,7 @@
         },
         {
           "variant": "breakpoint=desktop, filled=False",
+          "id": "5889:19107",
           "size": [
             1440,
             800
@@ -433,6 +455,17 @@
             "Nav Item",
             "Supporting"
           ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/List/Items/ListItem#2/Body/Supporting",
+            "/Center Stack/Container/content/List/Items/ListItem/Body/Supporting",
+            "/Center Stack/Container/content/ListItem/Body/Supporting",
+            "/Top Bar/GlobalSearch",
+            "/Top Bar/Right Zone/Container/Nav Item#3",
+            "/Top Bar/Right Zone/Container/Nav Item#4",
+            "/Top Bar/Right Zone/Field",
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
+          ],
           "overrides": {
             "changed": {
               "/Center Stack": {
@@ -452,6 +485,7 @@
               {
                 "path": "/Center Stack/Get started",
                 "parent": "/Center Stack",
+                "index": 0,
                 "layer": {
                   "name": "Get started",
                   "type": "TEXT",
@@ -476,6 +510,7 @@
               {
                 "path": "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace.",
                 "parent": "/Center Stack",
+                "index": 1,
                 "layer": {
                   "name": "To get started, join an organization, create one, or explore your personal Workplace.",
                   "type": "TEXT",
@@ -506,6 +541,7 @@
         },
         {
           "variant": "breakpoint=mobile, filled=False",
+          "id": "6592:38885",
           "size": [
             393,
             800
@@ -531,6 +567,12 @@
           "hidden": [
             "Icon Button",
             "Supporting"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/List/Items/ListItem#2/Body/Supporting",
+            "/Center Stack/Container/content/List/Items/ListItem/Body/Supporting",
+            "/Center Stack/Container/content/ListItem/Body/Supporting",
+            "/Top Bar/Icon Button"
           ],
           "overrides": {
             "changed": {
@@ -590,6 +632,7 @@
               {
                 "path": "/Center Stack/Get started",
                 "parent": "/Center Stack",
+                "index": 0,
                 "layer": {
                   "name": "Get started",
                   "type": "TEXT",
@@ -614,6 +657,7 @@
               {
                 "path": "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace.",
                 "parent": "/Center Stack",
+                "index": 1,
                 "layer": {
                   "name": "To get started, join an organization, create one, or explore your personal Workplace.",
                   "type": "TEXT",

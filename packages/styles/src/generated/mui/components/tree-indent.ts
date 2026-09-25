@@ -72,7 +72,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=02': {
@@ -92,7 +92,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -101,7 +101,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=03': {
@@ -121,7 +121,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -130,7 +130,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -139,7 +139,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=04': {
@@ -159,7 +159,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -168,7 +168,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -177,7 +177,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit4': {
         backgroundColor: 'transparent',
@@ -186,7 +186,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=05': {
@@ -206,7 +206,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -215,7 +215,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -224,7 +224,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit4': {
         backgroundColor: 'transparent',
@@ -233,7 +233,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit5': {
         backgroundColor: 'transparent',
@@ -242,7 +242,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=06': {
@@ -262,7 +262,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -271,7 +271,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -280,7 +280,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit4': {
         backgroundColor: 'transparent',
@@ -289,7 +289,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit5': {
         backgroundColor: 'transparent',
@@ -298,7 +298,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit6': {
         backgroundColor: 'transparent',
@@ -307,7 +307,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=07': {
@@ -327,7 +327,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -336,7 +336,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -345,7 +345,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit4': {
         backgroundColor: 'transparent',
@@ -354,7 +354,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit5': {
         backgroundColor: 'transparent',
@@ -363,7 +363,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit6': {
         backgroundColor: 'transparent',
@@ -372,7 +372,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit7': {
         backgroundColor: 'transparent',
@@ -381,7 +381,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=08': {
@@ -401,7 +401,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -410,7 +410,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -419,7 +419,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit4': {
         backgroundColor: 'transparent',
@@ -428,7 +428,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit5': {
         backgroundColor: 'transparent',
@@ -437,7 +437,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit6': {
         backgroundColor: 'transparent',
@@ -446,7 +446,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit7': {
         backgroundColor: 'transparent',
@@ -455,7 +455,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit8': {
         backgroundColor: 'transparent',
@@ -464,7 +464,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=09': {
@@ -484,7 +484,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -493,7 +493,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -502,7 +502,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit4': {
         backgroundColor: 'transparent',
@@ -511,7 +511,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit5': {
         backgroundColor: 'transparent',
@@ -520,7 +520,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit6': {
         backgroundColor: 'transparent',
@@ -529,7 +529,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit7': {
         backgroundColor: 'transparent',
@@ -538,7 +538,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit8': {
         backgroundColor: 'transparent',
@@ -547,7 +547,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit10': {
         backgroundColor: 'transparent',
@@ -556,7 +556,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
     },
     'depth=10': {
@@ -576,7 +576,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit2': {
         backgroundColor: 'transparent',
@@ -585,7 +585,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit3': {
         backgroundColor: 'transparent',
@@ -594,7 +594,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit4': {
         backgroundColor: 'transparent',
@@ -603,7 +603,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit5': {
         backgroundColor: 'transparent',
@@ -612,7 +612,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit6': {
         backgroundColor: 'transparent',
@@ -621,7 +621,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit7': {
         backgroundColor: 'transparent',
@@ -630,7 +630,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit8': {
         backgroundColor: 'transparent',
@@ -639,16 +639,7 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
-      },
-      '& .SolarTreeIndent--unit10': {
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-        boxShadow: 'none',
-        borderRadius: 'var(--solar-radius-none)',
-        borderStyle: 'none',
-        width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
       },
       '& .SolarTreeIndent--unit9': {
         backgroundColor: 'transparent',
@@ -657,7 +648,16 @@ export const solarTreeIndentStyles = {
         borderRadius: 'var(--solar-radius-none)',
         borderStyle: 'none',
         width: 'var(--solar-icon-sm)',
-        height: '39px',
+        height: '32px',
+      },
+      '& .SolarTreeIndent--unit10': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        boxShadow: 'none',
+        borderRadius: 'var(--solar-radius-none)',
+        borderStyle: 'none',
+        width: 'var(--solar-icon-sm)',
+        height: '32px',
       },
     },
   },
@@ -987,6 +987,18 @@ export const solarTreeIndentComposition = {
       },
     },
   },
+  unit9: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'depth=10': {
+        default: {
+          present: true,
+        },
+      },
+    },
+  },
   unit10: {
     base: {
       present: false,
@@ -997,18 +1009,6 @@ export const solarTreeIndentComposition = {
           present: true,
         },
       },
-      'depth=10': {
-        default: {
-          present: true,
-        },
-      },
-    },
-  },
-  unit9: {
-    base: {
-      present: false,
-    },
-    appearance: {
       'depth=10': {
         default: {
           present: true,
@@ -1108,8 +1108,8 @@ export const solarTreeIndentTree: Record<string, string[]> = {
     'unit6',
     'unit7',
     'unit8',
-    'unit10',
     'unit9',
+    'unit10',
   ],
 };
 

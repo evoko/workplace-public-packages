@@ -113,49 +113,6 @@ abstract final class SolarListItemRecipe {
         't:color.icon.disabled',
     'icon.color|appearance|type=icon, compact=true|disabled':
         't:color.icon.disabled',
-    'body.present|base': 'b:true',
-    'body.background|base': 'none',
-    'body.borderColor|base': 'none',
-    'body.shadow|base': 'none',
-    'body.radius|base': 'none',
-    'body.borderWidth|base': 'none',
-    'body.direction|base': 'k:VERTICAL',
-    'body.align|base': 'k:MIN/MIN',
-    'body.gap|base': 't:stack.xs',
-    'body.paddingTop|base': 't:inset.none',
-    'body.paddingRight|base': 't:inset.none',
-    'body.paddingBottom|base': 't:inset.none',
-    'body.paddingLeft|base': 't:inset.none',
-    'body.width|base': 'k:FILL',
-    'body.height|base': 'k:HUG',
-    'label.present|base': 'b:true',
-    'label.color|base': 't:color.text.primary',
-    'label.typography|base': 't:typography.label.md',
-    'label.color|appearance|type=icon, compact=false|disabled':
-        't:color.text.disabled',
-    'label.color|appearance|type=icon, compact=true|disabled':
-        't:color.text.disabled',
-    'label.color|appearance|type=avatar, compact=false|disabled':
-        't:color.text.disabled',
-    'label.color|appearance|type=avatar, compact=true|disabled':
-        't:color.text.disabled',
-    'helper.present|base': 'b:true',
-    'helper.color|base': 't:color.text.secondary',
-    'helper.typography|base': 't:typography.body.sm.regular',
-    'helper.color|appearance|type=icon, compact=false|disabled':
-        't:color.text.disabled',
-    'helper.color|appearance|type=icon, compact=true|disabled':
-        't:color.text.disabled',
-    'helper.color|appearance|type=avatar, compact=false|disabled':
-        't:color.text.disabled',
-    'helper.color|appearance|type=avatar, compact=true|disabled':
-        't:color.text.disabled',
-    'trailing.present|base': 'b:true',
-    'trailing.component|base': 'k:Icon/ChevronRight',
-    'trailing.variant.solid|base': 'k:false',
-    'trailing.width|base': 't:icon.sm',
-    'trailing.height|base': 't:icon.sm',
-    'trailing.color|base': 't:color.icon.primary',
     'avatar.present|base': 'b:false',
     'avatar.component|base': 'k:Avatar',
     'avatar.variant.size|base': 'k:md',
@@ -225,11 +182,54 @@ abstract final class SolarListItemRecipe {
         'k:neutral',
     'avatar.variant.shade|appearance|type=avatar, compact=true|disabled':
         'k:Logo',
+    'body.present|base': 'b:true',
+    'body.background|base': 'none',
+    'body.borderColor|base': 'none',
+    'body.shadow|base': 'none',
+    'body.radius|base': 'none',
+    'body.borderWidth|base': 'none',
+    'body.direction|base': 'k:VERTICAL',
+    'body.align|base': 'k:MIN/MIN',
+    'body.gap|base': 't:stack.xs',
+    'body.paddingTop|base': 't:inset.none',
+    'body.paddingRight|base': 't:inset.none',
+    'body.paddingBottom|base': 't:inset.none',
+    'body.paddingLeft|base': 't:inset.none',
+    'body.width|base': 'k:FILL',
+    'body.height|base': 'k:HUG',
+    'label.present|base': 'b:true',
+    'label.color|base': 't:color.text.primary',
+    'label.typography|base': 't:typography.label.md',
+    'label.color|appearance|type=icon, compact=false|disabled':
+        't:color.text.disabled',
+    'label.color|appearance|type=icon, compact=true|disabled':
+        't:color.text.disabled',
+    'label.color|appearance|type=avatar, compact=false|disabled':
+        't:color.text.disabled',
+    'label.color|appearance|type=avatar, compact=true|disabled':
+        't:color.text.disabled',
+    'helper.present|base': 'b:true',
+    'helper.color|base': 't:color.text.secondary',
+    'helper.typography|base': 't:typography.body.sm.regular',
+    'helper.color|appearance|type=icon, compact=false|disabled':
+        't:color.text.disabled',
+    'helper.color|appearance|type=icon, compact=true|disabled':
+        't:color.text.disabled',
+    'helper.color|appearance|type=avatar, compact=false|disabled':
+        't:color.text.disabled',
+    'helper.color|appearance|type=avatar, compact=true|disabled':
+        't:color.text.disabled',
+    'trailing.present|base': 'b:true',
+    'trailing.component|base': 'k:Icon/ChevronRight',
+    'trailing.variant.solid|base': 'k:false',
+    'trailing.width|base': 't:icon.sm',
+    'trailing.height|base': 't:icon.sm',
+    'trailing.color|base': 't:color.icon.primary',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
   static const Map<String, List<String>> tree = {
-    'root': ['icon', 'body', 'trailing', 'avatar'],
+    'root': ['icon', 'avatar', 'body', 'trailing'],
     'body': ['label', 'helper'],
   };
 

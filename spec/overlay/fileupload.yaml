@@ -30,16 +30,6 @@ follows:
       a control that cannot be used is drawn flat, as a disabled Checkbox is.
 
 set:
-  root.appearance.default.focus.shadow:
-    none: true
-    reason: >-
-      Figma rings the whole component, label and helper with it, when it has the focus: the ring
-      is the field's, as every field's is, below. The design review asks SOLAR which it means.
-  field.appearance.default.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      SOLAR's focus ring, on the drop zone its Browse button sits in, where Figma draws it around
-      the whole component.
   button.base.height:
     none: true
     reason: >-

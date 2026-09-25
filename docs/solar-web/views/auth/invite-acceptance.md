@@ -14,8 +14,8 @@ Default variant: `breakpoint=default` · 2 variants · default size 1440×800px
 
 ### Anatomy (default variant)
 
-- **breakpoint=default** · component · column gap 0 pad 24/0/24/0 FIXED/FIXED · 1440×800  
-  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
+- **breakpoint=default** · component · column gap 16 pad 24/0/24/0 FIXED/FIXED · 1440×800  
+  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · itemSpacing `inset.md` · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
   - **App Name** · instance of **App Name** (type=horizontal) · column gap 16 pad 0/0/0/0 HUG/HUG · 85×59  
     itemSpacing `inset.md` · padding `inset.none` · radius `radius.control`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×271  

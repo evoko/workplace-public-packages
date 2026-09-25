@@ -260,6 +260,7 @@
       "variants": [
         {
           "variant": "in-card=false, trailing=action",
+          "id": "7671:149",
           "size": [
             505,
             64
@@ -278,10 +279,17 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Trailing/Button/Counter",
+            "/Trailing/Button/Icon/None",
+            "/Trailing/Button/Icon/None#2",
+            "/Trailing/Button/Spinner"
           ]
         },
         {
           "variant": "in-card=true, trailing=action",
+          "id": "7682:1545",
           "size": [
             505,
             64
@@ -335,6 +343,7 @@
         },
         {
           "variant": "in-card=false, trailing=toggle",
+          "id": "7673:155",
           "size": [
             505,
             64
@@ -347,6 +356,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/Text": {
@@ -378,6 +388,7 @@
               {
                 "path": "/Trailing/Toggle",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Toggle",
                   "type": "INSTANCE",
@@ -419,6 +430,7 @@
         },
         {
           "variant": "in-card=true, trailing=toggle",
+          "id": "7682:1552",
           "size": [
             505,
             64
@@ -431,6 +443,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -476,6 +489,7 @@
               {
                 "path": "/Trailing/Toggle",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Toggle",
                   "type": "INSTANCE",
@@ -517,6 +531,7 @@
         },
         {
           "variant": "in-card=false, trailing=select",
+          "id": "7673:179",
           "size": [
             505,
             64
@@ -532,6 +547,10 @@
           "hidden": [
             "Helper text",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Trailing/Select/Helper text",
+            "/Trailing/Select/Label"
           ],
           "overrides": {
             "changed": {
@@ -564,6 +583,7 @@
               {
                 "path": "/Trailing/Select",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Select",
                   "type": "INSTANCE",
@@ -601,6 +621,7 @@
         },
         {
           "variant": "in-card=true, trailing=select",
+          "id": "7682:1559",
           "size": [
             505,
             64
@@ -616,6 +637,10 @@
           "hidden": [
             "Helper text",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Trailing/Select/Helper text",
+            "/Trailing/Select/Label"
           ],
           "overrides": {
             "changed": {
@@ -662,6 +687,7 @@
               {
                 "path": "/Trailing/Select",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Select",
                   "type": "INSTANCE",
@@ -699,6 +725,7 @@
         },
         {
           "variant": "in-card=false, trailing=icon-button",
+          "id": "7673:207",
           "size": [
             505,
             64
@@ -712,6 +739,7 @@
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/Text": {
@@ -743,6 +771,7 @@
               {
                 "path": "/Trailing/Icon Button",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -773,7 +802,7 @@
                     "{Color:action/secondary/bg/default}"
                   ],
                   "strokes": [
-                    "{Color:border/medium}"
+                    "{Color:action/secondary/border/default}"
                   ],
                   "strokeWeight": 1,
                   "radius": 6,
@@ -798,6 +827,7 @@
         },
         {
           "variant": "in-card=true, trailing=icon-button",
+          "id": "7682:1566",
           "size": [
             505,
             64
@@ -811,6 +841,7 @@
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -856,6 +887,7 @@
               {
                 "path": "/Trailing/Icon Button",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -886,7 +918,7 @@
                     "{Color:action/secondary/bg/default}"
                   ],
                   "strokes": [
-                    "{Color:border/medium}"
+                    "{Color:action/secondary/border/default}"
                   ],
                   "strokeWeight": 1,
                   "radius": 6,
@@ -911,6 +943,7 @@
         },
         {
           "variant": "in-card=false, trailing=segmented-control",
+          "id": "7686:87",
           "size": [
             505,
             64
@@ -928,6 +961,23 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Trailing/Segmented Control/Helper text",
+            "/Trailing/Segmented Control/Label",
+            "/Trailing/Segmented Control/Label/Label",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#3/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#3/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#4/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#4/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#5/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#5/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#6/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#6/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ],
           "overrides": {
             "changed": {
@@ -960,6 +1010,7 @@
               {
                 "path": "/Trailing/Segmented Control",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Segmented Control",
                   "type": "INSTANCE",
@@ -996,6 +1047,7 @@
         },
         {
           "variant": "in-card=true, trailing=segmented-control",
+          "id": "7686:185",
           "size": [
             505,
             64
@@ -1013,6 +1065,23 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Trailing/Segmented Control/Helper text",
+            "/Trailing/Segmented Control/Label",
+            "/Trailing/Segmented Control/Label/Label",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#3/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#3/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#4/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#4/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#5/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#5/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#6/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item#6/Icon/None#2",
+            "/Trailing/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/Trailing/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ],
           "overrides": {
             "changed": {
@@ -1059,6 +1128,7 @@
               {
                 "path": "/Trailing/Segmented Control",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Segmented Control",
                   "type": "INSTANCE",
@@ -1095,6 +1165,7 @@
         },
         {
           "variant": "in-card=false, trailing=none",
+          "id": "7704:13296",
           "size": [
             505,
             64
@@ -1107,6 +1178,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/Text": {
@@ -1136,6 +1208,7 @@
         },
         {
           "variant": "in-card=true, trailing=none",
+          "id": "7704:13303",
           "size": [
             505,
             64
@@ -1148,6 +1221,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -1191,6 +1265,7 @@
         },
         {
           "variant": "in-card=false, trailing=tag",
+          "id": "7706:14397",
           "size": [
             505,
             64
@@ -1204,6 +1279,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/Text": {
@@ -1235,6 +1311,7 @@
               {
                 "path": "/Trailing/Tag",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1293,6 +1370,7 @@
         },
         {
           "variant": "in-card=true, trailing=tag",
+          "id": "7706:14404",
           "size": [
             505,
             64
@@ -1306,6 +1384,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -1351,6 +1430,7 @@
               {
                 "path": "/Trailing/Tag",
                 "parent": "/Trailing",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1707,6 +1787,7 @@
       "variants": [
         {
           "variant": "in-card=true",
+          "id": "7682:1222",
           "size": [
             560,
             259
@@ -1734,10 +1815,19 @@
             "Icon/None",
             "Label",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/items/PropertyRow#3/Trailing/Select/Helper text",
+            "/items/PropertyRow#3/Trailing/Select/Label",
+            "/items/PropertyRow/Trailing/Button/Counter",
+            "/items/PropertyRow/Trailing/Button/Icon/None",
+            "/items/PropertyRow/Trailing/Button/Icon/None#2",
+            "/items/PropertyRow/Trailing/Button/Spinner"
           ]
         },
         {
           "variant": "in-card=false",
+          "id": "7739:29012",
           "size": [
             560,
             259

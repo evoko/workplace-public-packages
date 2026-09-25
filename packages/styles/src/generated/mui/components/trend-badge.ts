@@ -122,7 +122,7 @@ export const solarTrendBadgeStyles = {
         height: '8px',
       },
       'type=decline': {
-        backgroundColor: 'var(--solar-color-icon-feedback-danger)',
+        backgroundColor: 'var(--solar-color-surface-feedback-danger-strong)',
         gap: 'var(--solar-inset-none)',
         paddingTop: 'var(--solar-inset-none)',
         paddingRight: 'var(--solar-inset-none)',

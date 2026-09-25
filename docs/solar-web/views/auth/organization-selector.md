@@ -15,10 +15,10 @@ Default variant: `breakpoint=desktop, filled=True` · 4 variants · default size
 
 ### Anatomy (default variant)
 
-- **breakpoint=desktop, filled=True** · component · column gap 0 pad 0/0/24/0 FIXED/FIXED · 1440×800  
-  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
+- **breakpoint=desktop, filled=True** · component · column gap 16 pad 0/0/24/0 FIXED/FIXED · 1440×800  
+  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · itemSpacing `inset.md` · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
   - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
-    padding `stack.md`
+    itemSpacing `inset.sm` · padding `stack.md`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×592  
     itemSpacing `stack.lg`
     - **Select organization** · text `title/sm` "Select organization" · HUG/HUG · 174×15  
@@ -41,7 +41,7 @@ Default variant: `breakpoint=desktop, filled=True` · 4 variants · default size
 | Strokes         | `color.border.subtle`                                                                                                                                                                                                         |
 | Text color      | `color.text.inverse`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary`, `color.pink.700`, `color.purple.700`                                                                                               |
 | Icon color      | `color.action.secondary.icon.default`, `color.icon.inverse`, `color.icon.primary`, `color.icon.secondary`, `color.icon.tertiary`, `color.brand.red`, `color.brand.white`                                                      |
-| Spacing         | `inset.md`, `inset.none`, `inset.xl`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                                      |
+| Spacing         | `inset.md`, `inset.none`, `inset.sm`, `inset.xl`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                          |
 | Radius          | `radius.dialog`                                                                                                                                                                                                               |
 | Border width    | `border.default`                                                                                                                                                                                                              |
 | Sizes           | `breakpoint.lg`                                                                                                                                                                                                               |

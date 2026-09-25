@@ -24,7 +24,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 - **breakpoint=desktop** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 1440×800  
   fill `color.surface.background` · width `viewport.lg`
   - **Top Bar** · instance of **Top Bar** (breakpoint=desktop, hasSidebar=true, isLoggedIn=true) · row gap 12 pad 0/16/0/16 FIXED/FIXED · 1440×56  
-    fill `color.surface.background` · padding `stack.md`
+    fill `color.surface.background` · itemSpacing `inset.sm` · padding `stack.md`
   - **App Content** · frame · row gap 0 pad 0/8/8/0 FILL/FIXED · 1440×744  
     padding `inset.xs`
     - **Sidebar** · instance of **Sidebar** (expanded=false) · column gap 4 pad 0/0/8/0 FIXED/FILL · 64×736  
@@ -53,7 +53,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 | Fills      | `color.surface.background`, `color.surface.raised`                                                                            |
 | Text color | `color.text.inverse`, `color.text.primary`, `color.text.tertiary`, `color.purple.700`                                         |
 | Icon color | `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`, `color.icon.tertiary`, `color.brand.red` |
-| Spacing    | `inset.none`, `inset.xs`, `stack.2xs`, `stack.md`, `stack.none`, `stack.xs`                                                   |
+| Spacing    | `inset.none`, `inset.sm`, `inset.xs`, `stack.2xs`, `stack.md`, `stack.none`, `stack.xs`                                       |
 | Radius     | `radius.container`, `radius.none`                                                                                             |
 | Sizes      | `viewport.lg`                                                                                                                 |
 

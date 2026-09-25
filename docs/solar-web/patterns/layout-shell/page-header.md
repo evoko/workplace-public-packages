@@ -29,7 +29,8 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
 
 - **type=left-aligned, breakpoint=desktop** · component · column gap 0 pad 8/24/0/24 FIXED/HUG · 1368×166  
   stroke `color.border.subtle` mixedpx · itemSpacing `stack.none` · padding `inset.xl`, `inset.xs`, `inset.none` · strokeWeight `border.default`
-  - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1320×118
+  - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1320×118  
+    itemSpacing `inset.md`
     - **TextStack** · frame · column gap 16 pad 20/0/20/0 FILL/HUG · 1181×118  
       itemSpacing `stack.md` · padding `stack.lg`
       - **Breadcrumbs** · instance of **Breadcrumbs** (items=multiple) · row gap 12 pad 0/0/0/0 HUG/HUG · 156×12  
@@ -63,7 +64,7 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
 | Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`, `color.border.feedback.success.subtle`, `color.border.subtle`                                  |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
 | Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`                 |
-| Spacing         | `inset.none`, `inset.sm`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`, `stack.sm`                                                                             |
+| Spacing         | `inset.md`, `inset.none`, `inset.sm`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`, `stack.sm`                                                                 |
 | Radius          | `radius.control`, `radius.pill`                                                                                                                                                |
 | Border width    | `border.default`                                                                                                                                                               |
 | Sizes           | `icon.lg`                                                                                                                                                                      |
@@ -101,10 +102,6 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
 | left-aligned | desktop    | 1368×166 |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 | left-aligned | mobile     | 377×150  |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`                                          | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`                                         |
 | centered     | desktop    | 1368×174 |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
-
-### Issues detected
-
-- Hard-coded gap `16px` on layer _Container_
 
 ## Documentation card
 

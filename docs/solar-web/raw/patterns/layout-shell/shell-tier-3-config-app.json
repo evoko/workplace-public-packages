@@ -84,6 +84,7 @@
               "{Color:surface/background}"
             ],
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:stack/md",
               "paddingRight": "Spatial:stack/md"
             }
@@ -188,6 +189,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "6498:5363",
           "size": [
             1440,
             800
@@ -208,10 +210,15 @@
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "6499:6531",
           "size": [
             393,
             800
@@ -227,6 +234,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {

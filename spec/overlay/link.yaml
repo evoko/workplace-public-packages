@@ -19,32 +19,6 @@ follows:
       description: its hover text style is link/*/hover, underlined, and every other state's
       link/*/default.
 
-set:
-  label.combined.xs.default.default.typography:
-    token: typography.link.xs.default
-    reason: >-
-      The xs label is detached from its text style: Figma binds it to local copies of body/xs's
-      size and line height (10px on 14px), which are link/xs/default's exactly. Drawn with that
-      style; the design review asks SOLAR to reattach it.
-  label.combined.xs.default.hover.typography:
-    token: typography.link.xs.hover
-    reason: As at rest, xs's hover style is link/xs/hover, underlined, as every other size's is.
-  label.combined.xs.default.pressed.typography:
-    token: typography.link.xs.default
-    reason: As at rest, link/xs/default.
-  label.combined.xs.default.disabled.typography:
-    token: typography.link.xs.default
-    reason: As at rest, link/xs/default.
-  label.combined.xs.default.focus.typography:
-    token: typography.link.xs.default
-    reason: As at rest, link/xs/default.
-  root.appearance.default.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      Figma draws the focus state as the resting one, with no ring, and WCAG's visible focus is
-      SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's is; the design review asks SOLAR to
-      draw it.
-
 bind:
   leadingIcon.height:
     tokens: { 24: icon.lg, 16: icon.sm, 12: icon.xs }
@@ -59,4 +33,4 @@ allowLiteral:
   root.opacity:
     reason: >-
       A disabled link is drawn at 50% opacity, over its disabled colours. SOLAR has no opacity
-      scale, as for Node End's halo; carried as Figma's number, and raised as a governance gap.
+      scale, as for Node End's halo (SOLAR's decision, 2026-09-25); carried as Figma's number.

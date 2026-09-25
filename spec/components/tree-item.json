@@ -136,6 +136,11 @@
       "parent": "root",
       "type": "TEXT"
     },
+    "renameInput": {
+      "path": "/|Label",
+      "parent": "root",
+      "type": "TEXT"
+    },
     "status": {
       "path": "/StatusIndicator",
       "parent": "root",
@@ -151,15 +156,15 @@
       "parent": "root",
       "type": "INSTANCE"
     },
-    "trailingIcon": {
-      "path": "/Icon/None#2",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
     "buttons": {
       "path": "/CTAs",
       "parent": "root",
       "type": "FRAME"
+    },
+    "trailingIcon": {
+      "path": "/Icon/None#2",
+      "parent": "root",
+      "type": "INSTANCE"
     },
     "iconMore": {
       "path": "/CTAs/Icon/More",
@@ -170,11 +175,6 @@
       "path": "/CTAs/Icon/Plus",
       "parent": "buttons",
       "type": "INSTANCE"
-    },
-    "renameInput": {
-      "path": "/|Label",
-      "parent": "root",
-      "type": "TEXT"
     },
     "iconChevronDown": {
       "path": "/Chevron/Icon/ChevronDown",
@@ -224,7 +224,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.xs",
@@ -233,7 +233,7 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.2xs",
@@ -552,22 +552,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "HUG",
@@ -882,6 +882,73 @@
         }
       }
     },
+    "renameInput": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "selected=false, expanded=false, state=default"
+        },
+        "typography": {
+          "token": "typography.label.md",
+          "from": "selected=false, expanded=false, state=edit"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "selected=false, expanded=false, state=edit"
+        }
+      },
+      "size": {},
+      "appearance": {
+        "selected=false, expanded=false": {
+          "edit": {
+            "present": {
+              "value": true,
+              "from": "selected=false, expanded=false, state=edit"
+            },
+            "color": {
+              "token": "color.text.tertiary",
+              "from": "selected=false, expanded=false, state=edit"
+            }
+          }
+        },
+        "selected=false, expanded=true": {
+          "edit": {
+            "present": {
+              "value": true,
+              "from": "selected=false, expanded=true, state=edit"
+            },
+            "color": {
+              "token": "color.text.tertiary",
+              "from": "selected=false, expanded=true, state=edit"
+            }
+          }
+        },
+        "selected=true, expanded=false": {
+          "edit": {
+            "present": {
+              "value": true,
+              "from": "selected=true, expanded=false, state=edit"
+            },
+            "color": {
+              "token": "color.text.primary",
+              "from": "selected=true, expanded=false, state=edit"
+            }
+          }
+        },
+        "selected=true, expanded=true": {
+          "edit": {
+            "present": {
+              "value": true,
+              "from": "selected=true, expanded=true, state=edit"
+            },
+            "color": {
+              "token": "color.text.primary",
+              "from": "selected=true, expanded=true, state=edit"
+            }
+          }
+        }
+      }
+    },
     "status": {
       "base": {
         "present": {
@@ -1049,66 +1116,6 @@
         }
       }
     },
-    "trailingIcon": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "selected=false, expanded=false, state=default"
-        },
-        "component": {
-          "keyword": "Icon/None",
-          "from": "selected=false, expanded=false, state=default"
-        },
-        "variant.solid": {
-          "keyword": "false",
-          "from": "selected=false, expanded=false, state=default"
-        },
-        "width": {
-          "token": "icon.sm",
-          "from": "overlay",
-          "reason": "Same value, governed token; the icon's height is already bound to it."
-        },
-        "height": {
-          "token": "icon.sm",
-          "from": "selected=false, expanded=false, state=default"
-        },
-        "color": {
-          "token": "color.icon.secondary",
-          "from": "selected=false, expanded=false, state=default"
-        }
-      },
-      "size": {},
-      "appearance": {
-        "selected=true, expanded=false": {
-          "default": {
-            "color": {
-              "token": "color.icon.primary",
-              "from": "selected=true, expanded=false, state=default"
-            }
-          },
-          "hover": {
-            "color": {
-              "token": "color.icon.primary",
-              "from": "selected=true, expanded=false, state=hover"
-            }
-          }
-        },
-        "selected=true, expanded=true": {
-          "default": {
-            "color": {
-              "token": "color.icon.primary",
-              "from": "selected=true, expanded=true, state=default"
-            }
-          },
-          "hover": {
-            "color": {
-              "token": "color.icon.primary",
-              "from": "selected=true, expanded=true, state=hover"
-            }
-          }
-        }
-      }
-    },
     "buttons": {
       "base": {
         "present": {
@@ -1138,22 +1145,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "HUG",
@@ -1291,6 +1298,66 @@
             "present": {
               "value": false,
               "from": "selected=true, expanded=true, state=edit"
+            }
+          }
+        }
+      }
+    },
+    "trailingIcon": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "selected=false, expanded=false, state=default"
+        },
+        "component": {
+          "keyword": "Icon/None",
+          "from": "selected=false, expanded=false, state=default"
+        },
+        "variant.solid": {
+          "keyword": "false",
+          "from": "selected=false, expanded=false, state=default"
+        },
+        "width": {
+          "token": "icon.sm",
+          "from": "overlay",
+          "reason": "Same value, governed token; the icon's height is already bound to it."
+        },
+        "height": {
+          "token": "icon.sm",
+          "from": "selected=false, expanded=false, state=default"
+        },
+        "color": {
+          "token": "color.icon.secondary",
+          "from": "selected=false, expanded=false, state=default"
+        }
+      },
+      "size": {},
+      "appearance": {
+        "selected=true, expanded=false": {
+          "default": {
+            "color": {
+              "token": "color.icon.primary",
+              "from": "selected=true, expanded=false, state=default"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.icon.primary",
+              "from": "selected=true, expanded=false, state=hover"
+            }
+          }
+        },
+        "selected=true, expanded=true": {
+          "default": {
+            "color": {
+              "token": "color.icon.primary",
+              "from": "selected=true, expanded=true, state=default"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.icon.primary",
+              "from": "selected=true, expanded=true, state=hover"
             }
           }
         }
@@ -1552,73 +1619,6 @@
         }
       }
     },
-    "renameInput": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "selected=false, expanded=false, state=default"
-        },
-        "typography": {
-          "token": "typography.label.md",
-          "from": "selected=false, expanded=false, state=edit"
-        },
-        "width": {
-          "keyword": "FILL",
-          "from": "selected=false, expanded=false, state=edit"
-        }
-      },
-      "size": {},
-      "appearance": {
-        "selected=false, expanded=false": {
-          "edit": {
-            "present": {
-              "value": true,
-              "from": "selected=false, expanded=false, state=edit"
-            },
-            "color": {
-              "token": "color.text.tertiary",
-              "from": "selected=false, expanded=false, state=edit"
-            }
-          }
-        },
-        "selected=false, expanded=true": {
-          "edit": {
-            "present": {
-              "value": true,
-              "from": "selected=false, expanded=true, state=edit"
-            },
-            "color": {
-              "token": "color.text.tertiary",
-              "from": "selected=false, expanded=true, state=edit"
-            }
-          }
-        },
-        "selected=true, expanded=false": {
-          "edit": {
-            "present": {
-              "value": true,
-              "from": "selected=true, expanded=false, state=edit"
-            },
-            "color": {
-              "token": "color.text.primary",
-              "from": "selected=true, expanded=false, state=edit"
-            }
-          }
-        },
-        "selected=true, expanded=true": {
-          "edit": {
-            "present": {
-              "value": true,
-              "from": "selected=true, expanded=true, state=edit"
-            },
-            "color": {
-              "token": "color.text.primary",
-              "from": "selected=true, expanded=true, state=edit"
-            }
-          }
-        }
-      }
-    },
     "iconChevronDown": {
       "base": {
         "present": {
@@ -1741,7 +1741,7 @@
     "pageId": "2422:8434",
     "figmaNode": "2422:9953",
     "defaultVariant": "selected=false, expanded=false, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/tree-item.yaml",
@@ -1944,7 +1944,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingBottom, chevron.paddingTop, chevron.paddingRight, chevron.paddingBottom, chevron.paddingLeft, buttons.paddingTop, buttons.paddingRight, buttons.paddingBottom, buttons.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

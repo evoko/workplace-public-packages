@@ -41,8 +41,8 @@ allowLiteral:
   root.width:
     values: [8]
     reason: >-
-      The xs dot is 8px, and the icon ladder starts at 12: SOLAR has no size for it, a governance
-      gap the design review raises.
+      The xs dot is 8px, and the icon ladder starts at 12: SOLAR has no size for it, and decided on
+      2026-09-25 to add none, since two components use it. Carried as a raw value.
   root.height:
     values: [8]
     reason: As the width, the 8px dot.

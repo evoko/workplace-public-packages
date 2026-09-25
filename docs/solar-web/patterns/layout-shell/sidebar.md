@@ -21,19 +21,19 @@ Default variant: `expanded=false` · 2 variants · default size 64×744px
   itemSpacing `stack.2xs` · padding `stack.none`, `inset.none`, `inset.xs` · radius `radius.none`
   - **Menu** · slot · column gap 4 pad 0/0/0/0 HUG/FILL · 40×677  
     itemSpacing `stack.2xs` · prop slotContentId←Menu
-    - **Nav Item** · instance of **Nav Item** (selected=true, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+    - **Nav Item** · instance of **Nav Item** (selected=true, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
       fill `color.surface.active` · itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
       itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
       itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
       itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
       itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
       itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+    - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
       itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
   - **Nav Item** · frame · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
     itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`

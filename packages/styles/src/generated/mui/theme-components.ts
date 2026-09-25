@@ -265,6 +265,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'primary',
             size: 'sm',
           }),
@@ -276,6 +277,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'primary',
             size: 'md',
           }),
@@ -287,6 +289,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'primary',
             size: 'lg',
           }),
@@ -298,6 +301,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'secondary',
             size: 'sm',
           }),
@@ -310,6 +314,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'secondary',
             size: 'md',
           }),
@@ -321,6 +326,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'secondary',
             size: 'lg',
           }),
@@ -332,6 +338,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'tertiary',
             size: 'sm',
           }),
@@ -343,6 +350,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'tertiary',
             size: 'md',
           }),
@@ -354,6 +362,7 @@ export const solarMuiComponents: Record<string, SolarMuiComponent> = {
         style: moved(
           solarIconButtonStyle({
             shape: 'square',
+            active: false,
             prio: 'tertiary',
             size: 'lg',
           }),
@@ -421,6 +430,7 @@ export const solarMuiThemeDecisions = {
     },
     fixed: {
       shape: 'square',
+      active: false,
     },
     slots: {
       icon: '& > svg',

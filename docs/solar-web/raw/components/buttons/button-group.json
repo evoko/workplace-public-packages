@@ -5,7 +5,7 @@
     {
       "name": "Button Group",
       "id": "2618:3237",
-      "description": "Container that assembles 2–5 Buttons into a joined row. 3 variants: orientation (horizontal, vertical) × type (regular, full-width) — built combinations: horizontal/regular, vertical/regular, horizontal/full-width. regular sizes to content; full-width stretches buttons to fill the container width (equal widths). All children must share the same prio and size — mixing breaks the visual grouping. For multi-action toolbars with dividers use a Toolbar pattern; for segmented exclusive selection use Segmented Control.",
+      "description": "Container that assembles 2–5 Buttons into a row or column. 3 variants: orientation (horizontal, vertical) × type (regular, full-width) — built combinations: horizontal/regular, vertical/regular, horizontal/full-width. Buttons fill the group in equal shares in every variant; full-width stretches the group to its container. Children share one size; priorities may mix, with at most one primary. Props: Buttons (slot), SecondaryCTA, TertiaryCTA. For segmented exclusive selection use Segmented Control.",
       "docLinks": [],
       "variantCount": 3,
       "props": {
@@ -227,6 +227,7 @@
       "variants": [
         {
           "variant": "orientation=horizontal, type=regular",
+          "id": "2229:6440",
           "size": [
             455,
             64
@@ -246,10 +247,26 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Button",
+            "/Button#2/Counter",
+            "/Button#2/Icon/None",
+            "/Button#2/Icon/None#2",
+            "/Button#2/Spinner",
+            "/Button#3/Counter",
+            "/Button#3/Icon/None",
+            "/Button#3/Icon/None#2",
+            "/Button#3/Spinner",
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ]
         },
         {
           "variant": "orientation=vertical, type=regular",
+          "id": "5780:13707",
           "size": [
             455,
             112
@@ -263,6 +280,21 @@
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/tertiary/icon/default}"
+          ],
+          "hiddenPaths": [
+            "/Button#2/Counter",
+            "/Button#2/Icon/None",
+            "/Button#2/Icon/None#2",
+            "/Button#2/Spinner",
+            "/Button#3",
+            "/Button#3/Counter",
+            "/Button#3/Icon/None",
+            "/Button#3/Icon/None#2",
+            "/Button#3/Spinner",
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -341,6 +373,7 @@
         },
         {
           "variant": "orientation=horizontal, type=full-width",
+          "id": "2618:3236",
           "size": [
             455,
             48
@@ -360,6 +393,16 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Button#2/Counter",
+            "/Button#2/Icon/None",
+            "/Button#2/Icon/None#2",
+            "/Button#2/Spinner",
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -412,7 +455,6 @@
                     0,
                     20
                   ],
-                  "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FILL/FIXED"
                 },
                 "fills": [
@@ -424,7 +466,7 @@
                 "strokeWeight": 0,
                 "radius": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",
@@ -455,8 +497,7 @@
                     20,
                     0,
                     20
-                  ],
-                  "align": "SPACE_BETWEEN/CENTER"
+                  ]
                 },
                 "fills": [
                   "{Color:action/primary/bg/default}"
@@ -468,7 +509,7 @@
                 "radius": null,
                 "effectStyle": null,
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
                   "strokeTopWeight": "Spatial:border/none",

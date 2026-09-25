@@ -29,6 +29,9 @@ export default {
     states: {
       default: null,
       hover: '&:hover',
+      // A toggle icon button switched on (Figma's active, added 2026-09-25): the shell marks it as
+      // a toggle does, pressed in ARIA's sense, which a momentary press still draws over.
+      active: '&[aria-pressed="true"]',
       pressed: '&:active',
       focus: '&.Mui-focusVisible',
       loading: '&.MuiIconButton-loading',

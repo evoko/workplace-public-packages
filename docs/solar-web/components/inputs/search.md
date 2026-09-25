@@ -60,7 +60,7 @@ Default variant: `state=default, size=md` · 12 variants · default size 240×40
 | -------- | ---- | ------ | -------------------- | ------------------------------------- | ---------------------- | ---------------------- | ---------------------------------------------- |
 | default  | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.secondary` | `color.icon.secondary`                         |
 | default  | sm   | 200×32 | `color.surface.base` | `color.border.subtle`                 |                        | `color.text.secondary` | `color.icon.secondary`                         |
-| hover    | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.secondary` | `color.icon.secondary`<br>`color.icon.primary` |
+| hover    | md   | 240×40 | `color.surface.base` | `color.border.medium`                 | `shadow/control`       | `color.text.secondary` | `color.icon.secondary`<br>`color.icon.primary` |
 | hover    | sm   | 200×32 | `color.surface.base` | `color.border.medium`                 |                        | `color.text.secondary` | `color.icon.secondary`<br>`color.icon.primary` |
 | filled   | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.primary`   | `color.icon.primary`                           |
 | filled   | sm   | 200×32 | `color.surface.base` | `color.border.subtle`                 |                        | `color.text.primary`   | `color.icon.primary`                           |

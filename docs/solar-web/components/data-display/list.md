@@ -4,7 +4,7 @@
 
 ## Component set: ListItem
 
-Single row inside a List container. Currently ships at size=sm (36px) only — md and lg sizes to follow when 2+ consumers need them. States: default, hover, focus, selected, disabled. Use in navigation menus, settings sidebars, dropdown option lists, and selectable entity pickers. Pair with a leading icon (20px), trailing metadata, counter, or chevron — never two trailing elements at once. Provide aria-selected on the selected row. See also: List for the container, Menu for floating variant, Table for column-structured data.
+Single row inside a List container. 20 variants: type (icon, avatar) × state (default, hover, focus, selected, disabled) × compact (false, true). Props: hasIcon, hasAvatar, hasHelper, hasTrailing. The trailing element is a 16px icon slot, typically a chevron; for a count or value put a Counter or text in the slot instead — never two trailing elements at once. Provide aria-selected on the selected row. See also: List for the container, Table for column-structured data.
 
 ### Props
 
@@ -89,7 +89,7 @@ Default variant: `type=icon, state=default, compact=false` · 20 variants · def
 
 ## Component set: List
 
-Container that stacks ListItem rows with optional dividers. 2 variants: in-card (false, true) — true drops the outer border and padding for placement inside Card. Items is a slot: drop ListItem instances in. Use for navigation, settings and entity pickers; for column-structured data use Table.
+Container that stacks ListItem rows with optional dividers. 2 variants: in-card (false, true). in-card=true is the standalone list — its own edge, corners and padded rows; in-card=false drops the edge and uses compact rows for placement inside a Card or panel that already provides the surface. Items is a slot for ListItem instances. Use for navigation, settings and entity pickers; for column-structured data use Table.
 
 ### Props
 

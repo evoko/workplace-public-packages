@@ -91,11 +91,11 @@ the label is hidden but keeps its room, and the SOLAR Spinner shows in the varia
 passes through, and `sx` applies on top of the recipe. An icon-only button needs an
 `aria-label`; in development the component warns when one is missing.
 
-`sm` is drawn 32px tall and `md` 40px, below the 44px WCAG touch target, and its hit area is
-padded to 44 × 44 in code, as SOLAR's description asks: an invisible target around the drawn button,
-which takes no room. Every control here has one. SOLAR publishes no variable for the target size, so
-44 is the one raw value for it, in the codegen's `src/components/shared/target.mjs`, until SOLAR does (the
-first question in [the design review](../../docs/solar-review-for-design.md)).
+`sm` is drawn 32px tall and `md` 40px (SOLAR's `size.control.sm` and `md`), below the 44px WCAG
+touch target, and its hit area is padded to 44 × 44 in code, as SOLAR's description asks: an
+invisible target around the drawn button, which takes no room. Every control here has one, sized by
+SOLAR's `size.target.min` (`--solar-size-target-min`), in the codegen's
+`src/components/shared/target.mjs`.
 
 ## Icon Button
 
@@ -111,8 +111,11 @@ first question in [the design review](../../docs/solar-review-for-design.md)).
 | `size`                | `sm` · `md` · `lg` (32, 40, 48px)    | `sm`      |
 | `shape`               | `square` · `round`                   | `square`  |
 | `disabled`, `loading` | boolean                              | `false`   |
+| `active`              | boolean: a toggle, switched on       | unset     |
 
-MUI's IconButton, restyled by the recipe. An icon alone is not a name, so the types require an
+MUI's IconButton, restyled by the recipe. Given `active`, it is a toggle icon button (a toolbar
+option switched on or off): `true` draws Figma's active state, the persistent on state, and it is
+announced pressed (`aria-pressed`); left unset, it is an ordinary action. An icon alone is not a name, so the types require an
 `aria-label` or an `aria-labelledby` (and in development it warns without one, for JavaScript
 callers). The icon fills a box the recipe sizes from the icon ladder. While loading, the icon gives
 way to the Spinner Figma picks for the variant; disabled wins over loading. Figma draws some

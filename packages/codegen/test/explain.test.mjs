@@ -56,8 +56,21 @@ describe('lookupCell', () => {
 
 describe('explainVariant', () => {
   it('chains Figma’s value, the recipe’s, the excuse and the platforms’ reports', () => {
-    const ctx = of('Text Input');
+    // The focused sm field as Figma drew it until 2026-09-25: padded 12, an open finding.
+    const ctx = structuredClone(of('Text Input'));
     const focus = variant(ctx, 'size=sm, state=pressed');
+    focus.layers.field.paddingLeft = 12;
+    focus.excused = [
+      ...(focus.excused ?? []),
+      {
+        layer: 'field',
+        property: 'paddingLeft',
+        figma: 12,
+        finding: 'component.text input.field.paddingLeft@state=focus',
+        decision: null,
+        reason: 'r',
+      },
+    ];
     ctx.reports = {
       web: {
         failures: [],

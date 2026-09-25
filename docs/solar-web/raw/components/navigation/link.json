@@ -5,7 +5,7 @@
     {
       "name": "Link",
       "id": "2715:626",
-      "description": "Inline text link for navigating within or across the product. Renders as &lt;a&gt; and binds to color/text/link/* tokens. 15 variants: size (xs 12px, sm 14px, md 16px) × state (default, hover, pressed, focus, disabled). Optional leading and trailing icons via instance swap. Underlines on hover so the affordance never relies on color alone. &#39;pressed&#39; here is the momentary pressed/visited color — for persistent selection use a Nav Item pattern. For actions that trigger a side effect (save, submit), use Button, not Link.",
+      "description": "Inline text link for navigating within or across the product. Renders as <a> and binds to color/text/link/* tokens. 15 variants: size (xs 12px, sm 14px, md 16px) × state (default, hover, pressed, focus, disabled). The label is underlined in every state, so the affordance never relies on colour alone; hover changes the colour. focus carries shadow/focus/default. Optional leading and trailing icons. For actions with a side effect (save, submit) use Button, not Link.",
       "docLinks": [],
       "variantCount": 15,
       "props": {
@@ -132,6 +132,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "3635:2",
           "size": [
             127,
             24
@@ -142,10 +143,12 @@
           "iconFills": [
             "{Color:icon/link/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=md, state=hover",
+          "id": "3635:8",
           "size": [
             127,
             24
@@ -179,6 +182,7 @@
         },
         {
           "variant": "size=md, state=pressed",
+          "id": "3635:14",
           "size": [
             127,
             24
@@ -211,6 +215,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "3635:20",
           "size": [
             127,
             24
@@ -247,19 +252,29 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "6050:34",
           "size": [
             127,
             24
           ],
+          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/link/default}"
           ],
           "iconFills": [
             "{Color:icon/link/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=default",
+          "id": "2715:578",
           "size": [
             103,
             16
@@ -306,6 +321,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "2715:584",
           "size": [
             103,
             16
@@ -361,6 +377,7 @@
         },
         {
           "variant": "size=sm, state=pressed",
+          "id": "2715:590",
           "size": [
             103,
             16
@@ -416,6 +433,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "2715:596",
           "size": [
             103,
             16
@@ -475,10 +493,12 @@
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "6050:30",
           "size": [
             103,
             16
           ],
+          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/link/default}"
           ],
@@ -487,6 +507,9 @@
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
               "/Icon/None": {
                 "size": [
                   16,
@@ -521,6 +544,7 @@
         },
         {
           "variant": "size=xs, state=default",
+          "id": "2715:602",
           "size": [
             88,
             12
@@ -544,14 +568,14 @@
                 }
               },
               "/Label": {
-                "textStyle": null,
+                "textStyle": "link/sm/default",
                 "size": [
                   48,
                   9
                 ],
                 "vars": {
-                  "lineHeight": "Type(local):line-height/body/xs",
-                  "fontSize": "Type(local):size/body/xs"
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
                 }
               },
               "/Icon/None#2": {
@@ -569,6 +593,7 @@
         },
         {
           "variant": "size=xs, state=hover",
+          "id": "2715:608",
           "size": [
             88,
             12
@@ -595,7 +620,7 @@
                 ]
               },
               "/Label": {
-                "textStyle": null,
+                "textStyle": "link/sm/hover",
                 "size": [
                   48,
                   9
@@ -604,8 +629,8 @@
                   "{Color:text/link/hover}"
                 ],
                 "vars": {
-                  "lineHeight": "Type(local):line-height/body/xs",
-                  "fontSize": "Type(local):size/body/xs"
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
                 }
               },
               "/Icon/None#2": {
@@ -626,6 +651,7 @@
         },
         {
           "variant": "size=xs, state=pressed",
+          "id": "2715:614",
           "size": [
             88,
             12
@@ -652,7 +678,7 @@
                 ]
               },
               "/Label": {
-                "textStyle": null,
+                "textStyle": "link/sm/default",
                 "size": [
                   48,
                   9
@@ -661,8 +687,8 @@
                   "{Color:text/link/active}"
                 ],
                 "vars": {
-                  "lineHeight": "Type(local):line-height/body/xs",
-                  "fontSize": "Type(local):size/body/xs"
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
                 }
               },
               "/Icon/None#2": {
@@ -683,6 +709,7 @@
         },
         {
           "variant": "size=xs, state=disabled",
+          "id": "2715:620",
           "size": [
             88,
             12
@@ -713,7 +740,7 @@
                 ]
               },
               "/Label": {
-                "textStyle": null,
+                "textStyle": "link/sm/default",
                 "size": [
                   48,
                   9
@@ -722,8 +749,8 @@
                   "{Color:text/link/disabled}"
                 ],
                 "vars": {
-                  "lineHeight": "Type(local):line-height/body/xs",
-                  "fontSize": "Type(local):size/body/xs"
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
                 }
               },
               "/Icon/None#2": {
@@ -744,10 +771,12 @@
         },
         {
           "variant": "size=xs, state=focus",
+          "id": "6050:26",
           "size": [
             88,
             12
           ],
+          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/link/default}"
           ],
@@ -756,6 +785,9 @@
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
               "/Icon/None": {
                 "size": [
                   12,
@@ -767,14 +799,14 @@
                 }
               },
               "/Label": {
-                "textStyle": null,
+                "textStyle": "link/sm/default",
                 "size": [
                   48,
                   9
                 ],
                 "vars": {
-                  "lineHeight": "Type(local):line-height/body/xs",
-                  "fontSize": "Type(local):size/body/xs"
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
                 }
               },
               "/Icon/None#2": {

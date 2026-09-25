@@ -203,6 +203,25 @@ abstract final class SolarTreeItemRecipe {
         't:color.text.primary',
     'label.color|appearance|selected=true, expanded=true|hover':
         't:color.text.primary',
+    'renameInput.present|base': 'b:false',
+    'renameInput.typography|base': 't:typography.label.md',
+    'renameInput.width|base': 'k:FILL',
+    'renameInput.present|appearance|selected=false, expanded=false|edit':
+        'b:true',
+    'renameInput.color|appearance|selected=false, expanded=false|edit':
+        't:color.text.tertiary',
+    'renameInput.present|appearance|selected=false, expanded=true|edit':
+        'b:true',
+    'renameInput.color|appearance|selected=false, expanded=true|edit':
+        't:color.text.tertiary',
+    'renameInput.present|appearance|selected=true, expanded=false|edit':
+        'b:true',
+    'renameInput.color|appearance|selected=true, expanded=false|edit':
+        't:color.text.primary',
+    'renameInput.present|appearance|selected=true, expanded=true|edit':
+        'b:true',
+    'renameInput.color|appearance|selected=true, expanded=true|edit':
+        't:color.text.primary',
     'status.present|base': 'b:false',
     'status.component|base': 'k:StatusIndicator',
     'status.variant.type|base': 'k:success',
@@ -238,20 +257,6 @@ abstract final class SolarTreeItemRecipe {
         'k:default',
     'counter.variant.state|appearance|selected=true, expanded=true|hover':
         'k:default',
-    'trailingIcon.present|base': 'b:false',
-    'trailingIcon.component|base': 'k:Icon/None',
-    'trailingIcon.variant.solid|base': 'k:false',
-    'trailingIcon.width|base': 't:icon.sm',
-    'trailingIcon.height|base': 't:icon.sm',
-    'trailingIcon.color|base': 't:color.icon.secondary',
-    'trailingIcon.color|appearance|selected=true, expanded=false|default':
-        't:color.icon.primary',
-    'trailingIcon.color|appearance|selected=true, expanded=false|hover':
-        't:color.icon.primary',
-    'trailingIcon.color|appearance|selected=true, expanded=true|default':
-        't:color.icon.primary',
-    'trailingIcon.color|appearance|selected=true, expanded=true|hover':
-        't:color.icon.primary',
     'buttons.present|base': 'b:false',
     'buttons.radius|base': 'none',
     'buttons.borderWidth|base': 'none',
@@ -299,6 +304,20 @@ abstract final class SolarTreeItemRecipe {
     'buttons.borderColor|appearance|selected=true, expanded=true|hover': 'none',
     'buttons.shadow|appearance|selected=true, expanded=true|hover': 'none',
     'buttons.present|appearance|selected=true, expanded=true|edit': 'b:false',
+    'trailingIcon.present|base': 'b:false',
+    'trailingIcon.component|base': 'k:Icon/None',
+    'trailingIcon.variant.solid|base': 'k:false',
+    'trailingIcon.width|base': 't:icon.sm',
+    'trailingIcon.height|base': 't:icon.sm',
+    'trailingIcon.color|base': 't:color.icon.secondary',
+    'trailingIcon.color|appearance|selected=true, expanded=false|default':
+        't:color.icon.primary',
+    'trailingIcon.color|appearance|selected=true, expanded=false|hover':
+        't:color.icon.primary',
+    'trailingIcon.color|appearance|selected=true, expanded=true|default':
+        't:color.icon.primary',
+    'trailingIcon.color|appearance|selected=true, expanded=true|hover':
+        't:color.icon.primary',
     'iconMore.present|base': 'b:false',
     'iconMore.component|base': 'k:Icon/More',
     'iconMore.width|base': 't:icon.sm',
@@ -377,25 +396,6 @@ abstract final class SolarTreeItemRecipe {
     'iconPlus.color|appearance|selected=true, expanded=true|hover':
         't:color.icon.primary',
     'iconPlus.present|appearance|selected=true, expanded=true|edit': 'b:false',
-    'renameInput.present|base': 'b:false',
-    'renameInput.typography|base': 't:typography.label.md',
-    'renameInput.width|base': 'k:FILL',
-    'renameInput.present|appearance|selected=false, expanded=false|edit':
-        'b:true',
-    'renameInput.color|appearance|selected=false, expanded=false|edit':
-        't:color.text.tertiary',
-    'renameInput.present|appearance|selected=false, expanded=true|edit':
-        'b:true',
-    'renameInput.color|appearance|selected=false, expanded=true|edit':
-        't:color.text.tertiary',
-    'renameInput.present|appearance|selected=true, expanded=false|edit':
-        'b:true',
-    'renameInput.color|appearance|selected=true, expanded=false|edit':
-        't:color.text.primary',
-    'renameInput.present|appearance|selected=true, expanded=true|edit':
-        'b:true',
-    'renameInput.color|appearance|selected=true, expanded=true|edit':
-        't:color.text.primary',
     'iconChevronDown.present|base': 'b:false',
     'iconChevronDown.component|base': 'k:Icon/ChevronDown',
     'iconChevronDown.width|base': 't:icon.sm',
@@ -446,12 +446,12 @@ abstract final class SolarTreeItemRecipe {
       'checkbox',
       'leadingIcon',
       'label',
+      'renameInput',
       'status',
       'tag',
       'counter',
-      'trailingIcon',
       'buttons',
-      'renameInput',
+      'trailingIcon',
     ],
     'chevron': ['chevronChevron', 'iconChevronDown'],
     'buttons': ['iconMore', 'iconPlus'],

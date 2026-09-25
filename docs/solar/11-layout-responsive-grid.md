@@ -66,7 +66,9 @@ margins and breakpoints themselves live in SOLAR Web's **Layout** collection
 (`layout.grid.columns.{bp}`, `layout.grid.gutter.{bp}`, `layout.grid.margin.{bp}`,
 `layout.breakpoint.{bp}` → `--solar-layout-*`), where `breakpoint/{bp}` aliases
 Foundations `viewport/{bp}`. Foundations defines the widths; SOLAR Web defines what the
-grid does at them.
+grid does at them. The split is deliberate: SOLAR decided on 2026-09-22 that grid, margin and
+breakpoint variables are web-specific and stay in SOLAR Web, keeping Foundations
+platform-agnostic.
 
 There are only these five named breakpoints. There is no 600 px or 1023 px boundary, no
 mobile/tablet/desktop/wide band naming, and no `viewport.breakpoint.*` token.

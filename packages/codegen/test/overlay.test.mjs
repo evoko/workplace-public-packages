@@ -354,7 +354,12 @@ describe('spec/overlay/button.yaml', () => {
       'state',
       'danger',
     ]);
-    expect(overlay.allowLiteral).toHaveProperty(['root.height']);
+    // The heights, literals by the decision of 2026-09-23 until SOLAR's size.control (2026-09-25).
+    expect(overlay.bind['root.height'].tokens).toEqual({
+      32: 'size.control.sm',
+      40: 'size.control.md',
+      48: 'size.control.lg',
+    });
     // lg is flat as Figma draws it, so the shadow follows size too; `accept` would have kept
     // the base shadow on lg, which is the opposite of the decision.
     expect(overlay.follows['root.shadow'].axes).toEqual([
@@ -401,22 +406,23 @@ describe('the overlay forms 3b-2 wave B added', () => {
     });
 
   it('binds several literals of one cell, and refuses one it would leave behind', () => {
+    // The icon's height, which Figma leaves unbound (its width, since 2026-09-25, it binds).
     const slot = 'slots:\n  iconNone: { name: icon, type: icon, reason: r }\n';
     const { spec } = on(
       'Icon Button',
-      `${slot}bind:\n  icon.width: { tokens: { 12: icon.xs, 16: icon.sm, 20: icon.md }, reason: r }\n`,
+      `${slot}bind:\n  icon.height: { tokens: { 12: icon.xs, 16: icon.sm, 20: icon.md }, reason: r }\n`,
     );
-    expect(spec.style.icon.size.lg.width.token).toBe('icon.md');
+    expect(spec.style.icon.size.lg.height.token).toBe('icon.md');
     expect(() =>
       on(
         'Icon Button',
-        `${slot}bind:\n  icon.width: { tokens: { 12: icon.xs, 16: icon.sm }, reason: r }\n`,
+        `${slot}bind:\n  icon.height: { tokens: { 12: icon.xs, 16: icon.sm }, reason: r }\n`,
       ),
-    ).toThrow(/bind icon.width: leaves 20 unbound/);
+    ).toThrow(/bind icon.height: leaves 20 unbound/);
     expect(() =>
       on(
         'Icon Button',
-        `${slot}bind:\n  icon.width: { tokens: { 12: icon.sm }, reason: r }\n`,
+        `${slot}bind:\n  icon.height: { tokens: { 12: icon.sm }, reason: r }\n`,
       ),
     ).toThrow(/icon.sm is 16, not 12/);
     expect(() =>
@@ -520,11 +526,21 @@ allowLiteral:
   });
 
   it('decides a finding only once no raw value is left in the cell', () => {
-    // Button's gap is 12 in Figma, unbound: a default for 0 has nothing to bind there.
-    const { deviations } = withDefaults(null);
+    // Stepper's bar is padded 225 on the right in Figma, unbound: a default for 0 has nothing to
+    // bind there. (Button's lg gap was the example until Figma bound it, 2026-09-25.)
+    const { deviations } = buildComponentSpec(
+      loadComponent(catalog, 'Stepper'),
+      {
+        names,
+        fileVersion: catalog.fileVersion,
+        overlay: null,
+        defaults,
+      },
+    );
     expect(
-      deviations.find((d) => d.token === 'component.button.root.gap#unbound')
-        .decision,
+      deviations.find(
+        (d) => d.token === 'component.stepper.progress.paddingRight#unbound',
+      ).decision,
     ).toBeUndefined();
   });
 

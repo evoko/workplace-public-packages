@@ -147,6 +147,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "7266:25532",
           "size": [
             268,
             40
@@ -165,10 +166,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover",
+          "id": "7266:25547",
           "size": [
             268,
             40
@@ -206,7 +209,7 @@
       "id": "7266:25836",
       "description": "Base Dialog overlay container. Responsive — adapts to content width. Uses real Button, IconButton, and Divider component instances.",
       "props": {},
-      "nodeCount": 401,
+      "nodeCount": 402,
       "tree": {
         "name": "Time Range",
         "type": "COMPONENT",
@@ -285,7 +288,7 @@
                 ],
                 "layout": {
                   "dir": "HORIZONTAL",
-                  "gap": 0,
+                  "gap": 16,
                   "pad": [
                     0,
                     0,
@@ -294,6 +297,9 @@
                   ],
                   "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -365,9 +371,10 @@
                       "align": "CENTER/CENTER",
                       "sizing": "FIXED/FIXED"
                     },
-                    "fills": [
-                      "{Color:action/tertiary/bg/default}"
+                    "strokes": [
+                      "{Color:action/tertiary/border/default}"
                     ],
+                    "strokeWeight": 1,
                     "radius": 9999,
                     "vars": {
                       "strokeTopWeight": "Spatial:border/default",

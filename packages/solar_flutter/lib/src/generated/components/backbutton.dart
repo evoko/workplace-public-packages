@@ -62,11 +62,11 @@ abstract final class SolarBackButtonRecipe {
     'root.paddingBottom|base': 't:inset.none',
     'root.paddingLeft|base': 't:inset.sm',
     'root.width|base': 'k:HUG',
-    'root.height|base': 'px:40',
+    'root.height|base': 't:size.control.md',
     'root.gap|size|sm': 't:stack.xs',
     'root.paddingRight|size|sm': 't:inset.xs',
     'root.paddingLeft|size|sm': 't:inset.xs',
-    'root.height|size|sm': 'px:32',
+    'root.height|size|sm': 't:size.control.sm',
     'root.background|appearance|default|hover':
         't:color.action.tertiary.bg.hover',
     'root.background|appearance|default|pressed':
@@ -230,6 +230,8 @@ abstract final class SolarBackButtonRecipe {
       't:inset.sm' => SolarInset.sm,
       't:inset.xs' => SolarInset.xs,
       't:radius.control' => SolarRadius.control,
+      't:size.control.md' => SolarSize.controlMd,
+      't:size.control.sm' => SolarSize.controlSm,
       't:stack.sm' => SolarStack.sm,
       't:stack.xs' => SolarStack.xs,
       _ => throw StateError('$cell: no length for $v'),

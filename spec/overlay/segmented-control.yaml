@@ -22,10 +22,10 @@ set:
     reason: As at md, the segment's own height.
 
 shownBy:
-  label:
+  labelLabel:
     slot: label
     reason: >-
-      Figma hides the label in both variants, with no prop to show it, though the description
-      gives the control "an optional field label ... so it can sit in a form" and a text prop for
-      it. Drawn where the caller gives a label, as the helper is by its prop; the design review
-      asks SOLAR for the prop.
+      Figma's show label (added 2026-09-25, the prop the design review asked for) shows the
+      label's frame, but its words stay hidden in both variants, so a shown label draws only its
+      star. Drawn where the caller gives a label, its words and its star; the design review asks
+      SOLAR to unhide the words.

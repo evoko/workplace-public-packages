@@ -82,22 +82,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "HUG",
@@ -285,11 +285,7 @@
         },
         "borderColor": {
           "token": "color.border.strong",
-          "from": "overlay",
-          "reason": "Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width* variable, which holds no colour; the recipe reports it as misbound. color.border.strong is the colour of the same name, and the inverse style's indicator uses its inverse (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle. Raised with SOLAR to rebind.",
-          "replaced": {
-            "literal": "{Spatial:border/strong}"
-          }
+          "from": "size=sm, style=default"
         },
         "shadow": {
           "none": true,
@@ -436,15 +432,15 @@
     }
   },
   "docs": {
-    "description": "Circular indeterminate loading indicator. 6 variants: size (sm, md, lg) × style (default, inverse) — inverse is for dark and inverse surfaces. Non-interactive. Pair with visually-hidden text or aria-busy on the region it covers; for known progress use Progress Bar, for layout placeholders use Skeleton.",
-    "figmaIssues": ["Non-color variable bound as a color: `border.strong`."]
+    "description": "Circular indeterminate loading indicator. 6 variants: size (sm 16, md 24, lg 32 — bound to icon/sm, icon/lg, icon/2xl) × style (default, inverse). default uses color/border/strong; inverse is for dark and inverse surfaces. Non-interactive. Pair with visually hidden text or aria-busy on the region it covers; for known progress use Progress Bar, for layout placeholders use Skeleton.",
+    "figmaIssues": []
   },
   "provenance": {
     "page": "components/feedback",
     "pageId": "2163:3681",
     "figmaNode": "4626:102",
     "defaultVariant": "size=sm, style=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/spinner.yaml",
@@ -458,11 +454,6 @@
         "rule": "rename",
         "at": "style",
         "reason": "The one exception to SOLAR's words (rule 5; owner decision 2026-09-25): `style` is React's inline-style prop, so no component can take it, and `variant` names the look on both platforms. The design review asks Figma to rename the property `variant`, so the names match."
-      },
-      {
-        "rule": "set",
-        "at": "indicator.base.borderColor",
-        "reason": "Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width* variable, which holds no colour; the recipe reports it as misbound. color.border.strong is the colour of the same name, and the inverse style's indicator uses its inverse (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle. Raised with SOLAR to rebind."
       },
       {
         "rule": "allowLiteral",
@@ -494,7 +485,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

@@ -61,6 +61,11 @@ follows:
       one child, so both are drawn as Figma has them.
 
 set:
+  root.appearance.type=logo.default.radius:
+    token: radius.container
+    reason: >-
+      The lg logo avatar Figma added on 2026-09-25 is rounded 11, bound to nothing, where the md and
+      sm logos take radius.container: drawn as theirs at every size, a slip the design review lists.
   root.base.background:
     token: color.surface.feedback.neutral.subtle
     reason: >-
@@ -81,9 +86,3 @@ allowLiteral:
       a governance gap.
   root.height:
     reason: As the width, the avatar is square.
-
-accept:
-  component.avatar.sparse@type=logo:
-    reason: >-
-      Figma draws no lg logo avatar; its look is read from md's, and its size is lg's, as for the
-      other types.

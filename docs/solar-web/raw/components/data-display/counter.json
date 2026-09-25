@@ -97,6 +97,7 @@
       "variants": [
         {
           "variant": "type=regular, state=default",
+          "id": "2203:3267",
           "size": [
             25,
             20
@@ -110,10 +111,12 @@
           "textFills": [
             "{Color:action/primary/text/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=regular, state=hover",
+          "id": "3986:2388",
           "size": [
             25,
             20
@@ -144,6 +147,7 @@
         },
         {
           "variant": "type=regular, state=pressed",
+          "id": "3986:2400",
           "size": [
             25,
             20
@@ -174,6 +178,7 @@
         },
         {
           "variant": "type=regular, state=disabled",
+          "id": "3986:2392",
           "size": [
             25,
             20
@@ -204,6 +209,7 @@
         },
         {
           "variant": "type=idle, state=default",
+          "id": "6165:12252",
           "size": [
             25,
             20
@@ -237,6 +243,7 @@
         },
         {
           "variant": "type=idle, state=hover",
+          "id": "6165:12254",
           "size": [
             25,
             20
@@ -270,6 +277,7 @@
         },
         {
           "variant": "type=idle, state=pressed",
+          "id": "6165:12256",
           "size": [
             25,
             20
@@ -303,6 +311,7 @@
         },
         {
           "variant": "type=idle, state=disabled",
+          "id": "6165:12258",
           "size": [
             25,
             20
@@ -333,6 +342,7 @@
         },
         {
           "variant": "type=danger, state=default",
+          "id": "2203:3282",
           "size": [
             25,
             20
@@ -363,6 +373,7 @@
         },
         {
           "variant": "type=danger, state=hover",
+          "id": "3986:2396",
           "size": [
             25,
             20
@@ -393,6 +404,7 @@
         },
         {
           "variant": "type=danger, state=pressed",
+          "id": "3986:2402",
           "size": [
             25,
             20
@@ -423,6 +435,7 @@
         },
         {
           "variant": "type=danger, state=disabled",
+          "id": "3986:2404",
           "size": [
             25,
             20
@@ -453,6 +466,7 @@
         },
         {
           "variant": "type=inverted, state=default",
+          "id": "5177:6805",
           "size": [
             25,
             20
@@ -490,6 +504,7 @@
         },
         {
           "variant": "type=inverted, state=hover",
+          "id": "5177:6807",
           "size": [
             25,
             20
@@ -527,6 +542,7 @@
         },
         {
           "variant": "type=inverted, state=pressed",
+          "id": "5177:6809",
           "size": [
             25,
             20
@@ -564,6 +580,7 @@
         },
         {
           "variant": "type=inverted, state=disabled",
+          "id": "5177:6811",
           "size": [
             25,
             20

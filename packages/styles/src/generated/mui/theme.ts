@@ -20,13 +20,13 @@ export const solarMuiPalette = {
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#ffffff',
-      dark: '#f5f5f5',
+      main: 'rgba(255, 255, 255, 0)',
+      dark: 'rgba(255, 255, 255, 0)',
       contrastText: '#111111',
     },
     error: {
       main: '#e0032d',
-      dark: '#f61d3c',
+      dark: '#c00024',
       contrastText: '#ffffff',
     },
     warning: {
@@ -63,8 +63,8 @@ export const solarMuiPalette = {
       contrastText: '#111111',
     },
     secondary: {
-      main: '#111111',
-      dark: '#222222',
+      main: 'rgba(255, 255, 255, 0)',
+      dark: 'rgba(255, 255, 255, 0)',
       contrastText: '#f5f5f5',
     },
     error: {

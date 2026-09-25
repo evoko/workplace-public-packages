@@ -168,6 +168,7 @@
       "variants": [
         {
           "variant": "placement=top, size=md",
+          "id": "4572:85",
           "size": [
             320,
             100
@@ -177,10 +178,12 @@
             "{Color:text/primary}",
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "placement=top, size=sm",
+          "id": "4572:80",
           "size": [
             240,
             76
@@ -249,6 +252,7 @@
         },
         {
           "variant": "placement=bottom, size=sm",
+          "id": "4572:90",
           "size": [
             240,
             76
@@ -325,6 +329,7 @@
         },
         {
           "variant": "placement=bottom, size=md",
+          "id": "4572:95",
           "size": [
             320,
             100
@@ -361,6 +366,7 @@
         },
         {
           "variant": "placement=left, size=md",
+          "id": "4572:105",
           "size": [
             330,
             90
@@ -402,6 +408,7 @@
         },
         {
           "variant": "placement=left, size=sm",
+          "id": "4572:100",
           "size": [
             250,
             66
@@ -483,6 +490,7 @@
         },
         {
           "variant": "placement=right, size=sm",
+          "id": "4572:110",
           "size": [
             250,
             66
@@ -564,6 +572,7 @@
         },
         {
           "variant": "placement=right, size=md",
+          "id": "4572:115",
           "size": [
             330,
             90

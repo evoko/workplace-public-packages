@@ -1,7 +1,7 @@
 ---
 solar:
-  reviewed: 2026-09-22
-  figmaVersion: '2402047167094879156'
+  reviewed: 2026-09-25
+  figmaVersion: '2403083104633531037'
   sources:
     documentation/tokens: 890a13304be2
 ---
@@ -52,7 +52,7 @@ No component-scoped **spacing** tokens exist: `{component}.space.{property}` (fo
 | -------------- | --------- | --------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Primitives** | primitive | Mode 1          | 265   | `color/*` palettes and alphas, `type/*` sizes, line heights, families, weights, `spatial/*` scale, border widths, radii, `viewport/*`, `motion/*` |
 | **Color**      | semantic  | Light, Dark     | 287   | `surface/*`, `text/*`, `icon/*`, `border/*`, `shadow/*` (colors), `action/*`, `data/*`, `brand/*`, `meter/*`, `control/*`                         |
-| **Spatial**    | semantic  | Default         | 34    | `inset/*`, `stack/*`, `radius/*`, `border/*` (widths), `icon/*` (sizes)                                                                           |
+| **Spatial**    | semantic  | Default         | 38    | `inset/*`, `stack/*`, `radius/*`, `border/*` (widths), `icon/*` (sizes), `size/control/*` and `size/target/min` (control sizes, touch target)     |
 | **Type**       | semantic  | Desktop, Mobile | 41    | `size/{role}/{size}` and `line-height/{role}/{size}`                                                                                              |
 
 Text styles (60) and effect styles (9) sit on top of these variables and are how
@@ -113,6 +113,8 @@ spatial.{type}.{size}   — primitives: scale, border-width, border-radius, view
 stack.{size}            — vertical spacing between siblings
 inset.{size}            — padding inside containers
 icon.size.{size}        — icon dimensions
+size.control.{size}     — control sizes: sm 32, md 40, lg 48
+size.target.min         — minimum touch target, 44
 ```
 
 | Segment                   | Allowed values                                                                                |

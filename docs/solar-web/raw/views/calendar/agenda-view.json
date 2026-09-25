@@ -56,6 +56,7 @@
               "{Color:surface/base}"
             ],
             "vars": {
+              "itemSpacing": "Spatial:inset/md",
               "paddingLeft": "Spatial:inset/md",
               "paddingTop": "Spatial:inset/sm",
               "paddingRight": "Spatial:inset/md",

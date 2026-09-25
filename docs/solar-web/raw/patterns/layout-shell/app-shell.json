@@ -110,6 +110,7 @@
               "{Color:surface/background}"
             ],
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:stack/md",
               "paddingRight": "Spatial:stack/md"
             }
@@ -342,6 +343,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "3779:942",
           "size": [
             1440,
             800
@@ -363,10 +365,15 @@
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "5888:18629",
           "size": [
             393,
             800
@@ -382,6 +389,7 @@
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -411,9 +419,9 @@
                   "sizing": "FIXED/FIXED"
                 },
                 "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:stack/xs",
-                  "paddingRight": "Spatial:stack/xs",
-                  "itemSpacing": "Spatial:stack/sm"
+                  "paddingRight": "Spatial:stack/xs"
                 }
               },
               "/App Content": {
@@ -439,6 +447,7 @@
               {
                 "path": "/App Content/Center",
                 "parent": "/App Content",
+                "index": 0,
                 "layer": {
                   "name": "Center",
                   "type": "SLOT",

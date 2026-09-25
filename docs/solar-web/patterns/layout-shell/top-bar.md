@@ -22,7 +22,7 @@ Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=true` · 6 var
 ### Anatomy (default variant)
 
 - **breakpoint=desktop, hasSidebar=true, isLoggedIn=true** · component · row gap 12 pad 0/16/0/16 FILL/FIXED · 1440×56  
-  fill `color.surface.background` · padding `stack.md`
+  fill `color.surface.background` · itemSpacing `inset.sm` · padding `stack.md`
   - **App Name** · instance of **App Name** (type=vertical) · row gap 12 pad 0/0/0/0 HUG/HUG · 131×32  
     itemSpacing `inset.sm` · padding `inset.none` · radius `radius.control`
   - **GlobalSearch** · instance of **GlobalSearch** (state=default, size=md) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 320×40  
@@ -31,13 +31,13 @@ Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=true` · 6 var
     itemSpacing `inset.lg`
     - **Container** · frame · row gap 0 pad 0/0/0/0 HUG/HUG · 160×40  
       itemSpacing `stack.none`
-      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
         itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
         itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
-      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
         itemSpacing `inset.none` · padding `inset.none` · radius `radius.control` · prop visible←hasNotifications
-      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
+      - **Nav Item** · instance of **Nav Item** (selected=false, hover=false, expanded=false, focus=false) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
         itemSpacing `inset.none` · padding `inset.none` · radius `radius.control`
     - **Field** · frame · row gap 8 pad 0/12/0/8 HUG/FIXED · 185×40  
       fill `color.surface.background` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs`, `inset.none`, `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasTenantSwitcher
@@ -101,7 +101,6 @@ Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=true` · 6 var
 ### Issues detected
 
 - Primitive color bound directly (CLR-002): `color.purple.50`, `color.purple.700`.
-- Hard-coded gap `12px` on layer _breakpoint=desktop, hasSidebar=true, isLoggedIn=true_
 
 ## Component set: App Name
 

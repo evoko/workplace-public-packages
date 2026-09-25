@@ -95,7 +95,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 640×64px
 ### Anatomy (default variant)
 
 - **breakpoint=desktop** · component · row gap 8 pad 12/0/12/0 FIXED/FIXED · 640×64  
-  padding `inset.none`, `inset.sm`
+  itemSpacing `inset.xs` · padding `inset.none`, `inset.sm`
   - **SearchField** · instance of **SearchField** (state=default, size=md) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 228×40  
     fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `inset.sm` · padding `inset.sm`, `inset.none` · strokeWeight `border.default` · radius `radius.control`
   - **Container** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 404×40  
@@ -109,16 +109,16 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 640×64px
 
 ### Tokens used
 
-| Role         | Tokens                                       |
-| ------------ | -------------------------------------------- |
-| Fills        | `color.surface.base`                         |
-| Strokes      | `color.border.subtle`                        |
-| Text color   | `color.text.primary`, `color.text.secondary` |
-| Icon color   | `color.icon.primary`, `color.icon.secondary` |
-| Spacing      | `inset.none`, `inset.sm`, `stack.xs`         |
-| Radius       | `radius.control`                             |
-| Border width | `border.default`                             |
-| Effects      | `shadow/control`                             |
+| Role         | Tokens                                           |
+| ------------ | ------------------------------------------------ |
+| Fills        | `color.surface.base`                             |
+| Strokes      | `color.border.subtle`                            |
+| Text color   | `color.text.primary`, `color.text.secondary`     |
+| Icon color   | `color.icon.primary`, `color.icon.secondary`     |
+| Spacing      | `inset.none`, `inset.sm`, `inset.xs`, `stack.xs` |
+| Radius       | `radius.control`                                 |
+| Border width | `border.default`                                 |
+| Effects      | `shadow/control`                                 |
 
 ### Composes
 
@@ -131,10 +131,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 640×64px
 | ---------- | ------- | ---- | ------ | ------ | ---------------------------------------------- | ---------------------------------------------- |
 | desktop    | 640×64  |      |        |        | `color.text.secondary`<br>`color.text.primary` | `color.icon.secondary`<br>`color.icon.primary` |
 | mobile     | 377×112 |      |        |        | `color.text.secondary`<br>`color.text.primary` | `color.icon.secondary`<br>`color.icon.primary` |
-
-### Issues detected
-
-- Hard-coded gap `8px` on layer _breakpoint=desktop_
 
 ## Documentation card
 

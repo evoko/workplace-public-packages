@@ -12,6 +12,7 @@ export interface SolarIconButtonProps {
   prio?: SolarIconButtonPrio;
   disabled?: boolean;
   loading?: boolean;
+  active?: boolean;
 }
 
 export const solarIconButtonDefaults = {
@@ -20,6 +21,7 @@ export const solarIconButtonDefaults = {
   prio: 'primary',
   disabled: false,
   loading: false,
+  active: false,
 } as const;
 
 /** Style by layer and state: `root` is the base, then per size, per appearance, and per size and appearance together. */
@@ -40,14 +42,14 @@ export const solarIconButtonStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
   root: {
     backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-    borderColor: 'var(--solar-color-border-medium)',
+    borderColor: 'var(--solar-color-action-primary-border-default)',
     boxShadow: 'var(--solar-shadow-control)',
     borderRadius: 'var(--solar-radius-control)',
     borderWidth: 'var(--solar-border-default)',
@@ -61,7 +63,7 @@ export const solarIconButtonStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
     width: '32px',
-    height: '32px',
+    height: 'var(--solar-size-control-sm)',
     '& .SolarIconButton-icon': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
@@ -71,7 +73,7 @@ export const solarIconButtonStyles = {
   sizes: {
     lg: {
       width: '48px',
-      height: '48px',
+      height: 'var(--solar-size-control-lg)',
       '& .SolarIconButton-icon': {
         width: 'var(--solar-icon-md)',
         height: 'var(--solar-icon-md)',
@@ -79,7 +81,7 @@ export const solarIconButtonStyles = {
     },
     md: {
       width: '40px',
-      height: '40px',
+      height: 'var(--solar-size-control-md)',
       '& .SolarIconButton-icon': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
@@ -90,14 +92,21 @@ export const solarIconButtonStyles = {
     'shape=square, prio=primary': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-        borderColor: 'transparent',
+        borderColor: 'var(--solar-color-action-primary-border-hover)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-primary-icon-hover)',
         },
       },
+      '&[aria-pressed="true"]': {
+        backgroundColor: 'var(--solar-color-action-primary-bg-active)',
+        borderColor: 'var(--solar-color-action-primary-border-active)',
+        '& .SolarIconButton-icon': {
+          color: 'var(--solar-color-action-primary-icon-active)',
+        },
+      },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-primary-bg-active)',
-        borderColor: 'transparent',
+        borderColor: 'var(--solar-color-action-primary-border-active)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-primary-icon-active)',
         },
@@ -107,41 +116,53 @@ export const solarIconButtonStyles = {
       },
       '&.Mui-disabled:not(.MuiIconButton-loading)': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
-        borderColor: 'transparent',
+        borderColor: 'var(--solar-color-action-primary-border-disabled)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
       },
     },
     'shape=square, prio=secondary': {
-      backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+      backgroundColor: 'transparent',
+      borderColor: 'var(--solar-color-action-secondary-border-default)',
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
+        borderColor: 'var(--solar-color-action-secondary-border-hover)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
         },
       },
+      '&[aria-pressed="true"]': {
+        backgroundColor: 'var(--solar-color-surface-active)',
+        borderColor: 'var(--solar-color-action-secondary-border-active)',
+        '& .SolarIconButton-icon': {
+          color: 'var(--solar-color-action-secondary-icon-active)',
+        },
+      },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-secondary-border-active)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-active)',
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-secondary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
       '&.MuiIconButton-loading': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-secondary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
       '&.Mui-disabled:not(.MuiIconButton-loading)': {
         backgroundColor: 'transparent',
-        borderColor: 'var(--solar-color-border-disabled)',
+        borderColor: 'var(--solar-color-action-secondary-border-disabled)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
         },
@@ -151,39 +172,46 @@ export const solarIconButtonStyles = {
       },
     },
     'shape=square, prio=tertiary': {
-      backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
-      borderColor: 'transparent',
+      backgroundColor: 'transparent',
+      borderColor: 'var(--solar-color-action-tertiary-border-default)',
       '&:hover': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-hover)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-hover)',
         },
       },
+      '&[aria-pressed="true"]': {
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
+        '& .SolarIconButton-icon': {
+          color: 'var(--solar-color-action-tertiary-icon-active)',
+        },
+      },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-active)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-active)',
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-default)',
         },
       },
       '&.MuiIconButton-loading': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-default)',
         },
       },
       '&.Mui-disabled:not(.MuiIconButton-loading)': {
         backgroundColor: 'transparent',
-        borderColor: 'var(--solar-color-border-disabled)',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-disabled)',
         },
@@ -195,14 +223,21 @@ export const solarIconButtonStyles = {
     'shape=round, prio=primary': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-        borderColor: 'transparent',
+        borderColor: 'var(--solar-color-action-primary-border-hover)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-primary-icon-hover)',
         },
       },
+      '&[aria-pressed="true"]': {
+        backgroundColor: 'var(--solar-color-action-primary-bg-active)',
+        borderColor: 'var(--solar-color-action-primary-border-active)',
+        '& .SolarIconButton-icon': {
+          color: 'var(--solar-color-action-primary-icon-active)',
+        },
+      },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-primary-bg-active)',
-        borderColor: 'transparent',
+        borderColor: 'var(--solar-color-action-primary-border-active)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-primary-icon-active)',
         },
@@ -212,41 +247,53 @@ export const solarIconButtonStyles = {
       },
       '&.Mui-disabled:not(.MuiIconButton-loading)': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
-        borderColor: 'transparent',
+        borderColor: 'var(--solar-color-action-primary-border-disabled)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
       },
     },
     'shape=round, prio=secondary': {
-      backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+      backgroundColor: 'transparent',
+      borderColor: 'var(--solar-color-action-secondary-border-default)',
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
+        borderColor: 'var(--solar-color-action-secondary-border-hover)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
         },
       },
+      '&[aria-pressed="true"]': {
+        backgroundColor: 'var(--solar-color-surface-active)',
+        borderColor: 'var(--solar-color-action-secondary-border-active)',
+        '& .SolarIconButton-icon': {
+          color: 'var(--solar-color-action-secondary-icon-active)',
+        },
+      },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-secondary-border-active)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-active)',
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-secondary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
       '&.MuiIconButton-loading': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-secondary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
       '&.Mui-disabled:not(.MuiIconButton-loading)': {
         backgroundColor: 'transparent',
-        borderColor: 'var(--solar-color-border-disabled)',
+        borderColor: 'var(--solar-color-action-secondary-border-disabled)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
         },
@@ -256,39 +303,46 @@ export const solarIconButtonStyles = {
       },
     },
     'shape=round, prio=tertiary': {
-      backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
-      borderColor: 'transparent',
+      backgroundColor: 'transparent',
+      borderColor: 'var(--solar-color-action-tertiary-border-default)',
       '&:hover': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-hover)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-hover)',
         },
       },
+      '&[aria-pressed="true"]': {
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
+        '& .SolarIconButton-icon': {
+          color: 'var(--solar-color-action-tertiary-icon-active)',
+        },
+      },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-active)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-active)',
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-default)',
         },
       },
       '&.MuiIconButton-loading': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
-        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-default)',
         },
       },
       '&.Mui-disabled:not(.MuiIconButton-loading)': {
         backgroundColor: 'transparent',
-        borderColor: 'var(--solar-color-border-disabled)',
+        borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .SolarIconButton-icon': {
           color: 'var(--solar-color-action-tertiary-icon-disabled)',
         },
@@ -301,432 +355,232 @@ export const solarIconButtonStyles = {
   combined: {
     lg: {
       'shape=square, prio=primary': {
-        boxShadow: 'none',
-        borderStyle: 'none',
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          borderColor: 'var(--solar-color-border-medium)',
+          borderColor: 'var(--solar-color-action-primary-border-default)',
           '& .SolarIconButton-icon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
-        '&.MuiIconButton-loading': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
       },
       'shape=square, prio=secondary': {
-        boxShadow: 'none',
-        borderStyle: 'none',
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
-        },
-        '&.MuiIconButton-loading': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
       'shape=square, prio=tertiary': {
         boxShadow: 'none',
-        borderStyle: 'none',
         '&:hover': {
           boxShadow: 'none',
-          borderStyle: 'none',
+        },
+        '&[aria-pressed="true"]': {
+          boxShadow: 'none',
         },
         '&:active': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
         },
         '&.MuiIconButton-loading': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-disabled:not(.MuiIconButton-loading)': {
           boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
       'shape=round, prio=primary': {
-        boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
-        borderStyle: 'none',
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          borderColor: 'var(--solar-color-border-medium)',
+          borderColor: 'var(--solar-color-action-primary-border-default)',
           '& .SolarIconButton-icon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
-        '&.MuiIconButton-loading': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
       },
       'shape=round, prio=secondary': {
-        boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
-        borderStyle: 'none',
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
-        },
-        '&.MuiIconButton-loading': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
       'shape=round, prio=tertiary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
-        borderStyle: 'none',
         '&:hover': {
           boxShadow: 'none',
-          borderStyle: 'none',
+        },
+        '&[aria-pressed="true"]': {
+          boxShadow: 'none',
         },
         '&:active': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
         },
         '&.MuiIconButton-loading': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-disabled:not(.MuiIconButton-loading)': {
           boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
     },
     md: {
       'shape=square, prio=primary': {
-        borderStyle: 'none',
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          borderColor: 'var(--solar-color-border-medium)',
+          borderColor: 'var(--solar-color-action-primary-border-default)',
           '& .SolarIconButton-icon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
-        '&.MuiIconButton-loading': {
-          borderStyle: 'none',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
       },
       'shape=square, prio=secondary': {
-        '&:hover': {
-          boxShadow: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
         },
       },
       'shape=square, prio=tertiary': {
         boxShadow: 'none',
-        borderStyle: 'none',
         '&:hover': {
           boxShadow: 'none',
-          borderStyle: 'none',
+        },
+        '&[aria-pressed="true"]': {
+          boxShadow: 'none',
         },
         '&:active': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
         },
         '&.MuiIconButton-loading': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-disabled:not(.MuiIconButton-loading)': {
           boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
       'shape=round, prio=primary': {
         borderRadius: 'var(--solar-radius-pill)',
-        borderStyle: 'none',
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          borderColor: 'var(--solar-color-border-medium)',
+          borderColor: 'var(--solar-color-action-primary-border-default)',
           '& .SolarIconButton-icon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
-        '&.MuiIconButton-loading': {
-          borderStyle: 'none',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
       },
       'shape=round, prio=secondary': {
         borderRadius: 'var(--solar-radius-pill)',
-        '&:hover': {
-          boxShadow: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
         },
       },
       'shape=round, prio=tertiary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
-        borderStyle: 'none',
         '&:hover': {
           boxShadow: 'none',
-          borderStyle: 'none',
+        },
+        '&[aria-pressed="true"]': {
+          boxShadow: 'none',
         },
         '&:active': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
         },
         '&.MuiIconButton-loading': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-disabled:not(.MuiIconButton-loading)': {
           boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
     },
     sm: {
       'shape=square, prio=primary': {
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          borderColor: 'var(--solar-color-border-medium)',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
+          borderColor: 'var(--solar-color-action-primary-border-default)',
           '& .SolarIconButton-icon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
       },
       'shape=square, prio=secondary': {
-        '&:hover': {
-          boxShadow: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
         },
       },
       'shape=square, prio=tertiary': {
         boxShadow: 'none',
-        borderStyle: 'none',
         '&:hover': {
           boxShadow: 'none',
-          borderStyle: 'none',
+        },
+        '&[aria-pressed="true"]': {
+          boxShadow: 'none',
         },
         '&:active': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
         },
         '&.MuiIconButton-loading': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-disabled:not(.MuiIconButton-loading)': {
           boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
       'shape=round, prio=primary': {
         borderRadius: 'var(--solar-radius-pill)',
-        '&:hover': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          borderColor: 'var(--solar-color-border-medium)',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
+          borderColor: 'var(--solar-color-action-primary-border-default)',
           '& .SolarIconButton-icon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
-          borderStyle: 'none',
-        },
       },
       'shape=round, prio=secondary': {
         borderRadius: 'var(--solar-radius-pill)',
-        '&:hover': {
-          boxShadow: 'none',
-        },
-        '&:active': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-        },
-        '&.Mui-disabled:not(.MuiIconButton-loading)': {
-          boxShadow: 'none',
         },
       },
       'shape=round, prio=tertiary': {
         boxShadow: 'none',
         borderRadius: 'var(--solar-radius-pill)',
-        borderStyle: 'none',
         '&:hover': {
           boxShadow: 'none',
-          borderStyle: 'none',
+        },
+        '&[aria-pressed="true"]': {
+          boxShadow: 'none',
         },
         '&:active': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          borderStyle: 'none',
         },
         '&.MuiIconButton-loading': {
           boxShadow: 'none',
-          borderStyle: 'none',
         },
         '&.Mui-disabled:not(.MuiIconButton-loading)': {
           boxShadow: 'none',
-          borderWidth: 'var(--solar-border-default)',
-          borderStyle: 'solid',
         },
       },
     },

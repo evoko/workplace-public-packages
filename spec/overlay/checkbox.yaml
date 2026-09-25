@@ -59,16 +59,3 @@ allowLiteral:
     reason: The dash's own size, 10 by 2, is its drawing's, as the tick's is.
   container.height:
     reason: { as: allowLiteral container.width }
-
-set:
-  root.appearance.checked=true, mixed=true.default.borderColor:
-    token: color.border.medium
-    reason: >-
-      The resting mixed box alone is drawn with no edge; the checked box at rest has one, and so
-      does the mixed box on hover. Drawn with the checked box's edge, as every other enabled box
-      is; the design review asks which SOLAR means.
-
-accept:
-  component.checkbox.root.borderWidth@mixed=true:
-    reason: >-
-      As its colour: the resting mixed box keeps the border every other enabled box has.

@@ -4,7 +4,7 @@
 
 ## Component set: Avatar
 
-User/entity avatar showing initials, photo, or company logo. 114 variants: size (xs, sm, md, lg) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark shade inverts colors for dark surfaces and inverse cards; Image and Logo are the content modes for photo and logo. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.
+User/entity avatar showing initials, photo, or company logo. 115 variants: size (xs 16, sm 24, md 32, lg 44) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 seeds for initial-based avatars; seed from a stable hash of user ID — never random. Initials must reach 4.5:1 on their fill; where a sample pairing does not, darken or lighten the initials within the same hue. Use in activity feeds, comment threads, user lists and presence indicators. See also: Badge / Status for small inline status dots.
 
 ### Props
 
@@ -15,7 +15,7 @@ User/entity avatar showing initials, photo, or company logo. 114 variants: size 
 | `color` | variant | **neutral** · red · orange · yellow · green · turquoise · blue · purple · pink |
 | `shade` | variant | Logo · Dark · **Light** · Medium · Image                                       |
 
-Default variant: `size=lg, type=text, color=neutral, shade=Light` · 114 variants · default size 44×44px
+Default variant: `size=lg, type=text, color=neutral, shade=Light` · 115 variants · default size 44×44px
 
 ### Anatomy (default variant)
 
@@ -154,6 +154,7 @@ Default variant: `size=lg, type=text, color=neutral, shade=Light` · 114 variant
 | sm   | text  | pink      | Medium | 24×24 | `color.pink.500`      | `color.border.subtle` |        | `color.pink.50`       |      |
 | xs   | text  | pink      | Dark   | 16×16 | `color.pink.800`      | `color.border.subtle` |        | `color.pink.100`      |      |
 | xs   | text  | pink      | Medium | 16×16 | `color.pink.500`      | `color.border.subtle` |        | `color.pink.50`       |      |
+| lg   | logo  | neutral   | Logo   | 44×44 | `IMAGE` ⚠️ hard-coded |                       |        |                       |      |
 
 ### Issues detected
 

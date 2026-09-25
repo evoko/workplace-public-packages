@@ -553,7 +553,7 @@
     "pageId": "2163:3683",
     "figmaNode": "4417:3527",
     "defaultVariant": "type=title-row",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/rowexpand.yaml",

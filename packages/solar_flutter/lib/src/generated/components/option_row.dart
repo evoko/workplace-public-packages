@@ -52,6 +52,13 @@ abstract final class SolarOptionRowRecipe {
     'control.present|appearance|control=toggle|default': 'b:false',
     'control.component|appearance|control=radio|default': 'k:Radio',
     'control.variant.state|appearance|control=radio|default': 'k:default',
+    'toggle.present|base': 'b:false',
+    'toggle.component|base': 'k:Toggle',
+    'toggle.width|base': 'none',
+    'toggle.height|base': 'none',
+    'toggle.present|appearance|control=toggle|default': 'b:true',
+    'toggle.variant.selected|appearance|control=toggle|default': 'k:false',
+    'toggle.variant.state|appearance|control=toggle|default': 'k:default',
     'text.present|base': 'b:true',
     'text.background|base': 'none',
     'text.borderColor|base': 'none',
@@ -75,18 +82,11 @@ abstract final class SolarOptionRowRecipe {
     'supportingText.color|base': 't:color.text.secondary',
     'supportingText.typography|base': 't:typography.body.sm.regular',
     'supportingText.width|base': 'k:FILL',
-    'toggle.present|base': 'b:false',
-    'toggle.component|base': 'k:Toggle',
-    'toggle.width|base': 'none',
-    'toggle.height|base': 'none',
-    'toggle.present|appearance|control=toggle|default': 'b:true',
-    'toggle.variant.selected|appearance|control=toggle|default': 'k:false',
-    'toggle.variant.state|appearance|control=toggle|default': 'k:default',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
   static const Map<String, List<String>> tree = {
-    'root': ['control', 'text', 'toggle'],
+    'root': ['control', 'toggle', 'text'],
     'text': ['label', 'supportingText'],
   };
 

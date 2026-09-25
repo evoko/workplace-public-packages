@@ -80,6 +80,7 @@
       "variants": [
         {
           "variant": "status=completed",
+          "id": "2574:3249",
           "size": [
             24,
             24
@@ -90,10 +91,12 @@
           "iconFills": [
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "status=active",
+          "id": "2574:3250",
           "size": [
             24,
             24
@@ -109,6 +112,7 @@
               {
                 "path": "/Number",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Number",
                   "type": "TEXT",
@@ -138,6 +142,7 @@
         },
         {
           "variant": "status=upcoming",
+          "id": "2574:3251",
           "size": [
             24,
             24
@@ -167,6 +172,7 @@
               {
                 "path": "/Number",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Number",
                   "type": "TEXT",
@@ -196,6 +202,7 @@
         },
         {
           "variant": "status=error",
+          "id": "2574:3252",
           "size": [
             24,
             24
@@ -225,6 +232,7 @@
               {
                 "path": "/Icon",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "TEXT",
@@ -368,6 +376,7 @@
       "variants": [
         {
           "variant": "status=complete, type=round",
+          "id": "5760:5159",
           "size": [
             26,
             41
@@ -378,10 +387,12 @@
           "iconFills": [
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "status=complete, type=horizontal",
+          "id": "5888:18193",
           "size": [
             39,
             20
@@ -405,6 +416,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -429,6 +441,7 @@
               {
                 "path": "/Line",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Line",
                   "type": "RECTANGLE",
@@ -458,6 +471,7 @@
         },
         {
           "variant": "status=active, type=round",
+          "id": "5760:5171",
           "size": [
             26,
             41
@@ -478,6 +492,7 @@
         },
         {
           "variant": "status=active, type=horizontal",
+          "id": "5888:18205",
           "size": [
             39,
             20
@@ -501,6 +516,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -525,6 +541,7 @@
               {
                 "path": "/Line",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Line",
                   "type": "RECTANGLE",
@@ -554,6 +571,7 @@
         },
         {
           "variant": "status=upcoming, type=round",
+          "id": "5760:5181",
           "size": [
             26,
             41
@@ -581,6 +599,7 @@
         },
         {
           "variant": "status=upcoming, type=horizontal",
+          "id": "5888:18194",
           "size": [
             39,
             20
@@ -604,6 +623,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -628,6 +648,7 @@
               {
                 "path": "/Line",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Line",
                   "type": "RECTANGLE",
@@ -657,6 +678,7 @@
         },
         {
           "variant": "status=error, type=round",
+          "id": "5760:5191",
           "size": [
             26,
             41
@@ -689,6 +711,7 @@
         },
         {
           "variant": "status=error, type=horizontal",
+          "id": "5888:18211",
           "size": [
             39,
             20
@@ -712,6 +735,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -736,6 +760,7 @@
               {
                 "path": "/Line",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Line",
                   "type": "RECTANGLE",
@@ -768,7 +793,7 @@
     {
       "name": "Stepper",
       "id": "5762:5846",
-      "description": "Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3, showStep4, showStep5 set the step count (2–5). Steps are informational unless the flow allows going back, in which case completed steps are links. Back/next buttons belong to the Multi-step Wizard pattern, not to Stepper. For non-linear sections use Tabs.",
+      "description": "Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3–5 set the step count (2–5). The step after the completed ones is active. Steps are informational unless the flow allows going back, in which case completed steps are links. Note: Stepper Indicator names the status completed, Step names it complete — same meaning. Back/next buttons belong to the Multi-step Wizard pattern.",
       "docLinks": [],
       "variantCount": 4,
       "props": {
@@ -987,6 +1012,7 @@
       "variants": [
         {
           "variant": "type=with label",
+          "id": "5760:5238",
           "size": [
             350,
             41
@@ -999,10 +1025,12 @@
           "iconFills": [
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=no label",
+          "id": "5762:5822",
           "size": [
             350,
             24
@@ -1035,6 +1063,7 @@
               {
                 "path": "/Stepper Indicator",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Stepper Indicator",
                   "type": "INSTANCE",
@@ -1077,6 +1106,7 @@
               {
                 "path": "/Frame",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1093,6 +1123,7 @@
               {
                 "path": "/Stepper Indicator#2",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Stepper Indicator",
                   "type": "INSTANCE",
@@ -1135,6 +1166,7 @@
               {
                 "path": "/Frame#2",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Frame",
                   "type": "FRAME",
@@ -1151,6 +1183,7 @@
               {
                 "path": "/Stepper Indicator#3",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "Stepper Indicator",
                   "type": "INSTANCE",
@@ -1207,6 +1240,7 @@
         },
         {
           "variant": "type=line",
+          "id": "5762:5845",
           "size": [
             350,
             4
@@ -1233,6 +1267,7 @@
               {
                 "path": "/Rectangle 1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 1",
                   "type": "RECTANGLE",
@@ -1256,6 +1291,7 @@
               {
                 "path": "/Rectangle 2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle 2",
                   "type": "RECTANGLE",
@@ -1279,6 +1315,7 @@
               {
                 "path": "/Rectangle 3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Rectangle 3",
                   "type": "RECTANGLE",
@@ -1302,6 +1339,7 @@
               {
                 "path": "/Rectangle 4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Rectangle 4",
                   "type": "RECTANGLE",
@@ -1325,6 +1363,7 @@
               {
                 "path": "/Rectangle 5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "Rectangle 5",
                   "type": "RECTANGLE",
@@ -1358,6 +1397,7 @@
         },
         {
           "variant": "type=line+text",
+          "id": "5888:16229",
           "size": [
             350,
             20
@@ -1385,42 +1425,15 @@
             },
             "added": [
               {
-                "path": "/Step/complete/horizontal",
-                "parent": "/",
-                "layer": {
-                  "name": "Step/complete/horizontal",
-                  "type": "INSTANCE",
-                  "main": "Step/complete/horizontal",
-                  "size": [
-                    64,
-                    20
-                  ],
-                  "layout": {
-                    "dir": "VERTICAL",
-                    "gap": 8,
-                    "pad": [
-                      0,
-                      0,
-                      0,
-                      0
-                    ],
-                    "align": "MIN/MIN",
-                    "sizing": "FILL/HUG"
-                  },
-                  "vars": {
-                    "itemSpacing": "Spatial:stack/xs"
-                  }
-                }
-              },
-              {
                 "path": "/Step",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Step",
                   "type": "INSTANCE",
                   "main": "Step",
                   "variant": {
-                    "status": "upcoming",
+                    "status": "complete",
                     "type": "horizontal"
                   },
                   "size": [
@@ -1447,6 +1460,40 @@
               {
                 "path": "/Step#2",
                 "parent": "/",
+                "index": 1,
+                "layer": {
+                  "name": "Step",
+                  "type": "INSTANCE",
+                  "main": "Step",
+                  "variant": {
+                    "status": "active",
+                    "type": "horizontal"
+                  },
+                  "size": [
+                    64,
+                    20
+                  ],
+                  "layout": {
+                    "dir": "VERTICAL",
+                    "gap": 8,
+                    "pad": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "align": "MIN/MIN",
+                    "sizing": "FILL/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:stack/xs"
+                  }
+                }
+              },
+              {
+                "path": "/Step#3",
+                "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Step",
                   "type": "INSTANCE",
@@ -1480,8 +1527,9 @@
                 }
               },
               {
-                "path": "/Step#3",
+                "path": "/Step#4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Step",
                   "type": "INSTANCE",
@@ -1515,8 +1563,9 @@
                 }
               },
               {
-                "path": "/Step#4",
+                "path": "/Step#5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "Step",
                   "type": "INSTANCE",

@@ -10,7 +10,8 @@ base:
     MUI's Skeleton on the web, always its rectangular variant, restyled by the recipe: its text
     variant scales the box to 60% of its height, which SOLAR's text lines are not. Its pulse is
     MUI's, as Spinner's rotation is, since Figma draws a still frame and SOLAR has no token for
-    it. Flutter has no skeleton: its widget is bespoke, pulsing the same way.
+    a loop, by its decision of 2026-09-25. Flutter has no skeleton: its widget is bespoke, pulsing
+    the same way.
 
 follows:
   root.width:

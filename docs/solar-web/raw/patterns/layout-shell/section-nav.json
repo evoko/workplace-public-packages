@@ -174,7 +174,7 @@
                     8
                   ],
                   "align": "MIN/CENTER",
-                  "sizing": "HUG/FIXED"
+                  "sizing": "FIXED/FIXED"
                 },
                 "radius": 6,
                 "vars": {
@@ -235,7 +235,7 @@
                     8
                   ],
                   "align": "MIN/CENTER",
-                  "sizing": "HUG/FIXED"
+                  "sizing": "FIXED/FIXED"
                 },
                 "radius": 6,
                 "vars": {
@@ -271,7 +271,7 @@
                     8
                   ],
                   "align": "MIN/CENTER",
-                  "sizing": "HUG/FIXED"
+                  "sizing": "FIXED/FIXED"
                 },
                 "radius": 6,
                 "vars": {
@@ -332,7 +332,7 @@
                     8
                   ],
                   "align": "MIN/CENTER",
-                  "sizing": "HUG/FIXED"
+                  "sizing": "FIXED/FIXED"
                 },
                 "radius": 6,
                 "vars": {
@@ -368,7 +368,7 @@
                     8
                   ],
                   "align": "MIN/CENTER",
-                  "sizing": "HUG/FIXED"
+                  "sizing": "FIXED/FIXED"
                 },
                 "radius": 6,
                 "vars": {
@@ -404,7 +404,7 @@
                     8
                   ],
                   "align": "MIN/CENTER",
-                  "sizing": "HUG/FIXED"
+                  "sizing": "FIXED/FIXED"
                 },
                 "radius": 6,
                 "vars": {
@@ -440,7 +440,7 @@
                     8
                   ],
                   "align": "MIN/CENTER",
-                  "sizing": "HUG/FIXED"
+                  "sizing": "FIXED/FIXED"
                 },
                 "radius": 6,
                 "vars": {

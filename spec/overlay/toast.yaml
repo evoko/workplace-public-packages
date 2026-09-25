@@ -25,12 +25,6 @@ slots:
       draws the Tag in every variant.
 
 set:
-  tag.base.variant.type:
-    keyword: status
-    reason: >-
-      Figma's Tag instance names type `pill`, a type Tag no longer has; its size and padding are
-      a status tag's, a dot and words, which it is drawn as. The design review asks SOLAR to swap
-      the instance.
   tag.base.height:
     none: true
     reason: The Tag is 24 tall, its own height; the toast places it and never sizes it.

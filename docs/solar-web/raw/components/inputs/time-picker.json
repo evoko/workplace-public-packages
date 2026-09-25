@@ -272,6 +272,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "4413:79",
           "size": [
             114,
             76
@@ -285,10 +286,14 @@
           ],
           "hidden": [
             "*"
+          ],
+          "hiddenPaths": [
+            "/Label/*"
           ]
         },
         {
           "variant": "size=sm, state=default",
+          "id": "4413:156",
           "size": [
             88,
             66
@@ -386,6 +391,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "4413:90",
           "size": [
             114,
             76
@@ -409,6 +415,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "4413:167",
           "size": [
             88,
             66
@@ -509,6 +516,7 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "4413:101",
           "size": [
             114,
             76
@@ -533,6 +541,7 @@
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "4413:178",
           "size": [
             88,
             66
@@ -634,6 +643,7 @@
         },
         {
           "variant": "size=md, state=filled",
+          "id": "4413:112",
           "size": [
             114,
             76
@@ -648,6 +658,7 @@
         },
         {
           "variant": "size=sm, state=filled",
+          "id": "4413:189",
           "size": [
             88,
             66
@@ -745,6 +756,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "4413:123",
           "size": [
             114,
             76
@@ -786,6 +798,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "4413:200",
           "size": [
             88,
             66
@@ -898,6 +911,7 @@
         },
         {
           "variant": "size=md, state=error",
+          "id": "4413:134",
           "size": [
             114,
             76
@@ -927,6 +941,7 @@
         },
         {
           "variant": "size=sm, state=error",
+          "id": "4413:211",
           "size": [
             88,
             66
@@ -1031,6 +1046,7 @@
         },
         {
           "variant": "size=md, state=error-focused",
+          "id": "4413:145",
           "size": [
             114,
             76
@@ -1060,6 +1076,7 @@
         },
         {
           "variant": "size=sm, state=error-focused",
+          "id": "4413:222",
           "size": [
             88,
             66
@@ -1167,7 +1184,7 @@
     {
       "name": "TimePicker Dropdown",
       "id": "5408:3807",
-      "description": "Expanded panel for TimePicker. Hour column + minute column (optionally + AM/PM) presented as scrollable lists. 2 size variants (sm, md) matching the trigger field. Use Content slot for either scrollable columns or a clock face depending on product needs.",
+      "description": "Expanded panel for TimePicker: a single scrollable list of times, 30 minutes apart by default. 2 variants: size (sm, md) matching the trigger field. Content is a slot; the interval and 12/24h format follow the product and locale.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -1462,6 +1479,7 @@
       "variants": [
         {
           "variant": "size=md",
+          "id": "5408:3645",
           "size": [
             136,
             204
@@ -1484,10 +1502,31 @@
             "Checkbox",
             "Description",
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Content/Dropdown Item#2/Checkbox",
+            "/Content/Dropdown Item#2/Content/Description",
+            "/Content/Dropdown Item#2/Icon/None",
+            "/Content/Dropdown Item#3/Checkbox",
+            "/Content/Dropdown Item#3/Content/Description",
+            "/Content/Dropdown Item#3/Icon/None",
+            "/Content/Dropdown Item#4/Checkbox",
+            "/Content/Dropdown Item#4/Content/Description",
+            "/Content/Dropdown Item#4/Icon/None",
+            "/Content/Dropdown Item#5/Checkbox",
+            "/Content/Dropdown Item#5/Content/Description",
+            "/Content/Dropdown Item#5/Icon/None",
+            "/Content/Dropdown Item#6/Checkbox",
+            "/Content/Dropdown Item#6/Content/Description",
+            "/Content/Dropdown Item#6/Icon/None",
+            "/Content/Dropdown Item/Checkbox",
+            "/Content/Dropdown Item/Content/Description",
+            "/Content/Dropdown Item/Icon/None"
           ]
         },
         {
           "variant": "size=sm",
+          "id": "5408:3806",
           "size": [
             136,
             192

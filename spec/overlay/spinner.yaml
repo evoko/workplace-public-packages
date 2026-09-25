@@ -21,16 +21,6 @@ rename:
       inline-style prop, so no component can take it, and `variant` names the look on both
       platforms. The design review asks Figma to rename the property `variant`, so the names match.
 
-set:
-  indicator.base.borderColor:
-    token: color.border.strong
-    reason: >-
-      Figma binds the default indicator's colour to Spatial:border/strong, the stroke *width*
-      variable, which holds no colour; the recipe reports it as misbound. color.border.strong is
-      the colour of the same name, and the inverse style's indicator uses its inverse
-      (color.border.inverse.strong), as its track pairs border.subtle with border.inverse.subtle.
-      Raised with SOLAR to rebind.
-
 allowLiteral:
   spinnerRing.width:
     reason: >-

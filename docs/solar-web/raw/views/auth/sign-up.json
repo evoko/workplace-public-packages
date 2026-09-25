@@ -29,7 +29,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             24,
             0,
@@ -43,6 +43,7 @@
           "{Color:surface/background}"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/xl",
           "paddingRight": "Spatial:inset/none",
@@ -106,7 +107,7 @@
               "sizing": "FIXED/HUG"
             },
             "vars": {
-              "itemSpacing": "unresolved:8fd955719573"
+              "itemSpacing": "Spatial:inset/3xl"
             },
             "children": [
               {
@@ -214,6 +215,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "9655:12098",
           "size": [
             1440,
             800
@@ -245,10 +247,28 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/FormSection/Container/Button",
+            "/Center Stack/FormSection/Container/Button/Counter",
+            "/Center Stack/FormSection/Container/Button/Icon/None",
+            "/Center Stack/FormSection/Container/Button/Icon/None#2",
+            "/Center Stack/FormSection/Container/Button/Spinner",
+            "/Center Stack/FormSection/SectionFields/Button/Counter",
+            "/Center Stack/FormSection/SectionFields/Button/Icon/None",
+            "/Center Stack/FormSection/SectionFields/Button/Icon/None#2",
+            "/Center Stack/FormSection/SectionFields/Button/Spinner",
+            "/Center Stack/FormSection/SectionFields/Icon stack/Button#2/Counter",
+            "/Center Stack/FormSection/SectionFields/Icon stack/Button#2/Icon/None",
+            "/Center Stack/FormSection/SectionFields/Icon stack/Button#2/Spinner",
+            "/Center Stack/FormSection/SectionFields/Icon stack/Button/Counter",
+            "/Center Stack/FormSection/SectionFields/Icon stack/Button/Icon/None",
+            "/Center Stack/FormSection/SectionFields/Icon stack/Button/Spinner"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "9655:12829",
           "size": [
             393,
             800
@@ -276,6 +296,23 @@
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
           ],
+          "hiddenPaths": [
+            "/FormSection/Container/Button",
+            "/FormSection/Container/Button/Counter",
+            "/FormSection/Container/Button/Icon/None",
+            "/FormSection/Container/Button/Icon/None#2",
+            "/FormSection/Container/Button/Spinner",
+            "/FormSection/SectionFields/Button/Counter",
+            "/FormSection/SectionFields/Button/Icon/None",
+            "/FormSection/SectionFields/Button/Icon/None#2",
+            "/FormSection/SectionFields/Button/Spinner",
+            "/FormSection/SectionFields/Icon stack/Button#2/Counter",
+            "/FormSection/SectionFields/Icon stack/Button#2/Icon/None",
+            "/FormSection/SectionFields/Icon stack/Button#2/Spinner",
+            "/FormSection/SectionFields/Icon stack/Button/Counter",
+            "/FormSection/SectionFields/Icon stack/Button/Icon/None",
+            "/FormSection/SectionFields/Icon stack/Button/Spinner"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -299,6 +336,7 @@
               {
                 "path": "/FormSection",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "FormSection",
                   "type": "INSTANCE",

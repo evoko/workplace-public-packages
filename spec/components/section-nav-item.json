@@ -112,15 +112,15 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "An item spans its rail, as a section nav lays its items out: Figma draws it 220 wide in every state but rest, where it hugs its words (the design review asks). The rail sizes it.",
+          "reason": "An item spans its rail, as a section nav lays its items out: Figma draws it 220 wide in every state, a sample (at rest too since 2026-09-25). The rail sizes it.",
           "replaced": {
-            "keyword": "HUG"
+            "literal": 220
           }
         },
         "height": {
-          "literal": 32,
-          "from": "state=default",
-          "allowed": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). An item is drawn 32 tall."
+          "token": "size.control.sm",
+          "from": "overlay",
+          "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
         }
       },
       "size": {},
@@ -148,7 +148,7 @@
             "opacity": {
               "literal": 0.4,
               "from": "state=disabled",
-              "allowed": "A disabled item is drawn at 40% opacity. SOLAR has no opacity scale, as for Link's disabled 50% and Node End's halo; carried as Figma's number, and raised as a governance gap."
+              "allowed": "A disabled item is drawn at 40% opacity. SOLAR has no opacity scale, as for Link's disabled 50% and Node End's halo (SOLAR's decision, 2026-09-25); carried as Figma's number."
             }
           }
         }
@@ -217,7 +217,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "The words take the room the item leaves beside its icon, as Figma draws them in every state but rest, where the item hugs them and they are fixed at 180: as the item's width, the rest is the odd one.",
+          "reason": "The words take the room the item leaves beside its icon, as Figma draws them in every state but rest, where they are still fixed at 180 (the design review asks): as the item's width, the rest is the odd one.",
           "replaced": {
             "keyword": "HUG"
           }
@@ -251,7 +251,7 @@
     "pageId": "8108:2",
     "figmaNode": "8109:19",
     "defaultVariant": "state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/section-nav-item.yaml",
@@ -267,44 +267,24 @@
         "reason": "Same value, governed token; the icon's height is already bound to it."
       },
       {
+        "rule": "bind",
+        "at": "root.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
+      },
+      {
         "rule": "set",
         "at": "label.base.width",
-        "reason": "The words take the room the item leaves beside its icon, as Figma draws them in every state but rest, where the item hugs them and they are fixed at 180: as the item's width, the rest is the odd one."
+        "reason": "The words take the room the item leaves beside its icon, as Figma draws them in every state but rest, where they are still fixed at 180 (the design review asks): as the item's width, the rest is the odd one."
       },
       {
         "rule": "set",
         "at": "root.base.width",
-        "reason": "An item spans its rail, as a section nav lays its items out: Figma draws it 220 wide in every state but rest, where it hugs its words (the design review asks). The rail sizes it."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "root.height",
-        "reason": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). An item is drawn 32 tall."
+        "reason": "An item spans its rail, as a section nav lays its items out: Figma draws it 220 wide in every state, a sample (at rest too since 2026-09-25). The rail sizes it."
       },
       {
         "rule": "allowLiteral",
         "at": "root.opacity",
-        "reason": "A disabled item is drawn at 40% opacity. SOLAR has no opacity scale, as for Link's disabled 50% and Node End's halo; carried as Figma's number, and raised as a governance gap."
-      },
-      {
-        "rule": "accept",
-        "at": "component.section nav item.root.width@state=disabled",
-        "reason": "As the hovered item's, a sample of the rail's width."
-      },
-      {
-        "rule": "accept",
-        "at": "component.section nav item.root.width@state=focus",
-        "reason": "As the hovered item's, a sample of the rail's width."
-      },
-      {
-        "rule": "accept",
-        "at": "component.section nav item.root.width@state=hover",
-        "reason": "Figma draws the hovered item 220 wide, bound to nothing, where the resting one hugs its words: a sample of the rail's width, which every state of the item spans."
-      },
-      {
-        "rule": "accept",
-        "at": "component.section nav item.root.width@state=selected",
-        "reason": "As the hovered item's, a sample of the rail's width."
+        "reason": "A disabled item is drawn at 40% opacity. SOLAR has no opacity scale, as for Link's disabled 50% and Node End's halo (SOLAR's decision, 2026-09-25); carried as Figma's number."
       }
     ]
   }

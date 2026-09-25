@@ -10,7 +10,7 @@ Composed Month View pattern. Wires up Calendar Toolbar (top), Weekday Header row
 
 - **Month View** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 1280×700
   - **Calendar Toolbar** · instance of **Calendar Toolbar** · row gap 16 pad 12/16/12/16 FILL/HUG · 1280×56  
-    fill `color.surface.base` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
+    fill `color.surface.base` · itemSpacing `inset.md` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
   - **Calendar Body** · frame · column gap 0 pad 4/20/4/20 FILL/HUG · 1280×644  
     padding `inset.lg`, `inset.2xs`
     - **Calendar Surface** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 1240×636  

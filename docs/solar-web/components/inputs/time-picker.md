@@ -92,7 +92,7 @@ Default variant: `size=md, state=default` · 14 variants · default size 114×76
 
 ## Component set: TimePicker Dropdown
 
-Expanded panel for TimePicker. Hour column + minute column (optionally + AM/PM) presented as scrollable lists. 2 size variants (sm, md) matching the trigger field. Use Content slot for either scrollable columns or a clock face depending on product needs.
+Expanded panel for TimePicker: a single scrollable list of times, 30 minutes apart by default. 2 variants: size (sm, md) matching the trigger field. Content is a slot; the interval and 12/24h format follow the product and locale.
 
 ### Props
 

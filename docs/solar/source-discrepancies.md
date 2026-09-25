@@ -11,44 +11,50 @@ raised with the SOLAR core team (the design lead) through governance.
 
 ## Status
 
-Checked against Foundations file version `2402389239778582681` (last modified 2026-09-23), and
-re-checked on 2026-09-24's sync, which found the file unchanged. That revision changed one sentence
-(Iconography now gives one stroke weight across the set, as the chapter already did) and neither
-conflict below.
+Checked against Foundations file version `2403083104633531037` (last modified 2026-09-25). That
+revision (Changelog: "Guideline pages · PATCH · Action states, data scale and icon checklist
+corrected to the variables", plus two Color and one Spatial variable entries) resolved both
+conflicts that were left after 2026-09-22, the two unfinished Iconography edits and the Dark
+primary icon pair. See "Resolved on 2026-09-25" below.
 
-**Two conflicts remain.** The 2026-09-22 revision resolved 25 of the 26 previously recorded here
-and all 6 structural quirks, and introduced one new one. In most cases the pages now state the
-correct value _and_ explicitly ban the name they used to publish — `radius.xs`, `on-color`,
+**Two conflicts remain**, both found on the 2026-09-25 re-read. In most cases the pages now state
+the correct value _and_ explicitly ban the name they used to publish — `radius.xs`, `on-color`,
 `color.feedback.*`, `shadow.subtle/medium/strongest` and `opacity.disabled` all appear now only in
 "this does not exist" rules. Do not re-add a row from git history without re-reading the page
 first.
 
 ## Remaining
 
-| Where                                     | Says                                                       | Variables say                                                       | Kind                 |
-| ----------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------- | -------------------- |
-| Agentic Reference `[COLOR_TOKEN_GRAMMAR]` | `data: color.data.{type}.{id} → … scale.01-08`             | `color.data.scale.100 … 900`                                        | Wrong values         |
-| Color and Borders & Radius page contexts  | action states `{default\|hover\|focus\|pressed\|disabled}` | `default \| hover \| active \| disabled` — no `focus`, no `pressed` | New in this revision |
+| Where                             | Says                                                            | Variables say                                                                        | Kind         |
+| --------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------ |
+| Tokens page, colour grammar table | `state (action)`: `default, hover, focus, active, disabled`     | `default \| hover \| active \| disabled`; focus is the `shadow/focus/*` effect style | Wrong values |
+| Agentic Reference, component map  | minimum targets `44x36(sm)`, `44x40`, `44x20`, `44x24`, `44x48` | `size/target/min` = 44 on both axes (and the page's own `rule_09`: 44 × 44)          | Wrong values |
 
-`category.01-08` in the same grammar line is correct; only the `scale` half is wrong.
+The Tokens page's Spatial grammar and the Agentic Reference `[SPATIAL_SYSTEM]` block do not list
+`size/control/*` or `size/target/min` yet. That is an omission, not a conflict.
+[02-tokens.md](02-tokens.md) and [18-agent-reference.md](18-agent-reference.md) follow the
+variables and note both rows.
 
-The action-state set is the one thing this revision made worse rather than better. The States page
-context separately says "the variant value is pressed, never active", which contradicts the 96
-action colour variables. The chapters follow the variables and flag it.
+## Resolved on 2026-09-25
 
-Two unfinished edits on the Iconography page are not conflicts with the variables but are worth
-knowing: the Outline vs Solid and Icon Library slides and the Gatekeeper checklist still describe
-the old scheme (a `/Solid` suffix, size variants, "Sourced from Remix at every size"), and the
-checklist asks for icon fills bound to `color.icon.*` while every icon master binds the primitive
-`color/neutral/900`. [09-iconography.md](09-iconography.md) follows the shipped icons.
+Kept so nobody reinstates a row. Each line is the conflict as it stood, then what the page says now.
 
-One variable pair is wrong within the variables themselves, which the precedence above cannot
-settle: in Dark, `action/primary/icon/hover` and `action/primary/icon/active` are `color/mono/white`,
-while the primary backgrounds they sit on are white and `color/neutral/50`, and every other mode and
-state of `action/primary/icon/*` follows `action/primary/text/*` (`color/neutral/900` in Dark). The
-code follows the variables, so a primary button's icons vanish on hover in Dark until SOLAR fixes
-them; do not patch the colour in a component. It is in the design review (section 8, action colours), with three
-danger-hover labels just under the WCAG AA text contrast.
+- **Action states** (Color and Borders & Radius page contexts `{default|hover|focus|pressed|disabled}`;
+  States page context "the variant value is pressed, never active"): the pages now say the variant
+  value is `pressed` and its colours bind the `action.*.*.active` variables; focus is the shared
+  `shadow/focus/*` effect style, not a colour.
+- **Data scale** (Agentic Reference `[COLOR_TOKEN_GRAMMAR]` `scale.01-08`): now `scale.100-900`,
+  matching `color.data.scale.100 … 900`.
+- **Icon library and checklist** (Outline vs Solid and Icon Library slides: a `/Solid` suffix and
+  size variants; Gatekeeper checklist: "Sourced from Remix at every size", icon fills bound to
+  `color.icon.*`): now one component set per icon with a `solid` boolean, one 24 × 24 canvas, and
+  the master fill bound to `color/neutral/900` with every placed instance rebound to
+  `color.icon.*` or `color.action.*.icon.*`.
+- **Dark primary icon hover/active** (within the variables: `action/primary/icon/hover` and
+  `/active` were `color/mono/white` in Dark, on white and `neutral/50` backgrounds, so the icon
+  vanished): now `color/neutral/900`, following `action/primary/text/*`. The three danger-hover
+  labels that were just under WCAG AA text contrast now pass 4.5:1 (primary danger hover bg
+  `red/600`; secondary and tertiary danger hover text `red/600` in Light).
 
 ## Resolved in the 2026-09-22 revision
 

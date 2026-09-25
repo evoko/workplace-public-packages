@@ -29,7 +29,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             24,
             0,
@@ -44,6 +44,7 @@
           "IMAGE"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/xl",
           "paddingRight": "Spatial:inset/none",
@@ -341,6 +342,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "5763:6745",
           "size": [
             1440,
             800
@@ -377,10 +379,26 @@
             "Helper text",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/Button/Counter",
+            "/Center Stack/Container/content/Button/Icon/None",
+            "/Center Stack/Container/content/Button/Icon/None#2",
+            "/Center Stack/Container/content/Button/Spinner",
+            "/Center Stack/Container/content/Icon stack/Button#2/Counter",
+            "/Center Stack/Container/content/Icon stack/Button#2/Icon/None",
+            "/Center Stack/Container/content/Icon stack/Button#2/Spinner",
+            "/Center Stack/Container/content/Icon stack/Button/Counter",
+            "/Center Stack/Container/content/Icon stack/Button/Icon/None",
+            "/Center Stack/Container/content/Icon stack/Button/Spinner",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None#2",
+            "/Center Stack/Container/content/Text Input/Helper text"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "6177:20660",
           "size": [
             393,
             800
@@ -483,7 +501,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             24,
             0,
@@ -498,6 +516,7 @@
           "IMAGE"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/xl",
           "paddingRight": "Spatial:inset/none",
@@ -769,6 +788,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "5763:6746",
           "size": [
             1440,
             800
@@ -798,10 +818,25 @@
             "Helper text",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/ButtonGroup/Button#2/Counter",
+            "/Center Stack/Container/content/ButtonGroup/Button#2/Icon/None",
+            "/Center Stack/Container/content/ButtonGroup/Button#2/Icon/None#2",
+            "/Center Stack/Container/content/ButtonGroup/Button#2/Spinner",
+            "/Center Stack/Container/content/ButtonGroup/Button/Counter",
+            "/Center Stack/Container/content/ButtonGroup/Button/Icon/None",
+            "/Center Stack/Container/content/ButtonGroup/Button/Icon/None#2",
+            "/Center Stack/Container/content/ButtonGroup/Button/Spinner",
+            "/Center Stack/Container/content/Fields/Password Input/Helper text",
+            "/Center Stack/Container/content/Fields/Text Input/Field/Icon/None",
+            "/Center Stack/Container/content/Fields/Text Input/Field/Icon/None#2",
+            "/Center Stack/Container/content/Fields/Text Input/Helper text"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "6177:20770",
           "size": [
             393,
             800

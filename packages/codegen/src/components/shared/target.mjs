@@ -1,18 +1,15 @@
 /**
  * The target a pointer or a finger has to hit: at least 44 × 44, WCAG's floor, around a control
- * drawn smaller (a 32px Button). SOLAR asks for it, and publishes no variable for it: "Drawn heights
- * are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable
- * exists yet)."
- *
- * ⚠️ Governance gap: `TARGET` is the one raw target size in the web recipes, here, until SOLAR
- * publishes a target-size variable, which then replaces it. The design review asks for it.
- * `solar_flutter`'s `solarTargetSize` is its Flutter twin.
+ * drawn smaller (a 32px Button). SOLAR asks for it: "Drawn heights are the visible control; the
+ * 44×44px hit area (size/target/min) is padded in code." `TARGET` is that variable, which SOLAR
+ * added to Spatial on 2026-09-25 (it was the one raw target size here until then);
+ * `solar_flutter`'s `solarTargetSize` is its Flutter twin, `SolarSize.targetMin`.
  *
  * The target takes no room: it is invisible, centred on the control, and the control's drawn box
  * is Figma's.
  */
 
-export const TARGET = '44px';
+export const TARGET = 'var(--solar-size-target-min)';
 
 const reach = {
   top: '50%',

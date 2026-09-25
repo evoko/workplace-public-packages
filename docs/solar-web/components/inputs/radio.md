@@ -4,7 +4,7 @@
 
 ## Component set: Radio
 
-Single-select from a group of 2–5 options. 8 variants: state (default, hover, focus, disabled) × checked (true, false). Used only as part of a group — a solo radio is a bug, and one option is always selected. Commit on click; a selected radio cannot be cleared by clicking it again. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke. There is no pressed state. Pair with an adjacent label, or use Option Row, which composes this with a label and optional supporting text. For 6+ options use Select; for a yes/no setting use Toggle.
+Single-select from a group of 2–5 options. 8 variants: state (default, hover, focus, disabled) × checked (true, false). Used only as part of a group — a solo radio is a bug, and one option is always selected. disabled uses border/disabled on a surface/muted fill so it reads as unavailable. focus combines shadow/focus/default with a border/feedback/focus/strong stroke. No pressed state. Pair with a label, or use Option Row. For 6+ options use Select; for a yes/no setting use Toggle.
 
 ### Props
 
@@ -24,14 +24,14 @@ Default variant: `state=default, checked=true` · 8 variants · default size 18�
 
 ### Tokens used
 
-| Role         | Tokens                                                                             |
-| ------------ | ---------------------------------------------------------------------------------- |
-| Fills        | `color.surface.background`, `color.surface.base`                                   |
-| Strokes      | `color.border.feedback.focus.strong`, `color.border.medium`, `color.border.subtle` |
-| Icon color   | `color.icon.primary`                                                               |
-| Radius       | `radius.pill`                                                                      |
-| Border width | `border.default`                                                                   |
-| Effects      | `shadow/focus/default`                                                             |
+| Role         | Tokens                                                                                                      |
+| ------------ | ----------------------------------------------------------------------------------------------------------- |
+| Fills        | `color.surface.background`, `color.surface.base`, `color.surface.muted`                                     |
+| Strokes      | `color.border.disabled`, `color.border.feedback.focus.strong`, `color.border.medium`, `color.border.subtle` |
+| Icon color   | `color.icon.primary`                                                                                        |
+| Radius       | `radius.pill`                                                                                               |
+| Border width | `border.default`                                                                                            |
+| Effects      | `shadow/focus/default`                                                                                      |
 
 ### Variant matrix
 
@@ -42,7 +42,7 @@ Default variant: `state=default, checked=true` · 8 variants · default size 18�
 | disabled | true    | 18×18 |                            | `color.border.medium`                |                        |      |      |
 | default  | false   | 18×18 |                            | `color.border.medium`                |                        |      |      |
 | hover    | false   | 18×18 | `color.surface.background` | `color.border.medium`                |                        |      |      |
-| disabled | false   | 18×18 |                            | `color.border.medium`                |                        |      |      |
+| disabled | false   | 18×18 | `color.surface.muted`      | `color.border.disabled`              |                        |      |      |
 | focus    | true    | 18×18 | `color.surface.base`       | `color.border.feedback.focus.strong` | `shadow/focus/default` |      |      |
 | focus    | false   | 18×18 | `color.surface.base`       | `color.border.feedback.focus.strong` | `shadow/focus/default` |      |      |
 

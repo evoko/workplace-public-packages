@@ -4,7 +4,7 @@
 
 ## Component set: Alert
 
-Alert — callout message for in-page feedback. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Toggle title, action button, and close button via boolean properties. For a single-line top-of-page message use Banner; for the compact form use Alert Small.
+Alert — callout message for in-page feedback. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Props: Show title, Show description, Show action (booleans); Label, Description, Action (text). There is no close button — an Alert stays until its condition clears; for a dismissible message use Toast or Banner. For the compact form use Alert Small.
 
 ### Props
 
@@ -83,7 +83,7 @@ Default variant: `type=success, style=filled` · 10 variants · default size 466
 
 ## Component set: Alert Small
 
-Alert Small — compact callout message. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Toggle title, action button, and close button via boolean properties. Use inside cards and panels where the full Alert is too tall.
+Alert Small — compact callout message. 10 variants: type (default, info, success, warning, danger) × style (filled, outlined). Props: Show title, Show description, Show action (booleans); Label, Description, Action (text). No close button. Use inside cards and panels where the full Alert is too tall.
 
 ### Props
 

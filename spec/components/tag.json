@@ -46,6 +46,11 @@
       "parent": "root",
       "type": "INSTANCE"
     },
+    "iconNone": {
+      "path": "/Icon/None",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
     "label": {
       "path": "/Label",
       "parent": "root",
@@ -53,11 +58,6 @@
     },
     "icon": {
       "path": "/Icon/Plus",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
-    "iconNone": {
-      "path": "/Icon/None",
       "parent": "root",
       "type": "INSTANCE"
     },
@@ -1473,6 +1473,190 @@
         }
       }
     },
+    "iconNone": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "status=success, type=status, invert=false"
+        },
+        "component": {
+          "keyword": "Icon/None",
+          "from": "status=success, type=icon+text, invert=false"
+        },
+        "width": {
+          "token": "icon.xs",
+          "from": "overlay",
+          "reason": "As the icon-only tag's icon."
+        },
+        "height": {
+          "token": "icon.xs",
+          "from": "status=success, type=icon+text, invert=false"
+        }
+      },
+      "size": {},
+      "appearance": {
+        "status=success, type=icon+text, invert=false": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=success, type=icon+text, invert=false"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=success, type=icon+text, invert=false"
+            },
+            "color": {
+              "token": "color.icon.feedback.success",
+              "from": "status=success, type=icon+text, invert=false"
+            }
+          }
+        },
+        "status=success, type=icon+text, invert=true": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=success, type=icon+text, invert=true"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=success, type=icon+text, invert=true"
+            },
+            "color": {
+              "token": "color.icon.inverse",
+              "from": "status=success, type=icon+text, invert=true"
+            }
+          }
+        },
+        "status=warning, type=icon+text, invert=false": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=warning, type=icon+text, invert=false"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=warning, type=icon+text, invert=false"
+            },
+            "color": {
+              "token": "color.icon.feedback.warning",
+              "from": "status=warning, type=icon+text, invert=false"
+            }
+          }
+        },
+        "status=warning, type=icon+text, invert=true": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=warning, type=icon+text, invert=true"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=warning, type=icon+text, invert=true"
+            },
+            "color": {
+              "token": "color.icon.inverse",
+              "from": "status=warning, type=icon+text, invert=true"
+            }
+          }
+        },
+        "status=danger, type=icon+text, invert=false": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=danger, type=icon+text, invert=false"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=danger, type=icon+text, invert=false"
+            },
+            "color": {
+              "token": "color.icon.feedback.danger",
+              "from": "status=danger, type=icon+text, invert=false"
+            }
+          }
+        },
+        "status=danger, type=icon+text, invert=true": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=danger, type=icon+text, invert=true"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=danger, type=icon+text, invert=true"
+            },
+            "color": {
+              "token": "color.icon.inverse",
+              "from": "status=danger, type=icon+text, invert=true"
+            }
+          }
+        },
+        "status=info, type=icon+text, invert=false": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=info, type=icon+text, invert=false"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=info, type=icon+text, invert=false"
+            },
+            "color": {
+              "token": "color.icon.feedback.info",
+              "from": "status=info, type=icon+text, invert=false"
+            }
+          }
+        },
+        "status=info, type=icon+text, invert=true": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=info, type=icon+text, invert=true"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=info, type=icon+text, invert=true"
+            },
+            "color": {
+              "token": "color.icon.inverse",
+              "from": "status=info, type=icon+text, invert=true"
+            }
+          }
+        },
+        "status=neutral, type=icon+text, invert=false": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=neutral, type=icon+text, invert=false"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=neutral, type=icon+text, invert=false"
+            },
+            "color": {
+              "token": "color.icon.feedback.neutral",
+              "from": "status=neutral, type=icon+text, invert=false"
+            }
+          }
+        },
+        "status=neutral, type=icon+text, invert=true": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "status=neutral, type=icon+text, invert=true"
+            },
+            "variant.solid": {
+              "keyword": "false",
+              "from": "status=neutral, type=icon+text, invert=true"
+            },
+            "color": {
+              "token": "color.icon.inverse",
+              "from": "status=neutral, type=icon+text, invert=true"
+            }
+          }
+        }
+      }
+    },
     "label": {
       "base": {
         "present": {
@@ -2004,190 +2188,6 @@
         }
       }
     },
-    "iconNone": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "status=success, type=status, invert=false"
-        },
-        "component": {
-          "keyword": "Icon/None",
-          "from": "status=success, type=icon+text, invert=false"
-        },
-        "width": {
-          "token": "icon.xs",
-          "from": "overlay",
-          "reason": "As the icon-only tag's icon."
-        },
-        "height": {
-          "token": "icon.xs",
-          "from": "status=success, type=icon+text, invert=false"
-        }
-      },
-      "size": {},
-      "appearance": {
-        "status=success, type=icon+text, invert=false": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=success, type=icon+text, invert=false"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=success, type=icon+text, invert=false"
-            },
-            "color": {
-              "token": "color.icon.feedback.success",
-              "from": "status=success, type=icon+text, invert=false"
-            }
-          }
-        },
-        "status=success, type=icon+text, invert=true": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=success, type=icon+text, invert=true"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=success, type=icon+text, invert=true"
-            },
-            "color": {
-              "token": "color.icon.inverse",
-              "from": "status=success, type=icon+text, invert=true"
-            }
-          }
-        },
-        "status=warning, type=icon+text, invert=false": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=warning, type=icon+text, invert=false"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=warning, type=icon+text, invert=false"
-            },
-            "color": {
-              "token": "color.icon.feedback.warning",
-              "from": "status=warning, type=icon+text, invert=false"
-            }
-          }
-        },
-        "status=warning, type=icon+text, invert=true": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=warning, type=icon+text, invert=true"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=warning, type=icon+text, invert=true"
-            },
-            "color": {
-              "token": "color.icon.inverse",
-              "from": "status=warning, type=icon+text, invert=true"
-            }
-          }
-        },
-        "status=danger, type=icon+text, invert=false": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=danger, type=icon+text, invert=false"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=danger, type=icon+text, invert=false"
-            },
-            "color": {
-              "token": "color.icon.feedback.danger",
-              "from": "status=danger, type=icon+text, invert=false"
-            }
-          }
-        },
-        "status=danger, type=icon+text, invert=true": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=danger, type=icon+text, invert=true"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=danger, type=icon+text, invert=true"
-            },
-            "color": {
-              "token": "color.icon.inverse",
-              "from": "status=danger, type=icon+text, invert=true"
-            }
-          }
-        },
-        "status=info, type=icon+text, invert=false": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=info, type=icon+text, invert=false"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=info, type=icon+text, invert=false"
-            },
-            "color": {
-              "token": "color.icon.feedback.info",
-              "from": "status=info, type=icon+text, invert=false"
-            }
-          }
-        },
-        "status=info, type=icon+text, invert=true": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=info, type=icon+text, invert=true"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=info, type=icon+text, invert=true"
-            },
-            "color": {
-              "token": "color.icon.inverse",
-              "from": "status=info, type=icon+text, invert=true"
-            }
-          }
-        },
-        "status=neutral, type=icon+text, invert=false": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=neutral, type=icon+text, invert=false"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=neutral, type=icon+text, invert=false"
-            },
-            "color": {
-              "token": "color.icon.feedback.neutral",
-              "from": "status=neutral, type=icon+text, invert=false"
-            }
-          }
-        },
-        "status=neutral, type=icon+text, invert=true": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "status=neutral, type=icon+text, invert=true"
-            },
-            "variant.solid": {
-              "keyword": "false",
-              "from": "status=neutral, type=icon+text, invert=true"
-            },
-            "color": {
-              "token": "color.icon.inverse",
-              "from": "status=neutral, type=icon+text, invert=true"
-            }
-          }
-        }
-      }
-    },
     "iconClose": {
       "base": {
         "present": {
@@ -2679,7 +2679,7 @@
     }
   },
   "docs": {
-    "description": "Compact label for status, category, or user-entered content. 45 variants: type (status, icon-only, icon+text, closable, text-only) × status (success, neutral, warning, danger, info) × invert × show icon-leading. type=status for read-only state (Active, Pending); type=closable for user-entered tokens with ×; type=icon-only for pure glyph tags. Keep text to 1–3 words.",
+    "description": "Compact label for status, category, or user-entered content. 45 variants: type (status, icon-only, icon+text, closable, text-only) × status (success, neutral, warning, danger, info) × invert (false, true). type=status shows a status dot for read-only state (Active, Pending); on an inverted tag the dot is omitted, since it would match the fill. type=closable is for user-entered tokens with ×; type=icon-only for pure glyph tags. Keep text to 1–3 words.",
     "figmaIssues": []
   },
   "provenance": {
@@ -2687,7 +2687,7 @@
     "pageId": "2966:583",
     "figmaNode": "3502:2108",
     "defaultVariant": "status=success, type=status, invert=false",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "derived": {
     "type": {

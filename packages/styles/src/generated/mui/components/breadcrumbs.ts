@@ -126,14 +126,6 @@ export const solarBreadcrumbsComposition = {
       'variant.solid': 'false',
     },
   },
-  current: {
-    base: {
-      present: true,
-      component: 'Breadcrumb Item',
-      'variant.type': 'current',
-      'variant.state': 'default',
-    },
-  },
   item3: {
     base: {
       present: true,
@@ -162,6 +154,14 @@ export const solarBreadcrumbsComposition = {
       present: true,
       component: 'Icon/ChevronRight',
       'variant.solid': 'false',
+    },
+  },
+  current: {
+    base: {
+      present: true,
+      component: 'Breadcrumb Item',
+      'variant.type': 'current',
+      'variant.state': 'default',
     },
   },
 } as const;
@@ -254,11 +254,11 @@ export const solarBreadcrumbsTree: Record<string, string[]> = {
     'iconChevronRight',
     'item2',
     'iconChevronRight2',
-    'current',
     'item3',
     'iconChevronRight3',
     'item4',
     'iconChevronRight4',
+    'current',
   ],
 };
 

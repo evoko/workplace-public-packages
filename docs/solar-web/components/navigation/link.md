@@ -4,7 +4,7 @@
 
 ## Component set: Link
 
-Inline text link for navigating within or across the product. Renders as `<a>` and binds to color/text/link/\* tokens. 15 variants: size (xs 12px, sm 14px, md 16px) × state (default, hover, pressed, focus, disabled). Optional leading and trailing icons via instance swap. Underlines on hover so the affordance never relies on color alone. 'pressed' here is the momentary pressed/visited color — for persistent selection use a Nav Item pattern. For actions that trigger a side effect (save, submit), use Button, not Link.
+Inline text link for navigating within or across the product. Renders as `<a>` and binds to color/text/link/\* tokens. 15 variants: size (xs 12px, sm 14px, md 16px) × state (default, hover, pressed, focus, disabled). The label is underlined in every state, so the affordance never relies on colour alone; hover changes the colour. focus carries shadow/focus/default. Optional leading and trailing icons. For actions with a side effect (save, submit) use Button, not Link.
 
 ### Props
 
@@ -37,6 +37,7 @@ Default variant: `size=md, state=default` · 15 variants · default size 127×24
 | Spacing         | `stack.xs`                                                                                               |
 | Sizes           | `icon.lg`                                                                                                |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.body.lg`, `type.size.body.lg`        |
+| Effects         | `shadow/focus/default`                                                                                   |
 | Text styles     | `link/lg/default`                                                                                        |
 
 ### Slots and prop-controlled layers
@@ -52,23 +53,23 @@ Default variant: `size=md, state=default` · 15 variants · default size 127×24
 
 ### Variant matrix
 
-| size | state    | size   | fill | stroke | effect | text                       | icon                       |
-| ---- | -------- | ------ | ---- | ------ | ------ | -------------------------- | -------------------------- |
-| md   | default  | 127×24 |      |        |        | `color.text.link.default`  | `color.icon.link.default`  |
-| md   | hover    | 127×24 |      |        |        | `color.text.link.hover`    | `color.icon.link.hover`    |
-| md   | pressed  | 127×24 |      |        |        | `color.text.link.active`   | `color.icon.link.active`   |
-| md   | disabled | 127×24 |      |        |        | `color.text.link.disabled` | `color.icon.link.disabled` |
-| md   | focus    | 127×24 |      |        |        | `color.text.link.default`  | `color.icon.link.default`  |
-| sm   | default  | 103×16 |      |        |        | `color.text.link.default`  | `color.icon.link.default`  |
-| sm   | hover    | 103×16 |      |        |        | `color.text.link.hover`    | `color.icon.link.hover`    |
-| sm   | pressed  | 103×16 |      |        |        | `color.text.link.active`   | `color.icon.link.active`   |
-| sm   | disabled | 103×16 |      |        |        | `color.text.link.disabled` | `color.icon.link.disabled` |
-| sm   | focus    | 103×16 |      |        |        | `color.text.link.default`  | `color.icon.link.default`  |
-| xs   | default  | 88×12  |      |        |        | `color.text.link.default`  | `color.icon.link.default`  |
-| xs   | hover    | 88×12  |      |        |        | `color.text.link.hover`    | `color.icon.link.hover`    |
-| xs   | pressed  | 88×12  |      |        |        | `color.text.link.active`   | `color.icon.link.active`   |
-| xs   | disabled | 88×12  |      |        |        | `color.text.link.disabled` | `color.icon.link.disabled` |
-| xs   | focus    | 88×12  |      |        |        | `color.text.link.default`  | `color.icon.link.default`  |
+| size | state    | size   | fill | stroke | effect                 | text                       | icon                       |
+| ---- | -------- | ------ | ---- | ------ | ---------------------- | -------------------------- | -------------------------- |
+| md   | default  | 127×24 |      |        |                        | `color.text.link.default`  | `color.icon.link.default`  |
+| md   | hover    | 127×24 |      |        |                        | `color.text.link.hover`    | `color.icon.link.hover`    |
+| md   | pressed  | 127×24 |      |        |                        | `color.text.link.active`   | `color.icon.link.active`   |
+| md   | disabled | 127×24 |      |        |                        | `color.text.link.disabled` | `color.icon.link.disabled` |
+| md   | focus    | 127×24 |      |        | `shadow/focus/default` | `color.text.link.default`  | `color.icon.link.default`  |
+| sm   | default  | 103×16 |      |        |                        | `color.text.link.default`  | `color.icon.link.default`  |
+| sm   | hover    | 103×16 |      |        |                        | `color.text.link.hover`    | `color.icon.link.hover`    |
+| sm   | pressed  | 103×16 |      |        |                        | `color.text.link.active`   | `color.icon.link.active`   |
+| sm   | disabled | 103×16 |      |        |                        | `color.text.link.disabled` | `color.icon.link.disabled` |
+| sm   | focus    | 103×16 |      |        | `shadow/focus/default` | `color.text.link.default`  | `color.icon.link.default`  |
+| xs   | default  | 88×12  |      |        |                        | `color.text.link.default`  | `color.icon.link.default`  |
+| xs   | hover    | 88×12  |      |        |                        | `color.text.link.hover`    | `color.icon.link.hover`    |
+| xs   | pressed  | 88×12  |      |        |                        | `color.text.link.active`   | `color.icon.link.active`   |
+| xs   | disabled | 88×12  |      |        |                        | `color.text.link.disabled` | `color.icon.link.disabled` |
+| xs   | focus    | 88×12  |      |        | `shadow/focus/default` | `color.text.link.default`  | `color.icon.link.default`  |
 
 ## Documentation card
 

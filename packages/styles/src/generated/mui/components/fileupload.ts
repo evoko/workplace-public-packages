@@ -152,7 +152,6 @@ export const solarFileUploadStyles = {
         },
       },
       '&:has(.SolarFileUpload--field :focus-visible)': {
-        boxShadow: 'none',
         '& .SolarFileUpload--field': {
           boxShadow: 'var(--solar-shadow-focus-default)',
           borderColor: 'var(--solar-color-border-subtle)',

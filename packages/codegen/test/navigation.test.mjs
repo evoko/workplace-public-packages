@@ -70,17 +70,18 @@ describe('F8', () => {
 });
 
 describe('samples that drop Figma’s default variant', () => {
+  // The current page last, where the trail ends: Figma's order, recorded since 2026-09-25.
   const TRAIL = [
     'root',
     'item1',
     'iconChevronRight',
     'item2',
     'iconChevronRight2',
-    'current',
     'item3',
     'iconChevronRight3',
     'item4',
     'iconChevronRight4',
+    'current',
   ];
 
   it('build Breadcrumbs from its 5-item trail, which names every item and chevron', () => {
@@ -105,7 +106,8 @@ describe('samples that drop Figma’s default variant', () => {
     delete overlay.bind['iconChevronRight4.width'];
     const { spec } = build('Breadcrumbs', overlay);
     expect(spec.provenance.defaultVariant).toBe('items=4');
-    expect(Object.keys(spec.layers)).toEqual(TRAIL.slice(0, 8));
+    // Three items and their chevrons, then the current page.
+    expect(Object.keys(spec.layers)).toEqual([...TRAIL.slice(0, 7), 'current']);
   });
 
   it('pick the kept variant at every other axis’s default', () => {
@@ -204,24 +206,17 @@ describe('a Counter in a tab', () => {
 describe('Tab Item', () => {
   const { spec } = of('Tab Item');
 
-  it('draws the focused tab’s underline in color.border.strong, where Figma binds a width', () => {
+  it('draws the focused tab’s underline in color.border.strong, as Figma binds it', () => {
+    // Figma bound the colour to a width variable until 2026-09-25, when the overlay set it.
     const focus = spec.style.root.appearance.default.focus;
-    expect(focus.borderColor).toMatchObject({
+    expect(focus.borderColor).toEqual({
       token: 'color.border.strong',
-      from: 'overlay',
-      replaced: { literal: '{Spatial:border/strong}' },
+      from: 'size=md, state=focus',
     });
     expect(focus.shadow.token).toBe('shadow.focus.default');
-    const misbound = of('Tab Item').deviations.find(
-      (d) => d.token === 'component.tab item.root.borderColor#misbound',
-    );
-    expect(misbound.decision.rule).toBe('set');
-    // Without the rule, the misbound colour is an open finding.
-    const overlay = structuredClone(loadOverlay('Tab Item'));
-    delete overlay.set['root.appearance.default.focus.borderColor'];
-    expect(open(build('Tab Item', overlay))).toEqual([
-      'component.tab item.root.borderColor#misbound',
-    ]);
+    expect(
+      of('Tab Item').deviations.some((d) => d.token.endsWith('#misbound')),
+    ).toBe(false);
   });
 
   it('underlines the selected and the focused tab, 2px of border.strong, and none at rest', () => {
@@ -346,30 +341,25 @@ describe('Nav Item', () => {
     const overlay = structuredClone(loadOverlay('Nav Item'));
     delete overlay.follows;
     const findings = open(build('Nav Item', overlay));
-    expect(findings).toHaveLength(16);
+    // Four cells, in each expanded variant: its states, rest, hover and focus, Figma's since
+    // 2026-09-25, and selected or not.
+    expect(findings).toHaveLength(24);
     for (const prop of ['gap', 'paddingLeft', 'paddingRight', 'width'])
       expect(findings).toContain(
         `component.nav item.root.${prop}@selected=false, state=default, expanded=true`,
       );
   });
 
-  it('adds focus as a state, SOLAR’s ring in every appearance', () => {
-    expect(spec.states).toEqual(['default', 'hover', 'focus']);
+  it('draws Figma’s focus state, SOLAR’s ring in every appearance', () => {
+    // The overlay added it until 2026-09-25, when Figma drew it.
+    expect(spec.states).toEqual(['default', 'focus', 'hover']);
     expect(committed('components', 'nav-item').states).toContain('focus');
     expect(Object.keys(appearance)).toHaveLength(4);
     for (const [key, cells] of Object.entries(appearance))
-      expect(cells.focus.shadow, key).toMatchObject({
-        token: 'shadow.focus.default',
-        from: 'overlay',
-      });
-    // Figma draws it none: without the rules, the item has no focus state.
-    const overlay = structuredClone(loadOverlay('Nav Item'));
-    for (const at of Object.keys(overlay.set))
-      if (at.endsWith('.focus.shadow')) delete overlay.set[at];
-    expect(build('Nav Item', overlay).spec.states).toEqual([
-      'default',
-      'hover',
-    ]);
+      expect(cells.focus.shadow.token, key).toBe('shadow.focus.default');
+    expect(loadOverlay('Nav Item').set ?? {}).not.toHaveProperty(
+      'root.appearance.*.focus.shadow',
+    );
   });
 
   it('pads a 44 × 44 target around it', () => {
@@ -382,28 +372,23 @@ describe('Nav Item', () => {
 describe('Section Nav Item and its group header', () => {
   const { spec } = of('Section Nav Item');
 
-  it('spans its rail, the 220 Figma draws in every state but rest accepted, its words filling it', () => {
+  it('spans its rail, the 220 Figma draws in every state a sample, its words filling it', () => {
+    // At rest too since 2026-09-25, where it hugged before and the other states were accepted.
     expect(spec.style.root.base.width).toMatchObject({
       keyword: 'FILL',
       from: 'overlay',
-      replaced: { keyword: 'HUG' },
+      replaced: { literal: 220 },
     });
     expect(spec.style.label.base.width).toMatchObject({
       keyword: 'FILL',
       from: 'overlay',
       replaced: { keyword: 'HUG' },
     });
-    const accepted = of('Section Nav Item')
-      .deviations.filter((d) => d.decision?.rule === 'accept')
-      .map((d) => d.token);
-    expect(accepted).toEqual(
-      ['disabled', 'focus', 'hover', 'selected'].map(
-        (s) => `component.section nav item.root.width@state=${s}`,
+    expect(
+      of('Section Nav Item').deviations.filter(
+        (d) => d.decision?.rule === 'accept' && d.token.includes('root.width@'),
       ),
-    );
-    const overlay = structuredClone(loadOverlay('Section Nav Item'));
-    delete overlay.accept;
-    expect(open(build('Section Nav Item', overlay))).toEqual(accepted);
+    ).toEqual([]);
   });
 
   it('pads no target, its rows touching, on either platform', () => {
@@ -428,24 +413,13 @@ describe('Section Nav Item and its group header', () => {
 describe('Breadcrumb Item', () => {
   const { spec } = of('Breadcrumb Item');
 
-  it('adds focus as a state, SOLAR’s ring on a link alone', () => {
-    expect(spec.states).toEqual(['default', 'hover', 'focus']);
-    expect(spec.style.root.appearance).toEqual({
-      'type=link': {
-        focus: {
-          shadow: expect.objectContaining({
-            token: 'shadow.focus.default',
-            from: 'overlay',
-          }),
-        },
-      },
+  it('draws Figma’s focus state, SOLAR’s ring on a link alone', () => {
+    // The overlay added it until 2026-09-25, when Figma drew it.
+    expect(spec.states).toContain('focus');
+    expect(spec.style.root.appearance['type=link'].focus.shadow).toMatchObject({
+      token: 'shadow.focus.default',
+      from: 'type=link, state=focus',
     });
-    const overlay = structuredClone(loadOverlay('Breadcrumb Item'));
-    delete overlay.set;
-    expect(build('Breadcrumb Item', overlay).spec.states).toEqual([
-      'default',
-      'hover',
-    ]);
   });
 
   it('is a link, a button or the words alone, the current page announced so', () => {

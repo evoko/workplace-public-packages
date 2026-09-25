@@ -177,22 +177,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -423,9 +423,9 @@
           "from": "size=md, state=default"
         },
         "height": {
-          "literal": 40,
-          "from": "size=md, state=default",
-          "allowed": "As Text Input's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). The field is drawn 40 (md) and 32 (sm), as the description says."
+          "token": "size.control.md",
+          "from": "overlay",
+          "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
         }
       },
       "size": {
@@ -435,9 +435,9 @@
             "from": "size=sm, state=default"
           },
           "height": {
-            "literal": 32,
-            "from": "size=sm, state=default",
-            "allowed": "As Text Input's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). The field is drawn 40 (md) and 32 (sm), as the description says."
+            "token": "size.control.sm",
+            "from": "overlay",
+            "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
           }
         }
       },
@@ -658,7 +658,7 @@
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
@@ -667,7 +667,7 @@
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -937,7 +937,7 @@
     }
   },
   "docs": {
-    "description": "Dropdown selector for picking one option from a predefined list. 12 variants: size (sm, md) × state (default, hover, focus, open, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Trailing chevron rotates when open. Use when options are fewer than ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.",
+    "description": "Dropdown selector for picking one option from a predefined list. 12 variants: size (sm, md) × state (default, hover, focus, open, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code. Trailing chevron rotates when open; the open panel floats over the helper. Select and Dropdown are one control drawn two ways — Select owns its panel, Dropdown opens a Dropdown Menu. Use for fewer than ~7 options — beyond that use Autocomplete.",
     "figmaIssues": []
   },
   "provenance": {
@@ -945,7 +945,7 @@
     "pageId": "5295:2",
     "figmaNode": "5422:92",
     "defaultVariant": "size=md, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/select.yaml",
@@ -954,6 +954,11 @@
         "rule": "base",
         "at": "base",
         "reason": "One choice from a list, the listbox a field opens: MUI's Select on the web, on InputBase as the field, for its combobox, its keyboard (the arrow keys open it, move and choose; a typed letter finds a row) and its form value; its panel drawn as Figma draws it, its rows Dropdown Items (owner decisions 2026-09-24: one control with Dropdown, which draws its own look; the panel Select's own). In Flutter the field is drawn and pressable, the panel floated under it by MenuAnchor. Its label, helper and field drawn with the shared layer helpers."
+      },
+      {
+        "rule": "bind",
+        "at": "field.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
       },
       {
         "rule": "bind",
@@ -986,14 +991,9 @@
         "reason": "As md's, a sample."
       },
       {
-        "rule": "allowLiteral",
-        "at": "field.height",
-        "reason": "As Text Input's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). The field is drawn 40 (md) and 32 (sm), as the description says."
-      },
-      {
         "rule": "controlDraws",
         "at": "dropdownMenu",
-        "reason": "The panel floats under the field, placed there by MUI's menu (and Flutter's MenuAnchor), which keeps it on the page: Figma draws it in the component, 4px below the field. It is as tall as its rows, Dropdown Items, which the menu scrolls past its room: Figma's md rows are 34 tall, a stale size (a Dropdown Item's md row is 44), and its edge takes no room. Its width and look are the recipe's.",
+        "reason": "The panel floats under the field, placed there by MUI's menu (and Flutter's MenuAnchor), which keeps it on the page: Figma draws it in the component, 4px below the field. It is as tall as its rows, Dropdown Items, which the menu scrolls past its room: Figma draws its md rows 34 tall, as the Dropdown Item's description now gives it, where a label-only row hugs to 44 (the design review asks which), and its edge takes no room. Its width and look are the recipe's.",
         "cells": ["x", "y", "right", "bottom", "height"]
       },
       {
@@ -1011,7 +1011,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft, dropdownMenu.paddingRight, dropdownMenu.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

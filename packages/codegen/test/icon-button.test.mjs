@@ -27,6 +27,8 @@ describe('the Icon Button IR', () => {
       },
       disabled: { type: 'boolean', default: false },
       loading: { type: 'boolean', default: false },
+      // A toggle icon button's on state, Figma's active (2026-09-25).
+      active: { type: 'boolean', default: false },
     });
     expect(spec.states).toEqual(['default', 'hover', 'pressed', 'focus']);
     expect(spec.base).toEqual({ mui: 'IconButton', flutter: 'IconButton' });
@@ -45,15 +47,26 @@ describe('the Icon Button IR', () => {
     expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
-  it('rounds by shape at every size, and is flat at lg but keeps its focus ring', () => {
+  it('rounds by shape at every size, and rings lg’s focus, raised as the other sizes', () => {
     const round = spec.style.root.combined;
     for (const size of ['sm', 'md', 'lg'])
       expect(
         round[size]['shape=round, prio=primary'].default.radius.token,
       ).toBe('radius.pill');
+    // Flat at lg until 2026-09-25; the control shadow at every size since.
     const lg = spec.style.root.combined.lg['shape=square, prio=primary'];
-    expect(lg.default.shadow).toMatchObject({ none: true });
+    expect(lg.default).toBeUndefined();
     expect(lg.focus.shadow.token).toBe('shadow.focus.default');
+  });
+
+  it('draws the active state, a toggle’s on state, as the pressed one’s colours', () => {
+    const primary = spec.style.root.appearance['shape=square, prio=primary'];
+    expect(primary.active.background.token).toBe(
+      'color.action.primary.bg.active',
+    );
+    expect(primary.active.borderColor.token).toBe(
+      'color.action.primary.border.active',
+    );
   });
 
   it('keys the radius under every priority, though it follows shape alone', () => {

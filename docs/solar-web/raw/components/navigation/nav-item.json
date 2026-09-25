@@ -5,9 +5,9 @@
     {
       "name": "Nav Item",
       "id": "2663:774",
-      "description": "Nav Item — generic interactive nav primitive used in both Sidebar and Top Bar (and any other nav surface).\n\nAnatomy: 40×40 collapsed (icon-only) / full-width × 40 expanded (icon + label). 20×20 icon slot.\n\nVariant axes (lowercase):\n  selected — true/false — drives outline (false) ↔ solid (true) icon swap\n  hover    — true/false — hover background\n  expanded — true/false — collapsed (icon-only) vs expanded (icon + label)\n\nIcon swap (two-property pattern, required by Figma constraint — see auto-memory feedback_figma_instance_swap_variant_override.md):\n  iconOutline — INSTANCE_SWAP. Bound to selected=false variants.\n  iconSolid   — INSTANCE_SWAP. Bound to selected=true variants.\n  Designers set BOTH to matching outline+solid pair of one Icon/* metaphor.\n\nConsumers: Sidebar (Layout & Shell), Top Bar (Layout & Shell). 540+ instances across views.\n\n— KNOWN GAPS (1.0 promotion gate) —\nClass D states incomplete. Per CLAUDE.md §7 Class D requires {default, hover, focus, disabled, selected} as MUTUALLY EXCLUSIVE states (single `state` axis with 5 values), but current structure has selected/hover as INDEPENDENT booleans. Adding focus+disabled as booleans would be conceptually wrong (32-variant matrix of misleading state combinations). Correct fix is a structural restructure to a single `state` axis — breaking change requiring instance-override migration script. Designer-led.\n\nOptical fineness pass at 12/16/20px on icon ramps. Strokes scale mathematically (1.5px × scale = 0.75 at size=12) which is too thin for crisp small-size rendering. Each size needs hand-tuned per-size stroke weight. Designer-led.\n\nRenamed from Sidebar Item 2026-05-04. Component key b7d724b6… preserved.",
+      "description": "Nav Item — generic interactive nav primitive used in Sidebar and Top Bar.\n\nAnatomy: 40×40 collapsed (icon-only) / full-width × 40 expanded (icon + label). 20×20 icon slot.\n\n12 variants — axes: selected (outline ↔ solid icon), hover, expanded (icon-only vs icon + label), focus (shadow/focus/default ring; drawn on rest rows). A link where it navigates; the current page carries aria-current=\"page\".\n\nIcon swap: iconOutline (selected=false) and iconSolid (selected=true) — set both to the matching pair of one Icon/* metaphor.\n\nKNOWN GAP: Class D wants one mutually exclusive state axis (default, hover, focus, disabled, selected); moving to it is a breaking restructure, designer-led.",
       "docLinks": [],
-      "variantCount": 8,
+      "variantCount": 12,
       "props": {
         "label#2663:4": {
           "type": "TEXT",
@@ -44,12 +44,20 @@
             "false",
             "true"
           ]
+        },
+        "focus": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
         }
       },
-      "defaultVariant": "selected=false, hover=false, expanded=false",
+      "defaultVariant": "selected=false, hover=false, expanded=false, focus=false",
       "defaultVariantNodeCount": 2,
       "defaultVariantTree": {
-        "name": "selected=false, hover=false, expanded=false",
+        "name": "selected=false, hover=false, expanded=false, focus=false",
         "type": "COMPONENT",
         "size": [
           40,
@@ -106,7 +114,8 @@
       },
       "variants": [
         {
-          "variant": "selected=false, hover=false, expanded=false",
+          "variant": "selected=false, hover=false, expanded=false, focus=false",
+          "id": "2663:746",
           "size": [
             40,
             40
@@ -114,10 +123,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
-          "variant": "selected=false, hover=false, expanded=true",
+          "variant": "selected=false, hover=false, expanded=true, focus=false",
+          "id": "2663:749",
           "size": [
             182,
             40
@@ -151,6 +162,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -179,7 +191,8 @@
           }
         },
         {
-          "variant": "selected=false, hover=true, expanded=false",
+          "variant": "selected=false, hover=true, expanded=false, focus=false",
+          "id": "2663:753",
           "size": [
             40,
             40
@@ -206,7 +219,8 @@
           }
         },
         {
-          "variant": "selected=false, hover=true, expanded=true",
+          "variant": "selected=false, hover=true, expanded=true, focus=false",
+          "id": "2663:756",
           "size": [
             182,
             40
@@ -251,6 +265,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -279,7 +294,8 @@
           }
         },
         {
-          "variant": "selected=true, hover=false, expanded=false",
+          "variant": "selected=true, hover=false, expanded=false, focus=false",
+          "id": "2663:760",
           "size": [
             40,
             40
@@ -309,7 +325,8 @@
           }
         },
         {
-          "variant": "selected=true, hover=false, expanded=true",
+          "variant": "selected=true, hover=false, expanded=true, focus=false",
+          "id": "2663:763",
           "size": [
             182,
             40
@@ -357,6 +374,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -385,7 +403,8 @@
           }
         },
         {
-          "variant": "selected=true, hover=true, expanded=false",
+          "variant": "selected=true, hover=true, expanded=false, focus=false",
+          "id": "2663:767",
           "size": [
             40,
             40
@@ -415,7 +434,8 @@
           }
         },
         {
-          "variant": "selected=true, hover=true, expanded=true",
+          "variant": "selected=true, hover=true, expanded=true, focus=false",
+          "id": "2663:770",
           "size": [
             182,
             40
@@ -463,6 +483,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -484,6 +505,198 @@
                   },
                   "propRefs": {
                     "characters": "label#2663:4"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variant": "selected=false, hover=false, expanded=false, focus=true",
+          "id": "11066:29934",
+          "size": [
+            40,
+            40
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
+        },
+        {
+          "variant": "selected=false, hover=false, expanded=true, focus=true",
+          "id": "11066:29936",
+          "size": [
+            182,
+            40
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              }
+            },
+            "added": [
+              {
+                "path": "/Label",
+                "parent": "/",
+                "index": 1,
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    126,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/secondary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variant": "selected=true, hover=false, expanded=false, focus=true",
+          "id": "11066:29939",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Icon/Home": {
+                "variant": {
+                  "solid": "true"
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "selected=true, hover=false, expanded=true, focus=true",
+          "id": "11066:29941",
+          "size": [
+            182,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Icon/Home": {
+                "variant": {
+                  "solid": "true"
+                },
+                "iconFills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            },
+            "added": [
+              {
+                "path": "/Label",
+                "parent": "/",
+                "index": 1,
+                "layer": {
+                  "name": "Label",
+                  "type": "TEXT",
+                  "text": "Label",
+                  "textStyle": "label/md",
+                  "size": [
+                    126,
+                    10
+                  ],
+                  "sizing": "FILL/HUG",
+                  "fills": [
+                    "{Color:text/primary}"
+                  ],
+                  "vars": {
+                    "lineHeight": "Type:line-height/label/md",
+                    "fontFamily": "Primitives:type/font-family/inter",
+                    "fontSize": "Type:size/label/md",
+                    "fontStyle": "Primitives:type/font-weight/500"
                   }
                 }
               }

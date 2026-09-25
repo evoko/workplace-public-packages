@@ -30,7 +30,7 @@ allowLiteral:
     values: [8]
     reason: >-
       The xs dot is 8px, and the icon ladder starts at 12: SOLAR has no size for it, as
-      StatusIndicator's xs dot has none. A governance gap the design review raises.
+      StatusIndicator's xs dot has none (SOLAR's decision, 2026-09-25). Carried as a raw value.
   root.height:
     values: [8]
     reason: As the width, the 8px dot.

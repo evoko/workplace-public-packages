@@ -60,15 +60,15 @@
       "parent": "header",
       "type": "INSTANCE"
     },
-    "iconChevronUp": {
-      "path": "/Header/Icon/ChevronUp",
-      "parent": "header",
-      "type": "INSTANCE"
-    },
     "content": {
       "path": "/Content",
       "parent": "root",
       "type": "SLOT"
+    },
+    "iconChevronUp": {
+      "path": "/Header/Icon/ChevronUp",
+      "parent": "header",
+      "type": "INSTANCE"
     },
     "description": {
       "path": "/Content/Content",
@@ -231,22 +231,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -328,6 +328,104 @@
         }
       }
     },
+    "content": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "expanded=false, hover=false"
+        },
+        "radius": {
+          "none": true,
+          "from": "expanded=true, hover=false"
+        },
+        "borderWidth": {
+          "none": true,
+          "from": "expanded=true, hover=false"
+        },
+        "direction": {
+          "keyword": "VERTICAL",
+          "from": "expanded=true, hover=false"
+        },
+        "align": {
+          "keyword": "MIN/MIN",
+          "from": "expanded=true, hover=false"
+        },
+        "gap": {
+          "token": "stack.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial chapter). Decided once here, as the paddings are."
+        },
+        "paddingTop": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "paddingRight": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "paddingBottom": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "paddingLeft": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "expanded=true, hover=false"
+        },
+        "height": {
+          "keyword": "HUG",
+          "from": "expanded=true, hover=false"
+        }
+      },
+      "size": {},
+      "appearance": {
+        "expanded=true": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "expanded=true, hover=false"
+            },
+            "background": {
+              "none": true,
+              "from": "expanded=true, hover=false"
+            },
+            "borderColor": {
+              "none": true,
+              "from": "expanded=true, hover=false"
+            },
+            "shadow": {
+              "none": true,
+              "from": "expanded=true, hover=false"
+            }
+          },
+          "hover": {
+            "present": {
+              "value": true,
+              "from": "expanded=true, hover=true"
+            },
+            "background": {
+              "none": true,
+              "from": "expanded=true, hover=true"
+            },
+            "borderColor": {
+              "none": true,
+              "from": "expanded=true, hover=true"
+            },
+            "shadow": {
+              "none": true,
+              "from": "expanded=true, hover=true"
+            }
+          }
+        }
+      }
+    },
     "iconChevronUp": {
       "base": {
         "present": {
@@ -376,104 +474,6 @@
             },
             "color": {
               "token": "color.icon.primary",
-              "from": "expanded=true, hover=true"
-            }
-          }
-        }
-      }
-    },
-    "content": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "expanded=false, hover=false"
-        },
-        "radius": {
-          "none": true,
-          "from": "expanded=true, hover=false"
-        },
-        "borderWidth": {
-          "none": true,
-          "from": "expanded=true, hover=false"
-        },
-        "direction": {
-          "keyword": "VERTICAL",
-          "from": "expanded=true, hover=false"
-        },
-        "align": {
-          "keyword": "MIN/MIN",
-          "from": "expanded=true, hover=false"
-        },
-        "gap": {
-          "token": "stack.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial chapter). Decided once here, as the paddings are."
-        },
-        "paddingTop": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "paddingRight": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "paddingBottom": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "paddingLeft": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "width": {
-          "keyword": "FILL",
-          "from": "expanded=true, hover=false"
-        },
-        "height": {
-          "keyword": "HUG",
-          "from": "expanded=true, hover=false"
-        }
-      },
-      "size": {},
-      "appearance": {
-        "expanded=true": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "expanded=true, hover=false"
-            },
-            "background": {
-              "none": true,
-              "from": "expanded=true, hover=false"
-            },
-            "borderColor": {
-              "none": true,
-              "from": "expanded=true, hover=false"
-            },
-            "shadow": {
-              "none": true,
-              "from": "expanded=true, hover=false"
-            }
-          },
-          "hover": {
-            "present": {
-              "value": true,
-              "from": "expanded=true, hover=true"
-            },
-            "background": {
-              "none": true,
-              "from": "expanded=true, hover=true"
-            },
-            "borderColor": {
-              "none": true,
-              "from": "expanded=true, hover=true"
-            },
-            "shadow": {
-              "none": true,
               "from": "expanded=true, hover=true"
             }
           }
@@ -531,7 +531,7 @@
     "pageId": "5646:5",
     "figmaNode": "3168:3",
     "defaultVariant": "expanded=false, hover=false",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/expandable-card.yaml",
@@ -596,7 +596,7 @@
       {
         "rule": "bind",
         "at": "header.paddingTop, header.paddingRight, header.paddingBottom, header.paddingLeft, content.paddingTop, content.paddingRight, content.paddingBottom, content.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

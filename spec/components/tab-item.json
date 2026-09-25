@@ -143,9 +143,9 @@
           "from": "size=md, state=default"
         },
         "height": {
-          "literal": 40,
-          "from": "size=md, state=default",
-          "allowed": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). A tab is drawn 40 (md) and 32 (sm), as its description says."
+          "token": "size.control.md",
+          "from": "overlay",
+          "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
         },
         "borderTopWidth": {
           "none": true,
@@ -183,9 +183,9 @@
             "from": "size=sm, state=default"
           },
           "height": {
-            "literal": 32,
-            "from": "size=sm, state=default",
-            "allowed": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). A tab is drawn 40 (md) and 32 (sm), as its description says."
+            "token": "size.control.sm",
+            "from": "overlay",
+            "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
           }
         }
       },
@@ -204,11 +204,7 @@
           "focus": {
             "borderColor": {
               "token": "color.border.strong",
-              "from": "overlay",
-              "reason": "Figma binds the focused tab's underline colour to border/strong, a border width, not a colour (its description's issue: \"Non-color variable bound as a color\"). It is the selected tab's underline, drawn as Figma draws it on a focused tab with the ring (owner decision 2026-09-24), in the selected underline's colour, color.border.strong.",
-              "replaced": {
-                "literal": "{Spatial:border/strong}"
-              }
+              "from": "size=md, state=focus"
             },
             "shadow": {
               "token": "shadow.focus.default",
@@ -472,14 +468,14 @@
   },
   "docs": {
     "description": "Single tab inside a Tabs strip. 10 variants: size (sm 32px, md 40px) × state (default, hover, selected, focus, disabled). selected is the currently routed tab (aria-selected, persistent), not a press flash. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Props: label (text), show leading icon, show trailing icon, show counter (Badge). Use only inside Tabs.",
-    "figmaIssues": ["Non-color variable bound as a color: `border.strong`."]
+    "figmaIssues": []
   },
   "provenance": {
     "page": "components/navigation",
     "pageId": "2163:3714",
     "figmaNode": "3414:71",
     "defaultVariant": "size=md, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/tab-item.yaml",
@@ -501,6 +497,11 @@
       },
       {
         "rule": "bind",
+        "at": "root.height",
+        "reason": "As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25; Figma leaves the height unbound, which the design review asks SOLAR to bind."
+      },
+      {
+        "rule": "bind",
         "at": "trailingIcon.width",
         "reason": "As the leading icon's."
       },
@@ -508,16 +509,6 @@
         "rule": "set",
         "at": "counter.base.height",
         "reason": "The counter is a SOLAR Counter, whose 20px pill is its own: the tab places it, and never sizes it."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.default.focus.borderColor",
-        "reason": "Figma binds the focused tab's underline colour to border/strong, a border width, not a colour (its description's issue: \"Non-color variable bound as a color\"). It is the selected tab's underline, drawn as Figma draws it on a focused tab with the ring (owner decision 2026-09-24), in the selected underline's colour, color.border.strong."
-      },
-      {
-        "rule": "allowLiteral",
-        "at": "root.height",
-        "reason": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). A tab is drawn 40 (md) and 32 (sm), as its description says."
       }
     ]
   }

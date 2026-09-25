@@ -5,6 +5,10 @@
  * `solarIconButtonStyle` in `@bwp-web/styles/mui`, which regenerates from Figma on every
  * `solar:codegen`. This file is behaviour: the props, the icon, loading, and accessibility.
  *
+ * Given `active`, it is a toggle icon button (a toolbar option switched on or off): `true` draws
+ * Figma's active state, the persistent on state, and it is announced pressed; `false`, off. Left
+ * unset, it is an ordinary action, announced as no toggle.
+ *
  * It wraps MUI's IconButton, which supplies focus handling, keyboard activation, the disabled and
  * loading states and their classes; the recipe restyles it. The app must load
  * `@bwp-web/styles/tokens.css`, since every recipe value is a `var(--solar-*)`.
@@ -39,6 +43,11 @@ interface IconButtonBase
     > {
   /** The icon, which is the whole of what the button says. */
   icon: ReactNode;
+  /**
+   * Switched on, for a toggle icon button: Figma's active state, announced pressed. Unset, the
+   * button is no toggle.
+   */
+  active?: boolean;
 }
 
 /**
@@ -60,7 +69,7 @@ const DEV =
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(inProps, ref) {
     // As the app's MUI theme sets them (components.SolarIconButton), under the caller's own.
-    const { size, shape, prio, disabled, loading, icon, sx, ...rest } =
+    const { size, shape, prio, disabled, loading, active, icon, sx, ...rest } =
       useSolarProps(inProps, 'SolarIconButton');
     // For JavaScript callers, whom the types do not reach.
     if (DEV && !rest['aria-label'] && !rest['aria-labelledby'])
@@ -71,7 +80,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
 
     // Disabled wins over loading, as in Figma's state order, so a disabled button shows no spinner.
     const busy = Boolean(loading && !disabled);
-    const props = { size, shape, prio, disabled, loading };
+    const props = { size, shape, prio, disabled, loading, active };
     // What the loading state draws: which Spinner (Figma picks its size and style per prio; its
     // `style` axis is the Spinner's `variant` prop), and whether the icon stays.
     const whileLoading = solarIconButtonCompose(props, 'loading');
@@ -84,6 +93,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         data-solar=""
         ref={ref}
         {...rest}
+        // A toggle is pressed or not; a plain action carries no aria-pressed at all.
+        aria-pressed={active}
         disabled={disabled}
         loading={busy}
         loadingIndicator={

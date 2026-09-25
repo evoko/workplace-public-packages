@@ -71,7 +71,7 @@
           "from": "direction=prev, state=default"
         },
         "align": {
-          "keyword": "MIN/CENTER",
+          "keyword": "SPACE_BETWEEN/CENTER",
           "from": "direction=prev, state=default"
         },
         "gap": {
@@ -81,7 +81,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.sm",
@@ -90,7 +90,7 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.sm",
@@ -107,7 +107,7 @@
         "height": {
           "literal": 36,
           "from": "direction=prev, state=default",
-          "allowed": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). The button is drawn 36 tall."
+          "allowed": "The button is drawn 36 tall, bound to nothing, between two of SOLAR's control heights (size.control: 32, 40); carried as drawn, the design review asks."
         }
       },
       "size": {},
@@ -415,7 +415,7 @@
     "pageId": "4533:81",
     "figmaNode": "4581:110",
     "defaultVariant": "direction=prev, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/pagenavbutton.yaml",
@@ -443,52 +443,7 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). The button is drawn 36 tall."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=next, state=default",
-        "reason": "Figma lays the button out edge to edge (SPACE_BETWEEN) here and from the start at rest: a button that hugs its words draws both the same."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=next, state=disabled",
-        "reason": "As the others, the same in a button that hugs its words."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=next, state=focus",
-        "reason": "As the others, the same in a button that hugs its words."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=next, state=hover",
-        "reason": "As the others, the same in a button that hugs its words."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=next, state=pressed",
-        "reason": "As the others, the same in a button that hugs its words."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=prev, state=focus",
-        "reason": "As the others, the same in a button that hugs its words."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=prev, state=hover",
-        "reason": "As the others, the same in a button that hugs its words."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.align@direction=prev, state=pressed",
-        "reason": "As the others, the same in a button that hugs its words."
-      },
-      {
-        "rule": "accept",
-        "at": "component.pagenavbutton.root.gap#unbound",
-        "reason": "The next button's gap is an unbound 8, the previous button's bound to stack.xs, the same 8: drawn as the previous one's."
+        "reason": "The button is drawn 36 tall, bound to nothing, between two of SOLAR's control heights (size.control: 32, 40); carried as drawn, the design review asks."
       },
       {
         "rule": "accept",
@@ -518,7 +473,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingBottom",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

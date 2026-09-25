@@ -461,6 +461,7 @@
       "variants": [
         {
           "variant": "hover=false, access=true",
+          "id": "10403:590",
           "size": [
             340,
             333
@@ -489,10 +490,23 @@
             "Icon/None",
             "Spinner",
             "Tag"
+          ],
+          "hiddenPaths": [
+            "/Content/Button Group/Button#2/Counter",
+            "/Content/Button Group/Button#2/Icon/None",
+            "/Content/Button Group/Button#2/Icon/None#2",
+            "/Content/Button Group/Button#2/Spinner",
+            "/Content/Button Group/Button/Counter",
+            "/Content/Button Group/Button/Icon/None",
+            "/Content/Button Group/Button/Icon/None#2",
+            "/Content/Button Group/Button/Spinner",
+            "/Content/Text/Headline/FavouriteNoImage",
+            "/Content/Text/Headline/Tag"
           ]
         },
         {
           "variant": "hover=true, access=true",
+          "id": "10403:665",
           "size": [
             340,
             333
@@ -518,6 +532,7 @@
         },
         {
           "variant": "hover=false, access=false",
+          "id": "10403:716",
           "size": [
             340,
             333
@@ -542,6 +557,7 @@
         },
         {
           "variant": "hover=true, access=false",
+          "id": "10403:768",
           "size": [
             340,
             333

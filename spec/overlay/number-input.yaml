@@ -40,17 +40,12 @@ follows:
       Inline, the field hugs its number and its buttons; beside a side stepper, it is Figma's
       fixed 88 (md) and 68 (sm), the number filling what the column leaves.
 
-set:
-  root.appearance.stepper=inline.focus.shadow:
-    none: true
-    reason: >-
-      As Text Area's: Figma rings the whole component, label and helper with it, as well as the
-      field, when it is focused. The focus ring is the field's, and one ring is drawn.
-  root.appearance.stepper=side.focus.shadow:
-    none: true
-    reason: As inline's, one ring, the field's.
-
 bind:
+  field.height:
+    tokens: { 32: size.control.sm, 40: size.control.md }
+    reason: >-
+      As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25;
+      Figma leaves the height unbound, which the design review asks SOLAR to bind.
   fieldDecrement.width:
     tokens: { 20: icon.md, 16: icon.sm }
     reason: >-
@@ -76,10 +71,6 @@ bind:
       same value.
 
 allowLiteral:
-  field.height:
-    reason: >-
-      As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,
-      raised as a governance gap). Drawn 40 (md) and 32 (sm).
   field.width:
     reason: >-
       Beside a side stepper, the field is 88 (md) and 68 (sm), bound to nothing: SOLAR has no

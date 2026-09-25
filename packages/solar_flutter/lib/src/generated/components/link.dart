@@ -41,8 +41,8 @@ abstract final class SolarLinkRecipe {
     'root.paddingLeft|base': 't:inset.none',
     'root.width|base': 'k:HUG',
     'root.height|base': 'k:HUG',
-    'root.opacity|appearance|default|disabled': 'px:0.5',
     'root.shadow|appearance|default|focus': 't:shadow.focus.default',
+    'root.opacity|appearance|default|disabled': 'px:0.5',
     'leadingIcon.present|base': 'b:true',
     'leadingIcon.component|base': 'k:Icon/None',
     'leadingIcon.variant.solid|base': 'k:false',
@@ -83,14 +83,14 @@ abstract final class SolarLinkRecipe {
         't:typography.link.md.default',
     'label.color|combined|sm|default|focus': 't:color.text.link.default',
     'label.typography|combined|xs|default|default':
-        't:typography.link.xs.default',
-    'label.typography|combined|xs|default|hover': 't:typography.link.xs.hover',
+        't:typography.link.sm.default',
+    'label.typography|combined|xs|default|hover': 't:typography.link.sm.hover',
     'label.typography|combined|xs|default|pressed':
-        't:typography.link.xs.default',
+        't:typography.link.sm.default',
     'label.typography|combined|xs|default|disabled':
-        't:typography.link.xs.default',
+        't:typography.link.sm.default',
     'label.typography|combined|xs|default|focus':
-        't:typography.link.xs.default',
+        't:typography.link.sm.default',
     'label.color|combined|xs|default|focus': 't:color.text.link.default',
     'trailingIcon.present|base': 'b:true',
     'trailingIcon.component|base': 'k:Icon/None',
@@ -211,8 +211,8 @@ abstract final class SolarLinkRecipe {
     't:typography.link.lg.hover' => t.typography.linkLgHover,
     't:typography.link.md.default' => t.typography.linkMdDefault,
     't:typography.link.md.hover' => t.typography.linkMdHover,
-    't:typography.link.xs.default' => t.typography.linkXsDefault,
-    't:typography.link.xs.hover' => t.typography.linkXsHover,
+    't:typography.link.sm.default' => t.typography.linkSmDefault,
+    't:typography.link.sm.hover' => t.typography.linkSmHover,
     final v => throw StateError('$cell: no text style for $v'),
   };
 

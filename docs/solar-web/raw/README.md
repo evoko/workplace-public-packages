@@ -13,7 +13,12 @@ an account that can open the file. It costs no model tokens and is deterministic
 Variable IDs become names through [`_variables.json`](_variables.json); that map was
 built with the Figma Plugin API because the REST variables endpoint requires the
 `file_variables:read` scope, which the available accounts cannot grant. With such a
-token, `fetch-rest.mjs --vars` rebuilds the map from REST.
+token, `fetch-rest.mjs --vars` rebuilds the map from REST. Until then, when the fetch reports
+unresolved variable refs (a variable Foundations added or republished under a new ID, as on
+2026-09-25), [`unresolved-ids.mjs`](unresolved-ids.mjs) lists their full IDs from the REST cache,
+prints the read-only Plugin API script that names them (run it through the Figma MCP `use_figma`
+tool in this file), and merges the names it returns (`--add`); then run the fetch again, which
+reads the cache.
 
 ```bash
 node docs/solar-web/raw/fetch-rest.mjs                 # all pages (REST responses cached in $TMPDIR)

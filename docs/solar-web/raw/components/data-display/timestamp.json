@@ -85,6 +85,7 @@
       "variants": [
         {
           "variant": "format=relative, size=sm, emphasis=default",
+          "id": "4512:80",
           "size": [
             55,
             9
@@ -92,10 +93,12 @@
           "textFills": [
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "format=absolute, size=sm, emphasis=default",
+          "id": "4512:88",
           "size": [
             32,
             9
@@ -117,6 +120,7 @@
         },
         {
           "variant": "format=combined, size=sm, emphasis=default",
+          "id": "4512:96",
           "size": [
             71,
             9
@@ -138,6 +142,7 @@
         },
         {
           "variant": "format=relative, size=sm, emphasis=subtle",
+          "id": "4512:82",
           "size": [
             55,
             9
@@ -157,6 +162,7 @@
         },
         {
           "variant": "format=absolute, size=sm, emphasis=subtle",
+          "id": "4512:90",
           "size": [
             32,
             9
@@ -181,6 +187,7 @@
         },
         {
           "variant": "format=combined, size=sm, emphasis=subtle",
+          "id": "4512:98",
           "size": [
             71,
             9
@@ -205,6 +212,7 @@
         },
         {
           "variant": "format=relative, size=md, emphasis=default",
+          "id": "4512:84",
           "size": [
             63,
             10
@@ -230,6 +238,7 @@
         },
         {
           "variant": "format=absolute, size=md, emphasis=default",
+          "id": "4512:92",
           "size": [
             37,
             10
@@ -256,6 +265,7 @@
         },
         {
           "variant": "format=combined, size=md, emphasis=default",
+          "id": "4512:100",
           "size": [
             82,
             10
@@ -282,6 +292,7 @@
         },
         {
           "variant": "format=relative, size=md, emphasis=subtle",
+          "id": "4512:86",
           "size": [
             63,
             10
@@ -310,6 +321,7 @@
         },
         {
           "variant": "format=absolute, size=md, emphasis=subtle",
+          "id": "4512:94",
           "size": [
             37,
             10
@@ -339,6 +351,7 @@
         },
         {
           "variant": "format=combined, size=md, emphasis=subtle",
+          "id": "4512:102",
           "size": [
             82,
             10

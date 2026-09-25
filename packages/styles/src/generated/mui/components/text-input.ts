@@ -78,8 +78,8 @@ export const solarTextInputStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
@@ -148,7 +148,7 @@ export const solarTextInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
-      height: '40px',
+      height: 'var(--solar-size-control-md)',
     },
     '& .SolarTextInput-leadingIcon': {
       width: 'var(--solar-icon-md)',
@@ -203,7 +203,7 @@ export const solarTextInputStyles = {
       '& .SolarTextInput--field': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
-        height: '32px',
+        height: 'var(--solar-size-control-sm)',
       },
       '& .SolarTextInput-leadingIcon': {
         width: 'var(--solar-icon-sm)',

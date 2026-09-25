@@ -292,6 +292,7 @@
       "variants": [
         {
           "variant": "state=default, type=single",
+          "id": "10402:849",
           "size": [
             560,
             68
@@ -318,10 +319,17 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Button",
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Spinner"
           ]
         },
         {
           "variant": "state=loading, type=single",
+          "id": "10402:878",
           "size": [
             560,
             68
@@ -339,6 +347,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/Content": {
@@ -358,6 +367,7 @@
               {
                 "path": "/Icon/Icon/Progress",
                 "parent": "/Icon",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Progress",
                   "type": "INSTANCE",
@@ -378,6 +388,7 @@
               {
                 "path": "/Content/Skeleton",
                 "parent": "/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "FRAME",
@@ -409,6 +420,7 @@
         },
         {
           "variant": "state=default, type=batch",
+          "id": "10402:885",
           "size": [
             560,
             120
@@ -432,6 +444,13 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Serial & Location/Dropdown/Field/Icon/None",
+            "/Serial & Location/Dropdown/Field/Icon/None#2",
+            "/Serial & Location/Dropdown/Helper text",
+            "/Serial & Location/Dropdown/Label",
+            "/Serial & Location/Dropdown/Label/*"
           ],
           "overrides": {
             "changed": {
@@ -460,6 +479,7 @@
               {
                 "path": "/Headline",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Headline",
                   "type": "FRAME",
@@ -491,6 +511,7 @@
               {
                 "path": "/Headline/Icon",
                 "parent": "/Headline",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "FRAME",
@@ -525,6 +546,7 @@
               {
                 "path": "/Headline/Icon/Icon/Device",
                 "parent": "/Headline/Icon",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Device",
                   "type": "INSTANCE",
@@ -545,6 +567,7 @@
               {
                 "path": "/Headline/Content",
                 "parent": "/Headline",
+                "index": 1,
                 "layer": {
                   "name": "Content",
                   "type": "FRAME",
@@ -572,6 +595,7 @@
               {
                 "path": "/Headline/Content/Name",
                 "parent": "/Headline/Content",
+                "index": 0,
                 "layer": {
                   "name": "Name",
                   "type": "TEXT",
@@ -596,6 +620,7 @@
               {
                 "path": "/Headline/Content/Count",
                 "parent": "/Headline/Content",
+                "index": 1,
                 "layer": {
                   "name": "Count",
                   "type": "TEXT",
@@ -620,6 +645,7 @@
               {
                 "path": "/Headline/Tag",
                 "parent": "/Headline",
+                "index": 2,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -673,6 +699,7 @@
               {
                 "path": "/Serial & Location",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Serial & Location",
                   "type": "FRAME",
@@ -706,6 +733,7 @@
               {
                 "path": "/Serial & Location/Dropdown",
                 "parent": "/Serial & Location",
+                "index": 0,
                 "layer": {
                   "name": "Dropdown",
                   "type": "INSTANCE",
@@ -749,6 +777,7 @@
         },
         {
           "variant": "state=loading, type=batch",
+          "id": "10402:912",
           "size": [
             560,
             56
@@ -767,6 +796,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -794,6 +824,7 @@
               {
                 "path": "/Headline",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Headline",
                   "type": "FRAME",
@@ -825,6 +856,7 @@
               {
                 "path": "/Headline/Icon",
                 "parent": "/Headline",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "FRAME",
@@ -859,6 +891,7 @@
               {
                 "path": "/Headline/Icon/Icon/Progress",
                 "parent": "/Headline/Icon",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Progress",
                   "type": "INSTANCE",
@@ -879,6 +912,7 @@
               {
                 "path": "/Headline/Content",
                 "parent": "/Headline",
+                "index": 1,
                 "layer": {
                   "name": "Content",
                   "type": "FRAME",
@@ -906,6 +940,7 @@
               {
                 "path": "/Headline/Content/Row",
                 "parent": "/Headline/Content",
+                "index": 0,
                 "layer": {
                   "name": "Row",
                   "type": "FRAME",
@@ -933,6 +968,7 @@
               {
                 "path": "/Headline/Content/Row/Name",
                 "parent": "/Headline/Content/Row",
+                "index": 0,
                 "layer": {
                   "name": "Name",
                   "type": "TEXT",
@@ -957,6 +993,7 @@
               {
                 "path": "/Headline/Content/Row/Count",
                 "parent": "/Headline/Content/Row",
+                "index": 1,
                 "layer": {
                   "name": "Count",
                   "type": "TEXT",
@@ -981,6 +1018,7 @@
               {
                 "path": "/Headline/Content/Skeleton",
                 "parent": "/Headline/Content",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "FRAME",

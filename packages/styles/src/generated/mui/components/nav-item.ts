@@ -54,8 +54,8 @@ export const solarNavItemStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
@@ -74,7 +74,7 @@ export const solarNavItemStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
     width: '40px',
-    height: '40px',
+    height: 'var(--solar-size-control-md)',
     '& .SolarNavItem-iconOutline': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
@@ -144,7 +144,11 @@ export const solarNavItemStyles = {
         },
       },
       '&.Mui-focusVisible': {
+        backgroundColor: 'var(--solar-color-surface-active)',
         boxShadow: 'var(--solar-shadow-focus-default)',
+        '& .SolarNavItem-iconOutline': {
+          color: 'var(--solar-color-icon-primary)',
+        },
       },
       '& .SolarNavItem-iconOutline': {
         color: 'var(--solar-color-icon-primary)',
@@ -166,7 +170,14 @@ export const solarNavItemStyles = {
         },
       },
       '&.Mui-focusVisible': {
+        backgroundColor: 'var(--solar-color-surface-active)',
         boxShadow: 'var(--solar-shadow-focus-default)',
+        '& .SolarNavItem-iconOutline': {
+          color: 'var(--solar-color-icon-primary)',
+        },
+        '& .SolarNavItem-label': {
+          color: 'var(--solar-color-text-primary)',
+        },
       },
       '& .SolarNavItem-iconOutline': {
         color: 'var(--solar-color-icon-primary)',
@@ -200,12 +211,18 @@ export const solarNavItemComposition = {
         hover: {
           'variant.solid': 'true',
         },
+        focus: {
+          'variant.solid': 'true',
+        },
       },
       'selected=true, expanded=true': {
         default: {
           'variant.solid': 'true',
         },
         hover: {
+          'variant.solid': 'true',
+        },
+        focus: {
           'variant.solid': 'true',
         },
       },
@@ -223,12 +240,18 @@ export const solarNavItemComposition = {
         hover: {
           present: true,
         },
+        focus: {
+          present: true,
+        },
       },
       'selected=true, expanded=true': {
         default: {
           present: true,
         },
         hover: {
+          present: true,
+        },
+        focus: {
           present: true,
         },
       },

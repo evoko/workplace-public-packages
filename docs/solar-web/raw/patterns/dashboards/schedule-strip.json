@@ -219,6 +219,7 @@
       "variants": [
         {
           "variant": "type=playing, state=default",
+          "id": "6593:40887",
           "size": [
             348,
             59
@@ -234,10 +235,12 @@
           "iconFills": [
             "{Color:icon/feedback/success}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=playing, state=hover",
+          "id": "6593:41246",
           "size": [
             348,
             59
@@ -271,6 +274,7 @@
         },
         {
           "variant": "type=complete, state=default",
+          "id": "6593:40910",
           "size": [
             348,
             59
@@ -325,6 +329,7 @@
               {
                 "path": "/Container/Lunch Announcements",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Lunch Announcements",
                   "type": "TEXT",
@@ -349,6 +354,7 @@
               {
                 "path": "/Container/Mon-Fri · 12:00",
                 "parent": "/Container",
+                "index": 1,
                 "layer": {
                   "name": "Mon-Fri · 12:00",
                   "type": "TEXT",
@@ -379,6 +385,7 @@
         },
         {
           "variant": "type=complete, state=hover",
+          "id": "6593:41252",
           "size": [
             348,
             59
@@ -444,6 +451,7 @@
               {
                 "path": "/Container/Lunch Announcements",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Lunch Announcements",
                   "type": "TEXT",
@@ -468,6 +476,7 @@
               {
                 "path": "/Container/Mon-Fri · 12:00",
                 "parent": "/Container",
+                "index": 1,
                 "layer": {
                   "name": "Mon-Fri · 12:00",
                   "type": "TEXT",
@@ -498,6 +507,7 @@
         },
         {
           "variant": "type=scheduled, state=default",
+          "id": "6593:40965",
           "size": [
             348,
             59
@@ -552,6 +562,7 @@
               {
                 "path": "/Container/Weekend Promotions",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Weekend Promotions",
                   "type": "TEXT",
@@ -576,6 +587,7 @@
               {
                 "path": "/Container/Sat 10:00",
                 "parent": "/Container",
+                "index": 1,
                 "layer": {
                   "name": "Sat 10:00",
                   "type": "TEXT",
@@ -606,6 +618,7 @@
         },
         {
           "variant": "type=scheduled, state=hover",
+          "id": "6593:41258",
           "size": [
             348,
             59
@@ -671,6 +684,7 @@
               {
                 "path": "/Container/Weekend Promotions",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Weekend Promotions",
                   "type": "TEXT",
@@ -695,6 +709,7 @@
               {
                 "path": "/Container/Sat 10:00",
                 "parent": "/Container",
+                "index": 1,
                 "layer": {
                   "name": "Sat 10:00",
                   "type": "TEXT",
@@ -725,6 +740,7 @@
         },
         {
           "variant": "type=paused, state=default",
+          "id": "6593:40981",
           "size": [
             348,
             59
@@ -779,6 +795,7 @@
         },
         {
           "variant": "type=paused, state=hover",
+          "id": "6593:41264",
           "size": [
             348,
             59
@@ -953,6 +970,7 @@
               0
             ],
             "vars": {
+              "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Spatial:inset/md",
               "paddingTop": "Spatial:inset/md",
               "paddingRight": "Spatial:inset/md",
@@ -1246,6 +1264,7 @@
       "variants": [
         {
           "variant": "state=default, ghost=false",
+          "id": "6593:41098",
           "size": [
             380,
             343
@@ -1270,10 +1289,12 @@
             "{Color:icon/feedback/info}",
             "{Color:icon/feedback/neutral}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=default, ghost=true",
+          "id": "6593:41386",
           "size": [
             380,
             343
@@ -1316,6 +1337,7 @@
               {
                 "path": "/Container/Skeleton",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -1355,6 +1377,7 @@
               {
                 "path": "/Container/Skeleton#2",
                 "parent": "/Container",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -1394,6 +1417,7 @@
               {
                 "path": "/content/Skeleton",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -1444,6 +1468,7 @@
         },
         {
           "variant": "state=empty, ghost=false",
+          "id": "6593:41522",
           "size": [
             380,
             343
@@ -1471,6 +1496,12 @@
             "Icon/Refresh",
             "Spinner"
           ],
+          "hiddenPaths": [
+            "/content/EmptyState/Button/Counter",
+            "/content/EmptyState/Button/Icon/None",
+            "/content/EmptyState/Button/Icon/Refresh",
+            "/content/EmptyState/Button/Spinner"
+          ],
           "overrides": {
             "changed": {
               "/Container": {
@@ -1492,6 +1523,7 @@
               {
                 "path": "/content/EmptyState",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "EmptyState",
                   "type": "INSTANCE",

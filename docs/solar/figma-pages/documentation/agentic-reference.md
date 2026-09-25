@@ -1,6 +1,6 @@
 # Agentic Reference
 
-> Verbatim text of the Figma page `Agentic Reference` (id `1251:578`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `6e99bfa09cd4`. Curated chapter: [18-agent-reference.md](../../18-agent-reference.md).
+> Verbatim text of the Figma page `Agentic Reference` (id `1251:578`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `5891c57427aa`. Curated chapter: [18-agent-reference.md](../../18-agent-reference.md).
 
 ## Slide 1
 
@@ -236,7 +236,7 @@ text: color.text.{variant} → primary, secondary, tertiary, disabled, inverse, 
 border: color.border.{variant} → medium, subtle, strong, disabled, inverse, surface, highlight, feedback.{type}.{subtle|medium|strong}
 icon: color.icon.{variant} → primary, secondary, tertiary, disabled, inverse, feedback.{type}
 action: color.action.{intent}.{property}.{state}
-data: color.data.{type}.{id} → category.01-08, scale.01-08, delta.positive|negative|neutral
+data: color.data.{type}.{id} → category.01-08, scale.100-900, delta.positive|negative|neutral
 
 [BANNED_SEGMENTS]
 foreground → use text or icon

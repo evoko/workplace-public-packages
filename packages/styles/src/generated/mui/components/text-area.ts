@@ -62,8 +62,8 @@ export const solarTextAreaStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
@@ -171,7 +171,7 @@ export const solarTextAreaStyles = {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'flex-start',
-      gap: 'var(--solar-inset-none)',
+      gap: 'var(--solar-inset-md)',
       paddingTop: 'var(--solar-inset-none)',
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
@@ -254,7 +254,6 @@ export const solarTextAreaStyles = {
         },
       },
       '&:has(.SolarTextArea--field.Mui-focused)': {
-        boxShadow: 'none',
         '& .SolarTextArea--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',

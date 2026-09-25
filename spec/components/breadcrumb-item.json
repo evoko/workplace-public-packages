@@ -99,11 +99,7 @@
           "focus": {
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws a breadcrumb no focus state, and a visible focus is SOLAR's floor. A focused link draws SOLAR's focus ring, as a Nav Item's and a Link's do (owner decision 2026-09-24 for Nav Item); the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
+              "from": "type=link, state=focus"
             }
           }
         }
@@ -138,6 +134,12 @@
               "token": "color.text.disabled",
               "from": "type=link, state=disabled"
             }
+          },
+          "focus": {
+            "color": {
+              "token": "color.text.primary",
+              "from": "type=link, state=focus"
+            }
           }
         },
         "type=current": {
@@ -152,7 +154,7 @@
     }
   },
   "docs": {
-    "description": "One segment of a breadcrumb trail.\n\nVariants (4):\n• type — link | current  (current is the terminal, non-interactive item)\n• state — default | hover | disabled  (applies to type=link only)\n\nUse inside the Breadcrumbs wrapper — not standalone.",
+    "description": "One segment of a breadcrumb trail.\n\nVariants (5):\n• type — link | current  (current is the terminal, non-interactive item)\n• state — default | hover | focus | disabled  (type=link only; focus carries shadow/focus/default)\n\nUse inside the Breadcrumbs wrapper — not standalone.",
     "figmaIssues": []
   },
   "provenance": {
@@ -160,7 +162,7 @@
     "pageId": "2163:3712",
     "figmaNode": "2771:588",
     "defaultVariant": "type=link, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/breadcrumb-item.yaml",
@@ -169,11 +171,6 @@
         "rule": "base",
         "at": "base",
         "reason": "One segment of a breadcrumb trail, its description says: a link to an ancestor page, or the current page at the end, not a link (`aria-current=\"page\"`). Drawn with the shared layer helpers on both platforms: on the web a link (or a button, given no `href`), a text where it is the current page or disabled; in Flutter pressable and announced as a link."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.type=link.focus.shadow",
-        "reason": "Figma draws a breadcrumb no focus state, and a visible focus is SOLAR's floor. A focused link draws SOLAR's focus ring, as a Nav Item's and a Link's do (owner decision 2026-09-24 for Nav Item); the design review asks SOLAR to draw it."
       }
     ]
   }

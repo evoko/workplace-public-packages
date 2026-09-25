@@ -120,6 +120,7 @@
       "variants": [
         {
           "variant": "state=default, expanded=false",
+          "id": "2733:850",
           "size": [
             400,
             48
@@ -133,10 +134,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover, expanded=false",
+          "id": "2733:898",
           "size": [
             400,
             48
@@ -165,6 +168,7 @@
         },
         {
           "variant": "state=disabled, expanded=false",
+          "id": "2733:994",
           "size": [
             400,
             48
@@ -190,6 +194,7 @@
         },
         {
           "variant": "state=default, expanded=true",
+          "id": "2733:855",
           "size": [
             400,
             114
@@ -231,6 +236,7 @@
               {
                 "path": "/Accordion",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Accordion",
                   "type": "INSTANCE",
@@ -278,6 +284,7 @@
               {
                 "path": "/content",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "content",
                   "type": "SLOT",
@@ -312,6 +319,7 @@
               {
                 "path": "/content/content-text",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "content-text",
                   "type": "TEXT",
@@ -342,6 +350,7 @@
         },
         {
           "variant": "state=hover, expanded=true",
+          "id": "2733:903",
           "size": [
             400,
             114
@@ -383,6 +392,7 @@
               {
                 "path": "/Accordion",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Accordion",
                   "type": "INSTANCE",
@@ -433,6 +443,7 @@
               {
                 "path": "/content",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "content",
                   "type": "SLOT",
@@ -470,6 +481,7 @@
               {
                 "path": "/content/content-text",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "content-text",
                   "type": "TEXT",
@@ -500,6 +512,7 @@
         },
         {
           "variant": "state=disabled, expanded=true",
+          "id": "2733:999",
           "size": [
             400,
             114
@@ -540,6 +553,7 @@
               {
                 "path": "/Accordion",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Accordion",
                   "type": "INSTANCE",
@@ -587,6 +601,7 @@
               {
                 "path": "/content",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "content",
                   "type": "SLOT",
@@ -621,6 +636,7 @@
               {
                 "path": "/content/content-text",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "content-text",
                   "type": "TEXT",

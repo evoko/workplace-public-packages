@@ -5,7 +5,7 @@
     {
       "name": "Token Input",
       "id": "8817:174",
-      "description": "Multi-value (token) input. Collects discrete entries as removable Token chips with an optional overflow Counter. Class B form input. Variants: size (md, sm) × state (default, hover, focus, filled, disabled, error, readonly). Properties: label, helper, show label, show helper, show mandatory. Built from SOLAR Web primitives; chips = local .Token; counter = Counter.",
+      "description": "Multi-value (token) input. Collects discrete entries as removable Tag chips with an optional overflow Counter. Class B form input. 16 variants: size (md, sm) × state (default, hover, focus, active, filled, disabled, error, readonly). In readonly and disabled the chips are text-only — they cannot be removed. Props: label, helper, show label, show helper, show mandatory, Tags (slot).",
       "docLinks": [],
       "variantCount": 16,
       "props": {
@@ -281,6 +281,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "8817:2",
           "size": [
             240,
             76
@@ -291,10 +292,12 @@
             "{Color:text/tertiary}",
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=default",
+          "id": "8817:88",
           "size": [
             160,
             66
@@ -388,6 +391,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "8851:31520",
           "size": [
             240,
             76
@@ -410,6 +414,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "8851:31536",
           "size": [
             160,
             66
@@ -506,6 +511,7 @@
         },
         {
           "variant": "size=md, state=active",
+          "id": "8817:10",
           "size": [
             240,
             76
@@ -533,6 +539,7 @@
         },
         {
           "variant": "size=sm, state=active",
+          "id": "8817:96",
           "size": [
             160,
             66
@@ -632,6 +639,7 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "8817:18",
           "size": [
             240,
             76
@@ -658,6 +666,7 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -716,6 +725,7 @@
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "8817:104",
           "size": [
             160,
             66
@@ -805,6 +815,7 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -863,6 +874,7 @@
         },
         {
           "variant": "size=md, state=filled",
+          "id": "8817:29",
           "size": [
             240,
             76
@@ -890,6 +902,7 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -943,6 +956,7 @@
               {
                 "path": "/Field/Tags/Tag#2",
                 "parent": "/Field/Tags",
+                "index": 1,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -996,6 +1010,7 @@
               {
                 "path": "/Field/Counter",
                 "parent": "/Field",
+                "index": 1,
                 "layer": {
                   "name": "Counter",
                   "type": "INSTANCE",
@@ -1050,6 +1065,7 @@
         },
         {
           "variant": "size=sm, state=filled",
+          "id": "8817:115",
           "size": [
             160,
             94
@@ -1136,6 +1152,7 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1189,6 +1206,7 @@
               {
                 "path": "/Field/Tags/Tag#2",
                 "parent": "/Field/Tags",
+                "index": 1,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1242,6 +1260,7 @@
               {
                 "path": "/Field/Counter",
                 "parent": "/Field",
+                "index": 1,
                 "layer": {
                   "name": "Counter",
                   "type": "INSTANCE",
@@ -1296,6 +1315,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "8817:46",
           "size": [
             240,
             76
@@ -1304,9 +1324,6 @@
             "{Color:text/disabled}",
             "{Color:text/feedback/info}",
             "{Color:text/feedback/neutral}"
-          ],
-          "iconFills": [
-            "{Color:icon/feedback/neutral}"
           ],
           "overrides": {
             "changed": {
@@ -1343,17 +1360,18 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
                   "main": "Tag",
                   "variant": {
                     "status": "neutral",
-                    "type": "closable",
+                    "type": "text-only",
                     "invert": "false"
                   },
                   "size": [
-                    67,
+                    55,
                     24
                   ],
                   "layout": {
@@ -1361,7 +1379,7 @@
                     "gap": 4,
                     "pad": [
                       0,
-                      8,
+                      12,
                       0,
                       12
                     ],
@@ -1380,7 +1398,7 @@
                     "itemSpacing": "Spatial:inset/2xs",
                     "paddingLeft": "Spatial:inset/sm",
                     "paddingTop": "Spatial:inset/none",
-                    "paddingRight": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
                     "paddingBottom": "Spatial:inset/none",
                     "strokeTopWeight": "Spatial:border/default",
                     "strokeBottomWeight": "Spatial:border/default",
@@ -1398,6 +1416,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "8817:132",
           "size": [
             160,
             66
@@ -1406,9 +1425,6 @@
             "{Color:text/disabled}",
             "{Color:text/feedback/info}",
             "{Color:text/feedback/neutral}"
-          ],
-          "iconFills": [
-            "{Color:icon/feedback/neutral}"
           ],
           "overrides": {
             "changed": {
@@ -1509,17 +1525,18 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
                   "main": "Tag",
                   "variant": {
                     "status": "neutral",
-                    "type": "closable",
+                    "type": "text-only",
                     "invert": "false"
                   },
                   "size": [
-                    67,
+                    55,
                     24
                   ],
                   "layout": {
@@ -1527,7 +1544,7 @@
                     "gap": 4,
                     "pad": [
                       0,
-                      8,
+                      12,
                       0,
                       12
                     ],
@@ -1546,7 +1563,7 @@
                     "itemSpacing": "Spatial:inset/2xs",
                     "paddingLeft": "Spatial:inset/sm",
                     "paddingTop": "Spatial:inset/none",
-                    "paddingRight": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
                     "paddingBottom": "Spatial:inset/none",
                     "strokeTopWeight": "Spatial:border/default",
                     "strokeBottomWeight": "Spatial:border/default",
@@ -1564,6 +1581,7 @@
         },
         {
           "variant": "size=md, state=error",
+          "id": "8817:58",
           "size": [
             240,
             76
@@ -1595,6 +1613,7 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1648,6 +1667,7 @@
               {
                 "path": "/Field/Tags/Tag#2",
                 "parent": "/Field/Tags",
+                "index": 1,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1706,6 +1726,7 @@
         },
         {
           "variant": "size=sm, state=error",
+          "id": "8817:144",
           "size": [
             160,
             66
@@ -1798,6 +1819,7 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1851,6 +1873,7 @@
               {
                 "path": "/Field/Tags/Tag#2",
                 "parent": "/Field/Tags",
+                "index": 1,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -1909,6 +1932,7 @@
         },
         {
           "variant": "size=md, state=readonly",
+          "id": "8817:73",
           "size": [
             240,
             76
@@ -1918,9 +1942,6 @@
             "{Color:text/feedback/info}",
             "{Color:text/feedback/neutral}",
             "{Color:text/secondary}"
-          ],
-          "iconFills": [
-            "{Color:icon/feedback/neutral}"
           ],
           "overrides": {
             "changed": {
@@ -1934,17 +1955,18 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
                   "main": "Tag",
                   "variant": {
                     "status": "neutral",
-                    "type": "closable",
+                    "type": "text-only",
                     "invert": "false"
                   },
                   "size": [
-                    67,
+                    55,
                     24
                   ],
                   "layout": {
@@ -1952,7 +1974,7 @@
                     "gap": 4,
                     "pad": [
                       0,
-                      8,
+                      12,
                       0,
                       12
                     ],
@@ -1971,7 +1993,7 @@
                     "itemSpacing": "Spatial:inset/2xs",
                     "paddingLeft": "Spatial:inset/sm",
                     "paddingTop": "Spatial:inset/none",
-                    "paddingRight": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
                     "paddingBottom": "Spatial:inset/none",
                     "strokeTopWeight": "Spatial:border/default",
                     "strokeBottomWeight": "Spatial:border/default",
@@ -1987,17 +2009,18 @@
               {
                 "path": "/Field/Tags/Tag#2",
                 "parent": "/Field/Tags",
+                "index": 1,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
                   "main": "Tag",
                   "variant": {
                     "status": "neutral",
-                    "type": "closable",
+                    "type": "text-only",
                     "invert": "false"
                   },
                   "size": [
-                    67,
+                    55,
                     24
                   ],
                   "layout": {
@@ -2005,7 +2028,7 @@
                     "gap": 4,
                     "pad": [
                       0,
-                      8,
+                      12,
                       0,
                       12
                     ],
@@ -2024,7 +2047,7 @@
                     "itemSpacing": "Spatial:inset/2xs",
                     "paddingLeft": "Spatial:inset/sm",
                     "paddingTop": "Spatial:inset/none",
-                    "paddingRight": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
                     "paddingBottom": "Spatial:inset/none",
                     "strokeTopWeight": "Spatial:border/default",
                     "strokeBottomWeight": "Spatial:border/default",
@@ -2045,6 +2068,7 @@
         },
         {
           "variant": "size=sm, state=readonly",
+          "id": "8817:159",
           "size": [
             160,
             66
@@ -2054,9 +2078,6 @@
             "{Color:text/feedback/info}",
             "{Color:text/feedback/neutral}",
             "{Color:text/secondary}"
-          ],
-          "iconFills": [
-            "{Color:icon/feedback/neutral}"
           ],
           "overrides": {
             "changed": {
@@ -2133,17 +2154,18 @@
               {
                 "path": "/Field/Tags/Tag",
                 "parent": "/Field/Tags",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
                   "main": "Tag",
                   "variant": {
                     "status": "neutral",
-                    "type": "closable",
+                    "type": "text-only",
                     "invert": "false"
                   },
                   "size": [
-                    67,
+                    55,
                     24
                   ],
                   "layout": {
@@ -2151,7 +2173,7 @@
                     "gap": 4,
                     "pad": [
                       0,
-                      8,
+                      12,
                       0,
                       12
                     ],
@@ -2170,7 +2192,7 @@
                     "itemSpacing": "Spatial:inset/2xs",
                     "paddingLeft": "Spatial:inset/sm",
                     "paddingTop": "Spatial:inset/none",
-                    "paddingRight": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
                     "paddingBottom": "Spatial:inset/none",
                     "strokeTopWeight": "Spatial:border/default",
                     "strokeBottomWeight": "Spatial:border/default",
@@ -2186,17 +2208,18 @@
               {
                 "path": "/Field/Tags/Tag#2",
                 "parent": "/Field/Tags",
+                "index": 1,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
                   "main": "Tag",
                   "variant": {
                     "status": "neutral",
-                    "type": "closable",
+                    "type": "text-only",
                     "invert": "false"
                   },
                   "size": [
-                    67,
+                    55,
                     24
                   ],
                   "layout": {
@@ -2204,7 +2227,7 @@
                     "gap": 4,
                     "pad": [
                       0,
-                      8,
+                      12,
                       0,
                       12
                     ],
@@ -2223,7 +2246,7 @@
                     "itemSpacing": "Spatial:inset/2xs",
                     "paddingLeft": "Spatial:inset/sm",
                     "paddingTop": "Spatial:inset/none",
-                    "paddingRight": "Spatial:inset/xs",
+                    "paddingRight": "Spatial:inset/sm",
                     "paddingBottom": "Spatial:inset/none",
                     "strokeTopWeight": "Spatial:border/default",
                     "strokeBottomWeight": "Spatial:border/default",

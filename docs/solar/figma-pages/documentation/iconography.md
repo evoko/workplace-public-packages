@@ -1,6 +1,6 @@
 # Iconography
 
-> Verbatim text of the Figma page `Iconography` (id `763:53729`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `5b3c541fe140`. Curated chapter: [09-iconography.md](../../09-iconography.md).
+> Verbatim text of the Figma page `Iconography` (id `763:53729`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `f97c90b95641`. Curated chapter: [09-iconography.md](../../09-iconography.md).
 
 ## Slide 1
 
@@ -109,7 +109,7 @@ Outline is the default across SOLAR surfaces — toolbars, inputs, list items, b
 Solid signals emphasis or state — selected tab, active nav item, filled status, hero illustration.\
 Pair rule: every outline icon has a matching solid with the same name, canvas, and optical volume.\
 Directional glyphs: solids are filled triangles — sharp, tall-narrow — never a filled outline.\
-Solid variants use the /Solid suffix in the library; outline has no suffix.
+Solid is a variant, not a name: each icon is one component set with a solid boolean (solid=false outline, solid=true solid).
 
 - Outline and Solid · paired variants
 - Same metaphor · same canvas · drawn independently
@@ -196,7 +196,7 @@ Size is never in the name — it comes from the icon/\* variables.
 
 #### SOLAR maintains a single icon library as the source of truth for all Biamp products. Custom or third-party icons are not permitted without approval from the SOLAR Gatekeeper. The current Gatekeeper is designated by Biamp.
 
-The icon library is a Figma component set with Size and Style variants — outline is the base, solid uses a /Solid suffix. Every icon name is identical across sizes. New requests go through the Gatekeeper before the icon joins the shared library, and pages inside the icon file carry a status emoji so consumers know what is ready to use.
+The icon library is one Figma component set per icon with a single solid boolean — outline (solid=false) is the base, solid=true the filled twin; size comes from the icon/\* variables. Every icon name is identical across sizes. New requests go through the Gatekeeper before the icon joins the shared library, and pages inside the icon file carry a status emoji so consumers know what is ready to use.
 
 ##### Workflow & status
 
@@ -216,12 +216,12 @@ This is the final review pass. An icon that fails any item goes back to the cont
 
 ##### Gatekeeper checklist
 
-Sourced from Remix at every size — no Nova, no Phosphor, no custom SVGs.\
-Canvas matches the rendered size. Live area respected.\
+Sourced from Remix, drawn once on the 24 px canvas — no Nova, no Phosphor, no custom SVGs.\
+24 × 24 canvas; rendered size comes from the icon/\* variables. Live area respected.\
 Strokes expanded to filled paths. Paths combined. Integer pixels only.\
-Stroke and fill colour bound to semantic tokens — color.icon.\* or color.action.\*.icon.\* — never hardcoded hex.\
+Master fill bound to color/neutral/900 (library default, never raw hex); every placed instance rebinds to color.icon.\* or color.action.\*.icon.\*.\
 Outline and Solid pair present. Same name, same canvas, same optical volume.\
-Name follows element–modifier grammar. Identical across sizes.\
+Name follows element–modifier grammar. One name, both fills.\
 Does not override, rename, or detach any existing protected icon.\
 Reviewed and approved by the SOLAR Gatekeeper.
 

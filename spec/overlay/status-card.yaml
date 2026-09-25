@@ -57,7 +57,7 @@ allowLiteral:
   title.opacity:
     reason: >-
       A disabled card's title and figure are drawn at 20% opacity. SOLAR has no opacity scale, as
-      for Card's disabled 40%; carried as Figma's number, and raised as a governance gap.
+      for Card's disabled 40% (SOLAR's decision, 2026-09-25); carried as Figma's number.
   trend.opacity:
     reason: As the title's, carried as Figma's number.
   skeleton.width:

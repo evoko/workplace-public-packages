@@ -315,7 +315,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 | Fills           | `color.action.primary.bg.default`                                                                                        |
 | Strokes         | `color.action.primary.border.default`                                                                                    |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.primary`, `color.text.secondary` |
-| Icon color      | `color.action.primary.icon.default`, `color.icon.primary`                                                                |
+| Icon color      | `color.action.primary.icon.default`, `color.icon.disabled`, `color.icon.primary`                                         |
 | Spacing         | `inset.md`, `inset.sm`, `inset.xs`, `stack.none`, `stack.xs`                                                             |
 | Radius          | `radius.control`                                                                                                         |
 | Border width    | `border.default`                                                                                                         |
@@ -337,10 +337,10 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 
 ### Variant matrix
 
-| breakpoint | size    | fill | stroke | effect | text                                                                                                                           | icon                                                        |
-| ---------- | ------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| desktop    | 1020×56 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default` |
-| mobile     | 377×56  |      |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`                                          | `color.icon.primary`<br>`color.action.primary.icon.default` |
+| breakpoint | size    | fill | stroke | effect | text                                                                                                                           | icon                                                                                 |
+| ---------- | ------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| desktop    | 1020×56 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.icon.disabled`<br>`color.action.primary.icon.default` |
+| mobile     | 377×56  |      |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`                                          | `color.icon.primary`<br>`color.icon.disabled`<br>`color.action.primary.icon.default` |
 
 ## Component set: TableHeader
 
@@ -357,8 +357,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 
 ### Anatomy (default variant)
 
-- **breakpoint=desktop** · component · row gap 0 pad 8/0/8/0 FILL/HUG · 1020×56  
-  padding `stack.none`, `inset.xs` · strokeWeight `border.default`
+- **breakpoint=desktop** · component · row gap 16 pad 8/0/8/0 FILL/HUG · 1020×56  
+  itemSpacing `inset.md` · padding `stack.none`, `inset.xs` · strokeWeight `border.default`
   - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1020×40  
     itemSpacing `inset.md`
     - **SearchField** · instance of **SearchField** (state=default, size=md) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 240×40  
@@ -368,18 +368,18 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
     - **Actions** · slot · row gap 8 pad 0/0/0/0 FIXED/HUG · 240×40  
       itemSpacing `stack.xs` · prop slotContentId←Actions
       - **Icon Button** · instance of **Icon Button** (size=md, shape=square, prio=secondary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control`
+        fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control`
       - **Icon Button** · instance of **Icon Button** (size=md, shape=square, prio=secondary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control`
+        fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control`
       - **Icon Button** · instance of **Icon Button** (size=md, shape=square, prio=secondary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control`
+        fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control`
 
 ### Tokens used
 
 | Role         | Tokens                                                                              |
 | ------------ | ----------------------------------------------------------------------------------- |
 | Fills        | `color.action.secondary.bg.default`, `color.surface.base`                           |
-| Strokes      | `color.border.medium`, `color.border.subtle`                                        |
+| Strokes      | `color.action.secondary.border.default`, `color.border.subtle`                      |
 | Text color   | `color.text.feedback.info`, `color.text.primary`, `color.text.secondary`            |
 | Icon color   | `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary` |
 | Spacing      | `inset.md`, `inset.none`, `inset.sm`, `inset.xs`, `stack.none`, `stack.xs`          |

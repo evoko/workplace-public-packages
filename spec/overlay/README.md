@@ -310,8 +310,8 @@ The component in code an instance of a Figma component is, where Figma's name is
   `0` gap the none of its direction's family (`inset.none` across, `stack.none` down). A default
   that matches nothing in one component is not an error. A repeated decision belongs here only
   where it holds for every component it would reach: the focus ring does not (the text fields draw
-  theirs on the field, and Context Menu Item draws its focus as a fill), so each overlay that wants
-  it says so in one patterned rule.
+  theirs on the field, not the root), so each overlay that wants it says so in one patterned rule.
+  Since 2026-09-25 Figma draws the ring itself on most controls, and fewer overlays need the rule.
 - **`excluded.yaml`** names the components left out of the flow, with a reason (Cursor): the
   triage skips them and the build refuses them.
 
@@ -325,12 +325,13 @@ lead it, and each stays one rule per overlay, for these reasons:
   width. A control does not: a Button, a Tag, a Checkbox hugs what it holds, and `defaults.yaml`
   cannot tell one from the other, since both are a root with a width Figma fixes. Where the width
   is the caller's is a decision about the component, made in its overlay.
-- **`allowLiteral root.height = any`** (38) **and `allowLiteral root.width = any`** (15). SOLAR
-  publishes no variable for a control's size (Button's 32, 40 and 48, a Checkbox's 16), one
-  governance gap, which the design review asks once (its decision 4). A default would allow an
-  unbound size in every component the next sync brings, where each should be looked at (Insight
-  Row's fixed 64 was a height to hug, not a size to carry), so each overlay allows its own, and
-  the audit counts them.
+- **`allowLiteral root.height = any`** **and `allowLiteral root.width = any`**. A size Figma
+  leaves unbound: since 2026-09-25 a control's height on SOLAR's control steps (32, 40, 48) binds
+  `size.control.*` instead (Button, Icon Button, the fields, the tabs), and what is left is sizes on
+  no step (FAB's 44 and 56, a Checkbox's 16, a row's 36), one question in the design review. A
+  default would allow an unbound size in every component the next sync brings, where each should be
+  looked at (Insight Row's fixed 64 was a height to hug, not a size to carry), so each overlay
+  allows its own, and the audit counts them.
 
 ## Glossary
 

@@ -1,8 +1,8 @@
 # SOLAR token inventory
 
 [figma-variables.json](figma-variables.json) is a verbatim capture of every variable,
-text style and effect style in the SOLAR Foundations Figma file, taken on 2026-09-20 via
-the Figma Plugin API. It is the token source of truth for this repository until the
+text style and effect style in the SOLAR Foundations Figma file, first taken on 2026-09-20
+and last re-taken on 2026-09-25 via the Figma Plugin API. It is the token source of truth for this repository until the
 SOLAR core team's automated Figma → JSON export replaces it (pipeline stage 2 in
 [17-implementation-pipeline.md](../17-implementation-pipeline.md)).
 
@@ -25,12 +25,12 @@ SOLAR core team's automated Figma → JSON export replaces it (pipeline stage 2 
 | `source`       | File key, export date, collection ids, mode names, counts                                                                                                          |
 | `primitives`   | The Primitives collection (265 variables, single mode) grouped by path prefix. Hex strings, or `{hex, a}` for alphas. Scales are arrays or `{index: px}` maps      |
 | `color`        | The Color collection (287 variables). `name: [lightAlias, darkAlias, scopes]`. Aliases point into `primitives`                                                     |
-| `spatial`      | The Spatial collection (34 variables). `name: [alias, resolvedPx, scopes]`                                                                                         |
+| `spatial`      | The Spatial collection (38 variables). `name: [alias, resolvedPx, scopes]`                                                                                         |
 | `type`         | The Type collection (41 variables). `name: [desktopPx, mobilePx]`                                                                                                  |
 | `textStyles`   | 60 local text styles. `name: [family, style, sizePx, lineHeightPx, letterSpacing, decoration, case]` at Desktop mode; captures before 2026-09-23 lack the last two |
 | `effectStyles` | 9 local effect styles as ordered drop-shadow layers with the bound shadow color variable and its Light-mode rgba                                                   |
 
-Counts were checked against Figma after writing: 265 / 287 / 34 / 41 / 60 / 9.
+Counts were checked against Figma after writing: 265 / 287 / 38 / 41 / 60 / 9 (Spatial was 34 until `size/control/*` and `size/target/min` were added on 2026-09-25).
 
 ## Reading a token end to end
 
@@ -119,7 +119,7 @@ explaining themselves. Never edit them; change the JSON or the script.
 {
   "_note": "…",
   "generatedFrom": { "figmaFile", "fileKey", "exportedOn", "solarVersion", "collections": { … } },
-  "variables": [Variable, …], // 647: 265 primitives + 287 color + 34 spatial + 41 type + 20 layout (SOLAR Web)
+  "variables": [Variable, …], // 651: 265 primitives + 287 color + 38 spatial + 41 type + 20 layout (SOLAR Web)
   "effectStyles": [EffectStyle, …], // 9
   "textStyles": [TextStyle, …], // 47: the 60 Figma styles minus the 13 whose names start with "_" or "."
   "zIndex": { "base": 0, "sticky": 100, "dropdown": 200, "overlay": 300, "dialog": 400, "toast": 500, "tooltip": 600 }

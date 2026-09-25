@@ -526,6 +526,7 @@
       "variants": [
         {
           "variant": "selected=false, drag=false",
+          "id": "10400:411",
           "size": [
             423,
             65
@@ -548,10 +549,15 @@
           "hidden": [
             "Actions",
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Actions",
+            "/Text/Text+icon/Icon/None"
           ]
         },
         {
           "variant": "selected=true, drag=false",
+          "id": "10400:442",
           "size": [
             423,
             65
@@ -635,6 +641,7 @@
         },
         {
           "variant": "selected=false, drag=true",
+          "id": "10400:474",
           "size": [
             423,
             65

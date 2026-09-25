@@ -168,6 +168,7 @@
       "variants": [
         {
           "variant": "style=subtle, span=single",
+          "id": "6644:7",
           "size": [
             160,
             22
@@ -176,10 +177,12 @@
             "{Color:text/secondary}",
             "{Color:text/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "style=subtle, span=start",
+          "id": "6644:13",
           "size": [
             200,
             22
@@ -207,6 +210,7 @@
         },
         {
           "variant": "style=subtle, span=middle",
+          "id": "6644:19",
           "size": [
             240,
             22
@@ -234,6 +238,7 @@
         },
         {
           "variant": "style=subtle, span=end",
+          "id": "6644:25",
           "size": [
             200,
             22
@@ -261,6 +266,7 @@
         },
         {
           "variant": "style=solid, span=single",
+          "id": "6644:31",
           "size": [
             160,
             22
@@ -273,6 +279,9 @@
           ],
           "hidden": [
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -330,6 +339,7 @@
         },
         {
           "variant": "style=solid, span=start",
+          "id": "6644:37",
           "size": [
             200,
             22
@@ -342,6 +352,9 @@
           ],
           "hidden": [
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -399,6 +412,7 @@
         },
         {
           "variant": "style=solid, span=middle",
+          "id": "6644:43",
           "size": [
             240,
             22
@@ -411,6 +425,9 @@
           ],
           "hidden": [
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -468,6 +485,7 @@
         },
         {
           "variant": "style=solid, span=end",
+          "id": "6644:49",
           "size": [
             200,
             22
@@ -480,6 +498,9 @@
           ],
           "hidden": [
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Stripe"
           ],
           "overrides": {
             "changed": {

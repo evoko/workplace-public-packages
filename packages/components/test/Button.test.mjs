@@ -67,8 +67,9 @@ describe('the SOLAR Button shell', () => {
     expect(
       last(rule(h(Button, { prio: 'tertiary' }, 'Skip')), 'background-color'),
     ).toBe('transparent');
+    // SOLAR's control height since 2026-09-25, 32 at sm.
     expect(last(rule(h(Button, { size: 'sm' }, 'Save')), 'height')).toBe(
-      '32px',
+      'var(--solar-size-control-sm)',
     );
     expect(last(rule(h(Button, null, 'Save')), 'background-color')).toBe(
       'var(--solar-color-action-primary-bg-default)',

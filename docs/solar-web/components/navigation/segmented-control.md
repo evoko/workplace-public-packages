@@ -4,19 +4,19 @@
 
 ## Component set: Segmented Control Item
 
-Single segment inside Segmented Control. 8 variants: selected (false/true) × state (default, hover) × size (md, sm). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.
+Single segment inside Segmented Control. 12 variants: selected (false, true) × state (default, hover, focus) × size (md, sm). Selection is persistent — a click commits, not previews. focus carries shadow/focus/default. Optional leading/trailing icons via boolean. Disabled is set on the whole Segmented Control, not per segment.
 
 ### Props
 
-| Prop                 | Type    | Options / default   |
-| -------------------- | ------- | ------------------- |
-| `selected`           | variant | false · **true**    |
-| `state`              | variant | **default** · hover |
-| `size`               | variant | **md** · sm         |
-| `show icon-leading`  | boolean | default `true`      |
-| `show icon-trailing` | boolean | default `true`      |
+| Prop                 | Type    | Options / default           |
+| -------------------- | ------- | --------------------------- |
+| `selected`           | variant | false · **true**            |
+| `state`              | variant | **default** · hover · focus |
+| `size`               | variant | **md** · sm                 |
+| `show icon-leading`  | boolean | default `true`              |
+| `show icon-trailing` | boolean | default `true`              |
 
-Default variant: `selected=true, state=default, size=md` · 8 variants · default size 108×32px
+Default variant: `selected=true, state=default, size=md` · 12 variants · default size 108×32px
 
 ### Anatomy (default variant)
 
@@ -42,7 +42,7 @@ Default variant: `selected=true, state=default, size=md` · 8 variants · defaul
 | Border width    | `border.default`                                                                                    |
 | Sizes           | `icon.sm`                                                                                           |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.label.md`, `type.size.label.md` |
-| Effects         | `shadow/control`                                                                                    |
+| Effects         | `shadow/control`, `shadow/focus/default`                                                            |
 | Text styles     | `label/md`                                                                                          |
 
 ### Slots and prop-controlled layers
@@ -58,20 +58,24 @@ Default variant: `selected=true, state=default, size=md` · 8 variants · defaul
 
 ### Variant matrix
 
-| selected | state   | size | size   | fill                    | stroke                | effect           | text                   | icon                   |
-| -------- | ------- | ---- | ------ | ----------------------- | --------------------- | ---------------- | ---------------------- | ---------------------- |
-| true     | default | md   | 108×32 | `color.surface.overlay` | `color.border.subtle` | `shadow/control` | `color.text.primary`   | `color.icon.primary`   |
-| true     | hover   | md   | 108×32 | `color.surface.overlay` | `color.border.medium` | `shadow/control` | `color.text.primary`   | `color.icon.primary`   |
-| false    | default | md   | 108×32 |                         |                       |                  | `color.text.secondary` | `color.icon.secondary` |
-| false    | hover   | md   | 108×32 |                         |                       |                  | `color.text.primary`   | `color.icon.primary`   |
-| true     | default | sm   | 87×24  | `color.surface.overlay` | `color.border.subtle` | `shadow/control` | `color.text.primary`   | `color.icon.primary`   |
-| true     | hover   | sm   | 87×24  | `color.surface.overlay` | `color.border.medium` | `shadow/control` | `color.text.primary`   | `color.icon.primary`   |
-| false    | default | sm   | 87×24  |                         |                       |                  | `color.text.secondary` | `color.icon.secondary` |
-| false    | hover   | sm   | 87×24  |                         |                       |                  | `color.text.primary`   | `color.icon.primary`   |
+| selected | state   | size | size   | fill                    | stroke                | effect                 | text                   | icon                   |
+| -------- | ------- | ---- | ------ | ----------------------- | --------------------- | ---------------------- | ---------------------- | ---------------------- |
+| true     | default | md   | 108×32 | `color.surface.overlay` | `color.border.subtle` | `shadow/control`       | `color.text.primary`   | `color.icon.primary`   |
+| true     | hover   | md   | 108×32 | `color.surface.overlay` | `color.border.medium` | `shadow/control`       | `color.text.primary`   | `color.icon.primary`   |
+| false    | default | md   | 108×32 |                         |                       |                        | `color.text.secondary` | `color.icon.secondary` |
+| false    | hover   | md   | 108×32 |                         |                       |                        | `color.text.primary`   | `color.icon.primary`   |
+| true     | default | sm   | 87×24  | `color.surface.overlay` | `color.border.subtle` | `shadow/control`       | `color.text.primary`   | `color.icon.primary`   |
+| true     | hover   | sm   | 87×24  | `color.surface.overlay` | `color.border.medium` | `shadow/control`       | `color.text.primary`   | `color.icon.primary`   |
+| false    | default | sm   | 87×24  |                         |                       |                        | `color.text.secondary` | `color.icon.secondary` |
+| false    | hover   | sm   | 87×24  |                         |                       |                        | `color.text.primary`   | `color.icon.primary`   |
+| true     | focus   | md   | 108×32 | `color.surface.overlay` | `color.border.subtle` | `shadow/focus/default` | `color.text.primary`   | `color.icon.primary`   |
+| false    | focus   | md   | 108×32 |                         |                       | `shadow/focus/default` | `color.text.secondary` | `color.icon.secondary` |
+| true     | focus   | sm   | 87×24  | `color.surface.overlay` | `color.border.subtle` | `shadow/focus/default` | `color.text.primary`   | `color.icon.primary`   |
+| false    | focus   | sm   | 87×24  |                         |                       | `shadow/focus/default` | `color.text.secondary` | `color.icon.secondary` |
 
 ## Component set: Segmented Control
 
-Inline group of 2–5 mutually exclusive segments, with an optional field label and helper so it can sit in a form. 2 variants: size (sm, md). Booleans show helper, show mandatory; label and helper are text props; Track is a slot for Segmented Control Item instances. Behaves as a radio group: commits on click, one segment always selected. For 6+ options or URL-level navigation use Tabs; for on/off use Toggle.
+Inline group of 2–5 mutually exclusive segments, with an optional field label and helper so it can sit in a form. 2 variants: size (sm, md). Booleans show label, show helper, show mandatory; label and helper are text props; Track is a slot for Segmented Control Item instances. Behaves as a radio group: commits on click, one segment always selected; arrow keys move between segments. For 6+ options or URL-level navigation use Tabs; for on/off use Toggle.
 
 ### Props
 
@@ -83,6 +87,7 @@ Inline group of 2–5 mutually exclusive segments, with an optional field label 
 | `label`          | text    | default `Label`           |
 | `helper`         | text    | default `Helper text`     |
 | `Track`          | slot    | default `[object Object]` |
+| `show label`     | boolean | default `false`           |
 
 Default variant: `size=md` · 2 variants · default size 368×40px
 
@@ -91,7 +96,7 @@ Default variant: `size=md` · 2 variants · default size 368×40px
 - **size=md** · component · column gap 8 pad 0/0/0/0 HUG/HUG · 368×40  
   itemSpacing `inset.xs`
   - ~~**Label**~~ (hidden by default) · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 48×10  
-    itemSpacing `inset.2xs`
+    itemSpacing `inset.2xs` · prop visible←show label
     - ~~**Label**~~ (hidden by default) · text `label/md` "Label" · FIXED/FIXED · 36×10  
       fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500` · prop characters←label
     - **\*** · text `label/md` "\*" · HUG/HUG · 8×10  
@@ -132,6 +137,7 @@ Default variant: `size=md` · 2 variants · default size 368×40px
 
 | Layer         | Controlled property | Prop             |
 | ------------- | ------------------- | ---------------- |
+| Label         | visible             | `show label`     |
 | Label › Label | characters          | `label`          |
 | Label › *     | visible             | `show mandatory` |
 | Track         | slotContentId       | `Track`          |

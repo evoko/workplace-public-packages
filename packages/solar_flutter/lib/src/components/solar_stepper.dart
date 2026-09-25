@@ -193,13 +193,14 @@ class SolarStepper extends StatelessWidget {
             ),
         ];
       case SolarStepperType.lineText:
-        const places = ['step', 'step', 'step3', 'step4', 'step5'];
+        // Figma's line+text steps: the first complete, the second active, the rest upcoming.
+        const places = ['step2', 'step2', 'step3', 'step4', 'step5'];
         row = [
           for (var i = 0; i < steps.length; i++)
             Expanded(
               child: part(
                 _status(i) == SolarStepStatus.complete
-                    ? 'stepCompleteHorizontal'
+                    ? 'step'
                     : places[i < places.length ? i : places.length - 1],
                 step(i, false),
               ),

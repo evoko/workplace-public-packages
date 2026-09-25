@@ -81,7 +81,7 @@ Default variant: `state=default, ghost=false` · 3 variants · default size 380�
 - **state=default, ghost=false** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 380×343  
   fill `color.surface.raised` · stroke `color.border.subtle` 1px · effect `shadow/raised` · itemSpacing `stack.none` · padding `stack.none`, `inset.none` · strokeWeight `border.default` · radius `radius.container`
   - **Container** · frame · row gap 8 pad 16/16/16/16 FILL/HUG · 380×48  
-    stroke `color.border.surface` mixedpx · padding `inset.md` · strokeWeight `border.default`
+    stroke `color.border.surface` mixedpx · itemSpacing `inset.xs` · padding `inset.md` · strokeWeight `border.default`
     - **Audio Schedule** · text `label/md` "Audio Schedule" · FILL/HUG · 332×10  
       fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500`
     - **Icon/More** · instance of **Icon/More** (solid=false) · FIXED/FIXED · 16×16  
@@ -107,7 +107,7 @@ Default variant: `state=default, ghost=false` · 3 variants · default size 380�
 | Strokes         | `color.border.subtle`, `color.border.surface`                                                                                                                                                                      |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.info`, `color.text.feedback.neutral`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary` |
 | Icon color      | `color.action.secondary.icon.default`, `color.icon.feedback.info`, `color.icon.feedback.neutral`, `color.icon.feedback.success`, `color.icon.primary`                                                              |
-| Spacing         | `inset.md`, `inset.none`, `stack.none`, `stack.sm`                                                                                                                                                                 |
+| Spacing         | `inset.md`, `inset.none`, `inset.xs`, `stack.none`, `stack.sm`                                                                                                                                                     |
 | Radius          | `radius.container`                                                                                                                                                                                                 |
 | Border width    | `border.default`                                                                                                                                                                                                   |
 | Sizes           | `icon.sm`                                                                                                                                                                                                          |
@@ -133,10 +133,6 @@ Default variant: `state=default, ghost=false` · 3 variants · default size 380�
 | default | false | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.success`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral` | `color.icon.primary`<br>`color.icon.feedback.success`<br>`color.icon.feedback.info`<br>`color.icon.feedback.neutral` |
 | default | true  | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` |                                                                                                                                                |                                                                                                                      |
 | empty   | false | 380×343 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                 | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                        |
-
-### Issues detected
-
-- Hard-coded gap `8px` on layer _Container_
 
 ## Documentation card
 

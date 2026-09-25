@@ -5,9 +5,9 @@
     {
       "name": "Toggle",
       "id": "2209:3664",
-      "description": "Binary on/off switch. 6 variants: selected (false, true) × state (default, hover, disabled). Commits on click — no confirm. Represents persistent state, not a transient action (use Button for the latter). The on/off affordance reads via position AND color so the state is not carried by color alone (WCAG 1.4.1). For two labeled states, use Segmented Control.",
+      "description": "Binary on/off switch. 8 variants: selected (false, true) × state (default, hover, focus, disabled). Commits on click — no confirm. focus rings the track with shadow/focus/default. Represents persistent state, not a transient action (use Button for the latter). The on/off state reads via position AND colour (WCAG 1.4.1). For two labelled states use Segmented Control.",
       "docLinks": [],
-      "variantCount": 6,
+      "variantCount": 8,
       "props": {
         "selected": {
           "type": "VARIANT",
@@ -23,7 +23,8 @@
           "options": [
             "default",
             "hover",
-            "disabled"
+            "disabled",
+            "focus"
           ]
         }
       },
@@ -84,6 +85,7 @@
       "variants": [
         {
           "variant": "selected=false, state=default",
+          "id": "2209:3665",
           "size": [
             32,
             18
@@ -94,10 +96,12 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "selected=false, state=hover",
+          "id": "2209:3674",
           "size": [
             32,
             18
@@ -125,6 +129,7 @@
         },
         {
           "variant": "selected=false, state=disabled",
+          "id": "5117:5785",
           "size": [
             32,
             18
@@ -149,6 +154,7 @@
         },
         {
           "variant": "selected=true, state=default",
+          "id": "5117:5793",
           "size": [
             32,
             18
@@ -177,6 +183,7 @@
         },
         {
           "variant": "selected=true, state=hover",
+          "id": "5117:5795",
           "size": [
             32,
             18
@@ -211,6 +218,7 @@
         },
         {
           "variant": "selected=true, state=disabled",
+          "id": "5117:5797",
           "size": [
             32,
             18
@@ -238,6 +246,65 @@
                 ],
                 "strokes": null,
                 "strokeWeight": null
+              }
+            }
+          }
+        },
+        {
+          "variant": "selected=false, state=focus",
+          "id": "11066:29873",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
+        },
+        {
+          "variant": "selected=true, state=focus",
+          "id": "11066:29875",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Thumb": {
+                "position": [
+                  17,
+                  3
+                ]
               }
             }
           }

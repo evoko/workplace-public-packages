@@ -157,10 +157,10 @@ export const solarStepperStyles = {
       width: '100%',
       height: '4px',
     },
-    '& .SolarStepper--stepCompleteHorizontal': {
+    '& .SolarStepper--step': {
       width: '100%',
     },
-    '& .SolarStepper--step': {
+    '& .SolarStepper--step2': {
       width: '100%',
     },
     '& .SolarStepper-step3': {
@@ -508,22 +508,22 @@ export const solarStepperComposition = {
       },
     },
   },
-  stepCompleteHorizontal: {
+  step: {
     base: {
       present: false,
-      component: 'Step/complete/horizontal',
-      'variant.status': 'complete',
-      'variant.type': 'horizontal',
+      component: 'Step',
     },
     appearance: {
       'type=line+text': {
         default: {
           present: true,
+          'variant.status': 'complete',
+          'variant.type': 'horizontal',
         },
       },
     },
   },
-  step: {
+  step2: {
     base: {
       present: false,
       component: 'Step',
@@ -679,8 +679,8 @@ export const solarStepperTree: Record<string, string[]> = {
     'rectangle3',
     'rectangle4',
     'rectangle5',
-    'stepCompleteHorizontal',
     'step',
+    'step2',
     'step3',
     'step4',
     'step5',

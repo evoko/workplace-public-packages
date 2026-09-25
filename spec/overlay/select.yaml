@@ -43,22 +43,22 @@ controlDraws:
     reason: >-
       The panel floats under the field, placed there by MUI's menu (and Flutter's MenuAnchor),
       which keeps it on the page: Figma draws it in the component, 4px below the field. It is as
-      tall as its rows, Dropdown Items, which the menu scrolls past its room: Figma's md rows are 34
-      tall, a stale size (a Dropdown Item's md row is 44), and its edge takes no room. Its width
-      and look are the recipe's.
+      tall as its rows, Dropdown Items, which the menu scrolls past its room: Figma draws its md
+      rows 34 tall, as the Dropdown Item's description now gives it, where a label-only row hugs
+      to 44 (the design review asks which), and its edge takes no room. Its width and look are the
+      recipe's.
 
 bind:
+  field.height:
+    tokens: { 32: size.control.sm, 40: size.control.md }
+    reason: >-
+      As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25;
+      Figma leaves the height unbound, which the design review asks SOLAR to bind.
   trailingIcon.width:
     tokens: { 16: icon.sm, 12: icon.xs }
     reason: >-
       Same values, governed tokens, a step of the icon ladder per size; the chevron's height is
       already bound to them.
-
-allowLiteral:
-  field.height:
-    reason: >-
-      As Text Input's: SOLAR publishes no control height token (owner decision 2026-09-23, raised
-      as a governance gap). The field is drawn 40 (md) and 32 (sm), as the description says.
 
 accept:
   component.select.dropdownItem4.variant.state@size=sm:

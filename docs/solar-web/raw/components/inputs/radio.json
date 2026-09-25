@@ -5,7 +5,7 @@
     {
       "name": "Radio",
       "id": "2203:3333",
-      "description": "Single-select from a group of 2–5 options. 8 variants: state (default, hover, focus, disabled) × checked (true, false). Used only as part of a group — a solo radio is a bug, and one option is always selected. Commit on click; a selected radio cannot be cleared by clicking it again. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke. There is no pressed state. Pair with an adjacent label, or use Option Row, which composes this with a label and optional supporting text. For 6+ options use Select; for a yes/no setting use Toggle.",
+      "description": "Single-select from a group of 2–5 options. 8 variants: state (default, hover, focus, disabled) × checked (true, false). Used only as part of a group — a solo radio is a bug, and one option is always selected. disabled uses border/disabled on a surface/muted fill so it reads as unavailable. focus combines shadow/focus/default with a border/feedback/focus/strong stroke. No pressed state. Pair with a label, or use Option Row. For 6+ options use Select; for a yes/no setting use Toggle.",
       "docLinks": [],
       "variantCount": 8,
       "props": {
@@ -79,6 +79,7 @@
       "variants": [
         {
           "variant": "state=default, checked=true",
+          "id": "2203:3334",
           "size": [
             18,
             18
@@ -86,10 +87,12 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover, checked=true",
+          "id": "2203:3336",
           "size": [
             18,
             18
@@ -109,6 +112,7 @@
         },
         {
           "variant": "state=disabled, checked=true",
+          "id": "3057:2976",
           "size": [
             18,
             18
@@ -133,6 +137,7 @@
         },
         {
           "variant": "state=default, checked=false",
+          "id": "5117:6452",
           "size": [
             18,
             18
@@ -155,6 +160,7 @@
         },
         {
           "variant": "state=hover, checked=false",
+          "id": "5117:6454",
           "size": [
             18,
             18
@@ -183,18 +189,25 @@
         },
         {
           "variant": "state=disabled, checked=false",
+          "id": "5117:6456",
           "size": [
             18,
             18
           ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:border/disabled}"
           ],
           "overrides": {
             "changed": {
               "/": {
+                "fills": [
+                  "{Color:surface/muted}"
+                ],
                 "strokes": [
-                  "{Color:border/medium}"
+                  "{Color:border/disabled}"
                 ]
               }
             },
@@ -205,6 +218,7 @@
         },
         {
           "variant": "state=focus, checked=true",
+          "id": "10088:67",
           "size": [
             18,
             18
@@ -232,6 +246,7 @@
         },
         {
           "variant": "state=focus, checked=false",
+          "id": "10088:69",
           "size": [
             18,
             18

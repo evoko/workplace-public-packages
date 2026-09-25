@@ -94,10 +94,6 @@ export const solarExpandableCardStyles = {
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarExpandableCard--iconChevronUp': {
-      width: 'var(--solar-icon-sm)',
-      height: 'var(--solar-icon-sm)',
-    },
     '& .SolarExpandableCard-content': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
@@ -110,6 +106,10 @@ export const solarExpandableCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+    },
+    '& .SolarExpandableCard--iconChevronUp': {
+      width: 'var(--solar-icon-sm)',
+      height: 'var(--solar-icon-sm)',
     },
     '& .SolarExpandableCard-description': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -136,13 +136,13 @@ export const solarExpandableCardStyles = {
       flexDirection: 'column',
       '&:has(.SolarExpandableCard--header:hover)': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarExpandableCard--iconChevronUp': {
-          color: 'var(--solar-color-icon-primary)',
-        },
         '& .SolarExpandableCard-content': {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           boxShadow: 'none',
+        },
+        '& .SolarExpandableCard--iconChevronUp': {
+          color: 'var(--solar-color-icon-primary)',
         },
         '& .SolarExpandableCard-description': {
           color: 'var(--solar-color-text-secondary)',
@@ -152,13 +152,13 @@ export const solarExpandableCardStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarExpandableCard--iconChevronUp': {
-        color: 'var(--solar-color-icon-primary)',
-      },
       '& .SolarExpandableCard-content': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         boxShadow: 'none',
+      },
+      '& .SolarExpandableCard--iconChevronUp': {
+        color: 'var(--solar-color-icon-primary)',
       },
       '& .SolarExpandableCard-description': {
         color: 'var(--solar-color-text-secondary)',
@@ -202,6 +202,21 @@ export const solarExpandableCardComposition = {
       },
     },
   },
+  content: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'expanded=true': {
+        default: {
+          present: true,
+        },
+        hover: {
+          present: true,
+        },
+      },
+    },
+  },
   iconChevronUp: {
     base: {
       present: false,
@@ -216,21 +231,6 @@ export const solarExpandableCardComposition = {
         hover: {
           present: true,
           'variant.solid': 'false',
-        },
-      },
-    },
-  },
-  content: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'expanded=true': {
-        default: {
-          present: true,
-        },
-        hover: {
-          present: true,
         },
       },
     },

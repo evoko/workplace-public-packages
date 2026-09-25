@@ -4,7 +4,7 @@
 
 ## Component set: Select
 
-Dropdown selector for picking one option from a predefined list. 12 variants: size (sm, md) × state (default, hover, focus, open, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Trailing chevron rotates when open. Use when options are fewer than ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.
+Dropdown selector for picking one option from a predefined list. 12 variants: size (sm, md) × state (default, hover, focus, open, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code. Trailing chevron rotates when open; the open panel floats over the helper. Select and Dropdown are one control drawn two ways — Select owns its panel, Dropdown opens a Dropdown Menu. Use for fewer than ~7 options — beyond that use Autocomplete.
 
 ### Props
 

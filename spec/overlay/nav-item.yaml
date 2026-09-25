@@ -40,25 +40,19 @@ set:
   root.appearance.selected=true, expanded=true.default.width:
     keyword: FILL
     reason: As the unselected expanded item's, it spans its sidebar.
-  root.appearance.*.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      Figma draws Nav Item no focus state, and its description argues against one as a boolean
-      axis; a keyboard user still needs to see it, SOLAR's floor. A focused item draws SOLAR's
-      focus ring (owner decision 2026-09-24), as FAB's and Link's do; the design review asks SOLAR
-      to draw it.
 
 bind:
+  root.height:
+    tokens: { 40: size.control.md }
+    reason: >-
+      As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25;
+      Figma leaves the height unbound, which the design review asks SOLAR to bind.
   iconOutline.height:
     literal: 20
     token: icon.md
     reason: Same value, governed token; the icon's width is already bound to it.
 
 allowLiteral:
-  root.height:
-    reason: >-
-      As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
-      governance gap). An item is drawn 40 tall, as its description says.
   root.width:
     values: [40]
     reason: >-

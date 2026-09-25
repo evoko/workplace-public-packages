@@ -29,7 +29,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             24,
             0,
@@ -45,6 +45,7 @@
           "IMAGE"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/xl",
           "paddingRight": "Spatial:inset/none",
@@ -93,7 +94,7 @@
             "type": "FRAME",
             "size": [
               319,
-              275
+              267
             ],
             "layout": {
               "dir": "VERTICAL",
@@ -160,7 +161,7 @@
                 },
                 "size": [
                   292,
-                  154
+                  146
                 ],
                 "layout": {
                   "dir": "VERTICAL",
@@ -332,6 +333,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "6137:154",
           "size": [
             1440,
             800
@@ -360,10 +362,18 @@
             "Helper text",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/Button/Counter",
+            "/Center Stack/Container/content/Button/Icon/None",
+            "/Center Stack/Container/content/Button/Icon/None#2",
+            "/Center Stack/Container/content/Button/Spinner",
+            "/Center Stack/Container/content/PIN Input/Helper text"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "7810:21830",
           "size": [
             393,
             800
@@ -407,7 +417,7 @@
               "/Center Stack": {
                 "size": [
                   319,
-                  273
+                  265
                 ]
               },
               "/Center Stack/Verify it's you": {

@@ -93,6 +93,7 @@
       "variants": [
         {
           "variant": "emphasis=default",
+          "id": "6641:4",
           "size": [
             160,
             36
@@ -106,10 +107,12 @@
           "textFills": [
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "emphasis=today",
+          "id": "6641:7",
           "size": [
             160,
             36

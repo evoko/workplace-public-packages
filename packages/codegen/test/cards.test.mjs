@@ -121,24 +121,13 @@ places:
     ).toThrow(/address both layers by their Figma paths/);
   });
 
-  it('moves Card’s loading Skeleton before its Content, where Figma records it after', () => {
+  it('draws Card’s loading Skeleton before its Content, where Figma records it, with no rule', () => {
+    // The fetch records an added layer's place (its index) since 2026-09-25, and the rule that
+    // moved it there is gone.
     const { spec } = build('Card');
     const order = Object.keys(spec.layers);
-    expect(order.indexOf('skeleton')).toBeLessThan(order.indexOf('content'));
     expect(order.indexOf('skeleton')).toBe(order.indexOf('content') - 1);
-    expect(spec.overlay.rules).toContainEqual(
-      expect.objectContaining({
-        rule: 'places',
-        at: '/Skeleton before /Content',
-      }),
-    );
-    const figma = Object.keys(
-      build(
-        'Card',
-        changed('Card', (o) => delete o.places),
-      ).spec.layers,
-    );
-    expect(figma.indexOf('skeleton')).toBeGreaterThan(figma.indexOf('content'));
+    expect(spec.overlay.rules.some((r) => r.rule === 'places')).toBe(false);
   });
 
   it('refuses a layer the component lacks, before one it lacks, or before one that is not its sibling', () => {
@@ -469,48 +458,43 @@ describe('hideInComposed, with the overlay’s hides', () => {
   const batch = (oracle) =>
     oracle.variants.find((v) => v.figma === 'state=default, type=batch');
 
-  it('keeps what Device Card’s Tag and Dropdown draw, whatever names Figma records hidden', () => {
+  it('keeps what Device Card’s Tag and Dropdown draw, with no rule, now Figma records hidden paths', () => {
+    // The fetch records each variant's hidden layers by path since 2026-09-25, so the Dropdown's
+    // hidden label, named Label as the Tag's words are, no longer hides them; the rule that kept
+    // them is gone.
     const overlay = loadOverlay('Device Card');
+    expect(overlay.hides).toBeUndefined();
     const { oracle, spec, set } = oracleOf('Device Card', overlay);
     hideInComposed(oracle, spec, set, specs, overlay);
     const v = batch(oracle);
     expect(v.layers.headlineTag.component).toBe('Tag');
     expect(v.layers.devices.component).toBe('Dropdown');
-    expect(v.layers.headlineTag.hides).not.toContain('label');
-    expect(v.layers.devices.hides).not.toContain('fieldLabel');
-    // As the stage builds it.
-    expect(v.layers.headlineTag.hides).toEqual(
-      batch(of('Device Card').oracle).layers.headlineTag.hides,
-    );
+    expect(v.layers.headlineTag.hides ?? []).not.toContain('label');
+    expect(v.layers.devices.hides ?? []).not.toContain('fieldLabel');
   });
 
-  it('would hide the Tag’s label and the Dropdown’s field label without them', () => {
-    const overlay = changed('Device Card', (o) => delete o.hides);
+  it('leaves a hides rule that restates it stale', () => {
+    const overlay = changed('Device Card', (o) => {
+      o.hides = { headlineTag: { not: ['label'], reason: 'r' } };
+    });
     const { oracle, spec, set } = oracleOf('Device Card', overlay);
-    hideInComposed(oracle, spec, set, specs, overlay);
-    const v = batch(oracle);
-    expect(v.layers.headlineTag.hides).toContain('label');
-    expect(v.layers.devices.hides).toContain('fieldLabel');
+    expect(() => hideInComposed(oracle, spec, set, specs, overlay)).toThrow(
+      /hides headlineTag: Figma records no label of it hidden, by its path/,
+    );
   });
 
   it('refuses a not naming a layer the child lacks, or a layer that is no composed child', () => {
-    const run = (change) => {
-      const overlay = changed('Device Card', change);
+    const run = (hides) => {
+      const overlay = changed('Device Card', (o) => {
+        o.hides = hides;
+      });
       const { oracle, spec, set } = oracleOf('Device Card', overlay);
       return () => hideInComposed(oracle, spec, set, specs, overlay);
     };
-    expect(
-      run((o) => {
-        o.hides.headlineTag.not = ['nope'];
-      }),
-    ).toThrow(
+    expect(run({ headlineTag: { not: ['nope'], reason: 'r' } })).toThrow(
       'spec/overlay/device-card.yaml: hides headlineTag: Tag has no layer nope',
     );
-    expect(
-      run((o) => {
-        o.hides.root = { not: ['label'], reason: 'r' };
-      }),
-    ).toThrow(
+    expect(run({ root: { not: ['label'], reason: 'r' } })).toThrow(
       'spec/overlay/device-card.yaml: hides root: no composed child there',
     );
   });

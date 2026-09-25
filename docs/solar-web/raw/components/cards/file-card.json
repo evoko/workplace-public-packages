@@ -256,6 +256,7 @@
       "variants": [
         {
           "variant": "type=File Card",
+          "id": "8250:2856",
           "size": [
             308,
             222
@@ -275,10 +276,12 @@
             "{Color:icon/tertiary}",
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=New Asset Tile",
+          "id": "8250:2868",
           "size": [
             308,
             222
@@ -316,6 +319,7 @@
               {
                 "path": "/Frame 1",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Frame 1",
                   "type": "FRAME",
@@ -355,6 +359,7 @@
               {
                 "path": "/Frame 1/Icon/Plus",
                 "parent": "/Frame 1",
+                "index": 0,
                 "layer": {
                   "name": "Icon/Plus",
                   "type": "INSTANCE",
@@ -378,6 +383,7 @@
               {
                 "path": "/New design",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "New design",
                   "type": "TEXT",

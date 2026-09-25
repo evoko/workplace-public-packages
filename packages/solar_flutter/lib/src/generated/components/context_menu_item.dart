@@ -46,10 +46,18 @@ abstract final class SolarContextMenuItemRecipe {
         't:color.surface.hover',
     'root.background|appearance|destructive=false|focus':
         't:color.surface.hover',
-    'root.background|appearance|destructive=true|focus':
-        't:color.surface.hover',
+    'root.borderColor|appearance|destructive=false|focus':
+        't:color.border.feedback.focus.strong',
+    'root.shadow|appearance|destructive=false|focus': 't:shadow.focus.default',
+    'root.borderWidth|appearance|destructive=false|focus': 't:border.default',
     'root.background|appearance|destructive=true|hover':
         't:color.surface.hover',
+    'root.background|appearance|destructive=true|focus':
+        't:color.surface.hover',
+    'root.borderColor|appearance|destructive=true|focus':
+        't:color.border.feedback.focus.strong',
+    'root.shadow|appearance|destructive=true|focus': 't:shadow.focus.default',
+    'root.borderWidth|appearance|destructive=true|focus': 't:border.default',
     'leadingIcon.present|base': 'b:true',
     'leadingIcon.component|base': 'k:Icon/None',
     'leadingIcon.variant.solid|base': 'k:false',
@@ -59,6 +67,10 @@ abstract final class SolarContextMenuItemRecipe {
     'leadingIcon.color|appearance|destructive=false|disabled':
         't:color.icon.disabled',
     'leadingIcon.color|appearance|destructive=true|default':
+        't:color.icon.feedback.danger',
+    'leadingIcon.color|appearance|destructive=true|hover':
+        't:color.icon.feedback.danger',
+    'leadingIcon.color|appearance|destructive=true|focus':
         't:color.icon.feedback.danger',
     'leadingIcon.color|appearance|destructive=true|disabled':
         't:color.icon.disabled',
@@ -70,6 +82,10 @@ abstract final class SolarContextMenuItemRecipe {
         't:color.text.disabled',
     'label.color|appearance|destructive=true|default':
         't:color.text.feedback.danger',
+    'label.color|appearance|destructive=true|hover':
+        't:color.text.feedback.danger',
+    'label.color|appearance|destructive=true|focus':
+        't:color.text.feedback.danger',
     'label.color|appearance|destructive=true|disabled': 't:color.text.disabled',
     'shortcut.present|base': 'b:true',
     'shortcut.color|base': 't:color.text.tertiary',
@@ -80,6 +96,8 @@ abstract final class SolarContextMenuItemRecipe {
         't:color.text.feedback.danger',
     'shortcut.color|appearance|destructive=true|disabled':
         't:color.text.disabled',
+    'shortcut.color|appearance|destructive=true|hover': 't:color.text.tertiary',
+    'shortcut.color|appearance|destructive=true|focus': 't:color.text.tertiary',
     'trailingIcon.present|base': 'b:false',
     'trailingIcon.component|base': 'k:Icon/None',
     'trailingIcon.variant.solid|base': 'k:false',
@@ -92,6 +110,10 @@ abstract final class SolarContextMenuItemRecipe {
         't:color.icon.feedback.danger',
     'trailingIcon.color|appearance|destructive=true|disabled':
         't:color.icon.disabled',
+    'trailingIcon.color|appearance|destructive=true|hover':
+        't:color.icon.primary',
+    'trailingIcon.color|appearance|destructive=true|focus':
+        't:color.icon.primary',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
@@ -145,6 +167,7 @@ abstract final class SolarContextMenuItemRecipe {
     final c = t.colors;
     return switch (lookup(cell, p, s)) {
       'none' => Colors.transparent,
+      't:color.border.feedback.focus.strong' => c.borderFeedbackFocusStrong,
       't:color.icon.disabled' => c.iconDisabled,
       't:color.icon.feedback.danger' => c.iconFeedbackDanger,
       't:color.icon.primary' => c.iconPrimary,
@@ -164,7 +187,7 @@ abstract final class SolarContextMenuItemRecipe {
     Set<WidgetState> s,
   ) => switch (lookup(cell, p, s)) {
     'none' || null => const <BoxShadow>[],
-
+    't:shadow.focus.default' => t.shadows.focusDefault,
     final v => throw StateError('$cell: no shadow for $v'),
   };
 
@@ -179,6 +202,7 @@ abstract final class SolarContextMenuItemRecipe {
     if (v == 'k:FILL') return double.infinity;
     if (v.startsWith('px:')) return double.parse(v.substring(3));
     return switch (v) {
+      't:border.default' => SolarBorder.$default,
       't:icon.sm' => SolarIconSize.sm,
       't:inset.none' => SolarInset.none,
       't:inset.sm' => SolarInset.sm,

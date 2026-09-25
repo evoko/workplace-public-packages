@@ -84,7 +84,7 @@ export const solarInlineInputStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
-    height: '40px',
+    height: 'var(--solar-size-control-md)',
     '& .SolarInlineInput-value': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',

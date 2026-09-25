@@ -297,6 +297,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "2087:2738",
           "size": [
             240,
             76
@@ -310,10 +311,12 @@
           "iconFills": [
             "{Color:icon/tertiary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=default",
+          "id": "2087:2743",
           "size": [
             160,
             66
@@ -422,6 +425,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "2087:2748",
           "size": [
             240,
             76
@@ -461,6 +465,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "2087:2753",
           "size": [
             160,
             66
@@ -580,6 +585,7 @@
         },
         {
           "variant": "size=md, state=pressed",
+          "id": "2087:2758",
           "size": [
             240,
             76
@@ -620,6 +626,7 @@
         },
         {
           "variant": "size=sm, state=pressed",
+          "id": "2087:2763",
           "size": [
             160,
             66
@@ -667,10 +674,22 @@
                   160,
                   32
                 ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
                 "strokes": [
                   "{Color:border/feedback/focus/strong}"
                 ],
-                "effectStyle": "shadow/focus/default"
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
               },
               "/Field/Icon/None": {
                 "size": [
@@ -688,7 +707,7 @@
               "/Field/Label": {
                 "textStyle": "body/sm/regular",
                 "size": [
-                  88,
+                  96,
                   9
                 ],
                 "fills": [
@@ -728,6 +747,7 @@
         },
         {
           "variant": "size=md, state=filled",
+          "id": "2087:2768",
           "size": [
             240,
             76
@@ -762,6 +782,7 @@
         },
         {
           "variant": "size=sm, state=filled",
+          "id": "2087:2773",
           "size": [
             160,
             66
@@ -808,7 +829,19 @@
                 "size": [
                   160,
                   32
-                ]
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
               },
               "/Field/Icon/None": {
                 "size": [
@@ -826,7 +859,7 @@
               "/Field/Label": {
                 "textStyle": "body/sm/regular",
                 "size": [
-                  88,
+                  96,
                   9
                 ],
                 "fills": [
@@ -866,6 +899,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "2087:2788",
           "size": [
             240,
             76
@@ -921,6 +955,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "2087:2793",
           "size": [
             160,
             66
@@ -973,14 +1008,23 @@
                   32
                 ],
                 "layout": {
-                  "align": "CENTER/CENTER"
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
                 },
                 "fills": [
                   "{Color:surface/background}"
                 ],
                 "strokes": [
                   "{Color:border/disabled}"
-                ]
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
               },
               "/Field/Icon/None": {
                 "size": [
@@ -998,7 +1042,7 @@
               "/Field/Label": {
                 "textStyle": "body/sm/regular",
                 "size": [
-                  88,
+                  96,
                   9
                 ],
                 "fills": [
@@ -1041,6 +1085,7 @@
         },
         {
           "variant": "size=md, state=error",
+          "id": "2087:2798",
           "size": [
             240,
             76
@@ -1095,6 +1140,7 @@
         },
         {
           "variant": "size=sm, state=error",
+          "id": "2087:2803",
           "size": [
             160,
             66
@@ -1148,12 +1194,21 @@
                   32
                 ],
                 "layout": {
-                  "align": "CENTER/CENTER"
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
                 },
                 "strokes": [
                   "{Color:border/feedback/danger/strong}"
                 ],
-                "effectStyle": "shadow/danger"
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
               },
               "/Field/Icon/None": {
                 "size": [
@@ -1171,7 +1226,7 @@
               "/Field/Label": {
                 "textStyle": "body/sm/regular",
                 "size": [
-                  88,
+                  96,
                   9
                 ],
                 "fills": [

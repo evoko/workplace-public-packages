@@ -30,26 +30,22 @@ follows:
       as on the paint axes. Raised with SOLAR to confirm.
 
 bind:
-  root.gap:
-    literal: 12
-    token: inset.sm
+  root.height:
+    tokens: { 32: size.control.sm, 40: size.control.md, 48: size.control.lg }
     reason: >-
-      Same value, governed token. Only lg leaves its gap unbound; every other size binds an
-      inset token.
-  iconLeading.height:
+      Same values, governed tokens: size.control, which SOLAR added to Spatial on 2026-09-25
+      (Button's description: "heights are size/control/{sm,md,lg}"). Figma leaves the heights
+      unbound; the design review asks SOLAR to bind them.
+  iconLeading.width:
     literal: 16
     token: icon.sm
-    reason: The icon is square and its width is already bound to icon.sm.
-  iconTrailing.height:
+    reason: The icon is square and its height is already bound to icon.sm.
+  iconTrailing.width:
     literal: 16
     token: icon.sm
-    reason: The icon is square and its width is already bound to icon.sm.
+    reason: { as: bind iconLeading.width }
 
 allowLiteral:
-  root.height:
-    reason: >-
-      Owner decision 2026-09-23: carry the fixed heights (40, 32, 48) as literals. SOLAR publishes
-      no control height token; raised as a governance gap.
   root.width:
     reason: >-
       lg is fixed at 200 wide and SOLAR publishes no control width token. Treated like the

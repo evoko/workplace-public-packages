@@ -74,7 +74,7 @@ abstract final class SolarSliderRecipe {
     'handle.borderWidth|base': 't:border.strong',
     'handle.width|base': 'px:16',
     'handle.height|base': 'px:16',
-    'handle.x|base': 'px:150',
+    'handle.x|base': 'px:152',
     'handle.y|base': 'px:2',
     'handle.background|appearance|default|disabled':
         't:color.action.primary.bg.disabled',
@@ -83,7 +83,7 @@ abstract final class SolarSliderRecipe {
     'handle.borderWidth|appearance|default|disabled': 't:border.default',
     'handle.width|appearance|default|disabled': 'px:14',
     'handle.height|appearance|default|disabled': 'px:14',
-    'handle.x|appearance|default|disabled': 'px:151',
+    'handle.x|appearance|default|disabled': 'px:153',
     'handle.y|appearance|default|disabled': 'px:3',
   };
 

@@ -14,7 +14,7 @@
   "states": [],
   "slots": {
     "step3": {
-      "layer": "/Step#2",
+      "layer": "/Step#3",
       "props": {
         "visible": "showStep3"
       },
@@ -24,7 +24,7 @@
       "visible": true
     },
     "step4": {
-      "layer": "/Step#3",
+      "layer": "/Step#4",
       "props": {
         "visible": "showStep4"
       },
@@ -34,7 +34,7 @@
       "visible": true
     },
     "step5": {
-      "layer": "/Step#4",
+      "layer": "/Step#5",
       "props": {
         "visible": "showStep5"
       },
@@ -130,28 +130,28 @@
       "parent": "root",
       "type": "RECTANGLE"
     },
-    "stepCompleteHorizontal": {
-      "path": "/Step/complete/horizontal",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
     "step": {
       "path": "/Step",
       "parent": "root",
       "type": "INSTANCE"
     },
-    "step3": {
+    "step2": {
       "path": "/Step#2",
       "parent": "root",
       "type": "INSTANCE"
     },
-    "step4": {
+    "step3": {
       "path": "/Step#3",
       "parent": "root",
       "type": "INSTANCE"
     },
-    "step5": {
+    "step4": {
       "path": "/Step#4",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
+    "step5": {
+      "path": "/Step#5",
       "parent": "root",
       "type": "INSTANCE"
     }
@@ -199,22 +199,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -326,7 +326,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "none": true,
@@ -339,12 +339,12 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "literal": 313,
@@ -499,22 +499,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -1183,47 +1183,6 @@
         }
       }
     },
-    "stepCompleteHorizontal": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "type=with label"
-        },
-        "component": {
-          "keyword": "Step/complete/horizontal",
-          "from": "type=line+text"
-        },
-        "width": {
-          "keyword": "FILL",
-          "from": "type=line+text"
-        },
-        "height": {
-          "keyword": "HUG",
-          "from": "type=line+text"
-        },
-        "variant.status": {
-          "keyword": "complete",
-          "from": "overlay",
-          "reason": "As its name says, the first step complete."
-        },
-        "variant.type": {
-          "keyword": "horizontal",
-          "from": "overlay",
-          "reason": "As its name says, a horizontal Step."
-        }
-      },
-      "size": {},
-      "appearance": {
-        "type=line+text": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "type=line+text"
-            }
-          }
-        }
-      }
-    },
     "step": {
       "base": {
         "present": {
@@ -1252,12 +1211,47 @@
               "from": "type=line+text"
             },
             "variant.status": {
+              "keyword": "complete",
+              "from": "type=line+text"
+            },
+            "variant.type": {
+              "keyword": "horizontal",
+              "from": "type=line+text"
+            }
+          }
+        }
+      }
+    },
+    "step2": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "type=with label"
+        },
+        "component": {
+          "keyword": "Step",
+          "from": "type=line+text"
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "type=line+text"
+        },
+        "height": {
+          "keyword": "HUG",
+          "from": "type=line+text"
+        }
+      },
+      "size": {},
+      "appearance": {
+        "type=line+text": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "type=line+text"
+            },
+            "variant.status": {
               "keyword": "active",
-              "from": "overlay",
-              "reason": "Figma draws the line+text stepper's second step upcoming after a complete first, with no step active; a stepper always has one (its active index), the step after the completed ones. The design review asks SOLAR to draw it.",
-              "replaced": {
-                "keyword": "upcoming"
-              }
+              "from": "type=line+text"
             },
             "variant.type": {
               "keyword": "horizontal",
@@ -1386,7 +1380,7 @@
     }
   },
   "docs": {
-    "description": "Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3, showStep4, showStep5 set the step count (2–5). Steps are informational unless the flow allows going back, in which case completed steps are links. Back/next buttons belong to the Multi-step Wizard pattern, not to Stepper. For non-linear sections use Tabs.",
+    "description": "Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3–5 set the step count (2–5). The step after the completed ones is active. Steps are informational unless the flow allows going back, in which case completed steps are links. Note: Stepper Indicator names the status completed, Step names it complete — same meaning. Back/next buttons belong to the Multi-step Wizard pattern.",
     "figmaIssues": []
   },
   "provenance": {
@@ -1394,7 +1388,7 @@
     "pageId": "2163:3707",
     "figmaNode": "5762:5846",
     "defaultVariant": "type=with label",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/stepper.yaml",
@@ -1433,21 +1427,6 @@
         "rule": "set",
         "at": "root.appearance.type=line.default.height",
         "reason": "The line stepper is as tall as its segments: Figma fixes it at their 4px, bound to nothing."
-      },
-      {
-        "rule": "set",
-        "at": "step.appearance.type=line+text.default.variant.status",
-        "reason": "Figma draws the line+text stepper's second step upcoming after a complete first, with no step active; a stepper always has one (its active index), the step after the completed ones. The design review asks SOLAR to draw it."
-      },
-      {
-        "rule": "set",
-        "at": "stepCompleteHorizontal.base.variant.status",
-        "reason": "As its name says, the first step complete."
-      },
-      {
-        "rule": "set",
-        "at": "stepCompleteHorizontal.base.variant.type",
-        "reason": "As its name says, a horizontal Step."
       },
       {
         "rule": "set",
@@ -1597,11 +1576,6 @@
         "reason": "As the first, the same 0."
       },
       {
-        "rule": "composes",
-        "at": "Step/complete/horizontal → Step",
-        "reason": "The line+text stepper's first step is an instance of the Step variant itself, named by its variant (`Step/complete/horizontal`): it is a Step, complete and horizontal."
-      },
-      {
         "rule": "bind",
         "at": "root.gap",
         "reason": "Same value, governed token: a gap Figma leaves unbound at 0 is the none of its family, and SOLAR picks the family by direction, as its own bound gaps do: a horizontal auto layout's gap is an inset, a vertical one's a stack (the Foundations agent reference and the Spatial chapter). Decided once here, as the paddings are.",
@@ -1611,7 +1585,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft, progress.paddingTop, progress.paddingBottom, progress.paddingLeft, steps.paddingTop, steps.paddingRight, steps.paddingBottom, steps.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

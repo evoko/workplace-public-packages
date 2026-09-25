@@ -37,8 +37,8 @@ export const solarBackButtonStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
@@ -57,7 +57,7 @@ export const solarBackButtonStyles = {
     paddingRight: 'var(--solar-inset-sm)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-sm)',
-    height: '40px',
+    height: 'var(--solar-size-control-md)',
     '& .MuiButton-startIcon': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
@@ -76,7 +76,7 @@ export const solarBackButtonStyles = {
       gap: 'var(--solar-stack-xs)',
       paddingRight: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-xs)',
-      height: '32px',
+      height: 'var(--solar-size-control-sm)',
       '& .MuiButton-startIcon': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',

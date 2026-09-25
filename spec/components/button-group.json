@@ -151,22 +151,22 @@
             "paddingTop": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingRight": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingBottom": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingLeft": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "borderTopWidth": {
               "token": "border.default",
@@ -391,7 +391,7 @@
     }
   },
   "docs": {
-    "description": "Container that assembles 2–5 Buttons into a joined row. 3 variants: orientation (horizontal, vertical) × type (regular, full-width) — built combinations: horizontal/regular, vertical/regular, horizontal/full-width. regular sizes to content; full-width stretches buttons to fill the container width (equal widths). All children must share the same prio and size — mixing breaks the visual grouping. For multi-action toolbars with dividers use a Toolbar pattern; for segmented exclusive selection use Segmented Control.",
+    "description": "Container that assembles 2–5 Buttons into a row or column. 3 variants: orientation (horizontal, vertical) × type (regular, full-width) — built combinations: horizontal/regular, vertical/regular, horizontal/full-width. Buttons fill the group in equal shares in every variant; full-width stretches the group to its container. Children share one size; priorities may mix, with at most one primary. Props: Buttons (slot), SecondaryCTA, TertiaryCTA. For segmented exclusive selection use Segmented Control.",
     "figmaIssues": []
   },
   "provenance": {
@@ -399,7 +399,7 @@
     "pageId": "2163:3661",
     "figmaNode": "2618:3237",
     "defaultVariant": "orientation=horizontal, type=regular",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/button-group.yaml",
@@ -522,7 +522,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

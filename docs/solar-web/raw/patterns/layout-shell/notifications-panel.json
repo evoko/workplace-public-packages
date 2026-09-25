@@ -441,6 +441,7 @@
       "variants": [
         {
           "variant": "read=false",
+          "id": "4644:6697",
           "size": [
             400,
             98
@@ -469,10 +470,24 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Content/Button Group",
+            "/Content/Button Group/Button",
+            "/Content/Button Group/Button#2",
+            "/Content/Button Group/Button#2/Counter",
+            "/Content/Button Group/Button#2/Icon/None",
+            "/Content/Button Group/Button#2/Icon/None#2",
+            "/Content/Button Group/Button#2/Spinner",
+            "/Content/Button Group/Button/Counter",
+            "/Content/Button Group/Button/Icon/None",
+            "/Content/Button Group/Button/Icon/None#2",
+            "/Content/Button Group/Button/Spinner"
           ]
         },
         {
           "variant": "read=true",
+          "id": "4644:6801",
           "size": [
             400,
             98
@@ -624,6 +639,7 @@
               0
             ],
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:inset/lg",
               "paddingTop": "Spatial:inset/md",
               "paddingRight": "Spatial:inset/lg",

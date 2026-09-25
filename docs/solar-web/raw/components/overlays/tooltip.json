@@ -153,6 +153,7 @@
       "variants": [
         {
           "variant": "size=sm, position=top",
+          "id": "3377:2",
           "size": [
             47,
             25
@@ -160,10 +161,12 @@
           "textFills": [
             "{Color:text/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=md, position=top",
+          "id": "3377:6",
           "size": [
             60,
             34
@@ -215,6 +218,7 @@
         },
         {
           "variant": "size=sm, position=right",
+          "id": "3377:10",
           "size": [
             47,
             25
@@ -250,6 +254,7 @@
         },
         {
           "variant": "size=md, position=right",
+          "id": "3377:14",
           "size": [
             60,
             34
@@ -316,6 +321,7 @@
         },
         {
           "variant": "size=sm, position=bottom",
+          "id": "3377:18",
           "size": [
             47,
             25
@@ -342,6 +348,7 @@
         },
         {
           "variant": "size=md, position=bottom",
+          "id": "3377:22",
           "size": [
             60,
             34
@@ -399,6 +406,7 @@
         },
         {
           "variant": "size=sm, position=left",
+          "id": "3377:26",
           "size": [
             47,
             25
@@ -434,6 +442,7 @@
         },
         {
           "variant": "size=md, position=left",
+          "id": "3377:30",
           "size": [
             60,
             34

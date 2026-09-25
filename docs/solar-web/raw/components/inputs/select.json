@@ -5,7 +5,7 @@
     {
       "name": "Select",
       "id": "5422:92",
-      "description": "Dropdown selector for picking one option from a predefined list. 12 variants: size (sm, md) × state (default, hover, focus, open, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Trailing chevron rotates when open. Use when options are fewer than ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.",
+      "description": "Dropdown selector for picking one option from a predefined list. 12 variants: size (sm, md) × state (default, hover, focus, open, disabled, error). The field itself is 32px (sm) / 40px (md); with label and helper the component measures 66 / 76px. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code. Trailing chevron rotates when open; the open panel floats over the helper. Select and Dropdown are one control drawn two ways — Select owns its panel, Dropdown opens a Dropdown Menu. Use for fewer than ~7 options — beyond that use Autocomplete.",
       "docLinks": [],
       "variantCount": 12,
       "props": {
@@ -274,6 +274,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "5422:2",
           "size": [
             240,
             76
@@ -286,10 +287,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=md, state=hover",
+          "id": "5422:11",
           "size": [
             240,
             76
@@ -314,6 +317,7 @@
         },
         {
           "variant": "size=md, state=open",
+          "id": "5422:20",
           "size": [
             240,
             58
@@ -332,6 +336,20 @@
             "Description",
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Dropdown Menu/Dropdown Item#2/Checkbox",
+            "/Dropdown Menu/Dropdown Item#2/Content/Description",
+            "/Dropdown Menu/Dropdown Item#2/Icon/None",
+            "/Dropdown Menu/Dropdown Item#3/Checkbox",
+            "/Dropdown Menu/Dropdown Item#3/Content/Description",
+            "/Dropdown Menu/Dropdown Item#3/Icon/None",
+            "/Dropdown Menu/Dropdown Item#4/Checkbox",
+            "/Dropdown Menu/Dropdown Item#4/Content/Description",
+            "/Dropdown Menu/Dropdown Item#4/Icon/None",
+            "/Dropdown Menu/Dropdown Item/Checkbox",
+            "/Dropdown Menu/Dropdown Item/Content/Description",
+            "/Dropdown Menu/Dropdown Item/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/Field": {
@@ -345,6 +363,7 @@
               {
                 "path": "/Dropdown Menu",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Dropdown Menu",
                   "type": "FRAME",
@@ -394,6 +413,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item",
                 "parent": "/Dropdown Menu",
+                "index": 0,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -430,6 +450,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item#2",
                 "parent": "/Dropdown Menu",
+                "index": 1,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -469,6 +490,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item#3",
                 "parent": "/Dropdown Menu",
+                "index": 2,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -505,6 +527,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item#4",
                 "parent": "/Dropdown Menu",
+                "index": 3,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -546,6 +569,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "5422:29",
           "size": [
             240,
             76
@@ -596,6 +620,7 @@
         },
         {
           "variant": "size=md, state=error",
+          "id": "5422:38",
           "size": [
             240,
             76
@@ -625,6 +650,7 @@
         },
         {
           "variant": "size=sm, state=default",
+          "id": "5422:47",
           "size": [
             200,
             66
@@ -715,6 +741,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "5422:56",
           "size": [
             200,
             66
@@ -808,6 +835,7 @@
         },
         {
           "variant": "size=sm, state=open",
+          "id": "5422:65",
           "size": [
             200,
             49
@@ -823,6 +851,20 @@
             "Checkbox",
             "Description",
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Dropdown Menu/Dropdown Item#2/Checkbox",
+            "/Dropdown Menu/Dropdown Item#2/Content/Description",
+            "/Dropdown Menu/Dropdown Item#2/Icon/None",
+            "/Dropdown Menu/Dropdown Item#3/Checkbox",
+            "/Dropdown Menu/Dropdown Item#3/Content/Description",
+            "/Dropdown Menu/Dropdown Item#3/Icon/None",
+            "/Dropdown Menu/Dropdown Item#4/Checkbox",
+            "/Dropdown Menu/Dropdown Item#4/Content/Description",
+            "/Dropdown Menu/Dropdown Item#4/Icon/None",
+            "/Dropdown Menu/Dropdown Item/Checkbox",
+            "/Dropdown Menu/Dropdown Item/Content/Description",
+            "/Dropdown Menu/Dropdown Item/Icon/None"
           ],
           "overrides": {
             "changed": {
@@ -895,6 +937,7 @@
               {
                 "path": "/Dropdown Menu",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Dropdown Menu",
                   "type": "FRAME",
@@ -944,6 +987,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item",
                 "parent": "/Dropdown Menu",
+                "index": 0,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -980,6 +1024,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item#2",
                 "parent": "/Dropdown Menu",
+                "index": 1,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -1019,6 +1064,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item#3",
                 "parent": "/Dropdown Menu",
+                "index": 2,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -1055,6 +1101,7 @@
               {
                 "path": "/Dropdown Menu/Dropdown Item#4",
                 "parent": "/Dropdown Menu",
+                "index": 3,
                 "layer": {
                   "name": "Dropdown Item",
                   "type": "INSTANCE",
@@ -1096,6 +1143,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "5422:74",
           "size": [
             200,
             66
@@ -1148,8 +1196,7 @@
                   32
                 ],
                 "layout": {
-                  "gap": 8,
-                  "align": "SPACE_BETWEEN/CENTER"
+                  "gap": 8
                 },
                 "fills": [
                   "{Color:surface/background}"
@@ -1164,7 +1211,7 @@
               "/Field/Placeholder": {
                 "textStyle": "body/sm/regular",
                 "size": [
-                  164,
+                  156,
                   9
                 ],
                 "fills": [
@@ -1206,6 +1253,7 @@
         },
         {
           "variant": "size=sm, state=error",
+          "id": "5422:83",
           "size": [
             200,
             66
@@ -1254,8 +1302,7 @@
                   32
                 ],
                 "layout": {
-                  "gap": 8,
-                  "align": "SPACE_BETWEEN/CENTER"
+                  "gap": 8
                 },
                 "strokes": [
                   "{Color:border/feedback/danger/strong}"
@@ -1267,7 +1314,7 @@
               "/Field/Placeholder": {
                 "textStyle": "body/sm/regular",
                 "size": [
-                  164,
+                  156,
                   9
                 ],
                 "vars": {
@@ -1303,6 +1350,7 @@
         },
         {
           "variant": "size=md, state=focus",
+          "id": "6074:345",
           "size": [
             240,
             76
@@ -1332,6 +1380,7 @@
         },
         {
           "variant": "size=sm, state=focus",
+          "id": "6074:353",
           "size": [
             200,
             66

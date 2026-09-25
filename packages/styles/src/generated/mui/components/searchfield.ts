@@ -74,8 +74,8 @@ export const solarSearchFieldStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
@@ -101,7 +101,7 @@ export const solarSearchFieldStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
-    height: '40px',
+    height: 'var(--solar-size-control-md)',
     '& .SolarSearchField--iconSearch': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
@@ -127,10 +127,10 @@ export const solarSearchFieldStyles = {
     sm: {
       gap: 'var(--solar-inset-xs)',
       width: '100%',
-      height: '32px',
+      height: 'var(--solar-size-control-sm)',
       '& .SolarSearchField--iconSearch': {
-        height: 'var(--solar-icon-xs)',
         width: 'var(--solar-icon-xs)',
+        height: 'var(--solar-icon-xs)',
       },
       '& .SolarSearchField--search': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -141,8 +141,8 @@ export const solarSearchFieldStyles = {
         textDecoration: 'none',
       },
       '& .SolarSearchField-filter': {
-        height: 'var(--solar-icon-xs)',
         width: 'var(--solar-icon-xs)',
+        height: 'var(--solar-icon-xs)',
       },
     },
   },

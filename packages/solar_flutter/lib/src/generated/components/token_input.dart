@@ -164,6 +164,13 @@ abstract final class SolarTokenInputRecipe {
     'tag.variant.status|appearance|default|readonly': 'k:neutral',
     'tag.variant.type|appearance|default|readonly': 'k:text-only',
     'tag.variant.invert|appearance|default|readonly': 'k:false',
+    'counter.present|base': 'b:false',
+    'counter.component|base': 'k:Counter',
+    'counter.width|base': 'k:HUG',
+    'counter.height|base': 'none',
+    'counter.present|appearance|default|filled': 'b:true',
+    'counter.variant.type|appearance|default|filled': 'k:regular',
+    'counter.variant.state|appearance|default|filled': 'k:default',
     'tag2.present|base': 'b:false',
     'tag2.component|base': 'k:Tag',
     'tag2.width|base': 'k:HUG',
@@ -180,13 +187,6 @@ abstract final class SolarTokenInputRecipe {
     'tag2.variant.status|appearance|default|readonly': 'k:neutral',
     'tag2.variant.type|appearance|default|readonly': 'k:text-only',
     'tag2.variant.invert|appearance|default|readonly': 'k:false',
-    'counter.present|base': 'b:false',
-    'counter.component|base': 'k:Counter',
-    'counter.width|base': 'k:HUG',
-    'counter.height|base': 'none',
-    'counter.present|appearance|default|filled': 'b:true',
-    'counter.variant.type|appearance|default|filled': 'k:regular',
-    'counter.variant.state|appearance|default|filled': 'k:default',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).

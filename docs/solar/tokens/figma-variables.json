@@ -3,8 +3,8 @@
   "source": {
     "figmaFile": "SOLAR Foundations [v1--2026]",
     "fileKey": "Y21OGpk2z6ig9cRMc5cl9L",
-    "capturedFrom": "a private copy of the file at the same content version (Plugin API, read-only)",
-    "exportedOn": "2026-09-20",
+    "capturedFrom": "the file itself, file version 2403083104633531037, through the Figma MCP use_figma tool (Plugin API, read-only)",
+    "exportedOn": "2026-09-25",
     "solarVersion": "1.0",
     "collections": {
       "Primitives": {
@@ -20,7 +20,7 @@
       "Spatial": {
         "id": "VariableCollectionId:1617:579",
         "modes": ["Default"],
-        "count": 34
+        "count": 38
       },
       "Type": {
         "id": "VariableCollectionId:1617:580",
@@ -43,165 +43,315 @@
       "saffron": "#febf0f",
       "plum": "#7e2f7c"
     },
-    "color/mono": { "black": "#000000", "white": "#ffffff" },
+    "color/mono": {
+      "black": "#000000",
+      "white": "#ffffff"
+    },
     "color/neutral": {
-      "900": "#111111",
-      "800": "#222222",
-      "700": "#333333",
-      "600": "#484848",
-      "500": "#646464",
-      "400": "#878787",
-      "300": "#a8a8a8",
-      "200": "#c9c9c9",
+      "50": "#f5f5f5",
       "100": "#e0e0e0",
-      "50": "#f5f5f5"
+      "200": "#c9c9c9",
+      "300": "#a8a8a8",
+      "400": "#878787",
+      "500": "#646464",
+      "600": "#484848",
+      "700": "#333333",
+      "800": "#222222",
+      "900": "#111111"
     },
     "color/red": {
-      "900": "#280000",
-      "800": "#410001",
-      "700": "#7e000f",
-      "600": "#c00024",
-      "500": "#e0032d",
-      "400": "#f61d3c",
-      "300": "#ff5f64",
-      "200": "#ff9691",
+      "50": "#ffe4df",
       "100": "#ffc5bf",
-      "50": "#ffe4df"
+      "200": "#ff9691",
+      "300": "#ff5f64",
+      "400": "#f61d3c",
+      "500": "#e0032d",
+      "600": "#c00024",
+      "700": "#7e000f",
+      "800": "#410001",
+      "900": "#280000"
     },
     "color/orange": {
-      "900": "#240000",
-      "800": "#3e0000",
-      "700": "#790d00",
-      "600": "#b33200",
-      "500": "#cf4700",
-      "400": "#fb5800",
-      "300": "#ff8535",
-      "200": "#ffac73",
+      "50": "#ffeeda",
       "100": "#ffcda5",
-      "50": "#ffeeda"
+      "200": "#ffac73",
+      "300": "#ff8535",
+      "400": "#fb5800",
+      "500": "#cf4700",
+      "600": "#b33200",
+      "700": "#790d00",
+      "800": "#3e0000",
+      "900": "#240000"
     },
     "color/yellow": {
-      "900": "#271e00",
-      "800": "#392c01",
-      "700": "#836500",
-      "600": "#c39900",
-      "500": "#ecb600",
-      "400": "#ffcd07",
-      "300": "#ffdf4b",
-      "200": "#ffee7b",
+      "50": "#fffbd5",
       "100": "#fff5a8",
-      "50": "#fffbd5"
+      "200": "#ffee7b",
+      "300": "#ffdf4b",
+      "400": "#ffcd07",
+      "500": "#ecb600",
+      "600": "#c39900",
+      "700": "#836500",
+      "800": "#392c01",
+      "900": "#271e00"
     },
     "color/green": {
-      "900": "#001300",
-      "800": "#002400",
-      "700": "#084d03",
-      "600": "#24791d",
-      "500": "#009600",
-      "400": "#00b600",
-      "300": "#51d845",
-      "200": "#86ee7c",
+      "50": "#ecffe9",
       "100": "#b2fbaa",
-      "50": "#ecffe9"
+      "200": "#86ee7c",
+      "300": "#51d845",
+      "400": "#00b600",
+      "500": "#009600",
+      "600": "#24791d",
+      "700": "#084d03",
+      "800": "#002400",
+      "900": "#001300"
     },
     "color/turquoise": {
-      "900": "#021a1e",
-      "800": "#033238",
-      "700": "#065f6a",
-      "600": "#0896a6",
-      "500": "#08b8c9",
-      "400": "#0ad4e6",
-      "300": "#3de6f2",
-      "200": "#8ef4fa",
+      "50": "#f0ffff",
       "100": "#c9fbfd",
-      "50": "#f0ffff"
+      "200": "#8ef4fa",
+      "300": "#3de6f2",
+      "400": "#0ad4e6",
+      "500": "#08b8c9",
+      "600": "#0896a6",
+      "700": "#065f6a",
+      "800": "#033238",
+      "900": "#021a1e"
     },
     "color/blue": {
-      "900": "#01082d",
-      "800": "#03144b",
-      "700": "#0e3294",
-      "600": "#2658d5",
-      "500": "#2569fd",
-      "400": "#3e7cff",
-      "300": "#6b9cff",
-      "200": "#9ec1ff",
+      "50": "#e9f2ff",
       "100": "#c9deff",
-      "50": "#e9f2ff"
+      "200": "#9ec1ff",
+      "300": "#6b9cff",
+      "400": "#3e7cff",
+      "500": "#2569fd",
+      "600": "#2658d5",
+      "700": "#0e3294",
+      "800": "#03144b",
+      "900": "#01082d"
     },
     "color/purple": {
-      "900": "#140028",
-      "800": "#24004b",
-      "700": "#451091",
-      "600": "#6226d1",
-      "500": "#7b3aff",
-      "400": "#8e4bff",
-      "300": "#a777ff",
-      "200": "#c5a9ff",
+      "50": "#f4edff",
       "100": "#e2d2ff",
-      "50": "#f4edff"
+      "200": "#c5a9ff",
+      "300": "#a777ff",
+      "400": "#8e4bff",
+      "500": "#7b3aff",
+      "600": "#6226d1",
+      "700": "#451091",
+      "800": "#24004b",
+      "900": "#140028"
     },
     "color/pink": {
-      "900": "#2a0021",
-      "800": "#4a003d",
-      "700": "#87006f",
-      "600": "#c21aa7",
-      "500": "#e136bc",
-      "400": "#ff52cb",
-      "300": "#ff86da",
-      "200": "#ffb3e7",
+      "50": "#fff1fa",
       "100": "#ffd6f2",
-      "50": "#fff1fa"
+      "200": "#ffb3e7",
+      "300": "#ff86da",
+      "400": "#ff52cb",
+      "500": "#e136bc",
+      "600": "#c21aa7",
+      "700": "#87006f",
+      "800": "#4a003d",
+      "900": "#2a0021"
     },
     "color/alpha": {
-      "black-90": { "hex": "#000000", "a": 0.9 },
-      "black-80": { "hex": "#000000", "a": 0.8 },
-      "black-70": { "hex": "#000000", "a": 0.7 },
-      "black-60": { "hex": "#000000", "a": 0.6 },
-      "black-50": { "hex": "#000000", "a": 0.5 },
-      "black-40": { "hex": "#000000", "a": 0.4 },
-      "black-30": { "hex": "#000000", "a": 0.3 },
-      "black-20": { "hex": "#000000", "a": 0.2 },
-      "black-10": { "hex": "#000000", "a": 0.1 },
-      "black-05": { "hex": "#000000", "a": 0.05 },
-      "white-90": { "hex": "#ffffff", "a": 0.9 },
-      "white-80": { "hex": "#ffffff", "a": 0.8 },
-      "white-70": { "hex": "#ffffff", "a": 0.7 },
-      "white-60": { "hex": "#ffffff", "a": 0.6 },
-      "white-50": { "hex": "#ffffff", "a": 0.5 },
-      "white-40": { "hex": "#ffffff", "a": 0.4 },
-      "white-30": { "hex": "#ffffff", "a": 0.3 },
-      "white-20": { "hex": "#ffffff", "a": 0.2 },
-      "white-10": { "hex": "#ffffff", "a": 0.1 },
-      "white-05": { "hex": "#ffffff", "a": 0.05 },
-      "transparent": { "hex": "#ffffff", "a": 0 },
-      "dark-red-50": { "hex": "#410001", "a": 0.5 },
-      "red-05": { "hex": "#e0032d", "a": 0.05 },
-      "red-10": { "hex": "#e0032d", "a": 0.1 },
-      "red-20": { "hex": "#e0032d", "a": 0.2 },
-      "red-50": { "hex": "#e0032d", "a": 0.5 },
-      "light-red-50": { "hex": "#ffe4df", "a": 0.5 },
-      "dark-orange-50": { "hex": "#3e0000", "a": 0.5 },
-      "orange-05": { "hex": "#cf4700", "a": 0.05 },
-      "orange-10": { "hex": "#cf4700", "a": 0.1 },
-      "orange-20": { "hex": "#cf4700", "a": 0.2 },
-      "orange-50": { "hex": "#cf4700", "a": 0.5 },
-      "light-orange-50": { "hex": "#ffeeda", "a": 0.5 },
-      "dark-green-50": { "hex": "#002400", "a": 0.5 },
-      "green-05": { "hex": "#009600", "a": 0.05 },
-      "green-10": { "hex": "#009600", "a": 0.1 },
-      "green-20": { "hex": "#009600", "a": 0.2 },
-      "green-50": { "hex": "#009600", "a": 0.5 },
-      "light-green-50": { "hex": "#ecffe9", "a": 0.5 },
-      "dark-turquoise-50": { "hex": "#033238", "a": 0.5 },
-      "turquoise-05": { "hex": "#08b8c9", "a": 0.05 },
-      "turquoise-10": { "hex": "#08b8c9", "a": 0.1 },
-      "turquoise-20": { "hex": "#08b8c9", "a": 0.2 },
-      "turquoise-50": { "hex": "#08b8c9", "a": 0.5 },
-      "light-turquoise-50": { "hex": "#f0ffff", "a": 0.5 },
-      "blue-05": { "hex": "#2569fd", "a": 0.05 },
-      "blue-10": { "hex": "#2569fd", "a": 0.1 },
-      "blue-20": { "hex": "#2569fd", "a": 0.2 },
-      "blue-50": { "hex": "#2569fd", "a": 0.5 }
+      "black-90": {
+        "hex": "#000000",
+        "a": 0.9
+      },
+      "black-80": {
+        "hex": "#000000",
+        "a": 0.8
+      },
+      "black-70": {
+        "hex": "#000000",
+        "a": 0.7
+      },
+      "black-60": {
+        "hex": "#000000",
+        "a": 0.6
+      },
+      "black-50": {
+        "hex": "#000000",
+        "a": 0.5
+      },
+      "black-40": {
+        "hex": "#000000",
+        "a": 0.4
+      },
+      "black-30": {
+        "hex": "#000000",
+        "a": 0.3
+      },
+      "black-20": {
+        "hex": "#000000",
+        "a": 0.2
+      },
+      "black-10": {
+        "hex": "#000000",
+        "a": 0.1
+      },
+      "black-05": {
+        "hex": "#000000",
+        "a": 0.05
+      },
+      "white-90": {
+        "hex": "#ffffff",
+        "a": 0.9
+      },
+      "white-80": {
+        "hex": "#ffffff",
+        "a": 0.8
+      },
+      "white-70": {
+        "hex": "#ffffff",
+        "a": 0.7
+      },
+      "white-60": {
+        "hex": "#ffffff",
+        "a": 0.6
+      },
+      "white-50": {
+        "hex": "#ffffff",
+        "a": 0.5
+      },
+      "white-40": {
+        "hex": "#ffffff",
+        "a": 0.4
+      },
+      "white-30": {
+        "hex": "#ffffff",
+        "a": 0.3
+      },
+      "white-20": {
+        "hex": "#ffffff",
+        "a": 0.2
+      },
+      "white-10": {
+        "hex": "#ffffff",
+        "a": 0.1
+      },
+      "white-05": {
+        "hex": "#ffffff",
+        "a": 0.05
+      },
+      "transparent": {
+        "hex": "#ffffff",
+        "a": 0
+      },
+      "dark-red-50": {
+        "hex": "#410001",
+        "a": 0.5
+      },
+      "red-05": {
+        "hex": "#e0032d",
+        "a": 0.05
+      },
+      "red-10": {
+        "hex": "#e0032d",
+        "a": 0.1
+      },
+      "red-20": {
+        "hex": "#e0032d",
+        "a": 0.2
+      },
+      "red-50": {
+        "hex": "#e0032d",
+        "a": 0.5
+      },
+      "light-red-50": {
+        "hex": "#ffe4df",
+        "a": 0.5
+      },
+      "dark-orange-50": {
+        "hex": "#3e0000",
+        "a": 0.5
+      },
+      "orange-05": {
+        "hex": "#cf4700",
+        "a": 0.05
+      },
+      "orange-10": {
+        "hex": "#cf4700",
+        "a": 0.1
+      },
+      "orange-20": {
+        "hex": "#cf4700",
+        "a": 0.2
+      },
+      "orange-50": {
+        "hex": "#cf4700",
+        "a": 0.5
+      },
+      "light-orange-50": {
+        "hex": "#ffeeda",
+        "a": 0.5
+      },
+      "dark-green-50": {
+        "hex": "#002400",
+        "a": 0.5
+      },
+      "green-05": {
+        "hex": "#009600",
+        "a": 0.05
+      },
+      "green-10": {
+        "hex": "#009600",
+        "a": 0.1
+      },
+      "green-20": {
+        "hex": "#009600",
+        "a": 0.2
+      },
+      "green-50": {
+        "hex": "#009600",
+        "a": 0.5
+      },
+      "light-green-50": {
+        "hex": "#ecffe9",
+        "a": 0.5
+      },
+      "dark-turquoise-50": {
+        "hex": "#033238",
+        "a": 0.5
+      },
+      "turquoise-05": {
+        "hex": "#08b8c9",
+        "a": 0.05
+      },
+      "turquoise-10": {
+        "hex": "#08b8c9",
+        "a": 0.1
+      },
+      "turquoise-20": {
+        "hex": "#08b8c9",
+        "a": 0.2
+      },
+      "turquoise-50": {
+        "hex": "#08b8c9",
+        "a": 0.5
+      },
+      "light-turquoise-50": {
+        "hex": "#f0ffff",
+        "a": 0.5
+      },
+      "blue-05": {
+        "hex": "#2569fd",
+        "a": 0.05
+      },
+      "blue-10": {
+        "hex": "#2569fd",
+        "a": 0.1
+      },
+      "blue-20": {
+        "hex": "#2569fd",
+        "a": 0.2
+      },
+      "blue-50": {
+        "hex": "#2569fd",
+        "a": 0.5
+      }
     },
     "color/flow-accent": {
       "teal": "#008793",
@@ -266,7 +416,12 @@
       "21": 144,
       "22": 160
     },
-    "spatial/border-width": { "none": 0, "sm": 1, "md": 2, "lg": 4 },
+    "spatial/border-width": {
+      "none": 0,
+      "sm": 1,
+      "md": 2,
+      "lg": 4
+    },
     "spatial/border-radius": {
       "none": 0,
       "sm": 4,
@@ -275,7 +430,13 @@
       "xl": 12,
       "full": 9999
     },
-    "viewport": { "xs": 393, "sm": 768, "md": 1024, "lg": 1440, "xl": 1920 },
+    "viewport": {
+      "xs": 393,
+      "sm": 768,
+      "md": 1024,
+      "lg": 1440,
+      "xl": 1920
+    },
     "motion/duration": {
       "instant": 0,
       "fast": 100,
@@ -283,7 +444,11 @@
       "slow": 600,
       "slower": 900
     },
-    "motion/ease": { "in": "ease-in", "out": "ease-out", "both": "ease-both" }
+    "motion/ease": {
+      "in": "ease-in",
+      "out": "ease-out",
+      "both": "ease-both"
+    }
   },
   "color": {
     "_modes": ["Light", "Dark"],
@@ -739,7 +904,7 @@
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/primary/bg/danger/hover": [
-      "{color/red/400}",
+      "{color/red/600}",
       "{color/red/600}",
       "FRAME_FILL,SHAPE_FILL"
     ],
@@ -800,12 +965,12 @@
     ],
     "action/primary/icon/hover": [
       "{color/mono/white}",
-      "{color/mono/white}",
+      "{color/neutral/900}",
       "SHAPE_FILL"
     ],
     "action/primary/icon/active": [
       "{color/mono/white}",
-      "{color/mono/white}",
+      "{color/neutral/900}",
       "SHAPE_FILL"
     ],
     "action/primary/icon/disabled": [
@@ -859,7 +1024,7 @@
       "STROKE_COLOR"
     ],
     "action/primary/border/danger/hover": [
-      "{color/red/500}",
+      "{color/red/700}",
       "{color/red/700}",
       "STROKE_COLOR"
     ],
@@ -874,28 +1039,28 @@
       "STROKE_COLOR"
     ],
     "action/secondary/bg/default": [
-      "{color/mono/white}",
-      "{color/neutral/900}",
+      "{color/alpha/transparent}",
+      "{color/alpha/transparent}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/hover": [
-      "{color/neutral/50}",
-      "{color/neutral/800}",
+      "{color/alpha/transparent}",
+      "{color/alpha/transparent}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/active": [
-      "{color/mono/white}",
-      "{color/neutral/900}",
+      "{color/alpha/transparent}",
+      "{color/alpha/transparent}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/disabled": [
-      "{color/neutral/100}",
-      "{color/neutral/800}",
+      "{color/alpha/transparent}",
+      "{color/alpha/transparent}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/default": [
-      "{color/mono/white}",
-      "{color/neutral/900}",
+      "{color/alpha/transparent}",
+      "{color/alpha/transparent}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/hover": [
@@ -904,13 +1069,13 @@
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/active": [
-      "{color/mono/white}",
-      "{color/neutral/900}",
+      "{color/alpha/transparent}",
+      "{color/alpha/transparent}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/disabled": [
-      "{color/neutral/100}",
-      "{color/neutral/800}",
+      "{color/alpha/transparent}",
+      "{color/alpha/transparent}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/text/default": [
@@ -919,8 +1084,8 @@
       "TEXT_FILL"
     ],
     "action/secondary/text/hover": [
-      "{color/neutral/900}",
-      "{color/neutral/50}",
+      "{color/neutral/700}",
+      "{color/neutral/200}",
       "TEXT_FILL"
     ],
     "action/secondary/text/active": [
@@ -939,7 +1104,7 @@
       "TEXT_FILL"
     ],
     "action/secondary/text/danger/hover": [
-      "{color/red/500}",
+      "{color/red/600}",
       "{color/red/300}",
       "TEXT_FILL"
     ],
@@ -959,8 +1124,8 @@
       "SHAPE_FILL"
     ],
     "action/secondary/icon/hover": [
-      "{color/neutral/900}",
-      "{color/neutral/50}",
+      "{color/neutral/700}",
+      "{color/neutral/200}",
       "SHAPE_FILL"
     ],
     "action/secondary/icon/active": [
@@ -979,7 +1144,7 @@
       "SHAPE_FILL"
     ],
     "action/secondary/icon/danger/hover": [
-      "{color/red/500}",
+      "{color/red/600}",
       "{color/red/500}",
       "SHAPE_FILL"
     ],
@@ -999,8 +1164,8 @@
       "STROKE_COLOR"
     ],
     "action/secondary/border/hover": [
-      "{color/alpha/black-30}",
-      "{color/alpha/white-30}",
+      "{color/alpha/black-40}",
+      "{color/alpha/white-40}",
       "STROKE_COLOR"
     ],
     "action/secondary/border/active": [
@@ -1019,8 +1184,8 @@
       "STROKE_COLOR"
     ],
     "action/secondary/border/danger/hover": [
-      "{color/red/100}",
-      "{color/red/800}",
+      "{color/red/200}",
+      "{color/red/700}",
       "STROKE_COLOR"
     ],
     "action/secondary/border/danger/active": [
@@ -1099,7 +1264,7 @@
       "TEXT_FILL"
     ],
     "action/tertiary/text/danger/hover": [
-      "{color/red/500}",
+      "{color/red/600}",
       "{color/red/300}",
       "TEXT_FILL"
     ],
@@ -1139,7 +1304,7 @@
       "SHAPE_FILL"
     ],
     "action/tertiary/icon/danger/hover": [
-      "{color/red/500}",
+      "{color/red/600}",
       "{color/red/500}",
       "SHAPE_FILL"
     ],
@@ -1716,7 +1881,11 @@
     "icon/md": ["{spatial/scale/5}", 20, "WIDTH_HEIGHT"],
     "icon/lg": ["{spatial/scale/6}", 24, "WIDTH_HEIGHT"],
     "icon/xl": ["{spatial/scale/7}", 28, "WIDTH_HEIGHT"],
-    "icon/2xl": ["{spatial/scale/8}", 32, "WIDTH_HEIGHT"]
+    "icon/2xl": ["{spatial/scale/8}", 32, "WIDTH_HEIGHT"],
+    "size/control/sm": ["{spatial/scale/8}", 32, "WIDTH_HEIGHT"],
+    "size/control/md": ["{spatial/scale/10}", 40, "WIDTH_HEIGHT"],
+    "size/control/lg": ["{spatial/scale/12}", 48, "WIDTH_HEIGHT"],
+    "size/target/min": ["{spatial/scale/11}", 44, "WIDTH_HEIGHT"]
   },
   "type": {
     "_modes": ["Desktop", "Mobile"],
@@ -1764,74 +1933,323 @@
     "line-height/caption/xs": [14, 14]
   },
   "textStyles": {
-    "_format": "name: [family, style, size px (Desktop mode), line-height px, letter-spacing]. Letter spacing is % of font size unless suffixed px. Sizes and line heights are bound to the Type collection and switch with the Desktop/Mobile mode.",
-    "_note": "The 13 '.[utility]/...' styles are legacy utility styles used inside the Foundations documentation file itself; they are not part of the product type ramp.",
-    "display/lg": ["Montserrat", "Medium", 56, 72, "-3%"],
-    "display/md": ["Montserrat", "Medium", 40, 52, "-3%"],
-    "display/sm": ["Montserrat", "Medium", 32, 40, "-3%"],
-    "display/xs/medium": ["Montserrat", "Medium", 16, 20, "-0.32px"],
-    "display/xs/semibold": ["Montserrat", "SemiBold", 16, 20, "-0.32px"],
-    "title/lg": ["Inter", "Medium", 40, 48, "-3%"],
-    "title/md": ["Inter", "Medium", 32, 40, "-3%"],
-    "title/sm": ["Inter", "Medium", 20, 28, "-3%"],
-    "title/xs": ["Inter", "Medium", 16, 24, "-3%"],
-    "title/2xs": ["Inter", "Medium", 12, 16, "8%"],
-    "body/lg/regular": ["Inter", "Regular", 16, 24, "-2%"],
-    "body/lg/medium": ["Inter", "Medium", 16, 24, "-2%"],
-    "body/lg/semibold": ["Inter", "Semi Bold", 16, 24, "-2%"],
-    "body/lg/bold": ["Inter", "Bold", 16, 24, "-2%"],
-    "body/md/regular": ["Inter", "Regular", 14, 20, "-0.32px"],
-    "body/md/medium": ["Inter", "Medium", 14, 20, "-0.32px"],
-    "body/md/semibold": ["Inter", "Semi Bold", 14, 20, "-0.32px"],
-    "body/md/bold": ["Inter", "Bold", 14, 20, "-0.32px"],
-    "body/sm/regular": ["Inter", "Regular", 12, 16, "-2%"],
-    "body/sm/medium": ["Inter", "Medium", 12, 16, "-2%"],
-    "body/sm/semibold": ["Inter", "Semi Bold", 12, 16, "-2%"],
-    "body/sm/bold": ["Inter", "Bold", 12, 16, "-2%"],
-    "body/xs/regular": ["Inter", "Regular", 10, 14, "-2%"],
-    "body/xs/medium": ["Inter", "Medium", 10, 14, "-2%"],
-    "body/xs/semibold": ["Inter", "Semi Bold", 10, 14, "-2%"],
-    "body/xs/bold": ["Inter", "Bold", 10, 14, "-2%"],
-    "body/2xs/regular": ["Inter", "Regular", 8, 12, "-2%"],
-    "body/2xs/medium": ["Inter", "Medium", 8, 12, "-2%"],
-    "body/2xs/semibold": ["Inter", "Semi Bold", 8, 12, "-2%"],
-    "body/2xs/bold": ["Inter", "Bold", 8, 12, "-2%"],
-    "label/md": ["Inter", "Medium", 14, 20, "-2%"],
-    "label/sm": ["Inter", "Medium", 12, 16, "-2%"],
-    "helper/md": ["Inter", "Regular", 14, 20, "-2%"],
-    "helper/sm": ["Inter", "Regular", 12, 16, "-2%"],
-    "code/lg": ["IBM Plex Mono", "Medium", 16, 20, "-1%"],
-    "code/md": ["IBM Plex Mono", "Medium", 14, 16, "-1%"],
-    "caption/xs": ["Inter", "Regular", 10, 14, "-2%"],
-    "link/lg/default": ["Inter", "Medium", 16, 24, "-2%"],
-    "link/lg/hover": ["Inter", "Medium", 16, 24, "-2%"],
-    "link/md/default": ["Inter", "Medium", 14, 20, "-0.32px"],
-    "link/md/hover": ["Inter", "Medium", 14, 20, "-0.32px"],
-    "link/sm/default": ["Inter", "Medium", 12, 16, "-2%"],
-    "link/sm/hover": ["Inter", "Medium", 12, 16, "-2%"],
-    "link/xs/default": ["Inter", "Medium", 10, 14, "-2%"],
-    "link/xs/hover": ["Inter", "Medium", 10, 14, "-2%"],
-    "link/2xs/default": ["Inter", "Medium", 8, 12, "-2%"],
-    "link/2xs/hover": ["Inter", "Medium", 8, 12, "-2%"],
-    ".[utility]/Headline/H1": ["Inter", "Medium", 112, 128, "-3%"],
-    ".[utility]/Headline/H2": ["Inter", "Medium", 40, "100%", "-2%"],
-    ".[utility]/Headline/H3": ["Inter", "Medium", 28, 36, "-2%"],
-    ".[utility]/Headline/H4": ["Inter", "Semi Bold", 20, 24, "-0.32px"],
-    ".[utility]/Headline/H5": ["Inter", "Semi Bold", 16, 24, "-0.32px"],
-    ".[utility]/Body/Body M/Regular": ["Inter", "Regular", 16, 24, "-0.32px"],
-    ".[utility]/Body/Body M/Medium": ["Inter", "Medium", 16, 24, "-0.32px"],
+    "_format": "name: [family, style, size px (Desktop mode), line-height px, letter-spacing, text decoration, text case]. Letter spacing is % of font size unless suffixed px. Sizes and line heights are bound to the Type collection and switch with the Desktop/Mobile mode. Decoration is NONE | UNDERLINE | STRIKETHROUGH and case is ORIGINAL | UPPER | LOWER | TITLE | SMALL_CAPS | SMALL_CAPS_FORCED; captures made before 2026-09-23 have only the first five.",
+    "display/lg": ["Montserrat", "Medium", 56, 72, "-3%", "NONE", "ORIGINAL"],
+    "display/md": ["Montserrat", "Medium", 40, 52, "-3%", "NONE", "ORIGINAL"],
+    "display/sm": ["Montserrat", "Medium", 32, 40, "-3%", "NONE", "ORIGINAL"],
+    "display/xs/medium": [
+      "Montserrat",
+      "Medium",
+      16,
+      20,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "display/xs/semibold": [
+      "Montserrat",
+      "SemiBold",
+      16,
+      20,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "title/lg": ["Inter", "Medium", 40, 48, "-3%", "NONE", "ORIGINAL"],
+    "title/md": ["Inter", "Medium", 32, 40, "-3%", "NONE", "ORIGINAL"],
+    "title/sm": ["Inter", "Medium", 20, 28, "-3%", "NONE", "ORIGINAL"],
+    "title/xs": ["Inter", "Medium", 16, 24, "-3%", "NONE", "ORIGINAL"],
+    "title/2xs": ["Inter", "Medium", 12, 16, "8%", "NONE", "UPPER"],
+    "body/lg/regular": ["Inter", "Regular", 16, 24, "-2%", "NONE", "ORIGINAL"],
+    "body/lg/medium": ["Inter", "Medium", 16, 24, "-2%", "NONE", "ORIGINAL"],
+    "body/lg/semibold": [
+      "Inter",
+      "Semi Bold",
+      16,
+      24,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "body/lg/bold": ["Inter", "Bold", 16, 24, "-2%", "NONE", "ORIGINAL"],
+    "body/md/regular": [
+      "Inter",
+      "Regular",
+      14,
+      20,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "body/md/medium": [
+      "Inter",
+      "Medium",
+      14,
+      20,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "body/md/semibold": [
+      "Inter",
+      "Semi Bold",
+      14,
+      20,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "body/md/bold": ["Inter", "Bold", 14, 20, "-0.32px", "NONE", "ORIGINAL"],
+    "body/sm/regular": ["Inter", "Regular", 12, 16, "-2%", "NONE", "ORIGINAL"],
+    "body/sm/medium": ["Inter", "Medium", 12, 16, "-2%", "NONE", "ORIGINAL"],
+    "body/sm/semibold": [
+      "Inter",
+      "Semi Bold",
+      12,
+      16,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "body/sm/bold": ["Inter", "Bold", 12, 16, "-2%", "NONE", "ORIGINAL"],
+    "body/xs/regular": ["Inter", "Regular", 10, 14, "-2%", "NONE", "ORIGINAL"],
+    "body/xs/medium": ["Inter", "Medium", 10, 14, "-2%", "NONE", "ORIGINAL"],
+    "body/xs/semibold": [
+      "Inter",
+      "Semi Bold",
+      10,
+      14,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "body/xs/bold": ["Inter", "Bold", 10, 14, "-2%", "NONE", "ORIGINAL"],
+    "body/2xs/regular": ["Inter", "Regular", 8, 12, "-2%", "NONE", "ORIGINAL"],
+    "body/2xs/medium": ["Inter", "Medium", 8, 12, "-2%", "NONE", "ORIGINAL"],
+    "body/2xs/semibold": [
+      "Inter",
+      "Semi Bold",
+      8,
+      12,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    "body/2xs/bold": ["Inter", "Bold", 8, 12, "-2%", "NONE", "ORIGINAL"],
+    "label/md": ["Inter", "Medium", 14, 20, "-2%", "NONE", "ORIGINAL"],
+    "label/sm": ["Inter", "Medium", 12, 16, "-2%", "NONE", "ORIGINAL"],
+    "helper/md": ["Inter", "Regular", 14, 20, "-2%", "NONE", "ORIGINAL"],
+    "helper/sm": ["Inter", "Regular", 12, 16, "-2%", "NONE", "ORIGINAL"],
+    "code/lg": ["IBM Plex Mono", "Medium", 16, 20, "-1%", "NONE", "ORIGINAL"],
+    "code/md": ["IBM Plex Mono", "Medium", 14, 16, "-1%", "NONE", "ORIGINAL"],
+    "caption/xs": ["Inter", "Regular", 10, 14, "-2%", "NONE", "ORIGINAL"],
+    "link/lg/default": [
+      "Inter",
+      "Medium",
+      16,
+      24,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/lg/hover": [
+      "Inter",
+      "Medium",
+      16,
+      24,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/md/default": [
+      "Inter",
+      "Medium",
+      14,
+      20,
+      "-0.32px",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/md/hover": [
+      "Inter",
+      "Medium",
+      14,
+      20,
+      "-0.32px",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/sm/default": [
+      "Inter",
+      "Medium",
+      12,
+      16,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/sm/hover": [
+      "Inter",
+      "Medium",
+      12,
+      16,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/xs/default": [
+      "Inter",
+      "Medium",
+      10,
+      14,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/xs/hover": [
+      "Inter",
+      "Medium",
+      10,
+      14,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/2xs/default": [
+      "Inter",
+      "Medium",
+      8,
+      12,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    "link/2xs/hover": [
+      "Inter",
+      "Medium",
+      8,
+      12,
+      "-2%",
+      "UNDERLINE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Headline/H1": [
+      "Inter",
+      "Medium",
+      112,
+      128,
+      "-3%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Headline/H2": [
+      "Inter",
+      "Medium",
+      40,
+      "100%",
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Headline/H3": [
+      "Inter",
+      "Medium",
+      28,
+      36,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Headline/H4": [
+      "Inter",
+      "Semi Bold",
+      20,
+      24,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Headline/H5": [
+      "Inter",
+      "Semi Bold",
+      16,
+      24,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Body/Body M/Regular": [
+      "Inter",
+      "Regular",
+      16,
+      24,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Body/Body M/Medium": [
+      "Inter",
+      "Medium",
+      16,
+      24,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ],
     ".[utility]/Body/Body M/Semibold": [
       "Inter",
       "Semi Bold",
       16,
       24,
-      "-0.32px"
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
     ],
-    ".[utility]/Body/Body S/Semibold": ["Inter", "Semi Bold", 14, 20, "-2%"],
-    ".[utility]/Body/Body S/Medium": ["Inter", "Medium", 14, 20, "-2%"],
-    ".[utility]/Code/M": ["IBM Plex Mono", "Medium", 16, 24, "-2%"],
-    ".[utility]/Code/S": ["IBM Plex Mono", "Medium", 14, 20, "-2%"],
-    ".[utility]/Misc/Caption": ["Inter", "Semi Bold", 14, 20, "-0.32px"]
+    ".[utility]/Body/Body S/Semibold": [
+      "Inter",
+      "Semi Bold",
+      14,
+      20,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Body/Body S/Medium": [
+      "Inter",
+      "Medium",
+      14,
+      20,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Code/M": [
+      "IBM Plex Mono",
+      "Medium",
+      16,
+      24,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Code/S": [
+      "IBM Plex Mono",
+      "Medium",
+      14,
+      20,
+      "-2%",
+      "NONE",
+      "ORIGINAL"
+    ],
+    ".[utility]/Misc/Caption": [
+      "Inter",
+      "Semi Bold",
+      14,
+      20,
+      "-0.32px",
+      "NONE",
+      "ORIGINAL"
+    ]
   },
   "effectStyles": {
     "_format": "name: list of drop-shadow layers {x, y, blur, spread, color variable, light-mode resolved rgba}. Colors are bound to the Color collection shadow/* variables and therefore change in Dark mode (see the 'color' section).",

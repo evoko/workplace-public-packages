@@ -97,7 +97,7 @@ Panel that lists user notifications — system alerts, @mentions, assignment cha
 - **Notifications Panel** · component · column gap 0 pad 0/0/0/0 FIXED/HUG · 380×658  
   fill `color.surface.overlay` · stroke `color.border.subtle` 1px · effect `shadow/dialog` · strokeWeight `border.default` · radius `radius.dialog`
   - **Header** · frame · row gap 12 pad 16/20/16/20 FILL/HUG · 380×56  
-    stroke `color.border.subtle` mixedpx · padding `inset.lg`, `inset.md` · strokeWeight `border.default`
+    stroke `color.border.subtle` mixedpx · itemSpacing `inset.sm` · padding `inset.lg`, `inset.md` · strokeWeight `border.default`
     - **Title Group** · frame · row gap 12 pad 0/0/0/0 HUG/HUG · 177×24  
       itemSpacing `stack.sm`
       - **Notifications** · text `body/lg/medium` "Notifications" · HUG/HUG · 94×12  
@@ -155,10 +155,6 @@ Panel that lists user notifications — system alerts, @mentions, assignment cha
 - Dropdown Group Label
 - Notification Item
 - Tag
-
-### Issues detected
-
-- Hard-coded gap `12px` on layer _Header_
 
 ## Documentation card
 

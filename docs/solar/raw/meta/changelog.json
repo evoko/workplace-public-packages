@@ -12,7 +12,7 @@
       "x": 0,
       "y": 0,
       "w": 1280,
-      "h": 766,
+      "h": 982,
       "blocks": [
         {
           "t": "h",
@@ -85,7 +85,7 @@
           "blocks": [
             {
               "t": "p",
-              "text": "Component name & link",
+              "text": "Color variables",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -100,7 +100,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "MINOR",
                   "style": "10/700"
                 }
               ]
@@ -113,7 +113,7 @@
           "blocks": [
             {
               "t": "p",
-              "text": "YYYY-MM-DD",
+              "text": "2026-09-25",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -124,7 +124,7 @@
           "blocks": [
             {
               "t": "p",
-              "text": "Short description of change",
+              "text": "Secondary actions: no background; danger hover keeps the red tint.",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -135,7 +135,190 @@
           "blocks": [
             {
               "t": "p",
-              "text": "Anatoliy Gromov",
+              "text": "Ella Törnquist",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Color variables",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "PATCH",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "2026-09-25",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Dark primary icon hover/pressed follows the label; danger hovers pass 4.5:1.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Ella Törnquist",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Spatial variables",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MINOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "2026-09-25",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Added size/control/sm, md, lg and size/target/min.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Ella Törnquist",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Guideline pages",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "PATCH",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "2026-09-25",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Action states, data scale and icon checklist corrected to the variables.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Ella Törnquist",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -193,12 +376,39 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "MINOR"
       ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
+      "variableId": "VariableID:34:3320",
+      "hex": "#3e7cff",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "PATCH"
+      ],
+      "variableId": "VariableID:299:2738",
+      "hex": "#fb5800",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MINOR"
+      ],
+      "variableId": "VariableID:34:3320",
+      "hex": "#3e7cff",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "PATCH"
+      ],
+      "variableId": "VariableID:299:2738",
+      "hex": "#fb5800",
       "opacity": 1
     }
   ],
-  "blockCount": 12
+  "blockCount": 27
 }

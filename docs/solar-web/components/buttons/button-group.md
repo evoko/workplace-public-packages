@@ -4,7 +4,7 @@
 
 ## Component set: Button Group
 
-Container that assembles 2–5 Buttons into a joined row. 3 variants: orientation (horizontal, vertical) × type (regular, full-width) — built combinations: horizontal/regular, vertical/regular, horizontal/full-width. regular sizes to content; full-width stretches buttons to fill the container width (equal widths). All children must share the same prio and size — mixing breaks the visual grouping. For multi-action toolbars with dividers use a Toolbar pattern; for segmented exclusive selection use Segmented Control.
+Container that assembles 2–5 Buttons into a row or column. 3 variants: orientation (horizontal, vertical) × type (regular, full-width) — built combinations: horizontal/regular, vertical/regular, horizontal/full-width. Buttons fill the group in equal shares in every variant; full-width stretches the group to its container. Children share one size; priorities may mix, with at most one primary. Props: Buttons (slot), SecondaryCTA, TertiaryCTA. For segmented exclusive selection use Segmented Control.
 
 ### Props
 

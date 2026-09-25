@@ -123,6 +123,9 @@
               "align": "SPACE_BETWEEN/CENTER",
               "sizing": "FILL/HUG"
             },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
             "children": [
               {
                 "name": "Container",
@@ -331,6 +334,7 @@
       "variants": [
         {
           "variant": "state=default, action=more",
+          "id": "5465:2",
           "size": [
             360,
             99
@@ -351,10 +355,14 @@
           ],
           "hidden": [
             "Trend Badge"
+          ],
+          "hiddenPaths": [
+            "/Header/Container/Trend Badge"
           ]
         },
         {
           "variant": "state=loading, action=more",
+          "id": "5465:18",
           "size": [
             360,
             160
@@ -367,6 +375,7 @@
           ],
           "effect": "shadow/raised",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -379,6 +388,7 @@
               {
                 "path": "/Header/Skeleton",
                 "parent": "/Header",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -418,6 +428,7 @@
               {
                 "path": "/Header/Skeleton#2",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -457,6 +468,7 @@
               {
                 "path": "/Skeleton",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -496,6 +508,7 @@
               {
                 "path": "/Skeleton#2",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -547,6 +560,7 @@
         },
         {
           "variant": "state=error, action=more",
+          "id": "5465:33",
           "size": [
             360,
             160
@@ -574,6 +588,12 @@
             "Spinner",
             "Trend Badge"
           ],
+          "hiddenPaths": [
+            "/Body/Button/Counter",
+            "/Body/Button/Icon/None",
+            "/Body/Button/Spinner",
+            "/Header/Container/Trend Badge"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -586,6 +606,7 @@
               {
                 "path": "/Body",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Body",
                   "type": "FRAME",
@@ -615,6 +636,7 @@
               {
                 "path": "/Body/Something went wrong",
                 "parent": "/Body",
+                "index": 0,
                 "layer": {
                   "name": "Something went wrong",
                   "type": "TEXT",
@@ -639,6 +661,7 @@
               {
                 "path": "/Body/Button",
                 "parent": "/Body",
+                "index": 1,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -697,6 +720,7 @@
         },
         {
           "variant": "state=empty, action=more",
+          "id": "6559:12",
           "size": [
             360,
             160
@@ -724,6 +748,13 @@
             "Spinner",
             "Trend Badge"
           ],
+          "hiddenPaths": [
+            "/EmptyState/Button/Counter",
+            "/EmptyState/Button/Icon/None",
+            "/EmptyState/Button/Spinner",
+            "/EmptyState/Icon/None",
+            "/Header/Container/Trend Badge"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -736,6 +767,7 @@
               {
                 "path": "/EmptyState",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "EmptyState",
                   "type": "INSTANCE",
@@ -776,6 +808,7 @@
         },
         {
           "variant": "state=default, action=link",
+          "id": "7058:44122",
           "size": [
             360,
             103
@@ -808,6 +841,7 @@
               {
                 "path": "/Header/Container#2",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -835,6 +869,7 @@
               {
                 "path": "/Header/Container#2/Label",
                 "parent": "/Header/Container#2",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -859,6 +894,7 @@
               {
                 "path": "/Header/Container#2/Icon/ChevronRight",
                 "parent": "/Header/Container#2",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ChevronRight",
                   "type": "INSTANCE",
@@ -887,6 +923,7 @@
         },
         {
           "variant": "state=loading, action=link",
+          "id": "7058:44130",
           "size": [
             360,
             160
@@ -899,6 +936,7 @@
           ],
           "effect": "shadow/raised",
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -911,6 +949,7 @@
               {
                 "path": "/Header/Skeleton",
                 "parent": "/Header",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -950,6 +989,7 @@
               {
                 "path": "/Header/Skeleton#2",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -989,6 +1029,7 @@
               {
                 "path": "/Skeleton",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -1028,6 +1069,7 @@
               {
                 "path": "/Skeleton#2",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Skeleton",
                   "type": "INSTANCE",
@@ -1079,6 +1121,7 @@
         },
         {
           "variant": "state=error, action=link",
+          "id": "7058:44136",
           "size": [
             360,
             160
@@ -1107,6 +1150,12 @@
             "Spinner",
             "Trend Badge"
           ],
+          "hiddenPaths": [
+            "/Body/Button/Counter",
+            "/Body/Button/Icon/None",
+            "/Body/Button/Spinner",
+            "/Header/Container/Trend Badge"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -1125,6 +1174,7 @@
               {
                 "path": "/Header/Container#2",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1152,6 +1202,7 @@
               {
                 "path": "/Header/Container#2/Label",
                 "parent": "/Header/Container#2",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1176,6 +1227,7 @@
               {
                 "path": "/Header/Container#2/Icon/ChevronRight",
                 "parent": "/Header/Container#2",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ChevronRight",
                   "type": "INSTANCE",
@@ -1199,6 +1251,7 @@
               {
                 "path": "/Body",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Body",
                   "type": "FRAME",
@@ -1228,6 +1281,7 @@
               {
                 "path": "/Body/Something went wrong",
                 "parent": "/Body",
+                "index": 0,
                 "layer": {
                   "name": "Something went wrong",
                   "type": "TEXT",
@@ -1252,6 +1306,7 @@
               {
                 "path": "/Body/Button",
                 "parent": "/Body",
+                "index": 1,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -1311,6 +1366,7 @@
         },
         {
           "variant": "state=empty, action=link",
+          "id": "7058:44143",
           "size": [
             360,
             160
@@ -1339,6 +1395,13 @@
             "Spinner",
             "Trend Badge"
           ],
+          "hiddenPaths": [
+            "/EmptyState/Button/Counter",
+            "/EmptyState/Button/Icon/None",
+            "/EmptyState/Button/Spinner",
+            "/EmptyState/Icon/None",
+            "/Header/Container/Trend Badge"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -1357,6 +1420,7 @@
               {
                 "path": "/Header/Container#2",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1384,6 +1448,7 @@
               {
                 "path": "/Header/Container#2/Label",
                 "parent": "/Header/Container#2",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1408,6 +1473,7 @@
               {
                 "path": "/Header/Container#2/Icon/ChevronRight",
                 "parent": "/Header/Container#2",
+                "index": 1,
                 "layer": {
                   "name": "Icon/ChevronRight",
                   "type": "INSTANCE",
@@ -1431,13 +1497,14 @@
               {
                 "path": "/EmptyState",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "EmptyState",
                   "type": "INSTANCE",
                   "main": "EmptyState",
                   "size": [
                     328,
-                    96
+                    92
                   ],
                   "layout": {
                     "dir": "VERTICAL",
@@ -1550,6 +1617,10 @@
           ],
           "align": "CENTER/CENTER",
           "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "width": "Spatial:icon/sm",
+          "height": "Spatial:icon/sm"
         }
       }
     },

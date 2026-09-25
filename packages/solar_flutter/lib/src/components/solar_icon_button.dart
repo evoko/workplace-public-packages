@@ -6,7 +6,9 @@
 /// IconButton.
 ///
 /// It wraps Flutter's IconButton, which supplies focus, keyboard activation, hover and press;
-/// [SolarIconButtonRecipe.style] restyles it.
+/// [SolarIconButtonRecipe.style] restyles it. Given [active], it is a toggle icon button, as
+/// IconButton's own `isSelected` makes one: `true` draws Figma's active state, the persistent on
+/// state, announced selected, as a toggle IconButton is; left null, it is an ordinary action.
 library;
 
 import 'package:flutter/material.dart';
@@ -28,6 +30,7 @@ class SolarIconButton extends StatelessWidget {
     this.shape = SolarIconButtonShape.square,
     this.prio = SolarIconButtonPrio.primary,
     this.loading = false,
+    this.active,
     this.focusNode,
     this.autofocus = false,
     this.statesController,
@@ -46,6 +49,9 @@ class SolarIconButton extends StatelessWidget {
   final SolarIconButtonShape shape;
   final SolarIconButtonPrio prio;
   final bool loading;
+
+  /// Switched on, for a toggle icon button: Figma's active state. Null, the button is no toggle.
+  final bool? active;
 
   final FocusNode? focusNode;
   final bool autofocus;
@@ -66,6 +72,7 @@ class SolarIconButton extends StatelessWidget {
       prio: prio,
       disabled: disabled,
       loading: busy,
+      active: active ?? false,
     );
     const rest = <WidgetState>{};
     bool shows(String layer) => SolarIconButtonRecipe.present(layer, p, rest);
@@ -82,6 +89,7 @@ class SolarIconButton extends StatelessWidget {
       focusNode: focusNode,
       autofocus: autofocus,
       statesController: statesController,
+      isSelected: active,
       icon: Stack(
         alignment: Alignment.center,
         children: [

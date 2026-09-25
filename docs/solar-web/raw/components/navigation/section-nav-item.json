@@ -48,7 +48,7 @@
             8
           ],
           "align": "MIN/CENTER",
-          "sizing": "HUG/FIXED"
+          "sizing": "FIXED/FIXED"
         },
         "radius": 6,
         "vars": {
@@ -113,6 +113,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "8108:3",
           "size": [
             220,
             32
@@ -123,10 +124,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover",
+          "id": "8109:3",
           "size": [
             220,
             32
@@ -143,9 +146,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "sizing": "FIXED/FIXED"
-                },
                 "fills": [
                   "{Color:surface/hover}"
                 ]
@@ -166,6 +166,7 @@
         },
         {
           "variant": "state=focus",
+          "id": "8109:7",
           "size": [
             220,
             32
@@ -180,9 +181,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "sizing": "FIXED/FIXED"
-                },
                 "effectStyle": "shadow/focus/default"
               },
               "/Label": {
@@ -193,6 +191,7 @@
         },
         {
           "variant": "state=selected",
+          "id": "8109:11",
           "size": [
             220,
             32
@@ -209,9 +208,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "sizing": "FIXED/FIXED"
-                },
                 "fills": [
                   "{Color:surface/active}"
                 ]
@@ -232,6 +228,7 @@
         },
         {
           "variant": "state=disabled",
+          "id": "8109:15",
           "size": [
             220,
             32
@@ -246,9 +243,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "layout": {
-                  "sizing": "FIXED/FIXED"
-                },
                 "opacity": 0.4000000059604645
               },
               "/Label": {

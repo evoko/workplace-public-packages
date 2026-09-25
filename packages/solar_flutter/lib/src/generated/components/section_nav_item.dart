@@ -41,7 +41,7 @@ abstract final class SolarSectionNavItemRecipe {
     'root.paddingBottom|base': 't:inset.none',
     'root.paddingLeft|base': 't:inset.xs',
     'root.width|base': 'k:FILL',
-    'root.height|base': 'px:32',
+    'root.height|base': 't:size.control.sm',
     'root.background|appearance|default|hover': 't:color.surface.hover',
     'root.background|appearance|default|selected': 't:color.surface.active',
     'root.shadow|appearance|default|focus': 't:shadow.focus.default',
@@ -158,6 +158,7 @@ abstract final class SolarSectionNavItemRecipe {
       't:inset.none' => SolarInset.none,
       't:inset.xs' => SolarInset.xs,
       't:radius.control' => SolarRadius.control,
+      't:size.control.sm' => SolarSize.controlSm,
       _ => throw StateError('$cell: no length for $v'),
     };
   }

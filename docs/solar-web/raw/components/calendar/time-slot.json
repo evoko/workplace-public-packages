@@ -82,6 +82,7 @@
       "variants": [
         {
           "variant": "state=default, density=comfortable",
+          "id": "6642:4",
           "size": [
             160,
             48
@@ -92,10 +93,12 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover, density=comfortable",
+          "id": "6642:7",
           "size": [
             160,
             48
@@ -118,6 +121,7 @@
         },
         {
           "variant": "state=selected, density=comfortable",
+          "id": "6642:10",
           "size": [
             160,
             48
@@ -143,6 +147,7 @@
         },
         {
           "variant": "state=default, density=compact",
+          "id": "6642:13",
           "size": [
             160,
             32
@@ -166,6 +171,7 @@
         },
         {
           "variant": "state=hover, density=compact",
+          "id": "6642:16",
           "size": [
             160,
             32
@@ -194,6 +200,7 @@
         },
         {
           "variant": "state=selected, density=compact",
+          "id": "6642:19",
           "size": [
             160,
             32

@@ -66,8 +66,8 @@ export const solarTokenInputStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
@@ -367,6 +367,21 @@ export const solarTokenInputComposition = {
       },
     },
   },
+  counter: {
+    base: {
+      present: false,
+      component: 'Counter',
+    },
+    appearance: {
+      default: {
+        filled: {
+          present: true,
+          'variant.type': 'regular',
+          'variant.state': 'default',
+        },
+      },
+    },
+  },
   tag2: {
     base: {
       present: false,
@@ -391,21 +406,6 @@ export const solarTokenInputComposition = {
           'variant.status': 'neutral',
           'variant.type': 'text-only',
           'variant.invert': 'false',
-        },
-      },
-    },
-  },
-  counter: {
-    base: {
-      present: false,
-      component: 'Counter',
-    },
-    appearance: {
-      default: {
-        filled: {
-          present: true,
-          'variant.type': 'regular',
-          'variant.state': 'default',
         },
       },
     },

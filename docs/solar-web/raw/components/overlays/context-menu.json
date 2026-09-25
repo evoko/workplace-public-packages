@@ -5,9 +5,9 @@
     {
       "name": "Context Menu Item",
       "id": "3451:31",
-      "description": "Single row inside a Context Menu. 5 variants: state (default, hover, focus, disabled) × destructive (false, true), shipped as the used combinations. destructive=true is for irreversible actions like Delete and uses color.text.feedback.danger — reserve it for true destructive actions, not every secondary action. Pair with an optional leading icon and a trailing keyboard shortcut (Kbd). Submenus are not supported — keep to a single nesting level.",
+      "description": "Single row inside a Context Menu. 8 variants: state (default, hover, focus, disabled) × destructive (false, true). destructive=true is for irreversible actions like Delete and uses the danger text colour; its disabled row uses the disabled ink, which wins over danger. The trailing shortcut is plain text in text/tertiary, not a Kbd. Optional leading icon. Submenus are not supported — keep to a single nesting level.",
       "docLinks": [],
-      "variantCount": 5,
+      "variantCount": 8,
       "props": {
         "label#3451:0": {
           "type": "TEXT",
@@ -174,6 +174,7 @@
       "variants": [
         {
           "variant": "state=default, destructive=false",
+          "id": "3451:6",
           "size": [
             200,
             36
@@ -187,10 +188,14 @@
           ],
           "hidden": [
             "LeadingIcon"
+          ],
+          "hiddenPaths": [
+            "/LeadingIcon#2"
           ]
         },
         {
           "variant": "state=hover, destructive=false",
+          "id": "3451:11",
           "size": [
             200,
             36
@@ -217,6 +222,7 @@
         },
         {
           "variant": "state=focus, destructive=false",
+          "id": "3451:16",
           "size": [
             200,
             36
@@ -224,6 +230,10 @@
           "fills": [
             "{Color:surface/hover}"
           ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/tertiary}"
@@ -236,13 +246,25 @@
               "/": {
                 "fills": [
                   "{Color:surface/hover}"
-                ]
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
               }
             }
           }
         },
         {
           "variant": "state=disabled, destructive=false",
+          "id": "3451:21",
           "size": [
             200,
             36
@@ -280,6 +302,7 @@
         },
         {
           "variant": "state=default, destructive=true",
+          "id": "3451:26",
           "size": [
             200,
             36
@@ -310,6 +333,135 @@
               "/LeadingIcon#2": {
                 "iconFills": [
                   "{Color:icon/feedback/danger}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "state=hover, destructive=true",
+          "id": "11066:29944",
+          "size": [
+            200,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}",
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              },
+              "/LeadingIcon": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "state=focus, destructive=true",
+          "id": "11066:29950",
+          "size": [
+            200,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}",
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              },
+              "/LeadingIcon": {
+                "iconFills": [
+                  "{Color:icon/feedback/danger}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "state=disabled, destructive=true",
+          "id": "11066:29956",
+          "size": [
+            200,
+            36
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ],
+          "overrides": {
+            "changed": {
+              "/LeadingIcon": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Shortcut": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/LeadingIcon#2": {
+                "iconFills": [
+                  "{Color:icon/disabled}"
                 ]
               }
             }

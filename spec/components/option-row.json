@@ -35,6 +35,11 @@
       "parent": "root",
       "type": "INSTANCE"
     },
+    "toggle": {
+      "path": "/Toggle",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
     "text": {
       "path": "/Text",
       "parent": "root",
@@ -49,11 +54,6 @@
       "path": "/Text/Description",
       "parent": "text",
       "type": "TEXT"
-    },
-    "toggle": {
-      "path": "/Toggle",
-      "parent": "root",
-      "type": "INSTANCE"
     }
   },
   "style": {
@@ -102,7 +102,7 @@
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.sm",
@@ -111,7 +111,7 @@
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -200,6 +200,53 @@
         }
       }
     },
+    "toggle": {
+      "base": {
+        "present": {
+          "value": false,
+          "from": "control=checkbox"
+        },
+        "component": {
+          "keyword": "Toggle",
+          "from": "control=toggle"
+        },
+        "width": {
+          "none": true,
+          "from": "overlay",
+          "reason": "The Toggle's 32 × 18 track is its own, as the Checkbox's box is.",
+          "replaced": {
+            "literal": 32
+          }
+        },
+        "height": {
+          "none": true,
+          "from": "overlay",
+          "reason": "As its width, the Toggle's own.",
+          "replaced": {
+            "literal": 18
+          }
+        }
+      },
+      "size": {},
+      "appearance": {
+        "control=toggle": {
+          "default": {
+            "present": {
+              "value": true,
+              "from": "control=toggle"
+            },
+            "variant.selected": {
+              "keyword": "false",
+              "from": "control=toggle"
+            },
+            "variant.state": {
+              "keyword": "default",
+              "from": "control=toggle"
+            }
+          }
+        }
+      }
+    },
     "text": {
       "base": {
         "present": {
@@ -241,22 +288,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "FILL",
@@ -313,53 +360,6 @@
       },
       "size": {},
       "appearance": {}
-    },
-    "toggle": {
-      "base": {
-        "present": {
-          "value": false,
-          "from": "control=checkbox"
-        },
-        "component": {
-          "keyword": "Toggle",
-          "from": "control=toggle"
-        },
-        "width": {
-          "none": true,
-          "from": "overlay",
-          "reason": "The Toggle's 32 × 18 track is its own, as the Checkbox's box is.",
-          "replaced": {
-            "literal": 32
-          }
-        },
-        "height": {
-          "none": true,
-          "from": "overlay",
-          "reason": "As its width, the Toggle's own.",
-          "replaced": {
-            "literal": 18
-          }
-        }
-      },
-      "size": {},
-      "appearance": {
-        "control=toggle": {
-          "default": {
-            "present": {
-              "value": true,
-              "from": "control=toggle"
-            },
-            "variant.selected": {
-              "keyword": "false",
-              "from": "control=toggle"
-            },
-            "variant.state": {
-              "keyword": "default",
-              "from": "control=toggle"
-            }
-          }
-        }
-      }
     }
   },
   "docs": {
@@ -371,7 +371,7 @@
     "pageId": "10090:2",
     "figmaNode": "10102:10994",
     "defaultVariant": "control=checkbox",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/option-row.yaml",
@@ -414,7 +414,7 @@
       {
         "rule": "bind",
         "at": "root.paddingRight, root.paddingLeft, text.paddingTop, text.paddingRight, text.paddingBottom, text.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

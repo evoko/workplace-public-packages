@@ -113,8 +113,8 @@
                   0
                 ],
                 "vars": {
-                  "paddingLeft": "unresolved:8fd955719573",
-                  "paddingRight": "unresolved:8fd955719573"
+                  "paddingLeft": "Spatial:inset/3xl",
+                  "paddingRight": "Spatial:inset/3xl"
                 },
                 "children": [
                   {
@@ -265,9 +265,9 @@
                 ],
                 "vars": {
                   "itemSpacing": "Spatial:inset/lg",
-                  "paddingLeft": "unresolved:8fd955719573",
+                  "paddingLeft": "Spatial:inset/3xl",
                   "paddingTop": "Spatial:inset/2xl",
-                  "paddingRight": "unresolved:8fd955719573",
+                  "paddingRight": "Spatial:inset/3xl",
                   "paddingBottom": "Spatial:inset/2xl"
                 },
                 "children": [
@@ -285,9 +285,9 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "unresolved:e8eb718f4e2f",
+                      "lineHeight": "Type:line-height/title/lg",
                       "fontFamily": "Primitives:type/font-family/inter",
-                      "fontSize": "unresolved:e8cce36e4d83",
+                      "fontSize": "Type:size/title/lg",
                       "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },

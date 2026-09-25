@@ -60,12 +60,6 @@ abstract final class SolarBreadcrumbsRecipe {
     'iconChevronRight2.width|base': 't:icon.xs',
     'iconChevronRight2.height|base': 't:icon.xs',
     'iconChevronRight2.color|base': 't:color.icon.secondary',
-    'current.present|base': 'b:true',
-    'current.component|base': 'k:Breadcrumb Item',
-    'current.variant.type|base': 'k:current',
-    'current.variant.state|base': 'k:default',
-    'current.width|base': 'k:HUG',
-    'current.height|base': 'k:HUG',
     'item3.present|base': 'b:true',
     'item3.component|base': 'k:Breadcrumb Item',
     'item3.variant.type|base': 'k:link',
@@ -90,6 +84,12 @@ abstract final class SolarBreadcrumbsRecipe {
     'iconChevronRight4.width|base': 't:icon.xs',
     'iconChevronRight4.height|base': 't:icon.xs',
     'iconChevronRight4.color|base': 't:color.icon.secondary',
+    'current.present|base': 'b:true',
+    'current.component|base': 'k:Breadcrumb Item',
+    'current.variant.type|base': 'k:current',
+    'current.variant.state|base': 'k:default',
+    'current.width|base': 'k:HUG',
+    'current.height|base': 'k:HUG',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
@@ -99,11 +99,11 @@ abstract final class SolarBreadcrumbsRecipe {
       'iconChevronRight',
       'item2',
       'iconChevronRight2',
-      'current',
       'item3',
       'iconChevronRight3',
       'item4',
       'iconChevronRight4',
+      'current',
     ],
   };
 

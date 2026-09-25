@@ -38,5 +38,5 @@ allowLiteral:
   halo.opacity:
     reason: >-
       The halo is the dot's colour at 20% opacity. SOLAR has alpha colours but no opacity scale,
-      and no alpha form of surface/feedback/info/strong; carried as Figma's number, and raised as a
-      governance gap.
+      and no alpha form of surface/feedback/info/strong; carried as Figma's number. SOLAR decided on
+      2026-09-25 against a scale for its four one-off opacities (20%, 30%, 40%, 50%).

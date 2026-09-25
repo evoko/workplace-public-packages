@@ -85,15 +85,18 @@
       "variants": [
         {
           "variant": "type=Default",
+          "id": "8871:445",
           "size": [
             12,
             14
           ],
           "effect": "shadow/raised",
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=Grabbing",
+          "id": "8871:437",
           "size": [
             13,
             14
@@ -108,6 +111,7 @@
               {
                 "path": "/Imported Layers Copy 4",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Imported Layers Copy 4",
                   "type": "BOOLEAN_OPERATION",
@@ -143,6 +147,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path",
                 "parent": "/Imported Layers Copy 4",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -168,6 +173,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path#2",
                 "parent": "/Imported Layers Copy 4",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -193,6 +199,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path#3",
                 "parent": "/Imported Layers Copy 4",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -218,6 +225,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path#4",
                 "parent": "/Imported Layers Copy 4",
+                "index": 3,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -248,6 +256,7 @@
         },
         {
           "variant": "type=Default White",
+          "id": "8871:443",
           "size": [
             13,
             14
@@ -270,6 +279,7 @@
         },
         {
           "variant": "type=Progress",
+          "id": "8871:447",
           "size": [
             22,
             24
@@ -306,6 +316,7 @@
               {
                 "path": "/Oval 3",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Oval 3",
                   "type": "VECTOR",
@@ -341,6 +352,7 @@
               {
                 "path": "/Rectangle 8",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Rectangle 8",
                   "type": "BOOLEAN_OPERATION",
@@ -366,6 +378,7 @@
               {
                 "path": "/Rectangle 8/Path",
                 "parent": "/Rectangle 8",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -391,6 +404,7 @@
               {
                 "path": "/Rectangle 8/Path#2",
                 "parent": "/Rectangle 8",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -418,6 +432,7 @@
         },
         {
           "variant": "type=Not Allowed",
+          "id": "8871:453",
           "size": [
             21,
             24
@@ -450,6 +465,7 @@
               {
                 "path": "/Oval 3",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Oval 3",
                   "type": "BOOLEAN_OPERATION",
@@ -485,6 +501,7 @@
               {
                 "path": "/Oval 3/Path",
                 "parent": "/Oval 3",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -510,6 +527,7 @@
               {
                 "path": "/Oval 3/Path#2",
                 "parent": "/Oval 3",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -535,6 +553,7 @@
               {
                 "path": "/Oval 3/Path#3",
                 "parent": "/Oval 3",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -562,6 +581,7 @@
         },
         {
           "variant": "type=Move",
+          "id": "8871:459",
           "size": [
             18,
             18
@@ -576,6 +596,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "BOOLEAN_OPERATION",
@@ -611,6 +632,7 @@
               {
                 "path": "/Rectangle 254/Path",
                 "parent": "/Rectangle 254",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -636,6 +658,7 @@
               {
                 "path": "/Rectangle 254/Path#2",
                 "parent": "/Rectangle 254",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -661,6 +684,7 @@
               {
                 "path": "/Rectangle 254/Path#3",
                 "parent": "/Rectangle 254",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -686,6 +710,7 @@
               {
                 "path": "/Rectangle 254/Path#4",
                 "parent": "/Rectangle 254",
+                "index": 3,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -711,6 +736,7 @@
               {
                 "path": "/Rectangle 254/Path#5",
                 "parent": "/Rectangle 254",
+                "index": 4,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -741,6 +767,7 @@
         },
         {
           "variant": "type=Resize Col",
+          "id": "8871:466",
           "size": [
             18,
             16
@@ -755,6 +782,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "BOOLEAN_OPERATION",
@@ -790,6 +818,7 @@
               {
                 "path": "/Rectangle 254/Path",
                 "parent": "/Rectangle 254",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -815,6 +844,7 @@
               {
                 "path": "/Rectangle 254/Path#2",
                 "parent": "/Rectangle 254",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -840,6 +870,7 @@
               {
                 "path": "/Rectangle 254/Path#3",
                 "parent": "/Rectangle 254",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -870,6 +901,7 @@
         },
         {
           "variant": "type=Resize Row",
+          "id": "8871:471",
           "size": [
             16,
             18
@@ -884,6 +916,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "BOOLEAN_OPERATION",
@@ -919,6 +952,7 @@
               {
                 "path": "/Rectangle 254/Path",
                 "parent": "/Rectangle 254",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -944,6 +978,7 @@
               {
                 "path": "/Rectangle 254/Path#2",
                 "parent": "/Rectangle 254",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -969,6 +1004,7 @@
               {
                 "path": "/Rectangle 254/Path#3",
                 "parent": "/Rectangle 254",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -999,6 +1035,7 @@
         },
         {
           "variant": "type=Resize NS",
+          "id": "8871:476",
           "size": [
             8,
             19
@@ -1013,6 +1050,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "VECTOR",
@@ -1053,6 +1091,7 @@
         },
         {
           "variant": "type=Resize N",
+          "id": "8871:478",
           "size": [
             8,
             15
@@ -1067,6 +1106,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "VECTOR",
@@ -1107,6 +1147,7 @@
         },
         {
           "variant": "type=Crosshair",
+          "id": "8871:480",
           "size": [
             16,
             16
@@ -1121,6 +1162,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "VECTOR",
@@ -1161,6 +1203,7 @@
         },
         {
           "variant": "type=X",
+          "id": "8871:482",
           "size": [
             16,
             16
@@ -1175,6 +1218,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "VECTOR",
@@ -1215,6 +1259,7 @@
         },
         {
           "variant": "type=Text",
+          "id": "8871:484",
           "size": [
             8,
             16
@@ -1229,6 +1274,7 @@
               {
                 "path": "/Path",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "BOOLEAN_OPERATION",
@@ -1264,6 +1310,7 @@
               {
                 "path": "/Path/Path",
                 "parent": "/Path",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1289,6 +1336,7 @@
               {
                 "path": "/Path/Path#2",
                 "parent": "/Path",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1314,6 +1362,7 @@
               {
                 "path": "/Path/Path#3",
                 "parent": "/Path",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1339,6 +1388,7 @@
               {
                 "path": "/Path/Path#4",
                 "parent": "/Path",
+                "index": 3,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1364,6 +1414,7 @@
               {
                 "path": "/Path/Path#5",
                 "parent": "/Path",
+                "index": 4,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1394,6 +1445,7 @@
         },
         {
           "variant": "type=Unavailable",
+          "id": "8871:491",
           "size": [
             16,
             16
@@ -1408,6 +1460,7 @@
               {
                 "path": "/Oval 38",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Oval 38",
                   "type": "BOOLEAN_OPERATION",
@@ -1443,6 +1496,7 @@
               {
                 "path": "/Oval 38/Path",
                 "parent": "/Oval 38",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1468,6 +1522,7 @@
               {
                 "path": "/Oval 38/Path#2",
                 "parent": "/Oval 38",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1493,6 +1548,7 @@
               {
                 "path": "/Oval 38/Path#3",
                 "parent": "/Oval 38",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -1523,6 +1579,7 @@
         },
         {
           "variant": "type=Zoom In",
+          "id": "8871:496",
           "size": [
             16,
             16
@@ -1537,6 +1594,7 @@
               {
                 "path": "/Oval 38",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Oval 38",
                   "type": "BOOLEAN_OPERATION",
@@ -1572,6 +1630,7 @@
               {
                 "path": "/Oval 38/Oval 38",
                 "parent": "/Oval 38",
+                "index": 0,
                 "layer": {
                   "name": "Oval 38",
                   "type": "VECTOR",
@@ -1597,6 +1656,7 @@
               {
                 "path": "/Oval 38/Rectangle 1",
                 "parent": "/Oval 38",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle 1",
                   "type": "RECTANGLE",
@@ -1616,6 +1676,7 @@
               {
                 "path": "/Oval",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Oval",
                   "type": "BOOLEAN_OPERATION",
@@ -1641,6 +1702,7 @@
               {
                 "path": "/Oval/Oval",
                 "parent": "/Oval",
+                "index": 0,
                 "layer": {
                   "name": "Oval",
                   "type": "VECTOR",
@@ -1666,6 +1728,7 @@
               {
                 "path": "/Oval/Rectangle 2",
                 "parent": "/Oval",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle 2",
                   "type": "RECTANGLE",
@@ -1685,6 +1748,7 @@
               {
                 "path": "/Oval/Rectangle 2#2",
                 "parent": "/Oval",
+                "index": 2,
                 "layer": {
                   "name": "Rectangle 2",
                   "type": "RECTANGLE",
@@ -1709,6 +1773,7 @@
         },
         {
           "variant": "type=Zoom Out",
+          "id": "8871:504",
           "size": [
             16,
             16
@@ -1723,6 +1788,7 @@
               {
                 "path": "/Oval 38",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Oval 38",
                   "type": "BOOLEAN_OPERATION",
@@ -1758,6 +1824,7 @@
               {
                 "path": "/Oval 38/Oval 38",
                 "parent": "/Oval 38",
+                "index": 0,
                 "layer": {
                   "name": "Oval 38",
                   "type": "VECTOR",
@@ -1783,6 +1850,7 @@
               {
                 "path": "/Oval 38/Rectangle 1",
                 "parent": "/Oval 38",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle 1",
                   "type": "RECTANGLE",
@@ -1802,6 +1870,7 @@
               {
                 "path": "/Oval",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Oval",
                   "type": "BOOLEAN_OPERATION",
@@ -1827,6 +1896,7 @@
               {
                 "path": "/Oval/Oval",
                 "parent": "/Oval",
+                "index": 0,
                 "layer": {
                   "name": "Oval",
                   "type": "VECTOR",
@@ -1852,6 +1922,7 @@
               {
                 "path": "/Oval/Rectangle 2",
                 "parent": "/Oval",
+                "index": 1,
                 "layer": {
                   "name": "Rectangle 2",
                   "type": "RECTANGLE",
@@ -1876,6 +1947,7 @@
         },
         {
           "variant": "type=Resize EW",
+          "id": "8871:511",
           "size": [
             19,
             8
@@ -1890,6 +1962,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "VECTOR",
@@ -1930,6 +2003,7 @@
         },
         {
           "variant": "type=Resize NW SE",
+          "id": "8871:513",
           "size": [
             13,
             13
@@ -1944,6 +2018,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "VECTOR",
@@ -1984,6 +2059,7 @@
         },
         {
           "variant": "type=Resize NE SW",
+          "id": "8871:515",
           "size": [
             13,
             13
@@ -1998,6 +2074,7 @@
               {
                 "path": "/Rectangle 254",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 254",
                   "type": "VECTOR",
@@ -2038,6 +2115,7 @@
         },
         {
           "variant": "type=Copy",
+          "id": "8871:517",
           "size": [
             21,
             24
@@ -2070,6 +2148,7 @@
               {
                 "path": "/Oval 3",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Oval 3",
                   "type": "VECTOR",
@@ -2105,6 +2184,7 @@
               {
                 "path": "/Rectangle 6",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Rectangle 6",
                   "type": "VECTOR",
@@ -2132,6 +2212,7 @@
         },
         {
           "variant": "type=Pointer",
+          "id": "8871:521",
           "size": [
             14,
             17
@@ -2146,6 +2227,7 @@
               {
                 "path": "/Imported Layers Copy 4",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Imported Layers Copy 4",
                   "type": "BOOLEAN_OPERATION",
@@ -2181,6 +2263,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path",
                 "parent": "/Imported Layers Copy 4",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2206,6 +2289,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path#2",
                 "parent": "/Imported Layers Copy 4",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2231,6 +2315,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path#3",
                 "parent": "/Imported Layers Copy 4",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2256,6 +2341,7 @@
               {
                 "path": "/Imported Layers Copy 4/Path#4",
                 "parent": "/Imported Layers Copy 4",
+                "index": 3,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2286,6 +2372,7 @@
         },
         {
           "variant": "type=Hourglass",
+          "id": "8871:527",
           "size": [
             11,
             16
@@ -2300,6 +2387,7 @@
               {
                 "path": "/Rectangle 272",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Rectangle 272",
                   "type": "BOOLEAN_OPERATION",
@@ -2335,6 +2423,7 @@
               {
                 "path": "/Rectangle 272/Path",
                 "parent": "/Rectangle 272",
+                "index": 0,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2360,6 +2449,7 @@
               {
                 "path": "/Rectangle 272/Path#2",
                 "parent": "/Rectangle 272",
+                "index": 1,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2385,6 +2475,7 @@
               {
                 "path": "/Rectangle 272/Path#3",
                 "parent": "/Rectangle 272",
+                "index": 2,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2410,6 +2501,7 @@
               {
                 "path": "/Rectangle 272/Path#4",
                 "parent": "/Rectangle 272",
+                "index": 3,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2435,6 +2527,7 @@
               {
                 "path": "/Rectangle 272/Path#5",
                 "parent": "/Rectangle 272",
+                "index": 4,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2460,6 +2553,7 @@
               {
                 "path": "/Rectangle 272/Path#6",
                 "parent": "/Rectangle 272",
+                "index": 5,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2485,6 +2579,7 @@
               {
                 "path": "/Rectangle 272/Path#7",
                 "parent": "/Rectangle 272",
+                "index": 6,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2510,6 +2605,7 @@
               {
                 "path": "/Rectangle 272/Path#8",
                 "parent": "/Rectangle 272",
+                "index": 7,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2535,6 +2631,7 @@
               {
                 "path": "/Rectangle 272/Path#9",
                 "parent": "/Rectangle 272",
+                "index": 8,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2560,6 +2657,7 @@
               {
                 "path": "/Rectangle 272/Path#10",
                 "parent": "/Rectangle 272",
+                "index": 9,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2585,6 +2683,7 @@
               {
                 "path": "/Rectangle 272/Path#11",
                 "parent": "/Rectangle 272",
+                "index": 10,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2610,6 +2709,7 @@
               {
                 "path": "/Rectangle 272/Path#12",
                 "parent": "/Rectangle 272",
+                "index": 11,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2635,6 +2735,7 @@
               {
                 "path": "/Rectangle 272/Path#13",
                 "parent": "/Rectangle 272",
+                "index": 12,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2660,6 +2761,7 @@
               {
                 "path": "/Rectangle 272/Path#14",
                 "parent": "/Rectangle 272",
+                "index": 13,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2685,6 +2787,7 @@
               {
                 "path": "/Rectangle 272/Path#15",
                 "parent": "/Rectangle 272",
+                "index": 14,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2710,6 +2813,7 @@
               {
                 "path": "/Rectangle 272/Path#16",
                 "parent": "/Rectangle 272",
+                "index": 15,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2735,6 +2839,7 @@
               {
                 "path": "/Rectangle 272/Path#17",
                 "parent": "/Rectangle 272",
+                "index": 16,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2760,6 +2865,7 @@
               {
                 "path": "/Rectangle 272/Path#18",
                 "parent": "/Rectangle 272",
+                "index": 17,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",
@@ -2785,6 +2891,7 @@
               {
                 "path": "/Rectangle 272/Path#19",
                 "parent": "/Rectangle 272",
+                "index": 18,
                 "layer": {
                   "name": "Path",
                   "type": "VECTOR",

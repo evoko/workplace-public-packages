@@ -30,7 +30,8 @@ Default variant: `series=single, breakpoint=desktop` · 4 variants · default si
   - **Plot** · frame · FILL/FIXED · 600×204
     - **Line A** · vector · 600×204  
       stroke `color.data.category.06.strong` 2px
-  - **Frame** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 600×9
+  - **Frame** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 600×9  
+    itemSpacing `inset.md`
     - **Jan** · text `helper/sm` "Jan" · HUG/HUG · 20×9  
       fill `color.text.secondary` · lineHeight `type.line-height.helper.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.sm` · fontStyle `type.font-weight.400`
     - **Feb** · text `helper/sm` "Feb" · HUG/HUG · 21×9  
@@ -50,7 +51,7 @@ Default variant: `series=single, breakpoint=desktop` · 4 variants · default si
 | --------------- | ----------------------------------------------------------------------------------------------------- |
 | Strokes         | `color.data.category.06.strong`                                                                       |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                          |
-| Spacing         | `inset.sm`                                                                                            |
+| Spacing         | `inset.md`, `inset.sm`                                                                                |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.line-height.helper.sm`, `type.size.helper.sm` |
 | Text styles     | `helper/sm`                                                                                           |
 

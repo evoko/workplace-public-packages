@@ -164,19 +164,6 @@ export const solarDeviceCardStyles = {
       width: '334px',
       height: '10px',
     },
-    '& .SolarDeviceCard--headline': {
-      borderRadius: 'var(--solar-radius-none)',
-      borderStyle: 'none',
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      gap: 'var(--solar-inset-md)',
-      paddingTop: 'var(--solar-inset-xs)',
-      paddingRight: 'var(--solar-inset-xs)',
-      paddingBottom: 'var(--solar-inset-xs)',
-      paddingLeft: 'var(--solar-inset-xs)',
-      width: '100%',
-    },
     '& .SolarDeviceCard--headlineIcon': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
@@ -195,19 +182,6 @@ export const solarDeviceCardStyles = {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
     },
-    '& .SolarDeviceCard--headlineContent': {
-      borderRadius: 'var(--solar-radius-none)',
-      borderStyle: 'none',
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      gap: 'var(--solar-stack-xs)',
-      paddingTop: 'var(--solar-inset-none)',
-      paddingRight: 'var(--solar-inset-none)',
-      paddingBottom: 'var(--solar-inset-none)',
-      paddingLeft: 'var(--solar-inset-none)',
-      width: '100%',
-    },
     '& .SolarDeviceCard--headlineContentName': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -223,6 +197,32 @@ export const solarDeviceCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+    },
+    '& .SolarDeviceCard--headlineContent': {
+      borderRadius: 'var(--solar-radius-none)',
+      borderStyle: 'none',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      gap: 'var(--solar-stack-xs)',
+      paddingTop: 'var(--solar-inset-none)',
+      paddingRight: 'var(--solar-inset-none)',
+      paddingBottom: 'var(--solar-inset-none)',
+      paddingLeft: 'var(--solar-inset-none)',
+      width: '100%',
+    },
+    '& .SolarDeviceCard--headline': {
+      borderRadius: 'var(--solar-radius-none)',
+      borderStyle: 'none',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      gap: 'var(--solar-inset-md)',
+      paddingTop: 'var(--solar-inset-xs)',
+      paddingRight: 'var(--solar-inset-xs)',
+      paddingBottom: 'var(--solar-inset-xs)',
+      paddingLeft: 'var(--solar-inset-xs)',
+      width: '100%',
     },
     '& .SolarDeviceCard--serialLocation': {
       borderRadius: 'var(--solar-radius-none)',
@@ -244,19 +244,6 @@ export const solarDeviceCardStyles = {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
     },
-    '& .SolarDeviceCard--row': {
-      borderRadius: 'var(--solar-radius-none)',
-      borderStyle: 'none',
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      gap: 'var(--solar-stack-xs)',
-      paddingTop: 'var(--solar-inset-none)',
-      paddingRight: 'var(--solar-inset-none)',
-      paddingBottom: 'var(--solar-inset-none)',
-      paddingLeft: 'var(--solar-inset-none)',
-      width: '100%',
-    },
     '& .SolarDeviceCard--rowName': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -272,6 +259,19 @@ export const solarDeviceCardStyles = {
       lineHeight: 'var(--solar-type-line-height-body-md)',
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
+    },
+    '& .SolarDeviceCard--row': {
+      borderRadius: 'var(--solar-radius-none)',
+      borderStyle: 'none',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      gap: 'var(--solar-stack-xs)',
+      paddingTop: 'var(--solar-inset-none)',
+      paddingRight: 'var(--solar-inset-none)',
+      paddingBottom: 'var(--solar-inset-none)',
+      paddingLeft: 'var(--solar-inset-none)',
+      width: '100%',
     },
     '& .SolarDeviceCard--headlineContentSkeleton': {
       borderRadius: 'var(--solar-radius-control)',
@@ -313,11 +313,6 @@ export const solarDeviceCardStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
       '&.SolarDeviceCard-loading': {
-        '& .SolarDeviceCard--headline': {
-          backgroundColor: 'transparent',
-          borderColor: 'transparent',
-          boxShadow: 'none',
-        },
         '& .SolarDeviceCard--headlineIcon': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'transparent',
@@ -329,13 +324,13 @@ export const solarDeviceCardStyles = {
           boxShadow: 'none',
           flexDirection: 'column',
         },
-        '& .SolarDeviceCard--headlineIconIconProgress': {
-          color: 'var(--solar-color-icon-primary)',
-        },
-        '& .SolarDeviceCard--row': {
+        '& .SolarDeviceCard--headline': {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           boxShadow: 'none',
+        },
+        '& .SolarDeviceCard--headlineIconIconProgress': {
+          color: 'var(--solar-color-icon-primary)',
         },
         '& .SolarDeviceCard--rowName': {
           color: 'var(--solar-color-text-primary)',
@@ -343,16 +338,16 @@ export const solarDeviceCardStyles = {
         '& .SolarDeviceCard--rowCount': {
           color: 'var(--solar-color-text-secondary)',
         },
+        '& .SolarDeviceCard--row': {
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          boxShadow: 'none',
+        },
         '& .SolarDeviceCard--headlineContentSkeleton': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'transparent',
           boxShadow: 'none',
         },
-      },
-      '& .SolarDeviceCard--headline': {
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-        boxShadow: 'none',
       },
       '& .SolarDeviceCard--headlineIcon': {
         backgroundColor: 'var(--solar-color-surface-background)',
@@ -362,16 +357,21 @@ export const solarDeviceCardStyles = {
       '& .SolarDeviceCard--headlineIconIconDevice': {
         color: 'var(--solar-color-icon-primary)',
       },
-      '& .SolarDeviceCard--headlineContent': {
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-        boxShadow: 'none',
-      },
       '& .SolarDeviceCard--headlineContentName': {
         color: 'var(--solar-color-text-primary)',
       },
       '& .SolarDeviceCard-count': {
         color: 'var(--solar-color-text-secondary)',
+      },
+      '& .SolarDeviceCard--headlineContent': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        boxShadow: 'none',
+      },
+      '& .SolarDeviceCard--headline': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        boxShadow: 'none',
       },
       '& .SolarDeviceCard--serialLocation': {
         backgroundColor: 'var(--solar-color-surface-background)',
@@ -537,21 +537,6 @@ export const solarDeviceCardComposition = {
       },
     },
   },
-  headline: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'type=batch': {
-        default: {
-          present: true,
-        },
-        loading: {
-          present: true,
-        },
-      },
-    },
-  },
   headlineIcon: {
     base: {
       present: false,
@@ -580,21 +565,6 @@ export const solarDeviceCardComposition = {
         },
         loading: {
           present: false,
-        },
-      },
-    },
-  },
-  headlineContent: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'type=batch': {
-        default: {
-          present: true,
-        },
-        loading: {
-          present: true,
         },
       },
     },
@@ -629,6 +599,21 @@ export const solarDeviceCardComposition = {
       },
     },
   },
+  headlineContent: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'type=batch': {
+        default: {
+          present: true,
+        },
+        loading: {
+          present: true,
+        },
+      },
+    },
+  },
   headlineTag: {
     base: {
       present: false,
@@ -644,6 +629,21 @@ export const solarDeviceCardComposition = {
         },
         loading: {
           present: false,
+        },
+      },
+    },
+  },
+  headline: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'type=batch': {
+        default: {
+          present: true,
+        },
+        loading: {
+          present: true,
         },
       },
     },
@@ -695,18 +695,6 @@ export const solarDeviceCardComposition = {
       },
     },
   },
-  row: {
-    base: {
-      present: false,
-    },
-    appearance: {
-      'type=batch': {
-        loading: {
-          present: true,
-        },
-      },
-    },
-  },
   rowName: {
     base: {
       present: false,
@@ -720,6 +708,18 @@ export const solarDeviceCardComposition = {
     },
   },
   rowCount: {
+    base: {
+      present: false,
+    },
+    appearance: {
+      'type=batch': {
+        loading: {
+          present: true,
+        },
+      },
+    },
+  },
+  row: {
     base: {
       present: false,
     },

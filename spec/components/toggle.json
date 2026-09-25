@@ -93,13 +93,17 @@
             }
           },
           "focus": {
+            "background": {
+              "token": "color.action.primary.bg.default",
+              "from": "selected=true, state=focus"
+            },
+            "borderColor": {
+              "token": "color.border.feedback.focus.strong",
+              "from": "selected=true, state=focus"
+            },
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
+              "from": "selected=true, state=focus"
             }
           }
         },
@@ -111,13 +115,13 @@
             }
           },
           "focus": {
+            "borderColor": {
+              "token": "color.border.feedback.focus.strong",
+              "from": "selected=false, state=focus"
+            },
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "none": true
-              }
+              "from": "selected=false, state=focus"
             }
           }
         }
@@ -227,13 +231,19 @@
               "position": 17,
               "from": "selected=true, state=default"
             }
+          },
+          "focus": {
+            "x": {
+              "position": 17,
+              "from": "selected=true, state=focus"
+            }
           }
         }
       }
     }
   },
   "docs": {
-    "description": "Binary on/off switch. 6 variants: selected (false, true) × state (default, hover, disabled). Commits on click — no confirm. Represents persistent state, not a transient action (use Button for the latter). The on/off affordance reads via position AND color so the state is not carried by color alone (WCAG 1.4.1). For two labeled states, use Segmented Control.",
+    "description": "Binary on/off switch. 8 variants: selected (false, true) × state (default, hover, focus, disabled). Commits on click — no confirm. focus rings the track with shadow/focus/default. Represents persistent state, not a transient action (use Button for the latter). The on/off state reads via position AND colour (WCAG 1.4.1). For two labelled states use Segmented Control.",
     "figmaIssues": []
   },
   "provenance": {
@@ -241,7 +251,7 @@
     "pageId": "2163:3711",
     "figmaNode": "2209:3664",
     "defaultVariant": "selected=false, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/toggle.yaml",
@@ -255,16 +265,6 @@
         "rule": "follows",
         "at": "thumb.borderWidth",
         "reason": "A disabled thumb has no edge, off or on, where every other thumb keeps its border: a control that cannot be used is drawn flat, as Checkbox's disabled box is."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.selected=false.focus.shadow",
-        "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.selected=true.focus.shadow",
-        "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it."
       },
       {
         "rule": "allowLiteral",

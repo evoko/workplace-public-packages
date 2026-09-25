@@ -29,7 +29,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             24,
             0,
@@ -44,6 +44,7 @@
           "IMAGE"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/xl",
           "paddingRight": "Spatial:inset/none",
@@ -293,6 +294,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "5787:14290",
           "size": [
             1440,
             800
@@ -316,10 +318,17 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Button/Counter",
+            "/Center Stack/Button/Icon/None",
+            "/Center Stack/Button/Icon/None#2",
+            "/Center Stack/Button/Spinner"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "5787:14339",
           "size": [
             392,
             800

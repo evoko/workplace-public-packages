@@ -34,7 +34,7 @@ Default variant: `state=default, ghost=false` · 4 variants · default size 400�
   - **ResultsBody** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 400×370  
     padding `stack.none`
     - **Dropdown Group Label** · frame · row gap 8 pad 0/12/0/12 FILL/FIXED · 400×32  
-      fill `color.surface.background` · padding `inset.sm`, `inset.none`
+      fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`, `inset.none`
       - **Category Name** · text `body/sm/medium` "Category Name" · HUG/HUG · 88×9  
         fill `color.text.secondary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.500`
       - **Link** · instance of **Link** (size=sm, state=default) · row gap 8 pad 0/0/0/0 HUG/HUG · 37×9  
@@ -46,7 +46,7 @@ Default variant: `state=default, ghost=false` · 4 variants · default size 400�
     - **ResultRow** · instance of **ResultRow** · row gap 12 pad 12/16/12/16 FILL/HUG · 400×51  
       stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
     - **Dropdown Group Label** · frame · row gap 8 pad 0/12/0/12 FILL/FIXED · 400×32  
-      fill `color.surface.background` · padding `inset.sm`, `inset.none`
+      fill `color.surface.background` · itemSpacing `inset.xs` · padding `inset.sm`, `inset.none`
       - **Category Name** · text `body/sm/medium` "Category Name" · HUG/HUG · 88×9  
         fill `color.text.secondary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.500`
       - **Link** · instance of **Link** (size=sm, state=default) · row gap 8 pad 0/0/0/0 HUG/HUG · 37×9  
@@ -92,8 +92,6 @@ Default variant: `state=default, ghost=false` · 4 variants · default size 400�
 ### Issues detected
 
 - State axis uses non-standard value(s): no-results.
-- Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
-- Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
 
 ## Component: ResultRow
 

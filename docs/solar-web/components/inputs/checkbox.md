@@ -4,7 +4,7 @@
 
 ## Component set: Checkbox
 
-Multi-select box. 12 variants: checked × disabled × hover × mixed × focus. mixed renders an indeterminate dash — use it on a parent box when some, but not all, of its children are checked. Commit on click. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke, so the ring stays legible at 16px. There is no pressed state. Pair with an adjacent label — clicking the label toggles — or use Option Row, which composes this with a label and optional supporting text. For a single persistent on/off setting use Toggle.
+Multi-select box. 12 variants: checked × disabled × hover × mixed × focus, shipped as the used combinations. mixed renders an indeterminate dash — use it on a parent box when some, but not all, children are checked; it keeps the border/medium edge at rest like a checked box. focus combines shadow/focus/default with a border/feedback/focus/strong stroke. No pressed state. Pair with a label or use Option Row. For a single persistent on/off setting use Toggle.
 
 ### Props
 
@@ -43,9 +43,9 @@ Default variant: `checked=false, disabled=false, hover=false, mixed=false, focus
 | true    | false    | false | false | false | 16×16 | `color.action.primary.bg.default`    | `color.border.medium`                |                        |      |      |
 | true    | false    | true  | false | false | 16×16 | `color.action.primary.bg.hover`      | `color.border.medium`                |                        |      |      |
 | true    | true     | false | false | false | 16×16 | `color.action.primary.bg.disabled`   |                                      |                        |      |      |
-| true    | false    | false | true  | false | 16×16 | `color.action.primary.bg.default`    |                                      |                        |      |      |
+| true    | false    | false | true  | false | 16×16 | `color.action.primary.bg.default`    | `color.border.medium`                |                        |      |      |
 | true    | false    | true  | true  | false | 16×16 | `color.action.primary.bg.hover`      | `color.border.medium`                |                        |      |      |
-| true    | true     | true  | true  | false | 16×16 | `color.action.primary.bg.disabled`   |                                      |                        |      |      |
+| true    | true     | false | true  | false | 16×16 | `color.action.primary.bg.disabled`   |                                      |                        |      |      |
 | false   | false    | false | false | true  | 16×16 | `color.surface.base`                 | `color.border.feedback.focus.strong` | `shadow/focus/default` |      |      |
 | true    | false    | false | false | true  | 16×16 | `color.action.primary.bg.default`    | `color.border.feedback.focus.strong` | `shadow/focus/default` |      |      |
 | true    | false    | false | true  | true  | 16×16 | `color.action.primary.bg.default`    | `color.border.feedback.focus.strong` | `shadow/focus/default` |      |      |

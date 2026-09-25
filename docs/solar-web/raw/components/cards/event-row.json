@@ -312,6 +312,7 @@
       "variants": [
         {
           "variant": "density=default, state=default",
+          "id": "7358:2",
           "size": [
             520,
             56
@@ -331,10 +332,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "density=default, state=hover",
+          "id": "7358:3",
           "size": [
             520,
             56
@@ -366,6 +369,7 @@
         },
         {
           "variant": "density=default, state=focus",
+          "id": "7370:2",
           "size": [
             520,
             56

@@ -31,7 +31,6 @@ abstract final class SolarSliderRangeRecipe {
     'root.borderWidth|base': 'none',
     'root.width|base': 'k:FILL',
     'root.height|base': 'px:20',
-    'root.shadow|appearance|default|focus': 't:shadow.focus.default',
     'track.present|base': 'b:true',
     'track.background|base': 't:color.surface.muted',
     'track.borderColor|base': 'none',
@@ -68,7 +67,7 @@ abstract final class SolarSliderRangeRecipe {
     'handle.borderWidth|base': 't:border.strong',
     'handle.width|base': 'px:16',
     'handle.height|base': 'px:16',
-    'handle.x|base': 'px:70',
+    'handle.x|base': 'px:72',
     'handle.y|base': 'px:2',
     'handle.background|appearance|default|disabled':
         't:color.action.primary.bg.disabled',
@@ -77,7 +76,7 @@ abstract final class SolarSliderRangeRecipe {
     'handle.borderWidth|appearance|default|disabled': 't:border.default',
     'handle.width|appearance|default|disabled': 'px:14',
     'handle.height|appearance|default|disabled': 'px:14',
-    'handle.x|appearance|default|disabled': 'px:71',
+    'handle.x|appearance|default|disabled': 'px:73',
     'handle.y|appearance|default|disabled': 'px:3',
     'handle.borderColor|appearance|default|hover':
         't:color.action.primary.border.hover',
@@ -85,9 +84,9 @@ abstract final class SolarSliderRangeRecipe {
     'handle.borderColor|appearance|default|pressed':
         't:color.action.primary.border.active',
     'handle.shadow|appearance|default|pressed': 't:shadow.control',
+    'handle.shadow|appearance|default|focus': 't:shadow.focus.default',
     'handle.borderColor|appearance|default|focus':
         't:color.action.primary.border.default',
-    'handle.shadow|appearance|default|focus': 't:shadow.control',
     'handle2.present|base': 'b:true',
     'handle2.background|base': 't:color.surface.base',
     'handle2.borderColor|base': 't:color.action.primary.border.default',
@@ -96,7 +95,7 @@ abstract final class SolarSliderRangeRecipe {
     'handle2.borderWidth|base': 't:border.strong',
     'handle2.width|base': 'px:16',
     'handle2.height|base': 'px:16',
-    'handle2.x|base': 'px:230',
+    'handle2.x|base': 'px:232',
     'handle2.y|base': 'px:2',
     'handle2.background|appearance|default|disabled':
         't:color.action.primary.bg.disabled',
@@ -105,7 +104,7 @@ abstract final class SolarSliderRangeRecipe {
     'handle2.borderWidth|appearance|default|disabled': 't:border.default',
     'handle2.width|appearance|default|disabled': 'px:14',
     'handle2.height|appearance|default|disabled': 'px:14',
-    'handle2.x|appearance|default|disabled': 'px:231',
+    'handle2.x|appearance|default|disabled': 'px:233',
     'handle2.y|appearance|default|disabled': 'px:3',
     'handle2.borderColor|appearance|default|hover':
         't:color.action.primary.border.hover',
@@ -113,9 +112,9 @@ abstract final class SolarSliderRangeRecipe {
     'handle2.borderColor|appearance|default|pressed':
         't:color.action.primary.border.active',
     'handle2.shadow|appearance|default|pressed': 't:shadow.control',
+    'handle2.shadow|appearance|default|focus': 't:shadow.focus.default',
     'handle2.borderColor|appearance|default|focus':
         't:color.action.primary.border.default',
-    'handle2.shadow|appearance|default|focus': 't:shadow.control',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).

@@ -29,17 +29,13 @@ describe('the PIN Input IR', () => {
     );
   });
 
-  it('excuses the text style a set replaced, where Figma draws it', () => {
+  it('draws the sm placeholder in Figma’s own text style, with nothing to excuse', () => {
+    // An overlay set gave it until 2026-09-25, when Figma drew it.
     const sm = oracle.variants.find(
       (v) => v.figma === 'size=sm, state=default',
     );
-    expect(sm.excused).toContainEqual(
-      expect.objectContaining({
-        layer: 'placeholder',
-        property: 'fontSize',
-        figma: 12,
-        decision: 'set',
-      }),
+    expect((sm.excused ?? []).filter((e) => e.layer === 'placeholder')).toEqual(
+      [],
     );
   });
 });

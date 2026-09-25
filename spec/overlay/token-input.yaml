@@ -76,14 +76,3 @@ set:
   counter.base.height:
     none: true
     reason: The Counter's height is its own, as the Tags' are.
-  tag.appearance.default.readonly.variant.type:
-    keyword: text-only
-    reason: >-
-      A read-only field's entries cannot be removed, so its Tags have no close button: Figma draws
-      them closable. The design review asks SOLAR to draw them without.
-  tag2.appearance.default.readonly.variant.type:
-    keyword: text-only
-    reason: As the first token's.
-  tag.appearance.default.disabled.variant.type:
-    keyword: text-only
-    reason: As read-only, a disabled field's entries cannot be removed.

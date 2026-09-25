@@ -50,7 +50,7 @@ MuiIconButton:
     size:
       axis: size
       values: { small: sm, medium: md, large: lg }
-  fixed: { shape: square }
+  fixed: { shape: square, active: false }
   slots:
     icon: '& > svg'
   defaultProps: { disableRipple: true }
@@ -58,4 +58,6 @@ MuiIconButton:
     SOLAR's Icon Button is MUI's IconButton, the recipe its sx, its icon wrapped in a box of its
     own; a stock one holds the icon itself, which is where the recipe sizes and tints it. MUI's
     default colour is SOLAR's tertiary, the plain one. MUI has no shape: a stock one is SOLAR's
-    square, and a round one is @bwp-web/components' IconButton, `shape="round"`.
+    square, and a round one is @bwp-web/components' IconButton, `shape="round"`. Nor a toggle: a
+    stock one is never SOLAR's active (2026-09-25), which @bwp-web/components' IconButton draws,
+    `active`.

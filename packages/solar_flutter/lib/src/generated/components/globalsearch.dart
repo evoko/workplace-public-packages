@@ -45,10 +45,10 @@ abstract final class SolarGlobalSearchRecipe {
     'root.paddingBottom|base': 't:inset.none',
     'root.paddingLeft|base': 't:inset.sm',
     'root.width|base': 'k:FILL',
-    'root.height|base': 'px:40',
+    'root.height|base': 't:size.control.md',
     'root.gap|size|sm': 't:inset.xs',
     'root.width|size|sm': 'k:FILL',
-    'root.height|size|sm': 'px:32',
+    'root.height|size|sm': 't:size.control.sm',
     'root.background|appearance|default|hover': 't:color.surface.base',
     'root.borderColor|appearance|default|hover': 't:color.border.medium',
     'root.background|appearance|default|filled': 't:color.surface.base',
@@ -191,6 +191,8 @@ abstract final class SolarGlobalSearchRecipe {
       't:inset.sm' => SolarInset.sm,
       't:inset.xs' => SolarInset.xs,
       't:radius.control' => SolarRadius.control,
+      't:size.control.md' => SolarSize.controlMd,
+      't:size.control.sm' => SolarSize.controlSm,
       _ => throw StateError('$cell: no length for $v'),
     };
   }

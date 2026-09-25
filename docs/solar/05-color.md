@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-22
-  figmaVersion: '2402047167094879156'
+  reviewed: 2026-09-25
+  figmaVersion: '2403083104633531037'
   sources:
-    documentation/color: c157f4a1cc5f
+    documentation/color: a369c204923e
     primitives/color: d9f38cc14287
 ---
 
@@ -243,47 +243,61 @@ Action tokens describe interactive intent (`primary`, `secondary`, `tertiary`) �
 with a `danger` (destructive) variant. Documentation writes the destructive intent as
 `primary-danger`; Figma stores it as `action/primary/{property}/danger/{state}`.
 
-⚠️ The revised Color and Borders page contexts write the state set as
-`{default|hover|focus|pressed|disabled}`. The Color collection ships
-`{default|hover|active|disabled}` — there is no `focus` or `pressed` state variable.
-Use the variable spelling; the focus ring is `shadow/focus/*` plus
-`color.border.feedback.focus.strong`, not an action state.
+The component variant value is `pressed`; its colours bind the `active` variables
+(`color.action.primary.bg.active`), and the Color page context now says so. There is no
+`focus` or `pressed` state variable: the focus ring is the `shadow/focus/*` effect style
+plus `color.border.feedback.focus.strong`, not an action state.
 
 **Primary** (filled, high emphasis). Brand-neutral: black in Light, near-white in Dark.
 Blue is reserved for links and focus rings and is never an action fill; `primary-danger`
-is the only chromatic intent.
+is the only chromatic intent. The icon follows the label in every state and mode.
 
 | Property | default (L → D)           | hover                    | active                    | disabled                        |
 | -------- | ------------------------- | ------------------------ | ------------------------- | ------------------------------- |
 | bg       | neutral/900 → neutral/50  | neutral/700 → mono/white | neutral/900 → neutral/50  | neutral/100 → neutral/800       |
 | text     | mono/white → neutral/900  | mono/white → neutral/900 | mono/white → neutral/900  | neutral/400 → neutral/300       |
-| icon     | mono/white → neutral/900  | mono/white → mono/white  | mono/white → mono/white   | neutral/300 → neutral/300       |
+| icon     | mono/white → neutral/900  | mono/white → neutral/900 | mono/white → neutral/900  | neutral/300 → neutral/300       |
 | border   | neutral/900 → neutral/100 | neutral/800 → mono/white | neutral/900 → neutral/100 | alpha/black-20 → alpha/white-20 |
 
-**Primary danger**
+**Primary danger**. Hover darkens, so the white label keeps 4.5:1.
 
 | Property | default            | hover             | active            | disabled                        |
 | -------- | ------------------ | ----------------- | ----------------- | ------------------------------- |
-| bg       | red/500 → red/500  | red/400 → red/600 | red/500 → red/500 | neutral/100 → neutral/800       |
+| bg       | red/500 → red/500  | red/600 → red/600 | red/500 → red/500 | neutral/100 → neutral/800       |
 | text     | mono/white (both)  | mono/white (both) | mono/white (both) | neutral/400 → neutral/300       |
 | icon     | brand/white (both) | mono/white (both) | mono/white (both) | neutral/300 → neutral/300       |
-| border   | red/600 → red/600  | red/500 → red/700 | red/600 → red/600 | alpha/black-20 → alpha/white-20 |
+| border   | red/600 → red/600  | red/700 → red/700 | red/600 → red/600 | alpha/black-20 → alpha/white-20 |
 
-**Secondary** (outlined, medium emphasis)
+**Secondary** (outlined, medium emphasis). **No background**: `bg` is
+`alpha/transparent` in every state and both modes, so the button shows the surface it
+sits on. Hover softens the label and raises the border alpha to 40 % instead.
 
 | Property | default                         | hover                           | active                          | disabled                        |
 | -------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| bg       | mono/white → neutral/900        | neutral/50 → neutral/800        | mono/white → neutral/900        | neutral/100 → neutral/800       |
-| text     | neutral/900 → neutral/50        | neutral/900 → neutral/50        | neutral/900 → neutral/50        | neutral/300 → neutral/500       |
-| icon     | neutral/900 → neutral/50        | neutral/900 → neutral/50        | neutral/900 → neutral/50        | neutral/300 → neutral/500       |
-| border   | alpha/black-20 → alpha/white-20 | alpha/black-30 → alpha/white-30 | alpha/black-30 → alpha/white-30 | alpha/black-10 → alpha/white-10 |
+| bg       | alpha/transparent               | alpha/transparent               | alpha/transparent               | alpha/transparent               |
+| text     | neutral/900 → neutral/50        | neutral/700 → neutral/200       | neutral/900 → neutral/50        | neutral/300 → neutral/500       |
+| icon     | neutral/900 → neutral/50        | neutral/700 → neutral/200       | neutral/900 → neutral/50        | neutral/300 → neutral/500       |
+| border   | alpha/black-20 → alpha/white-20 | alpha/black-40 → alpha/white-40 | alpha/black-30 → alpha/white-30 | alpha/black-10 → alpha/white-10 |
 
-Secondary danger: bg `mono/white → neutral/900` (hover `red/50 → red/800`), text
-`red/500 → red/300`, icon `red/500` (disabled `alpha/black-10 → alpha/white-10`),
-border `red/100 → red/800` (disabled `alpha/black-10 → alpha/white-10`).
+Secondary danger keeps the red tint on hover only: bg `alpha/transparent` except hover
+`red/50 → red/800`; text `red/500 → red/300` (hover `red/600 → red/300`); icon
+`red/500` (hover `red/600 → red/500`, disabled `alpha/black-10 → alpha/white-10`);
+border `red/100 → red/800` (hover `red/200 → red/700`, disabled
+`alpha/black-10 → alpha/white-10`).
 
-**Tertiary** (text-only, low emphasis: "Cancel", "Learn more"). Same bg/text/icon as
-secondary; **all borders are `alpha/transparent`** in every state.
+**Tertiary** (text-only, low emphasis: "Cancel", "Learn more"). **All borders are
+`alpha/transparent`** in every state. Unlike secondary, tertiary still carries an opaque
+background, and its hover does not change the label:
+
+| Property | default                  | hover                    | active                   | disabled                  |
+| -------- | ------------------------ | ------------------------ | ------------------------ | ------------------------- |
+| bg       | mono/white → neutral/900 | neutral/50 → neutral/800 | mono/white → neutral/900 | neutral/100 → neutral/800 |
+| text     | neutral/900 → neutral/50 | neutral/900 → neutral/50 | neutral/900 → neutral/50 | neutral/300 → neutral/500 |
+| icon     | neutral/900 → neutral/50 | neutral/900 → neutral/50 | neutral/900 → neutral/50 | neutral/300 → neutral/500 |
+
+Tertiary danger: bg as tertiary except hover `red/50 → red/800`; text `red/500 → red/300`
+(hover `red/600 → red/300`); icon `red/500` (hover `red/600 → red/500`, disabled
+`neutral/300 → neutral/500`).
 
 ### Data
 

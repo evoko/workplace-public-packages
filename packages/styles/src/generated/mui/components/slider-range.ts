@@ -31,8 +31,8 @@ export const solarSliderRangeStyles = {
         display: 'none',
       },
       '&::after': {
-        width: '44px',
-        height: '44px',
+        width: 'var(--solar-size-target-min)',
+        height: 'var(--solar-size-target-min)',
       },
     },
     '&': {
@@ -43,8 +43,8 @@ export const solarSliderRangeStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
@@ -133,17 +133,16 @@ export const solarSliderRangeStyles = {
         },
       },
       '&:has(.Mui-focusVisible)': {
-        boxShadow: 'var(--solar-shadow-focus-default)',
         '& .MuiSlider-track': {
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
         },
         '& .MuiSlider-thumb[data-index="0"]': {
+          boxShadow: 'var(--solar-shadow-focus-default)',
           borderColor: 'var(--solar-color-action-primary-border-default)',
-          boxShadow: 'var(--solar-shadow-control)',
         },
         '& .MuiSlider-thumb[data-index="1"]': {
+          boxShadow: 'var(--solar-shadow-focus-default)',
           borderColor: 'var(--solar-color-action-primary-border-default)',
-          boxShadow: 'var(--solar-shadow-control)',
         },
       },
       '&.Mui-disabled': {

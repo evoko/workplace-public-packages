@@ -4,7 +4,7 @@
 
 ## Component set: Slider
 
-Single-thumb slider for selecting one value in a continuous range. 7 variants: state (default, hover, pressed, focus, filled, error, disabled). Use for visual, approximate value selection (volume, zoom, opacity) where precision is secondary to responsiveness. For exact numeric entry pair with a Number Input. For ranges use Slider Range.
+Single-thumb slider for selecting one value in a continuous range. 7 variants: state (default, hover, pressed, focus, filled, error, disabled). filled and error are drawn as default — error is announced and carried by the paired helper text, not by the slider itself. The handle does not change on hover or press. Use for approximate values (volume, zoom, opacity); for exact entry pair with Number Input. For ranges use Slider Range.
 
 ### Props
 
@@ -48,15 +48,15 @@ Default variant: `state=default` · 7 variants · default size 320×20px
 
 ## Component set: Slider Range
 
-Dual-thumb slider for selecting a range between two values. 4 variants: state (default, hover, pressed, disabled). Use for min/max filtering (price range, date range, size range) where both endpoints matter. Always show the current range values as labels alongside. For single-value selection use Slider.
+Dual-thumb slider for selecting a range between two values. 5 variants: state (default, hover, pressed, focus, disabled). Handles take the hover and pressed look; focus rings the handle with shadow/focus/default. Use for min/max filtering where both endpoints matter. Always show the current range values alongside. For single-value selection use Slider.
 
 ### Props
 
-| Prop    | Type    | Options / default                        |
-| ------- | ------- | ---------------------------------------- |
-| `state` | variant | **default** · hover · pressed · disabled |
+| Prop    | Type    | Options / default                                |
+| ------- | ------- | ------------------------------------------------ |
+| `state` | variant | **default** · hover · pressed · disabled · focus |
 
-Default variant: `state=default` · 4 variants · default size 320×20px
+Default variant: `state=default` · 5 variants · default size 320×20px
 
 ### Anatomy (default variant)
 
@@ -88,6 +88,7 @@ Default variant: `state=default` · 4 variants · default size 320×20px
 | hover    | 320×20 |      |        |        |      |      |
 | pressed  | 320×20 |      |        |        |      |      |
 | disabled | 320×20 |      |        |        |      |      |
+| focus    | 320×20 |      |        |        |      |      |
 
 ## Documentation card
 

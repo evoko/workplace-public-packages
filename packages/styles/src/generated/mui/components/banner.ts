@@ -59,8 +59,8 @@ export const solarBannerStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& button.SolarBanner-close': {
@@ -71,8 +71,8 @@ export const solarBannerStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarBanner-close > svg': {
@@ -101,6 +101,18 @@ export const solarBannerStyles = {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
+    },
+    '& .SolarBanner--iconSuccess': {
+      width: 'var(--solar-icon-md)',
+      height: 'var(--solar-icon-md)',
+    },
+    '& .SolarBanner--iconWarning': {
+      width: 'var(--solar-icon-md)',
+      height: 'var(--solar-icon-md)',
+    },
+    '& .SolarBanner--iconDanger': {
+      width: 'var(--solar-icon-md)',
+      height: 'var(--solar-icon-md)',
     },
     '& .SolarBanner-description': {
       color: 'var(--solar-color-text-primary)',
@@ -140,18 +152,6 @@ export const solarBannerStyles = {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
-    },
-    '& .SolarBanner--iconSuccess': {
-      width: 'var(--solar-icon-md)',
-      height: 'var(--solar-icon-md)',
-    },
-    '& .SolarBanner--iconWarning': {
-      width: 'var(--solar-icon-md)',
-      height: 'var(--solar-icon-md)',
-    },
-    '& .SolarBanner--iconDanger': {
-      width: 'var(--solar-icon-md)',
-      height: 'var(--solar-icon-md)',
     },
   },
   sizes: {},
@@ -212,48 +212,6 @@ export const solarBannerComposition = {
       },
     },
   },
-  description: {
-    base: {
-      present: true,
-    },
-  },
-  actionGroup: {
-    base: {
-      present: true,
-    },
-  },
-  primaryButton: {
-    base: {
-      present: false,
-      component: 'Button',
-      'variant.size': 'sm',
-      'variant.prio': 'primary',
-      'variant.state': 'default',
-      'variant.danger': 'false',
-    },
-  },
-  secondaryButton: {
-    base: {
-      present: false,
-      component: 'Button',
-      'variant.size': 'sm',
-      'variant.prio': 'secondary',
-      'variant.state': 'default',
-      'variant.danger': 'false',
-    },
-  },
-  action: {
-    base: {
-      present: true,
-    },
-  },
-  close: {
-    base: {
-      present: true,
-      component: 'Icon/Close',
-      'variant.solid': 'false',
-    },
-  },
   iconSuccess: {
     base: {
       present: false,
@@ -294,6 +252,48 @@ export const solarBannerComposition = {
           'variant.solid': 'false',
         },
       },
+    },
+  },
+  description: {
+    base: {
+      present: true,
+    },
+  },
+  actionGroup: {
+    base: {
+      present: true,
+    },
+  },
+  primaryButton: {
+    base: {
+      present: false,
+      component: 'Button',
+      'variant.size': 'sm',
+      'variant.prio': 'primary',
+      'variant.state': 'default',
+      'variant.danger': 'false',
+    },
+  },
+  secondaryButton: {
+    base: {
+      present: false,
+      component: 'Button',
+      'variant.size': 'sm',
+      'variant.prio': 'secondary',
+      'variant.state': 'default',
+      'variant.danger': 'false',
+    },
+  },
+  action: {
+    base: {
+      present: true,
+    },
+  },
+  close: {
+    base: {
+      present: true,
+      component: 'Icon/Close',
+      'variant.solid': 'false',
     },
   },
 } as const;
@@ -381,12 +381,12 @@ export function solarBannerCompose(
 export const solarBannerTree: Record<string, string[]> = {
   root: [
     'iconInfo',
-    'description',
-    'actionGroup',
-    'close',
     'iconSuccess',
     'iconWarning',
     'iconDanger',
+    'description',
+    'actionGroup',
+    'close',
   ],
   actionGroup: ['primaryButton', 'secondaryButton', 'action'],
 };

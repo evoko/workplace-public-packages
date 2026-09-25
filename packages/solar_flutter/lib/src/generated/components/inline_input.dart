@@ -43,7 +43,7 @@ abstract final class SolarInlineInputRecipe {
     'root.paddingBottom|base': 't:inset.none',
     'root.paddingLeft|base': 't:inset.sm',
     'root.width|base': 'k:FILL',
-    'root.height|base': 'px:40',
+    'root.height|base': 't:size.control.md',
     'root.background|appearance|default|hover': 't:color.surface.hover',
     'root.radius|appearance|default|hover': 't:radius.container',
     'root.paddingTop|appearance|default|hover': 't:inset.2xs',
@@ -251,6 +251,7 @@ abstract final class SolarInlineInputRecipe {
       't:inset.xs' => SolarInset.xs,
       't:radius.container' => SolarRadius.container,
       't:radius.control' => SolarRadius.control,
+      't:size.control.md' => SolarSize.controlMd,
       _ => throw StateError('$cell: no length for $v'),
     };
   }

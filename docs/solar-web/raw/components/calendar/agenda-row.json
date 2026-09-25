@@ -269,6 +269,7 @@
       "variants": [
         {
           "variant": "state=default, density=comfortable",
+          "id": "6651:94",
           "size": [
             560,
             64
@@ -285,10 +286,12 @@
             "{Color:text/secondary}",
             "{Primitives:color/purple/700}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover, density=comfortable",
+          "id": "6651:105",
           "size": [
             560,
             64
@@ -317,6 +320,7 @@
         },
         {
           "variant": "state=selected, density=comfortable",
+          "id": "6651:116",
           "size": [
             560,
             64
@@ -345,6 +349,7 @@
         },
         {
           "variant": "state=default, density=compact",
+          "id": "6651:123",
           "size": [
             560,
             32
@@ -397,6 +402,7 @@
               {
                 "path": "/Time/Range",
                 "parent": "/Time",
+                "index": 0,
                 "layer": {
                   "name": "Range",
                   "type": "TEXT",
@@ -429,6 +435,7 @@
         },
         {
           "variant": "state=hover, density=compact",
+          "id": "6651:130",
           "size": [
             560,
             32
@@ -484,6 +491,7 @@
               {
                 "path": "/Time/Range",
                 "parent": "/Time",
+                "index": 0,
                 "layer": {
                   "name": "Range",
                   "type": "TEXT",
@@ -516,6 +524,7 @@
         },
         {
           "variant": "state=selected, density=compact",
+          "id": "6651:137",
           "size": [
             560,
             32
@@ -571,6 +580,7 @@
               {
                 "path": "/Time/Range",
                 "parent": "/Time",
+                "index": 0,
                 "layer": {
                   "name": "Range",
                   "type": "TEXT",

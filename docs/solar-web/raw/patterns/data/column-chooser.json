@@ -648,7 +648,7 @@
                 0,
                 20
               ],
-              "align": "SPACE_BETWEEN/CENTER",
+              "align": "CENTER/CENTER",
               "sizing": "FILL/FIXED"
             },
             "fills": [
@@ -659,6 +659,7 @@
             ],
             "strokeWeight": 0,
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:inset/lg",
               "paddingRight": "Spatial:inset/lg",
               "strokeTopWeight": "Spatial:border/none",
@@ -676,6 +677,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "6950:924",
           "size": [
             320,
             720
@@ -705,10 +707,21 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner",
+            "/Header/ClearAll/Counter",
+            "/Header/ClearAll/Icon/None",
+            "/Header/ClearAll/Icon/None#2",
+            "/Header/ClearAll/Spinner"
           ]
         },
         {
           "variant": "state=loading",
+          "id": "6952:956",
           "size": [
             320,
             720
@@ -726,6 +739,12 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
+          ],
+          "hiddenPaths": [
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -745,12 +764,18 @@
                   ]
                 },
                 "vars": null
+              },
+              "/Button": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
               }
             },
             "added": [
               {
                 "path": "/Header/TitleGroup/Skeleton",
                 "parent": "/Header/TitleGroup",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -764,16 +789,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/Header/Skeleton",
                 "parent": "/Header",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -787,16 +813,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/content/Body",
                 "parent": "/content",
+                "index": 0,
                 "layer": {
                   "name": "Body",
                   "type": "FRAME",
@@ -825,6 +852,7 @@
               {
                 "path": "/content/Body/ColumnRow",
                 "parent": "/content/Body",
+                "index": 0,
                 "layer": {
                   "name": "ColumnRow",
                   "type": "FRAME",
@@ -854,6 +882,7 @@
               {
                 "path": "/content/Body/ColumnRow/Skeleton",
                 "parent": "/content/Body/ColumnRow",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -867,16 +896,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/content/Body/ColumnRow#2",
                 "parent": "/content/Body",
+                "index": 1,
                 "layer": {
                   "name": "ColumnRow",
                   "type": "FRAME",
@@ -906,6 +936,7 @@
               {
                 "path": "/content/Body/ColumnRow#2/Skeleton",
                 "parent": "/content/Body/ColumnRow#2",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -919,16 +950,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/content/Body/ColumnRow#3",
                 "parent": "/content/Body",
+                "index": 2,
                 "layer": {
                   "name": "ColumnRow",
                   "type": "FRAME",
@@ -958,6 +990,7 @@
               {
                 "path": "/content/Body/ColumnRow#3/Skeleton",
                 "parent": "/content/Body/ColumnRow#3",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -971,16 +1004,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/content/Body/ColumnRow#4",
                 "parent": "/content/Body",
+                "index": 3,
                 "layer": {
                   "name": "ColumnRow",
                   "type": "FRAME",
@@ -1010,6 +1044,7 @@
               {
                 "path": "/content/Body/ColumnRow#4/Skeleton",
                 "parent": "/content/Body/ColumnRow#4",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1023,16 +1058,17 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               },
               {
                 "path": "/content/Body/ColumnRow#5",
                 "parent": "/content/Body",
+                "index": 4,
                 "layer": {
                   "name": "ColumnRow",
                   "type": "FRAME",
@@ -1062,6 +1098,7 @@
               {
                 "path": "/content/Body/ColumnRow#5/Skeleton",
                 "parent": "/content/Body/ColumnRow#5",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1075,10 +1112,10 @@
                   ],
                   "radius": 4,
                   "vars": {
-                    "topLeftRadius": "unresolved:6a3634305bfe",
-                    "topRightRadius": "unresolved:6a3634305bfe",
-                    "bottomLeftRadius": "unresolved:6a3634305bfe",
-                    "bottomRightRadius": "unresolved:6a3634305bfe"
+                    "topLeftRadius": "Spatial:radius/subtle",
+                    "topRightRadius": "Spatial:radius/subtle",
+                    "bottomLeftRadius": "Spatial:radius/subtle",
+                    "bottomRightRadius": "Spatial:radius/subtle"
                   }
                 }
               }
@@ -1104,6 +1141,7 @@
         },
         {
           "variant": "state=empty",
+          "id": "6952:1020",
           "size": [
             320,
             720
@@ -1132,6 +1170,7 @@
               {
                 "path": "/content/Body",
                 "parent": "/content",
+                "index": 1,
                 "layer": {
                   "name": "Body",
                   "type": "FRAME",
@@ -1163,6 +1202,7 @@
               {
                 "path": "/content/Body/No columns match your search",
                 "parent": "/content/Body",
+                "index": 0,
                 "layer": {
                   "name": "No columns match your search",
                   "type": "TEXT",
@@ -1342,6 +1382,7 @@
       "variants": [
         {
           "variant": "selected=true, hover=false",
+          "id": "6951:14675",
           "size": [
             296,
             44
@@ -1353,10 +1394,12 @@
             "{Color:icon/tertiary}",
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "selected=true, hover=true",
+          "id": "6951:14724",
           "size": [
             296,
             44
@@ -1383,6 +1426,7 @@
         },
         {
           "variant": "selected=false, hover=false",
+          "id": "6951:14701",
           "size": [
             296,
             44
@@ -1420,6 +1464,7 @@
         },
         {
           "variant": "selected=false, hover=true",
+          "id": "6951:14725",
           "size": [
             296,
             44

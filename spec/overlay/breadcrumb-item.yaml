@@ -10,11 +10,3 @@ base:
     current page at the end, not a link (`aria-current="page"`). Drawn with the shared layer helpers
     on both platforms: on the web a link (or a button, given no `href`), a text where it is the
     current page or disabled; in Flutter pressable and announced as a link.
-
-set:
-  root.appearance.type=link.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      Figma draws a breadcrumb no focus state, and a visible focus is SOLAR's floor. A focused link
-      draws SOLAR's focus ring, as a Nav Item's and a Link's do (owner decision 2026-09-24 for Nav
-      Item); the design review asks SOLAR to draw it.

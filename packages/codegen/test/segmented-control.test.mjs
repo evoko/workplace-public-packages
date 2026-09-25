@@ -64,7 +64,9 @@ describe('the Segmented Control IR', () => {
     });
   });
 
-  it('shows the label Figma always hides where the caller fills it', () => {
+  it('shows the label, and its words Figma hides, where the caller fills it', () => {
+    // Figma's show label (2026-09-25) shows the label's frame, and its words stay hidden: the
+    // overlay's shownBy draws them by the label slot.
     expect(oracle.slots).toMatchObject({
       label: 'filled label',
       labelLabel: 'filled label',

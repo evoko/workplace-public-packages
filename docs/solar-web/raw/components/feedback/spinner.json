@@ -5,7 +5,7 @@
     {
       "name": "Spinner",
       "id": "4626:102",
-      "description": "Circular indeterminate loading indicator. 6 variants: size (sm, md, lg) × style (default, inverse) — inverse is for dark and inverse surfaces. Non-interactive. Pair with visually-hidden text or aria-busy on the region it covers; for known progress use Progress Bar, for layout placeholders use Skeleton.",
+      "description": "Circular indeterminate loading indicator. 6 variants: size (sm 16, md 24, lg 32 — bound to icon/sm, icon/lg, icon/2xl) × style (default, inverse). default uses color/border/strong; inverse is for dark and inverse surfaces. Non-interactive. Pair with visually hidden text or aria-busy on the region it covers; for known progress use Progress Bar, for layout placeholders use Skeleton.",
       "docLinks": [],
       "variantCount": 6,
       "props": {
@@ -48,6 +48,10 @@
           "align": "CENTER/CENTER",
           "sizing": "HUG/HUG"
         },
+        "vars": {
+          "width": "Spatial:icon/sm",
+          "height": "Spatial:icon/sm"
+        },
         "children": [
           {
             "name": "SpinnerRing",
@@ -89,7 +93,7 @@
                   1
                 ],
                 "strokes": [
-                  "{Spatial:border/strong}"
+                  "{Color:border/strong}"
                 ],
                 "strokeWeight": 2,
                 "strokeGeometry": [
@@ -109,20 +113,29 @@
       "variants": [
         {
           "variant": "size=sm, style=default",
+          "id": "4626:80",
           "size": [
             16,
             16
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=md, style=default",
+          "id": "4626:84",
           "size": [
             24,
             24
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
+              },
               "/SpinnerRing": {
                 "size": [
                   24,
@@ -156,12 +169,19 @@
         },
         {
           "variant": "size=lg, style=default",
+          "id": "4626:93",
           "size": [
             32,
             32
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "vars": {
+                  "width": "Spatial:icon/2xl",
+                  "height": "Spatial:icon/2xl"
+                }
+              },
               "/SpinnerRing": {
                 "size": [
                   32,
@@ -195,6 +215,7 @@
         },
         {
           "variant": "size=sm, style=inverse",
+          "id": "6035:2",
           "size": [
             16,
             16
@@ -216,12 +237,19 @@
         },
         {
           "variant": "size=md, style=inverse",
+          "id": "6035:6",
           "size": [
             24,
             24
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "vars": {
+                  "width": "Spatial:icon/lg",
+                  "height": "Spatial:icon/lg"
+                }
+              },
               "/SpinnerRing": {
                 "size": [
                   24,
@@ -261,12 +289,19 @@
         },
         {
           "variant": "size=lg, style=inverse",
+          "id": "6035:10",
           "size": [
             32,
             32
           ],
           "overrides": {
             "changed": {
+              "/": {
+                "vars": {
+                  "width": "Spatial:icon/2xl",
+                  "height": "Spatial:icon/2xl"
+                }
+              },
               "/SpinnerRing": {
                 "size": [
                   32,

@@ -533,6 +533,70 @@ abstract final class SolarTagRecipe {
         'k:danger',
     'statusIndicator.variant.type|appearance|status=neutral, type=status, invert=false|default':
         'k:neutral',
+    'iconNone.present|base': 'b:false',
+    'iconNone.component|base': 'k:Icon/None',
+    'iconNone.width|base': 't:icon.xs',
+    'iconNone.height|base': 't:icon.xs',
+    'iconNone.present|appearance|status=success, type=icon+text, invert=false|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=success, type=icon+text, invert=false|default':
+        'k:false',
+    'iconNone.color|appearance|status=success, type=icon+text, invert=false|default':
+        't:color.icon.feedback.success',
+    'iconNone.present|appearance|status=success, type=icon+text, invert=true|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=success, type=icon+text, invert=true|default':
+        'k:false',
+    'iconNone.color|appearance|status=success, type=icon+text, invert=true|default':
+        't:color.icon.inverse',
+    'iconNone.present|appearance|status=warning, type=icon+text, invert=false|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=warning, type=icon+text, invert=false|default':
+        'k:false',
+    'iconNone.color|appearance|status=warning, type=icon+text, invert=false|default':
+        't:color.icon.feedback.warning',
+    'iconNone.present|appearance|status=warning, type=icon+text, invert=true|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=warning, type=icon+text, invert=true|default':
+        'k:false',
+    'iconNone.color|appearance|status=warning, type=icon+text, invert=true|default':
+        't:color.icon.inverse',
+    'iconNone.present|appearance|status=danger, type=icon+text, invert=false|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=danger, type=icon+text, invert=false|default':
+        'k:false',
+    'iconNone.color|appearance|status=danger, type=icon+text, invert=false|default':
+        't:color.icon.feedback.danger',
+    'iconNone.present|appearance|status=danger, type=icon+text, invert=true|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=danger, type=icon+text, invert=true|default':
+        'k:false',
+    'iconNone.color|appearance|status=danger, type=icon+text, invert=true|default':
+        't:color.icon.inverse',
+    'iconNone.present|appearance|status=info, type=icon+text, invert=false|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=info, type=icon+text, invert=false|default':
+        'k:false',
+    'iconNone.color|appearance|status=info, type=icon+text, invert=false|default':
+        't:color.icon.feedback.info',
+    'iconNone.present|appearance|status=info, type=icon+text, invert=true|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=info, type=icon+text, invert=true|default':
+        'k:false',
+    'iconNone.color|appearance|status=info, type=icon+text, invert=true|default':
+        't:color.icon.inverse',
+    'iconNone.present|appearance|status=neutral, type=icon+text, invert=false|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=neutral, type=icon+text, invert=false|default':
+        'k:false',
+    'iconNone.color|appearance|status=neutral, type=icon+text, invert=false|default':
+        't:color.icon.feedback.neutral',
+    'iconNone.present|appearance|status=neutral, type=icon+text, invert=true|default':
+        'b:true',
+    'iconNone.variant.solid|appearance|status=neutral, type=icon+text, invert=true|default':
+        'k:false',
+    'iconNone.color|appearance|status=neutral, type=icon+text, invert=true|default':
+        't:color.icon.inverse',
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.feedback.success',
     'label.typography|base': 't:typography.label.sm',
@@ -681,70 +745,6 @@ abstract final class SolarTagRecipe {
     'icon.variant.solid|appearance|status=neutral, type=icon-only, invert=true|default':
         'k:false',
     'icon.color|appearance|status=neutral, type=icon-only, invert=true|default':
-        't:color.icon.inverse',
-    'iconNone.present|base': 'b:false',
-    'iconNone.component|base': 'k:Icon/None',
-    'iconNone.width|base': 't:icon.xs',
-    'iconNone.height|base': 't:icon.xs',
-    'iconNone.present|appearance|status=success, type=icon+text, invert=false|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=success, type=icon+text, invert=false|default':
-        'k:false',
-    'iconNone.color|appearance|status=success, type=icon+text, invert=false|default':
-        't:color.icon.feedback.success',
-    'iconNone.present|appearance|status=success, type=icon+text, invert=true|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=success, type=icon+text, invert=true|default':
-        'k:false',
-    'iconNone.color|appearance|status=success, type=icon+text, invert=true|default':
-        't:color.icon.inverse',
-    'iconNone.present|appearance|status=warning, type=icon+text, invert=false|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=warning, type=icon+text, invert=false|default':
-        'k:false',
-    'iconNone.color|appearance|status=warning, type=icon+text, invert=false|default':
-        't:color.icon.feedback.warning',
-    'iconNone.present|appearance|status=warning, type=icon+text, invert=true|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=warning, type=icon+text, invert=true|default':
-        'k:false',
-    'iconNone.color|appearance|status=warning, type=icon+text, invert=true|default':
-        't:color.icon.inverse',
-    'iconNone.present|appearance|status=danger, type=icon+text, invert=false|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=danger, type=icon+text, invert=false|default':
-        'k:false',
-    'iconNone.color|appearance|status=danger, type=icon+text, invert=false|default':
-        't:color.icon.feedback.danger',
-    'iconNone.present|appearance|status=danger, type=icon+text, invert=true|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=danger, type=icon+text, invert=true|default':
-        'k:false',
-    'iconNone.color|appearance|status=danger, type=icon+text, invert=true|default':
-        't:color.icon.inverse',
-    'iconNone.present|appearance|status=info, type=icon+text, invert=false|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=info, type=icon+text, invert=false|default':
-        'k:false',
-    'iconNone.color|appearance|status=info, type=icon+text, invert=false|default':
-        't:color.icon.feedback.info',
-    'iconNone.present|appearance|status=info, type=icon+text, invert=true|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=info, type=icon+text, invert=true|default':
-        'k:false',
-    'iconNone.color|appearance|status=info, type=icon+text, invert=true|default':
-        't:color.icon.inverse',
-    'iconNone.present|appearance|status=neutral, type=icon+text, invert=false|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=neutral, type=icon+text, invert=false|default':
-        'k:false',
-    'iconNone.color|appearance|status=neutral, type=icon+text, invert=false|default':
-        't:color.icon.feedback.neutral',
-    'iconNone.present|appearance|status=neutral, type=icon+text, invert=true|default':
-        'b:true',
-    'iconNone.variant.solid|appearance|status=neutral, type=icon+text, invert=true|default':
-        'k:false',
-    'iconNone.color|appearance|status=neutral, type=icon+text, invert=true|default':
         't:color.icon.inverse',
     'iconClose.present|base': 'b:false',
     'iconClose.component|base': 'k:Icon/Close',
@@ -914,7 +914,7 @@ abstract final class SolarTagRecipe {
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).
   static const Map<String, List<String>> tree = {
-    'root': ['statusIndicator', 'label', 'icon', 'iconNone', 'iconClose'],
+    'root': ['statusIndicator', 'iconNone', 'label', 'icon', 'iconClose'],
   };
 
   /// Which state wins when several hold, highest first: the MUI recipe's cascade, read backwards.

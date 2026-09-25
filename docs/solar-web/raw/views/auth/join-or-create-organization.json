@@ -29,7 +29,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             0,
             0,
@@ -45,6 +45,7 @@
           "IMAGE"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/none",
           "paddingRight": "Spatial:inset/none",
@@ -78,6 +79,7 @@
               "sizing": "FILL/FIXED"
             },
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:stack/md",
               "paddingRight": "Spatial:stack/md"
             }
@@ -259,6 +261,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "9441:2082",
           "size": [
             1440,
             800
@@ -295,10 +298,30 @@
             "Icon/None",
             "Nav Item",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/Button Group/Button#2/Counter",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button#2/Spinner",
+            "/Center Stack/Container/content/Button Group/Button/Counter",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button/Spinner",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None#2",
+            "/Center Stack/Container/content/Text Input/Helper text",
+            "/Top Bar/GlobalSearch",
+            "/Top Bar/Right Zone/Container/Nav Item#3",
+            "/Top Bar/Right Zone/Container/Nav Item#4",
+            "/Top Bar/Right Zone/Field",
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "9441:2458",
           "size": [
             393,
             800
@@ -333,6 +356,25 @@
             "Icon Button",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/Button Group/Button#2/Counter",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button#2/Spinner",
+            "/Center Stack/Container/content/Button Group/Button#3",
+            "/Center Stack/Container/content/Button Group/Button#3/Counter",
+            "/Center Stack/Container/content/Button Group/Button#3/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button#3/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button#3/Spinner",
+            "/Center Stack/Container/content/Button Group/Button/Counter",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button/Spinner",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None#2",
+            "/Center Stack/Container/content/Text Input/Helper text",
+            "/Top Bar/Icon Button"
           ],
           "overrides": {
             "changed": {
@@ -398,6 +440,7 @@
               {
                 "path": "/Center Stack/Join an organization by entering its ID. The organization can then accept your request.",
                 "parent": "/Center Stack",
+                "index": 1,
                 "layer": {
                   "name": "Join an organization by entering its ID. The organization can then accept your request.",
                   "type": "TEXT",
@@ -422,6 +465,7 @@
               {
                 "path": "/Center Stack/Container#2",
                 "parent": "/Center Stack",
+                "index": 3,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -449,6 +493,7 @@
               {
                 "path": "/Center Stack/Container#2/Icon/HelpCircle",
                 "parent": "/Center Stack/Container#2",
+                "index": 0,
                 "layer": {
                   "name": "Icon/HelpCircle",
                   "type": "INSTANCE",
@@ -472,6 +517,7 @@
               {
                 "path": "/Center Stack/Container#2/We'll find the right Sign-in method for you.",
                 "parent": "/Center Stack/Container#2",
+                "index": 1,
                 "layer": {
                   "name": "We'll find the right Sign-in method for you.",
                   "type": "TEXT",
@@ -528,7 +574,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             0,
             0,
@@ -544,6 +590,7 @@
           "IMAGE"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/none",
           "paddingRight": "Spatial:inset/none",
@@ -577,6 +624,7 @@
               "sizing": "FILL/FIXED"
             },
             "vars": {
+              "itemSpacing": "Spatial:inset/sm",
               "paddingLeft": "Spatial:stack/md",
               "paddingRight": "Spatial:stack/md"
             }
@@ -758,6 +806,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "9441:2081",
           "size": [
             1440,
             800
@@ -794,10 +843,33 @@
             "Icon/None",
             "Nav Item",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/Button Group/Button#2/Counter",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button#2/Spinner",
+            "/Center Stack/Container/content/Button Group/Button/Counter",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button/Spinner",
+            "/Center Stack/Container/content/Dropdown/Field/Icon/None",
+            "/Center Stack/Container/content/Dropdown/Field/Icon/None#2",
+            "/Center Stack/Container/content/Dropdown/Helper text",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None#2",
+            "/Center Stack/Container/content/Text Input/Helper text",
+            "/Top Bar/GlobalSearch",
+            "/Top Bar/Right Zone/Container/Nav Item#3",
+            "/Top Bar/Right Zone/Container/Nav Item#4",
+            "/Top Bar/Right Zone/Field",
+            "/Top Bar/Right Zone/Field/Icon/None",
+            "/Top Bar/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "9441:2460",
           "size": [
             393,
             800
@@ -834,6 +906,28 @@
             "Icon Button",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Center Stack/Container/content/Button Group/Button#2/Counter",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button#2/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button#2/Spinner",
+            "/Center Stack/Container/content/Button Group/Button#3",
+            "/Center Stack/Container/content/Button Group/Button#3/Counter",
+            "/Center Stack/Container/content/Button Group/Button#3/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button#3/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button#3/Spinner",
+            "/Center Stack/Container/content/Button Group/Button/Counter",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None",
+            "/Center Stack/Container/content/Button Group/Button/Icon/None#2",
+            "/Center Stack/Container/content/Button Group/Button/Spinner",
+            "/Center Stack/Container/content/Dropdown/Field/Icon/None",
+            "/Center Stack/Container/content/Dropdown/Field/Icon/None#2",
+            "/Center Stack/Container/content/Dropdown/Helper text",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None",
+            "/Center Stack/Container/content/Text Input/Field/Icon/None#2",
+            "/Center Stack/Container/content/Text Input/Helper text",
+            "/Top Bar/Icon Button"
           ],
           "overrides": {
             "changed": {

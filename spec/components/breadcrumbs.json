@@ -34,11 +34,6 @@
       "parent": "root",
       "type": "INSTANCE"
     },
-    "current": {
-      "path": "/current",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
     "item3": {
       "path": "/item-3",
       "parent": "root",
@@ -56,6 +51,11 @@
     },
     "iconChevronRight4": {
       "path": "/Icon/ChevronRight#4",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
+    "current": {
+      "path": "/current",
       "parent": "root",
       "type": "INSTANCE"
     }
@@ -102,22 +102,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "keyword": "HUG",
@@ -253,36 +253,6 @@
       "size": {},
       "appearance": {}
     },
-    "current": {
-      "base": {
-        "present": {
-          "value": true,
-          "from": "items=5"
-        },
-        "component": {
-          "keyword": "Breadcrumb Item",
-          "from": "items=5"
-        },
-        "variant.type": {
-          "keyword": "current",
-          "from": "items=5"
-        },
-        "variant.state": {
-          "keyword": "default",
-          "from": "items=5"
-        },
-        "width": {
-          "keyword": "HUG",
-          "from": "items=5"
-        },
-        "height": {
-          "keyword": "HUG",
-          "from": "items=5"
-        }
-      },
-      "size": {},
-      "appearance": {}
-    },
     "item3": {
       "base": {
         "present": {
@@ -404,10 +374,40 @@
       },
       "size": {},
       "appearance": {}
+    },
+    "current": {
+      "base": {
+        "present": {
+          "value": true,
+          "from": "items=5"
+        },
+        "component": {
+          "keyword": "Breadcrumb Item",
+          "from": "items=5"
+        },
+        "variant.type": {
+          "keyword": "current",
+          "from": "items=5"
+        },
+        "variant.state": {
+          "keyword": "default",
+          "from": "items=5"
+        },
+        "width": {
+          "keyword": "HUG",
+          "from": "items=5"
+        },
+        "height": {
+          "keyword": "HUG",
+          "from": "items=5"
+        }
+      },
+      "size": {},
+      "appearance": {}
     }
   },
   "docs": {
-    "description": "Shows the user's location in a navigational hierarchy and allows quick jumps to ancestors.\n\nVariants (5):\n• items — 2 | 3 | 4 | 5 | multiple  (use 'multiple' when the trail exceeds 5 levels — middle collapses to an ellipsis menu)\n\nAccessibility: wrap in <nav aria-label=\"Breadcrumb\">. The final item uses aria-current=\"page\" and is not a link. Separators are aria-hidden.\n\nUse for deep page trees, not for linear progress (see Stepper) or single-level flows (omit entirely).",
+    "description": "Shows the user’s location in a navigational hierarchy and allows quick jumps to ancestors.\n\nVariants (5):\n• items — 2 | 3 | 4 | 5 | multiple  (use multiple when the trail exceeds 5 levels — the middle collapses to an ellipsis; compose the ellipsis with a Dropdown Menu listing the hidden pages)\n\nAccessibility: wrap in <nav aria-label=\"Breadcrumb\">. The final item uses aria-current=\"page\" and is not a link. Separators are aria-hidden. Breadcrumb Item carries a focus state.\n\nUse for deep page trees, not for linear progress (see Stepper) or single-level flows (omit entirely).",
     "figmaIssues": []
   },
   "provenance": {
@@ -415,7 +415,7 @@
     "pageId": "2163:3712",
     "figmaNode": "2772:620",
     "defaultVariant": "items=5",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/breadcrumbs.yaml",
@@ -453,7 +453,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

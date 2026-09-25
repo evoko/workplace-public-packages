@@ -48,8 +48,8 @@ export const solarSegmentedControlItemStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarSegmentedControlItem-input': {
@@ -146,7 +146,18 @@ export const solarSegmentedControlItemStyles = {
         },
       },
       '&:has(.SolarSegmentedControlItem-input:focus-visible)': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
         boxShadow: 'var(--solar-shadow-focus-default)',
+        '& .SolarSegmentedControlItem-iconLeading': {
+          color: 'var(--solar-color-icon-secondary)',
+        },
+        '& .SolarSegmentedControlItem--label': {
+          color: 'var(--solar-color-text-secondary)',
+        },
+        '& .SolarSegmentedControlItem-iconTrailing': {
+          color: 'var(--solar-color-icon-secondary)',
+        },
       },
       '& .SolarSegmentedControlItem-iconLeading': {
         color: 'var(--solar-color-icon-secondary)',
@@ -169,19 +180,6 @@ export const solarSegmentedControlItemStyles = {
   },
   combined: {
     md: {
-      'selected=false': {
-        '&:has(.SolarSegmentedControlItem-input:focus-visible)': {
-          '& .SolarSegmentedControlItem-iconLeading': {
-            color: 'var(--solar-color-icon-secondary)',
-          },
-          '& .SolarSegmentedControlItem--label': {
-            color: 'var(--solar-color-text-secondary)',
-          },
-          '& .SolarSegmentedControlItem-iconTrailing': {
-            color: 'var(--solar-color-icon-secondary)',
-          },
-        },
-      },
       'selected=true': {
         '&:has(.SolarSegmentedControlItem-input:focus-visible)': {
           borderColor: 'var(--solar-color-border-subtle)',
@@ -189,19 +187,6 @@ export const solarSegmentedControlItemStyles = {
       },
     },
     sm: {
-      'selected=false': {
-        '&:has(.SolarSegmentedControlItem-input:focus-visible)': {
-          '& .SolarSegmentedControlItem-iconLeading': {
-            color: 'var(--solar-color-icon-secondary)',
-          },
-          '& .SolarSegmentedControlItem--label': {
-            color: 'var(--solar-color-text-secondary)',
-          },
-          '& .SolarSegmentedControlItem-iconTrailing': {
-            color: 'var(--solar-color-icon-secondary)',
-          },
-        },
-      },
       'selected=true': {
         '&:has(.SolarSegmentedControlItem-input:focus-visible)': {
           borderColor: 'var(--solar-color-border-subtle)',

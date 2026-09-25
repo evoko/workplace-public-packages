@@ -1,6 +1,6 @@
 # Color
 
-> Verbatim text of the Figma page `Color` (id `763:50347`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `c157f4a1cc5f`. Curated chapter: [05-color.md](../../05-color.md).
+> Verbatim text of the Figma page `Color` (id `763:50347`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `a369c204923e`. Curated chapter: [05-color.md](../../05-color.md).
 
 ## Slide 1
 
@@ -360,7 +360,7 @@ semantic: purpose-driven aliases that reference primitives in one hop
   color.text.{primary|secondary|tertiary|disabled|inverse} · color.text.feedback.{success|warning|danger|info|neutral} · color.text.link.{default|hover|active|disabled}
   color.border.{medium|subtle|strong|disabled|inverse|surface|highlight} and color.border.feedback.{type}.{subtle|medium|strong}
   color.icon.{primary|secondary|tertiary|disabled|inverse} · color.icon.feedback.{type}
-  color.action.{primary|secondary|tertiary|primary-danger}.{bg|text|icon|border}.{default|hover|focus|pressed|disabled}
+  color.action.{primary|secondary|tertiary|primary-danger}.{bg|text|icon|border}.{default|hover|active|disabled} — the component variant state=pressed binds the active variable; focus is the shared shadow/focus/* effect style, not a colour
   color.data.category.NN.{strong|subtle} · color.data.scale.* · color.data.delta.{positive|negative|neutral}
 banned: foreground, background, on-color, color.text.danger, color.border.error, color.feedback.* — see CLAUDE.md §3
 

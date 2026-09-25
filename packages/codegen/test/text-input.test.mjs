@@ -57,33 +57,22 @@ describe('the Text Input IR', () => {
     });
   });
 
-  it('fills its container, and carries the field’s height as Figma’s number', () => {
+  it('fills its container, and draws the field’s height at SOLAR’s control size', () => {
     expect(spec.style.root.base.width).toMatchObject({ keyword: 'FILL' });
     expect(spec.style.root.size.sm.width).toMatchObject({ keyword: 'FILL' });
-    expect(spec.style.field.base.height).toMatchObject({ literal: 40 });
-    expect(spec.style.field.base.height.allowed).toMatch(
-      /no control height token/,
-    );
+    // size.control since 2026-09-25, bound to Figma's unbound 40 and 32.
+    expect(spec.style.field.base.height).toMatchObject({
+      token: 'size.control.md',
+      from: 'overlay',
+    });
+    expect(spec.style.field.size.sm.height).toMatchObject({
+      token: 'size.control.sm',
+    });
   });
 
-  it('leaves Figma’s sm paddings and centring open: the code does not copy them', () => {
-    const open = deviations.filter((d) => !d.decision).map((d) => d.token);
-    expect(open.sort()).toEqual(
-      [
-        'field.align@state=disabled',
-        'field.align@state=error',
-        'field.paddingLeft@state=disabled',
-        'field.paddingLeft@state=error',
-        'field.paddingLeft@state=filled',
-        'field.paddingLeft@state=focus',
-        'field.paddingRight@state=disabled',
-        'field.paddingRight@state=error',
-        'field.paddingRight@state=filled',
-        'field.paddingRight@state=focus',
-      ]
-        .map((t) => `component.text input.${t}`)
-        .sort(),
-    );
+  it('leaves nothing open: Figma draws the sm paddings and centring as the other states', () => {
+    // Open until 2026-09-25, when Figma aligned and padded every sm state as at rest.
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
   it('reaches filled in the oracle by a value, and every other variant by none', () => {
@@ -143,7 +132,7 @@ describe('the Text Input recipes', () => {
       isolation: 'isolate',
     });
     expect(styles.reset['& .SolarTextInput--field::after']).toMatchObject({
-      height: 'max(100%, 44px)',
+      height: 'max(100%, var(--solar-size-target-min))',
       zIndex: '-1',
     });
   });
@@ -196,8 +185,8 @@ describe('a target under an element’s content', () => {
         position: 'absolute',
         top: '50%',
         left: '50%',
-        width: 'max(100%, 44px)',
-        height: 'max(100%, 44px)',
+        width: 'max(100%, var(--solar-size-target-min))',
+        height: 'max(100%, var(--solar-size-target-min))',
         transform: 'translate(-50%, -50%)',
         zIndex: '-1',
       },

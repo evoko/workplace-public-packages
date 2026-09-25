@@ -73,7 +73,7 @@
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 0,
+              "gap": 16,
               "pad": [
                 0,
                 0,
@@ -82,6 +82,9 @@
               ],
               "align": "SPACE_BETWEEN/MIN",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/md"
             },
             "children": [
               {
@@ -381,6 +384,7 @@
       "variants": [
         {
           "variant": "orientation=horizontal, breakpoint=desktop",
+          "id": "7269:2",
           "size": [
             600,
             22
@@ -388,10 +392,12 @@
           "textFills": [
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "orientation=horizontal, breakpoint=mobile",
+          "id": "7269:20",
           "size": [
             343,
             22
@@ -430,6 +436,7 @@
               {
                 "path": "/Ticks/Tick#2/33",
                 "parent": "/Ticks/Tick#2",
+                "index": 1,
                 "layer": {
                   "name": "33",
                   "type": "TEXT",
@@ -454,6 +461,7 @@
               {
                 "path": "/Ticks/Tick#3/67",
                 "parent": "/Ticks/Tick#3",
+                "index": 1,
                 "layer": {
                   "name": "67",
                   "type": "TEXT",
@@ -478,6 +486,7 @@
               {
                 "path": "/Ticks/Tick#4/100",
                 "parent": "/Ticks/Tick#4",
+                "index": 1,
                 "layer": {
                   "name": "100",
                   "type": "TEXT",
@@ -512,6 +521,7 @@
         },
         {
           "variant": "orientation=vertical, breakpoint=desktop",
+          "id": "7269:35",
           "size": [
             100,
             280
@@ -630,6 +640,7 @@
               {
                 "path": "/Ticks/Tick/100",
                 "parent": "/Ticks/Tick",
+                "index": 0,
                 "layer": {
                   "name": "100",
                   "type": "TEXT",
@@ -654,6 +665,7 @@
               {
                 "path": "/Ticks/Tick#2/75",
                 "parent": "/Ticks/Tick#2",
+                "index": 0,
                 "layer": {
                   "name": "75",
                   "type": "TEXT",
@@ -678,6 +690,7 @@
               {
                 "path": "/Ticks/Tick#4/25",
                 "parent": "/Ticks/Tick#4",
+                "index": 0,
                 "layer": {
                   "name": "25",
                   "type": "TEXT",
@@ -702,6 +715,7 @@
               {
                 "path": "/Ticks/Tick#5/0",
                 "parent": "/Ticks/Tick#5",
+                "index": 0,
                 "layer": {
                   "name": "0",
                   "type": "TEXT",
@@ -734,6 +748,7 @@
         },
         {
           "variant": "orientation=vertical, breakpoint=mobile",
+          "id": "7269:53",
           "size": [
             100,
             220
@@ -836,6 +851,7 @@
               {
                 "path": "/Ticks/Tick/100",
                 "parent": "/Ticks/Tick",
+                "index": 0,
                 "layer": {
                   "name": "100",
                   "type": "TEXT",
@@ -860,6 +876,7 @@
               {
                 "path": "/Ticks/Tick#2/67",
                 "parent": "/Ticks/Tick#2",
+                "index": 0,
                 "layer": {
                   "name": "67",
                   "type": "TEXT",
@@ -884,6 +901,7 @@
               {
                 "path": "/Ticks/Tick#3/33",
                 "parent": "/Ticks/Tick#3",
+                "index": 0,
                 "layer": {
                   "name": "33",
                   "type": "TEXT",
@@ -908,6 +926,7 @@
               {
                 "path": "/Ticks/Tick#4/0",
                 "parent": "/Ticks/Tick#4",
+                "index": 0,
                 "layer": {
                   "name": "0",
                   "type": "TEXT",
@@ -978,7 +997,7 @@
         ],
         "layout": {
           "dir": "VERTICAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             0,
             0,
@@ -987,6 +1006,9 @@
           ],
           "align": "SPACE_BETWEEN/MIN",
           "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/md"
         },
         "children": [
           {
@@ -1059,14 +1081,17 @@
       "variants": [
         {
           "variant": "orientation=horizontal, breakpoint=desktop",
+          "id": "7272:2",
           "size": [
             600,
             280
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "orientation=horizontal, breakpoint=mobile",
+          "id": "7272:8",
           "size": [
             343,
             220
@@ -1105,6 +1130,7 @@
         },
         {
           "variant": "orientation=vertical, breakpoint=desktop",
+          "id": "7272:13",
           "size": [
             600,
             280
@@ -1156,6 +1182,7 @@
         },
         {
           "variant": "orientation=vertical, breakpoint=mobile",
+          "id": "7272:19",
           "size": [
             343,
             220

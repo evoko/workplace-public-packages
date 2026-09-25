@@ -80,22 +80,22 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "width": {
           "literal": 44,
@@ -171,27 +171,31 @@
           "default": {
             "background": {
               "none": true,
-              "from": "size=md, type=logo, color=neutral, shade=Logo"
+              "from": "size=lg, type=logo, color=neutral, shade=Logo"
             },
             "borderColor": {
               "none": true,
-              "from": "size=md, type=logo, color=neutral, shade=Logo"
+              "from": "size=lg, type=logo, color=neutral, shade=Logo"
             },
             "radius": {
               "token": "radius.container",
-              "from": "size=md, type=logo, color=neutral, shade=Logo"
+              "from": "overlay",
+              "reason": "The lg logo avatar Figma added on 2026-09-25 is rounded 11, bound to nothing, where the md and sm logos take radius.container: drawn as theirs at every size, a slip the design review lists.",
+              "replaced": {
+                "literal": 11
+              }
             },
             "borderWidth": {
               "none": true,
-              "from": "size=md, type=logo, color=neutral, shade=Logo"
+              "from": "size=lg, type=logo, color=neutral, shade=Logo"
             },
             "direction": {
               "keyword": "HORIZONTAL",
-              "from": "size=md, type=logo, color=neutral, shade=Logo"
+              "from": "size=lg, type=logo, color=neutral, shade=Logo"
             },
             "image": {
               "value": true,
-              "from": "size=md, type=logo, color=neutral, shade=Logo"
+              "from": "size=lg, type=logo, color=neutral, shade=Logo"
             }
           }
         }
@@ -249,7 +253,7 @@
           "default": {
             "present": {
               "value": false,
-              "from": "size=md, type=logo, color=neutral, shade=Logo"
+              "from": "size=lg, type=logo, color=neutral, shade=Logo"
             }
           }
         }
@@ -257,7 +261,7 @@
     }
   },
   "docs": {
-    "description": "User/entity avatar showing initials, photo, or company logo. 114 variants: size (xs, sm, md, lg) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark shade inverts colors for dark surfaces and inverse cards; Image and Logo are the content modes for photo and logo. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.",
+    "description": "User/entity avatar showing initials, photo, or company logo. 115 variants: size (xs 16, sm 24, md 32, lg 44) × type (text, photo, logo) × color (9 seeds) × shade (Light, Medium, Dark, Image, Logo). Color provides 9 seeds for initial-based avatars; seed from a stable hash of user ID — never random. Initials must reach 4.5:1 on their fill; where a sample pairing does not, darken or lighten the initials within the same hue. Use in activity feeds, comment threads, user lists and presence indicators. See also: Badge / Status for small inline status dots.",
     "figmaIssues": [
       "Primitive color bound directly (CLR-002): `color.blue.500`, `color.blue.50`, `color.blue.800`, `color.green.500`, `color.green.50`, `color.green.800`, `color.neutral.400`, `color.neutral.50` … (+37 more)."
     ]
@@ -267,7 +271,7 @@
     "pageId": "2163:3676",
     "figmaNode": "2578:1831",
     "defaultVariant": "size=lg, type=text, color=neutral, shade=Light",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "callers": {
     "root.background": {
@@ -309,6 +313,11 @@
       },
       {
         "rule": "set",
+        "at": "root.appearance.type=logo.default.radius",
+        "reason": "The lg logo avatar Figma added on 2026-09-25 is rounded 11, bound to nothing, where the md and sm logos take radius.container: drawn as theirs at every size, a slip the design review lists."
+      },
+      {
+        "rule": "set",
         "at": "root.base.background",
         "reason": "Figma's neutral sample is the primitive color/neutral/50, which component code may not name. Without the caller's colour, the avatar is surface/feedback/neutral/subtle, neutral/50 in Light, and re-themed in Dark."
       },
@@ -343,11 +352,6 @@
         "reason": "The initials take the caller's colour's hue at a lightness that reads at WCAG AA (owner decision, 2026-09-24), computed where the colour is given (internal/ink.ts, solar_ink.dart): not Figma's sample's ink, so it is not compared. Without a colour they are the recipe's, color.text.primary."
       },
       {
-        "rule": "accept",
-        "at": "component.avatar.sparse@type=logo",
-        "reason": "Figma draws no lg logo avatar; its look is read from md's, and its size is lg's, as for the other types."
-      },
-      {
         "rule": "layerNames",
         "at": "/DS → initials",
         "reason": "Figma names the text after its sample, DS, which gives the IR the name ds. It is the initials."
@@ -362,7 +366,7 @@
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

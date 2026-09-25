@@ -22,12 +22,6 @@ set:
   track.base.width:
     keyword: FILL
     reason: The rail spans the slider, whatever its width.
-  root.appearance.default.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's
-      focus ring around the whole slider, as Slider's own focus is drawn; the design review asks
-      SOLAR to draw it.
 
 follows:
   handle.width:

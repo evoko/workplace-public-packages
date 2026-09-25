@@ -144,8 +144,10 @@ describe('a layer one variant adds, where Figma records its place', () => {
     expect(paths.indexOf('/Skeleton')).toBe(paths.indexOf('/Content') - 1);
   });
 
-  it('leaves the overlay’s places stale', () => {
-    expect(() => build(loadOverlay('Card'))).toThrow(
+  it('leaves a places rule that restates it stale', () => {
+    const overlay = structuredClone(loadOverlay('Card'));
+    overlay.places = { '/Skeleton': { before: '/Content', reason: 'r' } };
+    expect(() => build(overlay)).toThrow(
       /places \/Skeleton: the layer is already before \/Content, as Figma's export records it/,
     );
   });

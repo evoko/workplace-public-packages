@@ -159,22 +159,22 @@
             "paddingTop": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingRight": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingBottom": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingLeft": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             }
           },
           "hover": {
@@ -218,14 +218,6 @@
               "token": "color.action.primary.bg.default",
               "from": "checked=true, disabled=false, hover=false, mixed=true, focus=false"
             },
-            "borderColor": {
-              "token": "color.border.medium",
-              "from": "overlay",
-              "reason": "The resting mixed box alone is drawn with no edge; the checked box at rest has one, and so does the mixed box on hover. Drawn with the checked box's edge, as every other enabled box is; the design review asks which SOLAR means.",
-              "replaced": {
-                "none": true
-              }
-            },
             "direction": {
               "keyword": "VERTICAL",
               "from": "checked=true, disabled=false, hover=false, mixed=false, focus=false"
@@ -241,42 +233,38 @@
             "paddingTop": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingRight": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingBottom": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             },
             "paddingLeft": {
               "token": "inset.none",
               "from": "defaults",
-              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+              "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
             }
           },
           "hover": {
             "background": {
               "token": "color.action.primary.bg.hover",
               "from": "checked=true, disabled=false, hover=true, mixed=true, focus=false"
-            },
-            "borderColor": {
-              "token": "color.border.medium",
-              "from": "checked=true, disabled=false, hover=true, mixed=true, focus=false"
             }
           },
           "disabled": {
             "background": {
               "token": "color.action.primary.bg.disabled",
-              "from": "checked=true, disabled=true, hover=true, mixed=true, focus=false"
+              "from": "checked=true, disabled=true, hover=false, mixed=true, focus=false"
             },
             "borderColor": {
               "none": true,
-              "from": "checked=true, disabled=true, hover=true, mixed=true, focus=false"
+              "from": "checked=true, disabled=true, hover=false, mixed=true, focus=false"
             },
             "borderWidth": {
               "none": true,
@@ -554,7 +542,7 @@
           "disabled": {
             "present": {
               "value": true,
-              "from": "checked=true, disabled=true, hover=true, mixed=true, focus=false"
+              "from": "checked=true, disabled=true, hover=false, mixed=true, focus=false"
             },
             "glyph": {
               "glyph": {
@@ -568,19 +556,19 @@
                 ],
                 "stroke": []
               },
-              "from": "checked=true, disabled=true, hover=true, mixed=true, focus=false"
+              "from": "checked=true, disabled=true, hover=false, mixed=true, focus=false"
             },
             "background": {
               "token": "color.action.primary.icon.disabled",
-              "from": "checked=true, disabled=true, hover=true, mixed=true, focus=false"
+              "from": "checked=true, disabled=true, hover=false, mixed=true, focus=false"
             },
             "borderColor": {
               "none": true,
-              "from": "checked=true, disabled=true, hover=true, mixed=true, focus=false"
+              "from": "checked=true, disabled=true, hover=false, mixed=true, focus=false"
             },
             "shadow": {
               "none": true,
-              "from": "checked=true, disabled=true, hover=true, mixed=true, focus=false"
+              "from": "checked=true, disabled=true, hover=false, mixed=true, focus=false"
             }
           },
           "focus": {
@@ -620,7 +608,7 @@
     }
   },
   "docs": {
-    "description": "Multi-select box. 12 variants: checked × disabled × hover × mixed × focus. mixed renders an indeterminate dash — use it on a parent box when some, but not all, of its children are checked. Commit on click. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke, so the ring stays legible at 16px. There is no pressed state. Pair with an adjacent label — clicking the label toggles — or use Option Row, which composes this with a label and optional supporting text. For a single persistent on/off setting use Toggle.",
+    "description": "Multi-select box. 12 variants: checked × disabled × hover × mixed × focus, shipped as the used combinations. mixed renders an indeterminate dash — use it on a parent box when some, but not all, children are checked; it keeps the border/medium edge at rest like a checked box. focus combines shadow/focus/default with a border/feedback/focus/strong stroke. No pressed state. Pair with a label or use Option Row. For a single persistent on/off setting use Toggle.",
     "figmaIssues": []
   },
   "provenance": {
@@ -628,7 +616,7 @@
     "pageId": "2163:3699",
     "figmaNode": "2202:1291",
     "defaultVariant": "checked=false, disabled=false, hover=false, mixed=false, focus=false",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/checkbox.yaml",
@@ -679,11 +667,6 @@
         "reason": "As its direction, the checked box's alone."
       },
       {
-        "rule": "set",
-        "at": "root.appearance.checked=true, mixed=true.default.borderColor",
-        "reason": "The resting mixed box alone is drawn with no edge; the checked box at rest has one, and so does the mixed box on hover. Drawn with the checked box's edge, as every other enabled box is; the design review asks which SOLAR means."
-      },
-      {
         "rule": "allowLiteral",
         "at": "container.height",
         "reason": "The dash's own size, 10 by 2, is its drawing's, as the tick's is."
@@ -714,14 +697,9 @@
         "reason": "The box is 16px, and SOLAR has no control size token (the design review's question on control sizes and the target size); carried as Figma's number."
       },
       {
-        "rule": "accept",
-        "at": "component.checkbox.root.borderWidth@mixed=true",
-        "reason": "As its colour: the resting mixed box keeps the border every other enabled box has."
-      },
-      {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingRight, root.paddingBottom, root.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

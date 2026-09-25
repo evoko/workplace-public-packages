@@ -4,7 +4,7 @@
 
 ## Component set: Tag
 
-Compact label for status, category, or user-entered content. 45 variants: type (status, icon-only, icon+text, closable, text-only) × status (success, neutral, warning, danger, info) × invert × show icon-leading. type=status for read-only state (Active, Pending); type=closable for user-entered tokens with ×; type=icon-only for pure glyph tags. Keep text to 1–3 words.
+Compact label for status, category, or user-entered content. 45 variants: type (status, icon-only, icon+text, closable, text-only) × status (success, neutral, warning, danger, info) × invert (false, true). type=status shows a status dot for read-only state (Active, Pending); on an inverted tag the dot is omitted, since it would match the fill. type=closable is for user-entered tokens with ×; type=icon-only for pure glyph tags. Keep text to 1–3 words.
 
 ### Props
 

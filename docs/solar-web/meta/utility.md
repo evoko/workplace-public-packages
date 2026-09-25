@@ -17,7 +17,7 @@
   - **Header** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 1280×168  
     stroke `color.neutral.100` mixedpx
     - **Container** · frame · row gap 0 pad 0/40/0/40 FILL/FIXED · 1280×72  
-      stroke `color.neutral.100` mixedpx · padding `8fd955719573`
+      stroke `color.neutral.100` mixedpx · padding `inset.3xl`
       - **SOLAR®** · text `body/md/semibold` "SOLAR®" · FIXED/HUG · 311×10  
         fill `color.neutral.900` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.600`
       - **Biamp Design System** · text `body/md/semibold` "Biamp Design System" · FILL/HUG · 854×10  
@@ -29,9 +29,9 @@
       - ~~**Description**~~ (hidden by default) · text "Description" · FIXED/FIXED · 108×15  
         fill `color.neutral.700`
     - **.Subheader** · frame · column gap 20 pad 28/40/28/40 FILL/FIXED · 1280×96  
-      stroke `color.neutral.900` mixedpx · itemSpacing `inset.lg` · padding `8fd955719573`, `inset.2xl`
+      stroke `color.neutral.900` mixedpx · itemSpacing `inset.lg` · padding `inset.3xl`, `inset.2xl`
       - **Component name** · text `title/lg` "Component name" · HUG/HUG · 325×29  
-        fill `color.neutral.900` · lineHeight `e8eb718f4e2f` · fontFamily `type.font-family.inter` · fontSize `e8cce36e4d83` · fontStyle `type.font-weight.500`
+        fill `color.neutral.900` · lineHeight `type.line-height.title.lg` · fontFamily `type.font-family.inter` · fontSize `type.size.title.lg` · fontStyle `type.font-weight.500`
       - ~~**Subheadline**~~ (hidden by default) · text "Subheadline" · FIXED/FIXED · 79×10  
         fill `color.neutral.400`
   - **Content** · slot · column gap 0 pad 0/0/0/0 HUG/HUG · 1280×906  
@@ -79,16 +79,16 @@
 
 ### Tokens used
 
-| Role            | Tokens                                                                                                                                                                                                       |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Fills           | `color.mono.white`, `color.neutral.900`                                                                                                                                                                      |
-| Strokes         | `color.neutral.100`, `color.neutral.900`                                                                                                                                                                     |
-| Text color      | `color.neutral.100`, `color.neutral.400`, `color.neutral.700`, `color.neutral.900`, `color.red.500`                                                                                                          |
-| Spacing         | `inset.2xl`, `inset.2xs`, `inset.lg`, `inset.xl`, `inset.xs`, `stack.2xl`, `stack.lg`, `8fd955719573`                                                                                                        |
-| Radius          | `radius.control`, `radius.dialog`                                                                                                                                                                            |
-| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.font-weight.600`, `type.line-height.body.md`, `type.line-height.title.sm`, `type.size.body.md`, `type.size.title.sm`, `e8cce36e4d83`, `e8eb718f4e2f` |
-| Text styles     | `body/md/semibold`, `title/lg`, `title/sm`                                                                                                                                                                   |
-| Other           | `textRangeFills={Primitives:color/green/500}`, `textRangeFills={Primitives:color/neutral/900}`                                                                                                               |
+| Role            | Tokens                                                                                                                                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fills           | `color.mono.white`, `color.neutral.900`                                                                                                                                                                                         |
+| Strokes         | `color.neutral.100`, `color.neutral.900`                                                                                                                                                                                        |
+| Text color      | `color.neutral.100`, `color.neutral.400`, `color.neutral.700`, `color.neutral.900`, `color.red.500`                                                                                                                             |
+| Spacing         | `inset.2xl`, `inset.2xs`, `inset.3xl`, `inset.lg`, `inset.xl`, `inset.xs`, `stack.2xl`, `stack.lg`                                                                                                                              |
+| Radius          | `radius.control`, `radius.dialog`                                                                                                                                                                                               |
+| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.font-weight.600`, `type.line-height.body.md`, `type.line-height.title.lg`, `type.line-height.title.sm`, `type.size.body.md`, `type.size.title.lg`, `type.size.title.sm` |
+| Text styles     | `body/md/semibold`, `title/lg`, `title/sm`                                                                                                                                                                                      |
+| Other           | `textRangeFills={Primitives:color/green/500}`, `textRangeFills={Primitives:color/neutral/900}`                                                                                                                                  |
 
 ### Slots and prop-controlled layers
 

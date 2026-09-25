@@ -126,7 +126,7 @@
         "paddingTop": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingRight": {
           "token": "inset.sm",
@@ -135,7 +135,7 @@
         "paddingBottom": {
           "token": "inset.none",
           "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
         },
         "paddingLeft": {
           "token": "inset.sm",
@@ -152,7 +152,7 @@
         "height": {
           "literal": 36,
           "from": "state=default, destructive=false",
-          "allowed": "A row is 36 tall, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
+          "allowed": "A row is 36 tall, bound to nothing, between two of SOLAR's control heights (size.control: 32, 40); carried as drawn, the design review asks."
         }
       },
       "size": {},
@@ -168,28 +168,44 @@
             "background": {
               "token": "color.surface.hover",
               "from": "state=focus, destructive=false"
+            },
+            "borderColor": {
+              "token": "color.border.feedback.focus.strong",
+              "from": "state=focus, destructive=false"
+            },
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "state=focus, destructive=false"
+            },
+            "borderWidth": {
+              "token": "border.default",
+              "from": "state=focus, destructive=false"
             }
           }
         },
         "destructive=true": {
-          "focus": {
-            "background": {
-              "token": "color.surface.hover",
-              "from": "overlay",
-              "reason": "As its hover, the other rows' focus.",
-              "replaced": {
-                "none": true
-              }
-            }
-          },
           "hover": {
             "background": {
               "token": "color.surface.hover",
-              "from": "overlay",
-              "reason": "Figma ships a destructive row at rest alone (\"shipped as the used combinations\"), so it would show no hover and, worse, no keyboard focus. It is drawn as the other rows are hovered and focused; the design review asks SOLAR to draw both.",
-              "replaced": {
-                "none": true
-              }
+              "from": "state=hover, destructive=true"
+            }
+          },
+          "focus": {
+            "background": {
+              "token": "color.surface.hover",
+              "from": "state=focus, destructive=true"
+            },
+            "borderColor": {
+              "token": "color.border.feedback.focus.strong",
+              "from": "state=focus, destructive=true"
+            },
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "state=focus, destructive=true"
+            },
+            "borderWidth": {
+              "token": "border.default",
+              "from": "state=focus, destructive=false"
             }
           }
         }
@@ -240,14 +256,22 @@
               "from": "state=default, destructive=true"
             }
           },
+          "hover": {
+            "color": {
+              "token": "color.icon.feedback.danger",
+              "from": "state=hover, destructive=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.icon.feedback.danger",
+              "from": "state=focus, destructive=true"
+            }
+          },
           "disabled": {
             "color": {
               "token": "color.icon.disabled",
-              "from": "overlay",
-              "reason": "As the label's, the icon's disabled ink.",
-              "replaced": {
-                "token": "color.icon.feedback.danger"
-              }
+              "from": "state=disabled, destructive=true"
             }
           }
         }
@@ -289,14 +313,22 @@
               "from": "state=default, destructive=true"
             }
           },
+          "hover": {
+            "color": {
+              "token": "color.text.feedback.danger",
+              "from": "state=hover, destructive=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.text.feedback.danger",
+              "from": "state=focus, destructive=true"
+            }
+          },
           "disabled": {
             "color": {
               "token": "color.text.disabled",
-              "from": "overlay",
-              "reason": "A disabled destructive row is drawn disabled, as the other rows are: its danger colour would say it can still be chosen. Figma draws no such row; the design review asks.",
-              "replaced": {
-                "token": "color.text.feedback.danger"
-              }
+              "from": "state=disabled, destructive=true"
             }
           }
         }
@@ -337,11 +369,19 @@
           "disabled": {
             "color": {
               "token": "color.text.disabled",
-              "from": "overlay",
-              "reason": "As the label's.",
-              "replaced": {
-                "token": "color.text.feedback.danger"
-              }
+              "from": "state=disabled, destructive=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.text.tertiary",
+              "from": "state=hover, destructive=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.text.tertiary",
+              "from": "state=focus, destructive=true"
             }
           }
         }
@@ -395,11 +435,19 @@
           "disabled": {
             "color": {
               "token": "color.icon.disabled",
-              "from": "overlay",
-              "reason": "As the leading icon's.",
-              "replaced": {
-                "token": "color.icon.feedback.danger"
-              }
+              "from": "state=disabled, destructive=true"
+            }
+          },
+          "hover": {
+            "color": {
+              "token": "color.icon.primary",
+              "from": "state=hover, destructive=true"
+            }
+          },
+          "focus": {
+            "color": {
+              "token": "color.icon.primary",
+              "from": "state=focus, destructive=true"
             }
           }
         }
@@ -407,7 +455,7 @@
     }
   },
   "docs": {
-    "description": "Single row inside a Context Menu. 5 variants: state (default, hover, focus, disabled) × destructive (false, true), shipped as the used combinations. destructive=true is for irreversible actions like Delete and uses color.text.feedback.danger — reserve it for true destructive actions, not every secondary action. Pair with an optional leading icon and a trailing keyboard shortcut (Kbd). Submenus are not supported — keep to a single nesting level.",
+    "description": "Single row inside a Context Menu. 8 variants: state (default, hover, focus, disabled) × destructive (false, true). destructive=true is for irreversible actions like Delete and uses the danger text colour; its disabled row uses the disabled ink, which wins over danger. The trailing shortcut is plain text in text/tertiary, not a Kbd. Optional leading icon. Submenus are not supported — keep to a single nesting level.",
     "figmaIssues": []
   },
   "provenance": {
@@ -415,7 +463,7 @@
     "pageId": "2202:1219",
     "figmaNode": "3451:31",
     "defaultVariant": "state=default, destructive=false",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "overlay": {
     "file": "spec/overlay/context-menu-item.yaml",
@@ -424,6 +472,11 @@
         "rule": "base",
         "at": "base",
         "reason": "One row of a Context Menu: MUI's MenuItem on the web, as a Dropdown Item is, for the menu's keyboard (the arrow keys move the focus, and a focused row draws Figma's focus); bespoke in Flutter, drawn and pressable. Its icons, words and shortcut drawn with the shared layer helpers."
+      },
+      {
+        "rule": "follows",
+        "at": "root.borderWidth",
+        "reason": "A focused row is ringed (Figma, 2026-09-25): an edge in border.feedback.focus.strong beside the focus shadow, on the hover fill; no other state has an edge."
       },
       {
         "rule": "bind",
@@ -437,48 +490,18 @@
       },
       {
         "rule": "set",
-        "at": "label.appearance.destructive=true.disabled.color",
-        "reason": "A disabled destructive row is drawn disabled, as the other rows are: its danger colour would say it can still be chosen. Figma draws no such row; the design review asks."
-      },
-      {
-        "rule": "set",
-        "at": "leadingIcon.appearance.destructive=true.disabled.color",
-        "reason": "As the label's, the icon's disabled ink."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.destructive=true.focus.background",
-        "reason": "As its hover, the other rows' focus."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.destructive=true.hover.background",
-        "reason": "Figma ships a destructive row at rest alone (\"shipped as the used combinations\"), so it would show no hover and, worse, no keyboard focus. It is drawn as the other rows are hovered and focused; the design review asks SOLAR to draw both."
-      },
-      {
-        "rule": "set",
         "at": "root.base.width",
         "reason": "A row spans its menu, whose width is its widest row's: Figma draws it 200 wide, a sample."
       },
       {
-        "rule": "set",
-        "at": "shortcut.appearance.destructive=true.disabled.color",
-        "reason": "As the label's."
-      },
-      {
-        "rule": "set",
-        "at": "trailingIcon.appearance.destructive=true.disabled.color",
-        "reason": "As the leading icon's."
-      },
-      {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "A row is 36 tall, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
+        "reason": "A row is 36 tall, bound to nothing, between two of SOLAR's control heights (size.control: 32, 40); carried as drawn, the design review asks."
       },
       {
         "rule": "bind",
         "at": "root.paddingTop, root.paddingBottom",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

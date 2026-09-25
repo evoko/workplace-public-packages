@@ -3,15 +3,14 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'generated/tokens.dart';
+
 /// The smallest target a finger should have to hit, 44 × 44, WCAG's floor, around a control drawn
-/// smaller (a 16px Checkbox). SOLAR asks for it and publishes no variable for it: "Drawn heights
-/// are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable
-/// exists yet)."
-///
-/// ⚠️ Governance gap: the one raw target size in the widgets, here, until SOLAR publishes a
-/// target-size variable, which then replaces it. The web's twin is `TARGET` in the codegen's
-/// `shells/target.mjs`.
-const double solarTargetSize = 44;
+/// smaller (a 16px Checkbox). SOLAR asks for it: "Drawn heights are the visible control; the
+/// 44×44px hit area (size/target/min) is padded in code." It is that variable, which SOLAR added
+/// on 2026-09-25 (a raw 44 here until then). The web's twin is `TARGET` in the codegen's
+/// `src/components/shared/target.mjs`.
+const double solarTargetSize = SolarSize.targetMin;
 
 /// A control's target, at least [solarTargetSize] square, around the control as drawn.
 ///

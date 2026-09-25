@@ -126,13 +126,13 @@ Static placeholder for omitted page numbers inside Pagination. Non-interactive, 
 
 ## Component: Pagination
 
-Composed page selector — prev nav + page items (+ ellipsis gaps) + next nav. Use on paginated lists, tables, and search results where the total page count is known and random access matters. For linear step-through (wizards, detail pages) use Page Navigator. Collapse to a bare prev/next pair only when the collection size is unknown.
+Composed page selector — previous arrow, page items with ellipsis gaps, next arrow. Shows the first page, the last page, the current page ± 1, and three pages at the end the current page is near (1 2 3 … 12). The previous arrow is disabled on the first page and the next arrow on the last. Items are 24px squares, above WCAG 2.2's 24px minimum target. Use where the total page count is known and random access matters; for linear step-through use Page Navigator.
 
 ### Anatomy (default variant)
 
 - **Pagination** · component · row gap 8 pad 0/0/0/0 HUG/HUG · 216×24  
   itemSpacing `stack.xs`
-  - **Previous** · instance of **PaginationNav** (direction=previous, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 24×24  
+  - **Previous** · instance of **PaginationNav** (direction=previous, state=disabled) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 24×24  
     radius `radius.container`
   - **Page1** · instance of **PaginationItem** (selected=true, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 24×24  
     fill `color.action.primary.bg.default` · radius `radius.container`

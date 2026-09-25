@@ -44,8 +44,8 @@ const CLASS: Record<string, string> = {
   rectangle3: 'SolarStepper--rectangle3',
   rectangle4: 'SolarStepper--rectangle4',
   rectangle5: 'SolarStepper--rectangle5',
-  stepCompleteHorizontal: 'SolarStepper--stepCompleteHorizontal',
   step: 'SolarStepper--step',
+  step2: 'SolarStepper--step2',
   step3: 'SolarStepper-step3',
   step4: 'SolarStepper-step4',
   step5: 'SolarStepper-step5',
@@ -225,9 +225,10 @@ export const Stepper = forwardRef<HTMLElement, StepperProps>(
         <li
           key={i}
           className={cls(
+            // Figma's line+text steps: the first complete, the second active, the rest upcoming.
             status(i) === 'complete'
-              ? 'stepCompleteHorizontal'
-              : (['step', 'step', 'step3', 'step4', 'step5'][i] ?? 'step5'),
+              ? 'step'
+              : (['step2', 'step2', 'step3', 'step4', 'step5'][i] ?? 'step5'),
           )}
           aria-current={current(i)}
         >

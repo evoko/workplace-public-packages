@@ -126,7 +126,7 @@
         "height": {
           "literal": 44,
           "from": "type=icon, size=sm, state=default",
-          "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 44 and 56, as the description says."
+          "allowed": "Drawn 44 and 56, as the description says, bound to nothing: neither is one of SOLAR's control heights (size.control: 32, 40, 48), so carried as drawn; the design review asks."
         }
       },
       "size": {
@@ -146,7 +146,7 @@
           "height": {
             "literal": 56,
             "from": "type=icon, size=md, state=default",
-            "allowed": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 44 and 56, as the description says."
+            "allowed": "Drawn 44 and 56, as the description says, bound to nothing: neither is one of SOLAR's control heights (size.control: 32, 40, 48), so carried as drawn; the design review asks."
           }
         }
       },
@@ -173,11 +173,7 @@
           "focus": {
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma's focus state draws no focus ring, only the resting shadow/overlay, where the description says \"Focus ring via shadow/focus/default\" and WCAG's visible focus is SOLAR's floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "token": "shadow.overlay"
-              }
+              "from": "type=icon, size=sm, state=focus"
             }
           }
         },
@@ -203,11 +199,7 @@
           "focus": {
             "shadow": {
               "token": "shadow.focus.default",
-              "from": "overlay",
-              "reason": "Figma's focus state draws no focus ring, only the resting shadow/overlay, where the description says \"Focus ring via shadow/focus/default\" and WCAG's visible focus is SOLAR's floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it.",
-              "replaced": {
-                "token": "shadow.overlay"
-              }
+              "from": "type=extended, size=sm, state=focus"
             }
           }
         }
@@ -513,7 +505,7 @@
     }
   },
   "docs": {
-    "description": "Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled, loading). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.",
+    "description": "Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon, extended) × size (sm 44px, md 56px) × state (default, hover, pressed, focus, disabled, loading). Uses action/primary tokens + shadow/raised; focus replaces the lift with shadow/focus/default. loading keeps the resting width. extended adds a label for discoverability. One FAB per screen.",
     "figmaIssues": []
   },
   "provenance": {
@@ -521,7 +513,7 @@
     "pageId": "2966:581",
     "figmaNode": "4557:130",
     "defaultVariant": "type=icon, size=sm, state=default",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "derived": {
     "type": {
@@ -584,19 +576,9 @@
         "reason": "Same value, governed token: an icon FAB's icon is 20 wide and bound to nothing, and 20 tall bound to icon.md."
       },
       {
-        "rule": "set",
-        "at": "root.appearance.type=extended.focus.shadow",
-        "reason": "Figma's focus state draws no focus ring, only the resting shadow/overlay, where the description says \"Focus ring via shadow/focus/default\" and WCAG's visible focus is SOLAR's floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it."
-      },
-      {
-        "rule": "set",
-        "at": "root.appearance.type=icon.focus.shadow",
-        "reason": "Figma's focus state draws no focus ring, only the resting shadow/overlay, where the description says \"Focus ring via shadow/focus/default\" and WCAG's visible focus is SOLAR's floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it."
-      },
-      {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As Button: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a governance gap). Drawn 44 and 56, as the description says."
+        "reason": "Drawn 44 and 56, as the description says, bound to nothing: neither is one of SOLAR's control heights (size.control: 32, 40, 48), so carried as drawn; the design review asks."
       },
       {
         "rule": "allowLiteral",

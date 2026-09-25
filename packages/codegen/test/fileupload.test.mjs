@@ -26,19 +26,15 @@ describe('the FileUpload IR', () => {
     );
   });
 
-  it('rings the drop zone when focused, and leaves Figma’s 68px filled zone open', () => {
+  it('rings the drop zone when focused, and leaves nothing open', () => {
     expect(spec.style.field.appearance.default.focus.shadow.token).toBe(
       'shadow.focus.default',
     );
-    expect(spec.style.root.appearance.default.focus.shadow.none).toBe(true);
+    // One ring, the field's: Figma no longer rings the whole component (2026-09-25).
     expect(
-      deviations
-        .filter((d) => !d.decision)
-        .map((d) => d.token)
-        .sort(),
-    ).toEqual([
-      'component.fileupload.field.height#unbound',
-      'component.fileupload.field.height@state=filled',
-    ]);
+      spec.style.root.appearance?.default?.focus?.shadow?.token,
+    ).toBeUndefined();
+    // Figma's 68px filled zone, open until 2026-09-25, is the other states' height since.
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 });

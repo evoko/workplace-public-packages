@@ -25,25 +25,25 @@ describe('the Link IR', () => {
     expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
-  it('draws xs in link/xs, whose style Figma detached, and underlines hover', () => {
+  it('draws xs in link/sm, 12px as its description says, and underlines hover', () => {
+    // Figma detached xs's style (10px) until 2026-09-25, when the overlay drew link/xs; it binds
+    // link/sm since.
     const xs = spec.style.label.combined.xs.default;
-    expect(xs.default.typography).toMatchObject({
-      token: 'typography.link.xs.default',
+    expect(xs.default.typography).toEqual({
+      token: 'typography.link.sm.default',
+      from: 'size=xs, state=default',
     });
-    expect(xs.hover.typography).toMatchObject({
-      token: 'typography.link.xs.hover',
-    });
+    expect(xs.hover.typography.token).toBe('typography.link.sm.hover');
   });
 
-  it('excuses Figma’s ringless focus, which is drawn with SOLAR’s ring', () => {
+  it('draws Figma’s focus ring, with nothing to excuse', () => {
+    // Ringless in Figma until 2026-09-25, when the overlay drew SOLAR's ring; Figma's own since.
     const focus = oracle.variants.find(
       (v) => v.figma === 'size=md, state=focus',
     );
     expect(
-      focus.excused
-        .filter((e) => e.property === 'shadow')
-        .map((e) => e.decision),
-    ).toEqual(['set']);
+      (focus.excused ?? []).filter((e) => e.property === 'shadow'),
+    ).toEqual([]);
   });
 });
 

@@ -4,7 +4,7 @@
 
 ## Component set: Context Menu Item
 
-Single row inside a Context Menu. 5 variants: state (default, hover, focus, disabled) × destructive (false, true), shipped as the used combinations. destructive=true is for irreversible actions like Delete and uses color.text.feedback.danger — reserve it for true destructive actions, not every secondary action. Pair with an optional leading icon and a trailing keyboard shortcut (Kbd). Submenus are not supported — keep to a single nesting level.
+Single row inside a Context Menu. 8 variants: state (default, hover, focus, disabled) × destructive (false, true). destructive=true is for irreversible actions like Delete and uses the danger text colour; its disabled row uses the disabled ink, which wins over danger. The trailing shortcut is plain text in text/tertiary, not a Kbd. Optional leading icon. Submenus are not supported — keep to a single nesting level.
 
 ### Props
 
@@ -18,7 +18,7 @@ Single row inside a Context Menu. 5 variants: state (default, hover, focus, disa
 | `show shortcut`    | boolean | default `true`                         |
 | `showTrailingIcon` | boolean | default `false`                        |
 
-Default variant: `state=default, destructive=false` · 5 variants · default size 200×36px
+Default variant: `state=default, destructive=false` · 8 variants · default size 200×36px
 
 ### Anatomy (default variant)
 
@@ -38,11 +38,13 @@ Default variant: `state=default, destructive=false` · 5 variants · default siz
 | Role            | Tokens                                                                                                                                               |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Fills           | `color.surface.hover`                                                                                                                                |
+| Strokes         | `color.border.feedback.focus.strong`                                                                                                                 |
 | Text color      | `color.text.disabled`, `color.text.feedback.danger`, `color.text.primary`, `color.text.tertiary`                                                     |
 | Icon color      | `color.icon.disabled`, `color.icon.feedback.danger`, `color.icon.primary`                                                                            |
 | Spacing         | `inset.sm`, `stack.sm`, `stack.xs`                                                                                                                   |
 | Sizes           | `icon.sm`                                                                                                                                            |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.label.md`, `type.size.body.md`, `type.size.label.md` |
+| Effects         | `shadow/focus/default`                                                                                                                               |
 | Text styles     | `body/md/medium`, `label/md`                                                                                                                         |
 
 ### Slots and prop-controlled layers
@@ -61,13 +63,16 @@ Default variant: `state=default, destructive=false` · 5 variants · default siz
 
 ### Variant matrix
 
-| state    | destructive | size   | fill                  | stroke | effect | text                                          | icon                         |
-| -------- | ----------- | ------ | --------------------- | ------ | ------ | --------------------------------------------- | ---------------------------- |
-| default  | false       | 200×36 |                       |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
-| hover    | false       | 200×36 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
-| focus    | false       | 200×36 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.tertiary` | `color.icon.primary`         |
-| disabled | false       | 200×36 |                       |        |        | `color.text.disabled`                         | `color.icon.disabled`        |
-| default  | true        | 200×36 |                       |        |        | `color.text.feedback.danger`                  | `color.icon.feedback.danger` |
+| state    | destructive | size   | fill                  | stroke                               | effect                 | text                                                  | icon                                                 |
+| -------- | ----------- | ------ | --------------------- | ------------------------------------ | ---------------------- | ----------------------------------------------------- | ---------------------------------------------------- |
+| default  | false       | 200×36 |                       |                                      |                        | `color.text.primary`<br>`color.text.tertiary`         | `color.icon.primary`                                 |
+| hover    | false       | 200×36 | `color.surface.hover` |                                      |                        | `color.text.primary`<br>`color.text.tertiary`         | `color.icon.primary`                                 |
+| focus    | false       | 200×36 | `color.surface.hover` | `color.border.feedback.focus.strong` | `shadow/focus/default` | `color.text.primary`<br>`color.text.tertiary`         | `color.icon.primary`                                 |
+| disabled | false       | 200×36 |                       |                                      |                        | `color.text.disabled`                                 | `color.icon.disabled`                                |
+| default  | true        | 200×36 |                       |                                      |                        | `color.text.feedback.danger`                          | `color.icon.feedback.danger`                         |
+| hover    | true        | 200×36 | `color.surface.hover` |                                      |                        | `color.text.feedback.danger`<br>`color.text.tertiary` | `color.icon.feedback.danger`<br>`color.icon.primary` |
+| focus    | true        | 200×36 | `color.surface.hover` | `color.border.feedback.focus.strong` | `shadow/focus/default` | `color.text.feedback.danger`<br>`color.text.tertiary` | `color.icon.feedback.danger`<br>`color.icon.primary` |
+| disabled | true        | 200×36 |                       |                                      |                        | `color.text.disabled`                                 | `color.icon.disabled`                                |
 
 ## Component: Context Menu
 

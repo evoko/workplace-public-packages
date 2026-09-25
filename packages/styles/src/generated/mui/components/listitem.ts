@@ -277,28 +277,6 @@ export const solarListItemComposition = {
       },
     },
   },
-  body: {
-    base: {
-      present: true,
-    },
-  },
-  label: {
-    base: {
-      present: true,
-    },
-  },
-  helper: {
-    base: {
-      present: true,
-    },
-  },
-  trailing: {
-    base: {
-      present: true,
-      component: 'Icon/ChevronRight',
-      'variant.solid': 'false',
-    },
-  },
   avatar: {
     base: {
       present: false,
@@ -370,6 +348,28 @@ export const solarListItemComposition = {
           'variant.shade': 'Logo',
         },
       },
+    },
+  },
+  body: {
+    base: {
+      present: true,
+    },
+  },
+  label: {
+    base: {
+      present: true,
+    },
+  },
+  helper: {
+    base: {
+      present: true,
+    },
+  },
+  trailing: {
+    base: {
+      present: true,
+      component: 'Icon/ChevronRight',
+      'variant.solid': 'false',
     },
   },
 } as const;
@@ -457,7 +457,7 @@ export function solarListItemCompose(
 
 /** Each layer's children, in Figma's order: the tree the shell draws (`drawChildren`). */
 export const solarListItemTree: Record<string, string[]> = {
-  root: ['icon', 'body', 'trailing', 'avatar'],
+  root: ['icon', 'avatar', 'body', 'trailing'],
   body: ['label', 'helper'],
 };
 

@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-22
-  figmaVersion: '2402047167094879156'
+  reviewed: 2026-09-25
+  figmaVersion: '2403083104633531037'
   sources:
-    documentation/states-interaction: f0eabdf31897
+    documentation/states-interaction: eadb350695f3
 ---
 
 # 08 · States & Interaction
@@ -42,10 +42,9 @@ shifts**.
 States are mutually exclusive within one interaction flow (not hovered and active at
 once) but layer with persistent conditions: selected + hovered, focused + active.
 
-Naming: the **component variant value is `pressed`**, while the **token state segment is
-`active`** (`color.action.primary.bg.active`). The revised page context now says
-"pressed, never active" for both; the Color collection still ships `active`, so keep the
-token spelling as the variables define it.
+Naming: the **component variant value is `pressed`**, and its colours bind the
+**`active` variables** (`color.action.primary.bg.active`); the variables keep the name
+`active`. The page context now says the same. Never write a `pressed` token segment.
 
 ## State tokens
 

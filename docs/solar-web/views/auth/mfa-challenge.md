@@ -14,17 +14,17 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Anatomy (default variant)
 
-- **breakpoint=desktop** · component · column gap 0 pad 24/0/24/0 FIXED/FIXED · 1440×800  
-  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
+- **breakpoint=desktop** · component · column gap 16 pad 24/0/24/0 FIXED/FIXED · 1440×800  
+  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · fill `IMAGE` ⚠️ hard-coded · itemSpacing `inset.md` · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
   - **App Name** · instance of **App Name** (type=horizontal) · column gap 16 pad 0/0/0/0 HUG/HUG · 85×59  
     itemSpacing `inset.md` · padding `inset.none` · radius `radius.control`
-  - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 319×275  
+  - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 319×267  
     itemSpacing `stack.lg`
     - **Verify it's you** · text `title/sm` "Verify it's you" · HUG/HUG · 121×15  
       fill `color.text.inverse` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
     - **Enter the 6-digit code from your authenticator app or from your trusted device.** · text `body/md/regular` "Enter the 6-digit code from your authenticator app or from your trusted device." · HUG/HUG · 319×30  
       fill `color.text.tertiary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
-    - **Container** · instance of **Container** (type=outlined) · column gap 16 pad 16/16/16/16 HUG/HUG · 292×154  
+    - **Container** · instance of **Container** (type=outlined) · column gap 16 pad 16/16/16/16 HUG/HUG · 292×146  
       fill `color.surface.raised` · stroke `color.border.subtle` 1px · effect `shadow/overlay` · itemSpacing `stack.md` · padding `inset.md` · strokeWeight `border.default` · radius `radius.dialog`
     - **Container** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 214×16  
       itemSpacing `inset.xs`

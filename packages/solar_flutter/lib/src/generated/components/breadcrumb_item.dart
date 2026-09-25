@@ -50,7 +50,7 @@ abstract final class SolarBreadcrumbItemRecipe {
     'label.typography|base': 't:typography.label.md',
     'label.color|appearance|type=link|hover': 't:color.text.primary',
     'label.color|appearance|type=link|disabled': 't:color.text.disabled',
-    'label.color|appearance|type=link|focus': 't:color.text.secondary',
+    'label.color|appearance|type=link|focus': 't:color.text.primary',
     'label.color|appearance|type=current|default': 't:color.text.primary',
   };
 

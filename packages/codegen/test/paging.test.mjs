@@ -266,60 +266,80 @@ describe('a composed child’s variant, decided where Figma records none', () =>
   const lineText = (oracle) =>
     oracle.variants.find((v) => v.figma === 'type=line+text').layers;
 
-  it('checks Stepper’s first line+text step as a complete horizontal Step', () => {
-    const layers = lineText(committed('verify', 'stepper'));
-    expect(layers.stepCompleteHorizontal).toMatchObject({
+  it('checks Stepper’s first line+text step as the complete horizontal Step Figma names', () => {
+    // Figma records the variant since 2026-09-25, where the step was an instance of the Step
+    // variant itself (`Step/complete/horizontal`) and the overlay decided it.
+    const step = lineText(committed('verify', 'stepper')).step;
+    expect(step).toMatchObject({
+      component: 'Step',
+      variant: { status: 'complete', type: 'horizontal' },
+    });
+    expect(step).not.toHaveProperty('figmaVariant');
+  });
+
+  it('decides the variant of a composed child Figma records none for', () => {
+    // The first step as Figma recorded it until 2026-09-25: a Step with no variant.
+    const loaded = structuredClone(loadComponent(catalog, 'Stepper'));
+    for (const v of loaded.set.variants)
+      for (const added of v.overrides?.added ?? [])
+        if (added.path === '/Step') delete added.layer.variant;
+    const overlay = structuredClone(loadOverlay('Stepper'));
+    const at = (overlayIn) => {
+      const { spec, deviations } = buildComponentSpec(loaded, {
+        names,
+        fileVersion: catalog.fileVersion,
+        overlay: overlayIn,
+        defaults,
+      });
+      return lineText(
+        buildOracle(loaded.set, spec, deviations, {
+          tokens,
+          names,
+          overlay: overlayIn,
+          fileVersion: catalog.fileVersion,
+        }),
+      ).step;
+    };
+    // Without the sets, the step has no variant to be checked in.
+    const bare = at(overlay);
+    expect(bare.component).toBe('Step');
+    expect(bare).not.toHaveProperty('variant');
+    overlay.set = {
+      ...overlay.set,
+      'step.base.variant.status': { keyword: 'complete', reason: 'r' },
+      'step.base.variant.type': { keyword: 'horizontal', reason: 'r' },
+    };
+    expect(at(overlay)).toMatchObject({
       component: 'Step',
       variant: { status: 'complete', type: 'horizontal' },
       figmaVariant: {},
     });
-    expect(of('Stepper').spec.overlay.rules).toContainEqual(
-      expect.objectContaining({
-        rule: 'composes',
-        at: 'Step/complete/horizontal → Step',
-      }),
-    );
-    // Without the sets, the step has no variant to be checked in.
-    const overlay = structuredClone(loadOverlay('Stepper'));
-    delete overlay.set['stepCompleteHorizontal.base.variant.status'];
-    delete overlay.set['stepCompleteHorizontal.base.variant.type'];
-    const stepper = of('Stepper');
-    const oracle = buildOracle(
-      loadComponent(catalog, 'Stepper').set,
-      stepper.spec,
-      stepper.deviations,
-      { tokens, names, overlay, fileVersion: catalog.fileVersion },
-    );
-    const bare = lineText(oracle).stepCompleteHorizontal;
-    expect(bare.component).toBe('Step');
-    expect(bare).not.toHaveProperty('variant');
-    expect(bare).not.toHaveProperty('figmaVariant');
   });
 
-  it('checks the line+text second step active, where Figma draws it upcoming', () => {
-    expect(lineText(committed('verify', 'stepper')).step).toMatchObject({
+  it('checks the line+text second step active, as Figma draws it', () => {
+    // Upcoming in Figma, with no step active, until 2026-09-25, when the overlay made it active.
+    const second = lineText(committed('verify', 'stepper')).step2;
+    expect(second).toMatchObject({
       component: 'Step',
       variant: { status: 'active', type: 'horizontal' },
-      figmaVariant: { status: 'upcoming', type: 'horizontal' },
     });
-    expect(lineText(of('Stepper').oracle).step.variant.status).toBe('active');
+    expect(second).not.toHaveProperty('figmaVariant');
   });
 
-  it('checks Pagination’s previous arrow and PageNavigator’s previous button disabled', () => {
+  it('checks Pagination’s previous arrow and PageNavigator’s previous button disabled, as drawn', () => {
+    // Drawn at rest in Figma until 2026-09-25, when the overlay disabled them; disabled since.
     const [pagination] = committed('verify', 'pagination').variants;
     expect(pagination.layers.previous).toMatchObject({
       component: 'PaginationNav',
       variant: { direction: 'previous', state: 'disabled' },
-      figmaVariant: { direction: 'previous', state: 'default' },
     });
-    expect(pagination.layers.next).not.toHaveProperty('figmaVariant');
+    expect(pagination.layers.previous).not.toHaveProperty('figmaVariant');
     const [navigator] = committed('verify', 'pagenavigator').variants;
     expect(navigator.layers.prevButton).toMatchObject({
       component: 'PageNavButton',
       variant: { direction: 'prev', state: 'disabled' },
-      figmaVariant: { direction: 'prev', state: 'default' },
     });
-    expect(navigator.layers.nextButton).not.toHaveProperty('figmaVariant');
+    expect(navigator.layers.prevButton).not.toHaveProperty('figmaVariant');
   });
 
   it('is what the build makes', () => {
@@ -503,15 +523,15 @@ describe('PageNavButton', () => {
     ]);
   });
 
-  it('accepts its alignment and the next button’s gap, the same in a hugging button', () => {
+  it('accepts the next button’s gap, the same in a hugging button', () => {
+    // Its alignment is Figma's own in every state since 2026-09-25, and its gap bound.
     const accepted = deviations
       .filter((d) => d.decision?.rule === 'accept')
       .map((d) => d.token);
-    expect(accepted).toHaveLength(14);
-    expect(accepted).toContain('component.pagenavbutton.root.gap#unbound');
+    expect(accepted).toHaveLength(5);
     for (const token of accepted)
       expect(token).toMatch(
-        /^component\.pagenavbutton\.root\.(align|gap)(#unbound|@direction=(next|prev), state=\w+)$/,
+        /^component\.pagenavbutton\.root\.gap@direction=next, state=\w+$/,
       );
     expect(without('PageNavButton', (o) => delete o.accept).sort()).toEqual(
       [...accepted].sort(),

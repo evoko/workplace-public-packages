@@ -91,6 +91,7 @@
       "variants": [
         {
           "variant": "title-row=true",
+          "id": "3795:3330",
           "size": [
             40,
             40
@@ -98,10 +99,12 @@
           "fills": [
             "{Color:surface/background}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "title-row=false",
+          "id": "3795:3335",
           "size": [
             40,
             40
@@ -176,6 +179,7 @@
       "variants": [
         {
           "variant": "type=title-row",
+          "id": "4417:3528",
           "size": [
             16,
             40
@@ -183,10 +187,12 @@
           "fills": [
             "{Color:surface/background}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=collapsed",
+          "id": "4417:3530",
           "size": [
             16,
             40
@@ -204,6 +210,7 @@
               {
                 "path": "/Icon/ChevronRight",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronRight",
                   "type": "INSTANCE",
@@ -229,6 +236,7 @@
         },
         {
           "variant": "type=expanded",
+          "id": "4417:3535",
           "size": [
             16,
             40
@@ -246,6 +254,7 @@
               {
                 "path": "/Icon/ChevronDown",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/ChevronDown",
                   "type": "INSTANCE",
@@ -271,6 +280,7 @@
         },
         {
           "variant": "type=bottom-row",
+          "id": "4417:3558",
           "size": [
             16,
             40
@@ -287,6 +297,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -322,6 +333,7 @@
         },
         {
           "variant": "type=middle-row",
+          "id": "4417:3548",
           "size": [
             16,
             40
@@ -338,6 +350,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -367,6 +380,7 @@
               {
                 "path": "/Container#2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -398,6 +412,7 @@
         },
         {
           "variant": "type=vertical-only",
+          "id": "9960:13060",
           "size": [
             16,
             40
@@ -414,6 +429,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -814,6 +830,7 @@
       "variants": [
         {
           "variant": "type=title, state=default",
+          "id": "3795:3320",
           "size": [
             1055,
             40
@@ -821,10 +838,12 @@
           "textFills": [
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=non-expandable, state=default",
+          "id": "6164:10107",
           "size": [
             1055,
             44
@@ -837,6 +856,9 @@
           ],
           "hidden": [
             "Icon/ChevronRight"
+          ],
+          "hiddenPaths": [
+            "/RowExpand/Icon/ChevronRight"
           ],
           "overrides": {
             "changed": {
@@ -864,6 +886,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -891,6 +914,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -927,6 +951,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -963,6 +988,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -999,6 +1025,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1035,6 +1062,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1081,6 +1109,7 @@
         },
         {
           "variant": "type=top, state=default",
+          "id": "3795:3321",
           "size": [
             1055,
             44
@@ -1117,6 +1146,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -1144,6 +1174,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1180,6 +1211,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1216,6 +1248,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1252,6 +1285,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1288,6 +1322,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1334,6 +1369,7 @@
         },
         {
           "variant": "type=middle, state=default",
+          "id": "4458:3604",
           "size": [
             1055,
             44
@@ -1369,6 +1405,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -1396,6 +1433,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1432,6 +1470,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1468,6 +1507,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1504,6 +1544,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1540,6 +1581,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1586,6 +1628,7 @@
         },
         {
           "variant": "type=bottom, state=default",
+          "id": "6164:9880",
           "size": [
             1055,
             44
@@ -1621,6 +1664,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -1648,6 +1692,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1684,6 +1729,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1720,6 +1766,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1756,6 +1803,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1792,6 +1840,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1838,6 +1887,7 @@
         },
         {
           "variant": "type=title, state=selected",
+          "id": "7506:27692",
           "size": [
             1055,
             40
@@ -1851,6 +1901,7 @@
         },
         {
           "variant": "type=non-expandable, state=selected",
+          "id": "7506:27701",
           "size": [
             1055,
             44
@@ -1867,6 +1918,9 @@
           ],
           "hidden": [
             "Icon/ChevronRight"
+          ],
+          "hiddenPaths": [
+            "/RowExpand/Icon/ChevronRight"
           ],
           "overrides": {
             "changed": {
@@ -1897,6 +1951,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -1924,6 +1979,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1960,6 +2016,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -1996,6 +2053,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2032,6 +2090,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2068,6 +2127,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2114,6 +2174,7 @@
         },
         {
           "variant": "type=top, state=selected",
+          "id": "7506:27710",
           "size": [
             1055,
             44
@@ -2157,6 +2218,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -2184,6 +2246,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2220,6 +2283,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2256,6 +2320,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2292,6 +2357,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2328,6 +2394,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2374,6 +2441,7 @@
         },
         {
           "variant": "type=middle, state=selected",
+          "id": "7506:27719",
           "size": [
             1055,
             44
@@ -2418,6 +2486,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -2445,6 +2514,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2481,6 +2551,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2517,6 +2588,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2553,6 +2625,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2589,6 +2662,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2635,6 +2709,7 @@
         },
         {
           "variant": "type=bottom, state=selected",
+          "id": "7506:27728",
           "size": [
             1055,
             44
@@ -2679,6 +2754,7 @@
               {
                 "path": "/Row Content",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Row Content",
                   "type": "SLOT",
@@ -2706,6 +2782,7 @@
               {
                 "path": "/Row Content/Column Item",
                 "parent": "/Row Content",
+                "index": 0,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2742,6 +2819,7 @@
               {
                 "path": "/Row Content/Column Item#2",
                 "parent": "/Row Content",
+                "index": 1,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2778,6 +2856,7 @@
               {
                 "path": "/Row Content/Column Item#3",
                 "parent": "/Row Content",
+                "index": 2,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2814,6 +2893,7 @@
               {
                 "path": "/Row Content/Column Item#4",
                 "parent": "/Row Content",
+                "index": 3,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2850,6 +2930,7 @@
               {
                 "path": "/Row Content/Column Item#5",
                 "parent": "/Row Content",
+                "index": 4,
                 "layer": {
                   "name": "Column Item",
                   "type": "INSTANCE",
@@ -2995,6 +3076,7 @@
       "variants": [
         {
           "variant": "title=true, type=text",
+          "id": "3795:3272",
           "size": [
             176,
             40
@@ -3005,10 +3087,12 @@
           "textFills": [
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "title=false, type=status",
+          "id": "3795:3352",
           "size": [
             176,
             40
@@ -3037,6 +3121,7 @@
               {
                 "path": "/Tag",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Tag",
                   "type": "INSTANCE",
@@ -3096,6 +3181,7 @@
         },
         {
           "variant": "title=false, type=text",
+          "id": "3795:3292",
           "size": [
             176,
             40
@@ -3142,6 +3228,7 @@
         },
         {
           "variant": "title=false, type=user",
+          "id": "7964:24956",
           "size": [
             176,
             40
@@ -3171,6 +3258,7 @@
               {
                 "path": "/Avatar",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Avatar",
                   "type": "INSTANCE",
@@ -3220,6 +3308,7 @@
               {
                 "path": "/Daniel Salmonsson",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Daniel Salmonsson",
                   "type": "TEXT",
@@ -3250,6 +3339,7 @@
         },
         {
           "variant": "title=false, type=icon",
+          "id": "6592:37701",
           "size": [
             176,
             40
@@ -3278,6 +3368,7 @@
               {
                 "path": "/Icon/More",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -3307,6 +3398,7 @@
         },
         {
           "variant": "title=false, type=input",
+          "id": "6499:9420",
           "size": [
             176,
             40
@@ -3322,6 +3414,13 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Text Input/Field/Icon/None",
+            "/Text Input/Field/Icon/None#2",
+            "/Text Input/Helper text",
+            "/Text Input/Label",
+            "/Text Input/Label/Label"
           ],
           "overrides": {
             "changed": {
@@ -3344,6 +3443,7 @@
               {
                 "path": "/Text Input",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Text Input",
                   "type": "INSTANCE",
@@ -3382,6 +3482,7 @@
         },
         {
           "variant": "title=false, type=select",
+          "id": "6499:10393",
           "size": [
             176,
             40
@@ -3397,6 +3498,13 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Dropdown/Field/Icon/None",
+            "/Dropdown/Field/Icon/None#2",
+            "/Dropdown/Helper text",
+            "/Dropdown/Label",
+            "/Dropdown/Label/*"
           ],
           "overrides": {
             "changed": {
@@ -3419,6 +3527,7 @@
               {
                 "path": "/Dropdown",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Dropdown",
                   "type": "INSTANCE",
@@ -3457,6 +3566,7 @@
         },
         {
           "variant": "title=false, type=button",
+          "id": "6775:17999",
           "size": [
             176,
             40
@@ -3472,6 +3582,12 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Button/Counter",
+            "/Button/Icon/None",
+            "/Button/Icon/None#2",
+            "/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -3494,6 +3610,7 @@
               {
                 "path": "/Button",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -3550,6 +3667,7 @@
         },
         {
           "variant": "title=false, type=toggle",
+          "id": "7112:1585",
           "size": [
             176,
             40
@@ -3575,6 +3693,7 @@
               {
                 "path": "/Toggle",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Toggle",
                   "type": "INSTANCE",
@@ -4135,6 +4254,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop, expandable=true, selectable=true",
+          "id": "6164:9047",
           "size": [
             1020,
             640
@@ -4149,10 +4269,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "breakpoint=mobile, expandable=true, selectable=true",
+          "id": "6596:45939",
           "size": [
             361,
             640
@@ -4286,6 +4408,7 @@
               {
                 "path": "/Dimming",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Dimming",
                   "type": "RECTANGLE",
@@ -4308,6 +4431,7 @@
         },
         {
           "variant": "breakpoint=desktop, expandable=false, selectable=true",
+          "id": "6165:13092",
           "size": [
             1020,
             640
@@ -4324,6 +4448,24 @@
           ],
           "hidden": [
             "RowExpand"
+          ],
+          "hiddenPaths": [
+            "/Row/RowExpand",
+            "/Rows/Row#10/RowExpand",
+            "/Rows/Row#11/RowExpand",
+            "/Rows/Row#12/RowExpand",
+            "/Rows/Row#13/RowExpand",
+            "/Rows/Row#14/RowExpand",
+            "/Rows/Row#15/RowExpand",
+            "/Rows/Row#2/RowExpand",
+            "/Rows/Row#3/RowExpand",
+            "/Rows/Row#4/RowExpand",
+            "/Rows/Row#5/RowExpand",
+            "/Rows/Row#6/RowExpand",
+            "/Rows/Row#7/RowExpand",
+            "/Rows/Row#8/RowExpand",
+            "/Rows/Row#9/RowExpand",
+            "/Rows/Row/RowExpand"
           ],
           "overrides": {
             "changed": {
@@ -4342,6 +4484,7 @@
         },
         {
           "variant": "breakpoint=mobile, expandable=false, selectable=true",
+          "id": "6596:45957",
           "size": [
             361,
             640
@@ -4358,6 +4501,24 @@
           ],
           "hidden": [
             "RowExpand"
+          ],
+          "hiddenPaths": [
+            "/Row/RowExpand",
+            "/Rows/Row#10/RowExpand",
+            "/Rows/Row#11/RowExpand",
+            "/Rows/Row#12/RowExpand",
+            "/Rows/Row#13/RowExpand",
+            "/Rows/Row#14/RowExpand",
+            "/Rows/Row#15/RowExpand",
+            "/Rows/Row#2/RowExpand",
+            "/Rows/Row#3/RowExpand",
+            "/Rows/Row#4/RowExpand",
+            "/Rows/Row#5/RowExpand",
+            "/Rows/Row#6/RowExpand",
+            "/Rows/Row#7/RowExpand",
+            "/Rows/Row#8/RowExpand",
+            "/Rows/Row#9/RowExpand",
+            "/Rows/Row/RowExpand"
           ],
           "overrides": {
             "changed": {
@@ -4494,6 +4655,7 @@
               {
                 "path": "/Dimming",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Dimming",
                   "type": "RECTANGLE",
@@ -4516,6 +4678,7 @@
         },
         {
           "variant": "breakpoint=desktop, expandable=false, selectable=false",
+          "id": "6165:13090",
           "size": [
             1020,
             640
@@ -4534,6 +4697,40 @@
             "RowExpand",
             "RowSelect"
           ],
+          "hiddenPaths": [
+            "/Row/RowExpand",
+            "/Row/RowSelect",
+            "/Rows/Row#10/RowExpand",
+            "/Rows/Row#10/RowSelect",
+            "/Rows/Row#11/RowExpand",
+            "/Rows/Row#11/RowSelect",
+            "/Rows/Row#12/RowExpand",
+            "/Rows/Row#12/RowSelect",
+            "/Rows/Row#13/RowExpand",
+            "/Rows/Row#13/RowSelect",
+            "/Rows/Row#14/RowExpand",
+            "/Rows/Row#14/RowSelect",
+            "/Rows/Row#15/RowExpand",
+            "/Rows/Row#15/RowSelect",
+            "/Rows/Row#2/RowExpand",
+            "/Rows/Row#2/RowSelect",
+            "/Rows/Row#3/RowExpand",
+            "/Rows/Row#3/RowSelect",
+            "/Rows/Row#4/RowExpand",
+            "/Rows/Row#4/RowSelect",
+            "/Rows/Row#5/RowExpand",
+            "/Rows/Row#5/RowSelect",
+            "/Rows/Row#6/RowExpand",
+            "/Rows/Row#6/RowSelect",
+            "/Rows/Row#7/RowExpand",
+            "/Rows/Row#7/RowSelect",
+            "/Rows/Row#8/RowExpand",
+            "/Rows/Row#8/RowSelect",
+            "/Rows/Row#9/RowExpand",
+            "/Rows/Row#9/RowSelect",
+            "/Rows/Row/RowExpand",
+            "/Rows/Row/RowSelect"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -4551,6 +4748,7 @@
         },
         {
           "variant": "breakpoint=mobile, expandable=false, selectable=false",
+          "id": "6596:45975",
           "size": [
             361,
             640
@@ -4568,6 +4766,40 @@
           "hidden": [
             "RowExpand",
             "RowSelect"
+          ],
+          "hiddenPaths": [
+            "/Row/RowExpand",
+            "/Row/RowSelect",
+            "/Rows/Row#10/RowExpand",
+            "/Rows/Row#10/RowSelect",
+            "/Rows/Row#11/RowExpand",
+            "/Rows/Row#11/RowSelect",
+            "/Rows/Row#12/RowExpand",
+            "/Rows/Row#12/RowSelect",
+            "/Rows/Row#13/RowExpand",
+            "/Rows/Row#13/RowSelect",
+            "/Rows/Row#14/RowExpand",
+            "/Rows/Row#14/RowSelect",
+            "/Rows/Row#15/RowExpand",
+            "/Rows/Row#15/RowSelect",
+            "/Rows/Row#2/RowExpand",
+            "/Rows/Row#2/RowSelect",
+            "/Rows/Row#3/RowExpand",
+            "/Rows/Row#3/RowSelect",
+            "/Rows/Row#4/RowExpand",
+            "/Rows/Row#4/RowSelect",
+            "/Rows/Row#5/RowExpand",
+            "/Rows/Row#5/RowSelect",
+            "/Rows/Row#6/RowExpand",
+            "/Rows/Row#6/RowSelect",
+            "/Rows/Row#7/RowExpand",
+            "/Rows/Row#7/RowSelect",
+            "/Rows/Row#8/RowExpand",
+            "/Rows/Row#8/RowSelect",
+            "/Rows/Row#9/RowExpand",
+            "/Rows/Row#9/RowSelect",
+            "/Rows/Row/RowExpand",
+            "/Rows/Row/RowSelect"
           ],
           "overrides": {
             "changed": {
@@ -4704,6 +4936,7 @@
               {
                 "path": "/Dimming",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Dimming",
                   "type": "RECTANGLE",
@@ -4953,6 +5186,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "6165:8247",
           "size": [
             1020,
             56
@@ -4965,6 +5199,7 @@
           ],
           "iconFills": [
             "{Color:icon/primary}",
+            "{Color:icon/disabled}",
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
@@ -4974,10 +5209,21 @@
             "Icon/None",
             "Label",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Container/Button/Counter",
+            "/Container/Button/Icon/None#2",
+            "/Container/Button/Spinner",
+            "/Container/Container/Dropdown/Field/Icon/None",
+            "/Container/Container/Dropdown/Field/Icon/None#2",
+            "/Container/Container/Dropdown/Helper text",
+            "/Container/Container/Dropdown/Label",
+            "/Container/Container/Dropdown/Label/*"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "6596:44917",
           "size": [
             377,
             56
@@ -4989,6 +5235,7 @@
           ],
           "iconFills": [
             "{Color:icon/primary}",
+            "{Color:icon/disabled}",
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
@@ -4997,12 +5244,23 @@
             "Icon/None",
             "Label"
           ],
+          "hiddenPaths": [
+            "/Dropdown/Field/Icon/None",
+            "/Dropdown/Field/Icon/None#2",
+            "/Dropdown/Helper text",
+            "/Dropdown/Label",
+            "/Dropdown/Label/*"
+          ],
           "overrides": {
             "changed": {
               "/": {
                 "layout": {
+                  "gap": 16,
                   "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 }
               }
             },
@@ -5010,6 +5268,7 @@
               {
                 "path": "/Dropdown",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Dropdown",
                   "type": "INSTANCE",
@@ -5042,6 +5301,7 @@
               {
                 "path": "/Pagination",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Pagination",
                   "type": "INSTANCE",
@@ -5070,6 +5330,7 @@
               {
                 "path": "/Icon Button",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -5099,6 +5360,10 @@
                   "fills": [
                     "{Color:action/primary/bg/default}"
                   ],
+                  "strokes": [
+                    "{Color:action/primary/border/default}"
+                  ],
+                  "strokeWeight": 1,
                   "radius": 6,
                   "effectStyle": "shadow/control",
                   "vars": {
@@ -5162,7 +5427,7 @@
         ],
         "layout": {
           "dir": "HORIZONTAL",
-          "gap": 0,
+          "gap": 16,
           "pad": [
             8,
             0,
@@ -5173,6 +5438,7 @@
           "sizing": "FILL/HUG"
         },
         "vars": {
+          "itemSpacing": "Spatial:inset/md",
           "paddingLeft": "Spatial:stack/none",
           "paddingTop": "Spatial:inset/xs",
           "paddingRight": "Spatial:stack/none",
@@ -5335,7 +5601,7 @@
                       "{Color:action/secondary/bg/default}"
                     ],
                     "strokes": [
-                      "{Color:border/medium}"
+                      "{Color:action/secondary/border/default}"
                     ],
                     "strokeWeight": 1,
                     "radius": 6,
@@ -5381,7 +5647,7 @@
                       "{Color:action/secondary/bg/default}"
                     ],
                     "strokes": [
-                      "{Color:border/medium}"
+                      "{Color:action/secondary/border/default}"
                     ],
                     "strokeWeight": 1,
                     "radius": 6,
@@ -5427,7 +5693,7 @@
                       "{Color:action/secondary/bg/default}"
                     ],
                     "strokes": [
-                      "{Color:border/medium}"
+                      "{Color:action/secondary/border/default}"
                     ],
                     "strokeWeight": 1,
                     "radius": 6,
@@ -5452,6 +5718,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "6165:8226",
           "size": [
             1020,
             56
@@ -5471,10 +5738,21 @@
             "Icon/Filter",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Container/SearchField/Icon/Filter",
+            "/Container/Segmented Control/Helper text",
+            "/Container/Segmented Control/Label",
+            "/Container/Segmented Control/Label/Label",
+            "/Container/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/Container/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/Container/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/Container/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "6596:44831",
           "size": [
             377,
             56
@@ -5494,6 +5772,15 @@
             "Icon/None",
             "Label"
           ],
+          "hiddenPaths": [
+            "/Segmented Control/Helper text",
+            "/Segmented Control/Label",
+            "/Segmented Control/Label/Label",
+            "/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/Segmented Control/Track/Segmented Control Item/Icon/None#2"
+          ],
           "overrides": {
             "changed": {
               "/": {
@@ -5506,6 +5793,7 @@
               {
                 "path": "/Segmented Control",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Segmented Control",
                   "type": "INSTANCE",
@@ -5537,6 +5825,7 @@
               {
                 "path": "/Actions",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Actions",
                   "type": "FRAME",
@@ -5564,6 +5853,7 @@
               {
                 "path": "/Actions/Icon Button",
                 "parent": "/Actions",
+                "index": 0,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -5594,7 +5884,7 @@
                     "{Color:action/secondary/bg/default}"
                   ],
                   "strokes": [
-                    "{Color:border/medium}"
+                    "{Color:action/secondary/border/default}"
                   ],
                   "strokeWeight": 1,
                   "radius": 6,
@@ -5614,6 +5904,7 @@
               {
                 "path": "/Actions/Icon Button#2",
                 "parent": "/Actions",
+                "index": 1,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -5644,7 +5935,7 @@
                     "{Color:action/secondary/bg/default}"
                   ],
                   "strokes": [
-                    "{Color:border/medium}"
+                    "{Color:action/secondary/border/default}"
                   ],
                   "strokeWeight": 1,
                   "radius": 6,
@@ -5664,6 +5955,7 @@
               {
                 "path": "/Actions/Icon Button#3",
                 "parent": "/Actions",
+                "index": 2,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -5694,7 +5986,7 @@
                     "{Color:action/secondary/bg/default}"
                   ],
                   "strokes": [
-                    "{Color:border/medium}"
+                    "{Color:action/secondary/border/default}"
                   ],
                   "strokeWeight": 1,
                   "radius": 6,

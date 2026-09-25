@@ -5,7 +5,7 @@
     {
       "name": "Checkbox",
       "id": "2202:1291",
-      "description": "Multi-select box. 12 variants: checked × disabled × hover × mixed × focus. mixed renders an indeterminate dash — use it on a parent box when some, but not all, of its children are checked. Commit on click. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke, so the ring stays legible at 16px. There is no pressed state. Pair with an adjacent label — clicking the label toggles — or use Option Row, which composes this with a label and optional supporting text. For a single persistent on/off setting use Toggle.",
+      "description": "Multi-select box. 12 variants: checked × disabled × hover × mixed × focus, shipped as the used combinations. mixed renders an indeterminate dash — use it on a parent box when some, but not all, children are checked; it keeps the border/medium edge at rest like a checked box. focus combines shadow/focus/default with a border/feedback/focus/strong stroke. No pressed state. Pair with a label or use Option Row. For a single persistent on/off setting use Toggle.",
       "docLinks": [],
       "variantCount": 12,
       "props": {
@@ -79,6 +79,7 @@
       "variants": [
         {
           "variant": "checked=false, disabled=false, hover=false, mixed=false, focus=false",
+          "id": "2202:1292",
           "size": [
             16,
             16
@@ -86,10 +87,12 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "checked=false, disabled=false, hover=true, mixed=false, focus=false",
+          "id": "2202:1294",
           "size": [
             16,
             16
@@ -112,6 +115,7 @@
         },
         {
           "variant": "checked=false, disabled=true, hover=false, mixed=false, focus=false",
+          "id": "2202:1296",
           "size": [
             16,
             16
@@ -137,6 +141,7 @@
         },
         {
           "variant": "checked=true, disabled=false, hover=false, mixed=false, focus=false",
+          "id": "2202:1298",
           "size": [
             16,
             16
@@ -174,6 +179,7 @@
               {
                 "path": "/Icon",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "VECTOR",
@@ -198,6 +204,7 @@
         },
         {
           "variant": "checked=true, disabled=false, hover=true, mixed=false, focus=false",
+          "id": "2202:1307",
           "size": [
             16,
             16
@@ -235,6 +242,7 @@
               {
                 "path": "/Icon",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "VECTOR",
@@ -259,6 +267,7 @@
         },
         {
           "variant": "checked=true, disabled=true, hover=false, mixed=false, focus=false",
+          "id": "2202:1302",
           "size": [
             16,
             16
@@ -295,6 +304,7 @@
               {
                 "path": "/Icon",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "VECTOR",
@@ -319,12 +329,16 @@
         },
         {
           "variant": "checked=true, disabled=false, hover=false, mixed=true, focus=false",
+          "id": "2202:1300",
           "size": [
             16,
             16
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
           ],
           "overrides": {
             "changed": {
@@ -344,8 +358,6 @@
                 "fills": [
                   "{Color:action/primary/bg/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "vars": {
                   "itemSpacing": "Spatial:stack/md"
                 }
@@ -355,6 +367,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -379,6 +392,7 @@
         },
         {
           "variant": "checked=true, disabled=false, hover=true, mixed=true, focus=false",
+          "id": "2382:7955",
           "size": [
             16,
             16
@@ -416,6 +430,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -439,7 +454,8 @@
           }
         },
         {
-          "variant": "checked=true, disabled=true, hover=true, mixed=true, focus=false",
+          "variant": "checked=true, disabled=true, hover=false, mixed=true, focus=false",
+          "id": "2382:7957",
           "size": [
             16,
             16
@@ -476,6 +492,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -500,6 +517,7 @@
         },
         {
           "variant": "checked=false, disabled=false, hover=false, mixed=false, focus=true",
+          "id": "10077:61",
           "size": [
             16,
             16
@@ -527,6 +545,7 @@
         },
         {
           "variant": "checked=true, disabled=false, hover=false, mixed=false, focus=true",
+          "id": "10077:62",
           "size": [
             16,
             16
@@ -569,6 +588,7 @@
               {
                 "path": "/Icon",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "VECTOR",
@@ -593,6 +613,7 @@
         },
         {
           "variant": "checked=true, disabled=false, hover=false, mixed=true, focus=true",
+          "id": "10077:64",
           "size": [
             16,
             16
@@ -635,6 +656,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",

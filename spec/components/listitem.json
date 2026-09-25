@@ -71,6 +71,11 @@
       "parent": "root",
       "type": "INSTANCE"
     },
+    "avatar": {
+      "path": "/Leading",
+      "parent": "root",
+      "type": "INSTANCE"
+    },
     "body": {
       "path": "/Body",
       "parent": "root",
@@ -88,11 +93,6 @@
     },
     "trailing": {
       "path": "/Icon",
-      "parent": "root",
-      "type": "INSTANCE"
-    },
-    "avatar": {
-      "path": "/Leading",
       "parent": "root",
       "type": "INSTANCE"
     }
@@ -399,209 +399,6 @@
         }
       }
     },
-    "body": {
-      "base": {
-        "present": {
-          "value": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "background": {
-          "none": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "borderColor": {
-          "none": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "shadow": {
-          "none": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "radius": {
-          "none": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "borderWidth": {
-          "none": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "direction": {
-          "keyword": "VERTICAL",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "align": {
-          "keyword": "MIN/MIN",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "gap": {
-          "token": "stack.xs",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "paddingTop": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "paddingRight": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "paddingBottom": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "paddingLeft": {
-          "token": "inset.none",
-          "from": "defaults",
-          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component."
-        },
-        "width": {
-          "keyword": "FILL",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "height": {
-          "keyword": "HUG",
-          "from": "type=icon, state=default, compact=false"
-        }
-      },
-      "size": {},
-      "appearance": {}
-    },
-    "label": {
-      "base": {
-        "present": {
-          "value": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "color": {
-          "token": "color.text.primary",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "typography": {
-          "token": "typography.label.md",
-          "from": "type=icon, state=default, compact=false"
-        }
-      },
-      "size": {},
-      "appearance": {
-        "type=icon, compact=false": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=icon, state=disabled, compact=false"
-            }
-          }
-        },
-        "type=icon, compact=true": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=icon, state=disabled, compact=true"
-            }
-          }
-        },
-        "type=avatar, compact=false": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=avatar, state=disabled, compact=false"
-            }
-          }
-        },
-        "type=avatar, compact=true": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=avatar, state=disabled, compact=true"
-            }
-          }
-        }
-      }
-    },
-    "helper": {
-      "base": {
-        "present": {
-          "value": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "color": {
-          "token": "color.text.secondary",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "typography": {
-          "token": "typography.body.sm.regular",
-          "from": "type=icon, state=default, compact=false"
-        }
-      },
-      "size": {},
-      "appearance": {
-        "type=icon, compact=false": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=icon, state=disabled, compact=false"
-            }
-          }
-        },
-        "type=icon, compact=true": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=icon, state=disabled, compact=true"
-            }
-          }
-        },
-        "type=avatar, compact=false": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=avatar, state=disabled, compact=false"
-            }
-          }
-        },
-        "type=avatar, compact=true": {
-          "disabled": {
-            "color": {
-              "token": "color.text.disabled",
-              "from": "type=avatar, state=disabled, compact=true"
-            }
-          }
-        }
-      }
-    },
-    "trailing": {
-      "base": {
-        "present": {
-          "value": true,
-          "from": "type=icon, state=default, compact=false"
-        },
-        "component": {
-          "keyword": "Icon/ChevronRight",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "variant.solid": {
-          "keyword": "false",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "width": {
-          "token": "icon.sm",
-          "from": "overlay",
-          "reason": "As the icon's, a step smaller; its height is already bound to it."
-        },
-        "height": {
-          "token": "icon.sm",
-          "from": "type=icon, state=default, compact=false"
-        },
-        "color": {
-          "token": "color.icon.primary",
-          "from": "type=icon, state=default, compact=false"
-        }
-      },
-      "size": {},
-      "appearance": {}
-    },
     "avatar": {
       "base": {
         "present": {
@@ -820,10 +617,213 @@
           }
         }
       }
+    },
+    "body": {
+      "base": {
+        "present": {
+          "value": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "background": {
+          "none": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "borderColor": {
+          "none": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "shadow": {
+          "none": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "radius": {
+          "none": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "borderWidth": {
+          "none": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "direction": {
+          "keyword": "VERTICAL",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "align": {
+          "keyword": "MIN/MIN",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "gap": {
+          "token": "stack.xs",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "paddingTop": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "paddingRight": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "paddingBottom": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "paddingLeft": {
+          "token": "inset.none",
+          "from": "defaults",
+          "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way."
+        },
+        "width": {
+          "keyword": "FILL",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "height": {
+          "keyword": "HUG",
+          "from": "type=icon, state=default, compact=false"
+        }
+      },
+      "size": {},
+      "appearance": {}
+    },
+    "label": {
+      "base": {
+        "present": {
+          "value": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "color": {
+          "token": "color.text.primary",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "typography": {
+          "token": "typography.label.md",
+          "from": "type=icon, state=default, compact=false"
+        }
+      },
+      "size": {},
+      "appearance": {
+        "type=icon, compact=false": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=icon, state=disabled, compact=false"
+            }
+          }
+        },
+        "type=icon, compact=true": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=icon, state=disabled, compact=true"
+            }
+          }
+        },
+        "type=avatar, compact=false": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=avatar, state=disabled, compact=false"
+            }
+          }
+        },
+        "type=avatar, compact=true": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=avatar, state=disabled, compact=true"
+            }
+          }
+        }
+      }
+    },
+    "helper": {
+      "base": {
+        "present": {
+          "value": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "color": {
+          "token": "color.text.secondary",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "typography": {
+          "token": "typography.body.sm.regular",
+          "from": "type=icon, state=default, compact=false"
+        }
+      },
+      "size": {},
+      "appearance": {
+        "type=icon, compact=false": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=icon, state=disabled, compact=false"
+            }
+          }
+        },
+        "type=icon, compact=true": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=icon, state=disabled, compact=true"
+            }
+          }
+        },
+        "type=avatar, compact=false": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=avatar, state=disabled, compact=false"
+            }
+          }
+        },
+        "type=avatar, compact=true": {
+          "disabled": {
+            "color": {
+              "token": "color.text.disabled",
+              "from": "type=avatar, state=disabled, compact=true"
+            }
+          }
+        }
+      }
+    },
+    "trailing": {
+      "base": {
+        "present": {
+          "value": true,
+          "from": "type=icon, state=default, compact=false"
+        },
+        "component": {
+          "keyword": "Icon/ChevronRight",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "variant.solid": {
+          "keyword": "false",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "width": {
+          "token": "icon.sm",
+          "from": "overlay",
+          "reason": "As the icon's, a step smaller; its height is already bound to it."
+        },
+        "height": {
+          "token": "icon.sm",
+          "from": "type=icon, state=default, compact=false"
+        },
+        "color": {
+          "token": "color.icon.primary",
+          "from": "type=icon, state=default, compact=false"
+        }
+      },
+      "size": {},
+      "appearance": {}
     }
   },
   "docs": {
-    "description": "Single row inside a List container. Currently ships at size=sm (36px) only — md and lg sizes to follow when 2+ consumers need them. States: default, hover, focus, selected, disabled. Use in navigation menus, settings sidebars, dropdown option lists, and selectable entity pickers. Pair with a leading icon (20px), trailing metadata, counter, or chevron — never two trailing elements at once. Provide aria-selected on the selected row. See also: List for the container, Menu for floating variant, Table for column-structured data.",
+    "description": "Single row inside a List container. 20 variants: type (icon, avatar) × state (default, hover, focus, selected, disabled) × compact (false, true). Props: hasIcon, hasAvatar, hasHelper, hasTrailing. The trailing element is a 16px icon slot, typically a chevron; for a count or value put a Counter or text in the slot instead — never two trailing elements at once. Provide aria-selected on the selected row. See also: List for the container, Table for column-structured data.",
     "figmaIssues": []
   },
   "provenance": {
@@ -831,7 +831,7 @@
     "pageId": "2163:3677",
     "figmaNode": "4520:260",
     "defaultVariant": "type=icon, state=default, compact=false",
-    "fileVersion": "2402761872194862831"
+    "fileVersion": "2403086052040245261"
   },
   "derived": {
     "type": {
@@ -906,7 +906,7 @@
       {
         "rule": "bind",
         "at": "body.paddingTop, body.paddingRight, body.paddingBottom, body.paddingLeft",
-        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here and raised with SOLAR once, as a whole, not per component.",
+        "reason": "Same value, governed token: a padding Figma leaves unbound at 0 is inset.none, SOLAR's token for no inset. It is the one answer in every component, so it is decided once here. SOLAR decided on 2026-09-25 to leave the zeros unbound, since binding them changes nothing drawn, and to have them read this way.",
         "from": "spec/overlay/defaults.yaml",
         "default": "zero-insets"
       }

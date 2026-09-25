@@ -63,7 +63,7 @@ abstract final class SolarTrendBadgeRecipe {
     'root.width|combined|sm|type=incline|default': 't:icon.sm',
     'root.height|combined|sm|type=incline|default': 't:icon.sm',
     'root.background|combined|xs|type=decline|default':
-        't:color.icon.feedback.danger',
+        't:color.surface.feedback.danger.strong',
     'root.direction|combined|xs|type=decline|default': 'none',
     'root.align|combined|xs|type=decline|default': 'none',
     'root.gap|combined|xs|type=decline|default': 't:inset.none',
@@ -168,7 +168,6 @@ abstract final class SolarTrendBadgeRecipe {
     return switch (lookup(cell, p, s)) {
       'none' => Colors.transparent,
       't:color.border.medium' => c.borderMedium,
-      't:color.icon.feedback.danger' => c.iconFeedbackDanger,
       't:color.icon.inverse' => c.iconInverse,
       't:color.surface.feedback.danger.strong' => c.surfaceFeedbackDangerStrong,
       't:color.surface.feedback.neutral.strong' =>

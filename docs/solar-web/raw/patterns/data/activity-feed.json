@@ -696,6 +696,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "7467:23544",
           "size": [
             640,
             731
@@ -711,10 +712,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "8512:5283",
           "size": [
             377,
             731
@@ -853,6 +856,7 @@
           "sizing": "FIXED/FIXED"
         },
         "vars": {
+          "itemSpacing": "Spatial:inset/xs",
           "paddingLeft": "Spatial:inset/none",
           "paddingTop": "Spatial:inset/sm",
           "paddingRight": "Spatial:inset/none",
@@ -1022,6 +1026,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop",
+          "id": "7470:24329",
           "size": [
             640,
             64
@@ -1038,10 +1043,22 @@
             "*",
             "Helper text",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Container/Select#2/Helper text",
+            "/Container/Select#2/Label",
+            "/Container/Select#2/Label/*",
+            "/Container/Select#3/Helper text",
+            "/Container/Select#3/Label",
+            "/Container/Select#3/Label/*",
+            "/Container/Select/Helper text",
+            "/Container/Select/Label",
+            "/Container/Select/Label/*"
           ]
         },
         {
           "variant": "breakpoint=mobile",
+          "id": "8512:5749",
           "size": [
             377,
             112
@@ -1053,6 +1070,17 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/primary}"
+          ],
+          "hiddenPaths": [
+            "/Frame 1/Select#2/Helper text",
+            "/Frame 1/Select#2/Label",
+            "/Frame 1/Select#2/Label/*",
+            "/Frame 1/Select#3/Helper text",
+            "/Frame 1/Select#3/Label",
+            "/Frame 1/Select#3/Label/*",
+            "/Frame 1/Select/Helper text",
+            "/Frame 1/Select/Label",
+            "/Frame 1/Select/Label/*"
           ],
           "overrides": {
             "changed": {
@@ -1080,6 +1108,7 @@
               {
                 "path": "/Frame 1",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Frame 1",
                   "type": "FRAME",
@@ -1107,6 +1136,7 @@
               {
                 "path": "/Frame 1/Select",
                 "parent": "/Frame 1",
+                "index": 0,
                 "layer": {
                   "name": "Select",
                   "type": "INSTANCE",
@@ -1139,6 +1169,7 @@
               {
                 "path": "/Frame 1/Select#2",
                 "parent": "/Frame 1",
+                "index": 1,
                 "layer": {
                   "name": "Select",
                   "type": "INSTANCE",
@@ -1171,6 +1202,7 @@
               {
                 "path": "/Frame 1/Select#3",
                 "parent": "/Frame 1",
+                "index": 2,
                 "layer": {
                   "name": "Select",
                   "type": "INSTANCE",

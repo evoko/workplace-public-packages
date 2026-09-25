@@ -4,7 +4,7 @@
 
 ## Component set: FAB
 
-Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled, loading). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.
+Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon, extended) × size (sm 44px, md 56px) × state (default, hover, pressed, focus, disabled, loading). Uses action/primary tokens + shadow/raised; focus replaces the lift with shadow/focus/default. loading keeps the resting width. extended adds a label for discoverability. One FAB per screen.
 
 ### Props
 
@@ -36,7 +36,7 @@ Default variant: `type=icon, size=sm, state=default` · 24 variants · default s
 | Radius       | `radius.pill`                                                                                                                                    |
 | Border width | `border.default`                                                                                                                                 |
 | Sizes        | `icon.md`                                                                                                                                        |
-| Effects      | `shadow/overlay`                                                                                                                                 |
+| Effects      | `shadow/focus/default`, `shadow/overlay`                                                                                                         |
 
 ### Composes
 
@@ -44,32 +44,32 @@ Default variant: `type=icon, size=sm, state=default` · 24 variants · default s
 
 ### Variant matrix
 
-| type     | size | state    | size   | fill                               | stroke                | effect           | text                                 | icon                                 |
-| -------- | ---- | -------- | ------ | ---------------------------------- | --------------------- | ---------------- | ------------------------------------ | ------------------------------------ |
-| icon     | sm   | default  | 44×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.default`  |
-| icon     | sm   | hover    | 44×44  | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.hover`    |
-| icon     | sm   | pressed  | 44×44  | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.active`   |
-| icon     | sm   | disabled | 44×44  | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.disabled` |
-| icon     | sm   | focus    | 44×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.default`  |
-| icon     | sm   | loading  | 44×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.default`  |
-| icon     | md   | default  | 56×56  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.default`  |
-| icon     | md   | hover    | 56×56  | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.hover`    |
-| icon     | md   | pressed  | 56×56  | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.active`   |
-| icon     | md   | disabled | 56×56  | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.disabled` |
-| icon     | md   | focus    | 56×56  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.default`  |
-| icon     | md   | loading  | 56×56  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      |                                      |
-| extended | sm   | default  | 91×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
-| extended | sm   | hover    | 91×44  | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.hover`    |
-| extended | sm   | pressed  | 91×44  | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.active`   |
-| extended | sm   | disabled | 91×44  | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.disabled` | `color.action.primary.icon.disabled` |
-| extended | sm   | focus    | 91×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
-| extended | sm   | loading  | 84×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      | `color.action.primary.icon.default`  |
-| extended | md   | default  | 112×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
-| extended | md   | hover    | 112×56 | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.hover`    |
-| extended | md   | pressed  | 112×56 | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.active`   |
-| extended | md   | disabled | 112×56 | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.disabled` | `color.action.primary.icon.disabled` |
-| extended | md   | focus    | 112×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
-| extended | md   | loading  | 104×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      |                                      |
+| type     | size | state    | size   | fill                               | stroke                | effect                 | text                                 | icon                                 |
+| -------- | ---- | -------- | ------ | ---------------------------------- | --------------------- | ---------------------- | ------------------------------------ | ------------------------------------ |
+| icon     | sm   | default  | 44×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.default`  |
+| icon     | sm   | hover    | 44×44  | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.hover`    |
+| icon     | sm   | pressed  | 44×44  | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.active`   |
+| icon     | sm   | disabled | 44×44  | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.disabled` |
+| icon     | sm   | focus    | 44×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/focus/default` |                                      | `color.action.primary.icon.default`  |
+| icon     | sm   | loading  | 44×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.default`  |
+| icon     | md   | default  | 56×56  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.default`  |
+| icon     | md   | hover    | 56×56  | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.hover`    |
+| icon     | md   | pressed  | 56×56  | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.active`   |
+| icon     | md   | disabled | 56×56  | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.disabled` |
+| icon     | md   | focus    | 56×56  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/focus/default` |                                      | `color.action.primary.icon.default`  |
+| icon     | md   | loading  | 56×56  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       |                                      |                                      |
+| extended | sm   | default  | 91×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
+| extended | sm   | hover    | 91×44  | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.default`  | `color.action.primary.icon.hover`    |
+| extended | sm   | pressed  | 91×44  | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.default`  | `color.action.primary.icon.active`   |
+| extended | sm   | disabled | 91×44  | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.disabled` | `color.action.primary.icon.disabled` |
+| extended | sm   | focus    | 91×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/focus/default` | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
+| extended | sm   | loading  | 91×44  | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       |                                      | `color.action.primary.icon.default`  |
+| extended | md   | default  | 112×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
+| extended | md   | hover    | 112×56 | `color.action.primary.bg.hover`    | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.default`  | `color.action.primary.icon.hover`    |
+| extended | md   | pressed  | 112×56 | `color.action.primary.bg.active`   | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.default`  | `color.action.primary.icon.active`   |
+| extended | md   | disabled | 112×56 | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay`       | `color.action.primary.text.disabled` | `color.action.primary.icon.disabled` |
+| extended | md   | focus    | 112×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/focus/default` | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
+| extended | md   | loading  | 112×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay`       |                                      |                                      |
 
 ## Documentation card
 

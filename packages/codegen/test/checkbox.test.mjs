@@ -1,7 +1,8 @@
 /**
  * Checkbox (milestone 4, F3 pioneer): its IR, and the recipe each emitter makes of it. MUI's
  * Checkbox on the web, drawn in Flutter; the box's layout only where it holds a mark, no edge on a
- * disabled checked box, and the resting mixed box given the edge every other one has.
+ * disabled checked box, and the resting mixed box with the edge every other one has, which Figma
+ * draws since 2026-09-25.
  */
 
 import { describe, expect, it } from 'vitest';
@@ -15,17 +16,16 @@ const { spec, deviations, oracle } = built.find(
 );
 
 describe('the Checkbox IR', () => {
-  it('takes checked, mixed and disabled, with hover and focus, and one finding left open', () => {
+  it('takes checked, mixed and disabled, with hover and focus, and no finding left open', () => {
     expect(spec.api).toEqual({
       checked: { type: 'boolean', default: false },
       disabled: { type: 'boolean', default: false },
       mixed: { type: 'boolean', default: false },
     });
     expect(spec.states).toEqual(['default', 'focus', 'hover']);
-    // The disabled mixed box Figma draws only under the pointer stays 3b-1's finding.
-    expect(deviations.filter((d) => !d.decision).map((d) => d.kind)).toEqual([
-      'compound-state',
-    ]);
+    // Figma drew the disabled mixed box only under the pointer, 3b-1's finding, until it drew it
+    // at rest too (2026-09-25).
+    expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
   it('lays out only a box that holds a mark', () => {
@@ -41,19 +41,19 @@ describe('the Checkbox IR', () => {
     expect(a['checked=true, mixed=false'].disabled.borderWidth).toMatchObject({
       none: true,
     });
-    expect(a['checked=true, mixed=true'].default.borderColor).toMatchObject({
+    // Figma's own edge since 2026-09-25, where the overlay gave it one before: the checked box's
+    // at rest, inherited, so the mixed box at rest adds no entry of its own.
+    expect(a['checked=true, mixed=true'].default.borderColor).toBeUndefined();
+    expect(spec.style.root.base.borderColor).toMatchObject({
       token: 'color.border.medium',
-      replaced: { none: true },
     });
   });
 
-  it('excuses Figma’s edgeless mixed box at rest alone, not the states that draw their own', () => {
+  it('excuses no variant with a set, since Figma draws the mixed box’s edge itself', () => {
     const excused = oracle.variants
       .filter((v) => v.excused?.some((e) => e.decision === 'set'))
       .map((v) => v.figma);
-    expect(excused).toEqual([
-      'checked=true, disabled=false, hover=false, mixed=true, focus=false',
-    ]);
+    expect(excused).toEqual([]);
   });
 });
 

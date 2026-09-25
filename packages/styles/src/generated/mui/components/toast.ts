@@ -46,8 +46,8 @@ export const solarToastStyles = {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
     '& .SolarToast-chevron > svg': {
@@ -138,7 +138,7 @@ export const solarToastStyles = {
       borderColor: 'var(--solar-color-border-feedback-danger-subtle)',
       '& .SolarToast-tag': {
         '& > *': {
-          borderColor: 'var(--solar-color-border-feedback-warning-subtle)',
+          borderColor: 'var(--solar-color-border-feedback-danger-subtle)',
         },
       },
       '& .SolarToast-action': {
@@ -178,8 +178,31 @@ export const solarToastComposition = {
     base: {
       present: true,
       component: 'Tag',
-      'variant.status': 'neutral',
+      'variant.status': 'success',
       'variant.type': 'status',
+      'variant.invert': 'false',
+    },
+    appearance: {
+      'status=warning': {
+        default: {
+          'variant.status': 'warning',
+        },
+      },
+      'status=danger': {
+        default: {
+          'variant.status': 'danger',
+        },
+      },
+      'status=info': {
+        default: {
+          'variant.status': 'info',
+        },
+      },
+      'status=neutral': {
+        default: {
+          'variant.status': 'neutral',
+        },
+      },
     },
   },
   message: {

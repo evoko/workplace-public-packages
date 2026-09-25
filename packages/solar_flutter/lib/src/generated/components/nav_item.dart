@@ -38,7 +38,7 @@ abstract final class SolarNavItemRecipe {
     'root.paddingBottom|base': 't:inset.none',
     'root.paddingLeft|base': 't:inset.none',
     'root.width|base': 'px:40',
-    'root.height|base': 'px:40',
+    'root.height|base': 't:size.control.md',
     'root.background|appearance|selected=false, expanded=false|hover':
         't:color.surface.hover',
     'root.shadow|appearance|selected=false, expanded=false|focus':
@@ -46,18 +46,20 @@ abstract final class SolarNavItemRecipe {
     'root.background|appearance|selected=false, expanded=false|focus': 'none',
     'root.background|appearance|selected=false, expanded=true|hover':
         't:color.surface.hover',
+    'root.shadow|appearance|selected=false, expanded=true|focus':
+        't:shadow.focus.default',
+    'root.background|appearance|selected=false, expanded=true|focus': 'none',
     'root.gap|appearance|selected=false, expanded=true|default': 't:inset.sm',
     'root.paddingRight|appearance|selected=false, expanded=true|default':
         't:inset.sm',
     'root.paddingLeft|appearance|selected=false, expanded=true|default':
         't:inset.sm',
     'root.width|appearance|selected=false, expanded=true|default': 'k:FILL',
-    'root.shadow|appearance|selected=false, expanded=true|focus':
-        't:shadow.focus.default',
-    'root.background|appearance|selected=false, expanded=true|focus': 'none',
     'root.background|appearance|selected=true, expanded=false|default':
         't:color.surface.active',
     'root.background|appearance|selected=true, expanded=false|hover':
+        't:color.surface.active',
+    'root.background|appearance|selected=true, expanded=false|focus':
         't:color.surface.active',
     'root.shadow|appearance|selected=true, expanded=false|focus':
         't:shadow.focus.default',
@@ -70,6 +72,8 @@ abstract final class SolarNavItemRecipe {
         't:inset.sm',
     'root.width|appearance|selected=true, expanded=true|default': 'k:FILL',
     'root.background|appearance|selected=true, expanded=true|hover':
+        't:color.surface.active',
+    'root.background|appearance|selected=true, expanded=true|focus':
         't:color.surface.active',
     'root.shadow|appearance|selected=true, expanded=true|focus':
         't:shadow.focus.default',
@@ -87,6 +91,10 @@ abstract final class SolarNavItemRecipe {
         'k:true',
     'iconOutline.color|appearance|selected=true, expanded=false|hover':
         't:color.icon.primary',
+    'iconOutline.variant.solid|appearance|selected=true, expanded=false|focus':
+        'k:true',
+    'iconOutline.color|appearance|selected=true, expanded=false|focus':
+        't:color.icon.primary',
     'iconOutline.variant.solid|appearance|selected=true, expanded=true|default':
         'k:true',
     'iconOutline.color|appearance|selected=true, expanded=true|default':
@@ -94,6 +102,10 @@ abstract final class SolarNavItemRecipe {
     'iconOutline.variant.solid|appearance|selected=true, expanded=true|hover':
         'k:true',
     'iconOutline.color|appearance|selected=true, expanded=true|hover':
+        't:color.icon.primary',
+    'iconOutline.variant.solid|appearance|selected=true, expanded=true|focus':
+        'k:true',
+    'iconOutline.color|appearance|selected=true, expanded=true|focus':
         't:color.icon.primary',
     'iconOutline.color|appearance|selected=false, expanded=false|hover':
         't:color.icon.primary',
@@ -112,6 +124,7 @@ abstract final class SolarNavItemRecipe {
     'label.present|appearance|selected=false, expanded=true|hover': 'b:true',
     'label.color|appearance|selected=false, expanded=true|hover':
         't:color.text.primary',
+    'label.present|appearance|selected=false, expanded=true|focus': 'b:true',
     'label.color|appearance|selected=false, expanded=true|focus':
         't:color.text.secondary',
     'label.present|appearance|selected=true, expanded=true|default': 'b:true',
@@ -119,6 +132,9 @@ abstract final class SolarNavItemRecipe {
         't:color.text.primary',
     'label.present|appearance|selected=true, expanded=true|hover': 'b:true',
     'label.color|appearance|selected=true, expanded=true|hover':
+        't:color.text.primary',
+    'label.present|appearance|selected=true, expanded=true|focus': 'b:true',
+    'label.color|appearance|selected=true, expanded=true|focus':
         't:color.text.primary',
   };
 
@@ -201,6 +217,7 @@ abstract final class SolarNavItemRecipe {
       't:inset.none' => SolarInset.none,
       't:inset.sm' => SolarInset.sm,
       't:radius.control' => SolarRadius.control,
+      't:size.control.md' => SolarSize.controlMd,
       _ => throw StateError('$cell: no length for $v'),
     };
   }

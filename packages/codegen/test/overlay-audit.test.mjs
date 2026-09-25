@@ -16,10 +16,11 @@ const audit = auditOverlays({
 describe('the overlay audit', () => {
   it('finds a decision many overlays repeat, as the focus ring and a filling root are', () => {
     const keys = new Map(audit.decisions.map((d) => [d.key, d.components]));
+    // Fewer since 2026-09-25, when Figma drew the ring on FAB, Link, Nav Item, Toggle and others.
     expect(
       keys.get('set root.appearance.*.focus.shadow = shadow.focus.default')
         ?.length,
-    ).toBeGreaterThanOrEqual(20);
+    ).toBeGreaterThanOrEqual(10);
     expect(
       keys.get('set root.base.width = FILL')?.length,
     ).toBeGreaterThanOrEqual(40);

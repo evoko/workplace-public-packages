@@ -71,6 +71,7 @@
           "{Color:surface/background}"
         ],
         "vars": {
+          "itemSpacing": "Spatial:inset/sm",
           "paddingLeft": "Spatial:stack/md",
           "paddingRight": "Spatial:stack/md"
         },
@@ -219,7 +220,8 @@
                     "variant": {
                       "selected": "false",
                       "hover": "false",
-                      "expanded": "false"
+                      "expanded": "false",
+                      "focus": "false"
                     },
                     "size": [
                       40,
@@ -257,7 +259,8 @@
                     "variant": {
                       "selected": "false",
                       "hover": "false",
-                      "expanded": "false"
+                      "expanded": "false",
+                      "focus": "false"
                     },
                     "size": [
                       40,
@@ -295,7 +298,8 @@
                     "variant": {
                       "selected": "false",
                       "hover": "false",
-                      "expanded": "false"
+                      "expanded": "false",
+                      "focus": "false"
                     },
                     "size": [
                       40,
@@ -336,7 +340,8 @@
                     "variant": {
                       "selected": "false",
                       "hover": "false",
-                      "expanded": "false"
+                      "expanded": "false",
+                      "focus": "false"
                     },
                     "size": [
                       40,
@@ -586,6 +591,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=true",
+          "id": "3779:845",
           "size": [
             1440,
             56
@@ -606,10 +612,15 @@
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Right Zone/Field/Icon/None",
+            "/Right Zone/Field/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=desktop, hasSidebar=true, isLoggedIn=false",
+          "id": "9512:28914",
           "size": [
             1440,
             56
@@ -634,6 +645,12 @@
             "Icon/None",
             "Spinner"
           ],
+          "hiddenPaths": [
+            "/Right Zone/Button/Counter",
+            "/Right Zone/Button/Icon/None",
+            "/Right Zone/Button/Icon/None#2",
+            "/Right Zone/Button/Spinner"
+          ],
           "overrides": {
             "changed": {
               "/Right Zone": {
@@ -653,6 +670,7 @@
               {
                 "path": "/Right Zone/Button",
                 "parent": "/Right Zone",
+                "index": 1,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -719,6 +737,7 @@
         },
         {
           "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=true",
+          "id": "7258:66",
           "size": [
             1440,
             56
@@ -778,6 +797,7 @@
         },
         {
           "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=false",
+          "id": "9512:28929",
           "size": [
             1440,
             56
@@ -802,6 +822,12 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Right Zone/Button/Counter",
+            "/Right Zone/Button/Icon/None",
+            "/Right Zone/Button/Icon/None#2",
+            "/Right Zone/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -856,6 +882,7 @@
               {
                 "path": "/Right Zone/Button",
                 "parent": "/Right Zone",
+                "index": 1,
                 "layer": {
                   "name": "Button",
                   "type": "INSTANCE",
@@ -922,6 +949,7 @@
         },
         {
           "variant": "breakpoint=mobile, hasSidebar=true, isLoggedIn=false",
+          "id": "5888:18619",
           "size": [
             393,
             56
@@ -937,6 +965,7 @@
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -951,9 +980,9 @@
                   "sizing": "FIXED/FIXED"
                 },
                 "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
                   "paddingLeft": "Spatial:stack/xs",
-                  "paddingRight": "Spatial:stack/xs",
-                  "itemSpacing": "Spatial:stack/sm"
+                  "paddingRight": "Spatial:stack/xs"
                 }
               },
               "/App Name": {
@@ -970,6 +999,7 @@
               {
                 "path": "/Icon Button",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -1000,7 +1030,7 @@
                     "{Color:surface/background}"
                   ],
                   "strokes": [
-                    "{Color:border/medium}"
+                    "{Color:action/secondary/border/default}"
                   ],
                   "strokeWeight": 1,
                   "radius": 6,
@@ -1020,6 +1050,7 @@
               {
                 "path": "/Avatar",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Avatar",
                   "type": "INSTANCE",
@@ -1087,6 +1118,7 @@
         },
         {
           "variant": "breakpoint=mobile, hasSidebar=false, isLoggedIn=false",
+          "id": "7258:2412",
           "size": [
             393,
             56
@@ -1102,6 +1134,7 @@
             "{Color:icon/primary}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
               "/": {
@@ -1158,6 +1191,7 @@
               {
                 "path": "/Avatar",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Avatar",
                   "type": "INSTANCE",
@@ -1339,6 +1373,7 @@
       "variants": [
         {
           "variant": "type=vertical",
+          "id": "6177:20348",
           "size": [
             131,
             32
@@ -1346,10 +1381,12 @@
           "textFills": [
             "{Color:text/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=app",
+          "id": "7266:10414",
           "size": [
             227,
             40
@@ -1407,6 +1444,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1430,6 +1468,7 @@
               {
                 "path": "/Divider",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Divider",
                   "type": "INSTANCE",
@@ -1459,6 +1498,7 @@
               {
                 "path": "/Icon/More",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Icon/More",
                   "type": "INSTANCE",
@@ -1487,6 +1527,7 @@
         },
         {
           "variant": "type=horizontal",
+          "id": "6177:20349",
           "size": [
             85,
             59

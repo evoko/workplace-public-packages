@@ -5,9 +5,9 @@
     {
       "name": "Segmented Control Item",
       "id": "2488:12014",
-      "description": "Single segment inside Segmented Control. 8 variants: selected (false/true) × state (default, hover) × size (md, sm). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.",
+      "description": "Single segment inside Segmented Control. 12 variants: selected (false, true) × state (default, hover, focus) × size (md, sm). Selection is persistent — a click commits, not previews. focus carries shadow/focus/default. Optional leading/trailing icons via boolean. Disabled is set on the whole Segmented Control, not per segment.",
       "docLinks": [],
-      "variantCount": 8,
+      "variantCount": 12,
       "props": {
         "show icon-leading#2573:0": {
           "type": "BOOLEAN",
@@ -30,7 +30,8 @@
           "default": "default",
           "options": [
             "default",
-            "hover"
+            "hover",
+            "focus"
           ]
         },
         "size": {
@@ -157,6 +158,7 @@
       "variants": [
         {
           "variant": "selected=true, state=default, size=md",
+          "id": "2488:12005",
           "size": [
             108,
             32
@@ -174,10 +176,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "selected=true, state=hover, size=md",
+          "id": "3645:1284",
           "size": [
             108,
             32
@@ -207,6 +211,7 @@
         },
         {
           "variant": "selected=false, state=default, size=md",
+          "id": "2488:12013",
           "size": [
             108,
             32
@@ -245,6 +250,7 @@
         },
         {
           "variant": "selected=false, state=hover, size=md",
+          "id": "3645:1302",
           "size": [
             108,
             32
@@ -268,6 +274,7 @@
         },
         {
           "variant": "selected=true, state=default, size=sm",
+          "id": "6170:20007",
           "size": [
             87,
             24
@@ -335,6 +342,7 @@
         },
         {
           "variant": "selected=true, state=hover, size=sm",
+          "id": "6170:20011",
           "size": [
             87,
             24
@@ -405,6 +413,7 @@
         },
         {
           "variant": "selected=false, state=default, size=sm",
+          "id": "6170:20015",
           "size": [
             87,
             24
@@ -478,6 +487,7 @@
         },
         {
           "variant": "selected=false, state=hover, size=sm",
+          "id": "6170:20019",
           "size": [
             87,
             24
@@ -539,13 +549,225 @@
               }
             }
           }
+        },
+        {
+          "variant": "selected=true, state=focus, size=md",
+          "id": "11066:29882",
+          "size": [
+            108,
+            32
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
+        },
+        {
+          "variant": "selected=false, state=focus, size=md",
+          "id": "11066:29886",
+          "size": [
+            108,
+            32
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/secondary}"
+                ]
+              },
+              "/Icon/None#2": {
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "selected=true, state=focus, size=sm",
+          "id": "11066:29890",
+          "size": [
+            87,
+            24
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
+        },
+        {
+          "variant": "selected=false, state=focus, size=sm",
+          "id": "11066:29894",
+          "size": [
+            87,
+            24
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                },
+                "iconFills": [
+                  "{Color:icon/secondary}"
+                ]
+              }
+            }
+          }
         }
       ]
     },
     {
       "name": "Segmented Control",
       "id": "6170:20250",
-      "description": "Inline group of 2–5 mutually exclusive segments, with an optional field label and helper so it can sit in a form. 2 variants: size (sm, md). Booleans show helper, show mandatory; label and helper are text props; Track is a slot for Segmented Control Item instances. Behaves as a radio group: commits on click, one segment always selected. For 6+ options or URL-level navigation use Tabs; for on/off use Toggle.",
+      "description": "Inline group of 2–5 mutually exclusive segments, with an optional field label and helper so it can sit in a form. 2 variants: size (sm, md). Booleans show label, show helper, show mandatory; label and helper are text props; Track is a slot for Segmented Control Item instances. Behaves as a radio group: commits on click, one segment always selected; arrow keys move between segments. For 6+ options or URL-level navigation use Tabs; for on/off use Toggle.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -573,6 +795,10 @@
               "localID": -1
             }
           }
+        },
+        "show label#11066:45": {
+          "type": "BOOLEAN",
+          "default": false
         },
         "size": {
           "type": "VARIANT",
@@ -630,6 +856,9 @@
             },
             "vars": {
               "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "show label#11066:45"
             },
             "children": [
               {
@@ -999,6 +1228,7 @@
       "variants": [
         {
           "variant": "size=md",
+          "id": "2488:12018",
           "size": [
             368,
             40
@@ -1016,10 +1246,28 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Helper text",
+            "/Label",
+            "/Label/Label",
+            "/Track/Segmented Control Item#2/Icon/None",
+            "/Track/Segmented Control Item#2/Icon/None#2",
+            "/Track/Segmented Control Item#3/Icon/None",
+            "/Track/Segmented Control Item#3/Icon/None#2",
+            "/Track/Segmented Control Item#4/Icon/None",
+            "/Track/Segmented Control Item#4/Icon/None#2",
+            "/Track/Segmented Control Item#5/Icon/None",
+            "/Track/Segmented Control Item#5/Icon/None#2",
+            "/Track/Segmented Control Item#6/Icon/None",
+            "/Track/Segmented Control Item#6/Icon/None#2",
+            "/Track/Segmented Control Item/Icon/None",
+            "/Track/Segmented Control Item/Icon/None#2"
           ]
         },
         {
           "variant": "size=sm",
+          "id": "6170:20081",
           "size": [
             290,
             32

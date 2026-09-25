@@ -29,7 +29,8 @@ Default variant: `orientation=horizontal, breakpoint=desktop` · 4 variants · d
   itemSpacing `inset.2xs`
   - **Axis Line** · frame · FILL/FIXED · 600×1  
     fill `color.border.medium`
-  - **Ticks** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 600×17
+  - **Ticks** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 600×17  
+    itemSpacing `inset.md`
     - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 8×17  
       itemSpacing `inset.2xs`
       - **Tick Mark** · frame · FIXED/FIXED · 1×4  
@@ -67,7 +68,7 @@ Default variant: `orientation=horizontal, breakpoint=desktop` · 4 variants · d
 | --------------- | ----------------------------------------------------------------------------------------------------- |
 | Fills           | `color.border.medium`                                                                                 |
 | Text color      | `color.text.secondary`                                                                                |
-| Spacing         | `inset.2xs`                                                                                           |
+| Spacing         | `inset.2xs`, `inset.md`                                                                               |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.line-height.helper.sm`, `type.size.helper.sm` |
 | Text styles     | `helper/sm`                                                                                           |
 
@@ -101,7 +102,8 @@ Default variant: `orientation=horizontal, breakpoint=desktop` · 4 variants · d
 
 ### Anatomy (default variant)
 
-- **orientation=horizontal, breakpoint=desktop** · component · column gap 0 pad 0/0/0/0 FIXED/FIXED · 600×280
+- **orientation=horizontal, breakpoint=desktop** · component · column gap 16 pad 0/0/0/0 FIXED/FIXED · 600×280  
+  itemSpacing `inset.md`
   - **Gridline** · frame · FILL/FIXED · 600×1  
     fill `color.border.subtle`
   - **Gridline** · frame · FILL/FIXED · 600×1  
@@ -115,9 +117,10 @@ Default variant: `orientation=horizontal, breakpoint=desktop` · 4 variants · d
 
 ### Tokens used
 
-| Role  | Tokens                |
-| ----- | --------------------- |
-| Fills | `color.border.subtle` |
+| Role    | Tokens                |
+| ------- | --------------------- |
+| Fills   | `color.border.subtle` |
+| Spacing | `inset.md`            |
 
 ### Variant matrix
 

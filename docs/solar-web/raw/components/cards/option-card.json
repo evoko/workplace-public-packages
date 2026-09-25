@@ -136,6 +136,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "9385:28718",
           "size": [
             240,
             228
@@ -152,10 +153,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "state=hover",
+          "id": "9385:28722",
           "size": [
             240,
             228
@@ -189,6 +192,7 @@
         },
         {
           "variant": "state=selected",
+          "id": "9385:28726",
           "size": [
             240,
             228

@@ -5,9 +5,9 @@
     {
       "name": "Icon Button",
       "id": "2995:443",
-      "description": "Icon-only action button. 108 variants: size (sm 32px, md 40px, lg 48px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Mirrors the Button priority/size/state system using SOLAR action tokens; the duplicate state=active was removed on 2026-09-23 — use pressed. An icon-only control must carry an aria-label — the icon alone is not a name.",
+      "description": "Icon-only action button. 126 variants: size (sm 32px, md 40px, lg 48px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, active, pressed, focus, loading, disabled). Each variant&#39;s surface — fill, border, shadow — matches the Button variant of the same size, prio and state, so the two sit side by side; active is the persistent on state of a toggle icon button (e.g. a toolbar option that is switched on) — distinct from pressed, the momentary press; pressed keeps the control shadow, focus alone carries the ring. secondary has no background. Drawn heights are the visible control; pad the hit area to 44×44 (size/target/min) in code. An icon-only control must carry an aria-label.",
       "docLinks": [],
-      "variantCount": 108,
+      "variantCount": 126,
       "props": {
         "size": {
           "type": "VARIANT",
@@ -44,7 +44,8 @@
             "pressed",
             "disabled",
             "focus",
-            "loading"
+            "loading",
+            "active"
           ]
         }
       },
@@ -73,7 +74,7 @@
           "{Color:action/primary/bg/default}"
         ],
         "strokes": [
-          "{Color:border/medium}"
+          "{Color:action/primary/border/default}"
         ],
         "strokeWeight": 1,
         "radius": 6,
@@ -105,7 +106,7 @@
             ],
             "sizing": "FIXED/FIXED",
             "vars": {
-              "height": "Spatial:icon/xs"
+              "width": "Spatial:icon/xs"
             }
           }
         ]
@@ -113,6 +114,7 @@
       "variants": [
         {
           "variant": "size=sm, shape=square, prio=primary, state=default",
+          "id": "2995:444",
           "size": [
             32,
             32
@@ -121,16 +123,18 @@
             "{Color:action/primary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, shape=square, prio=primary, state=hover",
+          "id": "2995:446",
           "size": [
             32,
             32
@@ -138,6 +142,10 @@
           "fills": [
             "{Color:action/primary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
           ],
@@ -147,9 +155,9 @@
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/primary/border/hover}"
+                ]
               },
               "/Icon/None": {
                 "iconFills": [
@@ -160,7 +168,8 @@
           }
         },
         {
-          "variant": "size=sm, shape=square, prio=primary, state=pressed",
+          "variant": "size=sm, shape=square, prio=primary, state=active",
+          "id": "11072:262",
           "size": [
             32,
             32
@@ -168,7 +177,10 @@
           "fills": [
             "{Color:action/primary/bg/active}"
           ],
-          "effect": "shadow/focus/default",
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/active}"
           ],
@@ -178,9 +190,44 @@
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": "shadow/focus/default"
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ]
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=pressed",
+          "id": "2995:448",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ]
               },
               "/Icon/None": {
                 "iconFills": [
@@ -192,6 +239,7 @@
         },
         {
           "variant": "size=sm, shape=square, prio=primary, state=disabled",
+          "id": "2995:450",
           "size": [
             32,
             32
@@ -199,6 +247,10 @@
           "fills": [
             "{Color:action/primary/bg/disabled}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/disabled}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
           ],
@@ -208,9 +260,9 @@
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/primary/border/disabled}"
+                ]
               },
               "/Icon/None": {
                 "iconFills": [
@@ -222,6 +274,7 @@
         },
         {
           "variant": "size=sm, shape=square, prio=primary, state=focus",
+          "id": "6043:74",
           "size": [
             32,
             32
@@ -230,7 +283,7 @@
             "{Color:action/primary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -246,6 +299,7 @@
         },
         {
           "variant": "size=sm, shape=square, prio=primary, state=loading",
+          "id": "6044:92",
           "size": [
             32,
             32
@@ -254,7 +308,7 @@
             "{Color:action/primary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -262,6 +316,9 @@
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Icon/None"
           ],
           "overrides": {
             "changed": {
@@ -273,6 +330,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -296,6 +354,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -304,6 +366,7 @@
         },
         {
           "variant": "size=sm, shape=round, prio=primary, state=default",
+          "id": "3604:792",
           "size": [
             32,
             32
@@ -312,7 +375,7 @@
             "{Color:action/primary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -334,6 +397,7 @@
         },
         {
           "variant": "size=sm, shape=round, prio=primary, state=hover",
+          "id": "3604:794",
           "size": [
             32,
             32
@@ -341,6 +405,10 @@
           "fills": [
             "{Color:action/primary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
           ],
@@ -350,10 +418,10 @@
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/hover}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -370,7 +438,8 @@
           }
         },
         {
-          "variant": "size=sm, shape=round, prio=primary, state=pressed",
+          "variant": "size=sm, shape=round, prio=primary, state=active",
+          "id": "11072:264",
           "size": [
             32,
             32
@@ -378,7 +447,10 @@
           "fills": [
             "{Color:action/primary/bg/active}"
           ],
-          "effect": "shadow/focus/default",
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/active}"
           ],
@@ -388,10 +460,52 @@
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ],
                 "radius": 9999,
-                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=pressed",
+          "id": "3604:796",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ],
+                "radius": 9999,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -409,6 +523,7 @@
         },
         {
           "variant": "size=sm, shape=round, prio=primary, state=disabled",
+          "id": "3604:798",
           "size": [
             32,
             32
@@ -416,6 +531,10 @@
           "fills": [
             "{Color:action/primary/bg/disabled}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/disabled}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
           ],
@@ -425,10 +544,10 @@
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/disabled}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -446,6 +565,7 @@
         },
         {
           "variant": "size=sm, shape=round, prio=primary, state=focus",
+          "id": "6043:76",
           "size": [
             32,
             32
@@ -454,7 +574,7 @@
             "{Color:action/primary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -477,6 +597,7 @@
         },
         {
           "variant": "size=sm, shape=round, prio=primary, state=loading",
+          "id": "6044:99",
           "size": [
             32,
             32
@@ -485,7 +606,7 @@
             "{Color:action/primary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -493,6 +614,9 @@
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Icon/None"
           ],
           "overrides": {
             "changed": {
@@ -513,6 +637,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -536,6 +661,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -544,6 +673,7 @@
         },
         {
           "variant": "size=md, shape=square, prio=primary, state=default",
+          "id": "2995:452",
           "size": [
             40,
             40
@@ -551,23 +681,22 @@
           "fills": [
             "{Color:action/primary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
+          ],
           "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
           "overrides": {
             "changed": {
-              "/": {
-                "strokes": null,
-                "strokeWeight": null
-              },
               "/Icon/None": {
                 "size": [
                   16,
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 }
               }
             }
@@ -575,6 +704,7 @@
         },
         {
           "variant": "size=md, shape=square, prio=primary, state=hover",
+          "id": "2995:454",
           "size": [
             40,
             40
@@ -582,6 +712,10 @@
           "fills": [
             "{Color:action/primary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
           ],
@@ -591,9 +725,9 @@
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/primary/border/hover}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -601,7 +735,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/hover}"
@@ -611,7 +745,8 @@
           }
         },
         {
-          "variant": "size=md, shape=square, prio=primary, state=pressed",
+          "variant": "size=md, shape=square, prio=primary, state=active",
+          "id": "11072:266",
           "size": [
             40,
             40
@@ -619,7 +754,10 @@
           "fills": [
             "{Color:action/primary/bg/active}"
           ],
-          "effect": "shadow/focus/default",
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/active}"
           ],
@@ -629,9 +767,9 @@
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": "shadow/focus/default"
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -639,7 +777,49 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=pressed",
+          "id": "2995:456",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ]
+              },
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/active}"
@@ -650,6 +830,7 @@
         },
         {
           "variant": "size=md, shape=square, prio=primary, state=disabled",
+          "id": "2995:458",
           "size": [
             40,
             40
@@ -657,6 +838,10 @@
           "fills": [
             "{Color:action/primary/bg/disabled}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/disabled}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
           ],
@@ -666,9 +851,9 @@
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/primary/border/disabled}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -676,7 +861,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/disabled}"
@@ -687,12 +872,16 @@
         },
         {
           "variant": "size=md, shape=square, prio=primary, state=focus",
+          "id": "6043:78",
           "size": [
             40,
             40
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -701,8 +890,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": "shadow/focus/default"
               },
               "/Icon/None": {
@@ -711,7 +898,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 }
               }
             }
@@ -719,12 +906,16 @@
         },
         {
           "variant": "size=md, shape=square, prio=primary, state=loading",
+          "id": "6044:106",
           "size": [
             40,
             40
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -733,12 +924,11 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
-              "/": {
-                "strokes": null,
-                "strokeWeight": null
-              },
               "/Icon/None": {
                 "hidden": true,
                 "size": [
@@ -746,7 +936,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 }
               }
             },
@@ -754,6 +944,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -777,6 +968,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -785,12 +980,16 @@
         },
         {
           "variant": "size=md, shape=round, prio=primary, state=default",
+          "id": "3604:800",
           "size": [
             40,
             40
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -799,8 +998,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
@@ -815,7 +1012,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 }
               }
             }
@@ -823,6 +1020,7 @@
         },
         {
           "variant": "size=md, shape=round, prio=primary, state=hover",
+          "id": "3604:802",
           "size": [
             40,
             40
@@ -830,6 +1028,10 @@
           "fills": [
             "{Color:action/primary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
           ],
@@ -839,10 +1041,10 @@
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/hover}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -856,7 +1058,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/hover}"
@@ -866,7 +1068,8 @@
           }
         },
         {
-          "variant": "size=md, shape=round, prio=primary, state=pressed",
+          "variant": "size=md, shape=round, prio=primary, state=active",
+          "id": "11072:268",
           "size": [
             40,
             40
@@ -874,7 +1077,10 @@
           "fills": [
             "{Color:action/primary/bg/active}"
           ],
-          "effect": "shadow/focus/default",
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/active}"
           ],
@@ -884,10 +1090,10 @@
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ],
                 "radius": 9999,
-                "effectStyle": "shadow/focus/default",
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -901,7 +1107,56 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=pressed",
+          "id": "3604:804",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ],
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/active}"
@@ -912,6 +1167,7 @@
         },
         {
           "variant": "size=md, shape=round, prio=primary, state=disabled",
+          "id": "3604:806",
           "size": [
             40,
             40
@@ -919,6 +1175,10 @@
           "fills": [
             "{Color:action/primary/bg/disabled}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/disabled}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
           ],
@@ -928,10 +1188,10 @@
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/disabled}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -945,7 +1205,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/disabled}"
@@ -956,12 +1216,16 @@
         },
         {
           "variant": "size=md, shape=round, prio=primary, state=focus",
+          "id": "6043:80",
           "size": [
             40,
             40
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -970,8 +1234,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
@@ -987,7 +1249,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 }
               }
             }
@@ -995,12 +1257,16 @@
         },
         {
           "variant": "size=md, shape=round, prio=primary, state=loading",
+          "id": "6044:113",
           "size": [
             40,
             40
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -1009,11 +1275,12 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
@@ -1029,7 +1296,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 }
               }
             },
@@ -1037,6 +1304,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1060,6 +1328,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -1068,6 +1340,7 @@
         },
         {
           "variant": "size=lg, shape=square, prio=primary, state=default",
+          "id": "2995:460",
           "size": [
             48,
             48
@@ -1075,23 +1348,22 @@
           "fills": [
             "{Color:action/primary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
           "overrides": {
             "changed": {
-              "/": {
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
               "/Icon/None": {
                 "size": [
                   20,
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 }
               }
             }
@@ -1099,6 +1371,7 @@
         },
         {
           "variant": "size=lg, shape=square, prio=primary, state=hover",
+          "id": "2995:462",
           "size": [
             48,
             48
@@ -1106,6 +1379,10 @@
           "fills": [
             "{Color:action/primary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
           ],
@@ -1115,9 +1392,9 @@
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/primary/border/hover}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -1125,7 +1402,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/hover}"
@@ -1135,7 +1412,8 @@
           }
         },
         {
-          "variant": "size=lg, shape=square, prio=primary, state=pressed",
+          "variant": "size=lg, shape=square, prio=primary, state=active",
+          "id": "11072:270",
           "size": [
             48,
             48
@@ -1143,6 +1421,10 @@
           "fills": [
             "{Color:action/primary/bg/active}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/active}"
           ],
@@ -1152,9 +1434,9 @@
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -1162,7 +1444,49 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=pressed",
+          "id": "2995:464",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ]
+              },
+              "/Icon/None": {
+                "size": [
+                  20,
+                  20
+                ],
+                "vars": {
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/active}"
@@ -1173,6 +1497,7 @@
         },
         {
           "variant": "size=lg, shape=square, prio=primary, state=disabled",
+          "id": "2995:466",
           "size": [
             48,
             48
@@ -1180,6 +1505,10 @@
           "fills": [
             "{Color:action/primary/bg/disabled}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/disabled}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
           ],
@@ -1189,9 +1518,9 @@
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/primary/border/disabled}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -1199,7 +1528,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/disabled}"
@@ -1210,12 +1539,16 @@
         },
         {
           "variant": "size=lg, shape=square, prio=primary, state=focus",
+          "id": "6043:82",
           "size": [
             48,
             48
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -1224,8 +1557,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": "shadow/focus/default"
               },
               "/Icon/None": {
@@ -1234,7 +1565,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 }
               }
             }
@@ -1242,6 +1573,7 @@
         },
         {
           "variant": "size=lg, shape=square, prio=primary, state=loading",
+          "id": "6044:120",
           "size": [
             48,
             48
@@ -1249,19 +1581,21 @@
           "fills": [
             "{Color:action/primary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
-              "/": {
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
-              },
               "/Icon/None": {
                 "hidden": true,
                 "size": [
@@ -1269,7 +1603,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 }
               }
             },
@@ -1277,6 +1611,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1300,6 +1635,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/2xl",
+                    "height": "Spatial:icon/2xl"
                   }
                 }
               }
@@ -1308,6 +1647,7 @@
         },
         {
           "variant": "size=lg, shape=round, prio=primary, state=default",
+          "id": "3604:808",
           "size": [
             48,
             48
@@ -1315,16 +1655,17 @@
           "fills": [
             "{Color:action/primary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1338,7 +1679,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 }
               }
             }
@@ -1346,6 +1687,7 @@
         },
         {
           "variant": "size=lg, shape=round, prio=primary, state=hover",
+          "id": "3604:810",
           "size": [
             48,
             48
@@ -1353,6 +1695,10 @@
           "fills": [
             "{Color:action/primary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
           ],
@@ -1362,10 +1708,10 @@
                 "fills": [
                   "{Color:action/primary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/hover}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1379,7 +1725,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/hover}"
@@ -1389,7 +1735,8 @@
           }
         },
         {
-          "variant": "size=lg, shape=round, prio=primary, state=pressed",
+          "variant": "size=lg, shape=round, prio=primary, state=active",
+          "id": "11072:272",
           "size": [
             48,
             48
@@ -1397,6 +1744,10 @@
           "fills": [
             "{Color:action/primary/bg/active}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/active}"
           ],
@@ -1406,10 +1757,10 @@
                 "fills": [
                   "{Color:action/primary/bg/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1423,7 +1774,56 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
+                },
+                "iconFills": [
+                  "{Color:action/primary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=pressed",
+          "id": "3604:812",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/active}"
+                ],
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  20,
+                  20
+                ],
+                "vars": {
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/active}"
@@ -1434,6 +1834,7 @@
         },
         {
           "variant": "size=lg, shape=round, prio=primary, state=disabled",
+          "id": "3604:814",
           "size": [
             48,
             48
@@ -1441,6 +1842,10 @@
           "fills": [
             "{Color:action/primary/bg/disabled}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/disabled}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
           ],
@@ -1450,10 +1855,10 @@
                 "fills": [
                   "{Color:action/primary/bg/disabled}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/primary/border/disabled}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1467,7 +1872,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/primary/icon/disabled}"
@@ -1478,12 +1883,16 @@
         },
         {
           "variant": "size=lg, shape=round, prio=primary, state=focus",
+          "id": "6043:84",
           "size": [
             48,
             48
           ],
           "fills": [
             "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -1492,8 +1901,6 @@
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
@@ -1509,7 +1916,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 }
               }
             }
@@ -1517,6 +1924,7 @@
         },
         {
           "variant": "size=lg, shape=round, prio=primary, state=loading",
+          "id": "6044:127",
           "size": [
             48,
             48
@@ -1524,19 +1932,23 @@
           "fills": [
             "{Color:action/primary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1551,7 +1963,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 }
               }
             },
@@ -1559,6 +1971,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1582,6 +1995,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/2xl",
+                    "height": "Spatial:icon/2xl"
                   }
                 }
               }
@@ -1590,15 +2007,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=secondary, state=default",
+          "id": "2995:468",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -1607,8 +2022,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ]
               },
               "/Icon/None": {
@@ -1621,6 +2037,7 @@
         },
         {
           "variant": "size=sm, shape=square, prio=secondary, state=hover",
+          "id": "2995:470",
           "size": [
             32,
             32
@@ -1629,8 +2046,9 @@
             "{Color:action/secondary/bg/hover}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/hover}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
           ],
@@ -1640,7 +2058,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ],
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/secondary/border/hover}"
+                ]
               },
               "/Icon/None": {
                 "iconFills": [
@@ -1651,18 +2071,19 @@
           }
         },
         {
-          "variant": "size=sm, shape=square, prio=secondary, state=pressed",
+          "variant": "size=sm, shape=square, prio=secondary, state=active",
+          "id": "11072:274",
           "size": [
             32,
             32
           ],
           "fills": [
-            "{Color:action/secondary/bg/active}"
+            "{Color:surface/active}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/active}"
           ],
-          "effect": "shadow/focus/default",
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/active}"
           ],
@@ -1670,9 +2091,41 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:action/secondary/bg/active}"
+                  "{Color:surface/active}"
                 ],
-                "effectStyle": "shadow/focus/default"
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ]
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=pressed",
+          "id": "2995:472",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ]
               },
               "/Icon/None": {
                 "iconFills": [
@@ -1684,13 +2137,15 @@
         },
         {
           "variant": "size=sm, shape=square, prio=secondary, state=disabled",
+          "id": "2995:474",
           "size": [
             32,
             32
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/secondary/border/disabled}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
           ],
@@ -1699,9 +2154,8 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
-                ],
-                "effectStyle": null
+                  "{Color:action/secondary/border/disabled}"
+                ]
               },
               "/Icon/None": {
                 "iconFills": [
@@ -1713,15 +2167,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=secondary, state=focus",
+          "id": "6043:86",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -1730,8 +2182,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ],
                 "effectStyle": "shadow/focus/default"
               },
@@ -1745,15 +2198,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=secondary, state=loading",
+          "id": "6044:134",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -1762,11 +2213,15 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ]
               },
               "/Icon/None": {
@@ -1780,6 +2235,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1803,6 +2259,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -1811,15 +2271,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=secondary, state=default",
+          "id": "3604:816",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -1828,8 +2286,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ],
                 "radius": 9999,
                 "vars": {
@@ -1849,6 +2308,7 @@
         },
         {
           "variant": "size=sm, shape=round, prio=secondary, state=hover",
+          "id": "3604:818",
           "size": [
             32,
             32
@@ -1857,8 +2317,9 @@
             "{Color:action/secondary/bg/hover}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/hover}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
           ],
@@ -1868,8 +2329,10 @@
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ],
+                "strokes": [
+                  "{Color:action/secondary/border/hover}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1886,18 +2349,19 @@
           }
         },
         {
-          "variant": "size=sm, shape=round, prio=secondary, state=pressed",
+          "variant": "size=sm, shape=round, prio=secondary, state=active",
+          "id": "11072:276",
           "size": [
             32,
             32
           ],
           "fills": [
-            "{Color:action/secondary/bg/active}"
+            "{Color:surface/active}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/active}"
           ],
-          "effect": "shadow/focus/default",
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/active}"
           ],
@@ -1905,10 +2369,49 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:action/secondary/bg/active}"
+                  "{Color:surface/active}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
                 ],
                 "radius": 9999,
-                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=pressed",
+          "id": "3604:820",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ],
+                "radius": 9999,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1926,13 +2429,15 @@
         },
         {
           "variant": "size=sm, shape=round, prio=secondary, state=disabled",
+          "id": "3604:822",
           "size": [
             32,
             32
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/secondary/border/disabled}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
           ],
@@ -1941,10 +2446,9 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/secondary/border/disabled}"
                 ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -1962,15 +2466,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=secondary, state=focus",
+          "id": "6043:88",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -1979,8 +2481,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ],
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
@@ -2001,15 +2504,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=secondary, state=loading",
+          "id": "6044:141",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -2018,11 +2519,15 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ],
                 "radius": 9999,
                 "vars": {
@@ -2043,6 +2548,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -2066,6 +2572,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -2074,6 +2584,7 @@
         },
         {
           "variant": "size=md, shape=square, prio=secondary, state=default",
+          "id": "2995:476",
           "size": [
             40,
             40
@@ -2082,7 +2593,7 @@
             "{Color:action/secondary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -2093,6 +2604,9 @@
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ]
               },
               "/Icon/None": {
@@ -2101,7 +2615,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2112,6 +2626,7 @@
         },
         {
           "variant": "size=md, shape=square, prio=secondary, state=hover",
+          "id": "2995:478",
           "size": [
             40,
             40
@@ -2120,8 +2635,9 @@
             "{Color:action/secondary/bg/hover}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/hover}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
           ],
@@ -2131,7 +2647,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ],
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/secondary/border/hover}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -2139,7 +2657,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/hover}"
@@ -2149,7 +2667,50 @@
           }
         },
         {
+          "variant": "size=md, shape=square, prio=secondary, state=active",
+          "id": "11072:278",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ]
+              },
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
           "variant": "size=md, shape=square, prio=secondary, state=pressed",
+          "id": "2995:480",
           "size": [
             40,
             40
@@ -2158,9 +2719,9 @@
             "{Color:action/secondary/bg/active}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/active}"
           ],
-          "effect": "shadow/focus/default",
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/active}"
           ],
@@ -2170,7 +2731,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/active}"
                 ],
-                "effectStyle": "shadow/focus/default"
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -2178,7 +2741,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/active}"
@@ -2189,13 +2752,15 @@
         },
         {
           "variant": "size=md, shape=square, prio=secondary, state=disabled",
+          "id": "2995:482",
           "size": [
             40,
             40
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/secondary/border/disabled}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
           ],
@@ -2204,9 +2769,8 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
-                ],
-                "effectStyle": null
+                  "{Color:action/secondary/border/disabled}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -2214,7 +2778,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/disabled}"
@@ -2225,6 +2789,7 @@
         },
         {
           "variant": "size=md, shape=square, prio=secondary, state=focus",
+          "id": "6043:90",
           "size": [
             40,
             40
@@ -2233,7 +2798,7 @@
             "{Color:action/secondary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -2245,6 +2810,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/default}"
                 ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
                 "effectStyle": "shadow/focus/default"
               },
               "/Icon/None": {
@@ -2253,7 +2821,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2264,6 +2832,7 @@
         },
         {
           "variant": "size=md, shape=square, prio=secondary, state=loading",
+          "id": "6044:148",
           "size": [
             40,
             40
@@ -2272,7 +2841,7 @@
             "{Color:action/secondary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -2281,11 +2850,17 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ]
               },
               "/Icon/None": {
@@ -2295,7 +2870,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2306,6 +2881,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -2329,6 +2905,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -2337,6 +2917,7 @@
         },
         {
           "variant": "size=md, shape=round, prio=secondary, state=default",
+          "id": "3604:824",
           "size": [
             40,
             40
@@ -2345,7 +2926,7 @@
             "{Color:action/secondary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -2356,6 +2937,9 @@
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ],
                 "radius": 9999,
                 "vars": {
@@ -2371,7 +2955,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2382,6 +2966,7 @@
         },
         {
           "variant": "size=md, shape=round, prio=secondary, state=hover",
+          "id": "3604:826",
           "size": [
             40,
             40
@@ -2390,8 +2975,9 @@
             "{Color:action/secondary/bg/hover}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/hover}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
           ],
@@ -2401,8 +2987,10 @@
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ],
+                "strokes": [
+                  "{Color:action/secondary/border/hover}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -2416,7 +3004,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/hover}"
@@ -2426,18 +3014,19 @@
           }
         },
         {
-          "variant": "size=md, shape=round, prio=secondary, state=pressed",
+          "variant": "size=md, shape=round, prio=secondary, state=active",
+          "id": "11072:280",
           "size": [
             40,
             40
           ],
           "fills": [
-            "{Color:action/secondary/bg/active}"
+            "{Color:surface/active}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/active}"
           ],
-          "effect": "shadow/focus/default",
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/active}"
           ],
@@ -2445,10 +3034,12 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:action/secondary/bg/active}"
+                  "{Color:surface/active}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
                 ],
                 "radius": 9999,
-                "effectStyle": "shadow/focus/default",
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -2462,7 +3053,56 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=pressed",
+          "id": "3604:828",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ],
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/active}"
@@ -2473,13 +3113,15 @@
         },
         {
           "variant": "size=md, shape=round, prio=secondary, state=disabled",
+          "id": "3604:830",
           "size": [
             40,
             40
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/secondary/border/disabled}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
           ],
@@ -2488,10 +3130,9 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/secondary/border/disabled}"
                 ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -2505,7 +3146,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/disabled}"
@@ -2516,6 +3157,7 @@
         },
         {
           "variant": "size=md, shape=round, prio=secondary, state=focus",
+          "id": "6043:92",
           "size": [
             40,
             40
@@ -2524,7 +3166,7 @@
             "{Color:action/secondary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -2535,6 +3177,9 @@
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ],
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
@@ -2551,7 +3196,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2562,6 +3207,7 @@
         },
         {
           "variant": "size=md, shape=round, prio=secondary, state=loading",
+          "id": "6044:155",
           "size": [
             40,
             40
@@ -2570,7 +3216,7 @@
             "{Color:action/secondary/bg/default}"
           ],
           "strokes": [
-            "{Color:border/medium}"
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/control",
           "iconFills": [
@@ -2579,11 +3225,17 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
                 "fills": [
                   "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
                 ],
                 "radius": 9999,
                 "vars": {
@@ -2600,7 +3252,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2611,6 +3263,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -2634,6 +3287,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -2642,6 +3299,7 @@
         },
         {
           "variant": "size=lg, shape=square, prio=secondary, state=default",
+          "id": "2995:484",
           "size": [
             48,
             48
@@ -2649,6 +3307,10 @@
           "fills": [
             "{Color:action/secondary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
@@ -2658,9 +3320,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -2668,7 +3330,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2679,6 +3341,7 @@
         },
         {
           "variant": "size=lg, shape=square, prio=secondary, state=hover",
+          "id": "2995:486",
           "size": [
             48,
             48
@@ -2686,6 +3349,10 @@
           "fills": [
             "{Color:action/secondary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
           ],
@@ -2695,9 +3362,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/secondary/border/hover}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -2705,7 +3372,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/hover}"
@@ -2715,7 +3382,50 @@
           }
         },
         {
+          "variant": "size=lg, shape=square, prio=secondary, state=active",
+          "id": "11072:282",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ]
+              },
+              "/Icon/None": {
+                "size": [
+                  20,
+                  20
+                ],
+                "vars": {
+                  "width": "Spatial:icon/md"
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
           "variant": "size=lg, shape=square, prio=secondary, state=pressed",
+          "id": "2995:488",
           "size": [
             48,
             48
@@ -2723,6 +3433,10 @@
           "fills": [
             "{Color:action/secondary/bg/active}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/active}"
           ],
@@ -2732,9 +3446,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -2742,7 +3456,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/active}"
@@ -2753,13 +3467,15 @@
         },
         {
           "variant": "size=lg, shape=square, prio=secondary, state=disabled",
+          "id": "2995:490",
           "size": [
             48,
             48
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/secondary/border/disabled}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
           ],
@@ -2768,9 +3484,8 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
-                ],
-                "effectStyle": null
+                  "{Color:action/secondary/border/disabled}"
+                ]
               },
               "/Icon/None": {
                 "size": [
@@ -2778,7 +3493,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/disabled}"
@@ -2789,12 +3504,16 @@
         },
         {
           "variant": "size=lg, shape=square, prio=secondary, state=focus",
+          "id": "6043:94",
           "size": [
             48,
             48
           ],
           "fills": [
             "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -2806,8 +3525,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
                 "effectStyle": "shadow/focus/default"
               },
               "/Icon/None": {
@@ -2816,7 +3536,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2827,6 +3547,7 @@
         },
         {
           "variant": "size=lg, shape=square, prio=secondary, state=loading",
+          "id": "6044:162",
           "size": [
             48,
             48
@@ -2834,11 +3555,18 @@
           "fills": [
             "{Color:action/secondary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Icon/None"
           ],
           "overrides": {
             "changed": {
@@ -2846,9 +3574,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
-                "effectStyle": null
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ]
               },
               "/Icon/None": {
                 "hidden": true,
@@ -2857,7 +3585,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2868,6 +3596,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -2891,6 +3620,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/2xl",
+                    "height": "Spatial:icon/2xl"
                   }
                 }
               }
@@ -2899,6 +3632,7 @@
         },
         {
           "variant": "size=lg, shape=round, prio=secondary, state=default",
+          "id": "3604:832",
           "size": [
             48,
             48
@@ -2906,6 +3640,10 @@
           "fills": [
             "{Color:action/secondary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
@@ -2915,10 +3653,10 @@
                 "fills": [
                   "{Color:action/secondary/bg/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -2932,7 +3670,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -2943,6 +3681,7 @@
         },
         {
           "variant": "size=lg, shape=round, prio=secondary, state=hover",
+          "id": "3604:834",
           "size": [
             48,
             48
@@ -2950,6 +3689,10 @@
           "fills": [
             "{Color:action/secondary/bg/hover}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/hover}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
           ],
@@ -2959,10 +3702,10 @@
                 "fills": [
                   "{Color:action/secondary/bg/hover}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/secondary/border/hover}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -2976,7 +3719,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/hover}"
@@ -2986,14 +3729,19 @@
           }
         },
         {
-          "variant": "size=lg, shape=round, prio=secondary, state=pressed",
+          "variant": "size=lg, shape=round, prio=secondary, state=active",
+          "id": "11072:284",
           "size": [
             48,
             48
           ],
           "fills": [
-            "{Color:action/secondary/bg/active}"
+            "{Color:surface/active}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/active}"
           ],
@@ -3001,12 +3749,12 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:action/secondary/bg/active}"
+                  "{Color:surface/active}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -3020,7 +3768,56 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
+                },
+                "iconFills": [
+                  "{Color:action/secondary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=pressed",
+          "id": "3604:836",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/active}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/active}"
+                ],
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  20,
+                  20
+                ],
+                "vars": {
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/active}"
@@ -3031,13 +3828,15 @@
         },
         {
           "variant": "size=lg, shape=round, prio=secondary, state=disabled",
+          "id": "3604:838",
           "size": [
             48,
             48
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/secondary/border/disabled}"
           ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
           ],
@@ -3046,10 +3845,9 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/secondary/border/disabled}"
                 ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -3063,7 +3861,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/disabled}"
@@ -3074,12 +3872,16 @@
         },
         {
           "variant": "size=lg, shape=round, prio=secondary, state=focus",
+          "id": "6043:96",
           "size": [
             48,
             48
           ],
           "fills": [
             "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/secondary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -3091,8 +3893,9 @@
                 "fills": [
                   "{Color:action/secondary/bg/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
@@ -3108,7 +3911,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -3119,6 +3922,7 @@
         },
         {
           "variant": "size=lg, shape=round, prio=secondary, state=loading",
+          "id": "6044:169",
           "size": [
             48,
             48
@@ -3126,11 +3930,18 @@
           "fills": [
             "{Color:action/secondary/bg/default}"
           ],
+          "strokes": [
+            "{Color:action/secondary/border/default}"
+          ],
+          "effect": "shadow/control",
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Icon/None"
           ],
           "overrides": {
             "changed": {
@@ -3138,10 +3949,10 @@
                 "fills": [
                   "{Color:action/secondary/bg/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
                 "radius": 9999,
-                "effectStyle": null,
                 "vars": {
                   "topLeftRadius": "Spatial:radius/pill",
                   "topRightRadius": "Spatial:radius/pill",
@@ -3156,7 +3967,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/secondary/icon/default}"
@@ -3167,6 +3978,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -3190,6 +4002,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/2xl",
+                    "height": "Spatial:icon/2xl"
                   }
                 }
               }
@@ -3198,12 +4014,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=tertiary, state=default",
+          "id": "2995:492",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -3211,11 +4028,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3228,12 +4044,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=tertiary, state=hover",
+          "id": "2995:494",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/hover}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
@@ -3241,11 +4058,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/hover}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3257,13 +4073,14 @@
           }
         },
         {
-          "variant": "size=sm, shape=square, prio=tertiary, state=pressed",
+          "variant": "size=sm, shape=square, prio=tertiary, state=active",
+          "id": "11072:286",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/active}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
@@ -3271,11 +4088,40 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/active}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "effectStyle": null
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=pressed",
+          "id": "2995:496",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3288,12 +4134,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=tertiary, state=disabled",
+          "id": "2995:498",
           "size": [
             32,
             32
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
@@ -3303,7 +4150,7 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/tertiary/border/default}"
                 ],
                 "effectStyle": null
               },
@@ -3317,12 +4164,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=tertiary, state=focus",
+          "id": "6043:98",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -3331,11 +4179,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": "shadow/focus/default"
               },
               "/Icon/None": {
@@ -3348,12 +4195,13 @@
         },
         {
           "variant": "size=sm, shape=square, prio=tertiary, state=loading",
+          "id": "6044:176",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -3361,14 +4209,16 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3382,6 +4232,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -3405,6 +4256,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -3413,12 +4268,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=tertiary, state=default",
+          "id": "3604:840",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -3426,11 +4282,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -3450,12 +4305,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=tertiary, state=hover",
+          "id": "3604:842",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/hover}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
@@ -3463,11 +4319,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/hover}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -3486,13 +4341,14 @@
           }
         },
         {
-          "variant": "size=sm, shape=round, prio=tertiary, state=pressed",
+          "variant": "size=sm, shape=round, prio=tertiary, state=active",
+          "id": "11072:288",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/active}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
@@ -3500,11 +4356,47 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/active}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
+                "radius": 9999,
+                "effectStyle": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=pressed",
+          "id": "3604:844",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -3524,12 +4416,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=tertiary, state=disabled",
+          "id": "3604:846",
           "size": [
             32,
             32
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
@@ -3539,7 +4432,7 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/tertiary/border/default}"
                 ],
                 "radius": 9999,
                 "effectStyle": null,
@@ -3560,12 +4453,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=tertiary, state=focus",
+          "id": "6043:100",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -3574,11 +4468,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
@@ -3598,12 +4491,13 @@
         },
         {
           "variant": "size=sm, shape=round, prio=tertiary, state=loading",
+          "id": "6044:183",
           "size": [
             32,
             32
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -3611,14 +4505,16 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -3639,6 +4535,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -3662,6 +4559,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -3670,12 +4571,13 @@
         },
         {
           "variant": "size=md, shape=square, prio=tertiary, state=default",
+          "id": "2995:500",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -3683,11 +4585,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3696,7 +4597,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -3707,12 +4608,13 @@
         },
         {
           "variant": "size=md, shape=square, prio=tertiary, state=hover",
+          "id": "2995:502",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/hover}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
@@ -3720,11 +4622,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/hover}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3733,7 +4634,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/hover}"
@@ -3743,13 +4644,14 @@
           }
         },
         {
-          "variant": "size=md, shape=square, prio=tertiary, state=pressed",
+          "variant": "size=md, shape=square, prio=tertiary, state=active",
+          "id": "11072:290",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/active}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
@@ -3757,11 +4659,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/active}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3770,7 +4671,44 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=pressed",
+          "id": "2995:504",
+          "size": [
+            40,
+            40
+          ],
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
+                "effectStyle": null
+              },
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/active}"
@@ -3781,12 +4719,13 @@
         },
         {
           "variant": "size=md, shape=square, prio=tertiary, state=disabled",
+          "id": "2995:506",
           "size": [
             40,
             40
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
@@ -3796,7 +4735,7 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/tertiary/border/default}"
                 ],
                 "effectStyle": null
               },
@@ -3806,7 +4745,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/disabled}"
@@ -3817,12 +4756,13 @@
         },
         {
           "variant": "size=md, shape=square, prio=tertiary, state=focus",
+          "id": "6043:102",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -3831,11 +4771,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": "shadow/focus/default"
               },
               "/Icon/None": {
@@ -3844,7 +4783,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -3855,12 +4794,13 @@
         },
         {
           "variant": "size=md, shape=square, prio=tertiary, state=loading",
+          "id": "6044:190",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -3868,14 +4808,16 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -3885,7 +4827,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -3896,6 +4838,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -3919,6 +4862,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -3927,12 +4874,13 @@
         },
         {
           "variant": "size=md, shape=round, prio=tertiary, state=default",
+          "id": "3604:848",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -3940,11 +4888,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -3960,7 +4907,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -3971,12 +4918,13 @@
         },
         {
           "variant": "size=md, shape=round, prio=tertiary, state=hover",
+          "id": "3604:850",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/hover}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
@@ -3984,11 +4932,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/hover}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -4004,7 +4951,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/hover}"
@@ -4014,13 +4961,14 @@
           }
         },
         {
-          "variant": "size=md, shape=round, prio=tertiary, state=pressed",
+          "variant": "size=md, shape=round, prio=tertiary, state=active",
+          "id": "11072:292",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/active}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
@@ -4028,11 +4976,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/active}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -4048,7 +4995,51 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=pressed",
+          "id": "3604:852",
+          "size": [
+            40,
+            40
+          ],
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
+                "radius": 9999,
+                "effectStyle": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/active}"
@@ -4059,12 +5050,13 @@
         },
         {
           "variant": "size=md, shape=round, prio=tertiary, state=disabled",
+          "id": "3604:854",
           "size": [
             40,
             40
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
@@ -4074,7 +5066,7 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/tertiary/border/default}"
                 ],
                 "radius": 9999,
                 "effectStyle": null,
@@ -4091,7 +5083,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/disabled}"
@@ -4102,12 +5094,13 @@
         },
         {
           "variant": "size=md, shape=round, prio=tertiary, state=focus",
+          "id": "6043:104",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -4116,11 +5109,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
@@ -4136,7 +5128,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4147,12 +5139,13 @@
         },
         {
           "variant": "size=md, shape=round, prio=tertiary, state=loading",
+          "id": "6044:197",
           "size": [
             40,
             40
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -4160,14 +5153,16 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -4184,7 +5179,7 @@
                   16
                 ],
                 "vars": {
-                  "height": "Spatial:icon/sm"
+                  "width": "Spatial:icon/sm"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4195,6 +5190,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -4218,6 +5214,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -4226,12 +5226,13 @@
         },
         {
           "variant": "size=lg, shape=square, prio=tertiary, state=default",
+          "id": "2995:508",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -4239,11 +5240,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -4252,7 +5252,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4263,12 +5263,13 @@
         },
         {
           "variant": "size=lg, shape=square, prio=tertiary, state=hover",
+          "id": "2995:510",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/hover}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
@@ -4276,11 +5277,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/hover}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -4289,7 +5289,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/hover}"
@@ -4299,13 +5299,14 @@
           }
         },
         {
-          "variant": "size=lg, shape=square, prio=tertiary, state=pressed",
+          "variant": "size=lg, shape=square, prio=tertiary, state=active",
+          "id": "11072:294",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/active}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
@@ -4313,11 +5314,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/active}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -4326,7 +5326,44 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=pressed",
+          "id": "2995:512",
+          "size": [
+            48,
+            48
+          ],
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
+                "effectStyle": null
+              },
+              "/Icon/None": {
+                "size": [
+                  20,
+                  20
+                ],
+                "vars": {
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/active}"
@@ -4337,12 +5374,13 @@
         },
         {
           "variant": "size=lg, shape=square, prio=tertiary, state=disabled",
+          "id": "2995:514",
           "size": [
             48,
             48
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
@@ -4352,7 +5390,7 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/tertiary/border/default}"
                 ],
                 "effectStyle": null
               },
@@ -4362,7 +5400,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/disabled}"
@@ -4373,12 +5411,13 @@
         },
         {
           "variant": "size=lg, shape=square, prio=tertiary, state=focus",
+          "id": "6043:106",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -4387,11 +5426,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": "shadow/focus/default"
               },
               "/Icon/None": {
@@ -4400,7 +5438,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4411,12 +5449,13 @@
         },
         {
           "variant": "size=lg, shape=square, prio=tertiary, state=loading",
+          "id": "6044:204",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -4424,14 +5463,16 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "effectStyle": null
               },
               "/Icon/None": {
@@ -4441,7 +5482,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4452,6 +5493,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -4475,6 +5517,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/2xl",
+                    "height": "Spatial:icon/2xl"
                   }
                 }
               }
@@ -4483,12 +5529,13 @@
         },
         {
           "variant": "size=lg, shape=round, prio=tertiary, state=default",
+          "id": "3604:856",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -4496,11 +5543,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -4516,7 +5562,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4527,12 +5573,13 @@
         },
         {
           "variant": "size=lg, shape=round, prio=tertiary, state=hover",
+          "id": "3604:858",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/hover}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
@@ -4540,11 +5587,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/hover}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -4560,7 +5606,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/hover}"
@@ -4570,13 +5616,14 @@
           }
         },
         {
-          "variant": "size=lg, shape=round, prio=tertiary, state=pressed",
+          "variant": "size=lg, shape=round, prio=tertiary, state=active",
+          "id": "11072:296",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/active}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
@@ -4584,11 +5631,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/active}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -4604,7 +5650,51 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
+                },
+                "iconFills": [
+                  "{Color:action/tertiary/icon/active}"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=pressed",
+          "id": "3604:860",
+          "size": [
+            48,
+            48
+          ],
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
+                "radius": 9999,
+                "effectStyle": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  20,
+                  20
+                ],
+                "vars": {
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/active}"
@@ -4615,12 +5705,13 @@
         },
         {
           "variant": "size=lg, shape=round, prio=tertiary, state=disabled",
+          "id": "3604:862",
           "size": [
             48,
             48
           ],
           "strokes": [
-            "{Color:border/disabled}"
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
@@ -4630,7 +5721,7 @@
               "/": {
                 "fills": null,
                 "strokes": [
-                  "{Color:border/disabled}"
+                  "{Color:action/tertiary/border/default}"
                 ],
                 "radius": 9999,
                 "effectStyle": null,
@@ -4647,7 +5738,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/disabled}"
@@ -4658,12 +5749,13 @@
         },
         {
           "variant": "size=lg, shape=round, prio=tertiary, state=focus",
+          "id": "6043:108",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
@@ -4672,11 +5764,10 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": "shadow/focus/default",
                 "vars": {
@@ -4692,7 +5783,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4703,12 +5794,13 @@
         },
         {
           "variant": "size=lg, shape=round, prio=tertiary, state=loading",
+          "id": "6044:211",
           "size": [
             48,
             48
           ],
-          "fills": [
-            "{Color:action/tertiary/bg/default}"
+          "strokes": [
+            "{Color:action/tertiary/border/default}"
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
@@ -4716,14 +5808,16 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/tertiary/bg/default}"
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
                 ],
-                "strokes": null,
-                "strokeWeight": null,
                 "radius": 9999,
                 "effectStyle": null,
                 "vars": {
@@ -4740,7 +5834,7 @@
                   20
                 ],
                 "vars": {
-                  "height": "Spatial:icon/md"
+                  "width": "Spatial:icon/md"
                 },
                 "iconFills": [
                   "{Color:action/tertiary/icon/default}"
@@ -4751,6 +5845,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -4774,6 +5869,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/2xl",
+                    "height": "Spatial:icon/2xl"
                   }
                 }
               }

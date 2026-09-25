@@ -5,7 +5,7 @@
     {
       "name": "FAB",
       "id": "4557:130",
-      "description": "Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled, loading). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.",
+      "description": "Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon, extended) × size (sm 44px, md 56px) × state (default, hover, pressed, focus, disabled, loading). Uses action/primary tokens + shadow/raised; focus replaces the lift with shadow/focus/default. loading keeps the resting width. extended adds a label for discoverability. One FAB per screen.",
       "docLinks": [],
       "variantCount": 24,
       "props": {
@@ -111,6 +111,7 @@
       "variants": [
         {
           "variant": "type=icon, size=sm, state=default",
+          "id": "4557:80",
           "size": [
             44,
             44
@@ -125,10 +126,12 @@
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=icon, size=sm, state=hover",
+          "id": "4557:82",
           "size": [
             44,
             44
@@ -160,6 +163,7 @@
         },
         {
           "variant": "type=icon, size=sm, state=pressed",
+          "id": "4557:84",
           "size": [
             44,
             44
@@ -191,6 +195,7 @@
         },
         {
           "variant": "type=icon, size=sm, state=disabled",
+          "id": "4557:88",
           "size": [
             44,
             44
@@ -222,6 +227,7 @@
         },
         {
           "variant": "type=icon, size=sm, state=focus",
+          "id": "4557:86",
           "size": [
             44,
             44
@@ -232,13 +238,21 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "effect": "shadow/overlay",
+          "effect": "shadow/focus/default",
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=sm, state=loading",
+          "id": "6044:324",
           "size": [
             44,
             44
@@ -256,6 +270,9 @@
           "hidden": [
             "Icon/None"
           ],
+          "hiddenPaths": [
+            "/Icon/None"
+          ],
           "overrides": {
             "changed": {
               "/Icon/None": {
@@ -266,6 +283,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -289,6 +307,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -297,6 +319,7 @@
         },
         {
           "variant": "type=icon, size=md, state=default",
+          "id": "4557:90",
           "size": [
             56,
             56
@@ -334,6 +357,7 @@
         },
         {
           "variant": "type=icon, size=md, state=hover",
+          "id": "4557:92",
           "size": [
             56,
             56
@@ -379,6 +403,7 @@
         },
         {
           "variant": "type=icon, size=md, state=pressed",
+          "id": "4557:94",
           "size": [
             56,
             56
@@ -424,6 +449,7 @@
         },
         {
           "variant": "type=icon, size=md, state=disabled",
+          "id": "4557:98",
           "size": [
             56,
             56
@@ -469,6 +495,7 @@
         },
         {
           "variant": "type=icon, size=md, state=focus",
+          "id": "4557:96",
           "size": [
             56,
             56
@@ -479,7 +506,7 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "effect": "shadow/overlay",
+          "effect": "shadow/focus/default",
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
@@ -494,6 +521,7 @@
                     16
                   ]
                 },
+                "effectStyle": "shadow/focus/default",
                 "vars": {
                   "paddingLeft": "Spatial:inset/md",
                   "paddingTop": "Spatial:inset/md",
@@ -506,6 +534,7 @@
         },
         {
           "variant": "type=icon, size=md, state=loading",
+          "id": "6044:331",
           "size": [
             56,
             56
@@ -540,6 +569,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -563,6 +593,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -574,6 +608,7 @@
         },
         {
           "variant": "type=extended, size=sm, state=default",
+          "id": "4557:100",
           "size": [
             91,
             44
@@ -614,6 +649,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -643,6 +679,7 @@
         },
         {
           "variant": "type=extended, size=sm, state=hover",
+          "id": "4557:103",
           "size": [
             91,
             44
@@ -691,6 +728,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -720,6 +758,7 @@
         },
         {
           "variant": "type=extended, size=sm, state=pressed",
+          "id": "4557:106",
           "size": [
             91,
             44
@@ -768,6 +807,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -797,6 +837,7 @@
         },
         {
           "variant": "type=extended, size=sm, state=disabled",
+          "id": "4557:112",
           "size": [
             91,
             44
@@ -845,6 +886,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -874,6 +916,7 @@
         },
         {
           "variant": "type=extended, size=sm, state=focus",
+          "id": "4557:109",
           "size": [
             91,
             44
@@ -884,7 +927,7 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "effect": "shadow/overlay",
+          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:action/primary/text/default}"
           ],
@@ -904,6 +947,7 @@
                   ],
                   "sizing": "HUG/FIXED"
                 },
+                "effectStyle": "shadow/focus/default",
                 "vars": {
                   "paddingRight": "Spatial:inset/lg",
                   "itemSpacing": "Spatial:stack/xs"
@@ -914,6 +958,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -943,8 +988,9 @@
         },
         {
           "variant": "type=extended, size=sm, state=loading",
+          "id": "6044:338",
           "size": [
-            84,
+            91,
             44
           ],
           "fills": [
@@ -960,6 +1006,10 @@
           "hidden": [
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Icon/None",
+            "/Label"
           ],
           "overrides": {
             "changed": {
@@ -979,6 +1029,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1007,6 +1058,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1030,6 +1082,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -1038,6 +1094,7 @@
         },
         {
           "variant": "type=extended, size=md, state=default",
+          "id": "4557:115",
           "size": [
             112,
             56
@@ -1091,6 +1148,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1120,6 +1178,7 @@
         },
         {
           "variant": "type=extended, size=md, state=hover",
+          "id": "4557:118",
           "size": [
             112,
             56
@@ -1179,6 +1238,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1208,6 +1268,7 @@
         },
         {
           "variant": "type=extended, size=md, state=pressed",
+          "id": "4557:121",
           "size": [
             112,
             56
@@ -1267,6 +1328,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1296,6 +1358,7 @@
         },
         {
           "variant": "type=extended, size=md, state=disabled",
+          "id": "4557:127",
           "size": [
             112,
             56
@@ -1355,6 +1418,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1384,6 +1448,7 @@
         },
         {
           "variant": "type=extended, size=md, state=focus",
+          "id": "4557:124",
           "size": [
             112,
             56
@@ -1394,7 +1459,7 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "effect": "shadow/overlay",
+          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:action/primary/text/default}"
           ],
@@ -1414,6 +1479,7 @@
                   ],
                   "sizing": "HUG/FIXED"
                 },
+                "effectStyle": "shadow/focus/default",
                 "vars": {
                   "paddingLeft": "Spatial:inset/md",
                   "paddingTop": "Spatial:inset/md",
@@ -1437,6 +1503,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1466,8 +1533,9 @@
         },
         {
           "variant": "type=extended, size=md, state=loading",
+          "id": "6044:346",
           "size": [
-            104,
+            112,
             56
           ],
           "fills": [
@@ -1479,6 +1547,9 @@
           "effect": "shadow/overlay",
           "hidden": [
             "Label"
+          ],
+          "hiddenPaths": [
+            "/Label"
           ],
           "overrides": {
             "changed": {
@@ -1505,6 +1576,7 @@
               {
                 "path": "/Label",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Label",
                   "type": "TEXT",
@@ -1533,6 +1605,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1556,6 +1629,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }

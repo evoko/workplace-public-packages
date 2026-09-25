@@ -289,6 +289,7 @@
       "variants": [
         {
           "variant": "state=default",
+          "id": "4185:79",
           "size": [
             400,
             107
@@ -308,10 +309,17 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Field/Button/Counter",
+            "/Field/Button/Icon/None",
+            "/Field/Button/Icon/None#2",
+            "/Field/Button/Spinner"
           ]
         },
         {
           "variant": "state=hover",
+          "id": "4188:79",
           "size": [
             400,
             107
@@ -339,6 +347,7 @@
         },
         {
           "variant": "state=error",
+          "id": "4188:86",
           "size": [
             400,
             107
@@ -384,6 +393,7 @@
         },
         {
           "variant": "state=disabled",
+          "id": "4188:93",
           "size": [
             400,
             107
@@ -440,9 +450,10 @@
         },
         {
           "variant": "state=filled",
+          "id": "4188:100",
           "size": [
             400,
-            111
+            107
           ],
           "textFills": [
             "{Color:text/primary}",
@@ -455,17 +466,9 @@
             "{Color:action/secondary/icon/danger/default}"
           ],
           "hidden": [],
+          "hiddenPaths": [],
           "overrides": {
             "changed": {
-              "/Field": {
-                "size": [
-                  400,
-                  68
-                ],
-                "layout": {
-                  "sizing": "FILL/FIXED"
-                }
-              },
               "/Field/Icon/File": {
                 "iconFills": [
                   "{Color:icon/primary}"
@@ -486,6 +489,7 @@
               {
                 "path": "/Field/Icon Button",
                 "parent": "/Field",
+                "index": 2,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -516,7 +520,7 @@
                     "{Color:action/secondary/bg/default}"
                   ],
                   "strokes": [
-                    "{Color:border/medium}"
+                    "{Color:action/secondary/border/default}"
                   ],
                   "strokeWeight": 1,
                   "radius": 6,
@@ -536,6 +540,7 @@
               {
                 "path": "/Field/Icon Button#2",
                 "parent": "/Field",
+                "index": 3,
                 "layer": {
                   "name": "Icon Button",
                   "type": "INSTANCE",
@@ -591,11 +596,11 @@
         },
         {
           "variant": "state=focus",
+          "id": "6074:83",
           "size": [
             400,
             107
           ],
-          "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/feedback/info}",
@@ -609,7 +614,7 @@
           ],
           "overrides": {
             "changed": {
-              "/": {
+              "/Field": {
                 "effectStyle": "shadow/focus/default"
               }
             }

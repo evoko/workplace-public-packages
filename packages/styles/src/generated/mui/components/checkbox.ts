@@ -43,8 +43,8 @@ export const solarCheckboxStyles = {
     '& input': {
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
@@ -145,7 +145,6 @@ export const solarCheckboxStyles = {
     },
     'checked=true, mixed=true': {
       backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-      borderColor: 'var(--solar-color-border-medium)',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
@@ -157,7 +156,6 @@ export const solarCheckboxStyles = {
       '&:hover, .SolarStatesScope:hover &, .SolarStatesScope.Mui-focusVisible &':
         {
           backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-          borderColor: 'var(--solar-color-border-medium)',
           '& .SolarCheckbox--container': {
             fill: 'var(--solar-color-icon-inverse)',
             stroke: 'none',

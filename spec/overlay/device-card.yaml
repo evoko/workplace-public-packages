@@ -148,16 +148,3 @@ allowLiteral:
     reason: As the single card's placeholder, carried as drawn.
   headlineContentSkeleton.height:
     reason: As the single card's placeholder, carried as drawn.
-
-hides:
-  headlineTag:
-    not: [label]
-    reason: >-
-      A batch's Tag draws its words (Figma's instance shows its Label, 99 wide): Figma records the
-      batch variant's hidden layers by name alone, and its Dropdown's hidden label is named Label
-      too, which the Tag's words are.
-  devices:
-    not: [fieldLabel]
-    reason: >-
-      A batch's Dropdown draws its field's words (Figma's instance shows them, 488 wide); it hides
-      the label above the field, named Label as the words are, which Figma records by name alone.

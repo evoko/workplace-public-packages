@@ -79,7 +79,7 @@ field's `enabled`, a button's null `onPressed`). The one exception is Figma's `s
   ten foundational rules, verified token grammar, banned segments, spatial and type
   scales, z-index ladder, and the pre-submission checklist.
 - Every value comes from [docs/solar/tokens/figma-variables.json](docs/solar/tokens/figma-variables.json).
-  It is the token source of truth (265 primitives, 287 color, 34 spatial, 41 type
+  It is the token source of truth (265 primitives, 287 color, 38 spatial, 41 type
   variables; 60 text styles; 9 effect styles). Derived from it: `css-contract.json`
   (resolved CSS names and values), `reference.css`, and `grammar.json` (validation
   regexes and banned names). Regenerate with `npm run solar:tokens`; their shapes are in

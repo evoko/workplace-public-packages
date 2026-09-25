@@ -52,8 +52,8 @@ export const solarToggleStyles = {
     '& .MuiSwitch-switchBase .MuiSwitch-input': {
       top: '50%',
       left: '50%',
-      width: 'max(100%, 44px)',
-      height: 'max(100%, 44px)',
+      width: 'max(100%, var(--solar-size-target-min))',
+      height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
     },
   },
@@ -93,8 +93,8 @@ export const solarToggleStyles = {
         },
       },
       '&:has(.Mui-focusVisible)': {
+        borderColor: 'var(--solar-color-border-feedback-focus-strong)',
         boxShadow: 'var(--solar-shadow-focus-default)',
-        borderColor: 'var(--solar-color-border-subtle)',
         '& .SolarToggle--thumb': {
           borderColor: 'var(--solar-color-border-subtle)',
         },
@@ -119,10 +119,12 @@ export const solarToggleStyles = {
         },
       },
       '&:has(.Mui-focusVisible)': {
-        boxShadow: 'var(--solar-shadow-focus-default)',
         backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-        borderColor: 'var(--solar-color-border-subtle)',
+        borderColor: 'var(--solar-color-border-feedback-focus-strong)',
+        boxShadow: 'var(--solar-shadow-focus-default)',
         '& .SolarToggle--thumb': {
+          position: 'absolute',
+          left: 'calc(17px - var(--solar-placed-left, 0px))',
           borderColor: 'var(--solar-color-border-subtle)',
         },
       },

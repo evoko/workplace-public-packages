@@ -241,6 +241,7 @@
       "variants": [
         {
           "variant": "status=success, state=default, ghost=false",
+          "id": "3763:625",
           "size": [
             240,
             84
@@ -259,10 +260,12 @@
             "{Color:icon/primary}",
             "{Color:icon/inverse}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "status=warning, state=default, ghost=false",
+          "id": "3763:675",
           "size": [
             240,
             84
@@ -312,6 +315,7 @@
         },
         {
           "variant": "status=danger, state=default, ghost=false",
+          "id": "3763:674",
           "size": [
             240,
             84
@@ -361,6 +365,7 @@
         },
         {
           "variant": "status=neutral, state=default, ghost=false",
+          "id": "3763:673",
           "size": [
             240,
             84
@@ -409,6 +414,7 @@
         },
         {
           "variant": "status=success, state=hover, ghost=false",
+          "id": "3763:729",
           "size": [
             240,
             84
@@ -439,6 +445,7 @@
         },
         {
           "variant": "status=warning, state=hover, ghost=false",
+          "id": "3763:736",
           "size": [
             240,
             84
@@ -493,6 +500,7 @@
         },
         {
           "variant": "status=danger, state=hover, ghost=false",
+          "id": "3763:743",
           "size": [
             240,
             84
@@ -547,6 +555,7 @@
         },
         {
           "variant": "status=neutral, state=hover, ghost=false",
+          "id": "3763:750",
           "size": [
             240,
             84
@@ -600,6 +609,7 @@
         },
         {
           "variant": "status=success, state=disabled, ghost=false",
+          "id": "3763:975",
           "size": [
             240,
             84
@@ -636,6 +646,7 @@
         },
         {
           "variant": "status=warning, state=disabled, ghost=false",
+          "id": "3763:982",
           "size": [
             240,
             84
@@ -699,6 +710,7 @@
         },
         {
           "variant": "status=danger, state=disabled, ghost=false",
+          "id": "3763:989",
           "size": [
             240,
             84
@@ -759,6 +771,7 @@
         },
         {
           "variant": "status=neutral, state=disabled, ghost=false",
+          "id": "3763:996",
           "size": [
             240,
             84
@@ -818,6 +831,7 @@
         },
         {
           "variant": "status=success, state=default, ghost=true",
+          "id": "3763:1102",
           "size": [
             240,
             80
@@ -834,6 +848,7 @@
               {
                 "path": "/Skeleton",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -857,6 +872,7 @@
               {
                 "path": "/Skeleton#2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -890,6 +906,7 @@
         },
         {
           "variant": "status=warning, state=default, ghost=true",
+          "id": "3763:1109",
           "size": [
             240,
             80
@@ -906,6 +923,7 @@
               {
                 "path": "/Skeleton",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -929,6 +947,7 @@
               {
                 "path": "/Skeleton#2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -962,6 +981,7 @@
         },
         {
           "variant": "status=danger, state=default, ghost=true",
+          "id": "3763:1116",
           "size": [
             240,
             80
@@ -978,6 +998,7 @@
               {
                 "path": "/Skeleton",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1001,6 +1022,7 @@
               {
                 "path": "/Skeleton#2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1034,6 +1056,7 @@
         },
         {
           "variant": "status=neutral, state=default, ghost=true",
+          "id": "3763:1123",
           "size": [
             240,
             80
@@ -1050,6 +1073,7 @@
               {
                 "path": "/Skeleton",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",
@@ -1073,6 +1097,7 @@
               {
                 "path": "/Skeleton#2",
                 "parent": "/",
+                "index": 1,
                 "layer": {
                   "name": "Skeleton",
                   "type": "RECTANGLE",

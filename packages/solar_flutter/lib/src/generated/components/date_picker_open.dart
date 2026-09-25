@@ -144,42 +144,6 @@ abstract final class SolarDatePickerOpenRecipe {
     'dayGridDayCell.height|base': 'none',
     'dayGridDayCell.present|appearance|inline=true, type=double|default':
         'b:false',
-    'container.present|base': 'b:false',
-    'container.radius|base': 'none',
-    'container.borderWidth|base': 'none',
-    'container.direction|base': 'k:VERTICAL',
-    'container.align|base': 'k:MIN/MIN',
-    'container.gap|base': 't:inset.sm',
-    'container.paddingTop|base': 't:inset.none',
-    'container.paddingRight|base': 't:inset.none',
-    'container.paddingBottom|base': 't:inset.none',
-    'container.paddingLeft|base': 't:inset.none',
-    'container.width|base': 'k:FILL',
-    'container.height|base': 'k:HUG',
-    'container.present|appearance|inline=true, type=double|default': 'b:true',
-    'container.background|appearance|inline=true, type=double|default': 'none',
-    'container.borderColor|appearance|inline=true, type=double|default': 'none',
-    'container.shadow|appearance|inline=true, type=double|default': 'none',
-    'containerMonthHeader.present|base': 'b:false',
-    'containerMonthHeader.radius|base': 'none',
-    'containerMonthHeader.borderWidth|base': 'none',
-    'containerMonthHeader.direction|base': 'k:HORIZONTAL',
-    'containerMonthHeader.align|base': 'k:MIN/CENTER',
-    'containerMonthHeader.gap|base': 't:inset.none',
-    'containerMonthHeader.paddingTop|base': 't:inset.none',
-    'containerMonthHeader.paddingRight|base': 't:inset.none',
-    'containerMonthHeader.paddingBottom|base': 't:inset.none',
-    'containerMonthHeader.paddingLeft|base': 't:inset.none',
-    'containerMonthHeader.width|base': 'k:FILL',
-    'containerMonthHeader.height|base': 'px:32',
-    'containerMonthHeader.present|appearance|inline=true, type=double|default':
-        'b:true',
-    'containerMonthHeader.background|appearance|inline=true, type=double|default':
-        'none',
-    'containerMonthHeader.borderColor|appearance|inline=true, type=double|default':
-        'none',
-    'containerMonthHeader.shadow|appearance|inline=true, type=double|default':
-        'none',
     'containerMonthHeaderIconArrowLeft.present|base': 'b:false',
     'containerMonthHeaderIconArrowLeft.component|base': 'k:Icon/ArrowLeft',
     'containerMonthHeaderIconArrowLeft.width|base': 't:icon.md',
@@ -201,6 +165,33 @@ abstract final class SolarDatePickerOpenRecipe {
         'px:32',
     'containerMonthHeaderMonthLabel.y|appearance|inline=true, type=double|default':
         'px:11',
+    'containerMonthHeader.present|base': 'b:false',
+    'containerMonthHeader.radius|base': 'none',
+    'containerMonthHeader.borderWidth|base': 'none',
+    'containerMonthHeader.direction|base': 'k:HORIZONTAL',
+    'containerMonthHeader.align|base': 'k:MIN/CENTER',
+    'containerMonthHeader.gap|base': 't:inset.none',
+    'containerMonthHeader.paddingTop|base': 't:inset.none',
+    'containerMonthHeader.paddingRight|base': 't:inset.none',
+    'containerMonthHeader.paddingBottom|base': 't:inset.none',
+    'containerMonthHeader.paddingLeft|base': 't:inset.none',
+    'containerMonthHeader.width|base': 'k:FILL',
+    'containerMonthHeader.height|base': 'px:32',
+    'containerMonthHeader.present|appearance|inline=true, type=double|default':
+        'b:true',
+    'containerMonthHeader.background|appearance|inline=true, type=double|default':
+        'none',
+    'containerMonthHeader.borderColor|appearance|inline=true, type=double|default':
+        'none',
+    'containerMonthHeader.shadow|appearance|inline=true, type=double|default':
+        'none',
+    'containerWeekdayRowWeekday.present|base': 'b:false',
+    'containerWeekdayRowWeekday.typography|base': 't:typography.body.sm.medium',
+    'containerWeekdayRowWeekday.width|base': 'k:FILL',
+    'containerWeekdayRowWeekday.present|appearance|inline=true, type=double|default':
+        'b:true',
+    'containerWeekdayRowWeekday.color|appearance|inline=true, type=double|default':
+        't:color.text.tertiary',
     'containerWeekdayRow.present|base': 'b:false',
     'containerWeekdayRow.radius|base': 'none',
     'containerWeekdayRow.borderWidth|base': 'none',
@@ -221,13 +212,6 @@ abstract final class SolarDatePickerOpenRecipe {
         'none',
     'containerWeekdayRow.shadow|appearance|inline=true, type=double|default':
         'none',
-    'containerWeekdayRowWeekday.present|base': 'b:false',
-    'containerWeekdayRowWeekday.typography|base': 't:typography.body.sm.medium',
-    'containerWeekdayRowWeekday.width|base': 'k:FILL',
-    'containerWeekdayRowWeekday.present|appearance|inline=true, type=double|default':
-        'b:true',
-    'containerWeekdayRowWeekday.color|appearance|inline=true, type=double|default':
-        't:color.text.tertiary',
     'containerDayGrid.present|base': 'b:false',
     'containerDayGrid.radius|base': 'none',
     'containerDayGrid.borderWidth|base': 'none',
@@ -258,6 +242,22 @@ abstract final class SolarDatePickerOpenRecipe {
         'k:disabled',
     'containerDayGridDayCell.variant.range-role|appearance|inline=true, type=double|default':
         'k:none',
+    'container.present|base': 'b:false',
+    'container.radius|base': 'none',
+    'container.borderWidth|base': 'none',
+    'container.direction|base': 'k:VERTICAL',
+    'container.align|base': 'k:MIN/MIN',
+    'container.gap|base': 't:inset.sm',
+    'container.paddingTop|base': 't:inset.none',
+    'container.paddingRight|base': 't:inset.none',
+    'container.paddingBottom|base': 't:inset.none',
+    'container.paddingLeft|base': 't:inset.none',
+    'container.width|base': 'k:FILL',
+    'container.height|base': 'k:HUG',
+    'container.present|appearance|inline=true, type=double|default': 'b:true',
+    'container.background|appearance|inline=true, type=double|default': 'none',
+    'container.borderColor|appearance|inline=true, type=double|default': 'none',
+    'container.shadow|appearance|inline=true, type=double|default': 'none',
     'container2.present|base': 'b:false',
     'container2.radius|base': 'none',
     'container2.borderWidth|base': 'none',
@@ -275,26 +275,6 @@ abstract final class SolarDatePickerOpenRecipe {
     'container2.borderColor|appearance|inline=true, type=double|default':
         'none',
     'container2.shadow|appearance|inline=true, type=double|default': 'none',
-    'container2MonthHeader.present|base': 'b:false',
-    'container2MonthHeader.radius|base': 'none',
-    'container2MonthHeader.borderWidth|base': 'none',
-    'container2MonthHeader.direction|base': 'k:HORIZONTAL',
-    'container2MonthHeader.align|base': 'k:MAX/CENTER',
-    'container2MonthHeader.gap|base': 't:inset.none',
-    'container2MonthHeader.paddingTop|base': 't:inset.none',
-    'container2MonthHeader.paddingRight|base': 't:inset.none',
-    'container2MonthHeader.paddingBottom|base': 't:inset.none',
-    'container2MonthHeader.paddingLeft|base': 't:inset.none',
-    'container2MonthHeader.width|base': 'k:FILL',
-    'container2MonthHeader.height|base': 'px:32',
-    'container2MonthHeader.present|appearance|inline=true, type=double|default':
-        'b:true',
-    'container2MonthHeader.background|appearance|inline=true, type=double|default':
-        'none',
-    'container2MonthHeader.borderColor|appearance|inline=true, type=double|default':
-        'none',
-    'container2MonthHeader.shadow|appearance|inline=true, type=double|default':
-        'none',
     'container2MonthHeaderIconArrowRight.present|base': 'b:false',
     'container2MonthHeaderIconArrowRight.component|base': 'k:Icon/ArrowRight',
     'container2MonthHeaderIconArrowRight.width|base': 't:icon.md',
@@ -316,6 +296,34 @@ abstract final class SolarDatePickerOpenRecipe {
         'px:32',
     'container2MonthHeaderMonthLabel.y|appearance|inline=true, type=double|default':
         'px:11',
+    'container2MonthHeader.present|base': 'b:false',
+    'container2MonthHeader.radius|base': 'none',
+    'container2MonthHeader.borderWidth|base': 'none',
+    'container2MonthHeader.direction|base': 'k:HORIZONTAL',
+    'container2MonthHeader.align|base': 'k:MAX/CENTER',
+    'container2MonthHeader.gap|base': 't:inset.none',
+    'container2MonthHeader.paddingTop|base': 't:inset.none',
+    'container2MonthHeader.paddingRight|base': 't:inset.none',
+    'container2MonthHeader.paddingBottom|base': 't:inset.none',
+    'container2MonthHeader.paddingLeft|base': 't:inset.none',
+    'container2MonthHeader.width|base': 'k:FILL',
+    'container2MonthHeader.height|base': 'px:32',
+    'container2MonthHeader.present|appearance|inline=true, type=double|default':
+        'b:true',
+    'container2MonthHeader.background|appearance|inline=true, type=double|default':
+        'none',
+    'container2MonthHeader.borderColor|appearance|inline=true, type=double|default':
+        'none',
+    'container2MonthHeader.shadow|appearance|inline=true, type=double|default':
+        'none',
+    'container2WeekdayRowWeekday.present|base': 'b:false',
+    'container2WeekdayRowWeekday.typography|base':
+        't:typography.body.sm.medium',
+    'container2WeekdayRowWeekday.width|base': 'k:FILL',
+    'container2WeekdayRowWeekday.present|appearance|inline=true, type=double|default':
+        'b:true',
+    'container2WeekdayRowWeekday.color|appearance|inline=true, type=double|default':
+        't:color.text.tertiary',
     'container2WeekdayRow.present|base': 'b:false',
     'container2WeekdayRow.radius|base': 'none',
     'container2WeekdayRow.borderWidth|base': 'none',
@@ -336,14 +344,6 @@ abstract final class SolarDatePickerOpenRecipe {
         'none',
     'container2WeekdayRow.shadow|appearance|inline=true, type=double|default':
         'none',
-    'container2WeekdayRowWeekday.present|base': 'b:false',
-    'container2WeekdayRowWeekday.typography|base':
-        't:typography.body.sm.medium',
-    'container2WeekdayRowWeekday.width|base': 'k:FILL',
-    'container2WeekdayRowWeekday.present|appearance|inline=true, type=double|default':
-        'b:true',
-    'container2WeekdayRowWeekday.color|appearance|inline=true, type=double|default':
-        't:color.text.tertiary',
     'container2DayGrid.present|base': 'b:false',
     'container2DayGrid.radius|base': 'none',
     'container2DayGrid.borderWidth|base': 'none',
@@ -386,25 +386,25 @@ abstract final class SolarDatePickerOpenRecipe {
     ],
     'weekdayRow': ['weekdayRowWeekday'],
     'dayGrid': ['dayGridDayCell'],
+    'containerMonthHeader': [
+      'containerMonthHeaderIconArrowLeft',
+      'containerMonthHeaderMonthLabel',
+    ],
     'container': [
       'containerMonthHeader',
       'containerWeekdayRow',
       'containerDayGrid',
     ],
-    'containerMonthHeader': [
-      'containerMonthHeaderIconArrowLeft',
-      'containerMonthHeaderMonthLabel',
-    ],
     'containerWeekdayRow': ['containerWeekdayRowWeekday'],
     'containerDayGrid': ['containerDayGridDayCell'],
+    'container2MonthHeader': [
+      'container2MonthHeaderIconArrowRight',
+      'container2MonthHeaderMonthLabel',
+    ],
     'container2': [
       'container2MonthHeader',
       'container2WeekdayRow',
       'container2DayGrid',
-    ],
-    'container2MonthHeader': [
-      'container2MonthHeaderIconArrowRight',
-      'container2MonthHeaderMonthLabel',
     ],
     'container2WeekdayRow': ['container2WeekdayRowWeekday'],
     'container2DayGrid': ['container2DayGridDayCell'],

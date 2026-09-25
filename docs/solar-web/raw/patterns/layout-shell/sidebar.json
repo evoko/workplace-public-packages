@@ -93,7 +93,8 @@
                 "variant": {
                   "selected": "true",
                   "hover": "false",
-                  "expanded": "false"
+                  "expanded": "false",
+                  "focus": "false"
                 },
                 "size": [
                   40,
@@ -134,7 +135,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "false"
+                  "expanded": "false",
+                  "focus": "false"
                 },
                 "size": [
                   40,
@@ -172,7 +174,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "false"
+                  "expanded": "false",
+                  "focus": "false"
                 },
                 "size": [
                   40,
@@ -210,7 +213,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "false"
+                  "expanded": "false",
+                  "focus": "false"
                 },
                 "size": [
                   40,
@@ -248,7 +252,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "false"
+                  "expanded": "false",
+                  "focus": "false"
                 },
                 "size": [
                   40,
@@ -286,7 +291,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "false"
+                  "expanded": "false",
+                  "focus": "false"
                 },
                 "size": [
                   40,
@@ -324,7 +330,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "false"
+                  "expanded": "false",
+                  "focus": "false"
                 },
                 "size": [
                   40,
@@ -429,6 +436,7 @@
       "variants": [
         {
           "variant": "expanded=false",
+          "id": "2666:723",
           "size": [
             64,
             744
@@ -438,10 +446,12 @@
             "{Color:icon/secondary}",
             "{Primitives:color/brand/red}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "expanded=true",
+          "id": "2666:748",
           "size": [
             198,
             744
@@ -492,7 +502,8 @@
                 "variant": {
                   "selected": "true",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -517,7 +528,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -542,7 +554,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -567,7 +580,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -592,7 +606,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -617,7 +632,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -642,7 +658,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -668,7 +685,8 @@
                 "variant": {
                   "selected": "false",
                   "hover": "false",
-                  "expanded": "true"
+                  "expanded": "true",
+                  "focus": "false"
                 },
                 "size": [
                   182,
@@ -694,6 +712,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -712,12 +731,16 @@
                     ],
                     "align": "SPACE_BETWEEN/CENTER",
                     "sizing": "FIXED/HUG"
+                  },
+                  "vars": {
+                    "itemSpacing": "Spatial:inset/sm"
                   }
                 }
               },
               {
                 "path": "/Container/Biamp Logo",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Biamp Logo",
                   "type": "INSTANCE",
@@ -736,6 +759,7 @@
               {
                 "path": "/Container/© 2025 Biamp",
                 "parent": "/Container",
+                "index": 1,
                 "layer": {
                   "name": "© 2025 Biamp",
                   "type": "TEXT",

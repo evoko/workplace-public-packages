@@ -22,23 +22,23 @@ Vertical in-page navigation: Section Nav Group Headers with their Section Nav It
       padding `inset.xs`
     - **Section Nav Item** · instance of **Section Nav Item** (state=selected) · row gap 8 pad 0/8/0/8 FILL/FIXED · 197×32  
       fill `color.surface.active` · itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
-    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
       itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
     - **Section Nav Group Header** · instance of **Section Nav Group Header** · row gap 0 pad 0/8/0/8 FILL/FIXED · 197×32  
       padding `inset.xs`
-    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
       itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
-    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
       itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
     - **Section Nav Group Header** · instance of **Section Nav Group Header** · row gap 0 pad 0/8/0/8 FILL/FIXED · 197×32  
       padding `inset.xs`
-    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
       itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
-    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
       itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
-    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
       itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
-    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 HUG/FIXED · 220×32  
+    - **Section Nav Item** · instance of **Section Nav Item** (state=default) · row gap 8 pad 0/8/0/8 FIXED/FIXED · 220×32  
       itemSpacing `inset.xs` · padding `inset.xs`, `inset.none` · radius `radius.control`
 
 ### Tokens used

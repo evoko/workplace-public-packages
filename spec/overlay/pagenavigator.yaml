@@ -25,9 +25,3 @@ set:
   nextButton.base.height:
     none: true
     reason: { as: set nextButton.base.width }
-  prevButton.base.variant.state:
-    keyword: disabled
-    reason: >-
-      Figma draws the previous button enabled at "1 of 10", where the description disables it at
-      the ends ("Disabled at the ends of the sequence"): the code disables it, as Pagination's
-      previous arrow, and the design review asks SOLAR to draw it so.

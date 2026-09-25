@@ -92,6 +92,7 @@
       "variants": [
         {
           "variant": "type=incline, size=md",
+          "id": "2203:3288",
           "size": [
             20,
             20
@@ -102,10 +103,12 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=decline, size=md",
+          "id": "2203:3290",
           "size": [
             20,
             20
@@ -136,6 +139,7 @@
         },
         {
           "variant": "type=neutral, size=md",
+          "id": "2203:3292",
           "size": [
             20,
             20
@@ -174,6 +178,7 @@
         },
         {
           "variant": "type=incline, size=sm",
+          "id": "3176:3190",
           "size": [
             16,
             16
@@ -203,6 +208,7 @@
         },
         {
           "variant": "type=decline, size=sm",
+          "id": "3176:3192",
           "size": [
             16,
             16
@@ -237,6 +243,7 @@
         },
         {
           "variant": "type=neutral, size=sm",
+          "id": "3176:3194",
           "size": [
             16,
             16
@@ -275,6 +282,7 @@
         },
         {
           "variant": "type=incline, size=xs",
+          "id": "3176:3197",
           "size": [
             8,
             8
@@ -302,12 +310,13 @@
         },
         {
           "variant": "type=decline, size=xs",
+          "id": "3176:3203",
           "size": [
             8,
             8
           ],
           "fills": [
-            "{Color:icon/feedback/danger}"
+            "{Color:surface/feedback/danger/strong}"
           ],
           "strokes": [
             "{Color:border/medium}"
@@ -318,7 +327,7 @@
                 "layout": null,
                 "sizing": "FIXED/FIXED",
                 "fills": [
-                  "{Color:icon/feedback/danger}"
+                  "{Color:surface/feedback/danger/strong}"
                 ],
                 "vars": {
                   "itemSpacing": null
@@ -332,6 +341,7 @@
         },
         {
           "variant": "type=neutral, size=xs",
+          "id": "3176:3204",
           "size": [
             8,
             8

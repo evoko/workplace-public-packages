@@ -88,14 +88,17 @@
       "variants": [
         {
           "variant": "segments=3, center-label=no",
+          "id": "7310:2",
           "size": [
             200,
             200
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "segments=4, center-label=no",
+          "id": "7310:13",
           "size": [
             200,
             200
@@ -105,6 +108,7 @@
               {
                 "path": "/Segment#4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -126,6 +130,7 @@
         },
         {
           "variant": "segments=4, center-label=yes",
+          "id": "7310:18",
           "size": [
             200,
             200
@@ -139,6 +144,7 @@
               {
                 "path": "/Segment#4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -158,6 +164,7 @@
               {
                 "path": "/Center Label",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "Center Label",
                   "type": "FRAME",
@@ -189,6 +196,7 @@
               {
                 "path": "/Center Label/100%",
                 "parent": "/Center Label",
+                "index": 0,
                 "layer": {
                   "name": "100%",
                   "type": "TEXT",
@@ -213,6 +221,7 @@
               {
                 "path": "/Center Label/Total",
                 "parent": "/Center Label",
+                "index": 1,
                 "layer": {
                   "name": "Total",
                   "type": "TEXT",
@@ -239,6 +248,7 @@
         },
         {
           "variant": "segments=6, center-label=no",
+          "id": "7310:26",
           "size": [
             200,
             200
@@ -248,6 +258,7 @@
               {
                 "path": "/Segment#4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -267,6 +278,7 @@
               {
                 "path": "/Segment#5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -286,6 +298,7 @@
               {
                 "path": "/Segment#6",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -307,6 +320,7 @@
         },
         {
           "variant": "segments=6, center-label=yes",
+          "id": "7310:33",
           "size": [
             200,
             200
@@ -320,6 +334,7 @@
               {
                 "path": "/Segment#4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -339,6 +354,7 @@
               {
                 "path": "/Segment#5",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -358,6 +374,7 @@
               {
                 "path": "/Segment#6",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "Segment",
                   "type": "ELLIPSE",
@@ -377,6 +394,7 @@
               {
                 "path": "/Center Label",
                 "parent": "/",
+                "index": 6,
                 "layer": {
                   "name": "Center Label",
                   "type": "FRAME",
@@ -408,6 +426,7 @@
               {
                 "path": "/Center Label/100%",
                 "parent": "/Center Label",
+                "index": 0,
                 "layer": {
                   "name": "100%",
                   "type": "TEXT",
@@ -432,6 +451,7 @@
               {
                 "path": "/Center Label/Total",
                 "parent": "/Center Label",
+                "index": 1,
                 "layer": {
                   "name": "Total",
                   "type": "TEXT",
@@ -458,6 +478,7 @@
         },
         {
           "variant": "segments=3, center-label=yes",
+          "id": "7310:6",
           "size": [
             200,
             200
@@ -471,6 +492,7 @@
               {
                 "path": "/Center Label",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Center Label",
                   "type": "FRAME",
@@ -502,6 +524,7 @@
               {
                 "path": "/Center Label/100%",
                 "parent": "/Center Label",
+                "index": 0,
                 "layer": {
                   "name": "100%",
                   "type": "TEXT",
@@ -526,6 +549,7 @@
               {
                 "path": "/Center Label/Total",
                 "parent": "/Center Label",
+                "index": 1,
                 "layer": {
                   "name": "Total",
                   "type": "TEXT",

@@ -201,6 +201,7 @@
       "variants": [
         {
           "variant": "category=red, style=subtle",
+          "id": "6628:2",
           "size": [
             160,
             22
@@ -214,10 +215,14 @@
           ],
           "hidden": [
             "Icon/Repeat"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat"
           ]
         },
         {
           "variant": "category=red, style=tinted",
+          "id": "6662:2",
           "size": [
             160,
             22
@@ -235,6 +240,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -276,6 +285,7 @@
         },
         {
           "variant": "category=red, style=solid",
+          "id": "6628:8",
           "size": [
             160,
             22
@@ -292,6 +302,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -347,6 +361,7 @@
         },
         {
           "variant": "category=orange, style=subtle",
+          "id": "6630:2",
           "size": [
             160,
             22
@@ -370,6 +385,7 @@
         },
         {
           "variant": "category=orange, style=tinted",
+          "id": "6662:12",
           "size": [
             160,
             22
@@ -387,6 +403,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -431,6 +451,7 @@
         },
         {
           "variant": "category=orange, style=solid",
+          "id": "6630:12",
           "size": [
             160,
             22
@@ -447,6 +468,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -505,6 +530,7 @@
         },
         {
           "variant": "category=yellow, style=subtle",
+          "id": "6630:22",
           "size": [
             160,
             22
@@ -528,6 +554,7 @@
         },
         {
           "variant": "category=yellow, style=tinted",
+          "id": "6662:22",
           "size": [
             160,
             22
@@ -545,6 +572,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -589,6 +620,7 @@
         },
         {
           "variant": "category=yellow, style=solid",
+          "id": "6630:32",
           "size": [
             160,
             22
@@ -605,6 +637,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -663,6 +699,7 @@
         },
         {
           "variant": "category=green, style=subtle",
+          "id": "6630:42",
           "size": [
             160,
             22
@@ -686,6 +723,7 @@
         },
         {
           "variant": "category=green, style=tinted",
+          "id": "6662:32",
           "size": [
             160,
             22
@@ -703,6 +741,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -747,6 +789,7 @@
         },
         {
           "variant": "category=green, style=solid",
+          "id": "6630:52",
           "size": [
             160,
             22
@@ -763,6 +806,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -821,6 +868,7 @@
         },
         {
           "variant": "category=turquoise, style=subtle",
+          "id": "6630:62",
           "size": [
             160,
             22
@@ -844,6 +892,7 @@
         },
         {
           "variant": "category=turquoise, style=tinted",
+          "id": "6662:42",
           "size": [
             160,
             22
@@ -861,6 +910,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -905,6 +958,7 @@
         },
         {
           "variant": "category=turquoise, style=solid",
+          "id": "6630:72",
           "size": [
             160,
             22
@@ -921,6 +975,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -979,6 +1037,7 @@
         },
         {
           "variant": "category=blue, style=subtle",
+          "id": "6630:82",
           "size": [
             160,
             22
@@ -1002,6 +1061,7 @@
         },
         {
           "variant": "category=blue, style=tinted",
+          "id": "6662:52",
           "size": [
             160,
             22
@@ -1019,6 +1079,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -1063,6 +1127,7 @@
         },
         {
           "variant": "category=blue, style=solid",
+          "id": "6630:92",
           "size": [
             160,
             22
@@ -1079,6 +1144,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -1137,6 +1206,7 @@
         },
         {
           "variant": "category=purple, style=subtle",
+          "id": "6630:102",
           "size": [
             160,
             22
@@ -1160,6 +1230,7 @@
         },
         {
           "variant": "category=purple, style=tinted",
+          "id": "6662:62",
           "size": [
             160,
             22
@@ -1177,6 +1248,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -1221,6 +1296,7 @@
         },
         {
           "variant": "category=purple, style=solid",
+          "id": "6630:112",
           "size": [
             160,
             22
@@ -1237,6 +1313,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -1295,6 +1375,7 @@
         },
         {
           "variant": "category=pink, style=subtle",
+          "id": "6630:122",
           "size": [
             160,
             22
@@ -1318,6 +1399,7 @@
         },
         {
           "variant": "category=pink, style=tinted",
+          "id": "6662:72",
           "size": [
             160,
             22
@@ -1335,6 +1417,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {
@@ -1379,6 +1465,7 @@
         },
         {
           "variant": "category=pink, style=solid",
+          "id": "6630:132",
           "size": [
             160,
             22
@@ -1395,6 +1482,10 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
+          ],
+          "hiddenPaths": [
+            "/Content/Icon/Repeat",
+            "/Stripe"
           ],
           "overrides": {
             "changed": {

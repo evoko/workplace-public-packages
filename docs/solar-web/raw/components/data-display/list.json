@@ -5,7 +5,7 @@
     {
       "name": "ListItem",
       "id": "4520:260",
-      "description": "Single row inside a List container. Currently ships at size=sm (36px) only — md and lg sizes to follow when 2+ consumers need them. States: default, hover, focus, selected, disabled. Use in navigation menus, settings sidebars, dropdown option lists, and selectable entity pickers. Pair with a leading icon (20px), trailing metadata, counter, or chevron — never two trailing elements at once. Provide aria-selected on the selected row. See also: List for the container, Menu for floating variant, Table for column-structured data.",
+      "description": "Single row inside a List container. 20 variants: type (icon, avatar) × state (default, hover, focus, selected, disabled) × compact (false, true). Props: hasIcon, hasAvatar, hasHelper, hasTrailing. The trailing element is a 16px icon slot, typically a chevron; for a count or value put a Counter or text in the slot instead — never two trailing elements at once. Provide aria-selected on the selected row. See also: List for the container, Table for column-structured data.",
       "docLinks": [],
       "variantCount": 20,
       "props": {
@@ -200,6 +200,7 @@
       "variants": [
         {
           "variant": "type=icon, state=default, compact=false",
+          "id": "4520:80",
           "size": [
             387,
             59
@@ -211,10 +212,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=icon, state=default, compact=true",
+          "id": "7739:29199",
           "size": [
             387,
             51
@@ -255,6 +258,7 @@
         },
         {
           "variant": "type=icon, state=hover, compact=false",
+          "id": "4520:92",
           "size": [
             387,
             59
@@ -281,6 +285,7 @@
         },
         {
           "variant": "type=icon, state=hover, compact=true",
+          "id": "7739:29205",
           "size": [
             387,
             51
@@ -327,6 +332,7 @@
         },
         {
           "variant": "type=icon, state=focus, compact=false",
+          "id": "4520:104",
           "size": [
             387,
             59
@@ -349,6 +355,7 @@
         },
         {
           "variant": "type=icon, state=focus, compact=true",
+          "id": "7739:29211",
           "size": [
             387,
             51
@@ -391,6 +398,7 @@
         },
         {
           "variant": "type=icon, state=selected, compact=false",
+          "id": "4520:116",
           "size": [
             387,
             59
@@ -417,6 +425,7 @@
         },
         {
           "variant": "type=icon, state=selected, compact=true",
+          "id": "7739:29217",
           "size": [
             387,
             51
@@ -463,6 +472,7 @@
         },
         {
           "variant": "type=icon, state=disabled, compact=false",
+          "id": "4520:128",
           "size": [
             387,
             59
@@ -496,6 +506,7 @@
         },
         {
           "variant": "type=icon, state=disabled, compact=true",
+          "id": "7739:29223",
           "size": [
             387,
             51
@@ -551,6 +562,7 @@
         },
         {
           "variant": "type=avatar, state=default, compact=false",
+          "id": "6190:74",
           "size": [
             387,
             64
@@ -595,6 +607,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -644,6 +657,7 @@
         },
         {
           "variant": "type=avatar, state=default, compact=true",
+          "id": "7739:29229",
           "size": [
             387,
             56
@@ -691,6 +705,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -740,6 +755,7 @@
         },
         {
           "variant": "type=avatar, state=hover, compact=false",
+          "id": "6190:80",
           "size": [
             387,
             64
@@ -790,6 +806,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -839,6 +856,7 @@
         },
         {
           "variant": "type=avatar, state=hover, compact=true",
+          "id": "7739:29235",
           "size": [
             387,
             56
@@ -892,6 +910,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -941,6 +960,7 @@
         },
         {
           "variant": "type=avatar, state=focus, compact=false",
+          "id": "6190:86",
           "size": [
             387,
             64
@@ -987,6 +1007,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -1036,6 +1057,7 @@
         },
         {
           "variant": "type=avatar, state=focus, compact=true",
+          "id": "7739:29241",
           "size": [
             387,
             56
@@ -1085,6 +1107,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -1134,6 +1157,7 @@
         },
         {
           "variant": "type=avatar, state=selected, compact=false",
+          "id": "6190:92",
           "size": [
             387,
             64
@@ -1184,6 +1208,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -1233,6 +1258,7 @@
         },
         {
           "variant": "type=avatar, state=selected, compact=true",
+          "id": "7739:29247",
           "size": [
             387,
             56
@@ -1286,6 +1312,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -1335,6 +1362,7 @@
         },
         {
           "variant": "type=avatar, state=disabled, compact=false",
+          "id": "6190:98",
           "size": [
             387,
             64
@@ -1386,6 +1414,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -1436,6 +1465,7 @@
         },
         {
           "variant": "type=avatar, state=disabled, compact=true",
+          "id": "7739:29253",
           "size": [
             387,
             56
@@ -1490,6 +1520,7 @@
               {
                 "path": "/Leading",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Leading",
                   "type": "INSTANCE",
@@ -1543,7 +1574,7 @@
     {
       "name": "List",
       "id": "7739:28903",
-      "description": "Container that stacks ListItem rows with optional dividers. 2 variants: in-card (false, true) — true drops the outer border and padding for placement inside Card. Items is a slot: drop ListItem instances in. Use for navigation, settings and entity pickers; for column-structured data use Table.",
+      "description": "Container that stacks ListItem rows with optional dividers. 2 variants: in-card (false, true). in-card=true is the standalone list — its own edge, corners and padded rows; in-card=false drops the edge and uses compact rows for placement inside a Card or panel that already provides the surface. Items is a slot for ListItem instances. Use for navigation, settings and entity pickers; for column-structured data use Table.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -1903,6 +1934,7 @@
       "variants": [
         {
           "variant": "in-card=true",
+          "id": "4522:110",
           "size": [
             387,
             299
@@ -1918,10 +1950,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "in-card=false",
+          "id": "7739:28902",
           "size": [
             368,
             259

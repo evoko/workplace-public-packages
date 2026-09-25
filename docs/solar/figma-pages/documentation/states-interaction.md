@@ -1,6 +1,6 @@
 # States & Interaction
 
-> Verbatim text of the Figma page `States & Interaction` (id `1054:14458`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `f0eabdf31897`. Curated chapter: [08-states-interaction.md](../../08-states-interaction.md).
+> Verbatim text of the Figma page `States & Interaction` (id `1054:14458`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `eadb350695f3`. Curated chapter: [08-states-interaction.md](../../08-states-interaction.md).
 
 ## Slide 1
 
@@ -157,7 +157,7 @@ You are the SOLAR interaction states specialist. Every interactive element must 
 [STATES]
 default: resting appearance — base tokens applied
 hover: cursor over (desktop only) — subtle bg shift, border change, or underline
-pressed: being clicked or tapped — darker bg or inset (the variant value is pressed, never active)
+pressed: being clicked or tapped — darker bg or inset (the variant value is pressed; its colours bind action.*.*.active — variables keep the name active)
 focus: keyboard focus — visible high-contrast focus ring, mandatory
 disabled: non-interactive — disabled colour tokens, no pointer events, aria-disabled
 selected: toggled on or currently active tab/item — distinct from hover

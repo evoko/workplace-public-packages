@@ -69,7 +69,7 @@
             ],
             "layout": {
               "dir": "HORIZONTAL",
-              "gap": 0,
+              "gap": 16,
               "pad": [
                 8,
                 0,
@@ -80,6 +80,7 @@
               "sizing": "FILL/HUG"
             },
             "vars": {
+              "itemSpacing": "Spatial:inset/md",
               "paddingLeft": "Spatial:stack/none",
               "paddingTop": "Spatial:inset/xs",
               "paddingRight": "Spatial:stack/none",
@@ -193,6 +194,7 @@
       "variants": [
         {
           "variant": "breakpoint=desktop, state=default",
+          "id": "5742:3314",
           "size": [
             1280,
             752
@@ -208,6 +210,7 @@
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
+            "{Color:icon/disabled}",
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
@@ -218,10 +221,29 @@
             "Icon/None",
             "Label",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/TableFooter/Container/Button/Counter",
+            "/TableFooter/Container/Button/Icon/None#2",
+            "/TableFooter/Container/Button/Spinner",
+            "/TableFooter/Container/Container/Dropdown/Field/Icon/None",
+            "/TableFooter/Container/Container/Dropdown/Field/Icon/None#2",
+            "/TableFooter/Container/Container/Dropdown/Helper text",
+            "/TableFooter/Container/Container/Dropdown/Label",
+            "/TableFooter/Container/Container/Dropdown/Label/*",
+            "/TableHeader/Container/SearchField/Icon/Filter",
+            "/TableHeader/Container/Segmented Control/Helper text",
+            "/TableHeader/Container/Segmented Control/Label",
+            "/TableHeader/Container/Segmented Control/Label/Label",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ]
         },
         {
           "variant": "breakpoint=desktop, state=empty",
+          "id": "7028:37334",
           "size": [
             1280,
             752
@@ -237,6 +259,7 @@
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
+            "{Color:icon/disabled}",
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
@@ -248,6 +271,28 @@
             "Icon/Refresh",
             "Label",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Table/Rows/EmptyState/Button/Counter",
+            "/Table/Rows/EmptyState/Button/Icon/None",
+            "/Table/Rows/EmptyState/Button/Icon/Refresh",
+            "/Table/Rows/EmptyState/Button/Spinner",
+            "/TableFooter/Container/Button/Counter",
+            "/TableFooter/Container/Button/Icon/None#2",
+            "/TableFooter/Container/Button/Spinner",
+            "/TableFooter/Container/Container/Dropdown/Field/Icon/None",
+            "/TableFooter/Container/Container/Dropdown/Field/Icon/None#2",
+            "/TableFooter/Container/Container/Dropdown/Helper text",
+            "/TableFooter/Container/Container/Dropdown/Label",
+            "/TableFooter/Container/Container/Dropdown/Label/*",
+            "/TableHeader/Container/SearchField/Icon/Filter",
+            "/TableHeader/Container/Segmented Control/Helper text",
+            "/TableHeader/Container/Segmented Control/Label",
+            "/TableHeader/Container/Segmented Control/Label/Label",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/TableHeader/Container/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ],
           "overrides": {
             "changed": {
@@ -261,6 +306,7 @@
         },
         {
           "variant": "breakpoint=mobile, state=default",
+          "id": "6596:42671",
           "size": [
             377,
             752
@@ -275,6 +321,7 @@
             "{Color:icon/primary}",
             "{Color:icon/secondary}",
             "{Color:action/secondary/icon/default}",
+            "{Color:icon/disabled}",
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
@@ -282,6 +329,20 @@
             "Helper text",
             "Icon/None",
             "Label"
+          ],
+          "hiddenPaths": [
+            "/TableFooter/Dropdown/Field/Icon/None",
+            "/TableFooter/Dropdown/Field/Icon/None#2",
+            "/TableFooter/Dropdown/Helper text",
+            "/TableFooter/Dropdown/Label",
+            "/TableFooter/Dropdown/Label/*",
+            "/TableHeader/Segmented Control/Helper text",
+            "/TableHeader/Segmented Control/Label",
+            "/TableHeader/Segmented Control/Label/Label",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ],
           "overrides": {
             "changed": {
@@ -333,7 +394,11 @@
                   56
                 ],
                 "layout": {
+                  "gap": 16,
                   "align": "SPACE_BETWEEN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 }
               }
             }
@@ -341,6 +406,7 @@
         },
         {
           "variant": "breakpoint=mobile, state=empty",
+          "id": "7028:37790",
           "size": [
             377,
             752
@@ -356,6 +422,7 @@
             "{Color:icon/primary}",
             "{Color:icon/secondary}",
             "{Color:action/secondary/icon/default}",
+            "{Color:icon/disabled}",
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
@@ -366,6 +433,24 @@
             "Icon/Refresh",
             "Label",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Table/Rows/EmptyState/Button/Counter",
+            "/Table/Rows/EmptyState/Button/Icon/None",
+            "/Table/Rows/EmptyState/Button/Icon/Refresh",
+            "/Table/Rows/EmptyState/Button/Spinner",
+            "/TableFooter/Dropdown/Field/Icon/None",
+            "/TableFooter/Dropdown/Field/Icon/None#2",
+            "/TableFooter/Dropdown/Helper text",
+            "/TableFooter/Dropdown/Label",
+            "/TableFooter/Dropdown/Label/*",
+            "/TableHeader/Segmented Control/Helper text",
+            "/TableHeader/Segmented Control/Label",
+            "/TableHeader/Segmented Control/Label/Label",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item#2/Icon/None",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item#2/Icon/None#2",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item/Icon/None",
+            "/TableHeader/Segmented Control/Track/Segmented Control Item/Icon/None#2"
           ],
           "overrides": {
             "changed": {
@@ -417,7 +502,11 @@
                   56
                 ],
                 "layout": {
+                  "gap": 16,
                   "align": "SPACE_BETWEEN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 }
               }
             }

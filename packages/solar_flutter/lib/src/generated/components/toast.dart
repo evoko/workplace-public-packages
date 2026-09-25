@@ -58,18 +58,23 @@ abstract final class SolarToastRecipe {
         't:color.border.subtle',
     'tag.present|base': 'b:true',
     'tag.component|base': 'k:Tag',
-    'tag.variant.status|base': 'k:neutral',
+    'tag.variant.status|base': 'k:success',
     'tag.variant.type|base': 'k:status',
+    'tag.variant.invert|base': 'k:false',
     'tag.width|base': 'k:HUG',
     'tag.height|base': 'none',
     'tag.background|base': 't:color.surface.overlay',
     'tag.borderColor|base': 't:color.border.feedback.success.subtle',
+    'tag.variant.status|appearance|status=warning|default': 'k:warning',
     'tag.borderColor|appearance|status=warning|default':
         't:color.border.feedback.warning.subtle',
+    'tag.variant.status|appearance|status=danger|default': 'k:danger',
     'tag.borderColor|appearance|status=danger|default':
-        't:color.border.feedback.warning.subtle',
+        't:color.border.feedback.danger.subtle',
+    'tag.variant.status|appearance|status=info|default': 'k:info',
     'tag.borderColor|appearance|status=info|default':
         't:color.border.feedback.info.subtle',
+    'tag.variant.status|appearance|status=neutral|default': 'k:neutral',
     'tag.borderColor|appearance|status=neutral|default':
         't:color.border.subtle',
     'message.present|base': 'b:true',

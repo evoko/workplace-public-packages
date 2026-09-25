@@ -19,13 +19,6 @@ follows:
       A disabled thumb has no edge, off or on, where every other thumb keeps its border: a
       control that cannot be used is drawn flat, as Checkbox's disabled box is.
 
-set:
-  root.appearance.*.focus.shadow:
-    token: shadow.focus.default
-    reason: >-
-      Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's
-      focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it.
-
 allowLiteral:
   root.width:
     reason: >-

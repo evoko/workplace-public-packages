@@ -5,9 +5,9 @@
     {
       "name": "Breadcrumb Item",
       "id": "2771:588",
-      "description": "One segment of a breadcrumb trail.\n\nVariants (4):\n• type — link | current  (current is the terminal, non-interactive item)\n• state — default | hover | disabled  (applies to type=link only)\n\nUse inside the Breadcrumbs wrapper — not standalone.",
+      "description": "One segment of a breadcrumb trail.\n\nVariants (5):\n• type — link | current  (current is the terminal, non-interactive item)\n• state — default | hover | focus | disabled  (type=link only; focus carries shadow/focus/default)\n\nUse inside the Breadcrumbs wrapper — not standalone.",
       "docLinks": [],
-      "variantCount": 4,
+      "variantCount": 5,
       "props": {
         "type": {
           "type": "VARIANT",
@@ -23,7 +23,8 @@
           "options": [
             "default",
             "hover",
-            "disabled"
+            "disabled",
+            "focus"
           ]
         }
       },
@@ -81,6 +82,7 @@
       "variants": [
         {
           "variant": "type=link, state=default",
+          "id": "2771:580",
           "size": [
             36,
             10
@@ -88,10 +90,12 @@
           "textFills": [
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=link, state=hover",
+          "id": "2771:582",
           "size": [
             36,
             10
@@ -111,6 +115,7 @@
         },
         {
           "variant": "type=link, state=disabled",
+          "id": "2771:584",
           "size": [
             36,
             10
@@ -130,6 +135,7 @@
         },
         {
           "variant": "type=current, state=default",
+          "id": "2771:586",
           "size": [
             36,
             10
@@ -146,13 +152,37 @@
               }
             }
           }
+        },
+        {
+          "variant": "type=link, state=focus",
+          "id": "11066:29898",
+          "size": [
+            36,
+            10
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         }
       ]
     },
     {
       "name": "Breadcrumbs",
       "id": "2772:620",
-      "description": "Shows the user's location in a navigational hierarchy and allows quick jumps to ancestors.\n\nVariants (5):\n• items — 2 | 3 | 4 | 5 | multiple  (use 'multiple' when the trail exceeds 5 levels — middle collapses to an ellipsis menu)\n\nAccessibility: wrap in <nav aria-label=\"Breadcrumb\">. The final item uses aria-current=\"page\" and is not a link. Separators are aria-hidden.\n\nUse for deep page trees, not for linear progress (see Stepper) or single-level flows (omit entirely).",
+      "description": "Shows the user’s location in a navigational hierarchy and allows quick jumps to ancestors.\n\nVariants (5):\n• items — 2 | 3 | 4 | 5 | multiple  (use multiple when the trail exceeds 5 levels — the middle collapses to an ellipsis; compose the ellipsis with a Dropdown Menu listing the hidden pages)\n\nAccessibility: wrap in <nav aria-label=\"Breadcrumb\">. The final item uses aria-current=\"page\" and is not a link. Separators are aria-hidden. Breadcrumb Item carries a focus state.\n\nUse for deep page trees, not for linear progress (see Stepper) or single-level flows (omit entirely).",
       "docLinks": [],
       "variantCount": 5,
       "props": {
@@ -332,6 +362,7 @@
       "variants": [
         {
           "variant": "items=multiple",
+          "id": "3604:360",
           "size": [
             156,
             12
@@ -343,10 +374,12 @@
           "iconFills": [
             "{Color:icon/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "items=2",
+          "id": "2772:578",
           "size": [
             108,
             12
@@ -367,6 +400,7 @@
         },
         {
           "variant": "items=3",
+          "id": "2772:584",
           "size": [
             180,
             12
@@ -391,6 +425,7 @@
         },
         {
           "variant": "items=4",
+          "id": "2772:593",
           "size": [
             252,
             12
@@ -415,6 +450,7 @@
               {
                 "path": "/item-3",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "item-3",
                   "type": "INSTANCE",
@@ -451,6 +487,7 @@
               {
                 "path": "/Icon/ChevronRight#3",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "Icon/ChevronRight",
                   "type": "INSTANCE",
@@ -476,6 +513,7 @@
         },
         {
           "variant": "items=5",
+          "id": "2772:605",
           "size": [
             324,
             12
@@ -500,6 +538,7 @@
               {
                 "path": "/item-3",
                 "parent": "/",
+                "index": 4,
                 "layer": {
                   "name": "item-3",
                   "type": "INSTANCE",
@@ -536,6 +575,7 @@
               {
                 "path": "/Icon/ChevronRight#3",
                 "parent": "/",
+                "index": 5,
                 "layer": {
                   "name": "Icon/ChevronRight",
                   "type": "INSTANCE",
@@ -559,6 +599,7 @@
               {
                 "path": "/item-4",
                 "parent": "/",
+                "index": 6,
                 "layer": {
                   "name": "item-4",
                   "type": "INSTANCE",
@@ -595,6 +636,7 @@
               {
                 "path": "/Icon/ChevronRight#4",
                 "parent": "/",
+                "index": 7,
                 "layer": {
                   "name": "Icon/ChevronRight",
                   "type": "INSTANCE",

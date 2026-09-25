@@ -12,14 +12,6 @@ base:
     Pressable where it is given something to do (owner decision 2026-09-25): its title is then the
     button or link, stretched over the card, so its own controls stay reachable above it.
 
-places:
-  /Skeleton:
-    before: /Content
-    reason: >-
-      The loading card's title placeholder is drawn where the title is, above the content, as
-      Figma draws it (y 16, the content at 44); Figma's export records a layer one variant adds
-      after the others.
-
 follows:
   content.gap:
     axes: [loading]
@@ -60,8 +52,8 @@ allowLiteral:
   root.opacity:
     reason: >-
       A disabled card is drawn at 40% opacity. SOLAR has no opacity scale, as for Section Nav
-      Item's disabled 40% and Link's 50%; carried as Figma's number, and raised as a governance
-      gap.
+      Item's disabled 40% and Link's 50% (SOLAR's decision, 2026-09-25); carried as Figma's
+      number.
   skeleton.width:
     reason: >-
       The loading placeholders are Figma's drawing of a title and three lines to come (140, 260,

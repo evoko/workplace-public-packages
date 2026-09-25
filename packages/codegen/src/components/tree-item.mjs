@@ -23,7 +23,7 @@ export default {
     // its rename field none of theirs; a caller's icons fill their slots; the words take what is
     // left, cut short. The chevron and the actions keep their own boxes as targets: 16px, 4px from
     // the next control, where two 44 × 44 targets would cover each other (as Number Input's side
-    // stepper keeps Figma's size); the design review asks SOLAR.
+    // stepper keeps Figma's size), an exception SOLAR accepted on 2026-09-25.
     resets: drawnResets('Tree Item', {
       display: 'flex',
       outline: 'none',

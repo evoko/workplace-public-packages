@@ -53,6 +53,8 @@ abstract final class SolarSegmentedControlItemRecipe {
     'root.background|appearance|selected=false|hover': 'none',
     'root.borderColor|appearance|selected=false|hover': 'none',
     'root.shadow|appearance|selected=false|hover': 'none',
+    'root.background|appearance|selected=false|focus': 'none',
+    'root.borderColor|appearance|selected=false|focus': 'none',
     'root.shadow|appearance|selected=false|focus': 't:shadow.focus.default',
     'root.borderColor|appearance|selected=true|hover': 't:color.border.medium',
     'root.shadow|appearance|selected=true|focus': 't:shadow.focus.default',
@@ -68,19 +70,16 @@ abstract final class SolarSegmentedControlItemRecipe {
     'iconLeading.height|size|sm': 't:icon.xs',
     'iconLeading.color|appearance|selected=false|default':
         't:color.icon.secondary',
+    'iconLeading.color|appearance|selected=false|focus':
+        't:color.icon.secondary',
     'iconLeading.color|appearance|selected=false|hover': 't:color.icon.primary',
-    'iconLeading.color|combined|md|selected=false|focus':
-        't:color.icon.secondary',
-    'iconLeading.color|combined|sm|selected=false|focus':
-        't:color.icon.secondary',
     'label.present|base': 'b:true',
     'label.color|base': 't:color.text.primary',
     'label.typography|base': 't:typography.label.md',
     'label.typography|size|sm': 't:typography.label.sm',
     'label.color|appearance|selected=false|default': 't:color.text.secondary',
+    'label.color|appearance|selected=false|focus': 't:color.text.secondary',
     'label.color|appearance|selected=false|hover': 't:color.text.primary',
-    'label.color|combined|md|selected=false|focus': 't:color.text.secondary',
-    'label.color|combined|sm|selected=false|focus': 't:color.text.secondary',
     'iconTrailing.present|base': 'b:true',
     'iconTrailing.component|base': 'k:Icon/None',
     'iconTrailing.variant.solid|base': 'k:false',
@@ -91,12 +90,10 @@ abstract final class SolarSegmentedControlItemRecipe {
     'iconTrailing.height|size|sm': 't:icon.xs',
     'iconTrailing.color|appearance|selected=false|default':
         't:color.icon.secondary',
+    'iconTrailing.color|appearance|selected=false|focus':
+        't:color.icon.secondary',
     'iconTrailing.color|appearance|selected=false|hover':
         't:color.icon.primary',
-    'iconTrailing.color|combined|md|selected=false|focus':
-        't:color.icon.secondary',
-    'iconTrailing.color|combined|sm|selected=false|focus':
-        't:color.icon.secondary',
   };
 
   /// Each layer's children, in Figma's order: the tree the widget draws (SolarLayers).

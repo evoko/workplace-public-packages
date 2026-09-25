@@ -1,11 +1,11 @@
 ---
 solar:
-  reviewed: 2026-09-22
-  figmaVersion: '2402047167094879156'
+  reviewed: 2026-09-25
+  figmaVersion: '2403083104633531037'
   sources:
     documentation/governance: 2b399162762f
     meta/lint-plugin: f8b268dcd32d
-    meta/changelog: d049b47cafd2
+    meta/changelog: 58839eb14d96
 ---
 
 # 16 · Governance & Validation
@@ -105,6 +105,18 @@ may be promoted to system tokens through the normal proposal process.
 - **Changelog** columns: Component (name and link), Change (MAJOR/MINOR/PATCH), Date
   (YYYY-MM-DD), Description, Contributors.
 
+The Changelog page's first entries, all dated 2026-09-25:
+
+| Component         | Change | Description                                                                 |
+| ----------------- | ------ | --------------------------------------------------------------------------- |
+| Color variables   | MINOR  | Secondary actions: no background; danger hover keeps the red tint           |
+| Color variables   | PATCH  | Dark primary icon hover/pressed follows the label; danger hovers pass 4.5:1 |
+| Spatial variables | MINOR  | Added `size/control/sm`, `md`, `lg` and `size/target/min`                   |
+| Guideline pages   | PATCH  | Action states, data scale and icon checklist corrected to the variables     |
+
+The values are in [05-color.md](05-color.md#action) and
+[18-agent-reference.md](18-agent-reference.md#spatial-system-verified).
+
 ## Compliance validation rules
 
 Machine-checkable rules with stable IDs, used by the SOLAR Lint plugin, the CI lint
@@ -112,18 +124,18 @@ agent, agent self-validation and manual checklists. Classified **Error** (must f
 **Warning** (should fix). The Governance page counts 42 rules (31 errors, 11 warnings)
 across ten categories.
 
-| Category      | IDs          | Scope                                                                                                                                            |
-| ------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Color         | CLR-001…006  | No raw hex; no primitive references in components; WCAG AA contrast for text (CLR-003) and non-text (CLR-004)                                    |
-| Spacing       | SPC-001…004  | No raw px for spacing, border radius, border width; spatial tokens only                                                                          |
-| Typography    | TYP-001…005  | Named text styles only; no manual overrides; sequential heading hierarchy; approved font families                                                |
-| Accessibility | A11Y-001…008 | 44 × 44 touch targets; visible focus rings (A11Y-003); focus not clipped; correct ARIA; color not the sole differentiator; dialog focus trapping |
-| Elevation     | ELV-001…003  | No raw z-index; shadow token matches elevation level; no sibling z-index conflicts                                                               |
-| Motion        | MOT-001…003  | Token durations and easings; respect `prefers-reduced-motion`                                                                                    |
-| Component     | CMP-001…004  | Correct HTML elements; required props; valid variant values                                                                                      |
-| Responsive    | RSP-001…003  | Correct breakpoint tokens; proper nav transformation; no horizontal overflow                                                                     |
-| Theming       | THM-001…003  | No mode-specific values; all tokens resolve in both modes; custom surfaces use semantic surface tokens                                           |
-| Naming        | NAM-001…003  | `--solar-` prefix; grammar-conformant names                                                                                                      |
+| Category      | IDs          | Scope                                                                                                                                                                |
+| ------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Color         | CLR-001…006  | No raw hex; no primitive references in components; WCAG AA contrast for text (CLR-003) and non-text (CLR-004)                                                        |
+| Spacing       | SPC-001…004  | No raw px for spacing, border radius, border width; spatial tokens only                                                                                              |
+| Typography    | TYP-001…005  | Named text styles only; no manual overrides; sequential heading hierarchy; approved font families                                                                    |
+| Accessibility | A11Y-001…008 | 44 × 44 touch targets (`size.target.min`); visible focus rings (A11Y-003); focus not clipped; correct ARIA; color not the sole differentiator; dialog focus trapping |
+| Elevation     | ELV-001…003  | No raw z-index; shadow token matches elevation level; no sibling z-index conflicts                                                                                   |
+| Motion        | MOT-001…003  | Token durations and easings; respect `prefers-reduced-motion`                                                                                                        |
+| Component     | CMP-001…004  | Correct HTML elements; required props; valid variant values                                                                                                          |
+| Responsive    | RSP-001…003  | Correct breakpoint tokens; proper nav transformation; no horizontal overflow                                                                                         |
+| Theming       | THM-001…003  | No mode-specific values; all tokens resolve in both modes; custom surfaces use semantic surface tokens                                                               |
+| Naming        | NAM-001…003  | `--solar-` prefix; grammar-conformant names                                                                                                                          |
 
 Individual rules named in the source:
 

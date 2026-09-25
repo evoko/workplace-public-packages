@@ -5,7 +5,7 @@
     {
       "name": "SplitButton",
       "id": "4569:200",
-      "description": "Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 32px, md 40px) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px WCAG hit area is padded in code (no target-size variable exists yet). Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.",
+      "description": "Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 32px, md 40px) × state (default, hover, pressed, focus, loading, disabled). Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code. focus rings the whole control. The rule between the halves is the label colour at 30% opacity. Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.",
       "docLinks": [],
       "variantCount": 24,
       "props": {
@@ -193,6 +193,7 @@
       "variants": [
         {
           "variant": "prio=primary, size=md, state=default",
+          "id": "4569:110",
           "size": [
             112,
             40
@@ -210,10 +211,12 @@
           "iconFills": [
             "{Color:action/primary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "prio=secondary, size=md, state=default",
+          "id": "4569:170",
           "size": [
             112,
             40
@@ -258,6 +261,7 @@
         },
         {
           "variant": "prio=primary, size=sm, state=default",
+          "id": "4569:80",
           "size": [
             88,
             32
@@ -335,6 +339,7 @@
         },
         {
           "variant": "prio=secondary, size=sm, state=default",
+          "id": "4569:140",
           "size": [
             88,
             32
@@ -426,6 +431,7 @@
         },
         {
           "variant": "prio=primary, size=md, state=hover",
+          "id": "4569:116",
           "size": [
             112,
             40
@@ -460,8 +466,9 @@
         },
         {
           "variant": "prio=secondary, size=md, state=hover",
+          "id": "4569:176",
           "size": [
-            113,
+            112,
             40
           ],
           "fills": [
@@ -494,12 +501,6 @@
                   "{Color:border/medium}"
                 ]
               },
-              "/Trigger": {
-                "size": [
-                  44,
-                  40
-                ]
-              },
               "/Trigger/Icon/ChevronDown": {
                 "iconFills": [
                   "{Color:action/secondary/icon/hover}"
@@ -510,6 +511,7 @@
         },
         {
           "variant": "prio=primary, size=sm, state=hover",
+          "id": "4569:86",
           "size": [
             88,
             32
@@ -595,6 +597,7 @@
         },
         {
           "variant": "prio=secondary, size=sm, state=hover",
+          "id": "4569:146",
           "size": [
             88,
             32
@@ -686,8 +689,9 @@
         },
         {
           "variant": "prio=primary, size=md, state=pressed",
+          "id": "4569:122",
           "size": [
-            113,
+            112,
             40
           ],
           "fills": [
@@ -710,12 +714,6 @@
                 ],
                 "effectStyle": null
               },
-              "/Trigger": {
-                "size": [
-                  44,
-                  40
-                ]
-              },
               "/Trigger/Icon/ChevronDown": {
                 "iconFills": [
                   "{Color:action/primary/icon/active}"
@@ -726,6 +724,7 @@
         },
         {
           "variant": "prio=secondary, size=md, state=pressed",
+          "id": "4569:182",
           "size": [
             112,
             40
@@ -770,6 +769,7 @@
         },
         {
           "variant": "prio=primary, size=sm, state=pressed",
+          "id": "4569:92",
           "size": [
             88,
             32
@@ -852,6 +852,7 @@
         },
         {
           "variant": "prio=secondary, size=sm, state=pressed",
+          "id": "4569:152",
           "size": [
             88,
             32
@@ -943,6 +944,7 @@
         },
         {
           "variant": "prio=primary, size=md, state=disabled",
+          "id": "4569:134",
           "size": [
             112,
             40
@@ -982,6 +984,7 @@
         },
         {
           "variant": "prio=secondary, size=md, state=disabled",
+          "id": "4569:194",
           "size": [
             112,
             40
@@ -1029,6 +1032,7 @@
         },
         {
           "variant": "prio=primary, size=sm, state=disabled",
+          "id": "4569:104",
           "size": [
             88,
             32
@@ -1117,6 +1121,7 @@
         },
         {
           "variant": "prio=secondary, size=sm, state=disabled",
+          "id": "4569:164",
           "size": [
             88,
             32
@@ -1211,6 +1216,7 @@
         },
         {
           "variant": "prio=primary, size=md, state=focus",
+          "id": "6043:140",
           "size": [
             112,
             40
@@ -1238,6 +1244,7 @@
         },
         {
           "variant": "prio=secondary, size=md, state=focus",
+          "id": "6043:146",
           "size": [
             112,
             40
@@ -1283,6 +1290,7 @@
         },
         {
           "variant": "prio=primary, size=sm, state=focus",
+          "id": "6043:152",
           "size": [
             88,
             32
@@ -1363,6 +1371,7 @@
         },
         {
           "variant": "prio=secondary, size=sm, state=focus",
+          "id": "6043:158",
           "size": [
             88,
             32
@@ -1455,6 +1464,7 @@
         },
         {
           "variant": "prio=primary, size=md, state=loading",
+          "id": "6044:264",
           "size": [
             112,
             40
@@ -1476,6 +1486,11 @@
             "Action",
             "Divider",
             "Trigger"
+          ],
+          "hiddenPaths": [
+            "/Action",
+            "/Divider",
+            "/Trigger"
           ],
           "overrides": {
             "changed": {
@@ -1500,7 +1515,7 @@
               "/Trigger": {
                 "hidden": true,
                 "size": [
-                  44,
+                  40,
                   44
                 ],
                 "layout": {
@@ -1512,6 +1527,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1535,6 +1551,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -1543,6 +1563,7 @@
         },
         {
           "variant": "prio=secondary, size=md, state=loading",
+          "id": "6044:274",
           "size": [
             112,
             40
@@ -1564,6 +1585,11 @@
             "Action",
             "Divider",
             "Trigger"
+          ],
+          "hiddenPaths": [
+            "/Action",
+            "/Divider",
+            "/Trigger"
           ],
           "overrides": {
             "changed": {
@@ -1601,7 +1627,7 @@
               "/Trigger": {
                 "hidden": true,
                 "size": [
-                  44,
+                  40,
                   44
                 ],
                 "layout": {
@@ -1618,6 +1644,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1641,6 +1668,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/lg",
+                    "height": "Spatial:icon/lg"
                   }
                 }
               }
@@ -1649,6 +1680,7 @@
         },
         {
           "variant": "prio=primary, size=sm, state=loading",
+          "id": "6044:284",
           "size": [
             88,
             32
@@ -1670,6 +1702,11 @@
             "Action",
             "Divider",
             "Trigger"
+          ],
+          "hiddenPaths": [
+            "/Action",
+            "/Divider",
+            "/Trigger"
           ],
           "overrides": {
             "changed": {
@@ -1736,6 +1773,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1759,6 +1797,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }
@@ -1767,6 +1809,7 @@
         },
         {
           "variant": "prio=secondary, size=sm, state=loading",
+          "id": "6044:294",
           "size": [
             88,
             32
@@ -1788,6 +1831,11 @@
             "Action",
             "Divider",
             "Trigger"
+          ],
+          "hiddenPaths": [
+            "/Action",
+            "/Divider",
+            "/Trigger"
           ],
           "overrides": {
             "changed": {
@@ -1868,6 +1916,7 @@
               {
                 "path": "/Spinner",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Spinner",
                   "type": "INSTANCE",
@@ -1891,6 +1940,10 @@
                     ],
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/HUG"
+                  },
+                  "vars": {
+                    "width": "Spatial:icon/sm",
+                    "height": "Spatial:icon/sm"
                   }
                 }
               }

@@ -163,7 +163,9 @@ adds reaches it with no edit. They read the `SolarTheme` the app
 installed, or Light or Dark for the app's brightness if it installed none. An icon-only
 `SolarButton` needs a `semanticLabel`, and `SolarIconButton` requires one; either way the name and
 the button's tap action are one node for a screen reader. While loading the label keeps its room and its semantics
-but is not drawn, and the spinner Figma picks for the variant shows; disabled wins over loading.
+but is not drawn, and the spinner Figma picks for the variant shows; disabled wins over loading. Given
+`active`, a `SolarIconButton` is a toggle, as Flutter's own `IconButton(isSelected:)` is: `true`
+draws Figma's active state, the persistent on state, announced selected; null, an ordinary action.
 
 The recipe can also style a stock control directly. `SolarButtonRecipe.style(theme, props)` is a
 `ButtonStyle` that makes a `FilledButton` draw SOLAR's Button, resolving hover, pressed, focus and
@@ -220,8 +222,7 @@ area is padded in code"): `SolarTarget` (`lib/src/solar_target.dart`). A control
 that room where the theme pads tap targets (on touch platforms, as Material's controls do) and draws
 centred in it; a part of another component (a Tag's close button, `SolarTarget.inside`) reaches past
 itself as far as the component lets a pointer reach, taking no room. The FilledButton-based buttons
-are padded by Material itself. `solarTargetSize` is the one raw target size until SOLAR publishes a
-variable for it. `SolarSliderInput` (`lib/src/solar_slider_input.dart`) is the same for the sliders:
+are padded by Material itself. `solarTargetSize` is SOLAR's `size.target.min`, `SolarSize.targetMin`. `SolarSliderInput` (`lib/src/solar_slider_input.dart`) is the same for the sliders:
 it drags the nearest handle, gives each handle the focus, the arrow keys and a slider's semantics,
 and leaves the drawing to `SolarLayers`, the value placing the fill and handles. `solarInkOn`
 (`lib/src/solar_ink.dart`) is the Avatar initials' ink, the web's rule step for step.

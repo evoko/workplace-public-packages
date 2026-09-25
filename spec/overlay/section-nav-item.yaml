@@ -18,38 +18,27 @@ set:
     keyword: FILL
     reason: >-
       An item spans its rail, as a section nav lays its items out: Figma draws it 220 wide in every
-      state but rest, where it hugs its words (the design review asks). The rail sizes it.
+      state, a sample (at rest too since 2026-09-25). The rail sizes it.
   label.base.width:
     keyword: FILL
     reason: >-
       The words take the room the item leaves beside its icon, as Figma draws them in every state
-      but rest, where the item hugs them and they are fixed at 180: as the item's width, the rest
-      is the odd one.
-
-accept:
-  component.section nav item.root.width@state=hover:
-    reason: >-
-      Figma draws the hovered item 220 wide, bound to nothing, where the resting one hugs its
-      words: a sample of the rail's width, which every state of the item spans.
-  component.section nav item.root.width@state=focus:
-    reason: As the hovered item's, a sample of the rail's width.
-  component.section nav item.root.width@state=selected:
-    reason: As the hovered item's, a sample of the rail's width.
-  component.section nav item.root.width@state=disabled:
-    reason: As the hovered item's, a sample of the rail's width.
+      but rest, where they are still fixed at 180 (the design review asks): as the item's width,
+      the rest is the odd one.
 
 bind:
+  root.height:
+    tokens: { 32: size.control.sm }
+    reason: >-
+      As Button's height: size.control, one step per size, which SOLAR added on 2026-09-25;
+      Figma leaves the height unbound, which the design review asks SOLAR to bind.
   icon.width:
     literal: 16
     token: icon.sm
     reason: Same value, governed token; the icon's height is already bound to it.
 
 allowLiteral:
-  root.height:
-    reason: >-
-      As Button's: SOLAR publishes no control height token (owner decision 2026-09-23, raised as a
-      governance gap). An item is drawn 32 tall.
   root.opacity:
     reason: >-
       A disabled item is drawn at 40% opacity. SOLAR has no opacity scale, as for Link's disabled
-      50% and Node End's halo; carried as Figma's number, and raised as a governance gap.
+      50% and Node End's halo (SOLAR's decision, 2026-09-25); carried as Figma's number.

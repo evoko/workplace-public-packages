@@ -636,7 +636,7 @@
         },
         {
           "t": "p",
-          "text": "Outline is the default across SOLAR surfaces — toolbars, inputs, list items, body content.\nSolid signals emphasis or state — selected tab, active nav item, filled status, hero illustration.\nPair rule: every outline icon has a matching solid with the same name, canvas, and optical volume.\nDirectional glyphs: solids are filled triangles — sharp, tall-narrow — never a filled outline.\nSolid variants use the /Solid suffix in the library; outline has no suffix.",
+          "text": "Outline is the default across SOLAR surfaces — toolbars, inputs, list items, body content.\nSolid signals emphasis or state — selected tab, active nav item, filled status, hero illustration.\nPair rule: every outline icon has a matching solid with the same name, canvas, and optical volume.\nDirectional glyphs: solids are filled triangles — sharp, tall-narrow — never a filled outline.\nSolid is a variant, not a name: each icon is one component set with a solid boolean (solid=false outline, solid=true solid).",
           "style": "16/400"
         },
         {
@@ -864,7 +864,7 @@
         },
         {
           "t": "p",
-          "text": "The icon library is a Figma component set with Size and Style variants — outline is the base, solid uses a /Solid suffix. Every icon name is identical across sizes. New requests go through the Gatekeeper before the icon joins the shared library, and pages inside the icon file carry a status emoji so consumers know what is ready to use.",
+          "text": "The icon library is one Figma component set per icon with a single solid boolean — outline (solid=false) is the base, solid=true the filled twin; size comes from the icon/* variables. Every icon name is identical across sizes. New requests go through the Gatekeeper before the icon joins the shared library, and pages inside the icon file carry a status emoji so consumers know what is ready to use.",
           "style": "16/400"
         },
         {
@@ -909,7 +909,7 @@
         },
         {
           "t": "p",
-          "text": "Sourced from Remix at every size — no Nova, no Phosphor, no custom SVGs.\nCanvas matches the rendered size. Live area respected.\nStrokes expanded to filled paths. Paths combined. Integer pixels only.\nStroke and fill colour bound to semantic tokens — color.icon.* or color.action.*.icon.* — never hardcoded hex.\nOutline and Solid pair present. Same name, same canvas, same optical volume.\nName follows element–modifier grammar. Identical across sizes.\nDoes not override, rename, or detach any existing protected icon.\nReviewed and approved by the SOLAR Gatekeeper.",
+          "text": "Sourced from Remix, drawn once on the 24 px canvas — no Nova, no Phosphor, no custom SVGs.\n24 × 24 canvas; rendered size comes from the icon/* variables. Live area respected.\nStrokes expanded to filled paths. Paths combined. Integer pixels only.\nMaster fill bound to color/neutral/900 (library default, never raw hex); every placed instance rebinds to color.icon.* or color.action.*.icon.*.\nOutline and Solid pair present. Same name, same canvas, same optical volume.\nName follows element–modifier grammar. One name, both fills.\nDoes not override, rename, or detach any existing protected icon.\nReviewed and approved by the SOLAR Gatekeeper.",
           "style": "16/400"
         }
       ]
@@ -1097,7 +1097,7 @@
         "Every icon ships with an Outline and a Solid variant. Outline is the default for most UI; Solid signals weight or emphasis — selected nav items, active states, and hero-level moments.",
         "Outline and Solid share the same metaphor, name, and canvas but are drawn independently — never an auto-fill of the outline. This keeps optical weight consistent at every size. Directional glyphs (chevron, arrow, caret, triangle) use a shared sharp, tall-narrow triangle silhouette for the solid variant.",
         "When to use each",
-        "Outline is the default across SOLAR surfaces — toolbars, inputs, list items, body content.\nSolid signals emphasis or state — selected tab, active nav item, filled status, hero illustration.\nPair rule: every outline icon has a matching solid with the same name, canvas, and optical volume.\nDirectional glyphs: solids are filled triangles — sharp, tall-narrow — never a filled outline.\nSolid variants use the /Solid suffix in the library; outline has no suffix.",
+        "Outline is the default across SOLAR surfaces — toolbars, inputs, list items, body content.\nSolid signals emphasis or state — selected tab, active nav item, filled status, hero illustration.\nPair rule: every outline icon has a matching solid with the same name, canvas, and optical volume.\nDirectional glyphs: solids are filled triangles — sharp, tall-narrow — never a filled outline.\nSolid is a variant, not a name: each icon is one component set with a solid boolean (solid=false outline, solid=true solid).",
         "Outline and Solid · paired variants",
         "Same metaphor · same canvas · drawn independently",
         "Outline",
@@ -1189,7 +1189,7 @@
         "© 2026 Biamp",
         "[Confidential]",
         "SOLAR maintains a single icon library as the source of truth for all Biamp products. Custom or third-party icons are not permitted without approval from the SOLAR Gatekeeper. The current Gatekeeper is designated by Biamp.",
-        "The icon library is a Figma component set with Size and Style variants — outline is the base, solid uses a /Solid suffix. Every icon name is identical across sizes. New requests go through the Gatekeeper before the icon joins the shared library, and pages inside the icon file carry a status emoji so consumers know what is ready to use.",
+        "The icon library is one Figma component set per icon with a single solid boolean — outline (solid=false) is the base, solid=true the filled twin; size comes from the icon/* variables. Every icon name is identical across sizes. New requests go through the Gatekeeper before the icon joins the shared library, and pages inside the icon file carry a status emoji so consumers know what is ready to use.",
         "Workflow & status",
         "Check the library first — search the existing set before requesting a new icon. Many concepts are already covered under different names.\nIntake — TBD. The channel for new-icon requests will be defined by Biamp; for now, raise it with the Gatekeeper.\nReview — the Gatekeeper runs every new icon through the Acceptance Checklist before it ships.\nPage status legend — no emoji: not started. 🟡 WIP (in-flight, human editor). 🟠 draft (pending review). 🟢 done (promoted by the Gatekeeper).\nGatekeeper — a single designated person at Biamp. All additions, renames, and deprecations pass through this role."
       ],
@@ -1209,7 +1209,7 @@
         "Every new icon clears the same gate before it joins the library. The list keeps the bar consistent as the set grows and the Gatekeeper role rotates.",
         "This is the final review pass. An icon that fails any item goes back to the contributor with comments. The checklist is the same whether the icon is a net-new metaphor or a new size of an existing one.",
         "Gatekeeper checklist",
-        "Sourced from Remix at every size — no Nova, no Phosphor, no custom SVGs.\nCanvas matches the rendered size. Live area respected.\nStrokes expanded to filled paths. Paths combined. Integer pixels only.\nStroke and fill colour bound to semantic tokens — color.icon.* or color.action.*.icon.* — never hardcoded hex.\nOutline and Solid pair present. Same name, same canvas, same optical volume.\nName follows element–modifier grammar. Identical across sizes.\nDoes not override, rename, or detach any existing protected icon.\nReviewed and approved by the SOLAR Gatekeeper."
+        "Sourced from Remix, drawn once on the 24 px canvas — no Nova, no Phosphor, no custom SVGs.\n24 × 24 canvas; rendered size comes from the icon/* variables. Live area respected.\nStrokes expanded to filled paths. Paths combined. Integer pixels only.\nMaster fill bound to color/neutral/900 (library default, never raw hex); every placed instance rebinds to color.icon.* or color.action.*.icon.*.\nOutline and Solid pair present. Same name, same canvas, same optical volume.\nName follows element–modifier grammar. One name, both fills.\nDoes not override, rename, or detach any existing protected icon.\nReviewed and approved by the SOLAR Gatekeeper."
       ],
       "variableId": "VariableID:27:725",
       "hex": "#ffffff",

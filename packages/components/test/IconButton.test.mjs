@@ -42,7 +42,8 @@ describe('the SOLAR Icon Button shell', () => {
       'var(--solar-color-action-primary-bg-default)',
     );
     expect(last(rule, 'border-radius')).toBe('var(--solar-radius-control)');
-    expect(last(rule, 'height')).toBe('32px');
+    // SOLAR's control height since 2026-09-25, 32 at sm.
+    expect(last(rule, 'height')).toBe('var(--solar-size-control-sm)');
     expect(out.html).not.toContain('MuiTouchRipple');
   });
 
@@ -57,7 +58,7 @@ describe('the SOLAR Icon Button shell', () => {
     );
     const rule = rootRule(out);
     expect(last(rule, 'border-radius')).toBe('var(--solar-radius-pill)');
-    expect(last(rule, 'height')).toBe('48px');
+    expect(last(rule, 'height')).toBe('var(--solar-size-control-lg)');
     expect(out.html).not.toMatch(/MuiIconButton-size(Large|Small)/);
   });
 
@@ -105,5 +106,22 @@ describe('the SOLAR Icon Button shell', () => {
     expect(classes).toContain('Mui-disabled');
     expect(classes).not.toContain('MuiIconButton-loading');
     expect(html).toContain('SolarIconButton-icon');
+  });
+
+  it('is a toggle only where given active: pressed when on, no aria-pressed otherwise', () => {
+    const on = render(
+      h(IconButton, { icon, 'aria-label': 'Bold', active: true }),
+    );
+    expect(on.html).toMatch(/aria-pressed="true"/);
+    // Figma's active state, keyed on the pressed toggle, draws the pressed colours.
+    expect(on.css).toMatch(
+      /\[aria-pressed="true"\]\{[^}]*--solar-color-action-primary-bg-active/,
+    );
+    const off = render(
+      h(IconButton, { icon, 'aria-label': 'Bold', active: false }),
+    );
+    expect(off.html).toMatch(/aria-pressed="false"/);
+    const plain = render(h(IconButton, { icon, 'aria-label': 'Delete' }));
+    expect(plain.html).not.toContain('aria-pressed');
   });
 });

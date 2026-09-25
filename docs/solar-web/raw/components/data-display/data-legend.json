@@ -211,6 +211,7 @@
       "variants": [
         {
           "variant": "direction=horizontal, items=2",
+          "id": "7309:2",
           "size": [
             330,
             9
@@ -218,10 +219,12 @@
           "textFills": [
             "{Color:text/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "direction=horizontal, items=3",
+          "id": "7309:9",
           "size": [
             330,
             9
@@ -234,6 +237,7 @@
               {
                 "path": "/Item#3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Item",
                   "type": "FRAME",
@@ -261,6 +265,7 @@
               {
                 "path": "/Item#3/StatusIndicator",
                 "parent": "/Item#3",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -297,6 +302,7 @@
               {
                 "path": "/Item#3/Conversions",
                 "parent": "/Item#3",
+                "index": 1,
                 "layer": {
                   "name": "Conversions",
                   "type": "TEXT",
@@ -323,6 +329,7 @@
         },
         {
           "variant": "direction=horizontal, items=4",
+          "id": "7309:19",
           "size": [
             330,
             9
@@ -335,6 +342,7 @@
               {
                 "path": "/Item#3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Item",
                   "type": "FRAME",
@@ -362,6 +370,7 @@
               {
                 "path": "/Item#3/StatusIndicator",
                 "parent": "/Item#3",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -398,6 +407,7 @@
               {
                 "path": "/Item#3/Conversions",
                 "parent": "/Item#3",
+                "index": 1,
                 "layer": {
                   "name": "Conversions",
                   "type": "TEXT",
@@ -422,6 +432,7 @@
               {
                 "path": "/Item#4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Item",
                   "type": "FRAME",
@@ -449,6 +460,7 @@
               {
                 "path": "/Item#4/StatusIndicator",
                 "parent": "/Item#4",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -485,6 +497,7 @@
               {
                 "path": "/Item#4/Returns",
                 "parent": "/Item#4",
+                "index": 1,
                 "layer": {
                   "name": "Returns",
                   "type": "TEXT",
@@ -511,6 +524,7 @@
         },
         {
           "variant": "direction=vertical, items=2",
+          "id": "7309:32",
           "size": [
             330,
             60
@@ -534,6 +548,7 @@
         },
         {
           "variant": "direction=vertical, items=3",
+          "id": "7309:39",
           "size": [
             330,
             60
@@ -557,6 +572,7 @@
               {
                 "path": "/Item#3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Item",
                   "type": "FRAME",
@@ -584,6 +600,7 @@
               {
                 "path": "/Item#3/StatusIndicator",
                 "parent": "/Item#3",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -620,6 +637,7 @@
               {
                 "path": "/Item#3/Conversions",
                 "parent": "/Item#3",
+                "index": 1,
                 "layer": {
                   "name": "Conversions",
                   "type": "TEXT",
@@ -646,6 +664,7 @@
         },
         {
           "variant": "direction=vertical, items=4",
+          "id": "7309:49",
           "size": [
             330,
             60
@@ -669,6 +688,7 @@
               {
                 "path": "/Item#3",
                 "parent": "/",
+                "index": 2,
                 "layer": {
                   "name": "Item",
                   "type": "FRAME",
@@ -696,6 +716,7 @@
               {
                 "path": "/Item#3/StatusIndicator",
                 "parent": "/Item#3",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -732,6 +753,7 @@
               {
                 "path": "/Item#3/Conversions",
                 "parent": "/Item#3",
+                "index": 1,
                 "layer": {
                   "name": "Conversions",
                   "type": "TEXT",
@@ -756,6 +778,7 @@
               {
                 "path": "/Item#4",
                 "parent": "/",
+                "index": 3,
                 "layer": {
                   "name": "Item",
                   "type": "FRAME",
@@ -783,6 +806,7 @@
               {
                 "path": "/Item#4/StatusIndicator",
                 "parent": "/Item#4",
+                "index": 0,
                 "layer": {
                   "name": "StatusIndicator",
                   "type": "INSTANCE",
@@ -819,6 +843,7 @@
               {
                 "path": "/Item#4/Returns",
                 "parent": "/Item#4",
+                "index": 1,
                 "layer": {
                   "name": "Returns",
                   "type": "TEXT",

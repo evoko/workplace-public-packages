@@ -97,6 +97,7 @@
       "variants": [
         {
           "variant": "type=success, size=md",
+          "id": "3738:302",
           "size": [
             20,
             20
@@ -107,10 +108,12 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "type=success, size=sm",
+          "id": "8709:136",
           "size": [
             16,
             16
@@ -140,6 +143,7 @@
         },
         {
           "variant": "type=warning, size=md",
+          "id": "3738:303",
           "size": [
             20,
             20
@@ -186,6 +190,7 @@
               {
                 "path": "/Union",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Union",
                   "type": "VECTOR",
@@ -226,6 +231,7 @@
         },
         {
           "variant": "type=warning, size=sm",
+          "id": "8709:138",
           "size": [
             16,
             16
@@ -272,6 +278,7 @@
               {
                 "path": "/Union",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Union",
                   "type": "VECTOR",
@@ -312,6 +319,7 @@
         },
         {
           "variant": "type=danger, size=md",
+          "id": "3738:304",
           "size": [
             20,
             20
@@ -358,6 +366,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -398,6 +407,7 @@
         },
         {
           "variant": "type=danger, size=sm",
+          "id": "8709:141",
           "size": [
             16,
             16
@@ -444,6 +454,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "VECTOR",
@@ -484,6 +495,7 @@
         },
         {
           "variant": "type=info, size=md",
+          "id": "3738:301",
           "size": [
             20,
             20
@@ -513,6 +525,7 @@
               {
                 "path": "/Frame 3",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Frame 3",
                   "type": "FRAME",
@@ -559,6 +572,7 @@
               {
                 "path": "/Frame 3/inner-path",
                 "parent": "/Frame 3",
+                "index": 0,
                 "layer": {
                   "name": "inner-path",
                   "type": "VECTOR",
@@ -587,6 +601,7 @@
         },
         {
           "variant": "type=info, size=sm",
+          "id": "8709:144",
           "size": [
             16,
             16
@@ -616,6 +631,7 @@
               {
                 "path": "/Frame 3",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Frame 3",
                   "type": "FRAME",
@@ -662,6 +678,7 @@
               {
                 "path": "/Frame 3/inner-path",
                 "parent": "/Frame 3",
+                "index": 0,
                 "layer": {
                   "name": "inner-path",
                   "type": "VECTOR",
@@ -690,6 +707,7 @@
         },
         {
           "variant": "type=neutral, size=md",
+          "id": "3738:300",
           "size": [
             20,
             20
@@ -719,6 +737,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -765,6 +784,7 @@
               {
                 "path": "/Container/inner-path",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "inner-path",
                   "type": "VECTOR",
@@ -793,6 +813,7 @@
         },
         {
           "variant": "type=help, size=md",
+          "id": "9849:32085",
           "size": [
             20,
             20
@@ -822,6 +843,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -849,7 +871,7 @@
                     "{Color:surface/feedback/neutral/subtle}"
                   ],
                   "strokes": [
-                    "{unresolved:5f4e0e43eb89}"
+                    "{Color:border/feedback/neutral/subtle}"
                   ],
                   "strokeWeight": 1,
                   "radius": 9999,
@@ -868,6 +890,7 @@
               {
                 "path": "/Container/Icon",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "VECTOR",
@@ -895,6 +918,7 @@
         },
         {
           "variant": "type=private, size=md",
+          "id": "9849:32099",
           "size": [
             20,
             20
@@ -924,6 +948,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -970,6 +995,7 @@
               {
                 "path": "/Container/Union",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Union",
                   "type": "VECTOR",
@@ -997,6 +1023,7 @@
         },
         {
           "variant": "type=neutral, size=sm",
+          "id": "8709:147",
           "size": [
             16,
             16
@@ -1026,6 +1053,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1072,6 +1100,7 @@
               {
                 "path": "/Container/inner-path",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "inner-path",
                   "type": "VECTOR",
@@ -1100,6 +1129,7 @@
         },
         {
           "variant": "type=help, size=sm",
+          "id": "9849:32088",
           "size": [
             16,
             16
@@ -1129,6 +1159,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1156,7 +1187,7 @@
                     "{Color:surface/feedback/neutral/subtle}"
                   ],
                   "strokes": [
-                    "{unresolved:5f4e0e43eb89}"
+                    "{Color:border/feedback/neutral/subtle}"
                   ],
                   "strokeWeight": 1,
                   "radius": 9999,
@@ -1175,6 +1206,7 @@
               {
                 "path": "/Container/Icon",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Icon",
                   "type": "VECTOR",
@@ -1202,6 +1234,7 @@
         },
         {
           "variant": "type=private, size=sm",
+          "id": "9849:32102",
           "size": [
             16,
             16
@@ -1231,6 +1264,7 @@
               {
                 "path": "/Container",
                 "parent": "/",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -1277,6 +1311,7 @@
               {
                 "path": "/Container/Union",
                 "parent": "/Container",
+                "index": 0,
                 "layer": {
                   "name": "Union",
                   "type": "VECTOR",
@@ -1304,6 +1339,7 @@
         },
         {
           "variant": "type=success, size=xs",
+          "id": "2204:3532",
           "size": [
             8,
             8
@@ -1330,6 +1366,7 @@
         },
         {
           "variant": "type=warning, size=xs",
+          "id": "2204:3530",
           "size": [
             8,
             8
@@ -1359,6 +1396,7 @@
         },
         {
           "variant": "type=danger, size=xs",
+          "id": "2204:3528",
           "size": [
             8,
             8
@@ -1388,6 +1426,7 @@
         },
         {
           "variant": "type=info, size=xs",
+          "id": "2204:3534",
           "size": [
             8,
             8
@@ -1417,6 +1456,7 @@
         },
         {
           "variant": "type=neutral, size=xs",
+          "id": "2204:3536",
           "size": [
             8,
             8
@@ -1446,6 +1486,7 @@
         },
         {
           "variant": "type=help, size=xs",
+          "id": "9849:32091",
           "size": [
             8,
             8
@@ -1454,7 +1495,7 @@
             "{Color:surface/feedback/neutral/subtle}"
           ],
           "strokes": [
-            "{unresolved:5f4e0e43eb89}"
+            "{Color:border/feedback/neutral/subtle}"
           ],
           "overrides": {
             "changed": {
@@ -1464,7 +1505,7 @@
                   "{Color:surface/feedback/neutral/subtle}"
                 ],
                 "strokes": [
-                  "{unresolved:5f4e0e43eb89}"
+                  "{Color:border/feedback/neutral/subtle}"
                 ],
                 "vars": {
                   "itemSpacing": null
@@ -1478,6 +1519,7 @@
         },
         {
           "variant": "type=private, size=xs",
+          "id": "9849:32105",
           "size": [
             8,
             8

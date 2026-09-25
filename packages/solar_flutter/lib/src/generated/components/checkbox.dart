@@ -86,8 +86,6 @@ abstract final class SolarCheckboxRecipe {
         't:shadow.focus.default',
     'root.background|appearance|checked=true, mixed=true|default':
         't:color.action.primary.bg.default',
-    'root.borderColor|appearance|checked=true, mixed=true|default':
-        't:color.border.medium',
     'root.direction|appearance|checked=true, mixed=true|default': 'k:VERTICAL',
     'root.align|appearance|checked=true, mixed=true|default': 'k:CENTER/CENTER',
     'root.gap|appearance|checked=true, mixed=true|default': 't:stack.md',
@@ -101,8 +99,6 @@ abstract final class SolarCheckboxRecipe {
         't:inset.none',
     'root.background|appearance|checked=true, mixed=true|hover':
         't:color.action.primary.bg.hover',
-    'root.borderColor|appearance|checked=true, mixed=true|hover':
-        't:color.border.medium',
     'root.background|appearance|checked=true, mixed=true|disabled':
         't:color.action.primary.bg.disabled',
     'root.borderColor|appearance|checked=true, mixed=true|disabled': 'none',

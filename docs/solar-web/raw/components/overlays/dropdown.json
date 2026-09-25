@@ -5,9 +5,9 @@
     {
       "name": "Dropdown",
       "id": "2488:12213",
-      "description": "Form control that opens a list of options on click. Single-select. Use for ≤10 predictable options — use a Combobox (autocomplete) above that. Sizes: md (default), sm (dense tables, inline filters). States cover default, hover, disabled. Notes: state=active is legacy — migrate to `pressed`; state=error should migrate to feedback.danger conventions. See also: Combobox for search-within-options, Select for native HTML fallback.",
+      "description": "Form control that opens a Dropdown Menu of options on click. Single-select. 12 variants: size (md, sm) × state (default, hover, pressed, focus, disabled, error). focus matches Select's focus edge and ring. Select and Dropdown are one control drawn two ways — Select owns its panel, Dropdown opens a Dropdown Menu; pick one per product. Use for ≤10 predictable options — above that use Autocomplete.",
       "docLinks": [],
-      "variantCount": 10,
+      "variantCount": 12,
       "props": {
         "hasLabel#604:87": {
           "type": "BOOLEAN",
@@ -45,7 +45,8 @@
             "hover",
             "disabled",
             "error",
-            "pressed"
+            "pressed",
+            "focus"
           ]
         }
       },
@@ -302,6 +303,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "2488:12214",
           "size": [
             240,
             76
@@ -314,10 +316,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=default",
+          "id": "2488:12221",
           "size": [
             160,
             66
@@ -435,6 +439,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "2488:12228",
           "size": [
             240,
             76
@@ -459,6 +464,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "2488:12235",
           "size": [
             160,
             66
@@ -579,6 +585,7 @@
         },
         {
           "variant": "size=md, state=pressed",
+          "id": "2488:12242",
           "size": [
             240,
             76
@@ -604,6 +611,7 @@
               {
                 "path": "/Field/Icon/ChevronUp",
                 "parent": "/Field",
+                "index": 3,
                 "layer": {
                   "name": "Icon/ChevronUp",
                   "type": "INSTANCE",
@@ -632,6 +640,7 @@
         },
         {
           "variant": "size=sm, state=pressed",
+          "id": "2488:12249",
           "size": [
             160,
             66
@@ -744,6 +753,7 @@
               {
                 "path": "/Field/Icon/ChevronUp",
                 "parent": "/Field",
+                "index": 3,
                 "layer": {
                   "name": "Icon/ChevronUp",
                   "type": "INSTANCE",
@@ -772,6 +782,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "2488:12284",
           "size": [
             240,
             76
@@ -832,6 +843,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "2488:12291",
           "size": [
             160,
             66
@@ -889,8 +901,7 @@
                     8,
                     0,
                     8
-                  ],
-                  "align": "CENTER/CENTER"
+                  ]
                 },
                 "fills": [
                   "{Color:surface/background}"
@@ -975,6 +986,7 @@
         },
         {
           "variant": "size=md, state=error",
+          "id": "2488:12298",
           "size": [
             240,
             76
@@ -1014,6 +1026,7 @@
         },
         {
           "variant": "size=sm, state=error",
+          "id": "2488:12305",
           "size": [
             160,
             66
@@ -1072,8 +1085,7 @@
                     8,
                     0,
                     8
-                  ],
-                  "align": "CENTER/CENTER"
+                  ]
                 },
                 "strokes": [
                   "{Color:border/feedback/danger/strong}"
@@ -1141,13 +1153,161 @@
               }
             }
           }
+        },
+        {
+          "variant": "size=md, state=focus",
+          "id": "11066:29900",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "id": "11066:29910",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  160,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Field/Label": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  76,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              "/Field/Icon/None#2": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Field/Icon/ChevronDown": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  160,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         }
       ]
     },
     {
       "name": "Dropdown Item",
       "id": "2781:994",
-      "description": "Single row inside a Dropdown Menu. States: default, hover, selected, disabled. Pair with optional leading icon (20px), description line, and trailing metadata — never two trailing elements at once. Current variant set lacks an explicit focus state — keyboard navigation uses the aria-activedescendant pattern with hover styling.",
+      "description": "Single row inside a Dropdown Menu. 8 variants: size (md, sm) × state (default, hover, selected, disabled). Optional leading icon (20px), checkbox and description line; rows that hide them are 34px (md). Keyboard focus follows the aria-activedescendant pattern and draws the hover look — no separate ring. Rows under 44px rely on their own box as the target (WCAG 2.2 minimum 24px).",
       "docLinks": [],
       "variantCount": 8,
       "props": {
@@ -1341,6 +1501,7 @@
       "variants": [
         {
           "variant": "size=md, state=default",
+          "id": "2781:928",
           "size": [
             240,
             51
@@ -1352,10 +1513,12 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm, state=default",
+          "id": "2781:1098",
           "size": [
             160,
             42
@@ -1421,6 +1584,7 @@
         },
         {
           "variant": "size=md, state=hover",
+          "id": "2781:979",
           "size": [
             240,
             51
@@ -1459,6 +1623,7 @@
         },
         {
           "variant": "size=sm, state=hover",
+          "id": "2781:1103",
           "size": [
             160,
             42
@@ -1542,6 +1707,7 @@
         },
         {
           "variant": "size=md, state=selected",
+          "id": "2781:992",
           "size": [
             240,
             51
@@ -1597,6 +1763,7 @@
         },
         {
           "variant": "size=sm, state=selected",
+          "id": "2781:1108",
           "size": [
             160,
             42
@@ -1697,6 +1864,7 @@
         },
         {
           "variant": "size=md, state=disabled",
+          "id": "2781:1020",
           "size": [
             240,
             51
@@ -1744,6 +1912,7 @@
         },
         {
           "variant": "size=sm, state=disabled",
+          "id": "2781:1113",
           "size": [
             160,
             42
@@ -1905,6 +2074,7 @@
       "variants": [
         {
           "variant": "size=md",
+          "id": "2781:1201",
           "size": [
             240,
             34
@@ -1915,10 +2085,12 @@
           "textFills": [
             "{Color:text/secondary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "hiddenPaths": []
         },
         {
           "variant": "size=sm",
+          "id": "2781:927",
           "size": [
             160,
             25
@@ -2294,6 +2466,7 @@
       "variants": [
         {
           "variant": "size=md",
+          "id": "2781:993",
           "size": [
             240,
             238
@@ -2316,10 +2489,31 @@
             "Checkbox",
             "Description",
             "Icon/None"
+          ],
+          "hiddenPaths": [
+            "/Content/Dropdown Item#2/Checkbox",
+            "/Content/Dropdown Item#2/Content/Description",
+            "/Content/Dropdown Item#2/Icon/None",
+            "/Content/Dropdown Item#3/Checkbox",
+            "/Content/Dropdown Item#3/Content/Description",
+            "/Content/Dropdown Item#3/Icon/None",
+            "/Content/Dropdown Item#4/Checkbox",
+            "/Content/Dropdown Item#4/Content/Description",
+            "/Content/Dropdown Item#4/Icon/None",
+            "/Content/Dropdown Item#5/Checkbox",
+            "/Content/Dropdown Item#5/Content/Description",
+            "/Content/Dropdown Item#5/Icon/None",
+            "/Content/Dropdown Item#6/Checkbox",
+            "/Content/Dropdown Item#6/Content/Description",
+            "/Content/Dropdown Item#6/Icon/None",
+            "/Content/Dropdown Item/Checkbox",
+            "/Content/Dropdown Item/Content/Description",
+            "/Content/Dropdown Item/Icon/None"
           ]
         },
         {
           "variant": "size=sm",
+          "id": "5408:3888",
           "size": [
             160,
             217

@@ -37,7 +37,7 @@
         }
       },
       "defaultVariant": "cta=full-width",
-      "defaultVariantNodeCount": 51,
+      "defaultVariantNodeCount": 52,
       "defaultVariantTree": {
         "name": "cta=full-width",
         "type": "COMPONENT",
@@ -116,7 +116,7 @@
                 ],
                 "layout": {
                   "dir": "HORIZONTAL",
-                  "gap": 0,
+                  "gap": 16,
                   "pad": [
                     0,
                     0,
@@ -125,6 +125,9 @@
                   ],
                   "align": "SPACE_BETWEEN/CENTER",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -157,6 +160,9 @@
                         "variant": {
                           "solid": "false"
                         },
+                        "iconFills": [
+                          "{Primitives:color/neutral/900}"
+                        ],
                         "size": [
                           12,
                           12
@@ -214,9 +220,10 @@
                       "align": "CENTER/CENTER",
                       "sizing": "FIXED/FIXED"
                     },
-                    "fills": [
-                      "{Color:action/tertiary/bg/default}"
+                    "strokes": [
+                      "{Color:action/tertiary/border/default}"
                     ],
+                    "strokeWeight": 1,
                     "radius": 9999,
                     "vars": {
                       "strokeTopWeight": "Spatial:border/default",
@@ -485,6 +492,7 @@
       "variants": [
         {
           "variant": "cta=full-width",
+          "id": "6774:9191",
           "size": [
             640,
             480
@@ -502,6 +510,7 @@
             "{Color:action/primary/text/default}"
           ],
           "iconFills": [
+            "{Primitives:color/neutral/900}",
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/tertiary}",
             "{Color:action/secondary/icon/default}",
@@ -512,10 +521,24 @@
             "Helper text",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Body/left/Text Input/Field/Icon/None",
+            "/Body/left/Text Input/Field/Icon/None#2",
+            "/Body/left/Text Input/Helper text",
+            "/Button Group/Button#2/Counter",
+            "/Button Group/Button#2/Icon/None",
+            "/Button Group/Button#2/Icon/None#2",
+            "/Button Group/Button#2/Spinner",
+            "/Button Group/Button/Counter",
+            "/Button Group/Button/Icon/None",
+            "/Button Group/Button/Icon/None#2",
+            "/Button Group/Button/Spinner"
           ]
         },
         {
           "variant": "cta=regular",
+          "id": "6774:9619",
           "size": [
             640,
             480
@@ -532,6 +555,7 @@
             "{Color:action/secondary/text/default}"
           ],
           "iconFills": [
+            "{Primitives:color/neutral/900}",
             "{Color:action/tertiary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
@@ -541,6 +565,21 @@
             "Counter",
             "Icon/None",
             "Spinner"
+          ],
+          "hiddenPaths": [
+            "/Body/Container/Button Group/Button",
+            "/Body/Container/Button Group/Button#2/Counter",
+            "/Body/Container/Button Group/Button#2/Icon/None",
+            "/Body/Container/Button Group/Button#2/Icon/None#2",
+            "/Body/Container/Button Group/Button#2/Spinner",
+            "/Body/Container/Button Group/Button#3/Counter",
+            "/Body/Container/Button Group/Button#3/Icon/None",
+            "/Body/Container/Button Group/Button#3/Icon/None#2",
+            "/Body/Container/Button Group/Button#3/Spinner",
+            "/Body/Container/Button Group/Button/Counter",
+            "/Body/Container/Button Group/Button/Icon/None",
+            "/Body/Container/Button Group/Button/Icon/None#2",
+            "/Body/Container/Button Group/Button/Spinner"
           ],
           "overrides": {
             "changed": {
@@ -561,6 +600,7 @@
               {
                 "path": "/Body/Container",
                 "parent": "/Body",
+                "index": 0,
                 "layer": {
                   "name": "Container",
                   "type": "FRAME",
@@ -585,6 +625,7 @@
               {
                 "path": "/Body/Container/left",
                 "parent": "/Body/Container",
+                "index": 0,
                 "layer": {
                   "name": "left",
                   "type": "SLOT",
@@ -630,6 +671,7 @@
               {
                 "path": "/Body/Container/left/Primary panel",
                 "parent": "/Body/Container/left",
+                "index": 0,
                 "layer": {
                   "name": "Primary panel",
                   "type": "TEXT",
@@ -654,6 +696,7 @@
               {
                 "path": "/Body/Container/left/Primary panel — main form, picker, or input area.",
                 "parent": "/Body/Container/left",
+                "index": 1,
                 "layer": {
                   "name": "Primary panel — main form, picker, or input area.",
                   "type": "TEXT",
@@ -678,6 +721,7 @@
               {
                 "path": "/Body/Container/Button Group",
                 "parent": "/Body/Container",
+                "index": 1,
                 "layer": {
                   "name": "Button Group",
                   "type": "INSTANCE",

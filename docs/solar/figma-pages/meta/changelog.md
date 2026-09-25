@@ -1,6 +1,6 @@
 # Changelog
 
-> Verbatim text of the Figma page `Changelog` (id `120:395`, section meta), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `d049b47cafd2`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
+> Verbatim text of the Figma page `Changelog` (id `120:395`, section meta), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `58839eb14d96`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
 
 ## Changelog
 
@@ -27,12 +27,42 @@ For more information about Semantic Versioning, visit semver.org.
 
 **Contributors**
 
-**Component name & link**
+**Color variables**
 
-****MAJOR****
+****MINOR****
 
-**YYYY-MM-DD**
+**2026-09-25**
 
-**Short description of change**
+**Secondary actions: no background; danger hover keeps the red tint.**
 
-**Anatoliy Gromov**
+**Ella Törnquist**
+
+**Color variables**
+
+****PATCH****
+
+**2026-09-25**
+
+**Dark primary icon hover/pressed follows the label; danger hovers pass 4.5:1.**
+
+**Ella Törnquist**
+
+**Spatial variables**
+
+****MINOR****
+
+**2026-09-25**
+
+**Added size/control/sm, md, lg and size/target/min.**
+
+**Ella Törnquist**
+
+**Guideline pages**
+
+****PATCH****
+
+**2026-09-25**
+
+**Action states, data scale and icon checklist corrected to the variables.**
+
+**Ella Törnquist**

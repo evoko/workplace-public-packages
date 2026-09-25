@@ -100,7 +100,7 @@ Default variant: `status=complete, type=round` · 8 variants · default size 26�
 
 ## Component set: Stepper
 
-Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3, showStep4, showStep5 set the step count (2–5). Steps are informational unless the flow allows going back, in which case completed steps are links. Back/next buttons belong to the Multi-step Wizard pattern, not to Stepper. For non-linear sections use Tabs.
+Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3–5 set the step count (2–5). The step after the completed ones is active. Steps are informational unless the flow allows going back, in which case completed steps are links. Note: Stepper Indicator names the status completed, Step names it complete — same meaning. Back/next buttons belong to the Multi-step Wizard pattern.
 
 ### Props
 

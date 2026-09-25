@@ -33,19 +33,18 @@ describe('the FAB IR', () => {
     expect(deviations.filter((d) => !d.decision)).toEqual([]);
   });
 
-  it('draws the focus ring Figma leaves off, in a focus entry the IR did not have', () => {
-    expect(spec.style.root.appearance['type=icon'].focus.shadow).toMatchObject({
+  it('draws the focus ring Figma draws, with nothing to excuse', () => {
+    // Figma left it off until 2026-09-25, when the overlay drew it; Figma's own since.
+    expect(spec.style.root.appearance['type=icon'].focus.shadow).toEqual({
       token: 'shadow.focus.default',
-      replaced: { token: 'shadow.overlay' },
+      from: 'type=icon, size=sm, state=focus',
     });
     const focus = oracle.variants.find(
       (v) => v.figma === 'type=icon, size=sm, state=focus',
     );
     expect(
-      focus.excused
-        .filter((e) => e.property === 'shadow')
-        .map((e) => e.decision),
-    ).toEqual(['set']);
+      (focus.excused ?? []).filter((e) => e.property === 'shadow'),
+    ).toEqual([]);
   });
 
   it('keeps its size while loading, where Figma narrows the extended one', () => {
