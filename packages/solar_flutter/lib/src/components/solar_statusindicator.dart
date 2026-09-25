@@ -22,6 +22,7 @@ class SolarStatusIndicator extends StatelessWidget {
     this.type = SolarStatusIndicatorType.success,
     this.size = SolarStatusIndicatorSize.md,
     this.label,
+    this.restyle = const {},
   });
 
   final SolarStatusIndicatorType type;
@@ -29,6 +30,10 @@ class SolarStatusIndicator extends StatelessWidget {
 
   /// What the status means, for a screen reader. Without it the mark is decorative.
   final String? label;
+
+  /// The colours a component that holds it draws it in, by cell (a Data Legend's swatch:
+  /// `root.background`, its series' colour), over the recipe's.
+  final Map<String, Color> restyle;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,8 @@ class SolarStatusIndicator extends StatelessWidget {
       recipe: SolarLayerRecipe(
         lookup: (c) => SolarStatusIndicatorRecipe.lookup(c, p, states),
         dimension: (c) => SolarStatusIndicatorRecipe.dimension(c, p, states),
-        color: (c) => SolarStatusIndicatorRecipe.color(t, c, p, states),
+        color: (c) =>
+            restyle[c] ?? SolarStatusIndicatorRecipe.color(t, c, p, states),
         shadow: (c) => SolarStatusIndicatorRecipe.shadow(t, c, p, states),
         textStyle: (c) => SolarStatusIndicatorRecipe.textStyle(t, c, p, states),
         present: (l) => SolarStatusIndicatorRecipe.present(l, p, states),

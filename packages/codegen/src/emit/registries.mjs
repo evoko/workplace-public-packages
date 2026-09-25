@@ -34,7 +34,7 @@ const key = (name) => (/^[A-Za-z]\w*$/.test(name) ? name : `'${name}'`);
  */
 export function renderRegistries(
   names,
-  { shelled = () => true, generic = () => false } = {},
+  { shelled = () => true, generic = () => false, drawnByLibrary = [] } = {},
 ) {
   const sorted = [...names].sort();
   // A component checked as another's state (Autocomplete Open, Autocomplete's) has no shells of
@@ -65,6 +65,12 @@ export function renderRegistries(
     '',
     'final cases = <String, VisualCase>{',
     ...sorted.map((n) => `  '${n}': ${camel(n)}Case,`),
+    '};',
+    '',
+    "/// The components a chart library draws (Bar Chart, fl_chart's): an oracle each and no case,",
+    '/// since no widget draws their Figma variants; the chart theme is checked against their IRs.',
+    'const drawnByLibrary = <String>{',
+    ...[...drawnByLibrary].sort().map((n) => `  '${n}',`),
     '};',
   ];
   const builders = [

@@ -1,0 +1,105 @@
+# Hand-written decisions about SOLAR Chart Tooltip, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Chart Tooltip
+
+base:
+  reason: >-
+    A chart's value on hover, as the description says: the point's title (its category or date)
+    and a row per series, each Figma's dot (the xs StatusIndicator's shape and edge) in the series'
+    colour (owner decision 2026-09-26), its name and its value; one compact row (single) or a row
+    each, their values at the end (multi). The chart library shows and hides it: as a hover's
+    tooltip it stays while hovered and Escape dismisses it (WCAG 1.4.13, as the description asks).
+
+layerNames:
+  /Frame/StatusIndicator:
+    name: swatch
+    reason: >-
+      A single row's StatusIndicator is its series' swatch: Figma's dot, in the series' colour.
+  /Frame/Frame/StatusIndicator:
+    name: rowSwatch
+    reason: >-
+      A multi row's StatusIndicator, beside its series' name, is the series' swatch, as the single
+      row's.
+  /Frame/Frame:
+    name: series
+    reason: A multi row's dot and name, the series it is.
+
+repeats:
+  frame:
+    reason: >-
+      Figma's multi rows are copies of one: a series' dot, name and value. The shell draws one per
+      series the caller gives, so the first stands for them all, checked as Figma draws it.
+
+slots:
+  date:
+    name: title
+    type: text
+    reason: >-
+      The point's title (its category or date, "Jan 2026") is the caller's; Figma records no text
+      prop.
+  frameFrameLabel:
+    name: label
+    type: text
+    reason: A series' name is the caller's; Figma records no text prop.
+  frameValue:
+    name: value
+    type: text
+    reason: A series' value ("60.4k") is the caller's, formatted; Figma records no text prop.
+
+derive:
+  series:
+    when:
+      - value: multi
+        given: [label]
+      - value: single
+    reason: >-
+      A tooltip whose rows name their series is the multi one, a row each, its values at the end;
+      one bare value is the single, compact one: its layout follows from what the caller gives, as
+      a Tag's type does.
+
+follows:
+  frame.align:
+    axes: [series]
+    reason: >-
+      A multi row spreads its series' name and value to its ends, a single row packs its dot and
+      value together, as Figma draws each.
+  frame.gap:
+    axes: [series]
+    reason: >-
+      A multi row's name and value are inset.md apart at least, a single row's dot and value
+      inset.2xs, as Figma draws each.
+  frame.width:
+    axes: [series]
+    reason: >-
+      A multi row is 132 wide, its values aligned at the end across the rows; a single row hugs its
+      dot and value.
+
+set:
+  swatch.base.width:
+    none: true
+    reason: >-
+      The dot is a SOLAR StatusIndicator (xs), whose 8px box is its own: the tooltip places it, and
+      never sizes it.
+  swatch.base.height:
+    none: true
+    reason: { as: set swatch.base.width }
+  rowSwatch.base.width:
+    none: true
+    reason: { as: set swatch.base.width }
+  rowSwatch.base.height:
+    none: true
+    reason: { as: set swatch.base.width }
+
+bind:
+  root.borderWidth:
+    literal: 1
+    token: border.default
+    reason: Same value, governed token, the tooltip's edge.
+
+allowLiteral:
+  frame.width:
+    reason: >-
+      A multi row is 132 wide, bound to nothing: SOLAR has no size for it, one of the sizes with no
+      variable; its values align at its end.

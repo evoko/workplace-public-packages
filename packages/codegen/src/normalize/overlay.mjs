@@ -81,6 +81,9 @@
  *   samples:      { <axis>: { keep: [values], reason } }  an axis whose values are samples of what
  *                                                        the caller gives (Avatar's colours): the API
  *                                                        loses it, the recipe keeps those variants
+ *   tint:         { <axis>: { from, cell, default, reason } }  an axis another component has, its
+ *                                                        values recolouring this one (normalize/
+ *                                                        tint.mjs; applied once every IR is built)
  *   caller:       { <layer>.<cell>: { prop | from, reason } }  a cell whose value is the caller's:
  *                                                        `prop` names the colour prop it is (the API
  *                                                        gains it), `from` the prop it is derived from
@@ -176,6 +179,7 @@ const FIELDS = {
   repeats: [],
   examples: [],
   composes: ['name'],
+  tint: ['from', 'cell', 'default'],
 };
 const SECTIONS = [
   'codeName',
@@ -469,6 +473,14 @@ export function parseOverlay(text, file) {
         `choice.${prop}: content names one slot, for two layers and no none`,
       );
   }
+  for (const [axis, rule] of Object.entries(doc.tint ?? {}))
+    if (
+      typeof rule.from !== 'string' ||
+      typeof rule.cell !== 'string' ||
+      !rule.cell.includes('.') ||
+      typeof rule.default !== 'string'
+    )
+      fail(`tint.${axis}: give from, cell (<layer>.<cell>) and default`);
   for (const [at, rule] of Object.entries(doc.caller ?? {})) {
     if ((rule.prop === undefined) === (rule.from === undefined))
       fail(`caller.${at}: give prop or from, one of them`);
@@ -1607,10 +1619,23 @@ export function applyOverlay(
     record('composes', `${main} → ${rule.name}`, rule.reason);
   }
 
-  for (const [token, rule] of sorted('accept')) {
+  // A finding by its token; or, by a pattern (`component.bar chart.*`: a library chart's plot,
+  // Figma's sample data), every finding it matches that no rule decides, after the named ones.
+  const accepts = sorted('accept');
+  for (const [token, rule] of accepts.filter(([t]) => !t.includes('*'))) {
     if (!decide(token, 'accept', rule.reason))
       fail(`accept ${token}: no such deviation`);
     record('accept', token, rule.reason);
+  }
+  for (const [pattern, rule] of accepts.filter(([t]) => t.includes('*'))) {
+    const re = new RegExp(
+      `^${pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replaceAll('*', '.*')}$`,
+    );
+    const matched = deviations.filter((d) => !d.decision && re.test(d.token));
+    if (!matched.length) fail(`accept ${pattern}: matches no open deviation`);
+    for (const d of matched)
+      d.decision = { rule: 'accept', reason: rule.reason };
+    record('accept', pattern, rule.reason);
   }
 
   // Renames last, over the API and every key spelled with the axis.

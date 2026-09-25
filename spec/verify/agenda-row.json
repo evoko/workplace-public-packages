@@ -12,8 +12,7 @@
       "figma": "state=default, density=comfortable",
       "props": {
         "selected": false,
-        "density": "comfortable",
-        "color": "#2569fd"
+        "density": "comfortable"
       },
       "state": "default",
       "layers": {
@@ -179,8 +178,7 @@
       "figma": "state=hover, density=comfortable",
       "props": {
         "selected": false,
-        "density": "comfortable",
-        "color": "#2569fd"
+        "density": "comfortable"
       },
       "state": "hover",
       "layers": {
@@ -346,8 +344,7 @@
       "figma": "state=selected, density=comfortable",
       "props": {
         "selected": true,
-        "density": "comfortable",
-        "color": "#2569fd"
+        "density": "comfortable"
       },
       "state": "default",
       "layers": {
@@ -513,8 +510,7 @@
       "figma": "state=default, density=compact",
       "props": {
         "selected": false,
-        "density": "compact",
-        "color": "#2569fd"
+        "density": "compact"
       },
       "state": "default",
       "layers": {
@@ -627,8 +623,7 @@
       "figma": "state=hover, density=compact",
       "props": {
         "selected": false,
-        "density": "compact",
-        "color": "#2569fd"
+        "density": "compact"
       },
       "state": "hover",
       "layers": {
@@ -741,8 +736,7 @@
       "figma": "state=selected, density=compact",
       "props": {
         "selected": true,
-        "density": "compact",
-        "color": "#2569fd"
+        "density": "compact"
       },
       "state": "default",
       "layers": {

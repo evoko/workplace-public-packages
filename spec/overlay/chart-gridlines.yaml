@@ -1,0 +1,23 @@
+# Hand-written decisions about SOLAR Chart Gridlines, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Chart Gridlines
+
+base:
+  reason: >-
+    A chart's gridlines, as the description says: faint lines across the plot, drawn by the chart
+    library (MUI X Charts, fl_chart; decision) in SOLAR's chart theme, which takes their colour and
+    thickness from here. Figma's lines and their spacing are samples.
+
+bind:
+  gridline*.height:
+    literal: 1
+    token: border.default
+    reason: Same value, governed token, a gridline's thickness, which the theme takes.
+
+accept:
+  component.chart gridlines.*:
+    reason: >-
+      Figma's gridlines are a sample: how many, how far apart, at two sizes. The library places the
+      caller's; the theme takes the design, none of which is left open.

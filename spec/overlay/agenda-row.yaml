@@ -40,13 +40,15 @@ slots:
       An attendee's SOLAR Avatar is the caller's; Figma records no prop, and draws a sample
       purple one.
 
-caller:
-  dot.background:
-    prop: color
+tint:
+  category:
+    from: Event Chip
+    cell: stripe.background
+    default: blue
     reason: >-
-      The dot is the event's colour, which "should match the source event", as the description
-      says: the caller's (an Event Chip's category colour). Without one, it is Figma's,
-      data/category/06/strong.
+      The dot is the event's category, as an Event Chip's stripe is (owner decision 2026-09-26):
+      its description says its colour "should match the source event". Figma draws category 06,
+      blue, which is the default; each category's colour is Event Chip's.
 
 follows:
   root.paddingTop:

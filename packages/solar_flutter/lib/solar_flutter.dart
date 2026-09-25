@@ -10,6 +10,8 @@ export 'src/components/components.dart';
 export 'src/generated/components/components.dart';
 export 'src/generated/icons.dart';
 export 'src/generated/logos.dart';
+export 'src/generated/charts.dart';
+export 'src/solar_charts.dart';
 export 'src/generated/tokens.dart';
 export 'src/solar_button_themes.dart';
 export 'src/solar_fonts.dart';

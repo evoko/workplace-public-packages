@@ -62838,6 +62838,29 @@
           "id": "7310:13",
           "size": [200, 200],
           "overrides": {
+            "changed": {
+              "/Segment": {
+                "arc": {
+                  "start": -1.5708,
+                  "end": 0.9425,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#2": {
+                "arc": {
+                  "start": 0.9425,
+                  "end": 2.5133,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#3": {
+                "arc": {
+                  "start": 2.5133,
+                  "end": 3.7699,
+                  "inner": 0.6
+                }
+              }
+            },
             "added": [
               {
                 "path": "/Segment#4",
@@ -62848,7 +62871,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/04/strong}"]
+                  "fills": ["{Color:data/category/04/strong}"],
+                  "arc": {
+                    "start": 3.7699,
+                    "end": 4.7124,
+                    "inner": 0.6
+                  }
                 }
               }
             ]
@@ -62860,6 +62888,29 @@
           "size": [200, 200],
           "textFills": ["{Color:text/primary}", "{Color:text/secondary}"],
           "overrides": {
+            "changed": {
+              "/Segment": {
+                "arc": {
+                  "start": -1.5708,
+                  "end": 0.9425,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#2": {
+                "arc": {
+                  "start": 0.9425,
+                  "end": 2.5133,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#3": {
+                "arc": {
+                  "start": 2.5133,
+                  "end": 3.7699,
+                  "inner": 0.6
+                }
+              }
+            },
             "added": [
               {
                 "path": "/Segment#4",
@@ -62870,7 +62921,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/04/strong}"]
+                  "fills": ["{Color:data/category/04/strong}"],
+                  "arc": {
+                    "start": 3.7699,
+                    "end": 4.7124,
+                    "inner": 0.6
+                  }
                 }
               },
               {
@@ -62942,6 +62998,29 @@
           "id": "7310:26",
           "size": [200, 200],
           "overrides": {
+            "changed": {
+              "/Segment": {
+                "arc": {
+                  "start": -1.5708,
+                  "end": 0.3142,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#2": {
+                "arc": {
+                  "start": 0.3142,
+                  "end": 1.6965,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#3": {
+                "arc": {
+                  "start": 1.6965,
+                  "end": 2.8274,
+                  "inner": 0.6
+                }
+              }
+            },
             "added": [
               {
                 "path": "/Segment#4",
@@ -62952,7 +63031,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/04/strong}"]
+                  "fills": ["{Color:data/category/04/strong}"],
+                  "arc": {
+                    "start": 2.8274,
+                    "end": 3.5814,
+                    "inner": 0.6
+                  }
                 }
               },
               {
@@ -62964,7 +63048,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/05/strong}"]
+                  "fills": ["{Color:data/category/05/strong}"],
+                  "arc": {
+                    "start": 3.5814,
+                    "end": 4.2097,
+                    "inner": 0.6
+                  }
                 }
               },
               {
@@ -62976,7 +63065,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/06/strong}"]
+                  "fills": ["{Color:data/category/06/strong}"],
+                  "arc": {
+                    "start": 4.2097,
+                    "end": 4.7124,
+                    "inner": 0.6
+                  }
                 }
               }
             ]
@@ -62988,6 +63082,29 @@
           "size": [200, 200],
           "textFills": ["{Color:text/primary}", "{Color:text/secondary}"],
           "overrides": {
+            "changed": {
+              "/Segment": {
+                "arc": {
+                  "start": -1.5708,
+                  "end": 0.3142,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#2": {
+                "arc": {
+                  "start": 0.3142,
+                  "end": 1.6965,
+                  "inner": 0.6
+                }
+              },
+              "/Segment#3": {
+                "arc": {
+                  "start": 1.6965,
+                  "end": 2.8274,
+                  "inner": 0.6
+                }
+              }
+            },
             "added": [
               {
                 "path": "/Segment#4",
@@ -62998,7 +63115,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/04/strong}"]
+                  "fills": ["{Color:data/category/04/strong}"],
+                  "arc": {
+                    "start": 2.8274,
+                    "end": 3.5814,
+                    "inner": 0.6
+                  }
                 }
               },
               {
@@ -63010,7 +63132,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/05/strong}"]
+                  "fills": ["{Color:data/category/05/strong}"],
+                  "arc": {
+                    "start": 3.5814,
+                    "end": 4.2097,
+                    "inner": 0.6
+                  }
                 }
               },
               {
@@ -63022,7 +63149,12 @@
                   "type": "ELLIPSE",
                   "size": [200, 200],
                   "position": [0, 0],
-                  "fills": ["{Color:data/category/06/strong}"]
+                  "fills": ["{Color:data/category/06/strong}"],
+                  "arc": {
+                    "start": 4.2097,
+                    "end": 4.7124,
+                    "inner": 0.6
+                  }
                 }
               },
               {

@@ -8,8 +8,8 @@
  *
  * An event that spans a day or more, as the description says, drawn from Figma's layer tree
  * (`internal/layers.tsx`): a bar in a week or day grid's all-day row, or across a month grid's
- * columns, as a stripe beside neutral words (`variant` subtle) or a full fill with inverse words
- * (solid); its `time` where given ("All day") and its `title`, on one line, cut short at the bar's
+ * columns, in its event's `category` (an Event Chip's), as a stripe beside neutral words
+ * (`variant` subtle) or a full fill with inverse words (solid); its `time` where given ("All day") and its `title`, on one line, cut short at the bar's
  * end. `span` says which segment of a bar across columns it is. It fills the columns it spans. A
  * styled part: what the event is, and what a click on it does, are the caller's. The app must load
  * `@bwp-web/styles/tokens.css`.
@@ -41,11 +41,11 @@ export interface AllDayBarProps
 export const AllDayBar = forwardRef<HTMLDivElement, AllDayBarProps>(
   function AllDayBar(inProps, ref) {
     // As the app's MUI theme sets them (components.SolarAllDayBar), under the caller's own.
-    const { variant, span, title, time, sx, ...rest } = useSolarProps(
+    const { variant, span, category, title, time, sx, ...rest } = useSolarProps(
       inProps,
       'SolarAllDayBar',
     );
-    const look = { variant, span };
+    const look = { variant, span, category };
     const composed = solarAllDayBarCompose(look);
     // A part left out is not drawn.
     const parts = {

@@ -1,0 +1,32 @@
+# Hand-written decisions about SOLAR Sparkline, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Sparkline
+
+base:
+  reason: >-
+    A tiny inline trend, as the description says: a line with no axes or chrome, its colour the
+    trend's (positive, negative, neutral), 80 × 24 (sm) or 120 × 32 (md). The caller's `data` is
+    scaled into the line's box, and gives the trend where the caller gives none (owner decision);
+    without data it draws Figma's sample line. An image to a screen reader, named by the caller.
+
+bind:
+  line.borderWidth:
+    tokens: { 2: border.strong }
+    reason: >-
+      The md line's 2px stroke is border.strong's width, the same value; the sm line's 1.5 has no
+      token (allowLiteral below).
+
+allowLiteral:
+  root.width:
+    reason: >-
+      Figma's frame is 115 × 32 at both sizes, its line inside it at its own size (owner decision
+      2026-09-26: the component is Figma's frame), bound to nothing: SOLAR has no size for it.
+  root.height:
+    reason: { as: allowLiteral root.width }
+  line.borderWidth:
+    values: [1.5]
+    reason: >-
+      The sm line's stroke is 1.5, between border.default's 1 and border.strong's 2: no border
+      width is 1.5, one of the sizes with no variable.

@@ -21,6 +21,7 @@ export const DIFF_KEYS = [
   'strokeWeight',
   'strokeWeights',
   'dashes',
+  'arc',
   'radius',
   'effectStyle',
   'opacity',

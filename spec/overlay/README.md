@@ -239,7 +239,9 @@ the prop it is derived from (Avatar's initials, from its colour).
 ### `accept`
 
 A finding the code keeps its value for: Figma's difference is known and intended, or a slip the
-design review lists. Addressed by the finding's token.
+design review lists. Addressed by the finding's token, or by a pattern (`component.bar chart.*`),
+which decides every open finding it matches after the rules that name one: a chart library's sample
+plot. A pattern that matches none fails.
 
 ```yaml
 accept:
@@ -315,6 +317,24 @@ examples:
     reason: >-
       The right pane's words ("Supporting panel") are Figma's sample of what it holds: the caller's
       content replaces them.
+```
+
+### `tint`
+
+An axis another component has, its values recolouring this one where Figma draws it in one of them
+alone: Agenda Row and All-Day Bar take Event Chip's `category` (owner decision 2026-09-26). `from`
+names the component, `cell` the cell whose token each value draws there (`stripe.background`: red
+is `color.data.category.01`), and `default` the value Figma draws here. The API gains the axis; the
+recipe keeps Figma's tokens, and each value swaps the default's colour family for its own. Applied
+once every IR is built (`normalize/tint.mjs`).
+
+```yaml
+tint:
+  category:
+    from: Event Chip
+    cell: stripe.background
+    default: blue
+    reason: …
 ```
 
 ### `composes`

@@ -247,6 +247,23 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      each added layer's `index`; where the data has them, a composed child hides exactly its own
      layers and an added layer sits where Figma draws it, and the overlay's `hides` and `places`
      rules they replace fail as stale. The data has them from the next `solar:sync`.
+     What F14 (charts) added:
+   - **Library components.** A descriptor's `library: 'charts'` (Bar Chart, Line Chart, Donut Chart,
+     Chart Axis, Chart Gridlines) builds the IR and the oracle but no recipe, shell, case or story:
+     a chart library draws them. `src/emit/chart-theme.mjs` writes the chart theme from their cells
+     (and Bar's and Chart Tooltip's), `solarChartTheme` in `@bwp-web/styles/mui` and
+     `SolarChartTheme` in `solar_flutter`, checking the series orders against the IRs (the owner's
+     two palettes), so a Figma change to them fails the build.
+   - **An axis from another component.** The overlay's `tint` gives a component another's axis, its
+     values recolouring it (`normalize/tint.mjs`, applied once every IR is built): Agenda Row and
+     All-Day Bar take Event Chip's `category`, each value's colour family read from Event Chip's
+     stripe; the recipe keeps Figma's (category 06, the default) and the emitters swap the family.
+   - **Accept patterns.** `accept: { 'component.bar chart.*': … }` decides every open finding a
+     pattern matches, after the rules that name one: a library chart's sample plot.
+   - **Arcs.** The fetcher records a partial ellipse's `arc` (its angles and hole), the IR carries it
+     (the donut's 0.6 hole, which the theme takes).
+   - A glyph's stroke width may be an allowed literal (Sparkline's 1.5); the parity test takes a
+     nullable enum a shell derives where the caller gives none (Sparkline's `trend`).
      What F13 (calendar parts) added:
    - **Dashed strokes.** The fetcher records a stroke's `dashes` (Figma's `strokeDashes`); the
      recipe carries them as `borderDash`, the web draws CSS's `dashed` (the lengths are the

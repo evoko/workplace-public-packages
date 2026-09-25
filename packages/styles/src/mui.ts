@@ -18,3 +18,4 @@ export {
   solarMuiThemeDecisions,
 } from './generated/mui/theme-components.js';
 export * from './generated/mui/components/index.js';
+export { solarChartTheme } from './generated/mui/charts.js';

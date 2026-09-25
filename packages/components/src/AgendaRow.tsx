@@ -8,7 +8,7 @@
  *
  * One event in the Agenda view, as the description says, a denser alternative to a Calendar Day
  * Cell, drawn from Figma's layer tree (`internal/layers.tsx`). At the comfortable `density`: its
- * `start` above its `end`, a dot in the event's `color`, its `title`, a line of words about it
+ * `start` above its `end`, a dot in the event's `category` (an Event Chip's), its `title`, a line of words about it
  * (`meta`) and an `attendee` (a SOLAR Avatar). At compact: one time `range` ("9:00 – 10:00",
  * `start` and `end` joined where none is given) and its title. Given `onClick`, it is a button,
  * hovered under a pointer and `selected` as the one the caller shows. It fills its list. A styled
@@ -55,7 +55,7 @@ export const AgendaRow = forwardRef<HTMLDivElement, AgendaRowProps>(
     const {
       selected,
       density,
-      color,
+      category,
       title,
       start,
       end,
@@ -67,7 +67,7 @@ export const AgendaRow = forwardRef<HTMLDivElement, AgendaRowProps>(
       sx,
       ...rest
     } = useSolarProps(inProps, 'SolarAgendaRow');
-    const look = { selected, density };
+    const look = { selected, density, category };
     const composed = solarAgendaRowCompose(look);
     const joined =
       range ??
@@ -123,12 +123,7 @@ export const AgendaRow = forwardRef<HTMLDivElement, AgendaRowProps>(
             .filter(Boolean)
             .join(' ') || undefined
         }
-        sx={[
-          solarAgendaRowStyle(look),
-          // The event's colour, where the caller gives it.
-          color ? { [`& .${P}--dot`]: { backgroundColor: color } } : null,
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={[solarAgendaRowStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
       >
         {drawChildren('root', {
           prefix: P,

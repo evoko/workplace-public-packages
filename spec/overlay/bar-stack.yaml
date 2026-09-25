@@ -1,0 +1,57 @@
+# Hand-written decisions about SOLAR Bar Stack, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Bar Stack
+
+base:
+  reason: >-
+    A single column or row split into its categories, as the description says: the caller's
+    segments, each a SOLAR Bar in its colour, as long as its share of the whole, in a frame that
+    clips them to rounded ends (radius.control), stacked down (vertical) or across (horizontal).
+    Decorative: what it shows is the caller's to say.
+
+examples:
+  /:
+    reason: >-
+      The segments are Figma's sample of a breakdown (danger, warning, info and neutral, at sample
+      lengths): the caller's segments replace them, each a SOLAR Bar as long as its share.
+
+samples:
+  segments:
+    keep: ['4']
+    reason: >-
+      The number of segments is the caller's breakdown, not a prop: Figma's 2, 3 and 4 are samples
+      of it. The recipe keeps 4; the oracle checks each count's frame.
+
+set:
+  root.base.gap:
+    token: inset.2xs
+    reason: >-
+      Figma's default stack parts its segments by inset.2xs (4), and the other five by an unbound
+      2, which no spacing token is: the governed one, in every stack. The design review asks which
+      is meant.
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A stack is as wide and as long as its chart makes it: Figma draws a 32 × 80 sample.
+  root.base.height:
+    keyword: FILL
+    reason: { as: set root.base.width }
+
+follows:
+  root.direction:
+    axes: [orientation]
+    reason: >-
+      A vertical stack runs its segments down, a horizontal one across, as its axis says.
+  root.align:
+    axes: [orientation]
+    reason: >-
+      A vertical stack sits its segments at its foot, as a column grows from its axis; a horizontal
+      one at its start, as Figma draws each.
+
+accept:
+  component.bar stack.root.width@orientation=horizontal:
+    reason: { as: set root.base.width }
+  component.bar stack.root.height@orientation=horizontal:
+    reason: { as: set root.base.width }

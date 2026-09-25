@@ -1,0 +1,65 @@
+# Hand-written decisions about SOLAR Data Legend, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Data Legend
+
+base:
+  reason: >-
+    A chart's legend, as the description says: each series' swatch beside its name, in a row
+    (horizontal) or a column (vertical). The swatch is Figma's dot, the xs StatusIndicator's shape
+    and edge, in the series' colour the caller gives (owner decision 2026-09-26), not a status. A
+    list, one item per series.
+
+layerNames:
+  /Item/StatusIndicator:
+    name: swatch
+    reason: >-
+      The item's StatusIndicator is its series' swatch: Figma's dot, in the series' colour.
+
+samples:
+  items:
+    keep: ['4']
+    reason: >-
+      The number of items is the caller's series, not a prop: Figma's 2, 3 and 4 are samples of
+      it, drawn with the same item. The recipe keeps 4, the fullest; the oracle checks each count,
+      reached by as many series.
+
+repeats:
+  item:
+    reason: >-
+      Figma's items are copies of one: a dot and a series' name. The shell draws one per series
+      the caller gives, so the first stands for them all, checked as Figma draws it.
+
+slots:
+  activeUsers:
+    name: label
+    type: text
+    reason: >-
+      A series' name is the caller's; Figma records no text prop, and names the text after its
+      sample ("Active users").
+
+follows:
+  root.direction:
+    axes: [direction]
+    reason: >-
+      A horizontal legend lays its items out in a row, a vertical one in a column, as its axis says.
+  root.gap:
+    axes: [direction]
+    reason: >-
+      A row's items are stack.md apart, a column's stack.xs, as Figma draws each.
+
+set:
+  root.base.height:
+    keyword: HUG
+    reason: >-
+      A legend is as tall as its items: Figma has it fill its frame, which under a chart, in a
+      column, is no height at all.
+  swatch.base.width:
+    none: true
+    reason: >-
+      The dot is a SOLAR StatusIndicator (xs), whose 8px box is its own: the legend places it, and
+      never sizes it.
+  swatch.base.height:
+    none: true
+    reason: { as: set swatch.base.width }

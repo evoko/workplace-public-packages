@@ -1,0 +1,19 @@
+# Hand-written decisions about SOLAR Bar Chart, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Bar Chart
+
+base:
+  reason: >-
+    A bar chart, as the description says (simple, grouped or stacked; vertical or horizontal): drawn
+    by the chart library (MUI X Charts, fl_chart; decision), in SOLAR's chart theme, which takes its
+    series colours from here (Line Chart's order, the owner's) and its bars' from Bar. What Figma
+    draws is a sample plot.
+
+accept:
+  component.bar chart.*:
+    reason: >-
+      Figma's plot is sample data: its bars' lengths and places, its columns and labels, laid out
+      for six months at two sizes. The library lays out the caller's data; the theme takes the
+      design (colours, strokes, text styles), none of which is left open.

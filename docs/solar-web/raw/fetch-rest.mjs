@@ -412,6 +412,24 @@ function layer(n, parent, depth, maxDepth, ctx) {
     // Time Slot's half-hour rule), which the paths alone do not say along another length.
     if (n.strokeDashes?.length) o.dashes = [...n.strokeDashes];
   }
+  // A part of an ellipse (Donut Chart's segments): its angles, in radians, and its hole, as a
+  // fraction of its radius; a whole one records none.
+  const arc = n.arcData;
+  if (
+    arc &&
+    !(
+      arc.startingAngle === 0 &&
+      arc.innerRadius === 0 &&
+      arc.endingAngle > 6.28
+    )
+  ) {
+    const r = (v) => Math.round(v * 1e4) / 1e4;
+    o.arc = {
+      start: r(arc.startingAngle),
+      end: r(arc.endingAngle),
+      inner: r(arc.innerRadius),
+    };
+  }
   if (n.cornerRadius) o.radius = n.cornerRadius;
   else if (n.rectangleCornerRadii && n.rectangleCornerRadii.some((x) => x))
     o.radius = n.rectangleCornerRadii;

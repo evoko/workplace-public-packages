@@ -67,7 +67,8 @@
   },
   "dependencies": {
     "@bwp-web/assets": "^2.0.0-alpha.0",
-    "@bwp-web/styles": "^2.0.0-alpha.0"
+    "@bwp-web/styles": "^2.0.0-alpha.0",
+    "@mui/x-charts": "^9.14.0"
   },
   "peerDependencies": {
     "@mui/material": "^9.0.0",

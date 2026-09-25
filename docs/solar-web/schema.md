@@ -79,7 +79,7 @@ Keys of `changed` are layer paths in the default variant's tree (`/` is the root
 marks the second sibling of the same name). Values hold only the fields that differ:
 `hidden`, `text`, `textStyle`, `main`, `variant`, `size`, `position`, `constraints`, `layout`,
 `sizing`, `fills`, `strokes`, `strokeWeight`, `strokeWeights`, `radius`, `effectStyle`, `opacity`,
-`vars`, `dashes`, `order`. For `vars` and
+`vars`, `dashes`, `arc`, `order`. For `vars` and
 `layout` only the changed sub-keys appear; `null` means the default had it and the variant
 does not. This is the input for generating per-variant styles: start from the default tree,
 apply `changed`, add and remove the listed layers.
@@ -111,6 +111,10 @@ A dashed stroke has `dashes`: Figma's `strokeDashes`, each dash's length and the
 (FileUpload's drop zone `[3, 3]`, Time Slot's half-hour rule `[2, 4]`), which the paths alone say
 only along Figma's sample length. Data fetched before 2026-09-25 has none, and the stroke is read
 solid.
+
+A part of an ellipse has `arc`: its `start` and `end` angles, in radians, and its `inner` hole as a
+fraction of its radius (Donut Chart's segments, `inner: 0.6`); a whole ellipse has none. Data
+fetched before 2026-09-26 has none.
 
 A stroke whose sides differ in weight has `strokeWeight: "mixed"` and, beside it, `strokeWeights`:
 the four weights, top, right, bottom and left (Button Group's full-width bar draws a divider along

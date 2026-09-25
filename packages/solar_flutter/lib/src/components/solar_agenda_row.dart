@@ -6,7 +6,7 @@
 ///
 /// One event in the Agenda view, as the description says, a denser alternative to a
 /// [SolarCalendarDayCell], drawn from Figma's layer tree with [SolarLayers]. At the comfortable
-/// [density]: its [start] above its [end], a dot in the event's [color], its [title], a line of
+/// [density]: its [start] above its [end], a dot in the event's [category], its [title], a line of
 /// words about it ([meta]) and an [attendee] (a [SolarAvatar]). At compact: one time [range]
 /// ("9:00 – 10:00", [start] and [end] joined where none is given) and its title. Given
 /// [onPressed], it is a button, hovered under a pointer and [selected] as the one the caller shows.
@@ -29,7 +29,7 @@ class SolarAgendaRow extends StatelessWidget {
     this.range,
     this.meta,
     this.attendee,
-    this.color,
+    this.category = SolarAgendaRowCategory.blue,
     this.selected = false,
     this.density = SolarAgendaRowDensity.comfortable,
     this.onPressed,
@@ -54,8 +54,8 @@ class SolarAgendaRow extends StatelessWidget {
   /// An attendee: a [SolarAvatar] (md).
   final Widget? attendee;
 
-  /// The event's colour, its dot's; Figma's category 06 where none is given.
-  final Color? color;
+  /// The event's category, its dot's colour, as an Event Chip's.
+  final SolarAgendaRowCategory category;
 
   final bool selected;
   final SolarAgendaRowDensity density;
@@ -72,7 +72,7 @@ class SolarAgendaRow extends StatelessWidget {
     final p = SolarAgendaRowProps(
       selected: selected,
       density: density,
-      color: color,
+      category: category,
     );
     final joined =
         range ?? (start != null && end != null ? '$start – $end' : start);
@@ -82,10 +82,7 @@ class SolarAgendaRow extends StatelessWidget {
         recipe: SolarLayerRecipe(
           lookup: (c) => SolarAgendaRowRecipe.lookup(c, p, states),
           dimension: (c) => SolarAgendaRowRecipe.dimension(c, p, states),
-          color: (c) => switch (c) {
-            'dot.background' when color != null => color!,
-            _ => SolarAgendaRowRecipe.color(t, c, p, states),
-          },
+          color: (c) => SolarAgendaRowRecipe.color(t, c, p, states),
           shadow: (c) => SolarAgendaRowRecipe.shadow(t, c, p, states),
           textStyle: (c) => SolarAgendaRowRecipe.textStyle(t, c, p, states),
           // A part left out is not drawn.

@@ -129,9 +129,10 @@ describe('the stories', () => {
   });
 });
 
-// Every component's shells: files of their own, written by hand, and its story, generated.
+// Every component's shells: files of their own, written by hand, and its story, generated. A
+// chart a library draws (Bar Chart) has neither; its wrapper is written by hand in full.
 describe('the shells', () => {
-  for (const d of DESCRIPTORS.filter((x) => !x.checkedAs)) {
+  for (const d of DESCRIPTORS.filter((x) => !x.checkedAs && !x.library)) {
     it(`${d.name}: written by hand, without the header; its story generated`, () => {
       for (const file of [
         join(componentsSrc, shellFileOf(d.name)),

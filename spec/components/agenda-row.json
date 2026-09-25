@@ -14,9 +14,18 @@
       "values": ["comfortable", "compact"],
       "default": "comfortable"
     },
-    "color": {
-      "type": "color",
-      "default": null
+    "category": {
+      "values": [
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "turquoise",
+        "blue",
+        "purple",
+        "pink"
+      ],
+      "default": "blue"
     }
   },
   "states": ["default", "hover"],
@@ -713,12 +722,6 @@
     "defaultVariant": "state=default, density=comfortable",
     "fileVersion": "2403086052040245261"
   },
-  "callers": {
-    "dot.background": {
-      "prop": "color",
-      "reason": "The dot is the event's colour, which \"should match the source event\", as the description says: the caller's (an Event Chip's category colour). Without one, it is Figma's, data/category/06/strong."
-    }
-  },
   "overlay": {
     "file": "spec/overlay/agenda-row.yaml",
     "rules": [
@@ -778,11 +781,6 @@
         "reason": "The time column is 36 or 76 wide, bound to nothing: SOLAR has no size for it, one of the sizes with no variable."
       },
       {
-        "rule": "caller",
-        "at": "dot.background",
-        "reason": "The dot is the event's colour, which \"should match the source event\", as the description says: the caller's (an Event Chip's category colour). Without one, it is Figma's, data/category/06/strong."
-      },
-      {
         "rule": "accept",
         "at": "component.agenda row.root.height@state=default, density=compact",
         "reason": "A row is as tall as its lines and padding. Figma fixes it at 64 (comfortable) and 32 (compact), room for its lines trimmed to their cap height (Figma's leading trim, on every SOLAR text); a line drawn at its full height (20 and 16) does not fit them, and neither platform trims a line as Figma does. The design review asks."
@@ -830,5 +828,21 @@
         "default": "zero-insets"
       }
     ]
+  },
+  "tints": {
+    "category": {
+      "from": "color.data.category.06",
+      "values": {
+        "red": "color.data.category.01",
+        "orange": "color.data.category.02",
+        "yellow": "color.data.category.03",
+        "green": "color.data.category.04",
+        "turquoise": "color.data.category.05",
+        "blue": "color.data.category.06",
+        "purple": "color.data.category.07",
+        "pink": "color.data.category.08"
+      },
+      "reason": "The dot is the event's category, as an Event Chip's stripe is (owner decision 2026-09-26): its description says its colour \"should match the source event\". Figma draws category 06, blue, which is the default; each category's colour is Event Chip's."
+    }
   }
 }

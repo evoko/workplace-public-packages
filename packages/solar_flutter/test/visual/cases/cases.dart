@@ -14,6 +14,8 @@ import 'autocomplete_open.dart';
 import 'avatar.dart';
 import 'backbutton.dart';
 import 'banner.dart';
+import 'bar.dart';
+import 'bar_stack.dart';
 import 'breadcrumb_item.dart';
 import 'breadcrumbs.dart';
 import 'button.dart';
@@ -21,6 +23,7 @@ import 'button_group.dart';
 import 'calendar_day_cell.dart';
 import 'calendar_toolbar.dart';
 import 'card.dart';
+import 'chart_tooltip.dart';
 import 'checkbox.dart';
 import 'coachmark.dart';
 import 'column_item.dart';
@@ -29,6 +32,7 @@ import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
 import 'counter.dart';
+import 'data_legend.dart';
 import 'date_picker_day_cell.dart';
 import 'date_picker_open.dart';
 import 'datepicker.dart';
@@ -94,6 +98,7 @@ import 'select.dart';
 import 'skeleton.dart';
 import 'slider.dart';
 import 'slider_range.dart';
+import 'sparkline.dart';
 import 'spinner.dart';
 import 'split_dialog.dart';
 import 'split_dropdown.dart';
@@ -137,6 +142,8 @@ final cases = <String, VisualCase>{
   'Avatar': avatarCase,
   'BackButton': backButtonCase,
   'Banner': bannerCase,
+  'Bar': barCase,
+  'Bar Stack': barStackCase,
   'Breadcrumb Item': breadcrumbItemCase,
   'Breadcrumbs': breadcrumbsCase,
   'Button': buttonCase,
@@ -144,6 +151,7 @@ final cases = <String, VisualCase>{
   'Calendar Day Cell': calendarDayCellCase,
   'Calendar Toolbar': calendarToolbarCase,
   'Card': cardCase,
+  'Chart Tooltip': chartTooltipCase,
   'Checkbox': checkboxCase,
   'Coachmark': coachmarkCase,
   'Column Item': columnItemCase,
@@ -152,6 +160,7 @@ final cases = <String, VisualCase>{
   'Context Menu': contextMenuCase,
   'Context Menu Item': contextMenuItemCase,
   'Counter': counterCase,
+  'Data Legend': dataLegendCase,
   'Date Picker Day Cell': datePickerDayCellCase,
   'Date Picker Open': datePickerOpenCase,
   'DatePicker': datePickerCase,
@@ -217,6 +226,7 @@ final cases = <String, VisualCase>{
   'Skeleton': skeletonCase,
   'Slider': sliderCase,
   'Slider Range': sliderRangeCase,
+  'Sparkline': sparklineCase,
   'Spinner': spinnerCase,
   'Split Dialog': splitDialogCase,
   'Split Dropdown': splitDropdownCase,
@@ -247,4 +257,14 @@ final cases = <String, VisualCase>{
   'Tree Item': treeItemCase,
   'Trend Badge': trendBadgeCase,
   'Weekday Header': weekdayHeaderCase,
+};
+
+/// The components a chart library draws (Bar Chart, fl_chart's): an oracle each and no case,
+/// since no widget draws their Figma variants; the chart theme is checked against their IRs.
+const drawnByLibrary = <String>{
+  'Bar Chart',
+  'Chart Axis',
+  'Chart Gridlines',
+  'Donut Chart',
+  'Line Chart',
 };

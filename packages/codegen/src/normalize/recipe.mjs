@@ -519,6 +519,8 @@ function cellsOf(
       'geometry',
       bound(layer, STROKES, layer.strokeWeight, names, `${where}.borderWidth`),
     );
+  // A part of an ellipse (Donut Chart's segments): its angles and its hole, part of the drawing.
+  if (layer.arc) put('arc', 'shape', { value: { ...layer.arc } });
   // A dashed stroke (FileUpload's drop zone): its pattern, each dash's length and the gap after
   // it, in the drawing's own units, as a position is.
   if (layer.strokes?.length && layer.dashes?.length)

@@ -19,6 +19,9 @@
  *   checkedAs  the component a Figma component is the state of, where it is no component of its
  *              own (Autocomplete Open, an open Autocomplete): it has a recipe, a case on each
  *              platform and a story, but no shells, and nothing is exported for it
+ *   library    the chart library that draws it (`'charts'`: Bar Chart's, MUI X Charts and
+ *              fl_chart): its IR and oracle are built and its cells feed the chart theme
+ *              (src/emit/chart-theme.mjs), but it has no recipe, shell, case or story of its own
  */
 
 import { readdirSync } from 'node:fs';

@@ -3,16 +3,26 @@
 // Every value is a var(--solar-*) reference into tokens.css, which must be loaded.
 
 export type SolarAgendaRowDensity = 'comfortable' | 'compact';
+export type SolarAgendaRowCategory =
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'turquoise'
+  | 'blue'
+  | 'purple'
+  | 'pink';
 
 export interface SolarAgendaRowProps {
   selected?: boolean;
   density?: SolarAgendaRowDensity;
-  color?: string;
+  category?: SolarAgendaRowCategory;
 }
 
 export const solarAgendaRowDefaults = {
   selected: false,
   density: 'comfortable',
+  category: 'blue',
 } as const;
 
 /** Style by layer and state: `root` is the base, then per size, per appearance, and per size and appearance together. */
@@ -348,7 +358,41 @@ export function solarAgendaRowStyle(props: SolarAgendaRowProps = {}): Style {
     appearances: Record<string, Style>;
     combined: Record<string, Record<string, Style>>;
   };
-  return merge(s.reset, s.root, s.appearances[key]);
+  return tint(merge(s.reset, s.root, s.appearances[key]), p);
+}
+
+/** Each tinting axis: the default's colour family, and each value's (the overlay's tint). */
+export const solarAgendaRowTints = {
+  category: {
+    from: '--solar-color-data-category-06-',
+    values: {
+      red: '--solar-color-data-category-01-',
+      orange: '--solar-color-data-category-02-',
+      yellow: '--solar-color-data-category-03-',
+      green: '--solar-color-data-category-04-',
+      turquoise: '--solar-color-data-category-05-',
+      blue: '--solar-color-data-category-06-',
+      purple: '--solar-color-data-category-07-',
+      pink: '--solar-color-data-category-08-',
+    },
+  },
+} as const;
+
+function swap(style: Style, from: string, to: string): Style {
+  const out: Style = {};
+  for (const [k, v] of Object.entries(style))
+    out[k] = typeof v === 'string' ? v.replaceAll(from, to) : swap(v, from, to);
+  return out;
+}
+
+/** The style in the colours the caller's tinting values pick. */
+function tint(style: Style, p: Record<string, unknown>): Style {
+  let out = style;
+  for (const [axis, t] of Object.entries(solarAgendaRowTints)) {
+    const to = (t.values as Record<string, string>)[p[axis] as string];
+    if (to && to !== t.from) out = swap(out, t.from, to);
+  }
+  return out;
 }
 
 /** A drawn layer's outline: its box, and the fill's and the stroke's paths (Figma's geometry). */

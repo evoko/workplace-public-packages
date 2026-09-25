@@ -1625,6 +1625,14 @@ both platforms, every finding decided (none left open). 121 components, 120 expo
   Time Slot's rule placed 1px off its parent's single edges in Flutter; Autocomplete Open drawing
   what Figma's instance hides.
 
+**F13 follow-up, 2026-09-26 (owner decisions).**
+
+- Leading trim: full lines, grow. Agenda Row grows to hold its lines; the compact heights Figma
+  draws are accepted, and the design review asks designers to draw untrimmed text.
+- Agenda Row's dot and All-Day Bar take Event Chip's `category`, not a free `color`. That needed
+  the new `tint` overlay rule: an axis taken from another component, whose token family the
+  emitters swap on both platforms, with Figma's own value as the default.
+
 ### F14: Charts
 
 A library draws the plots, and the SOLAR parts are generated (decision).
@@ -1649,6 +1657,48 @@ A library draws the plots, and the SOLAR parts are generated (decision).
   - The check is a unit test that the theme carries each recipe value, plus a Storybook and
     Widgetbook story drawing Figma's sample data for the eye. The per-variant visual check does
     not apply to a library's plot; say so in the Done note.
+
+**F14 done 2026-09-26.** Sparkline (the pioneer), Bar, Bar Stack, Data Legend and Chart Tooltip,
+every variant matching Figma on both platforms, every finding decided (none left open). Bar Chart,
+Line Chart, Donut Chart, Chart Axis and Chart Gridlines are drawn by a library in a generated
+theme. 131 components; 125 have shells and are exported, plus the three chart wrappers.
+
+- **Owner decisions:**
+  - plain dependencies: `@mui/x-charts` on the web and `fl_chart` in Flutter, both MIT;
+  - wrappers and the theme: `BarChart`, `LineChart` and `DonutChart` (`SolarBarChart`,
+    `SolarLineChart`, `SolarDonutChart`), written by hand on the library, drawn in
+    `solarChartTheme` and `SolarChartTheme`, and using SOLAR's Chart Tooltip and Data Legend;
+  - two palettes, as drawn: bars and lines take categories 06, 02, 04, 07, 01, 03, 05 and 08, and
+    donut segments take 01 to 08;
+  - Sparkline keeps Figma's frame (115 × 32) and its 1.5 stroke, and does not use the plan's two
+    sizes;
+  - a series swatch is Figma's dot, in the series colour.
+- **Taken here, open to the owner:**
+  - Bar Stack is drawn, not a library theme: a row or column of Bars, each growing by its share.
+    Its gap is bound to `inset.2xs` where Figma binds 4 in one variant and leaves an unbound 2 in
+    the others (the review asks);
+  - Bar, Bar Stack and Sparkline fill the box they are given;
+  - Data Legend and Chart Tooltip take their items and rows from the caller, one per series. The
+    Chart Tooltip's `series` (single or multi) comes from whether its rows have names.
+- **Not checked per variant:** the plots of the five library components. Their geometry is Figma's
+  sample data, not design, so an `accept` pattern decides their findings, with that reason.
+  Instead, `test/charts.test.mjs` checks that the theme carries each cell of their IRs and fails
+  if Figma's series order changes. The wrappers' unit tests check that the charts draw in the
+  theme. Storybook's `SOLAR charts` and Widgetbook's `SOLAR charts` folder draw sample data for
+  review by eye.
+- **Machinery:**
+  - `library` on a descriptor: an IR and an oracle, but no recipe, shells, story or visual case.
+    The chart theme (`src/emit/chart-theme.mjs`) is written for both platforms from their cells;
+  - `tint` (above) and `accept` patterns: a key with `*` decides every open finding it matches,
+    after the named rules, and fails if it matches none;
+  - the fetcher records a partial ellipse's `arc` (the donut's hole), and a glyph's stroke width
+    may be a literal.
+- **Checks:** 2,222 JS tests, both visual checks (264 on the web, 790 Flutter tests), lint,
+  typecheck, format, all three Flutter packages analysed and formatted, both viewers built,
+  `smoke:install`, the personal-data scan, and a rebuild that reproduces the tree. The checks
+  found and fixed: a Data Legend that grew without bound in a Flutter column; a Chart Tooltip
+  building a dot for a row swatch its series does not draw; the Flutter bar chart's hover missing
+  its bars.
 
 ---
 

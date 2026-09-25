@@ -12,6 +12,17 @@ import '../tokens.dart';
 
 enum SolarAgendaRowDensity { comfortable, compact }
 
+enum SolarAgendaRowCategory {
+  red,
+  orange,
+  yellow,
+  green,
+  turquoise,
+  blue,
+  purple,
+  pink,
+}
+
 /// The props a SOLAR Agenda Row takes. Hover, pressed and focus are not here: they are
 /// platform states, tracked by Flutter as [WidgetState]s.
 @immutable
@@ -19,12 +30,12 @@ class SolarAgendaRowProps {
   const SolarAgendaRowProps({
     this.selected = false,
     this.density = SolarAgendaRowDensity.comfortable,
-    this.color,
+    this.category = SolarAgendaRowCategory.blue,
   });
 
   final bool selected;
   final SolarAgendaRowDensity density;
-  final Color? color;
+  final SolarAgendaRowCategory category;
 }
 
 abstract final class SolarAgendaRowRecipe {
@@ -188,10 +199,17 @@ abstract final class SolarAgendaRowRecipe {
     Set<WidgetState> s,
   ) {
     final c = t.colors;
-    return switch (lookup(cell, p, s)) {
+    return switch (_tint(lookup(cell, p, s), p)) {
       'none' => Colors.transparent,
       't:color.border.subtle' => c.borderSubtle,
+      't:color.data.category.01.strong' => c.dataCategory01Strong,
+      't:color.data.category.02.strong' => c.dataCategory02Strong,
+      't:color.data.category.03.strong' => c.dataCategory03Strong,
+      't:color.data.category.04.strong' => c.dataCategory04Strong,
+      't:color.data.category.05.strong' => c.dataCategory05Strong,
       't:color.data.category.06.strong' => c.dataCategory06Strong,
+      't:color.data.category.07.strong' => c.dataCategory07Strong,
+      't:color.data.category.08.strong' => c.dataCategory08Strong,
       't:color.surface.active' => c.surfaceActive,
       't:color.surface.base' => c.surfaceBase,
       't:color.surface.hover' => c.surfaceHover,
@@ -200,6 +218,25 @@ abstract final class SolarAgendaRowRecipe {
       't:color.text.tertiary' => c.textTertiary,
       final v => throw StateError('$cell: no colour for $v'),
     };
+  }
+
+  /// A colour of the default's family (the overlay's tint), in the family the props pick.
+  static String? _tint(String? v, SolarAgendaRowProps p) {
+    if (v == null) return v;
+    if (v.startsWith('t:color.data.category.06.')) {
+      final to = const {
+        'red': 'color.data.category.01',
+        'orange': 'color.data.category.02',
+        'yellow': 'color.data.category.03',
+        'green': 'color.data.category.04',
+        'turquoise': 'color.data.category.05',
+        'blue': 'color.data.category.06',
+        'purple': 'color.data.category.07',
+        'pink': 'color.data.category.08',
+      }[p.category.name]!;
+      return 't:$to${v.substring(24)}';
+    }
+    return v;
   }
 
   static List<BoxShadow> shadow(

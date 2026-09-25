@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { renderRegistries } from '../src/emit/registries.mjs';
-import { NAMES, shelled } from '../src/stages/components.mjs';
+import { library, NAMES, shelled } from '../src/stages/components.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
 const files = (names, o) =>
@@ -48,10 +48,14 @@ describe('renderRegistries', () => {
 
   it('matches what is committed for today’s components', () => {
     // The stage writes them on every solar:codegen; CI's rebuild check holds them to it.
-    // Autocomplete's props take its value's type, as the stage finds in its shell.
+    // Autocomplete's props take its value's type, as the stage finds in its shell. A chart a
+    // library draws has no shells and no visual case.
     const generic = (n) => n === 'Autocomplete';
     for (const [file, text] of Object.entries(
-      files(NAMES, { shelled, generic }),
+      files(
+        NAMES.filter((n) => !library(n)),
+        { shelled, generic, drawnByLibrary: NAMES.filter((n) => library(n)) },
+      ),
     )) {
       const path = join(packagesDir, file);
       expect(existsSync(path), file).toBe(true);

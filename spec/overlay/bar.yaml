@@ -1,0 +1,22 @@
+# Hand-written decisions about SOLAR Bar, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Bar
+
+base:
+  reason: >-
+    One bar of a chart, as the description says: a rectangle in one of SOLAR's data colours, its
+    `color` picking from the category, scale, delta and feedback palettes. Its length and thickness
+    are the data's and the chart's: it fills the box it is given. Decorative: the chart says what
+    it shows. The series palette the chart themes take is its colours.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A bar is as wide and as long as the chart makes it, by its data: Figma draws a 32 × 80
+      sample.
+  root.base.height:
+    keyword: FILL
+    reason: { as: set root.base.width }

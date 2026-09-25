@@ -14,6 +14,17 @@ enum SolarAllDayBarVariant { subtle, solid }
 
 enum SolarAllDayBarSpan { single, start, middle, end }
 
+enum SolarAllDayBarCategory {
+  red,
+  orange,
+  yellow,
+  green,
+  turquoise,
+  blue,
+  purple,
+  pink,
+}
+
 /// The props a SOLAR All-Day Bar takes. Hover, pressed and focus are not here: they are
 /// platform states, tracked by Flutter as [WidgetState]s.
 @immutable
@@ -21,10 +32,12 @@ class SolarAllDayBarProps {
   const SolarAllDayBarProps({
     this.variant = SolarAllDayBarVariant.subtle,
     this.span = SolarAllDayBarSpan.single,
+    this.category = SolarAllDayBarCategory.blue,
   });
 
   final SolarAllDayBarVariant variant;
   final SolarAllDayBarSpan span;
+  final SolarAllDayBarCategory category;
 }
 
 abstract final class SolarAllDayBarRecipe {
@@ -178,14 +191,40 @@ abstract final class SolarAllDayBarRecipe {
     Set<WidgetState> s,
   ) {
     final c = t.colors;
-    return switch (lookup(cell, p, s)) {
+    return switch (_tint(lookup(cell, p, s), p)) {
       'none' => Colors.transparent,
+      't:color.data.category.01.strong' => c.dataCategory01Strong,
+      't:color.data.category.02.strong' => c.dataCategory02Strong,
+      't:color.data.category.03.strong' => c.dataCategory03Strong,
+      't:color.data.category.04.strong' => c.dataCategory04Strong,
+      't:color.data.category.05.strong' => c.dataCategory05Strong,
       't:color.data.category.06.strong' => c.dataCategory06Strong,
+      't:color.data.category.07.strong' => c.dataCategory07Strong,
+      't:color.data.category.08.strong' => c.dataCategory08Strong,
       't:color.text.inverse' => c.textInverse,
       't:color.text.primary' => c.textPrimary,
       't:color.text.secondary' => c.textSecondary,
       final v => throw StateError('$cell: no colour for $v'),
     };
+  }
+
+  /// A colour of the default's family (the overlay's tint), in the family the props pick.
+  static String? _tint(String? v, SolarAllDayBarProps p) {
+    if (v == null) return v;
+    if (v.startsWith('t:color.data.category.06.')) {
+      final to = const {
+        'red': 'color.data.category.01',
+        'orange': 'color.data.category.02',
+        'yellow': 'color.data.category.03',
+        'green': 'color.data.category.04',
+        'turquoise': 'color.data.category.05',
+        'blue': 'color.data.category.06',
+        'purple': 'color.data.category.07',
+        'pink': 'color.data.category.08',
+      }[p.category.name]!;
+      return 't:$to${v.substring(24)}';
+    }
+    return v;
   }
 
   static List<BoxShadow> shadow(

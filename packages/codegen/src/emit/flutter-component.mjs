@@ -106,6 +106,30 @@ export const FLUTTER_STYLE = descriptorTable('flutter', 'style');
  */
 export const FLUTTER_SHARED = descriptorTable('flutter', 'shared');
 
+/**
+ * The lookup a tinted recipe's colours go through (the overlay's tint): a token of the default's
+ * colour family is the caller's value's.
+ */
+function tintDart(tints, name) {
+  const lines = tints.map(
+    ([axis, t]) =>
+      `    if (v.startsWith('t:${t.from}.')) {\n` +
+      `      final to = const {${Object.entries(t.values)
+        .map(([value, f]) => `'${value}': '${f}'`)
+        .join(', ')}}[p.${axis}.name]!;\n` +
+      `      return 't:$to\${v.substring(${`t:${t.from}`.length})}';\n` +
+      `    }\n`,
+  );
+  return (
+    `  /// A colour of the default's family (the overlay's tint), in the family the props pick.\n` +
+    `  static String? _tint(String? v, Solar${name}Props p) {\n` +
+    `    if (v == null) return v;\n` +
+    lines.join('') +
+    `    return v;\n` +
+    `  }\n\n`
+  );
+}
+
 /** One IR entry as the string the Dart map holds. */
 function encode(entry, at) {
   if (entry.token) return `t:${entry.token}`;
@@ -236,12 +260,23 @@ export function renderFlutterComponent(spec, tokens) {
 
   // Token names to Dart expressions, for exactly the tokens the recipe uses.
   const all = new Map(flattenSpec(tokens).map((t) => [t.name, t]));
+  // An axis taken from another component (the overlay's tint): each tinted token in every value's
+  // colour family as well, which the lookup swaps to.
+  const tints = Object.entries(spec.tints ?? {});
+  const drawnTokens = Object.values(cells)
+    .filter((v) => v.startsWith('t:'))
+    .map((v) => v.slice(2));
   const used = [
-    ...new Set(
-      Object.values(cells)
-        .filter((v) => v.startsWith('t:'))
-        .map((v) => v.slice(2)),
-    ),
+    ...new Set([
+      ...drawnTokens,
+      ...tints.flatMap(([, t]) =>
+        drawnTokens
+          .filter((n) => n.startsWith(`${t.from}.`))
+          .flatMap((n) =>
+            Object.values(t.values).map((f) => `${f}${n.slice(t.from.length)}`),
+          ),
+      ),
+    ]),
   ].sort();
   const colors = [];
   const shadows = [];
@@ -588,14 +623,14 @@ ${holds.map((st) => `        '${st}' => ${stateTest(spec, st)},`).join('\n')}
   }
 
   static Color color(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) {
-${colors.length ? '    final c = t.colors;\n' : ''}    return switch (lookup(cell, p, s)) {
+${colors.length ? '    final c = t.colors;\n' : ''}    return switch (${tints.length ? '_tint(lookup(cell, p, s), p)' : 'lookup(cell, p, s)'}) {
       'none' => Colors.transparent,
 ${gradients.length ? "      final v? when v.startsWith('lg:') => Colors.transparent,\n" : ''}${colors.join('\n')}
       final v => throw StateError('$cell: no colour for $v'),
     };
   }
 
-  static List<BoxShadow> shadow(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) =>
+${tints.length ? tintDart(tints, name) : ''}  static List<BoxShadow> shadow(SolarTheme t, String cell, Solar${name}Props p, Set<WidgetState> s) =>
       switch (lookup(cell, p, s)) {
         'none' || null => const <BoxShadow>[],
 ${shadows.join('\n')}

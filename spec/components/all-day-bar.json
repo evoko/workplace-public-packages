@@ -13,6 +13,19 @@
     "span": {
       "values": ["single", "start", "middle", "end"],
       "default": "single"
+    },
+    "category": {
+      "values": [
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "turquoise",
+        "blue",
+        "purple",
+        "pink"
+      ],
+      "default": "blue"
     }
   },
   "states": [],
@@ -655,5 +668,21 @@
         "default": "zero-insets"
       }
     ]
+  },
+  "tints": {
+    "category": {
+      "from": "color.data.category.06",
+      "values": {
+        "red": "color.data.category.01",
+        "orange": "color.data.category.02",
+        "yellow": "color.data.category.03",
+        "green": "color.data.category.04",
+        "turquoise": "color.data.category.05",
+        "blue": "color.data.category.06",
+        "purple": "color.data.category.07",
+        "pink": "color.data.category.08"
+      },
+      "reason": "A bar is its event's category, as an Event Chip is (owner decision 2026-09-26): its stripe (subtle) and fill (solid) in the category's colour. Figma draws category 06, blue, which is the default; each category's colour is Event Chip's."
+    }
   }
 }

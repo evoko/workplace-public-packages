@@ -25,6 +25,7 @@ class SolarAllDayBar extends StatelessWidget {
     this.time,
     this.variant = SolarAllDayBarVariant.subtle,
     this.span = SolarAllDayBarSpan.single,
+    this.category = SolarAllDayBarCategory.blue,
   });
 
   /// The event's title.
@@ -36,10 +37,17 @@ class SolarAllDayBar extends StatelessWidget {
   final SolarAllDayBarVariant variant;
   final SolarAllDayBarSpan span;
 
+  /// Its event's category, its stripe's or fill's colour, as an Event Chip's.
+  final SolarAllDayBarCategory category;
+
   @override
   Widget build(BuildContext context) {
     final t = solarThemeOf(context);
-    final p = SolarAllDayBarProps(variant: variant, span: span);
+    final p = SolarAllDayBarProps(
+      variant: variant,
+      span: span,
+      category: category,
+    );
     const states = <WidgetState>{};
     return SolarLayers(
       recipe: SolarLayerRecipe(

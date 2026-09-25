@@ -2,6 +2,8 @@
 // then each component's recipes, its stories (its shells are files, checked here) and the registries.
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { applyTints } from '../normalize/tint.mjs';
+import { emitChartTheme } from '../emit/chart-theme.mjs';
 import {
   buildComponentSpec,
   loadComponent,
@@ -44,7 +46,15 @@ export const NAMES = DESCRIPTORS.map((d) => d.name);
  * (Autocomplete Open, an open Autocomplete), which has a case and a story alone.
  */
 export const shelled = (name) =>
-  !DESCRIPTORS.find((d) => d.name === name)?.checkedAs;
+  !DESCRIPTORS.find((d) => d.name === name)?.checkedAs && !library(name);
+
+/**
+ * The chart library that draws a component (Bar Chart's, MUI X Charts and fl_chart), where one
+ * does: its IR and oracle are built, its cells feed the chart theme (src/emit/chart-theme.mjs), and
+ * it has no recipe, shell, case or story of its own.
+ */
+export const library = (name) =>
+  DESCRIPTORS.find((d) => d.name === name)?.library ?? null;
 
 export const componentsDir = join(specDir, 'components');
 export const verifyDir = join(specDir, 'verify');
@@ -97,6 +107,9 @@ export function build() {
   );
   for (const b of built)
     hideInComposed(b.oracle, b.spec, b.set, specs, b.overlay);
+  // An axis taken from another component, recolouring this one (Agenda Row's category, Event
+  // Chip's), once that one's IR is built.
+  for (const b of built) applyTints(b.spec, specs, names, b.overlay);
   for (const b of built) {
     delete b.set;
     delete b.overlay;
@@ -113,7 +126,9 @@ export function build() {
   });
   // The stories, with each component's shells checked here with the rest of the build: a shell
   // missing, or still under the generated header, stops the run before any write.
-  const stories = renderShells(built.map((b) => b.spec));
+  const stories = renderShells(
+    built.map((b) => b.spec).filter((s) => !library(s.component)),
+  );
   return { built, tokens, stories };
 }
 
@@ -147,7 +162,11 @@ export function emit({ built, tokens, stories }) {
       join(verifyDir, fileOf(spec.component)),
       JSON.stringify(oracle, null, 2) + '\n',
     );
-  const specs = built.map((b) => b.spec);
+  // A component a chart library draws has no recipe of its own: the chart theme takes its cells.
+  const specs = built.map((b) => b.spec).filter((s) => !library(s.component));
+  const byName = Object.fromEntries(
+    built.map((b) => [b.spec.component, b.spec]),
+  );
   for (const { path, text } of stories) writeGenerated(path, text);
   return {
     counts: {
@@ -156,11 +175,15 @@ export function emit({ built, tokens, stories }) {
       mui: emitMuiComponents(specs, tokens),
       muiTheme: emitMuiThemeComponents(specs),
       flutter: emitFlutterComponents(specs, tokens),
+      chartTheme: emitChartTheme(byName, tokens),
       stories: stories.length,
       registries: emitRegistries(
         specs.map((s) => s.component),
         {
           shelled,
+          drawnByLibrary: built
+            .map((b) => b.spec.component)
+            .filter((n) => library(n)),
           // Whose props type takes a type argument (Autocomplete's value, `<T>`).
           generic: (n) => {
             const file = join(componentsSrc, shellFileOf(n));

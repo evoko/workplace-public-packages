@@ -16,7 +16,9 @@ fields, from Text Input to FileUpload, F6's menus and lists, from Dropdown Item 
 pickers, from Select to TimePicker Dropdown, F8's navigation, from Tab Item to Tree Item, F9's
 paging and steps, from PaginationItem to Stepper, F10's cards, from Card to Launch Card Full
 Screen, F11's tables and properties, from Column Item to PropertyList, F12's overlays and dialogs,
-from Dialog to Coachmark, and F13's calendar parts, from Event Chip to Calendar Toolbar, are the
+from Dialog to Coachmark, F13's calendar parts, from Event Chip to Calendar Toolbar, and F14's
+charts, from Sparkline to Bar Stack, with Bar Chart, Line Chart and Donut Chart drawn by MUI X
+Charts and fl_chart in a chart theme generated from their IRs (`library` descriptors), are the
 components so far; Cursor is left out by decision, `spec/overlay/excluded.yaml`).
 CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
 and fails if the result differs from what is committed, and scans for credentials and
@@ -140,7 +142,8 @@ field's `enabled`, a button's null `onPressed`). The one exception is Figma's `s
   FAB, BackButton, SplitButton, Link, Spinner, the F1 display primitives, the F3 selection
   controls, the F4 tags and messages, the F5 text fields, the F6 menus and lists, the F7
   pickers, the F8 navigation, the F9 paging and steps, the F10 cards, the F11 tables and
-  properties, the F12 overlays and dialogs and the F13 calendar parts so far), all at
+  properties, the F12 overlays and dialogs, the F13 calendar parts and the F14 charts so far; the
+  charts on `@mui/x-charts`), all at
   `2.0.0-alpha.0`; canvas is still an empty skeleton. Plus
   `@bwp-web/codegen` (private build tool) and `solar_flutter` (a Dart package, outside the npm
   workspace, formatted by `dart format` and pinned to the Flutter version in `solar.yml`).

@@ -13,6 +13,8 @@ import 'autocomplete_open.dart';
 import 'avatar.dart';
 import 'backbutton.dart';
 import 'banner.dart';
+import 'bar.dart';
+import 'bar_stack.dart';
 import 'breadcrumb_item.dart';
 import 'breadcrumbs.dart';
 import 'button.dart';
@@ -20,6 +22,7 @@ import 'button_group.dart';
 import 'calendar_day_cell.dart';
 import 'calendar_toolbar.dart';
 import 'card.dart';
+import 'chart_tooltip.dart';
 import 'checkbox.dart';
 import 'coachmark.dart';
 import 'column_item.dart';
@@ -28,6 +31,7 @@ import 'container.dart';
 import 'context_menu.dart';
 import 'context_menu_item.dart';
 import 'counter.dart';
+import 'data_legend.dart';
 import 'date_picker_day_cell.dart';
 import 'date_picker_open.dart';
 import 'datepicker.dart';
@@ -93,6 +97,7 @@ import 'select.dart';
 import 'skeleton.dart';
 import 'slider.dart';
 import 'slider_range.dart';
+import 'sparkline.dart';
 import 'spinner.dart';
 import 'split_dialog.dart';
 import 'split_dropdown.dart';
@@ -136,6 +141,8 @@ const builders = <String, VariantBuilder>{
   'Avatar': buildAvatar,
   'BackButton': buildBackButton,
   'Banner': buildBanner,
+  'Bar': buildBar,
+  'Bar Stack': buildBarStack,
   'Breadcrumb Item': buildBreadcrumbItem,
   'Breadcrumbs': buildBreadcrumbs,
   'Button': buildButton,
@@ -143,6 +150,7 @@ const builders = <String, VariantBuilder>{
   'Calendar Day Cell': buildCalendarDayCell,
   'Calendar Toolbar': buildCalendarToolbar,
   'Card': buildCard,
+  'Chart Tooltip': buildChartTooltip,
   'Checkbox': buildCheckbox,
   'Coachmark': buildCoachmark,
   'Column Item': buildColumnItem,
@@ -151,6 +159,7 @@ const builders = <String, VariantBuilder>{
   'Context Menu': buildContextMenu,
   'Context Menu Item': buildContextMenuItem,
   'Counter': buildCounter,
+  'Data Legend': buildDataLegend,
   'Date Picker Day Cell': buildDatePickerDayCell,
   'Date Picker Open': buildDatePickerOpen,
   'DatePicker': buildDatePicker,
@@ -216,6 +225,7 @@ const builders = <String, VariantBuilder>{
   'Skeleton': buildSkeleton,
   'Slider': buildSlider,
   'Slider Range': buildSliderRange,
+  'Sparkline': buildSparkline,
   'Spinner': buildSpinner,
   'Split Dialog': buildSplitDialog,
   'Split Dropdown': buildSplitDropdown,

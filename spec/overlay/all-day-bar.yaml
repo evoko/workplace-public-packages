@@ -20,6 +20,16 @@ rename:
       React's inline-style prop, so no component can take it, and `variant` names the look on both
       platforms. The design review asks Figma to rename the property `variant`, so the names match.
 
+tint:
+  category:
+    from: Event Chip
+    cell: stripe.background
+    default: blue
+    reason: >-
+      A bar is its event's category, as an Event Chip is (owner decision 2026-09-26): its stripe
+      (subtle) and fill (solid) in the category's colour. Figma draws category 06, blue, which is
+      the default; each category's colour is Event Chip's.
+
 follows:
   title.typography:
     axes: [style]

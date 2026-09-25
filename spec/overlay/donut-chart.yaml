@@ -1,0 +1,18 @@
+# Hand-written decisions about SOLAR Donut Chart, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Donut Chart
+
+base:
+  reason: >-
+    A part-to-whole ring, as the description says, with its total in the centre where asked:
+    drawn by the chart library (MUI X Charts, fl_chart; decision), in SOLAR's chart theme, which
+    takes its segments' colours (01 to 08 in order, as drawn), its hole (Figma's arc, 0.6 of the
+    radius) and its centre's text styles from here. What Figma draws is a sample breakdown.
+
+accept:
+  component.donut chart.*:
+    reason: >-
+      Figma's ring is sample data: its segments' angles, at one size. The library draws the
+      caller's shares; the theme takes the design, none of which is left open.

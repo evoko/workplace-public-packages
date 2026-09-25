@@ -15,7 +15,6 @@
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { DESCRIPTORS } from '../src/components/index.mjs';
 import { dartEnumValue } from '../src/emit/flutter.mjs';
 import { describe, expect, it } from 'vitest';
 import { OVERLAPS, STATE_SELECTORS } from '../src/emit/mui-component.mjs';
@@ -500,11 +499,9 @@ describe('component parity: the React and Flutter widgets', () => {
     );
   }
 
-  // A component checked as another's state (Autocomplete Open) has no shells of its own.
-  const shelled = built.filter(
-    ({ spec }) =>
-      !DESCRIPTORS.find((d) => d.name === spec.component)?.checkedAs,
-  );
+  // A component checked as another's state (Autocomplete Open), or drawn by a chart library (Bar
+  // Chart), has no shells of its own.
+  const shelled = built.filter(({ spec }) => stage.shelled(spec.component));
   for (const { spec } of shelled) {
     // `Icon Button` is IconButton.tsx and solar_icon_button.dart, as the shells are named.
     const name = pascal(spec.component);
@@ -590,6 +587,14 @@ describe('component parity: the React and Flutter widgets', () => {
           def.type === 'boolean' &&
           flutter[prop] == null &&
           new RegExp(`final bool\\? ${prop};`).test(flutterSource)
+        )
+          continue;
+        // An axis the shell derives where the caller gives none (Sparkline's trend, from its data):
+        // a nullable parameter, as the web's optional prop, no default of its own.
+        if (
+          def.values &&
+          flutter[prop] == null &&
+          new RegExp(`final Solar\\w+\\? ${prop};`).test(flutterSource)
         )
           continue;
         // An enum value as the emitter spells it in Dart (`top-search` is `topSearch`).

@@ -1,0 +1,29 @@
+# Hand-written decisions about SOLAR Line Chart, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Line Chart
+
+base:
+  reason: >-
+    A line chart of one or two series, as the description says: drawn by the chart library (MUI X
+    Charts, fl_chart; decision), in SOLAR's chart theme, which takes its series order from here
+    (series A category 06, B 02) and its line's stroke. What Figma draws is a sample plot, its
+    legend SOLAR's Data Legend in code.
+
+bind:
+  lineA.borderWidth:
+    literal: 2
+    token: border.strong
+    reason: Same value, governed token, the line's stroke, which the theme takes.
+  lineB.borderWidth:
+    literal: 2
+    token: border.strong
+    reason: { as: bind lineA.borderWidth }
+
+accept:
+  component.line chart.*:
+    reason: >-
+      Figma's plot is sample data: its lines' paths, its plot's size and its month labels, and a
+      legend of its own the code draws as SOLAR's Data Legend. The library lays out the caller's
+      data; the theme takes the design, none of which is left open.

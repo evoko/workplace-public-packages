@@ -13,6 +13,8 @@ import autocompleteOpen from './autocomplete-open.js';
 import avatar from './avatar.js';
 import backButton from './backbutton.js';
 import banner from './banner.js';
+import bar from './bar.js';
+import barStack from './bar-stack.js';
 import breadcrumbItem from './breadcrumb-item.js';
 import breadcrumbs from './breadcrumbs.js';
 import button from './button.js';
@@ -20,6 +22,7 @@ import buttonGroup from './button-group.js';
 import calendarDayCell from './calendar-day-cell.js';
 import calendarToolbar from './calendar-toolbar.js';
 import card from './card.js';
+import chartTooltip from './chart-tooltip.js';
 import checkbox from './checkbox.js';
 import coachmark from './coachmark.js';
 import columnItem from './column-item.js';
@@ -28,6 +31,7 @@ import container from './container.js';
 import contextMenu from './context-menu.js';
 import contextMenuItem from './context-menu-item.js';
 import counter from './counter.js';
+import dataLegend from './data-legend.js';
 import datePickerDayCell from './date-picker-day-cell.js';
 import datePickerOpen from './date-picker-open.js';
 import datePicker from './datepicker.js';
@@ -93,6 +97,7 @@ import select from './select.js';
 import skeleton from './skeleton.js';
 import slider from './slider.js';
 import sliderRange from './slider-range.js';
+import sparkline from './sparkline.js';
 import spinner from './spinner.js';
 import splitDialog from './split-dialog.js';
 import splitDropdown from './split-dropdown.js';
@@ -137,6 +142,8 @@ export const CASES: Record<string, VisualCase> = {
   Avatar: avatar,
   BackButton: backButton,
   Banner: banner,
+  Bar: bar,
+  'Bar Stack': barStack,
   'Breadcrumb Item': breadcrumbItem,
   Breadcrumbs: breadcrumbs,
   Button: button,
@@ -144,6 +151,7 @@ export const CASES: Record<string, VisualCase> = {
   'Calendar Day Cell': calendarDayCell,
   'Calendar Toolbar': calendarToolbar,
   Card: card,
+  'Chart Tooltip': chartTooltip,
   Checkbox: checkbox,
   Coachmark: coachmark,
   'Column Item': columnItem,
@@ -152,6 +160,7 @@ export const CASES: Record<string, VisualCase> = {
   'Context Menu': contextMenu,
   'Context Menu Item': contextMenuItem,
   Counter: counter,
+  'Data Legend': dataLegend,
   'Date Picker Day Cell': datePickerDayCell,
   'Date Picker Open': datePickerOpen,
   DatePicker: datePicker,
@@ -217,6 +226,7 @@ export const CASES: Record<string, VisualCase> = {
   Skeleton: skeleton,
   Slider: slider,
   'Slider Range': sliderRange,
+  Sparkline: sparkline,
   Spinner: spinner,
   'Split Dialog': splitDialog,
   'Split Dropdown': splitDropdown,

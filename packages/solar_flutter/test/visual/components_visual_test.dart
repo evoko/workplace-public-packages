@@ -25,7 +25,9 @@ void main() {
 
   test('every generated component has a visual case', () {
     expect(oracles.keys, isNotEmpty);
-    for (final component in oracles.keys) {
+    for (final component in oracles.keys.where(
+      (c) => !drawnByLibrary.contains(c),
+    )) {
       expect(
         cases,
         contains(component),

@@ -22,7 +22,11 @@ import {
   STATE_SELECTORS,
   slotsOf,
 } from '../../../codegen/src/emit/mui-component.mjs';
-import { NAMES, fileOf } from '../../../codegen/src/stages/components.mjs';
+import {
+  NAMES as ALL,
+  fileOf,
+  library,
+} from '../../../codegen/src/stages/components.mjs';
 import { solarMuiThemeDecisions } from '../../../styles/src/generated/mui/theme-components.ts';
 import {
   byPrefix,
@@ -35,6 +39,9 @@ const repo = (path) =>
 const load = (path) => JSON.parse(readFileSync(repo(path), 'utf8'));
 const out = (path) => fileURLToPath(new URL(`.out/${path}`, import.meta.url));
 
+// A component a chart library draws has an oracle and no case: its plot is Figma's sample, which
+// no per-variant check applies to (the chart theme's own test stands for it).
+const NAMES = ALL.filter((c) => !library(c));
 const oracles = Object.fromEntries(
   NAMES.map((c) => [c, load(`spec/verify/${fileOf(c)}`)]),
 );

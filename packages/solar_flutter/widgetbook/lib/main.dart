@@ -45,7 +45,8 @@ class SolarWidgetbook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final names = oracles.keys.toList()..sort();
+    // A component a chart library draws has an oracle and no builder: its charts are below.
+    final names = oracles.keys.where(builders.containsKey).toList()..sort();
     return Widgetbook.material(
       addons: [
         MaterialThemeAddon(
@@ -84,10 +85,97 @@ class SolarWidgetbook extends StatelessWidget {
               ),
           ],
         ),
+        // Drawn by fl_chart in SOLAR's chart theme, with Figma's sample data, for the eye: the
+        // per-variant check does not apply to a library's plot.
+        WidgetbookFolder(
+          name: 'SOLAR charts',
+          children: [
+            WidgetbookComponent(
+              name: 'Charts',
+              useCases: [
+                for (final (name, chart) in chartSamples)
+                  WidgetbookUseCase(
+                    name: name,
+                    builder: (context) => Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: SizedBox(width: 600, child: chart),
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }
 }
+
+const _months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+
+/// Figma's sample charts: its six months, its two series, its donut's shares.
+final chartSamples = <(String, Widget)>[
+  (
+    'Bar Chart, simple',
+    const SolarBarChart(
+      categories: _months,
+      series: [
+        SolarChartSeries(
+          label: 'Series A',
+          data: [146, 190, 110, 220, 163, 134],
+        ),
+      ],
+    ),
+  ),
+  (
+    'Bar Chart, grouped',
+    const SolarBarChart(
+      categories: _months,
+      series: [
+        SolarChartSeries(
+          label: 'Series A',
+          data: [146, 190, 110, 220, 163, 134],
+        ),
+        SolarChartSeries(
+          label: 'Series B',
+          data: [96, 140, 160, 120, 190, 150],
+        ),
+      ],
+    ),
+  ),
+  (
+    'Bar Chart, stacked',
+    const SolarBarChart(
+      categories: _months,
+      stacked: true,
+      series: [
+        SolarChartSeries(label: 'Series A', data: [60, 80, 40, 90, 70, 50]),
+        SolarChartSeries(label: 'Series B', data: [40, 60, 70, 50, 80, 60]),
+      ],
+    ),
+  ),
+  (
+    'Line Chart, multi',
+    const SolarLineChart(
+      categories: _months,
+      series: [
+        SolarChartSeries(label: 'Series A', data: [40, 62, 55, 78, 70, 90]),
+        SolarChartSeries(label: 'Series B', data: [30, 35, 48, 42, 60, 58]),
+      ],
+    ),
+  ),
+  (
+    'Donut Chart, with a total',
+    const SolarDonutChart(
+      total: '100',
+      totalLabel: 'Total',
+      segments: [
+        SolarDonutSegment(label: 'Good', value: 60),
+        SolarDonutSegment(label: 'Warning', value: 25),
+        SolarDonutSegment(label: 'Bad', value: 15),
+      ],
+    ),
+  ),
+];
 
 List<Map<String, dynamic>> variantsOf(Map<String, dynamic> oracle) =>
     (oracle['variants'] as List).cast<Map<String, dynamic>>();

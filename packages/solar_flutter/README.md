@@ -80,7 +80,10 @@ and `showSolarDrawer` show over the Scrim's colour, `SolarScrim`, and `SolarTool
 their trigger, or alone where they have none), and the calendar parts (`SolarEventChip`,
 `SolarCalendarDayCell`, `SolarWeekdayHeader`, `SolarTimeAxisLabel`, `SolarTimeSlot`,
 `SolarAllDayBar`, `SolarAgendaRow` and `SolarCalendarToolbar`, styled parts with no date logic of
-their own; a dashed edge, Figma's pattern, is `SolarDashedDecoration`) take the same props as the React components
+their own; a dashed edge, Figma's pattern, is `SolarDashedDecoration`), and the charts
+(`SolarSparkline`, `SolarBar`, `SolarBarStack`, `SolarDataLegend`, `SolarChartTooltip`, and
+`SolarBarChart`, `SolarLineChart` and `SolarDonutChart`, drawn by `fl_chart` in
+`SolarChartTheme`, generated from the chart IRs) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes

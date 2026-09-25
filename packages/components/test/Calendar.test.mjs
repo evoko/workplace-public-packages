@@ -128,9 +128,18 @@ describe('the SOLAR Agenda Row shell', () => {
     );
   });
 
-  it('draws its dot in the caller’s colour', () => {
-    const row = html(h(AgendaRow, { title: 'Standup', color: 'rgb(1, 2, 3)' }));
-    expect(row).toContain('rgb(1, 2, 3)');
+  it('draws its dot in its event’s category, Event Chip’s colours, blue by default', () => {
+    const red = html(h(AgendaRow, { title: 'Standup', category: 'red' }));
+    expect(red).toContain('--solar-color-data-category-01-strong');
+    expect(red).not.toContain('--solar-color-data-category-06-strong');
+    expect(html(h(AgendaRow, { title: 'Standup' }))).toContain(
+      '--solar-color-data-category-06-strong',
+    );
+  });
+
+  it('draws an all-day bar in its event’s category too', () => {
+    const bar = html(h(AllDayBar, { title: 'Offsite', category: 'green' }));
+    expect(bar).toContain('--solar-color-data-category-04-strong');
   });
 });
 

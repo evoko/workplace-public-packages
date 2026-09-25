@@ -318,7 +318,7 @@ function context(spec, tokens) {
         case 'borderWidth':
           return entry.none
             ? { strokeWidth: '0' }
-            : { strokeWidth: ref(entry.token, at) };
+            : length(entry, 'strokeWidth', at);
         // The control's SVG places its shapes in its own view box, and sizes them there too; a
         // glyph the shell draws is an SVG element of its own, sized as a box is.
         case 'x':
@@ -518,7 +518,19 @@ function context(spec, tokens) {
         throw new Error(`${where} ${at}: no MUI rendering for cell ${cell}`);
     }
   };
-  return { declare, ref };
+  return { declare, ref, textStyle, length };
+}
+
+/**
+ * The CSS a recipe draws a token as, outside a component (the chart theme, src/emit/chart-theme.mjs):
+ * a colour's or a length's custom property, a text style's parts.
+ */
+export function cssTokens(tokens, where) {
+  const { ref, textStyle, length } = context(
+    { component: where, style: {}, layers: {} },
+    tokens,
+  );
+  return { ref, textStyle, length };
 }
 
 /**
@@ -1012,6 +1024,44 @@ export function renderMuiComponent(spec, tokens, specs = [spec]) {
 
   const key =
     appearanceAxes.map((a) => `${a}=\${p.${a}}`).join(', ') || 'default';
+  // An axis taken from another component (the overlay's tint: Agenda Row's category, Event
+  // Chip's): Figma's colours are the default's family, which the caller's value swaps for its own.
+  const tints = Object.entries(spec.tints ?? {});
+  const cssFamily = (family) => `--solar-${family.replaceAll('.', '-')}-`;
+  const tinted = (expr) => (tints.length ? `tint(${expr}, p)` : expr);
+  const tintCode = tints.length
+    ? `/** Each tinting axis: the default's colour family, and each value's (the overlay's tint). */\n` +
+      `export const solar${name}Tints = ${JSON.stringify(
+        Object.fromEntries(
+          tints.map(([axis, t]) => [
+            axis,
+            {
+              from: cssFamily(t.from),
+              values: Object.fromEntries(
+                Object.entries(t.values).map(([v, f]) => [v, cssFamily(f)]),
+              ),
+            },
+          ]),
+        ),
+        null,
+        2,
+      )} as const;\n\n` +
+      `function swap(style: Style, from: string, to: string): Style {\n` +
+      `  const out: Style = {};\n` +
+      `  for (const [k, v] of Object.entries(style))\n` +
+      `    out[k] = typeof v === 'string' ? v.replaceAll(from, to) : swap(v, from, to);\n` +
+      `  return out;\n` +
+      `}\n\n` +
+      `/** The style in the colours the caller's tinting values pick. */\n` +
+      `function tint(style: Style, p: Record<string, unknown>): Style {\n` +
+      `  let out = style;\n` +
+      `  for (const [axis, t] of Object.entries(solar${name}Tints)) {\n` +
+      `    const to = (t.values as Record<string, string>)[p[axis] as string];\n` +
+      `    if (to && to !== t.from) out = swap(out, t.from, to);\n` +
+      `  }\n` +
+      `  return out;\n` +
+      `}\n\n`
+    : '';
   const sizeProp = 'size' in spec.api ? 'size' : null;
 
   const ts =
@@ -1049,9 +1099,10 @@ export function renderMuiComponent(spec, tokens, specs = [spec]) {
     `  const s = solar${name}Styles as unknown as {\n` +
     `    reset: Style;\n    root: Style;\n    sizes: Record<string, Style>;\n    appearances: Record<string, Style>;\n    combined: Record<string, Record<string, Style>>;\n  };\n` +
     (sizeProp
-      ? `  const size = p.size as string;\n  return merge(s.reset, s.root, s.sizes[size], s.appearances[key], s.combined[size]?.[key]);\n`
-      : `  return merge(s.reset, s.root, s.appearances[key]);\n`) +
+      ? `  const size = p.size as string;\n  return ${tinted('merge(s.reset, s.root, s.sizes[size], s.appearances[key], s.combined[size]?.[key])')};\n`
+      : `  return ${tinted('merge(s.reset, s.root, s.appearances[key])')};\n`) +
     `}\n\n` +
+    tintCode +
     `/** A drawn layer's outline: its box, and the fill's and the stroke's paths (Figma's geometry). */\n` +
     `type Glyph = {\n  width: number;\n  height: number;\n  fill: { d: string; evenOdd: boolean }[];\n  stroke: { d: string; evenOdd: boolean }[];\n};\n` +
     `/** One layer's composition: shown or not, its composed child, its glyph, its position. */\n` +

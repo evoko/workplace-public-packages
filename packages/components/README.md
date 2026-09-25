@@ -1125,19 +1125,37 @@ a click does, are yours.
 
 - An **Event Chip** is one event: its `category`'s colour as a stripe (`variant` subtle), a pale
   fill (tinted) or a full fill (solid), its `time`, a `repeating` icon and its `title`, cut short at
-  its end. An **All-Day Bar** is the same for an event that spans days, its `span` the segment of a
-  bar across columns.
+  its end. An **All-Day Bar** is the same for an event that spans days, in its `category`, its
+  `span` the segment of a bar across columns.
 - A **Calendar Day Cell** is a grid cell of the month grid: its `day`, your Event Chips
   (`children`), `today` (its date in a pill, the current date), `selected`, `todayColumn` and
   `otherMonth` (faded); events past its height are cut off at its edge.
 - A **Weekday Header** heads a column (`emphasis` today), a **Time Axis Label** marks an hour on
   the rail (`emphasis` now, `density`), and a **Time Slot** is an empty cell of a week or day grid,
   `selected`, its half-hour rule dashed.
-- An **Agenda Row** is one event in the Agenda view: its `start` and `end`, a dot in its `color`, its
+- An **Agenda Row** is one event in the Agenda view: its `start` and `end`, a dot in its `category`
+  (an Event Chip's), its
   `title`, `meta` and `attendee` (an Avatar); at the compact `density` one `range`. Given `onClick`
   it is a button.
 - A **Calendar Toolbar** draws its own previous, next and Today buttons (`onPrevious`, `onNext`,
   `onToday`) and the `range` it shows, beside your `views` (a Segmented Control) and `action`.
+
+## Charts
+
+- A **Sparkline** is a tiny trend line: its `data` scaled into its box and its `trend` from it
+  where none is given (up, down, flat), or Figma's sample line without data; `size` sm or md.
+- A **Bar** is one bar in one of SOLAR's data colours (`color`); a **Bar Stack** splits one column
+  or row into your `segments`, each a Bar as long as its share.
+- A **Data Legend** names your series (`items`: a label and a colour each), each with Figma's dot;
+  a **Chart Tooltip** shows a point's `title` and a row per series (`rows`), one bare value
+  compactly or named series a row each.
+- **BarChart**, **LineChart** and **DonutChart** are drawn by MUI X Charts (`@mui/x-charts`) in
+  SOLAR's chart theme, `solarChartTheme` from `@bwp-web/styles/mui`, generated from Figma's chart
+  components: the series colours (bars and lines 06, 02, 04, 07…, the donut's segments 01…08),
+  the line's stroke, the axis, ticks, labels and gridlines, the donut's hole and centre. Their
+  tooltip is the Chart Tooltip and several series are named in a Data Legend. Give them
+  `categories` and `series` (a donut its `segments`, and a `total`); `label` names the chart. The
+  theme is exported for drawing MUI X Charts yourself.
 
 ## Checked against Figma
 
