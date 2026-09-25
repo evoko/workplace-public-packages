@@ -60,7 +60,9 @@ export const solarBackButtonStyles = {
     height: 'var(--solar-size-control-md)',
     '& .MuiButton-startIcon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-action-tertiary-icon-default)',
     },
     color: 'var(--solar-color-action-tertiary-text-default)',
@@ -79,7 +81,9 @@ export const solarBackButtonStyles = {
       height: 'var(--solar-size-control-sm)',
       '& .MuiButton-startIcon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',

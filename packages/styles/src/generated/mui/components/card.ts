@@ -138,10 +138,13 @@ export const solarCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarCard-icon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarCard-title': {
@@ -153,6 +156,7 @@ export const solarCardStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarCard-helper': {
       color: 'var(--solar-color-text-secondary)',
@@ -165,14 +169,18 @@ export const solarCardStyles = {
     },
     '& .SolarCard-more': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarCard--skeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '140px',
+      minWidth: '140px',
       height: '16px',
+      minHeight: '16px',
     },
     '& .SolarCard-content': {
       backgroundColor: 'transparent',
@@ -189,6 +197,7 @@ export const solarCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarCard--description': {
       color: 'var(--solar-color-text-secondary)',
@@ -199,6 +208,7 @@ export const solarCardStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarCard-tag': {
       '& > *': {
@@ -209,19 +219,25 @@ export const solarCardStyles = {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '260px',
+      minWidth: '260px',
       height: '12px',
+      minHeight: '12px',
     },
     '& .SolarCard--contentSkeleton2': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '260px',
+      minWidth: '260px',
       height: '12px',
+      minHeight: '12px',
     },
     '& .SolarCard--contentSkeleton3': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '200px',
+      minWidth: '200px',
       height: '12px',
+      minHeight: '12px',
     },
   },
   sizes: {},

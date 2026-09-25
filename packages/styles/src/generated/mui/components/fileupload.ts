@@ -107,7 +107,8 @@ export const solarFileUploadStyles = {
       boxShadow: 'none',
       borderRadius: 'var(--solar-radius-control)',
       borderWidth: 'var(--solar-border-default)',
-      borderStyle: 'solid',
+      borderStyle: 'var(--solar-border-style, solid)',
+      '--solar-border-style': 'dashed',
       flexDirection: 'row',
       justifyContent: 'flex-start',
       alignItems: 'center',
@@ -117,10 +118,13 @@ export const solarFileUploadStyles = {
       paddingBottom: 'var(--solar-inset-sm)',
       paddingLeft: 'var(--solar-inset-md)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarFileUpload--iconFile': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-tertiary)',
     },
     '& .SolarFileUpload--fileName': {
@@ -132,6 +136,7 @@ export const solarFileUploadStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarFileUpload-helper': {
       color: 'var(--solar-color-text-tertiary)',
@@ -185,6 +190,7 @@ export const solarFileUploadStyles = {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'transparent',
           borderStyle: 'none',
+          '--solar-border-style': 'solid',
         },
         '& .SolarFileUpload--iconFile': {
           color: 'var(--solar-color-icon-disabled)',

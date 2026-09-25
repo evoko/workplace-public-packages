@@ -1,0 +1,99 @@
+# Hand-written decisions about SOLAR All-Day Bar, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: All-Day Bar
+
+base:
+  reason: >-
+    An event that spans a day or more, as the description says: a bar in a week or day grid's
+    all-day row, or across a month grid's columns, as a stripe beside neutral words (subtle) or a
+    full fill with inverse words (solid), its time ("All day") and its title. Its `span` says which
+    segment of a bar across columns it is. A styled part, as the calendar family is (decision):
+    what the event is, and what a click on it does, are the caller's.
+
+rename:
+  style:
+    to: variant
+    reason: >-
+      Rule 5's one exception, as Alert's and Event Chip's (owner decision 2026-09-25): `style` is
+      React's inline-style prop, so no component can take it, and `variant` names the look on both
+      platforms. The design review asks Figma to rename the property `variant`, so the names match.
+
+follows:
+  title.typography:
+    axes: [style]
+    reason: >-
+      A solid bar's title is semibold, inverse on its full fill, where a subtle bar's is medium, as
+      an Event Chip's; set to its style below.
+  root.radius:
+    axes: [style]
+    reason: >-
+      A subtle bar is square beside its stripe (radius.none); a solid bar, a filled box, is rounded
+      (radius.control), as Figma draws each. Figma draws every span alike, though the description
+      says the span sets the corners so segments fuse; the design review asks.
+  root.align:
+    axes: [style]
+    reason: >-
+      Figma aligns a solid bar's content to its top where a subtle bar's is centred; the content
+      fills the bar's height, so neither draws the difference, as an Event Chip's tinted one.
+  stripe.height:
+    axes: [style]
+    reason: >-
+      The stripe runs the bar's height in a subtle bar. A solid bar hides it, and no prop shows it
+      there, so what Figma keeps on it there (a fixed 25, no radius) is never drawn.
+  stripe.radius:
+    axes: [style]
+    reason: { as: follows stripe.height }
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A bar fills the columns its event spans: Figma draws each span at a sample width (160, 200,
+      240).
+  title.appearance.style=solid, span=single.default.typography:
+    token: typography.body.sm.semibold
+    reason: >-
+      Figma draws a solid bar's title 12/16 semibold, detached from any text style:
+      body/sm/semibold, the same values, governed, as a solid Event Chip's.
+  title.appearance.style=solid, span=start.default.typography:
+    token: typography.body.sm.semibold
+    reason: >-
+      As the single span's: a solid bar's title, 12/16 semibold, detached, body/sm/semibold.
+  title.appearance.style=solid, span=middle.default.typography:
+    token: typography.body.sm.semibold
+    reason: >-
+      As the single span's: a solid bar's title, 12/16 semibold, detached, body/sm/semibold.
+  title.appearance.style=solid, span=end.default.typography:
+    token: typography.body.sm.semibold
+    reason: >-
+      As the single span's: a solid bar's title, 12/16 semibold, detached, body/sm/semibold.
+
+accept:
+  component.all-day bar.root.width@style=subtle, span=start:
+    reason: { as: set root.base.width }
+  component.all-day bar.root.width@style=subtle, span=middle:
+    reason: { as: set root.base.width }
+  component.all-day bar.root.width@style=subtle, span=end:
+    reason: { as: set root.base.width }
+  component.all-day bar.root.width@style=solid, span=start:
+    reason: { as: set root.base.width }
+  component.all-day bar.root.width@style=solid, span=middle:
+    reason: { as: set root.base.width }
+  component.all-day bar.root.width@style=solid, span=end:
+    reason: { as: set root.base.width }
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A bar is 22 tall, as an Event Chip is, bound to nothing: SOLAR has no size for it, one of the
+      sizes with no variable (a calendar's row).
+  stripe.width:
+    reason: >-
+      The stripe is 3 wide, as an Event Chip's, bound to nothing: no border width is 3, and a
+      stripe is a fill, not an edge.
+  stripe.height:
+    reason: >-
+      The 25 Figma keeps on the stripe where a solid bar hides it, never drawn (follows
+      stripe.height); where it is drawn it fills the bar.

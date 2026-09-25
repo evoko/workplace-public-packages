@@ -142,11 +142,15 @@ export const solarFileCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarFileCard-fileIcon': {
       width: 'var(--solar-icon-lg)',
+      minWidth: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
+      minHeight: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-tertiary)',
     },
     '& .SolarFileCard--footer': {
@@ -164,6 +168,7 @@ export const solarFileCardStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-md)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarFileCard--text': {
       backgroundColor: 'transparent',
@@ -180,6 +185,7 @@ export const solarFileCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarFileCard-title': {
       color: 'var(--solar-color-text-primary)',
@@ -190,6 +196,7 @@ export const solarFileCardStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarFileCard-meta': {
       color: 'var(--solar-color-text-secondary)',
@@ -200,10 +207,13 @@ export const solarFileCardStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarFileCard--iconMore': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarFileCard--frame1': {
@@ -228,7 +238,9 @@ export const solarFileCardStyles = {
     },
     '& .SolarFileCard--iconPlus': {
       width: 'var(--solar-icon-lg)',
+      minWidth: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
+      minHeight: 'var(--solar-icon-lg)',
     },
   },
   sizes: {},

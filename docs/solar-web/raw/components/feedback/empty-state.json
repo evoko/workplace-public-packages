@@ -175,7 +175,13 @@
             }
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Button/Counter",
+        "/Button/Icon/None",
+        "/Button/Icon/Refresh",
+        "/Button/Spinner"
+      ]
     }
   ],
   "frames": [],

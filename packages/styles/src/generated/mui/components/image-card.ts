@@ -111,7 +111,7 @@ export const solarImageCardStyles = {
     boxShadow: 'var(--solar-shadow-raised)',
     borderRadius: 'var(--solar-radius-container)',
     borderWidth: 'var(--solar-border-default)',
-    borderStyle: 'solid',
+    borderStyle: 'var(--solar-border-style, solid)',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
@@ -122,6 +122,7 @@ export const solarImageCardStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
     height: '190px',
+    '--solar-border-style': 'solid',
     '& .SolarImageCard--image': {
       backgroundColor: 'var(--solar-color-surface-background)',
       borderColor: 'transparent',
@@ -137,7 +138,9 @@ export const solarImageCardStyles = {
       paddingBottom: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-xs)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarImageCard--text': {
       backgroundColor: 'transparent',
@@ -156,6 +159,7 @@ export const solarImageCardStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-md)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarImageCard-title': {
       color: 'var(--solar-color-text-primary)',
@@ -174,7 +178,9 @@ export const solarImageCardStyles = {
       },
       strokeWidth: '0',
       width: '3px',
+      minWidth: '3px',
       height: '14px',
+      minHeight: '14px',
     },
     '& .SolarImageCard-subtitle': {
       color: 'var(--solar-color-text-secondary)',
@@ -185,6 +191,7 @@ export const solarImageCardStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarImageCard--iconCircle': {
       borderRadius: 'var(--solar-radius-pill)',
@@ -198,7 +205,9 @@ export const solarImageCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '44px',
+      minWidth: '44px',
       height: '44px',
+      minHeight: '44px',
     },
     '& .SolarImageCard-label': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -210,7 +219,9 @@ export const solarImageCardStyles = {
     },
     '& .SolarImageCard--iconPlus': {
       width: '22px',
+      minWidth: '22px',
       height: '22px',
+      minHeight: '22px',
     },
   },
   sizes: {},
@@ -224,6 +235,7 @@ export const solarImageCardStyles = {
       gap: 'var(--solar-stack-lg)',
       paddingTop: 'var(--solar-inset-lg)',
       paddingBottom: 'var(--solar-inset-lg)',
+      '--solar-border-style': 'dashed',
       '&:has(.SolarImageCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },

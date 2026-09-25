@@ -108,12 +108,16 @@ export const solarTreeItemStyles = {
     },
     '& .SolarTreeItem-chevron': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
     '& .SolarTreeItem-leadingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
     '& .SolarTreeItem--label': {
@@ -125,6 +129,7 @@ export const solarTreeItemStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTreeItem--renameInput': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -134,6 +139,7 @@ export const solarTreeItemStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTreeItem-buttons': {
       borderRadius: 'var(--solar-radius-none)',
@@ -149,20 +155,28 @@ export const solarTreeItemStyles = {
     },
     '& .SolarTreeItem-trailingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
     '& .SolarTreeItem--iconMore': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
     },
     '& .SolarTreeItem--iconPlus': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
     },
     '& .SolarTreeItem--iconChevronDown': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
     },
   },
   sizes: {},

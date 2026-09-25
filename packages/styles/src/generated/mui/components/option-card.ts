@@ -82,7 +82,8 @@ export const solarOptionCardStyles = {
     boxShadow: 'none',
     borderRadius: 'var(--solar-radius-container)',
     borderWidth: 'var(--solar-border-default)',
-    borderStyle: 'solid',
+    borderStyle: 'var(--solar-border-style, solid)',
+    '--solar-border-style': 'dashed',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -108,11 +109,15 @@ export const solarOptionCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '64px',
+      minWidth: '64px',
       height: '64px',
+      minHeight: '64px',
     },
     '& .SolarOptionCard--iconPlus': {
       width: 'var(--solar-icon-lg)',
+      minWidth: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
+      minHeight: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-secondary)',
     },
     '& .SolarOptionCard-label': {
@@ -131,6 +136,7 @@ export const solarOptionCardStyles = {
       '&.SolarOptionCard-pressable:hover': {
         borderColor: 'var(--solar-color-border-subtle)',
         boxShadow: 'none',
+        '--solar-border-style': 'dashed',
         '& .SolarOptionCard--iconPlus': {
           color: 'var(--solar-color-icon-primary)',
         },
@@ -138,12 +144,14 @@ export const solarOptionCardStyles = {
       '&:has(.SolarOptionCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-medium)',
+        '--solar-border-style': 'dashed',
         '& .SolarOptionCard--iconPlus': {
           color: 'var(--solar-color-icon-secondary)',
         },
       },
       '&.SolarOptionCard-selected': {
         boxShadow: 'var(--solar-shadow-raised)',
+        '--solar-border-style': 'solid',
         '& .SolarOptionCard--iconPlus': {
           color: 'var(--solar-color-icon-primary)',
         },

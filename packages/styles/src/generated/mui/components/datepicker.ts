@@ -170,11 +170,15 @@ export const solarDatePickerStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-size-control-md)',
+      minHeight: 'var(--solar-size-control-md)',
     },
     '& .SolarDatePicker--iconCalendar': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarDatePicker-value': {
@@ -195,6 +199,7 @@ export const solarDatePickerStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {
@@ -220,10 +225,13 @@ export const solarDatePickerStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         height: 'var(--solar-size-control-sm)',
+        minHeight: 'var(--solar-size-control-sm)',
       },
       '& .SolarDatePicker--iconCalendar': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarDatePicker-value': {
         fontFamily: 'var(--solar-type-font-family-inter)',

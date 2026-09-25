@@ -78,6 +78,7 @@ export const solarExpandableCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarExpandableCard-title': {
       color: 'var(--solar-color-text-primary)',
@@ -88,10 +89,13 @@ export const solarExpandableCardStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarExpandableCard--iconChevronDown': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarExpandableCard-content': {
@@ -106,10 +110,13 @@ export const solarExpandableCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarExpandableCard--iconChevronUp': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
     },
     '& .SolarExpandableCard-description': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -119,6 +126,7 @@ export const solarExpandableCardStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

@@ -136,7 +136,9 @@ export const solarTextAreaStyles = {
       paddingBottom: 'var(--solar-inset-sm)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
       height: '120px',
+      minHeight: '120px',
       position: 'relative',
     },
     '& .SolarTextArea--enterText': {
@@ -148,17 +150,22 @@ export const solarTextAreaStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTextArea-cta': {
       width: '32px',
+      minWidth: '32px',
       height: '32px',
+      minHeight: '32px',
       position: 'absolute',
       right: 'calc(8px - var(--solar-placed-right, 0px))',
       bottom: 'calc(8px - var(--solar-placed-bottom, 0px))',
     },
     '& .SolarTextArea-attachment': {
       width: '32px',
+      minWidth: '32px',
       height: '32px',
+      minHeight: '32px',
       position: 'absolute',
       left: 'calc(8px - var(--solar-placed-left, 0px))',
       bottom: 'calc(8px - var(--solar-placed-bottom, 0px))',
@@ -178,6 +185,7 @@ export const solarTextAreaStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTextArea-helper': {
       color: 'var(--solar-color-text-secondary)',
@@ -188,6 +196,7 @@ export const solarTextAreaStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTextArea-charCount': {
       color: 'var(--solar-color-text-secondary)',
@@ -220,6 +229,7 @@ export const solarTextAreaStyles = {
       },
       '& .SolarTextArea--field': {
         height: '100px',
+        minHeight: '100px',
       },
       '& .SolarTextArea--enterText': {
         fontFamily: 'var(--solar-type-font-family-inter)',

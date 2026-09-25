@@ -70,7 +70,9 @@ export const solarContextMenuItemStyles = {
     height: '36px',
     '& .SolarContextMenuItem-leadingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarContextMenuItem-label': {
@@ -82,6 +84,7 @@ export const solarContextMenuItemStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenuItem-shortcut': {
       color: 'var(--solar-color-text-tertiary)',
@@ -94,7 +97,9 @@ export const solarContextMenuItemStyles = {
     },
     '& .SolarContextMenuItem-trailingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
   },

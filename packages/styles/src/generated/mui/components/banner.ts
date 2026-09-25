@@ -99,20 +99,28 @@ export const solarBannerStyles = {
     height: '44px',
     '& .SolarBanner--iconInfo': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarBanner--iconSuccess': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
     '& .SolarBanner--iconWarning': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
     '& .SolarBanner--iconDanger': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
     '& .SolarBanner-description': {
       color: 'var(--solar-color-text-primary)',
@@ -123,6 +131,7 @@ export const solarBannerStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarBanner--actionGroup': {
       backgroundColor: 'transparent',
@@ -150,7 +159,9 @@ export const solarBannerStyles = {
     },
     '& .SolarBanner-close': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
   },

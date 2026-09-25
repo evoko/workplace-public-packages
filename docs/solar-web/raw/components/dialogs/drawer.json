@@ -271,7 +271,17 @@
             }
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Button Group/Button#2/Counter",
+        "/Button Group/Button#2/Icon/None",
+        "/Button Group/Button#2/Icon/None#2",
+        "/Button Group/Button#2/Spinner",
+        "/Button Group/Button/Counter",
+        "/Button Group/Button/Icon/None",
+        "/Button Group/Button/Icon/None#2",
+        "/Button Group/Button/Spinner"
+      ]
     }
   ],
   "frames": [],

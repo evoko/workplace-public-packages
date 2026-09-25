@@ -166,7 +166,9 @@ export const solarPasswordInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-md)',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-size-control-md)',
+      minHeight: 'var(--solar-size-control-md)',
     },
     '& .SolarPasswordInput--maskedValue': {
       color: 'var(--solar-color-text-tertiary)',
@@ -177,10 +179,13 @@ export const solarPasswordInputStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPasswordInput--icon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarPasswordInput-helper': {
@@ -192,6 +197,7 @@ export const solarPasswordInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPasswordInput-forgotPassword': {
       color: 'var(--solar-color-text-secondary)',
@@ -202,6 +208,7 @@ export const solarPasswordInputStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {
@@ -227,6 +234,7 @@ export const solarPasswordInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         height: 'var(--solar-size-control-sm)',
+        minHeight: 'var(--solar-size-control-sm)',
       },
       '& .SolarPasswordInput--maskedValue': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -238,7 +246,9 @@ export const solarPasswordInputStyles = {
       },
       '& .SolarPasswordInput--icon': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarPasswordInput-helper': {
         fontFamily: 'var(--solar-type-font-family-inter)',

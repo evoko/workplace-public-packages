@@ -274,7 +274,17 @@
             }
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Button#2/Counter",
+        "/Button#2/Icon/Close",
+        "/Button#2/Icon/None",
+        "/Button#2/Spinner",
+        "/Button/Counter",
+        "/Button/Icon/Filter",
+        "/Button/Icon/None",
+        "/Button/Spinner"
+      ]
     }
   ],
   "frames": [],

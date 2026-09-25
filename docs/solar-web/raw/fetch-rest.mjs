@@ -408,6 +408,9 @@ function layer(n, parent, depth, maxDepth, ctx) {
     // Where the sides differ, each one's weight, top, right, bottom, left: Button Group's divider
     // is a top stroke only, which 'mixed' alone does not say.
     if (mixed) o.strokeWeights = [iw.top, iw.right, iw.bottom, iw.left];
+    // A dashed stroke's pattern, each dash's length and the gap after it (FileUpload's drop zone,
+    // Time Slot's half-hour rule), which the paths alone do not say along another length.
+    if (n.strokeDashes?.length) o.dashes = [...n.strokeDashes];
   }
   if (n.cornerRadius) o.radius = n.cornerRadius;
   else if (n.rectangleCornerRadii && n.rectangleCornerRadii.some((x) => x))
@@ -584,6 +587,11 @@ function transformPage(resp, pageId) {
         nodeCount: nc,
         tree: layer(n, n.__parent, 0, nc > 300 ? 3 : 6, ctx),
       };
+      // Every layer it hides by path, into the instances the tree does not descend into, as a
+      // set's variants record them: what a composed child hides is then its own (Calendar
+      // Toolbar's Segmented Control, its label hidden).
+      const hiddenPaths = hiddenPathsOf(n);
+      if (hiddenPaths.length) c.hiddenPaths = hiddenPaths;
       if (nc > 300) c.census = census(n, ctx);
       result.components.push(c);
     }

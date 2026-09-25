@@ -366,6 +366,10 @@
                 "strokes": [
                   "{Color:border/medium}"
                 ],
+                "dashes": [
+                  6,
+                  4
+                ],
                 "effectStyle": null,
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",

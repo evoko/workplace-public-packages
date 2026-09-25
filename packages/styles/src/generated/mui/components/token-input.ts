@@ -112,6 +112,7 @@ export const solarTokenInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTokenInput--labelLabel': {
       color: 'var(--solar-color-text-primary)',
@@ -147,6 +148,7 @@ export const solarTokenInputStyles = {
       paddingBottom: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTokenInput--tags': {
       backgroundColor: 'transparent',
@@ -163,6 +165,7 @@ export const solarTokenInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTokenInput--addItems': {
       color: 'var(--solar-color-text-tertiary)',
@@ -173,6 +176,7 @@ export const solarTokenInputStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTokenInput-helper': {
       color: 'var(--solar-color-text-secondary)',
@@ -183,6 +187,7 @@ export const solarTokenInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {

@@ -5,8 +5,10 @@
 import '../harness.dart';
 import 'accordion.dart';
 import 'action_card.dart';
+import 'agenda_row.dart';
 import 'alert.dart';
 import 'alert_small.dart';
+import 'all_day_bar.dart';
 import 'autocomplete.dart';
 import 'autocomplete_open.dart';
 import 'avatar.dart';
@@ -16,6 +18,8 @@ import 'breadcrumb_item.dart';
 import 'breadcrumbs.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'calendar_day_cell.dart';
+import 'calendar_toolbar.dart';
 import 'card.dart';
 import 'checkbox.dart';
 import 'coachmark.dart';
@@ -38,6 +42,7 @@ import 'dropdown_group_label.dart';
 import 'dropdown_item.dart';
 import 'dropdown_menu.dart';
 import 'emptystate.dart';
+import 'event_chip.dart';
 import 'event_row.dart';
 import 'expandable_card.dart';
 import 'fab.dart';
@@ -106,6 +111,8 @@ import 'tabs.dart';
 import 'tag.dart';
 import 'text_area.dart';
 import 'text_input.dart';
+import 'time_axis_label.dart';
+import 'time_slot.dart';
 import 'timepicker.dart';
 import 'timepicker_dropdown.dart';
 import 'timestamp.dart';
@@ -116,12 +123,15 @@ import 'tooltip.dart';
 import 'tree_indent.dart';
 import 'tree_item.dart';
 import 'trend_badge.dart';
+import 'weekday_header.dart';
 
 final cases = <String, VisualCase>{
   'Accordion': accordionCase,
   'Action Card': actionCardCase,
+  'Agenda Row': agendaRowCase,
   'Alert': alertCase,
   'Alert Small': alertSmallCase,
+  'All-Day Bar': allDayBarCase,
   'Autocomplete': autocompleteCase,
   'Autocomplete Open': autocompleteOpenCase,
   'Avatar': avatarCase,
@@ -131,6 +141,8 @@ final cases = <String, VisualCase>{
   'Breadcrumbs': breadcrumbsCase,
   'Button': buttonCase,
   'Button Group': buttonGroupCase,
+  'Calendar Day Cell': calendarDayCellCase,
+  'Calendar Toolbar': calendarToolbarCase,
   'Card': cardCase,
   'Checkbox': checkboxCase,
   'Coachmark': coachmarkCase,
@@ -153,6 +165,7 @@ final cases = <String, VisualCase>{
   'Dropdown Item': dropdownItemCase,
   'Dropdown Menu': dropdownMenuCase,
   'EmptyState': emptyStateCase,
+  'Event Chip': eventChipCase,
   'Event Row': eventRowCase,
   'Expandable Card': expandableCardCase,
   'FAB': fabCase,
@@ -221,6 +234,8 @@ final cases = <String, VisualCase>{
   'Tag': tagCase,
   'Text Area': textAreaCase,
   'Text Input': textInputCase,
+  'Time Axis Label': timeAxisLabelCase,
+  'Time Slot': timeSlotCase,
   'TimePicker': timePickerCase,
   'TimePicker Dropdown': timePickerDropdownCase,
   'Timestamp': timestampCase,
@@ -231,4 +246,5 @@ final cases = <String, VisualCase>{
   'Tree Indent': treeIndentCase,
   'Tree Item': treeItemCase,
   'Trend Badge': trendBadgeCase,
+  'Weekday Header': weekdayHeaderCase,
 };

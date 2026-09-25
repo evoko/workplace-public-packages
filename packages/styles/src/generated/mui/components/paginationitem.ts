@@ -63,6 +63,7 @@ export const solarPaginationItemStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

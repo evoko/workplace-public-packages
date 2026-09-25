@@ -94,6 +94,7 @@ export const solarInlineInputStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarInlineInput--frame1': {
       borderRadius: 'var(--solar-radius-none)',

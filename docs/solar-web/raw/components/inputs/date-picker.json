@@ -440,6 +440,10 @@
                   "{Color:border/subtle}"
                 ],
                 "strokeWeight": 1,
+                "dashes": [
+                  2,
+                  2
+                ],
                 "radius": [
                   0,
                   18,

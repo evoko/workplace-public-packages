@@ -57,7 +57,9 @@ export const solarEmptyStateStyles = {
     paddingLeft: 'var(--solar-inset-sm)',
     '& .SolarEmptyState-icon': {
       width: 'var(--solar-icon-lg)',
+      minWidth: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
+      minHeight: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarEmptyState--textContent': {
@@ -75,6 +77,7 @@ export const solarEmptyStateStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarEmptyState-title': {
       color: 'var(--solar-color-text-primary)',

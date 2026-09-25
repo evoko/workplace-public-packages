@@ -79,7 +79,9 @@ export const solarPageNavButtonStyles = {
     height: '36px',
     '& .SolarPageNavButton--iconArrowLeft': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-action-secondary-icon-default)',
     },
     '& .SolarPageNavButton--label': {
@@ -93,7 +95,9 @@ export const solarPageNavButtonStyles = {
     },
     '& .SolarPageNavButton--iconArrowRight': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
   },
   sizes: {},

@@ -77,33 +77,43 @@ export const solarListStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--listItem': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--divider': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--listItem2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--divider2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--listItem3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--divider3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--listItem4': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--divider4': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarList--listItem5': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},
@@ -114,21 +124,27 @@ export const solarListStyles = {
       borderStyle: 'none',
       '& .SolarList-items': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarList--listItem': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarList--listItem2': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarList--listItem3': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarList--listItem4': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarList--listItem5': {
         width: '100%',
+        minWidth: 0,
       },
     },
   },

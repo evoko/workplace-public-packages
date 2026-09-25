@@ -58,7 +58,9 @@ export const solarStepperIndicatorStyles = {
     height: '24px',
     '& .SolarStepperIndicator--iconCheck': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-inverse)',
     },
     '& .SolarStepperIndicator--number': {

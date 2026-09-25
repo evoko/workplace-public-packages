@@ -37,7 +37,9 @@ run by `flutter test` with the rest of the package.
   (`centerX`, `centerY`). A composed child's place is measured on its root, as the web check has
   it (a Coachmark's Node End). Where variants lay a parent's children out in different orders (a
   Popover's tip), each laid-out child's rank (`order`) is measured from where it falls along its
-  parent's Flex, and compared exactly. A composed child's own
+  parent's Flex, and compared exactly. A dashed edge (`SolarDashedDecoration`) is compared by its
+  pattern, dash by dash, and its colour read from it; a solid one where Figma draws the layer solid
+  in another variant. A composed child's own
   composed children (a PropertyList row's Select) are compared for the box the child gives them,
   their own look being their own check's. A gradient background is measured as the oracle writes
   one (`paintedGradient`), its direction and each stop's colour at its place. A case whose widget

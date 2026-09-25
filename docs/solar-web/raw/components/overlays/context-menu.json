@@ -791,7 +791,16 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Content/Context Menu Item#2/LeadingIcon#2",
+        "/Content/Context Menu Item#3/LeadingIcon#2",
+        "/Content/Context Menu Item#4/LeadingIcon#2",
+        "/Content/Context Menu Item#5/LeadingIcon#2",
+        "/Content/Context Menu Item#6/LeadingIcon#2",
+        "/Content/Context Menu Item#7/LeadingIcon#2",
+        "/Content/Context Menu Item/LeadingIcon#2"
+      ]
     }
   ],
   "frames": [],

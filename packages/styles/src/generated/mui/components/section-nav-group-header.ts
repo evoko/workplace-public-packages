@@ -58,6 +58,7 @@ export const solarSectionNavGroupHeaderStyles = {
       textDecoration: 'none',
       textTransform: 'uppercase',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

@@ -81,24 +81,31 @@ export const solarTimePickerDropdownStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTimePickerDropdown--dropdownItem': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTimePickerDropdown--dropdownItem2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTimePickerDropdown--dropdownItem3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTimePickerDropdown--dropdownItem4': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTimePickerDropdown--dropdownItem5': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTimePickerDropdown--dropdownItem6': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {

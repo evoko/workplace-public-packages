@@ -123,6 +123,7 @@ export const solarStatusCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarStatusCard-title': {
       color: 'var(--solar-color-text-primary)',
@@ -135,7 +136,9 @@ export const solarStatusCardStyles = {
     },
     '& .SolarStatusCard--iconMore': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarStatusCard--trend': {
@@ -166,13 +169,17 @@ export const solarStatusCardStyles = {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '170px',
+      minWidth: '170px',
       height: '12px',
+      minHeight: '12px',
     },
     '& .SolarStatusCard--skeleton2': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '62px',
+      minWidth: '62px',
       height: '24px',
+      minHeight: '24px',
     },
   },
   sizes: {},

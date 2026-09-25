@@ -10,3 +10,90 @@ codeName:
   reason: >-
     Figma names two components Day Cell: this one, a day of the calendar views, and the date
     picker's. Code needs one name each; the section says which this is.
+
+base:
+  reason: >-
+    One day of a calendar's month grid, as the description says: its date and the caller's Event
+    Chips under it. A grid cell, labelled by its date where the caller gives one, marked today
+    (aria-current) and selected; a day of another month is drawn faded. A styled part, as the
+    calendar family is (decision): which day it is, what its events are, and what a click on it
+    does, are the caller's. Bespoke on both platforms, drawn with the shared layer helpers.
+
+states:
+  rename:
+    today-column:
+      to: todayColumn
+      reason: >-
+        A prop in code is one word, as the platforms spell it: Figma's hyphen can be neither a
+        React prop nor a Dart parameter.
+    other-month:
+      to: otherMonth
+      reason: >-
+        As today's column: Figma's hyphen can be neither a React prop nor a Dart parameter.
+
+examples:
+  /Events:
+    reason: >-
+      The chips are Figma's sample of a day's events (blue, green and yellow, three at the
+      comfortable density), drawn anew under other names in every state: the caller's Event Chips
+      replace them.
+
+slots:
+  dayNum:
+    name: day
+    type: text
+    reason: >-
+      The day of the month is the caller's, as a Date Picker Day Cell's is; Figma records no text
+      prop, and draws a sample 15.
+  events:
+    name: events
+    type: content
+    reason: >-
+      The day's events are the caller's Event Chips, stacked under the date (Figma's sample three,
+      `examples`); Figma records a prop per sample chip, none for the stack.
+
+follows:
+  dayNumPill.borderWidth:
+    axes: [state]
+    reason: >-
+      Today's date sits in a filled pill with an edge (border/medium); no other day has one, as
+      Figma draws each.
+  day.typography:
+    axes: [state]
+    reason: >-
+      Today's date is semibold on its pill, every other day's medium, as Figma draws each (today's
+      set to its style below).
+
+set:
+  day.appearance.default.today.typography:
+    token: typography.body.sm.semibold
+    reason: >-
+      Figma draws today's date semibold, 12/16, detached from any text style, where every other
+      day's is body/sm/medium: body/sm/semibold, the same values, governed.
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A day fills its column of the month grid: Figma draws a 160 sample, and a week of seven days
+      is as wide as the calendar.
+
+bind:
+  dayNumPill.borderWidth:
+    literal: 1
+    token: border.default
+    reason: Same value, governed token, today's pill's edge.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A day of the month grid is 120 tall, room for three chips at the comfortable density, bound
+      to nothing: SOLAR has no size for it, one of the sizes with no variable.
+  dayNumPill.width:
+    reason: >-
+      Today's pill is 24 across, bound to nothing: SOLAR has no size for it, as a date picker's
+      day cells.
+  dayNumPill.height:
+    reason: { as: allowLiteral dayNumPill.width }
+  events.opacity:
+    reason: >-
+      Another month's events are drawn at 50% opacity. SOLAR has no opacity scale (SOLAR decided,
+      2026-09-25); carried as Figma's number.

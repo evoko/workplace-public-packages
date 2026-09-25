@@ -83,48 +83,62 @@ export const solarDropdownMenuStyles = {
     },
     '& .SolarDropdownMenu--dropdownGroupLabel': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownMenu--dropdownItem': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownMenu--dropdownItem2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownMenu--dropdownItem3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownMenu--dropdownItem4': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownMenu--dropdownItem5': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownMenu--dropdownItem6': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {
     sm: {
       '& .SolarDropdownMenu--dropdownGroupLabel': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarDropdownMenu--dropdownItem': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarDropdownMenu--dropdownItem2': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarDropdownMenu--dropdownItem3': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarDropdownMenu--dropdownItem4': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarDropdownMenu--dropdownItem5': {
         width: '100%',
+        minWidth: 0,
       },
       '& .SolarDropdownMenu--dropdownItem6': {
         width: '100%',
+        minWidth: 0,
       },
     },
   },

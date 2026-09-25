@@ -85,6 +85,7 @@ export const solarAlertSmallStyles = {
       paddingBottom: 'var(--solar-stack-2xs)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarAlertSmall-title': {
       color: 'var(--solar-color-text-feedback-success)',
@@ -95,6 +96,7 @@ export const solarAlertSmallStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarAlertSmall-description': {
       color: 'var(--solar-color-text-primary)',
@@ -105,6 +107,7 @@ export const solarAlertSmallStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarAlertSmall-action': {
       color: 'var(--solar-color-text-feedback-success)',

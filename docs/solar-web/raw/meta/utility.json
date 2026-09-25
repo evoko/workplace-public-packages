@@ -814,7 +814,11 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Header/.Subheader/Subheadline",
+        "/Header/Container/Description"
+      ]
     }
   ],
   "frames": [],

@@ -114,6 +114,8 @@ function encode(entry, at) {
   if (entry.value !== undefined) return `b:${entry.value}`;
   // A position is the drawing's coordinate, read as a length (`dimension`), not an allowed literal.
   if (entry.position !== undefined) return `px:${entry.position}`;
+  // A dash pattern, each dash's length and the gap after it, in the drawing's own units.
+  if (entry.dash !== undefined) return `d:${entry.dash.join(',')}`;
   if (entry.literal !== undefined) {
     if (!entry.allowed)
       throw new Error(

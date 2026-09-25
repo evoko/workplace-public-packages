@@ -25,9 +25,11 @@ export const solarAutocompleteOpenStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     '& .SolarAutocompleteOpen--autocomplete': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarAutocompleteOpen--dropdownMenu': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

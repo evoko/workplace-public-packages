@@ -89,7 +89,9 @@ export const solarGlobalSearchStyles = {
     height: 'var(--solar-size-control-md)',
     '& .SolarGlobalSearch--iconSearch': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-tertiary)',
     },
     '& .SolarGlobalSearch--searchWorkplace': {
@@ -101,6 +103,7 @@ export const solarGlobalSearchStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {
@@ -110,7 +113,9 @@ export const solarGlobalSearchStyles = {
       height: 'var(--solar-size-control-sm)',
       '& .SolarGlobalSearch--iconSearch': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarGlobalSearch--searchWorkplace': {
         fontFamily: 'var(--solar-type-font-family-inter)',

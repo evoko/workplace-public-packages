@@ -68,7 +68,9 @@ export const solarFABStyles = {
     height: '44px',
     '& .MuiButton-startIcon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-action-primary-icon-default)',
     },
     fontFamily: 'var(--solar-type-font-family-inter)',
@@ -194,7 +196,9 @@ export const solarFABStyles = {
         },
         '& .MuiButton-startIcon': {
           width: 'var(--solar-icon-lg)',
+          minWidth: 'var(--solar-icon-lg)',
           height: 'var(--solar-icon-lg)',
+          minHeight: 'var(--solar-icon-lg)',
         },
       },
     },

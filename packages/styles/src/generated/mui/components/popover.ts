@@ -79,6 +79,7 @@ export const solarPopoverStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-md)',
       width: '320px',
+      minWidth: '320px',
       order: 0,
     },
     '& .SolarPopover--title': {
@@ -90,6 +91,7 @@ export const solarPopoverStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPopover--body': {
       color: 'var(--solar-color-text-secondary)',
@@ -100,6 +102,7 @@ export const solarPopoverStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPopover--tip': {
       fill: 'var(--solar-color-surface-raised)',
@@ -109,7 +112,9 @@ export const solarPopoverStyles = {
       },
       strokeWidth: '0',
       width: '10px',
+      minWidth: '10px',
       height: '10px',
+      minHeight: '10px',
       order: 1,
     },
   },
@@ -122,6 +127,7 @@ export const solarPopoverStyles = {
         paddingBottom: 'var(--solar-inset-sm)',
         paddingLeft: 'var(--solar-inset-sm)',
         width: '240px',
+        minWidth: '240px',
       },
       '& .SolarPopover--title': {
         fontFamily: 'var(--solar-type-font-family-inter)',

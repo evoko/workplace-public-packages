@@ -70,27 +70,35 @@ export const solarPropertyListStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyList--propertyRow': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyList--divider': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyList--propertyRow2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyList--divider2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyList--propertyRow3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyList--divider3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyList--propertyRow4': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

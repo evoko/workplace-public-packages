@@ -47,6 +47,10 @@
           "{Color:border/medium}"
         ],
         "strokeWeight": 1,
+        "dashes": [
+          4,
+          4
+        ],
         "radius": 8,
         "vars": {
           "itemSpacing": "Spatial:stack/lg",
@@ -213,6 +217,7 @@
           "overrides": {
             "changed": {
               "/": {
+                "dashes": null,
                 "effectStyle": "shadow/raised"
               },
               "/Container/Icon/Plus": {

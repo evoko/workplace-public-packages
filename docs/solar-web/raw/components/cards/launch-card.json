@@ -986,7 +986,13 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Text/Button/Counter",
+        "/Text/Button/Icon/None",
+        "/Text/Button/Icon/None#2",
+        "/Text/Button/Spinner"
+      ]
     }
   ],
   "frames": [],

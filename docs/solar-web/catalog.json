@@ -21967,6 +21967,7 @@
                 "fills": ["{Color:surface/hover}"],
                 "strokes": ["{Color:border/subtle}"],
                 "strokeWeight": 1,
+                "dashes": [2, 2],
                 "radius": [0, 18, 18, 0],
                 "vars": null
               }
@@ -25535,7 +25536,8 @@
               "/Field": {
                 "fills": ["{Color:surface/muted}"],
                 "strokes": null,
-                "strokeWeight": null
+                "strokeWeight": null,
+                "dashes": null
               },
               "/Field/Icon/File": {
                 "iconFills": ["{Color:icon/disabled}"]
@@ -74083,6 +74085,7 @@
           "overrides": {
             "changed": {
               "/": {
+                "dashes": null,
                 "effectStyle": "shadow/raised"
               },
               "/Container/Icon/Plus": {
@@ -75282,6 +75285,7 @@
                 },
                 "fills": null,
                 "strokes": ["{Color:border/medium}"],
+                "dashes": [6, 4],
                 "effectStyle": null,
                 "vars": {
                   "itemSpacing": "Spatial:stack/lg",

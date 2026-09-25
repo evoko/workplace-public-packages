@@ -91,7 +91,9 @@ export const solarTabItemStyles = {
     borderLeftStyle: 'none',
     '& .SolarTabItem-leadingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
     '& .SolarTabItem-label': {
@@ -105,7 +107,9 @@ export const solarTabItemStyles = {
     },
     '& .SolarTabItem-trailingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
   },
@@ -118,7 +122,9 @@ export const solarTabItemStyles = {
       height: 'var(--solar-size-control-sm)',
       '& .SolarTabItem-leadingIcon': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarTabItem-label': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -130,7 +136,9 @@ export const solarTabItemStyles = {
       },
       '& .SolarTabItem-trailingIcon': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
     },
   },

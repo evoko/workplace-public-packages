@@ -144,6 +144,10 @@
         "radiusBottomLeft": {
           "token": "radius.container",
           "from": "state=default, range-role=none"
+        },
+        "borderDash": {
+          "none": true,
+          "from": "state=default, range-role=none"
         }
       },
       "size": {},
@@ -338,6 +342,10 @@
               "token": "radius.none",
               "from": "overlay",
               "reason": "As the top-left corner's."
+            },
+            "borderDash": {
+              "dash": [2, 2],
+              "from": "state=default, range-role=preview-end"
             }
           }
         }

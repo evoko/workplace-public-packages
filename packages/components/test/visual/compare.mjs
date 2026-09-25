@@ -175,6 +175,10 @@ export function matches(property, figma, rendered) {
       return Math.abs(pixels(rendered) - figma) <= 0.02;
     case 'opacity':
       return Math.abs(Number(rendered) - figma) <= 0.01;
+    // A dashed edge on the web is CSS's `dashed`, whose dash lengths the browser picks: whether it
+    // is dashed is compared; Figma's pattern is Flutter's to draw exactly (compare.dart).
+    case 'borderDash':
+      return Boolean(figma) === rendered;
     // Words drawn or not, and a rank among siblings, are one or another, never nearly.
     case 'words':
     case 'order':
@@ -199,6 +203,7 @@ export const MEASURED = [
   'radiusBottomRight',
   'radiusBottomLeft',
   'shadow',
+  'borderDash',
   'paddingTop',
   'paddingRight',
   'paddingBottom',

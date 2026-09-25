@@ -481,7 +481,27 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Actions/Button#2/Counter",
+        "/Actions/Button#2/Icon/None",
+        "/Actions/Button#2/Icon/None#2",
+        "/Actions/Button#2/Spinner",
+        "/Actions/Button#3/Counter",
+        "/Actions/Button#3/Icon/None",
+        "/Actions/Button#3/Icon/None#2",
+        "/Actions/Button#3/Spinner",
+        "/Actions/Button#4/Counter",
+        "/Actions/Button#4/Icon/None",
+        "/Actions/Button#4/Icon/None#2",
+        "/Actions/Button#4/Spinner",
+        "/Actions/Button/Counter",
+        "/Actions/Button/Icon/None",
+        "/Actions/Button/Icon/None#2",
+        "/Actions/Button/Spinner",
+        "/Selected/Container/Link/Icon/None",
+        "/Selected/Container/Link/Icon/None#2"
+      ]
     }
   ],
   "frames": [],

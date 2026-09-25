@@ -74,7 +74,9 @@ export const solarDropdownItemStyles = {
     width: '100%',
     '& .SolarDropdownItem-icon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarDropdownItem--content': {
@@ -92,6 +94,7 @@ export const solarDropdownItemStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownItem--label': {
       color: 'var(--solar-color-text-primary)',
@@ -102,6 +105,7 @@ export const solarDropdownItemStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDropdownItem-helper': {
       color: 'var(--solar-color-text-secondary)',
@@ -112,6 +116,7 @@ export const solarDropdownItemStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {
@@ -121,7 +126,9 @@ export const solarDropdownItemStyles = {
       width: '100%',
       '& .SolarDropdownItem-icon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       '& .SolarDropdownItem--label': {
         fontFamily: 'var(--solar-type-font-family-inter)',

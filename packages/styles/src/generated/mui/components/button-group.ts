@@ -40,6 +40,7 @@ export const solarButtonGroupStyles = {
     borderLeftStyle: 'none',
     '& > *': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},
@@ -55,6 +56,7 @@ export const solarButtonGroupStyles = {
       borderTopStyle: 'solid',
       '& > *': {
         width: '100%',
+        minWidth: 0,
       },
     },
     'orientation=vertical, type=regular': {
@@ -63,6 +65,7 @@ export const solarButtonGroupStyles = {
       alignItems: 'flex-start',
       '& > *': {
         width: '100%',
+        minWidth: 0,
       },
     },
   },

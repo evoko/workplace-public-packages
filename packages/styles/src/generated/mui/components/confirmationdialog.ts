@@ -75,6 +75,7 @@ export const solarConfirmationDialogStyles = {
       paddingBottom: 'var(--solar-inset-xl)',
       paddingLeft: 'var(--solar-inset-lg)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarConfirmationDialog-title': {
       color: 'var(--solar-color-text-primary)',
@@ -85,6 +86,7 @@ export const solarConfirmationDialogStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarConfirmationDialog-description': {
       color: 'var(--solar-color-text-secondary)',
@@ -95,9 +97,11 @@ export const solarConfirmationDialogStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarConfirmationDialog--buttonGroup': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

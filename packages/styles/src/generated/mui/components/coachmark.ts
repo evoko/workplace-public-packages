@@ -99,6 +99,7 @@ export const solarCoachmarkStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-md)',
       width: '320px',
+      minWidth: '320px',
     },
     '& .SolarCoachmark--header': {
       backgroundColor: 'transparent',
@@ -115,11 +116,14 @@ export const solarCoachmarkStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       position: 'relative',
     },
     '& .SolarCoachmark--close': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-inverse)',
     },
     '& .SolarCoachmark-title': {
@@ -146,6 +150,7 @@ export const solarCoachmarkStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarCoachmark-counter': {
       color: 'var(--solar-color-text-tertiary)',
@@ -156,9 +161,11 @@ export const solarCoachmarkStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarCoachmark-actions': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarCoachmark--connector': {
       left: 'auto',
@@ -179,7 +186,9 @@ export const solarCoachmarkStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100px',
+      minWidth: '100px',
       height: '6px',
+      minHeight: '6px',
       position: 'absolute',
       right: 'calc(-100px - var(--solar-placed-right, 0px))',
       top: 'calc(50% + 0.5px)',
@@ -194,7 +203,9 @@ export const solarCoachmarkStyles = {
       },
       strokeWidth: '0',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-border-default)',
+      minHeight: 'var(--solar-border-default)',
     },
     '& .SolarCoachmark--originDot': {
       backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
@@ -203,7 +214,9 @@ export const solarCoachmarkStyles = {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       width: '6px',
+      minWidth: '6px',
       height: '6px',
+      minHeight: '6px',
       position: 'absolute',
       left: 'calc(-3px - var(--solar-placed-left, 0px))',
       top: 'calc(0px - var(--solar-placed-top, 0px))',
@@ -221,6 +234,7 @@ export const solarCoachmarkStyles = {
       '& .SolarCoachmark--connector': {
         right: 'auto',
         height: '7px',
+        minHeight: '7px',
         position: 'absolute',
         top: 'calc(50% + 0px)',
         '--solar-placed-cy': '-50%',

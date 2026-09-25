@@ -52,7 +52,8 @@ npx playwright install chromium  # once, on a new machine
   `right` and `bottom`, and from its centre (`centerX`, `centerY`: a Tooltip's arrow), and each the
   oracle names is compared. Where variants lay a parent's children out in different orders (a
   Popover's tip), each laid-out child's rank among them (`order`) is measured from where it falls
-  along the parent's axis, and compared exactly.
+  along the parent's axis, and compared exactly. A dashed edge is compared as dashed or solid: CSS
+  draws its own dash lengths, which Flutter's check compares against Figma's pattern.
 - **Excused entries on a layer the variant does not draw** (a Button hidden in one group) cannot be
   reached, so the count of gaps expected leaves them out.
 - **Comparing** (`compare.mjs`): colours in sRGB within one 8-bit step, lengths within half a

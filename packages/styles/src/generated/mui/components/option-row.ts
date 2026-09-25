@@ -75,6 +75,7 @@ export const solarOptionRowStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarOptionRow--label': {
       color: 'var(--solar-color-text-primary)',
@@ -85,6 +86,7 @@ export const solarOptionRowStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarOptionRow-supportingText': {
       color: 'var(--solar-color-text-secondary)',
@@ -95,6 +97,7 @@ export const solarOptionRowStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

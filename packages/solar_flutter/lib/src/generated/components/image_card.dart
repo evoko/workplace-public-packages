@@ -41,6 +41,7 @@ abstract final class SolarImageCardRecipe {
     'root.paddingLeft|base': 't:inset.none',
     'root.width|base': 'k:FILL',
     'root.height|base': 'px:190',
+    'root.borderDash|base': 'none',
     'root.background|appearance|filled=false, selected=false|default': 'none',
     'root.borderColor|appearance|filled=false, selected=false|default':
         't:color.border.medium',
@@ -52,6 +53,7 @@ abstract final class SolarImageCardRecipe {
         't:inset.lg',
     'root.paddingBottom|appearance|filled=false, selected=false|default':
         't:inset.lg',
+    'root.borderDash|appearance|filled=false, selected=false|default': 'd:6,4',
     'root.shadow|appearance|filled=false, selected=false|focus':
         't:shadow.focus.default',
     'root.align|appearance|filled=false, selected=true|default':

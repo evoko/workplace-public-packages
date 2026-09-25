@@ -64,7 +64,9 @@ export const solarDividerStyles = {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-border-default)',
+      minHeight: 'var(--solar-border-default)',
     },
     '& .SolarDivider--label': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -78,7 +80,9 @@ export const solarDividerStyles = {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-border-default)',
+      minHeight: 'var(--solar-border-default)',
     },
   },
   sizes: {},
@@ -107,7 +111,9 @@ export const solarDividerStyles = {
       height: '100%',
       '& .SolarDivider--rule': {
         width: 'var(--solar-border-default)',
+        minWidth: 'var(--solar-border-default)',
         height: '100%',
+        minHeight: 0,
       },
     },
     'orientation=vertical, type=inset': {
@@ -115,7 +121,9 @@ export const solarDividerStyles = {
       paddingLeft: 'var(--solar-inset-md)',
       '& .SolarDivider--rule': {
         width: 'var(--solar-border-default)',
+        minWidth: 'var(--solar-border-default)',
         height: '100%',
+        minHeight: 0,
       },
     },
     'orientation=vertical, type=with-label': {
@@ -125,7 +133,9 @@ export const solarDividerStyles = {
       gap: 'var(--solar-stack-sm)',
       '& .SolarDivider--rule': {
         width: 'var(--solar-border-default)',
+        minWidth: 'var(--solar-border-default)',
         height: '100%',
+        minHeight: 0,
       },
     },
   },

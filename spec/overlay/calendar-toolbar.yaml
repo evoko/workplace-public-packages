@@ -1,0 +1,65 @@
+# Hand-written decisions about SOLAR Calendar Toolbar, applied over its IR by
+# `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
+# build. Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Calendar Toolbar
+
+base:
+  reason: >-
+    The toolbar over a calendar view, as the description says: on the left its previous and next
+    Icon Buttons, a Today Button and the range the view shows; on the right the caller's view
+    switcher (a SOLAR Segmented Control: Day, Week, Month, Agenda) and action (a Button, a new
+    event). What each does is the caller's, as the calendar family's parts are (decision): the
+    toolbar draws its own three navigation buttons, which call the caller.
+
+slots:
+  viewSwitcher:
+    name: views
+    type: component
+    reason: >-
+      The view switcher is the caller's SOLAR Segmented Control (sm): which views it offers, and
+      the one shown, are the caller's; Figma records no prop.
+  newEvent:
+    name: action
+    type: component
+    reason: >-
+      The action on the right is the caller's SOLAR Button (sm), a new event in Figma's sample;
+      what it does, and its words, are the caller's.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      The toolbar spans its calendar view: Figma draws a 1280 sample.
+  prev.base.width:
+    none: true
+    reason: >-
+      Previous and next are SOLAR Icon Buttons (md, square, tertiary), whose 40px box is their
+      own: the toolbar places them, and never sizes them.
+  prev.base.height:
+    none: true
+    reason: { as: set prev.base.width }
+  next.base.width:
+    none: true
+    reason: { as: set prev.base.width }
+  next.base.height:
+    none: true
+    reason: { as: set prev.base.width }
+  todayButton.base.height:
+    none: true
+    reason: >-
+      Today is a SOLAR Button (sm, secondary), whose 32px height is its own: the toolbar places it,
+      and never sizes it.
+  action.base.height:
+    none: true
+    reason: >-
+      The caller's Button keeps its own height; the toolbar places it, and never sizes it.
+
+bind:
+  left.height:
+    literal: 32
+    token: size.control.sm
+    reason: >-
+      The left group is a control's height, the sm step its Today Button and the right group's
+      controls are, the same value. Its md Icon Buttons (40) reach past it, as Figma draws them;
+      the design review asks.

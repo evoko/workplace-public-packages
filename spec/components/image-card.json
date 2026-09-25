@@ -166,6 +166,10 @@
           "literal": 190,
           "from": "filled=true, selected=true, hover=false",
           "allowed": "A tile is 190 tall, bound to nothing, its image taking what its words leave: SOLAR has no tile size token. Carried as Figma's number, and raised as a governance gap."
+        },
+        "borderDash": {
+          "none": true,
+          "from": "filled=true, selected=true, hover=false"
         }
       },
       "size": {},
@@ -198,6 +202,10 @@
             },
             "paddingBottom": {
               "token": "inset.lg",
+              "from": "filled=false, selected=false, hover=false"
+            },
+            "borderDash": {
+              "dash": [6, 4],
               "from": "filled=false, selected=false, hover=false"
             }
           },

@@ -84,7 +84,9 @@ export const solarRowExpandStyles = {
       backgroundColor: 'transparent',
       '& .SolarRowExpand--iconChevronRight': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-primary)',
       },
     },
@@ -92,7 +94,9 @@ export const solarRowExpandStyles = {
       backgroundColor: 'transparent',
       '& .SolarRowExpand--iconChevronDown': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-primary)',
       },
     },

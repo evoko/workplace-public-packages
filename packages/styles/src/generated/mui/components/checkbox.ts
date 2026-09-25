@@ -65,12 +65,16 @@ export const solarCheckboxStyles = {
     '& .SolarCheckbox--icon': {
       strokeWidth: '0',
       width: '10px',
+      minWidth: '10px',
       height: '7px',
+      minHeight: '7px',
     },
     '& .SolarCheckbox--container': {
       strokeWidth: '0',
       width: '10px',
+      minWidth: '10px',
       height: '2px',
+      minHeight: '2px',
     },
   },
   sizes: {},

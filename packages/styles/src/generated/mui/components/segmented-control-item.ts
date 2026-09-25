@@ -85,7 +85,9 @@ export const solarSegmentedControlItemStyles = {
     height: '32px',
     '& .SolarSegmentedControlItem-iconLeading': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarSegmentedControlItem--label': {
@@ -99,7 +101,9 @@ export const solarSegmentedControlItemStyles = {
     },
     '& .SolarSegmentedControlItem-iconTrailing': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
   },
@@ -110,7 +114,9 @@ export const solarSegmentedControlItemStyles = {
       height: '24px',
       '& .SolarSegmentedControlItem-iconLeading': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarSegmentedControlItem--label': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -122,7 +128,9 @@ export const solarSegmentedControlItemStyles = {
       },
       '& .SolarSegmentedControlItem-iconTrailing': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
     },
   },

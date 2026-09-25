@@ -87,6 +87,7 @@ export const solarDrawerStyles = {
       paddingBottom: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-lg)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDrawer-title': {
       color: 'var(--solar-color-text-primary)',
@@ -97,6 +98,7 @@ export const solarDrawerStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDrawer-content': {
       backgroundColor: 'transparent',
@@ -113,10 +115,13 @@ export const solarDrawerStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-lg)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarDrawer-cta': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

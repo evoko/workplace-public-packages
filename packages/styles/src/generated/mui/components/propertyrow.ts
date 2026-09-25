@@ -82,7 +82,9 @@ export const solarPropertyRowStyles = {
     width: '100%',
     '& .SolarPropertyRow-leading': {
       width: 'var(--solar-icon-lg)',
+      minWidth: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
+      minHeight: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarPropertyRow--text': {
@@ -100,6 +102,7 @@ export const solarPropertyRowStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyRow-label': {
       color: 'var(--solar-color-text-primary)',
@@ -110,6 +113,7 @@ export const solarPropertyRowStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyRow-description': {
       color: 'var(--solar-color-text-secondary)',
@@ -120,6 +124,7 @@ export const solarPropertyRowStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarPropertyRow-trailing': {
       backgroundColor: 'transparent',
@@ -138,6 +143,7 @@ export const solarPropertyRowStyles = {
     },
     '& .SolarPropertyRow-select': {
       width: '160px',
+      minWidth: '160px',
     },
   },
   sizes: {},

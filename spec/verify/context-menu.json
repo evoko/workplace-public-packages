@@ -43,7 +43,8 @@
             "destructive": "false"
           },
           "width": 200,
-          "height": 36
+          "height": 36,
+          "hides": ["trailingIcon"]
         },
         "contextMenuItem2": {
           "component": "Context Menu Item",
@@ -52,7 +53,8 @@
             "destructive": "false"
           },
           "width": 200,
-          "height": 36
+          "height": 36,
+          "hides": ["trailingIcon"]
         },
         "contextMenuItem3": {
           "component": "Context Menu Item",
@@ -61,7 +63,8 @@
             "destructive": "false"
           },
           "width": 200,
-          "height": 36
+          "height": 36,
+          "hides": ["trailingIcon"]
         },
         "contextMenuItem4": {
           "component": "Context Menu Item",
@@ -70,7 +73,8 @@
             "destructive": "false"
           },
           "width": 200,
-          "height": 36
+          "height": 36,
+          "hides": ["trailingIcon"]
         },
         "contextMenuItem5": {
           "component": "Context Menu Item",
@@ -79,7 +83,8 @@
             "destructive": "false"
           },
           "width": 200,
-          "height": 36
+          "height": 36,
+          "hides": ["trailingIcon"]
         },
         "contextMenuItem6": {
           "component": "Context Menu Item",
@@ -88,7 +93,8 @@
             "destructive": "false"
           },
           "width": 200,
-          "height": 36
+          "height": 36,
+          "hides": ["trailingIcon"]
         },
         "divider": {
           "component": "Divider",
@@ -105,7 +111,8 @@
             "destructive": "true"
           },
           "width": 200,
-          "height": 36
+          "height": 36,
+          "hides": ["trailingIcon"]
         }
       },
       "excused": [

@@ -28,7 +28,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 200,
-          "height": 190
+          "height": 190,
+          "borderDash": false
         },
         "image": {
           "background": "#f5f5f5",
@@ -168,7 +169,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 200,
-          "height": 190
+          "height": 190,
+          "borderDash": false
         },
         "image": {
           "background": "#f5f5f5",
@@ -308,7 +310,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 200,
-          "height": 190
+          "height": 190,
+          "borderDash": false
         },
         "image": {
           "background": "#f5f5f5",
@@ -413,6 +416,7 @@
           "borderColor": "#00000033",
           "borderWidth": 1,
           "radius": 8,
+          "borderDash": [6, 4],
           "shadow": "none",
           "paddingTop": 20,
           "paddingRight": 0,

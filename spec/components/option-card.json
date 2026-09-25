@@ -71,6 +71,10 @@
           "token": "border.default",
           "from": "state=default"
         },
+        "borderDash": {
+          "dash": [4, 4],
+          "from": "state=default"
+        },
         "direction": {
           "keyword": "VERTICAL",
           "from": "state=default"
@@ -129,6 +133,10 @@
           "selected": {
             "shadow": {
               "token": "shadow.raised",
+              "from": "state=selected"
+            },
+            "borderDash": {
+              "none": true,
               "from": "state=selected"
             }
           },

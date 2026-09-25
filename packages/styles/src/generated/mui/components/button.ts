@@ -67,7 +67,9 @@ export const solarButtonStyles = {
     height: 'var(--solar-size-control-md)',
     '& .MuiButton-startIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-action-primary-icon-default)',
     },
     color: 'var(--solar-color-action-primary-text-default)',
@@ -79,11 +81,14 @@ export const solarButtonStyles = {
     textDecoration: 'none',
     '& .MuiButton-endIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-action-primary-icon-default)',
     },
     '& .SolarButton-counter': {
       height: '20px',
+      minHeight: '20px',
     },
   },
   sizes: {

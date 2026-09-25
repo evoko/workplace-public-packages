@@ -1584,6 +1584,47 @@ Styled parts only (decision): each is a component checked against Figma, with no
   - Agenda Row: composes Avatar;
   - Calendar Toolbar (standalone): composes Button, Icon Button and Segmented Control.
 
+**F13 done 2026-09-26.** Event Chip, Calendar Day Cell (the pioneer), Weekday Header, Time Axis
+Label, Time Slot, All-Day Bar, Agenda Row and Calendar Toolbar, every variant matching Figma on
+both platforms, every finding decided (none left open). 121 components, 120 exported.
+
+- **Taken here, open to the owner:**
+  - styled parts, as decided: a Day Cell holds the caller's Event Chips (Figma's sample chips are
+    `examples`), cut off at its edge where more than fit (Figma's three need 122 of its 120); its
+    states are props (`today`, `selected`, `todayColumn`, `otherMonth`), classes on the web;
+  - chips, bars, rows and slots fill the width they are given (Figma draws samples), and keep
+    Figma's heights, but for Agenda Row, which grows to hold full lines: every SOLAR text is
+    trimmed to its cap height in Figma (leading trim), which neither platform draws, and its 64 and
+    32 fit only trimmed text; the design review asks whether code should trim text;
+  - Agenda Row's dot takes the caller's `color` (the description says it matches the source event),
+    Figma's category 06 without one; All-Day Bar keeps category 06 alone and its spans alike, as
+    Figma draws them (the review asks);
+  - text Figma detaches from its style (today's date, the hours, a solid bar's title) is drawn in
+    the style with the same values; Figma's `style` axis is `variant`, as Alert's;
+  - the Calendar Toolbar draws its own previous, next and Today buttons (their Button and Icon Button
+    variants read from the recipe) and takes the caller's view switcher and action.
+- **Machinery:**
+  - dashed strokes, end to end: the fetcher records `dashes`, the recipe `borderDash`, the web CSS
+    `dashed` (through `--solar-border-style`, only on layers that dash), Flutter Figma's pattern
+    (`SolarDashedDecoration` over a clear border), and both checks compare it, a solid variant
+    included; FileUpload, Option Card, Image Card and Date Picker Day Cell, drawn solid until now,
+    are dashed, both checks shown to fail without it;
+  - a LINE is its stroke, a box's top edge as tall as the stroke, spanning its parent;
+  - on the web a fixed size inside a component is its minimum and a filling one's minimum is 0, as
+    Figma and Flutter size them (108 recipes; a component's root and a layer drawn as the root keep
+    CSS's own);
+  - the fetcher records a standalone component's hidden paths, so its composed children hide what
+    Figma hides (Autocomplete Open's field and menu, drawn with their label, icons and sixth row
+    until now);
+  - SolarLayers steps a placed layer back by its parent's edge side by side, and spans a filled
+    axis to the inner edge.
+- **Checks:** 2,159 JS tests, both visual checks (254 on the web, 767 Flutter tests), lint,
+  typecheck, format, all three Flutter packages analysed and formatted, both viewers built,
+  `smoke:install`, the personal-data scan, and a rebuild that reproduces the tree. The checks
+  found and fixed: an Event Chip's stripe and an Agenda Row's time column shrinking on the web; a
+  Time Slot's rule placed 1px off its parent's single edges in Flutter; Autocomplete Open drawing
+  what Figma's instance hides.
+
 ### F14: Charts
 
 A library draws the plots, and the SOLAR parts are generated (decision).

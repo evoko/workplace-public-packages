@@ -97,7 +97,9 @@ export const solarToastStyles = {
     },
     '& .SolarToast-chevron': {
       width: 'var(--solar-icon-xs)',
+      minWidth: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
+      minHeight: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-icon-feedback-success)',
     },
   },

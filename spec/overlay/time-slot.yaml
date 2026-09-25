@@ -1,0 +1,45 @@
+# Hand-written decisions about SOLAR Time Slot, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Time Slot
+
+base:
+  reason: >-
+    An empty cell of a week or day grid, as the description says: edged on its top and left so the cells compose into a grid, its half-hour rule across its middle, hovered under a pointer, and selected (a click-to-create's cell) with a focus-bound edge. A styled part: what a click on it creates is the caller's.
+
+follows:
+  root.height:
+    axes: [density]
+    reason: >-
+      An hour's row is 48 tall at the comfortable density and 32 at compact, its half-hour rule
+      across its middle, as Figma draws each.
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A slot fills its day's column of the grid, as a day fills the month grid's: Figma draws a
+      160 sample.
+
+  halfHourRule.base.width:
+    keyword: FILL
+    reason: >-
+      The half-hour rule runs the slot's width, its dashes along it, as the slot fills its column:
+      Figma draws it 160, the sample slot's width.
+
+bind:
+  halfHourRule.borderTopWidth:
+    literal: 1
+    token: border.default
+    reason: Same value, governed token, the half-hour rule's hairline, as the slot's own edges.
+  halfHourRule.height:
+    literal: 1
+    token: border.default
+    reason: The rule is as tall as its hairline, border.default, the same value.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      An hour's row is 48 tall at the comfortable density and 32 at compact, bound to nothing: SOLAR
+      has no size for it, one of the sizes with no variable (a calendar's row).

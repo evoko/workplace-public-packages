@@ -1,0 +1,105 @@
+# Hand-written decisions about SOLAR Agenda Row, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Agenda Row
+
+base:
+  reason: >-
+    One event in the Agenda view, as the description says, a denser alternative to Day Cell: at the
+    comfortable density its start and end times, a dot in the event's colour, its title, a line of
+    words about it and an attendee's Avatar; at compact one time range and its title. A row,
+    hovered under a pointer and selected; what a click on it does is the caller's. A styled part,
+    as the calendar family is (decision): the event and its words are the caller's.
+
+slots:
+  start:
+    name: start
+    type: text
+    reason: When the event starts, in the caller's words ("9:00"); Figma records no text prop.
+  end:
+    name: end
+    type: text
+    reason: When it ends, in the caller's words ("10:00"); Figma records no text prop.
+  range:
+    name: range
+    type: text
+    reason: >-
+      At the compact density the one time range, in the caller's words ("9:00 – 10:00"), where the
+      comfortable row draws its start and end; Figma records no text prop.
+  meta:
+    name: meta
+    type: text
+    reason: >-
+      The line of words about the event ("Conference room A · 6 attendees") is the caller's;
+      Figma records no text prop.
+  attendee:
+    name: attendee
+    type: component
+    reason: >-
+      An attendee's SOLAR Avatar is the caller's; Figma records no prop, and draws a sample
+      purple one.
+
+caller:
+  dot.background:
+    prop: color
+    reason: >-
+      The dot is the event's colour, which "should match the source event", as the description
+      says: the caller's (an Event Chip's category colour). Without one, it is Figma's,
+      data/category/06/strong.
+
+follows:
+  root.paddingTop:
+    axes: [density]
+    reason: >-
+      The compact row's padding is inset.sm top and bottom, the comfortable's inset.md, as Figma
+      draws each.
+  root.paddingBottom:
+    axes: [density]
+    reason: { as: follows root.paddingTop }
+  time.width:
+    axes: [density]
+    reason: >-
+      The time column is 36 wide for a start above an end, and 76 for a compact row's one range,
+      as Figma draws each.
+
+set:
+  root.base.height:
+    keyword: HUG
+    reason: >-
+      A row is as tall as its lines and padding. Figma fixes it at 64 (comfortable) and 32
+      (compact), room for its lines trimmed to their cap height (Figma's leading trim, on every
+      SOLAR text); a line drawn at its full height (20 and 16) does not fit them, and neither
+      platform trims a line as Figma does. The design review asks.
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A row fills its agenda list: Figma draws a 560 sample.
+  attendee.base.width:
+    none: true
+    reason: >-
+      The attendee is a SOLAR Avatar (md), whose 32px box is its own: the row places it, and never
+      sizes it.
+  attendee.base.height:
+    none: true
+    reason: { as: set attendee.base.width }
+
+allowLiteral:
+  time.width:
+    reason: >-
+      The time column is 36 or 76 wide, bound to nothing: SOLAR has no size for it, one of the
+      sizes with no variable.
+  dot.width:
+    reason: >-
+      The event's dot is 8px, as StatusIndicator's md dot, bound to nothing: SOLAR has no marker
+      size.
+  dot.height:
+    reason: { as: allowLiteral dot.width }
+
+accept:
+  component.agenda row.root.height@state=default, density=compact:
+    reason: { as: set root.base.height }
+  component.agenda row.root.height@state=hover, density=compact:
+    reason: { as: set root.base.height }
+  component.agenda row.root.height@state=selected, density=compact:
+    reason: { as: set root.base.height }

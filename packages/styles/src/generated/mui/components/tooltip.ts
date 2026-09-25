@@ -95,7 +95,9 @@ export const solarTooltipStyles = {
       },
       strokeWidth: '0',
       width: '7px',
+      minWidth: '7px',
       height: '3px',
+      minHeight: '3px',
     },
   },
   sizes: {
@@ -121,14 +123,18 @@ export const solarTooltipStyles = {
       flexDirection: 'row',
       '& .SolarTooltip--arrow': {
         width: '3px',
+        minWidth: '3px',
         height: '7px',
+        minHeight: '7px',
       },
     },
     'position=left': {
       flexDirection: 'row',
       '& .SolarTooltip--arrow': {
         width: '3px',
+        minWidth: '3px',
         height: '7px',
+        minHeight: '7px',
       },
     },
   },

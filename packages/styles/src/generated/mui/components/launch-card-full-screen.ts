@@ -73,7 +73,9 @@ export const solarLaunchCardFullScreenStyles = {
       borderRadius: 'var(--solar-radius-container)',
       borderStyle: 'none',
       width: '520px',
+      minWidth: '520px',
       height: '420px',
+      minHeight: '420px',
     },
     '& .SolarLaunchCardFullScreen--text': {
       backgroundColor: 'transparent',
@@ -90,7 +92,9 @@ export const solarLaunchCardFullScreenStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '420px',
+      minHeight: '420px',
     },
     '& .SolarLaunchCardFullScreen--content': {
       backgroundColor: 'transparent',
@@ -107,6 +111,7 @@ export const solarLaunchCardFullScreenStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCardFullScreen--headline': {
       backgroundColor: 'transparent',
@@ -123,10 +128,13 @@ export const solarLaunchCardFullScreenStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCardFullScreen-appIcon': {
       width: '40px',
+      minWidth: '40px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarLaunchCardFullScreen-name': {
       color: 'var(--solar-color-text-primary)',
@@ -152,6 +160,7 @@ export const solarLaunchCardFullScreenStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCardFullScreen-intro': {
       color: 'var(--solar-color-text-primary)',
@@ -162,6 +171,7 @@ export const solarLaunchCardFullScreenStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCardFullScreen--feature': {
       color: 'var(--solar-color-text-primary)',
@@ -172,6 +182,7 @@ export const solarLaunchCardFullScreenStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCardFullScreen--feature2': {
       color: 'var(--solar-color-text-primary)',
@@ -182,6 +193,7 @@ export const solarLaunchCardFullScreenStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCardFullScreen--feature3': {
       color: 'var(--solar-color-text-primary)',
@@ -192,6 +204,7 @@ export const solarLaunchCardFullScreenStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

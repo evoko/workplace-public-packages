@@ -125,6 +125,7 @@ export const solarSelectStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSelect--labelLabel': {
       color: 'var(--solar-color-text-primary)',
@@ -160,7 +161,9 @@ export const solarSelectStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-size-control-md)',
+      minHeight: 'var(--solar-size-control-md)',
     },
     '& .SolarSelect--placeholder': {
       color: 'var(--solar-color-text-primary)',
@@ -171,10 +174,13 @@ export const solarSelectStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSelect-trailingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarSelect-helper': {
@@ -199,18 +205,23 @@ export const solarSelectStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSelect--dropdownItem': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSelect--dropdownItem2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSelect--dropdownItem3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSelect--dropdownItem4': {
       width: '100%',
+      minWidth: 0,
     },
     position: 'relative',
   },
@@ -236,6 +247,7 @@ export const solarSelectStyles = {
       '& .SolarSelect--field': {
         gap: 'var(--solar-inset-xs)',
         height: 'var(--solar-size-control-sm)',
+        minHeight: 'var(--solar-size-control-sm)',
       },
       '& .SolarSelect--placeholder': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -247,7 +259,9 @@ export const solarSelectStyles = {
       },
       '& .SolarSelect-trailingIcon': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarSelect-helper': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -259,6 +273,7 @@ export const solarSelectStyles = {
       },
       '& .SolarSelect--dropdownMenu': {
         width: '100%',
+        minWidth: 0,
       },
     },
   },

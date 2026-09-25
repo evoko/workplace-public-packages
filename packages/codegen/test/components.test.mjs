@@ -868,7 +868,9 @@ describe('components named alike', () => {
         d.token.startsWith('component.date picker day cell.'),
       ),
     ).toBe(true);
-    expect(calendar.spec.overlay.rules[0]).toMatchObject({
+    expect(
+      calendar.spec.overlay.rules.find((r) => r.rule === 'codeName'),
+    ).toMatchObject({
       rule: 'codeName',
       at: 'Day Cell → Calendar Day Cell',
     });

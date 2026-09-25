@@ -100,6 +100,7 @@ export const solarSegmentedControlStyles = {
       paddingBottom: 'var(--solar-inset-2xs)',
       paddingLeft: 'var(--solar-inset-2xs)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSegmentedControl-helper': {
       color: 'var(--solar-color-text-secondary)',
@@ -131,6 +132,7 @@ export const solarSegmentedControlStyles = {
       },
       '& .SolarSegmentedControl-track': {
         width: 'auto',
+        minWidth: 'auto',
       },
       '& .SolarSegmentedControl-helper': {
         fontFamily: 'var(--solar-type-font-family-inter)',

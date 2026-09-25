@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
-import 'probes.dart';
-
 /// An open SolarAutocomplete, as Figma composes Autocomplete Open (no widget of its own): its
-/// frame, from its recipe, the Autocomplete at rest and the SolarDropdownMenu under it by the
-/// frame's gap, which a SolarAutocomplete floats its suggestions by; the menu's heading and rows as
-/// Figma's Dropdown Menu draws them, each keyed by its layer.
+/// frame, from its recipe, the Autocomplete at rest with no label, helper or icons, as Figma's
+/// instance hides them, and the SolarDropdownMenu under it by the frame's gap, which a
+/// SolarAutocomplete floats its suggestions by; the menu's heading and the five rows Figma's
+/// instance shows, each keyed by its layer.
 Widget buildAutocompleteOpen(
   Map<String, dynamic> v,
   WidgetStatesController _, [
@@ -38,12 +37,7 @@ Widget buildAutocompleteOpen(
           composed: {
             'autocomplete': SolarAutocomplete<String>(
               options: const [],
-              label: 'Label',
-              mandatory: true,
-              helper: 'Helper text',
               placeholder: 'Search',
-              leadingIcon: const IconProbe(),
-              trailingIcon: const IconProbe(),
             ),
             'dropdownMenu': SolarDropdownMenu(
               children: [
@@ -57,7 +51,6 @@ Widget buildAutocompleteOpen(
                   'dropdownItem3',
                   'dropdownItem4',
                   'dropdownItem5',
-                  'dropdownItem6',
                 ])
                   KeyedSubtree(
                     key: Key(name),

@@ -76,7 +76,9 @@ export const solarLinkStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     '& .SolarLink-leadingIcon': {
       width: 'var(--solar-icon-lg)',
+      minWidth: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
+      minHeight: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-link-default)',
     },
     '& .SolarLink--label': {
@@ -90,7 +92,9 @@ export const solarLinkStyles = {
     },
     '& .SolarLink-trailingIcon': {
       width: 'var(--solar-icon-lg)',
+      minWidth: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
+      minHeight: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-link-default)',
     },
   },
@@ -98,21 +102,29 @@ export const solarLinkStyles = {
     xs: {
       '& .SolarLink-leadingIcon': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarLink-trailingIcon': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
     },
     sm: {
       '& .SolarLink-leadingIcon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       '& .SolarLink-trailingIcon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
   },

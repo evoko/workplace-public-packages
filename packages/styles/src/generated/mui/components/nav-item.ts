@@ -77,7 +77,9 @@ export const solarNavItemStyles = {
     height: 'var(--solar-size-control-md)',
     '& .SolarNavItem-iconOutline': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-secondary)',
     },
     '& .SolarNavItem-label': {
@@ -88,6 +90,7 @@ export const solarNavItemStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

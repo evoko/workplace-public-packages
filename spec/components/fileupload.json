@@ -299,6 +299,10 @@
           "token": "border.default",
           "from": "state=default"
         },
+        "borderDash": {
+          "dash": [3, 3],
+          "from": "state=default"
+        },
         "direction": {
           "keyword": "HORIZONTAL",
           "from": "state=default"
@@ -359,6 +363,10 @@
               "from": "state=disabled"
             },
             "borderWidth": {
+              "none": true,
+              "from": "state=disabled"
+            },
+            "borderDash": {
               "none": true,
               "from": "state=disabled"
             }

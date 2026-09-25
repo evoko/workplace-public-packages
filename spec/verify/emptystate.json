@@ -74,7 +74,8 @@
             "state": "default",
             "danger": "false"
           },
-          "height": 32
+          "height": 32,
+          "hides": ["counter", "iconLeading", "spinner"]
         }
       },
       "excused": [

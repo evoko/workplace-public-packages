@@ -153,6 +153,10 @@
               "{Color:border/subtle}"
             ],
             "strokeWeight": 1,
+            "dashes": [
+              3,
+              3
+            ],
             "radius": 6,
             "vars": {
               "itemSpacing": "Spatial:stack/sm",
@@ -416,7 +420,8 @@
                   "{Color:surface/muted}"
                 ],
                 "strokes": null,
-                "strokeWeight": null
+                "strokeWeight": null,
+                "dashes": null
               },
               "/Field/Icon/File": {
                 "iconFills": [

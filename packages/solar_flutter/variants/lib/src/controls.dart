@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
 /// The SOLAR controls a composing builder draws where Figma composes them, as each one's own check
-/// measures it: shared by the builders of the components that hold them (TableHeader, PropertyRow).
+/// measures it: shared by the builders of the components that hold them (TableHeader, PropertyRow, Calendar Toolbar).
 
 /// The md Segmented Control's segments, as its own oracle draws them: Figma's six, in order.
 const segmentedControlMdSegments = [
@@ -14,10 +14,14 @@ const segmentedControlMdSegments = [
   'segmentedControlItem6',
 ];
 
-/// An md Segmented Control with no label or helper (as a composing instance hides them) and the six
-/// segments its own check draws, each keyed by its layer, the first chosen.
-Widget segmentedControlMd() => SolarSegmentedControl<String>(
-  size: SolarSegmentedControlSize.md,
+/// A Segmented Control with no label or helper (as a composing instance hides them) and the six
+/// segments its own check draws, each keyed by its layer, the first chosen; its segments are named
+/// alike at either size.
+Widget segmentedControlOf(
+  SolarSegmentedControlSize size,
+  SolarSegmentedControlItemSize itemSize,
+) => SolarSegmentedControl<String>(
+  size: size,
   groupValue: segmentedControlMdSegments.first,
   onChanged: (_) {},
   children: [
@@ -27,8 +31,14 @@ Widget segmentedControlMd() => SolarSegmentedControl<String>(
         child: SolarSegmentedControlItem<String>(
           value: name,
           label: 'Label',
-          size: SolarSegmentedControlItemSize.md,
+          size: itemSize,
         ),
       ),
   ],
+);
+
+/// The md one, as TableHeader and PropertyRow compose it.
+Widget segmentedControlMd() => segmentedControlOf(
+  SolarSegmentedControlSize.md,
+  SolarSegmentedControlItemSize.md,
 );

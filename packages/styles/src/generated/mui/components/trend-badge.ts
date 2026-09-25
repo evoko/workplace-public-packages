@@ -66,7 +66,9 @@ export const solarTrendBadgeStyles = {
       },
       strokeWidth: '0',
       width: '8px',
+      minWidth: '8px',
       height: '8px',
+      minHeight: '8px',
     },
   },
   sizes: {},
@@ -80,6 +82,7 @@ export const solarTrendBadgeStyles = {
         backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
         '& .SolarTrendBadge--icon': {
           height: '6px',
+          minHeight: '6px',
         },
       },
     },
@@ -89,7 +92,9 @@ export const solarTrendBadgeStyles = {
         height: 'var(--solar-icon-sm)',
         '& .SolarTrendBadge--icon': {
           width: '6px',
+          minWidth: '6px',
           height: '6px',
+          minHeight: '6px',
         },
       },
       'type=decline': {
@@ -98,7 +103,9 @@ export const solarTrendBadgeStyles = {
         height: 'var(--solar-icon-sm)',
         '& .SolarTrendBadge--icon': {
           width: '6px',
+          minWidth: '6px',
           height: '6px',
+          minHeight: '6px',
         },
       },
       'type=neutral': {
@@ -107,7 +114,9 @@ export const solarTrendBadgeStyles = {
         height: 'var(--solar-icon-sm)',
         '& .SolarTrendBadge--icon': {
           width: '6px',
+          minWidth: '6px',
           height: '4px',
+          minHeight: '4px',
         },
       },
     },

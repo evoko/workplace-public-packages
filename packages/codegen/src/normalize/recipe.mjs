@@ -411,7 +411,11 @@ function cellsOf(
   // An image fill is content -- the picture a slot shows (Dialog's header image) -- not design: the
   // layer records that it carries one, and the paint beside it is the background, drawn where the
   // picture does not cover.
-  put('glyph', 'shape', glyphOf(layer, `${where}.glyph`));
+  // A line (Time Slot's half-hour rule) is its stroke, drawn as the top edge of a box as long as
+  // the line and as tall as its stroke, not as Figma's outline of it, so it spans whatever length
+  // it is given, its dashes along it.
+  const line = type === 'LINE' && layer.strokes?.length > 0;
+  if (!line) put('glyph', 'shape', glyphOf(layer, `${where}.glyph`));
   const content = (layer.fills ?? []).filter((f) => f !== 'IMAGE');
   if (content.length !== (layer.fills ?? []).length)
     put('image', 'paint', { value: true });
@@ -471,6 +475,22 @@ function cellsOf(
   // variable binding, after the paint is removed (Icon Button's primary loses its border on hover
   // and at md, still bound to border.default). The oracle reads it the same way.
   if (!layer.strokes?.length) put('borderWidth', 'geometry', { none: true });
+  else if (line)
+    PADDING.forEach((side) =>
+      put(
+        `border${side}Width`,
+        'geometry',
+        side === 'Top'
+          ? bound(
+              layer,
+              STROKES,
+              layer.strokeWeight,
+              names,
+              `${where}.borderTopWidth`,
+            )
+          : { none: true },
+      ),
+    );
   else if (layer.strokeWeight === 'mixed')
     // Sides of their own (Button Group's divider is a top stroke only): one cell per side, each
     // read from its weight and its own binding. Data fetched before the weights were recorded has
@@ -499,6 +519,10 @@ function cellsOf(
       'geometry',
       bound(layer, STROKES, layer.strokeWeight, names, `${where}.borderWidth`),
     );
+  // A dashed stroke (FileUpload's drop zone): its pattern, each dash's length and the gap after
+  // it, in the drawing's own units, as a position is.
+  if (layer.strokes?.length && layer.dashes?.length)
+    put('borderDash', 'paint', { dash: [...layer.dashes] });
   if (layer.layout) {
     put('direction', 'geometry', { keyword: layer.layout.dir });
     if (layer.layout.align)
@@ -542,7 +566,14 @@ function cellsOf(
   // A glyph's box is its outline's, in the glyph itself.
   const sized = drawnAt && !cells.glyph;
   put('width', 'geometry', extent(layer, 0, names, `${where}.width`, sized));
-  put('height', 'geometry', extent(layer, 1, names, `${where}.height`, sized));
+  // A line is as tall as its stroke, which Figma draws across a line of no height.
+  put(
+    'height',
+    'geometry',
+    line
+      ? bound(layer, STROKES, layer.strokeWeight, names, `${where}.height`)
+      : extent(layer, 1, names, `${where}.height`, sized),
+  );
   place();
   return cells;
 }
@@ -603,6 +634,9 @@ function sayWhatAbsenceMeans(resolved, cells, layers, names, component) {
           continue;
         if (LAYOUT_CELLS.includes(c))
           own[c] = { cls: 'geometry', value: { none: true } };
+        // Where another variant's edge is dashed (Image Card's empty state), a solid one.
+        else if (c === 'borderDash')
+          own[c] = { cls: 'paint', value: { none: true } };
         // Where another variant places the layer by position and this one's auto layout places it;
         // or, where this one places it too, from another edge (Coachmark's connector, pinned to
         // the right on one side and the left on the other): not from this one (`AUTO`).
@@ -671,7 +705,9 @@ const describe = (v) =>
             ? String(v.value)
             : v.position !== undefined
               ? String(v.position)
-              : String(v.literal)))));
+              : v.dash !== undefined
+                ? `dashed ${v.dash.join(' ')}`
+                : String(v.literal)))));
 
 /**
  * @param {ReturnType<import('./component-layers.mjs').resolveVariants>} resolved

@@ -66,7 +66,13 @@ export function componentOf(entry, { rawDir = join(webDir, 'raw') } = {}) {
     standalone: true,
     defaultVariant: '',
     defaultVariantTree: one.tree,
-    variants: [{ variant: '' }],
+    // What it hides by path, where the fetcher records it (a composed child's label).
+    variants: [
+      {
+        variant: '',
+        ...(one.hiddenPaths ? { hiddenPaths: one.hiddenPaths } : {}),
+      },
+    ],
   };
 }
 

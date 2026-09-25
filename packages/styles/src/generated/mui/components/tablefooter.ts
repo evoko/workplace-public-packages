@@ -68,6 +68,7 @@ export const solarTableFooterStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTableFooter--containerContainer': {
       backgroundColor: 'transparent',

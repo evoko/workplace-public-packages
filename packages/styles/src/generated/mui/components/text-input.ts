@@ -148,11 +148,15 @@ export const solarTextInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-size-control-md)',
+      minHeight: 'var(--solar-size-control-md)',
     },
     '& .SolarTextInput-leadingIcon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-tertiary)',
     },
     '& .SolarTextInput--fieldLabel': {
@@ -164,10 +168,13 @@ export const solarTextInputStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTextInput-trailingIcon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-tertiary)',
     },
     '& .SolarTextInput-helper': {
@@ -179,6 +186,7 @@ export const solarTextInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {
@@ -204,10 +212,13 @@ export const solarTextInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         height: 'var(--solar-size-control-sm)',
+        minHeight: 'var(--solar-size-control-sm)',
       },
       '& .SolarTextInput-leadingIcon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       '& .SolarTextInput--fieldLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -219,7 +230,9 @@ export const solarTextInputStyles = {
       },
       '& .SolarTextInput-trailingIcon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       '& .SolarTextInput-helper': {
         fontFamily: 'var(--solar-type-font-family-inter)',

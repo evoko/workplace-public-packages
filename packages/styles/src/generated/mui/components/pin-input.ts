@@ -148,7 +148,9 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '36px',
+      minWidth: '36px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarPINInput--placeholder': {
       color: 'var(--solar-color-text-tertiary)',
@@ -175,7 +177,9 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '36px',
+      minWidth: '36px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarPINInput--placeholder2': {
       color: 'var(--solar-color-text-tertiary)',
@@ -202,7 +206,9 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '36px',
+      minWidth: '36px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarPINInput--placeholder3': {
       color: 'var(--solar-color-text-tertiary)',
@@ -229,7 +235,9 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '36px',
+      minWidth: '36px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarPINInput--placeholder4': {
       color: 'var(--solar-color-text-tertiary)',
@@ -256,7 +264,9 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '36px',
+      minWidth: '36px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarPINInput--placeholder5': {
       color: 'var(--solar-color-text-tertiary)',
@@ -283,7 +293,9 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '36px',
+      minWidth: '36px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarPINInput--placeholder6': {
       color: 'var(--solar-color-text-tertiary)',
@@ -398,7 +410,9 @@ export const solarPINInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
+        minWidth: '28px',
         height: '32px',
+        minHeight: '32px',
       },
       '& .SolarPINInput--placeholder': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -412,7 +426,9 @@ export const solarPINInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
+        minWidth: '28px',
         height: '32px',
+        minHeight: '32px',
       },
       '& .SolarPINInput--placeholder2': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -426,7 +442,9 @@ export const solarPINInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
+        minWidth: '28px',
         height: '32px',
+        minHeight: '32px',
       },
       '& .SolarPINInput--placeholder3': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -440,7 +458,9 @@ export const solarPINInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
+        minWidth: '28px',
         height: '32px',
+        minHeight: '32px',
       },
       '& .SolarPINInput--placeholder4': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -454,7 +474,9 @@ export const solarPINInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
+        minWidth: '28px',
         height: '32px',
+        minHeight: '32px',
       },
       '& .SolarPINInput--placeholder5': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -468,7 +490,9 @@ export const solarPINInputStyles = {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
+        minWidth: '28px',
         height: '32px',
+        minHeight: '32px',
       },
       '& .SolarPINInput--placeholder6': {
         fontFamily: 'var(--solar-type-font-family-inter)',

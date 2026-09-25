@@ -86,6 +86,7 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-xs)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSplitDialog--text': {
       backgroundColor: 'transparent',
@@ -102,6 +103,7 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSplitDialog--leading': {
       backgroundColor: 'transparent',
@@ -118,11 +120,15 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '36px',
+      minWidth: '36px',
       height: '36px',
+      minHeight: '36px',
     },
     '& .SolarSplitDialog-icon': {
       width: 'var(--solar-icon-xs)',
+      minWidth: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
+      minHeight: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarSplitDialog-title': {
@@ -134,6 +140,7 @@ export const solarSplitDialogStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSplitDialog--body': {
       backgroundColor: 'var(--solar-color-surface-base)',
@@ -150,7 +157,9 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarSplitDialog-left': {
       backgroundColor: 'transparent',
@@ -167,7 +176,9 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-lg)',
       paddingLeft: 'var(--solar-inset-lg)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarSplitDialog--container': {
       borderRadius: 'var(--solar-radius-none)',
@@ -181,7 +192,9 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarSplitDialog-right': {
       backgroundColor: 'transparent',
@@ -202,10 +215,13 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-lg)',
       paddingLeft: 'var(--solar-inset-lg)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarSplitDialog-actions': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSplitDialog-leftRegular': {
       borderRadius: 'var(--solar-radius-none)',
@@ -223,10 +239,13 @@ export const solarSplitDialogStyles = {
       paddingBottom: 'var(--solar-inset-lg)',
       paddingLeft: 'var(--solar-inset-lg)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarSplitDialog-actionsRegular': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

@@ -283,6 +283,18 @@ function context(spec, tokens) {
   );
 
   /** One IR cell as CSS declarations. */
+  // The style a layer's edges are drawn in: solid, or, for a layer some variant dashes, whichever
+  // its variant says (`borderDash`).
+  const dashed = new Set(
+    Object.entries(spec.style).flatMap(([layer, st]) =>
+      JSON.stringify(st).includes('"dash":') ? [layer] : [],
+    ),
+  );
+  // Where each layer is drawn: one drawn as the root (Spinner's progress, `&`) is the component's
+  // own box in the page.
+  const ownBox = slotsOf(spec) ?? {};
+  const edgeStyle = (layer) =>
+    dashed.has(layer) ? 'var(--solar-border-style, solid)' : 'solid';
   const declare = (cell, entry, at, layer, glyph = false) => {
     if (controlDrawn.get(layer)?.includes(cell)) return {};
     const paint = (prop) =>
@@ -353,7 +365,10 @@ function context(spec, tokens) {
       case 'borderWidth':
         return entry.none
           ? { borderStyle: 'none' }
-          : { borderWidth: ref(entry.token, at), borderStyle: 'solid' };
+          : {
+              borderWidth: ref(entry.token, at),
+              borderStyle: edgeStyle(layer),
+            };
       // A side of its own (Button Group's divider): its width and style alone, over any uniform
       // border the layer has elsewhere.
       case 'borderTopWidth':
@@ -365,9 +380,14 @@ function context(spec, tokens) {
           ? { [`border${side}Style`]: 'none' }
           : {
               ...length(entry, cell, at),
-              [`border${side}Style`]: 'solid',
+              [`border${side}Style`]: edgeStyle(layer),
             };
       }
+      // A dashed edge (FileUpload's drop zone): CSS draws its own dashes, whose lengths it picks;
+      // Figma's pattern is Flutter's to draw exactly. Set as a variable its edges read, so the
+      // variant that is solid undoes it whatever order its cells come in.
+      case 'borderDash':
+        return { '--solar-border-style': entry.none ? 'solid' : 'dashed' };
       case 'radius':
         return {
           borderRadius: ref(entry.none ? 'radius.none' : entry.token, at),
@@ -451,12 +471,24 @@ function context(spec, tokens) {
           ? { [cell]: ref('inset.none', at) }
           : length(entry, cell, at);
       case 'width':
-      case 'height':
+      case 'height': {
+        // Inside the component, a fixed size never shrinks and a filling one takes only the room
+        // its siblings leave, as Figma's auto layout sizes them (and Flutter's Expanded): CSS would
+        // shrink a fixed box beside a long title (Agenda Row's time column), and keep a filling
+        // one as wide as its words. The root is the component's own box in the page, which may be
+        // narrower than Figma draws it (a Dialog fits a phone), so it keeps CSS's own.
+        const min = cell === 'width' ? 'minWidth' : 'minHeight';
+        const inner =
+          spec.layers[layer]?.parent != null && ownBox[layer] !== '&';
         // A hug past the base resets the size to the box's own (Tree Indent hugs its units, where
         // depth 00's base is a fixed 0px): declaring nothing would leave the base's standing.
         if (entry.keyword === 'HUG' && at.split('.')[1] !== 'base')
-          return { [cell]: 'auto' };
-        return length(entry, cell, at);
+          return { [cell]: 'auto', ...(inner ? { [min]: 'auto' } : {}) };
+        const size = length(entry, cell, at);
+        if (!inner) return size;
+        if (entry.keyword === 'FILL') return { ...size, [min]: 0 };
+        return size[cell] === undefined ? size : { ...size, [min]: size[cell] };
+      }
       // No auto-layout: Figma places the children itself, which the shell's own layout gives, so
       // nothing of the base's flex direction or alignment is restated.
       case 'direction':

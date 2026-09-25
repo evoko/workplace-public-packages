@@ -6,8 +6,10 @@
 import type { CSSObject, Theme } from '@mui/material/styles';
 import type { AccordionProps } from './Accordion.js';
 import type { ActionCardProps } from './ActionCard.js';
+import type { AgendaRowProps } from './AgendaRow.js';
 import type { AlertProps } from './Alert.js';
 import type { AlertSmallProps } from './AlertSmall.js';
+import type { AllDayBarProps } from './AllDayBar.js';
 import type { AutocompleteProps } from './Autocomplete.js';
 import type { AvatarProps } from './Avatar.js';
 import type { BackButtonProps } from './BackButton.js';
@@ -16,6 +18,8 @@ import type { BreadcrumbItemProps } from './BreadcrumbItem.js';
 import type { BreadcrumbsProps } from './Breadcrumbs.js';
 import type { ButtonProps } from './Button.js';
 import type { ButtonGroupProps } from './ButtonGroup.js';
+import type { CalendarDayCellProps } from './CalendarDayCell.js';
+import type { CalendarToolbarProps } from './CalendarToolbar.js';
 import type { CardProps } from './Card.js';
 import type { CheckboxProps } from './Checkbox.js';
 import type { CoachmarkProps } from './Coachmark.js';
@@ -38,6 +42,7 @@ import type { DropdownGroupLabelProps } from './DropdownGroupLabel.js';
 import type { DropdownItemProps } from './DropdownItem.js';
 import type { DropdownMenuProps } from './DropdownMenu.js';
 import type { EmptyStateProps } from './EmptyState.js';
+import type { EventChipProps } from './EventChip.js';
 import type { EventRowProps } from './EventRow.js';
 import type { ExpandableCardProps } from './ExpandableCard.js';
 import type { FABProps } from './FAB.js';
@@ -106,6 +111,8 @@ import type { TabsProps } from './Tabs.js';
 import type { TagProps } from './Tag.js';
 import type { TextAreaProps } from './TextArea.js';
 import type { TextInputProps } from './TextInput.js';
+import type { TimeAxisLabelProps } from './TimeAxisLabel.js';
+import type { TimeSlotProps } from './TimeSlot.js';
 import type { TimePickerProps } from './TimePicker.js';
 import type { TimePickerDropdownProps } from './TimePickerDropdown.js';
 import type { TimestampProps } from './Timestamp.js';
@@ -116,6 +123,7 @@ import type { TooltipProps } from './Tooltip.js';
 import type { TreeIndentProps } from './TreeIndent.js';
 import type { TreeItemProps } from './TreeItem.js';
 import type { TrendBadgeProps } from './TrendBadge.js';
+import type { WeekdayHeaderProps } from './WeekdayHeader.js';
 
 interface SolarThemeEntry<P> {
   defaultProps?: Partial<P>;
@@ -128,8 +136,10 @@ declare module '@mui/material/styles' {
   interface Components {
     SolarAccordion?: SolarThemeEntry<AccordionProps>;
     SolarActionCard?: SolarThemeEntry<ActionCardProps>;
+    SolarAgendaRow?: SolarThemeEntry<AgendaRowProps>;
     SolarAlert?: SolarThemeEntry<AlertProps>;
     SolarAlertSmall?: SolarThemeEntry<AlertSmallProps>;
+    SolarAllDayBar?: SolarThemeEntry<AllDayBarProps>;
     SolarAutocomplete?: SolarThemeEntry<AutocompleteProps<unknown>>;
     SolarAvatar?: SolarThemeEntry<AvatarProps>;
     SolarBackButton?: SolarThemeEntry<BackButtonProps>;
@@ -138,6 +148,8 @@ declare module '@mui/material/styles' {
     SolarBreadcrumbs?: SolarThemeEntry<BreadcrumbsProps>;
     SolarButton?: SolarThemeEntry<ButtonProps>;
     SolarButtonGroup?: SolarThemeEntry<ButtonGroupProps>;
+    SolarCalendarDayCell?: SolarThemeEntry<CalendarDayCellProps>;
+    SolarCalendarToolbar?: SolarThemeEntry<CalendarToolbarProps>;
     SolarCard?: SolarThemeEntry<CardProps>;
     SolarCheckbox?: SolarThemeEntry<CheckboxProps>;
     SolarCoachmark?: SolarThemeEntry<CoachmarkProps>;
@@ -160,6 +172,7 @@ declare module '@mui/material/styles' {
     SolarDropdownItem?: SolarThemeEntry<DropdownItemProps>;
     SolarDropdownMenu?: SolarThemeEntry<DropdownMenuProps>;
     SolarEmptyState?: SolarThemeEntry<EmptyStateProps>;
+    SolarEventChip?: SolarThemeEntry<EventChipProps>;
     SolarEventRow?: SolarThemeEntry<EventRowProps>;
     SolarExpandableCard?: SolarThemeEntry<ExpandableCardProps>;
     SolarFAB?: SolarThemeEntry<FABProps>;
@@ -228,6 +241,8 @@ declare module '@mui/material/styles' {
     SolarTag?: SolarThemeEntry<TagProps>;
     SolarTextArea?: SolarThemeEntry<TextAreaProps>;
     SolarTextInput?: SolarThemeEntry<TextInputProps>;
+    SolarTimeAxisLabel?: SolarThemeEntry<TimeAxisLabelProps>;
+    SolarTimeSlot?: SolarThemeEntry<TimeSlotProps>;
     SolarTimePicker?: SolarThemeEntry<TimePickerProps>;
     SolarTimePickerDropdown?: SolarThemeEntry<TimePickerDropdownProps>;
     SolarTimestamp?: SolarThemeEntry<TimestampProps>;
@@ -238,5 +253,6 @@ declare module '@mui/material/styles' {
     SolarTreeIndent?: SolarThemeEntry<TreeIndentProps>;
     SolarTreeItem?: SolarThemeEntry<TreeItemProps>;
     SolarTrendBadge?: SolarThemeEntry<TrendBadgeProps>;
+    SolarWeekdayHeader?: SolarThemeEntry<WeekdayHeaderProps>;
   }
 }

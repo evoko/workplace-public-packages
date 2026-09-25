@@ -66,7 +66,9 @@ export const solarIconButtonStyles = {
     height: 'var(--solar-size-control-sm)',
     '& .SolarIconButton-icon': {
       width: 'var(--solar-icon-xs)',
+      minWidth: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
+      minHeight: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-action-primary-icon-default)',
     },
   },
@@ -76,7 +78,9 @@ export const solarIconButtonStyles = {
       height: 'var(--solar-size-control-lg)',
       '& .SolarIconButton-icon': {
         width: 'var(--solar-icon-md)',
+        minWidth: 'var(--solar-icon-md)',
         height: 'var(--solar-icon-md)',
+        minHeight: 'var(--solar-icon-md)',
       },
     },
     md: {
@@ -84,7 +88,9 @@ export const solarIconButtonStyles = {
       height: 'var(--solar-size-control-md)',
       '& .SolarIconButton-icon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
   },

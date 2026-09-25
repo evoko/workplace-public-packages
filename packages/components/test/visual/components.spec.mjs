@@ -200,6 +200,10 @@ function measure(root, { list, composed }) {
               ),
             ),
             shadow: cs.boxShadow,
+            // Whether its edge is dashed: CSS draws its own dashes, whose lengths it picks.
+            borderDash: ['Top', 'Right', 'Bottom', 'Left'].some(
+              (side) => cs[`border${side}Style`] === 'dashed',
+            ),
             paddingTop: cs.paddingTop,
             paddingRight: cs.paddingRight,
             paddingBottom: cs.paddingBottom,

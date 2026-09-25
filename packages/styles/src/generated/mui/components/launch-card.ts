@@ -120,7 +120,9 @@ export const solarLaunchCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '160px',
+      minHeight: '160px',
       position: 'relative',
     },
     '& .SolarLaunchCard-favourite': {
@@ -143,6 +145,7 @@ export const solarLaunchCardStyles = {
       paddingBottom: 'var(--solar-stack-md)',
       paddingLeft: 'var(--solar-stack-md)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCard--text': {
       backgroundColor: 'transparent',
@@ -159,6 +162,7 @@ export const solarLaunchCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCard--headline': {
       backgroundColor: 'transparent',
@@ -175,10 +179,13 @@ export const solarLaunchCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCard-appIcon': {
       width: '24px',
+      minWidth: '24px',
       height: '24px',
+      minHeight: '24px',
     },
     '& .SolarLaunchCard-name': {
       color: 'var(--solar-color-text-primary)',
@@ -189,6 +196,7 @@ export const solarLaunchCardStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCard-bodyText': {
       color: 'var(--solar-color-text-secondary)',
@@ -199,9 +207,11 @@ export const solarLaunchCardStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarLaunchCard-actions': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

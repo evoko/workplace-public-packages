@@ -323,7 +323,14 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Container/Button",
+        "/Container/Button/Counter",
+        "/Container/Button/Icon/None",
+        "/Container/Button/Icon/None#2",
+        "/Container/Button/Spinner"
+      ]
     }
   ],
   "frames": [],

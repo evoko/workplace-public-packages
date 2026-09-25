@@ -212,15 +212,20 @@ export const solarNumberInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-sm)',
       height: 'var(--solar-size-control-md)',
+      minHeight: 'var(--solar-size-control-md)',
     },
     '& .SolarNumberInput--leadingIcon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarNumberInput--fieldDecrement': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarNumberInput--inlineValue': {
@@ -234,7 +239,9 @@ export const solarNumberInputStyles = {
     },
     '& .SolarNumberInput--fieldIncrement': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarNumberInput-helper': {
@@ -246,6 +253,7 @@ export const solarNumberInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarNumberInput--value': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -255,6 +263,7 @@ export const solarNumberInputStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarNumberInput--stepper': {
       borderRadius: 'var(--solar-radius-none)',
@@ -272,7 +281,9 @@ export const solarNumberInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '28px',
+      minWidth: '28px',
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarNumberInput--stepperIncrement': {
       borderRadius: 'var(--solar-radius-none)',
@@ -286,17 +297,23 @@ export const solarNumberInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarNumberInput--chevronUp': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
     },
     '& .SolarNumberInput--divider': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-border-default)',
+      minHeight: 'var(--solar-border-default)',
     },
     '& .SolarNumberInput--stepperDecrement': {
       borderRadius: 'var(--solar-radius-none)',
@@ -310,11 +327,15 @@ export const solarNumberInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '100%',
+      minHeight: 0,
     },
     '& .SolarNumberInput--chevronDown': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
     },
   },
   sizes: {
@@ -337,14 +358,19 @@ export const solarNumberInputStyles = {
       },
       '& .SolarNumberInput--field': {
         height: 'var(--solar-size-control-sm)',
+        minHeight: 'var(--solar-size-control-sm)',
       },
       '& .SolarNumberInput--leadingIcon': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       '& .SolarNumberInput--fieldDecrement': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       '& .SolarNumberInput--inlineValue': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -356,7 +382,9 @@ export const solarNumberInputStyles = {
       },
       '& .SolarNumberInput--fieldIncrement': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
       '& .SolarNumberInput-helper': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -376,14 +404,19 @@ export const solarNumberInputStyles = {
       },
       '& .SolarNumberInput--stepper': {
         width: '24px',
+        minWidth: '24px',
       },
       '& .SolarNumberInput--chevronUp': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarNumberInput--chevronDown': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
     },
   },
@@ -640,6 +673,7 @@ export const solarNumberInputStyles = {
           paddingRight: 'var(--solar-inset-none)',
           paddingLeft: 'var(--solar-inset-md)',
           width: '88px',
+          minWidth: '88px',
         },
       },
     },
@@ -657,6 +691,7 @@ export const solarNumberInputStyles = {
           paddingRight: 'var(--solar-inset-none)',
           paddingLeft: 'var(--solar-inset-xs)',
           width: '68px',
+          minWidth: '68px',
         },
       },
     },

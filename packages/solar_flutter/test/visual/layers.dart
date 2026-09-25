@@ -187,6 +187,15 @@ Layers measureLayers(WidgetTester tester, Finder at, String prefix) {
         'paddingLeft': padding.left,
         'gap': content is Flex ? content.spacing : 0.0,
       });
+      // A dashed edge is drawn over the box, its border clear (SolarDashedDecoration): its colour
+      // and Figma's pattern are the decoration's.
+      final dashed = container.foregroundDecoration;
+      if (dashed is SolarDashedDecoration) {
+        values['borderColor'] = dashed.color;
+        values['borderDash'] = dashed.dash;
+      } else {
+        values['borderDash'] = false;
+      }
     }
     out[name] = values;
   }

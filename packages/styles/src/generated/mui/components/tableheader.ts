@@ -72,9 +72,11 @@ export const solarTableHeaderStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTableHeader-search': {
       width: '240px',
+      minWidth: '240px',
     },
     '& .SolarTableHeader-actions': {
       backgroundColor: 'transparent',

@@ -953,7 +953,14 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/content/Button/Counter",
+        "/content/Button/Icon/None",
+        "/content/Button/Icon/None#2",
+        "/content/Button/Spinner",
+        "/content/List/Items/ListItem/Icon"
+      ]
     }
   ],
   "frames": [],

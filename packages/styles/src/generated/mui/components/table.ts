@@ -68,6 +68,7 @@ export const solarTableStyles = {
     width: '100%',
     '& .SolarTable-header': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTable-rows': {
       backgroundColor: 'transparent',
@@ -84,15 +85,19 @@ export const solarTableStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTable--row': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarTable--dimming': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: '32px',
+      minWidth: '32px',
       height: '100%',
+      minHeight: 0,
     },
     position: 'relative',
   },
@@ -103,6 +108,7 @@ export const solarTableStyles = {
       width: '100%',
       '& .SolarTable-rows': {
         height: 'auto',
+        minHeight: 'auto',
       },
     },
     'breakpoint=desktop, expandable=false, selectable=true': {
@@ -110,6 +116,7 @@ export const solarTableStyles = {
       width: '100%',
       '& .SolarTable-rows': {
         height: 'auto',
+        minHeight: 'auto',
       },
     },
     'breakpoint=desktop, expandable=true, selectable=true': {
@@ -117,6 +124,7 @@ export const solarTableStyles = {
       width: '100%',
       '& .SolarTable-rows': {
         height: 'auto',
+        minHeight: 'auto',
       },
     },
     'breakpoint=mobile, expandable=false, selectable=false': {
@@ -128,6 +136,7 @@ export const solarTableStyles = {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         height: 'auto',
+        minHeight: 'auto',
       },
       '& .SolarTable--dimming': {
         backgroundColor: 'transparent',
@@ -149,6 +158,7 @@ export const solarTableStyles = {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         height: 'auto',
+        minHeight: 'auto',
       },
       '& .SolarTable--dimming': {
         backgroundColor: 'transparent',
@@ -178,6 +188,7 @@ export const solarTableStyles = {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         height: 'auto',
+        minHeight: 'auto',
       },
       '& .SolarTable--dimming': {
         backgroundColor: 'transparent',

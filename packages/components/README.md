@@ -1118,6 +1118,27 @@ Each is drawn with its arrow, tip or connector, and alone, in place, where it ha
   are yours, as is the tour. It is a dialog that is not modal, announced politely, the focus moving
   to it on each step; Escape and its close button call `onClose`, which ends the tour.
 
+## Calendar parts
+
+Styled parts with no date logic of their own (decision): which day, hour and event each is, and what
+a click does, are yours.
+
+- An **Event Chip** is one event: its `category`'s colour as a stripe (`variant` subtle), a pale
+  fill (tinted) or a full fill (solid), its `time`, a `repeating` icon and its `title`, cut short at
+  its end. An **All-Day Bar** is the same for an event that spans days, its `span` the segment of a
+  bar across columns.
+- A **Calendar Day Cell** is a grid cell of the month grid: its `day`, your Event Chips
+  (`children`), `today` (its date in a pill, the current date), `selected`, `todayColumn` and
+  `otherMonth` (faded); events past its height are cut off at its edge.
+- A **Weekday Header** heads a column (`emphasis` today), a **Time Axis Label** marks an hour on
+  the rail (`emphasis` now, `density`), and a **Time Slot** is an empty cell of a week or day grid,
+  `selected`, its half-hour rule dashed.
+- An **Agenda Row** is one event in the Agenda view: its `start` and `end`, a dot in its `color`, its
+  `title`, `meta` and `attendee` (an Avatar); at the compact `density` one `range`. Given `onClick`
+  it is a button.
+- A **Calendar Toolbar** draws its own previous, next and Today buttons (`onPrevious`, `onNext`,
+  `onToday`) and the `range` it shows, beside your `views` (a Segmented Control) and `action`.
+
 ## Checked against Figma
 
 `npm run test:visual` renders every variant of every component here in Chromium, puts each into

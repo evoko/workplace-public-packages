@@ -1,0 +1,76 @@
+# Hand-written decisions about SOLAR Event Chip, applied over its IR by `npm run solar:codegen`.
+# Every rule needs a reason; one that no longer matches the IR fails the build.
+# Format: packages/codegen/src/normalize/overlay.mjs.
+
+component: Event Chip
+
+base:
+  mui: Box
+  reason: >-
+    One event in a calendar (a Day Cell, a week or day grid, an Agenda Row), as the description
+    says: its category's colour, as a stripe beside neutral words (subtle), a pale fill (tinted) or
+    a full fill with inverse words (solid), its time, a repeating event's icon, and its title. A
+    styled part, as the calendar family is (decision): what an event is, and what a click on it
+    does, are the caller's.
+
+rename:
+  style:
+    to: variant
+    reason: >-
+      Rule 5's one exception, as Alert's (owner decision 2026-09-25): `style` is React's
+      inline-style prop, so no component can take it, and `variant` names the look on both
+      platforms. The design review asks Figma to rename the property `variant`, so the names match.
+
+follows:
+  title.typography:
+    axes: [style]
+    reason: >-
+      A solid chip's title is semibold (body/sm/semibold), inverse on its full fill, where the
+      others' is medium, as Figma draws each: its weight follows the style, not the category.
+  root.radius:
+    axes: [style]
+    reason: >-
+      A subtle chip is square beside its stripe (radius.none); a tinted or solid chip, a filled
+      box, is rounded (radius.control), as Figma draws each.
+  root.align:
+    axes: [style]
+    reason: >-
+      Figma aligns a tinted chip's content to its top where the others centre it; the content fills
+      the chip's height, so no chip draws the difference. Drawn as Figma aligns each; the design
+      review lists it.
+  stripe.height:
+    axes: [style]
+    reason: >-
+      The stripe runs the chip's height in a subtle chip. A tinted or solid chip hides it, and no
+      prop shows it there, so what Figma keeps on it there (a fixed 22, no radius, from before it
+      was hidden) is never drawn: it follows the style, as its presence does.
+  stripe.radius:
+    axes: [style]
+    reason: { as: follows stripe.height }
+
+set:
+  root.base.width:
+    keyword: FILL
+    reason: >-
+      A chip fills the width its cell, grid column or row gives it: Figma draws a 160 sample, and a
+      Day Cell stretches its chips across.
+
+bind:
+  repeating.width:
+    literal: 12
+    token: icon.xs
+    reason: Same value, governed token; the icon's height is already bound to it.
+
+allowLiteral:
+  root.height:
+    reason: >-
+      A chip is 22 tall, bound to nothing: SOLAR has no size for it, one of the sizes with no
+      variable (a calendar's row).
+  stripe.width:
+    reason: >-
+      The stripe is 3 wide, bound to nothing: no border width is 3 (border.strong is 2), and a
+      stripe is a fill, not an edge.
+  stripe.height:
+    reason: >-
+      The 22 Figma keeps on the stripe where a tinted or solid chip hides it, never drawn (follows
+      stripe.height); where it is drawn it fills the chip.

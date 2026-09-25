@@ -63,6 +63,7 @@ export const solarSplitDropdownStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSplitDropdown-topContent': {
       backgroundColor: 'transparent',
@@ -79,6 +80,7 @@ export const solarSplitDropdownStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSplitDropdown--lower': {
       backgroundColor: 'var(--solar-color-surface-background)',
@@ -95,6 +97,7 @@ export const solarSplitDropdownStyles = {
       paddingBottom: 'var(--solar-inset-sm)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSplitDropdown-lowerContent': {
       backgroundColor: 'transparent',
@@ -111,6 +114,7 @@ export const solarSplitDropdownStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

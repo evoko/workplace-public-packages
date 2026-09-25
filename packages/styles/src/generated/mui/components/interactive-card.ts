@@ -119,6 +119,7 @@ export const solarInteractiveCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarInteractiveCard--textIcon': {
       backgroundColor: 'transparent',
@@ -135,10 +136,13 @@ export const solarInteractiveCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarInteractiveCard-icon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarInteractiveCard-title': {
@@ -159,6 +163,7 @@ export const solarInteractiveCardStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarInteractiveCard-actions': {
       backgroundColor: 'transparent',

@@ -83,7 +83,9 @@ export const solarListItemStyles = {
     width: '100%',
     '& .SolarListItem-icon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarListItem--body': {
@@ -101,6 +103,7 @@ export const solarListItemStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarListItem--label': {
       color: 'var(--solar-color-text-primary)',
@@ -122,7 +125,9 @@ export const solarListItemStyles = {
     },
     '& .SolarListItem-trailing': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
   },

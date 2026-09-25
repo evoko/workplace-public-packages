@@ -66,7 +66,9 @@ export const solarPaginationNavStyles = {
     height: '24px',
     '& .SolarPaginationNav--icon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
   },

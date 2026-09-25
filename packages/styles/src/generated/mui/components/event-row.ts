@@ -119,6 +119,7 @@ export const solarEventRowStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarEventRow-title': {
       color: 'var(--solar-color-text-primary)',
@@ -129,6 +130,7 @@ export const solarEventRowStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarEventRow--meta': {
       backgroundColor: 'transparent',
@@ -145,6 +147,7 @@ export const solarEventRowStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarEventRow-productTag': {
       color: 'var(--solar-color-text-secondary)',
@@ -164,6 +167,7 @@ export const solarEventRowStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarEventRow-timestamp': {
       color: 'var(--solar-color-text-tertiary)',
@@ -176,7 +180,9 @@ export const solarEventRowStyles = {
     },
     '& .SolarEventRow-more': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-secondary)',
     },
   },

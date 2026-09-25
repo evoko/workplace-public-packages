@@ -32,7 +32,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -77,7 +78,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -125,7 +127,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -174,7 +177,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#ffffff",
@@ -222,7 +226,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -270,7 +275,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#a8a8a8",
@@ -315,7 +321,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -360,7 +367,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -408,7 +416,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#ffffff",
@@ -475,7 +484,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -526,7 +536,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#ffffff",
@@ -593,7 +604,8 @@
           "paddingLeft": 0,
           "gap": 0,
           "width": 36,
-          "height": 36
+          "height": 36,
+          "borderDash": false
         },
         "day": {
           "color": "#111111",
@@ -637,6 +649,7 @@
           "radiusTopRight": 18,
           "radiusBottomRight": 18,
           "radiusBottomLeft": 0,
+          "borderDash": [2, 2],
           "shadow": "none",
           "paddingTop": 0,
           "paddingRight": 0,

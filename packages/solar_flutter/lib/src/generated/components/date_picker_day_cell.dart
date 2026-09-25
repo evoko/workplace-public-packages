@@ -67,6 +67,7 @@ abstract final class SolarDatePickerDayCellRecipe {
     'root.radiusTopRight|base': 't:radius.container',
     'root.radiusBottomRight|base': 't:radius.container',
     'root.radiusBottomLeft|base': 't:radius.container',
+    'root.borderDash|base': 'none',
     'root.background|appearance|rangeRole=none|hover': 't:color.surface.hover',
     'root.background|appearance|rangeRole=none|focus': 't:color.surface.hover',
     'root.borderColor|appearance|rangeRole=none|focus':
@@ -119,6 +120,7 @@ abstract final class SolarDatePickerDayCellRecipe {
         't:radius.pill',
     'root.radiusBottomLeft|appearance|rangeRole=preview-end|default':
         't:radius.none',
+    'root.borderDash|appearance|rangeRole=preview-end|default': 'd:2,2',
     'day.present|base': 'b:true',
     'day.color|base': 't:color.text.primary',
     'day.typography|base': 't:typography.body.md.medium',

@@ -148,11 +148,15 @@ export const solarAutocompleteStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-md)',
       width: '100%',
+      minWidth: 0,
       height: 'var(--solar-size-control-md)',
+      minHeight: 'var(--solar-size-control-md)',
     },
     '& .SolarAutocomplete-leadingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-tertiary)',
     },
     '& .SolarAutocomplete--search': {
@@ -164,10 +168,13 @@ export const solarAutocompleteStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarAutocomplete-trailingIcon': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-tertiary)',
     },
     '& .SolarAutocomplete-helper': {
@@ -179,6 +186,7 @@ export const solarAutocompleteStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {
@@ -204,6 +212,7 @@ export const solarAutocompleteStyles = {
         paddingRight: 'var(--solar-inset-sm)',
         paddingLeft: 'var(--solar-inset-sm)',
         height: 'var(--solar-size-control-sm)',
+        minHeight: 'var(--solar-size-control-sm)',
       },
       '& .SolarAutocomplete--search': {
         fontFamily: 'var(--solar-type-font-family-inter)',

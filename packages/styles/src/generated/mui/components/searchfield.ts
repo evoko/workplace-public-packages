@@ -104,7 +104,9 @@ export const solarSearchFieldStyles = {
     height: 'var(--solar-size-control-md)',
     '& .SolarSearchField--iconSearch': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
     '& .SolarSearchField--search': {
@@ -116,10 +118,13 @@ export const solarSearchFieldStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarSearchField-filter': {
       width: 'var(--solar-icon-sm)',
+      minWidth: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
+      minHeight: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
   },
@@ -130,7 +135,9 @@ export const solarSearchFieldStyles = {
       height: 'var(--solar-size-control-sm)',
       '& .SolarSearchField--iconSearch': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
       '& .SolarSearchField--search': {
         fontFamily: 'var(--solar-type-font-family-inter)',
@@ -142,7 +149,9 @@ export const solarSearchFieldStyles = {
       },
       '& .SolarSearchField-filter': {
         width: 'var(--solar-icon-xs)',
+        minWidth: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
+        minHeight: 'var(--solar-icon-xs)',
       },
     },
   },

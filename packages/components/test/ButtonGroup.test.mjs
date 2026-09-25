@@ -48,8 +48,8 @@ describe('the SOLAR Button Group shell', () => {
     expect(last(rule, 'flex-direction')).toBe('row');
     expect(last(rule, 'gap')).toBe('var(--solar-inset-xs)');
     expect(last(rule, 'padding-left')).toBe('var(--solar-inset-sm)');
-    // Every button fills its share.
-    expect(out.css).toMatch(/>\*\{width:100%;?\}/);
+    // Every button fills its share, and only the room its siblings leave it.
+    expect(out.css).toMatch(/>\*\{width:100%;min-width:0;?\}/);
   });
 
   it('stacks vertically, and draws the full-width bar flush with a divider on top only', () => {

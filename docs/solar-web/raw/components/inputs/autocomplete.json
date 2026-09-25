@@ -1294,7 +1294,38 @@
             }
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Autocomplete/Field/Icon/None",
+        "/Autocomplete/Field/Icon/None#2",
+        "/Autocomplete/Helper text",
+        "/Autocomplete/Label",
+        "/Autocomplete/Label/*",
+        "/Autocomplete/Label/Label",
+        "/Dropdown Menu/Content/Dropdown Item#2/Checkbox",
+        "/Dropdown Menu/Content/Dropdown Item#2/Content/Description",
+        "/Dropdown Menu/Content/Dropdown Item#2/Icon/None",
+        "/Dropdown Menu/Content/Dropdown Item#3/Checkbox",
+        "/Dropdown Menu/Content/Dropdown Item#3/Content/Description",
+        "/Dropdown Menu/Content/Dropdown Item#3/Icon/None",
+        "/Dropdown Menu/Content/Dropdown Item#4/Checkbox",
+        "/Dropdown Menu/Content/Dropdown Item#4/Content/Description",
+        "/Dropdown Menu/Content/Dropdown Item#4/Icon/None",
+        "/Dropdown Menu/Content/Dropdown Item#5/Checkbox",
+        "/Dropdown Menu/Content/Dropdown Item#5/Content/Description",
+        "/Dropdown Menu/Content/Dropdown Item#5/Icon/None",
+        "/Dropdown Menu/Content/Dropdown Item#6",
+        "/Dropdown Menu/Content/Dropdown Item#6/Checkbox",
+        "/Dropdown Menu/Content/Dropdown Item#6/Content/Description",
+        "/Dropdown Menu/Content/Dropdown Item#6/Icon/None",
+        "/Dropdown Menu/Content/Dropdown Item#7",
+        "/Dropdown Menu/Content/Dropdown Item#7/Checkbox",
+        "/Dropdown Menu/Content/Dropdown Item#7/Content/Description",
+        "/Dropdown Menu/Content/Dropdown Item#7/Icon/None",
+        "/Dropdown Menu/Content/Dropdown Item/Checkbox",
+        "/Dropdown Menu/Content/Dropdown Item/Content/Description",
+        "/Dropdown Menu/Content/Dropdown Item/Icon/None"
+      ]
     }
   ],
   "frames": [],

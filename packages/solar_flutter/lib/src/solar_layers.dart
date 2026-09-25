@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show OverflowBoxFit;
 
+import 'solar_dashed_edge.dart';
 import 'solar_glyph.dart';
 import 'solar_icon.dart';
 import 'solar_own_size.dart';
@@ -416,30 +417,45 @@ class SolarLayers {
       );
     }
     final x = _extent('$child.x');
-    // A placed layer that fills an axis spans from its place to the parent's far edge (Table's
-    // mobile fade, as tall as the table), as the web's 100% of its containing box does.
-    final right = _fills('$child.width') ? 0.0 : _extent('$child.right');
-    final bottom = _fills('$child.height') ? 0.0 : _extent('$child.bottom');
+    // A placed layer that fills an axis spans from its place to the parent's far edge, inside its
+    // edge (Table's mobile fade, as tall as the table above its bottom edge), as the web's 100% of
+    // its containing box does; a place Figma gives is from the outer edge, so it steps back.
+    final fillsAcross = _fills('$child.width');
     final spans = _fills('$child.height');
+    final right = fillsAcross ? null : _extent('$child.right');
+    final bottom = spans ? null : _extent('$child.bottom');
     return Positioned(
       left: x == null ? null : x - inset.left,
-      right: right == null ? null : right - inset.right,
-      top: bottom != null && !spans
-          ? null
-          : (_extent('$child.y') ?? 0) - inset.top,
-      bottom: bottom == null ? null : bottom - inset.bottom,
+      right: fillsAcross ? 0 : (right == null ? null : right - inset.right),
+      top: bottom != null ? null : (_extent('$child.y') ?? 0) - inset.top,
+      bottom: spans ? 0 : (bottom == null ? null : bottom - inset.bottom),
       child: layer(child),
+    );
+  }
+
+  /// [name]'s border, side by side: one width all round, or each side's where it has its own (Time
+  /// Slot's top and left edges).
+  EdgeInsets _edges(String name) {
+    const sides = ['Top', 'Right', 'Bottom', 'Left'];
+    if (!sides.any((s) => recipe.lookup('$name.border${s}Width') != null)) {
+      return EdgeInsets.all(_length('$name.borderWidth'));
+    }
+    return EdgeInsets.fromLTRB(
+      _length('$name.borderLeftWidth'),
+      _length('$name.borderTopWidth'),
+      _length('$name.borderRightWidth'),
+      _length('$name.borderBottomWidth'),
     );
   }
 
   /// The border and padding that hold [name]'s children in from its outer edge.
   EdgeInsets _inset(String name) {
-    final edge = _length('$name.borderWidth');
+    final edge = _edges(name);
     return EdgeInsets.fromLTRB(
-      edge + _length('$name.paddingLeft'),
-      edge + _length('$name.paddingTop'),
-      edge + _length('$name.paddingRight'),
-      edge + _length('$name.paddingBottom'),
+      edge.left + _length('$name.paddingLeft'),
+      edge.top + _length('$name.paddingTop'),
+      edge.right + _length('$name.paddingRight'),
+      edge.bottom + _length('$name.paddingBottom'),
     );
   }
 
@@ -492,7 +508,10 @@ class SolarLayers {
         ? [for (final side in sides) _length('$name.border${side}Width')]
         : List.filled(4, _length('$name.borderWidth'));
     if (widths.every((w) => w == 0)) return null;
-    final colour = recipe.color('$name.borderColor');
+    // A dashed edge is drawn over the box (_dashed): its border keeps its width, clear.
+    final colour = _dash(name) == null
+        ? recipe.color('$name.borderColor')
+        : const Color(0x00000000);
     BorderSide side(double width) =>
         width == 0 ? BorderSide.none : BorderSide(color: colour, width: width);
     return Border(
@@ -500,6 +519,31 @@ class SolarLayers {
       right: side(widths[1]),
       bottom: side(widths[2]),
       left: side(widths[3]),
+    );
+  }
+
+  /// A dashed edge's pattern (`borderDash`, `d:3,3`), or null for a solid one.
+  List<double>? _dash(String name) {
+    final v = recipe.lookup('$name.borderDash');
+    if (v == null || !v.startsWith('d:')) return null;
+    return [for (final n in v.substring(2).split(',')) double.parse(n)];
+  }
+
+  /// A dashed edge over [name]'s box, in its border's widths and colour and Figma's pattern.
+  Decoration? _dashed(String name) {
+    final dash = _dash(name);
+    if (dash == null) return null;
+    const sides = ['Top', 'Right', 'Bottom', 'Left'];
+    final perSide = sides.any(
+      (side) => recipe.lookup('$name.border${side}Width') != null,
+    );
+    return SolarDashedDecoration(
+      color: recipe.color('$name.borderColor'),
+      widths: perSide
+          ? [for (final side in sides) _length('$name.border${side}Width')]
+          : List.filled(4, _length('$name.borderWidth')),
+      dash: dash,
+      radius: _corners(name),
     );
   }
 
@@ -588,12 +632,12 @@ class SolarLayers {
       // the laid-out ones in it, the placed ones where Figma put them, from inside the border, so
       // a placed child reaching into the padding is hit there too.
       padded = false;
-      final edge = _length('$name.borderWidth');
+      final edge = _edges(name);
       content = Stack(
         clipBehavior: Clip.none,
         children: [
           Padding(padding: padding, child: flex(flow)),
-          for (final c in placed) _placed(c, EdgeInsets.all(edge)),
+          for (final c in placed) _placed(c, edge),
         ],
       );
     } else if (given != null && direction == 'k:GRID') {
@@ -632,6 +676,7 @@ class SolarLayers {
             : recipe.shadow('$name.shadow'),
         image: images[name],
       ),
+      foregroundDecoration: _dashed(name),
       child: content,
     );
   }

@@ -34,14 +34,23 @@
           "figmaVariant": {
             "size": "md",
             "state": "focus"
-          }
+          },
+          "hides": [
+            "helper",
+            "label",
+            "labelLabel",
+            "leadingIcon",
+            "mandatory",
+            "trailingIcon"
+          ]
         },
         "dropdownMenu": {
           "component": "Dropdown Menu",
           "variant": {
             "size": "md"
           },
-          "width": 320
+          "width": 320,
+          "hides": ["dropdownItem6"]
         }
       },
       "excused": [

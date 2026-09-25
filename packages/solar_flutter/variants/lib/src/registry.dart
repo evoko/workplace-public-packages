@@ -4,8 +4,10 @@
 import 'builders.dart';
 import 'accordion.dart';
 import 'action_card.dart';
+import 'agenda_row.dart';
 import 'alert.dart';
 import 'alert_small.dart';
+import 'all_day_bar.dart';
 import 'autocomplete.dart';
 import 'autocomplete_open.dart';
 import 'avatar.dart';
@@ -15,6 +17,8 @@ import 'breadcrumb_item.dart';
 import 'breadcrumbs.dart';
 import 'button.dart';
 import 'button_group.dart';
+import 'calendar_day_cell.dart';
+import 'calendar_toolbar.dart';
 import 'card.dart';
 import 'checkbox.dart';
 import 'coachmark.dart';
@@ -37,6 +41,7 @@ import 'dropdown_group_label.dart';
 import 'dropdown_item.dart';
 import 'dropdown_menu.dart';
 import 'emptystate.dart';
+import 'event_chip.dart';
 import 'event_row.dart';
 import 'expandable_card.dart';
 import 'fab.dart';
@@ -105,6 +110,8 @@ import 'tabs.dart';
 import 'tag.dart';
 import 'text_area.dart';
 import 'text_input.dart';
+import 'time_axis_label.dart';
+import 'time_slot.dart';
 import 'timepicker.dart';
 import 'timepicker_dropdown.dart';
 import 'timestamp.dart';
@@ -115,12 +122,15 @@ import 'tooltip.dart';
 import 'tree_indent.dart';
 import 'tree_item.dart';
 import 'trend_badge.dart';
+import 'weekday_header.dart';
 
 const builders = <String, VariantBuilder>{
   'Accordion': buildAccordion,
   'Action Card': buildActionCard,
+  'Agenda Row': buildAgendaRow,
   'Alert': buildAlert,
   'Alert Small': buildAlertSmall,
+  'All-Day Bar': buildAllDayBar,
   'Autocomplete': buildAutocomplete,
   'Autocomplete Open': buildAutocompleteOpen,
   'Avatar': buildAvatar,
@@ -130,6 +140,8 @@ const builders = <String, VariantBuilder>{
   'Breadcrumbs': buildBreadcrumbs,
   'Button': buildButton,
   'Button Group': buildButtonGroup,
+  'Calendar Day Cell': buildCalendarDayCell,
+  'Calendar Toolbar': buildCalendarToolbar,
   'Card': buildCard,
   'Checkbox': buildCheckbox,
   'Coachmark': buildCoachmark,
@@ -152,6 +164,7 @@ const builders = <String, VariantBuilder>{
   'Dropdown Item': buildDropdownItem,
   'Dropdown Menu': buildDropdownMenu,
   'EmptyState': buildEmptyState,
+  'Event Chip': buildEventChip,
   'Event Row': buildEventRow,
   'Expandable Card': buildExpandableCard,
   'FAB': buildFAB,
@@ -220,6 +233,8 @@ const builders = <String, VariantBuilder>{
   'Tag': buildTag,
   'Text Area': buildTextArea,
   'Text Input': buildTextInput,
+  'Time Axis Label': buildTimeAxisLabel,
+  'Time Slot': buildTimeSlot,
   'TimePicker': buildTimePicker,
   'TimePicker Dropdown': buildTimePickerDropdown,
   'Timestamp': buildTimestamp,
@@ -230,4 +245,5 @@ const builders = <String, VariantBuilder>{
   'Tree Indent': buildTreeIndent,
   'Tree Item': buildTreeItem,
   'Trend Badge': buildTrendBadge,
+  'Weekday Header': buildWeekdayHeader,
 };

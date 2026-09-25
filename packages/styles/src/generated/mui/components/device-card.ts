@@ -111,11 +111,15 @@ export const solarDeviceCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '52px',
+      minWidth: '52px',
       height: '52px',
+      minHeight: '52px',
     },
     '& .SolarDeviceCard--iconIconDevice': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarDeviceCard--content': {
@@ -133,6 +137,7 @@ export const solarDeviceCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard-name': {
       color: 'var(--solar-color-text-primary)',
@@ -143,6 +148,7 @@ export const solarDeviceCardStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard-details': {
       color: 'var(--solar-color-text-secondary)',
@@ -153,16 +159,21 @@ export const solarDeviceCardStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard--iconIconProgress': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
     '& .SolarDeviceCard--contentSkeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '334px',
+      minWidth: '334px',
       height: '10px',
+      minHeight: '10px',
     },
     '& .SolarDeviceCard--headlineIcon': {
       borderRadius: 'var(--solar-radius-control)',
@@ -176,11 +187,15 @@ export const solarDeviceCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '40px',
+      minWidth: '40px',
       height: '40px',
+      minHeight: '40px',
     },
     '& .SolarDeviceCard--headlineIconIconDevice': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
     '& .SolarDeviceCard--headlineContentName': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -210,6 +225,7 @@ export const solarDeviceCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard--headline': {
       borderRadius: 'var(--solar-radius-none)',
@@ -223,6 +239,7 @@ export const solarDeviceCardStyles = {
       paddingBottom: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-xs)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard--serialLocation': {
       borderRadius: 'var(--solar-radius-none)',
@@ -236,13 +253,17 @@ export const solarDeviceCardStyles = {
       paddingBottom: 'var(--solar-inset-sm)',
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard-devices': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard--headlineIconIconProgress': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
     '& .SolarDeviceCard--rowName': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -272,12 +293,15 @@ export const solarDeviceCardStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDeviceCard--headlineContentSkeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '334px',
+      minWidth: '334px',
       height: '10px',
+      minHeight: '10px',
     },
   },
   sizes: {},

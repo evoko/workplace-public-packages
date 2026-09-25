@@ -79,12 +79,15 @@ export const solarOptionsListStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarOptionsList--optionRow': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarOptionsList--optionRow2': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

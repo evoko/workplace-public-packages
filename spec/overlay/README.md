@@ -164,7 +164,8 @@ One entry changed: to a `token`, to `none` (the cell is not drawn by this layer:
 child's own size, a stray fill), to a `keyword` (`FILL`, `HUG`, or a composed child's
 `variant.*`), or to a `literal`, a size Figma draws but does not record (ConfirmationDialog's 400:
 Figma records its frame hugging, where everything in it fills), which the cell's `allowLiteral`
-must allow as well, as any raw value. What Figma had is kept as `replaced`, and the oracle excuses the variants that draw
+must allow as well, as any raw value. A look is named by Figma's axes, before a `rename` (All-Day
+Bar's `style=solid, span=end`, which the IR then calls `variant=solid, span=end`). What Figma had is kept as `replaced`, and the oracle excuses the variants that draw
 it. A `set` may add an entry the IR lacks: a state Figma draws as at rest (a focus ring), a focus
 or a hover Figma draws none of (Row's hover, which its description asks for), a look no layer has
 where its axes are another look's and its values Figma's, `default` where no layer has any, or a

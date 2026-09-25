@@ -104,6 +104,7 @@ export const solarDialogStyles = {
       paddingBottom: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-xs)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDialog--text': {
       backgroundColor: 'transparent',
@@ -120,6 +121,7 @@ export const solarDialogStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDialog--leading': {
       backgroundColor: 'transparent',
@@ -136,11 +138,15 @@ export const solarDialogStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '36px',
+      minWidth: '36px',
       height: '36px',
+      minHeight: '36px',
     },
     '& .SolarDialog-icon': {
       width: 'var(--solar-icon-xs)',
+      minWidth: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
+      minHeight: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-icon-primary)',
     },
     '& .SolarDialog-title': {
@@ -152,6 +158,7 @@ export const solarDialogStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDialog-modalImage': {
       borderRadius: 'var(--solar-radius-none)',
@@ -166,7 +173,9 @@ export const solarDialogStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
+      minWidth: 0,
       height: '279px',
+      minHeight: '279px',
       position: 'relative',
     },
     '& .SolarDialog-content': {
@@ -184,9 +193,11 @@ export const solarDialogStyles = {
       paddingBottom: 'var(--solar-inset-lg)',
       paddingLeft: 'var(--solar-inset-lg)',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDialog-actions': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDialog-imageTitle': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -204,9 +215,11 @@ export const solarDialogStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarDialog-stepper': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

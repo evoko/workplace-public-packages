@@ -77,7 +77,10 @@ in a table's cell is its own target, a dense row's), and the overlays and dialog
 `SolarConfirmationDialog`, `SolarSplitDialog` and `SolarDrawer`, surfaces that `showSolarDialog`
 and `showSolarDrawer` show over the Scrim's colour, `SolarScrim`, and `SolarTooltip`,
 `SolarPopover` and `SolarCoachmark`, drawn with their arrow, tip or connector in an overlay over
-their trigger, or alone where they have none) take the same props as the React components
+their trigger, or alone where they have none), and the calendar parts (`SolarEventChip`,
+`SolarCalendarDayCell`, `SolarWeekdayHeader`, `SolarTimeAxisLabel`, `SolarTimeSlot`,
+`SolarAllDayBar`, `SolarAgendaRow` and `SolarCalendarToolbar`, styled parts with no date logic of
+their own; a dashed edge, Figma's pattern, is `SolarDashedDecoration`) take the same props as the React components
 (a group takes its buttons as `children`, and asserts against the vertical full-width group Figma
 does not draw), in Flutter's terms where they differ: a `SolarProgressBar`'s `value` is 0 to 1, a
 `SolarAvatar`'s `color` a `Color` and its picture an `ImageProvider`, a `SolarTimestamp` takes

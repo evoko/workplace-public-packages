@@ -298,7 +298,13 @@
             }
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Dropdown Item#2/Checkbox",
+        "/Dropdown Item#2/Content/Description",
+        "/Dropdown Item/Checkbox",
+        "/Dropdown Item/Content/Description"
+      ]
     }
   ],
   "frames": [],

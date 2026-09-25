@@ -90,7 +90,9 @@ export const solarTagStyles = {
     height: '24px',
     '& .SolarTag--iconNone': {
       width: 'var(--solar-icon-xs)',
+      minWidth: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
+      minHeight: 'var(--solar-icon-xs)',
     },
     '& .SolarTag-label': {
       color: 'var(--solar-color-text-feedback-success)',
@@ -103,11 +105,15 @@ export const solarTagStyles = {
     },
     '& .SolarTag-icon': {
       width: 'var(--solar-icon-xs)',
+      minWidth: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
+      minHeight: 'var(--solar-icon-xs)',
     },
     '& .SolarTag--iconClose': {
       width: 'var(--solar-icon-xs)',
+      minWidth: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
+      minHeight: 'var(--solar-icon-xs)',
     },
   },
   sizes: {},
@@ -115,7 +121,9 @@ export const solarTagStyles = {
     'status=success, type=status, invert=true': {
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=success, type=icon-only, invert=false': {
@@ -143,7 +151,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=success, type=icon+text, invert=false': {
@@ -164,7 +174,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=success, type=closable, invert=false': {
@@ -186,7 +198,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
       },
     },
@@ -204,7 +218,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=neutral, type=status, invert=false': {
@@ -217,7 +233,9 @@ export const solarTagStyles = {
     'status=neutral, type=status, invert=true': {
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=neutral, type=icon-only, invert=false': {
@@ -247,7 +265,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=neutral, type=icon+text, invert=false': {
@@ -273,7 +293,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=neutral, type=closable, invert=false': {
@@ -300,7 +322,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
       },
     },
@@ -323,7 +347,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=warning, type=status, invert=false': {
@@ -336,7 +362,9 @@ export const solarTagStyles = {
     'status=warning, type=status, invert=true': {
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=warning, type=icon-only, invert=false': {
@@ -366,7 +394,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=warning, type=icon+text, invert=false': {
@@ -392,7 +422,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=warning, type=closable, invert=false': {
@@ -419,7 +451,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
       },
     },
@@ -442,7 +476,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=danger, type=status, invert=false': {
@@ -455,7 +491,9 @@ export const solarTagStyles = {
     'status=danger, type=status, invert=true': {
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=danger, type=icon-only, invert=false': {
@@ -485,7 +523,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=danger, type=icon+text, invert=false': {
@@ -511,7 +551,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=danger, type=closable, invert=false': {
@@ -538,7 +580,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
       },
     },
@@ -561,7 +605,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=info, type=status, invert=false': {
@@ -574,7 +620,9 @@ export const solarTagStyles = {
     'status=info, type=status, invert=true': {
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=info, type=icon-only, invert=false': {
@@ -604,7 +652,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=info, type=icon+text, invert=false': {
@@ -630,7 +680,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
     'status=info, type=closable, invert=false': {
@@ -657,7 +709,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
       },
     },
@@ -680,7 +734,9 @@ export const solarTagStyles = {
       },
       '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
+        minWidth: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
+        minHeight: 'var(--solar-icon-sm)',
       },
     },
   },

@@ -247,6 +247,24 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      each added layer's `index`; where the data has them, a composed child hides exactly its own
      layers and an added layer sits where Figma draws it, and the overlay's `hides` and `places`
      rules they replace fail as stale. The data has them from the next `solar:sync`.
+     What F13 (calendar parts) added:
+   - **Dashed strokes.** The fetcher records a stroke's `dashes` (Figma's `strokeDashes`); the
+     recipe carries them as `borderDash`, the web draws CSS's `dashed` (the lengths are the
+     browser's) through a `--solar-border-style` its edges read, and Flutter paints Figma's pattern
+     with `SolarDashedDecoration` over the box, its border clear. The oracle and both checks compare
+     it, a variant drawn solid beside a dashed one included. FileUpload's drop zone, Option Card's
+     edge, Image Card's empty state and Date Picker Day Cell's preview end, drawn solid until now,
+     are dashed.
+   - **Lines.** A LINE is its stroke: the top edge of a box as long as the line and as tall as the
+     stroke, not Figma's outline of it, so it spans its parent (Time Slot's half-hour rule).
+   - **Sizes that do not shrink.** On the web a fixed size inside a component is also its minimum,
+     and a filling one's minimum is 0, as Figma's auto layout and Flutter's Expanded size them; a
+     component's root keeps CSS's own, so it still fits a narrower page.
+   - **What a standalone component hides.** The fetcher records its hidden paths, as a set's
+     variants', so its composed children hide what Figma hides (Autocomplete Open's field, its label
+     and icons).
+   - **Per-side edges in SolarLayers.** A placed layer steps back by its parent's edge side by side
+     (Time Slot's top and left edges).
      What F12 (overlays and dialogs) added:
    - **Turned outlines.** REST gives a vector's path in the node's own coordinates; the fetcher
      (`docs/solar-web/raw/drawn-path.mjs`) turns each point by the node's transform and moves it

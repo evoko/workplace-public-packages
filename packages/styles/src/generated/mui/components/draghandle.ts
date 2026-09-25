@@ -98,7 +98,9 @@ export const solarDragHandleStyles = {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       width: '3px',
+      minWidth: '3px',
       height: '3px',
+      minHeight: '3px',
     },
     '& .SolarDragHandle--col1Dot2': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
@@ -107,7 +109,9 @@ export const solarDragHandleStyles = {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       width: '3px',
+      minWidth: '3px',
       height: '3px',
+      minHeight: '3px',
     },
     '& .SolarDragHandle--col1Dot3': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
@@ -116,7 +120,9 @@ export const solarDragHandleStyles = {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       width: '3px',
+      minWidth: '3px',
       height: '3px',
+      minHeight: '3px',
     },
     '& .SolarDragHandle--col2': {
       backgroundColor: 'transparent',
@@ -140,7 +146,9 @@ export const solarDragHandleStyles = {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       width: '3px',
+      minWidth: '3px',
       height: '3px',
+      minHeight: '3px',
     },
     '& .SolarDragHandle--col2Dot2': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
@@ -149,7 +157,9 @@ export const solarDragHandleStyles = {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       width: '3px',
+      minWidth: '3px',
       height: '3px',
+      minHeight: '3px',
     },
     '& .SolarDragHandle--col2Dot3': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
@@ -158,34 +168,48 @@ export const solarDragHandleStyles = {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       width: '3px',
+      minWidth: '3px',
       height: '3px',
+      minHeight: '3px',
     },
   },
   sizes: {
     md: {
       '& .SolarDragHandle--col1Dot': {
         width: '4px',
+        minWidth: '4px',
         height: '4px',
+        minHeight: '4px',
       },
       '& .SolarDragHandle--col1Dot2': {
         width: '4px',
+        minWidth: '4px',
         height: '4px',
+        minHeight: '4px',
       },
       '& .SolarDragHandle--col1Dot3': {
         width: '4px',
+        minWidth: '4px',
         height: '4px',
+        minHeight: '4px',
       },
       '& .SolarDragHandle--col2Dot': {
         width: '4px',
+        minWidth: '4px',
         height: '4px',
+        minHeight: '4px',
       },
       '& .SolarDragHandle--col2Dot2': {
         width: '4px',
+        minWidth: '4px',
         height: '4px',
+        minHeight: '4px',
       },
       '& .SolarDragHandle--col2Dot3': {
         width: '4px',
+        minWidth: '4px',
         height: '4px',
+        minHeight: '4px',
       },
     },
   },

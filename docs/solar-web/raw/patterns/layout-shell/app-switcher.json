@@ -780,7 +780,17 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Desktop apps/List/AppSwitcherItem#2/Button/Counter",
+        "/Desktop apps/List/AppSwitcherItem#2/Button/Icon/None",
+        "/Desktop apps/List/AppSwitcherItem#2/Button/Icon/None#2",
+        "/Desktop apps/List/AppSwitcherItem#2/Button/Spinner",
+        "/Desktop apps/List/AppSwitcherItem/Button/Counter",
+        "/Desktop apps/List/AppSwitcherItem/Button/Icon/None",
+        "/Desktop apps/List/AppSwitcherItem/Button/Icon/None#2",
+        "/Desktop apps/List/AppSwitcherItem/Button/Spinner"
+      ]
     }
   ],
   "frames": [

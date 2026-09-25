@@ -4,8 +4,10 @@
 
 import accordion from './accordion.js';
 import actionCard from './action-card.js';
+import agendaRow from './agenda-row.js';
 import alert from './alert.js';
 import alertSmall from './alert-small.js';
+import allDayBar from './all-day-bar.js';
 import autocomplete from './autocomplete.js';
 import autocompleteOpen from './autocomplete-open.js';
 import avatar from './avatar.js';
@@ -15,6 +17,8 @@ import breadcrumbItem from './breadcrumb-item.js';
 import breadcrumbs from './breadcrumbs.js';
 import button from './button.js';
 import buttonGroup from './button-group.js';
+import calendarDayCell from './calendar-day-cell.js';
+import calendarToolbar from './calendar-toolbar.js';
 import card from './card.js';
 import checkbox from './checkbox.js';
 import coachmark from './coachmark.js';
@@ -37,6 +41,7 @@ import dropdownGroupLabel from './dropdown-group-label.js';
 import dropdownItem from './dropdown-item.js';
 import dropdownMenu from './dropdown-menu.js';
 import emptyState from './emptystate.js';
+import eventChip from './event-chip.js';
 import eventRow from './event-row.js';
 import expandableCard from './expandable-card.js';
 import fab from './fab.js';
@@ -105,6 +110,8 @@ import tabs from './tabs.js';
 import tag from './tag.js';
 import textArea from './text-area.js';
 import textInput from './text-input.js';
+import timeAxisLabel from './time-axis-label.js';
+import timeSlot from './time-slot.js';
 import timePicker from './timepicker.js';
 import timePickerDropdown from './timepicker-dropdown.js';
 import timestamp from './timestamp.js';
@@ -115,13 +122,16 @@ import tooltip from './tooltip.js';
 import treeIndent from './tree-indent.js';
 import treeItem from './tree-item.js';
 import trendBadge from './trend-badge.js';
+import weekdayHeader from './weekday-header.js';
 import type { VisualCase } from './types.js';
 
 export const CASES: Record<string, VisualCase> = {
   Accordion: accordion,
   'Action Card': actionCard,
+  'Agenda Row': agendaRow,
   Alert: alert,
   'Alert Small': alertSmall,
+  'All-Day Bar': allDayBar,
   Autocomplete: autocomplete,
   'Autocomplete Open': autocompleteOpen,
   Avatar: avatar,
@@ -131,6 +141,8 @@ export const CASES: Record<string, VisualCase> = {
   Breadcrumbs: breadcrumbs,
   Button: button,
   'Button Group': buttonGroup,
+  'Calendar Day Cell': calendarDayCell,
+  'Calendar Toolbar': calendarToolbar,
   Card: card,
   Checkbox: checkbox,
   Coachmark: coachmark,
@@ -153,6 +165,7 @@ export const CASES: Record<string, VisualCase> = {
   'Dropdown Item': dropdownItem,
   'Dropdown Menu': dropdownMenu,
   EmptyState: emptyState,
+  'Event Chip': eventChip,
   'Event Row': eventRow,
   'Expandable Card': expandableCard,
   FAB: fab,
@@ -221,6 +234,8 @@ export const CASES: Record<string, VisualCase> = {
   Tag: tag,
   'Text Area': textArea,
   'Text Input': textInput,
+  'Time Axis Label': timeAxisLabel,
+  'Time Slot': timeSlot,
   TimePicker: timePicker,
   'TimePicker Dropdown': timePickerDropdown,
   Timestamp: timestamp,
@@ -231,4 +246,5 @@ export const CASES: Record<string, VisualCase> = {
   'Tree Indent': treeIndent,
   'Tree Item': treeItem,
   'Trend Badge': trendBadge,
+  'Weekday Header': weekdayHeader,
 };

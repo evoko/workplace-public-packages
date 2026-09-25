@@ -77,27 +77,35 @@ export const solarContextMenuStyles = {
     },
     '& .SolarContextMenu--contextMenuItem': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenu--contextMenuItem2': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenu--contextMenuItem3': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenu--contextMenuItem4': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenu--contextMenuItem5': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenu--contextMenuItem6': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenu--divider': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarContextMenu--contextMenuItem7': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},

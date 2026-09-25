@@ -347,7 +347,27 @@
             ]
           }
         ]
-      }
+      },
+      "hiddenPaths": [
+        "/Left/Today Button/Counter",
+        "/Left/Today Button/Icon/None",
+        "/Left/Today Button/Icon/None#2",
+        "/Left/Today Button/Spinner",
+        "/Right/New Event/Counter",
+        "/Right/New Event/Icon/None",
+        "/Right/New Event/Spinner",
+        "/Right/View Switcher/Helper text",
+        "/Right/View Switcher/Label",
+        "/Right/View Switcher/Label/Label",
+        "/Right/View Switcher/Track/Segmented Control Item#2/Icon/None",
+        "/Right/View Switcher/Track/Segmented Control Item#2/Icon/None#2",
+        "/Right/View Switcher/Track/Segmented Control Item#3/Icon/None",
+        "/Right/View Switcher/Track/Segmented Control Item#3/Icon/None#2",
+        "/Right/View Switcher/Track/Segmented Control Item#4/Icon/None",
+        "/Right/View Switcher/Track/Segmented Control Item#4/Icon/None#2",
+        "/Right/View Switcher/Track/Segmented Control Item/Icon/None",
+        "/Right/View Switcher/Track/Segmented Control Item/Icon/None#2"
+      ]
     }
   ],
   "frames": [],

@@ -104,7 +104,9 @@ export const solarColumnItemStyles = {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: 'var(--solar-border-default)',
+      minWidth: 'var(--solar-border-default)',
       height: '26px',
+      minHeight: '26px',
     },
     '& .SolarColumnItem--label': {
       color: 'var(--solar-color-text-secondary)',
@@ -115,6 +117,7 @@ export const solarColumnItemStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarColumnItem-name': {
       fontFamily: 'var(--solar-type-font-family-inter)',
@@ -124,16 +127,21 @@ export const solarColumnItemStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarColumnItem-icon': {
       width: 'var(--solar-icon-md)',
+      minWidth: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
+      minHeight: 'var(--solar-icon-md)',
     },
     '& .SolarColumnItem-textInput': {
       width: '100%',
+      minWidth: 0,
     },
     '& .SolarColumnItem-dropdown': {
       width: '100%',
+      minWidth: 0,
     },
   },
   sizes: {},
