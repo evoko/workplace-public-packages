@@ -103,7 +103,7 @@
         "height": {
           "literal": 24,
           "from": "status=completed",
-          "allowed": "As its width."
+          "allowed": "The circle is 24 across, bound to nothing: SOLAR has no size token for it (the design review's question on sizes with no variable)."
         }
       },
       "size": {},
@@ -297,7 +297,7 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As its width."
+        "reason": "The circle is 24 across, bound to nothing: SOLAR has no size token for it (the design review's question on sizes with no variable)."
       },
       {
         "rule": "allowLiteral",

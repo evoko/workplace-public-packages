@@ -297,6 +297,7 @@ export const solarInsightCardStyles = {
         },
       },
       '&:has(.SolarInsightCard-press.Mui-focusVisible)': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
         backgroundColor: 'var(--solar-color-surface-base)',
       },

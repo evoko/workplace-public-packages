@@ -4,6 +4,8 @@
 // Each stage builds its spec in memory first and only then writes. Every stage is built before
 // any is emitted, so a throw from one normalizer stops the run before half the targets have been
 // rewritten.
+// First, before anything else loads: the Node this needs (.nvmrc).
+import '../src/util/require-node.mjs';
 import { execSync } from 'node:child_process';
 import { join, relative } from 'node:path';
 import * as tokens from '../src/stages/tokens.mjs';

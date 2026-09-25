@@ -15,53 +15,11 @@ base:
     scroll would clip the focused tab's ring.
 
 set:
-  tabItem.base.height:
+  tabItem*.base.height:
     none: true
     reason: >-
       A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never
       sizes it.
-  tabItem.size.md.height:
-    none: true
-    reason: As sm's, its own.
-  tabItem2.base.height:
-    none: true
-    reason: As the first tab's, its own.
-  tabItem2.size.md.height:
-    none: true
-    reason: As sm's, its own.
-  tabItem3.base.height:
-    none: true
-    reason: As the first tab's, its own.
-  tabItem3.size.md.height:
-    none: true
-    reason: As sm's, its own.
-  tabItem4.base.height:
-    none: true
-    reason: As the first tab's, its own.
-  tabItem4.size.md.height:
-    none: true
-    reason: As sm's, its own.
-  tabItem5.base.height:
-    none: true
-    reason: As the first tab's, its own.
-  tabItem5.size.md.height:
-    none: true
-    reason: As sm's, its own.
-  tabItem6.base.height:
-    none: true
-    reason: As the first tab's, its own.
-  tabItem6.size.md.height:
-    none: true
-    reason: As sm's, its own.
-  tabItem7.base.height:
-    none: true
-    reason: As the first tab's, its own.
-  tabItem7.size.md.height:
-    none: true
-    reason: As sm's, its own.
-  tabItem8.base.height:
-    none: true
-    reason: As the first tab's, its own.
-  tabItem8.size.md.height:
+  tabItem*.size.md.height:
     none: true
     reason: As sm's, its own.

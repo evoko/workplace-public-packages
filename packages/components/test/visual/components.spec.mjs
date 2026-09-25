@@ -61,6 +61,25 @@ function targets(component) {
 }
 
 /**
+ * The mode a check measures in. In Dark, a variant is its Light entry with its `dark` over it: the
+ * layers' values Dark draws otherwise (a token's Dark value), and its excuses where they differ.
+ */
+let mode = 'light';
+const inMode = (v) =>
+  mode === 'dark' && v?.dark
+    ? {
+        ...v,
+        layers: Object.fromEntries(
+          Object.entries(v.layers).map(([layer, e]) => [
+            layer,
+            { ...e, ...(v.dark.layers?.[layer] ?? {}) },
+          ]),
+        ),
+        excused: v.dark.excused ?? v.excused,
+      }
+    : v;
+
+/**
  * The layers of `component` that are other generated components (Button's spinner), with where the
  * child's layers are: its root is the first element in the parent's slot.
  */
@@ -259,7 +278,16 @@ async function open(page) {
  * Every variant of `component`, measured and compared. `only` limits it to some variants, for the
  * self-check below.
  */
-async function check(page, component, { only } = {}) {
+async function check(page, component, { only, dark = false } = {}) {
+  mode = dark ? 'dark' : 'light';
+  // Dark as the app turns it on: the tokens' Dark values, by the root's data-theme.
+  await page.evaluate(
+    (on) =>
+      on
+        ? document.documentElement.setAttribute('data-theme', 'dark')
+        : document.documentElement.removeAttribute('data-theme'),
+    dark,
+  );
   const oracle = oracles[component];
   const list = targets(component);
   const composed = children(component);
@@ -269,7 +297,8 @@ async function check(page, component, { only } = {}) {
   )?.[1];
   const failures = [];
   const gaps = [];
-  for (const [i, variant] of oracle.variants.entries()) {
+  for (const [i, entry] of oracle.variants.entries()) {
+    const variant = inMode(entry);
     if (only && !only.includes(variant.figma)) continue;
     const kase = page.locator(`[data-case="${slug(component)}:${i}"]`);
     // The component's root: Button's <button>, Spinner's box; or, where the case holds it in what
@@ -340,7 +369,7 @@ async function check(page, component, { only } = {}) {
 /** The child oracle's variant a parent's layer names: every axis it gives, by Figma's spelling. */
 function childVariant(oracle, wanted = {}) {
   // A standalone child (Pagination's ellipsis) has no variant to name: its one is the one.
-  const found = oracle.variants.find((v) => {
+  const found = oracle.variants.map(inMode).find((v) => {
     const axes = Object.fromEntries(
       v.figma.split(', ').map((p) => p.split('=')),
     );
@@ -419,16 +448,18 @@ const hiddenAtRest = (oracle, layer) => {
 
 /** The excused entries a check reaches: those on layers the variant draws, or a prop shows. */
 function reachableExcuses(oracle) {
-  return oracle.variants.reduce(
-    (n, v) =>
-      n +
-      (v.excused ?? []).filter(
-        (e) =>
-          !v.layers[e.layer]?.hidden ||
-          (e.layer in oracle.slots && hiddenAtRest(oracle, e.layer)),
-      ).length,
-    0,
-  );
+  return oracle.variants
+    .map(inMode)
+    .reduce(
+      (n, v) =>
+        n +
+        (v.excused ?? []).filter(
+          (e) =>
+            !v.layers[e.layer]?.hidden ||
+            (e.layer in oracle.slots && hiddenAtRest(oracle, e.layer)),
+        ).length,
+      0,
+    );
 }
 
 const report = (component, gaps) =>
@@ -438,28 +469,56 @@ const report = (component, gaps) =>
   );
 
 for (const component of NAMES)
-  test(`${component} draws what Figma draws, in every variant`, async ({
-    page,
-  }) => {
-    test.setTimeout(120_000);
-    await open(page);
-    // A component the codegen generates and the page does not render would pass by measuring
-    // nothing.
-    expect(
-      await page.locator(`[data-case^="${slug(component)}:"]`).count(),
-      `${component}: one case per oracle variant; register cases/${slug(component)}.tsx in cases/index.ts`,
-    ).toBe(oracles[component].variants.length);
-    const { failures, gaps } = await check(page, component);
-    report(component, gaps);
-    writeFileSync(
-      out(`${slug(component)}-failures.json`),
-      `${JSON.stringify(failures, null, 2)}\n`,
+  for (const dark of [false, true])
+    test(`${component} draws what Figma draws${dark ? ' in Dark' : ''}, in every variant`, async ({
+      page,
+    }) => {
+      test.setTimeout(120_000);
+      await open(page);
+      // A component the codegen generates and the page does not render would pass by measuring
+      // nothing.
+      expect(
+        await page.locator(`[data-case^="${slug(component)}:"]`).count(),
+        `${component}: one case per oracle variant; register cases/${slug(component)}.tsx in cases/index.ts`,
+      ).toBe(oracles[component].variants.length);
+      const { failures, gaps } = await check(page, component, { dark });
+      const named = `${slug(component)}${dark ? '-dark' : ''}`;
+      report(dark ? `${component} dark` : component, gaps);
+      writeFileSync(
+        out(`${named}-failures.json`),
+        `${JSON.stringify(failures, null, 2)}\n`,
+      );
+      expect(failures).toEqual([]);
+      // Every excused entry was reached and measured.
+      // Every excused entry was reached and measured, but for a layer the variant does not draw.
+      expect(gaps).toHaveLength(reachableExcuses(oracles[component]));
+      mode = 'light';
+    });
+
+test('in Dark, the page is drawn in Dark: Light values fail', async ({
+  page,
+}) => {
+  await open(page);
+  // Button with no dark blocks: an oracle that expects Light in Dark, which a page drawn in Dark
+  // must now differ from.
+  const light = structuredClone(oracles.Button);
+  for (const v of light.variants) delete v.dark;
+  const primary = 'size=md, prio=primary, state=default, danger=false';
+  const kept = oracles.Button;
+  oracles.Button = light;
+  try {
+    const { failures } = await check(page, 'Button', {
+      only: [primary],
+      dark: true,
+    });
+    expect(failures.map((f) => `${f.layer}.${f.property}`)).toContain(
+      'root.background',
     );
-    expect(failures).toEqual([]);
-    // Every excused entry was reached and measured.
-    // Every excused entry was reached and measured, but for a layer the variant does not draw.
-    expect(gaps).toHaveLength(reachableExcuses(oracles[component]));
-  });
+  } finally {
+    oracles.Button = kept;
+    mode = 'light';
+  }
+});
 
 test('a difference nobody decided on fails, naming the variant and the property', async ({
   page,

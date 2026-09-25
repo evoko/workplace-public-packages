@@ -41,15 +41,12 @@ set:
     reason: >-
       The title fills its header, the chevron at the header's end, as Figma sizes it (FILL, 260
       of the header's 288): a text's sizing the IR does not read, set here.
-  root.appearance.expanded=false.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws Expandable Card no focus state; a keyboard user needs to see its header focused,
       SOLAR's floor. The card draws SOLAR's focus ring, as Card's does; the design review asks
       SOLAR to draw it.
-  root.appearance.expanded=true.focus.shadow:
-    token: shadow.focus.default
-    reason: As the collapsed card's, the focus ring.
 
 bind:
   iconChevronDown.width:

@@ -13,15 +13,12 @@ base:
     Both draw Figma's segment with the shared layer helpers.
 
 set:
-  root.appearance.selected=false.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws no focus state ("handled by the parent assembly treating the segment as a
       radio", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with
       SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it.
-  root.appearance.selected=true.focus.shadow:
-    token: shadow.focus.default
-    reason: As unselected, SOLAR's focus ring.
 
 bind:
   iconLeading.width:

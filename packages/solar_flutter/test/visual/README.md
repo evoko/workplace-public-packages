@@ -5,6 +5,10 @@ Every generated widget, pumped once per oracle variant, measured against what Fi
 of `packages/components/test/visual/`, with the same oracle and tolerances; native widget tests,
 run by `flutter test` with the rest of the package.
 
+- **Both modes.** Every widget is checked twice, under `SolarTheme.light` and `SolarTheme.dark`,
+  each variant read in Dark with its `dark` over it (`inMode`), as the web check does; a self-test
+  proves a Light drawing fails there. Dark's reports are `<name>_dark-gaps.json` and
+  `<name>_dark-failures.json`.
 - **Cases**: what is particular to a component is its case, `cases/<name>.dart` (a `VisualCase`):
   how to build the widget in one oracle variant, its slots filled with probes, and how to measure
   each oracle layer from it. The building half lives in `../../variants/`

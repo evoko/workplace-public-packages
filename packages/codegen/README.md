@@ -210,6 +210,17 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      rows a shell gives it (`content`) by the gap.
    - **A text placed by position** (the double calendar's month labels) has `x` and `y` cells, as
      any placed layer; before, a text's position was dropped, though the oracle measured it.
+     What the pipeline review added (2026-09-25):
+   - **Patterns and reason references** in overlays (the reference,
+     [spec/overlay/README.md](../../spec/overlay/README.md)): a rule's layer may be a pattern, a
+     `set`'s look `*`, and a reason another rule's; 327 numbered rules became patterns.
+   - **The overlay audit**, `npm run solar:overlay:audit` (`src/report/overlay-audit.mjs`): what
+     the overlays decide more than once, reasons written verbatim, literals a token now matches,
+     and sets Figma now agrees with. Read-only, never part of the build.
+   - **Both modes in the oracle.** `buildOracle` takes a `mode`; the stage writes Light with each
+     variant's Dark differences beside it (`withDark`), and both visual checks measure both.
+   - **The Node check.** Every CLI stops in one line on a Node older than `.nvmrc`
+     (`src/util/require-node.mjs`), before anything loads.
      What F10 (the cards) added:
    - **A layer one variant adds, in its place.** Figma's export records a layer only one variant
      draws after its siblings (Card's loading title placeholder); the overlay's `places` puts it
@@ -257,7 +268,9 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    or its own name; two that would share one are qualified by their parents until they differ
    (`/Field/Label` is `fieldLabel` beside `/Label`), and repeated siblings keep Figma's order
    (`tabItem`, `tabItem2`). Names depend on the set of paths alone, never on the order seen.
-4. **Apply the overlay** (`src/normalize/overlay.mjs`, `spec/overlay/<name>.yaml`). The only place
+4. **Apply the overlay** (`src/normalize/overlay.mjs`, `spec/overlay/<name>.yaml`; every rule kind,
+   with a real example, is in the reference, [spec/overlay/README.md](../../spec/overlay/README.md),
+   and `npm run solar:overlay:audit` lists what the overlays decide more than once). The only place
    judgement lives: the stock control to wrap, renames, a cell that follows more axes than the
    model says, a raw value bound to the token of the same value, an allowed literal, an accepted
    finding. Every rule needs a reason, and a rule that no longer matches the IR fails the build. A state

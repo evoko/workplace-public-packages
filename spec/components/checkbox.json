@@ -73,7 +73,7 @@
         "height": {
           "literal": 16,
           "from": "checked=false, disabled=false, hover=false, mixed=false, focus=false",
-          "allowed": "As its width."
+          "allowed": "The box is 16px, and SOLAR has no control size token (the design review's question on control sizes and the target size); carried as Figma's number."
         },
         "direction": {
           "none": true,
@@ -322,7 +322,7 @@
         "height": {
           "literal": 7,
           "from": "checked=true, disabled=false, hover=false, mixed=false, focus=false",
-          "allowed": "As its width."
+          "allowed": "The tick's own size, 10 by 7, is its drawing's, as Figma's outline is: a glyph, not an icon from the ladder."
         }
       },
       "size": {},
@@ -481,7 +481,7 @@
         "height": {
           "literal": 2,
           "from": "checked=true, disabled=false, hover=false, mixed=true, focus=false",
-          "allowed": "As its width."
+          "allowed": "The dash's own size, 10 by 2, is its drawing's, as the tick's is."
         }
       },
       "size": {},
@@ -686,7 +686,7 @@
       {
         "rule": "allowLiteral",
         "at": "container.height",
-        "reason": "As its width."
+        "reason": "The dash's own size, 10 by 2, is its drawing's, as the tick's is."
       },
       {
         "rule": "allowLiteral",
@@ -696,7 +696,7 @@
       {
         "rule": "allowLiteral",
         "at": "icon.height",
-        "reason": "As its width."
+        "reason": "The tick's own size, 10 by 7, is its drawing's, as Figma's outline is: a glyph, not an icon from the ladder."
       },
       {
         "rule": "allowLiteral",
@@ -706,7 +706,7 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As its width."
+        "reason": "The box is 16px, and SOLAR has no control size token (the design review's question on control sizes and the target size); carried as Figma's number."
       },
       {
         "rule": "allowLiteral",

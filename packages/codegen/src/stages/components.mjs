@@ -18,7 +18,7 @@ import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { emitFlutterComponents } from '../emit/flutter-component.mjs';
 import { emitRegistries } from '../emit/registries.mjs';
 import { renderShells } from '../shells/index.mjs';
-import { buildOracle, hideInComposed } from '../verify/oracle.mjs';
+import { buildOracle, hideInComposed, withDark } from '../verify/oracle.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
@@ -75,12 +75,16 @@ export function build() {
       defaults,
     });
     // Beside the IR, never from it: the oracle reads the Figma set, and the IR only for names.
-    const oracle = buildOracle(loaded.set, spec, deviations, {
-      tokens,
-      names,
-      overlay,
-      fileVersion: catalog.fileVersion,
-    });
+    const at = (mode) =>
+      buildOracle(loaded.set, spec, deviations, {
+        tokens,
+        names,
+        overlay,
+        fileVersion: catalog.fileVersion,
+        mode,
+      });
+    // Light, with what Dark draws otherwise beside it: the checks measure both.
+    const oracle = withDark(at('light'), at('dark'));
     return { spec, deviations, oracle, set: loaded.set, overlay };
   });
   // What an instance of another component hides of it, once every IR is built (a child may come

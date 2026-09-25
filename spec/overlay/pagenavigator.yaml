@@ -18,13 +18,13 @@ set:
       never sizes it.
   prevButton.base.height:
     none: true
-    reason: As its width, its own.
+    reason: { as: set prevButton.base.width }
   nextButton.base.width:
     none: true
     reason: As the previous button's, its own.
   nextButton.base.height:
     none: true
-    reason: As its width, its own.
+    reason: { as: set nextButton.base.width }
   prevButton.base.variant.state:
     keyword: disabled
     reason: >-

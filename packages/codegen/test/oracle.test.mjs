@@ -7,7 +7,7 @@ import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
 import * as stage from '../src/stages/components.mjs';
 import { packagesDir, specDir } from '../src/util/paths.mjs';
-import { buildOracle, hex } from '../src/verify/oracle.mjs';
+import { buildOracle, hex, withDark } from '../src/verify/oracle.mjs';
 
 const { built, tokens } = stage.build();
 const of = (name) => built.find((b) => b.spec.component === name);
@@ -123,17 +123,21 @@ describe('the Button oracle', () => {
       delete s.combined;
     }
     const catalog = loadWebCatalog();
-    const again = buildOracle(
-      loadComponent(catalog, 'Button').set,
-      scrambled,
-      button.deviations,
-      {
-        tokens,
-        names: tokenNames(loadContract()),
-        overlay: loadOverlay('Button'),
-        fileVersion: catalog.fileVersion,
-      },
-    );
+    // In both modes: Light, and what Dark draws otherwise beside it.
+    const at = (mode) =>
+      buildOracle(
+        loadComponent(catalog, 'Button').set,
+        scrambled,
+        button.deviations,
+        {
+          tokens,
+          names: tokenNames(loadContract()),
+          overlay: loadOverlay('Button'),
+          fileVersion: catalog.fileVersion,
+          mode,
+        },
+      );
+    const again = withDark(at('light'), at('dark'));
     expect(again).toEqual(oracle);
     // And it imports no recipe or emitter.
     const source = readFileSync(

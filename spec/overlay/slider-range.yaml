@@ -37,7 +37,7 @@ follows:
       a control that cannot be used is drawn smaller and flat.
   handle.height:
     axes: [state]
-    reason: As its width.
+    reason: { as: follows handle.width }
   handle.borderWidth:
     axes: [state]
     reason: As its width, the disabled handle's thinner edge.
@@ -46,7 +46,7 @@ follows:
     reason: As the first handle's, 14px disabled.
   handle2.height:
     axes: [state]
-    reason: As its width.
+    reason: { as: follows handle2.width }
   handle2.borderWidth:
     axes: [state]
     reason: As the first handle's, a thinner edge disabled.

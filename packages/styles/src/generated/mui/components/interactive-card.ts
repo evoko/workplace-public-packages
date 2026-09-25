@@ -183,6 +183,9 @@ export const solarInteractiveCardStyles = {
       boxShadow: 'var(--solar-shadow-focus-default)',
       borderWidth: 'var(--solar-border-strong)',
       borderStyle: 'solid',
+      '&:has(.SolarInteractiveCard-press.Mui-focusVisible)': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
+      },
     },
     'selected=true, dragging=false': {
       backgroundColor: 'var(--solar-color-surface-feedback-info-subtle)',

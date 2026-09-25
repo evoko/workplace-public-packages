@@ -60,22 +60,10 @@ set:
       Figma draws the line+text stepper's second step upcoming after a complete first, with no step
       active; a stepper always has one (its active index), the step after the completed ones. The
       design review asks SOLAR to draw it.
-  stepperIndicator.base.width:
+  stepperIndicator*.base.width:
     none: true
     reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
-  stepperIndicator.base.height:
-    none: true
-    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
-  stepperIndicator2.base.width:
-    none: true
-    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
-  stepperIndicator2.base.height:
-    none: true
-    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
-  stepperIndicator3.base.width:
-    none: true
-    reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
-  stepperIndicator3.base.height:
+  stepperIndicator*.base.height:
     none: true
     reason: A step's circle is a SOLAR Stepper Indicator, whose 24px is its own.
 
@@ -127,15 +115,7 @@ allowLiteral:
       widths (the design review's question on sizes with no variable).
   progressRectangle2.height:
     reason: As the bar's, 4px.
-  rectangle1.height:
-    reason: As the progress bar's, a segment 4px thick.
-  rectangle2.height:
-    reason: As the progress bar's, a segment 4px thick.
-  rectangle3.height:
-    reason: As the progress bar's, a segment 4px thick.
-  rectangle4.height:
-    reason: As the progress bar's, a segment 4px thick.
-  rectangle5.height:
+  rectangle*.height:
     reason: As the progress bar's, a segment 4px thick.
   frame.height:
     reason: A line between two circles is 2px thick, bound to nothing (as the bar's, no token).

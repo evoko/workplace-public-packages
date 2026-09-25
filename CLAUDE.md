@@ -36,14 +36,17 @@ emitter in `src/emit/` for a target-specific one, or the component's descriptor 
 Never edit a generated file to keep a change, and never edit `docs/` to make code look right. Run the command and commit its output after
 touching that package. Decisions about one component go in its hand-written overlay,
 `spec/overlay/<component>.yaml`: every rule needs a `reason`, and a rule that no
-longer matches the IR fails the build. A decision that holds for every component (an unbound `0`
+longer matches the IR fails the build. Every rule kind, with a real example, is in
+[spec/overlay/README.md](spec/overlay/README.md); a rule may name several layers by a pattern
+(`dayGridDayCell*.base.width`) and give another rule's reason (`reason: { as: … }`) rather than
+repeat it, and `npm run solar:overlay:audit` lists what the overlays decide more than once. A decision that holds for every component (an unbound `0`
 inset is `inset.none`) goes in `spec/overlay/defaults.yaml` instead, once; a component's own rule
 on the same cell wins. A component's shells (`packages/components/src/<Name>.tsx`, `solar_flutter`'s
 `lib/src/components/solar_<name>.dart`, and its story) are generated on every `solar:codegen` from
 the templates in its descriptor, which are the hand-written behaviour: edit the template, never
 the shell, whose first line names its descriptor. A component whose shell must be edited as a file
 opts out with `owned: true` (`packages/codegen/src/shells/index.mjs`). Its look is the generated
-recipe, never values in the shell. Every variant is checked on both platforms against
+recipe, never values in the shell. Every variant is checked on both platforms, in Light and in Dark, against
 what Figma draws: `spec/verify/<name>.json` (the oracle, generated beside the IR, never from the
 recipe) and the visual checks (`npm run test:visual` for React in Chromium, `flutter test` for the
 widgets). A difference fails unless the oracle excuses it with an open finding or an overlay

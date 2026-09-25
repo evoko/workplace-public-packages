@@ -50,13 +50,13 @@ set:
     reason: As Browse's, the replace Icon Button's own size.
   iconButton.base.height:
     none: true
-    reason: As its width.
+    reason: { as: set iconButton.base.width }
   iconButton2.base.width:
     none: true
     reason: As the replace button's, the remove Icon Button's own size.
   iconButton2.base.height:
     none: true
-    reason: As its width.
+    reason: { as: set iconButton2.base.width }
 
 bind:
   iconFile.width:

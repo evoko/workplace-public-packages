@@ -21,39 +21,9 @@ set:
   dropdownGroupLabel.size.sm.width:
     keyword: FILL
     reason: As md's, a sample.
-  dropdownItem.base.width:
+  dropdownItem*.base.width:
     keyword: FILL
     reason: As the heading's, the row spans the menu.
-  dropdownItem.size.sm.width:
-    keyword: FILL
-    reason: As md's, a sample.
-  dropdownItem2.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  dropdownItem2.size.sm.width:
-    keyword: FILL
-    reason: As md's, a sample.
-  dropdownItem3.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  dropdownItem3.size.sm.width:
-    keyword: FILL
-    reason: As md's, a sample.
-  dropdownItem4.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  dropdownItem4.size.sm.width:
-    keyword: FILL
-    reason: As md's, a sample.
-  dropdownItem5.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  dropdownItem5.size.sm.width:
-    keyword: FILL
-    reason: As md's, a sample.
-  dropdownItem6.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  dropdownItem6.size.sm.width:
+  dropdownItem*.size.sm.width:
     keyword: FILL
     reason: As md's, a sample.

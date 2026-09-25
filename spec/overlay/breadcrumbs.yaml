@@ -23,19 +23,7 @@ samples:
       item and chevron; the oracle checks each trail, reached by as many pages.
 
 bind:
-  iconChevronRight.width:
+  iconChevronRight*.width:
     literal: 12
     token: icon.xs
     reason: Same value, governed token; the chevron's height is already bound to it.
-  iconChevronRight2.width:
-    literal: 12
-    token: icon.xs
-    reason: As the first chevron's.
-  iconChevronRight3.width:
-    literal: 12
-    token: icon.xs
-    reason: As the first chevron's.
-  iconChevronRight4.width:
-    literal: 12
-    token: icon.xs
-    reason: As the first chevron's.

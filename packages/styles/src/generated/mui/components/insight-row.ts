@@ -243,6 +243,7 @@ export const solarInsightRowStyles = {
         },
       },
       '&:has(.SolarInsightRow-press.Mui-focusVisible)': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
       '& .SolarInsightRow-severityBar': {

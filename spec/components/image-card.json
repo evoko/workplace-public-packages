@@ -205,7 +205,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the selected tile's, the focus ring.",
+              "reason": "Figma draws Image Card no focus state; a pressable tile, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "none": true
               }
@@ -237,7 +237,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the selected tile's, the focus ring.",
+              "reason": "Figma draws Image Card no focus state; a pressable tile, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -814,12 +814,12 @@
       {
         "rule": "set",
         "at": "root.appearance.filled=false, selected=false.focus.shadow",
-        "reason": "As the selected tile's, the focus ring."
+        "reason": "Figma draws Image Card no focus state; a pressable tile, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",
         "at": "root.appearance.filled=true, selected=false.focus.shadow",
-        "reason": "As the selected tile's, the focus ring."
+        "reason": "Figma draws Image Card no focus state; a pressable tile, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

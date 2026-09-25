@@ -47,11 +47,11 @@ allowLiteral:
       question on control sizes). Each is drawn at its own size, centred in that box, so a touch
       target around it reaches past the box rather than moving it.
   cta.height:
-    reason: As its width.
+    reason: { as: allowLiteral cta.width }
   attachment.width:
     reason: As the send button's.
   attachment.height:
-    reason: As its width.
+    reason: { as: allowLiteral attachment.width }
   field.height:
     reason: >-
       As Text Input's field: SOLAR publishes no control height token (owner decision 2026-09-23,

@@ -92,6 +92,14 @@
  *                                                        two components' (Date Picker Open's Day
  *                                                        Cells are Date Picker Day Cells)
  *
+ * Two forms save repeating a decision. A rule's layer may be a pattern (`dayGridDayCell*.base.width`,
+ * `*` any letters and digits) in `follows`, `bind`, `set`, `allowLiteral`, `controlDraws` and
+ * `caller`: it is expanded once against the IR's layer names, before anything reads the rule, and
+ * a pattern that matches no layer fails as a stale rule does; an address given in full wins over
+ * a pattern on the same cell. A reason may be another rule's (`reason: { as: "set
+ * dayGridDayCell*.base.width" }`, its section and address as the file writes them): it is that
+ * rule's sentence, resolved as the file is read, and one that names no rule fails.
+ *
  * `accept` and `follows` are not interchangeable. `accept` leaves the recipe as derived and only
  * records that the Figma variants differing from it are known. When the Figma variant is the
  * one that is right -- lg is meant to be flat -- the cell must `follow` that axis instead, so the
@@ -213,12 +221,103 @@ export function sampleAxes(resolved, overlay) {
   };
 }
 
+/**
+ * Every reason that is another rule's (`{ as: "<section> <address>" }`), replaced by that rule's
+ * sentence, following a chain of them; one naming no rule, or a chain back to itself, fails.
+ */
+function resolveReasons(doc, fail) {
+  const sentence = (section, at, seen = new Set()) => {
+    const rule = doc[section]?.[at];
+    const reason = rule?.reason;
+    if (!reason || typeof reason !== 'object') return reason;
+    if (typeof reason.as !== 'string' || !/^\S+ \S/.test(reason.as))
+      fail(
+        `${section}.${at}: a reason's as names a rule by its section and address`,
+      );
+    const here = `${section} ${at}`;
+    if (seen.has(here))
+      fail(`${section}.${at}: its reason refers back to itself`);
+    seen.add(here);
+    const [target, ...rest] = reason.as.split(' ');
+    const address = rest.join(' ');
+    if (!doc[target]?.[address])
+      fail(
+        `${section}.${at}: its reason is ${reason.as}'s, which is no rule of this file`,
+      );
+    return sentence(target, address, seen);
+  };
+  for (const [section, rules] of Object.entries(doc))
+    if (FIELDS[section] && rules && typeof rules === 'object')
+      for (const [at, rule] of Object.entries(rules))
+        if (rule?.reason && typeof rule.reason === 'object')
+          rule.reason = sentence(section, at);
+}
+
+/** The sections whose rules address a layer by its IR name, which may be a pattern. */
+const PATTERNED = [
+  'follows',
+  'bind',
+  'set',
+  'allowLiteral',
+  'controlDraws',
+  'caller',
+];
+
+/**
+ * The overlay with every patterned address (`dayGridDayCell*.base.width`) expanded into the IR
+ * layers it names, in place and once: a pattern that matches no layer fails as a stale rule does,
+ * and an address given in full wins over a pattern on the same cell. Called once the layers are
+ * named, before any rule is read.
+ */
+export function expandPatterns(overlay, layers) {
+  if (!overlay || EXPANDED.has(overlay)) return overlay;
+  const fail = (detail) => {
+    throw new Error(`${overlay.file}: ${detail}`);
+  };
+  for (const section of PATTERNED) {
+    const rules = overlay[section];
+    if (!rules) continue;
+    const given = Object.fromEntries(
+      Object.entries(rules).filter(([at]) => !at.split('.')[0].includes('*')),
+    );
+    const out = { ...given };
+    const from = {};
+    for (const [at, rule] of Object.entries(rules)) {
+      const [layer, ...rest] = at.split('.');
+      if (!layer.includes('*')) continue;
+      const shape = new RegExp(
+        `^${layer
+          .split('*')
+          .map((p) => p.replace(/[^A-Za-z0-9]/g, '\\$&'))
+          .join('[A-Za-z0-9]*')}$`,
+      );
+      const hits = layers.filter((l) => shape.test(l));
+      if (!hits.length) fail(`${section} ${at}: the pattern matches no layer`);
+      for (const hit of hits) {
+        const key = [hit, ...rest].join('.');
+        if (key in given) continue;
+        if (from[key])
+          fail(
+            `${section} ${at}: ${key} is ${from[key]}'s too; one pattern per cell`,
+          );
+        from[key] = at;
+        out[key] = rule;
+      }
+    }
+    overlay[section] = out;
+  }
+  EXPANDED.add(overlay);
+  return overlay;
+}
+const EXPANDED = new WeakSet();
+
 /** Parses and validates overlay text. The structure is checked here; the IR is checked on apply. */
 export function parseOverlay(text, file) {
   const doc = parse(text) ?? {};
   const fail = (detail) => {
     throw new Error(`${file}: ${detail}`);
   };
+  resolveReasons(doc, fail);
   if (typeof doc.component !== 'string') fail('names no component');
   for (const key of Object.keys(doc))
     if (key !== 'component' && !SECTIONS.includes(key))
@@ -759,7 +858,12 @@ export function sameLayers(resolved, overlay) {
  *
  * @returns {{spec: object, deviations: object[]}} new objects; the inputs are not mutated
  */
-export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
+export function applyOverlay(
+  ir,
+  deviationsIn,
+  overlay,
+  { names, axes, drawn = [] },
+) {
   const spec = structuredClone(ir);
   const deviations = deviationsIn.map((d) => ({ ...d }));
   if (!overlay) return { spec: { ...spec, overlay: null }, deviations };
@@ -949,6 +1053,37 @@ export function applyOverlay(ir, deviationsIn, overlay, { names, axes }) {
     record('bind', at, rule.reason);
   }
 
+  // A set whose look is `*` (`root.appearance.*.focus.shadow`) is one rule for every look Figma
+  // draws: each combination of the axes the component's looks are keyed by, as its variants draw
+  // them (File Card's resting file tile too, which no layer's look names), or `default` where no
+  // layer has a look. A look given in full wins, as a layer given in full does.
+  const everyLook = () => {
+    const keys = new Set(
+      Object.values(spec.style).flatMap((st) =>
+        Object.keys(st.appearance ?? {}),
+      ),
+    );
+    const named = [...keys].find((k) => k !== 'default');
+    if (!named) return ['default'];
+    const lookAxes = named.split(', ').map((p) => p.split('=')[0]);
+    return [
+      ...new Set(
+        drawn.map((props) =>
+          lookAxes.map((a) => `${a}=${props[a]}`).join(', '),
+        ),
+      ),
+    ].filter((k) => !k.includes('=undefined'));
+  };
+  if (overlay.set)
+    overlay.set = Object.fromEntries(
+      Object.entries(overlay.set).flatMap(([at, rule]) => {
+        const [layer, section, look, ...rest] = at.split('.');
+        if (section !== 'appearance' || look !== '*') return [[at, rule]];
+        return everyLook()
+          .map((k) => [[layer, section, k, ...rest].join('.'), rule])
+          .filter(([key]) => !(key in overlay.set));
+      }),
+    );
   for (const [at, rule] of sorted('set')) {
     const parts = at.split('.');
     const [layer, section] = parts;

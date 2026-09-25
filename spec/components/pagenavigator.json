@@ -145,7 +145,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As its width, its own.",
+          "reason": "Each button is a SOLAR PageNavButton, whose size is its own: the navigator places it, and never sizes it.",
           "replaced": {
             "literal": 36
           }
@@ -201,7 +201,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As its width, its own.",
+          "reason": "As the previous button's, its own.",
           "replaced": {
             "literal": 36
           }
@@ -233,7 +233,7 @@
       {
         "rule": "set",
         "at": "nextButton.base.height",
-        "reason": "As its width, its own."
+        "reason": "As the previous button's, its own."
       },
       {
         "rule": "set",
@@ -243,7 +243,7 @@
       {
         "rule": "set",
         "at": "prevButton.base.height",
-        "reason": "As its width, its own."
+        "reason": "Each button is a SOLAR PageNavButton, whose size is its own: the navigator places it, and never sizes it."
       },
       {
         "rule": "set",

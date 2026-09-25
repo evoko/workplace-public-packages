@@ -73,7 +73,7 @@ set:
   root.appearance.selected=false, expanded=false.focus.borderColor:
     token: color.border.feedback.focus.strong
     reason: As a resting row's focus, edit's edge colour.
-  root.appearance.selected=false, expanded=false.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: As a resting row's focus, edit's ring.
   root.appearance.selected=false, expanded=true.focus.borderWidth:
@@ -82,27 +82,18 @@ set:
   root.appearance.selected=false, expanded=true.focus.borderColor:
     token: color.border.feedback.focus.strong
     reason: As a resting row's focus, edit's edge colour.
-  root.appearance.selected=false, expanded=true.focus.shadow:
-    token: shadow.focus.default
-    reason: As a resting row's focus, edit's ring.
   root.appearance.selected=true, expanded=false.focus.borderWidth:
     token: border.default
     reason: As a resting row's focus, its edge, edit's width.
   root.appearance.selected=true, expanded=false.focus.borderColor:
     token: color.border.feedback.focus.strong
     reason: As a resting row's focus, edit's edge colour.
-  root.appearance.selected=true, expanded=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As a resting row's focus, edit's ring.
   root.appearance.selected=true, expanded=true.focus.borderWidth:
     token: border.default
     reason: As a resting row's focus, its edge, edit's width.
   root.appearance.selected=true, expanded=true.focus.borderColor:
     token: color.border.feedback.focus.strong
     reason: As a resting row's focus, edit's edge colour.
-  root.appearance.selected=true, expanded=true.focus.shadow:
-    token: shadow.focus.default
-    reason: As a resting row's focus, edit's ring.
 
 accept:
   component.tree item.root.paddingTop@selected=false, expanded=false, state=edit:

@@ -36,7 +36,7 @@ set:
       never sizes it.
   stepperIndicator.base.height:
     none: true
-    reason: As its width, its own.
+    reason: { as: set stepperIndicator.base.width }
 
 allowLiteral:
   line.height:

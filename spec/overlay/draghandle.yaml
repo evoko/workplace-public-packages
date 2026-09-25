@@ -11,29 +11,13 @@ base:
     drag and drop, and the keyboard's Space to lift, arrows to move, Space to drop).
 
 allowLiteral:
-  col1Dot.width:
+  col1Dot*.width:
     reason: >-
       A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts
       at 12. Carried as Figma's numbers, and raised as a governance gap.
-  col1Dot.height:
-    reason: As its width.
-  col1Dot2.width:
+  col1Dot*.height:
+    reason: { as: allowLiteral col1Dot*.width }
+  col2Dot*.width:
     reason: As the first dot's, 3px at sm and 4px at md.
-  col1Dot2.height:
-    reason: As its width.
-  col1Dot3.width:
-    reason: As the first dot's, 3px at sm and 4px at md.
-  col1Dot3.height:
-    reason: As its width.
-  col2Dot.width:
-    reason: As the first dot's, 3px at sm and 4px at md.
-  col2Dot.height:
-    reason: As its width.
-  col2Dot2.width:
-    reason: As the first dot's, 3px at sm and 4px at md.
-  col2Dot2.height:
-    reason: As its width.
-  col2Dot3.width:
-    reason: As the first dot's, 3px at sm and 4px at md.
-  col2Dot3.height:
-    reason: As its width.
+  col2Dot*.height:
+    reason: { as: allowLiteral col2Dot*.width }

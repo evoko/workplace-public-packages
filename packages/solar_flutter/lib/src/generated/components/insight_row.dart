@@ -70,6 +70,8 @@ abstract final class SolarInsightRowRecipe {
         't:color.border.subtle',
     'root.borderColor|appearance|severity=info, loading=true|hover':
         't:color.border.medium',
+    'root.shadow|appearance|severity=info, loading=true|focus':
+        't:shadow.focus.default',
     'root.borderColor|appearance|severity=info, loading=true|focus':
         't:color.border.subtle',
     'severityBar.present|base': 'b:true',

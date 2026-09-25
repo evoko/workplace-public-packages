@@ -184,7 +184,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the success card's, the focus ring.",
+              "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -202,7 +202,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the success card's, the focus ring.",
+              "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -220,7 +220,55 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the success card's, the focus ring.",
+              "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
+              "replaced": {
+                "token": "shadow.raised"
+              }
+            }
+          }
+        },
+        "status=danger, loading=true": {
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "overlay",
+              "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
+              "replaced": {
+                "token": "shadow.raised"
+              }
+            }
+          }
+        },
+        "status=neutral, loading=true": {
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "overlay",
+              "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
+              "replaced": {
+                "token": "shadow.raised"
+              }
+            }
+          }
+        },
+        "status=success, loading=true": {
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "overlay",
+              "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
+              "replaced": {
+                "token": "shadow.raised"
+              }
+            }
+          }
+        },
+        "status=warning, loading=true": {
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "overlay",
+              "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -1087,12 +1135,22 @@
       {
         "rule": "set",
         "at": "root.appearance.status=danger, ghost=false.focus.shadow",
-        "reason": "As the success card's, the focus ring."
+        "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
+      },
+      {
+        "rule": "set",
+        "at": "root.appearance.status=danger, ghost=true.focus.shadow",
+        "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",
         "at": "root.appearance.status=neutral, ghost=false.focus.shadow",
-        "reason": "As the success card's, the focus ring."
+        "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
+      },
+      {
+        "rule": "set",
+        "at": "root.appearance.status=neutral, ghost=true.focus.shadow",
+        "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",
@@ -1101,8 +1159,18 @@
       },
       {
         "rule": "set",
+        "at": "root.appearance.status=success, ghost=true.focus.shadow",
+        "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
+      },
+      {
+        "rule": "set",
         "at": "root.appearance.status=warning, ghost=false.focus.shadow",
-        "reason": "As the success card's, the focus ring."
+        "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
+      },
+      {
+        "rule": "set",
+        "at": "root.appearance.status=warning, ghost=true.focus.shadow",
+        "reason": "Figma draws Status Card no focus state; a pressable card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

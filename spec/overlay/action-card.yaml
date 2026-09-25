@@ -53,18 +53,12 @@ set:
   button.base.height:
     none: true
     reason: As the primary Button's, the Button's own height.
-  root.appearance.status=default.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws Action Card no focus state; its description says focus is Card's. A pressable
       card, focused on its title, draws SOLAR's focus ring, as Card's does; the design review asks
       SOLAR to draw it.
-  root.appearance.status=done.focus.shadow:
-    token: shadow.focus.default
-    reason: As the default card's, the focus ring.
-  root.appearance.status=danger.focus.shadow:
-    token: shadow.focus.default
-    reason: As the default card's, the focus ring.
 
 bind:
   icon.width:

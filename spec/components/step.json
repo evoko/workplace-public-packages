@@ -205,7 +205,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As its width, its own.",
+          "reason": "The circle is a SOLAR Stepper Indicator, whose 24px is its own: the step places it, and never sizes it.",
           "replaced": {
             "literal": 24
           }
@@ -539,7 +539,7 @@
       {
         "rule": "set",
         "at": "stepperIndicator.base.height",
-        "reason": "As its width, its own."
+        "reason": "The circle is a SOLAR Stepper Indicator, whose 24px is its own: the step places it, and never sizes it."
       },
       {
         "rule": "set",

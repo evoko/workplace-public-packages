@@ -22,34 +22,16 @@ set:
   previous.base.height:
     none: true
     reason: As the previous arrow's, its own.
-  page1.base.width:
+  page*.base.width:
     none: true
     reason: As the previous arrow's, its own.
-  page1.base.height:
-    none: true
-    reason: As the previous arrow's, its own.
-  page2.base.width:
-    none: true
-    reason: As the previous arrow's, its own.
-  page2.base.height:
-    none: true
-    reason: As the previous arrow's, its own.
-  page3.base.width:
-    none: true
-    reason: As the previous arrow's, its own.
-  page3.base.height:
+  page*.base.height:
     none: true
     reason: As the previous arrow's, its own.
   paginationEllipsis.base.width:
     none: true
     reason: As the previous arrow's, its own.
   paginationEllipsis.base.height:
-    none: true
-    reason: As the previous arrow's, its own.
-  page12.base.width:
-    none: true
-    reason: As the previous arrow's, its own.
-  page12.base.height:
     none: true
     reason: As the previous arrow's, its own.
   next.base.width:

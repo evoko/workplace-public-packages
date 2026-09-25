@@ -21,6 +21,11 @@ npx playwright install chromium  # once, on a new machine
   `solar:codegen` from the codegen's component list, and every component must have one: a
   component with no case file fails the typecheck, and one with no cases fails its check, naming
   the file to add.
+- **Both modes.** Every component is checked twice, in Light and in Dark: the Dark pass sets the
+  page root's `data-theme="dark"`, as an app does, and reads each variant with its `dark` over it
+  (the oracle's Dark values where they differ, and its excuses where they differ). A self-test
+  proves a Light drawing fails there. Its reports are `<name>-dark-gaps.json` and
+  `<name>-dark-failures.json`.
 - **States** are reached as a user reaches them: the pointer over the control for hover, held down
   for pressed, keyboard focus for focus. MUI then sets its own classes, so the recipe is tested
   through them; where the component's `STATE_SELECTORS` marks focus with a class, the check first

@@ -239,7 +239,7 @@
         "width": {
           "token": "icon.xs",
           "from": "overlay",
-          "reason": "As the first chevron's."
+          "reason": "Same value, governed token; the chevron's height is already bound to it."
         },
         "height": {
           "token": "icon.xs",
@@ -330,7 +330,7 @@
         "width": {
           "token": "icon.xs",
           "from": "overlay",
-          "reason": "As the first chevron's."
+          "reason": "Same value, governed token; the chevron's height is already bound to it."
         },
         "height": {
           "token": "icon.xs",
@@ -391,7 +391,7 @@
         "width": {
           "token": "icon.xs",
           "from": "overlay",
-          "reason": "As the first chevron's."
+          "reason": "Same value, governed token; the chevron's height is already bound to it."
         },
         "height": {
           "token": "icon.xs",
@@ -433,17 +433,17 @@
       {
         "rule": "bind",
         "at": "iconChevronRight2.width",
-        "reason": "As the first chevron's."
+        "reason": "Same value, governed token; the chevron's height is already bound to it."
       },
       {
         "rule": "bind",
         "at": "iconChevronRight3.width",
-        "reason": "As the first chevron's."
+        "reason": "Same value, governed token; the chevron's height is already bound to it."
       },
       {
         "rule": "bind",
         "at": "iconChevronRight4.width",
-        "reason": "As the first chevron's."
+        "reason": "Same value, governed token; the chevron's height is already bound to it."
       },
       {
         "rule": "samples",

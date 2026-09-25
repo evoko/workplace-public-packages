@@ -69,7 +69,7 @@ set:
       size is their own: the row places them and never sizes them.
   iconButton.base.height:
     none: true
-    reason: As its width.
+    reason: { as: set iconButton.base.width }
   confirm.base.width:
     none: true
     reason: As the edit button's.

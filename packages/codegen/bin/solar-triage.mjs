@@ -6,6 +6,8 @@
 //   npm run solar:triage -- --json         the rows as JSON
 //
 // Read-only: it writes nothing, and is never part of solar:codegen.
+// First, before anything else loads: the Node this needs (.nvmrc).
+import '../src/util/require-node.mjs';
 import { loadWebCatalog } from '../src/normalize/components.mjs';
 import {
   loadDefaults,

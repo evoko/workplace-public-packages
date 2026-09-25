@@ -204,7 +204,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the icon FAB's, the focus ring.",
+              "reason": "Figma's focus state draws no focus ring, only the resting shadow/overlay, where the description says \"Focus ring via shadow/focus/default\" and WCAG's visible focus is SOLAR's floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.overlay"
               }
@@ -582,7 +582,7 @@
       {
         "rule": "set",
         "at": "root.appearance.type=extended.focus.shadow",
-        "reason": "As the icon FAB's, the focus ring."
+        "reason": "Figma's focus state draws no focus ring, only the resting shadow/overlay, where the description says \"Focus ring via shadow/focus/default\" and WCAG's visible focus is SOLAR's floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

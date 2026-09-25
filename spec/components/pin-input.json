@@ -544,7 +544,7 @@
         "height": {
           "literal": 40,
           "from": "size=md, state=default",
-          "allowed": "As its width."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         }
       },
       "size": {
@@ -565,7 +565,7 @@
           "height": {
             "literal": 32,
             "from": "size=sm, state=default",
-            "allowed": "As its width."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           }
         }
       },
@@ -723,12 +723,12 @@
         "width": {
           "literal": 36,
           "from": "size=md, state=default",
-          "allowed": "As the first cell’s."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         },
         "height": {
           "literal": 40,
           "from": "size=md, state=default",
-          "allowed": "As its width."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         }
       },
       "size": {
@@ -744,12 +744,12 @@
           "width": {
             "literal": 28,
             "from": "size=sm, state=default",
-            "allowed": "As the first cell’s."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           },
           "height": {
             "literal": 32,
             "from": "size=sm, state=default",
-            "allowed": "As its width."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           }
         }
       },
@@ -881,12 +881,12 @@
         "width": {
           "literal": 36,
           "from": "size=md, state=default",
-          "allowed": "As the first cell’s."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         },
         "height": {
           "literal": 40,
           "from": "size=md, state=default",
-          "allowed": "As its width."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         }
       },
       "size": {
@@ -902,12 +902,12 @@
           "width": {
             "literal": 28,
             "from": "size=sm, state=default",
-            "allowed": "As the first cell’s."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           },
           "height": {
             "literal": 32,
             "from": "size=sm, state=default",
-            "allowed": "As its width."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           }
         }
       },
@@ -1039,12 +1039,12 @@
         "width": {
           "literal": 36,
           "from": "size=md, state=default",
-          "allowed": "As the first cell’s."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         },
         "height": {
           "literal": 40,
           "from": "size=md, state=default",
-          "allowed": "As its width."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         }
       },
       "size": {
@@ -1060,12 +1060,12 @@
           "width": {
             "literal": 28,
             "from": "size=sm, state=default",
-            "allowed": "As the first cell’s."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           },
           "height": {
             "literal": 32,
             "from": "size=sm, state=default",
-            "allowed": "As its width."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           }
         }
       },
@@ -1197,12 +1197,12 @@
         "width": {
           "literal": 36,
           "from": "size=md, state=default",
-          "allowed": "As the first cell’s."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         },
         "height": {
           "literal": 40,
           "from": "size=md, state=default",
-          "allowed": "As its width."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         }
       },
       "size": {
@@ -1218,12 +1218,12 @@
           "width": {
             "literal": 28,
             "from": "size=sm, state=default",
-            "allowed": "As the first cell’s."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           },
           "height": {
             "literal": 32,
             "from": "size=sm, state=default",
-            "allowed": "As its width."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           }
         }
       },
@@ -1355,12 +1355,12 @@
         "width": {
           "literal": 36,
           "from": "size=md, state=default",
-          "allowed": "As the first cell’s."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         },
         "height": {
           "literal": 40,
           "from": "size=md, state=default",
-          "allowed": "As its width."
+          "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
         }
       },
       "size": {
@@ -1376,12 +1376,12 @@
           "width": {
             "literal": 28,
             "from": "size=sm, state=default",
-            "allowed": "As the first cell’s."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           },
           "height": {
             "literal": 32,
             "from": "size=sm, state=default",
-            "allowed": "As its width."
+            "allowed": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
           }
         }
       },
@@ -1812,27 +1812,27 @@
       {
         "rule": "follows",
         "at": "digit2.color",
-        "reason": "As the first digit’s."
+        "reason": "A digit is drawn in color.text.primary, the one colour Figma gives it, wherever one is typed: Figma's filled variant is the only one that draws the digits."
       },
       {
         "rule": "follows",
         "at": "digit3.color",
-        "reason": "As the first digit’s."
+        "reason": "A digit is drawn in color.text.primary, the one colour Figma gives it, wherever one is typed: Figma's filled variant is the only one that draws the digits."
       },
       {
         "rule": "follows",
         "at": "digit4.color",
-        "reason": "As the first digit’s."
+        "reason": "A digit is drawn in color.text.primary, the one colour Figma gives it, wherever one is typed: Figma's filled variant is the only one that draws the digits."
       },
       {
         "rule": "follows",
         "at": "digit5.color",
-        "reason": "As the first digit’s."
+        "reason": "A digit is drawn in color.text.primary, the one colour Figma gives it, wherever one is typed: Figma's filled variant is the only one that draws the digits."
       },
       {
         "rule": "follows",
         "at": "digit6.color",
-        "reason": "As the first digit’s."
+        "reason": "A digit is drawn in color.text.primary, the one colour Figma gives it, wherever one is typed: Figma's filled variant is the only one that draws the digits."
       },
       {
         "rule": "follows",
@@ -1852,7 +1852,7 @@
       {
         "rule": "allowLiteral",
         "at": "field.height",
-        "reason": "As its width."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
@@ -1862,52 +1862,52 @@
       {
         "rule": "allowLiteral",
         "at": "field2.height",
-        "reason": "As its width."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field2.width",
-        "reason": "As the first cell’s."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field3.height",
-        "reason": "As its width."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field3.width",
-        "reason": "As the first cell’s."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field4.height",
-        "reason": "As its width."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field4.width",
-        "reason": "As the first cell’s."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field5.height",
-        "reason": "As its width."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field5.width",
-        "reason": "As the first cell’s."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field6.height",
-        "reason": "As its width."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "allowLiteral",
         "at": "field6.width",
-        "reason": "As the first cell’s."
+        "reason": "A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size token (the design review's question on control sizes)."
       },
       {
         "rule": "slots",

@@ -245,7 +245,7 @@
         "height": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As its width."
+          "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
         }
       },
       "size": {
@@ -258,7 +258,7 @@
           "height": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As its width."
+            "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
           }
         }
       },
@@ -315,12 +315,12 @@
         "width": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As the first dot's, 3px at sm and 4px at md."
+          "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
         },
         "height": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As its width."
+          "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
         }
       },
       "size": {
@@ -328,12 +328,12 @@
           "width": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As the first dot's, 3px at sm and 4px at md."
+            "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
           },
           "height": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As its width."
+            "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
           }
         }
       },
@@ -390,12 +390,12 @@
         "width": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As the first dot's, 3px at sm and 4px at md."
+          "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
         },
         "height": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As its width."
+          "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
         }
       },
       "size": {
@@ -403,12 +403,12 @@
           "width": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As the first dot's, 3px at sm and 4px at md."
+            "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
           },
           "height": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As its width."
+            "allowed": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
           }
         }
       },
@@ -540,7 +540,7 @@
         "height": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As its width."
+          "allowed": "As the first dot's, 3px at sm and 4px at md."
         }
       },
       "size": {
@@ -553,7 +553,7 @@
           "height": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As its width."
+            "allowed": "As the first dot's, 3px at sm and 4px at md."
           }
         }
       },
@@ -615,7 +615,7 @@
         "height": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As its width."
+          "allowed": "As the first dot's, 3px at sm and 4px at md."
         }
       },
       "size": {
@@ -628,7 +628,7 @@
           "height": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As its width."
+            "allowed": "As the first dot's, 3px at sm and 4px at md."
           }
         }
       },
@@ -690,7 +690,7 @@
         "height": {
           "literal": 3,
           "from": "size=sm, state=default",
-          "allowed": "As its width."
+          "allowed": "As the first dot's, 3px at sm and 4px at md."
         }
       },
       "size": {
@@ -703,7 +703,7 @@
           "height": {
             "literal": 4,
             "from": "size=md, state=default",
-            "allowed": "As its width."
+            "allowed": "As the first dot's, 3px at sm and 4px at md."
           }
         }
       },
@@ -753,7 +753,7 @@
       {
         "rule": "allowLiteral",
         "at": "col1Dot.height",
-        "reason": "As its width."
+        "reason": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
       },
       {
         "rule": "allowLiteral",
@@ -763,27 +763,27 @@
       {
         "rule": "allowLiteral",
         "at": "col1Dot2.height",
-        "reason": "As its width."
+        "reason": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
       },
       {
         "rule": "allowLiteral",
         "at": "col1Dot2.width",
-        "reason": "As the first dot's, 3px at sm and 4px at md."
+        "reason": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
       },
       {
         "rule": "allowLiteral",
         "at": "col1Dot3.height",
-        "reason": "As its width."
+        "reason": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
       },
       {
         "rule": "allowLiteral",
         "at": "col1Dot3.width",
-        "reason": "As the first dot's, 3px at sm and 4px at md."
+        "reason": "A dot is 3px at sm and 4px at md, and SOLAR has no size that small: the icon ladder starts at 12. Carried as Figma's numbers, and raised as a governance gap."
       },
       {
         "rule": "allowLiteral",
         "at": "col2Dot.height",
-        "reason": "As its width."
+        "reason": "As the first dot's, 3px at sm and 4px at md."
       },
       {
         "rule": "allowLiteral",
@@ -793,7 +793,7 @@
       {
         "rule": "allowLiteral",
         "at": "col2Dot2.height",
-        "reason": "As its width."
+        "reason": "As the first dot's, 3px at sm and 4px at md."
       },
       {
         "rule": "allowLiteral",
@@ -803,7 +803,7 @@
       {
         "rule": "allowLiteral",
         "at": "col2Dot3.height",
-        "reason": "As its width."
+        "reason": "As the first dot's, 3px at sm and 4px at md."
       },
       {
         "rule": "allowLiteral",

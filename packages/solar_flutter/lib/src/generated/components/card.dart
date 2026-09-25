@@ -93,6 +93,8 @@ abstract final class SolarCardRecipe {
         't:shadow.focus.default',
     'root.borderColor|appearance|status=none, loading=false|focus':
         't:color.border.subtle',
+    'root.shadow|appearance|status=none, loading=true|focus':
+        't:shadow.focus.default',
     'title.present|base': 'b:true',
     'title.background|base': 'none',
     'title.borderColor|base': 'none',

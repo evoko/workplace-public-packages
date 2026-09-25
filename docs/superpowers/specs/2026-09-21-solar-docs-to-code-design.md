@@ -67,6 +67,17 @@ Figma ──► docs/                                   solar:sync, solar:tokens
 Three stages, one direction. The normalizer is the only component that reads `docs/`. The
 emitters are independent and interchangeable.
 
+> **What it has become (2026-09-25, after F10).** The system is a **layer-tree renderer** that
+> borrows platform behaviour where it helps, not a set of wrapped MUI and Flutter controls. Of 97
+> components, 84 draw their own layer tree from the recipe (`slots: 'drawn'`; the web's
+> `internal/layers.tsx`, Flutter's `SolarLayers`), borrowing a stock part for its behaviour: MUI's
+> `ButtonBase` (focus-visible, a link or a button), `InputBase` (8), `Tab`, `MenuItem`, `Select`,
+> `Slider` and `Switch`; Flutter's `TextField` (7), `FilledButton` (3) and `RawRadio`. The
+> hand-written Flutter runtime (`lib/src/*.dart` outside the components) is about 2,200 lines. The
+> stages and the invariants above are unchanged; §13's "hybrid, recorded per component" is the
+> rare case, and the overlays' `base` records it where it holds. Two questions follow, open for
+> the owner (§13).
+
 ### Directory layout
 
 ```
@@ -238,6 +249,11 @@ Web probes run under Playwright with `getComputedStyle`. Flutter probes run as n
 and golden tests inside the Dart package, not through Flutter web, which rasterises differently
 and would prove nothing about the mobile apps.
 
+> **Both modes, since 2026-09-25.** The oracle resolves every variant in Light and in Dark (each
+> variant's `dark`, what Dark draws otherwise), and both visual checks measure every variant in
+> each: the web by the root's `data-theme`, Flutter under `SolarTheme.dark`. A self-test in each
+> proves a Light drawing fails in Dark. Mobile type is left to the token parity suite.
+
 ## 8. Review surfaces
 
 Storybook for web, widgetbook for Flutter. A side-by-side gallery is a later human convenience;
@@ -313,7 +329,18 @@ and views.
 | Question                                      | Decision                                                                                                                        |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | One generator with transpilation, or several? | Neither. One normalizer, one spec, independent emitters. Parity by generated conformance tests, not shared implementation code. |
-| Wrap Material or build our own?               | Hybrid, recorded per component.                                                                                                 |
+| Wrap Material or build our own?               | Hybrid, recorded per component. In practice (2026-09-25): drawn from the layer tree, a stock part borrowed for its behaviour (§3). |
 | Where does Flutter live?                      | `packages/solar_flutter` in this repo, consumed by git dependency.                                                              |
 | How much of a component is generated?         | Recipe and types regenerate every run; the shell is scaffolded once and then owned.                                             |
 | Can a tweak change the docs?                  | Never. Only docs-to-code logic changes.                                                                                         |
+
+**Open for the owner (2026-09-25, from the pipeline review):**
+
+- **Does MUI 9 with Emotion earn its place as `@bwp-web/components`' peer dependency**, for what
+  is mostly `Box`, `ButtonBase` and `InputBase`? For: its focus and keyboard handling, and apps
+  already on MUI. Against: its weight and a theme the components barely read. A migration would
+  go component by component and can wait.
+- **The MUI theme holds literal hex** (`packages/styles/src/generated/mui/theme.ts`, 40 of them,
+  so MUI's `alpha()` and `darken()` work) while every recipe holds `var(--solar-*)`: a stock MUI
+  widget and a SOLAR component on one page switch modes by different mechanisms. MUI's
+  CSS-variables theme mode (`cssVariables: true`) would make them one.

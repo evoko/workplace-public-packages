@@ -70,6 +70,14 @@ abstract final class SolarStatusCardRecipe {
         't:shadow.focus.default',
     'root.borderColor|appearance|status=neutral, loading=false|focus':
         't:color.border.subtle',
+    'root.shadow|appearance|status=danger, loading=true|focus':
+        't:shadow.focus.default',
+    'root.shadow|appearance|status=neutral, loading=true|focus':
+        't:shadow.focus.default',
+    'root.shadow|appearance|status=success, loading=true|focus':
+        't:shadow.focus.default',
+    'root.shadow|appearance|status=warning, loading=true|focus':
+        't:shadow.focus.default',
     'title.present|base': 'b:true',
     'title.background|base': 'none',
     'title.borderColor|base': 'none',

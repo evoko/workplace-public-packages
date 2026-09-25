@@ -70,40 +70,25 @@ set:
   checkbox.base.height:
     none: true
     reason: As the Toggle's, the Checkbox's own size.
-  iconButton.base.width:
+  iconButton*.base.width:
     none: true
     reason: >-
       The actions are the caller's Icon Buttons, sm, whose 32px box is their own: the card places
       them and never sizes them.
-  iconButton.base.height:
+  iconButton*.base.height:
     none: true
     reason: As its width, the Icon Button's own.
-  iconButton2.base.width:
-    none: true
-    reason: As the first Icon Button's, its own.
-  iconButton2.base.height:
-    none: true
-    reason: As the first Icon Button's, its own.
-  iconButton3.base.width:
-    none: true
-    reason: As the first Icon Button's, its own.
-  iconButton3.base.height:
-    none: true
-    reason: As the first Icon Button's, its own.
   icon.base.color:
     token: color.icon.primary
     reason: >-
       Figma binds the headline's icon to a primitive, color/neutral/900, where component code
       takes semantic tokens only (CLR-002): the icon ink of the same value, color.icon.primary.
       The design review asks SOLAR to rebind it.
-  root.appearance.selected=false, drag=false.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws Interactive Card no focus state; a pressable card, focused on its headline,
       draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.
-  root.appearance.selected=true, drag=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the unselected card's, the focus ring.
 
 bind:
   icon.width:

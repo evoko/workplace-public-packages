@@ -36,20 +36,11 @@ set:
     reason: >-
       The action is the caller's Button, sm as Figma draws it, whose height is its own: the row
       places it and never sizes it.
-  root.appearance.severity=success, ghost=false.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws Insight Row no focus state; a pressable row, focused on its title, draws SOLAR's
       focus ring, as Card's does; the design review asks SOLAR to draw it.
-  root.appearance.severity=danger, ghost=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the success row's, the focus ring.
-  root.appearance.severity=warning, ghost=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the success row's, the focus ring.
-  root.appearance.severity=info, ghost=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the success row's, the focus ring.
 
 allowLiteral:
   severityBar.width:

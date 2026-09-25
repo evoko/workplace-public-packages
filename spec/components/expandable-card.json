@@ -181,7 +181,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the collapsed card's, the focus ring.",
+              "reason": "Figma draws Expandable Card no focus state; a keyboard user needs to see its header focused, SOLAR's floor. The card draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -561,7 +561,7 @@
       {
         "rule": "set",
         "at": "root.appearance.expanded=true.focus.shadow",
-        "reason": "As the collapsed card's, the focus ring."
+        "reason": "Figma draws Expandable Card no focus state; a keyboard user needs to see its header focused, SOLAR's floor. The card draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

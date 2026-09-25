@@ -100,6 +100,8 @@ abstract final class SolarInsightCardRecipe {
         't:color.border.medium',
     'root.background|appearance|severity=info, loading=true|hover':
         't:color.surface.base',
+    'root.shadow|appearance|severity=info, loading=true|focus':
+        't:shadow.focus.default',
     'root.borderColor|appearance|severity=info, loading=true|focus':
         't:color.border.subtle',
     'root.background|appearance|severity=info, loading=true|focus':

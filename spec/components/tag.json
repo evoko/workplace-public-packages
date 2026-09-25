@@ -129,7 +129,7 @@
         "height": {
           "literal": 24,
           "from": "status=success, type=status, invert=false",
-          "allowed": "As its width."
+          "allowed": "An icon-only tag is a 24px square, and every tag 24 tall, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
         }
       },
       "size": {},
@@ -2731,7 +2731,7 @@
       {
         "rule": "follows",
         "at": "iconClose.height",
-        "reason": "As its width."
+        "reason": "An inverted tag's close button is icon.sm, 16px, in every status, where every other close button is icon.xs: the larger target on the stronger fill, with less padding beside it."
       },
       {
         "rule": "follows",
@@ -2791,7 +2791,7 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As its width."
+        "reason": "An icon-only tag is a 24px square, and every tag 24 tall, bound to nothing: SOLAR has no control height token (the design review's question on control heights, as Button's is)."
       },
       {
         "rule": "allowLiteral",

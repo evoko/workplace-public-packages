@@ -13,4 +13,4 @@ allowLiteral:
   root.width:
     reason: As a PaginationItem's, a 24px square, so it keeps the items' rhythm (a governance gap).
   root.height:
-    reason: As its width.
+    reason: { as: allowLiteral root.width }

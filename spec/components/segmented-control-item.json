@@ -194,7 +194,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As unselected, SOLAR's focus ring.",
+              "reason": "Figma draws no focus state (\"handled by the parent assembly treating the segment as a radio\", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.control"
               }
@@ -397,7 +397,7 @@
       {
         "rule": "set",
         "at": "root.appearance.selected=true.focus.shadow",
-        "reason": "As unselected, SOLAR's focus ring."
+        "reason": "Figma draws no focus state (\"handled by the parent assembly treating the segment as a radio\", says its description), and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as Toggle's is; the design review asks SOLAR to draw it."
       },
       {
         "rule": "allowLiteral",

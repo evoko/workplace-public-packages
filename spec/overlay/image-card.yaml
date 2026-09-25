@@ -58,17 +58,11 @@ set:
   checkbox.base.height:
     none: true
     reason: As its width, the Checkbox's own.
-  root.appearance.filled=true, selected=true.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws Image Card no focus state; a pressable tile, focused on its title, draws SOLAR's
       focus ring, as Card's does; the design review asks SOLAR to draw it.
-  root.appearance.filled=true, selected=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the selected tile's, the focus ring.
-  root.appearance.filled=false, selected=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the selected tile's, the focus ring.
 
 allowLiteral:
   root.height:

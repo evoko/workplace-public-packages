@@ -45,20 +45,11 @@ set:
   statusIndicator.base.height:
     none: true
     reason: As its width, the StatusIndicator's own.
-  root.appearance.severity=success, ghost=false.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws Insight Card no focus state; a pressable card, focused on its title, draws
       SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.
-  root.appearance.severity=danger, ghost=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the success card's, the focus ring.
-  root.appearance.severity=warning, ghost=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the success card's, the focus ring.
-  root.appearance.severity=info, ghost=false.focus.shadow:
-    token: shadow.focus.default
-    reason: As the success card's, the focus ring.
 
 bind:
   iconMore.width:

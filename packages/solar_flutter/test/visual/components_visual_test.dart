@@ -34,18 +34,52 @@ void main() {
   });
 
   for (final component in oracles.keys.where(cases.containsKey)) {
-    testWidgets('$component draws what Figma draws, in every variant', (
-      tester,
-    ) async {
-      final (failures, gaps) = await check(tester, component, cases, oracles);
-      report('${fileOf(component)}-gaps', gaps);
-      report('${fileOf(component)}-failures', failures);
-      expect(failures, isEmpty, reason: failures.join('\n'));
-      // Every excused entry was reached and measured.
-      // Every excused entry was reached and measured, but for a layer the variant does not draw.
-      expect(gaps, hasLength(reachableExcuses(oracles[component]!)));
-    });
+    for (final dark in [false, true]) {
+      testWidgets(
+        '$component draws what Figma draws${dark ? ' in Dark' : ''}, in every variant',
+        (tester) async {
+          final (failures, gaps) = await check(
+            tester,
+            component,
+            cases,
+            oracles,
+            dark: dark,
+          );
+          final named = '${fileOf(component)}${dark ? '_dark' : ''}';
+          report('$named-gaps', gaps);
+          report('$named-failures', failures);
+          expect(failures, isEmpty, reason: failures.join('\n'));
+          // Every excused entry was reached and measured.
+          // Every excused entry was reached and measured, but for a layer the variant does not draw.
+          expect(gaps, hasLength(reachableExcuses(oracles[component]!)));
+        },
+      );
+    }
   }
+
+  testWidgets('in Dark, the widgets are drawn in Dark: Light values fail', (
+    tester,
+  ) async {
+    // Button with no dark blocks: an oracle that expects Light in Dark, which a widget drawn in
+    // Dark must now differ from.
+    final light = loadOracle('button');
+    for (final v in (light['variants'] as List).cast<Map<String, dynamic>>()) {
+      v.remove('dark');
+    }
+    const primary = 'size=md, prio=primary, state=default, danger=false';
+    final (failures, _) = await check(
+      tester,
+      'Button',
+      cases,
+      {...oracles, 'Button': light},
+      only: {primary},
+      dark: true,
+    );
+    expect(
+      failures.map((f) => '${f.layer}.${f.property}'),
+      contains('root.background'),
+    );
+  });
 
   testWidgets(
     'a difference nobody decided on fails, naming the variant and the property',

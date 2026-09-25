@@ -375,7 +375,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "A row spans the list: Figma draws it 387 wide, a sample.",
           "replaced": {
             "literal": 387
           }
@@ -430,7 +430,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first divider's, its own.",
+          "reason": "The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it.",
           "replaced": {
             "literal": 1
           }
@@ -464,7 +464,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "A row spans the list: Figma draws it 387 wide, a sample.",
           "replaced": {
             "literal": 387
           }
@@ -519,7 +519,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first divider's, its own.",
+          "reason": "The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it.",
           "replaced": {
             "literal": 1
           }
@@ -553,7 +553,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "A row spans the list: Figma draws it 387 wide, a sample.",
           "replaced": {
             "literal": 387
           }
@@ -608,7 +608,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first divider's, its own.",
+          "reason": "The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it.",
           "replaced": {
             "literal": 1
           }
@@ -642,7 +642,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "A row spans the list: Figma draws it 387 wide, a sample.",
           "replaced": {
             "literal": 387
           }
@@ -715,17 +715,17 @@
       {
         "rule": "set",
         "at": "divider2.base.height",
-        "reason": "As the first divider's, its own."
+        "reason": "The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it."
       },
       {
         "rule": "set",
         "at": "divider3.base.height",
-        "reason": "As the first divider's, its own."
+        "reason": "The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it."
       },
       {
         "rule": "set",
         "at": "divider4.base.height",
-        "reason": "As the first divider's, its own."
+        "reason": "The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it."
       },
       {
         "rule": "set",
@@ -755,7 +755,7 @@
       {
         "rule": "set",
         "at": "listItem2.base.width",
-        "reason": "As the first row's."
+        "reason": "A row spans the list: Figma draws it 387 wide, a sample."
       },
       {
         "rule": "set",
@@ -765,7 +765,7 @@
       {
         "rule": "set",
         "at": "listItem3.base.width",
-        "reason": "As the first row's."
+        "reason": "A row spans the list: Figma draws it 387 wide, a sample."
       },
       {
         "rule": "set",
@@ -775,7 +775,7 @@
       {
         "rule": "set",
         "at": "listItem4.base.width",
-        "reason": "As the first row's."
+        "reason": "A row spans the list: Figma draws it 387 wide, a sample."
       },
       {
         "rule": "set",
@@ -785,7 +785,7 @@
       {
         "rule": "set",
         "at": "listItem5.base.width",
-        "reason": "As the first row's."
+        "reason": "A row spans the list: Figma draws it 387 wide, a sample."
       },
       {
         "rule": "set",

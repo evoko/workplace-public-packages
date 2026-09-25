@@ -39,50 +39,17 @@ set:
   items.appearance.in-card=false.default.width:
     keyword: FILL
     reason: As the in-card list's.
-  listItem.base.width:
+  listItem*.base.width:
     keyword: FILL
     reason: >-
       A row spans the list: Figma draws it 387 wide, a sample.
-  listItem.appearance.in-card=false.default.width:
+  listItem*.appearance.in-card=false.default.width:
     keyword: FILL
     reason: As the in-card list's rows.
-  listItem2.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  listItem2.appearance.in-card=false.default.width:
-    keyword: FILL
-    reason: As the in-card list's rows.
-  listItem3.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  listItem3.appearance.in-card=false.default.width:
-    keyword: FILL
-    reason: As the in-card list's rows.
-  listItem4.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  listItem4.appearance.in-card=false.default.width:
-    keyword: FILL
-    reason: As the in-card list's rows.
-  listItem5.base.width:
-    keyword: FILL
-    reason: As the first row's.
-  listItem5.appearance.in-card=false.default.width:
-    keyword: FILL
-    reason: As the in-card list's rows.
-  divider.base.height:
+  divider*.base.height:
     none: true
     reason: >-
       The divider is a SOLAR Divider, whose 1px rule is its own: the list places it, and never sizes it.
-  divider2.base.height:
-    none: true
-    reason: As the first divider's, its own.
-  divider3.base.height:
-    none: true
-    reason: As the first divider's, its own.
-  divider4.base.height:
-    none: true
-    reason: As the first divider's, its own.
 
 accept:
   component.list.root.width@in-card=false:

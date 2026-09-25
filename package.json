@@ -26,7 +26,8 @@
     "solar:codegen": "node packages/codegen/bin/solar-codegen.mjs",
     "solar:rebuild": "node scripts/solar-sync.mjs --no-fetch",
     "solar:triage": "node packages/codegen/bin/solar-triage.mjs",
-    "solar:explain": "node packages/codegen/bin/solar-explain.mjs"
+    "solar:explain": "node packages/codegen/bin/solar-explain.mjs",
+    "solar:overlay:audit": "node packages/codegen/bin/solar-overlay-audit.mjs"
   },
   "devDependencies": {
     "turbo": "^2.11.2",

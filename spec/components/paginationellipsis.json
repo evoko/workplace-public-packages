@@ -88,7 +88,7 @@
         "height": {
           "literal": 24,
           "from": "",
-          "allowed": "As its width."
+          "allowed": "As a PaginationItem's, a 24px square, so it keeps the items' rhythm (a governance gap)."
         }
       },
       "size": {},
@@ -135,7 +135,7 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As its width."
+        "reason": "As a PaginationItem's, a 24px square, so it keeps the items' rhythm (a governance gap)."
       },
       {
         "rule": "allowLiteral",

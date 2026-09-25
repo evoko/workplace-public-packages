@@ -323,7 +323,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "As the heading's, the row spans the menu.",
           "replaced": {
             "literal": 240
           }
@@ -372,7 +372,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "As the heading's, the row spans the menu.",
           "replaced": {
             "literal": 240
           }
@@ -421,7 +421,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "As the heading's, the row spans the menu.",
           "replaced": {
             "literal": 240
           }
@@ -470,7 +470,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "As the heading's, the row spans the menu.",
           "replaced": {
             "literal": 240
           }
@@ -519,7 +519,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "As the heading's, the row spans the menu.",
           "replaced": {
             "literal": 240
           }
@@ -590,7 +590,7 @@
       {
         "rule": "set",
         "at": "dropdownItem2.base.width",
-        "reason": "As the first row's."
+        "reason": "As the heading's, the row spans the menu."
       },
       {
         "rule": "set",
@@ -600,7 +600,7 @@
       {
         "rule": "set",
         "at": "dropdownItem3.base.width",
-        "reason": "As the first row's."
+        "reason": "As the heading's, the row spans the menu."
       },
       {
         "rule": "set",
@@ -610,7 +610,7 @@
       {
         "rule": "set",
         "at": "dropdownItem4.base.width",
-        "reason": "As the first row's."
+        "reason": "As the heading's, the row spans the menu."
       },
       {
         "rule": "set",
@@ -620,7 +620,7 @@
       {
         "rule": "set",
         "at": "dropdownItem5.base.width",
-        "reason": "As the first row's."
+        "reason": "As the heading's, the row spans the menu."
       },
       {
         "rule": "set",
@@ -630,7 +630,7 @@
       {
         "rule": "set",
         "at": "dropdownItem6.base.width",
-        "reason": "As the first row's."
+        "reason": "As the heading's, the row spans the menu."
       },
       {
         "rule": "set",

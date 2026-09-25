@@ -601,7 +601,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As its width.",
+          "reason": "As Browse's, the replace Icon Button's own size.",
           "replaced": {
             "literal": 40
           }
@@ -656,7 +656,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As its width.",
+          "reason": "As the replace button's, the remove Icon Button's own size.",
           "replaced": {
             "literal": 40
           }
@@ -747,7 +747,7 @@
       {
         "rule": "set",
         "at": "iconButton.base.height",
-        "reason": "As its width."
+        "reason": "As Browse's, the replace Icon Button's own size."
       },
       {
         "rule": "set",
@@ -757,7 +757,7 @@
       {
         "rule": "set",
         "at": "iconButton2.base.height",
-        "reason": "As its width."
+        "reason": "As the replace button's, the remove Icon Button's own size."
       },
       {
         "rule": "set",

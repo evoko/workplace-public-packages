@@ -313,7 +313,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As its width.",
+          "reason": "The edit, Confirm and Cancel buttons are SOLAR Icon Buttons, sm as Figma draws them, whose size is their own: the row places them and never sizes them.",
           "replaced": {
             "literal": 32
           }
@@ -727,7 +727,7 @@
       {
         "rule": "set",
         "at": "iconButton.base.height",
-        "reason": "As its width."
+        "reason": "The edit, Confirm and Cancel buttons are SOLAR Icon Buttons, sm as Figma draws them, whose size is their own: the row places them and never sizes them."
       },
       {
         "rule": "set",

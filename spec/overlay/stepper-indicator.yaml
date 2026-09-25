@@ -29,4 +29,4 @@ allowLiteral:
       The circle is 24 across, bound to nothing: SOLAR has no size token for it (the design
       review's question on sizes with no variable).
   root.height:
-    reason: As its width.
+    reason: { as: allowLiteral root.width }

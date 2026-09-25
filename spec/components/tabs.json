@@ -302,7 +302,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first tab's, its own.",
+          "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it.",
           "replaced": {
             "literal": 32
           }
@@ -351,7 +351,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first tab's, its own.",
+          "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it.",
           "replaced": {
             "literal": 32
           }
@@ -400,7 +400,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first tab's, its own.",
+          "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it.",
           "replaced": {
             "literal": 32
           }
@@ -449,7 +449,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first tab's, its own.",
+          "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it.",
           "replaced": {
             "literal": 32
           }
@@ -498,7 +498,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first tab's, its own.",
+          "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it.",
           "replaced": {
             "literal": 32
           }
@@ -547,7 +547,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first tab's, its own.",
+          "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it.",
           "replaced": {
             "literal": 32
           }
@@ -596,7 +596,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first tab's, its own.",
+          "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it.",
           "replaced": {
             "literal": 32
           }
@@ -653,7 +653,7 @@
       {
         "rule": "set",
         "at": "tabItem2.base.height",
-        "reason": "As the first tab's, its own."
+        "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it."
       },
       {
         "rule": "set",
@@ -663,7 +663,7 @@
       {
         "rule": "set",
         "at": "tabItem3.base.height",
-        "reason": "As the first tab's, its own."
+        "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it."
       },
       {
         "rule": "set",
@@ -673,7 +673,7 @@
       {
         "rule": "set",
         "at": "tabItem4.base.height",
-        "reason": "As the first tab's, its own."
+        "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it."
       },
       {
         "rule": "set",
@@ -683,7 +683,7 @@
       {
         "rule": "set",
         "at": "tabItem5.base.height",
-        "reason": "As the first tab's, its own."
+        "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it."
       },
       {
         "rule": "set",
@@ -693,7 +693,7 @@
       {
         "rule": "set",
         "at": "tabItem6.base.height",
-        "reason": "As the first tab's, its own."
+        "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it."
       },
       {
         "rule": "set",
@@ -703,7 +703,7 @@
       {
         "rule": "set",
         "at": "tabItem7.base.height",
-        "reason": "As the first tab's, its own."
+        "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it."
       },
       {
         "rule": "set",
@@ -713,7 +713,7 @@
       {
         "rule": "set",
         "at": "tabItem8.base.height",
-        "reason": "As the first tab's, its own."
+        "reason": "A tab is a SOLAR Tab Item, whose height is its own, by size: the strip lays it out and never sizes it."
       },
       {
         "rule": "set",

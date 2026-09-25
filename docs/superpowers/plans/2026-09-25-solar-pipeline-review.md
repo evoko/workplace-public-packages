@@ -8,6 +8,13 @@
 > superpowers:subagent-driven-development or superpowers:executing-plans. The repository owner
 > handles all version control: no git write commands, ever. "Commit" means stop and report.
 
+**Status (2026-09-25, after F10):** done — #2 (patterns and reason references; 327 numbered
+rules folded, 33 empty reasons referred, the focus ring one patterned rule per overlay, `*` looks),
+#3 (the Node check), #4 (Dark measured on both platforms), #7 (`npm run solar:overlay:audit`; the
+focus ring did not become a global default, see `spec/overlay/README.md`), #8
+(`spec/overlay/README.md`) and #11 (the spec's notes; its two questions open for the owner). Not
+started: #1, #5, #6, #9, #10, #12, #13.
+
 **Goal:** make the pipeline cheaper to extend and to correct, without weakening the parts that
 make it trustworthy: the finding model, the oracle's independence from the recipe, and the reason
 on every overlay rule.

@@ -87,14 +87,11 @@ set:
     reason: >-
       The action is the caller's Button ("Try again"), sm as Figma draws it, whose height is its
       own: the card places it and never sizes it.
-  root.appearance.type=single.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws Device Card no focus state; a pressable card, focused on its name, draws SOLAR's
       focus ring, as Card's does; the design review asks SOLAR to draw it.
-  root.appearance.type=batch.focus.shadow:
-    token: shadow.focus.default
-    reason: As the single card's, the focus ring.
 
 bind:
   iconIconDevice.width:
@@ -104,7 +101,7 @@ bind:
   iconIconDevice.height:
     literal: 20
     token: icon.md
-    reason: As its width.
+    reason: { as: bind iconIconDevice.width }
   iconIconProgress.width:
     literal: 20
     token: icon.md

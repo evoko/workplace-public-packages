@@ -66,12 +66,38 @@ Future<void> loadBundledFonts() async {
   }
 }
 
+/// The mode a check measures in, set by [check]: in Dark, the case is pumped under
+/// [SolarTheme.dark], and each variant read as [inMode] gives it.
+bool _dark = false;
+
+/// A variant as the mode draws it: in Dark, its Light entry with its `dark` over it, the layers'
+/// values Dark draws otherwise (a token's Dark value) and its excuses where they differ.
+Map<String, dynamic> inMode(Map<String, dynamic> v) {
+  final dark = v['dark'] as Map<String, dynamic>?;
+  if (!_dark || dark == null) return v;
+  final over = (dark['layers'] as Map<String, dynamic>?) ?? const {};
+  return {
+    ...v,
+    'layers': {
+      for (final MapEntry(:key, :value)
+          in (v['layers'] as Map<String, dynamic>).entries)
+        key: {
+          ...value as Map<String, dynamic>,
+          ...?(over[key] as Map<String, dynamic>?),
+        },
+    },
+    'excused': dark['excused'] ?? v['excused'],
+  };
+}
+
 /// Each case in a tree of its own (a new key), so nothing animates from the previous one.
 Future<void> pump(WidgetTester tester, Widget child) async {
   await tester.pumpWidget(
     MaterialApp(
       key: UniqueKey(),
-      theme: ThemeData(extensions: const [SolarTheme.light]),
+      theme: ThemeData(
+        extensions: [_dark ? SolarTheme.dark : SolarTheme.light],
+      ),
       home: Scaffold(body: Center(child: child)),
     ),
   );
@@ -107,7 +133,9 @@ Map<String, dynamic> childVariant(
   Map<String, dynamic> oracle,
   Map<String, dynamic> wanted,
 ) {
-  for (final v in (oracle['variants'] as List).cast<Map<String, dynamic>>()) {
+  for (final v in (oracle['variants'] as List).cast<Map<String, dynamic>>().map(
+    inMode,
+  )) {
     final axes = {
       // A standalone's one variant is named '': no axes.
       for (final part in (v['figma'] as String).split(', '))
@@ -120,7 +148,10 @@ Map<String, dynamic> childVariant(
 
 /// The excused entries a check reaches: those on layers the variant draws, or a prop shows.
 int reachableExcuses(Map<String, dynamic> oracle) {
-  final variants = (oracle['variants'] as List).cast<Map<String, dynamic>>();
+  final variants = (oracle['variants'] as List)
+      .cast<Map<String, dynamic>>()
+      .map(inMode)
+      .toList();
   final rest = variants.first['layers'] as Map<String, dynamic>;
   final slots = oracle['slots'] as Map;
   var n = 0;
@@ -146,12 +177,17 @@ Future<(List<Difference>, List<Difference>)> check(
   Map<String, VisualCase> cases,
   Map<String, Map<String, dynamic>> oracles, {
   Set<String>? only,
+  bool dark = false,
 }) async {
+  _dark = dark;
   final oracle = oracles[component]!;
   final kase = cases[component]!;
   final failures = <Difference>[];
   final gaps = <Difference>[];
-  final variants = (oracle['variants'] as List).cast<Map<String, dynamic>>();
+  final variants = (oracle['variants'] as List)
+      .cast<Map<String, dynamic>>()
+      .map(inMode)
+      .toList();
   final atRest = variants.first['layers'] as Map<String, dynamic>;
   for (final v in variants) {
     final name = v['figma'] as String;

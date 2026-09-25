@@ -14,6 +14,8 @@
 //
 // Built from the current sources in memory, so it explains what the next rebuild writes; the
 // platforms' columns are the reports of the last `npm run test:visual` and `flutter test`.
+// First, before anything else loads: the Node this needs (.nvmrc).
+import '../src/util/require-node.mjs';
 import * as stage from '../src/stages/components.mjs';
 import {
   explainVariant,

@@ -64,7 +64,7 @@
         "height": {
           "literal": 18,
           "from": "selected=false, state=default",
-          "allowed": "As its width."
+          "allowed": "The track is 32 by 18, and SOLAR has no control size token (the design review's question on control sizes and the target size); carried as Figma's numbers, as Checkbox's box is."
         }
       },
       "size": {},
@@ -96,7 +96,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As off, SOLAR's focus ring.",
+              "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it.",
               "replaced": {
                 "none": true
               }
@@ -158,7 +158,7 @@
         "height": {
           "literal": 12,
           "from": "selected=false, state=default",
-          "allowed": "As its width."
+          "allowed": "The thumb is 12px, as the track's size, a number with no token."
         },
         "x": {
           "position": 3,
@@ -264,12 +264,12 @@
       {
         "rule": "set",
         "at": "root.appearance.selected=true.focus.shadow",
-        "reason": "As off, SOLAR's focus ring."
+        "reason": "Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it."
       },
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As its width."
+        "reason": "The track is 32 by 18, and SOLAR has no control size token (the design review's question on control sizes and the target size); carried as Figma's numbers, as Checkbox's box is."
       },
       {
         "rule": "allowLiteral",
@@ -279,7 +279,7 @@
       {
         "rule": "allowLiteral",
         "at": "thumb.height",
-        "reason": "As its width."
+        "reason": "The thumb is 12px, as the track's size, a number with no token."
       },
       {
         "rule": "allowLiteral",

@@ -285,7 +285,7 @@ describe('set, onto a look no layer has', () => {
     const without = build(
       'File Card',
       changed('File Card', (o) => {
-        delete o.set['root.appearance.type=File Card.focus.shadow'];
+        delete o.set['root.appearance.*.focus.shadow'];
       }),
     ).spec;
     expect(looksOf(without).has('type=file')).toBe(false);
@@ -295,6 +295,20 @@ describe('set, onto a look no layer has', () => {
       token: 'shadow.focus.default',
       from: 'overlay',
     });
+  });
+
+  it('reaches every look Figma draws where the look is a pattern', () => {
+    const { spec } = build('File Card');
+    for (const look of ['type=file', 'type=create'])
+      expect(spec.style.root.appearance[look].focus.shadow.token, look).toBe(
+        'shadow.focus.default',
+      );
+    // Card's loading look too, which no rule named before the pattern.
+    const card = build('Card').spec;
+    expect(
+      card.style.root.appearance['status=none, loading=true'].focus.shadow
+        .token,
+    ).toBe('shadow.focus.default');
   });
 
   it('adds default where no layer has any look (Launch Card)', () => {

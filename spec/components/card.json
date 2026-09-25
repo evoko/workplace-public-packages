@@ -237,7 +237,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the card with no status's, the focus ring.",
+              "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -265,7 +265,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the card with no status's, the focus ring.",
+              "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -293,7 +293,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the card with no status's, the focus ring.",
+              "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -321,7 +321,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the card with no status's, the focus ring.",
+              "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -342,6 +342,18 @@
               "allowed": "A disabled card is drawn at 40% opacity. SOLAR has no opacity scale, as for Section Nav Item's disabled 40% and Link's 50%; carried as Figma's number, and raised as a governance gap."
             }
           },
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "overlay",
+              "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it.",
+              "replaced": {
+                "token": "shadow.raised"
+              }
+            }
+          }
+        },
+        "status=none, loading=true": {
           "focus": {
             "shadow": {
               "token": "shadow.focus.default",
@@ -1291,12 +1303,12 @@
       {
         "rule": "set",
         "at": "root.appearance.status=danger, loading=false.focus.shadow",
-        "reason": "As the card with no status's, the focus ring."
+        "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",
         "at": "root.appearance.status=info, loading=false.focus.shadow",
-        "reason": "As the card with no status's, the focus ring."
+        "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",
@@ -1305,13 +1317,18 @@
       },
       {
         "rule": "set",
+        "at": "root.appearance.status=none, loading=true.focus.shadow",
+        "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it."
+      },
+      {
+        "rule": "set",
         "at": "root.appearance.status=success, loading=false.focus.shadow",
-        "reason": "As the card with no status's, the focus ring."
+        "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",
         "at": "root.appearance.status=warning, loading=false.focus.shadow",
-        "reason": "As the card with no status's, the focus ring."
+        "reason": "Figma draws Card no focus state; its description gates \"the focus ring\" on its being clickable, and a keyboard user needs to see it, SOLAR's floor. A pressable card, focused on its title, draws SOLAR's focus ring, as FAB's and Nav Item's do; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

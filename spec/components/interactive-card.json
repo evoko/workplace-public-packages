@@ -252,7 +252,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the unselected card's, the focus ring.",
+              "reason": "Figma draws Interactive Card no focus state; a pressable card, focused on its headline, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "none": true
               }
@@ -272,6 +272,16 @@
             "borderWidth": {
               "token": "border.strong",
               "from": "selected=false, drag=true"
+            }
+          },
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "overlay",
+              "reason": "Figma draws Interactive Card no focus state; a pressable card, focused on its headline, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
+              "replaced": {
+                "token": "shadow.focus.default"
+              }
             }
           }
         },
@@ -846,7 +856,7 @@
         "width": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first Icon Button's, its own.",
+          "reason": "The actions are the caller's Icon Buttons, sm, whose 32px box is their own: the card places them and never sizes them.",
           "replaced": {
             "literal": 32
           }
@@ -854,7 +864,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first Icon Button's, its own.",
+          "reason": "As its width, the Icon Button's own.",
           "replaced": {
             "literal": 32
           }
@@ -892,7 +902,7 @@
         "width": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first Icon Button's, its own.",
+          "reason": "The actions are the caller's Icon Buttons, sm, whose 32px box is their own: the card places them and never sizes them.",
           "replaced": {
             "literal": 32
           }
@@ -900,7 +910,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first Icon Button's, its own.",
+          "reason": "As its width, the Icon Button's own.",
           "replaced": {
             "literal": 32
           }
@@ -979,22 +989,22 @@
       {
         "rule": "set",
         "at": "iconButton2.base.height",
-        "reason": "As the first Icon Button's, its own."
+        "reason": "As its width, the Icon Button's own."
       },
       {
         "rule": "set",
         "at": "iconButton2.base.width",
-        "reason": "As the first Icon Button's, its own."
+        "reason": "The actions are the caller's Icon Buttons, sm, whose 32px box is their own: the card places them and never sizes them."
       },
       {
         "rule": "set",
         "at": "iconButton3.base.height",
-        "reason": "As the first Icon Button's, its own."
+        "reason": "As its width, the Icon Button's own."
       },
       {
         "rule": "set",
         "at": "iconButton3.base.width",
-        "reason": "As the first Icon Button's, its own."
+        "reason": "The actions are the caller's Icon Buttons, sm, whose 32px box is their own: the card places them and never sizes them."
       },
       {
         "rule": "set",
@@ -1013,8 +1023,13 @@
       },
       {
         "rule": "set",
+        "at": "root.appearance.selected=false, drag=true.focus.shadow",
+        "reason": "Figma draws Interactive Card no focus state; a pressable card, focused on its headline, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
+      },
+      {
+        "rule": "set",
         "at": "root.appearance.selected=true, drag=false.focus.shadow",
-        "reason": "As the unselected card's, the focus ring."
+        "reason": "Figma draws Interactive Card no focus state; a pressable card, focused on its headline, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

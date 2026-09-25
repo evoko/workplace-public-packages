@@ -78,15 +78,12 @@ allowLiteral:
     reason: An icon FAB is a circle, so its width is its height, under the same decision.
 
 set:
-  root.appearance.type=icon.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma's focus state draws no focus ring, only the resting shadow/overlay, where the
       description says "Focus ring via shadow/focus/default" and WCAG's visible focus is SOLAR's
       floor. Drawn with the ring, as Button's focus is; the design review asks SOLAR to draw it.
-  root.appearance.type=extended.focus.shadow:
-    token: shadow.focus.default
-    reason: As the icon FAB's, the focus ring.
 
 accept:
   component.fab.root.width@state=loading:

@@ -97,7 +97,7 @@
         "height": {
           "literal": 24,
           "from": "direction=previous, state=default",
-          "allowed": "As its width."
+          "allowed": "As a PaginationItem's, a 24px square, bound to nothing (a governance gap)."
         }
       },
       "size": {},
@@ -231,7 +231,7 @@
       {
         "rule": "allowLiteral",
         "at": "root.height",
-        "reason": "As its width."
+        "reason": "As a PaginationItem's, a 24px square, bound to nothing (a governance gap)."
       },
       {
         "rule": "allowLiteral",

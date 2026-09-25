@@ -291,7 +291,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the single card's, the focus ring.",
+              "reason": "Figma draws Device Card no focus state; a pressable card, focused on its name, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "none": true
               }
@@ -422,7 +422,7 @@
         "height": {
           "token": "icon.md",
           "from": "overlay",
-          "reason": "As its width."
+          "reason": "Same value, governed token."
         },
         "color": {
           "token": "color.icon.primary",
@@ -1708,7 +1708,7 @@
       {
         "rule": "bind",
         "at": "iconIconDevice.height",
-        "reason": "As its width."
+        "reason": "Same value, governed token."
       },
       {
         "rule": "bind",
@@ -1738,7 +1738,7 @@
       {
         "rule": "set",
         "at": "root.appearance.type=batch.focus.shadow",
-        "reason": "As the single card's, the focus ring."
+        "reason": "Figma draws Device Card no focus state; a pressable card, focused on its name, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

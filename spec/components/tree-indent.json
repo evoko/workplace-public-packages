@@ -991,12 +991,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=02",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1029,12 +1029,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=03",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1067,12 +1067,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=04",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1105,12 +1105,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=05",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1143,12 +1143,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=06",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1181,12 +1181,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=07",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1219,12 +1219,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=08",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1257,12 +1257,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1295,12 +1295,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -1344,12 +1344,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=03",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1382,12 +1382,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=04",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1420,12 +1420,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=05",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1458,12 +1458,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=06",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1496,12 +1496,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=07",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1534,12 +1534,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=08",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1572,12 +1572,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1610,12 +1610,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -1659,12 +1659,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=04",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1697,12 +1697,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=05",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1735,12 +1735,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=06",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1773,12 +1773,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=07",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1811,12 +1811,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=08",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1849,12 +1849,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1887,12 +1887,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -1936,12 +1936,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=05",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -1974,12 +1974,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=06",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2012,12 +2012,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=07",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2050,12 +2050,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=08",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2088,12 +2088,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2126,12 +2126,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -2175,12 +2175,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=06",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2213,12 +2213,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=07",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2251,12 +2251,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=08",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2289,12 +2289,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2327,12 +2327,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -2376,12 +2376,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=07",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2414,12 +2414,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=08",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2452,12 +2452,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2490,12 +2490,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -2539,12 +2539,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=08",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2577,12 +2577,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2615,12 +2615,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -2664,12 +2664,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=09",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         },
@@ -2702,12 +2702,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -2751,12 +2751,12 @@
             "width": {
               "token": "icon.sm",
               "from": "overlay",
-              "reason": "As unit1, one level of indent."
+              "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
             },
             "height": {
               "literal": 39,
               "from": "depth=10",
-              "allowed": "As unit1, the unit's height."
+              "allowed": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
             }
           }
         }
@@ -2801,47 +2801,47 @@
       {
         "rule": "bind",
         "at": "unit10.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit2.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit3.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit4.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit5.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit6.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit7.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit8.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "bind",
         "at": "unit9.width",
-        "reason": "As unit1, one level of indent."
+        "reason": "One level of indent is 16px, \"matching the 16px chevron slot\", says the description: the width of Tree Item's chevron, an icon.sm, the same value."
       },
       {
         "rule": "allowLiteral",
@@ -2861,47 +2861,47 @@
       {
         "rule": "allowLiteral",
         "at": "unit10.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit2.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit3.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit4.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit5.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit6.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit7.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit8.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "allowLiteral",
         "at": "unit9.height",
-        "reason": "As unit1, the unit's height."
+        "reason": "Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as Figma draws it; the design review asks whether 32 is meant."
       },
       {
         "rule": "layerNames",

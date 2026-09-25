@@ -897,3 +897,86 @@ set:
     expect(() => on('asleep')).toThrow(/the IR has no appearance asleep/);
   });
 });
+
+describe('patterns and reason references, which save repeating a decision', () => {
+  const stepper = loadComponent(catalog, 'Stepper');
+  const buildStepper = (text) =>
+    buildComponentSpec(stepper, {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay: parseOverlay(text, 'stepper.yaml'),
+    });
+
+  it('expands a patterned layer into every layer it names, with the rule’s reason', () => {
+    const { spec } = buildStepper(`
+component: Stepper
+allowLiteral:
+  rectangle*.height:
+    reason: the line's thickness
+`);
+    const lines = Object.keys(spec.layers).filter((l) =>
+      /^rectangle\d*$/.test(l),
+    );
+    expect(lines.length).toBeGreaterThan(1);
+    for (const l of lines)
+      expect(spec.style[l].base.height).toMatchObject({
+        allowed: "the line's thickness",
+      });
+  });
+
+  it('fails a pattern that matches no layer, as a stale rule does', () => {
+    expect(() =>
+      buildStepper(`
+component: Stepper
+allowLiteral:
+  nope*.height: { reason: r }
+`),
+    ).toThrow(/allowLiteral nope\*\.height: the pattern matches no layer/);
+  });
+
+  it('lets an address given in full win over a pattern on the same cell', () => {
+    const { spec } = buildStepper(`
+component: Stepper
+allowLiteral:
+  rectangle*.height: { reason: every line }
+  rectangle1.height: { reason: the first line }
+`);
+    expect(spec.style.rectangle1.base.height.allowed).toBe('the first line');
+    expect(spec.style.rectangle2.base.height.allowed).toBe('every line');
+  });
+
+  it('resolves a reason that is another rule’s to its sentence', () => {
+    const o = parseOverlay(
+      `
+component: Button
+allowLiteral:
+  root.height: { reason: SOLAR has no control height token }
+  label.height: { reason: { as: allowLiteral root.height } }
+`,
+      'test.yaml',
+    );
+    expect(o.allowLiteral['label.height'].reason).toBe(
+      'SOLAR has no control height token',
+    );
+  });
+
+  it('fails a reason naming no rule, or one that refers back to itself', () => {
+    expect(() =>
+      parseOverlay(
+        'component: Button\nallowLiteral:\n  root.height: { reason: { as: set nope.width } }\n',
+        'test.yaml',
+      ),
+    ).toThrow(/its reason is set nope.width's, which is no rule of this file/);
+    expect(() =>
+      parseOverlay(
+        `
+component: Button
+allowLiteral:
+  root.height: { reason: { as: allowLiteral root.width } }
+  root.width: { reason: { as: allowLiteral root.height } }
+`,
+        'test.yaml',
+      ),
+    ).toThrow(/refers back to itself/);
+  });
+});

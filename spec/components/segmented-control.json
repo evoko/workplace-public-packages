@@ -462,7 +462,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first segment's, its own height.",
+          "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one.",
           "replaced": {
             "literal": 32
           }
@@ -515,7 +515,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first segment's, its own height.",
+          "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one.",
           "replaced": {
             "literal": 32
           }
@@ -568,7 +568,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first segment's, its own height.",
+          "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one.",
           "replaced": {
             "literal": 32
           }
@@ -621,7 +621,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first segment's, its own height.",
+          "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one.",
           "replaced": {
             "literal": 32
           }
@@ -674,7 +674,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first segment's, its own height.",
+          "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one.",
           "replaced": {
             "literal": 32
           }
@@ -756,7 +756,7 @@
       {
         "rule": "set",
         "at": "segmentedControlItem2.base.height",
-        "reason": "As the first segment's, its own height."
+        "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one."
       },
       {
         "rule": "set",
@@ -766,7 +766,7 @@
       {
         "rule": "set",
         "at": "segmentedControlItem3.base.height",
-        "reason": "As the first segment's, its own height."
+        "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one."
       },
       {
         "rule": "set",
@@ -776,7 +776,7 @@
       {
         "rule": "set",
         "at": "segmentedControlItem4.base.height",
-        "reason": "As the first segment's, its own height."
+        "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one."
       },
       {
         "rule": "set",
@@ -786,7 +786,7 @@
       {
         "rule": "set",
         "at": "segmentedControlItem5.base.height",
-        "reason": "As the first segment's, its own height."
+        "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one."
       },
       {
         "rule": "set",
@@ -796,7 +796,7 @@
       {
         "rule": "set",
         "at": "segmentedControlItem6.base.height",
-        "reason": "As the first segment's, its own height."
+        "reason": "A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the control lays them out and never sizes them, so a segment of the wrong size shows as one."
       },
       {
         "rule": "set",

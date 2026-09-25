@@ -55,38 +55,11 @@ layerNames:
     reason: As /1, the unit at that depth.
 
 bind:
-  unit1.width:
+  unit*.width:
     tokens: { 16: icon.sm }
     reason: >-
       One level of indent is 16px, "matching the 16px chevron slot", says the description: the
       width of Tree Item's chevron, an icon.sm, the same value.
-  unit2.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit3.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit4.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit5.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit6.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit7.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit8.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit9.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
-  unit10.width:
-    tokens: { 16: icon.sm }
-    reason: As unit1, one level of indent.
 
 allowLiteral:
   root.width:
@@ -98,25 +71,7 @@ allowLiteral:
     reason: >-
       A tree row's height, 32, bound to nothing: SOLAR publishes no row height. Raised as a
       governance gap.
-  unit1.height:
+  unit*.height:
     reason: >-
       Each unit is 39 tall in a 32-tall indent, overflowing it, and bound to nothing. Drawn as
       Figma draws it; the design review asks whether 32 is meant.
-  unit2.height:
-    reason: As unit1, the unit's height.
-  unit3.height:
-    reason: As unit1, the unit's height.
-  unit4.height:
-    reason: As unit1, the unit's height.
-  unit5.height:
-    reason: As unit1, the unit's height.
-  unit6.height:
-    reason: As unit1, the unit's height.
-  unit7.height:
-    reason: As unit1, the unit's height.
-  unit8.height:
-    reason: As unit1, the unit's height.
-  unit9.height:
-    reason: As unit1, the unit's height.
-  unit10.height:
-    reason: As unit1, the unit's height.

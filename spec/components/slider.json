@@ -332,7 +332,7 @@
       {
         "rule": "follows",
         "at": "handle.height",
-        "reason": "As its width."
+        "reason": "A disabled handle is 14px with a 1px edge, where every other handle is 16px with a 2px one: a control that cannot be used is drawn smaller and flat."
       },
       {
         "rule": "follows",

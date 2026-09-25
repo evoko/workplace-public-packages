@@ -39,15 +39,12 @@ set:
     keyword: FILL
     reason: >-
       A tile spans its cell of the grid: Figma draws it 308 wide, a sample. The caller sizes it.
-  root.appearance.type=File Card.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws File Card no focus state, where its description lists one; a pressable tile,
       focused on its name, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR
       to draw it.
-  root.appearance.type=New Asset Tile.focus.shadow:
-    token: shadow.focus.default
-    reason: As the file's tile's, the focus ring.
 
 bind:
   thumbnail.radiusBottomLeft:

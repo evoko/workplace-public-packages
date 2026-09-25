@@ -201,7 +201,7 @@
             "shadow": {
               "token": "shadow.focus.default",
               "from": "overlay",
-              "reason": "As the file's tile's, the focus ring.",
+              "reason": "Figma draws File Card no focus state, where its description lists one; a pressable tile, focused on its name, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it.",
               "replaced": {
                 "token": "shadow.raised"
               }
@@ -814,7 +814,7 @@
       {
         "rule": "set",
         "at": "root.appearance.type=New Asset Tile.focus.shadow",
-        "reason": "As the file's tile's, the focus ring."
+        "reason": "Figma draws File Card no focus state, where its description lists one; a pressable tile, focused on its name, draws SOLAR's focus ring, as Card's does; the design review asks SOLAR to draw it."
       },
       {
         "rule": "set",

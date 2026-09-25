@@ -56,6 +56,8 @@ abstract final class SolarInteractiveCardRecipe {
         't:shadow.focus.default',
     'root.borderWidth|appearance|selected=false, dragging=true|default':
         't:border.strong',
+    'root.shadow|appearance|selected=false, dragging=true|focus':
+        't:shadow.focus.default',
     'root.borderWidth|appearance|selected=true, dragging=true|default':
         't:border.strong',
     'root.shadow|appearance|selected=false, dragging=false|focus':

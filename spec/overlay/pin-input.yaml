@@ -78,26 +78,11 @@ derive:
       offers, so it is no prop the caller could set against its content.
 
 follows:
-  digit.color:
+  digit*.color:
     axes: []
     reason: >-
       A digit is drawn in color.text.primary, the one colour Figma gives it, wherever one is
       typed: Figma's filled variant is the only one that draws the digits.
-  digit2.color:
-    axes: []
-    reason: As the first digit’s.
-  digit3.color:
-    axes: []
-    reason: As the first digit’s.
-  digit4.color:
-    axes: []
-    reason: As the first digit’s.
-  digit5.color:
-    axes: []
-    reason: As the first digit’s.
-  digit6.color:
-    axes: []
-    reason: As the first digit’s.
   caret.color:
     axes: []
     reason: As a digit's, the caret's colour, which Figma gives it where it draws it, focused.
@@ -120,29 +105,9 @@ set:
       but the resting and hovered first cell, whose helper.sm is a slip the design review lists.
 
 allowLiteral:
-  field.width:
+  field*.width:
     reason: >-
       A cell is 36 by 40 (md) and 28 by 32 (sm), bound to nothing: SOLAR has no control size
       token (the design review's question on control sizes).
-  field.height:
-    reason: As its width.
-  field2.width:
-    reason: As the first cell’s.
-  field2.height:
-    reason: As its width.
-  field3.width:
-    reason: As the first cell’s.
-  field3.height:
-    reason: As its width.
-  field4.width:
-    reason: As the first cell’s.
-  field4.height:
-    reason: As its width.
-  field5.width:
-    reason: As the first cell’s.
-  field5.height:
-    reason: As its width.
-  field6.width:
-    reason: As the first cell’s.
-  field6.height:
-    reason: As its width.
+  field*.height:
+    reason: { as: allowLiteral field*.width }

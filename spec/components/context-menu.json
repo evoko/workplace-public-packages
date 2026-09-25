@@ -268,7 +268,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's.",
           "replaced": {
             "literal": 200
           }
@@ -276,7 +276,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first row's, its own.",
+          "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it.",
           "replaced": {
             "literal": 36
           }
@@ -306,7 +306,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's.",
           "replaced": {
             "literal": 200
           }
@@ -314,7 +314,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first row's, its own.",
+          "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it.",
           "replaced": {
             "literal": 36
           }
@@ -344,7 +344,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's.",
           "replaced": {
             "literal": 200
           }
@@ -352,7 +352,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first row's, its own.",
+          "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it.",
           "replaced": {
             "literal": 36
           }
@@ -382,7 +382,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's.",
           "replaced": {
             "literal": 200
           }
@@ -390,7 +390,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first row's, its own.",
+          "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it.",
           "replaced": {
             "literal": 36
           }
@@ -420,7 +420,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's.",
           "replaced": {
             "literal": 200
           }
@@ -428,7 +428,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first row's, its own.",
+          "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it.",
           "replaced": {
             "literal": 36
           }
@@ -492,7 +492,7 @@
         "width": {
           "keyword": "FILL",
           "from": "overlay",
-          "reason": "As the first row's.",
+          "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's.",
           "replaced": {
             "literal": 200
           }
@@ -500,7 +500,7 @@
         "height": {
           "none": true,
           "from": "overlay",
-          "reason": "As the first row's, its own.",
+          "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it.",
           "replaced": {
             "literal": 36
           }
@@ -542,62 +542,62 @@
       {
         "rule": "set",
         "at": "contextMenuItem2.base.height",
-        "reason": "As the first row's, its own."
+        "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it."
       },
       {
         "rule": "set",
         "at": "contextMenuItem2.base.width",
-        "reason": "As the first row's."
+        "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's."
       },
       {
         "rule": "set",
         "at": "contextMenuItem3.base.height",
-        "reason": "As the first row's, its own."
+        "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it."
       },
       {
         "rule": "set",
         "at": "contextMenuItem3.base.width",
-        "reason": "As the first row's."
+        "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's."
       },
       {
         "rule": "set",
         "at": "contextMenuItem4.base.height",
-        "reason": "As the first row's, its own."
+        "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it."
       },
       {
         "rule": "set",
         "at": "contextMenuItem4.base.width",
-        "reason": "As the first row's."
+        "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's."
       },
       {
         "rule": "set",
         "at": "contextMenuItem5.base.height",
-        "reason": "As the first row's, its own."
+        "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it."
       },
       {
         "rule": "set",
         "at": "contextMenuItem5.base.width",
-        "reason": "As the first row's."
+        "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's."
       },
       {
         "rule": "set",
         "at": "contextMenuItem6.base.height",
-        "reason": "As the first row's, its own."
+        "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it."
       },
       {
         "rule": "set",
         "at": "contextMenuItem6.base.width",
-        "reason": "As the first row's."
+        "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's."
       },
       {
         "rule": "set",
         "at": "contextMenuItem7.base.height",
-        "reason": "As the first row's, its own."
+        "reason": "A row's height is its own (36), the Context Menu Item's; the menu never sizes it."
       },
       {
         "rule": "set",
         "at": "contextMenuItem7.base.width",
-        "reason": "As the first row's."
+        "reason": "The rows are the caller's, and span the menu: Figma draws them 200 wide, a sample of a menu's width, which is its widest row's."
       },
       {
         "rule": "set",

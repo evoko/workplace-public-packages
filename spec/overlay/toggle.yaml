@@ -20,14 +20,11 @@ follows:
       control that cannot be used is drawn flat, as Checkbox's disabled box is.
 
 set:
-  root.appearance.selected=false.focus.shadow:
+  root.appearance.*.focus.shadow:
     token: shadow.focus.default
     reason: >-
       Figma draws no focus state, and WCAG's visible focus is SOLAR's floor. Drawn with SOLAR's
       focus ring, as FAB's and Link's are; the design review asks SOLAR to draw it.
-  root.appearance.selected=true.focus.shadow:
-    token: shadow.focus.default
-    reason: As off, SOLAR's focus ring.
 
 allowLiteral:
   root.width:
@@ -35,8 +32,8 @@ allowLiteral:
       The track is 32 by 18, and SOLAR has no control size token (the design review's question
       on control sizes and the target size); carried as Figma's numbers, as Checkbox's box is.
   root.height:
-    reason: As its width.
+    reason: { as: allowLiteral root.width }
   thumb.width:
     reason: The thumb is 12px, as the track's size, a number with no token.
   thumb.height:
-    reason: As its width.
+    reason: { as: allowLiteral thumb.width }

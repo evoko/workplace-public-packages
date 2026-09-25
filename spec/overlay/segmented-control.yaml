@@ -12,42 +12,12 @@ base:
     RadioGroup, each of which moves between the segments with the arrow keys.
 
 set:
-  segmentedControlItem.base.height:
+  segmentedControlItem*.base.height:
     none: true
     reason: >-
       A segment's height is its own (32 at md, 24 at sm), and the segments are the caller's: the
       control lays them out and never sizes them, so a segment of the wrong size shows as one.
-  segmentedControlItem.size.sm.height:
-    none: true
-    reason: As at md, the segment's own height.
-  segmentedControlItem2.base.height:
-    none: true
-    reason: As the first segment's, its own height.
-  segmentedControlItem2.size.sm.height:
-    none: true
-    reason: As at md, the segment's own height.
-  segmentedControlItem3.base.height:
-    none: true
-    reason: As the first segment's, its own height.
-  segmentedControlItem3.size.sm.height:
-    none: true
-    reason: As at md, the segment's own height.
-  segmentedControlItem4.base.height:
-    none: true
-    reason: As the first segment's, its own height.
-  segmentedControlItem4.size.sm.height:
-    none: true
-    reason: As at md, the segment's own height.
-  segmentedControlItem5.base.height:
-    none: true
-    reason: As the first segment's, its own height.
-  segmentedControlItem5.size.sm.height:
-    none: true
-    reason: As at md, the segment's own height.
-  segmentedControlItem6.base.height:
-    none: true
-    reason: As the first segment's, its own height.
-  segmentedControlItem6.size.sm.height:
+  segmentedControlItem*.size.sm.height:
     none: true
     reason: As at md, the segment's own height.
 

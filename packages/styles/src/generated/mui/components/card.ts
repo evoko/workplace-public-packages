@@ -243,6 +243,9 @@ export const solarCardStyles = {
       },
     },
     'status=none, loading=true': {
+      '&:has(.SolarCard-press.Mui-focusVisible)': {
+        boxShadow: 'var(--solar-shadow-focus-default)',
+      },
       '& .SolarCard-skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',

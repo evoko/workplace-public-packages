@@ -17,6 +17,7 @@ import { foldStateAxes, resolveVariants } from './component-layers.mjs';
 import {
   applyDefaults,
   applyOverlay,
+  expandPatterns,
   followsOf,
   placeLayers,
   restylesOf,
@@ -459,6 +460,8 @@ export function buildComponentSpec(
     namesOf(parents, slotsOf(resolved, set), set.name, given),
   );
   const layerNames = namesOf(parents, slots, set.name, given);
+  // A rule's layer may be a pattern: expanded against the names, before any rule is read.
+  expandPatterns(overlay, [...layerNames.values()]);
   const pathOf = (name) =>
     [...layerNames].find(([, n]) => n === name)?.[0] ?? null;
 
@@ -545,6 +548,8 @@ export function buildComponentSpec(
   const applied = applyOverlay(spec, deviations, overlay, {
     names,
     axes: recipe.axes,
+    // The combinations Figma draws, for a `set` whose look is a pattern (`root.appearance.*…`).
+    drawn: resolved.variants.map((v) => v.props),
   });
   return applyDefaults(applied.spec, applied.deviations, defaults, {
     names,
