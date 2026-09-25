@@ -33,5 +33,10 @@ jobs:
       - name: Build every package
         run: npm run build
 
+      # The packed packages, installed into a fresh app with React 18 and MUI 9, every export
+      # resolved and a few components rendered on the server (scripts/smoke-install.mjs).
+      - name: Install the packed packages in a clean app
+        run: npm run smoke:install
+
       - name: Run tests
         run: npm run test

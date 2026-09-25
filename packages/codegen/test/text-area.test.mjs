@@ -49,7 +49,7 @@ describe('the Text Area recipe', () => {
   const { styles } = renderMuiComponent(spec, tokens);
 
   it('places the buttons from the field’s edges inside its border', () => {
-    const field = styles.root['& .SolarTextArea-field'];
+    const field = styles.root['& .SolarTextArea--field'];
     expect(field['--solar-placed-right']).toBe('var(--solar-border-default)');
     expect(styles.root['& .SolarTextArea-cta']).toMatchObject({
       position: 'absolute',

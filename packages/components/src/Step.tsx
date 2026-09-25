@@ -28,6 +28,7 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['stepperIndicator', 'step', 'label', 'line'],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface StepProps
   extends
@@ -66,6 +67,7 @@ export const Step = forwardRef<HTMLElement, StepProps>(function Step(
       {drawChildren('root', {
         prefix: 'SolarStep',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: {
           step: label,

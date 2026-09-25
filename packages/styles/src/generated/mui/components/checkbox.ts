@@ -62,12 +62,12 @@ export const solarCheckboxStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    '& .SolarCheckbox-icon': {
+    '& .SolarCheckbox--icon': {
       strokeWidth: '0',
       width: '10px',
       height: '7px',
     },
-    '& .SolarCheckbox-container': {
+    '& .SolarCheckbox--container': {
       strokeWidth: '0',
       width: '10px',
       height: '2px',
@@ -103,7 +103,7 @@ export const solarCheckboxStyles = {
       '&:hover, .SolarStatesScope:hover &, .SolarStatesScope.Mui-focusVisible &':
         {
           backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-          '& .SolarCheckbox-icon': {
+          '& .SolarCheckbox--icon': {
             fill: 'var(--solar-color-icon-inverse)',
             stroke: 'none',
             '& .SolarGlyph-stroke': {
@@ -115,7 +115,7 @@ export const solarCheckboxStyles = {
         backgroundColor: 'var(--solar-color-action-primary-bg-default)',
         borderColor: 'var(--solar-color-border-feedback-focus-strong)',
         boxShadow: 'var(--solar-shadow-focus-default)',
-        '& .SolarCheckbox-icon': {
+        '& .SolarCheckbox--icon': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -127,7 +127,7 @@ export const solarCheckboxStyles = {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         borderColor: 'transparent',
         borderStyle: 'none',
-        '& .SolarCheckbox-icon': {
+        '& .SolarCheckbox--icon': {
           fill: 'var(--solar-color-action-primary-icon-disabled)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -135,7 +135,7 @@ export const solarCheckboxStyles = {
           },
         },
       },
-      '& .SolarCheckbox-icon': {
+      '& .SolarCheckbox--icon': {
         fill: 'var(--solar-color-icon-inverse)',
         stroke: 'none',
         '& .SolarGlyph-stroke': {
@@ -158,7 +158,7 @@ export const solarCheckboxStyles = {
         {
           backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
           borderColor: 'var(--solar-color-border-medium)',
-          '& .SolarCheckbox-container': {
+          '& .SolarCheckbox--container': {
             fill: 'var(--solar-color-icon-inverse)',
             stroke: 'none',
             '& .SolarGlyph-stroke': {
@@ -170,7 +170,7 @@ export const solarCheckboxStyles = {
         backgroundColor: 'var(--solar-color-action-primary-bg-default)',
         borderColor: 'var(--solar-color-border-feedback-focus-strong)',
         boxShadow: 'var(--solar-shadow-focus-default)',
-        '& .SolarCheckbox-container': {
+        '& .SolarCheckbox--container': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -182,7 +182,7 @@ export const solarCheckboxStyles = {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         borderColor: 'transparent',
         borderStyle: 'none',
-        '& .SolarCheckbox-container': {
+        '& .SolarCheckbox--container': {
           fill: 'var(--solar-color-action-primary-icon-disabled)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -190,7 +190,7 @@ export const solarCheckboxStyles = {
           },
         },
       },
-      '& .SolarCheckbox-container': {
+      '& .SolarCheckbox--container': {
         fill: 'var(--solar-color-icon-inverse)',
         stroke: 'none',
         '& .SolarGlyph-stroke': {

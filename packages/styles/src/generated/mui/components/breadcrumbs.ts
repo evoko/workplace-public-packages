@@ -43,7 +43,7 @@ export const solarBreadcrumbsStyles = {
     '& .SolarBreadcrumbs-list > li': {
       display: 'flex',
     },
-    '& .SolarBreadcrumbs-iconChevronRight, & .SolarBreadcrumbs-iconChevronRight2, & .SolarBreadcrumbs-iconChevronRight3, & .SolarBreadcrumbs-iconChevronRight4':
+    '& .SolarBreadcrumbs--iconChevronRight, & .SolarBreadcrumbs--iconChevronRight2, & .SolarBreadcrumbs--iconChevronRight3, & .SolarBreadcrumbs--iconChevronRight4':
       {
         display: 'block',
         flexShrink: '0',
@@ -63,22 +63,22 @@ export const solarBreadcrumbsStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    '& .SolarBreadcrumbs-iconChevronRight': {
+    '& .SolarBreadcrumbs--iconChevronRight': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-icon-secondary)',
     },
-    '& .SolarBreadcrumbs-iconChevronRight2': {
+    '& .SolarBreadcrumbs--iconChevronRight2': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-icon-secondary)',
     },
-    '& .SolarBreadcrumbs-iconChevronRight3': {
+    '& .SolarBreadcrumbs--iconChevronRight3': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-icon-secondary)',
     },
-    '& .SolarBreadcrumbs-iconChevronRight4': {
+    '& .SolarBreadcrumbs--iconChevronRight4': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
       color: 'var(--solar-color-icon-secondary)',

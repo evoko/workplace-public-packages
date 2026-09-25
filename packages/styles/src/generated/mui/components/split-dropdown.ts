@@ -48,7 +48,7 @@ export const solarSplitDropdownStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
-    '& .SolarSplitDropdown-top': {
+    '& .SolarSplitDropdown--top': {
       backgroundColor: 'var(--solar-color-surface-raised)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -80,7 +80,7 @@ export const solarSplitDropdownStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarSplitDropdown-lower': {
+    '& .SolarSplitDropdown--lower': {
       backgroundColor: 'var(--solar-color-surface-background)',
       borderColor: 'transparent',
       boxShadow: 'none',

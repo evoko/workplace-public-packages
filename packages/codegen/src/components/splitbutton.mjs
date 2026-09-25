@@ -9,7 +9,7 @@
  */
 
 import { dartField, dartParam } from '../shells/helpers.mjs';
-import { drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnResets, treeOf, treeConsts } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
@@ -33,14 +33,14 @@ export default {
     // The halves are buttons with no look of their own (MUI's ButtonBase); the loading Spinner sits
     // in the middle of the control, over the halves, which keep their room.
     resets: drawnResets('SplitButton', {
-      '& .SolarSplitButton-action, & .SolarSplitButton-trigger': {
+      '& .SolarSplitButton--action, & .SolarSplitButton--trigger': {
         font: 'inherit',
         color: 'inherit',
       },
       // A 44 × 44 target around each half (shells/target.mjs).
-      ...targetArea('& .SolarSplitButton-action'),
-      ...targetArea('& .SolarSplitButton-trigger'),
-      '& .SolarSplitButton-spinner': {
+      ...targetArea('& .SolarSplitButton--action'),
+      ...targetArea('& .SolarSplitButton--trigger'),
+      '& .SolarSplitButton--spinner': {
         position: 'absolute',
         inset: '0',
         display: 'flex',
@@ -117,7 +117,7 @@ export interface SplitButtonItem {
 }
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface SplitButtonProps
   extends SolarSplitButtonProps,
@@ -198,7 +198,7 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(function
     >
       {drawChildren('root', {
         prefix: 'SolarSplitButton',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts: kept,
         text: { label: children },
         icons: { iconChevronDown: <IconChevronDown /> },

@@ -11,7 +11,7 @@ import {
   drawnFlutter,
   drawnResets,
   iconsOf,
-  treeOf,
+  treeConsts,
 } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
@@ -91,7 +91,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface BannerProps
   extends SolarBannerProps,
@@ -145,7 +145,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(function Banner(
     >
       {drawChildren('root', {
         prefix: 'SolarBanner',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts: drawn,
         text: { description },
         icons: {

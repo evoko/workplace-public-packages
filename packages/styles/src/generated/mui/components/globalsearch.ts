@@ -51,7 +51,7 @@ export const solarGlobalSearchStyles = {
     '&:focus-visible': {
       outline: 'none',
     },
-    '& .SolarGlobalSearch-searchWorkplace': {
+    '& .SolarGlobalSearch--searchWorkplace': {
       flex: '1 1 0%',
       minWidth: '0',
       overflow: 'hidden',
@@ -87,12 +87,12 @@ export const solarGlobalSearchStyles = {
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
     height: '40px',
-    '& .SolarGlobalSearch-iconSearch': {
+    '& .SolarGlobalSearch--iconSearch': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-tertiary)',
     },
-    '& .SolarGlobalSearch-searchWorkplace': {
+    '& .SolarGlobalSearch--searchWorkplace': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -108,11 +108,11 @@ export const solarGlobalSearchStyles = {
       gap: 'var(--solar-inset-xs)',
       width: '100%',
       height: '32px',
-      '& .SolarGlobalSearch-iconSearch': {
+      '& .SolarGlobalSearch--iconSearch': {
         width: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
       },
-      '& .SolarGlobalSearch-searchWorkplace': {
+      '& .SolarGlobalSearch--searchWorkplace': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -127,10 +127,10 @@ export const solarGlobalSearchStyles = {
       '&:hover': {
         backgroundColor: 'var(--solar-color-surface-base)',
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarGlobalSearch-iconSearch': {
+        '& .SolarGlobalSearch--iconSearch': {
           color: 'var(--solar-color-icon-secondary)',
         },
-        '& .SolarGlobalSearch-searchWorkplace': {
+        '& .SolarGlobalSearch--searchWorkplace': {
           color: 'var(--solar-color-text-secondary)',
         },
       },
@@ -138,19 +138,19 @@ export const solarGlobalSearchStyles = {
         backgroundColor: 'var(--solar-color-surface-base)',
         borderColor: 'var(--solar-color-border-feedback-focus-strong)',
         boxShadow: 'var(--solar-shadow-focus-default)',
-        '& .SolarGlobalSearch-iconSearch': {
+        '& .SolarGlobalSearch--iconSearch': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarGlobalSearch-searchWorkplace': {
+        '& .SolarGlobalSearch--searchWorkplace': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&.SolarGlobalSearch-filled': {
         backgroundColor: 'var(--solar-color-surface-base)',
-        '& .SolarGlobalSearch-iconSearch': {
+        '& .SolarGlobalSearch--iconSearch': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarGlobalSearch-searchWorkplace': {
+        '& .SolarGlobalSearch--searchWorkplace': {
           color: 'var(--solar-color-text-primary)',
         },
       },
@@ -158,10 +158,10 @@ export const solarGlobalSearchStyles = {
         backgroundColor: 'var(--solar-color-surface-base)',
         borderColor: 'var(--solar-color-border-feedback-danger-strong)',
         boxShadow: 'var(--solar-shadow-danger)',
-        '& .SolarGlobalSearch-iconSearch': {
+        '& .SolarGlobalSearch--iconSearch': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarGlobalSearch-searchWorkplace': {
+        '& .SolarGlobalSearch--searchWorkplace': {
           color: 'var(--solar-color-text-primary)',
         },
       },

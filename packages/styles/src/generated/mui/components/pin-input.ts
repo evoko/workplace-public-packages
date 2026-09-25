@@ -47,7 +47,7 @@ export const solarPINInputStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarPINInput-cells': {
+    '& .SolarPINInput--cells': {
       position: 'relative',
     },
     '& .SolarPINInput-input': {
@@ -99,7 +99,7 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarPINInput-labelLabel': {
+    '& .SolarPINInput--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -117,7 +117,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-cells': {
+    '& .SolarPINInput--cells': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -132,7 +132,7 @@ export const solarPINInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarPINInput-field': {
+    '& .SolarPINInput--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -150,7 +150,7 @@ export const solarPINInputStyles = {
       width: '36px',
       height: '40px',
     },
-    '& .SolarPINInput-placeholder': {
+    '& .SolarPINInput--placeholder': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -159,7 +159,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-field2': {
+    '& .SolarPINInput--field2': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -177,7 +177,7 @@ export const solarPINInputStyles = {
       width: '36px',
       height: '40px',
     },
-    '& .SolarPINInput-placeholder2': {
+    '& .SolarPINInput--placeholder2': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -186,7 +186,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-field3': {
+    '& .SolarPINInput--field3': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -204,7 +204,7 @@ export const solarPINInputStyles = {
       width: '36px',
       height: '40px',
     },
-    '& .SolarPINInput-placeholder3': {
+    '& .SolarPINInput--placeholder3': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -213,7 +213,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-field4': {
+    '& .SolarPINInput--field4': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -231,7 +231,7 @@ export const solarPINInputStyles = {
       width: '36px',
       height: '40px',
     },
-    '& .SolarPINInput-placeholder4': {
+    '& .SolarPINInput--placeholder4': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -240,7 +240,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-field5': {
+    '& .SolarPINInput--field5': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -258,7 +258,7 @@ export const solarPINInputStyles = {
       width: '36px',
       height: '40px',
     },
-    '& .SolarPINInput-placeholder5': {
+    '& .SolarPINInput--placeholder5': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -267,7 +267,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-field6': {
+    '& .SolarPINInput--field6': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -285,7 +285,7 @@ export const solarPINInputStyles = {
       width: '36px',
       height: '40px',
     },
-    '& .SolarPINInput-placeholder6': {
+    '& .SolarPINInput--placeholder6': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -303,7 +303,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-caret': {
+    '& .SolarPINInput--caret': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -312,7 +312,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.02286em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-digit': {
+    '& .SolarPINInput--digit': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -321,7 +321,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-digit2': {
+    '& .SolarPINInput--digit2': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -330,7 +330,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-digit3': {
+    '& .SolarPINInput--digit3': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -339,7 +339,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-digit4': {
+    '& .SolarPINInput--digit4': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -348,7 +348,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-digit5': {
+    '& .SolarPINInput--digit5': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -357,7 +357,7 @@ export const solarPINInputStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
     },
-    '& .SolarPINInput-digit6': {
+    '& .SolarPINInput--digit6': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -378,7 +378,7 @@ export const solarPINInputStyles = {
   },
   sizes: {
     sm: {
-      '& .SolarPINInput-labelLabel': {
+      '& .SolarPINInput--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -394,16 +394,16 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-cells': {
+      '& .SolarPINInput--cells': {
         height: 'auto',
       },
-      '& .SolarPINInput-field': {
+      '& .SolarPINInput--field': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
         height: '32px',
       },
-      '& .SolarPINInput-placeholder': {
+      '& .SolarPINInput--placeholder': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -411,13 +411,13 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-field2': {
+      '& .SolarPINInput--field2': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
         height: '32px',
       },
-      '& .SolarPINInput-placeholder2': {
+      '& .SolarPINInput--placeholder2': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -425,13 +425,13 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-field3': {
+      '& .SolarPINInput--field3': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
         height: '32px',
       },
-      '& .SolarPINInput-placeholder3': {
+      '& .SolarPINInput--placeholder3': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -439,13 +439,13 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-field4': {
+      '& .SolarPINInput--field4': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
         height: '32px',
       },
-      '& .SolarPINInput-placeholder4': {
+      '& .SolarPINInput--placeholder4': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -453,13 +453,13 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-field5': {
+      '& .SolarPINInput--field5': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
         height: '32px',
       },
-      '& .SolarPINInput-placeholder5': {
+      '& .SolarPINInput--placeholder5': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -467,13 +467,13 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-field6': {
+      '& .SolarPINInput--field6': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         width: '28px',
         height: '32px',
       },
-      '& .SolarPINInput-placeholder6': {
+      '& .SolarPINInput--placeholder6': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -489,7 +489,7 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-digit': {
+      '& .SolarPINInput--digit': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -497,7 +497,7 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-digit2': {
+      '& .SolarPINInput--digit2': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -505,7 +505,7 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-digit3': {
+      '& .SolarPINInput--digit3': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -513,7 +513,7 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-digit4': {
+      '& .SolarPINInput--digit4': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -521,7 +521,7 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-digit5': {
+      '& .SolarPINInput--digit5': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -529,7 +529,7 @@ export const solarPINInputStyles = {
         letterSpacing: '-0.02286em',
         textDecoration: 'none',
       },
-      '& .SolarPINInput-digit6': {
+      '& .SolarPINInput--digit6': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -549,109 +549,109 @@ export const solarPINInputStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarPINInput-cells:hover)': {
-        '& .SolarPINInput-field': {
+      '&:has(.SolarPINInput--cells:hover)': {
+        '& .SolarPINInput--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
       '&:has(.SolarPINInput-input:focus)': {
-        '& .SolarPINInput-field': {
+        '& .SolarPINInput--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
       },
       '&.SolarPINInput-filled': {},
       '&.SolarPINInput-error': {
-        '& .SolarPINInput-field': {
+        '& .SolarPINInput--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarPINInput-placeholder': {
+        '& .SolarPINInput--placeholder': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarPINInput-field2': {
+        '& .SolarPINInput--field2': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarPINInput-placeholder2': {
+        '& .SolarPINInput--placeholder2': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarPINInput-field3': {
+        '& .SolarPINInput--field3': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarPINInput-placeholder3': {
+        '& .SolarPINInput--placeholder3': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarPINInput-field4': {
+        '& .SolarPINInput--field4': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarPINInput-placeholder4': {
+        '& .SolarPINInput--placeholder4': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarPINInput-field5': {
+        '& .SolarPINInput--field5': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarPINInput-placeholder5': {
+        '& .SolarPINInput--placeholder5': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarPINInput-field6': {
+        '& .SolarPINInput--field6': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarPINInput-placeholder6': {
+        '& .SolarPINInput--placeholder6': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&.SolarPINInput-disabled': {
-        '& .SolarPINInput-labelLabel': {
+        '& .SolarPINInput--labelLabel': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarPINInput-mandatory': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarPINInput-field': {
+        '& .SolarPINInput--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarPINInput-placeholder': {
+        '& .SolarPINInput--placeholder': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarPINInput-field2': {
+        '& .SolarPINInput--field2': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarPINInput-placeholder2': {
+        '& .SolarPINInput--placeholder2': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarPINInput-field3': {
+        '& .SolarPINInput--field3': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarPINInput-placeholder3': {
+        '& .SolarPINInput--placeholder3': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarPINInput-field4': {
+        '& .SolarPINInput--field4': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarPINInput-placeholder4': {
+        '& .SolarPINInput--placeholder4': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarPINInput-field5': {
+        '& .SolarPINInput--field5': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarPINInput-placeholder5': {
+        '& .SolarPINInput--placeholder5': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarPINInput-field6': {
+        '& .SolarPINInput--field6': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarPINInput-placeholder6': {
+        '& .SolarPINInput--placeholder6': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarPINInput-helper': {

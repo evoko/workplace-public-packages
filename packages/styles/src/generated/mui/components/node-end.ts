@@ -46,7 +46,7 @@ export const solarNodeEndStyles = {
     '--solar-placed-top': '0px',
     width: '12px',
     height: '12px',
-    '& .SolarNodeEnd-halo': {
+    '& .SolarNodeEnd--halo': {
       backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -59,7 +59,7 @@ export const solarNodeEndStyles = {
       left: 'calc(3px - var(--solar-placed-left, 0px))',
       top: 'calc(3px - var(--solar-placed-top, 0px))',
     },
-    '& .SolarNodeEnd-dot': {
+    '& .SolarNodeEnd--dot': {
       backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -76,7 +76,7 @@ export const solarNodeEndStyles = {
   sizes: {},
   appearances: {
     'halo=true': {
-      '& .SolarNodeEnd-halo': {
+      '& .SolarNodeEnd--halo': {
         width: '14px',
         height: '14px',
         position: 'absolute',

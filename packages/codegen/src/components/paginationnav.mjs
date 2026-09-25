@@ -13,7 +13,7 @@ import {
   drawnResets,
   iconsOf,
   reactIcon,
-  treeOf,
+  treeConsts,
 } from '../shells/drawn.mjs';
 
 const P = 'SolarPaginationNav';
@@ -32,13 +32,13 @@ export default {
     slots: 'drawn',
     resets: drawnResets('PaginationNav', {
       display: 'flex',
-      [`& .${P}-icon > svg`]: {
+      [`& .${P}--icon > svg`]: {
         display: 'block',
         width: '100%',
         height: '100%',
       },
       // Mirrored by the layout's direction, not by the prop, as its description says.
-      [`&:dir(rtl) .${P}-icon`]: { transform: 'scaleX(-1)' },
+      [`&:dir(rtl) .${P}--icon`]: { transform: 'scaleX(-1)' },
     }),
     // Hovered, pressed and focused as the pointer and the keyboard reach it (MUI marks the
     // keyboard's focus-visible); disabled as MUI marks it.
@@ -81,7 +81,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface PaginationNavProps
   extends SolarPaginationNavProps,
@@ -106,7 +106,7 @@ export const PaginationNav = forwardRef<HTMLButtonElement, PaginationNavProps>(
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           icons: { icon: ${reactIcon(iconsOf(spec)[0], spec)} },
         })}

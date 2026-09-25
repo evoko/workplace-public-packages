@@ -52,6 +52,12 @@ const TREE: Record<string, string[]> = {
     'dropdownItem4',
   ],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  trailingIcon: 'trailingIcon',
+  helper: 'helper',
+};
 
 /** MUI's own icon, which the field draws as its chevron layer instead. */
 const NoIcon = () => null;
@@ -150,6 +156,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   const drawing: LayerDrawing = {
     prefix: 'SolarSelect',
     tree: TREE,
+    slots: SLOTS,
     // A part left empty is not drawn; the panel is MUI's menu, drawn below.
     parts: {
       ...parts,
@@ -210,7 +217,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
               slotProps: {
                 ...MenuProps?.slotProps,
                 paper: {
-                  className: 'SolarSelect-dropdownMenu SolarSelect-box',
+                  className: 'SolarSelect--dropdownMenu SolarSelect-box',
                 },
                 list: { disablePadding: true },
               },

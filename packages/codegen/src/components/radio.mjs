@@ -7,7 +7,7 @@
  * inside by the shared layer helpers.
  */
 
-import { drawnResets, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { drawnResets, treeOf, wrapDoc, treeConsts } from '../shells/drawn.mjs';
 import { targetInput } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
@@ -71,7 +71,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** The dot, as MUI's icon: MUI hands the icon a size, which the dot does not take. */
 function Marks({ children }: { children: ReactNode; fontSize?: unknown }) {
@@ -100,7 +100,7 @@ export const Radio = forwardRef<HTMLButtonElement, RadioProps>(function Radio(
     <Marks>
       {drawChildren('root', {
         prefix: 'SolarRadio',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts: solarRadioCompose(look, disabled ? 'disabled' : 'default'),
       })}
     </Marks>

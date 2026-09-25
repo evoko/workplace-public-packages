@@ -231,6 +231,17 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
      glyph keeps its size beside what fills (`drawnResets`).
    - **Words, checked.** The oracle marks a text Figma draws words in (`words`), and both checks
      fail one drawn in its style with none (Status Card's value, its words never passed on).
+   - **The consumer's side (from the comparison with `@biamp/solar-mui`).** The MUI theme holds
+     both colour schemes in MUI's CSS-variables mode, switched by `data-theme` as the tokens are,
+     and its breakpoints, spacing and motion from the tokens (`emit/mui.mjs`); `SolarProvider` in
+     `@bwp-web/components` installs it; `npm run smoke:install` installs the packed packages in a
+     clean app with React 18 and renders them on the server.
+   - **The rule proposer.** `solar:explain … --propose <layer>.<cell>` (`src/explain/propose.mjs`):
+     `bind`, `allowLiteral`, `follows` or `accept` from the finding, a `set` where none is open, one
+     patterned rule for numbered siblings; its `TODO(reason)` fails the build until replaced.
+   - **Two class name spaces.** `src/util/classes.mjs`: `Solar<Name>-<slot>` public,
+     `Solar<Name>--<layer>` internal; `withLayerClasses` writes a layer named by a helper
+     (`${P}-${layer}`) as its own, in the recipes and the shells.
    - **Hidden layers by path, an added layer in its place.** The fetcher
      (`docs/solar-web/raw/variant-diff.mjs`) records each hidden layer by path (`hiddenPaths`) and
      each added layer's `index`; where the data has them, a composed child hides exactly its own

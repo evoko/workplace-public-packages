@@ -61,6 +61,14 @@ const TREE: Record<string, string[]> = {
     'contentSkeleton3',
   ],
 };
+const SLOTS: Record<string, string> = {
+  icon: 'icon',
+  titleTitle: 'title',
+  helper: 'helper',
+  more: 'more',
+  content: 'content',
+  tag: 'tag',
+};
 
 export interface CardProps
   extends
@@ -203,6 +211,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
         {drawChildren('root', {
           prefix: 'SolarCard',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { titleTitle: titled, helper, description },
           icons: {

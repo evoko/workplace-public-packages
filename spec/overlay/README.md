@@ -280,6 +280,23 @@ The component in code an instance of a Figma component is, where Figma's name is
 - **`excluded.yaml`** names the components left out of the flow, with a reason (Cursor): the
   triage skips them and the build refuses them.
 
+### Repeated, and not defaults
+
+`npm run solar:overlay:audit` lists the decisions most overlays make. Besides the focus ring, four
+lead it, and each stays one rule per overlay, for these reasons:
+
+- **`set root.base.width = FILL`** (45 components) **and `set root.size.sm.width = FILL`** (11,
+  the fields). A card, a row, a field or a panel spans what it is put in; Figma draws a sample
+  width. A control does not: a Button, a Tag, a Checkbox hugs what it holds, and `defaults.yaml`
+  cannot tell one from the other, since both are a root with a width Figma fixes. Where the width
+  is the caller's is a decision about the component, made in its overlay.
+- **`allowLiteral root.height = any`** (38) **and `allowLiteral root.width = any`** (15). SOLAR
+  publishes no variable for a control's size (Button's 32, 40 and 48, a Checkbox's 16), one
+  governance gap, which the design review asks once (its decision 4). A default would allow an
+  unbound size in every component the next sync brings, where each should be looked at (Insight
+  Row's fixed 64 was a height to hug, not a size to carry), so each overlay allows its own, and
+  the audit counts them.
+
 ## Glossary
 
 The overlays, the reasons and the READMEs share a vocabulary:

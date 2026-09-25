@@ -42,7 +42,7 @@ export const solarCardStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarCard-titleTitle, & .SolarCard-description': {
+    '& .SolarCard-title, & .SolarCard--description': {
       whiteSpace: 'normal',
       minWidth: '0',
     },
@@ -123,7 +123,7 @@ export const solarCardStyles = {
     paddingBottom: 'var(--solar-inset-md)',
     paddingLeft: 'var(--solar-inset-md)',
     width: '100%',
-    '& .SolarCard-title': {
+    '& .SolarCard--title': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -144,7 +144,7 @@ export const solarCardStyles = {
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarCard-titleTitle': {
+    '& .SolarCard-title': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -168,7 +168,7 @@ export const solarCardStyles = {
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarCard-skeleton': {
+    '& .SolarCard--skeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '140px',
@@ -190,7 +190,7 @@ export const solarCardStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarCard-description': {
+    '& .SolarCard--description': {
       color: 'var(--solar-color-text-secondary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -205,19 +205,19 @@ export const solarCardStyles = {
         backgroundColor: 'var(--solar-color-surface-feedback-neutral-subtle)',
       },
     },
-    '& .SolarCard-contentSkeleton': {
+    '& .SolarCard--contentSkeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '260px',
       height: '12px',
     },
-    '& .SolarCard-contentSkeleton2': {
+    '& .SolarCard--contentSkeleton2': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '260px',
       height: '12px',
     },
-    '& .SolarCard-contentSkeleton3': {
+    '& .SolarCard--contentSkeleton3': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '200px',
@@ -239,10 +239,10 @@ export const solarCardStyles = {
         '& .SolarCard-icon': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarCard-titleTitle': {
+        '& .SolarCard-title': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarCard-description': {
+        '& .SolarCard--description': {
           color: 'var(--solar-color-text-disabled)',
         },
       },
@@ -251,7 +251,7 @@ export const solarCardStyles = {
       '&:has(.SolarCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
-      '& .SolarCard-skeleton': {
+      '& .SolarCard--skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -264,17 +264,17 @@ export const solarCardStyles = {
           backgroundColor: 'var(--solar-color-surface-muted)',
         },
       },
-      '& .SolarCard-contentSkeleton': {
+      '& .SolarCard--contentSkeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarCard-contentSkeleton2': {
+      '& .SolarCard--contentSkeleton2': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarCard-contentSkeleton3': {
+      '& .SolarCard--contentSkeleton3': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -288,7 +288,7 @@ export const solarCardStyles = {
         '& .SolarCard-icon': {
           color: 'var(--solar-color-icon-feedback-danger)',
         },
-        '& .SolarCard-titleTitle': {
+        '& .SolarCard-title': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
         '& .SolarCard-more': {
@@ -308,7 +308,7 @@ export const solarCardStyles = {
       '& .SolarCard-icon': {
         color: 'var(--solar-color-icon-feedback-danger)',
       },
-      '& .SolarCard-titleTitle': {
+      '& .SolarCard-title': {
         color: 'var(--solar-color-text-feedback-danger)',
       },
       '& .SolarCard-more': {
@@ -333,7 +333,7 @@ export const solarCardStyles = {
         '& .SolarCard-icon': {
           color: 'var(--solar-color-icon-feedback-warning)',
         },
-        '& .SolarCard-titleTitle': {
+        '& .SolarCard-title': {
           color: 'var(--solar-color-text-feedback-warning)',
         },
         '& .SolarCard-more': {
@@ -353,7 +353,7 @@ export const solarCardStyles = {
       '& .SolarCard-icon': {
         color: 'var(--solar-color-icon-feedback-warning)',
       },
-      '& .SolarCard-titleTitle': {
+      '& .SolarCard-title': {
         color: 'var(--solar-color-text-feedback-warning)',
       },
       '& .SolarCard-more': {
@@ -378,7 +378,7 @@ export const solarCardStyles = {
         '& .SolarCard-icon': {
           color: 'var(--solar-color-icon-feedback-success)',
         },
-        '& .SolarCard-titleTitle': {
+        '& .SolarCard-title': {
           color: 'var(--solar-color-text-feedback-success)',
         },
         '& .SolarCard-more': {
@@ -398,7 +398,7 @@ export const solarCardStyles = {
       '& .SolarCard-icon': {
         color: 'var(--solar-color-icon-feedback-success)',
       },
-      '& .SolarCard-titleTitle': {
+      '& .SolarCard-title': {
         color: 'var(--solar-color-text-feedback-success)',
       },
       '& .SolarCard-more': {
@@ -423,7 +423,7 @@ export const solarCardStyles = {
         '& .SolarCard-icon': {
           color: 'var(--solar-color-icon-feedback-info)',
         },
-        '& .SolarCard-titleTitle': {
+        '& .SolarCard-title': {
           color: 'var(--solar-color-text-feedback-info)',
         },
         '& .SolarCard-more': {
@@ -442,7 +442,7 @@ export const solarCardStyles = {
       '& .SolarCard-icon': {
         color: 'var(--solar-color-icon-feedback-info)',
       },
-      '& .SolarCard-titleTitle': {
+      '& .SolarCard-title': {
         color: 'var(--solar-color-text-feedback-info)',
       },
       '& .SolarCard-more': {

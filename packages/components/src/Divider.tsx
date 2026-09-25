@@ -24,6 +24,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['rule', 'label', 'rule2'] };
+const SLOTS: Record<string, string> = {};
 
 export interface DividerProps
   extends
@@ -55,6 +56,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
         {drawChildren('root', {
           prefix: 'SolarDivider',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { label: children },
         })}

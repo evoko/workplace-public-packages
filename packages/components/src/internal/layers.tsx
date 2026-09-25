@@ -5,7 +5,8 @@
  * not lay out sits at the place the recipe gives it.
  *
  * Hand written and internal: the shells of StatusIndicator, Counter and the other drawn components
- * share it. Every layer carries the class `<prefix>-<layer>`, which the recipe styles and the
+ * share it. A slot's layer carries the class `<prefix>-<slot>`, public, and every other layer
+ * `<prefix>--<layer>`, internal (the codegen's util/classes.mjs), which the recipe styles and the
  * visual check finds; nothing here is a design value.
  */
 
@@ -33,6 +34,8 @@ export type LayerParts = Record<string, unknown>;
 export interface LayerDrawing {
   /** The component's class prefix: `SolarStatusIndicator`. */
   prefix: string;
+  /** Each slot's layer, by layer, to its slot's name: its class is public, `<prefix>-<slot>`. */
+  slots?: Record<string, string>;
   /** Each layer's children, as Figma nests them. */
   tree: Record<string, string[]>;
   /** Each layer's composition in this variant, from the recipe. */
@@ -97,7 +100,9 @@ export function drawLayer(name: string, d: LayerDrawing): ReactNode {
             : from('top', typeof p.y === 'number' ? p.y : 0)),
         }
       : undefined;
-  const className = `${d.prefix}-${name}`;
+  const className = d.slots?.[name]
+    ? `${d.prefix}-${d.slots[name]}`
+    : `${d.prefix}--${name}`;
   const own = d.render?.[name];
   if (isGlyph(p.glyph)) {
     const svg = (

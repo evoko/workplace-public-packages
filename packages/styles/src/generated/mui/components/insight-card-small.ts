@@ -73,7 +73,7 @@ export const solarInsightCardSmallStyles = {
       clipPath: 'inset(50%)',
       whiteSpace: 'nowrap',
     },
-    '& .SolarInsightCardSmall-icon': {
+    '& .SolarInsightCardSmall--icon': {
       flexShrink: '0',
     },
   },
@@ -93,7 +93,7 @@ export const solarInsightCardSmallStyles = {
     paddingBottom: 'var(--solar-inset-xs)',
     paddingLeft: 'var(--solar-inset-xs)',
     width: '100%',
-    '& .SolarInsightCardSmall-icon': {
+    '& .SolarInsightCardSmall--icon': {
       backgroundColor: 'var(--solar-color-surface-feedback-success-subtle)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -110,7 +110,7 @@ export const solarInsightCardSmallStyles = {
       width: '40px',
       height: '40px',
     },
-    '& .SolarInsightCardSmall-content': {
+    '& .SolarInsightCardSmall--content': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -146,13 +146,13 @@ export const solarInsightCardSmallStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarInsightCardSmall-skeleton': {
+    '& .SolarInsightCardSmall--skeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
       height: '12px',
     },
-    '& .SolarInsightCardSmall-skeleton2': {
+    '& .SolarInsightCardSmall--skeleton2': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '170px',
@@ -164,7 +164,7 @@ export const solarInsightCardSmallStyles = {
     'severity=danger, loading=false': {
       '&.SolarInsightCardSmall-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightCardSmall-icon': {
+        '& .SolarInsightCardSmall--icon': {
           backgroundColor: 'var(--solar-color-surface-feedback-danger-subtle)',
         },
       },
@@ -172,14 +172,14 @@ export const solarInsightCardSmallStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightCardSmall-icon': {
+      '& .SolarInsightCardSmall--icon': {
         backgroundColor: 'var(--solar-color-surface-feedback-danger-subtle)',
       },
     },
     'severity=warning, loading=false': {
       '&.SolarInsightCardSmall-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightCardSmall-icon': {
+        '& .SolarInsightCardSmall--icon': {
           backgroundColor: 'var(--solar-color-surface-feedback-warning-subtle)',
         },
       },
@@ -187,14 +187,14 @@ export const solarInsightCardSmallStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightCardSmall-icon': {
+      '& .SolarInsightCardSmall--icon': {
         backgroundColor: 'var(--solar-color-surface-feedback-warning-subtle)',
       },
     },
     'severity=info, loading=false': {
       '&.SolarInsightCardSmall-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightCardSmall-icon': {
+        '& .SolarInsightCardSmall--icon': {
           backgroundColor: 'var(--solar-color-surface-feedback-neutral-subtle)',
         },
       },
@@ -202,22 +202,22 @@ export const solarInsightCardSmallStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightCardSmall-icon': {
+      '& .SolarInsightCardSmall--icon': {
         backgroundColor: 'var(--solar-color-surface-feedback-neutral-subtle)',
       },
     },
     'severity=info, loading=true': {
       '&.SolarInsightCardSmall-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightCardSmall-icon': {
+        '& .SolarInsightCardSmall--icon': {
           backgroundColor: 'var(--solar-color-surface-muted)',
         },
-        '& .SolarInsightCardSmall-skeleton': {
+        '& .SolarInsightCardSmall--skeleton': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'transparent',
           boxShadow: 'none',
         },
-        '& .SolarInsightCardSmall-skeleton2': {
+        '& .SolarInsightCardSmall--skeleton2': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'transparent',
           boxShadow: 'none',
@@ -227,15 +227,15 @@ export const solarInsightCardSmallStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightCardSmall-icon': {
+      '& .SolarInsightCardSmall--icon': {
         backgroundColor: 'var(--solar-color-surface-muted)',
       },
-      '& .SolarInsightCardSmall-skeleton': {
+      '& .SolarInsightCardSmall--skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarInsightCardSmall-skeleton2': {
+      '& .SolarInsightCardSmall--skeleton2': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',

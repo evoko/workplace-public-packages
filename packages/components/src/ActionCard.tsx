@@ -44,6 +44,15 @@ const TREE: Record<string, string[]> = {
   content: ['description'],
   cta: ['primaryCTA', 'secondaryCTA'],
 };
+const SLOTS: Record<string, string> = {
+  icon: 'icon',
+  content: 'content',
+  cta: 'cta',
+  primaryCTA: 'primaryCTA',
+  secondaryCTA: 'secondaryCTA',
+  titleTitle: 'title',
+  description: 'description',
+};
 
 export interface ActionCardProps
   extends
@@ -167,6 +176,7 @@ export const ActionCard = forwardRef<HTMLDivElement, ActionCardProps>(
           {drawChildren('root', {
             prefix: 'SolarActionCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { titleTitle: titled, description },
             icons: {

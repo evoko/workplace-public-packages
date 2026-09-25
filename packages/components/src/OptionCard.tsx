@@ -30,6 +30,7 @@ const TREE: Record<string, string[]> = {
   root: ['container', 'label'],
   container: ['iconPlus'],
 };
+const SLOTS: Record<string, string> = { label: 'label' };
 
 export interface OptionCardProps
   extends
@@ -90,6 +91,7 @@ export const OptionCard = forwardRef<HTMLDivElement, OptionCardProps>(
           {drawChildren('root', {
             prefix: 'SolarOptionCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { label: titled },
             icons: {

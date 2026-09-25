@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createElement as h } from 'react';
 import { renderToString } from 'react-dom/server';
+import { cls } from './classes.mjs';
 import { BreadcrumbItem } from '../src/BreadcrumbItem.tsx';
 import { Breadcrumbs } from '../src/Breadcrumbs.tsx';
 import { NavItem } from '../src/NavItem.tsx';
@@ -50,7 +51,7 @@ describe('the SOLAR Tabs and Tab Item shells', () => {
     const text = strip();
     expect(text).toContain('>Alpha<');
     // The Counter shows where a count is given, and not at 0.
-    expect(count(text, /SolarCounter-value/g)).toBe(1);
+    expect(count(text, /SolarCounter--value/g)).toBe(1);
     expect(text).toContain('Mui-disabled');
   });
 });
@@ -152,8 +153,8 @@ describe('the SOLAR Breadcrumbs shells', () => {
       'iconChevronRight',
       'iconChevronRight3',
     ])
-      expect(drawn(text, `SolarBreadcrumbs-${layer}`), layer).toBe(true);
-    expect(drawn(text, 'SolarBreadcrumbs-item4')).toBe(false);
+      expect(drawn(text, cls('Breadcrumbs', layer)), layer).toBe(true);
+    expect(drawn(text, 'SolarBreadcrumbs--item4')).toBe(false);
   });
 
   it('past five, collapses its middle to an ellipsis that opens a menu', () => {
@@ -196,7 +197,7 @@ describe('the SOLAR Tree Item shell', () => {
     const text = row({ expandable: false });
     expect(text).not.toContain('aria-expanded');
     expect(text).toMatch(
-      /SolarTreeItem-chevron[^"]*"[^>]*style="[^"]*visibility:hidden/,
+      /SolarTreeItem--chevron[^"]*"[^>]*style="[^"]*visibility:hidden/,
     );
   });
 
@@ -210,7 +211,7 @@ describe('the SOLAR Tree Item shell', () => {
       'leadingIcon',
       'iconMore',
     ])
-      expect(drawn(bare, `SolarTreeItem-${part}`), part).toBe(false);
+      expect(drawn(bare, cls('Tree Item', part)), part).toBe(false);
     const full = row({
       checked: true,
       status: 'warning',
@@ -230,14 +231,14 @@ describe('the SOLAR Tree Item shell', () => {
       'iconMore',
       'iconPlus',
     ])
-      expect(drawn(full, `SolarTreeItem-${part}`), part).toBe(true);
+      expect(drawn(full, cls('Tree Item', part)), part).toBe(true);
     expect(full).toMatch(/<button[^>]*aria-label="More actions"/);
   });
 
   it('shows its actions while selected, not at rest', () => {
-    expect(drawn(row({ onMore() {} }), 'SolarTreeItem-iconMore')).toBe(false);
+    expect(drawn(row({ onMore() {} }), 'SolarTreeItem--iconMore')).toBe(false);
     expect(
-      drawn(row({ onMore() {}, selected: true }), 'SolarTreeItem-iconMore'),
+      drawn(row({ onMore() {}, selected: true }), 'SolarTreeItem--iconMore'),
     ).toBe(true);
   });
 
@@ -245,6 +246,6 @@ describe('the SOLAR Tree Item shell', () => {
     const text = row({ edit: true });
     expect(text).toMatch(/<input[^>]*aria-label="Name"[^>]*value="Docs"/);
     expect(drawn(text, 'SolarTreeItem-edit')).toBe(true);
-    expect(drawn(text, 'SolarTreeItem-label')).toBe(false);
+    expect(drawn(text, 'SolarTreeItem--label')).toBe(false);
   });
 });

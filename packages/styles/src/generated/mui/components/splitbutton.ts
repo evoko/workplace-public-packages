@@ -44,14 +44,14 @@ export const solarSplitButtonStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarSplitButton-action, & .SolarSplitButton-trigger': {
+    '& .SolarSplitButton--action, & .SolarSplitButton--trigger': {
       font: 'inherit',
       color: 'inherit',
     },
-    '& .SolarSplitButton-action': {
+    '& .SolarSplitButton--action': {
       position: 'relative',
     },
-    '& .SolarSplitButton-action::after': {
+    '& .SolarSplitButton--action::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -60,10 +60,10 @@ export const solarSplitButtonStyles = {
       height: 'max(100%, 44px)',
       transform: 'translate(-50%, -50%)',
     },
-    '& .SolarSplitButton-trigger': {
+    '& .SolarSplitButton--trigger': {
       position: 'relative',
     },
-    '& .SolarSplitButton-trigger::after': {
+    '& .SolarSplitButton--trigger::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -72,7 +72,7 @@ export const solarSplitButtonStyles = {
       height: 'max(100%, 44px)',
       transform: 'translate(-50%, -50%)',
     },
-    '& .SolarSplitButton-spinner': {
+    '& .SolarSplitButton--spinner': {
       position: 'absolute',
       inset: '0',
       display: 'flex',
@@ -96,7 +96,7 @@ export const solarSplitButtonStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
     height: '40px',
-    '& .SolarSplitButton-action': {
+    '& .SolarSplitButton--action': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -121,7 +121,7 @@ export const solarSplitButtonStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarSplitButton-divider': {
+    '& .SolarSplitButton--divider': {
       backgroundColor: 'var(--solar-color-action-primary-text-default)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -131,7 +131,7 @@ export const solarSplitButtonStyles = {
       width: 'var(--solar-border-default)',
       height: '100%',
     },
-    '& .SolarSplitButton-trigger': {
+    '& .SolarSplitButton--trigger': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -148,7 +148,7 @@ export const solarSplitButtonStyles = {
       width: '40px',
       height: '100%',
     },
-    '& .SolarSplitButton-iconChevronDown': {
+    '& .SolarSplitButton--iconChevronDown': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-action-primary-icon-default)',
@@ -157,7 +157,7 @@ export const solarSplitButtonStyles = {
   sizes: {
     sm: {
       height: '32px',
-      '& .SolarSplitButton-action': {
+      '& .SolarSplitButton--action': {
         paddingRight: 'var(--solar-inset-sm)',
         paddingLeft: 'var(--solar-inset-sm)',
       },
@@ -169,11 +169,11 @@ export const solarSplitButtonStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarSplitButton-trigger': {
+      '& .SolarSplitButton--trigger': {
         width: '32px',
         height: '32px',
       },
-      '& .SolarSplitButton-iconChevronDown': {
+      '& .SolarSplitButton--iconChevronDown': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -183,14 +183,14 @@ export const solarSplitButtonStyles = {
     'variant=primary': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-primary-icon-hover)',
         },
       },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-primary-bg-active)',
         boxShadow: 'none',
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-primary-icon-active)',
         },
       },
@@ -204,7 +204,7 @@ export const solarSplitButtonStyles = {
         '& .SolarSplitButton-label': {
           color: 'var(--solar-color-action-primary-text-disabled)',
         },
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
         },
       },
@@ -216,10 +216,10 @@ export const solarSplitButtonStyles = {
         '& .SolarSplitButton-label': {
           color: 'var(--solar-color-action-secondary-text-default)',
         },
-        '& .SolarSplitButton-divider': {
+        '& .SolarSplitButton--divider': {
           backgroundColor: 'var(--solar-color-border-medium)',
         },
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
         },
       },
@@ -229,10 +229,10 @@ export const solarSplitButtonStyles = {
         '& .SolarSplitButton-label': {
           color: 'var(--solar-color-action-secondary-text-default)',
         },
-        '& .SolarSplitButton-divider': {
+        '& .SolarSplitButton--divider': {
           backgroundColor: 'var(--solar-color-border-medium)',
         },
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-secondary-icon-active)',
         },
       },
@@ -242,10 +242,10 @@ export const solarSplitButtonStyles = {
         '& .SolarSplitButton-label': {
           color: 'var(--solar-color-action-secondary-text-default)',
         },
-        '& .SolarSplitButton-divider': {
+        '& .SolarSplitButton--divider': {
           backgroundColor: 'var(--solar-color-border-medium)',
         },
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
@@ -254,10 +254,10 @@ export const solarSplitButtonStyles = {
         '& .SolarSplitButton-label': {
           color: 'var(--solar-color-action-secondary-text-default)',
         },
-        '& .SolarSplitButton-divider': {
+        '& .SolarSplitButton--divider': {
           backgroundColor: 'var(--solar-color-border-medium)',
         },
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
@@ -268,20 +268,20 @@ export const solarSplitButtonStyles = {
         '& .SolarSplitButton-label': {
           color: 'var(--solar-color-action-secondary-text-disabled)',
         },
-        '& .SolarSplitButton-divider': {
+        '& .SolarSplitButton--divider': {
           backgroundColor: 'var(--solar-color-border-medium)',
         },
-        '& .SolarSplitButton-iconChevronDown': {
+        '& .SolarSplitButton--iconChevronDown': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
         },
       },
       '& .SolarSplitButton-label': {
         color: 'var(--solar-color-action-secondary-text-default)',
       },
-      '& .SolarSplitButton-divider': {
+      '& .SolarSplitButton--divider': {
         backgroundColor: 'var(--solar-color-border-medium)',
       },
-      '& .SolarSplitButton-iconChevronDown': {
+      '& .SolarSplitButton--iconChevronDown': {
         color: 'var(--solar-color-action-secondary-icon-default)',
       },
     },
@@ -291,7 +291,7 @@ export const solarSplitButtonStyles = {
       'variant=primary': {
         '&:has(.Mui-focusVisible)': {
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          '& .SolarSplitButton-iconChevronDown': {
+          '& .SolarSplitButton--iconChevronDown': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
@@ -301,7 +301,7 @@ export const solarSplitButtonStyles = {
       'variant=primary': {
         '&:has(.Mui-focusVisible)': {
           backgroundColor: 'var(--solar-color-action-primary-bg-default)',
-          '& .SolarSplitButton-iconChevronDown': {
+          '& .SolarSplitButton--iconChevronDown': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },

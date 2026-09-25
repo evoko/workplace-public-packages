@@ -64,6 +64,16 @@ const TREE: Record<string, string[]> = {
   chevron: ['chevronChevron', 'iconChevronDown'],
   buttons: ['iconMore', 'iconPlus'],
 };
+const SLOTS: Record<string, string> = {
+  chevronChevron: 'chevron',
+  checkbox: 'checkbox',
+  leadingIcon: 'leadingIcon',
+  status: 'status',
+  tag: 'tag',
+  counter: 'counter',
+  trailingIcon: 'trailingIcon',
+  buttons: 'buttons',
+};
 
 export interface TreeItemProps
   extends
@@ -243,6 +253,7 @@ export const TreeItem = forwardRef<HTMLDivElement, TreeItemProps>(
         {drawChildren('root', {
           prefix: 'SolarTreeItem',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { label },
           icons: {

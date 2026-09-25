@@ -10,6 +10,7 @@
  */
 
 import { camel, pascal } from '../util/naming.mjs';
+import { publicLayers } from '../util/classes.mjs';
 import { dartEnumValue } from '../emit/flutter.mjs';
 import { dartField, dartParam } from './helpers.mjs';
 
@@ -40,6 +41,15 @@ export const drawnResets = (name, more = {}) => {
     ...more,
   };
 };
+
+/**
+ * A drawn shell's layer tree and its slots' layers, as the two constants its drawing takes (`tree`,
+ * `slots`): a slot's layer is drawn with its public class, `Solar<Name>-<slot>`, and every other
+ * layer with its internal one, `Solar<Name>--<layer>` (util/classes.mjs).
+ */
+export const treeConsts = (spec) =>
+  `const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};\n` +
+  `const SLOTS: Record<string, string> = ${JSON.stringify(publicLayers(spec))};`;
 
 /** Each layer's children, in Figma's order, from the IR. */
 export const treeOf = (spec) => {
@@ -275,7 +285,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 ${o.types ? `\n${o.types.trim()}\n` : ''}
 export interface ${P}Props
   extends Solar${P}Props,
@@ -300,7 +310,7 @@ ${o.attrs ? `${indent(o.attrs, 6)}\n` : ''}      {...rest}
     >${o.before ? `\n      ${o.before}` : ''}
       {drawChildren('root', {
         prefix: 'Solar${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,${o.text ? `\n        text: ${o.text},` : ''}${o.content ? `\n        content: ${o.content},` : ''}${iconMap ? `\n        icons: ${iconMap},` : ''}
       })}
     </Box>

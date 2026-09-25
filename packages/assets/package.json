@@ -17,7 +17,8 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./svg/*": "./dist/svg/*"
+    "./svg/*": "./dist/svg/*",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"

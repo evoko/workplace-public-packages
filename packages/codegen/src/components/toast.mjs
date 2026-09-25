@@ -7,7 +7,7 @@
  * (the overlay's restyles), the message, and an action.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
@@ -71,7 +71,7 @@ import { drawChildren } from './internal/layers.js';
 import { Tag, type TagProps } from './Tag.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ToastProps
   extends SolarToastProps,
@@ -110,7 +110,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     >
       {drawChildren('root', {
         prefix: 'SolarToast',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts: drawn,
         text: { message },
         icons: { chevron: <IconChevronRight /> },

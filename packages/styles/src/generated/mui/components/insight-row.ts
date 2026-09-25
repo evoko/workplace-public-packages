@@ -68,7 +68,7 @@ export const solarInsightRowStyles = {
       clipPath: 'inset(50%)',
       whiteSpace: 'nowrap',
     },
-    '& .SolarInsightRow-severityBar': {
+    '& .SolarInsightRow--severityBar': {
       flexShrink: '0',
     },
     '& .SolarInsightRow-title, & .SolarInsightRow-meta': {
@@ -77,7 +77,7 @@ export const solarInsightRowStyles = {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
     },
-    '& .SolarInsightRow-body': {
+    '& .SolarInsightRow--body': {
       minWidth: '0',
     },
     '& .SolarInsightRow-action': {
@@ -100,7 +100,7 @@ export const solarInsightRowStyles = {
     paddingBottom: 'var(--solar-inset-2xs)',
     paddingLeft: 'var(--solar-inset-2xs)',
     width: '100%',
-    '& .SolarInsightRow-severityBar': {
+    '& .SolarInsightRow--severityBar': {
       backgroundColor: 'var(--solar-color-surface-feedback-success-strong)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -109,7 +109,7 @@ export const solarInsightRowStyles = {
       width: '4px',
       height: '100%',
     },
-    '& .SolarInsightRow-content': {
+    '& .SolarInsightRow--content': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -126,7 +126,7 @@ export const solarInsightRowStyles = {
       width: '100%',
       height: '100%',
     },
-    '& .SolarInsightRow-body': {
+    '& .SolarInsightRow--body': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -162,13 +162,13 @@ export const solarInsightRowStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarInsightRow-skeleton': {
+    '& .SolarInsightRow--skeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
       height: '12px',
     },
-    '& .SolarInsightRow-skeleton2': {
+    '& .SolarInsightRow--skeleton2': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '140px',
@@ -189,7 +189,7 @@ export const solarInsightRowStyles = {
     'severity=danger, loading=false': {
       '&.SolarInsightRow-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightRow-severityBar': {
+        '& .SolarInsightRow--severityBar': {
           backgroundColor: 'var(--solar-color-surface-feedback-danger-strong)',
         },
       },
@@ -197,14 +197,14 @@ export const solarInsightRowStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightRow-severityBar': {
+      '& .SolarInsightRow--severityBar': {
         backgroundColor: 'var(--solar-color-surface-feedback-danger-strong)',
       },
     },
     'severity=warning, loading=false': {
       '&.SolarInsightRow-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightRow-severityBar': {
+        '& .SolarInsightRow--severityBar': {
           backgroundColor: 'var(--solar-color-surface-feedback-warning-strong)',
         },
       },
@@ -212,14 +212,14 @@ export const solarInsightRowStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightRow-severityBar': {
+      '& .SolarInsightRow--severityBar': {
         backgroundColor: 'var(--solar-color-surface-feedback-warning-strong)',
       },
     },
     'severity=info, loading=false': {
       '&.SolarInsightRow-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightRow-severityBar': {
+        '& .SolarInsightRow--severityBar': {
           backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
         },
       },
@@ -227,22 +227,22 @@ export const solarInsightRowStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightRow-severityBar': {
+      '& .SolarInsightRow--severityBar': {
         backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
       },
     },
     'severity=info, loading=true': {
       '&.SolarInsightRow-pressable:hover': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarInsightRow-severityBar': {
+        '& .SolarInsightRow--severityBar': {
           backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
         },
-        '& .SolarInsightRow-skeleton': {
+        '& .SolarInsightRow--skeleton': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'transparent',
           boxShadow: 'none',
         },
-        '& .SolarInsightRow-skeleton2': {
+        '& .SolarInsightRow--skeleton2': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'transparent',
           boxShadow: 'none',
@@ -252,15 +252,15 @@ export const solarInsightRowStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarInsightRow-severityBar': {
+      '& .SolarInsightRow--severityBar': {
         backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
       },
-      '& .SolarInsightRow-skeleton': {
+      '& .SolarInsightRow--skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarInsightRow-skeleton2': {
+      '& .SolarInsightRow--skeleton2': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',

@@ -40,7 +40,7 @@ export const solarStepperStyles = {
     margin: '0',
     padding: '0',
     listStyle: 'none',
-    '& .SolarStepper-steps': {
+    '& .SolarStepper--steps': {
       margin: '0',
       padding: '0',
       listStyle: 'none',
@@ -74,7 +74,7 @@ export const solarStepperStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
-    '& .SolarStepper-progress': {
+    '& .SolarStepper--progress': {
       backgroundColor: 'var(--solar-color-surface-muted)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -91,7 +91,7 @@ export const solarStepperStyles = {
       height: '4px',
       top: 'calc(10px - var(--solar-placed-top, 0px))',
     },
-    '& .SolarStepper-progressRectangle2': {
+    '& .SolarStepper--progressRectangle2': {
       backgroundColor: 'var(--solar-color-surface-inverse)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -99,7 +99,7 @@ export const solarStepperStyles = {
       borderStyle: 'none',
       height: '4px',
     },
-    '& .SolarStepper-steps': {
+    '& .SolarStepper--steps': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -115,52 +115,52 @@ export const solarStepperStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarStepper-frame': {
+    '& .SolarStepper--frame': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: '100%',
       height: '2px',
     },
-    '& .SolarStepper-frame2': {
+    '& .SolarStepper--frame2': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: '100%',
       height: '2px',
     },
-    '& .SolarStepper-rectangle1': {
+    '& .SolarStepper--rectangle1': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
       height: '4px',
     },
-    '& .SolarStepper-rectangle2': {
+    '& .SolarStepper--rectangle2': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
       height: '4px',
     },
-    '& .SolarStepper-rectangle3': {
+    '& .SolarStepper--rectangle3': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
       height: '4px',
     },
-    '& .SolarStepper-rectangle4': {
+    '& .SolarStepper--rectangle4': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
       height: '4px',
     },
-    '& .SolarStepper-rectangle5': {
+    '& .SolarStepper--rectangle5': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
       height: '4px',
     },
-    '& .SolarStepper-stepCompleteHorizontal': {
+    '& .SolarStepper--stepCompleteHorizontal': {
       width: '100%',
     },
-    '& .SolarStepper-step': {
+    '& .SolarStepper--step': {
       width: '100%',
     },
     '& .SolarStepper-step3': {
@@ -182,27 +182,27 @@ export const solarStepperStyles = {
       alignItems: 'center',
       gap: 'var(--solar-inset-xs)',
       height: 'auto',
-      '& .SolarStepper-rectangle1': {
+      '& .SolarStepper--rectangle1': {
         backgroundColor: 'var(--solar-color-surface-inverse)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStepper-rectangle2': {
+      '& .SolarStepper--rectangle2': {
         backgroundColor: 'var(--solar-color-border-subtle)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStepper-rectangle3': {
+      '& .SolarStepper--rectangle3': {
         backgroundColor: 'var(--solar-color-border-subtle)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStepper-rectangle4': {
+      '& .SolarStepper--rectangle4': {
         backgroundColor: 'var(--solar-color-border-subtle)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStepper-rectangle5': {
+      '& .SolarStepper--rectangle5': {
         backgroundColor: 'var(--solar-color-border-subtle)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -213,12 +213,12 @@ export const solarStepperStyles = {
       justifyContent: 'flex-start',
       alignItems: 'center',
       gap: 'var(--solar-stack-2xs)',
-      '& .SolarStepper-frame': {
+      '& .SolarStepper--frame': {
         backgroundColor: 'var(--solar-color-surface-inverse)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStepper-frame2': {
+      '& .SolarStepper--frame2': {
         backgroundColor: 'var(--solar-color-border-subtle)',
         borderColor: 'transparent',
         boxShadow: 'none',

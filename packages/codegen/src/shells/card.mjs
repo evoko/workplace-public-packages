@@ -22,6 +22,7 @@ import {
   reactIcon,
   treeOf,
   wrapDoc,
+  treeConsts,
 } from './drawn.mjs';
 import { targetArea } from './target.mjs';
 
@@ -368,7 +369,7 @@ import {
 ${o.more ? `${o.definesMoreItem ? '' : "import type { CardMoreItem } from './Card.js';\n"}import { DropdownItem } from './DropdownItem.js';\nimport { DropdownMenu } from './DropdownMenu.js';\n` : ''}import { drawChildren${o.render ? ', type DrawnLayer' : ''} } from './internal/layers.js';
 ${o.imports ? `${o.imports.trim()}\n` : ''}
 ${o.definesMoreItem ? `${REACT_ITEM}\n` : ''}/** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ${C}Props
   extends Solar${C}Props,
@@ -457,7 +458,7 @@ ${o.more ? '  const [open, setOpen] = useState(false);\n  const moreRef = useRef
       >${loading ? '\n        {waiting}' : ''}
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: { ${text.join(', ')} },${
             icons.length || moreButton

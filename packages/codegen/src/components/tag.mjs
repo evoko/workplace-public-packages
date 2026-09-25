@@ -7,7 +7,7 @@
  * gives (the overlay's derive), its close button a pressable of its own.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
@@ -27,7 +27,7 @@ export default {
     // A caller's icon fills its slot, which the recipe sizes and colours; the close button is a
     // <button> with none of the browser's own look, its icon filling it.
     resets: drawnResets('Tag', {
-      '& .SolarTag-icon > svg, & .SolarTag-iconNone > svg, & .SolarTag-iconClose > svg':
+      '& .SolarTag-icon > svg, & .SolarTag--iconNone > svg, & .SolarTag--iconClose > svg':
         {
           display: 'block',
           width: '100%',
@@ -35,8 +35,8 @@ export default {
         },
       // A 44 × 44 target around the close button, as far as the page lets it reach
       // (shells/target.mjs).
-      ...targetArea('& button.SolarTag-iconClose'),
-      '& button.SolarTag-iconClose': {
+      ...targetArea('& button.SolarTag--iconClose'),
+      '& button.SolarTag--iconClose': {
         appearance: 'none',
         border: '0',
         padding: '0',
@@ -79,7 +79,7 @@ import { drawChildren } from './internal/layers.js';
 import { StatusIndicator, type StatusIndicatorProps } from './StatusIndicator.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** Figma draws the status dot on a tag that is not inverted alone. */
 export type TagLook =
@@ -134,7 +134,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
     >
       {drawChildren('root', {
         prefix: 'SolarTag',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         text: { label: children },
         // The dot is a StatusIndicator, in the type and size the recipe names for the status, in

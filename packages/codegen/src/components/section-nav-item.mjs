@@ -8,7 +8,7 @@
  * Flutter, its icon and label drawn by the shared layer helpers.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 
 const P = 'SolarSectionNavItem';
 
@@ -84,7 +84,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface SectionNavItemProps
   extends SolarSectionNavItemProps,
@@ -116,7 +116,7 @@ export const SectionNavItem = forwardRef<HTMLButtonElement, SectionNavItemProps>
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: { label },
           icons: { icon: <span>{icon}</span> },

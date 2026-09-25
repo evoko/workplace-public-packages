@@ -26,6 +26,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['day'] };
+const SLOTS: Record<string, string> = { day: 'day' };
 
 export interface DatePickerDayCellProps
   extends
@@ -100,6 +101,7 @@ export const DatePickerDayCell = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarDatePickerDayCell',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: { day: children },
       })}

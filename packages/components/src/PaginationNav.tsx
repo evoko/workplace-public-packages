@@ -26,6 +26,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['icon'] };
+const SLOTS: Record<string, string> = {};
 
 export interface PaginationNavProps
   extends
@@ -55,6 +56,7 @@ export const PaginationNav = forwardRef<HTMLButtonElement, PaginationNavProps>(
         {drawChildren('root', {
           prefix: 'SolarPaginationNav',
           tree: TREE,
+          slots: SLOTS,
           parts,
           icons: {
             icon: (

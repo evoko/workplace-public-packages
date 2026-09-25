@@ -44,6 +44,7 @@ const TREE: Record<string, string[]> = {
     'listItem5',
   ],
 };
+const SLOTS: Record<string, string> = { items: 'items' };
 
 const ListContext = createContext<boolean | undefined>(undefined);
 
@@ -80,6 +81,7 @@ export const List = forwardRef<HTMLDivElement, ListProps>(function List(
         {drawChildren('root', {
           prefix: 'SolarList',
           tree: TREE,
+          slots: SLOTS,
           parts,
           content: {
             items: rows.map((row, i) => (

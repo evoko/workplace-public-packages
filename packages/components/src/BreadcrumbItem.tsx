@@ -26,6 +26,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['label'] };
+const SLOTS: Record<string, string> = {};
 
 export interface BreadcrumbItemProps
   extends
@@ -76,6 +77,7 @@ export const BreadcrumbItem = forwardRef<HTMLElement, BreadcrumbItemProps>(
         {drawChildren('root', {
           prefix: 'SolarBreadcrumbItem',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { label: children },
         })}

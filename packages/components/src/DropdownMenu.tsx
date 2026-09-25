@@ -46,6 +46,7 @@ const TREE: Record<string, string[]> = {
     'dropdownItem6',
   ],
 };
+const SLOTS: Record<string, string> = { content: 'content' };
 
 /** The menu's size, which its rows take; a picker that holds its own panel of rows gives it too. */
 export const DropdownMenuSizeContext = createContext<
@@ -117,6 +118,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             {drawChildren('root', {
               prefix: 'SolarDropdownMenu',
               tree: TREE,
+              slots: SLOTS,
               parts,
               content: { content: children },
               // The content is the list the keyboard moves along; a floating one focuses its

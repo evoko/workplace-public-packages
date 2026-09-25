@@ -8,7 +8,13 @@
  * compactness, as Figma draws them.
  */
 
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 import { dartParam } from '../shells/helpers.mjs';
 
 const requireLayers = (spec) => {
@@ -69,7 +75,7 @@ import { Divider } from './Divider.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 const ListContext = createContext<boolean | undefined>(undefined);
 
@@ -100,7 +106,7 @@ export const List = forwardRef<HTMLDivElement, ListProps>(function List(
       <Box ref={ref} {...rest} sx={[solarListStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}>
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           content: {
             items: rows.map((row, i) => (

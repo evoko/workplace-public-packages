@@ -80,8 +80,8 @@ export default {
       more: 'iconMore',
       icons: ['fileIcon'],
       extra: {
-        [`& .${P}-thumbnail`]: { overflow: 'hidden' },
-        [`& .${P}-thumbnail > img`]: {
+        [`& .${P}--thumbnail`]: { overflow: 'hidden' },
+        [`& .${P}--thumbnail > img`]: {
           width: '100%',
           height: '100%',
           objectFit: 'cover',

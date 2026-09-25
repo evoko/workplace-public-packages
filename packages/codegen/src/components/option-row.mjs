@@ -8,7 +8,13 @@
  * and merges their semantics.
  */
 
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 
 const requireLayers = (spec) => {
   if (!spec.api.control?.values?.includes('toggle'))
@@ -29,8 +35,8 @@ export default {
     resets: drawnResets('Option Row', {
       display: 'flex',
       cursor: 'pointer',
-      [`& .${P}-label, & .${P}-supportingText`]: { whiteSpace: 'normal' },
-      [`& .${P}-control, & .${P}-toggle`]: { flexShrink: '0' },
+      [`& .${P}--label, & .${P}-supportingText`]: { whiteSpace: 'normal' },
+      [`& .${P}--control, & .${P}--toggle`]: { flexShrink: '0' },
     }),
   },
   flutter: {},
@@ -67,7 +73,7 @@ import { Radio } from './Radio.js';
 import { Toggle } from './Toggle.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface OptionRowProps
   extends SolarOptionRowProps,
@@ -152,7 +158,7 @@ export const OptionRow = forwardRef<HTMLLabelElement, OptionRowProps>(function O
     >
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         // The words name the control; the second line describes it, and so is left out of its
         // name.

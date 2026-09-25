@@ -20,7 +20,9 @@ describe('the SOLAR SearchField shell', () => {
   });
 
   it('draws SOLAR’s search icon, the caller’s filter only where given, and filled with a query', () => {
-    expect(field()).toMatch(/<svg[^>]*class="[^"]*SolarSearchField-iconSearch/);
+    expect(field()).toMatch(
+      /<svg[^>]*class="[^"]*SolarSearchField--iconSearch/,
+    );
     expect(drawn(field(), 'SolarSearchField-filter')).toBe(false);
     expect(field({ filter: h('button', { id: 'f' }) })).toMatch(
       /SolarSearchField-filter[^>]*><button id="f"/,

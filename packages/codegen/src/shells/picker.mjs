@@ -14,6 +14,7 @@ import {
   keyPrefixOf,
   treeOf,
   wrapDoc,
+  treeConsts,
 } from './drawn.mjs';
 import { dartField, dartParam } from './helpers.mjs';
 import { targetArea } from './target.mjs';
@@ -153,7 +154,7 @@ import { DropdownMenuSizeContext } from './DropdownMenu.js';
 import { drawChildren, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** MUI's own icon, which the field draws as its chevron layer instead. */
 const NoIcon = () => null;
@@ -247,7 +248,7 @@ export const ${P} = forwardRef<HTMLDivElement, ${P}Props>(function ${P}(
     : placeholder;
   const drawing: LayerDrawing = {
     prefix: '${S}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     // A part left empty is not drawn; the panel is MUI's menu, drawn below.
     parts: {
       ...parts,

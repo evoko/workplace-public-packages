@@ -10,7 +10,13 @@
  * Navigation Panel pattern's, later.
  */
 
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 
 const P = 'SolarTreeItem';
 
@@ -55,7 +61,7 @@ export default {
       outline: 'none',
       cursor: 'pointer',
       borderStyle: 'solid',
-      [`& .${P}-chevron, & .${P}-iconMore, & .${P}-iconPlus`]: {
+      [`& .${P}--chevron, & .${P}--iconMore, & .${P}--iconPlus`]: {
         appearance: 'none',
         border: '0',
         padding: '0',
@@ -65,15 +71,15 @@ export default {
         cursor: 'pointer',
         flexShrink: '0',
       },
-      [`& .${P}-iconMore > svg, & .${P}-iconPlus > svg, & .${P}-leadingIcon > svg, & .${P}-trailingIcon > svg`]:
+      [`& .${P}--iconMore > svg, & .${P}--iconPlus > svg, & .${P}-leadingIcon > svg, & .${P}-trailingIcon > svg`]:
         { display: 'block', width: '100%', height: '100%' },
-      [`& .${P}-label`]: {
+      [`& .${P}--label`]: {
         flex: '1 1 0%',
         minWidth: '0',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
       },
-      [`& .${P}-renameInput`]: {
+      [`& .${P}--renameInput`]: {
         flex: '1 1 0%',
         minWidth: '0',
         border: '0',
@@ -151,7 +157,7 @@ import { TreeIndent } from './TreeIndent.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface TreeItemProps
   extends SolarTreeItemProps,
@@ -305,7 +311,7 @@ export const TreeItem = forwardRef<HTMLDivElement, TreeItemProps>(function TreeI
     >
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         text: { label },
         icons: {

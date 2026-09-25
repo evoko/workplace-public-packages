@@ -52,7 +52,7 @@ export const solarSegmentedControlStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    '& .SolarSegmentedControl-label': {
+    '& .SolarSegmentedControl--label': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -67,7 +67,7 @@ export const solarSegmentedControlStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarSegmentedControl-labelLabel': {
+    '& .SolarSegmentedControl-label': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -113,7 +113,7 @@ export const solarSegmentedControlStyles = {
   },
   sizes: {
     sm: {
-      '& .SolarSegmentedControl-labelLabel': {
+      '& .SolarSegmentedControl-label': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',

@@ -7,7 +7,7 @@
  * drawn and pressable in Flutter, announced as a switch.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 import { targetInput } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
@@ -79,11 +79,11 @@ import {
 import { drawChildren, type LayerParts } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** Figma's thumb, drawn in MUI's thumb slot, from this variant's composition. */
 function Thumb({ parts }: { parts?: Record<string, LayerParts> }) {
-  return <>{drawChildren('root', { prefix: 'SolarToggle', tree: TREE, parts: parts ?? {} })}</>;
+  return <>{drawChildren('root', { prefix: 'SolarToggle', tree: TREE, slots: SLOTS, parts: parts ?? {} })}</>;
 }
 
 export interface ToggleProps

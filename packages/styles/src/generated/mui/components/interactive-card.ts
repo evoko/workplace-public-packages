@@ -28,7 +28,7 @@ export const solarInteractiveCardStyles = {
       display: 'flex',
       boxSizing: 'border-box',
     },
-    '& .SolarInteractiveCard-text': {
+    '& .SolarInteractiveCard--text': {
       whiteSpace: 'nowrap',
     },
     '& .SolarInteractiveCard-glyph': {
@@ -104,7 +104,7 @@ export const solarInteractiveCardStyles = {
     paddingBottom: 'var(--solar-inset-md)',
     paddingLeft: 'var(--solar-inset-md)',
     width: '100%',
-    '& .SolarInteractiveCard-text': {
+    '& .SolarInteractiveCard--text': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -120,7 +120,7 @@ export const solarInteractiveCardStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarInteractiveCard-textIcon': {
+    '& .SolarInteractiveCard--textIcon': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',

@@ -56,6 +56,11 @@ const TREE: Record<string, string[]> = {
   stepperIncrement: ['chevronUp'],
   stepperDecrement: ['chevronDown'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+};
 
 /** A number as the field shows it, or nothing for none. */
 const shown = (n: number | null | undefined) => (n == null ? '' : String(n));
@@ -232,6 +237,7 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarNumberInput',
       tree: TREE,
+      slots: SLOTS,
       // A part left empty is not drawn.
       parts: {
         ...parts,

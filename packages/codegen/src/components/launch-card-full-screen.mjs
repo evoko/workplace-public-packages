@@ -44,8 +44,8 @@ export default {
           whiteSpace: 'normal',
           minWidth: '0',
         },
-      [`& .${P}-image`]: { overflow: 'hidden', flexShrink: '0' },
-      [`& .${P}-image > img`]: {
+      [`& .${P}--image`]: { overflow: 'hidden', flexShrink: '0' },
+      [`& .${P}--image > img`]: {
         width: '100%',
         height: '100%',
         objectFit: 'cover',

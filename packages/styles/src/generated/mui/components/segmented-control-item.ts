@@ -88,7 +88,7 @@ export const solarSegmentedControlItemStyles = {
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarSegmentedControlItem-label': {
+    '& .SolarSegmentedControlItem--label': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -112,7 +112,7 @@ export const solarSegmentedControlItemStyles = {
         width: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
       },
-      '& .SolarSegmentedControlItem-label': {
+      '& .SolarSegmentedControlItem--label': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -138,7 +138,7 @@ export const solarSegmentedControlItemStyles = {
         '& .SolarSegmentedControlItem-iconLeading': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarSegmentedControlItem-label': {
+        '& .SolarSegmentedControlItem--label': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarSegmentedControlItem-iconTrailing': {
@@ -151,7 +151,7 @@ export const solarSegmentedControlItemStyles = {
       '& .SolarSegmentedControlItem-iconLeading': {
         color: 'var(--solar-color-icon-secondary)',
       },
-      '& .SolarSegmentedControlItem-label': {
+      '& .SolarSegmentedControlItem--label': {
         color: 'var(--solar-color-text-secondary)',
       },
       '& .SolarSegmentedControlItem-iconTrailing': {
@@ -174,7 +174,7 @@ export const solarSegmentedControlItemStyles = {
           '& .SolarSegmentedControlItem-iconLeading': {
             color: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarSegmentedControlItem-label': {
+          '& .SolarSegmentedControlItem--label': {
             color: 'var(--solar-color-text-secondary)',
           },
           '& .SolarSegmentedControlItem-iconTrailing': {
@@ -194,7 +194,7 @@ export const solarSegmentedControlItemStyles = {
           '& .SolarSegmentedControlItem-iconLeading': {
             color: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarSegmentedControlItem-label': {
+          '& .SolarSegmentedControlItem--label': {
             color: 'var(--solar-color-text-secondary)',
           },
           '& .SolarSegmentedControlItem-iconTrailing': {

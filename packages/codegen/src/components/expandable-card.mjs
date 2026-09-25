@@ -15,6 +15,7 @@ import {
   reactIcon,
   treeOf,
   wrapDoc,
+  treeConsts,
 } from '../shells/drawn.mjs';
 
 const P = 'SolarExpandableCard';
@@ -47,7 +48,7 @@ export default {
         minWidth: '0',
         textAlign: 'start',
       },
-      [`& .${P}-header`]: {
+      [`& .${P}--header`]: {
         padding: '0',
         margin: '0',
         font: 'inherit',
@@ -58,8 +59,8 @@ export default {
     // focus-visible): the card's look follows its header's.
     states: {
       default: null,
-      hover: `&:has(.${P}-header:hover)`,
-      focus: `&:has(.${P}-header.Mui-focusVisible)`,
+      hover: `&:has(.${P}--header:hover)`,
+      focus: `&:has(.${P}--header.Mui-focusVisible)`,
     },
     overlaps: { focus: ['hover'] },
   },
@@ -98,7 +99,7 @@ import {
 import { drawChildren, type DrawnLayer } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ExpandableCardProps
   extends SolarExpandableCardProps,
@@ -158,7 +159,7 @@ export const ExpandableCard = forwardRef<HTMLDivElement, ExpandableCardProps>(
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: { title, description },
           icons: { ${icons.map((i) => `${i.layer}: ${reactIcon(i, spec)}`).join(', ')} },

@@ -29,6 +29,11 @@ const TREE: Record<string, string[]> = {
   root: ['statusIndicator', 'content', 'action'],
   content: ['title', 'description'],
 };
+const SLOTS: Record<string, string> = {
+  title: 'title',
+  description: 'description',
+  action: 'action',
+};
 
 export interface AlertSmallProps
   extends
@@ -71,6 +76,7 @@ export const AlertSmall = forwardRef<HTMLDivElement, AlertSmallProps>(
         {drawChildren('root', {
           prefix: 'SolarAlertSmall',
           tree: TREE,
+          slots: SLOTS,
           parts: drawn,
           text: { title, description },
           render: {

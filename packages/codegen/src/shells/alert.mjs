@@ -7,7 +7,7 @@
  */
 
 import { pascal } from '../util/naming.mjs';
-import { drawnFlutter, drawnResets, treeOf, wrapDoc } from './drawn.mjs';
+import { drawnFlutter, drawnResets, wrapDoc, treeConsts } from './drawn.mjs';
 import { targetArea } from './target.mjs';
 
 /** The layers and slots a callout's templates need, refused where the IR lacks one. */
@@ -72,7 +72,7 @@ import { drawChildren } from './internal/layers.js';
 import { StatusIndicator, type StatusIndicatorProps } from './StatusIndicator.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ${P}Props
   extends Solar${P}Props,
@@ -109,7 +109,7 @@ export const ${P} = forwardRef<HTMLDivElement, ${P}Props>(function ${P}(
     >
       {drawChildren('root', {
         prefix: 'Solar${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts: drawn,
         text: { title, description },
         render: {

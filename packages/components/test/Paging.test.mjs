@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createElement as h } from 'react';
 import { renderToString } from 'react-dom/server';
+import { cls } from './classes.mjs';
 import { PageNavButton } from '../src/PageNavButton.tsx';
 import { PageNavigator } from '../src/PageNavigator.tsx';
 import { Pagination, pagesOf } from '../src/Pagination.tsx';
@@ -46,7 +47,7 @@ describe('the SOLAR Pagination shells', () => {
     expect(text).toMatch(/aria-current="page"[^>]*aria-label="Page 1"/);
     // 1 2 3 … 12: four pages, one gap, two arrows.
     expect(count(text, /aria-label="Page \d+"/g)).toBe(4);
-    expect(count(text, /SolarPaginationEllipsis-label/g)).toBe(1);
+    expect(count(text, /SolarPaginationEllipsis--label/g)).toBe(1);
   });
 
   it('disables the previous arrow on the first page and the next on the last', () => {
@@ -70,7 +71,7 @@ describe('the SOLAR Pagination shells', () => {
       'page12',
       'next',
     ])
-      expect(drawn(text, `SolarPagination-${layer}`), layer).toBe(true);
+      expect(drawn(text, cls('Pagination', layer)), layer).toBe(true);
   });
 
   it('draws nothing for a single page, and links its pages where told', () => {
@@ -141,15 +142,15 @@ describe('the SOLAR Stepper shells', () => {
       'progress',
       'progressRectangle2',
     ])
-      expect(drawn(round, `SolarStepper-${layer}`), layer).toBe(true);
+      expect(drawn(round, cls('Stepper', layer)), layer).toBe(true);
     // The fill reaches the active step, the second of three.
     expect(round).toMatch(
-      /SolarStepper-progressRectangle2[^"]*"[^>]*style="width:50%"/,
+      /SolarStepper--progressRectangle2[^"]*"[^>]*style="width:50%"/,
     );
     const lines = stepper({ type: 'line', activeStep: 0 });
-    expect(drawn(lines, 'SolarStepper-rectangle1')).toBe(true);
-    expect(drawn(lines, 'SolarStepper-rectangle2')).toBe(true);
-    expect(drawn(lines, 'SolarStepper-rectangle3')).toBe(true);
+    expect(drawn(lines, 'SolarStepper--rectangle1')).toBe(true);
+    expect(drawn(lines, 'SolarStepper--rectangle2')).toBe(true);
+    expect(drawn(lines, 'SolarStepper--rectangle3')).toBe(true);
   });
 
   it('marks the step in error, and makes completed steps buttons where told', () => {

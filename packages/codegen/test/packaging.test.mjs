@@ -168,9 +168,22 @@ describe('the web and Flutter packages are independent', () => {
 // audience's code would make every consumer pay for all four.
 describe('each audience has its own entry', () => {
   it('styles exposes one entry per audience', () => {
+    // Beside its manifest, which tools read as `@bwp-web/styles/package.json`.
     expect(Object.keys(read('styles').exports).sort()).toEqual(
-      ['.', './fonts.css', './mui', './tailwind.css', './tokens.css'].sort(),
+      [
+        '.',
+        './fonts.css',
+        './mui',
+        './package.json',
+        './tailwind.css',
+        './tokens.css',
+      ].sort(),
     );
+  });
+
+  it('every published package exports its manifest', () => {
+    for (const pkg of PUBLISHED)
+      expect(read(pkg).exports?.['./package.json'], pkg).toBe('./package.json');
   });
 
   it('the root entry is framework agnostic: no MUI theme and no component recipes', () => {

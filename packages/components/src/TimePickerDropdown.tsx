@@ -49,6 +49,7 @@ const TREE: Record<string, string[]> = {
     'dropdownItem6',
   ],
 };
+const SLOTS: Record<string, string> = { content: 'content' };
 
 export interface TimePickerDropdownProps
   extends
@@ -156,6 +157,7 @@ export const TimePickerDropdown = forwardRef<
           {drawChildren('root', {
             prefix: 'SolarTimePickerDropdown',
             tree: TREE,
+            slots: SLOTS,
             parts,
             content: { content: rows },
             // The content is the list the keyboard moves along; a floating one focuses its

@@ -72,7 +72,7 @@ export const solarRowExpandStyles = {
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
-      '& .SolarRowExpand-container': {
+      '& .SolarRowExpand--container': {
         fill: 'none',
         stroke: 'var(--solar-color-border-medium)',
         '& .SolarGlyph-stroke': {
@@ -83,7 +83,7 @@ export const solarRowExpandStyles = {
     },
     'type=collapsed': {
       backgroundColor: 'transparent',
-      '& .SolarRowExpand-iconChevronRight': {
+      '& .SolarRowExpand--iconChevronRight': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-primary)',
@@ -91,7 +91,7 @@ export const solarRowExpandStyles = {
     },
     'type=expanded': {
       backgroundColor: 'transparent',
-      '& .SolarRowExpand-iconChevronDown': {
+      '& .SolarRowExpand--iconChevronDown': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-primary)',
@@ -104,7 +104,7 @@ export const solarRowExpandStyles = {
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
-      '& .SolarRowExpand-container': {
+      '& .SolarRowExpand--container': {
         fill: 'none',
         stroke: 'var(--solar-color-border-medium)',
         '& .SolarGlyph-stroke': {
@@ -112,7 +112,7 @@ export const solarRowExpandStyles = {
         },
         strokeWidth: 'var(--solar-border-default)',
       },
-      '& .SolarRowExpand-container2': {
+      '& .SolarRowExpand--container2': {
         fill: 'none',
         stroke: 'var(--solar-color-border-medium)',
         '& .SolarGlyph-stroke': {
@@ -128,7 +128,7 @@ export const solarRowExpandStyles = {
       paddingRight: 'var(--solar-inset-none)',
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
-      '& .SolarRowExpand-container': {
+      '& .SolarRowExpand--container': {
         fill: 'none',
         stroke: 'var(--solar-color-border-medium)',
         '& .SolarGlyph-stroke': {

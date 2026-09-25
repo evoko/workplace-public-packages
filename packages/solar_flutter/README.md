@@ -226,6 +226,10 @@ and Dark, and a playground with a knob per prop ([widgetbook/README.md](widgetbo
 a widget is built in one variant is shared by both, in the small `variants/` package
 (`solar_flutter_variants`), a dev dependency only.
 
+**Keys.** A drawn widget keys each layer `<component>.<layer>` (`tabItem.counter`), after
+SOLAR's Figma layer names, so the visual check can measure it. They are test hooks, not an API: a
+designer's rename in Figma changes them. Build on a widget's parameters and its slots instead.
+
 ## Fonts
 
 Inter, Montserrat and IBM Plex Mono ship inside the package, at the weights SOLAR's text styles

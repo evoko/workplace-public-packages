@@ -8,7 +8,7 @@
  * and the caller's filter after it.
  */
 
-import { treeOf } from '../shells/drawn.mjs';
+import { treeOf, treeConsts } from '../shells/drawn.mjs';
 import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
 
 const P = 'SolarSearchField';
@@ -38,7 +38,7 @@ export default {
       more: {
         // The browser's own clear button, which Figma does not draw: the caller's filter slot
         // holds a control, a clear button among them.
-        [`& .${P}-search::-webkit-search-cancel-button, & .${P}-search::-webkit-search-decoration`]:
+        [`& .${P}--search::-webkit-search-cancel-button, & .${P}--search::-webkit-search-decoration`]:
           { WebkitAppearance: 'none', appearance: 'none' },
       },
     }),
@@ -86,7 +86,7 @@ import {
 import { drawLayer, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface SearchFieldProps
   extends SolarSearchFieldProps,
@@ -135,7 +135,7 @@ export const SearchField = forwardRef<HTMLDivElement, SearchFieldProps>(function
   const parts = solarSearchFieldCompose(look);
   const drawing: LayerDrawing = {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     // A filter left out is not drawn.
     parts: { ...parts, filter: { ...parts.filter, present: filter != null } },
     icons: { iconSearch: <IconSearch />, filter: <span>{filter}</span> },
@@ -167,7 +167,7 @@ export const SearchField = forwardRef<HTMLDivElement, SearchFieldProps>(function
       inputProps={{
         'aria-label': 'Search',
         ...inputProps,
-        className: ['${P}-search', inputProps?.className].filter(Boolean).join(' '),
+        className: ['${P}--search', inputProps?.className].filter(Boolean).join(' '),
       }}
       sx={[solarSearchFieldStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
     />

@@ -61,10 +61,10 @@ export const solarInlineInputStyles = {
       padding: '0',
       WebkitTextFillColor: 'currentcolor',
     },
-    '& .SolarInlineInput-iconButton': {
+    '& .SolarInlineInput--iconButton': {
       visibility: 'hidden',
     },
-    '&:hover .SolarInlineInput-iconButton, & .SolarInlineInput-iconButton:focus-within':
+    '&:hover .SolarInlineInput--iconButton, & .SolarInlineInput--iconButton:focus-within':
       {
         visibility: 'visible',
       },
@@ -95,7 +95,7 @@ export const solarInlineInputStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarInlineInput-frame1': {
+    '& .SolarInlineInput--frame1': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       flexDirection: 'row',
@@ -128,7 +128,7 @@ export const solarInlineInputStyles = {
         paddingTop: 'var(--solar-inset-2xs)',
         paddingRight: 'var(--solar-inset-2xs)',
         paddingBottom: 'var(--solar-inset-2xs)',
-        '& .SolarInlineInput-frame1': {
+        '& .SolarInlineInput--frame1': {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           boxShadow: 'none',
@@ -144,7 +144,7 @@ export const solarInlineInputStyles = {
         paddingTop: 'var(--solar-inset-2xs)',
         paddingRight: 'var(--solar-inset-2xs)',
         paddingBottom: 'var(--solar-inset-2xs)',
-        '& .SolarInlineInput-frame1': {
+        '& .SolarInlineInput--frame1': {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           boxShadow: 'none',
@@ -160,7 +160,7 @@ export const solarInlineInputStyles = {
         paddingTop: 'var(--solar-inset-2xs)',
         paddingRight: 'var(--solar-inset-2xs)',
         paddingBottom: 'var(--solar-inset-2xs)',
-        '& .SolarInlineInput-frame1': {
+        '& .SolarInlineInput--frame1': {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           boxShadow: 'none',

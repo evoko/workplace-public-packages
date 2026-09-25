@@ -48,7 +48,7 @@ export const solarPaginationEllipsisStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '24px',
     height: '24px',
-    '& .SolarPaginationEllipsis-label': {
+    '& .SolarPaginationEllipsis--label': {
       color: 'var(--solar-color-text-secondary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',

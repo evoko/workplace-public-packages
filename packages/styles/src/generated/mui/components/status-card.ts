@@ -71,13 +71,13 @@ export const solarStatusCardStyles = {
       clipPath: 'inset(50%)',
       whiteSpace: 'nowrap',
     },
-    '& .SolarStatusCard-iconMore': {
+    '& .SolarStatusCard--iconMore': {
       position: 'relative',
       flexShrink: '0',
       padding: '0',
       color: 'inherit',
     },
-    '& .SolarStatusCard-iconMore::after': {
+    '& .SolarStatusCard--iconMore::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -86,7 +86,7 @@ export const solarStatusCardStyles = {
       height: 'max(100%, 44px)',
       transform: 'translate(-50%, -50%)',
     },
-    '& .SolarStatusCard-iconMore > svg': {
+    '& .SolarStatusCard--iconMore > svg': {
       display: 'block',
       width: '100%',
       height: '100%',
@@ -108,7 +108,7 @@ export const solarStatusCardStyles = {
     paddingBottom: 'var(--solar-inset-md)',
     paddingLeft: 'var(--solar-inset-md)',
     width: '100%',
-    '& .SolarStatusCard-title': {
+    '& .SolarStatusCard--title': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -124,7 +124,7 @@ export const solarStatusCardStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarStatusCard-titleTitle': {
+    '& .SolarStatusCard-title': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -133,12 +133,12 @@ export const solarStatusCardStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarStatusCard-iconMore': {
+    '& .SolarStatusCard--iconMore': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarStatusCard-trend': {
+    '& .SolarStatusCard--trend': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -162,13 +162,13 @@ export const solarStatusCardStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
     },
-    '& .SolarStatusCard-skeleton': {
+    '& .SolarStatusCard--skeleton': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '170px',
       height: '12px',
     },
-    '& .SolarStatusCard-skeleton2': {
+    '& .SolarStatusCard--skeleton2': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '62px',
@@ -186,13 +186,13 @@ export const solarStatusCardStyles = {
         borderColor: 'var(--solar-color-border-subtle)',
       },
       '&.SolarStatusCard-disabled': {
-        '& .SolarStatusCard-title': {
+        '& .SolarStatusCard--title': {
           opacity: '0.2',
         },
-        '& .SolarStatusCard-iconMore': {
+        '& .SolarStatusCard--iconMore': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarStatusCard-trend': {
+        '& .SolarStatusCard--trend': {
           opacity: '0.2',
         },
       },
@@ -201,12 +201,12 @@ export const solarStatusCardStyles = {
       '&:has(.SolarStatusCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
-      '& .SolarStatusCard-skeleton': {
+      '& .SolarStatusCard--skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStatusCard-skeleton2': {
+      '& .SolarStatusCard--skeleton2': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -221,13 +221,13 @@ export const solarStatusCardStyles = {
         borderColor: 'var(--solar-color-border-subtle)',
       },
       '&.SolarStatusCard-disabled': {
-        '& .SolarStatusCard-title': {
+        '& .SolarStatusCard--title': {
           opacity: '0.2',
         },
-        '& .SolarStatusCard-iconMore': {
+        '& .SolarStatusCard--iconMore': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarStatusCard-trend': {
+        '& .SolarStatusCard--trend': {
           opacity: '0.2',
         },
       },
@@ -236,12 +236,12 @@ export const solarStatusCardStyles = {
       '&:has(.SolarStatusCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
-      '& .SolarStatusCard-skeleton': {
+      '& .SolarStatusCard--skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStatusCard-skeleton2': {
+      '& .SolarStatusCard--skeleton2': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -256,13 +256,13 @@ export const solarStatusCardStyles = {
         borderColor: 'var(--solar-color-border-subtle)',
       },
       '&.SolarStatusCard-disabled': {
-        '& .SolarStatusCard-title': {
+        '& .SolarStatusCard--title': {
           opacity: '0.2',
         },
-        '& .SolarStatusCard-iconMore': {
+        '& .SolarStatusCard--iconMore': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarStatusCard-trend': {
+        '& .SolarStatusCard--trend': {
           opacity: '0.2',
         },
       },
@@ -271,12 +271,12 @@ export const solarStatusCardStyles = {
       '&:has(.SolarStatusCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
-      '& .SolarStatusCard-skeleton': {
+      '& .SolarStatusCard--skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStatusCard-skeleton2': {
+      '& .SolarStatusCard--skeleton2': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -291,13 +291,13 @@ export const solarStatusCardStyles = {
         borderColor: 'var(--solar-color-border-subtle)',
       },
       '&.SolarStatusCard-disabled': {
-        '& .SolarStatusCard-title': {
+        '& .SolarStatusCard--title': {
           opacity: '0.2',
         },
-        '& .SolarStatusCard-iconMore': {
+        '& .SolarStatusCard--iconMore': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarStatusCard-trend': {
+        '& .SolarStatusCard--trend': {
           opacity: '0.2',
         },
       },
@@ -306,12 +306,12 @@ export const solarStatusCardStyles = {
       '&:has(.SolarStatusCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
-      '& .SolarStatusCard-skeleton': {
+      '& .SolarStatusCard--skeleton': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarStatusCard-skeleton2': {
+      '& .SolarStatusCard--skeleton2': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',

@@ -10,7 +10,7 @@ describe('the SOLAR DragHandle shell', () => {
     expect(html).toContain('aria-label="Reorder"');
     expect(html).toContain('tabindex="0"');
     expect(
-      html.match(/<span[^>]*class="SolarDragHandle-col\dDot/g),
+      html.match(/<span[^>]*class="SolarDragHandle--col\dDot/g),
     ).toHaveLength(6);
   });
 

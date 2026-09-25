@@ -15,6 +15,7 @@ import {
   keyPrefixOf,
   treeOf,
   wrapDoc,
+  treeConsts,
 } from '../shells/drawn.mjs';
 import { dartField, dartParam } from '../shells/helpers.mjs';
 import { targetArea } from '../shells/target.mjs';
@@ -177,7 +178,7 @@ import { Float, type Floating } from './internal/float.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface DatePickerOpenProps
   extends SolarDatePickerOpenProps,
@@ -383,7 +384,7 @@ export const DatePickerOpen = forwardRef<HTMLDivElement, DatePickerOpenProps>(
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: {
 ${text.map((l) => `            ${l}`).join('\n')}

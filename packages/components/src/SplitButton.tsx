@@ -56,6 +56,7 @@ const TREE: Record<string, string[]> = {
   action: ['label'],
   trigger: ['iconChevronDown'],
 };
+const SLOTS: Record<string, string> = { label: 'label' };
 
 export interface SplitButtonProps
   extends
@@ -156,6 +157,7 @@ export const SplitButton = forwardRef<HTMLDivElement, SplitButtonProps>(
           {drawChildren('root', {
             prefix: 'SolarSplitButton',
             tree: TREE,
+            slots: SLOTS,
             parts: kept,
             text: { label: children },
             icons: { iconChevronDown: <IconChevronDown /> },

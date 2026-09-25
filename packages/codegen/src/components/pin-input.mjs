@@ -9,6 +9,7 @@
  * Filled follows the code (the overlay's `derive`).
  */
 
+import { publicLayers } from '../util/classes.mjs';
 import { dartField, dartParam } from '../shells/helpers.mjs';
 import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
 
@@ -38,7 +39,7 @@ export default {
     slots: 'drawn',
     resets: drawnResets('PIN Input', {
       // The input holds the code, invisible over the cells, which a tap anywhere on them focuses.
-      [`& .${P}-cells`]: { position: 'relative' },
+      [`& .${P}--cells`]: { position: 'relative' },
       [`& .${P}-input`]: {
         position: 'absolute',
         inset: '0',
@@ -58,7 +59,7 @@ export default {
     // shell's classes.
     states: {
       default: null,
-      hover: `&:has(.${P}-cells:hover)`,
+      hover: `&:has(.${P}--cells:hover)`,
       focus: `&:has(.${P}-input:focus)`,
       filled: `&.${P}-filled`,
       error: `&.${P}-error`,
@@ -115,6 +116,7 @@ import { drawChildren, drawLayer, type LayerDrawing } from './internal/layers.js
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = ${JSON.stringify(tree)};
+const SLOTS: Record<string, string> = ${JSON.stringify(publicLayers(spec))};
 
 /** Figma's six cells, in its order: the first takes the hover, the focus and the caret. */
 const CELLS = TREE.cells;
@@ -206,7 +208,7 @@ export const PINInput = forwardRef<HTMLDivElement, PINInputProps>(function PINIn
   });
   const drawing: LayerDrawing = {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     parts: {
       ...parts,
       ...Object.fromEntries(

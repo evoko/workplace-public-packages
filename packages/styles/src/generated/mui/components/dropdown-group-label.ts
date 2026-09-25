@@ -53,7 +53,7 @@ export const solarDropdownGroupLabelStyles = {
     paddingBottom: 'var(--solar-inset-sm)',
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
-    '& .SolarDropdownGroupLabel-groupLabel': {
+    '& .SolarDropdownGroupLabel--groupLabel': {
       color: 'var(--solar-color-text-secondary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -71,7 +71,7 @@ export const solarDropdownGroupLabelStyles = {
       paddingBottom: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-xs)',
       width: '100%',
-      '& .SolarDropdownGroupLabel-groupLabel': {
+      '& .SolarDropdownGroupLabel--groupLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-sm)',

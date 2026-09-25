@@ -10,7 +10,13 @@
  */
 
 import { dartField, dartParam } from '../shells/helpers.mjs';
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 
 const P = 'SolarInlineInput';
 
@@ -52,8 +58,8 @@ export default {
       },
       // The edit button shows while it is hovered, or has the keyboard's focus, as Figma draws it
       // hovered; it keeps its room, so the words do not move.
-      [`& .${P}-iconButton`]: { visibility: 'hidden' },
-      [`&:hover .${P}-iconButton, & .${P}-iconButton:focus-within`]: {
+      [`& .${P}--iconButton`]: { visibility: 'hidden' },
+      [`&:hover .${P}--iconButton, & .${P}--iconButton:focus-within`]: {
         visibility: 'visible',
       },
     }),
@@ -104,7 +110,7 @@ import { IconButton } from './IconButton.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface InlineInputProps
   extends SolarInlineInputProps,
@@ -200,7 +206,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(function
     >
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         // Read, its words and the edit button; editing, the input and its actions.
         parts: {
           ...parts,

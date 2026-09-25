@@ -16,6 +16,7 @@ import {
   reactIcon,
   treeOf,
   wrapDoc,
+  treeConsts,
 } from '../shells/drawn.mjs';
 
 const P = 'SolarAccordion';
@@ -53,7 +54,7 @@ export default {
         whiteSpace: 'normal',
         minWidth: '0',
       },
-      [`&.${P}-expanded > .${P}-accordion .${P}-iconChevronDown`]: {
+      [`&.${P}-expanded > .${P}--accordion .${P}--iconChevronDown`]: {
         transform: 'rotate(180deg)',
       },
     }),
@@ -103,7 +104,7 @@ import {
 import { drawChildren, type DrawnLayer } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface AccordionProps
   extends SolarAccordionProps,
@@ -154,7 +155,7 @@ export const Accordion = forwardRef<HTMLElement, AccordionProps>(function Accord
   // The header's title and chevron, as the collapsed item draws them.
   const heading = drawChildren('root', {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     parts: solarAccordionCompose({ disabled, expanded: false }),
     text: { title },
     icons: { ${icons.map((i) => `${i.layer}: ${reactIcon(i, spec)}`).join(', ')} },
@@ -195,7 +196,7 @@ export const Accordion = forwardRef<HTMLElement, AccordionProps>(function Accord
     <Box ref={ref} {...rest} className={classes(true, className)} sx={sxOf(true)}>
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         text: { description },
         render: {

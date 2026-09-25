@@ -28,7 +28,7 @@ describe('the Kbd recipe', () => {
     expect(styles.root).toMatchObject({
       backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
       borderRadius: 'var(--solar-radius-control)',
-      '& .SolarKbd-label': { color: 'var(--solar-color-text-inverse)' },
+      '& .SolarKbd--label': { color: 'var(--solar-color-text-inverse)' },
     });
     expect(styles.appearances['type=top-search']).toEqual({
       backgroundColor: 'var(--solar-color-surface-feedback-neutral-medium)',

@@ -6,9 +6,18 @@ import { AlertSmall } from '../src/AlertSmall.tsx';
 import { Banner } from '../src/Banner.tsx';
 import { EmptyState } from '../src/EmptyState.tsx';
 import { Toast } from '../src/Toast.tsx';
+import { cls } from './classes.mjs';
 
+// By the shell's prefix (AlertSmall), the component's name.
+const NAMES = {
+  Alert: 'Alert',
+  AlertSmall: 'Alert Small',
+  Banner: 'Banner',
+  EmptyState: 'EmptyState',
+  Toast: 'Toast',
+};
 const drawn = (html, prefix, layer) =>
-  new RegExp(`<[a-z]+[^>]*class="Solar${prefix}-${layer}[ "]`).test(html);
+  new RegExp(`<[a-z]+[^>]*class="${cls(NAMES[prefix], layer)}[ "]`).test(html);
 
 describe('the SOLAR callouts', () => {
   it('are announced at once where they warn, and politely otherwise', () => {

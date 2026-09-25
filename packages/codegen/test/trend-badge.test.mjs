@@ -34,7 +34,7 @@ describe('the Trend Badge IR', () => {
 describe('the Trend Badge recipe', () => {
   it('fills the arrow’s outline in the icon colour', () => {
     const { styles } = renderMuiComponent(spec, tokens);
-    expect(styles.root['& .SolarTrendBadge-icon']).toMatchObject({
+    expect(styles.root['& .SolarTrendBadge--icon']).toMatchObject({
       fill: 'var(--solar-color-icon-inverse)',
     });
   });

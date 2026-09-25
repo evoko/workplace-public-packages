@@ -23,6 +23,10 @@ import {
   slotsOf,
 } from '../../../codegen/src/emit/mui-component.mjs';
 import { NAMES, fileOf } from '../../../codegen/src/stages/components.mjs';
+import {
+  byPrefix,
+  withLayerClasses,
+} from '../../../codegen/src/util/classes.mjs';
 import { compareLayer, matches } from './compare.mjs';
 
 const repo = (path) =>
@@ -37,6 +41,8 @@ const oracles = Object.fromEntries(
 const specs = Object.fromEntries(
   NAMES.map((c) => [c, load(`spec/components/${fileOf(c)}`)]),
 );
+// A state table names a layer's class by the layer; the page carries its own (util/classes.mjs).
+const layerClasses = byPrefix(Object.values(specs));
 
 /** As `cases/index.ts` spells a component in `data-case`. */
 const slug = (component) => component.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -222,7 +228,7 @@ async function reach(page, control, state, component) {
   // Hovered where the recipe says it is: the part its hover names (a PIN Input's cells, a Text
   // Input's field), or the whole.
   const part = /^&:has\((\.[\w-]+):hover\)$/.exec(
-    STATE_SELECTORS[component]?.hover ?? '',
+    withLayerClasses(STATE_SELECTORS[component]?.hover ?? '', layerClasses),
   )?.[1];
   if (state === 'hover')
     await (part ? control.locator(part).first() : control).hover();
@@ -261,7 +267,7 @@ const TYPES = {
   woff: 'font/woff',
 };
 
-async function open(page) {
+async function open(page, hash = '') {
   // Served, not opened from disk: Chromium refuses module scripts from file:// URLs.
   await page.route('http://solar.test/**', (route) => {
     const path =
@@ -274,9 +280,12 @@ async function open(page) {
   page.on('pageerror', (e) => {
     throw e;
   });
-  await page.goto('http://solar.test/index.html');
+  await page.goto(`http://solar.test/index.html${hash}`);
   await page.addStyleTag({ content: STILL });
-  await page.locator('[data-case]').first().waitFor();
+  await page
+    .locator(hash ? '[data-probe]' : '[data-case]')
+    .first()
+    .waitFor();
   await page.evaluate(() => document.fonts.ready);
 }
 
@@ -501,6 +510,27 @@ for (const component of NAMES)
       mode = 'light';
     });
 
+test('one attribute turns a stock MUI component and a SOLAR one to Dark together', async ({
+  page,
+}) => {
+  await open(page, '#theme');
+  const surfaces = await page.evaluate(() =>
+    ['light', 'dark'].map((mode) => {
+      const at = document.querySelector(`[data-probe="${mode}"]`);
+      const bg = (el) => getComputedStyle(el).backgroundColor;
+      return {
+        paper: bg(at.querySelector('.MuiPaper-root')),
+        card: bg(at.querySelector('[data-part="card"]')),
+      };
+    }),
+  );
+  const [light, dark] = surfaces;
+  // Each scheme's Paper is the surface SOLAR's Card is drawn on, and Dark's is not Light's.
+  expect(light.paper).toBe(light.card);
+  expect(dark.paper).toBe(dark.card);
+  expect(dark.paper).not.toBe(light.paper);
+});
+
 test('in Dark, the page is drawn in Dark: Light values fail', async ({
   page,
 }) => {
@@ -607,19 +637,19 @@ const TARGETED = {
   // A field's target is its field's, which the label above and the helper below stand around.
   'Text Input': {
     figma: 'size=sm, state=default',
-    part: '.SolarTextInput-field',
+    part: '.SolarTextInput--field',
   },
   SearchField: 'state=default, size=sm',
   GlobalSearch: 'state=default, size=sm',
   // A password's eye, in its field.
   'Password Input': {
     figma: 'size=sm, state=default',
-    part: 'button.SolarPasswordInput-icon',
+    part: 'button.SolarPasswordInput--icon',
   },
   // An inline stepper's plus, beside its number.
   'Number Input': {
     figma: 'size=sm, state=default, stepper=inline',
-    part: 'button.SolarNumberInput-fieldIncrement',
+    part: 'button.SolarNumberInput--fieldIncrement',
   },
 };
 

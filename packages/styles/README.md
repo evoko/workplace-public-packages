@@ -74,11 +74,24 @@ import '@bwp-web/styles/tokens.css';
 import { createTheme } from '@mui/material/styles';
 import { createSolarThemeOptions, solarButtonStyle } from '@bwp-web/styles/mui';
 
-const theme = createTheme(createSolarThemeOptions('light'));
+const theme = createTheme(createSolarThemeOptions());
 ```
 
 `createSolarThemeOptions` returns plain `ThemeOptions`; nothing here imports MUI, so this package
-does not depend on it.
+does not depend on it. In React, `SolarProvider` from `@bwp-web/components` installs it.
+
+**One switch for Dark.** The theme holds both colour schemes in MUI's CSS-variables mode, switched
+by the attribute the tokens switch on: `data-theme="dark"` on any element turns the stock MUI
+components and the SOLAR ones under it to Dark together, and nothing else needs to change (no
+`palette.mode`, no second theme). Where an app lets MUI set the attribute itself
+(`useColorScheme`), render MUI's `InitColorSchemeScript` on the server to avoid a flash; where the
+app sets `data-theme`, as for the tokens alone, it is not needed.
+
+**Breakpoints, spacing and motion** come from the tokens too: MUI's `sm`, `md`, `lg` and `xl` are
+SOLAR's `viewport.*` (`xs` is 0, as MUI requires), so `theme.breakpoints.down('sm')` is where the
+type turns Mobile; `theme.spacing(n)` is n × SOLAR's 4px `inset.2xs`; and MUI's durations and
+easings are SOLAR's nearest `motion.*`. The tables are exported as `solarMuiBreakpoints`,
+`solarMuiSpacing` and `solarMuiTransitions`.
 
 Stock MUI components render in SOLAR without any per-component work. The theme fills MUI's own
 palette slots and typography variants with SOLAR roles: `primary`, `secondary` and `error` from
@@ -86,8 +99,9 @@ the `action.*.bg` fills, `warning`, `info` and `success` from `surface.feedback.
 `h1`–`h6` from display and title, `body1` from `body.md.regular`, and `button` from `label.md`
 without MUI's uppercase. SOLAR does not define this mapping, so it is the `mui.theme` row in
 [`spec/deviations.md`](../../spec/deviations.md). The resolved tables are exported as
-`solarMuiPalette` and `solarMuiTypography`. The palette holds literal colours rather than
-`var(--solar-*)`, because MUI runs `alpha()` and `darken()` on it.
+`solarMuiPalette` and `solarMuiTypography`. The palette holds literal colours, one set per scheme,
+rather than `var(--solar-*)`, because MUI derives channels and shades from it (`alpha()`,
+`darken()`).
 
 The component recipes are here too: `solarButtonStyle(props)` is the complete style for one set of
 Button props, for `sx` or `styleOverrides.root`, with every value a `var(--solar-*)`.

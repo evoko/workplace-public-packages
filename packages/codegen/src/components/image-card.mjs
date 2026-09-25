@@ -16,6 +16,7 @@ import {
   reactIcon,
   treeOf,
   wrapDoc,
+  treeConsts,
 } from '../shells/drawn.mjs';
 
 const P = 'SolarImageCard';
@@ -50,16 +51,16 @@ export default {
       more: 'iconControl',
       extra: {
         overflow: 'hidden',
-        [`& .${P}-image`]: { position: 'relative' },
-        [`& .${P}-image > img`]: {
+        [`& .${P}--image`]: { position: 'relative' },
+        [`& .${P}--image > img`]: {
           position: 'absolute',
           inset: '0',
           width: '100%',
           height: '100%',
           objectFit: 'cover',
         },
-        [`& .${P}-checkbox`]: { position: 'relative' },
-        [`& .${P}-iconControl`]: {
+        [`& .${P}--checkbox`]: { position: 'relative' },
+        [`& .${P}--iconControl`]: {
           margin: '0',
           background: 'none',
           border: '0',
@@ -114,7 +115,7 @@ import { DropdownMenu } from './DropdownMenu.js';
 import { drawChildren, type DrawnLayer } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ImageCardProps
   extends SolarImageCardProps,
@@ -228,7 +229,7 @@ export const ImageCard = forwardRef<HTMLDivElement, ImageCardProps>(function Ima
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: { title: press(title), subtitle, label: press(label) },
           icons: { ${icons.map((i) => `${i.layer}: ${reactIcon(i, spec)}`).join(', ')} },

@@ -36,6 +36,7 @@ const TREE: Record<string, string[]> = {
     'unit9',
   ],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface TreeIndentProps
   extends
@@ -60,6 +61,7 @@ export const TreeIndent = forwardRef<HTMLSpanElement, TreeIndentProps>(
         {drawChildren('root', {
           prefix: 'SolarTreeIndent',
           tree: TREE,
+          slots: SLOTS,
           parts,
         })}
       </Box>

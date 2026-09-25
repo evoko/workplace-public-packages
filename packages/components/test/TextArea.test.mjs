@@ -15,7 +15,7 @@ describe('the SOLAR Text Area shell', () => {
       id: 'notes',
       placeholder: 'Add a note',
     });
-    expect(textarea(html)).toMatch(/class="[^"]*SolarTextArea-enterText/);
+    expect(textarea(html)).toMatch(/class="[^"]*SolarTextArea--enterText/);
     expect(textarea(html)).toContain('id="notes"');
     expect(html).toMatch(
       /<label for="notes" class="SolarTextArea-label[^"]*">/,

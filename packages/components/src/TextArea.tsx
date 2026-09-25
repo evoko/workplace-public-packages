@@ -39,6 +39,15 @@ const TREE: Record<string, string[]> = {
   field: ['enterText', 'cta', 'attachment'],
   footer: ['helper', 'charCount'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  cta: 'cta',
+  attachment: 'attachment',
+  footer: 'footer',
+  helper: 'helper',
+  charCount: 'charCount',
+};
 
 export interface TextAreaProps
   extends
@@ -116,6 +125,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarTextArea',
       tree: TREE,
+      slots: SLOTS,
       // A part left empty is not drawn; the footer is where either of its parts is.
       parts: {
         ...parts,
@@ -163,7 +173,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
             inputProps={{
               ...inputProps,
               maxLength,
-              className: ['SolarTextArea-enterText', inputProps?.className]
+              className: ['SolarTextArea--enterText', inputProps?.className]
                 .filter(Boolean)
                 .join(' '),
               'aria-describedby': helper != null ? `${id}-helper` : undefined,

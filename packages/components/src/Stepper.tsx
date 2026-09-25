@@ -26,6 +26,32 @@ import {
 import { Step } from './Step.js';
 import { StepperIndicator } from './StepperIndicator.js';
 
+// Each layer's class, public or internal (the codegen's util/classes.mjs): a step's layers are its
+// position's, chosen as the steps are drawn.
+const CLASS: Record<string, string> = {
+  progress: 'SolarStepper--progress',
+  progressRectangle2: 'SolarStepper--progressRectangle2',
+  steps: 'SolarStepper--steps',
+  stepsStep: 'SolarStepper--stepsStep',
+  stepsStep2: 'SolarStepper--stepsStep2',
+  stepsStep3: 'SolarStepper--stepsStep3',
+  stepperIndicator: 'SolarStepper--stepperIndicator',
+  frame: 'SolarStepper--frame',
+  stepperIndicator2: 'SolarStepper--stepperIndicator2',
+  frame2: 'SolarStepper--frame2',
+  stepperIndicator3: 'SolarStepper--stepperIndicator3',
+  rectangle1: 'SolarStepper--rectangle1',
+  rectangle2: 'SolarStepper--rectangle2',
+  rectangle3: 'SolarStepper--rectangle3',
+  rectangle4: 'SolarStepper--rectangle4',
+  rectangle5: 'SolarStepper--rectangle5',
+  stepCompleteHorizontal: 'SolarStepper--stepCompleteHorizontal',
+  step: 'SolarStepper--step',
+  step3: 'SolarStepper-step3',
+  step4: 'SolarStepper-step4',
+  step5: 'SolarStepper-step5',
+};
+
 type Status = 'complete' | 'active' | 'upcoming' | 'error';
 
 /** A step's status as its Stepper Indicator names it (Figma calls a complete step's circle completed). */
@@ -74,7 +100,7 @@ export const Stepper = forwardRef<HTMLElement, StepperProps>(function Stepper(
           : 'upcoming';
   const n = steps.length;
   const cls = (layer: string, box = false) =>
-    `SolarStepper-${layer}${box ? ' SolarStepper-box' : ''}`;
+    `${CLASS[layer]}${box ? ' SolarStepper-box' : ''}`;
   const current = (i: number) =>
     i === activeStep ? ('step' as const) : undefined;
   const name = (i: number) => (

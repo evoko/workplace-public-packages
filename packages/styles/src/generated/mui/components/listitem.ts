@@ -86,7 +86,7 @@ export const solarListItemStyles = {
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarListItem-body': {
+    '& .SolarListItem--body': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -102,7 +102,7 @@ export const solarListItemStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarListItem-label': {
+    '& .SolarListItem--label': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -143,7 +143,7 @@ export const solarListItemStyles = {
         '& .SolarListItem-icon': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarListItem-label': {
+        '& .SolarListItem--label': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarListItem-helper': {
@@ -170,7 +170,7 @@ export const solarListItemStyles = {
         '& .SolarListItem-icon': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarListItem-label': {
+        '& .SolarListItem--label': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarListItem-helper': {
@@ -191,7 +191,7 @@ export const solarListItemStyles = {
         backgroundColor: 'var(--solar-color-surface-hover)',
       },
       '&.Mui-disabled': {
-        '& .SolarListItem-label': {
+        '& .SolarListItem--label': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarListItem-helper': {
@@ -215,7 +215,7 @@ export const solarListItemStyles = {
         backgroundColor: 'var(--solar-color-surface-hover)',
       },
       '&.Mui-disabled': {
-        '& .SolarListItem-label': {
+        '& .SolarListItem--label': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarListItem-helper': {

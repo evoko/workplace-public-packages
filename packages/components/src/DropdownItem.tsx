@@ -34,6 +34,11 @@ const TREE: Record<string, string[]> = {
   root: ['checkbox', 'icon', 'content'],
   content: ['label', 'helper'],
 };
+const SLOTS: Record<string, string> = {
+  checkbox: 'checkbox',
+  icon: 'icon',
+  helper: 'helper',
+};
 
 export interface DropdownItemProps
   extends
@@ -115,6 +120,7 @@ export const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(
         {drawChildren('root', {
           prefix: 'SolarDropdownItem',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { label: children, helper },
           // The box is a SOLAR Checkbox in the variant the recipe names, inert: the row is the

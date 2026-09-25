@@ -41,6 +41,7 @@ const TREE: Record<string, string[]> = {
     'contextMenuItem7',
   ],
 };
+const SLOTS: Record<string, string> = { content: 'content' };
 
 export interface ContextMenuProps
   extends
@@ -99,6 +100,7 @@ export const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
           {drawChildren('root', {
             prefix: 'SolarContextMenu',
             tree: TREE,
+            slots: SLOTS,
             parts,
             content: { content: children },
             // The content is the list the keyboard moves along; a floating one focuses its

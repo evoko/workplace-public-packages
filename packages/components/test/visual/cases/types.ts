@@ -1,5 +1,15 @@
 import type { ReactNode } from 'react';
 
+/** A difference the oracle excuses: a finding still open, or the decision behind it. */
+export interface Excuse {
+  layer: string;
+  property: string;
+  figma: unknown;
+  finding: string;
+  decision?: string | null;
+  reason?: string;
+}
+
 /** One oracle variant, as `spec/verify/<name>.json` lists it. */
 export interface OracleVariant {
   figma: string;
@@ -21,6 +31,10 @@ export interface OracleVariant {
       >)
     | undefined
   >;
+  /** What differs from Figma, excused, in Light. */
+  excused?: Excuse[];
+  /** What Dark draws otherwise: its layers' differences, and its excuses where they differ. */
+  dark?: { layers?: Record<string, unknown>; excused?: Excuse[] };
 }
 
 /**

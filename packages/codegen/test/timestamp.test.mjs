@@ -23,13 +23,13 @@ describe('the Timestamp IR', () => {
 describe('the Timestamp recipe', () => {
   it('sizes the text by size and quiets it by emphasis, whatever the format', () => {
     const { styles } = renderMuiComponent(spec, tokens);
-    expect(styles.sizes.md['& .SolarTimestamp-value']).toMatchObject({
+    expect(styles.sizes.md['& .SolarTimestamp--value']).toMatchObject({
       fontSize: 'var(--solar-type-size-body-md)',
     });
     for (const format of ['relative', 'absolute', 'combined'])
       expect(
         styles.appearances[`format=${format}, emphasis=subtle`][
-          '& .SolarTimestamp-value'
+          '& .SolarTimestamp--value'
         ],
       ).toEqual({ color: 'var(--solar-color-text-tertiary)' });
   });

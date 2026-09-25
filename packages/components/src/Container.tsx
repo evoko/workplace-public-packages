@@ -25,6 +25,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['content'] };
+const SLOTS: Record<string, string> = { content: 'content' };
 
 export interface ContainerProps
   extends
@@ -48,6 +49,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
         {drawChildren('root', {
           prefix: 'SolarContainer',
           tree: TREE,
+          slots: SLOTS,
           parts,
           content: { content: <>{children}</> },
         })}

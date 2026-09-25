@@ -46,6 +46,11 @@ const TREE: Record<string, string[]> = {
   text: ['title', 'icon', 'subtitle'],
   iconCircle: ['iconPlus'],
 };
+const SLOTS: Record<string, string> = {
+  title: 'title',
+  subtitle: 'subtitle',
+  label: 'label',
+};
 
 export interface ImageCardProps
   extends
@@ -179,6 +184,7 @@ export const ImageCard = forwardRef<HTMLDivElement, ImageCardProps>(
           {drawChildren('root', {
             prefix: 'SolarImageCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { title: press(title), subtitle, label: press(label) },
             icons: { iconPlus: <IconPlus /> },

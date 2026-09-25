@@ -36,6 +36,10 @@ const TREE: Record<string, string[]> = {
   icon: ['statusIndicator'],
   content: ['title', 'description', 'skeleton', 'skeleton2'],
 };
+const SLOTS: Record<string, string> = {
+  title: 'title',
+  description: 'description',
+};
 
 export interface InsightCardSmallProps
   extends
@@ -146,6 +150,7 @@ export const InsightCardSmall = forwardRef<
         {drawChildren('root', {
           prefix: 'SolarInsightCardSmall',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { title: titled, description },
           render: {

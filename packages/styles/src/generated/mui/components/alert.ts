@@ -70,7 +70,7 @@ export const solarAlertStyles = {
     paddingBottom: 'var(--solar-inset-md)',
     paddingLeft: 'var(--solar-inset-md)',
     width: '100%',
-    '& .SolarAlert-content': {
+    '& .SolarAlert--content': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',

@@ -43,11 +43,11 @@ export const solarSelectStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarSelect-field': {
+    '& .SolarSelect--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarSelect-field .MuiSelect-select.MuiSelect-select.MuiSelect-select':
+    '& .SolarSelect--field .MuiSelect-select.MuiSelect-select.MuiSelect-select':
       {
         display: 'flex',
         alignItems: 'center',
@@ -58,7 +58,7 @@ export const solarSelectStyles = {
         minHeight: '0',
         padding: '0',
       },
-    '& .SolarSelect-placeholder': {
+    '& .SolarSelect--placeholder': {
       flex: '1 1 0%',
       minWidth: '0',
       overflow: 'hidden',
@@ -72,7 +72,7 @@ export const solarSelectStyles = {
       width: '100%',
       height: '100%',
     },
-    '& .SolarSelect-dropdownMenu.MuiPaper-root': {
+    '& .SolarSelect--dropdownMenu.MuiPaper-root': {
       display: 'flex',
       flexDirection: 'column',
       boxSizing: 'border-box',
@@ -81,7 +81,7 @@ export const solarSelectStyles = {
     '& .SolarSelect-helper': {
       whiteSpace: 'normal',
     },
-    '& .SolarSelect-field::after': {
+    '& .SolarSelect--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -126,7 +126,7 @@ export const solarSelectStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarSelect-labelLabel': {
+    '& .SolarSelect--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -144,7 +144,7 @@ export const solarSelectStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarSelect-field': {
+    '& .SolarSelect--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -162,7 +162,7 @@ export const solarSelectStyles = {
       width: '100%',
       height: '40px',
     },
-    '& .SolarSelect-placeholder': {
+    '& .SolarSelect--placeholder': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -186,7 +186,7 @@ export const solarSelectStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarSelect-dropdownMenu': {
+    '& .SolarSelect--dropdownMenu': {
       borderRadius: 'var(--solar-radius-control)',
       borderWidth: 'var(--solar-border-default)',
       borderStyle: 'solid',
@@ -200,16 +200,16 @@ export const solarSelectStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarSelect-dropdownItem': {
+    '& .SolarSelect--dropdownItem': {
       width: '100%',
     },
-    '& .SolarSelect-dropdownItem2': {
+    '& .SolarSelect--dropdownItem2': {
       width: '100%',
     },
-    '& .SolarSelect-dropdownItem3': {
+    '& .SolarSelect--dropdownItem3': {
       width: '100%',
     },
-    '& .SolarSelect-dropdownItem4': {
+    '& .SolarSelect--dropdownItem4': {
       width: '100%',
     },
     position: 'relative',
@@ -217,7 +217,7 @@ export const solarSelectStyles = {
   sizes: {
     sm: {
       width: '100%',
-      '& .SolarSelect-labelLabel': {
+      '& .SolarSelect--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -233,11 +233,11 @@ export const solarSelectStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarSelect-field': {
+      '& .SolarSelect--field': {
         gap: 'var(--solar-inset-xs)',
         height: '32px',
       },
-      '& .SolarSelect-placeholder': {
+      '& .SolarSelect--placeholder': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -257,38 +257,38 @@ export const solarSelectStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarSelect-dropdownMenu': {
+      '& .SolarSelect--dropdownMenu': {
         width: '100%',
       },
     },
   },
   appearances: {
     default: {
-      '&:has(.SolarSelect-field:hover)': {
-        '& .SolarSelect-field': {
+      '&:has(.SolarSelect--field:hover)': {
+        '& .SolarSelect--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
-      '&:has(.SolarSelect-field.Mui-focused)': {
+      '&:has(.SolarSelect--field.Mui-focused)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
-        '& .SolarSelect-field': {
+        '& .SolarSelect--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
       },
       '&.SolarSelect-open': {
-        '& .SolarSelect-field': {
+        '& .SolarSelect--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
-        '& .SolarSelect-dropdownMenu': {
+        '& .SolarSelect--dropdownMenu': {
           backgroundColor: 'var(--solar-color-surface-base)',
           borderColor: 'var(--solar-color-border-subtle)',
           boxShadow: 'var(--solar-shadow-overlay)',
         },
       },
       '&.SolarSelect-error': {
-        '& .SolarSelect-field': {
+        '& .SolarSelect--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
         },
         '& .SolarSelect-helper': {
@@ -296,17 +296,17 @@ export const solarSelectStyles = {
         },
       },
       '&.SolarSelect-disabled': {
-        '& .SolarSelect-labelLabel': {
+        '& .SolarSelect--labelLabel': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarSelect-mandatory': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarSelect-field': {
+        '& .SolarSelect--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarSelect-placeholder': {
+        '& .SolarSelect--placeholder': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarSelect-trailingIcon': {

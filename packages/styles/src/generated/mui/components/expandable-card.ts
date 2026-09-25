@@ -40,7 +40,7 @@ export const solarExpandableCardStyles = {
       minWidth: '0',
       textAlign: 'start',
     },
-    '& .SolarExpandableCard-header': {
+    '& .SolarExpandableCard--header': {
       padding: '0',
       margin: '0',
       font: 'inherit',
@@ -63,7 +63,7 @@ export const solarExpandableCardStyles = {
     paddingBottom: 'var(--solar-inset-md)',
     paddingLeft: 'var(--solar-inset-md)',
     width: '100%',
-    '& .SolarExpandableCard-header': {
+    '& .SolarExpandableCard--header': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -89,12 +89,12 @@ export const solarExpandableCardStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarExpandableCard-iconChevronDown': {
+    '& .SolarExpandableCard--iconChevronDown': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarExpandableCard-iconChevronUp': {
+    '& .SolarExpandableCard--iconChevronUp': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
     },
@@ -124,19 +124,19 @@ export const solarExpandableCardStyles = {
   sizes: {},
   appearances: {
     'expanded=false': {
-      '&:has(.SolarExpandableCard-header:hover)': {
+      '&:has(.SolarExpandableCard--header:hover)': {
         borderColor: 'var(--solar-color-border-medium)',
       },
-      '&:has(.SolarExpandableCard-header.Mui-focusVisible)': {
+      '&:has(.SolarExpandableCard--header.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
     },
     'expanded=true': {
       flexDirection: 'column',
-      '&:has(.SolarExpandableCard-header:hover)': {
+      '&:has(.SolarExpandableCard--header:hover)': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarExpandableCard-iconChevronUp': {
+        '& .SolarExpandableCard--iconChevronUp': {
           color: 'var(--solar-color-icon-primary)',
         },
         '& .SolarExpandableCard-content': {
@@ -148,11 +148,11 @@ export const solarExpandableCardStyles = {
           color: 'var(--solar-color-text-secondary)',
         },
       },
-      '&:has(.SolarExpandableCard-header.Mui-focusVisible)': {
+      '&:has(.SolarExpandableCard--header.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
       },
-      '& .SolarExpandableCard-iconChevronUp': {
+      '& .SolarExpandableCard--iconChevronUp': {
         color: 'var(--solar-color-icon-primary)',
       },
       '& .SolarExpandableCard-content': {

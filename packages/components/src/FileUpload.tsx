@@ -34,6 +34,10 @@ const TREE: Record<string, string[]> = {
   label: ['uploadAFile', 'mandatory'],
   field: ['iconFile', 'fileName', 'button', 'iconButton', 'iconButton2'],
 };
+const SLOTS: Record<string, string> = {
+  mandatory: 'mandatory',
+  helper: 'helper',
+};
 
 export interface FileUploadProps
   extends
@@ -155,6 +159,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
         {drawChildren('root', {
           prefix: 'SolarFileUpload',
           tree: TREE,
+          slots: SLOTS,
           // A part left empty is not drawn.
           parts: {
             ...parts,

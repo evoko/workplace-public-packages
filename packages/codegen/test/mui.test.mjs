@@ -92,7 +92,8 @@ describe('renderMui', () => {
     expect(data.palette.light.error.main).not.toBe(
       data.tokens.light['color.text.feedback.danger'],
     );
-    expect(ts).toContain('palette: { mode, ...solarMuiPalette[mode] }');
+    expect(ts).toContain('light: { palette: solarMuiPalette.light }');
+    expect(ts).toContain('dark: { palette: solarMuiPalette.dark }');
   });
 
   it('maps palette slots only to tokens that exist, and never to a text colour as a fill', () => {
@@ -133,5 +134,49 @@ describe('renderMui', () => {
 
   it('covers the same token names as the manifest', () => {
     expect(Object.keys(manifest)).toContain('color.action.primary.bg.hover');
+  });
+});
+
+describe('the MUI theme created from createSolarThemeOptions', async () => {
+  // The generated module itself, as an app loads it, under MUI's own createTheme.
+  const { createTheme } = await import('@mui/material/styles');
+  const { createSolarThemeOptions } =
+    await import('../../styles/src/generated/mui/theme.ts');
+  const theme = createTheme(createSolarThemeOptions());
+  const sheets = Object.assign({}, ...theme.generateStyleSheets());
+
+  it('switches Dark by the attribute the tokens switch on, one scheme each', () => {
+    expect(Object.keys(sheets)).toContain('[data-theme="dark"]');
+    expect(
+      sheets['[data-theme="dark"]']['--mui-palette-background-paper'],
+    ).toBe(data.tokens.dark['color.surface.base']);
+    expect(
+      sheets[':root, [data-theme="light"]']['--mui-palette-background-paper'],
+    ).toBe(data.tokens.light['color.surface.base']);
+  });
+
+  it('breaks where SOLAR’s Mobile type does, from the viewport tokens', () => {
+    expect(theme.breakpoints.values).toEqual({
+      xs: 0,
+      sm: 768,
+      md: 1024,
+      lg: 1440,
+      xl: 1920,
+    });
+    // MUI's down('sm') is the width below which the type is Mobile.
+    expect(theme.breakpoints.down('sm')).toContain('max-width:767.95px');
+    expect(ts).toContain('@media (max-width: 767.98px)');
+  });
+
+  it('spaces by SOLAR’s smallest inset, and moves at SOLAR’s speeds', () => {
+    // In MUI's CSS-variables mode spacing() is a calc() over --mui-spacing, SOLAR's 4px.
+    expect(sheets[':root']['--mui-spacing']).toBe(
+      data.tokens.light['inset.2xs'],
+    );
+    expect(theme.spacing(4)).toBe('calc(4 * var(--mui-spacing, 4px))');
+    expect(theme.transitions.duration.standard).toBe(300);
+    expect(theme.transitions.easing.easeOut).toBe(
+      data.tokens.light['motion.ease.out'],
+    );
   });
 });

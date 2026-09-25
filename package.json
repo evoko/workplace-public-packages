@@ -27,7 +27,8 @@
     "solar:rebuild": "node scripts/solar-sync.mjs --no-fetch",
     "solar:triage": "node packages/codegen/bin/solar-triage.mjs",
     "solar:explain": "node packages/codegen/bin/solar-explain.mjs",
-    "solar:overlay:audit": "node packages/codegen/bin/solar-overlay-audit.mjs"
+    "solar:overlay:audit": "node packages/codegen/bin/solar-overlay-audit.mjs",
+    "smoke:install": "node scripts/smoke-install.mjs"
   },
   "devDependencies": {
     "turbo": "^2.11.2",

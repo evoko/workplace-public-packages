@@ -29,6 +29,7 @@ import { drawChildren, type LayerParts } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['thumb'] };
+const SLOTS: Record<string, string> = {};
 
 /** Figma's thumb, drawn in MUI's thumb slot, from this variant's composition. */
 function Thumb({ parts }: { parts?: Record<string, LayerParts> }) {
@@ -37,6 +38,7 @@ function Thumb({ parts }: { parts?: Record<string, LayerParts> }) {
       {drawChildren('root', {
         prefix: 'SolarToggle',
         tree: TREE,
+        slots: SLOTS,
         parts: parts ?? {},
       })}
     </>

@@ -63,11 +63,11 @@ export const solarTimePickerStyles = {
     '& .SolarTimePicker-helper': {
       whiteSpace: 'normal',
     },
-    '& .SolarTimePicker-field': {
+    '& .SolarTimePicker--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarTimePicker-field::after': {
+    '& .SolarTimePicker--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -77,7 +77,7 @@ export const solarTimePickerStyles = {
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
-    '& .SolarTimePicker-iconClock': {
+    '& .SolarTimePicker--iconClock': {
       position: 'relative',
       appearance: 'none',
       border: '0',
@@ -96,7 +96,7 @@ export const solarTimePickerStyles = {
         cursor: 'default',
       },
     },
-    '& .SolarTimePicker-iconClock::after': {
+    '& .SolarTimePicker--iconClock::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -136,7 +136,7 @@ export const solarTimePickerStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarTimePicker-labelLabel': {
+    '& .SolarTimePicker--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -154,7 +154,7 @@ export const solarTimePickerStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarTimePicker-field': {
+    '& .SolarTimePicker--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -172,7 +172,7 @@ export const solarTimePickerStyles = {
       width: '100%',
       height: '40px',
     },
-    '& .SolarTimePicker-iconClock': {
+    '& .SolarTimePicker--iconClock': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
@@ -199,7 +199,7 @@ export const solarTimePickerStyles = {
   },
   sizes: {
     sm: {
-      '& .SolarTimePicker-labelLabel': {
+      '& .SolarTimePicker--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -215,13 +215,13 @@ export const solarTimePickerStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarTimePicker-field': {
+      '& .SolarTimePicker--field': {
         gap: 'var(--solar-inset-2xs)',
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         height: '32px',
       },
-      '& .SolarTimePicker-iconClock': {
+      '& .SolarTimePicker--iconClock': {
         width: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
       },
@@ -245,19 +245,19 @@ export const solarTimePickerStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarTimePicker-field:hover)': {
-        '& .SolarTimePicker-field': {
+      '&:has(.SolarTimePicker--field:hover)': {
+        '& .SolarTimePicker--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
-      '&:has(.SolarTimePicker-field.Mui-focused)': {
-        '& .SolarTimePicker-field': {
+      '&:has(.SolarTimePicker--field.Mui-focused)': {
+        '& .SolarTimePicker--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
       },
       '&.SolarTimePicker-error': {
-        '& .SolarTimePicker-field': {
+        '& .SolarTimePicker--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
@@ -265,8 +265,8 @@ export const solarTimePickerStyles = {
           color: 'var(--solar-color-text-feedback-danger)',
         },
       },
-      '&.SolarTimePicker-error:has(.SolarTimePicker-field.Mui-focused)': {
-        '& .SolarTimePicker-field': {
+      '&.SolarTimePicker-error:has(.SolarTimePicker--field.Mui-focused)': {
+        '& .SolarTimePicker--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
@@ -275,11 +275,11 @@ export const solarTimePickerStyles = {
         },
       },
       '&.SolarTimePicker-disabled': {
-        '& .SolarTimePicker-field': {
+        '& .SolarTimePicker--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarTimePicker-iconClock': {
+        '& .SolarTimePicker--iconClock': {
           color: 'var(--solar-color-icon-disabled)',
         },
         '& .SolarTimePicker-value': {

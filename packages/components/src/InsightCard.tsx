@@ -48,6 +48,10 @@ const TREE: Record<string, string[]> = {
   icon: ['statusIndicator'],
   content: ['title', 'description', 'skeleton', 'skeleton2'],
 };
+const SLOTS: Record<string, string> = {
+  title: 'title',
+  description: 'description',
+};
 
 export interface InsightCardProps
   extends
@@ -177,6 +181,7 @@ export const InsightCard = forwardRef<HTMLDivElement, InsightCardProps>(
           {drawChildren('root', {
             prefix: 'SolarInsightCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { title: titled, description },
             icons: {

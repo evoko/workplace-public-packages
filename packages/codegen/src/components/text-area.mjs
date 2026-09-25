@@ -8,7 +8,7 @@
  * undecorated TextField in Flutter, with the caller's Icon Buttons pinned in its bottom corners.
  */
 
-import { treeOf } from '../shells/drawn.mjs';
+import { treeOf, treeConsts } from '../shells/drawn.mjs';
 import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
 
 const P = 'SolarTextArea';
@@ -49,7 +49,7 @@ export default {
     resets: fieldResets('Text Area', {
       input: 'enterText',
       more: {
-        [`& .${P}-enterText.MuiInputBase-input`]: { minHeight: '0' },
+        [`& .${P}--enterText.MuiInputBase-input`]: { minHeight: '0' },
       },
     }),
     // Hovered and focused as the field is; filled, in error and disabled by the props, as classes.
@@ -97,7 +97,7 @@ import {
 import { drawChildren, drawLayer, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface TextAreaProps
   extends SolarTextAreaProps,
@@ -170,7 +170,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(function TextA
   const parts = solarTextAreaCompose(look);
   const drawing: LayerDrawing = {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     // A part left empty is not drawn; the footer is where either of its parts is.
     parts: {
       ...parts,
@@ -215,7 +215,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(function TextA
           inputProps={{
             ...inputProps,
             maxLength,
-            className: ['${P}-enterText', inputProps?.className].filter(Boolean).join(' '),
+            className: ['${P}--enterText', inputProps?.className].filter(Boolean).join(' '),
             'aria-describedby': helper != null ? \`\${id}-helper\` : undefined,
           }}
         />

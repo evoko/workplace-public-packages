@@ -42,7 +42,7 @@ export const solarTreeItemStyles = {
     outline: 'none',
     cursor: 'pointer',
     borderStyle: 'solid',
-    '& .SolarTreeItem-chevron, & .SolarTreeItem-iconMore, & .SolarTreeItem-iconPlus':
+    '& .SolarTreeItem--chevron, & .SolarTreeItem--iconMore, & .SolarTreeItem--iconPlus':
       {
         appearance: 'none',
         border: '0',
@@ -53,19 +53,19 @@ export const solarTreeItemStyles = {
         cursor: 'pointer',
         flexShrink: '0',
       },
-    '& .SolarTreeItem-iconMore > svg, & .SolarTreeItem-iconPlus > svg, & .SolarTreeItem-leadingIcon > svg, & .SolarTreeItem-trailingIcon > svg':
+    '& .SolarTreeItem--iconMore > svg, & .SolarTreeItem--iconPlus > svg, & .SolarTreeItem-leadingIcon > svg, & .SolarTreeItem-trailingIcon > svg':
       {
         display: 'block',
         width: '100%',
         height: '100%',
       },
-    '& .SolarTreeItem-label': {
+    '& .SolarTreeItem--label': {
       flex: '1 1 0%',
       minWidth: '0',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
     },
-    '& .SolarTreeItem-renameInput': {
+    '& .SolarTreeItem--renameInput': {
       flex: '1 1 0%',
       minWidth: '0',
       border: '0',
@@ -91,7 +91,7 @@ export const solarTreeItemStyles = {
     paddingLeft: 'var(--solar-inset-2xs)',
     width: '100%',
     height: '32px',
-    '& .SolarTreeItem-chevron': {
+    '& .SolarTreeItem--chevron': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -106,7 +106,7 @@ export const solarTreeItemStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarTreeItem-chevronChevron': {
+    '& .SolarTreeItem-chevron': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
@@ -116,7 +116,7 @@ export const solarTreeItemStyles = {
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
-    '& .SolarTreeItem-label': {
+    '& .SolarTreeItem--label': {
       color: 'var(--solar-color-text-secondary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -143,15 +143,15 @@ export const solarTreeItemStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarTreeItem-iconMore': {
+    '& .SolarTreeItem--iconMore': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
     },
-    '& .SolarTreeItem-iconPlus': {
+    '& .SolarTreeItem--iconPlus': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
     },
-    '& .SolarTreeItem-renameInput': {
+    '& .SolarTreeItem--renameInput': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
       fontSize: 'var(--solar-type-size-label-md)',
@@ -160,7 +160,7 @@ export const solarTreeItemStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarTreeItem-iconChevronDown': {
+    '& .SolarTreeItem--iconChevronDown': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
     },
@@ -175,10 +175,10 @@ export const solarTreeItemStyles = {
           borderColor: 'transparent',
           boxShadow: 'none',
         },
-        '& .SolarTreeItem-iconMore': {
+        '& .SolarTreeItem--iconMore': {
           color: 'var(--solar-color-icon-secondary)',
         },
-        '& .SolarTreeItem-iconPlus': {
+        '& .SolarTreeItem--iconPlus': {
           color: 'var(--solar-color-icon-secondary)',
         },
       },
@@ -195,10 +195,10 @@ export const solarTreeItemStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderWidth: 'var(--solar-border-default)',
         borderStyle: 'solid',
-        '& .SolarTreeItem-chevronChevron': {
+        '& .SolarTreeItem-chevron': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-renameInput': {
+        '& .SolarTreeItem--renameInput': {
           color: 'var(--solar-color-text-tertiary)',
         },
       },
@@ -211,13 +211,13 @@ export const solarTreeItemStyles = {
           borderColor: 'transparent',
           boxShadow: 'none',
         },
-        '& .SolarTreeItem-iconMore': {
+        '& .SolarTreeItem--iconMore': {
           color: 'var(--solar-color-icon-secondary)',
         },
-        '& .SolarTreeItem-iconPlus': {
+        '& .SolarTreeItem--iconPlus': {
           color: 'var(--solar-color-icon-secondary)',
         },
-        '& .SolarTreeItem-iconChevronDown': {
+        '& .SolarTreeItem--iconChevronDown': {
           color: 'var(--solar-color-icon-secondary)',
         },
       },
@@ -234,14 +234,14 @@ export const solarTreeItemStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderWidth: 'var(--solar-border-default)',
         borderStyle: 'solid',
-        '& .SolarTreeItem-renameInput': {
+        '& .SolarTreeItem--renameInput': {
           color: 'var(--solar-color-text-tertiary)',
         },
-        '& .SolarTreeItem-iconChevronDown': {
+        '& .SolarTreeItem--iconChevronDown': {
           color: 'var(--solar-color-icon-primary)',
         },
       },
-      '& .SolarTreeItem-iconChevronDown': {
+      '& .SolarTreeItem--iconChevronDown': {
         color: 'var(--solar-color-icon-secondary)',
       },
     },
@@ -249,13 +249,13 @@ export const solarTreeItemStyles = {
       backgroundColor: 'var(--solar-color-surface-active)',
       '&:hover': {
         backgroundColor: 'var(--solar-color-surface-active)',
-        '& .SolarTreeItem-chevronChevron': {
+        '& .SolarTreeItem-chevron': {
           color: 'var(--solar-color-icon-primary)',
         },
         '& .SolarTreeItem-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-label': {
+        '& .SolarTreeItem--label': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarTreeItem-trailingIcon': {
@@ -266,10 +266,10 @@ export const solarTreeItemStyles = {
           borderColor: 'transparent',
           boxShadow: 'none',
         },
-        '& .SolarTreeItem-iconMore': {
+        '& .SolarTreeItem--iconMore': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-iconPlus': {
+        '& .SolarTreeItem--iconPlus': {
           color: 'var(--solar-color-icon-primary)',
         },
       },
@@ -285,23 +285,23 @@ export const solarTreeItemStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderWidth: 'var(--solar-border-default)',
         borderStyle: 'solid',
-        '& .SolarTreeItem-chevronChevron': {
+        '& .SolarTreeItem-chevron': {
           color: 'var(--solar-color-icon-primary)',
         },
         '& .SolarTreeItem-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-renameInput': {
+        '& .SolarTreeItem--renameInput': {
           color: 'var(--solar-color-text-primary)',
         },
       },
-      '& .SolarTreeItem-chevronChevron': {
+      '& .SolarTreeItem-chevron': {
         color: 'var(--solar-color-icon-primary)',
       },
       '& .SolarTreeItem-leadingIcon': {
         color: 'var(--solar-color-icon-primary)',
       },
-      '& .SolarTreeItem-label': {
+      '& .SolarTreeItem--label': {
         color: 'var(--solar-color-text-primary)',
       },
       '& .SolarTreeItem-trailingIcon': {
@@ -312,10 +312,10 @@ export const solarTreeItemStyles = {
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarTreeItem-iconMore': {
+      '& .SolarTreeItem--iconMore': {
         color: 'var(--solar-color-icon-primary)',
       },
-      '& .SolarTreeItem-iconPlus': {
+      '& .SolarTreeItem--iconPlus': {
         color: 'var(--solar-color-icon-primary)',
       },
     },
@@ -326,7 +326,7 @@ export const solarTreeItemStyles = {
         '& .SolarTreeItem-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-label': {
+        '& .SolarTreeItem--label': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarTreeItem-trailingIcon': {
@@ -337,13 +337,13 @@ export const solarTreeItemStyles = {
           borderColor: 'transparent',
           boxShadow: 'none',
         },
-        '& .SolarTreeItem-iconMore': {
+        '& .SolarTreeItem--iconMore': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-iconPlus': {
+        '& .SolarTreeItem--iconPlus': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-iconChevronDown': {
+        '& .SolarTreeItem--iconChevronDown': {
           color: 'var(--solar-color-icon-primary)',
         },
       },
@@ -362,17 +362,17 @@ export const solarTreeItemStyles = {
         '& .SolarTreeItem-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTreeItem-renameInput': {
+        '& .SolarTreeItem--renameInput': {
           color: 'var(--solar-color-text-primary)',
         },
-        '& .SolarTreeItem-iconChevronDown': {
+        '& .SolarTreeItem--iconChevronDown': {
           color: 'var(--solar-color-icon-primary)',
         },
       },
       '& .SolarTreeItem-leadingIcon': {
         color: 'var(--solar-color-icon-primary)',
       },
-      '& .SolarTreeItem-label': {
+      '& .SolarTreeItem--label': {
         color: 'var(--solar-color-text-primary)',
       },
       '& .SolarTreeItem-trailingIcon': {
@@ -383,13 +383,13 @@ export const solarTreeItemStyles = {
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarTreeItem-iconMore': {
+      '& .SolarTreeItem--iconMore': {
         color: 'var(--solar-color-icon-primary)',
       },
-      '& .SolarTreeItem-iconPlus': {
+      '& .SolarTreeItem--iconPlus': {
         color: 'var(--solar-color-icon-primary)',
       },
-      '& .SolarTreeItem-iconChevronDown': {
+      '& .SolarTreeItem--iconChevronDown': {
         color: 'var(--solar-color-icon-primary)',
       },
     },

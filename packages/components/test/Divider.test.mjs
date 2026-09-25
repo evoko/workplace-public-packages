@@ -17,7 +17,7 @@ describe('the SOLAR Divider shell', () => {
     const html = renderToString(h(Divider, { type: 'with-label' }, 'Or'));
     expect(html).toContain('aria-label="Or"');
     expect(html).toMatch(
-      /SolarDivider-rule .*SolarDivider-label.*SolarDivider-rule2/,
+      /SolarDivider--rule .*SolarDivider--label.*SolarDivider--rule2/,
     );
   });
 });

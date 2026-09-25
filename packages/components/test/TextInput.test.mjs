@@ -12,9 +12,9 @@ describe('the SOLAR Text Input shell', () => {
   it('is MUI’s InputBase, its input the field’s words, labelled by its label', () => {
     const html = field({ label: 'Name', id: 'name', placeholder: 'Ada' });
     expect(html).toMatch(
-      /class="[^"]*MuiInputBase-root[^"]*SolarTextInput-field|class="SolarTextInput-field[^"]*MuiInputBase-root/,
+      /class="[^"]*MuiInputBase-root[^"]*SolarTextInput--field|class="SolarTextInput--field[^"]*MuiInputBase-root/,
     );
-    expect(input(html)).toMatch(/class="[^"]*SolarTextInput-fieldLabel/);
+    expect(input(html)).toMatch(/class="[^"]*SolarTextInput--fieldLabel/);
     expect(input(html)).toContain('id="name"');
     expect(input(html)).toContain('placeholder="Ada"');
     expect(html).toMatch(

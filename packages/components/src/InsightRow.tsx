@@ -34,6 +34,11 @@ const TREE: Record<string, string[]> = {
   content: ['body', 'action'],
   body: ['title', 'meta', 'skeleton', 'skeleton2'],
 };
+const SLOTS: Record<string, string> = {
+  title: 'title',
+  meta: 'meta',
+  action: 'action',
+};
 
 export interface InsightRowProps
   extends
@@ -146,6 +151,7 @@ export const InsightRow = forwardRef<HTMLDivElement, InsightRowProps>(
           {drawChildren('root', {
             prefix: 'SolarInsightRow',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { title: titled, meta },
             icons: {

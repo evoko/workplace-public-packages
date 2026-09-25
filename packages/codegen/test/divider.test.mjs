@@ -38,7 +38,7 @@ describe('the Divider recipe', () => {
   it('is a block, the rule in the subtle border colour', () => {
     const { styles } = renderMuiComponent(spec, tokens);
     expect(styles.reset.display).toBe('flex');
-    expect(styles.root['& .SolarDivider-rule']).toMatchObject({
+    expect(styles.root['& .SolarDivider--rule']).toMatchObject({
       backgroundColor: 'var(--solar-color-border-subtle)',
       height: 'var(--solar-border-default)',
     });

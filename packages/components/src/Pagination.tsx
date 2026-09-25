@@ -48,6 +48,17 @@ export function pagesOf(page: number, count: number): (number | 'gap')[] {
 }
 
 /** The layer Figma draws each page in by its place among the pages. */
+// Each layer's class, public or internal (the codegen's util/classes.mjs): a page's layer is its
+// position's, chosen as the pages are drawn.
+const CLASS: Record<string, string> = {
+  previous: 'SolarPagination--previous',
+  page1: 'SolarPagination--page1',
+  page2: 'SolarPagination--page2',
+  page3: 'SolarPagination--page3',
+  paginationEllipsis: 'SolarPagination--paginationEllipsis',
+  page12: 'SolarPagination--page12',
+  next: 'SolarPagination--next',
+};
 const pageLayer = (i: number, last: boolean) =>
   last ? 'page12' : i === 0 ? 'page1' : i === 1 ? 'page2' : 'page3';
 
@@ -105,7 +116,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
         sx={[solarPaginationStyle({}), ...(Array.isArray(sx) ? sx : [sx])]}
       >
         <ul className="SolarPagination-list">
-          <li className="SolarPagination-previous">
+          <li className="SolarPagination--previous">
             <PaginationNav
               direction="previous"
               disabled={page <= 1}
@@ -117,17 +128,14 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               return (
                 <li
                   key={`gap${i}`}
-                  className="SolarPagination-paginationEllipsis"
+                  className="SolarPagination--paginationEllipsis"
                 >
                   <PaginationEllipsis />
                 </li>
               );
             const at = seen++;
             return (
-              <li
-                key={p}
-                className={`SolarPagination-${pageLayer(at, at === pages - 1)}`}
-              >
+              <li key={p} className={CLASS[pageLayer(at, at === pages - 1)]}>
                 <PaginationItem
                   selected={p === page}
                   onClick={() => go(p)}
@@ -138,7 +146,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               </li>
             );
           })}
-          <li className="SolarPagination-next">
+          <li className="SolarPagination--next">
             <PaginationNav
               direction="next"
               disabled={page >= count}

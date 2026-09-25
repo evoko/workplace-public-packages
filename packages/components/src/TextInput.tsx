@@ -37,6 +37,13 @@ const TREE: Record<string, string[]> = {
   label: ['labelLabel', 'mandatory'],
   field: ['leadingIcon', 'fieldLabel', 'trailingIcon'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  leadingIcon: 'leadingIcon',
+  trailingIcon: 'trailingIcon',
+  helper: 'helper',
+};
 
 export interface TextInputProps
   extends
@@ -107,6 +114,7 @@ export const TextInput = forwardRef<HTMLDivElement, TextInputProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarTextInput',
       tree: TREE,
+      slots: SLOTS,
       // A part left empty is not drawn.
       parts: {
         ...parts,
@@ -142,7 +150,7 @@ export const TextInput = forwardRef<HTMLDivElement, TextInputProps>(
             endAdornment={drawLayer('trailingIcon', drawing)}
             inputProps={{
               ...inputProps,
-              className: ['SolarTextInput-fieldLabel', inputProps?.className]
+              className: ['SolarTextInput--fieldLabel', inputProps?.className]
                 .filter(Boolean)
                 .join(' '),
               'aria-describedby': helper != null ? `${id}-helper` : undefined,

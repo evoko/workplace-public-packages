@@ -39,6 +39,12 @@ const TREE: Record<string, string[]> = {
   label: ['password', 'mandatory'],
   field: ['maskedValue', 'icon'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+  forgotPassword: 'forgotPassword',
+};
 
 export interface PasswordInputProps
   extends
@@ -109,6 +115,7 @@ export const PasswordInput = forwardRef<HTMLDivElement, PasswordInputProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarPasswordInput',
       tree: TREE,
+      slots: SLOTS,
       // A part left empty is not drawn.
       parts: {
         ...parts,
@@ -164,7 +171,7 @@ export const PasswordInput = forwardRef<HTMLDivElement, PasswordInputProps>(
             inputProps={{
               ...inputProps,
               className: [
-                'SolarPasswordInput-maskedValue',
+                'SolarPasswordInput--maskedValue',
                 inputProps?.className,
               ]
                 .filter(Boolean)

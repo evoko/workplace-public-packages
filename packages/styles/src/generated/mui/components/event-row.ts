@@ -104,7 +104,7 @@ export const solarEventRowStyles = {
     paddingBottom: 'var(--solar-inset-sm)',
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
-    '& .SolarEventRow-content': {
+    '& .SolarEventRow--content': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -130,7 +130,7 @@ export const solarEventRowStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarEventRow-meta': {
+    '& .SolarEventRow--meta': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -189,7 +189,7 @@ export const solarEventRowStyles = {
       '&:has(.SolarEventRow-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         backgroundColor: 'var(--solar-color-surface-base)',
-        '& .SolarEventRow-meta': {
+        '& .SolarEventRow--meta': {
           backgroundColor: 'transparent',
         },
       },

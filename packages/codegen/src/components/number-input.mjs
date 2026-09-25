@@ -9,7 +9,7 @@
  */
 
 import { dartField, dartParam } from '../shells/helpers.mjs';
-import { keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { keyPrefixOf, treeOf, wrapDoc, treeConsts } from '../shells/drawn.mjs';
 import { fieldResets, fieldStates } from '../shells/field.mjs';
 import { targetArea } from '../shells/target.mjs';
 
@@ -61,7 +61,7 @@ export default {
       input: 'value',
       more: {
         // Inline, the number is as wide as its digits, and the field hugs it.
-        [`& .${P}-inlineValue.MuiInputBase-input`]: {
+        [`& .${P}--inlineValue.MuiInputBase-input`]: {
           flex: '0 0 auto',
           width: 'auto',
           minWidth: '1ch',
@@ -71,12 +71,12 @@ export default {
           WebkitTextFillColor: 'currentcolor',
           textAlign: 'center',
         },
-        [`& button.${P}-fieldDecrement, & button.${P}-fieldIncrement`]: {
+        [`& button.${P}--fieldDecrement, & button.${P}--fieldIncrement`]: {
           ...button,
           flexShrink: '0',
           position: 'relative',
         },
-        [`& button.${P}-fieldDecrement > svg, & button.${P}-fieldIncrement > svg`]:
+        [`& button.${P}--fieldDecrement > svg, & button.${P}--fieldIncrement > svg`]:
           {
             display: 'block',
             width: '100%',
@@ -84,12 +84,12 @@ export default {
           },
         // The inline buttons have a 44 × 44 target each (shells/target.mjs); the side stepper's
         // halves, stacked 20px tall, cannot without covering each other, and keep Figma's.
-        ...targetArea(`& button.${P}-fieldDecrement`),
-        ...targetArea(`& button.${P}-fieldIncrement`),
-        [`& button.${P}-stepperIncrement, & button.${P}-stepperDecrement`]:
+        ...targetArea(`& button.${P}--fieldDecrement`),
+        ...targetArea(`& button.${P}--fieldIncrement`),
+        [`& button.${P}--stepperIncrement, & button.${P}--stepperDecrement`]:
           button,
         // The divider keeps its hairline between the halves, however short the column.
-        [`& .${P}-divider`]: { flexShrink: '0' },
+        [`& .${P}--divider`]: { flexShrink: '0' },
         // InputBase's own box around the number takes no part in the field's layout: the input is
         // the layer, laid out by the field.
         [`& .${P}-number`]: { display: 'contents' },
@@ -99,7 +99,7 @@ export default {
     // props, as classes.
     states: {
       ...fieldStates('Number Input', ['error', 'disabled']),
-      focus: `&:has(.${P}-field .Mui-focused)`,
+      focus: `&:has(.${P}--field .Mui-focused)`,
     },
     overlaps: { focus: ['hover'] },
   },
@@ -154,7 +154,7 @@ import {
 import { drawChildren, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** A number as the field shows it, or nothing for none. */
 const shown = (n: number | null | undefined) => (n == null ? '' : String(n));
@@ -312,7 +312,7 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(function
   );
   const drawing: LayerDrawing = {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     // A part left empty is not drawn.
     parts: {
       ...parts,

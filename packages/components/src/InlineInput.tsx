@@ -33,6 +33,7 @@ const TREE: Record<string, string[]> = {
   root: ['value', 'iconButton', 'frame1'],
   frame1: ['confirm', 'cancel'],
 };
+const SLOTS: Record<string, string> = { value: 'value' };
 
 export interface InlineInputProps
   extends
@@ -135,6 +136,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
         {drawChildren('root', {
           prefix: 'SolarInlineInput',
           tree: TREE,
+          slots: SLOTS,
           // Read, its words and the edit button; editing, the input and its actions.
           parts: {
             ...parts,

@@ -35,6 +35,16 @@ const TREE: Record<string, string[]> = {
   text: ['headline', 'bodyText'],
   headline: ['appIcon', 'name', 'tag', 'favouriteNoImage'],
 };
+const SLOTS: Record<string, string> = {
+  image: 'image',
+  favourite: 'favourite',
+  tag: 'tag',
+  favouriteNoImage: 'favouriteNoImage',
+  bodyText: 'bodyText',
+  name: 'name',
+  appIcon: 'appIcon',
+  actions: 'actions',
+};
 
 export interface LaunchCardProps
   extends
@@ -151,6 +161,7 @@ export const LaunchCard = forwardRef<HTMLDivElement, LaunchCardProps>(
           {drawChildren('root', {
             prefix: 'SolarLaunchCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { name: titled, bodyText: body },
             icons: {

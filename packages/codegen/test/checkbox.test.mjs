@@ -74,10 +74,10 @@ describe('the Checkbox recipe', () => {
   });
 
   it('draws the tick with no stroke, though the box the base reads draws none', () => {
-    expect(styles.root['& .SolarCheckbox-icon']).toMatchObject({
+    expect(styles.root['& .SolarCheckbox--icon']).toMatchObject({
       strokeWidth: '0',
     });
-    expect(styles.root['& .SolarCheckbox-icon']).not.toHaveProperty(
+    expect(styles.root['& .SolarCheckbox--icon']).not.toHaveProperty(
       'borderStyle',
     );
   });

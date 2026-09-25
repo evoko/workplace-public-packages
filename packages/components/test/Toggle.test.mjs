@@ -10,7 +10,7 @@ describe('the SOLAR Toggle shell', () => {
     const html = renderToString(h(Toggle, { 'aria-label': 'Wi-Fi' }));
     expect(input(html)).toMatch(/type="checkbox"/);
     expect(input(html)).toContain('role="switch"');
-    expect(html).toMatch(/<span[^>]*class="SolarToggle-thumb/);
+    expect(html).toMatch(/<span[^>]*class="SolarToggle--thumb/);
     expect(html).not.toMatch(/<span[^>]*class="MuiSwitch-thumb/);
   });
 

@@ -75,28 +75,28 @@ export const solarContextMenuStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarContextMenu-contextMenuItem': {
+    '& .SolarContextMenu--contextMenuItem': {
       width: '100%',
     },
-    '& .SolarContextMenu-contextMenuItem2': {
+    '& .SolarContextMenu--contextMenuItem2': {
       width: '100%',
     },
-    '& .SolarContextMenu-contextMenuItem3': {
+    '& .SolarContextMenu--contextMenuItem3': {
       width: '100%',
     },
-    '& .SolarContextMenu-contextMenuItem4': {
+    '& .SolarContextMenu--contextMenuItem4': {
       width: '100%',
     },
-    '& .SolarContextMenu-contextMenuItem5': {
+    '& .SolarContextMenu--contextMenuItem5': {
       width: '100%',
     },
-    '& .SolarContextMenu-contextMenuItem6': {
+    '& .SolarContextMenu--contextMenuItem6': {
       width: '100%',
     },
-    '& .SolarContextMenu-divider': {
+    '& .SolarContextMenu--divider': {
       width: '100%',
     },
-    '& .SolarContextMenu-contextMenuItem7': {
+    '& .SolarContextMenu--contextMenuItem7': {
       width: '100%',
     },
   },

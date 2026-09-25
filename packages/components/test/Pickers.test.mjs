@@ -159,8 +159,8 @@ describe('the SOLAR Select and Dropdown shells', () => {
       ),
     );
     expect(text).toContain('role="combobox"');
-    expect(drawn(text, 'SolarDropdown-field')).toBe(true);
-    expect(drawn(text, 'SolarSelect-field')).toBe(false);
+    expect(drawn(text, 'SolarDropdown--field')).toBe(true);
+    expect(drawn(text, 'SolarSelect--field')).toBe(false);
   });
 });
 

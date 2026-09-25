@@ -38,6 +38,12 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['leadingIcon', 'label', 'trailingIcon', 'counter'],
 };
+const SLOTS: Record<string, string> = {
+  leadingIcon: 'leadingIcon',
+  label: 'label',
+  trailingIcon: 'trailingIcon',
+  counter: 'counter',
+};
 
 export interface TabItemProps
   extends
@@ -128,6 +134,7 @@ export const TabItem = forwardRef<HTMLDivElement, TabItemProps>(
         label={drawChildren('root', {
           prefix: 'SolarTabItem',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { label },
           icons: {

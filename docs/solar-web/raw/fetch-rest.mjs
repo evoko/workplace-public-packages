@@ -413,7 +413,9 @@ function census(root, ctx) {
   return c;
 }
 function digest(v, ctx, baseHidden, basePaths) {
-  const d = { variant: v.name, size: box(v) };
+  // The variant's own node, for a map from Figma's IDs to the code's names (Code Connect, a
+  // manifest): the set's node alone names the component, not the variant.
+  const d = { variant: v.name, id: v.id, size: box(v) };
   const f = paints(v.fills);
   if (f) d.fills = f;
   const s = paints(v.strokes);

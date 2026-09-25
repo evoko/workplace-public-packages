@@ -58,7 +58,7 @@ export const solarTrendBadgeStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: 'var(--solar-icon-md)',
     height: 'var(--solar-icon-md)',
-    '& .SolarTrendBadge-icon': {
+    '& .SolarTrendBadge--icon': {
       fill: 'var(--solar-color-icon-inverse)',
       stroke: 'none',
       '& .SolarGlyph-stroke': {
@@ -78,7 +78,7 @@ export const solarTrendBadgeStyles = {
       },
       'type=neutral': {
         backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
-        '& .SolarTrendBadge-icon': {
+        '& .SolarTrendBadge--icon': {
           height: '6px',
         },
       },
@@ -87,7 +87,7 @@ export const solarTrendBadgeStyles = {
       'type=incline': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarTrendBadge-icon': {
+        '& .SolarTrendBadge--icon': {
           width: '6px',
           height: '6px',
         },
@@ -96,7 +96,7 @@ export const solarTrendBadgeStyles = {
         backgroundColor: 'var(--solar-color-surface-feedback-danger-strong)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarTrendBadge-icon': {
+        '& .SolarTrendBadge--icon': {
           width: '6px',
           height: '6px',
         },
@@ -105,7 +105,7 @@ export const solarTrendBadgeStyles = {
         backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarTrendBadge-icon': {
+        '& .SolarTrendBadge--icon': {
           width: '6px',
           height: '4px',
         },

@@ -28,6 +28,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['icon'] };
+const SLOTS: Record<string, string> = {};
 
 /** The dot, as MUI's icon: MUI hands the icon a size, which the dot does not take. */
 function Marks({ children }: { children: ReactNode; fontSize?: unknown }) {
@@ -60,6 +61,7 @@ export const Radio = forwardRef<HTMLButtonElement, RadioProps>(function Radio(
       {drawChildren('root', {
         prefix: 'SolarRadio',
         tree: TREE,
+        slots: SLOTS,
         parts: solarRadioCompose(look, disabled ? 'disabled' : 'default'),
       })}
     </Marks>

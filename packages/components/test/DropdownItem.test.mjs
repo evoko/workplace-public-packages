@@ -15,7 +15,7 @@ describe('the SOLAR Dropdown Item shell', () => {
     const html = row();
     expect(html).toContain('role="menuitem"');
     expect(html).toContain('Label');
-    expect(drawn(html, 'SolarDropdownItem-label')).toBe(true);
+    expect(drawn(html, 'SolarDropdownItem--label')).toBe(true);
     for (const slot of ['checkbox', 'icon', 'helper'])
       expect(drawn(html, `SolarDropdownItem-${slot}`)).toBe(false);
     const full = row({ helper: 'Second line', icon: h('svg'), checkbox: true });

@@ -119,8 +119,8 @@ describe('the Text Input recipes', () => {
 
   it('draws the state blocks in the table’s order, so error and disabled win over hover', () => {
     expect(Object.keys(styles.appearances.default)).toEqual([
-      '&:has(.SolarTextInput-field:hover)',
-      '&:has(.SolarTextInput-field.Mui-focused)',
+      '&:has(.SolarTextInput--field:hover)',
+      '&:has(.SolarTextInput--field.Mui-focused)',
       '&.SolarTextInput-filled',
       '&.SolarTextInput-error',
       '&.SolarTextInput-disabled',
@@ -129,7 +129,7 @@ describe('the Text Input recipes', () => {
 
   it('draws the words and the placeholder in one ink, the input’s own padding gone', () => {
     const input =
-      styles.reset['& .SolarTextInput-fieldLabel.MuiInputBase-input'];
+      styles.reset['& .SolarTextInput--fieldLabel.MuiInputBase-input'];
     expect(input).toMatchObject({
       padding: '0',
       WebkitTextFillColor: 'currentcolor',
@@ -138,11 +138,11 @@ describe('the Text Input recipes', () => {
   });
 
   it('gives the field a 44 × 44 target under its words', () => {
-    expect(styles.reset['& .SolarTextInput-field']).toEqual({
+    expect(styles.reset['& .SolarTextInput--field']).toEqual({
       position: 'relative',
       isolation: 'isolate',
     });
-    expect(styles.reset['& .SolarTextInput-field::after']).toMatchObject({
+    expect(styles.reset['& .SolarTextInput--field::after']).toMatchObject({
       height: 'max(100%, 44px)',
       zIndex: '-1',
     });

@@ -11,6 +11,7 @@
  */
 
 import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { classesOf } from '../util/classes.mjs';
 
 const P = 'SolarStepper';
 
@@ -59,7 +60,7 @@ export default {
       margin: '0',
       padding: '0',
       listStyle: 'none',
-      [`& .${P}-steps`]: { margin: '0', padding: '0', listStyle: 'none' },
+      [`& .${P}--steps`]: { margin: '0', padding: '0', listStyle: 'none' },
       [`& li`]: { display: 'flex' },
       [`& .${P}-name`]: {
         position: 'absolute',
@@ -108,6 +109,10 @@ import {
 import { Step } from './Step.js';
 import { StepperIndicator } from './StepperIndicator.js';
 
+// Each layer's class, public or internal (the codegen's util/classes.mjs): a step's layers are its
+// position's, chosen as the steps are drawn.
+const CLASS: Record<string, string> = ${JSON.stringify(classesOf(spec))};
+
 type Status = 'complete' | 'active' | 'upcoming' | 'error';
 
 /** A step's status as its Stepper Indicator names it (Figma calls a complete step's circle completed). */
@@ -139,7 +144,7 @@ export const Stepper = forwardRef<HTMLElement, StepperProps>(function Stepper(
   const status = (i: number): Status =>
     i === errorStep ? 'error' : i < activeStep ? 'complete' : i === activeStep ? 'active' : 'upcoming';
   const n = steps.length;
-  const cls = (layer: string, box = false) => \`${P}-\${layer}\${box ? ' ${P}-box' : ''}\`;
+  const cls = (layer: string, box = false) => \`\${CLASS[layer]}\${box ? ' ${P}-box' : ''}\`;
   const current = (i: number) => (i === activeStep ? ('step' as const) : undefined);
   const name = (i: number) => <span className="${P}-name">{steps[i]}</span>;
   const step = (i: number, round: boolean) => (

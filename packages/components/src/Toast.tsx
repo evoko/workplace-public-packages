@@ -30,6 +30,12 @@ import { Tag, type TagProps } from './Tag.js';
 const TREE: Record<string, string[]> = {
   root: ['tag', 'message', 'action', 'chevron'],
 };
+const SLOTS: Record<string, string> = {
+  action: 'action',
+  chevron: 'chevron',
+  message: 'message',
+  tag: 'tag',
+};
 
 export interface ToastProps
   extends
@@ -70,6 +76,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
       {drawChildren('root', {
         prefix: 'SolarToast',
         tree: TREE,
+        slots: SLOTS,
         parts: drawn,
         text: { message },
         icons: { chevron: <IconChevronRight /> },

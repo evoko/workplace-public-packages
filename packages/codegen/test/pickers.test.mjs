@@ -281,7 +281,7 @@ describe('a grid', () => {
       'styles/src/generated/mui/components/date-picker-open.ts',
     );
     const grid = recipe.slice(
-      recipe.indexOf("'& .SolarDatePickerOpen-dayGrid': {"),
+      recipe.indexOf("'& .SolarDatePickerOpen--dayGrid': {"),
     );
     const block = grid.slice(0, grid.indexOf('}'));
     expect(block).toContain("display: 'grid'");
@@ -506,6 +506,8 @@ describe('the typed pickers’ shell', () => {
       'disabled',
     ]);
     expect(states['error-focused']).toBe(
+      // By the layer's name, as a helper that knows only names writes it; the codegen writes the
+      // field's own class, internal (util/classes.mjs).
       '&.SolarDatePicker-error:has(.SolarDatePicker-field.Mui-focused)',
     );
   });

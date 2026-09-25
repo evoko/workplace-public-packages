@@ -42,6 +42,14 @@ const TREE: Record<string, string[]> = {
   content: ['title', 'meta'],
   meta: ['productTag', 'metaText'],
 };
+const SLOTS: Record<string, string> = {
+  leading: 'leading',
+  title: 'title',
+  productTag: 'productTag',
+  metaText: 'metaText',
+  timestamp: 'timestamp',
+  more: 'more',
+};
 
 export interface EventRowProps
   extends
@@ -158,6 +166,7 @@ export const EventRow = forwardRef<HTMLDivElement, EventRowProps>(
           {drawChildren('root', {
             prefix: 'SolarEventRow',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: {
               title: titled,

@@ -56,8 +56,13 @@ state forced, in Light and Dark, built from the same cases and oracles; they are
 checks. Which components come next, and what each needs, is `npm run solar:triage`; the active plan is [milestone 4, family by family](docs/superpowers/plans/2026-09-24-solar-library-families.md). Why a component draws what it draws, cell by cell (Figma's value, the recipe entry
 and token that win, the rule and reason behind them, the excuse, what each platform drew in its
 last check), is `npm run solar:explain -- "<Name>" [--variant …]`; start there when a check
-fails. The tweak panel the design spec describes (edit a value in the viewer, save an overlay
-rule) is **not built yet**.
+fails. `--propose <layer>.<cell>` prints the overlay rule that decides a cell, ready to paste, its
+reason left as `TODO(reason)`, which the build refuses until a person writes it. The tweak panel the
+design spec describes (edit a value in the viewer, save an overlay rule) is **not built yet**.
+On the web a slot's layer carries `Solar<Name>-<slot>`, public, and every other layer
+`Solar<Name>--<layer>`, internal (`packages/codegen/src/util/classes.mjs`); a descriptor may name a
+layer's class by the layer, and the codegen writes the right one. `npm run smoke:install` packs the
+published packages and installs them into a clean app (CI runs it after the build).
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type

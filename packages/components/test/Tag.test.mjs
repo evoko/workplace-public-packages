@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { createElement as h } from 'react';
 import { renderToString } from 'react-dom/server';
 import { Tag } from '../src/Tag.tsx';
+import { cls } from './classes.mjs';
 
 const drawn = (html, layer) =>
-  new RegExp(`<[a-z]+[^>]*class="SolarTag-${layer}[ "]`).test(html);
+  new RegExp(`<[a-z]+[^>]*class="${cls('Tag', layer)}[ "]`).test(html);
 
 describe('the SOLAR Tag shell', () => {
   it('draws the status dot, a StatusIndicator, where indicator is set', () => {
@@ -21,7 +22,7 @@ describe('the SOLAR Tag shell', () => {
   it('draws a close button named with its words where onClose is given', () => {
     const html = renderToString(h(Tag, { onClose() {} }, 'Room A'));
     expect(html).toMatch(
-      /<button type="button" aria-label="Remove Room A" class="SolarTag-iconClose/,
+      /<button type="button" aria-label="Remove Room A" class="SolarTag--iconClose/,
     );
   });
 

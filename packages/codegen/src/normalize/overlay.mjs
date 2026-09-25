@@ -248,10 +248,22 @@ function resolveReasons(doc, fail) {
   };
   for (const [section, rules] of Object.entries(doc))
     if (FIELDS[section] && rules && typeof rules === 'object')
-      for (const [at, rule] of Object.entries(rules))
+      for (const [at, rule] of Object.entries(rules)) {
         if (rule?.reason && typeof rule.reason === 'object')
           rule.reason = sentence(section, at);
+        // A rule `solar:explain --propose` wrote, pasted before its reason was.
+        if (
+          typeof rule?.reason === 'string' &&
+          rule.reason.startsWith(PLACEHOLDER)
+        )
+          fail(
+            `${section}.${at}: its reason is still the proposer's placeholder`,
+          );
+      }
 }
+
+/** How `solar:explain --propose` marks the reason a person must write (explain/propose.mjs). */
+export const PLACEHOLDER = 'TODO(reason)';
 
 /** The sections whose rules address a layer by its IR name, which may be a pattern. */
 const PATTERNED = [

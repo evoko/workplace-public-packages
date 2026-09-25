@@ -28,6 +28,12 @@ const TREE: Record<string, string[]> = {
   root: ['icon', 'textContent', 'action'],
   textContent: ['title', 'description'],
 };
+const SLOTS: Record<string, string> = {
+  action: 'action',
+  icon: 'icon',
+  title: 'title',
+  description: 'description',
+};
 
 export interface EmptyStateProps
   extends
@@ -64,6 +70,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
         {drawChildren('root', {
           prefix: 'SolarEmptyState',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { title, description },
           icons: { icon: <span>{icon}</span>, action: <span>{action}</span> },

@@ -24,6 +24,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['halo', 'dot'] };
+const SLOTS: Record<string, string> = {};
 
 export interface NodeEndProps
   extends
@@ -45,6 +46,7 @@ export const NodeEnd = forwardRef<HTMLSpanElement, NodeEndProps>(
         {drawChildren('root', {
           prefix: 'SolarNodeEnd',
           tree: TREE,
+          slots: SLOTS,
           parts,
         })}
       </Box>

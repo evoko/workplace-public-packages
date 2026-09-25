@@ -7,7 +7,7 @@
  * in Flutter, its icons, words and shortcut drawn by the shared layer helpers.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['leadingIcon', 'shortcut', 'trailingIcon'])
@@ -79,7 +79,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ContextMenuItemProps
   extends SolarContextMenuItemProps,
@@ -136,7 +136,7 @@ export const ContextMenuItem = forwardRef<HTMLLIElement, ContextMenuItemProps>(
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: { label: children, shortcut },
           icons: {

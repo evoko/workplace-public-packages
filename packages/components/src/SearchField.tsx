@@ -31,6 +31,7 @@ import { drawLayer, type LayerDrawing } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['iconSearch', 'search', 'filter'],
 };
+const SLOTS: Record<string, string> = { filter: 'filter' };
 
 export interface SearchFieldProps
   extends
@@ -84,6 +85,7 @@ export const SearchField = forwardRef<HTMLDivElement, SearchFieldProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarSearchField',
       tree: TREE,
+      slots: SLOTS,
       // A filter left out is not drawn.
       parts: { ...parts, filter: { ...parts.filter, present: filter != null } },
       icons: { iconSearch: <IconSearch />, filter: <span>{filter}</span> },
@@ -115,7 +117,7 @@ export const SearchField = forwardRef<HTMLDivElement, SearchFieldProps>(
         inputProps={{
           'aria-label': 'Search',
           ...inputProps,
-          className: ['SolarSearchField-search', inputProps?.className]
+          className: ['SolarSearchField--search', inputProps?.className]
             .filter(Boolean)
             .join(' '),
         }}

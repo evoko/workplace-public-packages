@@ -27,6 +27,7 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['iconCheck', 'number', 'icon'],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface StepperIndicatorProps
   extends
@@ -56,6 +57,7 @@ export const StepperIndicator = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarStepperIndicator',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: { number, icon: '!' },
         icons: { iconCheck: <IconCheck /> },

@@ -7,7 +7,7 @@ describe('the SOLAR Node End shell', () => {
   it('is decorative, and draws the dot and its halo', () => {
     const html = renderToString(h(NodeEnd, { halo: true }));
     expect(html).toContain('aria-hidden="true"');
-    expect(html).toContain('SolarNodeEnd-halo');
-    expect(html).toContain('SolarNodeEnd-dot');
+    expect(html).toContain('SolarNodeEnd--halo');
+    expect(html).toContain('SolarNodeEnd--dot');
   });
 });

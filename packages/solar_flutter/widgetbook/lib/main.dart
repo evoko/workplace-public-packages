@@ -197,9 +197,88 @@ class Variants extends StatelessWidget {
                       ),
                       const SizedBox(height: SolarInset.xs),
                       Text(v['figma'] as String, style: caption),
+                      _Excuses(
+                        variant: v,
+                        dark: Theme.of(context).brightness == Brightness.dark,
+                      ),
                     ],
                   ),
                 ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// What the oracle excuses in one variant, in the mode showing (Dark's own list where it differs
+/// from Light's, the entries only Dark has marked): a badge with how many, and how many are still
+/// open findings, and under it each excused cell with its decision's reason.
+class _Excuses extends StatelessWidget {
+  const _Excuses({required this.variant, required this.dark});
+
+  final Map<String, dynamic> variant;
+  final bool dark;
+
+  List<Map<String, dynamic>> _list(Object? l) =>
+      ((l as List?) ?? const []).cast<Map<String, dynamic>>();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context).extension<SolarTheme>()!;
+    final light = _list(variant['excused']);
+    final darkOwn = (variant['dark'] as Map<String, dynamic>?)?['excused'];
+    final excused = dark && darkOwn != null ? _list(darkOwn) : light;
+    if (excused.isEmpty) return const SizedBox.shrink();
+    String key(Map<String, dynamic> e) =>
+        '${e['layer']}.${e['property']}.${e['finding']}';
+    final inLight = {for (final e in light) key(e)};
+    final open = excused.where((e) => e['decision'] == null).length;
+    final small = TextStyle(
+      color: t.colors.textSecondary,
+      fontSize: SolarFont.fontSize10,
+    );
+    return Theme(
+      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+      child: ExpansionTile(
+        tilePadding: EdgeInsets.zero,
+        childrenPadding: EdgeInsets.zero,
+        dense: true,
+        title: Align(
+          alignment: Alignment.centerLeft,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: open > 0
+                  ? t.colors.surfaceFeedbackWarningSubtle
+                  : t.colors.surfaceMuted,
+              borderRadius: BorderRadius.circular(SolarRadius.pill),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: SolarInset.xs),
+              child: Text(
+                open > 0
+                    ? '$open open of ${excused.length} excused'
+                    : '${excused.length} excused, all decided',
+                style: small.copyWith(
+                  color: open > 0
+                      ? t.colors.textFeedbackWarning
+                      : t.colors.textSecondary,
+                ),
+              ),
+            ),
+          ),
+        ),
+        children: [
+          for (final e in excused)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${e['layer']}.${e['property']}'
+                '${dark && !inLight.contains(key(e)) ? ' (Dark only)' : ''}: '
+                'Figma ${jsonEncode(e['figma'])}. '
+                '${e['decision'] != null ? '${e['decision']}: ${e['reason'] ?? e['finding']}' : 'Open: ${e['finding']}'}',
+                style: small,
               ),
             ),
         ],

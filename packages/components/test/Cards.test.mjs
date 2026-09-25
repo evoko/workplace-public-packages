@@ -51,14 +51,14 @@ describe('the SOLAR Card shells', () => {
       }),
     );
     expect(text).toContain('aria-busy="true"');
-    expect(text).not.toContain('SolarCard-titleTitle');
+    expect(text).not.toContain('SolarCard-title');
     expect(text).not.toContain('Words');
     // Still pressable, as Figma draws a loading card hovered: its action is its name alone.
     expect(text).toMatch(
       /<button[^>]*SolarCard-press[^>]*><span class="SolarCard-name">Room<\/span>/,
     );
     expect(text).toMatch(/SolarCard-tag[^"]*" aria-hidden="true"/);
-    expect(text).toContain('SolarCard-skeleton');
+    expect(text).toContain('SolarCard--skeleton');
   });
 
   it('disabled, is no control, and says so', () => {
@@ -187,19 +187,19 @@ describe('the SOLAR card family’s shells', () => {
       h(FileCard, { type: 'create', title: 'New design', onClick() {} }),
     );
     expect(create).toMatch(/SolarFileCard-label[^>]*><button[^>]*>New design</);
-    expect(create).not.toContain('SolarFileCard-thumbnail');
+    expect(create).not.toContain('SolarFileCard--thumbnail');
   });
 
   it('an Image Card shows its Checkbox where it is selected, and not at rest', async () => {
     const { ImageCard } = await import('../src/ImageCard.tsx');
     const props = { title: 'Lobby', onSelectedChange() {} };
-    expect(html(h(ImageCard, props))).not.toContain('SolarImageCard-checkbox');
+    expect(html(h(ImageCard, props))).not.toContain('SolarImageCard--checkbox');
     const selected = html(h(ImageCard, { ...props, selected: true }));
-    expect(selected).toContain('SolarImageCard-checkbox');
+    expect(selected).toContain('SolarImageCard--checkbox');
     expect(selected).toContain('aria-label="Select"');
     expect(
       html(h(ImageCard, { ...props, filled: false, selected: true })),
-    ).not.toContain('SolarImageCard-checkbox');
+    ).not.toContain('SolarImageCard--checkbox');
   });
 
   it('an Action Card draws both actions at rest, and the primary alone once done', async () => {
@@ -246,13 +246,13 @@ describe('the SOLAR card family’s shells', () => {
     const single = html(
       h(DeviceCard, { name: 'Qt X', tag: 'Online', tagStatus: 'danger' }),
     );
-    expect(single).toMatch(/SolarDeviceCard-contentName[^>]*>Qt X</);
+    expect(single).toMatch(/SolarDeviceCard-name[^>]*>Qt X</);
     expect(single).toContain('SolarTag');
     const batch = html(
       h(DeviceCard, { name: 'Qt X', type: 'batch', count: '3 devices' }),
     );
-    expect(batch).toMatch(/SolarDeviceCard-headlineContentName[^>]*>Qt X</);
-    expect(batch).not.toContain('SolarDeviceCard-contentName');
+    expect(batch).toMatch(/SolarDeviceCard--headlineContentName[^>]*>Qt X</);
+    expect(batch).not.toContain('SolarDeviceCard-name');
     expect(html(h(DeviceCard, { name: 'Qt X', loading: true }))).toContain(
       'aria-busy="true"',
     );
@@ -284,9 +284,9 @@ describe('the SOLAR card family’s shells', () => {
     const text = html(
       h(LaunchCardFullScreen, { name: 'Workplace', features: ['One', 'Two'] }),
     );
-    expect(text).toMatch(/SolarLaunchCardFullScreen-feature[^2-9][^>]*>One</);
-    expect(text).toMatch(/SolarLaunchCardFullScreen-feature2[^>]*>Two</);
-    expect(text).not.toContain('SolarLaunchCardFullScreen-feature3');
+    expect(text).toMatch(/SolarLaunchCardFullScreen--feature[^2-9][^>]*>One</);
+    expect(text).toMatch(/SolarLaunchCardFullScreen--feature2[^>]*>Two</);
+    expect(text).not.toContain('SolarLaunchCardFullScreen--feature3');
     const { Container } = await import('../src/Container.tsx');
     expect(html(h(Container, null, 'Grouped'))).toContain('Grouped');
     const { SplitDropdown } = await import('../src/SplitDropdown.tsx');

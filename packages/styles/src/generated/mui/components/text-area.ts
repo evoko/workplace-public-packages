@@ -47,17 +47,17 @@ export const solarTextAreaStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarTextArea-enterText.MuiInputBase-input': {
+    '& .SolarTextArea--enterText.MuiInputBase-input': {
       minHeight: '0',
     },
     '& .SolarTextArea-helper': {
       whiteSpace: 'normal',
     },
-    '& .SolarTextArea-field': {
+    '& .SolarTextArea--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarTextArea-field::after': {
+    '& .SolarTextArea--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -98,7 +98,7 @@ export const solarTextAreaStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarTextArea-labelLabel': {
+    '& .SolarTextArea--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -116,7 +116,7 @@ export const solarTextAreaStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarTextArea-field': {
+    '& .SolarTextArea--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -138,7 +138,7 @@ export const solarTextAreaStyles = {
       height: '120px',
       position: 'relative',
     },
-    '& .SolarTextArea-enterText': {
+    '& .SolarTextArea--enterText': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -201,7 +201,7 @@ export const solarTextAreaStyles = {
   sizes: {
     sm: {
       width: '100%',
-      '& .SolarTextArea-labelLabel': {
+      '& .SolarTextArea--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -217,10 +217,10 @@ export const solarTextAreaStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarTextArea-field': {
+      '& .SolarTextArea--field': {
         height: '100px',
       },
-      '& .SolarTextArea-enterText': {
+      '& .SolarTextArea--enterText': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -248,35 +248,35 @@ export const solarTextAreaStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarTextArea-field:hover)': {
-        '& .SolarTextArea-field': {
+      '&:has(.SolarTextArea--field:hover)': {
+        '& .SolarTextArea--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
-      '&:has(.SolarTextArea-field.Mui-focused)': {
+      '&:has(.SolarTextArea--field.Mui-focused)': {
         boxShadow: 'none',
-        '& .SolarTextArea-field': {
+        '& .SolarTextArea--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
       },
       '&.SolarTextArea-filled': {
-        '& .SolarTextArea-enterText': {
+        '& .SolarTextArea--enterText': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&.SolarTextArea-error': {
-        '& .SolarTextArea-labelLabel': {
+        '& .SolarTextArea--labelLabel': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
         '& .SolarTextArea-mandatory': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
-        '& .SolarTextArea-field': {
+        '& .SolarTextArea--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarTextArea-enterText': {
+        '& .SolarTextArea--enterText': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarTextArea-helper': {
@@ -287,17 +287,17 @@ export const solarTextAreaStyles = {
         },
       },
       '&.SolarTextArea-disabled': {
-        '& .SolarTextArea-labelLabel': {
+        '& .SolarTextArea--labelLabel': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarTextArea-mandatory': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarTextArea-field': {
+        '& .SolarTextArea--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarTextArea-enterText': {
+        '& .SolarTextArea--enterText': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarTextArea-helper': {
@@ -315,7 +315,7 @@ export const solarTextAreaStyles = {
         '& .SolarTextArea-cta': {
           top: 'calc(60px - var(--solar-placed-top, 0px))',
         },
-        '&:has(.SolarTextArea-field:hover)': {
+        '&:has(.SolarTextArea--field:hover)': {
           '& .SolarTextArea-cta': {
             top: 'calc(60px - var(--solar-placed-top, 0px))',
           },
@@ -323,7 +323,7 @@ export const solarTextAreaStyles = {
             top: 'calc(60px - var(--solar-placed-top, 0px))',
           },
         },
-        '&:has(.SolarTextArea-field.Mui-focused)': {
+        '&:has(.SolarTextArea--field.Mui-focused)': {
           '& .SolarTextArea-cta': {
             top: 'calc(60px - var(--solar-placed-top, 0px))',
           },

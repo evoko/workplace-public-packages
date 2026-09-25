@@ -44,7 +44,7 @@ describe('the SOLAR Avatar shell', () => {
     );
     expect(photo.html).toContain('src="a.png"');
     expect(photo.html).toContain('alt="Dana"');
-    expect(photo.html).not.toContain('SolarAvatar-initials');
+    expect(photo.html).not.toContain('SolarAvatar--initials');
     const logo = render(
       h(Avatar, { name: 'Biamp', type: 'logo', src: 'l.png' }),
     );

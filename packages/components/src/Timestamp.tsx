@@ -25,6 +25,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['value'] };
+const SLOTS: Record<string, string> = {};
 
 export interface TimestampProps
   extends
@@ -62,6 +63,7 @@ export const Timestamp = forwardRef<HTMLTimeElement, TimestampProps>(
         {drawChildren('root', {
           prefix: 'SolarTimestamp',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { value: children },
         })}

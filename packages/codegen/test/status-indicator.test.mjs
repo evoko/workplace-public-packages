@@ -73,14 +73,14 @@ describe('the StatusIndicator IR', () => {
 describe('the StatusIndicator recipe', () => {
   it('fills a glyph’s outlines, and boxes a frame, the same layer by type', () => {
     const danger =
-      styles.combined.md['type=danger']['& .SolarStatusIndicator-container'];
+      styles.combined.md['type=danger']['& .SolarStatusIndicator--container'];
     expect(danger).toMatchObject({
       fill: 'var(--solar-color-surface-feedback-danger-strong)',
       stroke: 'var(--solar-color-border-medium)',
       '& .SolarGlyph-stroke': { fill: 'var(--solar-color-border-medium)' },
     });
     const neutral =
-      styles.combined.md['type=neutral']['& .SolarStatusIndicator-container'];
+      styles.combined.md['type=neutral']['& .SolarStatusIndicator--container'];
     expect(neutral).toMatchObject({
       backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
       borderRadius: 'var(--solar-radius-pill)',

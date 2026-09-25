@@ -53,6 +53,13 @@ const TREE: Record<string, string[]> = {
     'iconChevronUp',
   ],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  leadingIcon: 'leadingIcon',
+  trailingIcon: 'trailingIcon',
+  helper: 'helper',
+};
 
 /** MUI's own icon, which the field draws as its chevron layer instead. */
 const NoIcon = () => null;
@@ -158,6 +165,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarDropdown',
       tree: TREE,
+      slots: SLOTS,
       // A part left empty is not drawn; the panel is MUI's menu, drawn below.
       parts: {
         ...parts,

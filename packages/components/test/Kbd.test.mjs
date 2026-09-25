@@ -21,7 +21,7 @@ describe('the SOLAR Kbd shell', () => {
     const { html } = render(h(Kbd, {}, 'Ctrl'));
     expect(html).toMatch(/^<kbd[^>]*>/);
     expect(html).toMatch(
-      /<span class="SolarKbd-label SolarKbd-text">Ctrl<\/span>/,
+      /<span class="SolarKbd--label SolarKbd-text">Ctrl<\/span>/,
     );
     expect(html).not.toContain('aria-hidden');
   });

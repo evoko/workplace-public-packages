@@ -41,7 +41,7 @@ describe('the SOLAR Segmented Control shell', () => {
 
   it('draws no label or helper where none is given, as Figma does', () => {
     const html = control();
-    expect(html).not.toMatch(/<span[^>]*class="SolarSegmentedControl-label /);
+    expect(html).not.toMatch(/<span[^>]*class="SolarSegmentedControl--label /);
     expect(html).not.toMatch(/<span[^>]*class="SolarSegmentedControl-helper /);
   });
 });

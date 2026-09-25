@@ -8,7 +8,7 @@
  * the items sit 4px apart, where 44 × 44 targets would cover each other).
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 
 const P = 'SolarPaginationItem';
 
@@ -70,7 +70,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface PaginationItemProps
   extends SolarPaginationItemProps,
@@ -95,7 +95,7 @@ export const PaginationItem = forwardRef<HTMLButtonElement, PaginationItemProps>
         disableRipple
         sx={[solarPaginationItemStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
       >
-        {drawChildren('root', { prefix: '${P}', tree: TREE, parts, text: { page: children } })}
+        {drawChildren('root', { prefix: '${P}', tree: TREE, slots: SLOTS, parts, text: { page: children } })}
       </ButtonBase>
     );
   },

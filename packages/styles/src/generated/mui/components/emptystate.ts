@@ -60,7 +60,7 @@ export const solarEmptyStateStyles = {
       height: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarEmptyState-textContent': {
+    '& .SolarEmptyState--textContent': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',

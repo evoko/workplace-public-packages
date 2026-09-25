@@ -9,7 +9,7 @@
  */
 
 import { pascal } from '../util/naming.mjs';
-import { treeOf, wrapDoc } from './drawn.mjs';
+import { treeConsts, wrapDoc } from './drawn.mjs';
 
 export const MENU_MAX_HEIGHT = '300px';
 
@@ -77,7 +77,7 @@ export function menuReact(spec, o) {
           >
             {drawChildren('root', {
               prefix: 'Solar${P}',
-              tree: TREE,
+              tree: TREE, slots: SLOTS,
               parts,
               content: { content: ${o.rowsFrom ?? 'children'} },
               // The content is the list the keyboard moves along; a floating one focuses its
@@ -132,7 +132,7 @@ ${o.imports ? `${o.imports.trim()}\n` : ''}import { Float, floats, type Floating
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 ${
   o.sized
     ? `

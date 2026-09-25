@@ -77,7 +77,7 @@ export const solarBreadcrumbItemStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    '& .SolarBreadcrumbItem-label': {
+    '& .SolarBreadcrumbItem--label': {
       color: 'var(--solar-color-text-secondary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -91,24 +91,24 @@ export const solarBreadcrumbItemStyles = {
   appearances: {
     'type=link': {
       '&:is(a, button):hover': {
-        '& .SolarBreadcrumbItem-label': {
+        '& .SolarBreadcrumbItem--label': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&:is(a, button):focus-visible': {
         boxShadow: 'var(--solar-shadow-focus-default)',
-        '& .SolarBreadcrumbItem-label': {
+        '& .SolarBreadcrumbItem--label': {
           color: 'var(--solar-color-text-secondary)',
         },
       },
       '&.SolarBreadcrumbItem-disabled': {
-        '& .SolarBreadcrumbItem-label': {
+        '& .SolarBreadcrumbItem--label': {
           color: 'var(--solar-color-text-disabled)',
         },
       },
     },
     'type=current': {
-      '& .SolarBreadcrumbItem-label': {
+      '& .SolarBreadcrumbItem--label': {
         color: 'var(--solar-color-text-primary)',
       },
     },

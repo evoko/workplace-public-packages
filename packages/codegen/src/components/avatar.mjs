@@ -25,7 +25,7 @@ export default {
   mui: {
     // MUI renders its children in the root; the shell wraps the initials in a span of their own,
     // so where a type hides them they are not there.
-    slots: { root: '&', initials: '& .SolarAvatar-initials' },
+    slots: { root: '&', initials: '& .SolarAvatar--initials' },
     // MUI's Avatar is content-box, 40px, 1.25rem and grey by default; SOLAR's draws its border
     // inside the box it sizes, and the recipe gives the rest.
     resets: { boxSizing: 'border-box' },
@@ -111,12 +111,12 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
       sx={[
         solarAvatarStyle({ ${api.join(', ')} }),
         color ? { backgroundColor: color } : null,
-        ink ? { '& .SolarAvatar-initials': { color: ink } } : null,
+        ink ? { '& .SolarAvatar--initials': { color: ink } } : null,
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       {parts.initials?.present === false ? undefined : (
-        <span className="SolarAvatar-initials">{children ?? initialsOf(name)}</span>
+        <span className="SolarAvatar--initials">{children ?? initialsOf(name)}</span>
       )}
     </MuiAvatar>
   );

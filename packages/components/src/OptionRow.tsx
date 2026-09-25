@@ -33,6 +33,7 @@ const TREE: Record<string, string[]> = {
   root: ['control', 'text', 'toggle'],
   text: ['label', 'supportingText'],
 };
+const SLOTS: Record<string, string> = { supportingText: 'supportingText' };
 
 export interface OptionRowProps
   extends
@@ -132,6 +133,7 @@ export const OptionRow = forwardRef<HTMLLabelElement, OptionRowProps>(
         {drawChildren('root', {
           prefix: 'SolarOptionRow',
           tree: TREE,
+          slots: SLOTS,
           parts,
           // The words name the control; the second line describes it, and so is left out of its
           // name.

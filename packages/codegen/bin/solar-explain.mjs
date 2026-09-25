@@ -11,12 +11,18 @@
 //   npm run solar:explain -- "Text Input" --variant 5 --layer field --property paddingLeft
 //   ... --full                                                  every row in full, not only those
 //                                                               that differ
+//   npm run solar:explain -- "Button" --propose label.color     the overlay rule that decides the
+//   npm run solar:explain -- "Button" --variant 3 --propose root.background
+//                                                               cell, as YAML to paste, its reason
+//                                                               left to write (explain/propose.mjs)
 //
 // Built from the current sources in memory, so it explains what the next rebuild writes; the
 // platforms' columns are the reports of the last `npm run test:visual` and `flutter test`.
 // First, before anything else loads: the Node this needs (.nvmrc).
 import '../src/util/require-node.mjs';
 import * as stage from '../src/stages/components.mjs';
+import { loadOverlay } from '../src/normalize/overlay.mjs';
+import { proposeRule } from '../src/explain/propose.mjs';
 import {
   explainVariant,
   formatSummary,
@@ -40,22 +46,24 @@ const flag = (name) => {
 const variantQuery = flag('variant');
 const layer = flag('layer');
 const property = flag('property');
+const proposal = flag('propose');
 const full = args.includes('--full');
 const names = args.filter((a) => !a.startsWith('--'));
 if (names.length !== 1) {
   console.error(
-    'usage: npm run solar:explain -- "<Component>" [--variant <number | name | axis=value, …>] [--layer <name>] [--property <name>] [--full]',
+    'usage: npm run solar:explain -- "<Component>" [--variant <number | name | axis=value, …>] [--layer <name>] [--property <name>] [--full] [--propose <layer>.<cell>]',
   );
   process.exit(2);
 }
 
 const { built, tokens } = stage.build();
 const wanted = names[0].toLowerCase();
-const found = built.find(
+const index = built.findIndex(
   (b, i) =>
     b.spec.component.toLowerCase() === wanted ||
     stage.COMPONENTS[i].toLowerCase() === wanted,
 );
+const found = built[index];
 if (!found) {
   console.error(
     `no component ${names[0]}; generated: ${built.map((b) => b.spec.component).join(', ')}`,
@@ -75,7 +83,40 @@ if (layer && !(layer in found.spec.layers)) {
   process.exit(1);
 }
 
-if (variantQuery === undefined && !layer && !property) {
+if (proposal) {
+  const dot = proposal.indexOf('.');
+  if (dot < 1) {
+    console.error('--propose names a cell as <layer>.<cell>: label.color');
+    process.exit(2);
+  }
+  const at = proposal.slice(0, dot);
+  if (!(at in found.spec.layers)) {
+    console.error(
+      `${found.spec.component} has no layer ${at}; its layers: ${Object.keys(found.spec.layers).join(', ')}`,
+    );
+    process.exit(1);
+  }
+  const variants =
+    variantQuery === undefined ? [] : pickVariants(found.oracle, variantQuery);
+  if (variantQuery !== undefined && variants.length !== 1) {
+    console.error(
+      `--propose takes one variant; ${variantQuery} matches ${variants.length}`,
+    );
+    process.exit(1);
+  }
+  console.log(
+    proposeRule(
+      {
+        spec: found.spec,
+        oracle: found.oracle,
+        deviations: found.deviations,
+        tokens,
+        overlay: loadOverlay(stage.COMPONENTS[index]),
+      },
+      { layer: at, cell: proposal.slice(dot + 1), variant: variants[0] },
+    ),
+  );
+} else if (variantQuery === undefined && !layer && !property) {
   console.log(formatSummary(ctx));
 } else {
   const variants =

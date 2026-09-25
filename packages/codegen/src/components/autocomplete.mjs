@@ -9,7 +9,7 @@
  * 2026-09-24).
  */
 
-import { treeOf } from '../shells/drawn.mjs';
+import { treeOf, treeConsts } from '../shells/drawn.mjs';
 import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
 
 const P = 'SolarAutocomplete';
@@ -92,7 +92,7 @@ import { DropdownMenu, type DropdownMenuProps } from './DropdownMenu.js';
 import { drawChildren, drawLayer, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** An option's words, as MUI's Autocomplete reads them: its \`label\`, or itself. */
 const labelOf = (option: unknown) =>
@@ -177,7 +177,7 @@ export const Autocomplete = forwardRef(function Autocomplete<T>(
   const parts = solarAutocompleteCompose(look);
   const drawing: LayerDrawing = {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     // A part left empty is not drawn.
     parts: {
       ...parts,
@@ -219,7 +219,7 @@ export const Autocomplete = forwardRef(function Autocomplete<T>(
             endAdornment={drawLayer('trailingIcon', drawing)}
             inputProps={{
               ...input,
-              className: '${P}-search',
+              className: '${P}--search',
               'aria-describedby': helper != null ? \`\${id}-helper\` : undefined,
             }}
           />

@@ -82,22 +82,22 @@ export const solarTimePickerDropdownStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarTimePickerDropdown-dropdownItem': {
+    '& .SolarTimePickerDropdown--dropdownItem': {
       width: '100%',
     },
-    '& .SolarTimePickerDropdown-dropdownItem2': {
+    '& .SolarTimePickerDropdown--dropdownItem2': {
       width: '100%',
     },
-    '& .SolarTimePickerDropdown-dropdownItem3': {
+    '& .SolarTimePickerDropdown--dropdownItem3': {
       width: '100%',
     },
-    '& .SolarTimePickerDropdown-dropdownItem4': {
+    '& .SolarTimePickerDropdown--dropdownItem4': {
       width: '100%',
     },
-    '& .SolarTimePickerDropdown-dropdownItem5': {
+    '& .SolarTimePickerDropdown--dropdownItem5': {
       width: '100%',
     },
-    '& .SolarTimePickerDropdown-dropdownItem6': {
+    '& .SolarTimePickerDropdown--dropdownItem6': {
       width: '100%',
     },
   },

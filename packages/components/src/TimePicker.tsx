@@ -59,6 +59,12 @@ const TREE: Record<string, string[]> = {
   label: ['labelLabel', 'required'],
   field: ['iconClock', 'value'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  required: 'required',
+  value: 'value',
+  helper: 'helper',
+};
 
 export interface TimePickerProps
   extends
@@ -205,6 +211,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarTimePicker',
       tree: TREE,
+      slots: SLOTS,
       // A part left empty is not drawn.
       parts: {
         ...parts,

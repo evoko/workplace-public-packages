@@ -58,7 +58,7 @@ export const solarTimestampStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    '& .SolarTimestamp-value': {
+    '& .SolarTimestamp--value': {
       color: 'var(--solar-color-text-secondary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -70,7 +70,7 @@ export const solarTimestampStyles = {
   },
   sizes: {
     md: {
-      '& .SolarTimestamp-value': {
+      '& .SolarTimestamp--value': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-md)',
@@ -82,17 +82,17 @@ export const solarTimestampStyles = {
   },
   appearances: {
     'format=relative, emphasis=subtle': {
-      '& .SolarTimestamp-value': {
+      '& .SolarTimestamp--value': {
         color: 'var(--solar-color-text-tertiary)',
       },
     },
     'format=absolute, emphasis=subtle': {
-      '& .SolarTimestamp-value': {
+      '& .SolarTimestamp--value': {
         color: 'var(--solar-color-text-tertiary)',
       },
     },
     'format=combined, emphasis=subtle': {
-      '& .SolarTimestamp-value': {
+      '& .SolarTimestamp--value': {
         color: 'var(--solar-color-text-tertiary)',
       },
     },

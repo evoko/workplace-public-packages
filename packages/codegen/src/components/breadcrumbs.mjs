@@ -9,6 +9,7 @@
  * ellipsis that opens a Dropdown Menu of the pages it hides, as SOLAR's description says.
  */
 
+import { classesOf } from '../util/classes.mjs';
 import {
   drawnResets,
   iconsOf,
@@ -103,6 +104,9 @@ import { DropdownMenu } from './DropdownMenu.js';
 /** The layer Figma draws each item in by its place, and each chevron by its. */
 const ITEMS = ${JSON.stringify(ITEMS)};
 const CHEVRONS = ${JSON.stringify(CHEVRONS)};
+// Each layer's class, public or internal (the codegen's util/classes.mjs): an item's layer is its
+// position's, chosen as the trail is drawn.
+const CLASS: Record<string, string> = ${JSON.stringify(classesOf(spec))};
 
 export interface BreadcrumbsProps extends Omit<BoxProps, 'children' | 'ref'> {
   /** The trail: BreadcrumbItems, the page's ancestors from the top, and the page itself last. */
@@ -154,10 +158,10 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(function Br
           <Fragment key={i}>
             {i > 0 ? (
               <li aria-hidden>
-                <IconChevronRight className={\`${P}-\${CHEVRONS[Math.min(i - 1, CHEVRONS.length - 1)]} ${P}-drawnIcon\`} />
+                <IconChevronRight className={\`\${CLASS[CHEVRONS[Math.min(i - 1, CHEVRONS.length - 1)]]} ${P}-drawnIcon\`} />
               </li>
             ) : null}
-            <li className={\`${P}-\${i === last ? 'current' : ITEMS[Math.min(i, ITEMS.length - 1)]}\`}>
+            <li className={CLASS[i === last ? 'current' : ITEMS[Math.min(i, ITEMS.length - 1)]]}>
               {i === last ? cloneElement(item, { type: 'current' }) : item}
             </li>
           </Fragment>

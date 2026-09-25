@@ -27,10 +27,10 @@ describe('the SOLAR StatusIndicator shell', () => {
 
   it('draws each type’s own layers: success is the disc with its tick, warning a triangle and a mark', () => {
     const success = render(h(StatusIndicator, { type: 'success' })).html;
-    expect(success).toContain('SolarStatusIndicator-innerPath');
-    expect(success).not.toContain('SolarStatusIndicator-union');
+    expect(success).toContain('SolarStatusIndicator--innerPath');
+    expect(success).not.toContain('SolarStatusIndicator--union');
     const warning = render(h(StatusIndicator, { type: 'warning' })).html;
-    expect(warning).toContain('SolarStatusIndicator-union');
+    expect(warning).toContain('SolarStatusIndicator--union');
     // The mark sits where Figma put it in the triangle.
     expect(warning).toContain(
       'style="position:absolute;left:calc(9px - var(--solar-placed-left, 0px));top:calc(6px - var(--solar-placed-top, 0px))"',
@@ -40,7 +40,7 @@ describe('the SOLAR StatusIndicator shell', () => {
   it('draws a glyph as Figma’s outline, filled in the recipe’s colours', () => {
     const { html, css } = render(h(StatusIndicator, { type: 'danger' }));
     expect(html).toMatch(
-      /<svg[^>]*SolarStatusIndicator-container[^>]*viewBox="0 0 20 20"/,
+      /<svg[^>]*SolarStatusIndicator--container[^>]*viewBox="0 0 20 20"/,
     );
     expect(html).toContain('class="SolarGlyph-stroke"');
     expect(css).toContain(
@@ -52,6 +52,6 @@ describe('the SOLAR StatusIndicator shell', () => {
   it('is a dot alone at xs', () => {
     const { html } = render(h(StatusIndicator, { size: 'xs', type: 'info' }));
     expect(html).not.toContain('<svg');
-    expect(html).not.toContain('SolarStatusIndicator-frame3');
+    expect(html).not.toContain('SolarStatusIndicator--frame3');
   });
 });

@@ -57,7 +57,7 @@ export const solarRadioStyles = {
     '--solar-placed-top': 'var(--solar-border-default)',
     width: '18px',
     height: '18px',
-    '& .SolarRadio-icon': {
+    '& .SolarRadio--icon': {
       fill: 'var(--solar-color-icon-primary)',
       stroke: 'none',
       '& .SolarGlyph-stroke': {
@@ -94,7 +94,7 @@ export const solarRadioStyles = {
       },
       '&.Mui-disabled': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarRadio-icon': {
+        '& .SolarRadio--icon': {
           fill: 'var(--solar-color-icon-disabled)',
         },
       },

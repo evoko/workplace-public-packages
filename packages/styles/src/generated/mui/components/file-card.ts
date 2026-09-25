@@ -23,7 +23,7 @@ export const solarFileCardStyles = {
       display: 'flex',
       boxSizing: 'border-box',
     },
-    '& .SolarFileCard-text': {
+    '& .SolarFileCard--text': {
       whiteSpace: 'nowrap',
     },
     '& .SolarFileCard-glyph': {
@@ -78,13 +78,13 @@ export const solarFileCardStyles = {
       clipPath: 'inset(50%)',
       whiteSpace: 'nowrap',
     },
-    '& .SolarFileCard-iconMore': {
+    '& .SolarFileCard--iconMore': {
       position: 'relative',
       flexShrink: '0',
       padding: '0',
       color: 'inherit',
     },
-    '& .SolarFileCard-iconMore::after': {
+    '& .SolarFileCard--iconMore::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -93,15 +93,15 @@ export const solarFileCardStyles = {
       height: 'max(100%, 44px)',
       transform: 'translate(-50%, -50%)',
     },
-    '& .SolarFileCard-iconMore > svg': {
+    '& .SolarFileCard--iconMore > svg': {
       display: 'block',
       width: '100%',
       height: '100%',
     },
-    '& .SolarFileCard-thumbnail': {
+    '& .SolarFileCard--thumbnail': {
       overflow: 'hidden',
     },
-    '& .SolarFileCard-thumbnail > img': {
+    '& .SolarFileCard--thumbnail > img': {
       width: '100%',
       height: '100%',
       objectFit: 'cover',
@@ -124,7 +124,7 @@ export const solarFileCardStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
     height: '222px',
-    '& .SolarFileCard-thumbnail': {
+    '& .SolarFileCard--thumbnail': {
       backgroundColor: 'var(--solar-color-surface-background)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -149,7 +149,7 @@ export const solarFileCardStyles = {
       height: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-tertiary)',
     },
-    '& .SolarFileCard-footer': {
+    '& .SolarFileCard--footer': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -165,7 +165,7 @@ export const solarFileCardStyles = {
       paddingLeft: 'var(--solar-inset-md)',
       width: '100%',
     },
-    '& .SolarFileCard-text': {
+    '& .SolarFileCard--text': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -201,12 +201,12 @@ export const solarFileCardStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarFileCard-iconMore': {
+    '& .SolarFileCard--iconMore': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarFileCard-frame1': {
+    '& .SolarFileCard--frame1': {
       borderRadius: 'var(--solar-radius-pill)',
       borderStyle: 'none',
       flexDirection: 'row',
@@ -218,7 +218,7 @@ export const solarFileCardStyles = {
       paddingBottom: 'var(--solar-inset-md)',
       paddingLeft: 'var(--solar-inset-md)',
     },
-    '& .SolarFileCard-iconPlus': {
+    '& .SolarFileCard--iconPlus': {
       width: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
     },
@@ -245,12 +245,12 @@ export const solarFileCardStyles = {
       '&:has(.SolarFileCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
-      '& .SolarFileCard-frame1': {
+      '& .SolarFileCard--frame1': {
         backgroundColor: 'var(--solar-color-surface-background)',
         borderColor: 'transparent',
         boxShadow: 'none',
       },
-      '& .SolarFileCard-iconPlus': {
+      '& .SolarFileCard--iconPlus': {
         color: 'var(--solar-color-icon-tertiary)',
       },
       '& .SolarFileCard-label': {

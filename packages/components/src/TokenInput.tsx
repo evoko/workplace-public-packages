@@ -38,6 +38,11 @@ const TREE: Record<string, string[]> = {
   field: ['tags', 'counter'],
   tags: ['addItems', 'tag', 'tag2'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+};
 
 export interface TokenInputProps
   extends
@@ -156,6 +161,7 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(
         {drawChildren('root', {
           prefix: 'SolarTokenInput',
           tree: TREE,
+          slots: SLOTS,
           // A part left empty is not drawn; the count shows where entries are left out.
           parts: {
             ...parts,
@@ -196,7 +202,7 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(
                     'aria-label': typeof label === 'string' ? label : undefined,
                     ...inputProps,
                     className: [
-                      'SolarTokenInput-addItems',
+                      'SolarTokenInput--addItems',
                       inputProps?.className,
                     ]
                       .filter(Boolean)

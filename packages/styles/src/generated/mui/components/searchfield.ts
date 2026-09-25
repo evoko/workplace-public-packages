@@ -47,7 +47,7 @@ export const solarSearchFieldStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarSearchField-search.MuiInputBase-input': {
+    '& .SolarSearchField--search.MuiInputBase-input': {
       flex: '1 1 0%',
       minWidth: '0',
       width: 'auto',
@@ -79,7 +79,7 @@ export const solarSearchFieldStyles = {
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
-    '& .SolarSearchField-search::-webkit-search-cancel-button, & .SolarSearchField-search::-webkit-search-decoration':
+    '& .SolarSearchField--search::-webkit-search-cancel-button, & .SolarSearchField--search::-webkit-search-decoration':
       {
         WebkitAppearance: 'none',
         appearance: 'none',
@@ -102,12 +102,12 @@ export const solarSearchFieldStyles = {
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
     height: '40px',
-    '& .SolarSearchField-iconSearch': {
+    '& .SolarSearchField--iconSearch': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-secondary)',
     },
-    '& .SolarSearchField-search': {
+    '& .SolarSearchField--search': {
       color: 'var(--solar-color-text-secondary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -128,11 +128,11 @@ export const solarSearchFieldStyles = {
       gap: 'var(--solar-inset-xs)',
       width: '100%',
       height: '32px',
-      '& .SolarSearchField-iconSearch': {
+      '& .SolarSearchField--iconSearch': {
         height: 'var(--solar-icon-xs)',
         width: 'var(--solar-icon-xs)',
       },
-      '& .SolarSearchField-search': {
+      '& .SolarSearchField--search': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -156,10 +156,10 @@ export const solarSearchFieldStyles = {
       },
       '&.Mui-focused': {
         borderColor: 'var(--solar-color-border-feedback-focus-strong)',
-        '& .SolarSearchField-iconSearch': {
+        '& .SolarSearchField--iconSearch': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarSearchField-search': {
+        '& .SolarSearchField--search': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarSearchField-filter': {
@@ -167,10 +167,10 @@ export const solarSearchFieldStyles = {
         },
       },
       '&.SolarSearchField-filled': {
-        '& .SolarSearchField-iconSearch': {
+        '& .SolarSearchField--iconSearch': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarSearchField-search': {
+        '& .SolarSearchField--search': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarSearchField-filter': {
@@ -179,10 +179,10 @@ export const solarSearchFieldStyles = {
       },
       '&.SolarSearchField-error': {
         borderColor: 'var(--solar-color-border-feedback-danger-strong)',
-        '& .SolarSearchField-iconSearch': {
+        '& .SolarSearchField--iconSearch': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarSearchField-search': {
+        '& .SolarSearchField--search': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarSearchField-filter': {
@@ -190,10 +190,10 @@ export const solarSearchFieldStyles = {
         },
       },
       '&.SolarSearchField-disabled': {
-        '& .SolarSearchField-iconSearch': {
+        '& .SolarSearchField--iconSearch': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarSearchField-search': {
+        '& .SolarSearchField--search': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarSearchField-filter': {

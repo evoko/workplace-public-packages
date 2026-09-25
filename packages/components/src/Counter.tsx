@@ -25,6 +25,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['value'] };
+const SLOTS: Record<string, string> = {};
 
 export interface CounterProps
   extends
@@ -64,6 +65,7 @@ export const Counter = forwardRef<HTMLElement, CounterProps>(function Counter(
       {drawChildren('root', {
         prefix: 'SolarCounter',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: { value: count > max ? `${max}+` : String(count) },
       })}

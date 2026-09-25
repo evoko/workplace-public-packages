@@ -17,7 +17,7 @@ export const solarLaunchCardFullScreenStyles = {
       display: 'flex',
       boxSizing: 'border-box',
     },
-    '& .SolarLaunchCardFullScreen-text': {
+    '& .SolarLaunchCardFullScreen--text': {
       whiteSpace: 'nowrap',
     },
     '& .SolarLaunchCardFullScreen-glyph': {
@@ -31,16 +31,16 @@ export const solarLaunchCardFullScreenStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarLaunchCardFullScreen-name, & .SolarLaunchCardFullScreen-intro, & .SolarLaunchCardFullScreen-feature, & .SolarLaunchCardFullScreen-feature2, & .SolarLaunchCardFullScreen-feature3':
+    '& .SolarLaunchCardFullScreen-name, & .SolarLaunchCardFullScreen-intro, & .SolarLaunchCardFullScreen--feature, & .SolarLaunchCardFullScreen--feature2, & .SolarLaunchCardFullScreen--feature3':
       {
         whiteSpace: 'normal',
         minWidth: '0',
       },
-    '& .SolarLaunchCardFullScreen-image': {
+    '& .SolarLaunchCardFullScreen--image': {
       overflow: 'hidden',
       flexShrink: '0',
     },
-    '& .SolarLaunchCardFullScreen-image > img': {
+    '& .SolarLaunchCardFullScreen--image > img': {
       width: '100%',
       height: '100%',
       objectFit: 'cover',
@@ -66,7 +66,7 @@ export const solarLaunchCardFullScreenStyles = {
     paddingBottom: 'var(--solar-inset-lg)',
     paddingLeft: 'var(--solar-inset-lg)',
     width: '100%',
-    '& .SolarLaunchCardFullScreen-image': {
+    '& .SolarLaunchCardFullScreen--image': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -75,7 +75,7 @@ export const solarLaunchCardFullScreenStyles = {
       width: '520px',
       height: '420px',
     },
-    '& .SolarLaunchCardFullScreen-text': {
+    '& .SolarLaunchCardFullScreen--text': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -92,7 +92,7 @@ export const solarLaunchCardFullScreenStyles = {
       width: '100%',
       height: '420px',
     },
-    '& .SolarLaunchCardFullScreen-content': {
+    '& .SolarLaunchCardFullScreen--content': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -108,7 +108,7 @@ export const solarLaunchCardFullScreenStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarLaunchCardFullScreen-headline': {
+    '& .SolarLaunchCardFullScreen--headline': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -137,7 +137,7 @@ export const solarLaunchCardFullScreenStyles = {
       letterSpacing: '-0.03em',
       textDecoration: 'none',
     },
-    '& .SolarLaunchCardFullScreen-bodyCopy': {
+    '& .SolarLaunchCardFullScreen--bodyCopy': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -163,7 +163,7 @@ export const solarLaunchCardFullScreenStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarLaunchCardFullScreen-feature': {
+    '& .SolarLaunchCardFullScreen--feature': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -173,7 +173,7 @@ export const solarLaunchCardFullScreenStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarLaunchCardFullScreen-feature2': {
+    '& .SolarLaunchCardFullScreen--feature2': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -183,7 +183,7 @@ export const solarLaunchCardFullScreenStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarLaunchCardFullScreen-feature3': {
+    '& .SolarLaunchCardFullScreen--feature3': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',

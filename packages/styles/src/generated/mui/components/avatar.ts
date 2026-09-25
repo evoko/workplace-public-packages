@@ -38,7 +38,7 @@ export const solarAvatarStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '44px',
     height: '44px',
-    '& .SolarAvatar-initials': {
+    '& .SolarAvatar--initials': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -52,7 +52,7 @@ export const solarAvatarStyles = {
     md: {
       width: '32px',
       height: '32px',
-      '& .SolarAvatar-initials': {
+      '& .SolarAvatar--initials': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-600)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -64,7 +64,7 @@ export const solarAvatarStyles = {
     sm: {
       width: '24px',
       height: '24px',
-      '& .SolarAvatar-initials': {
+      '& .SolarAvatar--initials': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-600)',
         fontSize: 'var(--solar-type-size-body-xs)',
@@ -76,7 +76,7 @@ export const solarAvatarStyles = {
     xs: {
       width: '16px',
       height: '16px',
-      '& .SolarAvatar-initials': {
+      '& .SolarAvatar--initials': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-600)',
         fontSize: 'var(--solar-type-size-body-2xs)',

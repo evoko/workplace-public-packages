@@ -23,6 +23,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['icon'] };
+const SLOTS: Record<string, string> = {};
 
 export interface TrendBadgeProps
   extends
@@ -55,6 +56,7 @@ export const TrendBadge = forwardRef<HTMLSpanElement, TrendBadgeProps>(
         {drawChildren('root', {
           prefix: 'SolarTrendBadge',
           tree: TREE,
+          slots: SLOTS,
           parts,
         })}
       </Box>

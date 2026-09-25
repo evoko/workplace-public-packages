@@ -47,7 +47,7 @@ export const solarAutocompleteStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarAutocomplete-search.MuiInputBase-input': {
+    '& .SolarAutocomplete--search.MuiInputBase-input': {
       flex: '1 1 0%',
       minWidth: '0',
       width: 'auto',
@@ -69,11 +69,11 @@ export const solarAutocompleteStyles = {
     '& .SolarAutocomplete-helper': {
       whiteSpace: 'normal',
     },
-    '& .SolarAutocomplete-field': {
+    '& .SolarAutocomplete--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarAutocomplete-field::after': {
+    '& .SolarAutocomplete--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -114,7 +114,7 @@ export const solarAutocompleteStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarAutocomplete-labelLabel': {
+    '& .SolarAutocomplete--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -132,7 +132,7 @@ export const solarAutocompleteStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarAutocomplete-field': {
+    '& .SolarAutocomplete--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -155,7 +155,7 @@ export const solarAutocompleteStyles = {
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-tertiary)',
     },
-    '& .SolarAutocomplete-search': {
+    '& .SolarAutocomplete--search': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -184,7 +184,7 @@ export const solarAutocompleteStyles = {
   sizes: {
     sm: {
       width: '100%',
-      '& .SolarAutocomplete-labelLabel': {
+      '& .SolarAutocomplete--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -200,12 +200,12 @@ export const solarAutocompleteStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarAutocomplete-field': {
+      '& .SolarAutocomplete--field': {
         paddingRight: 'var(--solar-inset-sm)',
         paddingLeft: 'var(--solar-inset-sm)',
         height: '32px',
       },
-      '& .SolarAutocomplete-search': {
+      '& .SolarAutocomplete--search': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -225,20 +225,20 @@ export const solarAutocompleteStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarAutocomplete-field:hover)': {
-        '& .SolarAutocomplete-field': {
+      '&:has(.SolarAutocomplete--field:hover)': {
+        '& .SolarAutocomplete--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
-      '&:has(.SolarAutocomplete-field.Mui-focused)': {
-        '& .SolarAutocomplete-field': {
+      '&:has(.SolarAutocomplete--field.Mui-focused)': {
+        '& .SolarAutocomplete--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
         '& .SolarAutocomplete-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarAutocomplete-search': {
+        '& .SolarAutocomplete--search': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarAutocomplete-trailingIcon': {
@@ -249,7 +249,7 @@ export const solarAutocompleteStyles = {
         '& .SolarAutocomplete-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarAutocomplete-search': {
+        '& .SolarAutocomplete--search': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarAutocomplete-trailingIcon': {
@@ -257,20 +257,20 @@ export const solarAutocompleteStyles = {
         },
       },
       '&.SolarAutocomplete-error': {
-        '& .SolarAutocomplete-labelLabel': {
+        '& .SolarAutocomplete--labelLabel': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
         '& .SolarAutocomplete-mandatory': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
-        '& .SolarAutocomplete-field': {
+        '& .SolarAutocomplete--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
         '& .SolarAutocomplete-leadingIcon': {
           color: 'var(--solar-color-icon-feedback-danger)',
         },
-        '& .SolarAutocomplete-search': {
+        '& .SolarAutocomplete--search': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarAutocomplete-trailingIcon': {
@@ -281,20 +281,20 @@ export const solarAutocompleteStyles = {
         },
       },
       '&.SolarAutocomplete-disabled': {
-        '& .SolarAutocomplete-labelLabel': {
+        '& .SolarAutocomplete--labelLabel': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarAutocomplete-mandatory': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarAutocomplete-field': {
+        '& .SolarAutocomplete--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
         '& .SolarAutocomplete-leadingIcon': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarAutocomplete-search': {
+        '& .SolarAutocomplete--search': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarAutocomplete-trailingIcon': {

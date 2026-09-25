@@ -33,6 +33,10 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['iconLeading', 'label', 'iconTrailing'],
 };
+const SLOTS: Record<string, string> = {
+  iconLeading: 'iconLeading',
+  iconTrailing: 'iconTrailing',
+};
 
 /** What a SegmentedControl tells its segments: the radio group's name, its value, and its choice. */
 export interface SegmentedControlChoice {
@@ -115,6 +119,7 @@ export const SegmentedControlItem = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarSegmentedControlItem',
         tree: TREE,
+        slots: SLOTS,
         parts: drawn,
         text: { label: children },
         icons: {

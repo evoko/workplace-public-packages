@@ -7,7 +7,13 @@
  * radio input, in Flutter a RawRadio; its words and icons drawn by the shared layer helpers.
  */
 
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 import { dartField, dartParam } from '../shells/helpers.mjs';
 import { targetArea } from '../shells/target.mjs';
 
@@ -91,7 +97,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** What a SegmentedControl tells its segments: the radio group's name, its value, and its choice. */
 export interface SegmentedControlChoice {
@@ -156,7 +162,7 @@ export const SegmentedControlItem = forwardRef<HTMLLabelElement, SegmentedContro
         />
         {drawChildren('root', {
           prefix: 'SolarSegmentedControlItem',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts: drawn,
           text: { label: children },
           icons: {

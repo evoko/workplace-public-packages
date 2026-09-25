@@ -43,7 +43,7 @@ export const solarFileUploadStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarFileUpload-fileName': {
+    '& .SolarFileUpload--fileName': {
       flex: '1 1 0%',
       minWidth: '0',
       overflow: 'hidden',
@@ -68,7 +68,7 @@ export const solarFileUploadStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
-    '& .SolarFileUpload-label': {
+    '& .SolarFileUpload--label': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -83,7 +83,7 @@ export const solarFileUploadStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarFileUpload-uploadAFile': {
+    '& .SolarFileUpload--uploadAFile': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -101,7 +101,7 @@ export const solarFileUploadStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarFileUpload-field': {
+    '& .SolarFileUpload--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'none',
@@ -118,12 +118,12 @@ export const solarFileUploadStyles = {
       paddingLeft: 'var(--solar-inset-md)',
       width: '100%',
     },
-    '& .SolarFileUpload-iconFile': {
+    '& .SolarFileUpload--iconFile': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-tertiary)',
     },
-    '& .SolarFileUpload-fileName': {
+    '& .SolarFileUpload--fileName': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -146,35 +146,35 @@ export const solarFileUploadStyles = {
   sizes: {},
   appearances: {
     default: {
-      '&:has(.SolarFileUpload-field:hover), &.SolarFileUpload-dragging': {
-        '& .SolarFileUpload-field': {
+      '&:has(.SolarFileUpload--field:hover), &.SolarFileUpload-dragging': {
+        '& .SolarFileUpload--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
-      '&:has(.SolarFileUpload-field :focus-visible)': {
+      '&:has(.SolarFileUpload--field :focus-visible)': {
         boxShadow: 'none',
-        '& .SolarFileUpload-field': {
+        '& .SolarFileUpload--field': {
           boxShadow: 'var(--solar-shadow-focus-default)',
           borderColor: 'var(--solar-color-border-subtle)',
         },
       },
       '&.SolarFileUpload-filled': {
-        '& .SolarFileUpload-iconFile': {
+        '& .SolarFileUpload--iconFile': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarFileUpload-fileName': {
+        '& .SolarFileUpload--fileName': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&.SolarFileUpload-error': {
-        '& .SolarFileUpload-field': {
+        '& .SolarFileUpload--field': {
           backgroundColor: 'var(--solar-color-surface-feedback-danger-subtle)',
           borderColor: 'var(--solar-color-border-feedback-danger-subtle)',
         },
-        '& .SolarFileUpload-iconFile': {
+        '& .SolarFileUpload--iconFile': {
           color: 'var(--solar-color-icon-feedback-danger)',
         },
-        '& .SolarFileUpload-fileName': {
+        '& .SolarFileUpload--fileName': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
         '& .SolarFileUpload-helper': {
@@ -182,15 +182,15 @@ export const solarFileUploadStyles = {
         },
       },
       '&.SolarFileUpload-disabled': {
-        '& .SolarFileUpload-field': {
+        '& .SolarFileUpload--field': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'transparent',
           borderStyle: 'none',
         },
-        '& .SolarFileUpload-iconFile': {
+        '& .SolarFileUpload--iconFile': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarFileUpload-fileName': {
+        '& .SolarFileUpload--fileName': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarFileUpload-helper': {

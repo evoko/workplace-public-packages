@@ -7,7 +7,7 @@
  * pressable in Flutter, announced as a link.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
@@ -73,7 +73,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface LinkProps
   extends SolarLinkProps,
@@ -112,7 +112,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     >
       {drawChildren('root', {
         prefix: 'SolarLink',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts: drawn,
         text: { label: children },
         icons: {

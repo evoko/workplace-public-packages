@@ -26,7 +26,7 @@ describe('the SOLAR Token Input shell', () => {
   it('counts the entries past maxVisible in a Counter', () => {
     const html = field({ defaultValue: ['a', 'b', 'c', 'd'], maxVisible: 2 });
     expect(html.match(/aria-label="Remove[^"]*"/g)).toHaveLength(2);
-    expect(drawn(html, 'SolarTokenInput-counter')).toBe(true);
+    expect(drawn(html, 'SolarTokenInput--counter')).toBe(true);
     expect(html).toMatch(/>2<\/span>/);
   });
 

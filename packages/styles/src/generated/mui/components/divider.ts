@@ -57,7 +57,7 @@ export const solarDividerStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
     height: 'var(--solar-border-default)',
-    '& .SolarDivider-rule': {
+    '& .SolarDivider--rule': {
       backgroundColor: 'var(--solar-color-border-subtle)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -66,7 +66,7 @@ export const solarDividerStyles = {
       width: '100%',
       height: 'var(--solar-border-default)',
     },
-    '& .SolarDivider-label': {
+    '& .SolarDivider--label': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
       fontSize: 'var(--solar-type-size-label-sm)',
@@ -74,7 +74,7 @@ export const solarDividerStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarDivider-rule2': {
+    '& .SolarDivider--rule2': {
       borderRadius: 'var(--solar-radius-none)',
       borderStyle: 'none',
       width: '100%',
@@ -92,10 +92,10 @@ export const solarDividerStyles = {
       alignItems: 'center',
       gap: 'var(--solar-stack-sm)',
       height: '20px',
-      '& .SolarDivider-label': {
+      '& .SolarDivider--label': {
         color: 'var(--solar-color-text-tertiary)',
       },
-      '& .SolarDivider-rule2': {
+      '& .SolarDivider--rule2': {
         backgroundColor: 'var(--solar-color-border-subtle)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -105,7 +105,7 @@ export const solarDividerStyles = {
       flexDirection: 'column',
       width: 'var(--solar-border-default)',
       height: '100%',
-      '& .SolarDivider-rule': {
+      '& .SolarDivider--rule': {
         width: 'var(--solar-border-default)',
         height: '100%',
       },
@@ -113,7 +113,7 @@ export const solarDividerStyles = {
     'orientation=vertical, type=inset': {
       flexDirection: 'column',
       paddingLeft: 'var(--solar-inset-md)',
-      '& .SolarDivider-rule': {
+      '& .SolarDivider--rule': {
         width: 'var(--solar-border-default)',
         height: '100%',
       },
@@ -123,7 +123,7 @@ export const solarDividerStyles = {
       justifyContent: 'center',
       alignItems: 'center',
       gap: 'var(--solar-stack-sm)',
-      '& .SolarDivider-rule': {
+      '& .SolarDivider--rule': {
         width: 'var(--solar-border-default)',
         height: '100%',
       },

@@ -7,7 +7,13 @@
  * helpers' `content`), which is a radio group.
  */
 
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 import { dartField, dartParam } from '../shells/helpers.mjs';
 
 const requireLayers = (spec) => {
@@ -55,7 +61,7 @@ import { drawChildren } from './internal/layers.js';
 import { SegmentedControlContext } from './SegmentedControlItem.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface SegmentedControlProps
   extends SolarSegmentedControlProps,
@@ -100,7 +106,7 @@ export const SegmentedControl = forwardRef<HTMLSpanElement, SegmentedControlProp
       >
         {drawChildren('root', {
           prefix: 'SolarSegmentedControl',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts: drawn,
           text: {
             labelLabel: <span id={\`\${id}-label\`}>{label}</span>,

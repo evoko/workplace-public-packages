@@ -28,6 +28,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['icon', 'container'] };
+const SLOTS: Record<string, string> = {};
 
 /** The tick or dash, as MUI's icon: MUI hands the icon a size, which the marks do not take. */
 function Marks({ children }: { children: ReactNode; fontSize?: unknown }) {
@@ -76,6 +77,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         {drawChildren('root', {
           prefix: 'SolarCheckbox',
           tree: TREE,
+          slots: SLOTS,
           parts: solarCheckboxCompose(look, disabled ? 'disabled' : 'default'),
         })}
       </Marks>

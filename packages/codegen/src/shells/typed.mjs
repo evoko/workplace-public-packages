@@ -8,7 +8,7 @@
  */
 
 import { pascal } from '../util/naming.mjs';
-import { iconsOf, treeOf } from './drawn.mjs';
+import { iconsOf, treeOf, treeConsts } from './drawn.mjs';
 import { fieldFlutter, fieldResets, fieldStates } from './field.mjs';
 import { targetArea } from './target.mjs';
 
@@ -149,7 +149,7 @@ ${o.imports.trim()}
 import { drawChildren, drawLayer, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ${C}Props
   extends Solar${C}Props,
@@ -293,7 +293,7 @@ ${o.read
   const parts = solar${C}Compose(look);
   const drawing: LayerDrawing = {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     // A part left empty is not drawn.
     parts: {
       ...parts,

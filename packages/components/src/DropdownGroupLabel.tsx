@@ -25,6 +25,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['groupLabel'] };
+const SLOTS: Record<string, string> = {};
 
 export interface DropdownGroupLabelProps
   extends
@@ -56,6 +57,7 @@ export const DropdownGroupLabel = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarDropdownGroupLabel',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: { groupLabel: children },
       })}

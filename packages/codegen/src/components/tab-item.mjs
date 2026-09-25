@@ -13,7 +13,7 @@ import {
   drawnFlutter,
   drawnResets,
   iconsOf,
-  treeOf,
+  treeConsts,
 } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
@@ -114,7 +114,7 @@ import { useTabsSize } from './Tabs.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface TabItemProps
   extends SolarTabItemProps,
@@ -196,7 +196,7 @@ export const TabItem = forwardRef<HTMLDivElement, TabItemProps>(function TabItem
       sx={[solarTabItemStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
       label={drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         text: { label },
         icons: {

@@ -8,7 +8,7 @@
  * the focus from row to row, and a focused row draws the hover (owner decision 2026-09-24).
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['checkbox', 'icon', 'helper'])
@@ -97,7 +97,7 @@ import { useDropdownMenuSize } from './DropdownMenu.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface DropdownItemProps
   extends SolarDropdownItemProps,
@@ -170,7 +170,7 @@ export const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: { label: children, helper },
           // The box is a SOLAR Checkbox in the variant the recipe names, inert: the row is the

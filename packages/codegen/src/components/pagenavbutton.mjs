@@ -12,7 +12,7 @@ import {
   drawnResets,
   iconsOf,
   reactIcon,
-  treeOf,
+  treeConsts,
 } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
@@ -36,8 +36,8 @@ export default {
     resets: drawnResets('PageNavButton', {
       display: 'flex',
       borderStyle: 'solid',
-      [`& .${P}-iconArrowLeft, & .${P}-iconArrowRight`]: { flexShrink: '0' },
-      [`&:dir(rtl) .${P}-iconArrowLeft, &:dir(rtl) .${P}-iconArrowRight`]: {
+      [`& .${P}--iconArrowLeft, & .${P}--iconArrowRight`]: { flexShrink: '0' },
+      [`&:dir(rtl) .${P}--iconArrowLeft, &:dir(rtl) .${P}--iconArrowRight`]: {
         transform: 'scaleX(-1)',
       },
       ...targetArea(),
@@ -81,7 +81,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface PageNavButtonProps
   extends SolarPageNavButtonProps,
@@ -104,7 +104,7 @@ export const PageNavButton = forwardRef<HTMLButtonElement, PageNavButtonProps>(
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts,
           text: { label: children ?? (direction === 'next' ? 'Next' : 'Previous') },
           icons: { ${icons.map((i) => `${i.layer}: ${reactIcon(i, spec)}`).join(', ')} },

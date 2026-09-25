@@ -32,6 +32,13 @@ const TREE: Record<string, string[]> = {
   headline: ['appIcon', 'favourite'],
   bodyCopy: ['intro', 'feature', 'feature2', 'feature3'],
 };
+const SLOTS: Record<string, string> = {
+  name: 'name',
+  intro: 'intro',
+  appIcon: 'appIcon',
+  favourite: 'favourite',
+  action: 'action',
+};
 
 export interface LaunchCardFullScreenProps
   extends
@@ -97,6 +104,7 @@ export const LaunchCardFullScreen = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarLaunchCardFullScreen',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: {
           name,

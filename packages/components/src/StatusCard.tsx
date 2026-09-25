@@ -47,6 +47,7 @@ const TREE: Record<string, string[]> = {
   title: ['titleTitle', 'iconMore'],
   trend: ['statusIndicator', 'value'],
 };
+const SLOTS: Record<string, string> = { titleTitle: 'title', value: 'value' };
 
 export interface StatusCardProps
   extends
@@ -166,6 +167,7 @@ export const StatusCard = forwardRef<HTMLDivElement, StatusCardProps>(
           {drawChildren('root', {
             prefix: 'SolarStatusCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { titleTitle: titled, value },
             icons: {

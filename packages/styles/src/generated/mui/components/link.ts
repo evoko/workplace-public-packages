@@ -79,7 +79,7 @@ export const solarLinkStyles = {
       height: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-link-default)',
     },
-    '& .SolarLink-label': {
+    '& .SolarLink--label': {
       color: 'var(--solar-color-text-link-default)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -122,7 +122,7 @@ export const solarLinkStyles = {
         '& .SolarLink-leadingIcon': {
           color: 'var(--solar-color-icon-link-hover)',
         },
-        '& .SolarLink-label': {
+        '& .SolarLink--label': {
           color: 'var(--solar-color-text-link-hover)',
         },
         '& .SolarLink-trailingIcon': {
@@ -133,7 +133,7 @@ export const solarLinkStyles = {
         '& .SolarLink-leadingIcon': {
           color: 'var(--solar-color-icon-link-active)',
         },
-        '& .SolarLink-label': {
+        '& .SolarLink--label': {
           color: 'var(--solar-color-text-link-active)',
         },
         '& .SolarLink-trailingIcon': {
@@ -148,7 +148,7 @@ export const solarLinkStyles = {
         '& .SolarLink-leadingIcon': {
           color: 'var(--solar-color-icon-link-disabled)',
         },
-        '& .SolarLink-label': {
+        '& .SolarLink--label': {
           color: 'var(--solar-color-text-link-disabled)',
         },
         '& .SolarLink-trailingIcon': {
@@ -161,7 +161,7 @@ export const solarLinkStyles = {
     xs: {
       default: {
         '&:hover': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-xs)',
@@ -170,7 +170,7 @@ export const solarLinkStyles = {
             textDecoration: 'underline',
           },
         },
-        '& .SolarLink-label': {
+        '& .SolarLink--label': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-body-xs)',
@@ -179,7 +179,7 @@ export const solarLinkStyles = {
           textDecoration: 'underline',
         },
         '&:active': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-xs)',
@@ -192,7 +192,7 @@ export const solarLinkStyles = {
           '& .SolarLink-leadingIcon': {
             color: 'var(--solar-color-icon-link-default)',
           },
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-xs)',
@@ -206,7 +206,7 @@ export const solarLinkStyles = {
           },
         },
         '&.SolarLink-disabled': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-xs)',
@@ -220,7 +220,7 @@ export const solarLinkStyles = {
     sm: {
       default: {
         '&:hover': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-md)',
@@ -229,7 +229,7 @@ export const solarLinkStyles = {
             textDecoration: 'underline',
           },
         },
-        '& .SolarLink-label': {
+        '& .SolarLink--label': {
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-body-md)',
@@ -238,7 +238,7 @@ export const solarLinkStyles = {
           textDecoration: 'underline',
         },
         '&:active': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-md)',
@@ -251,7 +251,7 @@ export const solarLinkStyles = {
           '& .SolarLink-leadingIcon': {
             color: 'var(--solar-color-icon-link-default)',
           },
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-md)',
@@ -265,7 +265,7 @@ export const solarLinkStyles = {
           },
         },
         '&.SolarLink-disabled': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-md)',
@@ -279,7 +279,7 @@ export const solarLinkStyles = {
     md: {
       default: {
         '&:hover': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-lg)',
@@ -289,7 +289,7 @@ export const solarLinkStyles = {
           },
         },
         '&:active': {
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',
             fontSize: 'var(--solar-type-size-body-lg)',
@@ -302,7 +302,7 @@ export const solarLinkStyles = {
           '& .SolarLink-leadingIcon': {
             color: 'var(--solar-color-icon-link-default)',
           },
-          '& .SolarLink-label': {
+          '& .SolarLink--label': {
             color: 'var(--solar-color-text-link-default)',
             fontFamily: 'var(--solar-type-font-family-inter)',
             fontWeight: 'var(--solar-type-font-weight-500)',

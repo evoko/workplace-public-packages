@@ -47,7 +47,7 @@ export const solarPasswordInputStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarPasswordInput-maskedValue.MuiInputBase-input': {
+    '& .SolarPasswordInput--maskedValue.MuiInputBase-input': {
       flex: '1 1 0%',
       minWidth: '0',
       width: 'auto',
@@ -63,11 +63,11 @@ export const solarPasswordInputStyles = {
     '& .SolarPasswordInput-helper, & .SolarPasswordInput-forgotPassword': {
       whiteSpace: 'normal',
     },
-    '& .SolarPasswordInput-field': {
+    '& .SolarPasswordInput--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarPasswordInput-field::after': {
+    '& .SolarPasswordInput--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -77,7 +77,7 @@ export const solarPasswordInputStyles = {
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
-    '& button.SolarPasswordInput-icon': {
+    '& button.SolarPasswordInput--icon': {
       position: 'relative',
       appearance: 'none',
       background: 'none',
@@ -87,7 +87,7 @@ export const solarPasswordInputStyles = {
       cursor: 'pointer',
       flexShrink: '0',
     },
-    '& button.SolarPasswordInput-icon::after': {
+    '& button.SolarPasswordInput--icon::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -96,7 +96,7 @@ export const solarPasswordInputStyles = {
       height: 'max(100%, 44px)',
       transform: 'translate(-50%, -50%)',
     },
-    '& button.SolarPasswordInput-icon > svg': {
+    '& button.SolarPasswordInput--icon > svg': {
       display: 'block',
       width: '100%',
       height: '100%',
@@ -132,7 +132,7 @@ export const solarPasswordInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarPasswordInput-password': {
+    '& .SolarPasswordInput--password': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -150,7 +150,7 @@ export const solarPasswordInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPasswordInput-field': {
+    '& .SolarPasswordInput--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -168,7 +168,7 @@ export const solarPasswordInputStyles = {
       width: '100%',
       height: '40px',
     },
-    '& .SolarPasswordInput-maskedValue': {
+    '& .SolarPasswordInput--maskedValue': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -178,7 +178,7 @@ export const solarPasswordInputStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarPasswordInput-icon': {
+    '& .SolarPasswordInput--icon': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
@@ -207,7 +207,7 @@ export const solarPasswordInputStyles = {
   sizes: {
     sm: {
       width: '100%',
-      '& .SolarPasswordInput-password': {
+      '& .SolarPasswordInput--password': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -223,12 +223,12 @@ export const solarPasswordInputStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarPasswordInput-field': {
+      '& .SolarPasswordInput--field': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         height: '32px',
       },
-      '& .SolarPasswordInput-maskedValue': {
+      '& .SolarPasswordInput--maskedValue': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -236,7 +236,7 @@ export const solarPasswordInputStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarPasswordInput-icon': {
+      '& .SolarPasswordInput--icon': {
         width: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
       },
@@ -252,43 +252,43 @@ export const solarPasswordInputStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarPasswordInput-field:hover)': {
-        '& .SolarPasswordInput-field': {
+      '&:has(.SolarPasswordInput--field:hover)': {
+        '& .SolarPasswordInput--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
-        '& .SolarPasswordInput-maskedValue': {
+        '& .SolarPasswordInput--maskedValue': {
           color: 'var(--solar-color-text-primary)',
         },
       },
-      '&:has(.SolarPasswordInput-field.Mui-focused)': {
-        '& .SolarPasswordInput-field': {
+      '&:has(.SolarPasswordInput--field.Mui-focused)': {
+        '& .SolarPasswordInput--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
-        '& .SolarPasswordInput-maskedValue': {
+        '& .SolarPasswordInput--maskedValue': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&.SolarPasswordInput-filled': {
-        '& .SolarPasswordInput-field': {
+        '& .SolarPasswordInput--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
-        '& .SolarPasswordInput-maskedValue': {
+        '& .SolarPasswordInput--maskedValue': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&.SolarPasswordInput-error': {
-        '& .SolarPasswordInput-password': {
+        '& .SolarPasswordInput--password': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
         '& .SolarPasswordInput-mandatory': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
-        '& .SolarPasswordInput-field': {
+        '& .SolarPasswordInput--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
-        '& .SolarPasswordInput-maskedValue': {
+        '& .SolarPasswordInput--maskedValue': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarPasswordInput-helper': {
@@ -296,17 +296,17 @@ export const solarPasswordInputStyles = {
         },
       },
       '&.SolarPasswordInput-disabled': {
-        '& .SolarPasswordInput-password': {
+        '& .SolarPasswordInput--password': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarPasswordInput-mandatory': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarPasswordInput-field': {
+        '& .SolarPasswordInput--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarPasswordInput-maskedValue': {
+        '& .SolarPasswordInput--maskedValue': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarPasswordInput-helper': {

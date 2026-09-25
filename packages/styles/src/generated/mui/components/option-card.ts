@@ -38,10 +38,10 @@ export const solarOptionCardStyles = {
     '& .SolarOptionCard-label': {
       textAlign: 'center',
     },
-    '& .SolarOptionCard-iconPlus': {
+    '& .SolarOptionCard--iconPlus': {
       flexShrink: '0',
     },
-    '& .SolarOptionCard-iconPlus > svg': {
+    '& .SolarOptionCard--iconPlus > svg': {
       display: 'block',
       width: '100%',
       height: '100%',
@@ -93,7 +93,7 @@ export const solarOptionCardStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
     height: '228px',
-    '& .SolarOptionCard-container': {
+    '& .SolarOptionCard--container': {
       backgroundColor: 'var(--solar-color-surface-background)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -110,7 +110,7 @@ export const solarOptionCardStyles = {
       width: '64px',
       height: '64px',
     },
-    '& .SolarOptionCard-iconPlus': {
+    '& .SolarOptionCard--iconPlus': {
       width: 'var(--solar-icon-lg)',
       height: 'var(--solar-icon-lg)',
       color: 'var(--solar-color-icon-secondary)',
@@ -131,20 +131,20 @@ export const solarOptionCardStyles = {
       '&.SolarOptionCard-pressable:hover': {
         borderColor: 'var(--solar-color-border-subtle)',
         boxShadow: 'none',
-        '& .SolarOptionCard-iconPlus': {
+        '& .SolarOptionCard--iconPlus': {
           color: 'var(--solar-color-icon-primary)',
         },
       },
       '&:has(.SolarOptionCard-press.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarOptionCard-iconPlus': {
+        '& .SolarOptionCard--iconPlus': {
           color: 'var(--solar-color-icon-secondary)',
         },
       },
       '&.SolarOptionCard-selected': {
         boxShadow: 'var(--solar-shadow-raised)',
-        '& .SolarOptionCard-iconPlus': {
+        '& .SolarOptionCard--iconPlus': {
           color: 'var(--solar-color-icon-primary)',
         },
       },

@@ -9,6 +9,7 @@
  */
 
 import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { classesOf } from '../util/classes.mjs';
 
 const P = 'SolarPagination';
 const LAYERS = [
@@ -96,6 +97,9 @@ export function pagesOf(page: number, count: number): (number | 'gap')[] {
 }
 
 /** The layer Figma draws each page in by its place among the pages. */
+// Each layer's class, public or internal (the codegen's util/classes.mjs): a page's layer is its
+// position's, chosen as the pages are drawn.
+const CLASS: Record<string, string> = ${JSON.stringify(classesOf(spec))};
 const pageLayer = (i: number, last: boolean) =>
   last ? 'page12' : i === 0 ? 'page1' : i === 1 ? 'page2' : 'page3';
 
@@ -140,19 +144,19 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(function Pagi
       sx={[solarPaginationStyle({}), ...(Array.isArray(sx) ? sx : [sx])]}
     >
       <ul className="${P}-list">
-        <li className="${P}-previous">
+        <li className="${P}--previous">
           <PaginationNav direction="previous" disabled={page <= 1} onClick={() => go(page - 1)} />
         </li>
         {items.map((p, i) => {
           if (p === 'gap')
             return (
-              <li key={\`gap\${i}\`} className="${P}-paginationEllipsis">
+              <li key={\`gap\${i}\`} className="${P}--paginationEllipsis">
                 <PaginationEllipsis />
               </li>
             );
           const at = seen++;
           return (
-            <li key={p} className={\`${P}-\${pageLayer(at, at === pages - 1)}\`}>
+            <li key={p} className={CLASS[pageLayer(at, at === pages - 1)]}>
               <PaginationItem
                 selected={p === page}
                 onClick={() => go(p)}
@@ -163,7 +167,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(function Pagi
             </li>
           );
         })}
-        <li className="${P}-next">
+        <li className="${P}--next">
           <PaginationNav direction="next" disabled={page >= count} onClick={() => go(page + 1)} />
         </li>
       </ul>

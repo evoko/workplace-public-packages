@@ -6,7 +6,13 @@
  * A drawn pager: the previous and next PageNavButtons and, between them, where the reader is.
  */
 
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 
 const P = 'SolarPageNavigator';
 
@@ -57,7 +63,7 @@ import { PageNavButton } from './PageNavButton.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface PageNavigatorProps extends Omit<BoxProps, 'children' | 'onChange' | 'ref'> {
   /** How many pages there are. */
@@ -91,7 +97,7 @@ export const PageNavigator = forwardRef<HTMLDivElement, PageNavigatorProps>(func
     <Box ref={ref} {...rest} sx={[solarPageNavigatorStyle({}), ...(Array.isArray(sx) ? sx : [sx])]}>
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         // Where the reader is, announced as it changes.
         text: {

@@ -13,7 +13,7 @@ describe('the SOLAR Trend Badge shell', () => {
 
   it('draws its arrow as Figma’s outline, and a dot alone at xs', () => {
     expect(renderToString(h(TrendBadge, {}))).toMatch(
-      /<svg[^>]*SolarTrendBadge-icon/,
+      /<svg[^>]*SolarTrendBadge--icon/,
     );
     expect(renderToString(h(TrendBadge, { size: 'xs' }))).not.toContain('<svg');
   });

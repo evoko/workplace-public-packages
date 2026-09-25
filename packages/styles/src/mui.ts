@@ -7,6 +7,9 @@
 export {
   solarMuiPalette,
   solarMuiTypography,
+  solarMuiBreakpoints,
+  solarMuiSpacing,
+  solarMuiTransitions,
   createSolarThemeOptions,
 } from './generated/mui/theme.js';
 export type { SolarMode } from './generated/tokens.js';

@@ -28,6 +28,10 @@ const TREE: Record<string, string[]> = {
   top: ['topContent'],
   lower: ['lowerContent'],
 };
+const SLOTS: Record<string, string> = {
+  topContent: 'topContent',
+  lowerContent: 'lowerContent',
+};
 
 export interface SplitDropdownProps
   extends
@@ -53,6 +57,7 @@ export const SplitDropdown = forwardRef<HTMLDivElement, SplitDropdownProps>(
         {drawChildren('root', {
           prefix: 'SolarSplitDropdown',
           tree: TREE,
+          slots: SLOTS,
           parts,
           content: { topContent: <>{top}</>, lowerContent: <>{lower}</> },
         })}

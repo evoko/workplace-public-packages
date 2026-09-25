@@ -28,6 +28,12 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['leadingIcon', 'label', 'shortcut', 'trailingIcon'],
 };
+const SLOTS: Record<string, string> = {
+  leadingIcon: 'leadingIcon',
+  label: 'label',
+  shortcut: 'shortcut',
+  trailingIcon: 'trailingIcon',
+};
 
 export interface ContextMenuItemProps
   extends
@@ -89,6 +95,7 @@ export const ContextMenuItem = forwardRef<HTMLLIElement, ContextMenuItemProps>(
         {drawChildren('root', {
           prefix: 'SolarContextMenuItem',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { label: children, shortcut },
           icons: {

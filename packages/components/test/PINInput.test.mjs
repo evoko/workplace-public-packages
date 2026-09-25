@@ -7,7 +7,7 @@ const pin = (props = {}) => renderToString(h(PINInput, props));
 const input = (html) => /<input[^>]*>/.exec(html)[0];
 /** The cells drawn, by Figma's layer names, in their order. */
 const cells = (html) =>
-  [...html.matchAll(/class="SolarPINInput-(field\d?) /g)].map((m) => m[1]);
+  [...html.matchAll(/class="SolarPINInput--(field\d?) /g)].map((m) => m[1]);
 
 describe('the SOLAR PIN Input shell', () => {
   it('holds its code in one input a phone can fill, as long as its cells', () => {
@@ -28,7 +28,7 @@ describe('the SOLAR PIN Input shell', () => {
       'field6',
     ]);
     expect(pin({ defaultValue: '12' })).toMatch(
-      /SolarPINInput-digit2 [^>]*>1</,
+      /SolarPINInput--digit2 [^>]*>1</,
     );
   });
 

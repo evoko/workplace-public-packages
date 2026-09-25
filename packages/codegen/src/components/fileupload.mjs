@@ -10,7 +10,13 @@
  */
 
 import { dartField, dartParam } from '../shells/helpers.mjs';
-import { drawnResets, keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import {
+  drawnResets,
+  keyPrefixOf,
+  treeOf,
+  wrapDoc,
+  treeConsts,
+} from '../shells/drawn.mjs';
 
 const P = 'SolarFileUpload';
 
@@ -36,7 +42,7 @@ export default {
     slots: 'drawn',
     resets: drawnResets('FileUpload', {
       // The file's name takes the room the buttons leave, cut short where it runs out.
-      [`& .${P}-fileName`]: {
+      [`& .${P}--fileName`]: {
         flex: '1 1 0%',
         minWidth: '0',
         overflow: 'hidden',
@@ -48,8 +54,8 @@ export default {
     // is by the keyboard; filled, in error and disabled by the shell's classes.
     states: {
       default: null,
-      hover: `&:has(.${P}-field:hover), &.${P}-dragging`,
-      focus: `&:has(.${P}-field :focus-visible)`,
+      hover: `&:has(.${P}--field:hover), &.${P}-dragging`,
+      focus: `&:has(.${P}--field :focus-visible)`,
       filled: `&.${P}-filled`,
       error: `&.${P}-error`,
       disabled: `&.${P}-disabled`,
@@ -91,7 +97,7 @@ import { IconButton } from './IconButton.js';
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface FileUploadProps
   extends SolarFileUploadProps,
@@ -202,7 +208,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(function F
       />
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         // A part left empty is not drawn.
         parts: {
           ...parts,

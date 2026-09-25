@@ -21,6 +21,7 @@ import { PLACES } from '../normalize/recipe.mjs';
 import { canonical, letterSpacingEm } from './manifest.mjs';
 import { cssTextFeatures, featuresOf } from './text-features.mjs';
 import { table as descriptorTable } from '../components/index.mjs';
+import { byPrefix, layerClass, withLayerClasses } from '../util/classes.mjs';
 
 const OUT_DIR = join(
   packagesDir,
@@ -40,7 +41,7 @@ export const MUI_SLOTS = descriptorTable('mui', 'slots');
 
 /**
  * A component's slot table: its descriptor's, or, for a drawn component (`slots: 'drawn'`), every
- * IR layer as the element the shell draws it as, with a class of its own (`& .SolarCounter-value`),
+ * IR layer as the element the shell draws it as, with a class of its own (`& .SolarCounter--value`),
  * and the root as the component's own element. Read from the IR, so a drawing of 57 layers
  * (StatusIndicator's nine) lists none of them by hand.
  */
@@ -50,7 +51,7 @@ export function slotsOf(spec) {
   return Object.fromEntries(
     Object.keys(spec.layers).map((l) => [
       l,
-      l === 'root' ? '&' : `& .Solar${pascal(spec.component)}-${l}`,
+      l === 'root' ? '&' : `& .${layerClass(spec, l)}`,
     ]),
   );
 }
@@ -563,7 +564,7 @@ function place(target, selector, decls, at) {
 /**
  * @returns {{ts: string, styles: object, composition: object, file: string}}
  */
-export function renderMuiComponent(spec, tokens) {
+export function renderMuiComponent(spec, tokens, specs = [spec]) {
   const slots = slotsOf(spec);
   if (!slots) throw new Error(`${spec.component}: no MUI slot table`);
   for (const layer of Object.keys(spec.layers))
@@ -571,9 +572,13 @@ export function renderMuiComponent(spec, tokens) {
       throw new Error(`${spec.component}: no MUI slot for layer ${layer}`);
 
   const { declare, ref } = context(spec, tokens);
-  const selectors = stateSelectors(spec.component);
+  // The descriptor's tables name a layer's class by the layer or by its own class: both are
+  // written as the layer's own, and where the two name one selector, the later rule wins, as it
+  // did when they were one key.
+  const classes = byPrefix(specs.includes(spec) ? specs : [spec, ...specs]);
+  const selectors = ownClasses(stateSelectors(spec.component), classes);
   const styles = {
-    reset: structuredClone(MUI_RESETS[spec.component] ?? {}),
+    reset: ownClasses(MUI_RESETS[spec.component] ?? {}, classes),
     root: {},
     sizes: {},
     appearances: {},
@@ -947,17 +952,33 @@ export function renderMuiComponent(spec, tokens) {
     `    out[layer] = Object.assign(\n      {},\n      c.base,\n      c.size?.[size],\n      ...states.flatMap((st) => [c.appearance?.[key]?.[st], c.combined?.[size]?.[key]?.[st]]),\n    );\n  }\n  return out;\n` +
     `}\n`;
 
+  // Each layer's class as its own, public or internal, wherever the text still names it by the
+  // layer; `specs`, every component's, for a selector into another's.
   return {
-    ts,
-    styles,
+    ts: withLayerClasses(ts, classes),
+    styles: JSON.parse(withLayerClasses(JSON.stringify(styles), classes)),
     composition,
     file: `${spec.component.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.ts`,
   };
 }
 
+/**
+ * A table (a descriptor's resets or state selectors) with each key and value's layer classes
+ * written as their own, a later key that becomes an earlier one replacing it, as in one object.
+ */
+function ownClasses(table, classes) {
+  if (table === null || typeof table !== 'object') {
+    return typeof table === 'string' ? withLayerClasses(table, classes) : table;
+  }
+  const out = {};
+  for (const [key, value] of Object.entries(table))
+    out[withLayerClasses(key, classes)] = ownClasses(value, classes);
+  return out;
+}
+
 /** Writes every component's module and the barrel. */
 export function emitMuiComponents(specs, tokens) {
-  const rendered = specs.map((spec) => renderMuiComponent(spec, tokens));
+  const rendered = specs.map((spec) => renderMuiComponent(spec, tokens, specs));
   for (const r of rendered) writeGenerated(join(OUT_DIR, r.file), r.ts);
   writeGenerated(
     join(OUT_DIR, 'index.ts'),

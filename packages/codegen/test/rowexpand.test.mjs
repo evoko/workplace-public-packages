@@ -41,7 +41,7 @@ describe('the RowExpand recipe', () => {
   it('draws a connector’s outline, its corner already rounded in it', () => {
     const { styles } = renderMuiComponent(spec, tokens);
     const bottom =
-      styles.appearances['type=bottom-row']['& .SolarRowExpand-container'];
+      styles.appearances['type=bottom-row']['& .SolarRowExpand--container'];
     expect(bottom).toMatchObject({
       stroke: 'var(--solar-color-border-medium)',
     });

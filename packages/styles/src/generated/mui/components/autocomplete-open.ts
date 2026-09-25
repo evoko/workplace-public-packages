@@ -23,10 +23,10 @@ export const solarAutocompleteOpenStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    '& .SolarAutocompleteOpen-autocomplete': {
+    '& .SolarAutocompleteOpen--autocomplete': {
       width: '100%',
     },
-    '& .SolarAutocompleteOpen-dropdownMenu': {
+    '& .SolarAutocompleteOpen--dropdownMenu': {
       width: '100%',
     },
   },

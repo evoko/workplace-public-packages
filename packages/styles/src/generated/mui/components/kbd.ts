@@ -54,7 +54,7 @@ export const solarKbdStyles = {
     paddingRight: 'var(--solar-inset-2xs)',
     paddingBottom: 'var(--solar-inset-2xs)',
     paddingLeft: 'var(--solar-inset-2xs)',
-    '& .SolarKbd-label': {
+    '& .SolarKbd--label': {
       color: 'var(--solar-color-text-inverse)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',

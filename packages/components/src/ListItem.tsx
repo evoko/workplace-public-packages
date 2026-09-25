@@ -33,6 +33,12 @@ const TREE: Record<string, string[]> = {
   root: ['icon', 'body', 'trailing', 'avatar'],
   body: ['label', 'helper'],
 };
+const SLOTS: Record<string, string> = {
+  icon: 'icon',
+  helper: 'helper',
+  trailing: 'trailing',
+  avatar: 'avatar',
+};
 
 export interface ListItemProps
   extends
@@ -116,6 +122,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
         {drawChildren('root', {
           prefix: 'SolarListItem',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { label: children, helper },
           render: {

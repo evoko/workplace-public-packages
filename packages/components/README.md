@@ -14,20 +14,46 @@ Section Nav Item and Group Header, Breadcrumbs and Breadcrumb Item, Tree Item), 
 (Pagination and its Item, Nav and Ellipsis, Page Navigator and its Button, Stepper, Step and Stepper
 Indicator) so far.
 
+## Getting started
+
 ```tsx
 import '@bwp-web/styles/tokens.css';
 import '@bwp-web/styles/fonts.css';
-import { Button } from '@bwp-web/components';
+import { Button, SolarProvider } from '@bwp-web/components';
 
-<Button variant="secondary" size="sm" iconLeading={<IconArrowLeft />}>
-  Back
-</Button>;
+export function App() {
+  return (
+    <SolarProvider>
+      <Button variant="secondary">Continue</Button>
+    </SolarProvider>
+  );
+}
 ```
 
+That is the whole setup. For Dark, set `data-theme="dark"` on any element, the page's root or one
+panel: the SOLAR components and every stock MUI component under it switch together.
+
 **Requires** React 18 or newer and MUI 9 (`@mui/material` with its Emotion peers), which the app
-provides; neither is bundled. The components look right with or without the SOLAR MUI theme
-installed, but installing it (`createSolarThemeOptions` from `@bwp-web/styles/mui`) makes stock
-MUI components match them.
+provides; neither is bundled. The components look right without `SolarProvider`; it installs the
+SOLAR MUI theme, so the stock MUI components beside them match, and takes the app's own theme
+options (`<SolarProvider theme={…}>`), merged over SOLAR's. Apps that want only the tokens, or
+Tailwind, use `@bwp-web/styles` alone.
+
+## Styling hooks
+
+Style a component through its root, with `className`, `style` or `sx`, which every component
+passes to its outer element. Inside it, the stable hooks are:
+
+- `Solar<Name>-<slot>`, on each part the caller fills, by its slot's name, which is the prop's:
+  `SolarTag-label`, `SolarCard-title`, `SolarTextInput-helper`;
+- `Solar<Name>-<state>`, where a component marks a state itself: `SolarTextInput-error`,
+  `SolarSplitButton-loading`.
+
+Every other class is internal, and may change when SOLAR's Figma file does: `Solar<Name>--<layer>`
+(two dashes), named after a Figma layer (`SolarTag--iconClose`), and the drawing's own markers
+(`Solar<Name>-box`, `-text`, `-glyph`, `-drawnIcon`). The codegen writes the two name spaces
+(`packages/codegen/src/util/classes.mjs`), and a test fails if a Figma layer's name is ever a
+public class.
 
 ## Button
 

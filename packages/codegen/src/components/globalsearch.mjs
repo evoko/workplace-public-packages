@@ -8,7 +8,12 @@
  * app's search. Filled follows the query (the overlay's `derive`).
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import {
+  drawnFlutter,
+  drawnResets,
+  treeOf,
+  treeConsts,
+} from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
 const P = 'SolarGlobalSearch';
@@ -34,7 +39,7 @@ export default {
       textAlign: 'start',
       '&:focus-visible': { outline: 'none' },
       // The words take the room the icon and the Kbd leave, cut short where they run out.
-      [`& .${P}-searchWorkplace`]: {
+      [`& .${P}--searchWorkplace`]: {
         flex: '1 1 0%',
         minWidth: '0',
         overflow: 'hidden',
@@ -85,7 +90,7 @@ import { drawChildren } from './internal/layers.js';
 import { Kbd, type KbdProps } from './Kbd.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface GlobalSearchProps
   extends SolarGlobalSearchProps,
@@ -122,7 +127,7 @@ export const GlobalSearch = forwardRef<HTMLButtonElement, GlobalSearchProps>(
       >
         {drawChildren('root', {
           prefix: '${P}',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           // The Kbd shows where the app binds a shortcut.
           parts: { ...parts, kbd: { ...parts.kbd, present: shortcut != null } },
           text: { searchWorkplace: filled ? query : placeholder },

@@ -47,7 +47,7 @@ export const solarTextInputStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarTextInput-fieldLabel.MuiInputBase-input': {
+    '& .SolarTextInput--fieldLabel.MuiInputBase-input': {
       flex: '1 1 0%',
       minWidth: '0',
       width: 'auto',
@@ -69,11 +69,11 @@ export const solarTextInputStyles = {
     '& .SolarTextInput-helper': {
       whiteSpace: 'normal',
     },
-    '& .SolarTextInput-field': {
+    '& .SolarTextInput--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarTextInput-field::after': {
+    '& .SolarTextInput--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -114,7 +114,7 @@ export const solarTextInputStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarTextInput-labelLabel': {
+    '& .SolarTextInput--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -132,7 +132,7 @@ export const solarTextInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarTextInput-field': {
+    '& .SolarTextInput--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -155,7 +155,7 @@ export const solarTextInputStyles = {
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-tertiary)',
     },
-    '& .SolarTextInput-fieldLabel': {
+    '& .SolarTextInput--fieldLabel': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -184,7 +184,7 @@ export const solarTextInputStyles = {
   sizes: {
     sm: {
       width: '100%',
-      '& .SolarTextInput-labelLabel': {
+      '& .SolarTextInput--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -200,7 +200,7 @@ export const solarTextInputStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarTextInput-field': {
+      '& .SolarTextInput--field': {
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         height: '32px',
@@ -209,7 +209,7 @@ export const solarTextInputStyles = {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
-      '& .SolarTextInput-fieldLabel': {
+      '& .SolarTextInput--fieldLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -233,29 +233,29 @@ export const solarTextInputStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarTextInput-field:hover)': {
-        '& .SolarTextInput-field': {
+      '&:has(.SolarTextInput--field:hover)': {
+        '& .SolarTextInput--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
         '& .SolarTextInput-leadingIcon': {
           color: 'var(--solar-color-icon-secondary)',
         },
-        '& .SolarTextInput-fieldLabel': {
+        '& .SolarTextInput--fieldLabel': {
           color: 'var(--solar-color-text-secondary)',
         },
         '& .SolarTextInput-trailingIcon': {
           color: 'var(--solar-color-icon-secondary)',
         },
       },
-      '&:has(.SolarTextInput-field.Mui-focused)': {
-        '& .SolarTextInput-field': {
+      '&:has(.SolarTextInput--field.Mui-focused)': {
+        '& .SolarTextInput--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
         '& .SolarTextInput-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTextInput-fieldLabel': {
+        '& .SolarTextInput--fieldLabel': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarTextInput-trailingIcon': {
@@ -266,7 +266,7 @@ export const solarTextInputStyles = {
         '& .SolarTextInput-leadingIcon': {
           color: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarTextInput-fieldLabel': {
+        '& .SolarTextInput--fieldLabel': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarTextInput-trailingIcon': {
@@ -274,20 +274,20 @@ export const solarTextInputStyles = {
         },
       },
       '&.SolarTextInput-error': {
-        '& .SolarTextInput-labelLabel': {
+        '& .SolarTextInput--labelLabel': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
         '& .SolarTextInput-mandatory': {
           color: 'var(--solar-color-text-feedback-danger)',
         },
-        '& .SolarTextInput-field': {
+        '& .SolarTextInput--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
         '& .SolarTextInput-leadingIcon': {
           color: 'var(--solar-color-icon-feedback-danger)',
         },
-        '& .SolarTextInput-fieldLabel': {
+        '& .SolarTextInput--fieldLabel': {
           color: 'var(--solar-color-text-primary)',
         },
         '& .SolarTextInput-trailingIcon': {
@@ -298,20 +298,20 @@ export const solarTextInputStyles = {
         },
       },
       '&.SolarTextInput-disabled': {
-        '& .SolarTextInput-labelLabel': {
+        '& .SolarTextInput--labelLabel': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarTextInput-mandatory': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarTextInput-field': {
+        '& .SolarTextInput--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
         '& .SolarTextInput-leadingIcon': {
           color: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarTextInput-fieldLabel': {
+        '& .SolarTextInput--fieldLabel': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarTextInput-trailingIcon': {

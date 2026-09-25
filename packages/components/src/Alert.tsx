@@ -29,6 +29,11 @@ const TREE: Record<string, string[]> = {
   root: ['statusIndicator', 'content', 'action'],
   content: ['title', 'description'],
 };
+const SLOTS: Record<string, string> = {
+  title: 'title',
+  description: 'description',
+  action: 'action',
+};
 
 export interface AlertProps
   extends
@@ -70,6 +75,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
       {drawChildren('root', {
         prefix: 'SolarAlert',
         tree: TREE,
+        slots: SLOTS,
         parts: drawn,
         text: { title, description },
         render: {

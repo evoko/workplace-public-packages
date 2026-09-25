@@ -76,7 +76,7 @@ export const solarDragHandleStyles = {
     paddingRight: 'var(--solar-inset-xs)',
     paddingBottom: 'var(--solar-inset-xs)',
     paddingLeft: 'var(--solar-inset-xs)',
-    '& .SolarDragHandle-col1': {
+    '& .SolarDragHandle--col1': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -91,7 +91,7 @@ export const solarDragHandleStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarDragHandle-col1Dot': {
+    '& .SolarDragHandle--col1Dot': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -100,7 +100,7 @@ export const solarDragHandleStyles = {
       width: '3px',
       height: '3px',
     },
-    '& .SolarDragHandle-col1Dot2': {
+    '& .SolarDragHandle--col1Dot2': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -109,7 +109,7 @@ export const solarDragHandleStyles = {
       width: '3px',
       height: '3px',
     },
-    '& .SolarDragHandle-col1Dot3': {
+    '& .SolarDragHandle--col1Dot3': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -118,7 +118,7 @@ export const solarDragHandleStyles = {
       width: '3px',
       height: '3px',
     },
-    '& .SolarDragHandle-col2': {
+    '& .SolarDragHandle--col2': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -133,7 +133,7 @@ export const solarDragHandleStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarDragHandle-col2Dot': {
+    '& .SolarDragHandle--col2Dot': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -142,7 +142,7 @@ export const solarDragHandleStyles = {
       width: '3px',
       height: '3px',
     },
-    '& .SolarDragHandle-col2Dot2': {
+    '& .SolarDragHandle--col2Dot2': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -151,7 +151,7 @@ export const solarDragHandleStyles = {
       width: '3px',
       height: '3px',
     },
-    '& .SolarDragHandle-col2Dot3': {
+    '& .SolarDragHandle--col2Dot3': {
       backgroundColor: 'var(--solar-color-icon-secondary)',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -163,27 +163,27 @@ export const solarDragHandleStyles = {
   },
   sizes: {
     md: {
-      '& .SolarDragHandle-col1Dot': {
+      '& .SolarDragHandle--col1Dot': {
         width: '4px',
         height: '4px',
       },
-      '& .SolarDragHandle-col1Dot2': {
+      '& .SolarDragHandle--col1Dot2': {
         width: '4px',
         height: '4px',
       },
-      '& .SolarDragHandle-col1Dot3': {
+      '& .SolarDragHandle--col1Dot3': {
         width: '4px',
         height: '4px',
       },
-      '& .SolarDragHandle-col2Dot': {
+      '& .SolarDragHandle--col2Dot': {
         width: '4px',
         height: '4px',
       },
-      '& .SolarDragHandle-col2Dot2': {
+      '& .SolarDragHandle--col2Dot2': {
         width: '4px',
         height: '4px',
       },
-      '& .SolarDragHandle-col2Dot3': {
+      '& .SolarDragHandle--col2Dot3': {
         width: '4px',
         height: '4px',
       },
@@ -192,42 +192,42 @@ export const solarDragHandleStyles = {
   appearances: {
     default: {
       '&:hover': {
-        '& .SolarDragHandle-col1Dot': {
+        '& .SolarDragHandle--col1Dot': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col1Dot2': {
+        '& .SolarDragHandle--col1Dot2': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col1Dot3': {
+        '& .SolarDragHandle--col1Dot3': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col2Dot': {
+        '& .SolarDragHandle--col2Dot': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col2Dot2': {
+        '& .SolarDragHandle--col2Dot2': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col2Dot3': {
+        '& .SolarDragHandle--col2Dot3': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
       },
       '&:active, &[aria-pressed="true"]': {
-        '& .SolarDragHandle-col1Dot': {
+        '& .SolarDragHandle--col1Dot': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col1Dot2': {
+        '& .SolarDragHandle--col1Dot2': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col1Dot3': {
+        '& .SolarDragHandle--col1Dot3': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col2Dot': {
+        '& .SolarDragHandle--col2Dot': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col2Dot2': {
+        '& .SolarDragHandle--col2Dot2': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
-        '& .SolarDragHandle-col2Dot3': {
+        '& .SolarDragHandle--col2Dot3': {
           backgroundColor: 'var(--solar-color-icon-primary)',
         },
       },
@@ -235,22 +235,22 @@ export const solarDragHandleStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
       },
       '&.SolarDragHandle-disabled': {
-        '& .SolarDragHandle-col1Dot': {
+        '& .SolarDragHandle--col1Dot': {
           backgroundColor: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarDragHandle-col1Dot2': {
+        '& .SolarDragHandle--col1Dot2': {
           backgroundColor: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarDragHandle-col1Dot3': {
+        '& .SolarDragHandle--col1Dot3': {
           backgroundColor: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarDragHandle-col2Dot': {
+        '& .SolarDragHandle--col2Dot': {
           backgroundColor: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarDragHandle-col2Dot2': {
+        '& .SolarDragHandle--col2Dot2': {
           backgroundColor: 'var(--solar-color-icon-disabled)',
         },
-        '& .SolarDragHandle-col2Dot3': {
+        '& .SolarDragHandle--col2Dot3': {
           backgroundColor: 'var(--solar-color-icon-disabled)',
         },
       },
@@ -260,22 +260,22 @@ export const solarDragHandleStyles = {
     sm: {
       default: {
         '&:focus-visible': {
-          '& .SolarDragHandle-col1Dot': {
+          '& .SolarDragHandle--col1Dot': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col1Dot2': {
+          '& .SolarDragHandle--col1Dot2': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col1Dot3': {
+          '& .SolarDragHandle--col1Dot3': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col2Dot': {
+          '& .SolarDragHandle--col2Dot': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col2Dot2': {
+          '& .SolarDragHandle--col2Dot2': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col2Dot3': {
+          '& .SolarDragHandle--col2Dot3': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
         },
@@ -284,22 +284,22 @@ export const solarDragHandleStyles = {
     md: {
       default: {
         '&:focus-visible': {
-          '& .SolarDragHandle-col1Dot': {
+          '& .SolarDragHandle--col1Dot': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col1Dot2': {
+          '& .SolarDragHandle--col1Dot2': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col1Dot3': {
+          '& .SolarDragHandle--col1Dot3': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col2Dot': {
+          '& .SolarDragHandle--col2Dot': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col2Dot2': {
+          '& .SolarDragHandle--col2Dot2': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
-          '& .SolarDragHandle-col2Dot3': {
+          '& .SolarDragHandle--col2Dot3': {
             backgroundColor: 'var(--solar-color-icon-secondary)',
           },
         },

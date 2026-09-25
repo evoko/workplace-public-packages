@@ -61,7 +61,7 @@ export const solarStatusIndicatorStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: 'var(--solar-icon-md)',
     height: 'var(--solar-icon-md)',
-    '& .SolarStatusIndicator-innerPath': {
+    '& .SolarStatusIndicator--innerPath': {
       fill: 'var(--solar-color-icon-inverse)',
       stroke: 'none',
       '& .SolarGlyph-stroke': {
@@ -89,7 +89,7 @@ export const solarStatusIndicatorStyles = {
         paddingRight: 'var(--solar-inset-none)',
         paddingBottom: 'var(--solar-inset-none)',
         paddingLeft: 'var(--solar-inset-none)',
-        '& .SolarStatusIndicator-frame3': {
+        '& .SolarStatusIndicator--frame3': {
           backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -110,7 +110,7 @@ export const solarStatusIndicatorStyles = {
           left: 'calc(0px - var(--solar-placed-left, 0px))',
           top: 'calc(0px - var(--solar-placed-top, 0px))',
         },
-        '& .SolarStatusIndicator-frame3InnerPath': {
+        '& .SolarStatusIndicator--frame3InnerPath': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -133,11 +133,11 @@ export const solarStatusIndicatorStyles = {
         paddingRight: 'var(--solar-inset-none)',
         paddingBottom: 'var(--solar-inset-none)',
         paddingLeft: 'var(--solar-inset-none)',
-        '& .SolarStatusIndicator-innerPath': {
+        '& .SolarStatusIndicator--innerPath': {
           width: '2px',
           height: '9px',
         },
-        '& .SolarStatusIndicator-union': {
+        '& .SolarStatusIndicator--union': {
           fill: 'var(--solar-color-surface-feedback-warning-strong)',
           stroke: 'var(--solar-color-border-medium)',
           '& .SolarGlyph-stroke': {
@@ -158,10 +158,10 @@ export const solarStatusIndicatorStyles = {
         paddingRight: 'var(--solar-inset-none)',
         paddingBottom: 'var(--solar-inset-none)',
         paddingLeft: 'var(--solar-inset-none)',
-        '& .SolarStatusIndicator-innerPath': {
+        '& .SolarStatusIndicator--innerPath': {
           height: '10px',
         },
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           fill: 'var(--solar-color-surface-feedback-danger-strong)',
           stroke: 'var(--solar-color-border-medium)',
           '& .SolarGlyph-stroke': {
@@ -189,7 +189,7 @@ export const solarStatusIndicatorStyles = {
         paddingRight: 'var(--solar-inset-none)',
         paddingBottom: 'var(--solar-inset-none)',
         paddingLeft: 'var(--solar-inset-none)',
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -207,7 +207,7 @@ export const solarStatusIndicatorStyles = {
           width: 'var(--solar-icon-md)',
           height: 'var(--solar-icon-md)',
         },
-        '& .SolarStatusIndicator-containerInnerPath': {
+        '& .SolarStatusIndicator--containerInnerPath': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -230,7 +230,7 @@ export const solarStatusIndicatorStyles = {
         paddingRight: 'var(--solar-inset-none)',
         paddingBottom: 'var(--solar-inset-none)',
         paddingLeft: 'var(--solar-inset-none)',
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           backgroundColor: 'var(--solar-color-surface-feedback-neutral-subtle)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -248,7 +248,7 @@ export const solarStatusIndicatorStyles = {
           width: 'var(--solar-icon-md)',
           height: 'var(--solar-icon-md)',
         },
-        '& .SolarStatusIndicator-icon': {
+        '& .SolarStatusIndicator--icon': {
           fill: 'var(--solar-color-icon-feedback-neutral)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -271,7 +271,7 @@ export const solarStatusIndicatorStyles = {
         paddingRight: 'var(--solar-inset-none)',
         paddingBottom: 'var(--solar-inset-none)',
         paddingLeft: 'var(--solar-inset-none)',
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -289,7 +289,7 @@ export const solarStatusIndicatorStyles = {
           width: 'var(--solar-icon-md)',
           height: 'var(--solar-icon-md)',
         },
-        '& .SolarStatusIndicator-containerUnion': {
+        '& .SolarStatusIndicator--containerUnion': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -305,7 +305,7 @@ export const solarStatusIndicatorStyles = {
       'type=success': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarStatusIndicator-innerPath': {
+        '& .SolarStatusIndicator--innerPath': {
           width: '7px',
           height: '5px',
         },
@@ -324,7 +324,7 @@ export const solarStatusIndicatorStyles = {
         paddingLeft: 'var(--solar-inset-none)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarStatusIndicator-frame3': {
+        '& .SolarStatusIndicator--frame3': {
           backgroundColor: 'var(--solar-color-surface-feedback-info-strong)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -345,7 +345,7 @@ export const solarStatusIndicatorStyles = {
           left: 'calc(0px - var(--solar-placed-left, 0px))',
           top: 'calc(0px - var(--solar-placed-top, 0px))',
         },
-        '& .SolarStatusIndicator-frame3InnerPath': {
+        '& .SolarStatusIndicator--frame3InnerPath': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -370,10 +370,10 @@ export const solarStatusIndicatorStyles = {
         paddingLeft: 'var(--solar-inset-none)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarStatusIndicator-innerPath': {
+        '& .SolarStatusIndicator--innerPath': {
           width: '2px',
         },
-        '& .SolarStatusIndicator-union': {
+        '& .SolarStatusIndicator--union': {
           fill: 'var(--solar-color-surface-feedback-warning-strong)',
           stroke: 'var(--solar-color-border-medium)',
           '& .SolarGlyph-stroke': {
@@ -396,11 +396,11 @@ export const solarStatusIndicatorStyles = {
         paddingLeft: 'var(--solar-inset-none)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarStatusIndicator-innerPath': {
+        '& .SolarStatusIndicator--innerPath': {
           width: '8px',
           height: '8px',
         },
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           fill: 'var(--solar-color-surface-feedback-danger-strong)',
           stroke: 'var(--solar-color-border-medium)',
           '& .SolarGlyph-stroke': {
@@ -430,7 +430,7 @@ export const solarStatusIndicatorStyles = {
         paddingLeft: 'var(--solar-inset-none)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           backgroundColor: 'var(--solar-color-surface-feedback-neutral-strong)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -448,7 +448,7 @@ export const solarStatusIndicatorStyles = {
           width: 'var(--solar-icon-sm)',
           height: 'var(--solar-icon-sm)',
         },
-        '& .SolarStatusIndicator-containerInnerPath': {
+        '& .SolarStatusIndicator--containerInnerPath': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -473,7 +473,7 @@ export const solarStatusIndicatorStyles = {
         paddingLeft: 'var(--solar-inset-none)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           backgroundColor: 'var(--solar-color-surface-feedback-neutral-subtle)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -491,7 +491,7 @@ export const solarStatusIndicatorStyles = {
           width: 'var(--solar-icon-sm)',
           height: 'var(--solar-icon-sm)',
         },
-        '& .SolarStatusIndicator-icon': {
+        '& .SolarStatusIndicator--icon': {
           fill: 'var(--solar-color-icon-feedback-neutral)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {
@@ -516,7 +516,7 @@ export const solarStatusIndicatorStyles = {
         paddingLeft: 'var(--solar-inset-none)',
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
-        '& .SolarStatusIndicator-container': {
+        '& .SolarStatusIndicator--container': {
           backgroundColor: 'var(--solar-color-surface-muted)',
           borderColor: 'var(--solar-color-border-medium)',
           boxShadow: 'none',
@@ -534,7 +534,7 @@ export const solarStatusIndicatorStyles = {
           width: 'var(--solar-icon-sm)',
           height: 'var(--solar-icon-sm)',
         },
-        '& .SolarStatusIndicator-containerUnion': {
+        '& .SolarStatusIndicator--containerUnion': {
           fill: 'var(--solar-color-icon-inverse)',
           stroke: 'none',
           '& .SolarGlyph-stroke': {

@@ -30,6 +30,7 @@ import { Kbd, type KbdProps } from './Kbd.js';
 const TREE: Record<string, string[]> = {
   root: ['iconSearch', 'searchWorkplace', 'kbd'],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface GlobalSearchProps
   extends
@@ -84,6 +85,7 @@ export const GlobalSearch = forwardRef<HTMLButtonElement, GlobalSearchProps>(
         {drawChildren('root', {
           prefix: 'SolarGlobalSearch',
           tree: TREE,
+          slots: SLOTS,
           // The Kbd shows where the app binds a shortcut.
           parts: { ...parts, kbd: { ...parts.kbd, present: shortcut != null } },
           text: { searchWorkplace: filled ? query : placeholder },

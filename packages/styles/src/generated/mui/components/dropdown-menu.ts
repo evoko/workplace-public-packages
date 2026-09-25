@@ -81,49 +81,49 @@ export const solarDropdownMenuStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarDropdownMenu-dropdownGroupLabel': {
+    '& .SolarDropdownMenu--dropdownGroupLabel': {
       width: '100%',
     },
-    '& .SolarDropdownMenu-dropdownItem': {
+    '& .SolarDropdownMenu--dropdownItem': {
       width: '100%',
     },
-    '& .SolarDropdownMenu-dropdownItem2': {
+    '& .SolarDropdownMenu--dropdownItem2': {
       width: '100%',
     },
-    '& .SolarDropdownMenu-dropdownItem3': {
+    '& .SolarDropdownMenu--dropdownItem3': {
       width: '100%',
     },
-    '& .SolarDropdownMenu-dropdownItem4': {
+    '& .SolarDropdownMenu--dropdownItem4': {
       width: '100%',
     },
-    '& .SolarDropdownMenu-dropdownItem5': {
+    '& .SolarDropdownMenu--dropdownItem5': {
       width: '100%',
     },
-    '& .SolarDropdownMenu-dropdownItem6': {
+    '& .SolarDropdownMenu--dropdownItem6': {
       width: '100%',
     },
   },
   sizes: {
     sm: {
-      '& .SolarDropdownMenu-dropdownGroupLabel': {
+      '& .SolarDropdownMenu--dropdownGroupLabel': {
         width: '100%',
       },
-      '& .SolarDropdownMenu-dropdownItem': {
+      '& .SolarDropdownMenu--dropdownItem': {
         width: '100%',
       },
-      '& .SolarDropdownMenu-dropdownItem2': {
+      '& .SolarDropdownMenu--dropdownItem2': {
         width: '100%',
       },
-      '& .SolarDropdownMenu-dropdownItem3': {
+      '& .SolarDropdownMenu--dropdownItem3': {
         width: '100%',
       },
-      '& .SolarDropdownMenu-dropdownItem4': {
+      '& .SolarDropdownMenu--dropdownItem4': {
         width: '100%',
       },
-      '& .SolarDropdownMenu-dropdownItem5': {
+      '& .SolarDropdownMenu--dropdownItem5': {
         width: '100%',
       },
-      '& .SolarDropdownMenu-dropdownItem6': {
+      '& .SolarDropdownMenu--dropdownItem6': {
         width: '100%',
       },
     },

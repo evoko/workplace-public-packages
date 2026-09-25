@@ -56,6 +56,12 @@ const TREE: Record<string, string[]> = {
   label: ['labelLabel', 'required'],
   field: ['iconCalendar', 'value'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  required: 'required',
+  value: 'value',
+  helper: 'helper',
+};
 
 export interface DatePickerProps
   extends
@@ -205,6 +211,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarDatePicker',
       tree: TREE,
+      slots: SLOTS,
       // A part left empty is not drawn.
       parts: {
         ...parts,

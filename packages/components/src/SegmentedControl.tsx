@@ -37,6 +37,12 @@ const TREE: Record<string, string[]> = {
     'segmentedControlItem6',
   ],
 };
+const SLOTS: Record<string, string> = {
+  labelLabel: 'label',
+  mandatory: 'mandatory',
+  track: 'track',
+  helper: 'helper',
+};
 
 export interface SegmentedControlProps
   extends
@@ -102,6 +108,7 @@ export const SegmentedControl = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarSegmentedControl',
         tree: TREE,
+        slots: SLOTS,
         parts: drawn,
         text: {
           labelLabel: <span id={`${id}-label`}>{label}</span>,

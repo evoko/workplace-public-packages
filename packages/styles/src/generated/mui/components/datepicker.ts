@@ -63,11 +63,11 @@ export const solarDatePickerStyles = {
     '& .SolarDatePicker-helper': {
       whiteSpace: 'normal',
     },
-    '& .SolarDatePicker-field': {
+    '& .SolarDatePicker--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarDatePicker-field::after': {
+    '& .SolarDatePicker--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -77,7 +77,7 @@ export const solarDatePickerStyles = {
       transform: 'translate(-50%, -50%)',
       zIndex: '-1',
     },
-    '& .SolarDatePicker-iconCalendar': {
+    '& .SolarDatePicker--iconCalendar': {
       position: 'relative',
       appearance: 'none',
       border: '0',
@@ -96,7 +96,7 @@ export const solarDatePickerStyles = {
         cursor: 'default',
       },
     },
-    '& .SolarDatePicker-iconCalendar::after': {
+    '& .SolarDatePicker--iconCalendar::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -136,7 +136,7 @@ export const solarDatePickerStyles = {
       paddingBottom: 'var(--solar-inset-none)',
       paddingLeft: 'var(--solar-inset-none)',
     },
-    '& .SolarDatePicker-labelLabel': {
+    '& .SolarDatePicker--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -154,7 +154,7 @@ export const solarDatePickerStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarDatePicker-field': {
+    '& .SolarDatePicker--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -172,7 +172,7 @@ export const solarDatePickerStyles = {
       width: '100%',
       height: '40px',
     },
-    '& .SolarDatePicker-iconCalendar': {
+    '& .SolarDatePicker--iconCalendar': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
@@ -199,7 +199,7 @@ export const solarDatePickerStyles = {
   },
   sizes: {
     sm: {
-      '& .SolarDatePicker-labelLabel': {
+      '& .SolarDatePicker--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -215,13 +215,13 @@ export const solarDatePickerStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarDatePicker-field': {
+      '& .SolarDatePicker--field': {
         gap: 'var(--solar-inset-2xs)',
         paddingRight: 'var(--solar-inset-xs)',
         paddingLeft: 'var(--solar-inset-xs)',
         height: '32px',
       },
-      '& .SolarDatePicker-iconCalendar': {
+      '& .SolarDatePicker--iconCalendar': {
         width: 'var(--solar-icon-xs)',
         height: 'var(--solar-icon-xs)',
       },
@@ -245,19 +245,19 @@ export const solarDatePickerStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarDatePicker-field:hover)': {
-        '& .SolarDatePicker-field': {
+      '&:has(.SolarDatePicker--field:hover)': {
+        '& .SolarDatePicker--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
-      '&:has(.SolarDatePicker-field.Mui-focused)': {
-        '& .SolarDatePicker-field': {
+      '&:has(.SolarDatePicker--field.Mui-focused)': {
+        '& .SolarDatePicker--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
       },
       '&.SolarDatePicker-error': {
-        '& .SolarDatePicker-field': {
+        '& .SolarDatePicker--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
@@ -265,8 +265,8 @@ export const solarDatePickerStyles = {
           color: 'var(--solar-color-text-feedback-danger)',
         },
       },
-      '&.SolarDatePicker-error:has(.SolarDatePicker-field.Mui-focused)': {
-        '& .SolarDatePicker-field': {
+      '&.SolarDatePicker-error:has(.SolarDatePicker--field.Mui-focused)': {
+        '& .SolarDatePicker--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
@@ -275,11 +275,11 @@ export const solarDatePickerStyles = {
         },
       },
       '&.SolarDatePicker-disabled': {
-        '& .SolarDatePicker-field': {
+        '& .SolarDatePicker--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarDatePicker-iconCalendar': {
+        '& .SolarDatePicker--iconCalendar': {
           color: 'var(--solar-color-icon-disabled)',
         },
         '& .SolarDatePicker-value': {

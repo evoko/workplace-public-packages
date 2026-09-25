@@ -44,6 +44,13 @@ const TREE: Record<string, string[]> = {
   ],
   actionGroup: ['primaryButton', 'secondaryButton', 'action'],
 };
+const SLOTS: Record<string, string> = {
+  description: 'description',
+  primaryButton: 'primaryButton',
+  secondaryButton: 'secondaryButton',
+  action: 'action',
+  close: 'close',
+};
 
 export interface BannerProps
   extends
@@ -102,6 +109,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(function Banner(
       {drawChildren('root', {
         prefix: 'SolarBanner',
         tree: TREE,
+        slots: SLOTS,
         parts: drawn,
         text: { description },
         icons: {

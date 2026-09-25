@@ -8,7 +8,7 @@
  * is given (an avatar), and in a List it takes the list's compactness, as Figma draws its rows.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 
 const requireLayers = (spec) => {
   for (const slot of ['icon', 'helper', 'trailing', 'avatar'])
@@ -86,7 +86,7 @@ import { drawChildren } from './internal/layers.js';
 import { useListCompact } from './List.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface ListItemProps
   extends SolarListItemProps,
@@ -163,7 +163,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(function ListI
     >
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         text: { label: children, helper },
         render: {

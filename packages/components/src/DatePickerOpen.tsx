@@ -222,6 +222,7 @@ const TREE: Record<string, string[]> = {
     'container2DayGridDayCell35',
   ],
 };
+const SLOTS: Record<string, string> = { month: 'month' };
 
 export interface DatePickerOpenProps
   extends
@@ -458,6 +459,7 @@ export const DatePickerOpen = forwardRef<HTMLDivElement, DatePickerOpenProps>(
         {drawChildren('root', {
           prefix: 'SolarDatePickerOpen',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: {
             month: monthName(shown(0).year, shown(0).month, locale),

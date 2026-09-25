@@ -29,6 +29,7 @@ const TREE: Record<string, string[]> = {
   root: ['content'],
   content: ['optionRow', 'optionRow2'],
 };
+const SLOTS: Record<string, string> = { content: 'content' };
 
 export interface OptionsListProps
   extends
@@ -55,6 +56,7 @@ export const OptionsList = forwardRef<HTMLFieldSetElement, OptionsListProps>(
         {drawChildren('root', {
           prefix: 'SolarOptionsList',
           tree: TREE,
+          slots: SLOTS,
           parts,
           content: { content: children },
         })}

@@ -9,7 +9,7 @@
  * which Figma draws none of (owner decision 2026-09-24).
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 import { targetArea } from '../shells/target.mjs';
 
 const P = 'SolarNavItem';
@@ -83,7 +83,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface NavItemProps
   extends SolarNavItemProps,
@@ -126,7 +126,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(function NavI
     >
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         parts,
         text: { label },
         icons: {

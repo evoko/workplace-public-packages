@@ -54,6 +54,13 @@ const TREE: Record<string, string[]> = {
   label: ['labelLabel', 'mandatory'],
   field: ['leadingIcon', 'search', 'trailingIcon'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  leadingIcon: 'leadingIcon',
+  trailingIcon: 'trailingIcon',
+  helper: 'helper',
+};
 
 /** An option's words, as MUI's Autocomplete reads them: its `label`, or itself. */
 const labelOf = (option: unknown) =>
@@ -142,6 +149,7 @@ export const Autocomplete = forwardRef(function Autocomplete<T>(
   const drawing: LayerDrawing = {
     prefix: 'SolarAutocomplete',
     tree: TREE,
+    slots: SLOTS,
     // A part left empty is not drawn.
     parts: {
       ...parts,
@@ -183,7 +191,7 @@ export const Autocomplete = forwardRef(function Autocomplete<T>(
             endAdornment={drawLayer('trailingIcon', drawing)}
             inputProps={{
               ...input,
-              className: 'SolarAutocomplete-search',
+              className: 'SolarAutocomplete--search',
               'aria-describedby': helper != null ? `${id}-helper` : undefined,
             }}
           />

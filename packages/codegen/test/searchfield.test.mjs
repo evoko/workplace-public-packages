@@ -40,7 +40,7 @@ describe('the SearchField IR', () => {
     expect(
       styles.combined.sm.default.boxShadow ?? at('&:hover').boxShadow,
     ).toBe('none');
-    expect(styles.sizes.sm['& .SolarSearchField-iconSearch']).toMatchObject({
+    expect(styles.sizes.sm['& .SolarSearchField--iconSearch']).toMatchObject({
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
     });

@@ -27,6 +27,10 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['leadingIcon', 'label', 'trailingIcon'],
 };
+const SLOTS: Record<string, string> = {
+  leadingIcon: 'leadingIcon',
+  trailingIcon: 'trailingIcon',
+};
 
 export interface LinkProps
   extends
@@ -89,6 +93,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
       {drawChildren('root', {
         prefix: 'SolarLink',
         tree: TREE,
+        slots: SLOTS,
         parts: drawn,
         text: { label: children },
         icons: {

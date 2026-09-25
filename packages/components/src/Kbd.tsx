@@ -24,6 +24,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['label'] };
+const SLOTS: Record<string, string> = {};
 
 export interface KbdProps
   extends
@@ -49,6 +50,7 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(
       {drawChildren('root', {
         prefix: 'SolarKbd',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: { label: children },
       })}

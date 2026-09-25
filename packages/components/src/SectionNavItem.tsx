@@ -26,6 +26,7 @@ import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
 const TREE: Record<string, string[]> = { root: ['icon', 'label'] };
+const SLOTS: Record<string, string> = { icon: 'icon', label: 'label' };
 
 export interface SectionNavItemProps
   extends
@@ -65,6 +66,7 @@ export const SectionNavItem = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarSectionNavItem',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: { label },
         icons: { icon: <span>{icon}</span> },

@@ -82,12 +82,12 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
       sx={[
         solarAvatarStyle({ size, type }),
         color ? { backgroundColor: color } : null,
-        ink ? { '& .SolarAvatar-initials': { color: ink } } : null,
+        ink ? { '& .SolarAvatar--initials': { color: ink } } : null,
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       {parts.initials?.present === false ? undefined : (
-        <span className="SolarAvatar-initials">
+        <span className="SolarAvatar--initials">
           {children ?? initialsOf(name)}
         </span>
       )}

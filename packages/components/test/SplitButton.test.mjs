@@ -18,7 +18,7 @@ describe('the SOLAR SplitButton shell', () => {
     const html = renderToString(h(SplitButton, { loading: true }, 'Save'));
     expect(html).toContain('aria-busy="true"');
     expect(html).toMatch(
-      /SolarSplitButton-action[^"]*"[^>]*style="visibility:hidden"/,
+      /SolarSplitButton--action[^"]*"[^>]*style="visibility:hidden"/,
     );
     expect(html).toContain('MuiCircularProgress');
   });

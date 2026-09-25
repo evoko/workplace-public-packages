@@ -39,6 +39,16 @@ const TREE: Record<string, string[]> = {
   textIcon: ['icon', 'title'],
   actions: ['iconButton', 'iconButton2', 'iconButton3'],
 };
+const SLOTS: Record<string, string> = {
+  dragHandle: 'dragHandle',
+  toggle: 'toggle',
+  radioButton: 'radioButton',
+  checkbox: 'checkbox',
+  icon: 'icon',
+  description: 'description',
+  actions: 'actions',
+  title: 'title',
+};
 
 export interface InteractiveCardProps
   extends
@@ -155,6 +165,7 @@ export const InteractiveCard = forwardRef<HTMLDivElement, InteractiveCardProps>(
           {drawChildren('root', {
             prefix: 'SolarInteractiveCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { title: titled, description },
             icons: {

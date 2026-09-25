@@ -27,6 +27,7 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['iconArrowLeft', 'label', 'iconArrowRight'],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface PageNavButtonProps
   extends
@@ -54,6 +55,7 @@ export const PageNavButton = forwardRef<HTMLButtonElement, PageNavButtonProps>(
         {drawChildren('root', {
           prefix: 'SolarPageNavButton',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: {
             label: children ?? (direction === 'next' ? 'Next' : 'Previous'),

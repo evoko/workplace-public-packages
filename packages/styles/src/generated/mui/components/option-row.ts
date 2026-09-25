@@ -23,7 +23,7 @@ export const solarOptionRowStyles = {
       display: 'flex',
       boxSizing: 'border-box',
     },
-    '& .SolarOptionRow-text': {
+    '& .SolarOptionRow--text': {
       whiteSpace: 'nowrap',
     },
     '& .SolarOptionRow-glyph': {
@@ -38,10 +38,10 @@ export const solarOptionRowStyles = {
       stroke: 'none',
     },
     cursor: 'pointer',
-    '& .SolarOptionRow-label, & .SolarOptionRow-supportingText': {
+    '& .SolarOptionRow--label, & .SolarOptionRow-supportingText': {
       whiteSpace: 'normal',
     },
-    '& .SolarOptionRow-control, & .SolarOptionRow-toggle': {
+    '& .SolarOptionRow--control, & .SolarOptionRow--toggle': {
       flexShrink: '0',
     },
   },
@@ -60,7 +60,7 @@ export const solarOptionRowStyles = {
     paddingBottom: 'var(--solar-inset-sm)',
     paddingLeft: 'var(--solar-inset-none)',
     width: '100%',
-    '& .SolarOptionRow-text': {
+    '& .SolarOptionRow--text': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -76,7 +76,7 @@ export const solarOptionRowStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarOptionRow-label': {
+    '& .SolarOptionRow--label': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',

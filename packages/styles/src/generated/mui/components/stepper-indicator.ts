@@ -56,12 +56,12 @@ export const solarStepperIndicatorStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '24px',
     height: '24px',
-    '& .SolarStepperIndicator-iconCheck': {
+    '& .SolarStepperIndicator--iconCheck': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-inverse)',
     },
-    '& .SolarStepperIndicator-number': {
+    '& .SolarStepperIndicator--number': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-600)',
       fontSize: 'var(--solar-type-size-body-sm)',
@@ -69,7 +69,7 @@ export const solarStepperIndicatorStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarStepperIndicator-icon': {
+    '& .SolarStepperIndicator--icon': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-600)',
       fontSize: 'var(--solar-type-size-body-sm)',
@@ -81,7 +81,7 @@ export const solarStepperIndicatorStyles = {
   sizes: {},
   appearances: {
     'status=active': {
-      '& .SolarStepperIndicator-number': {
+      '& .SolarStepperIndicator--number': {
         color: 'var(--solar-color-text-inverse)',
       },
     },
@@ -90,7 +90,7 @@ export const solarStepperIndicatorStyles = {
       borderColor: 'var(--solar-color-border-medium)',
       borderWidth: 'var(--solar-border-default)',
       borderStyle: 'solid',
-      '& .SolarStepperIndicator-number': {
+      '& .SolarStepperIndicator--number': {
         color: 'var(--solar-color-text-secondary)',
       },
     },
@@ -99,7 +99,7 @@ export const solarStepperIndicatorStyles = {
       borderColor: 'var(--solar-color-border-medium)',
       borderWidth: 'var(--solar-border-default)',
       borderStyle: 'solid',
-      '& .SolarStepperIndicator-icon': {
+      '& .SolarStepperIndicator--icon': {
         color: 'var(--solar-color-icon-inverse)',
       },
     },

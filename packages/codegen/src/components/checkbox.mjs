@@ -7,7 +7,7 @@
  * helpers as MUI's icons; drawn and pressable in Flutter, announced as a checkbox.
  */
 
-import { drawnFlutter, drawnResets, treeOf } from '../shells/drawn.mjs';
+import { drawnFlutter, drawnResets, treeConsts } from '../shells/drawn.mjs';
 import { targetInput } from '../shells/target.mjs';
 
 const requireLayers = (spec) => {
@@ -75,7 +75,7 @@ import {
 import { drawChildren } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 /** The tick or dash, as MUI's icon: MUI hands the icon a size, which the marks do not take. */
 function Marks({ children }: { children: ReactNode; fontSize?: unknown }) {
@@ -114,7 +114,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
       <Marks>
         {drawChildren('root', {
           prefix: 'SolarCheckbox',
-          tree: TREE,
+          tree: TREE, slots: SLOTS,
           parts: solarCheckboxCompose(look, disabled ? 'disabled' : 'default'),
         })}
       </Marks>

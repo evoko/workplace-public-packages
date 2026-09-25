@@ -94,7 +94,7 @@ export default {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
         },
-        [`& .${P}-body`]: { minWidth: '0' },
+        [`& .${P}--body`]: { minWidth: '0' },
         [`& .${P}-action`]: { flexShrink: '0' },
       },
     }),

@@ -67,7 +67,7 @@ export const solarStepStyles = {
     paddingRight: 'var(--solar-inset-none)',
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-none)',
-    '& .SolarStep-step': {
+    '& .SolarStep--step': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -76,7 +76,7 @@ export const solarStepStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarStep-label': {
+    '& .SolarStep--label': {
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
       fontSize: 'var(--solar-type-size-label-sm)',
@@ -84,7 +84,7 @@ export const solarStepStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarStep-line': {
+    '& .SolarStep--line': {
       borderRadius: 'var(--solar-radius-control)',
       borderStyle: 'none',
       width: '100%',
@@ -94,7 +94,7 @@ export const solarStepStyles = {
   sizes: {},
   appearances: {
     'status=error, type=round': {
-      '& .SolarStep-step': {
+      '& .SolarStep--step': {
         color: 'var(--solar-color-text-feedback-danger)',
       },
     },
@@ -103,10 +103,10 @@ export const solarStepStyles = {
       alignItems: 'flex-start',
       gap: 'var(--solar-stack-xs)',
       width: '100%',
-      '& .SolarStep-label': {
+      '& .SolarStep--label': {
         color: 'var(--solar-color-text-feedback-danger)',
       },
-      '& .SolarStep-line': {
+      '& .SolarStep--line': {
         backgroundColor: 'var(--solar-color-surface-feedback-danger-strong)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -117,10 +117,10 @@ export const solarStepStyles = {
       alignItems: 'flex-start',
       gap: 'var(--solar-stack-xs)',
       width: '100%',
-      '& .SolarStep-label': {
+      '& .SolarStep--label': {
         color: 'var(--solar-color-text-primary)',
       },
-      '& .SolarStep-line': {
+      '& .SolarStep--line': {
         backgroundColor: 'var(--solar-color-surface-inverse)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -132,10 +132,10 @@ export const solarStepStyles = {
       alignItems: 'flex-start',
       gap: 'var(--solar-stack-xs)',
       width: '100%',
-      '& .SolarStep-label': {
+      '& .SolarStep--label': {
         color: 'var(--solar-color-text-primary)',
       },
-      '& .SolarStep-line': {
+      '& .SolarStep--line': {
         backgroundColor: 'var(--solar-color-surface-inverse)',
         borderColor: 'transparent',
         boxShadow: 'none',
@@ -147,10 +147,10 @@ export const solarStepStyles = {
       alignItems: 'flex-start',
       gap: 'var(--solar-stack-xs)',
       width: '100%',
-      '& .SolarStep-label': {
+      '& .SolarStep--label': {
         color: 'var(--solar-color-text-tertiary)',
       },
-      '& .SolarStep-line': {
+      '& .SolarStep--line': {
         backgroundColor: 'var(--solar-color-surface-muted)',
         borderColor: 'transparent',
         boxShadow: 'none',

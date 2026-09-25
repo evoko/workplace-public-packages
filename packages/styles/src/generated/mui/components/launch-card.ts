@@ -17,7 +17,7 @@ export const solarLaunchCardStyles = {
       display: 'flex',
       boxSizing: 'border-box',
     },
-    '& .SolarLaunchCard-text': {
+    '& .SolarLaunchCard--text': {
       whiteSpace: 'nowrap',
     },
     '& .SolarLaunchCard-glyph': {
@@ -128,7 +128,7 @@ export const solarLaunchCardStyles = {
       right: 'calc(16px - var(--solar-placed-right, 0px))',
       top: 'calc(16px - var(--solar-placed-top, 0px))',
     },
-    '& .SolarLaunchCard-content': {
+    '& .SolarLaunchCard--content': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -144,7 +144,7 @@ export const solarLaunchCardStyles = {
       paddingLeft: 'var(--solar-stack-md)',
       width: '100%',
     },
-    '& .SolarLaunchCard-text': {
+    '& .SolarLaunchCard--text': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -160,7 +160,7 @@ export const solarLaunchCardStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarLaunchCard-headline': {
+    '& .SolarLaunchCard--headline': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',

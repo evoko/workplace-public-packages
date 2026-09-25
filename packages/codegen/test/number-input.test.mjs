@@ -47,7 +47,7 @@ describe('the Number Input IR', () => {
   it('is focused as the InputBase inside its field is', () => {
     const { styles } = renderMuiComponent(spec, tokens);
     expect(Object.keys(styles.appearances['stepper=inline'])).toContain(
-      '&:has(.SolarNumberInput-field .Mui-focused)',
+      '&:has(.SolarNumberInput--field .Mui-focused)',
     );
   });
 });

@@ -7,7 +7,7 @@
  * input, and an obscured TextField in Flutter, with SOLAR's eye after it to show or hide them.
  */
 
-import { treeOf } from '../shells/drawn.mjs';
+import { treeOf, treeConsts } from '../shells/drawn.mjs';
 import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
 import { targetArea } from '../shells/target.mjs';
 
@@ -43,9 +43,9 @@ export default {
       more: {
         // The eye is a button of the icon's size, its ink the recipe's, with a 44 × 44 target
         // (shells/target.mjs).
-        ...targetArea(`& button.${P}-icon`),
-        [`& button.${P}-icon`]: {
-          ...targetArea(`& button.${P}-icon`)[`& button.${P}-icon`],
+        ...targetArea(`& button.${P}--icon`),
+        [`& button.${P}--icon`]: {
+          ...targetArea(`& button.${P}--icon`)[`& button.${P}--icon`],
           appearance: 'none',
           background: 'none',
           border: '0',
@@ -54,7 +54,7 @@ export default {
           cursor: 'pointer',
           flexShrink: '0',
         },
-        [`& button.${P}-icon > svg`]: {
+        [`& button.${P}--icon > svg`]: {
           display: 'block',
           width: '100%',
           height: '100%',
@@ -107,7 +107,7 @@ import {
 import { drawChildren, drawLayer, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface PasswordInputProps
   extends SolarPasswordInputProps,
@@ -174,7 +174,7 @@ export const PasswordInput = forwardRef<HTMLDivElement, PasswordInputProps>(
     const parts = solarPasswordInputCompose(look);
     const drawing: LayerDrawing = {
       prefix: '${P}',
-      tree: TREE,
+      tree: TREE, slots: SLOTS,
       // A part left empty is not drawn.
       parts: {
         ...parts,
@@ -222,7 +222,7 @@ export const PasswordInput = forwardRef<HTMLDivElement, PasswordInputProps>(
             endAdornment={drawLayer('icon', drawing)}
             inputProps={{
               ...inputProps,
-              className: ['${P}-maskedValue', inputProps?.className].filter(Boolean).join(' '),
+              className: ['${P}--maskedValue', inputProps?.className].filter(Boolean).join(' '),
               'aria-describedby': helper != null ? \`\${id}-helper\` : undefined,
             }}
           />

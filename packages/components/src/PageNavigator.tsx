@@ -28,6 +28,7 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['prevButton', 'pageIndicator', 'nextButton'],
 };
+const SLOTS: Record<string, string> = { pageIndicator: 'pageIndicator' };
 
 export interface PageNavigatorProps extends Omit<
   BoxProps,
@@ -78,6 +79,7 @@ export const PageNavigator = forwardRef<HTMLDivElement, PageNavigatorProps>(
         {drawChildren('root', {
           prefix: 'SolarPageNavigator',
           tree: TREE,
+          slots: SLOTS,
           parts,
           // Where the reader is, announced as it changes.
           text: {

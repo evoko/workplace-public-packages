@@ -19,10 +19,10 @@ describe('the SOLAR GlobalSearch shell', () => {
   });
 
   it('shows its shortcut in a Kbd, unread, only where the app binds one', () => {
-    expect(drawn(trigger(), 'SolarGlobalSearch-kbd')).toBe(false);
+    expect(drawn(trigger(), 'SolarGlobalSearch--kbd')).toBe(false);
     const html = trigger({ shortcut: '⌘K' });
     expect(html).toMatch(
-      /SolarGlobalSearch-kbd[^>]*aria-hidden="true">(<style[^<]*<\/style>)?<kbd/,
+      /SolarGlobalSearch--kbd[^>]*aria-hidden="true">(<style[^<]*<\/style>)?<kbd/,
     );
     expect(html).toContain('⌘K');
   });

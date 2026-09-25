@@ -52,7 +52,7 @@ describe('the Link recipe', () => {
     const { styles } = renderMuiComponent(spec, tokens);
     expect(styles.reset['&.Mui-focusVisible']).toEqual({ outline: 'none' });
     expect(
-      styles.appearances.default['&:hover']['& .SolarLink-label'],
+      styles.appearances.default['&:hover']['& .SolarLink--label'],
     ).toMatchObject({ color: 'var(--solar-color-text-link-hover)' });
   });
 });

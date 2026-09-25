@@ -8,7 +8,7 @@
  * follows the value (the overlay's `derive`), which the shells track.
  */
 
-import { treeOf } from '../shells/drawn.mjs';
+import { treeOf, treeConsts } from '../shells/drawn.mjs';
 import { fieldFlutter, fieldResets, fieldStates } from '../shells/field.mjs';
 
 const P = 'SolarTextInput';
@@ -92,7 +92,7 @@ import {
 import { drawChildren, drawLayer, type LayerDrawing } from './internal/layers.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface TextInputProps
   extends SolarTextInputProps,
@@ -158,7 +158,7 @@ export const TextInput = forwardRef<HTMLDivElement, TextInputProps>(function Tex
   const parts = solarTextInputCompose(look);
   const drawing: LayerDrawing = {
     prefix: '${P}',
-    tree: TREE,
+    tree: TREE, slots: SLOTS,
     // A part left empty is not drawn.
     parts: {
       ...parts,
@@ -194,7 +194,7 @@ export const TextInput = forwardRef<HTMLDivElement, TextInputProps>(function Tex
           endAdornment={drawLayer('trailingIcon', drawing)}
           inputProps={{
             ...inputProps,
-            className: ['${P}-fieldLabel', inputProps?.className].filter(Boolean).join(' '),
+            className: ['${P}--fieldLabel', inputProps?.className].filter(Boolean).join(' '),
             'aria-describedby': helper != null ? \`\${id}-helper\` : undefined,
           }}
         />

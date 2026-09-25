@@ -10,7 +10,7 @@
  */
 
 import { dartField, dartParam } from '../shells/helpers.mjs';
-import { keyPrefixOf, treeOf, wrapDoc } from '../shells/drawn.mjs';
+import { keyPrefixOf, treeOf, wrapDoc, treeConsts } from '../shells/drawn.mjs';
 import { fieldResets } from '../shells/field.mjs';
 
 const P = 'SolarTokenInput';
@@ -45,18 +45,18 @@ export default {
         // InputBase's own box around the input takes no part in the row's layout.
         [`& .${P}-words`]: { display: 'contents' },
         // The input takes the room the tokens leave, never less than a few characters.
-        [`& .${P}-addItems.MuiInputBase-input`]: { minWidth: '4ch' },
+        [`& .${P}--addItems.MuiInputBase-input`]: { minWidth: '4ch' },
         // The tokens keep their size; the row cuts off what does not fit (maxVisible counts it).
-        [`& .${P}-tags`]: { minWidth: '0', overflow: 'hidden' },
-        [`& .${P}-tags > *`]: { flexShrink: '0' },
+        [`& .${P}--tags`]: { minWidth: '0', overflow: 'hidden' },
+        [`& .${P}--tags > *`]: { flexShrink: '0' },
       },
     }),
     // Hovered as the field is, and focused as the InputBase in it is; active (typing), filled,
     // read-only, in error and disabled by the shell's classes.
     states: {
       default: null,
-      hover: `&:has(.${P}-field:hover)`,
-      focus: `&:has(.${P}-field .Mui-focused)`,
+      hover: `&:has(.${P}--field:hover)`,
+      focus: `&:has(.${P}--field .Mui-focused)`,
       active: `&.${P}-active`,
       filled: `&.${P}-filled`,
       readonly: `&.${P}-readonly`,
@@ -107,7 +107,7 @@ import { drawChildren } from './internal/layers.js';
 import { Tag, type TagProps } from './Tag.js';
 
 /** Each layer's children, as Figma nests them. */
-const TREE: Record<string, string[]> = ${JSON.stringify(treeOf(spec))};
+${treeConsts(spec)}
 
 export interface TokenInputProps
   extends SolarTokenInputProps,
@@ -210,7 +210,7 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(function T
     >
       {drawChildren('root', {
         prefix: '${P}',
-        tree: TREE,
+        tree: TREE, slots: SLOTS,
         // A part left empty is not drawn; the count shows where entries are left out.
         parts: {
           ...parts,
@@ -246,7 +246,7 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(function T
                 inputProps={{
                   'aria-label': typeof label === 'string' ? label : undefined,
                   ...inputProps,
-                  className: ['${P}-addItems', inputProps?.className].filter(Boolean).join(' '),
+                  className: ['${P}--addItems', inputProps?.className].filter(Boolean).join(' '),
                   'aria-describedby': helper != null ? \`\${id}-helper\` : undefined,
                   onKeyDown: (event) => {
                     inputProps?.onKeyDown?.(event);

@@ -28,6 +28,7 @@ const TREE: Record<string, string[]> = {
   frame3: ['frame3InnerPath'],
   container: ['containerInnerPath', 'icon', 'containerUnion'],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface StatusIndicatorProps
   extends
@@ -62,6 +63,7 @@ export const StatusIndicator = forwardRef<
       {drawChildren('root', {
         prefix: 'SolarStatusIndicator',
         tree: TREE,
+        slots: SLOTS,
         parts,
       })}
     </Box>

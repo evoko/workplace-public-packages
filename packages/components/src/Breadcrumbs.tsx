@@ -40,6 +40,19 @@ const CHEVRONS = [
   'iconChevronRight3',
   'iconChevronRight4',
 ];
+// Each layer's class, public or internal (the codegen's util/classes.mjs): an item's layer is its
+// position's, chosen as the trail is drawn.
+const CLASS: Record<string, string> = {
+  item1: 'SolarBreadcrumbs--item1',
+  iconChevronRight: 'SolarBreadcrumbs--iconChevronRight',
+  item2: 'SolarBreadcrumbs--item2',
+  iconChevronRight2: 'SolarBreadcrumbs--iconChevronRight2',
+  current: 'SolarBreadcrumbs--current',
+  item3: 'SolarBreadcrumbs--item3',
+  iconChevronRight3: 'SolarBreadcrumbs--iconChevronRight3',
+  item4: 'SolarBreadcrumbs--item4',
+  iconChevronRight4: 'SolarBreadcrumbs--iconChevronRight4',
+};
 
 export interface BreadcrumbsProps extends Omit<BoxProps, 'children' | 'ref'> {
   /** The trail: BreadcrumbItems, the page's ancestors from the top, and the page itself last. */
@@ -97,12 +110,18 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
               {i > 0 ? (
                 <li aria-hidden>
                   <IconChevronRight
-                    className={`SolarBreadcrumbs-${CHEVRONS[Math.min(i - 1, CHEVRONS.length - 1)]} SolarBreadcrumbs-drawnIcon`}
+                    className={`${CLASS[CHEVRONS[Math.min(i - 1, CHEVRONS.length - 1)]]} SolarBreadcrumbs-drawnIcon`}
                   />
                 </li>
               ) : null}
               <li
-                className={`SolarBreadcrumbs-${i === last ? 'current' : ITEMS[Math.min(i, ITEMS.length - 1)]}`}
+                className={
+                  CLASS[
+                    i === last
+                      ? 'current'
+                      : ITEMS[Math.min(i, ITEMS.length - 1)]
+                  ]
+                }
               >
                 {i === last ? cloneElement(item, { type: 'current' }) : item}
               </li>

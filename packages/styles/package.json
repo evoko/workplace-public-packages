@@ -29,7 +29,8 @@
     },
     "./tokens.css": "./dist/tokens.css",
     "./tailwind.css": "./dist/tailwind.css",
-    "./fonts.css": "./dist/fonts.css"
+    "./fonts.css": "./dist/fonts.css",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"

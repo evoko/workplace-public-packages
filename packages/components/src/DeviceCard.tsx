@@ -46,6 +46,13 @@ const TREE: Record<string, string[]> = {
   serialLocation: ['devices'],
   row: ['rowName', 'rowCount'],
 };
+const SLOTS: Record<string, string> = {
+  button: 'button',
+  contentName: 'name',
+  details: 'details',
+  contentCount: 'count',
+  devices: 'devices',
+};
 
 export interface DeviceCardProps
   extends
@@ -192,6 +199,7 @@ export const DeviceCard = forwardRef<HTMLDivElement, DeviceCardProps>(
           {drawChildren('root', {
             prefix: 'SolarDeviceCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: {
               headlineContentName: titled,

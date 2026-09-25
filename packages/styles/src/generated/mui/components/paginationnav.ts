@@ -39,12 +39,12 @@ export const solarPaginationNavStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarPaginationNav-icon > svg': {
+    '& .SolarPaginationNav--icon > svg': {
       display: 'block',
       width: '100%',
       height: '100%',
     },
-    '&:dir(rtl) .SolarPaginationNav-icon': {
+    '&:dir(rtl) .SolarPaginationNav--icon': {
       transform: 'scaleX(-1)',
     },
   },
@@ -64,7 +64,7 @@ export const solarPaginationNavStyles = {
     paddingLeft: 'var(--solar-inset-none)',
     width: '24px',
     height: '24px',
-    '& .SolarPaginationNav-icon': {
+    '& .SolarPaginationNav--icon': {
       width: 'var(--solar-icon-sm)',
       height: 'var(--solar-icon-sm)',
       color: 'var(--solar-color-icon-primary)',
@@ -84,7 +84,7 @@ export const solarPaginationNavStyles = {
         backgroundColor: 'transparent',
       },
       '&.Mui-disabled': {
-        '& .SolarPaginationNav-icon': {
+        '& .SolarPaginationNav--icon': {
           color: 'var(--solar-color-icon-disabled)',
         },
       },
@@ -101,7 +101,7 @@ export const solarPaginationNavStyles = {
         backgroundColor: 'transparent',
       },
       '&.Mui-disabled': {
-        '& .SolarPaginationNav-icon': {
+        '& .SolarPaginationNav--icon': {
           color: 'var(--solar-color-icon-disabled)',
         },
       },

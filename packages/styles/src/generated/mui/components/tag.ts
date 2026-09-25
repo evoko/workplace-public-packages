@@ -48,13 +48,13 @@ export const solarTagStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarTag-icon > svg, & .SolarTag-iconNone > svg, & .SolarTag-iconClose > svg':
+    '& .SolarTag-icon > svg, & .SolarTag--iconNone > svg, & .SolarTag--iconClose > svg':
       {
         display: 'block',
         width: '100%',
         height: '100%',
       },
-    '& button.SolarTag-iconClose': {
+    '& button.SolarTag--iconClose': {
       appearance: 'none',
       border: '0',
       padding: '0',
@@ -62,7 +62,7 @@ export const solarTagStyles = {
       background: 'none',
       cursor: 'pointer',
     },
-    '& button.SolarTag-iconClose::after': {
+    '& button.SolarTag--iconClose::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -101,11 +101,11 @@ export const solarTagStyles = {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
     },
-    '& .SolarTag-iconNone': {
+    '& .SolarTag--iconNone': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
     },
-    '& .SolarTag-iconClose': {
+    '& .SolarTag--iconClose': {
       width: 'var(--solar-icon-xs)',
       height: 'var(--solar-icon-xs)',
     },
@@ -113,7 +113,7 @@ export const solarTagStyles = {
   sizes: {},
   appearances: {
     'status=success, type=status, invert=true': {
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -141,14 +141,14 @@ export const solarTagStyles = {
       '& .SolarTag-icon': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
     },
     'status=success, type=icon+text, invert=false': {
       gap: 'var(--solar-inset-2xs)',
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-success)',
       },
     },
@@ -159,10 +159,10 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -171,7 +171,7 @@ export const solarTagStyles = {
       gap: 'var(--solar-inset-2xs)',
       paddingRight: 'var(--solar-inset-xs)',
       paddingLeft: 'var(--solar-inset-sm)',
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         color: 'var(--solar-color-icon-feedback-success)',
       },
     },
@@ -184,7 +184,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
@@ -202,7 +202,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -215,7 +215,7 @@ export const solarTagStyles = {
       },
     },
     'status=neutral, type=status, invert=true': {
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -245,7 +245,7 @@ export const solarTagStyles = {
       '& .SolarTag-icon': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -257,7 +257,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-neutral)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-neutral)',
       },
     },
@@ -268,10 +268,10 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -285,7 +285,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-neutral)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         color: 'var(--solar-color-icon-feedback-neutral)',
       },
     },
@@ -298,7 +298,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
@@ -321,7 +321,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -334,7 +334,7 @@ export const solarTagStyles = {
       },
     },
     'status=warning, type=status, invert=true': {
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -364,7 +364,7 @@ export const solarTagStyles = {
       '& .SolarTag-icon': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -376,7 +376,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-warning)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-warning)',
       },
     },
@@ -387,10 +387,10 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -404,7 +404,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-warning)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         color: 'var(--solar-color-icon-feedback-warning)',
       },
     },
@@ -417,7 +417,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
@@ -440,7 +440,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -453,7 +453,7 @@ export const solarTagStyles = {
       },
     },
     'status=danger, type=status, invert=true': {
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -483,7 +483,7 @@ export const solarTagStyles = {
       '& .SolarTag-icon': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -495,7 +495,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-danger)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-danger)',
       },
     },
@@ -506,10 +506,10 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -523,7 +523,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-danger)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         color: 'var(--solar-color-icon-feedback-danger)',
       },
     },
@@ -536,7 +536,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
@@ -559,7 +559,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -572,7 +572,7 @@ export const solarTagStyles = {
       },
     },
     'status=info, type=status, invert=true': {
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -602,7 +602,7 @@ export const solarTagStyles = {
       '& .SolarTag-icon': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -614,7 +614,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-info)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-feedback-info)',
       },
     },
@@ -625,10 +625,10 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconNone': {
+      '& .SolarTag--iconNone': {
         color: 'var(--solar-color-icon-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },
@@ -642,7 +642,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-feedback-info)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         color: 'var(--solar-color-icon-feedback-info)',
       },
     },
@@ -655,7 +655,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
         color: 'var(--solar-color-icon-inverse)',
@@ -678,7 +678,7 @@ export const solarTagStyles = {
       '& .SolarTag-label': {
         color: 'var(--solar-color-text-inverse)',
       },
-      '& .SolarTag-iconClose': {
+      '& .SolarTag--iconClose': {
         width: 'var(--solar-icon-sm)',
         height: 'var(--solar-icon-sm)',
       },

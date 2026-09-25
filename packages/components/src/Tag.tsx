@@ -34,6 +34,7 @@ import {
 const TREE: Record<string, string[]> = {
   root: ['statusIndicator', 'label', 'icon', 'iconNone', 'iconClose'],
 };
+const SLOTS: Record<string, string> = { label: 'label', icon: 'icon' };
 
 /** Figma draws the status dot on a tag that is not inverted alone. */
 export type TagLook =
@@ -98,6 +99,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
       {drawChildren('root', {
         prefix: 'SolarTag',
         tree: TREE,
+        slots: SLOTS,
         parts,
         text: { label: children },
         // The dot is a StatusIndicator, in the type and size the recipe names for the status, in

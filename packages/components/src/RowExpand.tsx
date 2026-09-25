@@ -27,6 +27,7 @@ import { drawChildren } from './internal/layers.js';
 const TREE: Record<string, string[]> = {
   root: ['iconChevronRight', 'iconChevronDown', 'container', 'container2'],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface RowExpandProps
   extends
@@ -48,6 +49,7 @@ export const RowExpand = forwardRef<HTMLSpanElement, RowExpandProps>(
         {drawChildren('root', {
           prefix: 'SolarRowExpand',
           tree: TREE,
+          slots: SLOTS,
           parts,
           icons: {
             iconChevronRight: <IconChevronRight />,

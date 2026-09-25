@@ -30,6 +30,7 @@ const TREE: Record<string, string[]> = {
   col1: ['col1Dot', 'col1Dot2', 'col1Dot3'],
   col2: ['col2Dot', 'col2Dot2', 'col2Dot3'],
 };
+const SLOTS: Record<string, string> = {};
 
 export interface DragHandleProps
   extends
@@ -66,6 +67,7 @@ export const DragHandle = forwardRef<HTMLSpanElement, DragHandleProps>(
         {drawChildren('root', {
           prefix: 'SolarDragHandle',
           tree: TREE,
+          slots: SLOTS,
           parts,
         })}
       </Box>

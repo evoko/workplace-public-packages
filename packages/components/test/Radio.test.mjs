@@ -5,7 +5,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import { Radio } from '../src/Radio.tsx';
 
 const inputs = (html) => html.match(/<input[^>]*>/g);
-const dot = /<svg[^>]*SolarRadio-icon/g;
+const dot = /<svg[^>]*SolarRadio--icon/g;
 
 describe('the SOLAR Radio shell', () => {
   it('is checked by its group’s value, and named by it', () => {

@@ -22,7 +22,7 @@ describe('the SOLAR Password Input shell', () => {
   it('shows and hides its words with SOLAR’s eye, a toggle for the input', () => {
     const html = field({ id: 'pw' });
     expect(html).toMatch(
-      /<button type="button" aria-label="Show password" aria-pressed="false" aria-controls="pw" class="[^"]*SolarPasswordInput-icon/,
+      /<button type="button" aria-label="Show password" aria-pressed="false" aria-controls="pw" class="[^"]*SolarPasswordInput--icon/,
     );
   });
 

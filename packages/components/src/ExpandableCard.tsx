@@ -34,6 +34,11 @@ const TREE: Record<string, string[]> = {
   header: ['title', 'iconChevronDown', 'iconChevronUp'],
   content: ['description'],
 };
+const SLOTS: Record<string, string> = {
+  content: 'content',
+  title: 'title',
+  description: 'description',
+};
 
 export interface ExpandableCardProps
   extends
@@ -98,6 +103,7 @@ export const ExpandableCard = forwardRef<HTMLDivElement, ExpandableCardProps>(
         {drawChildren('root', {
           prefix: 'SolarExpandableCard',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { title, description },
           icons: {

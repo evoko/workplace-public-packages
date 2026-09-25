@@ -44,7 +44,7 @@ describe('the Node End IR', () => {
 describe('the Node End recipe', () => {
   it('draws the halo translucent, and Flutter reads the opacity as a number', () => {
     const { styles } = renderMuiComponent(spec, tokens);
-    expect(styles.root['& .SolarNodeEnd-halo']).toMatchObject({
+    expect(styles.root['& .SolarNodeEnd--halo']).toMatchObject({
       opacity: '0.2',
       borderRadius: 'var(--solar-radius-pill)',
     });

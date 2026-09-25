@@ -68,7 +68,7 @@ export const solarToggleStyles = {
     '--solar-placed-top': 'var(--solar-border-default)',
     width: '32px',
     height: '18px',
-    '& .SolarToggle-thumb': {
+    '& .SolarToggle--thumb': {
       backgroundColor: 'var(--solar-color-action-primary-icon-default)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -88,19 +88,19 @@ export const solarToggleStyles = {
     'selected=false': {
       '&:hover, .SolarStatesScope:hover &': {
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarToggle-thumb': {
+        '& .SolarToggle--thumb': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
       '&:has(.Mui-focusVisible)': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         borderColor: 'var(--solar-color-border-subtle)',
-        '& .SolarToggle-thumb': {
+        '& .SolarToggle--thumb': {
           borderColor: 'var(--solar-color-border-subtle)',
         },
       },
       '&.SolarToggle-disabled': {
-        '& .SolarToggle-thumb': {
+        '& .SolarToggle--thumb': {
           backgroundColor: 'var(--solar-color-action-primary-icon-disabled)',
           borderColor: 'transparent',
           borderStyle: 'none',
@@ -112,7 +112,7 @@ export const solarToggleStyles = {
       '&:hover, .SolarStatesScope:hover &': {
         backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
         borderColor: 'var(--solar-color-border-medium)',
-        '& .SolarToggle-thumb': {
+        '& .SolarToggle--thumb': {
           borderColor: 'var(--solar-color-border-medium)',
           position: 'absolute',
           left: 'calc(17px - var(--solar-placed-left, 0px))',
@@ -122,13 +122,13 @@ export const solarToggleStyles = {
         boxShadow: 'var(--solar-shadow-focus-default)',
         backgroundColor: 'var(--solar-color-action-primary-bg-default)',
         borderColor: 'var(--solar-color-border-subtle)',
-        '& .SolarToggle-thumb': {
+        '& .SolarToggle--thumb': {
           borderColor: 'var(--solar-color-border-subtle)',
         },
       },
       '&.SolarToggle-disabled': {
         backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
-        '& .SolarToggle-thumb': {
+        '& .SolarToggle--thumb': {
           backgroundColor: 'var(--solar-color-action-primary-icon-disabled)',
           borderColor: 'transparent',
           borderStyle: 'none',
@@ -136,7 +136,7 @@ export const solarToggleStyles = {
           left: 'calc(17px - var(--solar-placed-left, 0px))',
         },
       },
-      '& .SolarToggle-thumb': {
+      '& .SolarToggle--thumb': {
         position: 'absolute',
         left: 'calc(17px - var(--solar-placed-left, 0px))',
       },

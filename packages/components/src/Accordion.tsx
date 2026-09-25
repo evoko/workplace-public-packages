@@ -33,6 +33,11 @@ const TREE: Record<string, string[]> = {
   root: ['title', 'iconChevronDown', 'accordion', 'content'],
   content: ['description'],
 };
+const SLOTS: Record<string, string> = {
+  content: 'content',
+  title: 'title',
+  description: 'description',
+};
 
 export interface AccordionProps
   extends
@@ -90,6 +95,7 @@ export const Accordion = forwardRef<HTMLElement, AccordionProps>(
     const heading = drawChildren('root', {
       prefix: 'SolarAccordion',
       tree: TREE,
+      slots: SLOTS,
       parts: solarAccordionCompose({ disabled, expanded: false }),
       text: { title },
       icons: { iconChevronDown: <IconChevronDown /> },
@@ -136,6 +142,7 @@ export const Accordion = forwardRef<HTMLElement, AccordionProps>(
         {drawChildren('root', {
           prefix: 'SolarAccordion',
           tree: TREE,
+          slots: SLOTS,
           parts,
           text: { description },
           render: {

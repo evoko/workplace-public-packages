@@ -18,6 +18,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DESCRIPTORS, fileOfDescriptor } from '../components/index.mjs';
 import { packagesDir } from '../util/paths.mjs';
+import { byPrefix, withLayerClasses } from '../util/classes.mjs';
 
 export const componentsSrc = join(packagesDir, 'components', 'src');
 export const storiesDir = join(packagesDir, 'components', 'stories');
@@ -115,57 +116,65 @@ export function renderShells(
   } = {},
 ) {
   const byName = Object.fromEntries(descriptors.map((d) => [d.name, d]));
-  return specs.flatMap((spec) => {
-    const name = spec.component;
-    const d = byName[name];
-    if (!d) throw new Error(`no descriptor for ${name}`);
-    const header = headerOf(name);
-    const story = {
-      path: join(stories, storyFileOf(name)),
-      text: `${header}\n${storyTemplate(name)}`,
-    };
-    const react = join(src, shellFileOf(name));
-    const widget = join(flutter, flutterFileOf(name));
-    // Checked as another component's state (Autocomplete Open, an open Autocomplete): no shells,
-    // but its story.
-    if (d.checkedAs) {
-      if (d.templates || d.owned)
-        throw new Error(
-          `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, so it has no shells, templates or owned files`,
-        );
-      if (!byName[d.checkedAs])
-        throw new Error(
-          `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, which is no component`,
-        );
-      return [story];
-    }
-    if (d.owned) {
-      if (d.templates)
-        throw new Error(
-          `src/components/${fileOfDescriptor(name)}: ${name} is owned, so its shells are files, not templates; delete its templates`,
-        );
-      for (const path of [react, widget]) {
-        if (!exists(path))
+  // Each layer's class as its own, public or internal, wherever a template names it by the layer.
+  const classes = byPrefix(specs);
+  const own = (shell) =>
+    shell.path.endsWith('.dart')
+      ? shell
+      : { ...shell, text: withLayerClasses(shell.text, classes) };
+  return specs
+    .flatMap((spec) => {
+      const name = spec.component;
+      const d = byName[name];
+      if (!d) throw new Error(`no descriptor for ${name}`);
+      const header = headerOf(name);
+      const story = {
+        path: join(stories, storyFileOf(name)),
+        text: `${header}\n${storyTemplate(name)}`,
+      };
+      const react = join(src, shellFileOf(name));
+      const widget = join(flutter, flutterFileOf(name));
+      // Checked as another component's state (Autocomplete Open, an open Autocomplete): no shells,
+      // but its story.
+      if (d.checkedAs) {
+        if (d.templates || d.owned)
           throw new Error(
-            `${name} is owned, but its shell ${path} does not exist`,
+            `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, so it has no shells, templates or owned files`,
           );
-        if (isGenerated(read(path)))
+        if (!byName[d.checkedAs])
           throw new Error(
-            `${name} is owned, but ${path} still starts with the generated header; remove the header to take it over`,
+            `src/components/${fileOfDescriptor(name)}: ${name} is checked as ${d.checkedAs}, which is no component`,
           );
+        return [story];
       }
-      return [story];
-    }
-    if (!d.templates?.react || !d.templates?.flutter)
-      throw new Error(
-        `src/components/${fileOfDescriptor(name)}: ${name} needs both shell templates, react and flutter, or owned: true`,
-      );
-    return [
-      { path: react, text: `${header}\n${d.templates.react(spec)}` },
-      { path: widget, text: `${header}\n${d.templates.flutter(spec)}` },
-      story,
-    ];
-  });
+      if (d.owned) {
+        if (d.templates)
+          throw new Error(
+            `src/components/${fileOfDescriptor(name)}: ${name} is owned, so its shells are files, not templates; delete its templates`,
+          );
+        for (const path of [react, widget]) {
+          if (!exists(path))
+            throw new Error(
+              `${name} is owned, but its shell ${path} does not exist`,
+            );
+          if (isGenerated(read(path)))
+            throw new Error(
+              `${name} is owned, but ${path} still starts with the generated header; remove the header to take it over`,
+            );
+        }
+        return [story];
+      }
+      if (!d.templates?.react || !d.templates?.flutter)
+        throw new Error(
+          `src/components/${fileOfDescriptor(name)}: ${name} needs both shell templates, react and flutter, or owned: true`,
+        );
+      return [
+        { path: react, text: `${header}\n${d.templates.react(spec)}` },
+        { path: widget, text: `${header}\n${d.templates.flutter(spec)}` },
+        story,
+      ];
+    })
+    .map(own);
 }
 
 /**

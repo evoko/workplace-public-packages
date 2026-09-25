@@ -40,11 +40,11 @@ export const solarPageNavButtonStyles = {
       stroke: 'none',
     },
     borderStyle: 'solid',
-    '& .SolarPageNavButton-iconArrowLeft, & .SolarPageNavButton-iconArrowRight':
+    '& .SolarPageNavButton--iconArrowLeft, & .SolarPageNavButton--iconArrowRight':
       {
         flexShrink: '0',
       },
-    '&:dir(rtl) .SolarPageNavButton-iconArrowLeft, &:dir(rtl) .SolarPageNavButton-iconArrowRight':
+    '&:dir(rtl) .SolarPageNavButton--iconArrowLeft, &:dir(rtl) .SolarPageNavButton--iconArrowRight':
       {
         transform: 'scaleX(-1)',
       },
@@ -77,12 +77,12 @@ export const solarPageNavButtonStyles = {
     paddingBottom: 'var(--solar-inset-none)',
     paddingLeft: 'var(--solar-inset-sm)',
     height: '36px',
-    '& .SolarPageNavButton-iconArrowLeft': {
+    '& .SolarPageNavButton--iconArrowLeft': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-action-secondary-icon-default)',
     },
-    '& .SolarPageNavButton-label': {
+    '& .SolarPageNavButton--label': {
       color: 'var(--solar-color-action-secondary-text-default)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -91,7 +91,7 @@ export const solarPageNavButtonStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarPageNavButton-iconArrowRight': {
+    '& .SolarPageNavButton--iconArrowRight': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
     },
@@ -101,21 +101,21 @@ export const solarPageNavButtonStyles = {
     'direction=prev': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
-        '& .SolarPageNavButton-iconArrowLeft': {
+        '& .SolarPageNavButton--iconArrowLeft': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
         },
       },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
         boxShadow: 'none',
-        '& .SolarPageNavButton-iconArrowLeft': {
+        '& .SolarPageNavButton--iconArrowLeft': {
           color: 'var(--solar-color-action-secondary-icon-active)',
         },
       },
       '&.Mui-focusVisible': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
-        '& .SolarPageNavButton-iconArrowLeft': {
+        '& .SolarPageNavButton--iconArrowLeft': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
@@ -123,10 +123,10 @@ export const solarPageNavButtonStyles = {
         backgroundColor: 'var(--solar-color-action-secondary-bg-disabled)',
         borderColor: 'var(--solar-color-border-disabled)',
         boxShadow: 'none',
-        '& .SolarPageNavButton-iconArrowLeft': {
+        '& .SolarPageNavButton--iconArrowLeft': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
         },
-        '& .SolarPageNavButton-label': {
+        '& .SolarPageNavButton--label': {
           color: 'var(--solar-color-action-secondary-text-disabled)',
         },
       },
@@ -134,21 +134,21 @@ export const solarPageNavButtonStyles = {
     'direction=next': {
       '&:hover': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
-        '& .SolarPageNavButton-iconArrowRight': {
+        '& .SolarPageNavButton--iconArrowRight': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
         },
       },
       '&:active': {
         backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
         boxShadow: 'none',
-        '& .SolarPageNavButton-iconArrowRight': {
+        '& .SolarPageNavButton--iconArrowRight': {
           color: 'var(--solar-color-action-secondary-icon-active)',
         },
       },
       '&.Mui-focusVisible': {
         boxShadow: 'var(--solar-shadow-focus-default)',
         backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
-        '& .SolarPageNavButton-iconArrowRight': {
+        '& .SolarPageNavButton--iconArrowRight': {
           color: 'var(--solar-color-action-secondary-icon-default)',
         },
       },
@@ -156,14 +156,14 @@ export const solarPageNavButtonStyles = {
         backgroundColor: 'var(--solar-color-action-secondary-bg-disabled)',
         borderColor: 'var(--solar-color-border-disabled)',
         boxShadow: 'none',
-        '& .SolarPageNavButton-label': {
+        '& .SolarPageNavButton--label': {
           color: 'var(--solar-color-action-secondary-text-disabled)',
         },
-        '& .SolarPageNavButton-iconArrowRight': {
+        '& .SolarPageNavButton--iconArrowRight': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
         },
       },
-      '& .SolarPageNavButton-iconArrowRight': {
+      '& .SolarPageNavButton--iconArrowRight': {
         color: 'var(--solar-color-action-secondary-icon-default)',
       },
     },

@@ -78,31 +78,31 @@ export const solarListStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarList-listItem': {
+    '& .SolarList--listItem': {
       width: '100%',
     },
-    '& .SolarList-divider': {
+    '& .SolarList--divider': {
       width: '100%',
     },
-    '& .SolarList-listItem2': {
+    '& .SolarList--listItem2': {
       width: '100%',
     },
-    '& .SolarList-divider2': {
+    '& .SolarList--divider2': {
       width: '100%',
     },
-    '& .SolarList-listItem3': {
+    '& .SolarList--listItem3': {
       width: '100%',
     },
-    '& .SolarList-divider3': {
+    '& .SolarList--divider3': {
       width: '100%',
     },
-    '& .SolarList-listItem4': {
+    '& .SolarList--listItem4': {
       width: '100%',
     },
-    '& .SolarList-divider4': {
+    '& .SolarList--divider4': {
       width: '100%',
     },
-    '& .SolarList-listItem5': {
+    '& .SolarList--listItem5': {
       width: '100%',
     },
   },
@@ -115,19 +115,19 @@ export const solarListStyles = {
       '& .SolarList-items': {
         width: '100%',
       },
-      '& .SolarList-listItem': {
+      '& .SolarList--listItem': {
         width: '100%',
       },
-      '& .SolarList-listItem2': {
+      '& .SolarList--listItem2': {
         width: '100%',
       },
-      '& .SolarList-listItem3': {
+      '& .SolarList--listItem3': {
         width: '100%',
       },
-      '& .SolarList-listItem4': {
+      '& .SolarList--listItem4': {
         width: '100%',
       },
-      '& .SolarList-listItem5': {
+      '& .SolarList--listItem5': {
         width: '100%',
       },
     },

@@ -50,6 +50,12 @@ const TREE: Record<string, string[]> = {
   field5: ['placeholder5', 'digit5'],
   field6: ['placeholder6', 'digit6'],
 };
+const SLOTS: Record<string, string> = {
+  label: 'label',
+  mandatory: 'mandatory',
+  helper: 'helper',
+  errorMessage: 'errorMessage',
+};
 
 /** Figma's six cells, in its order: the first takes the hover, the focus and the caret. */
 const CELLS = TREE.cells;
@@ -155,6 +161,7 @@ export const PINInput = forwardRef<HTMLDivElement, PINInputProps>(
     const drawing: LayerDrawing = {
       prefix: 'SolarPINInput',
       tree: TREE,
+      slots: SLOTS,
       parts: {
         ...parts,
         ...Object.fromEntries(

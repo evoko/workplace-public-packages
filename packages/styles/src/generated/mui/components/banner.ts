@@ -97,7 +97,7 @@ export const solarBannerStyles = {
     paddingLeft: 'var(--solar-inset-sm)',
     width: '100%',
     height: '44px',
-    '& .SolarBanner-iconInfo': {
+    '& .SolarBanner--iconInfo': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
@@ -112,7 +112,7 @@ export const solarBannerStyles = {
       textDecoration: 'none',
       width: '100%',
     },
-    '& .SolarBanner-actionGroup': {
+    '& .SolarBanner--actionGroup': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -141,15 +141,15 @@ export const solarBannerStyles = {
       height: 'var(--solar-icon-md)',
       color: 'var(--solar-color-icon-primary)',
     },
-    '& .SolarBanner-iconSuccess': {
+    '& .SolarBanner--iconSuccess': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
     },
-    '& .SolarBanner-iconWarning': {
+    '& .SolarBanner--iconWarning': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
     },
-    '& .SolarBanner-iconDanger': {
+    '& .SolarBanner--iconDanger': {
       width: 'var(--solar-icon-md)',
       height: 'var(--solar-icon-md)',
     },
@@ -161,19 +161,19 @@ export const solarBannerStyles = {
     },
     'type=success': {
       backgroundColor: 'var(--solar-color-surface-feedback-success-medium)',
-      '& .SolarBanner-iconSuccess': {
+      '& .SolarBanner--iconSuccess': {
         color: 'var(--solar-color-icon-primary)',
       },
     },
     'type=warning': {
       backgroundColor: 'var(--solar-color-surface-feedback-warning-medium)',
-      '& .SolarBanner-iconWarning': {
+      '& .SolarBanner--iconWarning': {
         color: 'var(--solar-color-icon-primary)',
       },
     },
     'type=danger': {
       backgroundColor: 'var(--solar-color-surface-feedback-danger-medium)',
-      '& .SolarBanner-iconDanger': {
+      '& .SolarBanner--iconDanger': {
         color: 'var(--solar-color-icon-primary)',
       },
     },

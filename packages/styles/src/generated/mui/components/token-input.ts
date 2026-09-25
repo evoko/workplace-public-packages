@@ -51,17 +51,17 @@ export const solarTokenInputStyles = {
     '& .SolarGlyph-fill, & .SolarGlyph-stroke': {
       stroke: 'none',
     },
-    '& .SolarTokenInput-addItems.MuiInputBase-input': {
+    '& .SolarTokenInput--addItems.MuiInputBase-input': {
       minWidth: '4ch',
     },
     '& .SolarTokenInput-helper': {
       whiteSpace: 'normal',
     },
-    '& .SolarTokenInput-field': {
+    '& .SolarTokenInput--field': {
       position: 'relative',
       isolation: 'isolate',
     },
-    '& .SolarTokenInput-field::after': {
+    '& .SolarTokenInput--field::after': {
       content: '""',
       position: 'absolute',
       top: '50%',
@@ -74,11 +74,11 @@ export const solarTokenInputStyles = {
     '& .SolarTokenInput-words': {
       display: 'contents',
     },
-    '& .SolarTokenInput-tags': {
+    '& .SolarTokenInput--tags': {
       minWidth: '0',
       overflow: 'hidden',
     },
-    '& .SolarTokenInput-tags > *': {
+    '& .SolarTokenInput--tags > *': {
       flexShrink: '0',
     },
   },
@@ -113,7 +113,7 @@ export const solarTokenInputStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarTokenInput-labelLabel': {
+    '& .SolarTokenInput--labelLabel': {
       color: 'var(--solar-color-text-primary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-500)',
@@ -131,7 +131,7 @@ export const solarTokenInputStyles = {
       letterSpacing: '-0.02em',
       textDecoration: 'none',
     },
-    '& .SolarTokenInput-field': {
+    '& .SolarTokenInput--field': {
       backgroundColor: 'var(--solar-color-surface-base)',
       borderColor: 'var(--solar-color-border-subtle)',
       boxShadow: 'var(--solar-shadow-control)',
@@ -148,7 +148,7 @@ export const solarTokenInputStyles = {
       paddingLeft: 'var(--solar-inset-sm)',
       width: '100%',
     },
-    '& .SolarTokenInput-tags': {
+    '& .SolarTokenInput--tags': {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       boxShadow: 'none',
@@ -164,7 +164,7 @@ export const solarTokenInputStyles = {
       paddingLeft: 'var(--solar-inset-none)',
       width: '100%',
     },
-    '& .SolarTokenInput-addItems': {
+    '& .SolarTokenInput--addItems': {
       color: 'var(--solar-color-text-tertiary)',
       fontFamily: 'var(--solar-type-font-family-inter)',
       fontWeight: 'var(--solar-type-font-weight-400)',
@@ -188,7 +188,7 @@ export const solarTokenInputStyles = {
   sizes: {
     sm: {
       width: '100%',
-      '& .SolarTokenInput-labelLabel': {
+      '& .SolarTokenInput--labelLabel': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-500)',
         fontSize: 'var(--solar-type-size-label-sm)',
@@ -204,13 +204,13 @@ export const solarTokenInputStyles = {
         letterSpacing: '-0.02em',
         textDecoration: 'none',
       },
-      '& .SolarTokenInput-field': {
+      '& .SolarTokenInput--field': {
         paddingTop: 'var(--solar-inset-2xs)',
         paddingRight: 'var(--solar-inset-xs)',
         paddingBottom: 'var(--solar-inset-2xs)',
         paddingLeft: 'var(--solar-inset-xs)',
       },
-      '& .SolarTokenInput-addItems': {
+      '& .SolarTokenInput--addItems': {
         fontFamily: 'var(--solar-type-font-family-inter)',
         fontWeight: 'var(--solar-type-font-weight-400)',
         fontSize: 'var(--solar-type-size-body-sm)',
@@ -230,34 +230,34 @@ export const solarTokenInputStyles = {
   },
   appearances: {
     default: {
-      '&:has(.SolarTokenInput-field:hover)': {
-        '& .SolarTokenInput-field': {
+      '&:has(.SolarTokenInput--field:hover)': {
+        '& .SolarTokenInput--field': {
           borderColor: 'var(--solar-color-border-medium)',
         },
       },
-      '&:has(.SolarTokenInput-field .Mui-focused)': {
-        '& .SolarTokenInput-field': {
+      '&:has(.SolarTokenInput--field .Mui-focused)': {
+        '& .SolarTokenInput--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
       },
       '&.SolarTokenInput-active': {
-        '& .SolarTokenInput-field': {
+        '& .SolarTokenInput--field': {
           borderColor: 'var(--solar-color-border-feedback-focus-strong)',
           boxShadow: 'var(--solar-shadow-focus-default)',
         },
-        '& .SolarTokenInput-addItems': {
+        '& .SolarTokenInput--addItems': {
           color: 'var(--solar-color-text-primary)',
         },
       },
       '&.SolarTokenInput-filled': {},
       '&.SolarTokenInput-readonly': {
-        '& .SolarTokenInput-field': {
+        '& .SolarTokenInput--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
         },
       },
       '&.SolarTokenInput-error': {
-        '& .SolarTokenInput-field': {
+        '& .SolarTokenInput--field': {
           borderColor: 'var(--solar-color-border-feedback-danger-strong)',
           boxShadow: 'var(--solar-shadow-danger)',
         },
@@ -266,14 +266,14 @@ export const solarTokenInputStyles = {
         },
       },
       '&.SolarTokenInput-disabled': {
-        '& .SolarTokenInput-labelLabel': {
+        '& .SolarTokenInput--labelLabel': {
           color: 'var(--solar-color-text-disabled)',
         },
-        '& .SolarTokenInput-field': {
+        '& .SolarTokenInput--field': {
           backgroundColor: 'var(--solar-color-surface-background)',
           borderColor: 'var(--solar-color-border-disabled)',
         },
-        '& .SolarTokenInput-addItems': {
+        '& .SolarTokenInput--addItems': {
           color: 'var(--solar-color-text-disabled)',
         },
         '& .SolarTokenInput-helper': {

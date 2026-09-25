@@ -44,6 +44,12 @@ const TREE: Record<string, string[]> = {
   text: ['title', 'meta'],
   frame1: ['iconPlus'],
 };
+const SLOTS: Record<string, string> = {
+  fileIcon: 'fileIcon',
+  title: 'title',
+  meta: 'meta',
+  label: 'label',
+};
 
 export interface FileCardProps
   extends
@@ -145,6 +151,7 @@ export const FileCard = forwardRef<HTMLDivElement, FileCardProps>(
           {drawChildren('root', {
             prefix: 'SolarFileCard',
             tree: TREE,
+            slots: SLOTS,
             parts,
             text: { label: titled, title: titled, meta },
             icons: {
