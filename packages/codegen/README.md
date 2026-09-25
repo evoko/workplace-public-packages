@@ -19,7 +19,7 @@ to three and each component's recipe to two. It needs no Figma token and no netw
 the fix belongs in this package, never in the mirror. Every write goes through
 [`writeGenerated`](src/util/write.mjs), which refuses a path under `docs/` outright, and CI
 re-checks it after each run. This is invariant 1 of
-[the design spec](../../docs/superpowers/specs/2026-09-21-solar-docs-to-code-design.md).
+[the architecture](../../docs/engineering/architecture.md#invariants).
 
 ## What it produces
 
@@ -38,9 +38,9 @@ The four are independent emitters reading one normalized spec. They are **not** 
 each other: a Dart file is not a translation of a stylesheet, and pretending otherwise is how
 the two drift apart.
 
-`spec/deviations.md` lists the **29 places code and Figma differ**: 14 from the tokens, 1 from the
-MUI theme, 3 from the icons and 11 from Button. It is the report SOLAR governance
-reads, so every entry names an action for them. The count is whatever the data triggers, not a
+`spec/deviations.md` lists **every place code and Figma differ**: the tokens, the MUI theme, the
+icons and every component finding, decided or open. It is the report SOLAR governance reads, so
+every entry names an action for them. The count is whatever the data triggers, not a
 list someone maintains: a rule fires only when its defect is present.
 
 The MUI row is the one decision SOLAR does not make at all. Stock MUI components read
@@ -132,49 +132,12 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
 2. **Derive the recipe** (`src/normalize/recipe.mjs`). SOLAR's model is that **geometry follows
    size, paint follows appearance and state**. Each style cell — a background, a padding, a label's
    type — is read from the one variant that holds every other axis at its default, in token names.
-   Then every other variant is checked against it, and a disagreement is recorded as a deviation
+   Then every other variant is checked against it, and a disagreement is recorded as a finding
    naming the variants, never averaged away: it is a Figma mistake or a real interaction between
-   axes, and only a person can say which. A value bound to no variable is recorded too. An image
-   fill is content, not design: the layer records `image` and the colour beside it is its background.
-   A vector's recorded outline is a `glyph`, Figma's path data checked against `M L C H V Z`, in a
-   cell class of its own that follows every axis.
-   A colour bound to a variable that is not a colour is `misbound`, reported and never painted.
-   A layer with no stroke paint has no border, whatever weight Figma keeps for it (it keeps the
-   weight and its binding after the paint is removed). A composed child the reference variant
-   hides records no variant, so which child it is (Icon Button's Spinner, drawn only while loading)
-   is read from the first variant that draws it. An entry equal to the base is left out only where
-   the lookup would still find the base, and one that follows some of the appearance axes is
-   written under every full appearance key, since the emitters look entries up by the full key.
-   A stack of paints (`src/normalize/paints.mjs`, which the oracle reads the same way) is its top
-   paint where that one is an opaque colour, since it covers the rest; the covered paint is a
-   `covered` finding for SOLAR (Insight Card's selected card, `surface/background` over
-   `surface/base`), and a translucent top fails the build. A radius whose corners differ
-   (Popover's square corner by its arrow) has a cell per corner, clockwise from the top left as
-   Figma records them, `radiusTopLeft` and the rest, each from its own binding; the MUI recipe
-   writes `border<Corner>Radius`, the oracle a radius per corner, and both checks measure each.
-   A layer its parent's auto layout does not place (a Toggle's thumb, StatusIndicator's `!` in its
-   triangle) has `x` and `y` cells, from the position the fetcher records: part of the drawing, as
-   a glyph is, so they follow every axis and raise no finding. Where another variant's auto layout
-   places the layer, its `x` and `y` are `none`. The MUI recipe draws a placed box `absolute` at
-   `left`/`top` in pixels (the drawing's coordinates, not spacing), with its parent `relative`,
-   and keeps a placed glyph's position in the composition data with its outline. Flutter reads
-   them as lengths. The oracle measures a placed box's `x`, `y`, `width` and `height` from its
-   parent's edge, and records a glyph's position inside the glyph, unmeasured, as its outline is.
-   A layer the base control draws itself (Spinner's ring, CircularProgress's SVG circle) is the
-   overlay's `controlDraws`, and the oracle excuses its box.
-   A **drawing** (StatusIndicator, whose every type is its own shape from other layers) is the
-   overlay's `drawing`: every cell of every layer follows every axis, so its entries are keyed by
-   size and appearance together. A layer can then be a glyph in one entry and a box in another
-   (StatusIndicator's container: a vector circle for danger, a disc frame for neutral), so the MUI
-   recipe decides per entry: where the entry draws a glyph, its colours are the SVG's `fill` and
-   `stroke` (and the stroke outline's `fill`, `.SolarGlyph-stroke`), and a glyph takes no radius or
-   shadow, which the emitter refuses rather than drops. The composition data (`Solar<Name>Parts`,
-   exported per component) carries each layer's glyph and position for the shell. `allowLiteral`
-   may name the `values` it allows, where a `bind` takes the rest (StatusIndicator's 8px dot, beside
-   md and sm bound to the icon ladder).
-   A border whose sides differ (Button Group's divider) has a cell per side, `borderTopWidth` and
-   the rest, read from the weights the fetcher records per side; data fetched before it recorded
-   them draws a side where it is bound and reports the layer `unrecorded` until a sync.
+   axes, and only a person can say which. A value bound to no variable is recorded too. An entry
+   equal to the base is left out only where the lookup would still find the base, and one that
+   follows some of the appearance axes is written under every full appearance key, since the
+   emitters look entries up by the full key.
    A cell one variant of a layer has and another lacks is never skipped. Where the absence has a
    meaning it is written as that first: no auto-layout is a layout of `none` (the emitters draw
    no gap or padding, `inset.none`, and restate no flex direction), no recorded sizing is the
@@ -185,183 +148,9 @@ A component set under `docs/solar-web/` becomes `spec/components/<name>.json`, i
    alone) has no value there to differ from, so each of its cells is read where it is drawn, as a
    hidden child's variant is; only its presence is the reference's own. A cell that follows no
    axis then lands in the base, where the emitters find it, rather than being dropped unreported.
-   What F1 (the display primitives) added:
-   - **Sizes no auto layout gives.** A root with no auto layout of its own (Checkbox's) and a
-     layer its parent places by position (Node End's dot) are the size Figma draws them at, fixed,
-     and the oracle measures them so; a glyph's size is its outline's, inside the glyph.
-   - **Ellipses and booleans.** An ellipse with no outline of its own is a round box,
-     `radius.pill` (marked `ellipse`); the oracle records its radius as half its size, and both
-     checks compare a corner as drawn, no rounder than half its box, so a pill and an ellipse
-     agree. A boolean operation is one shape, the outline Figma records on it: its operands are no
-     layers of the component (`resolveVariants`). A vector's corner radius is in its outline, so
-     the MUI recipe draws none for it.
-   - **Opacity.** A translucent layer (Node End's halo) has an `opacity` cell, Figma's number,
-     rounded clear of float noise; the overlay must allow it, since SOLAR has no opacity scale. The
-     oracle records it, and both checks compare it.
-   - **Hugging past the base.** A `HUG` in a later entry over a fixed size in the base (Tree
-     Indent's 0px depth 00) resets the MUI size to `auto`, since declaring nothing would leave the
-     base's standing.
-   - **A colour the caller gives** (Avatar's): an API prop of `type: 'color'`, a CSS colour on the
-     web and a `Color` in Flutter, keying nothing in the recipe (the overlay's `caller`, below).
-     What F7 (the pickers) added:
-   - **Grids.** A `GRID` layout (Date Picker Open's days) is the `direction` keyword `GRID`, its
-     gap read from Figma's `gridRowGap` binding (`inset.2xs`); the MUI recipe draws it
-     `display: grid`, the shell's resets give it its columns, and Flutter's SolarLayers stacks the
-     rows a shell gives it (`content`) by the gap.
-   - **A text placed by position** (the double calendar's month labels) has `x` and `y` cells, as
-     any placed layer; before, a text's position was dropped, though the oracle measured it.
-     What the pipeline review added (2026-09-25):
-   - **Patterns and reason references** in overlays (the reference,
-     [spec/overlay/README.md](../../spec/overlay/README.md)): a rule's layer may be a pattern, a
-     `set`'s look `*`, and a reason another rule's; 327 numbered rules became patterns.
-   - **The overlay audit**, `npm run solar:overlay:audit` (`src/report/overlay-audit.mjs`): what
-     the overlays decide more than once, reasons written verbatim, literals a token now matches,
-     and sets Figma now agrees with. Read-only, never part of the build.
-   - **Both modes in the oracle.** `buildOracle` takes a `mode`; the stage writes Light with each
-     variant's Dark differences beside it (`withDark`), and both visual checks measure both.
-   - **The Node check.** Every CLI stops in one line on a Node older than `.nvmrc`
-     (`src/util/require-node.mjs`), before anything loads.
-   - **Nothing written until everything is built.** `deferWrites` and `commitGenerated`
-     (`src/util/write.mjs`) hold every output until every stage has emitted and the report is
-     written, so a stage that throws one emitter in (Button's recipe refusing a literal, after the
-     shells were rendered) rewrites nothing; each file is written beside itself and renamed over.
-   - **A text that fills its row.** Figma's FILL on a text is layout, and recorded (a card's title,
-     its More at the row's end); where another variant's fills and this one's does not, it hugs.
-     A text the root draws itself (Button's label) is given no size of its own, and a drawn icon or
-     glyph keeps its size beside what fills (`drawnResets`).
-   - **Words, checked.** The oracle marks a text Figma draws words in (`words`), and both checks
-     fail one drawn in its style with none (Status Card's value, its words never passed on).
-   - **The consumer's side (from the comparison with `@biamp/solar-mui`).** The MUI theme holds
-     both colour schemes in MUI's CSS-variables mode, switched by `data-theme` as the tokens are,
-     and its breakpoints, spacing and motion from the tokens (`emit/mui.mjs`); `SolarProvider` in
-     `@bwp-web/components` installs it; `npm run smoke:install` installs the packed packages in a
-     clean app with React 18 and renders them on the server.
-   - **The rule proposer.** `solar:explain … --propose <layer>.<cell>` (`src/explain/propose.mjs`):
-     `bind`, `allowLiteral`, `follows` or `accept` from the finding, a `set` where none is open, one
-     patterned rule for numbered siblings; its `TODO(reason)` fails the build until replaced.
-   - **Two class name spaces.** `src/util/classes.mjs`: `Solar<Name>-<slot>` public,
-     `Solar<Name>--<layer>` internal; `withLayerClasses` writes a layer named by a helper
-     (`${P}-${layer}`) as its own, in the recipes and the shells.
-   - **Hidden layers by path, an added layer in its place.** The fetcher
-     (`docs/solar-web/raw/variant-diff.mjs`) records each hidden layer by path (`hiddenPaths`) and
-     each added layer's `index`; where the data has them, a composed child hides exactly its own
-     layers and an added layer sits where Figma draws it, and the overlay's `hides` and `places`
-     rules they replace fail as stale. The data has them from the next `solar:sync`.
-     What F14 (charts) added:
-   - **Library components.** A descriptor's `library: 'charts'` (Bar Chart, Line Chart, Donut Chart,
-     Chart Axis, Chart Gridlines) builds the IR and the oracle but no recipe, shell, case or story:
-     a chart library draws them. `src/emit/chart-theme.mjs` writes the chart theme from their cells
-     (and Bar's and Chart Tooltip's), `solarChartTheme` in `@bwp-web/styles/mui` and
-     `SolarChartTheme` in `solar_flutter`, checking the series orders against the IRs (the owner's
-     two palettes), so a Figma change to them fails the build.
-   - **An axis from another component.** The overlay's `tint` gives a component another's axis, its
-     values recolouring it (`normalize/tint.mjs`, applied once every IR is built): Agenda Row and
-     All-Day Bar take Event Chip's `category`, each value's colour family read from Event Chip's
-     stripe; the recipe keeps Figma's (category 06, the default) and the emitters swap the family.
-   - **Accept patterns.** `accept: { 'component.bar chart.*': … }` decides every open finding a
-     pattern matches, after the rules that name one: a library chart's sample plot.
-   - **Arcs.** The fetcher records a partial ellipse's `arc` (its angles and hole), the IR carries it
-     (the donut's 0.6 hole, which the theme takes).
-   - A glyph's stroke width may be an allowed literal (Sparkline's 1.5); the parity test takes a
-     nullable enum a shell derives where the caller gives none (Sparkline's `trend`).
-     What F13 (calendar parts) added:
-   - **Dashed strokes.** The fetcher records a stroke's `dashes` (Figma's `strokeDashes`); the
-     recipe carries them as `borderDash`, the web draws CSS's `dashed` (the lengths are the
-     browser's) through a `--solar-border-style` its edges read, and Flutter paints Figma's pattern
-     with `SolarDashedDecoration` over the box, its border clear. The oracle and both checks compare
-     it, a variant drawn solid beside a dashed one included. FileUpload's drop zone, Option Card's
-     edge, Image Card's empty state and Date Picker Day Cell's preview end, drawn solid until now,
-     are dashed.
-   - **Lines.** A LINE is its stroke: the top edge of a box as long as the line and as tall as the
-     stroke, not Figma's outline of it, so it spans its parent (Time Slot's half-hour rule).
-   - **Sizes that do not shrink.** On the web a fixed size inside a component is also its minimum,
-     and a filling one's minimum is 0, as Figma's auto layout and Flutter's Expanded size them; a
-     component's root keeps CSS's own, so it still fits a narrower page.
-   - **What a standalone component hides.** The fetcher records its hidden paths, as a set's
-     variants', so its composed children hide what Figma hides (Autocomplete Open's field, its label
-     and icons).
-   - **Per-side edges in SolarLayers.** A placed layer steps back by its parent's edge side by side
-     (Time Slot's top and left edges).
-     What F12 (overlays and dialogs) added:
-   - **Turned outlines.** REST gives a vector's path in the node's own coordinates; the fetcher
-     (`docs/solar-web/raw/drawn-path.mjs`) turns each point by the node's transform and moves it
-     back into its box, so Tooltip's side arrows point sideways, as Figma draws them.
-   - **Centre pins.** A placed layer Figma constrains to its parent's CENTER, in a parent that
-     grows along the axis, is pinned there (`centerX`, `centerY`; `placement.mjs`): Tooltip's
-     arrow, Coachmark's title. An explicit constraint decides per variant, and a variant placing a
-     layer from another edge than the next (Coachmark's connector, from the right on one side and
-     the left on the other) writes the edge it does not use `AUTO`: `left: auto` on the web, no
-     edge in Flutter.
-   - **A child order per variant.** The fetcher records `order`, a layer's rank among the siblings
-     a variant shares with the default, where it differs (Popover's tip, before its content where
-     it points up); `resolveVariants` draws each variant in its own order, and `ordersOf`
-     (`placement.mjs`) gives every laid-out child of a reordering parent an `order` cell, a flex
-     item's `order` in CSS and the flow's order in SolarLayers. Both checks measure it, from where
-     each layer falls along its parent's axis.
-   - **Sample content.** The overlay's `examples` names a layer whose children are Figma's sample
-     of what the caller puts there (Split Dialog's panes, Drawer's content): none of them reaches
-     the IR, the oracle or the recipe.
-   - **Modal and anchored surfaces.** On the web, `internal/modal.tsx` (MUI's Dialog, SOLAR's Scrim
-     its backdrop, or the surface in place); in Flutter, `showSolarDialog`, `showSolarDrawer` and
-     an OverlayPortal following its trigger. The Flutter check measures where a composed child's
-     parent puts it (Coachmark's Node End), on the child's root, as the web check does.
-     What F11 (tables and properties) added:
-   - **Gradients.** The fetcher records a linear gradient as its handles and its stops
-     (`linear-gradient(0,0.68 → 1,0.68: {…} 0%, {…} 100%)`, `src/normalize/gradient.mjs` reads
-     it); the recipe keeps each stop's colour token and place, a stop bound to
-     `color.alpha.transparent` read as the colour beside it faded out (`alpha: 0`), so no primitive
-     reaches the code and the fade is the surface's in Light and Dark. CSS draws it as a
-     `linear-gradient` (the faded stop `transparent`, which CSS blends premultiplied), Flutter as a
-     `LinearGradient` between Figma's handles (a recipe with one gains `gradient()`, which
-     `SolarLayerRecipe` takes), and the oracle and both checks compare one canonical form. A
-     gradient that runs neither across nor down its box fails, naming the layer.
-   - **Figma's constraints.** The fetcher records a placed layer's constraint where it is not the
-     left and the top (Table's fade, `RIGHT/TOP`), and placement pins the layer to that edge; a
-     constraint that pins neither edge alone (CENTER, SCALE) leaves the place to decide, as
-     before. A placed layer that fills an axis spans to its parent's far edge.
-   - **A hover a description asks for.** A `set` may add a hover Figma draws none of, as it may a
-     focus (Row's, on a pressable row).
-   - **Composed children in a row.** `SolarLayers` boxes a composed child at the fixed size its
-     parent's recipe gives it (a TableHeader's 240px SearchField) and lays one the recipe hugs in
-     a row at its intrinsic width (a TableFooter's Dropdown); the Flutter check compares the box a
-     composed child gives its own composed children, and a case may take a larger `surface`.
-     What F10 (the cards) added:
-   - **A layer one variant adds, in its place.** Figma's export records a layer only one variant
-     draws after its siblings (Card's loading title placeholder); the overlay's `places` puts it
-     back before the sibling it precedes.
-   - **Layers the caller picks one of.** The overlay's `choice` makes layers Figma draws together
-     (Interactive Card's Checkbox, Radio and Toggle) one prop picking one (`control`), or, with
-     `content`, a choice the content makes (Launch Card's favourite, on its image or beside its
-     name); the oracle checks each Figma variant once per value, the layers not chosen expected
-     undrawn (`unchosen`, which neither check reads as a prop's layer hidden at rest).
-   - **What a child draws, whatever Figma records hidden.** A variant's hidden layers are recorded
-     by name alone, and a composed child's hidden layer may share a name with another's shown one
-     (Device Card's Dropdown label and Tag words, both "Label"); the overlay's `hides` names the
-     layers a child draws all the same.
-   - **A detached or unbuilt child.** Where a variant detaches an instance (Card's loading Tag, a
-     plain placeholder) or the child is no component of the library (Launch Card's App Icon, an
-     asset), both checks measure its box alone; a parent's own layers are never read inside a
-     composed child's element (an Accordion's nested header).
-   - **More `set` and `rename`.** A `set` may add an appearance no layer draws, where its axes are
-     another look's and its values Figma's (File Card's resting file tile), or `default` where no
-     layer has any look (Launch Card); a `rename` may respell an axis's values, keeping its name.
-   - **The card shells** (then `src/shells/card.mjs`; the shells are files since 2026-09-25): a card's title as its stretched action, its More
-     menu, its loading and selection, its props' layers (several for one prop: `also`,
-     `alsoTitle`), for eleven of the family; `SolarLayers` gained `clips`, a web glyph layer a
-     `render`, and an auto layout holding only placed children keeps its gap.
-     What F9 (paging and steps) added:
-   - **An icon that follows one axis.** `iconsOf` gives a layer whose icon changes with one axis
-     (PaginationNav's chevron, by its direction) `byAxis`, the icon at each value, which
-     `reactIcon` and `dartIcon` choose by the prop; any other layer drawing two icons is refused.
-   - **A decided variant on a child with none.** An overlay `set` of a composed child's
-     `variant.*` reaches a child Figma records no variant for (Stepper's first line+text step, an
-     instance of the Step variant itself); both checks take a standalone child (PaginationEllipsis)
-     in its one variant.
-     What F8 (navigation) added:
-   - **Samples that drop the default variant.** Where the overlay's `samples` keeps a value other
-     than Figma's default (Breadcrumbs keeps its 5-item trail, not its default "multiple"), the
-     variant the rest are read against is the kept one at every other axis's default. The oracle
-     still keeps every variant, each reached by the content it samples (as many pages).
+   What the recipe does with each kind of drawing (placed layers, glyphs, gradients, per-corner
+   radii, per-side borders, dashes, composed children and the rest) is in
+   [Recipe features, by topic](#recipe-features-by-topic).
 3. **Build the IR** (`src/normalize/components.mjs`): the public API (Figma's `state` axis is
    demoted — hover, pressed and focus become platform states, disabled and loading stay props;
    states drawn as `false/true` axes of their own, as Checkbox's are, are first folded into one
@@ -474,9 +263,10 @@ Each component says how its states are marked, in the MUI emitter's `STATE_SELEC
 `MUI_SLOTS`): the pseudo-class or the class MUI sets (`Mui-focusVisible`, `Mui-disabled`,
 `MuiButton-loading`), or, where MUI has none, a class the shell sets (`Solar<Name>-<state>`). A
 component with no table has no states, and a state the IR styles that its table lacks fails the
-build. The table's order is the order both platforms resolve two states in — for Button disabled,
-loading, focus, pressed, hover, strongest last in CSS, where the later rule wins — and Flutter
-reads it reversed; the emitter refuses a table that orders the states the fold knows otherwise
+build. The table runs from the weakest state to the strongest — for Button hover, pressed, focus,
+loading, disabled — since in CSS the later rule wins; Flutter's `statePrecedence` is the same list
+reversed, strongest first, and reads each cell from the first state that has one. So a pressed
+button that is also hovered draws pressed, and a disabled one draws disabled whatever else holds; the emitter refuses a table that orders the states the fold knows otherwise
 than `BOOLEAN_STATES`. Flutter detects each state the same way for every component: a platform
 state is its `WidgetState`, a prop state its prop. What MUI draws that SOLAR does not (Button's 64px
 minimum width, its upper-case label) is undone by `MUI_RESETS` in the emitter, so a component looks
@@ -491,41 +281,36 @@ hovered too, in CSS and in Flutter's `WidgetState`s alike. Both platforms blend 
 the cascade and Flutter by reading each cell from the strongest state that has one, so both emitters
 read the style through `restateOverlaps`, which restates in each later state whatever an earlier
 one it overlaps (`OVERLAPS`, per component) sets and it does not: tertiary pressed is not
-underlined although tertiary hover is. Flutter was missing this until 3b-2 Task A5, and drew
-hover's underline on a mouse press, and hover's colours on a focused primary under the pointer.
+underlined although tertiary hover is. Without it, Flutter drew hover's underline on a mouse press,
+and hover's colours on a focused primary under the pointer.
 
 **Recipe and shell.** The recipe is what a component looks like; it regenerates on every run and
 is never edited. The shell — `packages/components/src/<Name>.tsx`: props, slots, loading,
 accessibility — and its Flutter widget (`solar_flutter/lib/src/components/solar_<name>.dart`) are
 files written by hand, TSX by a React engineer and Dart by a Flutter engineer
-(docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md; owner decision 2026-09-25, the
-pipeline review's item 9); only its story is generated (`src/shells/index.mjs`, which also checks
+([architecture](../../docs/engineering/architecture.md#two-libraries-one-contract)); only its story
+is generated (`src/shells/index.mjs`, which also checks
 that both shells exist without the generated header). What the IR decides still reaches them with
 no edit: the props types, the layer tree (`solar<Name>Tree`, `Solar<Name>Recipe.tree`) and the slot
 names (`solar<Name>Slots`) are generated beside the recipe and imported, and the component-parity
 test fails a shell that leaves an IR prop, slot or icon unreached (`src/shells/api.mjs`,
 `src/shells/icons.mjs`), copies the tree, or reads its React props other than through the theme
 (`useSolarProps`). A fix to a runtime helper (`components/src/internal/`, `solar_flutter/lib/src/`)
-reaches every shell that imports it. Until 2026-09-25 the shells were generated from template
-strings in the descriptors; each file became hand-owned exactly as its template last rendered it.
-The rule of thumb for where a change goes:
+reaches every shell that imports it. A descriptor that still carries `templates` or `owned`
+is refused. The rule of thumb for where a change goes:
 
 > **The overlay for a decision about one component, the normalizer for a rule about the system,
 > the shell for behaviour.**
 
-**What Button's findings mean.** Button produced 11 findings (46 in the whole report, with Spinner's and Icon Button's, whose ten are all decided). Eight
-carry an overlay decision and stay in the report beside it: five bind a raw value to the token of
-the same value (vertical padding, lg's gap, the icon heights), and three allow a literal SOLAR has
-no token for (the fixed heights, lg's width, the counter's height). Two more decisions removed
-findings outright, by declaring an axis interaction: tertiary hover's link style and lg's flat
-look are drawn as Figma draws them. Three findings are open and are genuine Figma defects:
-secondary loses its background at `sm`, the backgrounds change inconsistently at `lg` (Figma's `xl` until 2026-09-23), and the
-`lg` disabled label uses the danger colour. They are in
-[the design review](../../docs/solar-review-for-design.md), section 6 (the components we build, variant by variant). Run over the whole corpus,
-every one of SOLAR Web's 132 components derives a recipe and builds an IR: the 119 sets and the
-13 standalone components (milestone 4's Task M4), since Task M5 gave stacked paints, corners of
-their own and overlay-named layers a rule. PIN Input, Password Input and Tree Item build with the
-overlays that name their glyph-named layers.
+**Reading the findings.** Every finding is in `spec/deviations.md` with its decision, or with
+the question for SOLAR where it is open. Button's show the kinds: most of its unbound values are
+`bind`s to the token of the same value (the icon widths, the zero paddings through the shared
+default, the heights to `size.control.*`), a few are `allowLiteral`s where SOLAR has no token (the
+counter's height, lg's width), and the backgrounds that change at `sm` and `lg` are open, drawn
+as the reference variant draws them and listed in
+[the design review](../../docs/solar-review-for-design.md). Every one of SOLAR Web's components
+derives a recipe and builds an IR, the sets and the standalone components alike, except those
+`spec/overlay/excluded.yaml` leaves out.
 
 [`test/component-parity.test.mjs`](test/component-parity.test.mjs) reads the generated TypeScript
 and Dart and the shell back from disk and proves the two platforms expose the same API, style the
@@ -546,6 +331,231 @@ slots, so a check can tell a layer a prop hides from one a state removes. The vi
 (`packages/components/test/visual/`, `packages/solar_flutter/test/visual/`) render both platforms
 and compare every entry that is not excused. It is Figma,
 not the other platform, because two platforms agreeing on a mistake would pass a cross-check.
+
+## Recipe features, by topic
+
+What the normalizer, the emitters and the oracle each do with a kind of Figma drawing. Each rule
+is applied the same way by the recipe and the oracle unless it says otherwise, and both visual
+checks measure what it produces.
+
+### Size and layout
+
+- **Sizes no auto layout gives.** A root with no auto layout of its own (Checkbox's) and a layer
+  its parent places by position (Node End's dot) are the size Figma draws them at, fixed, and the
+  oracle measures them so; a glyph's size is its outline's, inside the glyph.
+- **Hugging past the base.** A `HUG` in a later entry over a fixed size in the base (Tree Indent's
+  0px depth 00) resets the MUI size to `auto`, since declaring nothing would leave the base's
+  standing.
+- **A text that fills its row.** Figma's FILL on a text is layout, and recorded (a card's title,
+  its More at the row's end); where another variant's fills and this one's does not, it hugs. A
+  text the root draws itself (Button's label) is given no size of its own, and a drawn icon or
+  glyph keeps its size beside what fills (`drawnResets`).
+- **Sizes that do not shrink.** On the web a fixed size inside a component is also its minimum,
+  and a filling one's minimum is 0, as Figma's auto layout and Flutter's Expanded size them; a
+  component's root keeps CSS's own, so it still fits a narrower page.
+- **Grids.** A `GRID` layout (Date Picker Open's days) is the `direction` keyword `GRID`, its gap
+  read from Figma's `gridRowGap` binding (`inset.2xs`); the MUI recipe draws it `display: grid`,
+  the shell's resets give it its columns, and Flutter's SolarLayers stacks the rows a shell gives
+  it (`content`) by the gap.
+- **Composed children in a row.** `SolarLayers` boxes a composed child at the fixed size its
+  parent's recipe gives it (a TableHeader's 240px SearchField) and lays one the recipe hugs in a
+  row at its intrinsic width (a TableFooter's Dropdown); the Flutter check compares the box a
+  composed child gives its own composed children, and a case may take a larger `surface`.
+
+### Placement
+
+- **Placed layers.** A layer its parent's auto layout does not place (a Toggle's thumb,
+  StatusIndicator's `!` in its triangle) has `x` and `y` cells, from the position the fetcher
+  records: part of the drawing, as a glyph is, so they follow every axis and raise no finding.
+  Where another variant's auto layout places the layer, its `x` and `y` are `none`. The MUI recipe
+  draws a placed box `absolute` at `left`/`top` in pixels (the drawing's coordinates, not
+  spacing), with its parent `relative`, and keeps a placed glyph's position in the composition
+  data with its outline. Flutter reads them as lengths. The oracle measures a placed box's `x`,
+  `y`, `width` and `height` from its parent's edge, and records a glyph's position inside the
+  glyph, unmeasured, as its outline is. A text placed by position (the double calendar's month
+  labels) has `x` and `y` cells too.
+- **The nearer edge.** A layer placed in a parent that grows keeps its distance from the nearer
+  edge (`src/normalize/placement.mjs`): Text Area's send button is `right` 8, not `x` 240. Each
+  layer is pinned the same way in every variant; placed from the far edge, the MUI recipe says
+  `right` and `bottom`, stepped back by the parent's `--solar-placed-right` and
+  `--solar-placed-bottom`, and Flutter's SolarLayers a `Positioned` from those edges, over the
+  laid-out children where the parent has an auto layout. SolarLayers steps a placed layer back by
+  its parent's edge side by side (Time Slot's top and left edges).
+- **Figma's constraints.** The fetcher records a placed layer's constraint where it is not the
+  left and the top (Table's fade, `RIGHT/TOP`), and placement pins the layer to that edge; a
+  constraint that pins neither edge alone (CENTER, SCALE) leaves the place to decide. A placed
+  layer that fills an axis spans to its parent's far edge.
+- **Centre pins.** A placed layer Figma constrains to its parent's CENTER, in a parent that grows
+  along the axis, is pinned there (`centerX`, `centerY`): Tooltip's arrow, Coachmark's title. An
+  explicit constraint decides per variant, and a variant placing a layer from another edge than
+  the next (Coachmark's connector) writes the edge it does not use `AUTO`: `left: auto` on the
+  web, no edge in Flutter.
+- **A child order per variant.** The fetcher records `order`, a layer's rank among the siblings a
+  variant shares with the default, where it differs (Popover's tip, before its content where it
+  points up); `resolveVariants` draws each variant in its own order, and `ordersOf` gives every
+  laid-out child of a reordering parent an `order` cell, a flex item's `order` in CSS and the
+  flow's order in SolarLayers. Both checks measure it along the parent's axis.
+
+### Shape and edge
+
+- **Corners of their own.** A radius whose corners differ (Popover's square corner by its arrow)
+  has a cell per corner, clockwise from the top left as Figma records them, `radiusTopLeft` and
+  the rest, each from its own binding; the MUI recipe writes `border<Corner>Radius`, the oracle a
+  radius per corner, and both checks measure each.
+- **Sides of their own.** A border whose sides differ (Button Group's divider) has a cell per
+  side, `borderTopWidth` and the rest, from the weights the fetcher records per side; data fetched
+  before it recorded them draws a side where it is bound and reports the layer `unrecorded`. A
+  layer with no stroke paint has no border, whatever weight Figma keeps for it (it keeps the weight
+  and its binding after the paint is removed).
+- **Ellipses and booleans.** An ellipse with no outline of its own is a round box, `radius.pill`
+  (marked `ellipse`); the oracle records its radius as half its size, and both checks compare a
+  corner as drawn, no rounder than half its box, so a pill and an ellipse agree. A boolean
+  operation is one shape, the outline Figma records on it: its operands are no layers of the
+  component. A vector's corner radius is in its outline, so the MUI recipe draws none for it.
+- **Arcs.** The fetcher records a partial ellipse's `arc` (its angles and hole), and the IR
+  carries it (the donut's 0.6 hole, which the chart theme takes).
+- **Dashed strokes.** The fetcher records a stroke's `dashes` (Figma's `strokeDashes`); the recipe
+  carries them as `borderDash`, the web draws CSS's `dashed` (the lengths are the browser's)
+  through a `--solar-border-style` its edges read, and Flutter paints Figma's pattern with
+  `SolarDashedDecoration` over the box, its border clear. Both checks compare dashed against solid.
+- **Lines.** A LINE is its stroke: the top edge of a box as long as the line and as tall as the
+  stroke, not Figma's outline of it, so it spans its parent (Time Slot's half-hour rule).
+- **Turned outlines.** REST gives a vector's path in the node's own coordinates; the fetcher
+  (`docs/solar-web/raw/drawn-path.mjs`) turns each point by the node's transform and moves it back
+  into its box, so Tooltip's side arrows point sideways, as Figma draws them.
+
+### Paint
+
+- **Stacked paints** (`src/normalize/paints.mjs`, which the oracle reads the same way) are their
+  top paint where that one is an opaque colour, since it covers the rest; the covered paint is a
+  `covered` finding for SOLAR (Insight Card's selected card, `surface/background` over
+  `surface/base`), and a translucent top fails the
+  build.
+- **Gradients.** The fetcher records a linear gradient as its handles and its stops
+  (`src/normalize/gradient.mjs` reads it); the recipe keeps each stop's colour token and place, a
+  stop bound to `color.alpha.transparent` read as the colour beside it faded out (`alpha: 0`), so
+  no primitive reaches the code and the fade is the surface's in Light and Dark. CSS draws a
+  `linear-gradient`, Flutter a `LinearGradient` between Figma's handles, and the oracle and both
+  checks compare one canonical form. A gradient that runs neither across nor down its box fails,
+  naming the layer.
+- **Opacity.** A translucent layer (Node End's halo) has an `opacity` cell, Figma's number, rounded
+  clear of float noise; the overlay must allow it, since SOLAR has no opacity scale.
+- **Image fills** are content, not design: the layer records `image` and the colour beside it is
+  its background.
+- **A colour the caller gives** (Avatar's) is an API prop of `type: 'color'`, a CSS colour on the
+  web and a `Color` in Flutter, keying nothing in the recipe (the overlay's `caller`).
+- **A colour bound to a variable that is not a colour** is `misbound`, reported and never painted.
+
+### Glyphs and drawings
+
+- **Glyphs.** A vector's recorded outline is a `glyph`, Figma's path data checked against
+  `M L C H V Z`, in a cell class of its own that follows every axis. A glyph's stroke width may be
+  an allowed literal (Sparkline's 1.5).
+- **Drawings.** A component whose every variant is its own shape (StatusIndicator) is the
+  overlay's `drawing`: every cell of every layer follows every axis, so its entries are keyed by
+  size and appearance together. A layer can then be a glyph in one entry and a box in another
+  (StatusIndicator's container: a vector circle for danger, a disc frame for neutral), so the MUI
+  recipe decides per entry: where the entry draws a glyph, its colours are the SVG's
+  `fill` and `stroke` (and the stroke outline's `fill`, `.SolarGlyph-stroke`), and a glyph takes
+  no radius or shadow, which the emitter refuses rather than drops. The composition data
+  (`Solar<Name>Parts`, exported per component) carries each layer's glyph and position for the
+  shell. `allowLiteral` may name the `values` it allows, where a `bind` takes the rest
+  (StatusIndicator's 8px dot, beside md and sm bound to the icon ladder).
+- **Layers the control draws.** A layer the base control draws itself (Spinner's ring,
+  CircularProgress's SVG circle) is the overlay's `controlDraws`, and the oracle excuses its box.
+
+### Composition
+
+- **A composed child's variant.** A composed child the reference variant hides records no variant,
+  so which child it is (Icon Button's Spinner, drawn only while loading) is read from the first
+  variant that draws it. An overlay `set` of a composed child's `variant.*` reaches a child Figma
+  records no variant for (Stepper's first line+text step), and both checks take a standalone
+  child (PaginationEllipsis) in its one variant.
+- **What a child hides.** The fetcher (`docs/solar-web/raw/variant-diff.mjs`) records each hidden
+  layer by path (`hiddenPaths`), a standalone component's too, so a composed child hides exactly
+  its own layers (Autocomplete Open's field, its label and icons). The overlay's `hides` names the
+  layers a child draws where older data records a hidden layer by name alone and two children
+  share the name.
+- **A layer one variant adds** sits where Figma draws it, from the added layer's recorded `index`;
+  the overlay's `places` puts it back where older data recorded it after its siblings.
+- **A detached or unbuilt child.** Where a variant detaches an instance (Card's loading Tag) or the
+  child is no component of the library (Launch Card's App Icon, an asset), both checks measure its
+  box alone; a parent's own layers are never read inside a composed child's element.
+- **Layers the caller picks one of.** The overlay's `choice` makes layers Figma draws together
+  (Interactive Card's Checkbox, Radio and Toggle) one prop picking one, or, with `content`, a
+  choice the content makes; the oracle checks each Figma variant once per value, the layers not
+  chosen expected undrawn (`unchosen`).
+- **Sample content.** The overlay's `examples` names a layer whose children are Figma's sample of
+  what the caller puts there (Split Dialog's panes, Drawer's content): none of them reaches the IR,
+  the oracle or the recipe. `repeats` reads sibling copies Figma draws as sample content (a
+  month's Day Cells) as their first.
+- **Samples that drop the default variant.** Where the overlay's `samples` keeps a value other
+  than Figma's default (Breadcrumbs keeps its 5-item trail), the variant the rest are read against
+  is the kept one at every other axis's default. The oracle still keeps every variant, each
+  reached by the content it samples.
+- **An icon that follows one axis.** `iconsOf` gives a layer whose icon changes with one axis
+  (PaginationNav's chevron, by its direction) `byAxis`, the icon at each value, which `reactIcon`
+  and `dartIcon` choose by the prop; any other layer drawing two icons is refused.
+- **An axis from another component.** The overlay's `tint` gives a component another's axis, its
+  values recolouring it (`normalize/tint.mjs`, applied once every IR is built): Agenda Row and
+  All-Day Bar take Event Chip's `category`, each value's colour family read from Event Chip's
+  stripe.
+
+### Text and states
+
+- **Words, checked.** The oracle marks a text Figma draws words in (`words`), and both checks fail
+  one drawn in its style with none (Status Card's value, its words never passed on).
+- **A hover or focus Figma does not draw.** A `set` may add a hover a description asks for (Row's,
+  on a pressable row) or a focus ring Figma draws none of.
+- **Both modes.** `buildOracle` takes a `mode`; the stage writes Light with each variant's Dark
+  differences beside it (`withDark`), and both visual checks measure both.
+
+### Library components
+
+A descriptor's `library: 'charts'` (Bar Chart, Line Chart, Donut Chart, Chart Axis, Chart
+Gridlines) builds the IR and the oracle but no recipe, shell, case or story: a chart library draws
+them. `src/emit/chart-theme.mjs` writes the chart theme from their cells (and Bar's and Chart
+Tooltip's), `solarChartTheme` in `@bwp-web/styles/mui` and `SolarChartTheme` in `solar_flutter`,
+checking the series orders against the IRs, so a Figma change to them fails the build. Their plots
+are Figma's sample data, so an `accept` pattern (`component.bar chart.*`) decides their findings,
+and `test/charts.test.mjs` checks the theme carries each cell.
+
+### Runtime helpers the shells share
+
+- On the web, `packages/components/src/internal/`: `layers.tsx` (`drawChildren`, the layer-tree
+  renderer), `modal.tsx` (MUI's Dialog, SOLAR's Scrim its backdrop, or the surface in place),
+  `float.tsx`, `theme.ts` (`useSolarProps`), and helpers for tables, calendars, clocks and charts.
+- In Flutter, `packages/solar_flutter/lib/src/`: `SolarLayers` (with `clips`, `repeats`,
+  `content`, `builders`, `composed`), `SolarTarget`, `SolarPressable`, `SolarOwnSize` and
+  `SolarFill`, `SolarField`, `SolarMenuList` and `SolarMenuAnchor`, `showSolarDialog`,
+  `showSolarDrawer` and an OverlayPortal for anchored surfaces, `SolarDashedDecoration`, and the
+  button component themes. The Flutter check measures where a composed child's parent puts it, on
+  the child's root, as the web check does.
+
+### Tooling around the build
+
+- **Overlay patterns and reason references** ([spec/overlay/README.md](../../spec/overlay/README.md)):
+  a rule's layer may be a pattern, a `set`'s look `*`, and a reason another rule's.
+- **The overlay audit**, `npm run solar:overlay:audit` (`src/report/overlay-audit.mjs`): what the
+  overlays decide more than once, reasons written verbatim, literals a token now matches, and sets
+  Figma now agrees with. Read-only, never part of the build.
+- **The rule proposer.** `solar:explain … --propose <layer>.<cell>` (`src/explain/propose.mjs`):
+  `bind`, `allowLiteral`, `follows` or `accept` from the finding, a `set` where none is open, one
+  patterned rule for numbered siblings; its `TODO(reason)` fails the build until replaced.
+- **The Node check.** Every CLI stops in one line on a Node older than `.nvmrc`
+  (`src/util/require-node.mjs`), before anything loads.
+- **Nothing written until everything is built.** `deferWrites` and `commitGenerated`
+  (`src/util/write.mjs`) hold every output until every stage has emitted and the report is
+  written, so a stage that throws rewrites nothing; each file is written beside itself and renamed
+  over.
+- **Two class name spaces.** `src/util/classes.mjs`: `Solar<Name>-<slot>` public,
+  `Solar<Name>--<layer>` internal; `withLayerClasses` writes a layer named by a helper
+  (`${P}-${layer}`) as its own, in the recipes and the shells.
+- **The consumer's side.** The MUI theme holds both colour schemes in MUI's CSS-variables mode,
+  switched by `data-theme` as the tokens are, with its breakpoints, spacing and motion from the
+  tokens (`emit/mui.mjs`); `SolarProvider` in `@bwp-web/components` installs it;
+  `npm run smoke:install` installs the packed packages in a clean app with React 18 and renders
+  them on the server.
 
 ## Layout
 
@@ -668,7 +678,7 @@ test/component-parity.test.mjs` names whatever of the IR a shell does not reach 
   stroke, an arc — fails naming the file rather than being quietly dropped.
 
 Everything generated is committed, and CI regenerates it and fails on any difference, so run
-`npm run solar:codegen` and commit the result after touching this package.
+`npm run solar:codegen` after touching this package and keep what it writes (the owner commits).
 
 Generator code is ESM `.mjs` with no build step. Run the suites with `npx vitest run` from here
 or from the repository root.

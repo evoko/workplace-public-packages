@@ -10,9 +10,10 @@ Unlike the Foundations docs, which are written prose, almost everything here is
 **generated from data extracted out of Figma**. Edit the extractor or the builder, never
 the generated files.
 
-"A generator" on this page means the future design-to-code tool, which is **not built
-yet**. The scripts here produce documentation and data for it; see
-[../README.md](../README.md) for the end-to-end picture.
+"A generator" on this page means the design-to-code tool, `npm run solar:codegen`
+([packages/codegen](../../packages/codegen/README.md)), which reads `catalog.json` and the raw
+data. The scripts here produce documentation and data for it; see [../README.md](../README.md)
+for the end-to-end picture.
 
 ## What is here
 
@@ -119,9 +120,9 @@ Know these before designing anything on top of `catalog.json`:
 
 ```bash
 npm run solar:web     # fetch every page from the live SOLAR Web file, then rebuild all docs here
-npm run solar:sync    # the same, plus the Foundations side (docs/solar/figma-pages)
-npm run solar:fetch   # fetch both files only
-npm run solar:docs    # rebuild both doc sets only
+npm run solar:sync    # all three Figma files (Foundations, Web, Icons), then docs, tokens and code
+npm run solar:fetch   # fetch all three files only
+npm run solar:docs    # rebuild all three doc sets only
 npm run solar:tokens  # regenerate the Foundations css-contract / reference.css / grammar
 ```
 
@@ -159,8 +160,8 @@ pipeline for now. Everything under `components/*`, `patterns/*`, `views/auth`,
 
 It exits non-zero if a page binds a variable that is not yet in
 [`raw/_variables.json`](raw/_variables.json). That happens only when Figma adds a new
-variable; resolving it is a one-line lookup described in [raw/README.md](raw/README.md).
-Requirements: Node 20+, a Figma token in `~/.config/figma/token` or `$FIGMA_TOKEN` from an
+variable; how to name it is in [raw/README.md](raw/README.md) and, step by step, in
+[the sync workflow](../engineering/workflows.md#sync-from-figma). Requirements: Node 22, a Figma token in `~/.config/figma/token` or `$FIGMA_TOKEN` from an
 account that can open the file. Note that this refreshes SOLAR **Web** only; the
 Foundations token inventory in `docs/solar/tokens/figma-variables.json` is the declared
 source of truth and is regenerated deliberately, not by this command.

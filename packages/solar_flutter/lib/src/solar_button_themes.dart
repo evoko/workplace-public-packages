@@ -1,7 +1,7 @@
 // The component themes of the SOLAR widgets that wrap a Flutter button, the Flutter way: a
 // ThemeExtension an app adds to its ThemeData, whose [ButtonStyle] is merged over the SOLAR recipe
-// (docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md, "theming follows the
-// platform"). What the app's style sets wins; what it leaves null is the recipe's, which is what
+// (docs/engineering/architecture.md, "Two libraries, one contract": theming follows the
+// platform). What the app's style sets wins; what it leaves null is the recipe's, which is what
 // Figma draws.
 //
 //   ThemeData(extensions: [

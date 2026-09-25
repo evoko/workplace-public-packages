@@ -1,7 +1,7 @@
 /**
  * Component parity: both platforms reach every part of Figma's contract, the IR, and draw from the
- * same recipe. What is shared is the contract (docs/superpowers/specs/
- * 2026-09-25-two-libraries-one-contract.md): each recipe is the IR, entry for entry, in the same
+ * same recipe. What is shared is the contract (docs/engineering/architecture.md, "Two libraries,
+ * one contract"): each recipe is the IR, entry for entry, in the same
  * states, resolved in the same order; each shell reaches every prop and slot of the IR through its
  * descriptor's declared mapping (src/shells/api.mjs), in its platform's own spelling and mechanism,
  * never required to match the other platform's.

@@ -24,7 +24,7 @@ and the gallery cannot drift from what is checked:
   an app. The visual checks measure both modes; this is where a person looks at them. (It found SOLAR's first Dark defect this way: `docs/solar-review-for-design.md`, section 8, action colours.)
 
 `stories/solar.tsx` builds both stories for any component. A component's story file only names it,
-and `npm run solar:codegen` writes it with the shell, for every component. The codegen's tables reach the browser through `.storybook/main.ts`, which
+and `npm run solar:codegen` writes it for every component (the shells are hand-written). The codegen's tables reach the browser through `.storybook/main.ts`, which
 serves them as the module `virtual:solar`. Workspace packages resolve to their sources, so it needs
 no build first. CI builds it and keeps the result as the `storybook` artifact.
 

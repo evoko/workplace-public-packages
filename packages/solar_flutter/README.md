@@ -1,7 +1,8 @@
 # solar_flutter
 
-Biamp SOLAR design tokens and icons for Flutter, generated from the same specs as the web
-packages: `spec/tokens.json` and `spec/icons.json`.
+Biamp SOLAR for Flutter: the design tokens, the icons and logos, and the SOLAR components as
+widgets, generated from the same specs as the web packages (`spec/tokens.json`, `spec/icons.json`,
+`spec/components/`) and checked against Figma in Light and Dark.
 
 Consume it by git dependency:
 
@@ -16,7 +17,7 @@ It needs Flutter 3.47 or later (Dart 3.13), the version CI pins in `.github/work
 
 Everything in `lib/src/generated` is produced by `npm run solar:codegen` at the repository
 root. Do not edit it. The types, the widgets and the SVG path parser beside it are hand written.
-See [the design spec](../../docs/superpowers/specs/2026-09-21-solar-docs-to-code-design.md).
+How it is built: [docs/engineering/architecture.md](../../docs/engineering/architecture.md).
 
 ## Tokens
 
@@ -96,7 +97,9 @@ row, a pagination item or a calendar's day by a null `onPressed`, with no `disab
 (each has a `disabled` getter that says so). A field (`SolarTextInput`, `SolarSelect`, the pickers
 and the rest of the text fields) takes Flutter's `enabled`, `true` by default, as `TextField` and
 `DropdownMenu` do, and so does a Select's or Dropdown's option; `disabled` is its getter. A card, a
-tab and a breadcrumb keep their `disabled`, a look of its own, not the absence of an action. A slider is on `min` to `max`, 0 to 1
+tab, a breadcrumb and a Counter keep their `disabled`, a look of its own, not the absence of an
+action. A `SolarRadio`, `SolarSlider`, `SolarSliderRange` and `SolarOptionRow` still take
+`disabled` beside their callback (open work, docs/engineering/open-work.md). A slider is on `min` to `max`, 0 to 1
 by default. A
 `SolarRadio<T>` and a `SolarSegmentedControlItem<T>` are checked by the `RadioGroup` around them,
 by their `value`, as Flutter's own Radio is, so they take no `checked` or `selected`; the group

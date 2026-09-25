@@ -1,18 +1,38 @@
 # @bwp-web/components
 
-SOLAR components for React, built on MUI: Button, Icon Button, Button Group, FAB, BackButton,
-SplitButton, Link and Spinner, the display primitives (StatusIndicator, Counter, Kbd, Timestamp,
-Avatar, Trend Badge, Divider, Skeleton, ProgressBar, Node End, RowExpand and Tree Indent), and the
-selection controls (Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle, Segmented Control
-and its Item), the tags and messages (Tag, Alert, Alert Small, Banner, Toast and EmptyState),
-the text fields (Text Input, Text Area, SearchField, GlobalSearch, Password Input, Number
-Input, Inline Input, Token Input, PIN Input and FileUpload), and the menus and lists (Dropdown
-Item, Dropdown Group Label, Dropdown Menu, Context Menu Item, Context Menu, Option Row, Options
-List, ListItem and List), the pickers (Select, Dropdown, Autocomplete, DatePicker, Date Picker Open
-and its Day Cell, TimePicker and TimePicker Dropdown), navigation (Tabs and Tab Item, Nav Item,
-Section Nav Item and Group Header, Breadcrumbs and Breadcrumb Item, Tree Item), and paging and steps
-(Pagination and its Item, Nav and Ellipsis, Page Navigator and its Button, Stepper, Step and Stepper
-Indicator) so far.
+SOLAR components for React, built on MUI: every component in SOLAR Web's components section,
+each checked variant by variant against Figma in Light and Dark. By family:
+
+- **Buttons**: Button, Icon Button, Button Group, FAB, BackButton, SplitButton, Link, Spinner.
+- **Display primitives**: StatusIndicator, Counter, Kbd, Timestamp, Avatar, Trend Badge, Divider,
+  Skeleton, ProgressBar, Node End, RowExpand, Tree Indent.
+- **Selection controls**: Checkbox, Radio, Toggle, Slider, Slider Range, DragHandle, Segmented
+  Control and its Item.
+- **Tags and messages**: Tag, Alert, Alert Small, Banner, Toast, EmptyState.
+- **Text fields**: Text Input, Text Area, SearchField, GlobalSearch, Password Input, Number Input,
+  Inline Input, Token Input, PIN Input, FileUpload.
+- **Menus and lists**: Dropdown Item, Dropdown Group Label, Dropdown Menu, Context Menu Item,
+  Context Menu, Option Row, Options List, ListItem, List.
+- **Pickers**: Select, Dropdown, Autocomplete, DatePicker, Date Picker Open and its Day Cell,
+  TimePicker, TimePicker Dropdown.
+- **Navigation**: Tabs and Tab Item, Nav Item, Section Nav Item and Group Header, Breadcrumbs and
+  Breadcrumb Item, Tree Item.
+- **Paging and steps**: Pagination and its Item, Nav and Ellipsis, Page Navigator and its Button,
+  Stepper, Step, Stepper Indicator.
+- **Cards**: Card, Container, Split Dropdown, Status Card, Insight Card, Insight Card Small, Insight
+  Row, Expandable Card, Accordion, Event Row, Option Card, File Card, Image Card, Action Card,
+  Interactive Card, Device Card, Launch Card, Launch Card Full Screen.
+- **Tables and properties**: Table, Row, Column Item, RowSelect, TableHeader, TableFooter,
+  PropertyList, PropertyRow.
+- **Overlays and dialogs**: Dialog, ConfirmationDialog, Split Dialog, Drawer, Scrim, Tooltip,
+  Popover, Coachmark.
+- **Calendar parts**: Event Chip, Calendar Day Cell, Weekday Header, Time Axis Label, Time Slot,
+  All-Day Bar, Agenda Row, Calendar Toolbar.
+- **Charts**: Sparkline, Bar, Bar Stack, Data Legend, Chart Tooltip, and Bar Chart, Line Chart and
+  Donut Chart drawn by MUI X Charts in a theme generated from Figma.
+
+How they are built, and how to change one:
+[docs/engineering/architecture.md](../../docs/engineering/architecture.md).
 
 ## Getting started
 

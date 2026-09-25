@@ -5,8 +5,8 @@
  * The line between the recipe and the shell is the line between look and behaviour. The recipe --
  * what a component looks like -- is generated from Figma and never written by hand. The shell --
  * props, slots, keyboard, focus, accessibility -- is written by hand, in TSX by a React engineer
- * and in Dart by a Flutter engineer (docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md;
- * owner decision 2026-09-25, the pipeline review's item 9). What the IR decides still reaches it
+ * and in Dart by a Flutter engineer (docs/engineering/architecture.md; owner decision
+ * 2026-09-25). What the IR decides still reaches it
  * with no edit: its props types, its layer tree and its slot names are generated beside the recipe
  * and imported; a prop or slot Figma adds is a typecheck error in the shell, or a failure of the
  * component-parity test, which proves every one is reached; and a fix to a runtime helper

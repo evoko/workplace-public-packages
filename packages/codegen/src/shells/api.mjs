@@ -1,7 +1,7 @@
 /**
  * How each platform's component reaches what the IR names: every prop, every slot, and the props a
- * derived axis follows from. Shared concepts, native spellings (docs/superpowers/specs/
- * 2026-09-25-two-libraries-one-contract.md, level 3): the IR is Figma's contract, and each
+ * derived axis follows from. Shared concepts, native spellings (docs/engineering/architecture.md,
+ * "Two libraries, one contract", level 3): the IR is Figma's contract, and each
  * platform reaches every part of it its own way, which the descriptor declares in its `api` table
  * where it is not the IR's own name.
  *

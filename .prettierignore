@@ -9,8 +9,3 @@ docs/solar-icons/logos/**
 # format does not touch it, and without this it is the one README no check ever reads.
 packages/solar_flutter/**
 !packages/solar_flutter/**/*.md
-# Working documents for agents and maintainers, not published prose. Their fenced code blocks
-# are excerpts lifted from inside functions, so they are legitimately indented; Prettier formats
-# each block as a standalone program and would dedent them, breaking the byte-for-byte match
-# with the files they document.
-docs/superpowers/**

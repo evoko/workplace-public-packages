@@ -128,8 +128,8 @@ An axis's name in code (`to`), and its values (`values`, each Figma value to one
 Card's `type`: `File Card` → `file`, `New Asset Tile` → `create`). Applied last; every other
 address still spells Figma's.
 
-Which name to rename to follows one rule (docs/superpowers/specs/2026-09-25-two-libraries-one-contract.md,
-rule 5; owner decision 2026-09-25): **SOLAR's word where SOLAR's description names the thing**
+Which name to rename to follows one rule ([rule 5 of the two-libraries contract](../../docs/engineering/architecture.md#two-libraries-one-contract);
+owner decision 2026-09-25): **SOLAR's word where SOLAR's description names the thing**
 (`helper`, `mandatory`, `iconLeading`, which the fields' and Button's descriptions use), and
 otherwise MUI's word on the web and Flutter's in Flutter, never one spelling forced on both. The
 IR keeps one name; a platform's own spelling is its descriptor's `api` table, not a `rename`: a
@@ -293,7 +293,7 @@ repeats:
     reason: …
 ```
 
-Opt-in, never automatic (owner decision 2026-09-25, the pipeline review's item 1): siblings Figma
+Opt-in, never automatic (owner decision 2026-09-25): siblings Figma
 means to be distinct look the same to a rule that guesses. A rule that names a copy, or a layer
 with no copies, fails. A shell draws a repeated text layer once per item with the runtime helpers'
 `repeat` (web) and `repeats` (Flutter); a repeated layer whose children the caller gives (the day
