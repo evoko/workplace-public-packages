@@ -343,4 +343,6 @@ and views.
 - **The MUI theme holds literal hex** (`packages/styles/src/generated/mui/theme.ts`, 40 of them,
   so MUI's `alpha()` and `darken()` work) while every recipe holds `var(--solar-*)`: a stock MUI
   widget and a SOLAR component on one page switch modes by different mechanisms. MUI's
-  CSS-variables theme mode (`cssVariables: true`) would make them one.
+  CSS-variables theme mode (`cssVariables: true`) would make them one. **Settled 2026-09-25** by
+  the review's item 15: the theme keeps literal palette values, one set per scheme, and MUI
+  switches on the same `data-theme` attribute as the tokens.

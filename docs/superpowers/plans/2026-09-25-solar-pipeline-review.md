@@ -38,7 +38,7 @@ which corrected three of its readings and added items 19 and 20.
 | 8   | Overlay reference and glossary                       | Done 2026-09-25 (`spec/overlay/README.md`).                     |
 | 9   | Shells as real files                                 | **Open.** Owner decision needed first.                          |
 | 10  | Stable public names                                  | Done 2026-09-25 (`-<slot>` public, `--<layer>` internal).       |
-| 11  | The spec says what the system is                     | Done 2026-09-25. Its two questions are open for the owner.      |
+| 11  | The spec says what the system is                     | Done 2026-09-25. One question open (MUI as peer dependency).    |
 | 12  | Recipe packaging                                     | **Open.**                                                       |
 | 13  | What git carries                                     | **Open.** Owner decision needed first.                          |
 | 14  | A stock-MUI theme generated from the recipes         | Started 2026-09-25: MuiButton, MuiIconButton; drawn ones open.   |
@@ -50,8 +50,6 @@ which corrected three of its readings and added items 19 and 20.
 | 20  | Install the packed packages in a clean app           | Done 2026-09-25 (`npm run smoke:install`, in CI).               |
 | 21  | Parity suite: reachability, not spelling             | Done 2026-09-25 (two-libraries spec; `src/shells/api.mjs`).     |
 | 22  | Flutter idiom: null callback, component themes       | Done 2026-09-25 for the buttons (two-libraries spec).           |
-| 21  | Demote the parity suite to the contract              | **Open.** New, from [two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md). |
-| 22  | A Flutter idiom pass                                 | **Open.** New, from the same decision. Owner questions there.   |
 
 ---
 
@@ -403,7 +401,7 @@ not a contract.
 **Done when.** The components README lists each component's public hooks; a test asserts every
 public hook is a slot or `root`.
 
-### 11. The spec says what the system is — done; two questions open
+### 11. The spec says what the system is — done; one question open
 
 Done 2026-09-25: the design spec's §3 carries "What it has become": a layer-tree renderer that
 borrows platform behaviour where it helps, 84 of 98 descriptors drawn. §13 records it and lists
@@ -415,7 +413,7 @@ two questions for the owner:
   widget and a SOLAR component on one page switch modes by different mechanisms.
 
 The second is item 15 below, since the comparison made it a consumer-facing defect rather than a
-purity question.
+purity question, and item 15 settled it on 2026-09-25.
 
 ---
 
@@ -694,7 +692,9 @@ evidence, the rules for writing a component and the detail of these two items ar
 [two libraries, one contract](../specs/2026-09-25-two-libraries-one-contract.md). Read it before
 starting either item, or items 9, 14, 15 and 17, which it reorients.
 
-### 21. Demote the parity suite to the contract
+### 21. Demote the parity suite to the contract — done
+
+Done 2026-09-25: the descriptors' `api` tables and `src/shells/api.mjs`; see the spec's §8.
 
 Keep the level-1 checks in `packages/codegen/test/component-parity.test.mjs` (every IR entry on
 both platforms, same states in the same order, same appearance combinations, no colour literal).
@@ -703,7 +703,10 @@ reachability through a declared per-platform mapping, and turn the descriptors' 
 (`shells.label`, `shells.flutter`, `shells.slots`, `flutter.groupDecides`) into that mapping.
 Detail and done-when: the spec's §6, item 21.
 
-### 22. A Flutter idiom pass
+### 22. A Flutter idiom pass — done for the buttons
+
+Done 2026-09-25: null callbacks disable 16 widgets, and the four button widgets have component
+themes; Slider, Slider Range, Radio and Option Row could follow. See the spec's §8.
 
 A pressable is disabled by `onPressed: null` (31 widgets carry both a `disabled` parameter and a
 callback today); wrapped controls expose their recipe as a component theme in `SolarTheme`; the

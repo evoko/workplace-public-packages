@@ -260,7 +260,7 @@ gate):
 ## 9. Open for the owner
 
 - Rule 5's wording (SOLAR's word where SOLAR names the thing; otherwise the platform's).
-- Whether item 22's component themes should come before or after F11, given F11 Tables is the
-  next family and will add wrapped controls (`TableRow`).
+- ~~Whether item 22's component themes should come before or after F11.~~ Settled 2026-09-25:
+  done before F11, for the buttons (§8).
 - Whether `loading` should follow the platform too (a Flutter app may prefer to swap the child),
   or stay a shared concept because SOLAR draws it as a state.
