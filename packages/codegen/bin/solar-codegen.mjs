@@ -77,7 +77,7 @@ const shells = built[STAGES.indexOf(components)].stories
   .filter((path) => path.endsWith('.tsx'))
   .map((path) => JSON.stringify(relative(repoRoot, path)));
 execSync(
-  `npx prettier --write "spec/**/*.{json,md}" "packages/styles/src/generated/**/*.{ts,css,json}" "packages/assets/src/generated/**/*.{ts,tsx,json}" ${shells.join(' ')}`,
+  `npx prettier --write "spec/**/*.{json,md}" "packages/styles/src/generated/**/*.{ts,css,json}" "packages/assets/src/generated/**/*.{ts,tsx,json}" "packages/components/src/solar-theme.generated.ts" ${shells.join(' ')}`,
   { cwd: repoRoot, stdio: 'ignore' },
 );
 try {

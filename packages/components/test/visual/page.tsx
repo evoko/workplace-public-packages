@@ -8,7 +8,9 @@ import '@bwp-web/styles/tokens.css';
 import '@bwp-web/styles/fonts.css';
 import MuiButton from '@mui/material/Button';
 import MuiIconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
   createSolarThemeOptions,
@@ -18,6 +20,7 @@ import { icon } from './cases/probes.js';
 import type { ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Card } from '../../src/Card.js';
+import { SolarProvider } from '../../src/SolarProvider.js';
 import { CASES, slug } from './cases/index.js';
 
 /**
@@ -36,6 +39,53 @@ function ThemeProbe() {
         </div>
       ))}
     </ThemeProvider>
+  );
+}
+
+/**
+ * At `#app-code`: SOLAR written in app code through the MUI theme, as an app writes it (the
+ * components README, SOLAR in app code): a text style as a Typography variant, colours as palette
+ * paths in `sx`, and a translucent colour by `theme.alpha`, in a Light subtree and a Dark one. The
+ * check compares what they draw with the tokens.
+ */
+function AppCodeProbe() {
+  return (
+    <SolarProvider>
+      {['light', 'dark'].map((mode) => (
+        <div key={mode} data-theme={mode} data-probe={mode}>
+          <Typography variant="titleSm" data-part="title">
+            Buildings
+          </Typography>
+          <Box
+            data-part="raised"
+            sx={{
+              bgcolor: 'surface.raised',
+              color: 'text.feedback.danger',
+              borderColor: 'border.subtle',
+              borderStyle: 'solid',
+              borderWidth: 1,
+              width: 40,
+              height: 40,
+            }}
+          />
+          <Box
+            data-part="action"
+            sx={{ bgcolor: 'action.primary.bg.default', width: 40, height: 40 }}
+          />
+          <Box
+            data-part="alpha"
+            sx={(theme) => ({
+              bgcolor: theme.alpha(
+                theme.vars!.palette.surface.feedback.info.strong,
+                0.3,
+              ),
+              width: 40,
+              height: 40,
+            })}
+          />
+        </div>
+      ))}
+    </SolarProvider>
   );
 }
 
@@ -140,6 +190,8 @@ function StockCases() {
 createRoot(document.getElementById('root')!).render(
   location.hash === '#theme' ? (
     <ThemeProbe />
+  ) : location.hash === '#app-code' ? (
+    <AppCodeProbe />
   ) : location.hash === '#stock' ? (
     <StockCases />
   ) : (

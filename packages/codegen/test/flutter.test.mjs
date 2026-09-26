@@ -28,6 +28,14 @@ describe('dartName', () => {
 });
 
 describe('renderFlutter', () => {
+  // SOLAR in app code: an app reaches the theme as it reaches Material's, SolarTheme.of(context), with
+  // the widgets' fallback where it installed none (context.solar is lib/src/solar_theme_context.dart).
+  it('gives SolarTheme an of(context), falling back by brightness', () => {
+    expect(dart).toContain('static SolarTheme of(BuildContext context) {');
+    expect(dart).toContain('theme.extension<SolarTheme>() ??');
+    expect(dart).toMatch(/show BuildContext, Theme, ThemeExtension;/);
+  });
+
   it('splits each family by whether it varies with a mode', () => {
     // Colour holds both a mode-varying semantic set and a flat primitive palette; they cannot
     // share a class, because one needs instances per mode and the other is static.

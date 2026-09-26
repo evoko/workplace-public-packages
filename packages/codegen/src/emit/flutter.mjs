@@ -308,6 +308,8 @@ export function renderFlutter(spec) {
     `    final dark = brightness == Brightness.dark;\n    final mobile = width < ${boundary};\n` +
     `    return SolarTheme(\n      colors: dark ? SolarColors.dark : SolarColors.light,\n      shadows: dark ? SolarShadows.dark : SolarShadows.light,\n` +
     `      typeScale: mobile ? SolarType.mobile : SolarType.desktop,\n      typography: mobile ? SolarTypography.mobile : SolarTypography.desktop,\n    );\n  }\n\n` +
+    `  /// The SOLAR theme around [context], as [Theme.of] is Material's: the one the app installed as a\n  /// theme extension, else [light] or [dark] by the app's brightness (at the Desktop type scale), so\n  /// SOLAR's colours and text styles are there before an app installs one. \`context.solar\` is the same.\n` +
+    `  static SolarTheme of(BuildContext context) {\n    final theme = Theme.of(context);\n    return theme.extension<SolarTheme>() ??\n        (theme.brightness == Brightness.dark ? dark : light);\n  }\n\n` +
     `  @override\n  SolarTheme copyWith({\n    SolarColors? colors,\n    SolarShadows? shadows,\n    SolarType? typeScale,\n    SolarTypography? typography,\n  }) => SolarTheme(\n    colors: colors ?? this.colors,\n    shadows: shadows ?? this.shadows,\n    typeScale: typeScale ?? this.typeScale,\n    typography: typography ?? this.typography,\n  );\n\n` +
     `  @override\n  SolarTheme lerp(ThemeExtension<SolarTheme>? other, double t) =>\n      (other is SolarTheme && t >= 0.5) ? other : this;\n}\n`;
 
@@ -317,7 +319,7 @@ export function renderFlutter(spec) {
     `import 'dart:ui' show Brightness;\n\n` +
     `import 'package:flutter/animation.dart' show Cubic;\n` +
     `import 'package:flutter/foundation.dart' show immutable;\n` +
-    `import 'package:flutter/material.dart' show ThemeExtension;\n` +
+    `import 'package:flutter/material.dart' show BuildContext, Theme, ThemeExtension;\n` +
     `import 'package:flutter/painting.dart'\n    show BoxShadow, Color, FontWeight, Offset, __TEXT_DECORATION__TextStyle;\n\n`;
 
   const body = modalClasses + '\n' + staticClasses + '\n' + theme;

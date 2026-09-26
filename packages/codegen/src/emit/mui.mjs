@@ -1,5 +1,6 @@
 import { join } from 'node:path';
 import { flattenSpec } from '../spec.mjs';
+import { camel } from '../util/naming.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { canonical, entry, letterSpacingEm } from './manifest.mjs';
@@ -112,6 +113,51 @@ export const MUI_TYPOGRAPHY = {
 };
 
 /**
+ * MUI's own `variantMapping`, restated: the theme's mapping replaces MUI's, so what MUI's variants
+ * render as must be said again beside SOLAR's.
+ */
+const MUI_VARIANT_ELEMENTS = {
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
+  subtitle1: 'h6',
+  subtitle2: 'h6',
+  body1: 'p',
+  body2: 'p',
+  inherit: 'p',
+};
+
+/**
+ * The element a SOLAR text style renders as by default, as a Typography variant. A heading style
+ * is the element MUI's variant of that style is (`title.lg` is MUI's `h4`, so `titleLg` renders an
+ * `h4`), the display and title styles MUI has no variant for the nearest heading below, and the rest
+ * by family. Only a default: `component` sets the element a page's outline needs.
+ */
+function elementOf(style) {
+  const heading = Object.entries(MUI_TYPOGRAPHY).find(
+    ([variant, s]) => s === style && /^h[1-6]$/.test(variant),
+  );
+  if (heading) return heading[0];
+  const family = style.split('.')[0];
+  const element = {
+    display: 'h3',
+    title: 'h6',
+    body: 'p',
+    helper: 'p',
+    label: 'span',
+    caption: 'span',
+    link: 'span',
+    code: 'code',
+  }[family];
+  if (!element)
+    throw new Error(`text style ${style} has no element for its family`);
+  return element;
+}
+
+/**
  * MUI's breakpoints, spacing unit and motion, as SOLAR tokens, so an app's
  * `theme.breakpoints.down('sm')` changes where SOLAR's Mobile type does, and a stock component's
  * transition runs at SOLAR's speeds. MUI's `xs` must be 0; SOLAR's own `viewport.xs` (393) stays in
@@ -153,6 +199,112 @@ export const MUI_DEVIATION = {
   raise:
     'Ask SOLAR to confirm the mapping, or to publish one for MUI-based products.',
 };
+
+/**
+ * SOLAR's semantic colours, which the palette holds beside MUI's own slots so an app writes them as
+ * palette paths (`sx={{ bgcolor: 'surface.raised' }}`). Primitives are left out: SOLAR bans them in
+ * components (docs/solar/18-agent-reference.md, rule 1).
+ */
+const isSemanticColour = (t) =>
+  t.name.startsWith('color.') && t.ext?.tier === 'semantic';
+
+/**
+ * A semantic colour's path in the palette: SOLAR's own, less `color.`, each segment camelCased as
+ * solar_flutter names the same token (`color.surface.feedback.danger.subtle-alpha` →
+ * `surface.feedback.danger.subtleAlpha`). A colour that is also a group (`color.border.inverse`,
+ * beside `inverse.subtle`) is the group's `main`, MUI's word for a group's own colour, since an
+ * object cannot also be a colour.
+ */
+export function solarPalettePath(name, names) {
+  const path = name
+    .replace(/^color\./, '')
+    .split('.')
+    .map(camel);
+  return names.some((n) => n.startsWith(`${name}.`)) ? [...path, 'main'] : path;
+}
+
+/** Sets a palette path, refusing to change a value already there: MUI's slot and SOLAR's must agree. */
+function place(palette, path, value, name) {
+  let group = palette;
+  for (const key of path.slice(0, -1)) {
+    if (typeof group[key] === 'string')
+      throw new Error(`${name}: the palette's ${key} is a colour, not a group`);
+    group = group[key] ??= {};
+  }
+  const key = path.at(-1);
+  if (group[key] !== undefined && group[key] !== value)
+    throw new Error(
+      `${name}: the palette's ${path.join('.')} already holds ${JSON.stringify(group[key])}, not ${value}`,
+    );
+  group[key] = value;
+}
+
+/** The keys MUI's own TypeText declares: SOLAR's text group adds the rest beside them. */
+const MUI_TEXT_KEYS = new Set(['primary', 'secondary', 'disabled']);
+
+/** A key as a TypeScript property name: quoted where it is not an identifier (`'01'`). */
+const tsKey = (key) => (/^[A-Za-z_$][\w$]*$/.test(key) ? key : `'${key}'`);
+
+/** A palette group as a TypeScript object type, every leaf a colour string. */
+function tsShape(group, optional, depth = 1) {
+  const pad = '  '.repeat(depth);
+  const rows = Object.entries(group).map(
+    ([key, value]) =>
+      `${pad}  ${tsKey(key)}${optional ? '?' : ''}: ${
+        typeof value === 'string'
+          ? 'string'
+          : tsShape(value, optional, depth + 1)
+      };`,
+  );
+  return `{\n${rows.join('\n')}\n${pad}}`;
+}
+
+/**
+ * The type augmentation for SOLAR in app code, written into @bwp-web/components, which peers MUI
+ * (@bwp-web/styles imports nothing from MUI): SOLAR's palette groups on `Palette`, its text and
+ * action roles beside MUI's on `TypeText` and `TypeAction`, and its text styles as Typography
+ * variants, so `theme.palette.surface.raised` and `<Typography variant="titleSm">` typecheck and an
+ * invented name does not.
+ */
+function renderAugmentation(solarPalette, variants) {
+  const { text = {}, action = {}, ...groups } = solarPalette;
+  const own = Object.fromEntries(
+    Object.entries(text).filter(([key]) => !MUI_TEXT_KEYS.has(key)),
+  );
+  const members = (group, optional) =>
+    Object.entries(group)
+      .map(
+        ([key, value]) =>
+          `    ${tsKey(key)}${optional ? '?' : ''}: ${tsShape(value, optional, 2)};`,
+      )
+      .join('\n');
+  const leaves = (group) =>
+    Object.entries(group)
+      .map(([key, value]) =>
+        typeof value === 'string'
+          ? `    ${tsKey(key)}: string;`
+          : `    ${tsKey(key)}: ${tsShape(value, false, 2)};`,
+      )
+      .join('\n');
+  const names = Object.keys(variants);
+  return (
+    `// Generated by @bwp-web/codegen from spec/tokens.json. Do not edit.\n` +
+    `// SOLAR in an MUI theme's types: its semantic colours as palette groups (theme.palette.surface.raised,\n` +
+    `// sx={{ bgcolor: 'surface.raised' }}) and its text styles as Typography variants (variant="titleSm").\n` +
+    `// The values are in @bwp-web/styles/mui's createSolarThemeOptions, which SolarProvider installs.\n\n` +
+    `import type { CSSProperties } from 'react';\n\n` +
+    `declare module '@mui/material/styles' {\n` +
+    `  interface Palette {\n${members(groups, false)}\n  }\n\n` +
+    `  interface PaletteOptions {\n${members(groups, true)}\n  }\n\n` +
+    `  interface TypeText {\n${leaves(own)}\n  }\n\n` +
+    `  interface TypeAction {\n${leaves(action)}\n  }\n\n` +
+    `  interface TypographyVariants {\n${names.map((n) => `    ${n}: CSSProperties;`).join('\n')}\n  }\n\n` +
+    `  interface TypographyVariantsOptions {\n${names.map((n) => `    ${n}?: CSSProperties;`).join('\n')}\n  }\n}\n\n` +
+    `declare module '@mui/material/Typography' {\n` +
+    `  interface TypographyPropsVariantOverrides {\n${names.map((n) => `    ${n}: true;`).join('\n')}\n  }\n}\n\n` +
+    `export {};\n`
+  );
+}
 
 /** Resolves a table of token names against one mode's values, failing on a missing name. */
 function resolveTable(table, values, path = 'palette') {
@@ -264,6 +416,25 @@ export function renderMui(spec) {
     light: resolveTable(MUI_PALETTE, data.tokens.light),
     dark: resolveTable(MUI_PALETTE, data.tokens.dark),
   };
+  const semantic = tokens.filter(isSemanticColour);
+  const semanticNames = semantic.map((t) => t.name);
+  // SOLAR's own palette structure, apart from MUI's slots, for the type augmentation.
+  data.solarPalette = {};
+  for (const t of semantic)
+    place(
+      data.solarPalette,
+      solarPalettePath(t.name, semanticNames),
+      data.tokens.light[t.name],
+      t.name,
+    );
+  for (const mode of ['light', 'dark'])
+    for (const t of semantic)
+      place(
+        data.palette[mode],
+        solarPalettePath(t.name, semanticNames),
+        data.tokens[mode][t.name],
+        t.name,
+      );
   const px = (name) => {
     const t = index.get(name);
     if (!t)
@@ -295,6 +466,24 @@ export function renderMui(spec) {
     ),
     easing: Object.fromEntries(
       Object.entries(MUI_EASINGS).map(([k, n]) => [k, css(n)]),
+    ),
+  };
+  // SOLAR's text styles as Typography variants, camelCased as MUI names its own and as
+  // solar_flutter names the same styles (`title.sm` → `titleSm`): a dotted name would reach MUI's
+  // generated class name, which a CSS selector reads as two classes.
+  data.variants = Object.fromEntries(
+    Object.entries(data.responsiveTypography).map(([style, value]) => [
+      camel(style),
+      value,
+    ]),
+  );
+  data.variantMapping = {
+    ...MUI_VARIANT_ELEMENTS,
+    ...Object.fromEntries(
+      Object.keys(data.responsiveTypography).map((style) => [
+        camel(style),
+        elementOf(style),
+      ]),
     ),
   };
   data.muiTypography = {
@@ -341,6 +530,15 @@ export function renderMui(spec) {
     `// component renders in SOLAR rather than in MUI's defaults. See spec/deviations.md, mui.theme.\n` +
     `export const solarMuiPalette = ${JSON.stringify(data.palette, null, 2)} as const;\n\n` +
     `export const solarMuiTypography = ${JSON.stringify(data.muiTypography, null, 2)} as const;\n\n` +
+    `// SOLAR's text styles as Typography variants, by their camelCase names (<Typography variant="titleSm">),\n` +
+    `// and the element each renders as by default; MUI's own variants keep theirs.\n` +
+    `export const solarMuiVariants = {\n${Object.keys(data.responsiveTypography)
+      .map(
+        (style) =>
+          `  ${camel(style)}: solarResponsiveTypography[${JSON.stringify(style)}],`,
+      )
+      .join('\n')}\n} as const;\n\n` +
+    `export const solarMuiVariantMapping = ${JSON.stringify(data.variantMapping, null, 2)} as const;\n\n` +
     `// MUI's breakpoints, spacing unit and motion, as SOLAR tokens. See spec/deviations.md, mui.theme.\n` +
     `export const solarMuiBreakpoints = ${JSON.stringify(data.breakpoints, null, 2)} as const;\n\n` +
     `export const solarMuiSpacing = ${data.spacing};\n\n` +
@@ -349,11 +547,13 @@ export function renderMui(spec) {
     ` * The theme options for MUI's createTheme: both colour schemes, in MUI's CSS-variables mode, switched\n` +
     ` * by \`${THEME_ATTRIBUTE}\` as the SOLAR tokens are, so \`${THEME_ATTRIBUTE}="dark"\` on any element turns a stock\n` +
     ` * MUI component and a SOLAR one to Dark together. The palette stays literal per scheme: MUI\n` +
-    ` * derives channels and shades from it, which a var() cannot give.\n` +
+    ` * derives channels and shades from it, which a var() cannot give. Native colour mode makes\n` +
+    ` * theme.alpha() CSS's relative colour, so it works on every SOLAR colour in both schemes; without it,\n` +
+    ` * alpha() reads a channel variable MUI defines only for its own colours.\n` +
     ` */\n` +
     `export function createSolarThemeOptions() {\n` +
     `  return {\n` +
-    `    cssVariables: { colorSchemeSelector: '[${THEME_ATTRIBUTE}="%s"]' },\n` +
+    `    cssVariables: { colorSchemeSelector: '[${THEME_ATTRIBUTE}="%s"]', nativeColor: true },\n` +
     `    colorSchemes: {\n` +
     `      light: { palette: solarMuiPalette.light },\n` +
     `      dark: { palette: solarMuiPalette.dark },\n` +
@@ -363,26 +563,42 @@ export function renderMui(spec) {
     `    transitions: solarMuiTransitions,\n` +
     `    shape: { borderRadius: parseFloat(solarTokens.light['radius.control']) },\n` +
     `    zIndex: solarZIndex,\n` +
-    `    typography: { ...solarResponsiveTypography, ...solarMuiTypography },\n` +
-    `    // Stock MUI components drawn from SOLAR recipes (spec/overlay/mui-theme.yaml).\n` +
-    `    components: solarMuiComponents,\n` +
+    `    typography: { ...solarMuiVariants, ...solarMuiTypography },\n` +
+    `    // Stock MUI components drawn from SOLAR recipes (spec/overlay/mui-theme.yaml), and Typography's\n` +
+    `    // element for each variant.\n` +
+    `    components: {\n` +
+    `      ...solarMuiComponents,\n` +
+    `      MuiTypography: { defaultProps: { variantMapping: solarMuiVariantMapping } },\n` +
+    `    },\n` +
     `  };\n` +
     `}\n`;
   const ts = tokensTs + themeTs;
+  const augmentationTs = renderAugmentation(data.solarPalette, data.variants);
 
   return {
     ts,
     tokensTs,
     themeTs,
+    augmentationTs,
     manifest,
     data,
     deviations: [{ ...MUI_DEVIATION }],
   };
 }
 
+/** Where the type augmentation goes: beside the components' own, in the package that peers MUI. */
+export const AUGMENTATION = join(
+  packagesDir,
+  'components',
+  'src',
+  'solar-theme.generated.ts',
+);
+
 export function emitMui(spec) {
-  const { tokensTs, themeTs, manifest, deviations } = renderMui(spec);
+  const { tokensTs, themeTs, augmentationTs, manifest, deviations } =
+    renderMui(spec);
   writeGenerated(join(OUT_DIR, '..', 'tokens.ts'), tokensTs);
   writeGenerated(join(OUT_DIR, 'theme.ts'), themeTs);
+  writeGenerated(AUGMENTATION, augmentationTs);
   return { count: Object.keys(manifest).length, deviations };
 }

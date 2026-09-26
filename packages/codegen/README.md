@@ -23,16 +23,16 @@ re-checks it after each run. This is invariant 1 of
 
 ## What it produces
 
-`spec/tokens.json` is the contract: 710 tokens in [DTCG](https://tr.designtokens.org/) format —
-647 variables, 9 shadows, 47 text styles and the 7-level z-index ladder. Modes live under
+`spec/tokens.json` is the contract: 714 tokens in [DTCG](https://tr.designtokens.org/) format —
+651 variables, 9 shadows, 47 text styles and the 7-level z-index ladder. Modes live under
 `$extensions["com.biamp.solar"].modes`. Every token target is generated from this one file.
 
 | Target     | Output                                                        | Covers                                                                      |
 | ---------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `css`      | `packages/styles/src/generated/css/tokens.css`                | 663 — everything except the typography composites                           |
-| `mui`      | `packages/styles/src/generated/tokens.ts`, `.../mui/theme.ts` | 710: the agnostic token data, and the MUI theme apart from it               |
+| `css`      | `packages/styles/src/generated/css/tokens.css`                | 667 — everything except the typography composites                           |
+| `mui`      | `packages/styles/src/generated/tokens.ts`, `.../mui/theme.ts` | 714: the agnostic token data, and the MUI theme apart from it               |
 | `tailwind` | `packages/styles/src/generated/tailwind/theme.css`            | 370 — the semantic layer, plus `motion.*` and font families, for Tailwind 4 |
-| `flutter`  | `packages/solar_flutter/lib/src/generated/tokens.dart`        | 710                                                                         |
+| `flutter`  | `packages/solar_flutter/lib/src/generated/tokens.dart`        | 714                                                                         |
 
 The four are independent emitters reading one normalized spec. They are **not** transpiled from
 each other: a Dart file is not a translation of a stylesheet, and pretending otherwise is how

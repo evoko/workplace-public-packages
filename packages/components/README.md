@@ -53,6 +53,12 @@ export function App() {
 That is the whole setup. For Dark, set `data-theme="dark"` on any element, the page's root or one
 panel: the SOLAR components and every stock MUI component under it switch together.
 
+**Next.js App Router.** The package is a client module (`'use client'`), so a layout or page,
+a server component by default, imports it directly: `SolarProvider` in the root layout with the two
+stylesheets, and the components in any page. `@bwp-web/assets` needs no directive: its icons and
+logos render in server components too. `npm run smoke:install` checks the directive on the packed
+package.
+
 **Requires** React 18 or newer and MUI 9 (`@mui/material` with its Emotion peers), which the app
 provides; neither is bundled. The components look right without `SolarProvider`; it installs the
 SOLAR MUI theme, so the stock MUI components beside them match, and takes the app's own theme
@@ -77,6 +83,65 @@ typecheck.
   }}
 >
 ```
+
+## SOLAR in app code
+
+Under `SolarProvider`, an app writes SOLAR's text styles, colours and spacing through the MUI theme,
+by SOLAR's names, with types:
+
+```tsx
+<Typography variant="titleSm" component="h2">Buildings</Typography>
+<Box sx={{ bgcolor: 'surface.raised', color: 'text.secondary', borderColor: 'border.subtle', p: 4 }} />
+const theme = useTheme();
+theme.palette.text.feedback.danger; // SOLAR's colour, typed
+```
+
+**Text.** Every SOLAR text style is a `Typography` variant, its name in camelCase: `displayLg`,
+`titleSm`, `bodyMdRegular`, `labelMd`, `helperSm`, `codeMd`, `linkMdDefault`… (`sx={{ typography:
+'titleSm' }}` too). Each renders as an element by default, and `component` sets another where the
+page's outline needs it:
+
+| Styles                                                   | Element            |
+| -------------------------------------------------------- | ------------------ |
+| `displayLg` · `displayMd` · `displaySm`, `displayXs…`    | `h1` · `h2` · `h3` |
+| `titleLg` · `titleMd` · `titleSm`, `titleXs`, `title2xs` | `h4` · `h5` · `h6` |
+| `body…`, `helper…`                                       | `p`                |
+| `label…`, `caption…`, `link…`                            | `span`             |
+| `code…`                                                  | `code`             |
+
+MUI's own variants still work and are SOLAR styles (`h4` is `title.lg`, `body1` is
+`body.md.regular`), so `variant="h4"` and `variant="titleLg"` draw the same, on the same element.
+
+**Colour.** Every SOLAR semantic colour is in `theme.palette` under SOLAR's own structure, less
+`color.`, each name segment in camelCase: `surface.raised`, `border.subtle`, `text.feedback.danger`,
+`action.primary.bg.hover`, `surface.feedback.danger.subtleAlpha`, `data.category.01.strong`.
+`color.border.inverse`, a colour that is also a group, is `border.inverse.main`. Write them as
+`sx` palette paths (`bgcolor: 'surface.raised'`), or read `theme.palette.…` (typed) or
+`theme.vars.palette.…` (the CSS variable). Both switch with `data-theme`. MUI does not type-check
+an `sx` string; the `theme.palette` access is. Primitives (`red.500`, `neutral.*`) are not in the
+palette: SOLAR's rules keep them out of components.
+
+**Translucency.** Use SOLAR's translucent token where there is one (`subtleAlpha`, `scrim`).
+Otherwise `theme.alpha(theme.vars.palette.surface.feedback.info.strong, 0.3)`: the theme runs MUI's
+native colour mode, so it is CSS's relative colour and follows Dark. It needs a browser from about
+2024 on (current Chrome, Safari, Firefox).
+
+**Spacing.** MUI's spacing unit is SOLAR's `inset.2xs`, 4px, so the units are SOLAR's steps:
+
+| `p`, `m`, `gap`… | 1     | 2    | 3    | 4    | 5    | 6    | 7     | 10    |
+| ---------------- | ----- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| SOLAR            | `2xs` | `xs` | `sm` | `md` | `lg` | `xl` | `2xl` | `3xl` |
+
+(`inset.*` and `stack.*` share the values.) Other units are not on SOLAR's scale.
+
+**Coming from V1.** What an app written for V1's theme meets first:
+
+- `theme.palette.grey.*` is a raw scale: use the role it stood for (`text.secondary`,
+  `border.subtle`, `surface.muted`…).
+- Branching on `theme.palette.mode` goes away: the tokens switch with `data-theme`.
+- `alpha(theme.palette.x, a)` computes from Light's value and is wrong in Dark: a translucent
+  token, or `theme.alpha(theme.vars.palette.x, a)`.
+- MUI's variants (`h1`…`caption`) keep working; move to the SOLAR name as a screen is touched.
 
 ## Styling hooks
 

@@ -47,6 +47,15 @@ for (const css of ['@bwp-web/styles/tokens.css', '@bwp-web/styles/fonts.css', '@
   if (!readFileSync(require.resolve(css), 'utf8').includes('--solar-') && !css.endsWith('fonts.css'))
     fail(css + ' holds no SOLAR variables');
 
+// Next.js's App Router renders every layout and page as a server component. A module that calls
+// MUI's styled() or a hook as it loads must declare itself a client module, or importing it from
+// one fails the app's build ("Attempted to call ... styled ... from the server").
+for (const file of ['@bwp-web/components/dist/index.js', '@bwp-web/components/dist/index.cjs']) {
+  const path = new URL('node_modules/' + file, import.meta.url).pathname;
+  if (!/^['"]use client['"]/.test(readFileSync(path, 'utf8').trimStart()))
+    fail(file + ' does not begin with "use client", so a Next.js server component cannot import it');
+}
+
 // Loaded as an app loads them, and rendered on the server.
 const styles = await import('@bwp-web/styles/mui');
 const assets = await import('@bwp-web/assets');

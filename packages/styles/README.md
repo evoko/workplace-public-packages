@@ -113,6 +113,13 @@ without MUI's uppercase. SOLAR does not define this mapping, so it is the `mui.t
 rather than `var(--solar-*)`, because MUI derives channels and shades from it (`alpha()`,
 `darken()`).
 
+For app code, the theme also holds SOLAR's own names (the components README, _SOLAR in app code_):
+every semantic colour in `solarMuiPalette` under SOLAR's structure (`surface.raised`,
+`text.feedback.danger`), and every text style as a Typography variant under its camelCase name,
+`solarMuiVariants` (`titleSm`), with the element each renders as, `solarMuiVariantMapping`. It runs
+MUI's native colour mode (`cssVariables.nativeColor`), so `theme.alpha()` works on any of them. The
+types that go with them are in `@bwp-web/components` (`solar-theme.generated.ts`), which peers MUI.
+
 The component recipes are here too: `solarButtonStyle(props)` is the complete style for one set of
 Button props, for `sx` or `styleOverrides.root`, with every value a `var(--solar-*)`.
 
@@ -152,3 +159,7 @@ stylesheet does with its media query.
 
 Names are the SOLAR dot form (`color.text.primary`), the same names used in `docs/` and in
 `spec/tokens.json`.
+
+These are resolved values, for what cannot take CSS: a canvas, a chart library's options, a test.
+A component or an app's own styling reads the MUI palette or the `--solar-*` variables instead: a
+value taken from `solarTokens` is a literal, and never switches to Dark.

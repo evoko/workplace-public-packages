@@ -88,7 +88,7 @@ token JSON on the left is refreshed deliberately, never by the sync.
 | [solar-web/token-usage.json](solar-web/token-usage.json)                                                                   | `build-docs.mjs`             | Impact analysis: which components consume a token                                           | same                                                                        |
 | [solar-web/INDEX.md](solar-web/INDEX.md), [issues.md](solar-web/issues.md), per-page `.md`                                 | `build-docs.mjs`             | Humans and agents reading about one component                                               | [solar-web/README.md](solar-web/README.md#reading-a-component-page)         |
 | `solar/raw/_meta.json`, `solar-web/raw/_meta.json`                                                                         | the fetchers                 | Provenance: file version, date, failed pages, unresolved variable ids                       | [solar-web/README.md](solar-web/README.md#keeping-it-in-sync-with-figma)    |
-| [`spec/tokens.json`](../spec/tokens.json)                                                                                  | `solar:codegen`              | The DTCG contract the four token targets are generated from: 710 tokens with their modes    | [packages/codegen/README.md](../packages/codegen/README.md)                 |
+| [`spec/tokens.json`](../spec/tokens.json)                                                                                  | `solar:codegen`              | The DTCG contract the four token targets are generated from: 714 tokens with their modes    | [packages/codegen/README.md](../packages/codegen/README.md)                 |
 | [`spec/icons.json`](../spec/icons.json)                                                                                    | `solar:codegen`              | The drawing contract the three icon targets are generated from: 340 icon sets, 3 logo sets  | same                                                                        |
 | `packages/styles/src/generated/`, `packages/solar_flutter/lib/src/generated/tokens.dart`                                   | `solar:codegen`              | Apps: the tokens as CSS, an MUI theme, a Tailwind 4 stylesheet and Dart constants           | [packages/styles/README.md](../packages/styles/README.md)                   |
 | `packages/assets/src/generated/`, `packages/solar_flutter/lib/src/generated/icons.dart`                                    | `solar:codegen`              | Apps: 340 React icon components, 685 standalone SVG files and the Dart vectors              | [packages/assets/README.md](../packages/assets/README.md)                   |
@@ -137,7 +137,7 @@ shared REST client, version-keyed cache and manifest helpers live in
 then generating independent targets from it.
 
 **Tokens.** The token data becomes `spec/tokens.json`, a [DTCG](https://tr.designtokens.org/)
-contract of 710 tokens. Four emitters generate from that one file: CSS custom properties, an MUI
+contract of 714 tokens. Four emitters generate from that one file: CSS custom properties, an MUI
 theme and a Tailwind 4 stylesheet into [`@bwp-web/styles`](../packages/styles/README.md), and Dart
 constants into [`solar_flutter`](../packages/solar_flutter/README.md).
 

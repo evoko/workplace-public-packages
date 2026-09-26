@@ -20,3 +20,24 @@ describe('camel', () => {
     expect(camel('A')).toBe('a');
   });
 });
+
+// The palette's keys and the Typography variants are SOLAR's names through camel, segment by segment
+// for a palette path and whole for a variant: the same words solar_flutter's tokens use (dartName),
+// so both platforms say `subtleAlpha` and `titleSm` (packages/components/README.md, SOLAR in app code).
+describe('camel, on SOLAR token names', () => {
+  it('names a palette key: a hyphenated segment camelCased, a numeric or plain one kept', () => {
+    expect(camel('subtle-alpha')).toBe('subtleAlpha');
+    expect(camel('negative-100')).toBe('negative100');
+    expect(camel('01')).toBe('01');
+    expect(camel('100')).toBe('100');
+    expect(camel('primary')).toBe('primary');
+  });
+
+  it('names a variant: a text style’s whole path as one word', () => {
+    expect(camel('title.sm')).toBe('titleSm');
+    expect(camel('body.md.regular')).toBe('bodyMdRegular');
+    expect(camel('title.2xs')).toBe('title2xs');
+    expect(camel('display.xs.semibold')).toBe('displayXsSemibold');
+    expect(camel('link.md.hover')).toBe('linkMdHover');
+  });
+});

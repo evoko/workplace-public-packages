@@ -5,7 +5,7 @@ import 'dart:ui' show Brightness;
 
 import 'package:flutter/animation.dart' show Cubic;
 import 'package:flutter/foundation.dart' show immutable;
-import 'package:flutter/material.dart' show ThemeExtension;
+import 'package:flutter/material.dart' show BuildContext, Theme, ThemeExtension;
 import 'package:flutter/painting.dart'
     show BoxShadow, Color, FontWeight, Offset, TextDecoration, TextStyle;
 
@@ -2851,6 +2851,15 @@ class SolarTheme extends ThemeExtension<SolarTheme> {
       typeScale: mobile ? SolarType.mobile : SolarType.desktop,
       typography: mobile ? SolarTypography.mobile : SolarTypography.desktop,
     );
+  }
+
+  /// The SOLAR theme around [context], as [Theme.of] is Material's: the one the app installed as a
+  /// theme extension, else [light] or [dark] by the app's brightness (at the Desktop type scale), so
+  /// SOLAR's colours and text styles are there before an app installs one. `context.solar` is the same.
+  static SolarTheme of(BuildContext context) {
+    final theme = Theme.of(context);
+    return theme.extension<SolarTheme>() ??
+        (theme.brightness == Brightness.dark ? dark : light);
   }
 
   @override

@@ -40,6 +40,13 @@ MaterialApp(
 )
 ```
 
+**In an app's own widgets**, reach the theme as Material's is reached, `SolarTheme.of(context)`, or
+`context.solar`: `context.solar.colors.surfaceRaised`, `context.solar.typography.titleSm`. Both give
+the installed `SolarTheme`, or Light or Dark by the app's brightness (Desktop type) where none is
+installed. The text styles carry no colour, as SOLAR keeps a style and its colour apart: give one,
+`style: context.solar.typography.titleSm.copyWith(color: context.solar.colors.textPrimary)`, or let
+the app's theme's default text colour apply.
+
 **Follow the viewport with `SolarTheme.resolve`.** Below `SolarViewport.sm` (768) it picks the
 Mobile type scale, at the same width the web's `@media (max-width: 767.98px)` switches, because
 both are derived from the one `viewport.sm` token. `SolarTheme.light` and `SolarTheme.dark` are

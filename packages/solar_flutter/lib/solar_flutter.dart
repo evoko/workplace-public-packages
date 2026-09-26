@@ -28,3 +28,4 @@ export 'src/solar_slider_input.dart';
 export 'src/solar_field.dart';
 export 'src/solar_states.dart';
 export 'src/solar_target.dart';
+export 'src/solar_theme_context.dart';

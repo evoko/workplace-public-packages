@@ -32,7 +32,11 @@ import {
   byPrefix,
   withLayerClasses,
 } from '../../../codegen/src/util/classes.mjs';
-import { compareLayer, matches } from './compare.mjs';
+import {
+  solarTokens,
+  solarTypography,
+} from '../../../styles/src/generated/tokens.ts';
+import { compareLayer, matches, rgba } from './compare.mjs';
 
 const repo = (path) =>
   fileURLToPath(new URL(`../../../../${path}`, import.meta.url));
@@ -328,7 +332,9 @@ async function open(page, hash = '') {
   await page.goto(`http://solar.test/index.html${hash}`);
   await page.addStyleTag({ content: STILL });
   await page
-    .locator(hash === '#theme' ? '[data-probe]' : '[data-case]')
+    .locator(
+      ['#theme', '#app-code'].includes(hash) ? '[data-probe]' : '[data-case]',
+    )
     .first()
     .waitFor();
   await page.evaluate(() => document.fonts.ready);
@@ -580,6 +586,85 @@ test('one attribute turns a stock MUI component and a SOLAR one to Dark together
   expect(light.paper).toBe(light.card);
   expect(dark.paper).toBe(dark.card);
   expect(dark.paper).not.toBe(light.paper);
+});
+
+// SOLAR in app code: what an app writes through the MUI theme draws SOLAR's values. A text style as a
+// Typography variant, colours as sx palette paths and a translucent one by theme.alpha, in Light and
+// in Dark, each against its token (packages/components/README.md, SOLAR in app code).
+test('SOLAR written through the MUI theme draws its tokens, in both modes', async ({
+  page,
+}) => {
+  await open(page, '#app-code');
+  const drawn = await page.evaluate(() => {
+    // Any CSS colour as sRGB [r, g, b, a], through a canvas: theme.alpha's colour computes as
+    // oklch(…), which the check's own parser does not read.
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const srgb = (css) => {
+      ctx.clearRect(0, 0, 1, 1);
+      ctx.fillStyle = css;
+      ctx.fillRect(0, 0, 1, 1);
+      const [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
+      return [r, g, b, a / 255];
+    };
+    return ['light', 'dark'].map((mode) => {
+      const at = document.querySelector(`[data-probe="${mode}"]`);
+      const part = (name) => at.querySelector(`[data-part="${name}"]`);
+      const style = (name) => getComputedStyle(part(name));
+      const title = style('title');
+      return {
+        mode,
+        title: {
+          element: part('title').tagName,
+          fontSize: title.fontSize,
+          lineHeight: title.lineHeight,
+          fontWeight: title.fontWeight,
+          letterSpacing: title.letterSpacing,
+        },
+        colours: {
+          'color.surface.raised': srgb(style('raised').backgroundColor),
+          'color.text.feedback.danger': srgb(style('raised').color),
+          'color.border.subtle': srgb(style('raised').borderTopColor),
+          'color.action.primary.bg.default': srgb(
+            style('action').backgroundColor,
+          ),
+        },
+        translucent: srgb(style('alpha').backgroundColor),
+      };
+    });
+  });
+  const near = (got, want, token) => {
+    // Within 2 per channel (a translucent colour is stored premultiplied) and 0.01 of alpha.
+    for (const i of [0, 1, 2])
+      expect(
+        Math.abs(got[i] - want[i]),
+        `${token} channel ${i}`,
+      ).toBeLessThanOrEqual(2);
+    expect(Math.abs(got[3] - want[3]), `${token} alpha`).toBeLessThanOrEqual(
+      0.01,
+    );
+  };
+  const type = solarTypography.desktop['title.sm'];
+  for (const { mode, title, colours, translucent } of drawn) {
+    // The heading element MUI's own h6 has: title.sm is MUI's h6.
+    expect(title.element, mode).toBe('H6');
+    expect(title.fontSize, mode).toBe(type.fontSize);
+    expect(title.lineHeight, mode).toBe(type.lineHeight);
+    expect(title.fontWeight, mode).toBe(String(type.fontWeight));
+    expect(parseFloat(title.letterSpacing), mode).toBeCloseTo(
+      parseFloat(type.letterSpacing) * parseFloat(type.fontSize),
+      1,
+    );
+    for (const [token, got] of Object.entries(colours))
+      near(got, rgba(solarTokens[mode][token]), `${mode} ${token}`);
+    const info = rgba(solarTokens[mode]['color.surface.feedback.info.strong']);
+    near(
+      translucent,
+      [...info.slice(0, 3), 0.3],
+      `${mode} theme.alpha(info.strong, 0.3)`,
+    );
+  }
 });
 
 // Stock MUI components under the SOLAR theme, each measured against the oracle of the SOLAR

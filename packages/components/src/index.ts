@@ -4,6 +4,8 @@
 export * from './components.generated.js';
 // The SOLAR components' keys in an MUI theme's `components` (its types only).
 export type {} from './theme.generated.js';
+// SOLAR's colours as palette groups and its text styles as Typography variants (types only).
+export type {} from './solar-theme.generated.js';
 export { SolarProvider, type SolarProviderProps } from './SolarProvider.js';
 // The charts, drawn by MUI X Charts in SOLAR's chart theme (`solarChartTheme`).
 export { BarChart, type BarChartProps, type ChartSeries } from './BarChart.js';
