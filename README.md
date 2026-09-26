@@ -16,8 +16,9 @@ published (every package is `2.0.0-alpha.0`).
 | [`@bwp-web/canvas`](./packages/canvas)         | interactive canvas editor and viewer: an empty skeleton, not started        |
 
 Private to the repository: [`@bwp-web/codegen`](./packages/codegen), the generator that writes
-`spec/` and every generated target from the SOLAR data in [`docs/`](./docs/README.md), and
-`@bwp-web/eslint-config`.
+`spec/` and every generated target from the SOLAR data in [`docs/`](./docs/README.md);
+`@bwp-web/eslint-config`; and [`@bwp-web/storybook`](./packages/storybook), which builds the
+Storybook for its Vercel deployment.
 
 ## Getting started
 

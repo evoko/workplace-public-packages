@@ -236,7 +236,10 @@ Storybook (`npm run storybook`) and Widgetbook (`npm run widgetbook`) show every
 with its state forced, in Light and Dark, built from the visual checks' own cases and oracles, and
 badge each variant with its excused differences. They are viewers, not checks.
 
-## CI
+## CI and deployment
+
+The Storybook is deployed by Vercel from `packages/storybook`
+([workflows.md, Deploy](workflows.md#deploy)); nothing in CI deploys.
 
 `.github/workflows/solar.yml` needs no Figma token:
 

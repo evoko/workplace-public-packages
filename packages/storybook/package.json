@@ -1,0 +1,19 @@
+{
+  "name": "@bwp-web/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The Storybook deployment: builds @bwp-web/components' Storybook into dist/ for Vercel.",
+  "scripts": {
+    "build": "npm run build-storybook -w @bwp-web/components -- -o ../storybook/dist",
+    "clean": "rm -rf dist node_modules .turbo",
+    "format": "prettier --check . --ignore-path ../../.gitignore"
+  },
+  "dependencies": {
+    "@bwp-web/assets": "*",
+    "@bwp-web/components": "*",
+    "@bwp-web/styles": "*"
+  },
+  "devDependencies": {
+    "@bwp-web/codegen": "*"
+  }
+}

@@ -125,7 +125,8 @@ describes history, and nothing stale is left for the next reader to follow.
 - Packages at `2.0.0-alpha.0`: `@bwp-web/styles` (tokens and themes, generated),
   `@bwp-web/assets` (icons, logos, app icons, generated), `@bwp-web/components` (the React
   components, on MUI 9; the charts on `@mui/x-charts`), `@bwp-web/canvas` (an empty skeleton).
-  Private: `@bwp-web/codegen` (the generator), `@bwp-web/eslint-config`. Outside the npm
+  Private: `@bwp-web/codegen` (the generator), `@bwp-web/eslint-config`, `@bwp-web/storybook`
+  (the Vercel deployment of the Storybook). Outside the npm
   workspace: `solar_flutter`, a Dart package formatted by `dart format`, pinned to the Flutter
   version in `.github/workflows/solar.yml`.
 - Node 22 builds the repository, pinned in `.nvmrc` and every workflow; the packages' `engines`

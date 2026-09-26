@@ -222,6 +222,25 @@ It runs every step even after one fails, and lists the failures at the end. Then
    Credentials are never accepted.
 8. Verify, as above.
 
+## Deploy
+
+The Storybook is deployed by Vercel's Git integration, with no workflow in this repository. The
+project builds every push from the root directory `packages/storybook` with the Vite preset's
+defaults: `npm install` at the repository root, `turbo run build` in `packages/storybook`, and
+`dist` published. On this branch that directory is [`@bwp-web/storybook`](../../packages/storybook/README.md),
+a package whose `build` writes the components' Storybook into its `dist/`; the V1 branches keep
+their own package in the same place, so the one set of settings serves both.
+
+- `main` is production (V1's Storybook). A push to `v2-SOLAR` deploys V2's at the branch's URL,
+  `workplace-storybook-git-v2-solar-biamp.vercel.app`.
+- To see what Vercel will publish: `cd packages/storybook && ../../node_modules/.bin/turbo run build`,
+  then open `packages/storybook/dist/index.html` through any static server.
+- The project skips a deployment when nothing its root directory depends on changed, so
+  `@bwp-web/storybook` lists every workspace package the Storybook build reads
+  (`test/storybook-deploy.test.mjs` keeps it so). A new one the Storybook comes to read is added
+  there too.
+- Widgetbook is not deployed: Vercel's build image has no Flutter. CI builds it as an artifact.
+
 ## Upgrade a dependency
 
 Every dependency is kept at its newest stable version; an SDK is replaced in place. Where a
