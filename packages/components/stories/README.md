@@ -21,12 +21,13 @@ and the gallery cannot drift from what is checked:
   has run); and **Figma values**: what the oracle says that variant looks like. Widgetbook's tiles
   carry the same badge.
 - **Light and Dark** from the toolbar: `data-theme` on the page, which tokens.css switches, as in
-  an app. The visual checks measure both modes; this is where a person looks at them. (It found SOLAR's first Dark defect this way: `docs/solar-review-for-design.md`, section 8, action colours.)
+  an app. The visual checks measure both modes; this is where a person looks at them.
 
 `stories/solar.tsx` builds both stories for any component. A component's story file only names it,
 and `npm run solar:codegen` writes it for every component (the shells are hand-written). The codegen's tables reach the browser through `.storybook/main.ts`, which
 serves them as the module `virtual:solar`. Workspace packages resolve to their sources, so it needs
 no build first. CI builds it and keeps the result as the `storybook` artifact.
 
-Not here: the tweak panel of the design spec (edit a value, save an overlay rule), or Figma's own
-renders beside the components, which the mirror does not store.
+Not here: the tweak panel (edit a value, save an overlay rule — tracked in
+[open work](../../../docs/engineering/open-work.md#designed-not-built)), or Figma's own renders
+beside the components, which the mirror does not store.

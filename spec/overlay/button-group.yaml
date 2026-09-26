@@ -1,6 +1,6 @@
 # Hand-written decisions about SOLAR Button Group, applied over spec/components/button-group.json
 # by `npm run solar:codegen`. Every rule needs a reason; one that no longer matches the IR fails the
-# build. Addresses use Figma's axis names (type, not fullWidth); `rename` is applied last.
+# build. Addresses use Figma's axis names; `rename` is applied last.
 # Format: packages/codegen/src/normalize/overlay.mjs.
 
 component: Button Group

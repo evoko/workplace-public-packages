@@ -169,10 +169,10 @@ decisions.md; the fields, Radio and Slider have component themes; `flutter analy
 
 ## Out of scope today
 
-Not gaps in what exists, but things a reader may expect and not find: `@bwp-web/canvas` (an empty
-skeleton, needing the unextracted SOLAR Spatial library), SOLAR Web's patterns and views, the
-calendar's assembled Month, Week and Day views and their date logic, component motion, and
-publishing (every package is `2.0.0-alpha.0`, unpublished).
+Not gaps in what exists, but things a reader may expect and not find: those in
+[architecture.md, Out of scope, by design](architecture.md#out-of-scope-by-design), and besides
+them the calendar's assembled Month, Week and Day views and their date logic, and publishing
+(every public package is `2.0.0-alpha.0`, unpublished).
 
 ## Open Figma findings
 

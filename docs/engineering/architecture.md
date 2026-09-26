@@ -57,8 +57,9 @@ a few hand-written guides (this folder, the curated Foundations chapters, the RE
 
 These hold everywhere. The rest of the design follows from them.
 
-1. **`docs/` is read-only to the generator.** It mirrors Figma, defects included. Only
-   `solar:sync` and `solar:tokens` write there. Every generator write goes through
+1. **`docs/` is read-only to the generator.** It mirrors Figma, defects included. Only the
+   fetchers and doc builders in `docs/` (run by `solar:sync`, `solar:rebuild` and their parts) and
+   `solar:tokens` write there. Every generator write goes through
    `writeGenerated` (`packages/codegen/src/util/write.mjs`), which refuses a path under `docs/`,
    and CI checks `docs/` is unchanged after `solar:codegen`.
 2. **A code problem never changes the mirror.** If the fix belongs in Figma, the generator
@@ -69,7 +70,8 @@ These hold everywhere. The rest of the design follows from them.
 5. **No raw literal without a recorded reason.** Every style value is a token, or an exception an
    overlay allows and `spec/deviations.md` reports.
 6. **Builds are pure functions of what is committed.** Running any builder twice gives no diff;
-   generated files record the source's fetch date and Figma version, never the build date.
+   generated files record the source's fetch date and Figma file version (`sourceFetchedOn`,
+   `fileVersion`), never the build date.
 7. **Nothing is written until everything is built.** Every stage builds before any emits, and
    outputs are held (`deferWrites`, `commitGenerated`) until every stage has emitted, so a stage
    that throws rewrites nothing. Output the run did not write is pruned.
@@ -109,7 +111,7 @@ Figma node). Four steps build it (details in the codegen README):
 
 ### Overlays: where judgement lives
 
-`spec/overlay/<name>.yaml` holds every design-to-code decision about one component: the stock
+`spec/overlay/<address>.yaml` holds every design-to-code decision about one component: the stock
 control to wrap, renames, a cell that follows more axes than the model says, a raw value bound to
 the token of the same value, an allowed literal (a governance gap), an accepted finding. Three
 rules make it trustworthy: **every rule has a reason**; **a rule that no longer matches the IR
@@ -195,11 +197,18 @@ The rules for anyone writing or reviewing a component:
    button themes).
 5. **Names.** SOLAR's word where SOLAR's description names the thing (`helper`, `mandatory`,
    `prio`, `iconLeading`); otherwise MUI's word on the web and Flutter's in Flutter (a Flutter
-   field's `enabled`). The one exception: Figma's `style` is `variant` in code, since React
-   reserves `style`.
+   field's `enabled`). The one exception: Figma's `style` is `variant` in code on both platforms,
+   since React reserves `style`. The IR keeps one name: a platform's own spelling of it goes in
+   the descriptor's `api` table (above), never in an overlay `rename`, which changes the name on
+   both platforms. The web's class names are in
+   [Class names on the web](#class-names-on-the-web).
 6. **Accessibility is per platform and non-negotiable on both.** Every control has a 44 × 44
-   target (`size.target.min`) that takes no room, an accessible name, a role and its states,
-   each through its platform's own mechanism, checked by that platform's tests.
+   target (`size.target.min`): on the web one that takes no room; in Flutter, as Material's, one
+   that a control on its own takes where the theme pads tap targets (`SolarTarget`). Where
+   targets would overlap, a control's own box is its target
+   ([the list](../../packages/components/README.md#what-every-component-shares)). Every control
+   has an accessible name, a role and its states, each through its platform's own mechanism,
+   checked by that platform's tests.
 
 A Flutter widget keeps Figma's size on every axis Figma does not fill, even in a stretching
 parent, and sits at the start of any extra room (`SolarOwnSize`).
@@ -241,20 +250,22 @@ badge each variant with its excused differences. They are viewers, not checks.
 The Storybook is deployed by Vercel from `packages/storybook`
 ([workflows.md, Deploy](workflows.md#deploy)); nothing in CI deploys.
 
-`.github/workflows/solar.yml` needs no Figma token:
+`.github/workflows/solar.yml` runs on every pull request and on pushes to `main` and the
+`v<number>` branches, and needs no Figma token: all of its jobs work from data that is committed
+here. It pins Flutter (`FLUTTER_VERSION`), because `dart format` output changes between versions
+and the codegen job diffs the formatted Dart; to upgrade it, see
+[workflows.md, Set up a machine](workflows.md#set-up-a-machine).
 
-| Job                                        | Checks                                                                               |
-| ------------------------------------------ | ------------------------------------------------------------------------------------ |
-| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, YAML  |
-| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs` against `scripts/personal-data-baseline.json`      |
-| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`  |
-| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test`; builds Widgetbook |
-| Web components draw what Figma draws       | `npm run test:visual`; builds Storybook                                              |
+| Job                                        | Checks                                                                                                                                                                | Fixing a failure                                                                                                                |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, YAML                                                                                   | Run those two commands locally, and Prettier on a formatting failure; the owner commits the result                              |
+| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs`: credentials, e-mail addresses and phone numbers in every tracked and untracked file, against `scripts/personal-data-baseline.json` | Redact in the extractor, or accept the finding with a written reason ([how](../README.md#personal-data-in-a-public-repository)) |
+| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`                                                                                   | Run `npm run solar:codegen` locally; the owner commits the result                                                               |
+| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test` with the Flutter visual checks; keeps the reports; builds Widgetbook                                | Run the same three in `packages/solar_flutter`; the reports are in `packages/solar_flutter/build/visual/`                       |
+| Web components draw what Figma draws       | `npm run test:visual`; keeps the gap reports; builds Storybook                                                                                                        | Run `npm run test:visual` locally; the reports are in `packages/components/test/visual/.out/`                                   |
 
 `.github/workflows/main.yml` runs lint, typecheck, format, build, `smoke:install` (the packed
-packages installed into a clean React 18 app and rendered on the server) and the tests. The
-Flutter version is pinned (`FLUTTER_VERSION`), because `dart format` output changes between
-versions and the codegen job diffs the formatted Dart.
+packages installed into a clean React 18 app and rendered on the server) and the tests.
 
 ## Out of scope, by design
 

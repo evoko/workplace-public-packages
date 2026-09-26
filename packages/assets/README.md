@@ -121,5 +121,5 @@ Two things about the source are worth knowing, and both are recorded in
 - The Teams mark is gradient-filled. React and the raw SVG render it faithfully; Flutter omits it.
 - SOLAR has no logo size scale, so a logo's named size borrows the `icon.*` ladder.
 
-The missing `Icon/Support` outline and the off-grid `Icon/Zone` outline were both fixed in Figma on
-2026-09-22. The normalizer still handles either case if it recurs, and records it when it does.
+A missing icon variant or an off-grid outline is handled by the normalizer and recorded in
+`spec/deviations.md` when it occurs.

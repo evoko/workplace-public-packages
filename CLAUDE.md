@@ -4,12 +4,11 @@ This branch (`v2-SOLAR`) holds the V2 generation of the `@bwp-web/*` packages, b
 **SOLAR** design system. V1 lives on the `v1` branch and shares nothing with V2 except package
 names.
 
-The repository turns three SOLAR Figma files into a React library on MUI
-(`@bwp-web/components`) and a Flutter library (`solar_flutter`), with tokens (`@bwp-web/styles`)
-and icons (`@bwp-web/assets`). A generator (`packages/codegen`) reads a committed mirror of Figma
-(`docs/`) and writes contracts (`spec/`) and code; hand-written shells give each component its
-behaviour; visual checks prove each platform draws what Figma draws. Every component in SOLAR Web's components section is built, except Cursor, left out by decision. SOLAR names `CLAUDE.md` as its agent instruction layer: treat every
-rule here as hard.
+The repository turns three SOLAR Figma files into a React library on MUI (`@bwp-web/components`)
+and a Flutter library (`solar_flutter`), with tokens (`@bwp-web/styles`) and icons
+(`@bwp-web/assets`); how, and why: [architecture.md](docs/engineering/architecture.md). Every
+component in SOLAR Web's components section is built, except Cursor, left out by decision. SOLAR
+names `CLAUDE.md` as its agent instruction layer: treat every rule here as hard.
 
 ## Read first
 
@@ -37,16 +36,12 @@ rule here as hard.
 ## Hard rules: the pipeline
 
 - **Never write to `docs/` from the generator, and never edit `docs/` to make code look right.**
-  It mirrors Figma, defects included; only `npm run solar:sync` and `npm run solar:tokens` write
-  there. A write guard enforces it and CI re-checks it.
-- **Never edit a generated file to keep a change.** Fix its source and regenerate:
-  - a rule for every component: the normalizer, `packages/codegen/src/normalize/`, or
-    `spec/overlay/defaults.yaml`;
-  - one target: its emitter, `packages/codegen/src/emit/`;
-  - one component on one platform: its descriptor's tables, `packages/codegen/src/components/<name>.mjs`;
-  - one component's design decision: its overlay, `spec/overlay/<name>.yaml`;
-  - behaviour: the hand-written shell, `packages/components/src/<Name>.tsx` or
-    `packages/solar_flutter/lib/src/components/solar_<name>.dart`, or a runtime helper.
+  It mirrors Figma, defects included. Only the scripts that live in `docs/` write there: the
+  fetchers and doc builders that `npm run solar:sync`, `solar:rebuild` and their parts
+  (`solar:foundations`, `solar:web`, `solar:icons`, `solar:fetch`, `solar:docs`) run, and
+  `solar:tokens`. A write guard keeps `solar:codegen` out, and CI re-checks it.
+- **Never edit a generated file to keep a change.** Fix its source and regenerate; which source,
+  for which problem: [workflows.md, Decide where a change goes](docs/engineering/workflows.md#decide-where-a-change-goes).
 - **Every overlay rule needs a `reason`** a reviewer can check. A rule that no longer matches the IR
   fails the build; `solar:explain --propose` prints a rule with `TODO(reason)`, which the build
   refuses until a person writes one.
@@ -90,23 +85,24 @@ rule here as hard.
 
 ## Naming
 
-- Where SOLAR's description names a thing, the code keeps SOLAR's word (`helper`, `mandatory`, a
-  Button's `prio`); otherwise it takes MUI's word on the web and Flutter's in Flutter (a Flutter
-  field's `enabled`, a button's null `onPressed`). The exception: Figma's `style` is `variant`,
-  since React reserves `style`.
-- A platform reaches an IR prop or slot by another name only through the descriptor's `api`
-  table; the parity test checks reachability, not identical spelling.
-- On the web, a slot's layer carries the public class `Solar<Name>-<slot>`; every other layer the
-  internal `Solar<Name>--<layer>` (`packages/codegen/src/util/classes.mjs`).
+SOLAR's word where SOLAR's description names a thing (`helper`, `mandatory`, a Button's `prio`),
+otherwise MUI's on the web and Flutter's in Flutter; Figma's `style` is `variant`. A platform's
+own spelling goes in the descriptor's `api` table. Slot classes are public, `Solar<Name>-<slot>`;
+every other layer's is internal, `Solar<Name>--<layer>`. The full rule:
+[architecture.md, rule 5](docs/engineering/architecture.md#two-libraries-one-contract).
 
 ## Before saying a task is done
 
 Run the whole block in [workflows.md, Verify](docs/engineering/workflows.md#verify-before-saying-a-task-is-done)
 for any change to code, an overlay, a descriptor, a shell, a runtime helper or a generated file; a
-change to Markdown alone needs only its Prettier and link checks. Report the output honestly: a
+change to Markdown alone needs only that block's last two lines, the personal-data check and
+Prettier. Report the output honestly: a
 failure is reported with its output, a skipped check is named as skipped.
 
 ## Keeping the docs true
+
+Every topic has one home, which states it in full; any other page says it in a line at most and
+links to the home. Before cutting a copy, make sure its facts are at the home.
 
 The docs describe the system as it is. When a change alters behaviour, a command, a decision or a
 gap, update the page that says so in the same change: the package README, the codegen README,

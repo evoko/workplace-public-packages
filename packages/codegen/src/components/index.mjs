@@ -40,11 +40,11 @@ const loaded = await Promise.all(
     const d = (await import(pathToFileURL(join(here, f)).href)).default;
     if (!d?.name)
       throw new Error(`src/components/${f}: exports no descriptor with a name`);
-    // The shells were templates here until 2026-09-25; they are files now (src/shells/index.mjs).
+    // A component's shells are hand-written files (src/shells/index.mjs), never descriptor keys.
     for (const key of ['templates', 'owned'])
       if (key in d)
         throw new Error(
-          `src/components/${f}: ${key} is gone: a component's shells are files of their own, written by hand`,
+          `src/components/${f}: ${key} is not a descriptor key: a component's shells are files of their own, written by hand`,
         );
     return { d, f };
   }),

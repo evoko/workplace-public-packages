@@ -31,8 +31,8 @@ each checked variant by variant against Figma in Light and Dark. By family:
 - **Charts**: Sparkline, Bar, Bar Stack, Data Legend, Chart Tooltip, and Bar Chart, Line Chart and
   Donut Chart drawn by MUI X Charts in a theme generated from Figma.
 
-How they are built, and how to change one:
-[docs/engineering/architecture.md](../../docs/engineering/architecture.md).
+How they are built: [architecture.md](../../docs/engineering/architecture.md); how to change one:
+[workflows.md](../../docs/engineering/workflows.md).
 
 ## Getting started
 
@@ -145,8 +145,8 @@ native colour mode, so it is CSS's relative colour and follows Dark. It needs a 
 
 ## Styling hooks
 
-Style a component through its root, with `className`, `style` or `sx`, which every component
-passes to its outer element. Inside it, the stable hooks are:
+Style a component with `className`, `style` or `sx` (Autocomplete takes no `sx`; see
+[What every component shares](#what-every-component-shares)). Inside it, the stable hooks are:
 
 - `Solar<Name>-<slot>`, on each part the caller fills, by its slot's name, which is the prop's:
   `SolarTag-label`, `SolarCard-title`, `SolarTextInput-helper`;
@@ -159,6 +159,24 @@ Every other class is internal, and may change when SOLAR's Figma file does: `Sol
 (`packages/codegen/src/util/classes.mjs`), and a test fails if a Figma layer's name is ever a
 public class.
 
+## What every component shares
+
+- **Hover, pressed and focus are not props.** MUI tracks them, and the recipe styles each; a state
+  that is not an interaction (disabled, loading, selected, `today`) is a prop.
+- **A 44 × 44 target.** Every control's hit area is padded to 44 × 44 in code, as SOLAR's
+  descriptions ask: an invisible target around the drawn control that takes no room, sized by
+  `size.target.min` (`--solar-size-target-min`), in the codegen's
+  `src/components/shared/target.mjs`. Where 44 × 44 targets would cover each other, a control's
+  own box is its target: touching rows (menu rows, day cells, Section Nav Items), Pagination's
+  24 × 24 items and arrows, a Tree Item's chevron and actions, and Number Input's side stepper.
+- **An icon alone is not a name.** An icon-only control needs an `aria-label` (or
+  `aria-labelledby`); its section says whether the types require one or the component warns
+  without one.
+- **Every other prop passes through** to what a component is built on: the MUI control it wraps
+  (for a text field its InputBase, for Select MUI's Select, for Autocomplete `useAutocomplete`),
+  or the Box of a drawn one (a Tooltip's or a Popover's bubble). `sx` applies over the recipe: on
+  the root, on a Dialog's or a Drawer's surface; Autocomplete takes none.
+
 ## Button
 
 | Prop                          | Values                                | Default   |
@@ -170,17 +188,12 @@ public class.
 | `iconLeading`, `iconTrailing` | an icon, e.g. from `@bwp-web/assets`  |           |
 | `counter`                     | a count shown after the label         |           |
 
-Hover, pressed and focus are not props: MUI tracks them, and the recipe styles each. While loading
-the label is hidden but keeps its room, and the SOLAR Spinner shows in the variant Figma picks
-(inverse on primary); a button both disabled and loading is disabled. Every other MUI Button prop
-passes through, and `sx` applies on top of the recipe. An icon-only button needs an
-`aria-label`; in development the component warns when one is missing.
+While loading the label is hidden but keeps its room, and the SOLAR Spinner shows in the variant
+Figma picks (inverse on primary); a button both disabled and loading is disabled. An icon-only
+button needs an `aria-label`; in development the component warns when one is missing.
 
 `sm` is drawn 32px tall and `md` 40px (SOLAR's `size.control.sm` and `md`), below the 44px WCAG
-touch target, and its hit area is padded to 44 × 44 in code, as SOLAR's description asks: an
-invisible target around the drawn button, which takes no room. Every control here has one, sized by
-SOLAR's `size.target.min` (`--solar-size-target-min`), in the codegen's
-`src/components/shared/target.mjs`.
+touch target; its target makes up the rest.
 
 ## Icon Button
 
@@ -206,7 +219,7 @@ callers). The icon fills a box the recipe sizes from the icon ladder. While load
 way to the Spinner Figma picks for the variant; disabled wins over loading. Figma draws some
 variants inconsistently with Button (primary's border, a focus ring on press, disabled borders);
 they are drawn as Figma draws them and listed in [the design review](../../docs/solar-review-for-design.md),
-section 8. Its hit area is padded to 44 × 44, as Button's is.
+section 8.
 
 ## Button Group
 
@@ -942,10 +955,10 @@ one).
 | `href` · every ButtonBase prop    | a link where it has one, a button otherwise           | a button |
 | `level` (Group Header)            | its heading level                                     | `3`      |
 
-A sidebar's destinations (Nav Item) and a settings rail's (Section Nav Item, grouped under Section
-Nav Group Headers, headings). Collapsed, a Nav Item is its icon alone, named by its label. Figma
-draws a Nav Item no focus; it draws SOLAR's ring (owner decision). A Section Nav Item spans its rail
-and has no padded target, since the items touch, as a menu's rows.
+A sidebar's destinations (Nav Item) and a settings rail's (Section Nav Item, grouped under
+Section Nav Group Headers, headings). Collapsed, a Nav Item is its icon alone, named by its
+label. Figma draws a Nav Item no focus; it draws SOLAR's ring (owner decision). A Section Nav
+Item spans its rail.
 
 ## Breadcrumbs and Breadcrumb Item
 
@@ -1029,11 +1042,11 @@ Image Card, Action Card, Interactive Card, Device Card, Launch Card) is pressabl
 `onClick` or `href` (owner decision): its title is then the button or link, and its hit area the
 whole card (the title's `::after`), so its own controls (a More menu, Buttons, a Checkbox) stay
 reachable above it; the card is hovered and focused only then, and draws SOLAR's focus ring, which
-Figma draws none of. A card with a More glyph takes `moreItems` (`{ label, onSelect, disabled,
-icon }`, the exported `CardMoreItem`): a "More actions" button (`moreLabel`) with a 44 × 44 target,
-opening a Dropdown Menu. `loading` (Figma's `ghost` in Status Card and the Insight parts) draws
-Figma's placeholders, `aria-busy`, and keeps a pressable card pressable, its title then its
-action's name alone. Each fills the space it is put in (Figma's widths are samples).
+Figma draws none of. A card with a More glyph takes `moreItems` (`{ label, onSelect, disabled, icon
+}`, the exported `CardMoreItem`): a "More actions" button (`moreLabel`), opening a Dropdown Menu.
+`loading` (Figma's `ghost` in Status Card and the Insight parts) draws Figma's placeholders,
+`aria-busy`, and keeps a pressable card pressable, its title then its action's name alone. Each
+fills the space it is put in (Figma's widths are samples).
 
 ## Card
 
@@ -1084,8 +1097,8 @@ turned up; the card's look follows its header's hover and focus.
 ## Event Row
 
 `leading` (an Avatar, md), `title`, `product`, `meta`, `timestamp` with `dateTime` (a `<time>`),
-and a More menu: one event of an activity feed, which the feed lists in order. Its single-value
-`density` is gone (a sample, until SOLAR draws another).
+and a More menu: one event of an activity feed, which the feed lists in order. Figma draws one
+`density`, a sample, so it is not a prop until SOLAR draws another.
 
 ## Option Card, File Card and Image Card
 
@@ -1125,10 +1138,11 @@ on it; not `filled`, it is the tile that adds one.
 ## Launch Card and Launch Card Full Screen
 
 A Launch Card is an app to open: `image`, `appIcon` (an App Icon of `@bwp-web/assets`, an `<img>`),
-`name`, `tag`, `body`, and your `actions` (a Button Group; owner decision: `access` is gone, its
-words yours), its `favourite` (your Icon Button) on the image, or beside the name without one. A
-Launch Card Full Screen is its page (owner decision: built with slots): `image`, `appIcon`,
-`favourite`, `name`, `intro`, up to three `features`, and your `action`.
+`name`, `tag`, `body`, and your `actions` (a Button Group; owner decision: Figma's `access` is not a
+prop, since it changes only the actions' words, which are yours), its `favourite` (your Icon Button)
+on the image, or beside the name without one. A Launch Card Full Screen is its page (owner decision:
+built with slots): `image`, `appIcon`, `favourite`, `name`, `intro`, up to three `features`, and
+your `action`.
 
 ## Table, Row, Column Item and RowSelect
 
@@ -1264,5 +1278,4 @@ A component here is two parts, with a hard line between them:
   Figma adds reaches it, and a prop, slot or icon it leaves unreached fails the component-parity
   test.
 
-The rule of thumb: **the overlay for a decision about one component, the normalizer for a rule
-about the system, the shell for behaviour.**
+Where a change goes: [workflows.md](../../docs/engineering/workflows.md#decide-where-a-change-goes).

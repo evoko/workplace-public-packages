@@ -24,7 +24,8 @@ npm run build
 ```
 
 On the owner's machine Flutter is at `~/development/flutter`. The Figma token goes in
-`~/.config/figma/token` or `$FIGMA_TOKEN`; nothing but a sync needs it.
+`~/.config/figma/token` or `$FIGMA_TOKEN`; nothing but a sync needs it. The published packages
+support Node 20 and newer; only building the repository needs Node 22.
 
 A different Flutter version reformats the generated Dart, and CI fails on the difference. To
 upgrade Flutter: install the new version, run `npm run solar:rebuild` and `dart format` on the
@@ -34,18 +35,21 @@ package, and raise `FLUTTER_VERSION` in `.github/workflows/solar.yml` in the sam
 
 From the repository root:
 
-| Command                                  | Does                                                                     |
-| ---------------------------------------- | ------------------------------------------------------------------------ |
-| `npm run solar:rebuild`                  | rebuild every generated doc, token file and code target; no network      |
-| `npm run solar:codegen`                  | only the code: `spec/` and every generated target                        |
-| `npx vitest run`                         | the unit and parity suites (codegen, from the root or the package)       |
-| `npm run test:visual`                    | the web visual check; reports in `packages/components/test/visual/.out/` |
-| `npm run storybook`                      | the React viewer, http://localhost:6006                                  |
-| `npm run widgetbook`                     | the Flutter viewer, in Chrome                                            |
-| `npm run solar:explain -- "<Name>"`      | why a component draws what it draws (see below)                          |
-| `npm run solar:triage`                   | every SOLAR Web component's IR, findings and needs, for planning         |
-| `npm run solar:overlay:audit`            | decisions the overlays make more than once                               |
-| `npm run build && npm run smoke:install` | pack the packages and install them into a clean React 18 app             |
+| Command                                                | Does                                                                     |
+| ------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `npm run solar:rebuild`                                | rebuild every generated doc, token file and code target; no network      |
+| `npm run solar:codegen`                                | only the code: `spec/` and every generated target                        |
+| `npx vitest run`                                       | the unit and parity suites (codegen, from the root or the package)       |
+| `npm run test:visual`                                  | the web visual check; reports in `packages/components/test/visual/.out/` |
+| `npm run storybook`                                    | the React viewer, http://localhost:6006                                  |
+| `npm run widgetbook`                                   | the Flutter viewer, in Chrome                                            |
+| `npm run solar:explain -- "<Name>"`                    | why a component draws what it draws (see below)                          |
+| `npm run solar:triage`                                 | every SOLAR Web component's IR, findings and needs, for planning         |
+| `npm run solar:overlay:audit`                          | decisions the overlays make more than once                               |
+| `npm run build && npm run smoke:install`               | pack the packages and install them into a clean React 18 app             |
+| `npm run lint`, `typecheck`, `format`, `test`, `build` | across the workspace, through Turbo                                      |
+
+The commands that fetch from Figma or rebuild the docs are in [docs/README.md](../README.md#commands).
 
 In `packages/solar_flutter`: `flutter test` (the widget tests and the Flutter visual check,
 reports in `build/visual/`), `flutter analyze`, `dart format lib test variants/lib widgetbook/lib`.
@@ -55,7 +59,7 @@ reports in `build/visual/`), `flutter analyze`, `dart format lib test variants/l
 Everything CI runs, locally. **Any change to code, an overlay, a descriptor, a shell, a runtime
 helper or a generated file runs all of it**, and all of it must pass; the rebuild must leave the
 tree unchanged but for your own change. A change to Markdown alone runs the last two lines (the
-Prettier check CI runs, and the link check of your pages).
+personal-data check and the Prettier check CI runs).
 
 ```bash
 npx vitest run
@@ -80,16 +84,19 @@ once, not from parallel agents.
 
 ## Decide where a change goes
 
-| The problem                                                | The change                                                                                                                              |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| A value is wrong in every target                           | the normalizer, `packages/codegen/src/normalize/`                                                                                       |
-| A value is wrong in one target                             | that emitter, `packages/codegen/src/emit/`                                                                                              |
-| One component looks wrong on one platform                  | its descriptor's tables, `packages/codegen/src/components/<name>.mjs`                                                                   |
-| One component looks wrong, and Figma is right for it alone | its overlay, `spec/overlay/<name>.yaml`                                                                                                 |
-| A rule holds for every component                           | `spec/overlay/defaults.yaml`                                                                                                            |
-| A component behaves wrong                                  | its shell, `packages/components/src/<Name>.tsx` or `solar_flutter/lib/src/components/solar_<name>.dart`, or the runtime helper it calls |
-| Figma itself is wrong                                      | leave the finding open, or add a rule to `normalize/deviations.mjs`; the design review asks the designers                               |
-| A token you need does not exist                            | stop and flag a governance gap (⚠️); never invent a name                                                                                |
+| The problem                                                | The change                                                                                                                                                                                                          |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A value is wrong in every target                           | the normalizer, `packages/codegen/src/normalize/`                                                                                                                                                                   |
+| A value is wrong in one target                             | that emitter, `packages/codegen/src/emit/`                                                                                                                                                                          |
+| One component looks wrong on one platform                  | its descriptor's tables, `packages/codegen/src/components/<name>.mjs`                                                                                                                                               |
+| One component looks wrong, and Figma is right for it alone | its overlay, `spec/overlay/<name>.yaml`                                                                                                                                                                             |
+| A rule holds for every component                           | `spec/overlay/defaults.yaml`                                                                                                                                                                                        |
+| A component behaves wrong                                  | its shell, `packages/components/src/<Name>.tsx` or `solar_flutter/lib/src/components/solar_<name>.dart`, or the runtime helper it calls                                                                             |
+| Figma itself is wrong                                      | leave the finding open (the design review asks the designers), or `accept` it in the overlay where the code keeps its value; a wrong token value or icon: a rule in `packages/codegen/src/normalize/deviations.mjs` |
+| A token you need does not exist                            | stop and flag a governance gap (⚠️); never invent a name                                                                                                                                                            |
+| A new token appeared in Figma                              | nothing in the generator: recapture `figma-variables.json` by hand ([Regenerating](../solar/tokens/README.md#regenerating)), then `npm run solar:tokens` and `solar:codegen`; an unknown token type fails loudly    |
+| A new icon appeared in Figma                               | nothing in the generator: `npm run solar:icons` (it fetches, so it needs the Figma token), then `solar:codegen`; an SVG feature the IR cannot represent (a gradient, a stroke, an arc) fails naming the file        |
+| A visual check fails                                       | [Fix a failing visual check](#fix-a-failing-visual-check), below                                                                                                                                                    |
 
 Never edit `docs/`, a generated file, or an oracle to make something pass. After any change to
 `packages/codegen` or `spec/overlay`, run `npm run solar:codegen` and keep what it writes.
@@ -99,13 +106,15 @@ Never edit `docs/`, a generated file, or an oracle to make something pass. After
 1. Read the failure: the web writes `packages/components/test/visual/.out/<name>-failures.json`
    (and `-dark-failures.json`), Flutter `packages/solar_flutter/build/visual/`.
 2. `npm run solar:explain -- "<Name>"` lists the variants, every excused difference and the last
-   runs' failures.
+   runs' failures. It builds from the current sources in memory and writes nothing.
 3. Narrow it to one cell:
    `npm run solar:explain -- "<Name>" --variant <v> --layer <layer> --property <cell>`, where
    `<v>` is a variant's number, Figma's name for it, or `axis=value` pairs. It shows the chain for
-   that cell: Figma's value, the recipe entry that wins and where it sits, its token and value,
-   where it was read from and why, the rules on it, the excuse, and what each platform drew.
-   `--full` shows every row. Layer names are the IR's (`layers` in
+   that cell: Figma's value, the recipe entry that wins and where it sits (base, size, appearance,
+   or combined), its token and value, where it was read from (a Figma variant, the defaults, the
+   overlay) and why, the rules on it, the excuse, and what each platform drew. `--full` shows
+   every row, not only those that differ.
+   Layer names are the IR's (`layers` in
    `spec/components/<name>.json`, or the rows `--variant` prints); a layer name that does not
    exist prints nothing, so take it from there.
 4. Decide which is wrong:
@@ -136,9 +145,9 @@ Every rule kind is in [spec/overlay/README.md](../../spec/overlay/README.md).
 
 ## Add a component
 
-Every file is named from the component's name in code, Figma's name or its overlay's `codeName`:
-lower-cased with every run of other characters as `-` (the slug) or `_` (the snake), or
-PascalCase. For **Split Button**, named `SplitButton` in Figma, and **Button Group**:
+Every file but the overlay is named from the component's name in code, Figma's name or its
+overlay's `codeName`: lower-cased with every run of other characters as `-` (the slug) or `_` (the
+snake), or PascalCase. For **Split Button**, named `SplitButton` in Figma, and **Button Group**:
 
 | File                                                                   | SplitButton              | Button Group              |
 | ---------------------------------------------------------------------- | ------------------------ | ------------------------- |
@@ -149,24 +158,34 @@ PascalCase. For **Split Button**, named `SplitButton` in Figma, and **Button Gro
 | web case, `packages/components/test/visual/cases/`                     | `splitbutton.tsx`        | `button-group.tsx`        |
 | Flutter builder and case, `variants/lib/src/` and `test/visual/cases/` | `splitbutton.dart`       | `button_group.dart`       |
 
+The overlay alone is named from the component's address, Figma's name or `<section>/<name>`
+(`inputs-day-cell.yaml` for Date Picker Day Cell).
+
 `npm run solar:codegen` writes the registries that import these files, so the typecheck and
 `flutter analyze` name any that are missing or misnamed. Where Figma's name is two components'
 (`Day Cell`), the overlay's `codeName` decides (`Calendar Day Cell`, `Date Picker Day Cell`).
 
-The full procedure, with every table a descriptor may hold, is in the codegen README's
-[Changing it](../../packages/codegen/README.md#changing-it), "A new component". In short:
+In short (every table a descriptor may hold is in the codegen README's
+[Descriptor reference](../../packages/codegen/README.md#descriptor-reference)):
 
 1. `npm run solar:triage` shows whether it builds, its API, slots, composition and findings.
    A component it composes must exist first.
 2. Write its descriptor, `packages/codegen/src/components/<name>.mjs` (`name`, the MUI tables,
-   the Flutter tables, an `api` table where a platform reaches a prop by another name). Nothing
-   else lists components by hand.
-3. Write its overlay, `spec/overlay/<name>.yaml`, deciding every finding.
-4. `npm run solar:codegen` writes its recipes, tree, slots, story and every registry, and fails
-   until both shells exist.
+   the Flutter tables, an `api` table where a platform reaches a prop by another name, `checkedAs`
+   where a Figma component is another's state: Autocomplete Open). Nothing else lists components
+   by hand.
+3. Write its overlay, `spec/overlay/<address>.yaml`, deciding every finding.
+4. `npm run solar:codegen` writes its recipes, tree, slots and story, and adds it to every
+   registry: the shell barrels, the MUI theme's types, the case registries and the variant
+   builders' registry (each file is listed in the codegen README's
+   [Descriptor reference](../../packages/codegen/README.md#descriptor-reference)). It fails until
+   both shells exist.
 5. Write both shells by hand, starting from the nearest component's (a drawn one from Counter's,
-   a field from Text Input's, a card from Card's). `npx vitest run test/component-parity.test.mjs`
-   (in `packages/codegen`) names what of the IR a shell does not reach yet.
+   a field from Text Input's, a card from Card's). A drawn shell hands the generated tree to
+   `drawChildren` (web) or `SolarLayers` (Flutter), whose options are listed in the same README; a
+   composed child it draws (Button's Spinner) comes from the recipe's `compose` lookup, never by
+   hand. `npx vitest run test/component-parity.test.mjs` (in `packages/codegen`) names what of the
+   IR a shell does not reach yet.
 6. Write its visual cases: `packages/components/test/visual/cases/<slug>.tsx`, a builder in
    `packages/solar_flutter/variants/lib/src/` and a case in `packages/solar_flutter/test/visual/cases/`.
    Until they exist the typecheck and `flutter analyze` fail on the registries naming them.
@@ -249,8 +268,8 @@ run the whole verification, including both visual checks and both viewers' build
 
 ## Pitfalls
 
-Each of these has broken something before. The code usually says so in a comment; this is the
-list to read before a change in the same area.
+Each of these is easy to get wrong; the code usually says so in a comment. Read the list before a
+change in the same area.
 
 **Environment**
 
@@ -262,7 +281,7 @@ list to read before a change in the same area.
   never from parallel agents. Parallel agents adding descriptors also read each other's
   half-written files; build members of one family one at a time where they share files.
 - A check that passes locally can fail on a clean CI runner, where nothing is built and nothing
-  git-ignored exists. Two cases have happened:
+  git-ignored exists:
   - The unit tests, the web visual check and Storybook read the workspace packages from their
     sources through one table, `packages/codegen/src/util/workspace-sources.mjs`. A new
     `@bwp-web/*` entry a component imports must be added there, or it resolves to `dist/`,
@@ -271,8 +290,9 @@ list to read before a change in the same area.
   - A directory the Widgetbook pubspec declares must exist in git: `flutter analyze` fails on a
     declared asset directory that is missing, and CI analyses before it copies the oracles in.
     `assets/verify/` is kept by its `.gitkeep` (`test/widgetbook-assets.test.mjs`).
-    To reproduce CI locally, move the `dist/` folders (or the copied oracles) aside and run the
-    check.
+
+  To reproduce CI locally, move the `dist/` folders (or the copied oracles) aside and run the
+  check.
 
 **Reading Figma data** (`packages/codegen/src/normalize/`)
 

@@ -1,6 +1,7 @@
 # Overlays: the reference
 
-An overlay (`spec/overlay/<component>.yaml`) holds the hand-written decisions about one SOLAR
+An overlay (`spec/overlay/<address>.yaml`, named from the component's address, Figma's name or
+`<section>/<name>`: `inputs-day-cell.yaml`) holds the hand-written decisions about one SOLAR
 component, applied over its IR by `npm run solar:codegen`. It is the only place design-to-code
 judgement lives, so it is strict about three things:
 
@@ -86,7 +87,14 @@ component.insight row.title.width@severity=info, state=hover, ghost=true:
 ### `codeName`
 
 The component's name in code, where Figma's is not one (a leading dot, a name two components
-share). Its file and classes take the new name.
+share). It is the name from the recipe on: its files, its classes and its findings' tokens. Figma's
+name stays in the IR's `provenance.figmaName`, and the stage refuses two components generated
+under one name.
+
+A component is addressed `<section>/<name>` where two share a name (Figma's two `Day Cell`s,
+`calendar/Day Cell` and `inputs/Day Cell`); a bare name is then an error naming both. Its overlay
+is `spec/overlay/<address>.yaml` (`calendar-day-cell.yaml`), and its `codeName` gives each its
+name in code (`Calendar Day Cell`, `Date Picker Day Cell`).
 
 ```yaml
 codeName:
@@ -109,9 +117,11 @@ each type a different mark). Use it only where no cell is shared across variants
 
 ### `states`
 
-`states.rename` respells a state value Figma spells otherwise; `states.compound` makes a state
-that is others held at once (DatePicker's `error-focused`, `of: [error, focus]`): no prop, a state
-the shell detects.
+`states.rename` respells a state value Figma spells otherwise, before the recipe, as `follows` is.
+`states.compound` makes a state that is others held at once (DatePicker's `error-focused`,
+`of: [error, focus]`): no prop, a state the shell detects, as a platform state. The MUI state table
+gives it a selector (`&.SolarDatePicker-error:has(… .Mui-focused)`), `flutter.states` its test,
+and the oracle reaches it by setting its prop parts and reaching its platform one.
 
 ```yaml
 states:
@@ -124,19 +134,12 @@ states:
 ### `rename`
 
 An axis's name in code (`to`), and its values (`values`, each Figma value to one in code;
-`true`/`false` make it a boolean). An axis may keep its name and respell its values alone (File
-Card's `type`: `File Card` → `file`, `New Asset Tile` → `create`). Applied last; every other
-address still spells Figma's.
+`true`/`false` make it a boolean, which no overlay uses today). List's `in-card` is `inCard`. An
+axis may keep its name and respell its values alone (File Card's `type`: `File Card` → `file`,
+`New Asset Tile` → `create`). Applied last; every other address still spells Figma's.
 
-Which name to rename to follows one rule ([rule 5 of the two-libraries contract](../../docs/engineering/architecture.md#two-libraries-one-contract);
-owner decision 2026-09-25): **SOLAR's word where SOLAR's description names the thing**
-(`helper`, `mandatory`, `iconLeading`, which the fields' and Button's descriptions use), and
-otherwise MUI's word on the web and Flutter's in Flutter, never one spelling forced on both. The
-IR keeps one name; a platform's own spelling is its descriptor's `api` table, not a `rename`: a
-Flutter field's `enabled` for the IR's `disabled` (`{ not: 'enabled' }`), a Flutter button's null
-`onPressed`. One exception, decided 2026-09-25: Figma's `style` (Alert, Alert Small, Spinner) is
-`variant` in code on both platforms, since `style` is React's inline-style prop and no component
-can take it; the design review asks the designers to rename the property.
+Which name to choose, and where a platform's own spelling goes (the descriptor's `api` table,
+never here), is [architecture.md, rule 5](../../docs/engineering/architecture.md#two-libraries-one-contract).
 
 ### `follows`
 
@@ -156,20 +159,45 @@ follows:
 ### `bind`
 
 A raw value to the token of the same value (`literal`, `token`), or one per size (`tokens:
-{ 16: icon.sm, 20: icon.md }`). A token of another value fails: a bind never redesigns.
+{ 16: icon.sm, 20: icon.md }`), each checked to equal its value. A token of another value fails (a
+bind never redesigns), and so does a bind that would leave a raw value in the cell.
 
 ### `set`
 
 One entry changed: to a `token`, to `none` (the cell is not drawn by this layer: a composed
-child's own size, a stray fill), to a `keyword` (`FILL`, `HUG`, or a composed child's
-`variant.*`), or to a `literal`, a size Figma draws but does not record (ConfirmationDialog's 400:
-Figma records its frame hugging, where everything in it fills), which the cell's `allowLiteral`
-must allow as well, as any raw value. A look is named by Figma's axes, before a `rename` (All-Day
-Bar's `style=solid, span=end`, which the IR then calls `variant=solid, span=end`). What Figma had is kept as `replaced`, and the oracle excuses the variants that draw
-it. A `set` may add an entry the IR lacks: a state Figma draws as at rest (a focus ring), a focus
-or a hover Figma draws none of (Row's hover, which its description asks for), a look no layer has
-where its axes are another look's and its values Figma's, `default` where no layer has any, or a
-size.
+child's own size, a stray fill), to a sizing `keyword` (`FILL`, `HUG`), or to a `literal`, a size
+Figma draws but does not record (ConfirmationDialog's 400: Figma records its frame hugging, where
+everything in it fills), which the cell's `allowLiteral` must allow as well, as any raw value. A
+look is named by Figma's axes, before a `rename` (All-Day Bar's `style=solid, span=end`, which the
+IR then calls `variant=solid, span=end`).
+
+A composed child's `variant.*` takes a keyword of the child's own (Toast's Tag: `status`, where
+Figma names a type Tag does not have); the oracle then checks the child in that variant, keeping
+Figma's beside it as `figmaVariant`.
+
+A `set` settles a raw-value finding once no raw value is left in the cell. It decides an axis
+finding when it reaches every variant the finding names and each draws its value there (a raw value
+counting as the token of its value). What Figma had is kept as `replaced`, and the oracle excuses
+the value it changed (a shadow it removes) in exactly the variants that draw what it replaced, and
+no others. Where several `set`s decide one finding (Text Input's width, the base's and sm's), each
+variant's excuse names the rule that reaches it.
+
+A `set` may add an entry the IR lacks:
+
+- a state Figma draws as at rest (FAB's and Link's focus, given SOLAR's ring), under an appearance
+  the IR has and for a state the component has;
+- a focus or a hover Figma draws none of (Toggle's and Segmented Control Item's focus; Row's hover,
+  which its description asks for), which then joins the component's states;
+- a look the layer lacks and another layer has (Slider Range's root);
+- a look no layer has, keyed by another look's axes at values Figma draws (File Card's file tile),
+  or `default` where no layer has a look;
+- a size the layer lacks (SearchField's icons, whose sm entry Figma's resting sm variant leaves as
+  md's).
+
+Anything else is refused as a stale rule. An added entry's `replaced` is the value the resting
+lookup found there; the oracle excuses it in each state with no value of its own there. A
+component with states and no appearance axis (BackButton, Link) keys them under `default` on both
+platforms.
 
 ### `allowLiteral`
 
@@ -178,26 +206,34 @@ A raw value there is no token for, carried as Figma's number and raised as a gov
 
 ### `controlDraws`
 
-The stock control draws this layer itself (Spinner's ring, CircularProgress's arc): its box is the
-control's, and the oracle excuses it; `cells` limits the excuse to those cells (a slider handle's
-`x`).
+The stock control draws this layer itself (Spinner's track and arc, drawn by CircularProgress;
+ProgressBar's bar, moved by LinearProgress): its box and raw sizes are the control's, and the MUI
+recipe declares nothing of its place or size. The oracle excuses its box and its roundness. `cells`
+names the only cells the control decides (a slider's fill: `x` and `width`; its handle: `x`), and
+the rest are drawn and checked.
 
 ### `shownBy`
 
 A layer Figma hides in every variant, with no prop to show it, drawn where the caller fills a slot
-(Segmented Control's `label`, by the `label` slot).
+(Segmented Control's `label`, by the `label` slot). The oracle treats it, and the slot's own layer,
+as shown by a prop. The rule is refused where Figma shows the layer anywhere.
 
 ### `restyles`
 
-A composed child the parent paints its own way (Toast's Tag on the toast's surface; Card's loading
-Tag, a placeholder): its `cells` (`background`, `borderColor`) are read from the instance, and
-checked there.
+A composed child the parent paints its own way (Toast's Tag on the toast's surface and edge; Card's
+loading Tag, a placeholder): the recipe reads its `cells` (`background`, `borderColor`) from the
+instance, and the MUI recipe writes them on the child's own root (`& > *` of its layer). The checks
+compare them, and the child's box, against the parent's entry, and the rest against the child's
+own oracle.
 
 ### `samples`
 
 An axis whose values are samples of what the caller gives (Avatar's colours, Breadcrumbs' trail
-lengths, a single-value axis such as Event Row's `density`): the API loses it, the recipe keeps
-the values in `keep`, and the oracle still checks every variant with its sample as the caller's.
+lengths, a single-value axis such as Event Row's `density`): the API loses it, and the recipe
+keeps the variants at the values in `keep`. `keep` must give one variant per combination of the
+rest, or the build fails. Where it keeps a value other than Figma's default (Breadcrumbs' 5-item
+trail), the variant the rest are read against is the kept one at every other axis's default. The
+oracle keeps every variant, each reached with its sample as the caller's.
 
 ### `choice`
 
@@ -219,12 +255,11 @@ choice:
 
 ### `hides`
 
-A composed child that draws these layers whatever names Figma records hidden in the variant:
-Figma's record is by name alone in data fetched before 2026-09-25, and one child's hidden layer
-may share a name with another's shown one (Device Card's Dropdown label and Tag words, both
-`Label`). `not` lists the child's layers. Data fetched since records each hidden layer by path
-(`hiddenPaths`), which tells them apart: a name the export no longer records hidden fails as
-stale, and the rule is deleted.
+A composed child that draws the layers `not` lists, whatever names Figma records hidden in the
+variant. Data without `hiddenPaths` records a hidden layer by name alone, and one child's hidden
+layer may share a name with another's shown one (Device Card's Dropdown label and Tag words, both
+`Label`). Data with `hiddenPaths` records each by path, which tells them apart: a name the data does
+not record hidden fails as stale, and the rule is deleted.
 
 ### `defaults`
 
@@ -233,8 +268,11 @@ Card's `selected: false`).
 
 ### `caller`
 
-A cell whose value is the caller's: `prop` names the colour prop it is (the API gains it), `from`
-the prop it is derived from (Avatar's initials, from its colour).
+A colour cell whose value is the caller's. `prop` names the colour prop that gives it, which the
+API gains (`type: 'color'`; Avatar's background); `from` names the prop the shell derives it from
+(Avatar's initials, from `color`). Where the caller gives none, the recipe's value is drawn. The
+oracle reaches each variant with the colour Figma samples there as the prop, and excuses a `from`
+cell, since it is the shell's rule, not Figma's sample.
 
 ### `accept`
 
@@ -258,21 +296,30 @@ then on) and `type` (`text`, `icon`, `component`, `content`, `instance`).
 
 ### `derive`
 
-An axis that follows from what the caller gives, no prop (Tag's `type`, from its label, icon and
-close button): `when` lists each value with the slots `given` and the shell `props` that make it,
-first match wins.
+An axis that follows from what the caller gives, no prop (FAB's `type`, from whether it has a
+label; Tag's, from its label, icon and close button): `when` lists each value with the slots
+`given` and the shell `props` that make it, first match wins. Both shells must take the `props` a
+`when` names (Tag's `indicator` and `onClose`).
+
+The API loses the axis, but both emitters still key the recipe by it (the MUI recipe through
+`Solar<Name>RecipeProps`, Flutter's props class through a field the widget sets), so the shell
+passes what it derived. The oracle reaches each variant by filling the slots (its `content`).
+
+A state value the IR makes a boolean prop may be derived too, `true` or `false` (a field's
+`filled`, from its `value`; Token Input's `active`, from its draft): the oracle reaches its variant
+by the content that makes it true, and every other by the content that makes it false.
 
 ### `layerNames`
 
-A layer's IR name where Figma's gives none (Kbd's `/⌘K`, named after its sample), or two reduce
-to one. Addressed by the Figma path.
+A layer's IR name where Figma's gives none (Kbd's `/⌘K`, named after its sample; PIN Input's `|`,
+a glyph), or two reduce to one (Tree Item's `Label` and `|Label`); either fails the build until
+named here. Addressed by the Figma path. A slot's layer keeps its slot's name.
 
 ### `places`
 
-Where a layer one variant adds sits among its siblings: data fetched before 2026-09-25 records such
-a layer after the others (Card's loading title placeholder, `before: /Content`). Data fetched
-since records its place (the added layer's `index`), and a rule that moves a layer to where it
-already is fails as stale.
+Where a layer one variant adds sits among its siblings: data without a recorded `index` records
+such a layer after the others (Card's loading title placeholder, `before: /Content`). Data with an
+`index` records its place, and a rule that moves a layer to where it already is fails as stale.
 
 ### `repeats`
 
@@ -293,16 +340,18 @@ repeats:
     reason: …
 ```
 
-Opt-in, never automatic (owner decision 2026-09-25): siblings Figma
-means to be distinct look the same to a rule that guesses. A rule that names a copy, or a layer
-with no copies, fails. A shell draws a repeated text layer once per item with the runtime helpers'
-`repeat` (web) and `repeats` (Flutter); a repeated layer whose children the caller gives (the day
-grid) takes them through `content`.
+Opt-in, never automatic (owner decision): siblings Figma means to be distinct look the same to a
+rule that guesses. A rule that names a copy, or a layer with no copies, fails. A shell draws a
+repeated text layer once per item with the runtime helpers' `repeat` (web) and `repeats` (Flutter);
+a repeated layer whose children the caller gives (the day grid) takes them through `content`.
 
 ### `same`
 
-A layer Figma draws anew in some variants that is another: read as `as` (Insight Card Small's
-`/Container`, the tile `/Icon` is elsewhere). A variant that has both fails.
+A layer Figma draws anew in some variants that is really a sibling, read as that sibling (`as`):
+Insight Card Small's `/Container`, the tile `/Icon` is elsewhere; Inline Input's Confirm and
+Cancel, framed again in each edit state. Its path, and those inside it, take the other's before the
+recipe and the oracle read them, so one layer stands where Figma drew several. A variant that has
+both fails.
 
 ### `examples`
 
@@ -322,7 +371,7 @@ examples:
 ### `tint`
 
 An axis another component has, its values recolouring this one where Figma draws it in one of them
-alone: Agenda Row and All-Day Bar take Event Chip's `category` (owner decision 2026-09-26). `from`
+alone: Agenda Row and All-Day Bar take Event Chip's `category` (owner decision). `from`
 names the component, `cell` the cell whose token each value draws there (`stripe.background`: red
 is `color.data.category.01`), and `default` the value Figma draws here. The API gains the axis; the
 recipe keeps Figma's tokens, and each value swaps the default's colour family for its own. Applied
@@ -340,19 +389,28 @@ tint:
 ### `composes`
 
 The component in code an instance of a Figma component is, where Figma's name is two components'
-(Date Picker Open's `Day Cell` is a Date Picker Day Cell).
+(Date Picker Open's `Day Cell` is a Date Picker Day Cell). The oracle checks the child against that
+component's oracle.
 
 ## Beside the overlays
 
-- **`defaults.yaml`** holds decisions for every component, applied after each overlay and never
-  over a cell an overlay rules on: today, an unbound `0` padding is `inset.none`, and an unbound
-  `0` gap the none of its direction's family (`inset.none` across, `stack.none` down). A default
-  that matches nothing in one component is not an error. A repeated decision belongs here only
-  where it holds for every component it would reach: the focus ring does not (the text fields draw
-  theirs on the field, not the root), so each overlay that wants it says so in one patterned rule.
-  Since 2026-09-25 Figma draws the ring itself on most controls, and fewer overlays need the rule.
+- **`defaults.yaml`** holds decisions for every component, each with a reason, applied by
+  `applyDefaults` after each overlay and never over a cell the component's own `bind`, `set` or
+  `allowLiteral` names. There are two:
+  - `zero-insets`: an unbound `0` padding is `inset.none`;
+  - `zero-gaps`: an unbound `0` gap is the none of its direction's family (`inset.none` across,
+    `stack.none` down). A GRID's gap has no rule, and is left to its component.
+
+  Each works in every layer, and decides the finding once every raw value Figma left in that cell
+  is `0`, even one only a variant the recipe does not keep draws. Its decisions are recorded among
+  the IR's rules with `from: spec/overlay/defaults.yaml`, and the deviations report names them. A
+  default that matches nothing in one component is not an error. A repeated decision belongs here
+  only where it holds for every component it would reach: the focus ring does not (the text fields
+  draw theirs on the field, not the root), so each overlay that wants it says so in one patterned
+  rule. Figma draws the ring itself on most controls, so few overlays need the rule.
+
 - **`excluded.yaml`** names the components left out of the flow, with a reason (Cursor): the
-  triage skips them and the build refuses them.
+  triage lists none as a candidate, and the build refuses a descriptor for one.
 
 ### Repeated, and not defaults
 
@@ -365,11 +423,11 @@ lead it, and each stays one rule per overlay, for these reasons:
   cannot tell one from the other, since both are a root with a width Figma fixes. Where the width
   is the caller's is a decision about the component, made in its overlay.
 - **`allowLiteral root.height = any`** **and `allowLiteral root.width = any`**. A size Figma
-  leaves unbound: since 2026-09-25 a control's height on SOLAR's control steps (32, 40, 48) binds
+  leaves unbound: a control's height on SOLAR's control steps (32, 40, 48) binds
   `size.control.*` instead (Button, Icon Button, the fields, the tabs), and what is left is sizes on
   no step (FAB's 44 and 56, a Checkbox's 16, a row's 36), one question in the design review. A
   default would allow an unbound size in every component the next sync brings, where each should be
-  looked at (Insight Row's fixed 64 was a height to hug, not a size to carry), so each overlay
+  looked at (Insight Row's fixed 64 is a height to hug, not a size to carry), so each overlay
   allows its own, and the audit counts them.
 
 ## Glossary

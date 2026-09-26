@@ -37,7 +37,7 @@ the document:
 
 The package lists `*.css` in `sideEffects`, so a bundler keeps this import. With
 `"sideEffects": false` webpack drops it silently in production builds, since nothing is imported
-from it; a test in `@bwp-web/codegen` fails if a stylesheet export ever goes unlisted again.
+from it; a test in `@bwp-web/codegen` fails if a stylesheet export is not listed.
 
 ## Tailwind CSS 4
 

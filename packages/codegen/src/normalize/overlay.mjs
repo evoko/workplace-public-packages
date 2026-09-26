@@ -26,8 +26,8 @@
  *                                                        (a glyph for a name, or two that reduce to one)
  *   places:       { <Figma path>: { before, reason } }   where a layer one variant adds sits among its
  *                                                        siblings (Card's loading Skeleton, before
- *                                                        Content), which Figma's export loses: it
- *                                                        records an added layer after the others
+ *                                                        Content), where the data records no
+ *                                                        `index` and puts it after the others
  *   repeats:      { <layer>: { reason } }               sibling copies of one layer Figma draws as a
  *                                                        component's sample content (a month's 35
  *                                                        Day Cells, `Day Cell`, `Day Cell#2`…), read
@@ -74,7 +74,8 @@
  *                                                        selected: a tile starts unselected)
  *   hides:        { <layer>: { not: [layers], reason } }  the composed child at `layer` draws
  *                                                        these, whatever names Figma records
- *                                                        hidden in the variant: its record is by
+ *                                                        hidden in the variant: data without
+ *                                                        `hiddenPaths` records a hidden layer by
  *                                                        name alone, and one child's hidden layer
  *                                                        may share a name with another's shown one
  *                                                        (Device Card's Dropdown label and Tag)
@@ -1655,7 +1656,7 @@ export function applyOverlay(
       // Its values alone may be respelled, the axis keeping its name (File Card's type).
       if (spec.api[to] && !(to === from && values))
         fail(`rename ${from}: the API already has ${to}`);
-      // Figma's two-valued axis (Button Group's type: regular, full-width) as the boolean it is.
+      // A two-valued axis whose values map to true and false is a boolean (no overlay has one today).
       const renamed = (def) => {
         if (!values) return def;
         const mapped = def.values.map((v) => values[v]);

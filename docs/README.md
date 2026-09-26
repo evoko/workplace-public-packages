@@ -2,7 +2,8 @@
 
 This folder is everything the repository knows about Biamp's SOLAR design system, and the
 scripts that keep that knowledge in step with Figma, plus the generator that turns it into
-code. Read this page first; it is the only place that describes the whole pipeline end to end.
+code. Read this page for the data: every input, output and sync command. How the whole pipeline
+works: [architecture.md](engineering/architecture.md).
 
 ## What is here
 
@@ -18,11 +19,8 @@ code. Read this page first; it is the only place that describes the whole pipeli
   [open work](engineering/open-work.md).
 - **The design review** for the SOLAR designers: [solar-review-for-design.md](solar-review-for-design.md).
 
-From this data `npm run solar:codegen` generates the tokens (CSS, MUI, Tailwind, Flutter), the
-icons and logos (React, raw SVG, Flutter) and every component in SOLAR Web's components section but Cursor (left out by decision)
-for React on MUI (`@bwp-web/components`) and for Flutter (`solar_flutter`), each checked against
-Figma variant by variant in Light and Dark, with Storybook and Widgetbook as viewers. What is not
-built is in [open work](engineering/open-work.md).
+From this data `npm run solar:codegen` generates the code; see
+[From docs to code](#from-docs-to-code).
 
 One command, `npm run solar:sync`, refreshes all three Figma files without any model or agent.
 The scripts under `docs/` generate **documentation and machine-readable data**; `solar:codegen`
@@ -46,13 +44,7 @@ reference.css            solar/01-…18-*.md (curated chapters)           │
 grammar.json                  │                                         │
    └──────────────────────────┴─────────────────────────────────────────┘
                                           ▼
-        npm run solar:codegen → spec/tokens.json → css · mui · tailwind · flutter
-                              → spec/icons.json  → react · svg · flutter
-                              → spec/components/*.json (+ spec/overlay/*.yaml) → mui · flutter recipes
-                              → each recipe's layer tree and slot names, which the shells import
-                              → stories/<Name>.stories.tsx (the shells, <Name>.tsx and
-                                solar_<name>.dart, are written by hand)
-        npm run solar:explain -- "<Name>" → why each cell draws what it draws (writes nothing)
+        npm run solar:codegen → spec/ and every code target (see engineering/architecture.md)
 ```
 
 `npm run solar:sync` runs the REST columns end to end (`solar:foundations`, `solar:web`, then
@@ -94,7 +86,7 @@ token JSON on the left is refreshed deliberately, never by the sync.
 | `packages/assets/src/generated/`, `packages/solar_flutter/lib/src/generated/icons.dart`                                    | `solar:codegen`              | Apps: 340 React icon components, 685 standalone SVG files and the Dart vectors              | [packages/assets/README.md](../packages/assets/README.md)                   |
 | [`spec/components/`](../spec/components/)                                                                                  | `solar:codegen`              | The component contract: API, platform states, slots and style recipe in token names         | [packages/codegen/README.md](../packages/codegen/README.md#components)      |
 | [`spec/verify/`](../spec/verify/)                                                                                          | `solar:codegen`              | The oracle: what Figma draws for every variant, the visual checks' expectations             | [packages/codegen/README.md](../packages/codegen/README.md#components)      |
-| [`spec/overlay/`](../spec/overlay/)                                                                                        | hand-written, reviewed       | The decisions about one component: base, renames, axis interactions, allowed literals       | same                                                                        |
+| [`spec/overlay/`](../spec/overlay/)                                                                                        | hand-written, reviewed       | The decisions about one component: base, renames, axis interactions, allowed literals       | [spec/overlay/README.md](../spec/overlay/README.md)                         |
 | `packages/styles/src/generated/mui/components/`, `packages/solar_flutter/lib/src/generated/components/`                    | `solar:codegen`              | Apps: each component's recipe, for MUI's `sx`, and Flutter's token names and state resolver | [packages/components/README.md](../packages/components/README.md)           |
 | [`spec/deviations.md`](../spec/deviations.md)                                                                              | `solar:codegen`              | SOLAR governance: every place code and Figma differ, decided or open                        | its own header                                                              |
 
@@ -113,9 +105,11 @@ npm run solar:icons        # SOLAR Icons only: fetch, export SVG/PNG assets, reb
 npm run solar:fetch        # fetch all three, build nothing
 npm run solar:docs         # rebuild all three from the checked-in raw JSON and assets, no Figma access
 npm run solar:tokens       # rebuild css-contract.json, reference.css, grammar.json from figma-variables.json
-npm run solar:codegen      # rebuild both specs and every code target, no Figma access
-npm run solar:triage       # survey every SOLAR Web component for planning: builds, findings, needs
 ```
+
+The code commands, among them `solar:codegen` (rebuild `spec/` and every code target, no Figma
+access) and `solar:triage`, are in
+[engineering/workflows.md, Everyday commands](engineering/workflows.md#everyday-commands).
 
 Anything that fetches needs a Figma personal access token with `file_content:read` in
 `~/.config/figma/token` or `$FIGMA_TOKEN`; `solar:rebuild`, `solar:docs`, `solar:tokens` and
@@ -133,74 +127,18 @@ shared REST client, version-keyed cache and manifest helpers live in
 
 ## From docs to code
 
-`npm run solar:codegen` runs two stages from the data under `docs/`, each writing a contract and
-then generating independent targets from it.
-
-**Tokens.** The token data becomes `spec/tokens.json`, a [DTCG](https://tr.designtokens.org/)
-contract of 714 tokens. Four emitters generate from that one file: CSS custom properties, an MUI
-theme and a Tailwind 4 stylesheet into [`@bwp-web/styles`](../packages/styles/README.md), and Dart
-constants into [`solar_flutter`](../packages/solar_flutter/README.md).
-
-**Icons.** `docs/solar-icons/` becomes `spec/icons.json`, the drawing data for 340 icon sets and
-3 logo sets — a viewBox and path strings per variant, and nothing else. Three emitters generate
-from it: React components and 685 standalone SVG files into
-[`@bwp-web/assets`](../packages/assets/README.md), and `SolarVector` constants into
-`solar_flutter`. An icon carries **no** colour — it inherits one from `color.icon.*`, through
-`currentColor` on the web and the widget's colour in Flutter — while a logo always carries its
-own and is never tintable.
-
-**Components.** A component set under `docs/solar-web/` becomes `spec/components/<name>.json`:
-its public API, the states the platform handles, its slots, and a **recipe** — what it looks like,
-per size, appearance and state, in token names. Figma's own axes are read against SOLAR's model,
-geometry follows size and paint follows appearance and state, and every variant that disagrees is
-recorded rather than averaged away. A hand-written overlay in `spec/overlay/` holds the decisions
-about one component, each with a reason. Two emitters generate from the IR: a recipe for MUI in
-`@bwp-web/styles/mui` and one for Flutter in `solar_flutter`. The component itself — props, slots,
-loading, accessibility — is a **shell**, one per platform (a React component, a Flutter widget),
-written by hand in that platform's language (owner decision 2026-09-25). A design change reaches it
-through the recipe and the generated layer tree it imports; a slot, prop or icon Figma adds fails
-the component-parity test until the shell reaches it.
-
-No target is transpiled from another; agreement is proved instead by parity suites that compare
-every token in every mode, every icon variant's geometry, and every component recipe entry and API
-across MUI and Flutter, against the spec as the oracle. The places code and Figma differ are
-reported in [`spec/deviations.md`](../spec/deviations.md), never patched in `docs/`.
-
-Agreement between two platforms is not correctness, so the components are also checked against
-**Figma itself**. `spec/verify/<name>.json` is the oracle: what Figma draws for every variant,
-generated straight from the Figma layers, independently of the recipe. The **visual checks**
-render every variant as the real component — React in Chromium with Playwright
-(`npm run test:visual`), Flutter as widget tests — reach each state the way a user does, read back
-what is drawn, and fail on any difference the oracle does not excuse. An excused difference is an
-open finding or an overlay decision, named in the oracle, and lands in a gap report instead.
-
-**It never writes to `docs/`.** This folder mirrors Figma, so when generated code is wrong the
-fix belongs in the generator, never in the mirror. A write guard enforces it and CI re-checks it
-after every run. How to change it: [packages/codegen/README.md](../packages/codegen/README.md).
-Why it is built this way: [engineering/architecture.md](engineering/architecture.md).
+`npm run solar:codegen` reads this folder and never writes to it: it builds the token, icon and
+component contracts in `spec/`, then every code target from them, and writes each component's
+Figma oracle. How, and why: [engineering/architecture.md](engineering/architecture.md); where a
+change goes: [engineering/workflows.md](engineering/workflows.md#decide-where-a-change-goes); the
+generator's internals: [packages/codegen/README.md](../packages/codegen/README.md).
 
 ## Checks in CI
 
-[`.github/workflows/solar.yml`](../.github/workflows/solar.yml) runs on every pull request and
-on pushes to `main` and the `v*` branches. **No job needs a Figma token**, because all of them
-work from data that is committed here.
-
-| Job                                        | What it does                                                                                                                                                                       | Fixing a failure                                                                 |
-| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Generated docs and tokens are up to date   | Reruns `solar:docs` and `solar:tokens` from the committed raw data and fails if any file changes, then checks Prettier formatting of the docs and scripts                          | Run those two commands locally; the owner commits the result                     |
-| No unreviewed personal data or credentials | [`scripts/check-personal-data.mjs`](../scripts/check-personal-data.mjs) scans every tracked and untracked file for credentials, e-mail addresses and phone numbers                 | Redact in the extractor, or accept the finding with a written reason (see below) |
-| Generated code is up to date               | Reruns `solar:codegen`, fails if `docs/` was written to, fails if any generated file changed, then runs the unit and parity suites                                                 | Run `npm run solar:codegen` locally; the owner commits the result                |
-| Dart package analyzes and tests            | `dart format --set-exit-if-changed`, `flutter analyze` and `flutter test` in `packages/solar_flutter`, including the Flutter visual checks; keeps their reports; builds Widgetbook | Run the same three locally; the reports are in `build/visual/`                   |
-| Web components draw what Figma draws       | Installs Playwright's Chromium and runs `npm run test:visual`: every variant rendered and measured against `spec/verify/`; keeps the gap reports; builds Storybook                 | Run `npm run test:visual` locally; the reports are in `test/visual/.out/`        |
-
-The Flutter version is pinned in the workflow, because `dart format` changed its output in Dart
-3.7 and the codegen job diffs the formatted file. How to upgrade it:
-[engineering/workflows.md](engineering/workflows.md#set-up-a-machine). Node is pinned to 22 in every
-job and in `.nvmrc`.
-
-Generated files record the **source's** fetch date and Figma file version (`sourceFetchedOn`,
-`fileVersion`), never the build date, so rebuilding on a later day produces no diff. Keep it
-that way: a builder must be a pure function of `raw/` plus the token captures.
+[`.github/workflows/solar.yml`](../.github/workflows/solar.yml) runs on every pull request and on
+pushes to `main` and the `v<number>` branches; no job needs a Figma token, because all of them work
+from data committed here. Each job, and how to fix it when it fails:
+[engineering/architecture.md, CI and deployment](engineering/architecture.md#ci-and-deployment).
 
 ### Personal data in a public repository
 
