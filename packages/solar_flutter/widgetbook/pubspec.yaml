@@ -24,6 +24,6 @@ flutter:
   uses-material-design: true
   # The oracles, what Figma draws for every variant, which the Variants use cases lay out. Copied
   # from spec/verify/ by scripts/widgetbook.mjs on every run, since Flutter bundles no asset from
-  # outside the app; git-ignored.
+  # outside the app; the copies are git-ignored, the directory kept by its .gitkeep.
   assets:
     - assets/verify/

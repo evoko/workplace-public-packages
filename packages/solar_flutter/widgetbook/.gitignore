@@ -1,4 +1,7 @@
 .dart_tool/
 .flutter-plugins-dependencies
 build/
-assets/verify/
+# The oracles scripts/widgetbook.mjs copies in; the directory itself is kept by .gitkeep, since the
+# pubspec declares it and flutter analyze fails on a declared directory that does not exist.
+assets/verify/*
+!assets/verify/.gitkeep

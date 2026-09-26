@@ -6,10 +6,11 @@
 //
 // The app lays out the oracles, spec/verify/*.json. Flutter cannot bundle an asset from outside
 // the app's own directory, so they are copied into widgetbook/assets/verify/ first, on every run:
-// the copy is git-ignored and made fresh each time, so it cannot go stale, and a new component's
-// oracle is picked up with no change to the app.
+// the copies are git-ignored and made fresh each time, so they cannot go stale, and a new
+// component's oracle is picked up with no change to the app. The directory itself stays, kept in
+// git by its .gitkeep: the pubspec declares it, and flutter analyze fails where it is missing.
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { copyFileSync, readdirSync, rmSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -18,8 +19,7 @@ const app = join(repoRoot, 'packages', 'solar_flutter', 'widgetbook');
 const from = join(repoRoot, 'spec', 'verify');
 const to = join(app, 'assets', 'verify');
 
-rmSync(to, { recursive: true, force: true });
-mkdirSync(to, { recursive: true });
+for (const f of readdirSync(to)) if (f.endsWith('.json')) rmSync(join(to, f));
 const oracles = readdirSync(from).filter((f) => f.endsWith('.json'));
 for (const f of oracles) copyFileSync(join(from, f), join(to, f));
 console.log(`widgetbook: ${oracles.length} oracles (${oracles.join(', ')})`);

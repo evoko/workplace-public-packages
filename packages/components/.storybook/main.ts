@@ -9,9 +9,17 @@ import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { STATE_SELECTORS } from '../../codegen/src/emit/mui-component.mjs';
 import { NAMES, fileOf } from '../../codegen/src/stages/components.mjs';
+import { exactAliases } from '../../codegen/src/util/workspace-sources.mjs';
 
 const here = (path: string) => fileURLToPath(new URL(path, import.meta.url));
-const styles = (path: string) => here(`../../styles/src/${path}`);
+
+/** Vite's aliases as a list, whichever form Storybook's own configuration gave them in. */
+const aliasList = (alias: unknown) =>
+  Array.isArray(alias)
+    ? alias
+    : Object.entries((alias ?? {}) as Record<string, string>).map(
+        ([find, replacement]) => ({ find, replacement }),
+      );
 
 /**
  * What the stories need from the codegen, as data: which components there are, each one's API from
@@ -56,14 +64,10 @@ const config: StorybookConfig = {
     ...vite,
     resolve: {
       ...vite.resolve,
-      // Workspace packages from their sources, as the visual checks and unit tests resolve them,
-      // so the viewer shows what is committed and needs no build first.
-      alias: {
-        ...(vite.resolve?.alias as Record<string, string>),
-        '@bwp-web/styles/mui': styles('mui.ts'),
-        '@bwp-web/styles/tokens.css': styles('generated/css/tokens.css'),
-        '@bwp-web/styles/fonts.css': styles('fonts.css'),
-      },
+      // Workspace packages from their sources, as the visual checks and unit tests resolve them
+      // (one table for all three), so the viewer shows what is committed and needs no build
+      // first. Ours come first: Vite takes the first alias that matches.
+      alias: [...exactAliases(), ...aliasList(vite.resolve?.alias)],
     },
     // The oracles and the IR live at the repository root, outside this package.
     server: { ...vite.server, fs: { allow: [here('../../..')] } },

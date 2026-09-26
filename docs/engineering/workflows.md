@@ -242,6 +242,18 @@ list to read before a change in the same area.
 - The visual checks and the Flutter tests share a server and build directories: run them once,
   never from parallel agents. Parallel agents adding descriptors also read each other's
   half-written files; build members of one family one at a time where they share files.
+- A check that passes locally can fail on a clean CI runner, where nothing is built and nothing
+  git-ignored exists. Two cases have happened:
+  - The unit tests, the web visual check and Storybook read the workspace packages from their
+    sources through one table, `packages/codegen/src/util/workspace-sources.mjs`. A new
+    `@bwp-web/*` entry a component imports must be added there, or it resolves to `dist/`,
+    which only a local build leaves behind (`test/workspace-sources.test.mjs` fails on one
+    missing).
+  - A directory the Widgetbook pubspec declares must exist in git: `flutter analyze` fails on a
+    declared asset directory that is missing, and CI analyses before it copies the oracles in.
+    `assets/verify/` is kept by its `.gitkeep` (`test/widgetbook-assets.test.mjs`).
+    To reproduce CI locally, move the `dist/` folders (or the copied oracles) aside and run the
+    check.
 
 **Reading Figma data** (`packages/codegen/src/normalize/`)
 

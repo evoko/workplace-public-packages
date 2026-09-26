@@ -8,9 +8,9 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
+import { WORKSPACE_SOURCES } from '../../../codegen/src/util/workspace-sources.mjs';
 
 const here = (path) => fileURLToPath(new URL(path, import.meta.url));
-const styles = (path) => here(`../../../styles/src/${path}`);
 export const outDir = here('.out');
 
 export default async function setup() {
@@ -21,11 +21,8 @@ export default async function setup() {
     format: 'esm',
     jsx: 'automatic',
     loader: { '.woff2': 'file', '.woff': 'file' },
-    alias: {
-      '@bwp-web/styles/mui': styles('mui.ts'),
-      '@bwp-web/styles/tokens.css': styles('generated/css/tokens.css'),
-      '@bwp-web/styles/fonts.css': styles('fonts.css'),
-    },
+    // Every workspace entry the page imports, from its source (one table for every tool).
+    alias: WORKSPACE_SOURCES,
     define: { 'process.env.NODE_ENV': '"production"' },
     logLevel: 'warning',
   });

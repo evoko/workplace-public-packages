@@ -576,7 +576,8 @@ src/emit/                  one file per emitter, plus the manifest entries and c
 src/report/                spec/deviations.md
 src/verify/                the oracle, spec/verify/<name>.json
 src/util/                  paths, the docs/ write guard and pruning, sorting, naming, digests,
-                           SVG markup scanning
+                           SVG markup scanning, and the workspace sources the tests, the visual
+                           check and Storybook resolve the packages to
 test/                      unit suites per module, token parity across four targets, icon
                            parity across three, component parity across two, and the
                            packaging checks

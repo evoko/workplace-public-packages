@@ -1,33 +1,17 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
+import { exactAliases } from './packages/codegen/src/util/workspace-sources.mjs';
 
 // Turbo runs each package's `test` script with the package directory as cwd, so `root`
 // must be set explicitly here; otherwise the `include` glob below (relative to `root`)
 // would resolve against the wrong directory and silently find no tests.
-const src = (path) => fileURLToPath(new URL(path, import.meta.url));
-
 export default defineConfig({
   root: fileURLToPath(new URL('.', import.meta.url)),
   // Workspace packages resolve to their sources, not their dist/: a suite tests what is
   // committed, and does not depend on a build having run first (the SOLAR workflow's codegen job
   // runs the suites straight after regenerating).
-  resolve: {
-    alias: [
-      {
-        find: /^@bwp-web\/styles\/mui$/,
-        replacement: src('packages/styles/src/mui.ts'),
-      },
-      {
-        find: /^@bwp-web\/styles$/,
-        replacement: src('packages/styles/src/index.ts'),
-      },
-      // The icons a drawn component shows (RowExpand's chevrons).
-      {
-        find: /^@bwp-web\/assets$/,
-        replacement: src('packages/assets/src/index.ts'),
-      },
-    ],
-  },
+  // One table for every tool that does so (packages/codegen/src/util/workspace-sources.mjs).
+  resolve: { alias: exactAliases() },
   test: {
     include: ['packages/*/test/**/*.test.mjs'],
     environment: 'node',
