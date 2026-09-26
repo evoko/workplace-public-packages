@@ -1,0 +1,8 @@
+# Which SOLAR components a person has approved, per platform. Written by people only, never by an
+# agent (CLAUDE.md). `npm run solar:status` prints, for each 🟡 component, the lines to paste here
+# once you have confirmed it looks and behaves as intended; `-- --check` fails where a recorded
+# fingerprint no longer matches what the component ships.
+#
+# Button:
+#   web: { fingerprint: 'sha256:…', by: 'Your Name', on: 2026-09-27 }
+#   flutter: { fingerprint: 'sha256:…', by: 'Your Name', on: 2026-09-27 }

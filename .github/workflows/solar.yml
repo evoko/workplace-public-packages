@@ -131,6 +131,11 @@ jobs:
       - name: Run the unit and parity suites
         run: npx vitest run
 
+      # Every approval in spec/approvals.yaml must still match what its component ships
+      # (docs/engineering/workflows.md, Approve a component).
+      - name: Every recorded approval still holds
+        run: npm run solar:status -- --check
+
   flutter:
     name: Dart package analyzes and tests
     runs-on: ubuntu-latest
@@ -179,7 +184,8 @@ jobs:
 
       # The review surface: Widgetbook, built from the same oracles and builders, so a widget the
       # checks measure is one a reviewer can look at, and the viewer cannot quietly break. The
-      # script copies the oracles in first, and needs Node alone, no npm install.
+      # script copies the oracles in first, and needs Node alone, no npm install; without the
+      # generator's packages it builds without the approval circles.
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:

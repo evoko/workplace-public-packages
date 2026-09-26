@@ -28,6 +28,17 @@ and `npm run solar:codegen` writes it for every component (the shells are hand-w
 serves them as the module `virtual:solar`. Workspace packages resolve to their sources, so it needs
 no build first. CI builds it and keeps the result as the `storybook` artifact.
 
+Each component's name in the sidebar follows its approval circle, 🟢 🟡 🔴
+([workflows.md, Approve a component](../../../docs/engineering/workflows.md#approve-a-component)),
+worked out by `.storybook/main.ts` when Storybook starts or builds and shown by `manager.ts`. A
+running `npm run storybook` shows a new approval after a restart. The deployed Storybook's
+circles are as of its last deployment: an approval alone (a change to `spec/approvals.yaml` only)
+may deploy nothing, since the Vercel project skips a deployment when nothing its root directory
+depends on changed and the Turbo cache does not key on the record
+([workflows.md, Deploy](../../../docs/engineering/workflows.md#deploy)). The charts (under one
+Charts entry) and the components checked as another's state show no circle; `npm run solar:status`
+has their colours.
+
 Not here: the tweak panel (edit a value, save an overlay rule — tracked in
 [open work](../../../docs/engineering/open-work.md#designed-not-built)), or Figma's own renders
 beside the components, which the mirror does not store.

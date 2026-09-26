@@ -7,6 +7,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
+import { circlesFor } from '../../codegen/src/approvals/status.mjs';
 import { STATE_SELECTORS } from '../../codegen/src/emit/mui-component.mjs';
 import { NAMES, fileOf } from '../../codegen/src/stages/components.mjs';
 import { exactAliases } from '../../codegen/src/util/workspace-sources.mjs';
@@ -60,6 +61,22 @@ const config: StorybookConfig = {
   addons: ['@storybook/addon-themes', 'storybook-addon-pseudo-states'],
   framework: { name: '@storybook/react-vite', options: {} },
   core: { disableTelemetry: true },
+  // Each component's approval circle (spec/approvals.yaml), for the sidebar: worked out here, in
+  // Node, when Storybook starts or builds, and handed to the manager as a global (manager.ts).
+  managerHead: async (head) => {
+    let circles = {};
+    try {
+      circles = await circlesFor('web');
+    } catch (error) {
+      // Informational only (`solar:status -- --check` is what blocks): a record YAML cannot read,
+      // or a scan that fails, leaves the sidebar without circles rather than Storybook unbuilt.
+      // eslint-disable-next-line no-console
+      console.warn(
+        `storybook: no approval circles (${String((error as Error).message).split('\n')[0]})`,
+      );
+    }
+    return `${head ?? ''}<script>window.SOLAR_APPROVALS = ${JSON.stringify(circles)};</script>`;
+  },
   viteFinal: (vite) => ({
     ...vite,
     resolve: {

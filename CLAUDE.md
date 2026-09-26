@@ -30,6 +30,11 @@ names `CLAUDE.md` as its agent instruction layer: treat every rule here as hard.
   `stash`, `checkout`, `reset`, and no worktrees. Finishing a task means stopping and reporting.
 - Stop for the owner's review after each batch of related work, before continuing.
 - Ask when the answer changes what gets built; batch questions at the end of a task.
+- **`spec/approvals.yaml` is written by people, never by an agent.** Never edit it, and never
+  work on a component `npm run solar:status` shows 🔴 (one that uses a component not yet
+  approved): work bottom-up, on 🟡 components. A change that cancels an approval fails the check
+  until a person approves it again or the change is reverted
+  ([workflows.md, Approve a component](docs/engineering/workflows.md#approve-a-component)).
 - Use Node 22 (`.nvmrc`; `export PATH=$HOME/.nvm/versions/node/v22.23.2/bin:$PATH`). The codegen
   CLIs refuse an older Node; the other scripts do not check, so check `node -v` first.
 

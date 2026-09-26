@@ -46,6 +46,7 @@ From the repository root:
 | `npm run solar:explain -- "<Name>"`                    | why a component draws what it draws (see below)                          |
 | `npm run solar:triage`                                 | every SOLAR Web component's IR, findings and needs, for planning         |
 | `npm run solar:overlay:audit`                          | decisions the overlays make more than once                               |
+| `npm run solar:status`                                 | each component's approval colour, per platform (see below)               |
 | `npm run build && npm run smoke:install`               | pack the packages and install them into a clean React 18 app             |
 | `npm run lint`, `typecheck`, `format`, `test`, `build` | across the workspace, through Turbo                                      |
 
@@ -63,6 +64,7 @@ personal-data check and the Prettier check CI runs).
 
 ```bash
 npx vitest run
+npm run solar:status -- --check
 npm run lint && npm run typecheck && npm run format
 npm run solar:rebuild && npm run solar:rebuild && git status --porcelain   # only your own changes
 npm run test:visual
@@ -198,6 +200,24 @@ In short (every table a descriptor may hold is in the codegen README's
 
 Both viewers then show it with no more work.
 
+## Approve a component
+
+A person approves each component, per platform, once they have confirmed it looks and behaves as
+intended. The record, `spec/approvals.yaml`, is written by people, never by an agent.
+
+1. `npm run solar:status` shows each platform's components: 🟢 approved, 🟡 ready to review, 🔴
+   waiting on a component it uses (its line names the 🟡 ones to approve first, or says it is in
+   a cycle). Storybook's and Widgetbook's sidebars show each its own platform's circles.
+2. Review a 🟡 component in its viewer, and have anything wrong fixed.
+3. Run `npm run solar:status` again and paste the lines it prints for it into
+   `spec/approvals.yaml` (under its name, where it is already there for the other platform): fixes
+   change the fingerprint.
+
+Any change to what it ships cancels it and every approval above it;
+`npm run solar:status -- --check`, in CI and the Verify block, then fails until it is approved
+again or the change is reverted. What counts, and why:
+[architecture.md, Approvals](architecture.md#approvals).
+
 ## Keep the design review current
 
 [docs/solar-review-for-design.md](../solar-review-for-design.md) is hand-written, for the SOLAR
@@ -258,6 +278,9 @@ their own package in the same place, so the one set of settings serves both.
   `@bwp-web/storybook` lists every workspace package the Storybook build reads
   (`test/storybook-deploy.test.mjs` keeps it so). A new one the Storybook comes to read is added
   there too.
+- An approval alone (a change to `spec/approvals.yaml` only) may deploy nothing, since the
+  project skips a deployment when nothing its root directory depends on changed and the Turbo
+  cache does not key on the record: the deployed circles are as of the last deployment.
 - Widgetbook is not deployed: Vercel's build image has no Flutter. CI builds it as an artifact.
 
 ## Upgrade a dependency
@@ -265,6 +288,12 @@ their own package in the same place, so the one set of settings serves both.
 Every dependency is kept at its newest stable version; an SDK is replaced in place. Where a
 dependency cannot move (an upstream peer range), say which upstream blocks it. After an upgrade,
 run the whole verification, including both visual checks and both viewers' builds.
+
+An upgrade of any package outside this repository that a platform's components run on (on the web
+React, MUI, Emotion, MUI X Charts and the `@fontsource` fonts; in Flutter the SDK, `fl_chart` and
+`intl`) clears that platform's approvals in `spec/approvals.yaml` in the same change: behaviour can
+change without any fingerprint moving. A person makes that edit, never an agent
+([Approve a component](#approve-a-component)).
 
 ## Pitfalls
 

@@ -245,6 +245,45 @@ Storybook (`npm run storybook`) and Widgetbook (`npm run widgetbook`) show every
 with its state forced, in Light and Dark, built from the visual checks' own cases and oracles, and
 badge each variant with its excused differences. They are viewers, not checks.
 
+## Approvals
+
+The checks prove each platform draws what Figma draws; a person still confirms each component
+before it ships. `spec/approvals.yaml`, written by people, never by an agent, records that
+confirmation per component and platform as the component's **fingerprint**, a SHA-256 of what it
+ships:
+
+- **Its files**, each read as its code alone, without comments or layout: its shell, the shells
+  of the components it uses, the runtime helpers, its recipe, tree and slots, and on the web its
+  icons and what `SolarProvider` installs (its files and the generated MUI theme,
+  `packages/styles/src/generated/mui/theme.ts`). esbuild's metafile gives the web's files, the
+  Dart imports Flutter's (`tokens.dart` among them). The bundler's output is never hashed, so
+  upgrading it moves nothing. Tests, stories, visual cases and the viewers never count.
+- **On the web, its tokens**: the value, in every mode, of every `--solar-*` token its files' code
+  names (a comment naming one counts for nothing; a name built at run time, `--solar-icon-${size}`,
+  counts every token it can be), and the declarations in tokens.css that are not tokens (the
+  reduced-motion rule).
+
+So a change to the MUI theme or to those rules cancels every web approval, as a change to
+`tokens.dart` cancels every Flutter one. A component uses another when the other's shell is among
+the files it ships, by its own import or a helper's, so use is transitive. Bar, Line and Donut
+Chart are components with their wrappers; the three Flutter charts share `solar_charts.dart`, and
+so one fingerprint, without using one another. A component checked as another's state
+(Autocomplete Open) is covered by that one.
+
+An approval holds while its fingerprint does. A component is 🟢 approved with every component it
+uses 🟢, 🟡 unapproved with every component it uses 🟢, and 🔴 otherwise. Approval therefore goes
+bottom-up, a child's change cancels every approval above it, and reverting the change restores
+them. `npm run solar:status` prints the colours, each 🔴 line naming the 🟡 components to approve
+first or saying it is in a cycle, and the lines to paste for each 🟡; Storybook and Widgetbook
+show each its own platform's circles. The circles are informational; the check is what blocks:
+`-- --check` fails on an approval that no longer holds, on one recorded for a 🔴 component, on an
+unknown component or platform, and on a cycle. An upgrade of a package outside this repository
+that a platform's components run on can change behaviour without moving a fingerprint, so it
+clears that platform's approvals
+([workflows.md, Upgrade a dependency](workflows.md#upgrade-a-dependency)).
+The code is `packages/codegen/src/approvals/`; the procedure is
+[workflows.md, Approve a component](workflows.md#approve-a-component).
+
 ## CI and deployment
 
 The Storybook is deployed by Vercel from `packages/storybook`
@@ -256,13 +295,13 @@ here. It pins Flutter (`FLUTTER_VERSION`), because `dart format` output changes 
 and the codegen job diffs the formatted Dart; to upgrade it, see
 [workflows.md, Set up a machine](workflows.md#set-up-a-machine).
 
-| Job                                        | Checks                                                                                                                                                                | Fixing a failure                                                                                                                |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, YAML                                                                                   | Run those two commands locally, and Prettier on a formatting failure; the owner commits the result                              |
-| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs`: credentials, e-mail addresses and phone numbers in every tracked and untracked file, against `scripts/personal-data-baseline.json` | Redact in the extractor, or accept the finding with a written reason ([how](../README.md#personal-data-in-a-public-repository)) |
-| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`                                                                                   | Run `npm run solar:codegen` locally; the owner commits the result                                                               |
-| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test` with the Flutter visual checks; keeps the reports; builds Widgetbook                                | Run the same three in `packages/solar_flutter`; the reports are in `packages/solar_flutter/build/visual/`                       |
-| Web components draw what Figma draws       | `npm run test:visual`; keeps the gap reports; builds Storybook                                                                                                        | Run `npm run test:visual` locally; the reports are in `packages/components/test/visual/.out/`                                   |
+| Job                                        | Checks                                                                                                                                                                | Fixing a failure                                                                                                                                                        |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, YAML                                                                                   | Run those two commands locally, and Prettier on a formatting failure; the owner commits the result                                                                      |
+| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs`: credentials, e-mail addresses and phone numbers in every tracked and untracked file, against `scripts/personal-data-baseline.json` | Redact in the extractor, or accept the finding with a written reason ([how](../README.md#personal-data-in-a-public-repository))                                         |
+| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`; `solar:status --check`                                                           | Run `npm run solar:codegen` locally; the owner commits the result; for a cancelled approval, re-approve it or revert ([workflows.md](workflows.md#approve-a-component)) |
+| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test` with the Flutter visual checks; keeps the reports; builds Widgetbook                                | Run the same three in `packages/solar_flutter`; the reports are in `packages/solar_flutter/build/visual/`                                                               |
+| Web components draw what Figma draws       | `npm run test:visual`; keeps the gap reports; builds Storybook                                                                                                        | Run `npm run test:visual` locally; the reports are in `packages/components/test/visual/.out/`                                                                           |
 
 `.github/workflows/main.yml` runs lint, typecheck, format, build, `smoke:install` (the packed
 packages installed into a clean React 18 app and rendered on the server) and the tests.

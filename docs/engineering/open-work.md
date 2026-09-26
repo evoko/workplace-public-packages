@@ -166,6 +166,9 @@ decisions.md; the fields, Radio and Slider have component themes; `flutter analy
 - **The tweak panel**: edit a value in Storybook, save it as an overlay rule with provenance.
   Today the loop is `solar:explain --propose`, which prints the rule to paste.
 - **`solar:codegen -- --adopt <Name>`**: fold a local edit of a generated file into the overlay.
+- **Recording approvals from the viewers**: an Approve action in Storybook and Widgetbook, in
+  place of pasting the lines `solar:status` prints into `spec/approvals.yaml`
+  ([workflows.md, Approve a component](workflows.md#approve-a-component)).
 
 ## Out of scope today
 

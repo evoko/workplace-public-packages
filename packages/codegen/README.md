@@ -459,6 +459,9 @@ and `test/charts.test.mjs` checks the theme carries each cell.
 bin/solar-codegen.mjs      the CLI: builds every stage, then emits, reports, prunes, formats
 bin/solar-explain.mjs      why a component draws what it draws, cell by cell; writes nothing
 bin/solar-triage.mjs       which components come next, and what each needs; writes nothing
+bin/solar-status.mjs       each component's approval colour, and the approval check; writes nothing
+src/approvals/             the files each component ships, what it uses, its fingerprint, and
+                           the approval check (solar:status); the viewers' circles
 src/stages/                one module per stage (tokens, icons, components): build(), emit()
 src/shells/                the stories, the shells' check (index), how each platform reaches the
                            IR (api) and the icons a shell draws (icons)
@@ -506,6 +509,16 @@ generator:
   `text`, per-side `sides`), and its findings before any overlay, split into axis, zero-inset,
   boundable to a token, and no token. `-- --json` gives the rows, `-- --all` adds patterns and
   views. It writes nothing and is not part of `solar:codegen`.
+- **`solar:status`** (`bin/solar-status.mjs`, `src/approvals/`) writes nothing. `graph.mjs` lists
+  each platform's components (`nodesOf`) and the files each ships: one esbuild pass over every
+  shell and `SolarProvider`, read from its metafile, the workspace packages resolved to their
+  sources (`WORKSPACE_SOURCES`); on Flutter the `solar_flutter` imports, followed file to file.
+  `lex.mjs` reads a file as its code alone (TypeScript's syntax tree; a small Dart lexer),
+  `fingerprint.mjs` hashes the files with the tokens their code names, and `status.mjs` colours,
+  checks, prints the lines to paste and gives each viewer its circles (`circlesFor`). Its tests
+  prove a fingerprint by mutation: a child's, a token's or the MUI theme's change moves it; a
+  comment, the layout, a test, a story or a visual case does not. What approvals are:
+  [architecture.md, Approvals](../../docs/engineering/architecture.md#approvals).
 
 Generator code is ESM `.mjs` with no build step. Run the suites with `npx vitest run` from here or
 from the repository root.

@@ -26,5 +26,13 @@ The oracles are copied into `assets/verify/` (git-ignored) by `scripts/widgetboo
 because Flutter bundles no asset from outside the app. Run it through the script, not a bare
 `flutter run`, or the copy is missing.
 
+Each component's name in the sidebar follows its approval circle, 🟢 🟡 🔴
+([workflows.md, Approve a component](../../../docs/engineering/workflows.md#approve-a-component)),
+which the script writes beside the oracles, to `assets/verify/approvals.status`, before each run.
+A build without the generator's npm packages (CI's) has none. The circle is part of the
+component's name, so it is part of its URL, and a link changes with its colour. The charts (under
+one Charts entry) and the components checked as another's state show no circle;
+`npm run solar:status` has their colours.
+
 It is a web app: Widgetbook's interface is built for it, and nothing here is measured. The native
 widget tests remain the check (`flutter test` in `solar_flutter`).

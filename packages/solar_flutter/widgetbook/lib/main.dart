@@ -25,9 +25,22 @@ Future<Map<String, Map<String, dynamic>>> loadOracles() async {
   return oracles;
 }
 
+/// Each component's approval circle (🟢 🟡 🔴), written by scripts/widgetbook.mjs beside the
+/// oracles; none where it wrote none.
+Future<Map<String, String>> loadCircles() async {
+  try {
+    final text = await rootBundle.loadString('assets/verify/approvals.status');
+    return (jsonDecode(text) as Map<String, dynamic>).cast<String, String>();
+  } catch (_) {
+    return const {};
+  }
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(SolarWidgetbook(oracles: await loadOracles()));
+  runApp(
+    SolarWidgetbook(oracles: await loadOracles(), circles: await loadCircles()),
+  );
 }
 
 /// Light and Dark are theme reassignment, as in an app: the widgets read the SolarTheme installed
@@ -39,9 +52,14 @@ ThemeData solarTheme(SolarTheme t, Brightness brightness) => ThemeData(
 );
 
 class SolarWidgetbook extends StatelessWidget {
-  const SolarWidgetbook({super.key, required this.oracles});
+  const SolarWidgetbook({
+    super.key,
+    required this.oracles,
+    this.circles = const {},
+  });
 
   final Map<String, Map<String, dynamic>> oracles;
+  final Map<String, String> circles;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +87,7 @@ class SolarWidgetbook extends StatelessWidget {
           children: [
             for (final name in names)
               WidgetbookComponent(
-                name: name,
+                name: circles[name] == null ? name : '${circles[name]} $name',
                 useCases: [
                   WidgetbookUseCase(
                     name: 'Playground',
