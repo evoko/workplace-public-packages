@@ -59,11 +59,11 @@ export const solarStatusCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarStatusCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarStatusCard-press)':
+    '& .SolarStatusCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarStatusCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarStatusCard-name': {
+    '& .SolarStatusCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

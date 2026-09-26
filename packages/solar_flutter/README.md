@@ -117,9 +117,10 @@ They take the same props as the React components, in Flutter's terms where they 
 | Still `disabled`          | `SolarRadio`, `SolarSlider`, `SolarSliderRange` and `SolarOptionRow` take `disabled` beside their callback ([open work](../../docs/engineering/open-work.md))                                                                                                                                                                                                                                                                                        |
 | A field's words           | `SolarTextInput` holds them in a `TextEditingController` (`controller`), where the web takes a `value`                                                                                                                                                                                                                                                                                                                                               |
 | Checked by a group        | `SolarRadio<T>` and `SolarSegmentedControlItem<T>`, by the `RadioGroup` around them, by their `value`, as Flutter's own Radio is, so they take no `checked` or `selected`; the group also moves between them with the arrow keys                                                                                                                                                                                                                     |
-| Values                    | a `SolarProgressBar`'s `value` is 0 to 1; a slider is on `min` to `max`, 0 to 1 by default; a `SolarAvatar`'s `color` is a `Color` and its picture an `ImageProvider`; a `SolarTimestamp` takes the app's words (`text`) with no `DateTime`, since Flutter has no machine-readable time                                                                                                                                                              |
+| Values                    | a `SolarProgressBar`'s `value` is 0 to 1; a slider is on `min` to `max`, 0 to 1 by default; a `SolarAvatar`'s `color` is a `Color` and its picture an `ImageProvider` (a photo or logo avatar with none is drawn as the initials avatar, as on the web); a `SolarTimestamp` takes the app's words (`text`) with no `DateTime`, since Flutter has no machine-readable time                                                                            |
 | A drawn component's words | `SolarSplitButton` and `SolarLink` take them as a `String`, `label`                                                                                                                                                                                                                                                                                                                                                                                  |
 | A group's buttons         | `SolarButtonGroup` takes them as `children`, and asserts against the vertical full-width group Figma does not draw                                                                                                                                                                                                                                                                                                                                   |
+| A vertical divider        | `SolarDivider` asserts against the vertical inset and labelled dividers Figma does not draw (its description names the three types for a horizontal divider only), and draws a vertical divider full whatever `type` it is given                                                                                                                                                                                                                     |
 
 ### Buttons
 
@@ -140,6 +141,13 @@ variant shows; disabled wins over loading. Given `active`, a `SolarIconButton` i
 Flutter's own `IconButton(isSelected:)` is: `true` draws Figma's active state, the persistent on
 state, announced selected; null, an ordinary action. `SolarFAB` is a FilledButton, which a
 Scaffold's `floatingActionButton` takes.
+
+A `SolarButton`'s `counter` is a `SolarCounter`, `counter: SolarCounter(count: 3)`, drawn in the
+type Figma draws in that button: `inverted` in a primary one, `regular` in the others. The button
+puts a `SolarCounterTypeScope` (`lib/src/solar_composed.dart`) around it, which a `SolarCounter`
+whose `type` is null reads, so you name none; a `type` you give wins. In a full-width
+`SolarButtonGroup` an `lg` button takes its share of the row, though on its own it is 200 wide, as
+in Figma.
 
 The recipe can also style a stock control directly. `SolarButtonRecipe.style(theme, props)` is a
 `ButtonStyle` that makes a `FilledButton` draw SOLAR's Button, resolving hover, pressed, focus and
@@ -316,9 +324,9 @@ itself. `solarTargetSize` is SOLAR's `size.target.min`, `SolarSize.targetMin`.
 Every variant of every widget is checked against what Figma draws (`spec/verify/`) by
 `flutter test`: see [test/visual/README.md](test/visual/README.md). To look at them instead,
 `npm run widgetbook` from the repository root: every Figma variant with its state forced, in Light
-and Dark, and a playground with a knob per prop ([widgetbook/README.md](widgetbook/README.md)). How
-a widget is built in one variant is shared by both, in the small `variants/` package
-(`solar_flutter_variants`), a dev dependency only.
+and Dark, and each widget live in a Playground, two-way with knobs generated from its IR
+([widgetbook/README.md](widgetbook/README.md)). How a widget is built in one variant is shared by
+both, in the small `variants/` package (`solar_flutter_variants`), a dev dependency only.
 
 **Size in a layout that stretches.** Every widget keeps Figma's size wherever it is put: in a
 `ListView`, which makes each child as wide as the list, a `SolarCheckbox` is still 16px, a

@@ -155,9 +155,13 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
                   className: layer.className,
                   'aria-label': label,
                   'aria-invalid': error || undefined,
+                  // The key is spent here: closing moves the focus to the edit button while the
+                  // key is still down, and Enter's default would then press it, opening it again.
                   onKeyDown: (event) => {
+                    if (event.key !== 'Enter' && event.key !== 'Escape') return;
+                    event.preventDefault();
                     if (event.key === 'Enter') confirm();
-                    if (event.key === 'Escape') cancel();
+                    else cancel();
                   },
                 }}
               />

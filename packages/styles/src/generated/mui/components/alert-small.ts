@@ -42,6 +42,13 @@ export const solarAlertSmallStyles = {
       stroke: 'none',
     },
     '& button.SolarAlertSmall-action': {
+      appearance: 'none',
+      border: '0',
+      padding: '0',
+      margin: '0',
+      background: 'none',
+      cursor: 'pointer',
+      textAlign: 'start',
       position: 'relative',
     },
     '& button.SolarAlertSmall-action::after': {

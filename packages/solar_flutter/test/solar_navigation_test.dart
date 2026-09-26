@@ -339,6 +339,26 @@ void main() {
       expect(pressed, ['Rooms']);
     });
 
+    testWidgets('the current page keeps its disabled look', (tester) async {
+      await pump(
+        tester,
+        SolarBreadcrumbs(
+          children: [
+            SolarBreadcrumbItem(label: 'Home', onPressed: () {}),
+            const SolarBreadcrumbItem(label: 'Archived', disabled: true),
+          ],
+        ),
+      );
+      final current = tester.widget<SolarBreadcrumbItem>(
+        find.ancestor(
+          of: find.text('Archived'),
+          matching: find.byType(SolarBreadcrumbItem),
+        ),
+      );
+      expect(current.type, SolarBreadcrumbItemType.current);
+      expect(current.disabled, isTrue);
+    });
+
     testWidgets(
       'past maxItems, an ellipsis stands for the middle, and opens a menu of it',
       (tester) async {

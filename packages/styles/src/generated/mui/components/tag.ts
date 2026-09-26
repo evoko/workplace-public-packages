@@ -61,6 +61,7 @@ export const solarTagStyles = {
       margin: '0',
       background: 'none',
       cursor: 'pointer',
+      position: 'relative',
     },
     '& button.SolarTag--iconClose::after': {
       content: '""',

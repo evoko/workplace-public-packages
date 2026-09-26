@@ -588,3 +588,19 @@ describe('defaults, a default of the API’s own', () => {
     ).toThrow(/defaults selected: yes is no value of selected/);
   });
 });
+
+describe('a card’s own controls, above its stretched action', () => {
+  it('leave an input hidden from everyone where its control places it', async () => {
+    // A Select's or Dropdown's native input is absolute under its field; raised as a control it was
+    // made relative, took the field's row, and left the choice's words no width (Device Card's
+    // batch Dropdown drew none).
+    const { cardResets } = await import('../src/components/shared/card.mjs');
+    const raised = Object.entries(cardResets('Device Card')).find(
+      ([, v]) => v?.position === 'relative' && Object.keys(v).length === 1,
+    );
+    expect(raised?.[0]).toContain(
+      ':is(a, button, input, select, textarea, [tabindex])',
+    );
+    expect(raised?.[0]).toContain('[aria-hidden="true"]');
+  });
+});

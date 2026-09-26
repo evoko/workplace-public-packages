@@ -18,6 +18,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../generated/components/counter.dart';
 import '../generated/components/statusindicator.dart';
 import '../generated/components/tree_indent.dart';
 import '../generated/components/tree_item.dart';
@@ -208,6 +209,9 @@ class _SolarTreeItemState extends State<SolarTreeItem> {
             'counter': SolarStatesScope(
               builder: (_, _) => SolarCounter(
                 count: w.count!,
+                type: SolarCounterType.values.byName(
+                  look('counter.variant.type')!.substring(2),
+                ),
                 disabled: look('counter.variant.state') == 'k:disabled',
               ),
             ),

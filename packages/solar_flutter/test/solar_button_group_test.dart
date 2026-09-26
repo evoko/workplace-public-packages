@@ -95,6 +95,33 @@ void main() {
       expect(face(tester, 'a').height, 48);
     });
 
+    // An lg Button is 200 wide on its own; in a full-width group it takes its share, as Figma's
+    // full-width variant draws its lg Buttons filling the bar. 400 would hide it (two shares of
+    // 200), so the group is as wide as a Dialog's.
+    testWidgets('full-width lg buttons share a wide group, not 200 each', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: ThemeData(extensions: const [SolarTheme.light]),
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 480,
+                child: SolarButtonGroup(
+                  type: SolarButtonGroupType.fullWidth,
+                  children: buttons(SolarButtonSize.lg),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(face(tester, 'a').width, 240);
+      expect(face(tester, 'b').width, 240);
+      expect(face(tester, 'b').left, face(tester, 'a').right);
+    });
+
     test('refuses the vertical full-width group Figma does not draw', () {
       expect(
         () => SolarButtonGroup(

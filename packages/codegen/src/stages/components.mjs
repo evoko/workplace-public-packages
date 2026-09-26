@@ -1,5 +1,6 @@
 // The component stage: spec/components/<name>.json and spec/verify/<name>.json from docs/solar-web,
-// then each component's recipes, its stories (its shells are files, checked here) and the registries.
+// then each component's recipes, its stories (its shells are files, checked here), the registries,
+// the Widgetbook Playground's controls and both viewers' Playground builder registries.
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { applyTints } from '../normalize/tint.mjs';
@@ -20,6 +21,10 @@ import { buildTokenSpec, loadContract } from '../normalize/tokens.mjs';
 import { emitMuiComponents } from '../emit/mui-component.mjs';
 import { emitFlutterComponents } from '../emit/flutter-component.mjs';
 import { emitRegistries } from '../emit/registries.mjs';
+import {
+  emitPlaygroundRegistries,
+  emitWidgetbookControls,
+} from '../emit/playground.mjs';
 import { emitMuiThemeComponents } from '../emit/mui-theme-components.mjs';
 import { pascal } from '../util/naming.mjs';
 import { componentsSrc, renderShells, shellFileOf } from '../shells/index.mjs';
@@ -144,7 +149,12 @@ export function assertDistinct(names) {
   }
 }
 
-export function emit({ built, tokens, stories }) {
+/**
+ * Writes what build built. `icons` is the icon stage's build from the same run (the CLI passes
+ * every stage's), whose icon spec names the icons the Playground controls start at: spec/icons.json
+ * on disk is the last run's, since writes are held until the run ends.
+ */
+export function emit({ built, tokens, stories }, { icons }) {
   for (const { spec } of built)
     writeGenerated(
       join(componentsDir, fileOf(spec.component)),
@@ -177,6 +187,8 @@ export function emit({ built, tokens, stories }) {
       flutter: emitFlutterComponents(specs, tokens),
       chartTheme: emitChartTheme(byName, tokens),
       stories: stories.length,
+      playground: emitWidgetbookControls(byName, icons.spec.icons),
+      playgroundRegistries: emitPlaygroundRegistries(),
       registries: emitRegistries(
         specs.map((s) => s.component),
         {

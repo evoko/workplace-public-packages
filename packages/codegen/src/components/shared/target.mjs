@@ -24,10 +24,16 @@ const reach = {
  * which a click lands on as on the element itself. `under` lays it beneath the element's own
  * content (a text field's input, which a pointer must still reach to place the caret), the element
  * then a stacking context of its own.
+ *
+ * `rules` are the element's own declarations (a native button's reset), written into the same
+ * rule. Pass them here rather than as a key of their own beside the spread: an object literal
+ * keeps only the last value of a key, so a reset and a target under one selector lose one or the
+ * other (test/target.test.mjs checks every target).
  */
-export function targetArea(selector = '&', { under = false } = {}) {
+export function targetArea(selector = '&', { under = false, rules = {} } = {}) {
   return {
     [selector]: {
+      ...rules,
       position: 'relative',
       ...(under ? { isolation: 'isolate' } : {}),
     },
@@ -39,6 +45,19 @@ export function targetArea(selector = '&', { under = false } = {}) {
     },
   };
 }
+
+/**
+ * A native <button> with none of the browser's own look, for a drawn component's action or close
+ * button: its recipe draws its words or its icon. Pass it as a target's `rules`.
+ */
+export const BUTTON_RESET = {
+  appearance: 'none',
+  border: '0',
+  padding: '0',
+  margin: '0',
+  background: 'none',
+  cursor: 'pointer',
+};
 
 /**
  * A native input made the target (Checkbox's, Radio's and Toggle's, invisible over the control):

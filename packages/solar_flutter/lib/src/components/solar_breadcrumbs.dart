@@ -77,8 +77,11 @@ class SolarBreadcrumbs extends StatelessWidget {
         ),
       ] else
         ...children.take(children.length - 1),
+      // The page itself, redrawn as the current page: no link, its disabled look kept, as the
+      // web's keeps every prop but its type.
       SolarBreadcrumbItem(
         type: SolarBreadcrumbItemType.current,
+        disabled: current.disabled,
         label: current.label,
       ),
     ];

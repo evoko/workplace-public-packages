@@ -8,15 +8,17 @@
 /// A field of entries (tags, recipients, keywords): its [label] above (a [mandatory] one is
 /// starred), its [helper] below, which says what is wrong where it is in [error]. Its [value] is
 /// drawn as SolarTags, each with a close button that removes it; the keyboard's action adds what is
-/// typed, and Backspace in the empty input removes the last. [maxVisible] draws that many, and
-/// counts the rest in a SolarCounter. [onChanged] is called with the entries. The draft is an
-/// undecorated [TextField] in the field drawn from Figma's layer tree with [SolarLayers]
-/// ([SolarField] holds it and its states). Read-only, the entries are shown and cannot be changed.
+/// typed and keeps the focus for the next, as the web's does, and Backspace in the empty input
+/// removes the last. [maxVisible] draws that many, and counts the rest in a SolarCounter.
+/// [onChanged] is called with the entries. The draft is an undecorated [TextField] in the field
+/// drawn from Figma's layer tree with [SolarLayers] ([SolarField] holds it and its states).
+/// Read-only, the entries are shown and cannot be changed.
 library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../generated/components/counter.dart';
 import '../generated/components/tag.dart';
 import '../generated/components/token_input.dart';
 import '../solar_field.dart';
@@ -185,7 +187,9 @@ class SolarTokenInput extends StatelessWidget {
                           controller: field.text,
                           focusNode: field.focus,
                           enabled: !disabled,
-                          onSubmitted: (_) => add(),
+                          // The keyboard's action adds the draft and keeps the focus for the
+                          // next (given onEditingComplete, the field does not let it go).
+                          onEditingComplete: add,
                           textInputAction: TextInputAction.done,
                           style: style,
                           maxLines: 1,
@@ -206,8 +210,22 @@ class SolarTokenInput extends StatelessWidget {
                 ),
             ],
           },
-          // A SOLAR Counter of the entries left out.
-          composed: {'counter': SolarCounter(count: hidden)},
+          // A SOLAR Counter of the entries left out, in the type the recipe names for it.
+          composed: {
+            'counter': SolarCounter(
+              count: hidden,
+              type: switch (SolarTokenInputRecipe.lookup(
+                'counter.variant.type',
+                p,
+                states,
+              )) {
+                final String k => SolarCounterType.values.byName(
+                  k.substring(2),
+                ),
+                null => null,
+              },
+            ),
+          },
           builders: {
             // The label and the helper are read with the input, which they name and describe.
             'label': (layer) => ExcludeSemantics(child: layer),

@@ -14,6 +14,7 @@ export 'src/generated/charts.dart';
 export 'src/solar_charts.dart';
 export 'src/generated/tokens.dart';
 export 'src/solar_button_themes.dart';
+export 'src/solar_composed.dart';
 export 'src/solar_fonts.dart';
 export 'src/solar_dashed_edge.dart';
 export 'src/solar_glyph.dart';

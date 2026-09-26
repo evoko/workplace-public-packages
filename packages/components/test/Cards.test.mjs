@@ -55,7 +55,7 @@ describe('the SOLAR Card shells', () => {
     expect(text).not.toContain('Words');
     // Still pressable, as Figma draws a loading card hovered: its action is its name alone.
     expect(text).toMatch(
-      /<button[^>]*SolarCard-press[^>]*><span class="SolarCard-name">Room<\/span>/,
+      /<button[^>]*SolarCard-press[^>]*><span class="SolarCard-visuallyHidden">Room<\/span>/,
     );
     expect(text).toMatch(/SolarCard-tag[^"]*" aria-hidden="true"/);
     expect(text).toContain('SolarCard--skeleton');
@@ -116,7 +116,7 @@ describe('the SOLAR card family’s shells', () => {
   it('an Insight Row names its severity bar by its word', async () => {
     const { InsightRow } = await import('../src/InsightRow.tsx');
     const text = html(h(InsightRow, { title: 'Fault', severity: 'warning' }));
-    expect(text).toMatch(/SolarInsightRow-name">Warning</);
+    expect(text).toMatch(/SolarInsightRow-visuallyHidden">Warning</);
   });
 
   it('an Expandable Card’s header is its button, its content shown expanded alone', async () => {
@@ -261,6 +261,40 @@ describe('the SOLAR card family’s shells', () => {
       h(DeviceCard, { name: 'Qt X', loading: true, onClick() {} }),
     );
     expect(count(busy, /SolarDeviceCard-press(?!able)/g)).toBe(1);
+  });
+
+  it('a Device Card and a Launch Card show their name: no rule hides the name slot', async () => {
+    // The cards' visually hidden words once had the class `-name`, which is also the public class
+    // of these two cards' `name` slot: the name they draw was clipped to 1px.
+    const { DeviceCard } = await import('../src/DeviceCard.tsx');
+    const { LaunchCard } = await import('../src/LaunchCard.tsx');
+    for (const [prefix, el] of [
+      ['SolarDeviceCard', h(DeviceCard, { name: 'Qt X', onClick() {} })],
+      ['SolarLaunchCard', h(LaunchCard, { name: 'Workplace', onClick() {} })],
+    ]) {
+      const text = renderToString(el);
+      expect(html(el)).toMatch(new RegExp(`${prefix}-name[^>]*>`));
+      const css = [...text.matchAll(/<style[^>]*>(.*?)<\/style>/g)]
+        .map((m) => m[1])
+        .join('');
+      const rules = [...css.matchAll(/([^{}]+)\{([^}]*)\}/g)];
+      const nameRules = rules.filter(([, sel]) =>
+        new RegExp(`\\.${prefix}-name\\b`).test(sel),
+      );
+      expect(nameRules.length, prefix).toBeGreaterThan(0);
+      for (const [, sel, body] of nameRules) {
+        expect(body, `${prefix}: ${sel}`).not.toMatch(/clip-path/);
+        expect(body, `${prefix}: ${sel}`).not.toMatch(/height:1px/);
+      }
+      // The words read and never seen keep their own class, hidden.
+      expect(
+        rules.some(
+          ([, sel, body]) =>
+            sel.includes(`.${prefix}-visuallyHidden`) && /clip-path/.test(body),
+        ),
+        prefix,
+      ).toBe(true);
+    }
   });
 
   it('a Launch Card puts its favourite on its image, or beside its name without one', async () => {

@@ -56,11 +56,11 @@ export const solarInsightRowStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarInsightRow-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarInsightRow-press)':
+    '& .SolarInsightRow-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarInsightRow-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarInsightRow-name': {
+    '& .SolarInsightRow-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

@@ -24,6 +24,31 @@ void main() {
       expect((rule.decoration! as BoxDecoration).color, light.borderSubtle);
     });
 
+    testWidgets('a vertical divider fills the height it is given, full', (
+      tester,
+    ) async {
+      await pump(
+        tester,
+        const SizedBox(
+          height: 40,
+          child: SolarDivider(orientation: SolarDividerOrientation.vertical),
+        ),
+      );
+      expect(tester.getSize(layer('root')), const Size(1, 40));
+    });
+
+    test('asserts against a vertical inset or labelled divider', () {
+      for (final type in [SolarDividerType.inset, SolarDividerType.withLabel]) {
+        expect(
+          () => SolarDivider(
+            orientation: SolarDividerOrientation.vertical,
+            type: type,
+          ),
+          throwsAssertionError,
+        );
+      }
+    });
+
     testWidgets('draws a label between two rules', (tester) async {
       await pump(
         tester,

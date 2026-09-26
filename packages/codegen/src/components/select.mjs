@@ -15,8 +15,8 @@ export default {
   name: 'Select',
   mui: {
     // The shell draws every layer itself, each with a class of its own: the field is MUI's
-    // InputBase around the Select's combobox, and the panel MUI's menu, kept in the component so
-    // the recipe reaches it.
+    // InputBase around the Select's combobox, and the panel MUI's menu, portaled into a host in the
+    // component so the recipe reaches it.
     slots: 'drawn',
     resets: pickerResets('Select', {
       value: 'placeholder',

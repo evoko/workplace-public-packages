@@ -6,7 +6,10 @@
 ///
 /// Bespoke: a rule, an inset rule, or a label between two rules, drawn from Figma's layer tree with
 /// [SolarLayers]. It fills what it separates: a horizontal divider the width it is given, a
-/// vertical one the height, so give a vertical one a bounded height (a row's).
+/// vertical one the height, so give a vertical one a bounded height (a row's). Figma draws a
+/// vertical divider full only (its description names the inset and labelled types for a horizontal
+/// one), so it asserts against a vertical inset or labelled one, and draws a vertical divider full
+/// whatever [type] it is given, as the web's does.
 library;
 
 import 'package:flutter/material.dart';
@@ -21,7 +24,11 @@ class SolarDivider extends StatelessWidget {
     this.orientation = SolarDividerOrientation.horizontal,
     this.type = SolarDividerType.full,
     this.label,
-  });
+  }) : assert(
+         !(orientation == SolarDividerOrientation.vertical &&
+             type != SolarDividerType.full),
+         'SOLAR Divider: Figma draws a vertical divider full only.',
+       );
 
   final SolarDividerOrientation orientation;
   final SolarDividerType type;
@@ -32,6 +39,9 @@ class SolarDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = solarThemeOf(context);
+    // A vertical divider is full, whatever it is given (in a release build, past the assert).
+    final vertical = orientation == SolarDividerOrientation.vertical;
+    final type = vertical ? SolarDividerType.full : this.type;
     final p = SolarDividerProps(orientation: orientation, type: type);
     const states = <WidgetState>{};
     final mark = SolarLayers(

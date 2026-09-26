@@ -40,10 +40,11 @@ export const solarCounterStyles = {
       stroke: 'none',
     },
     '&:is(button)': {
+      font: 'inherit',
+      margin: '0',
+      cursor: 'pointer',
+      appearance: 'none',
       position: 'relative',
-    },
-    '&:is(button):disabled': {
-      cursor: 'default',
     },
     '&:is(button)::after': {
       content: '""',
@@ -53,6 +54,9 @@ export const solarCounterStyles = {
       width: 'max(100%, var(--solar-size-target-min))',
       height: 'max(100%, var(--solar-size-target-min))',
       transform: 'translate(-50%, -50%)',
+    },
+    '&:is(button):disabled': {
+      cursor: 'default',
     },
   },
   root: {

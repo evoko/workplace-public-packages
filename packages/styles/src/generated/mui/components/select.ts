@@ -81,6 +81,9 @@ export const solarSelectStyles = {
     '& .SolarSelect-helper': {
       whiteSpace: 'normal',
     },
+    '& .SolarSelect-panelHost': {
+      display: 'contents',
+    },
     '& .SolarSelect--field::after': {
       content: '""',
       position: 'absolute',

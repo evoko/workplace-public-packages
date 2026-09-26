@@ -8,7 +8,7 @@
  */
 
 import { drawnResets } from './shared/drawn.mjs';
-import { targetArea } from './shared/target.mjs';
+import { BUTTON_RESET, targetArea } from './shared/target.mjs';
 
 export default {
   name: 'Toast',
@@ -17,16 +17,8 @@ export default {
     slots: 'drawn',
     // The action is a bare <button>; the chevron fills its layer.
     resets: drawnResets('Toast', {
-      '& button.SolarToast-action': {
-        appearance: 'none',
-        border: '0',
-        padding: '0',
-        margin: '0',
-        background: 'none',
-        cursor: 'pointer',
-      },
-      // A 44 × 44 target around the action (shared/target.mjs).
-      ...targetArea('& button.SolarToast-action'),
+      // A 44 × 44 target around the action (shared/target.mjs), none of the browser's look.
+      ...targetArea('& button.SolarToast-action', { rules: BUTTON_RESET }),
       '& .SolarToast-chevron > svg': {
         display: 'block',
         width: '100%',

@@ -120,7 +120,7 @@ export const InsightRow = forwardRef<HTMLDivElement, InsightRowProps>(
           {...(href != null ? { href } : {})}
           onClick={onClick}
         >
-          <span className="SolarInsightRow-name">{title}</span>
+          <span className="SolarInsightRow-visuallyHidden">{title}</span>
         </ButtonBase>
       ) : null;
     return (
@@ -150,7 +150,9 @@ export const InsightRow = forwardRef<HTMLDivElement, InsightRowProps>(
               // The severity's bar, named by its word, which is read and never seen.
               severityBar: ({ className: c, style }: DrawnLayer) => (
                 <span className={c} style={style}>
-                  <span className="SolarInsightRow-name">{named}</span>
+                  <span className="SolarInsightRow-visuallyHidden">
+                    {named}
+                  </span>
                 </span>
               ),
             },

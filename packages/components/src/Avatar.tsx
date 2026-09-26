@@ -5,11 +5,13 @@
  * `solarAvatarStyle` in `@bwp-web/styles/mui`: each size, the initials' text style, the border, and
  * a logo's rounded square.
  *
- * It wraps MUI's Avatar, which draws the initials, or the picture (`src`) with the initials as its
- * fallback. Its `color` is the caller's, any colour: seed it from a stable hash of the person's ID,
- * never at random. The initials take that colour's hue, at a lightness that reads at WCAG AA
- * (`internal/ink.ts`), unless `textColor` gives theirs; with no colour it is SOLAR's neutral
- * avatar. It is named by `name`, always. The app must load `@bwp-web/styles/tokens.css`.
+ * It wraps MUI's Avatar, which draws the initials, or the picture (`src`). Figma draws a photo or
+ * logo avatar only with its picture, so one given no `src` (or `srcSet`) is drawn as the initials
+ * avatar, not MUI's person icon. Its `color` is the caller's, any colour: seed it from a stable
+ * hash of the person's ID, never at random. The initials take that colour's hue, at a lightness
+ * that reads at WCAG AA (`internal/ink.ts`), unless `textColor` gives theirs; with no colour it is
+ * SOLAR's neutral avatar. It is named by `name`, always. The app must load
+ * `@bwp-web/styles/tokens.css`.
  */
 
 import { useSolarProps } from './internal/theme.js';
@@ -60,8 +62,19 @@ export function initialsOf(name: string): string {
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   function Avatar(inProps, ref) {
     // As the app's MUI theme sets them (components.SolarAvatar), under the caller's own.
-    const { size, type, color, name, children, textColor, src, sx, ...rest } =
-      useSolarProps(inProps, 'SolarAvatar');
+    const {
+      size,
+      type: typeProp,
+      color,
+      name,
+      children,
+      textColor,
+      src,
+      sx,
+      ...rest
+    } = useSolarProps(inProps, 'SolarAvatar');
+    // A photo or a logo with no picture is drawn as the initials avatar Figma draws.
+    const type = src || rest.srcSet ? typeProp : 'text';
     const parts = solarAvatarCompose({ size, type });
     const picture = parts.root?.image === true;
     const ink = textColor ?? (color ? inkOn(color) : null);

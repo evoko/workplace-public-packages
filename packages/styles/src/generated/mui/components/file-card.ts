@@ -66,11 +66,11 @@ export const solarFileCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarFileCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarFileCard-press)':
+    '& .SolarFileCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarFileCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarFileCard-name': {
+    '& .SolarFileCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

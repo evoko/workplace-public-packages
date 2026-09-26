@@ -231,12 +231,18 @@ function measure(root, { list, composed }) {
       lineHeight: cs.lineHeight,
       letterSpacing: cs.letterSpacing,
       textDecoration: cs.textDecorationLine,
-      // Whether it shows any words: its own, or a field's value or placeholder.
+      // Whether it shows any words: its own, or a field's value or placeholder, where they can be
+      // seen: not clipped away or shrunk to a pixel, as visually hidden words are (a card's name
+      // once was, its slot's class shared with the card's hidden words), which a text's colour and
+      // type alone would still pass.
       words:
-        Boolean((el.innerText ?? el.textContent ?? '').trim()) ||
-        [el, ...el.querySelectorAll('input, textarea')].some((f) =>
-          Boolean((f.value || f.placeholder || '').trim()),
-        ),
+        cs.clipPath === 'none' &&
+        box.width > 1 &&
+        box.height > 1 &&
+        (Boolean((el.innerText ?? el.textContent ?? '').trim()) ||
+          [el, ...el.querySelectorAll('input, textarea')].some((f) =>
+            Boolean((f.value || f.placeholder || '').trim()),
+          )),
       width: box.width,
       height: box.height,
       left: box.left,
@@ -779,6 +785,29 @@ test('a text drawn in its style with no words in it fails', async ({
       rendered: false,
     }),
   ]);
+});
+
+test('a text whose words are hidden from sight fails as one with none', async ({
+  page,
+}) => {
+  await open(page);
+  const card = 'status=success, state=default, ghost=false';
+  const i = oracles['Status Card'].variants.findIndex((v) => v.figma === card);
+  // A Status Card whose value is drawn, styled, and visually hidden, as a card's name once was.
+  await page.addStyleTag({
+    content: `[data-case="status-card:${i}"] .SolarStatusCard-value { position: absolute; height: 1px; overflow: hidden; clip-path: inset(50%); }`,
+  });
+  const { failures } = await check(page, 'Status Card', { only: [card] });
+  expect(failures).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        variant: card,
+        layer: 'value',
+        property: 'words',
+        rendered: false,
+      }),
+    ]),
+  );
 });
 
 test('a composed child is checked against its own oracle, naming the layer inside it', async ({

@@ -41,6 +41,14 @@ export const solarStepStyles = {
       stroke: 'none',
     },
     '&:is(button)': {
+      appearance: 'none',
+      font: 'inherit',
+      margin: '0',
+      padding: '0',
+      border: '0',
+      background: 'none',
+      cursor: 'pointer',
+      textAlign: 'inherit',
       position: 'relative',
     },
     '&:is(button)::after': {

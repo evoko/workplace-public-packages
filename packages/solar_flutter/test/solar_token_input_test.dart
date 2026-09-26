@@ -49,6 +49,29 @@ void main() {
       },
     );
 
+    testWidgets('keeps the focus after adding, so the next is typed at once', (
+      tester,
+    ) async {
+      await pump(tester, const Held());
+      final state = tester.state<HeldState>(find.byType(Held));
+      bool focused() => tester
+          .state<EditableTextState>(find.byType(EditableText))
+          .widget
+          .focusNode
+          .hasFocus;
+      await tester.enterText(find.byType(TextField), 'Grace');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.pump();
+      expect(state.value, ['Ada', 'Grace']);
+      expect(focused(), isTrue);
+      // No second tap: the next entry is typed and added straight away.
+      tester.testTextInput.enterText('Linus');
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.pump();
+      expect(state.value, ['Ada', 'Grace', 'Linus']);
+      expect(focused(), isTrue);
+    });
+
     testWidgets('Backspace in the empty input removes the last entry', (
       tester,
     ) async {

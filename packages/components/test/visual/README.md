@@ -22,7 +22,10 @@ npx playwright install chromium  # once, on a new machine
   component with no case file fails the typecheck, and one with no cases fails its check, naming
   the file to add.
 - **Words.** A text Figma draws words in (the oracle's `words`) must show some: its own, or a
-  field's value or placeholder; one drawn in its style with none fails, which a self-test proves.
+  field's value or placeholder, where they can be seen, neither clipped away nor a pixel or less
+  wide or tall (visually hidden, as a card's name once was, or squeezed to nothing, as Device
+  Card's batch Dropdown's words were). One drawn in its style with none, or with its words hidden,
+  fails, which two self-tests prove.
 - **Both modes.** Every component is checked twice, in Light and in Dark: the Dark pass sets the
   page root's `data-theme="dark"`, as an app does, and reads each variant with its `dark` over it
   (the oracle's Dark values where they differ, and its excuses where they differ). A self-test
@@ -70,3 +73,16 @@ npx playwright install chromium  # once, on a new machine
 The last two tests inject a wrong colour, one into a variant and one into Button's Spinner, and
 require the check to name the variant and the property, so a comparison that silently stopped
 comparing would fail too.
+
+## The Playgrounds, live
+
+`npm run test:visual` also runs `playground.spec.mjs`, which checks no drawing: it uses the
+Storybook Playground builders (`stories/playground/`) in Chromium, one of each kind of interaction
+(click the Checkbox, type in the Text Input, choose a Pagination page, open the Dialog), and checks
+the component changed and the builder handed the new value to `set`; and every overlay (a
+component with an `open` extra) opens from its trigger and closes on Escape without an error. Its
+page, `playground-page.tsx`, renders the one builder the URL's hash names (`#text-input`) through
+the same core as the Storybook adapter (`stories/playground/core.tsx`), its values in React state,
+and records every `set` on `window.__sets`; `build.mjs` bundles it beside `page.tsx`, as its own
+build, into `.out/playground.html`, with the codegen's controls defined in it. That every builder
+renders at its defaults and reads every control is a unit test, `../playground.test.mjs`.

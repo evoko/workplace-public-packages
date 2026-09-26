@@ -52,11 +52,11 @@ export const solarLaunchCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarLaunchCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarLaunchCard-press)':
+    '& .SolarLaunchCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarLaunchCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarLaunchCard-name': {
+    '& .SolarLaunchCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

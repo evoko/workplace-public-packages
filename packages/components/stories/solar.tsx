@@ -1,14 +1,21 @@
 /**
- * The stories every component gets, built from its visual-check case (how to render one oracle
- * variant) and the codegen's data (its API, how its states are marked). A component's story file
- * is two lines that name it; `npm run solar:codegen` writes it with the shell.
+ * The stories every component gets: its Playground, from its playground builder (playground/) and
+ * the codegen's controls, and its Variants, from its visual-check case (how to render one oracle
+ * variant) and the codegen's data (how its states are marked). A component's story file is two
+ * lines that name it; `npm run solar:codegen` writes it with the shell.
  */
 
-import type { ArgTypes, Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useLayoutEffect, useRef } from 'react';
-import { FAILURES, SPECS, STATES } from 'virtual:solar';
+import { FAILURES, STATES } from 'virtual:solar';
 import { CASES } from '../test/visual/cases/index.js';
 import type { Excuse, OracleVariant } from '../test/visual/cases/types.js';
+import {
+  argTypesFor,
+  argsFor,
+  playgroundRender,
+} from './playground/adapter.js';
+import { PLAYGROUND_BUILDERS } from './playground/registry.generated.js';
 
 type Mode = 'light' | 'dark';
 
@@ -121,53 +128,34 @@ function Variants({ component, mode }: { component: string; mode: Mode }) {
   );
 }
 
-/** Storybook controls from the IR's API: a select per axis, a toggle per boolean. */
-function argTypesOf(component: string): ArgTypes {
-  return Object.fromEntries(
-    Object.entries(SPECS[component].api).map(([prop, axis]) => [
-      prop,
-      axis.type === 'boolean'
-        ? { control: 'boolean' as const }
-        : axis.type === 'color'
-          ? { control: 'color' as const }
-          : { control: 'select' as const, options: axis.values },
-    ]),
-  );
-}
-
 function caseOf(component: string) {
   const c = CASES[component];
   if (!c) throw new Error(`${component}: no case in test/visual/cases/`);
   return c;
 }
 
-/** A component's controls, from its IR's API, and how the Playground renders them. */
-export function meta(component: string) {
-  const c = caseOf(component);
-  const api = SPECS[component].api;
+/** A component's playground builder, from the generated registry (every component has one). */
+function builderOf(component: string) {
+  const b = PLAYGROUND_BUILDERS[component];
+  if (!b) throw new Error(`${component}: no playground builder in playground/`);
+  return b;
+}
+
+/**
+ * A component's controls and how the Playground renders them: through its playground builder
+ * (playground/), with a control for every slot and a width, live and two-way.
+ */
+export function meta(component: string): Meta {
   return {
-    args: Object.fromEntries(
-      Object.entries(api).map(([p, a]) => [p, a.default]),
-    ),
-    argTypes: argTypesOf(component),
-    // The resting variant, with the controls' props: a case that draws what Figma nests (Button
-    // Group's Buttons) reads it from the variant's layers.
-    render: (args: Record<string, unknown>) => (
-      <>
-        {c.render({
-          ...c.oracle.variants[0],
-          figma: '',
-          props: args,
-          state: 'default',
-        })}
-      </>
-    ),
+    args: argsFor(component),
+    argTypes: argTypesFor(component),
+    render: playgroundRender(component, builderOf(component)),
   } satisfies Meta;
 }
 
-/** One set of props, with controls; hover, press and focus it to see its states. */
+/** The component live, with its controls, Reset and the event log (meta's render). */
 export function playground(component: string): StoryObj {
-  caseOf(component);
+  builderOf(component);
   return {};
 }
 

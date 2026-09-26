@@ -28,15 +28,17 @@ export default {
     slots: 'drawn',
     // A counter given onClick is a <button>, which the browser styles as one.
     resets: drawnResets('Counter', {
-      '&:is(button)': {
-        font: 'inherit',
-        margin: '0',
-        cursor: 'pointer',
-        appearance: 'none',
-      },
+      // A 44 × 44 target around a counter that is a control (shared/target.mjs), none of the
+      // browser's own look.
+      ...targetArea('&:is(button)', {
+        rules: {
+          font: 'inherit',
+          margin: '0',
+          cursor: 'pointer',
+          appearance: 'none',
+        },
+      }),
       '&:is(button):disabled': { cursor: 'default' },
-      // A 44 × 44 target around a counter that is a control (shared/target.mjs).
-      ...targetArea('&:is(button)'),
     }),
     // Its own states where it is a control, and otherwise the states of the control it sits in
     // (a Button's), as Figma draws it inside one. Disabled is its prop's class, or a disabled

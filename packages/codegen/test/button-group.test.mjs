@@ -90,13 +90,22 @@ describe('the Button Group recipe', () => {
       flexDirection: 'row',
       gap: 'var(--solar-inset-xs)',
       paddingTop: 'var(--solar-inset-sm)',
-      '& > *': { width: '100%' },
+      '&& > *': { width: '100%' },
     });
     expect(
       styles.appearances['orientation=vertical, type=regular'],
     ).toMatchObject({
       flexDirection: 'column',
     });
+  });
+
+  it('writes its children’s rule to outrank their own recipe, so an lg Button fills the bar', () => {
+    // `&&` repeats the root's class: one class against the Button's one, the later sheet (the
+    // Button's, with lg's fixed 200) would win, where Figma's full-width group fills its lg Buttons.
+    expect(
+      styles.appearances['orientation=horizontal, type=full-width'],
+    ).toMatchObject({ '&& > *': { width: '100%', minWidth: 0 } });
+    expect(styles.root).not.toHaveProperty(['& > *']);
   });
 
   it('styles the border side by side: none on each at rest, the top alone at full width', () => {

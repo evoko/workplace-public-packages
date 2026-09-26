@@ -53,6 +53,7 @@ export const solarCoachmarkStyles = {
       margin: '0',
       background: 'none',
       cursor: 'pointer',
+      position: 'relative',
     },
     '& button.SolarCoachmark--close::after': {
       content: '""',

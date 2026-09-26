@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { circlesFor } from '../../codegen/src/approvals/status.mjs';
 import { STATE_SELECTORS } from '../../codegen/src/emit/mui-component.mjs';
-import { NAMES, fileOf } from '../../codegen/src/stages/components.mjs';
+import { playgroundData } from '../../codegen/src/playground/controls.mjs';
+import { NAMES } from '../../codegen/src/stages/components.mjs';
 import { exactAliases } from '../../codegen/src/util/workspace-sources.mjs';
 
 const here = (path: string) => fileURLToPath(new URL(path, import.meta.url));
@@ -23,19 +24,12 @@ const aliasList = (alias: unknown) =>
       );
 
 /**
- * What the stories need from the codegen, as data: which components there are, each one's API from
- * its IR, how its MUI states are marked, and what the last web check found wrong. Served as a module, since the codegen runs in Node
- * and the stories in the browser.
+ * What the stories need from the codegen, as data: which components there are, how their MUI
+ * states are marked, what the last web check found wrong, and each one's Playground controls with
+ * the icons they offer, each icon's @bwp-web/assets component and the Playground's fixed values.
+ * Served as a module, since the codegen runs in Node and the stories in the browser.
  */
 function solarData() {
-  const specs = Object.fromEntries(
-    NAMES.map((c) => {
-      const spec = JSON.parse(
-        readFileSync(here(`../../../spec/components/${fileOf(c)}`), 'utf8'),
-      );
-      return [c, { api: spec.api }];
-    }),
-  );
   // What the last web check found wrong, per component and mode, where it has run
   // (test/visual/.out/, git-ignored): none of it is data a build needs.
   const report = (name: string) => {
@@ -50,9 +44,9 @@ function solarData() {
     ]),
   );
   return `export const COMPONENTS = ${JSON.stringify(NAMES)};
-export const SPECS = ${JSON.stringify(specs)};
 export const STATES = ${JSON.stringify(STATE_SELECTORS)};
 export const FAILURES = ${JSON.stringify(failures)};
+export const PLAYGROUND = ${JSON.stringify(playgroundData())};
 `;
 }
 

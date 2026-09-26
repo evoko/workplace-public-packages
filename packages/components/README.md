@@ -192,6 +192,11 @@ While loading the label is hidden but keeps its room, and the SOLAR Spinner show
 Figma picks (inverse on primary); a button both disabled and loading is disabled. An icon-only
 button needs an `aria-label`; in development the component warns when one is missing.
 
+The `counter` is a SOLAR Counter, `counter={<Counter count={3} />}`, drawn in the type Figma draws
+in that Button: `inverted` in a primary one, `regular` in the others. The Button gives it that
+type (a React context the Counter reads where it has no `type` of its own), so you name none; a
+`type` you give wins.
+
 `sm` is drawn 32px tall and `md` 40px (SOLAR's `size.control.sm` and `md`), below the 44px WCAG
 touch target; its target makes up the rest.
 
@@ -239,10 +244,12 @@ section 8.
 | `children`    | two to five Buttons, of one size                         |              |
 
 A box of the caller's Buttons, which it never changes: each fills an equal share of a row, or the
-width of a column, and keeps its own height. Figma draws no vertical full-width group, so the types
-refuse `orientation="vertical"` with `type="full-width"` (`ButtonGroupLayout`). In development it warns when
-its buttons mix sizes. Figma's description also asks for one priority, but every group it draws
-mixes secondary and primary, so that is not checked; the design review lists the disagreement.
+width of a column, and keeps its own height. An `lg` Button fills its share too, though on its own
+it is 200px wide, as in Figma's full-width group: the group's rule outranks the Button's own. Figma
+draws no vertical full-width group, so the types refuse `orientation="vertical"` with
+`type="full-width"` (`ButtonGroupLayout`). In development it warns when its buttons mix sizes.
+Figma's description also asks for one priority, but every group it draws mixes secondary and
+primary, so that is not checked; the design review lists the disagreement.
 
 ## FAB
 
@@ -349,7 +356,8 @@ MUI control.
 A count on a pill. At 0 or below it draws nothing, and above `max` it reads `99+`, as SOLAR asks.
 It takes the states of the control it sits in, so in a Button's `counter` slot it follows the
 Button's hover, press and disabled colours, as Figma draws it; given `onClick`, it is a `<button>`
-of its own.
+of its own. With no `type` of its own it takes the one the Button around it composes (`inverted`
+in a primary Button), then your theme's default, then `regular`.
 
 ## Kbd
 
@@ -391,7 +399,9 @@ MUI's Avatar. Its colour is the caller's, any colour (design team, 2026-09-24): 
 stable hash of the person's ID, never at random. The initials take that colour's hue at a lightness
 that reads at WCAG AA (`src/internal/ink.ts`, owner decision 2026-09-24), unless `textColor` gives
 theirs; a colour the rule cannot read (a `var()`) needs one. With no colour it is SOLAR's neutral
-avatar. A photo fills the circle; a logo sits whole in a rounded square. Always named by `name`.
+avatar. A photo fills the circle; a logo sits whole in a rounded square. Figma draws those two only
+with their picture, so given no `src` (or `srcSet`) either is drawn as the initials avatar, not
+MUI's person icon. Always named by `name`.
 
 ## Trend Badge
 
@@ -413,8 +423,11 @@ unless given a `label`.
 | `children`    | the label, for `with-label`     | none         |
 
 A 1px rule, an inset one, or a label between two rules; a separator to a screen reader. It fills
-what it separates: a horizontal one the width it is given, a vertical one the height. Drawn from
-its layers rather than MUI's Divider, which draws its rules as a border and pseudo-elements.
+what it separates: a horizontal one the width it is given, a vertical one the height of the row
+(or grid cell) it sits in, which stretches it, whatever the row's height is set by. Figma draws a
+vertical divider full only, so its types refuse `inset` and `with-label` with `vertical`, and a
+vertical one is drawn full whatever `type` it is given. Drawn from its layers rather than MUI's
+Divider, which draws its rules as a border and pseudo-elements.
 
 ## Skeleton
 
@@ -457,7 +470,14 @@ carry the semantics.
 One choice of many, committed on click: MUI's Checkbox, a native input, with Figma's box, tick and
 dash drawn inside it. `mixed` draws the dash, for a parent whose children are partly checked, and
 is announced so. Name it with a `<label>` (which toggles it) or an `aria-label`. The box is 16px,
-its native input the 44 × 44 target around it.
+its native input the 44 × 44 target around it, which overflows the box.
+
+**Labelling one in a list** (Checkbox, Radio, Toggle): use Option Rows, an Options List around
+those of one question, whose rows are at least the target's height and whose whole row is the
+control's target and name. A `<label>` of your own works where each row is at least
+`size.target.min` tall and has no negative margin. Not MUI's FormControlLabel: its rows sit 20px
+apart, so the controls' targets overlap (a click on one ring picks the next), and its −11px margin,
+made for MUI's padded controls, pulls SOLAR's out of its box.
 
 ## Radio
 
@@ -469,7 +489,9 @@ its native input the 44 × 44 target around it.
 
 One choice of a group of two to five: put them in MUI's RadioGroup, which checks the one whose
 `value` is its own, names them all, and lets the arrow keys move between them. MUI's Radio, a
-native input, with Figma's ring and dot drawn inside. A radio alone is a bug, SOLAR says.
+native input, with Figma's ring and dot drawn inside, the input the 44 × 44 target around the ring.
+A radio alone is a bug, SOLAR says. Label each as a Checkbox's (Option Rows in an Options List,
+the RadioGroup inside it), not with MUI's FormControlLabel.
 
 ## Toggle
 
@@ -482,7 +504,8 @@ native input, with Figma's ring and dot drawn inside. A radio alone is a bug, SO
 
 A setting that takes effect at once, on MUI's Switch, a native input announced as a switch, its
 root drawn as Figma's track and the recipe's thumb in its thumb slot. SOLAR's focus ring is drawn,
-where Figma draws none.
+where Figma draws none. Name it with a `<label>` or an `aria-label`; in a list, label it as a
+Checkbox's (an Option Row with `control="toggle"`), not with MUI's FormControlLabel.
 
 ## Slider and Slider Range
 
@@ -710,7 +733,8 @@ are out of the tab order. Inline, the field is as wide as its digits.
 
 A value edited where it is shown, which holds its own mode (owner decision): read, its words with
 an edit button on hover or focus; open, an input with Confirm and Cancel. Figma's filled is the
-open mode with the focus on its buttons.
+open mode with the focus on its buttons. Closing, by Enter, Esc or the buttons, puts the focus back
+on the edit button.
 
 ## Token Input
 
@@ -857,6 +881,9 @@ its panel, where the arrow keys move, a typed letter finds a row, Enter chooses 
 The two are one control in two looks (owner decision): Select draws its own panel, as Figma draws
 it, as wide as the field; Dropdown's is a Dropdown Menu, and its chevron turns up while open.
 Figma draws Dropdown no focus; it takes Select's. Beyond about seven choices, use an Autocomplete.
+The open panel is MUI's Menu, held in the component's root (so the recipe styles it) and announced
+to a screen reader: nothing around it is hidden, and the page is not locked while it is open, the
+panel following its field as the page scrolls.
 
 ## Autocomplete
 
@@ -1263,8 +1290,9 @@ its state as a user would, and compares what the browser computes with what Figm
 (`spec/verify/`). See [test/visual/README.md](test/visual/README.md).
 
 To look at them instead, `npm run storybook` from the repository root: every Figma variant of
-every component, its state forced, in Light and Dark, beside a playground with a control per prop.
-It is built from the same cases and oracles as the check. See [stories/README.md](stories/README.md).
+every component, its state forced, in Light and Dark, built from the same cases and oracles as the
+check; and each component live in a Playground, two-way with controls generated from its IR. See
+[stories/README.md](stories/README.md).
 
 ## Generated look, owned behaviour
 

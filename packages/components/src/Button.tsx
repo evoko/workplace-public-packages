@@ -20,9 +20,11 @@ import {
   solarButtonCompose,
   solarButtonStyle,
   type SolarButtonProps,
+  type SolarCounterType,
   type SolarSpinnerSize,
   type SolarSpinnerVariant,
 } from '@bwp-web/styles/mui';
+import { CounterTypeContext } from './internal/composed.js';
 import { Spinner } from './Spinner.js';
 
 export interface ButtonProps
@@ -40,7 +42,10 @@ export interface ButtonProps
   iconLeading?: ReactNode;
   /** The icon after the label. It indicates direction: an arrow beside "Continue". */
   iconTrailing?: ReactNode;
-  /** A count shown after the label. */
+  /**
+   * A count shown after the label: a SOLAR Counter, which takes the type Figma draws in this
+   * Button (`inverted` in a primary one, `regular` in the others) unless it is given its own.
+   */
   counter?: ReactNode;
 }
 
@@ -77,6 +82,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       { size, prio, disabled, loading, danger },
       'loading',
     ).spinner;
+    // Which Counter type it holds -- Figma picks it per Button prio -- given to a Counter in
+    // `counter` that names none (internal/composed.ts).
+    const counterType = solarButtonCompose({
+      size,
+      prio,
+      disabled,
+      loading,
+      danger,
+    }).counter?.['variant.type'] as SolarCounterType | undefined;
 
     return (
       <MuiButton
@@ -109,7 +123,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {children}
         {counter != null && (
-          <span className="SolarButton-counter">{counter}</span>
+          <span className="SolarButton-counter">
+            <CounterTypeContext.Provider value={counterType}>
+              {counter}
+            </CounterTypeContext.Provider>
+          </span>
         )}
       </MuiButton>
     );

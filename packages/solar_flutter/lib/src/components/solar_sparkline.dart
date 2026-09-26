@@ -34,8 +34,11 @@ SolarSparklineTrend sparklineTrendOf(List<num> data) {
 /// The series as points in a box: first to last across it, the highest at its top.
 List<Offset> sparklinePoints(List<num> data, Size box) {
   if (data.isEmpty) return const [];
-  final lo = data.reduce(math.min).toDouble();
-  final hi = data.reduce(math.max).toDouble();
+  // As doubles: reducing the List<num> itself by math.min fails on a List<double> or List<int>,
+  // whose reduce takes a function of its own element type.
+  final values = [for (final v in data) v.toDouble()];
+  final lo = values.reduce(math.min);
+  final hi = values.reduce(math.max);
   return [
     for (final (i, v) in data.indexed)
       Offset(

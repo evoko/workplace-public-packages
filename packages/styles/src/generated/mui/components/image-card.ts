@@ -59,11 +59,11 @@ export const solarImageCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarImageCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarImageCard-press)':
+    '& .SolarImageCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarImageCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarImageCard-name': {
+    '& .SolarImageCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

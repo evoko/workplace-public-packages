@@ -42,7 +42,7 @@ spec/tokens.json   spec/icons.json   spec/components/<name>.json   spec/verify/<
 independent emitters → CSS · MUI theme · Tailwind · Dart tokens
                      → React icons · SVG files · Dart vectors
                      → MUI recipe · Flutter recipe (+ the layer tree and slot names)
-                     → Storybook stories, registries, barrels
+                     → Storybook stories, Playground controls, registries, barrels
   ▼
 hand-written shells: packages/components/src/<Name>.tsx, solar_flutter/lib/src/components/solar_<name>.dart
   ▼
@@ -241,9 +241,139 @@ platforms at once: Figma's value, the recipe entry that wins and where it sits, 
 rules and reasons on it, the excuse, and what each platform drew in its last check. A test proves
 its lookup resolves to Figma's value in every unexcused cell.
 
-Storybook (`npm run storybook`) and Widgetbook (`npm run widgetbook`) show every Figma variant
-with its state forced, in Light and Dark, built from the visual checks' own cases and oracles, and
-badge each variant with its excused differences. They are viewers, not checks.
+Storybook and Widgetbook show every variant, and each component live in a Playground; neither
+changes what these checks measure ([The viewers](#the-viewers)).
+
+## The viewers
+
+Storybook (`npm run storybook`) and Widgetbook (`npm run widgetbook`) show each component twice.
+**Variants** is every Figma variant with its state forced, in Light and Dark, built from the visual
+checks' own cases and oracles and badged with its excused differences. **Playground** is the
+component live, as an app uses it, under controls generated from its IR. They are viewers, not
+checks, and neither changes what the checks measure: the Playground never touches the visual
+cases or the variant builders. What each offers a tester and how it syncs its controls is in its
+README ([Storybook](../../packages/components/stories/README.md#playground),
+[Widgetbook](../../packages/solar_flutter/widgetbook/README.md#playground)); what the two share is
+here.
+
+**The controls** come from one pure function, `controlsOf` in
+`packages/codegen/src/playground/controls.mjs`, over a component's IR, the IRs it composes and the
+icon spec. It reads nothing but Node's `fs` and the generator's own modules, so it runs where no
+npm package is installed. The order is fixed: the IR's API, its slots in the IR's order, `width`,
+then the component's extras.
+
+| From the IR               | Control (`kind`)                                                                                       | Starts at                                               |
+| ------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| an axis                   | a select of its values (`select`)                                                                      | its default                                             |
+| a boolean                 | a toggle (`boolean`)                                                                                   | its default                                             |
+| a colour the caller gives | a colour (`color`)                                                                                     | its default, or none                                    |
+| a text slot               | words (`text`); an optional slot cleared is left out                                                   | Figma's words, else its `WORDS`, else empty             |
+| an icon slot              | `_none`, the builder's `_sample`, or any SOLAR icon in either style, `chevron-right solid` (`icon`)    | the icon Figma draws, else `_sample`; hidden, `_none`   |
+| a component slot          | a show/hide toggle (`child`), and the child's main words, its `label` or first text slot (`childText`) | Figma's visibility; the child's words, else its `WORDS` |
+| a content slot            | a show/hide toggle for a neutral placeholder (`content`)                                               | Figma's visibility                                      |
+| every component           | the width of the box it sits in, `auto` or a width in px (`width`)                                     | `auto`                                                  |
+| its extras                | text, number, integer, boolean or select                                                               | the table's default                                     |
+
+A component slot's words control is named for the child's slot (`primaryButton label`). Where the
+IR names no child (a card's call to action) or the child has no text slot (a Counter's count is a
+number), the slot gets its toggle alone, and the extras may give the component a control of its
+own (Button's `counter count`). An axis or a slot type no control draws fails the build.
+
+**Two hand-written tables** hold what the IR does not, in
+`packages/codegen/src/playground/extras.mjs`, a comment per component saying why:
+
+- `EXTRAS`, a component's own controls, `{ name, kind, default, options?, min?, max?, step? }`:
+  the values an app gives it (a Text Input's typed `value`, a Pagination's `page`, an overlay's
+  `open`, a label's words where the IR holds the label as a toggle alone, `label text`). Where the
+  IR already holds a value, its control is used instead (DatePicker's `value`, Stepper's steps as
+  its slot toggles). An extra that takes an IR control's name, a default that does not fit its
+  kind or bounds, or an entry for a component with no Playground fails the build.
+- `WORDS`, a text slot's starting words where Figma records none (Tag's `label`, Toast's
+  `message`), so its control does not start empty; the control stays the IR's. An entry for a slot
+  that is no text slot, or whose words Figma records, fails the build, so none outlives its
+  reason.
+
+The fixed values both adapters use (the icon control's `_none`, `_sample` and ` solid`, the
+widths, the log's length of five) are in the dependency-free `values.mjs`. Every component but a
+chart library's has a Playground (`playgroundNames`).
+
+**Each viewer receives the same list.** Storybook reads it from the `virtual:solar` module
+`.storybook/main.ts` serves (`PLAYGROUND`, from `playgroundData`: the controls, the icon stems,
+each icon's `@bwp-web/assets` component and the fixed values). Widgetbook reads generated,
+committed Dart, so it needs no npm package at build time: `widgetbook/lib/playground/controls.dart`
+(`playgroundControls`, each select's options also as the Flutter enum emitter names them,
+`dartOptions`, and the fixed values as constants), which the component stage writes from the IRs
+the run has just built in memory, and `icons.dart`, which the icon stage writes (every stem, and
+each icon control's value to its `SolarVector`, since Dart cannot look a field up by name; a map
+that keeps every icon, which only a viewer may).
+
+**A builder per component and platform**, written by hand, renders the real component from the
+controls: `packages/components/stories/playground/<file>.tsx`, a default export
+`{ render(p) }`, which runs inside a component of its own and so may use hooks; and
+`packages/solar_flutter/widgetbook/lib/playground/<file>.dart`, a top-level `<camel>Playground`,
+a `SolarPlaygroundBuilder` whose `build` may return a StatefulWidget, which the adapter keeps
+across rebuilds. `playgroundFileOf` (`packages/codegen/src/emit/playground.mjs`) names both files
+(`text-input.tsx`, `text_input.dart`). A builder declares no controls. The component stage writes
+both registries from `playgroundNames` (`stories/playground/registry.generated.ts`,
+`widgetbook/lib/playground/registry.dart`), so a missing builder fails the typecheck or
+`flutter analyze`.
+
+The interface a builder receives is the same on both platforms and knows no viewer (`types.ts`,
+`playground.dart`):
+
+| Member                | Gives                                                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------------------------- |
+| `flag(name)`          | a boolean, a component slot's toggle or a content toggle                                                |
+| `text(name)`          | a text control's words, `''` where it holds none                                                        |
+| `words(name)`         | a text control's words, or nothing where empty (an optional text slot)                                  |
+| `whole(name)`         | a number or integer control as a whole number within its bounds                                         |
+| `choice(name)`        | a select's value; in Flutter `choice(name, values)`, the enum value                                     |
+| `value(name)`         | a control's value, for a kind no accessor covers (a colour)                                             |
+| `set(name, value)`    | sets a control, so the component's change reaches the panel; Flutter's `setChoice` writes an enum value |
+| `log(event, detail?)` | adds a line to the event log (and Storybook's Actions)                                                  |
+| `icon(slot)`          | the chosen SOLAR icon as the platform's element, or nothing                                             |
+| `child(slot)`         | `{ shown, text }` for a component slot                                                                  |
+
+Every member throws for a name that is not one of the component's controls, and the accessors,
+`icon` and `child` for a control of another kind; `set` checks the value against the control (a
+boolean for a toggle, a string for words, one of a select's options, an integer within its
+bounds, a string or null for a colour). One implementation per platform, the viewer-free core
+(`core.tsx` `makePlayground`, `core.dart` `ControlledPlayground`), serves the adapter and the
+tests alike. Beside it, the wiring several builders share: an overlay's "Open" trigger and its
+`open` extra (`overlay.tsx` `overlayOf`; `overlay.dart` `PlaygroundRoute` and `PlaygroundMenu`), a
+Flutter field's controller kept in step with its words (`typing.dart` `PlaygroundText`), and sample
+content in a file per topic on each platform (`samples`, `dates`, `cards`, `charts`, `tables`).
+
+**A builder holds no design value**: every look is the component's, and the builder gives it
+sample content only (words, a count, a picture). It wires every callback the shell takes to `set`
+and `log`, named as its platform names it (web `onClick`, `onChange`; Flutter `onPressed`,
+`onChanged`), and logs nothing where the shell takes none. A disabled component stays inert, as in
+an app. A part is drawn in the parent that decides it (a Tab Item first of three in a Tabs, a Step
+in a Stepper, a Row in a Table), and where the component corrects a control's value, the builder
+writes it back (a vertical Divider's `type` to `full`).
+
+**The adapters**, one per viewer and the only code that knows it, turn the list into the viewer's
+controls, sync them both ways and draw the same column: Reset, a SOLAR Button (tertiary, `sm`),
+which returns every control to its default and empties the log; the width box; and the event log,
+the last five callbacks newest first, each the event's name and its detail in JSON unless null
+(`onChange: "abc"`), in a SOLAR text style. At `auto` the width box is a block as wide as the
+Playground, the component at its start; a width picked is the box's, the component loosened in it.
+So a filling component (a ProgressBar) takes the box's width and a hugging one (a Button) keeps its
+own, on both viewers.
+
+**Tests.** In the generator, `playground-controls.test.mjs` (the derivation and its tables),
+`playground-emit.test.mjs` (the Dart) and `registries.test.mjs`. On the web,
+`test/playground-core.test.mjs` (the core), `test/playground.test.mjs` (every builder renders on
+the server at its defaults, and reads every control but the width) and
+`test/visual/playground.spec.mjs`, run by `npm run test:visual` (in Chromium, one component of each
+kind of interaction, and every overlay opens and closes). In Flutter, `flutter test` in
+`widgetbook/`: the adapter (`adapter_test.dart`), every builder rendering and reading every control
+and every overlay opening and closing (`playground_test.dart`), and the interactions
+(`playground_*_test.dart`).
+
+Not in the Playground: a child's own controls beyond its words (its size, its priority), a
+Playground's state saved as a shareable preset, and the sidebars grouped by Figma's sections (set
+aside by the owner, 2026-09-26).
 
 ## Approvals
 
@@ -295,13 +425,13 @@ here. It pins Flutter (`FLUTTER_VERSION`), because `dart format` output changes 
 and the codegen job diffs the formatted Dart; to upgrade it, see
 [workflows.md, Set up a machine](workflows.md#set-up-a-machine).
 
-| Job                                        | Checks                                                                                                                                                                | Fixing a failure                                                                                                                                                        |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, YAML                                                                                   | Run those two commands locally, and Prettier on a formatting failure; the owner commits the result                                                                      |
-| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs`: credentials, e-mail addresses and phone numbers in every tracked and untracked file, against `scripts/personal-data-baseline.json` | Redact in the extractor, or accept the finding with a written reason ([how](../README.md#personal-data-in-a-public-repository))                                         |
-| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`; `solar:status --check`                                                           | Run `npm run solar:codegen` locally; the owner commits the result; for a cancelled approval, re-approve it or revert ([workflows.md](workflows.md#approve-a-component)) |
-| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test` with the Flutter visual checks; keeps the reports; builds Widgetbook                                | Run the same three in `packages/solar_flutter`; the reports are in `packages/solar_flutter/build/visual/`                                                               |
-| Web components draw what Figma draws       | `npm run test:visual`; keeps the gap reports; builds Storybook                                                                                                        | Run `npm run test:visual` locally; the reports are in `packages/components/test/visual/.out/`                                                                           |
+| Job                                        | Checks                                                                                                                                                                                                            | Fixing a failure                                                                                                                                                        |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, YAML                                                                                                                               | Run those two commands locally, and Prettier on a formatting failure; the owner commits the result                                                                      |
+| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs`: credentials, e-mail addresses and phone numbers in every tracked and untracked file, against `scripts/personal-data-baseline.json`                                             | Redact in the extractor, or accept the finding with a written reason ([how](../README.md#personal-data-in-a-public-repository))                                         |
+| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`; `solar:status --check`                                                                                                       | Run `npm run solar:codegen` locally; the owner commits the result; for a cancelled approval, re-approve it or revert ([workflows.md](workflows.md#approve-a-component)) |
+| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test` with the Flutter visual checks, then `flutter test` in `widgetbook` (the Playground adapter and builders); keeps the reports; builds Widgetbook | Run the same in `packages/solar_flutter` and `packages/solar_flutter/widgetbook`; the reports are in `packages/solar_flutter/build/visual/`                             |
+| Web components draw what Figma draws       | `npm run test:visual`, which also runs the Playground builders live (`playground.spec.mjs`); keeps the gap reports; builds Storybook                                                                              | Run `npm run test:visual` locally; the reports are in `packages/components/test/visual/.out/`                                                                           |
 
 `.github/workflows/main.yml` runs lint, typecheck, format, build, `smoke:install` (the packed
 packages installed into a clean React 18 app and rendered on the server) and the tests.

@@ -103,3 +103,39 @@ describe('the generated code', () => {
     }
   });
 });
+
+describe('a shell’s own class', () => {
+  it('names no layer: no words hidden from sight hide a slot or a layer', async () => {
+    // The cards' visually hidden words were once `-name`, the public class of Device Card's and
+    // Launch Card's `name` slot, whose name was clipped to 1px. The visual checks measured the
+    // name's box and compared no pixels of its words, so they did not see it.
+    const stage = await import('../src/stages/components.mjs');
+    const { renderMuiComponent } =
+      await import('../src/emit/mui-component.mjs');
+    const { built, tokens } = stage.build();
+    const wrong = [];
+    const walk = (spec, own, rules) => {
+      for (const [key, value] of Object.entries(rules ?? {})) {
+        if (!value || typeof value !== 'object') continue;
+        if (value.clipPath === 'inset(50%)')
+          for (const [cls] of key.matchAll(
+            /Solar[A-Z][A-Za-z0-9]*-{1,2}[a-z][A-Za-z0-9]*/g,
+          ))
+            if (own.has(cls)) wrong.push(`${spec.component}: ${key}`);
+        walk(spec, own, value);
+      }
+    };
+    for (const { spec } of built) {
+      // A chart library's component has no recipe of its own (the chart theme takes its cells).
+      if (!spec.layers || stage.library(spec.component)) continue;
+      const own = new Set(
+        Object.keys(spec.layers)
+          .map((l) => layerClass(spec, l))
+          .filter(Boolean),
+      );
+      const { styles } = renderMuiComponent(spec, tokens) ?? {};
+      walk(spec, own, styles);
+    }
+    expect(wrong).toEqual([]);
+  });
+});

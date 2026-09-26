@@ -8,7 +8,8 @@
 /// the picture ([image]) inside its border. Its [color] is the caller's, any colour: seed it from a
 /// stable hash of the person's ID, never at random. The initials take that colour's hue, at a
 /// lightness that reads at WCAG AA ([solarInkOn]), unless [textColor] gives theirs; with no colour
-/// it is SOLAR's neutral avatar. It is named by [name], always.
+/// it is SOLAR's neutral avatar. Figma draws a photo or logo avatar only with its picture, so one
+/// given no [image] is drawn as the initials avatar, as the web's is. It is named by [name], always.
 library;
 
 import 'package:flutter/material.dart';
@@ -64,6 +65,8 @@ class SolarAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = solarThemeOf(context);
+    // A photo or a logo with no picture is drawn as the initials avatar Figma draws.
+    final type = image == null ? SolarAvatarType.text : this.type;
     final p = SolarAvatarProps(size: size, type: type, color: color);
     const states = <WidgetState>{};
     final fill = color;

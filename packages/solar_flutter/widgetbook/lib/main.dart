@@ -1,7 +1,7 @@
-// Widgetbook for solar_flutter: a viewer for the generated widgets, built from the same oracles and
-// the same variant builders the Flutter visual checks use (spec/verify/, test/visual/builders/),
-// so a widget shows here as soon as it has a builder and the viewer cannot drift from what is
-// checked. See README.md.
+// Widgetbook for solar_flutter: a viewer for the generated widgets. Each one's Variants are built
+// from the same oracles and the same variant builders the Flutter visual checks use (spec/verify/,
+// variants/), so the viewer cannot drift from what is checked; its Playground is its hand-written
+// builder (playground/), live and two-way with the generated controls. See README.md.
 
 import 'dart:convert';
 
@@ -11,6 +11,10 @@ import 'package:solar_flutter/solar_flutter.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 import 'package:solar_flutter_variants/solar_flutter_variants.dart';
+
+import 'playground/adapter.dart';
+import 'playground/playground.dart';
+import 'playground/registry.dart';
 
 /// Every oracle the app was built with, by component: spec/verify/, copied in as assets/verify/.
 Future<Map<String, Map<String, dynamic>>> loadOracles() async {
@@ -89,10 +93,11 @@ class SolarWidgetbook extends StatelessWidget {
               WidgetbookComponent(
                 name: circles[name] == null ? name : '${circles[name]} $name',
                 useCases: [
+                  // The two-way Playground, from the component's builder (playground/).
                   WidgetbookUseCase(
                     name: 'Playground',
                     builder: (context) =>
-                        playground(context, name, oracles[name]!),
+                        solarPlayground(context, name, playgroundOf(name)),
                   ),
                   WidgetbookUseCase(
                     name: 'Variants',
@@ -208,45 +213,13 @@ VariantBuilder builderOf(String component) {
   return b;
 }
 
-/// One set of props, with a knob per prop: each prop's values are the ones Figma draws, the first
-/// variant's (the default) selected. Hover, press and focus it to see its states.
-Widget playground(
-  BuildContext context,
-  String component,
-  Map<String, dynamic> oracle,
-) {
-  final variants = variantsOf(oracle);
-  final rest = variants.first['props'] as Map<String, dynamic>;
-  final props = <String, dynamic>{};
-  for (final MapEntry(key: prop, value: initial) in rest.entries) {
-    if (initial is bool) {
-      props[prop] = context.knobs.boolean(label: prop, initialValue: initial);
-    } else {
-      // A colour the caller gives (Avatar's) is only in the variants that draw one.
-      final options = <String>{
-        for (final v in variants)
-          if ((v['props'] as Map<String, dynamic>)[prop] case final String s) s,
-      }.toList();
-      props[prop] = context.knobs.object.dropdown<String>(
-        label: prop,
-        options: options,
-        initialOption: initial as String,
-      );
-    }
+/// A component's Playground builder, from the generated registry (every component has one).
+SolarPlaygroundBuilder playgroundOf(String component) {
+  final b = playgroundBuilders[component];
+  if (b == null) {
+    throw StateError('$component has no Playground builder in lib/playground/');
   }
-  return Center(
-    child: _Tile(
-      build: builderOf(component),
-      // The resting variant's layers too, for a builder that draws what Figma nests (Button Group's
-      // Buttons).
-      variant: {
-        'props': props,
-        'state': 'default',
-        'layers': variants.first['layers'],
-      },
-      oracle: oracle,
-    ),
-  );
+  return b;
 }
 
 /// Every variant Figma draws, labelled with Figma's name, its platform state forced through the

@@ -8,7 +8,7 @@
  */
 
 import { drawnResets } from './shared/drawn.mjs';
-import { targetArea } from './shared/target.mjs';
+import { BUTTON_RESET, targetArea } from './shared/target.mjs';
 
 export default {
   name: 'Tag',
@@ -26,15 +26,7 @@ export default {
         },
       // A 44 × 44 target around the close button, as far as the page lets it reach
       // (shared/target.mjs).
-      ...targetArea('& button.SolarTag--iconClose'),
-      '& button.SolarTag--iconClose': {
-        appearance: 'none',
-        border: '0',
-        padding: '0',
-        margin: '0',
-        background: 'none',
-        cursor: 'pointer',
-      },
+      ...targetArea('& button.SolarTag--iconClose', { rules: BUTTON_RESET }),
     }),
   },
   flutter: {},

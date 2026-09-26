@@ -46,4 +46,20 @@ describe('the Divider recipe', () => {
       styles.appearances['orientation=horizontal, type=inset'].paddingLeft,
     ).toBe('var(--solar-inset-md)');
   });
+
+  it('stretches a vertical divider in its row, where `100%` fills only a row of a set height', () => {
+    const { styles } = renderMuiComponent(spec, tokens);
+    expect(styles.appearances['orientation=vertical, type=full']).toMatchObject(
+      { height: 'auto', alignSelf: 'stretch' },
+    );
+    // Its rule fills the stretched height, which is definite.
+    expect(
+      styles.appearances['orientation=vertical, type=full'][
+        '& .SolarDivider--rule'
+      ].height,
+    ).toBe('100%');
+    // A horizontal divider keeps its hairline height, and its parent's alignment.
+    expect(styles.root.height).toBe('var(--solar-border-default)');
+    expect(styles.root.alignSelf).toBeUndefined();
+  });
 });

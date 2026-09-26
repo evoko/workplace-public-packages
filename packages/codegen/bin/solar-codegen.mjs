@@ -15,6 +15,7 @@ import * as components from '../src/stages/components.mjs';
 import { writeDeviationsReport } from '../src/report/deviations.mjs';
 import { packagesDir, repoRoot } from '../src/util/paths.mjs';
 import { staleShells } from '../src/shells/index.mjs';
+import { WIDGETBOOK_FILES } from '../src/emit/playground.mjs';
 import {
   commitGenerated,
   deferWrites,
@@ -40,9 +41,14 @@ const OWNED_DIRS = [
 
 deferWrites();
 const built = STAGES.map((stage) => stage.build());
+// Each stage's emit also sees every stage's build, by name, where it needs another's in-memory
+// spec (the component stage, the icon spec's names for the Playground controls).
+const builds = Object.fromEntries(
+  STAGES.map((stage, i) => [stage.name, built[i]]),
+);
 const results = STAGES.map((stage, i) => ({
   name: stage.name,
-  ...stage.emit(built[i]),
+  ...stage.emit(built[i], builds),
 }));
 
 // One report for every source. Icon deviations are as much a governance question as token ones,
@@ -80,9 +86,14 @@ execSync(
   `npx prettier --write "spec/**/*.{json,md}" "packages/styles/src/generated/**/*.{ts,css,json}" "packages/assets/src/generated/**/*.{ts,tsx,json}" "packages/components/src/solar-theme.generated.ts" ${shells.join(' ')}`,
   { cwd: repoRoot, stdio: 'ignore' },
 );
+// The Widgetbook's generated files are named one by one: they sit beside hand-written builders.
+const flutterRoot = join(packagesDir, 'solar_flutter');
+const widgetbookDart = WIDGETBOOK_FILES.map((path) =>
+  JSON.stringify(relative(flutterRoot, path)),
+);
 try {
-  execSync('dart format lib', {
-    cwd: join(packagesDir, 'solar_flutter'),
+  execSync(`dart format lib ${widgetbookDart.join(' ')}`, {
+    cwd: flutterRoot,
     stdio: 'ignore',
   });
 } catch {
@@ -91,8 +102,9 @@ try {
   // hundreds of lines. Exiting non-zero says so plainly rather than leaving a diff to puzzle over.
   console.error(
     'dart format FAILED: the Dart SDK is not on PATH, so the generated Dart under\n' +
-      'packages/solar_flutter/lib/src/generated is unformatted and will not match the committed\n' +
-      'files. Install Flutter, or restore those files and regenerate once the SDK is available.\n' +
+      'packages/solar_flutter/lib/src/generated and widgetbook/lib/playground is unformatted and\n' +
+      'will not match the committed files. Install Flutter, or restore those files and regenerate\n' +
+      'once the SDK is available.\n' +
       'Everything else was written normally.',
   );
   process.exitCode = 1;

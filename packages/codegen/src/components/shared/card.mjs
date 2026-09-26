@@ -9,6 +9,12 @@ import { drawnResets } from './drawn.mjs';
 import { targetArea } from './target.mjs';
 
 /**
+ * The class of a card's words read and never seen, `Solar<Name>-visuallyHidden` (MUI's word for
+ * it): the shells write it.
+ */
+export const VISUALLY_HIDDEN = 'visuallyHidden';
+
+/**
  * What a card's elements need beyond the recipe: a block, its words wrapping, its title the
  * stretched action where it has one, and its More button with a 44 × 44 target.
  *
@@ -63,11 +69,15 @@ export function cardResets(
       borderRadius: 'inherit',
     },
     // The card's own controls sit above the stretched action, as later positioned boxes do, so
-    // each is its own target.
-    [`& .${P}-box :is(a, button, input, select, textarea, [tabindex]):not(.${P}-press)`]:
+    // each is its own target. Not an input hidden from everyone, which its control positions
+    // itself: a Select's or Dropdown's native input, absolute under its field, would otherwise
+    // take the field's row, leaving its words no width (Device Card's batch Dropdown).
+    [`& .${P}-box :is(a, button, input, select, textarea, [tabindex]):not(.${P}-press, [aria-hidden="true"])`]:
       { position: 'relative' },
     // A name read and never seen: the loading action's, a colour's (Insight Row's severity bar).
-    [`& .${P}-name`]: {
+    // A class of the shell's own, which no slot or layer is named (Device Card's and Launch Card's
+    // `name` slot, the name they draw, is `-name`; test/classes.test.mjs).
+    [`& .${P}-${VISUALLY_HIDDEN}`]: {
       position: 'absolute',
       width: '1px',
       height: '1px',

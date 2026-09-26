@@ -474,6 +474,9 @@ src/normalize/             css-contract.json -> the DTCG spec, solar-icons/ -> t
 src/emit/                  one file per emitter, plus the manifest entries and canonical values
 src/report/                spec/deviations.md
 src/verify/                the oracle, spec/verify/<name>.json
+src/playground/            the viewers' Playground: each component's controls from its IR
+                           (controls), the extras and sample words tables (extras), and the
+                           fixed values both adapters use (values)
 src/util/                  paths, the docs/ write guard and pruning, sorting, naming, digests,
                            SVG markup scanning, and the workspace sources the tests, the visual
                            check and Storybook resolve the packages to
@@ -496,8 +499,10 @@ Where a change goes, and how to add a component, fix a failing check or decide a
 [docs/engineering/workflows.md](../../docs/engineering/workflows.md). What is internal to the
 generator:
 
-- **A new stage** is a module exporting `name`, `build()` and `emit(built)`, where `emit` returns
-  `{counts, deviations}`, added to `STAGES` in the CLI.
+- **A new stage** is a module exporting `name`, `build()` and `emit(built, builds)`, where `built`
+  is its own build, `builds` every stage's by name (the component stage reads the icon stage's
+  icon spec from it, since nothing is on disk until the run ends), and `emit` returns
+  `{counts, deviations}`; it is added to `STAGES` in the CLI.
 - **Figma itself is wrong** in a token value or an icon: a rule in `src/normalize/deviations.mjs`
   (`DEVIATIONS`, `ICON_DEVIATIONS`), applied to every target and reported in `spec/deviations.md`.
 - **`solar:explain`** builds from the current sources in memory and writes nothing; its lookup is
@@ -520,6 +525,13 @@ generator:
   comment, the layout, a test, a story or a visual case does not. What approvals are:
   [architecture.md, Approvals](../../docs/engineering/architecture.md#approvals).
 
+- **The Playground's controls** (`src/playground/`): a component's extra control or sample words
+  go in `extras.mjs`; a control for a new kind of axis or slot goes in `controls.mjs` (which
+  fails the build on one it cannot draw) and in both viewers' cores and adapters, which draw each
+  kind (`components/stories/playground/`, `solar_flutter/widgetbook/lib/playground/`). What the
+  controls are and how both viewers use them:
+  [architecture.md, The viewers](../../docs/engineering/architecture.md#the-viewers).
+
 Generator code is ESM `.mjs` with no build step. Run the suites with `npx vitest run` from here or
 from the repository root.
 
@@ -532,11 +544,19 @@ hand. A descriptor holds:
 
 - **`name`**, the component's name in code, and **`address`** where the catalog finds it by
   another (`calendar/Day Cell`).
-- **`mui`**: `slots`, and as it needs them `resets`, `svgLayers`, `states`, `overlaps` and
-  `restates`, which `src/emit/mui-component.mjs` reads as `MUI_SLOTS`, `MUI_RESETS`,
-  `MUI_SVG_LAYERS`, `STATE_SELECTORS`, `OVERLAPS` and `MUI_STATE_RESTATES`. A component that draws
-  its own layers has `slots: 'drawn'` (every IR layer, each with a class of its own) and its resets
-  from `drawnResets` (`shared/drawn.mjs`).
+- **`mui`**: `slots`, and as it needs them `resets`, `svgLayers`, `states`, `overlaps`,
+  `restates` and `stretch`, which `src/emit/mui-component.mjs` reads as `MUI_SLOTS`, `MUI_RESETS`,
+  `MUI_SVG_LAYERS`, `STATE_SELECTORS`, `OVERLAPS`, `MUI_STATE_RESTATES` and `MUI_STRETCH`. A
+  component that draws its own layers has `slots: 'drawn'` (every IR layer, each with a class of
+  its own) and its resets from `drawnResets` (`shared/drawn.mjs`). A target beside a native
+  button's reset takes the reset as its `rules` (`targetArea`, `shared/target.mjs`): a second key
+  of the same selector would replace the first. `stretch` names the root's sizes whose FILL
+  stretches in the page's layout rather than taking `100%` of a parent of a set size: the size is
+  left `auto` and the root `align-self: stretch` (a vertical Divider's height, filling a row sized
+  by its words). A slot that is the root's child by the selector alone (`& > *`, Button Group's
+  Buttons) is written `&& > *` in the recipe (`outranking`), so the parent's rule outranks the
+  child's own recipe, as a Figma instance override outranks its main component (an lg Button's 200px
+  width in a full-width group); the visual checks find it by `& > *`.
 - **`flutter`**: `style` where its base takes a style object, `shared` and `states`, which
   `src/emit/flutter-component.mjs` reads as `FLUTTER_STYLE`, `FLUTTER_SHARED` and
   `FLUTTER_STATES`.
@@ -565,7 +585,13 @@ descriptors (`src/emit/registries.mjs`): both packages' barrels of shells
 (`components/test/visual/cases/registry.generated.ts`), the Flutter one
 (`solar_flutter/test/visual/cases/cases.dart`), and the variant builders'
 (`solar_flutter/variants/lib/src/registry.dart`, and its library,
-`variants/lib/solar_flutter_variants.dart`).
+`variants/lib/solar_flutter_variants.dart`). For the viewers' Playgrounds
+(`src/emit/playground.mjs`), the component stage writes both builder registries
+(`components/stories/playground/registry.generated.ts`,
+`solar_flutter/widgetbook/lib/playground/registry.dart`, each builder's file named by
+`playgroundFileOf`) and Widgetbook's `controls.dart`, and the icon stage Widgetbook's `icons.dart`;
+the two Dart data files are written from the IRs and the icon spec the run has just built in
+memory, never re-read from `spec/`, which holds the last run's until the run ends.
 
 **A drawn shell** hands the generated tree to the runtime helpers, `drawChildren`
 (`packages/components/src/internal/layers.tsx`) and `SolarLayers`

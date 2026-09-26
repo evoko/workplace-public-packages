@@ -152,7 +152,7 @@ export const DeviceCard = forwardRef<HTMLDivElement, DeviceCardProps>(
           {...(href != null ? { href } : {})}
           onClick={onClick}
         >
-          <span className="SolarDeviceCard-name">{name}</span>
+          <span className="SolarDeviceCard-visuallyHidden">{name}</span>
         </ButtonBase>
       ) : null;
     return (

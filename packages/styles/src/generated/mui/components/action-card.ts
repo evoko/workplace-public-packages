@@ -66,11 +66,11 @@ export const solarActionCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarActionCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarActionCard-press)':
+    '& .SolarActionCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarActionCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarActionCard-name': {
+    '& .SolarActionCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

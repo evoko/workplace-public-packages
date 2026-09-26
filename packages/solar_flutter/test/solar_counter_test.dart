@@ -91,5 +91,40 @@ void main() {
       );
       expect(pill(tester), light.actionPrimaryBgDisabled);
     });
+
+    // Figma draws the Counter in a Button in a type of the Button's: inverted in a primary one,
+    // regular in the others. The app passes a plain SolarCounter; the Button gives it the type.
+    testWidgets(
+      'in a primary SolarButton, it takes the recipe’s inverted type',
+      (tester) async {
+        await pump(
+          tester,
+          SolarButton(
+            onPressed: () {},
+            counter: const SolarCounter(count: 3),
+            child: const Text('Inbox'),
+          ),
+        );
+        expect(pill(tester), light.actionSecondaryBgDefault);
+        expect(
+          tester.widget<SolarCounter>(find.byType(SolarCounter)).type,
+          isNull,
+        );
+      },
+    );
+
+    testWidgets('in a primary SolarButton, a type of its own wins', (
+      tester,
+    ) async {
+      await pump(
+        tester,
+        SolarButton(
+          onPressed: () {},
+          counter: const SolarCounter(count: 3, type: SolarCounterType.danger),
+          child: const Text('Inbox'),
+        ),
+      );
+      expect(pill(tester), light.actionPrimaryBgDangerDefault);
+    });
   });
 }

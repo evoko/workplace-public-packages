@@ -1,9 +1,10 @@
 /**
  * What SOLAR's pickers share (Select, Dropdown): a field, with its label above and its helper
  * below, that opens a panel of Dropdown Items under it and shows the one chosen. MUI's Select on
- * the web, on InputBase as the field, its menu kept in the component (`disablePortal`) so the
- * recipe reaches it: drawn as the picker's own panel layer where Figma draws one (Select's), and
- * otherwise as a Dropdown Menu (Dropdown's). In Flutter, a drawn field, pressable, and the panel
+ * the web, on InputBase as the field, its menu portaled into a host in the component's root
+ * (`components/src/internal/panel.tsx`) so the recipe reaches it and the modal hides nothing around
+ * it: drawn as the picker's own panel layer where Figma draws one (Select's), and otherwise as a
+ * Dropdown Menu (Dropdown's). In Flutter, a drawn field, pressable, and the panel
  * floated under it by SolarMenuAnchor, as wide as the field.
  */
 
@@ -15,7 +16,8 @@ import { targetArea } from './target.mjs';
  * A picker's resets: a drawn component's, the combobox as the field's words (MUI's own padding,
  * height and room for its icon give way to the recipe's), MUI's icon as the chevron in the field's
  * row, the menu's paper as the panel (none of MUI's own look), a caller's icons filling their
- * slots, the helper wrapping, and a 44 × 44 target around the field.
+ * slots, the helper wrapping, the panel's host laying nothing out, and a 44 × 44 target around the
+ * field.
  *
  * @param {string} name the component
  * @param {object} o
@@ -72,6 +74,8 @@ export function pickerResets(
         }
       : {}),
     [`& .${P}-helper`]: { whiteSpace: 'normal' },
+    // The host the panel is portaled into lays nothing out: no box, so no gap in the root's column.
+    [`& .${P}-panelHost`]: { display: 'contents' },
     ...targetArea(`& .${P}-field`, { under: true }),
   });
 }

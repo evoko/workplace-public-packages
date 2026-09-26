@@ -108,7 +108,8 @@ export const solarDividerStyles = {
     'orientation=vertical, type=full': {
       flexDirection: 'column',
       width: 'var(--solar-border-default)',
-      height: '100%',
+      height: 'auto',
+      alignSelf: 'stretch',
       '& .SolarDivider--rule': {
         width: 'var(--solar-border-default)',
         minWidth: 'var(--solar-border-default)',

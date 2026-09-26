@@ -57,6 +57,18 @@ void main() {
       );
     });
 
+    testWidgets(
+      'a photo or a logo with no picture is drawn as the initials avatar',
+      (tester) async {
+        for (final type in [SolarAvatarType.photo, SolarAvatarType.logo]) {
+          await pump(tester, SolarAvatar(name: 'Dana Scully', type: type));
+          expect(find.text('DS'), findsOneWidget);
+          expect(face(tester).color, light.surfaceFeedbackNeutralSubtle);
+          expect(face(tester).image, isNull);
+        }
+      },
+    );
+
     testWidgets('a logo is a rounded square, its picture whole', (
       tester,
     ) async {

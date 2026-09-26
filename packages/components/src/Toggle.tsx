@@ -9,9 +9,11 @@
  * A setting, on or off, that takes effect at once: no confirm, and no action (that is a Button). It
  * wraps MUI's Switch, a native input announced as a switch, with Figma's track and thumb drawn from
  * its layer tree (`internal/layers.tsx`). On and off read by the thumb's place as well as the
- * colour. Give it a name: a <label> around it or beside it (MUI's FormControlLabel), or an
- * `aria-label`. Controlled with `selected`, or not with `defaultSelected`. The app must load
- * `@bwp-web/styles/tokens.css`.
+ * colour. Give it a name: a <label> around it or beside it, or an `aria-label`; in a list, an
+ * Option Row, or a <label> at least `size.target.min` tall, since the 44 × 44 input overflows the
+ * track. Not MUI's FormControlLabel, whose rows overlap the targets and whose -11px margin pulls
+ * the toggle out of its box (the README, Checkbox). Controlled with `selected`, or not with
+ * `defaultSelected`. The app must load `@bwp-web/styles/tokens.css`.
  */
 
 import { useSolarProps } from './internal/theme.js';

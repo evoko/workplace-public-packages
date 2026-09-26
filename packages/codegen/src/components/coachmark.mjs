@@ -9,7 +9,7 @@
  */
 
 import { drawnResets } from './shared/drawn.mjs';
-import { targetArea } from './shared/target.mjs';
+import { BUTTON_RESET, targetArea } from './shared/target.mjs';
 
 export default {
   name: 'Coachmark',
@@ -26,15 +26,7 @@ export default {
         width: '100%',
         height: '100%',
       },
-      ...targetArea('& button.SolarCoachmark--close'),
-      '& button.SolarCoachmark--close': {
-        appearance: 'none',
-        border: '0',
-        padding: '0',
-        margin: '0',
-        background: 'none',
-        cursor: 'pointer',
-      },
+      ...targetArea('& button.SolarCoachmark--close', { rules: BUTTON_RESET }),
       // The connector is decorative, and takes no pointer from what it points at.
       '& .SolarCoachmark--connector': { pointerEvents: 'none' },
     }),

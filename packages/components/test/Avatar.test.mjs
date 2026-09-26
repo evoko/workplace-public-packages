@@ -50,4 +50,14 @@ describe('the SOLAR Avatar shell', () => {
     );
     expect(logo.html).toContain('object-fit:contain');
   });
+
+  it('draws a photo or a logo with no picture as its initials, not MUI’s person icon', () => {
+    for (const type of ['photo', 'logo']) {
+      const { html } = render(h(Avatar, { name: 'Dana Scully', type }));
+      expect(html).toContain('>DS</span>');
+      expect(html).toContain('aria-label="Dana Scully"');
+      expect(html).not.toContain('PersonIcon');
+      expect(html).not.toContain('<svg');
+    }
+  });
 });

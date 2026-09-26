@@ -71,11 +71,11 @@ export const solarInteractiveCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarInteractiveCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarInteractiveCard-press)':
+    '& .SolarInteractiveCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarInteractiveCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarInteractiveCard-name': {
+    '& .SolarInteractiveCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

@@ -161,6 +161,41 @@ recipe) for the wrapped controls: the fields on `TextField`, Radio, Slider.
 decisions.md; the fields, Radio and Slider have component themes; `flutter analyze` and
 `flutter test` pass and the Flutter visual check is unchanged.
 
+## Component API gaps the Playgrounds found
+
+**Why.** Building a Playground for every component showed features an app would reach for and
+cannot, where the component draws the thing but takes no parameter for it or reports nothing
+about it. They are missing features, not bugs:
+
+- **Tooltip** takes no `open` and reports no open or close (both platforms).
+- **Select** has no trailing-icon parameter, though its IR has the `trailingIcon` slot (both).
+- **Date Picker Open** reports no change of the month shown (both).
+- **Flutter Select and Dropdown** read `open` only when first built, and report no open or close.
+- **Flutter Tree Item** has no F2 to start a rename (web: `onRenameStart`).
+- **Flutter Calendar Day Cell, Event Chip and All-Day Bar** take no press (web: `onClick`).
+- **Password Input**'s show and hide, and **Inline Input**'s start of an edit, report nothing
+  (both).
+- **Flutter Autocomplete** takes no options builder, so an app cannot suggest options before
+  words are typed (web: `filterOptions`, `openOnFocus`).
+
+**Check.**
+
+```bash
+grep -n 'open\|onOpen\|onClose' packages/components/src/Tooltip.tsx packages/solar_flutter/lib/src/components/solar_tooltip.dart
+grep -n 'didUpdateWidget' packages/solar_flutter/lib/src/components/solar_select.dart packages/solar_flutter/lib/src/components/solar_dropdown.dart
+grep -n 'onPressed' packages/solar_flutter/lib/src/components/solar_{calendar_day_cell,event_chip,all_day_bar}.dart
+```
+
+**What to change.** Add each on both platforms in the platform's words (a web `open` with
+`onOpen`/`onClose`, a Flutter `open` followed in `didUpdateWidget` with `onOpenChanged`; a
+`trailingIcon` beside Autocomplete's; `onMonthChange`/`onMonthChanged`; `onRenameStart` on F2;
+`onPressed`; `onVisibilityChange`/`onVisibilityChanged` and `onEditingChange`/
+`onEditingChanged`; an `optionsBuilder`), reached through the descriptor's `api` table where it
+names an IR prop, and let each Playground builder use it in place of its workaround.
+
+**Done when.** Each is a parameter on both platforms, with a test on each, the READMEs say so, and
+the Playground builders that work around them (Tooltip's theme default on the web) no longer do.
+
 ## Designed, not built
 
 - **The tweak panel**: edit a value in Storybook, save it as an overlay rule with provenance.

@@ -61,11 +61,11 @@ export const solarInsightCardSmallStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarInsightCardSmall-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarInsightCardSmall-press)':
+    '& .SolarInsightCardSmall-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarInsightCardSmall-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarInsightCardSmall-name': {
+    '& .SolarInsightCardSmall-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

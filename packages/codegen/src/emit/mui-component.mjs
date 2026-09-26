@@ -81,6 +81,15 @@ export const MUI_SVG_LAYERS = descriptorTable('mui', 'svgLayers');
 export const MUI_RESETS = descriptorTable('mui', 'resets');
 
 /**
+ * The root's sizes that fill by stretching in the page's layout, where `100%` would fill only a
+ * parent of a set size: a vertical Divider's height, which fills the row it separates, sized by
+ * its words (`height: 100%` of a row's auto height is no height). Such a FILL is written
+ * `align-self: stretch` with the size left `auto`, which a flex or grid parent stretches; the
+ * stretched size is definite, so a child's `100%` (the rule) resolves against it.
+ */
+export const MUI_STRETCH = descriptorTable('mui', 'stretch');
+
+/**
  * The selector each component's MUI control is in for each state, keyed like `MUI_SLOTS`. Platform
  * states are pseudo-classes or the class MUI sets for them; a state that is a prop (`disabled`,
  * `loading`, and Text Input's `error`) is the class MUI sets for the prop, or, where MUI has none,
@@ -484,6 +493,12 @@ function context(spec, tokens) {
         // depth 00's base is a fixed 0px): declaring nothing would leave the base's standing.
         if (entry.keyword === 'HUG' && at.split('.')[1] !== 'base')
           return { [cell]: 'auto', ...(inner ? { [min]: 'auto' } : {}) };
+        if (
+          !inner &&
+          entry.keyword === 'FILL' &&
+          (MUI_STRETCH[spec.component] ?? []).includes(cell)
+        )
+          return { [cell]: 'auto', alignSelf: 'stretch' };
         const size = length(entry, cell, at);
         if (!inner) return size;
         if (entry.keyword === 'FILL') return { ...size, [min]: 0 };
@@ -687,14 +702,33 @@ function place(target, selector, decls, at) {
 }
 
 /**
+ * The slot table as the recipe writes it: a layer that is the root's own child by the selector
+ * alone (`& > *`, Button Group's Buttons) written `&& > *`. Such a child is the caller's element,
+ * often a SOLAR component with a recipe of its own, one class as the parent's `& > *` is one; at
+ * equal weight the later style sheet wins, which is the child's. Figma's instance override wins over
+ * its main component (a full-width group's lg Buttons fill it, though an lg Button is 200 wide), so
+ * the parent's rule is written to outrank the child's recipe: `&&` repeats the root's class. The
+ * visual checks find the layer by the table itself, `& > *`.
+ */
+export function outranking(slots) {
+  return Object.fromEntries(
+    Object.entries(slots).map(([layer, selector]) => [
+      layer,
+      /^& >/.test(selector) ? `&${selector}` : selector,
+    ]),
+  );
+}
+
+/**
  * @returns {{ts: string, styles: object, composition: object, file: string}}
  */
 export function renderMuiComponent(spec, tokens, specs = [spec]) {
-  const slots = slotsOf(spec);
-  if (!slots) throw new Error(`${spec.component}: no MUI slot table`);
+  const table = slotsOf(spec);
+  if (!table) throw new Error(`${spec.component}: no MUI slot table`);
   for (const layer of Object.keys(spec.layers))
-    if (!slots[layer])
+    if (!table[layer])
       throw new Error(`${spec.component}: no MUI slot for layer ${layer}`);
+  const slots = outranking(table);
 
   const { declare, ref } = context(spec, tokens);
   // The descriptor's tables name a layer's class by the layer or by its own class: both are

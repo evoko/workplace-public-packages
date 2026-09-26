@@ -63,11 +63,11 @@ export const solarOptionCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarOptionCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarOptionCard-press)':
+    '& .SolarOptionCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarOptionCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarOptionCard-name': {
+    '& .SolarOptionCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

@@ -219,10 +219,13 @@ export const TokenInput = forwardRef<HTMLDivElement, TokenInputProps>(
             ],
           },
           render: {
-            // A SOLAR Counter of the entries left out.
+            // A SOLAR Counter of the entries left out, in the type the recipe names for it.
             counter: (layer) => (
               <span {...layer}>
-                <Counter count={hidden} />
+                <Counter
+                  count={hidden}
+                  type={parts.counter['variant.type'] as never}
+                />
               </span>
             ),
             helper: (layer) => (

@@ -41,6 +41,7 @@ import {
   solarDropdownTree,
 } from '@bwp-web/styles/mui';
 import { DropdownMenuSizeContext } from './DropdownMenu.js';
+import { usePickerPanel } from './internal/panel.js';
 import { drawChildren, type LayerDrawing } from './internal/layers.js';
 
 /** MUI's own icon, which the field draws as its chevron layer instead. */
@@ -133,6 +134,8 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       state: 'open',
     });
     const look = { size, disabled, error, open };
+    // The panel, portaled into a host in the root, as Select's (internal/panel.tsx).
+    const panel = usePickerPanel('SolarDropdown', open, MenuProps?.action);
     // What shows depends on whether it is open (Dropdown's chevron turns up).
     const parts = solarDropdownCompose(look, open ? 'open' : 'default');
     // The chosen row's words, or the placeholder.
@@ -206,8 +209,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
               }}
               MenuProps={{
                 ...MenuProps,
-                // In the component, so the recipe reaches the panel.
-                disablePortal: true,
+                ...panel.menuProps,
                 slotProps: {
                   ...MenuProps?.slotProps,
                   paper: {
@@ -249,6 +251,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         style={style}
         sx={[solarDropdownStyle(look), ...(Array.isArray(sx) ? sx : [sx])]}
       >
+        {panel.host}
         {drawChildren('root', drawing)}
       </Box>
     );

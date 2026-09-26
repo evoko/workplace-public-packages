@@ -52,11 +52,11 @@ export const solarEventRowStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarEventRow-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarEventRow-press)':
+    '& .SolarEventRow-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarEventRow-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarEventRow-name': {
+    '& .SolarEventRow-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

@@ -18,17 +18,18 @@ export default {
     // A step one can go back to is a button, none of the browser's own look, with a 44 × 44 target.
     resets: drawnResets('Step', {
       display: 'flex',
-      '&:is(button)': {
-        appearance: 'none',
-        font: 'inherit',
-        margin: '0',
-        padding: '0',
-        border: '0',
-        background: 'none',
-        cursor: 'pointer',
-        textAlign: 'inherit',
-      },
-      ...targetArea('&:is(button)'),
+      ...targetArea('&:is(button)', {
+        rules: {
+          appearance: 'none',
+          font: 'inherit',
+          margin: '0',
+          padding: '0',
+          border: '0',
+          background: 'none',
+          cursor: 'pointer',
+          textAlign: 'inherit',
+        },
+      }),
     }),
   },
   flutter: {},

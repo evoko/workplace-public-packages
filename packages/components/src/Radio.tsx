@@ -7,9 +7,11 @@
  * and edge by state, and the dot, Figma's own outline.
  *
  * One choice of a group, committed on click: put two to five in MUI's RadioGroup, which checks the
- * one whose `value` is its own and names them all, and gives each a label (MUI's
- * FormControlLabel, or a <label>). A radio alone is a bug, SOLAR says; `checked` checks one
- * outside a group. It wraps MUI's Radio, a native input, with its ring and dot drawn from Figma's
+ * one whose `value` is its own and names them all, and give each a label: an Option Row (in an
+ * Options List), or a <label> at least `size.target.min` tall with no negative margin, since the
+ * 44 × 44 input overflows the ring. Not MUI's FormControlLabel, whose 20px rows overlap the
+ * targets and whose -11px margin, made for MUI's padded radio, pulls this one out of its box (the
+ * README, Checkbox). A radio alone is a bug, SOLAR says; `checked` checks one outside a group. It wraps MUI's Radio, a native input, with its ring and dot drawn from Figma's
  * layer tree (`internal/layers.tsx`). The app must load `@bwp-web/styles/tokens.css`.
  */
 

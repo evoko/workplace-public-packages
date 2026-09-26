@@ -147,7 +147,7 @@ export const InsightCard = forwardRef<HTMLDivElement, InsightCardProps>(
           {...(href != null ? { href } : {})}
           onClick={onClick}
         >
-          <span className="SolarInsightCard-name">{title}</span>
+          <span className="SolarInsightCard-visuallyHidden">{title}</span>
         </ButtonBase>
       ) : null;
     return (

@@ -9,7 +9,9 @@
  * Bespoke: a count on a pill, drawn from Figma’s layer tree (`internal/layers.tsx`). It takes the
  * states of the control it sits in, so in a Button it follows the Button’s hover, press and
  * disabled colours, as Figma draws it; given `onClick`, it is a <button> of its own. A count of 0
- * or less draws nothing, and one above `max` reads `<max>+`, as SOLAR says. The app must load
+ * or less draws nothing, and one above `max` reads `<max>+`, as SOLAR says. Where its `type` is
+ * not given, it takes the one the parent around it composes (a Button's recipe names its Counter's
+ * type, `internal/composed.ts`), then the app theme's, then the recipe's default. The app must load
  * `@bwp-web/styles/tokens.css`.
  */
 
@@ -23,6 +25,7 @@ import {
   solarCounterSlots,
   solarCounterTree,
 } from '@bwp-web/styles/mui';
+import { useComposedCounterType } from './internal/composed.js';
 import { drawChildren } from './internal/layers.js';
 
 export interface CounterProps
@@ -37,7 +40,14 @@ export interface CounterProps
 }
 
 export const Counter = forwardRef<HTMLElement, CounterProps>(
-  function Counter(inProps, ref) {
+  function Counter(ownProps, ref) {
+    // The type the parent around it composes (a Button's), where the caller gives none: Figma's
+    // choice for that parent, over the app theme's default for a Counter anywhere.
+    const composed = useComposedCounterType();
+    const inProps =
+      composed !== undefined && ownProps.type === undefined
+        ? { ...ownProps, type: composed }
+        : ownProps;
     // As the app's MUI theme sets them (components.SolarCounter), under the caller's own.
     const {
       type,

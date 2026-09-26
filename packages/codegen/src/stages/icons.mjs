@@ -1,10 +1,12 @@
-// The icon stage: spec/icons.json from docs/solar-icons, then React, raw SVG and Flutter.
+// The icon stage: spec/icons.json from docs/solar-icons, then React, raw SVG and Flutter, and the
+// Widgetbook Playground's icon list and map.
 import { join } from 'node:path';
 import { buildIconSpec, loadIconCatalog } from '../normalize/icons.mjs';
 import { emitReactIcons } from '../emit/react-icons.mjs';
 import { emitSvgFiles } from '../emit/svg-files.mjs';
 import { emitReactLogos } from '../emit/react-logos.mjs';
 import { emitFlutterIcons } from '../emit/flutter-icons.mjs';
+import { emitWidgetbookIcons } from '../emit/playground.mjs';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 
@@ -46,6 +48,7 @@ export function emit({ catalog, spec, deviations }) {
     svg: emitSvgFiles(spec),
     logos: emitReactLogos(spec),
     flutter: emitFlutterIcons(spec),
+    widgetbook: emitWidgetbookIcons(spec),
   };
   return { counts, deviations };
 }

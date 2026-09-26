@@ -4,12 +4,13 @@
 npm run storybook          # from the repository root: http://localhost:6006
 ```
 
-A viewer for the generated components, to look at what the checks measure. Every story is built
-from what already exists for the visual checks, so nothing here is written by hand per variant
-and the gallery cannot drift from what is checked:
+A viewer for the components: every variant the checks measure, and each component live. The
+Variants are built from what already exists for the visual checks, so nothing there is written by
+hand per variant and the gallery cannot drift from what is checked; each Playground is a small
+builder written by hand per component, which never touches the checks:
 
-- **Playground**: one component with controls for its props, taken from the IR's API
-  (`spec/components/<name>.json`). Hover it, press it, tab to it to see its states.
+- **Playground**: the component live and two-way under controls generated from its IR
+  ([below](#playground)).
 - **Variants**: every variant Figma draws (`spec/verify/<name>.json`), labelled with Figma's name,
   rendered by the component's visual case (`test/visual/cases/<name>.tsx`) with its slots filled by
   the same probes. Its platform state is forced: a pseudo-class through the pseudo-states addon, a
@@ -23,10 +24,11 @@ and the gallery cannot drift from what is checked:
 - **Light and Dark** from the toolbar: `data-theme` on the page, which tokens.css switches, as in
   an app. The visual checks measure both modes; this is where a person looks at them.
 
-`stories/solar.tsx` builds both stories for any component. A component's story file only names it,
-and `npm run solar:codegen` writes it for every component (the shells are hand-written). The codegen's tables reach the browser through `.storybook/main.ts`, which
-serves them as the module `virtual:solar`. Workspace packages resolve to their sources, so it needs
-no build first. CI builds it and keeps the result as the `storybook` artifact.
+`stories/solar.tsx` builds both stories for any component. A component's story file only names
+it, and `npm run solar:codegen` writes it for every component (the shells are hand-written). The
+codegen's tables reach the browser through `.storybook/main.ts`, which serves them as the module
+`virtual:solar`. Workspace packages resolve to their sources, so it needs no build first. CI builds
+it and keeps the result as the `storybook` artifact.
 
 Each component's name in the sidebar follows its approval circle, 🟢 🟡 🔴
 ([workflows.md, Approve a component](../../../docs/engineering/workflows.md#approve-a-component)),
@@ -42,3 +44,31 @@ has their colours.
 Not here: the tweak panel (edit a value, save an overlay rule — tracked in
 [open work](../../../docs/engineering/open-work.md#designed-not-built)), or Figma's own renders
 beside the components, which the mirror does not store.
+
+## Playground
+
+Each component's Playground is the real component, working as it does in an app, under a control
+for every axis and boolean, its words, every SOLAR icon (outline or solid) in an icon slot, a
+composed part's show/hide toggle and its words, a content slot's placeholder, the width of the
+box it sits in, and the component's own extras (a Text Input's typed `value`, an overlay's
+`open`). It is two-way: clicking, typing, choosing and opening change the component and the
+controls follow, and a control changes the component. An overlay opens from an "Open" button
+beside it. Above it, **Reset** returns every control to its default; below it, the **event log**
+shows its last five callbacks by their web names (`onClick`, `onChange: true`), which Storybook's
+Actions panel receives too. The controls are args, so a reload or a shared link keeps the
+Playground's state. How the controls are derived, the builder interface and the rules for a
+builder are shared with Widgetbook:
+[architecture.md, The viewers](../../../docs/engineering/architecture.md#the-viewers).
+
+The builders are `stories/playground/<file>.tsx`, one per component, listed by the generated
+`registry.generated.ts`. Beside them: the interface (`types.ts`), the viewer-free core
+(`core.tsx`), the Storybook adapter (`adapter.tsx`), an overlay's trigger (`overlay.tsx`) and
+sample content (`samples.ts`, `dates.ts`, `cards.ts`, `charts.ts`, `tables.tsx`).
+
+The adapter syncs through `useArgs`, called in the story function. `updateArgs` reaches the story
+only after a round trip through Storybook's channel, so a controlled input rendered from the args
+would be put back to its old words while the tester types. The builder therefore reads a local
+copy of the args: `set` writes the copy at once and sends the value, which stays pending until the
+args carry it, and a control with nothing pending takes the args' value (the panel changed it, or
+Reset; `syncArgs` in `core.tsx`). The Playwright test renders the same builders on a page with no
+viewer (`test/visual/playground-page.tsx`, `#<slug>?width=320`).

@@ -77,6 +77,9 @@ export const solarDropdownStyles = {
     '& .SolarDropdown-helper': {
       whiteSpace: 'normal',
     },
+    '& .SolarDropdown-panelHost': {
+      display: 'contents',
+    },
     '& .SolarDropdown--field::after': {
       content: '""',
       position: 'absolute',

@@ -12,8 +12,10 @@ library;
 import 'package:flutter/material.dart';
 
 import '../generated/components/button.dart';
+import '../generated/components/counter.dart';
 import '../generated/components/spinner.dart';
 import '../solar_button_themes.dart';
+import '../solar_composed.dart';
 import '../solar_own_size.dart';
 import '../solar_states.dart';
 import 'solar_spinner.dart';
@@ -57,7 +59,9 @@ class SolarButton extends StatelessWidget {
   /// The icon after the label. It indicates direction: an arrow beside "Continue".
   final Widget? iconTrailing;
 
-  /// A count shown after the label: a `SolarCounter`, which takes the button's states.
+  /// A count shown after the label: a `SolarCounter`, which takes the button's states, and the type
+  /// Figma draws in this button (`inverted` in a primary one, `regular` in the others) unless it is
+  /// given its own ([SolarCounterTypeScope]).
   final Widget? counter;
 
   /// The accessible name, required when there is no label.
@@ -100,11 +104,27 @@ class SolarButton extends StatelessWidget {
           maintainSemantics: true,
           child: child!,
         ),
-      // The counter's height is the recipe's; the badge inside it is the caller's.
+      // The counter's height is the recipe's; the badge inside it is the caller's, in the type the
+      // recipe composes where it names none (Figma picks it per Button prio).
       if (counter != null)
         SizedBox(
           height: SolarButtonRecipe.dimension('counter.height', p, rest),
-          child: Center(widthFactor: 1, child: counter),
+          child: Center(
+            widthFactor: 1,
+            child: SolarCounterTypeScope(
+              type: switch (SolarButtonRecipe.lookup(
+                'counter.variant.type',
+                p,
+                rest,
+              )) {
+                final String k => SolarCounterType.values.byName(
+                  k.substring(2),
+                ),
+                null => null,
+              },
+              child: counter!,
+            ),
+          ),
         ),
       ?iconTrailing,
     ];

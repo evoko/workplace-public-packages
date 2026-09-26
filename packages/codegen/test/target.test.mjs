@@ -63,3 +63,75 @@ describe('the target', () => {
       expect(JSON.stringify(MUI_RESETS[name]), name).toContain(TARGET);
   });
 });
+
+/**
+ * Every rule object in a reset, at any depth, with the keys beside it: a target's element rule and
+ * its `::after` are siblings in one object.
+ */
+function ruleObjects(value, out = []) {
+  if (value && typeof value === 'object') {
+    out.push(value);
+    for (const v of Object.values(value)) ruleObjects(v, out);
+  }
+  return out;
+}
+
+describe('a target beside the element’s own rules', () => {
+  // A target spread under the key of a rule already written replaces that rule (an object literal
+  // keeps the last value of a key): Alert's, Toast's, Counter's and Step's buttons lost their reset
+  // this way and drew as grey native buttons, and Coachmark's and Tag's close buttons lost the
+  // target's `position: relative`, so their targets were placed around the root instead.
+  const targets = [];
+  for (const [name, resets] of Object.entries(MUI_RESETS))
+    for (const rules of ruleObjects(resets))
+      for (const [key, value] of Object.entries(rules))
+        // targetArea's pseudo-element, not MUI's own touch area resized (Slider's thumb).
+        if (
+          key.endsWith('::after') &&
+          value?.content === '""' &&
+          value?.width?.includes?.(TARGET)
+        )
+          targets.push({
+            name,
+            rules,
+            element: key.slice(0, -'::after'.length),
+          });
+
+  it('finds the targets', () => {
+    expect(targets.map((t) => t.name)).toEqual(
+      expect.arrayContaining([
+        'Alert',
+        'Alert Small',
+        'Toast',
+        'Coachmark',
+        'Tag',
+      ]),
+    );
+  });
+
+  it('keeps the target’s element positioned', () => {
+    for (const { name, rules, element } of targets)
+      expect(rules[element]?.position, `${name} ${element}`).toBe('relative');
+  });
+
+  // A target over one kind of element; one over several (Breadcrumb Item's `&:is(a, button)`)
+  // resets each kind under its own key.
+  it('keeps a native button’s reset beside its target', () => {
+    for (const { name, rules, element } of targets.filter(
+      (t) => /\bbutton\b/.test(t.element) && !t.element.includes(','),
+    )) {
+      const own = Object.entries(rules)
+        .filter(([key]) =>
+          key
+            .split(',')
+            .map((s) => s.trim())
+            .includes(element),
+        )
+        .map(([, v]) => v);
+      expect(
+        own.some((v) => v.appearance === 'none'),
+        `${name} ${element}`,
+      ).toBe(true);
+    }
+  });
+});

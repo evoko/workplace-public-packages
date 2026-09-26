@@ -16,6 +16,9 @@ export default {
     slots: 'drawn',
     // A block, where the other drawn components are inline: a separator spans what it separates.
     resets: drawnResets('Divider', { display: 'flex' }),
+    // A vertical divider fills the row it separates, however its height is set: stretched by the
+    // row, as the README says, where `100%` would fill only a row of a set height.
+    stretch: ['height'],
   },
   flutter: {},
 };

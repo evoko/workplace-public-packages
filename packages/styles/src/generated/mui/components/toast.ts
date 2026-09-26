@@ -39,6 +39,12 @@ export const solarToastStyles = {
       stroke: 'none',
     },
     '& button.SolarToast-action': {
+      appearance: 'none',
+      border: '0',
+      padding: '0',
+      margin: '0',
+      background: 'none',
+      cursor: 'pointer',
       position: 'relative',
     },
     '& button.SolarToast-action::after': {

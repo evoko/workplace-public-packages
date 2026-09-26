@@ -8,20 +8,23 @@
 /// states of the control it sits in (SolarStatesBuilder), so in a SolarButton it follows the
 /// button's hover, press and disabled colours, as Figma draws it; given [onPressed], it is a
 /// control of its own. A count of 0 or less draws nothing, and one above [max] reads `<max>+`, as
-/// SOLAR says.
+/// SOLAR says. Where its [type] is not given, it takes the one the parent around it composes (a
+/// SolarButton's recipe names its Counter's type, [SolarCounterTypeScope]), else the recipe's
+/// default.
 library;
 
 import 'package:flutter/material.dart';
 
 import '../generated/components/counter.dart';
 import '../solar_layers.dart';
+import '../solar_composed.dart';
 import '../solar_states.dart';
 import 'solar_theme_of.dart';
 
 class SolarCounter extends StatelessWidget {
   const SolarCounter({
     super.key,
-    this.type = SolarCounterType.regular,
+    this.type,
     this.disabled = false,
     required this.count,
     this.max = 99,
@@ -29,7 +32,9 @@ class SolarCounter extends StatelessWidget {
     this.statesController,
   });
 
-  final SolarCounterType type;
+  /// Its type; null for the one the parent around it composes ([SolarCounterTypeScope]: `inverted`
+  /// in a primary SolarButton, `regular` in the others), or, in none, the recipe's default.
+  final SolarCounterType? type;
   final bool disabled;
 
   /// The count. At 0 or below the counter is not drawn: SOLAR never shows a literal 0.
@@ -49,7 +54,13 @@ class SolarCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     if (count <= 0) return const SizedBox.shrink();
     final t = solarThemeOf(context);
-    final p = SolarCounterProps(type: type, disabled: disabled);
+    final p = SolarCounterProps(
+      type:
+          type ??
+          SolarCounterTypeScope.maybeOf(context) ??
+          const SolarCounterProps().type,
+      disabled: disabled,
+    );
     Widget draw(Set<WidgetState> states) => SolarLayers(
       recipe: SolarLayerRecipe(
         lookup: (c) => SolarCounterRecipe.lookup(c, p, states),

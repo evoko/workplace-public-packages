@@ -490,7 +490,12 @@ describe('the pickers’ shells', () => {
     const select = reactShell('Select');
     expect(select).toContain("from '@mui/material/Select';");
     expect(select).toContain('IconComponent={NoIcon}');
-    expect(select).toContain('disablePortal: true');
+    // Portaled into a host in its root (internal/panel.tsx), not drawn in place, where MUI's modal
+    // hid the page, the listbox with it.
+    expect(select).toContain("usePickerPanel('SolarSelect'");
+    expect(select).toContain('...panel.menuProps');
+    expect(select).toMatch(/\{panel\.host\}\s*\{drawChildren\('root'/);
+    expect(select).not.toContain('disablePortal: true');
     expect(select).toContain(
       "className: 'SolarSelect--dropdownMenu SolarSelect-box'",
     );
@@ -499,10 +504,21 @@ describe('the pickers’ shells', () => {
     expect(widget).not.toContain('SolarDropdownMenu(');
   });
 
+  it('lay the panel’s host out as nothing, so it adds no gap to the root’s column', () => {
+    for (const name of ['Select', 'Dropdown']) {
+      const { resets } = DESCRIPTORS.find((d) => d.name === name).mui;
+      expect(resets[`& .Solar${name}-panelHost`], name).toEqual({
+        display: 'contents',
+      });
+    }
+  });
+
   it('make Dropdown’s panel a Dropdown Menu, since Figma draws it none', () => {
     const dropdown = reactShell('Dropdown');
     expect(dropdown).toContain('IconComponent={NoIcon}');
-    expect(dropdown).toContain('disablePortal: true');
+    expect(dropdown).toContain("usePickerPanel('SolarDropdown'");
+    expect(dropdown).toMatch(/\{panel\.host\}\s*\{drawChildren\('root'/);
+    expect(dropdown).not.toContain('disablePortal: true');
     expect(dropdown).toContain("className: 'SolarDropdownMenu'");
     expect(dropdown).toContain('sx: solarDropdownMenuStyle({ size })');
     const widget = flutterShell('Dropdown');

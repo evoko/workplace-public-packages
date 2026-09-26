@@ -118,7 +118,7 @@ export const InsightCardSmall = forwardRef<
         {...(href != null ? { href } : {})}
         onClick={onClick}
       >
-        <span className="SolarInsightCardSmall-name">{title}</span>
+        <span className="SolarInsightCardSmall-visuallyHidden">{title}</span>
       </ButtonBase>
     ) : null;
   return (

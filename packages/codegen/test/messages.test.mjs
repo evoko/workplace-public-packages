@@ -20,6 +20,27 @@ const of = (name) => built.find((b) => b.spec.component === name);
 const open = (name) => of(name).deviations.filter((d) => !d.decision);
 
 describe('the callouts', () => {
+  it('draw their action as a bare button with a 44 × 44 target, the reset and the target in one rule', () => {
+    // The target was once spread under the reset's own key and replaced it: the action drew as the
+    // browser's grey button.
+    for (const name of ['Alert', 'Alert Small', 'Toast']) {
+      const { styles } = renderMuiComponent(of(name).spec, tokens);
+      const action = `& button.Solar${name.replace(' ', '')}-action`;
+      expect(styles.reset[action], name).toMatchObject({
+        appearance: 'none',
+        border: '0',
+        padding: '0',
+        background: 'none',
+        cursor: 'pointer',
+        position: 'relative',
+      });
+      expect(styles.reset[`${action}::after`], name).toMatchObject({
+        content: '""',
+        width: 'max(100%, var(--solar-size-target-min))',
+      });
+    }
+  });
+
   it('take a type and a variant (Figma’s style), fill their space, and decide every finding', () => {
     for (const name of ['Alert', 'Alert Small']) {
       const { spec } = of(name);

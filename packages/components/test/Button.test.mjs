@@ -6,6 +6,7 @@ import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Button } from '../src/Button.tsx';
+import { Counter } from '../src/Counter.tsx';
 
 /** Server-renders one element and returns its markup and the CSS emotion produced for it. */
 function render(element) {
@@ -163,6 +164,55 @@ describe('the SOLAR Button shell', () => {
     render(h(Button, { iconLeading: h('svg'), 'aria-label': 'Delete' }));
     render(h(Button, null, 'Save'));
     expect(warn).not.toHaveBeenCalled();
+  });
+
+  // Figma draws the Counter in a Button in a type of the Button's: `inverted` in a primary one,
+  // `regular` in the others. The app passes a plain Counter; the Button gives it the type.
+  describe('a Counter in its counter', () => {
+    /**
+     * The last background-color of the Counter's own rule: the first emotion class after `after`
+     * in the markup (the Button's counter slot, or the start for a Counter alone).
+     */
+    const counterFill = (element, after = '') => {
+      const { html, css } = render(element);
+      const cls = /<span class="[^"]*?(?<![-\w])(s-[a-z0-9]+)/.exec(
+        html.slice(html.indexOf(after)),
+      )[1];
+      // Its own rule alone, the class as the whole selector, not a state's (`:disabled .s-…`).
+      const rule = [
+        ...css.matchAll(new RegExp(`(?:^|\\})\\.${cls}\\{([^}]*)\\}`, 'gm')),
+      ]
+        .map((m) => m[1])
+        .join(';');
+      return [...rule.matchAll(/(?<![-a-z])background-color:([^;}]+)/g)].at(
+        -1,
+      )?.[1];
+    };
+    const inButton = (props) =>
+      counterFill(h(Button, props, 'Inbox'), 'SolarButton-counter');
+
+    it('takes the type the Button’s recipe composes, with no type of its own', () => {
+      // Primary: inverted, whose fill is action.secondary's (transparent).
+      expect(inButton({ counter: h(Counter, { count: 3 }) })).toBe(
+        'var(--solar-color-action-secondary-bg-default)',
+      );
+      // Secondary: regular, action.primary's fill.
+      expect(
+        inButton({ prio: 'secondary', counter: h(Counter, { count: 3 }) }),
+      ).toBe('var(--solar-color-action-primary-bg-default)');
+    });
+
+    it('keeps an explicit type of its own', () => {
+      expect(
+        inButton({ counter: h(Counter, { count: 3, type: 'danger' }) }),
+      ).toBe('var(--solar-color-action-primary-bg-danger-default)');
+    });
+
+    it('is its own default type outside a Button', () => {
+      expect(counterFill(h(Counter, { count: 3 }))).toBe(
+        'var(--solar-color-action-primary-bg-default)',
+      );
+    });
   });
 
   it('keeps a caller’s sx on top of the recipe', () => {

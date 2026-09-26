@@ -8,7 +8,7 @@
  *   name       the component's name in code: its Figma name, or its overlay's codeName
  *   address    how the catalog finds it, where that is not `name` (`calendar/Day Cell`)
  *   mui        slots (or 'drawn': every layer the shell draws, from the IR), resets, svgLayers,
- *              states, overlaps, restates (src/emit/mui-component.mjs)
+ *              states, overlaps, restates, stretch (src/emit/mui-component.mjs)
  *   flutter    style, shared, states (src/emit/flutter-component.mjs: a platform state's own
  *              test, the Flutter side of mui.states)
  *   api        how each platform reaches what the IR names, where not by its own name or its

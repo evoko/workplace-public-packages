@@ -5,11 +5,11 @@ renders in them without finding and declaring the fonts itself. Flutter cannot r
 these are TrueType; the web gets the same families from Fontsource through
 `@bwp-web/styles/fonts.css`.
 
-| Family        | Weights            | Used by                          | Source                                                                                  |
-| ------------- | ------------------ | -------------------------------- | --------------------------------------------------------------------------------------- |
-| Inter         | 400, 500, 600, 700 | 40 text styles: the app font     | [rsms/inter v4.1](https://github.com/rsms/inter/releases/tag/v4.1), `extras/ttf/`       |
-| Montserrat    | 500, 600           | the 5 display styles             | [JulietaUla/Montserrat v7.222](https://github.com/JulietaUla/Montserrat/releases), `fonts/ttf/` |
-| IBM Plex Mono | 500                | the 2 code styles                | [IBM/plex @ibm/plex-mono 2.5.0](https://github.com/IBM/plex/releases), `fonts/complete/ttf/` |
+| Family        | Weights            | Used by                      | Source                                                                                          |
+| ------------- | ------------------ | ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| Inter         | 400, 500, 600, 700 | 40 text styles: the app font | [rsms/inter v4.1](https://github.com/rsms/inter/releases/tag/v4.1), `extras/ttf/`               |
+| Montserrat    | 500, 600           | the 5 display styles         | [JulietaUla/Montserrat v7.222](https://github.com/JulietaUla/Montserrat/releases), `fonts/ttf/` |
+| IBM Plex Mono | 500                | the 2 code styles            | [IBM/plex @ibm/plex-mono 2.5.0](https://github.com/IBM/plex/releases), `fonts/complete/ttf/`    |
 
 All three are licensed under the **SIL Open Font License 1.1**, which allows bundling them with
 software provided the licence travels with them; each folder holds its project's licence file,

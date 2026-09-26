@@ -1,12 +1,18 @@
 /**
- * The lists every generated component is in (src/emit/registries.mjs), written from the component
- * list so adding a component edits none of them by hand.
+ * The lists every generated component is in (src/emit/registries.mjs), and the Playground builder
+ * registries (src/emit/playground.mjs), written from the component list so adding a component
+ * edits none of them by hand.
  */
 
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import {
+  playgroundFileOf,
+  renderPlaygroundRegistries,
+} from '../src/emit/playground.mjs';
 import { renderRegistries } from '../src/emit/registries.mjs';
+import { playgroundData } from '../src/playground/controls.mjs';
 import { library, NAMES, shelled } from '../src/stages/components.mjs';
 import { packagesDir } from '../src/util/paths.mjs';
 
@@ -61,5 +67,58 @@ describe('renderRegistries', () => {
       expect(existsSync(path), file).toBe(true);
       expect(readFileSync(path, 'utf8'), file).toBe(text);
     }
+  });
+});
+
+describe('renderPlaygroundRegistries', () => {
+  const { web, dart } = renderPlaygroundRegistries();
+  const webDir = join(packagesDir, 'components', 'stories', 'playground');
+  const dartDir = join(
+    packagesDir,
+    'solar_flutter',
+    'widgetbook',
+    'lib',
+    'playground',
+  );
+  // Every component with a story: every one but a chart a library draws.
+  const withStory = NAMES.filter((n) => !library(n)).sort();
+  const keysOf = (text, entry) =>
+    text
+      .split('\n')
+      .map((l) => entry.exec(l))
+      .filter(Boolean)
+      .map((m) => m[1] ?? m[2]);
+
+  it('lists exactly the components with a Playground, on both platforms', () => {
+    const playground = Object.keys(playgroundData().components).sort();
+    expect(playground).toEqual(withStory);
+    const webKeys = keysOf(web, /^ {2}(?:'([^']+)'|(\w+)): \w+,$/);
+    const dartKeys = keysOf(dart, /^ {2}'([^']+)': \w+Playground,$/);
+    expect(webKeys).toEqual(playground);
+    expect(dartKeys).toEqual(playground);
+  });
+
+  it('imports each builder from a file that exists, named after its builder', () => {
+    for (const name of withStory) {
+      const { web: w, dart: d } = playgroundFileOf(name);
+      expect(existsSync(join(webDir, w)), w).toBe(true);
+      expect(existsSync(join(dartDir, d)), d).toBe(true);
+      expect(web).toContain(`from './${w.replace(/\.tsx$/, '.js')}';`);
+      expect(dart).toContain(`import '${d}';`);
+    }
+    expect(playgroundFileOf('DatePicker')).toEqual({
+      web: 'date-picker.tsx',
+      dart: 'date_picker.dart',
+    });
+    expect(playgroundFileOf('PIN Input').web).toBe('pin-input.tsx');
+    expect(web).toContain("  'Text Input': textInput,");
+    expect(dart).toContain("  'Text Input': textInputPlayground,");
+  });
+
+  it('matches what is committed', () => {
+    expect(readFileSync(join(webDir, 'registry.generated.ts'), 'utf8')).toBe(
+      web,
+    );
+    expect(readFileSync(join(dartDir, 'registry.dart'), 'utf8')).toBe(dart);
   });
 });

@@ -135,7 +135,7 @@ export const StatusCard = forwardRef<HTMLDivElement, StatusCardProps>(
           {...(href != null ? { href } : {})}
           onClick={onClick}
         >
-          <span className="SolarStatusCard-name">{title}</span>
+          <span className="SolarStatusCard-visuallyHidden">{title}</span>
         </ButtonBase>
       ) : null;
     return (

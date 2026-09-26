@@ -53,7 +53,9 @@ From the repository root:
 The commands that fetch from Figma or rebuild the docs are in [docs/README.md](../README.md#commands).
 
 In `packages/solar_flutter`: `flutter test` (the widget tests and the Flutter visual check,
-reports in `build/visual/`), `flutter analyze`, `dart format lib test variants/lib widgetbook/lib`.
+reports in `build/visual/`), `flutter analyze`,
+`dart format lib test variants/lib widgetbook/lib widgetbook/test`; in its `widgetbook/`,
+`flutter test` (the Playground adapter and builders).
 
 ## Verify before saying a task is done
 
@@ -69,7 +71,8 @@ npm run lint && npm run typecheck && npm run format
 npm run solar:rebuild && npm run solar:rebuild && git status --porcelain   # only your own changes
 npm run test:visual
 (cd packages/solar_flutter && flutter analyze && (cd variants && flutter analyze) && (cd widgetbook && flutter analyze) \
-  && dart format --output=none --set-exit-if-changed lib test variants/lib widgetbook/lib && flutter test)
+  && dart format --output=none --set-exit-if-changed lib test variants/lib widgetbook/lib widgetbook/test \
+  && flutter test && (cd widgetbook && flutter test))
 npm run build-storybook -w @bwp-web/components && npm run widgetbook -- build
 npm run build && npm run smoke:install
 node scripts/check-personal-data.mjs
@@ -151,17 +154,21 @@ Every file but the overlay is named from the component's name in code, Figma's n
 overlay's `codeName`: lower-cased with every run of other characters as `-` (the slug) or `_` (the
 snake), or PascalCase. For **Split Button**, named `SplitButton` in Figma, and **Button Group**:
 
-| File                                                                   | SplitButton              | Button Group              |
-| ---------------------------------------------------------------------- | ------------------------ | ------------------------- |
-| descriptor, `packages/codegen/src/components/`                         | `splitbutton.mjs`        | `button-group.mjs`        |
-| overlay, `spec/overlay/`                                               | `splitbutton.yaml`       | `button-group.yaml`       |
-| React shell, `packages/components/src/`                                | `SplitButton.tsx`        | `ButtonGroup.tsx`         |
-| Flutter shell, `packages/solar_flutter/lib/src/components/`            | `solar_splitbutton.dart` | `solar_button_group.dart` |
-| web case, `packages/components/test/visual/cases/`                     | `splitbutton.tsx`        | `button-group.tsx`        |
-| Flutter builder and case, `variants/lib/src/` and `test/visual/cases/` | `splitbutton.dart`       | `button_group.dart`       |
+| File                                                                            | SplitButton              | Button Group              |
+| ------------------------------------------------------------------------------- | ------------------------ | ------------------------- |
+| descriptor, `packages/codegen/src/components/`                                  | `splitbutton.mjs`        | `button-group.mjs`        |
+| overlay, `spec/overlay/`                                                        | `splitbutton.yaml`       | `button-group.yaml`       |
+| React shell, `packages/components/src/`                                         | `SplitButton.tsx`        | `ButtonGroup.tsx`         |
+| Flutter shell, `packages/solar_flutter/lib/src/components/`                     | `solar_splitbutton.dart` | `solar_button_group.dart` |
+| web case, `packages/components/test/visual/cases/`                              | `splitbutton.tsx`        | `button-group.tsx`        |
+| Flutter builder and case, `variants/lib/src/` and `test/visual/cases/`          | `splitbutton.dart`       | `button_group.dart`       |
+| web Playground builder, `packages/components/stories/playground/`               | `split-button.tsx`       | `button-group.tsx`        |
+| Flutter Playground builder, `packages/solar_flutter/widgetbook/lib/playground/` | `split_button.dart`      | `button_group.dart`       |
 
 The overlay alone is named from the component's address, Figma's name or `<section>/<name>`
-(`inputs-day-cell.yaml` for Date Picker Day Cell).
+(`inputs-day-cell.yaml` for Date Picker Day Cell). The Playground builders are named from the
+builder's identifier word by word (`playgroundFileOf`, `packages/codegen/src/emit/playground.mjs`),
+so `SplitButton` is `split-button.tsx`, not the slug's `splitbutton`.
 
 `npm run solar:codegen` writes the registries that import these files, so the typecheck and
 `flutter analyze` name any that are missing or misnamed. Where Figma's name is two components'
@@ -191,14 +198,25 @@ In short (every table a descriptor may hold is in the codegen README's
 6. Write its visual cases: `packages/components/test/visual/cases/<slug>.tsx`, a builder in
    `packages/solar_flutter/variants/lib/src/` and a case in `packages/solar_flutter/test/visual/cases/`.
    Until they exist the typecheck and `flutter analyze` fail on the registries naming them.
-7. Unit tests for its IR and recipes (`packages/codegen/test/`) and its shells (the Flutter
-   `test/solar_<name>_test.dart`).
-8. Its entry in `packages/components/README.md` and `packages/solar_flutter/README.md`, its open
+7. Write its two Playground builders, `packages/components/stories/playground/<file>.tsx` and
+   `packages/solar_flutter/widgetbook/lib/playground/<file>.dart`, starting from the nearest
+   component's: each renders the real component from the generated controls, wires its callbacks
+   to `set` and `log`, and holds no design value. Give it extras or sample words in
+   `packages/codegen/src/playground/extras.mjs` where the IR holds no value an app gives it (a
+   typed value, an overlay's `open`) or Figma records no words for a text slot, then
+   `npm run solar:codegen`. Until both builders exist the typecheck and `flutter analyze` fail on
+   the generated Playground registries. The controls, the interface and the rules:
+   [architecture.md, The viewers](architecture.md#the-viewers).
+8. Unit tests for its IR and recipes (`packages/codegen/test/`) and its shells (the Flutter
+   `test/solar_<name>_test.dart`); the Playground tests cover its builders already, and an
+   interaction of a new kind gets its own (`test/visual/playground.spec.mjs`, the Widgetbook
+   `test/playground_*_test.dart`).
+9. Its entry in `packages/components/README.md` and `packages/solar_flutter/README.md`, its open
    findings and governance gaps in the design review (below), and any decision in
    [decisions.md](decisions.md).
-9. Verify, as above.
+10. Verify, as above.
 
-Both viewers then show it with no more work.
+Both viewers then show its variants and its Playground.
 
 ## Approve a component
 

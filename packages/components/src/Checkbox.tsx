@@ -9,8 +9,11 @@
  * One choice of many, committed on click. It wraps MUI's Checkbox, a native input, with its box,
  * tick and dash drawn from Figma's layer tree (`internal/layers.tsx`). `mixed` draws the dash, for
  * a parent box whose children are partly checked, and is announced so. Give it a name: a <label>
- * around it or beside it (which toggles it), or an `aria-label`. Controlled with `checked`, or
- * not with `defaultChecked`. The app must load `@bwp-web/styles/tokens.css`.
+ * around it or beside it (which toggles it), or an `aria-label`; in a list, an Option Row, or a
+ * <label> at least `size.target.min` tall, since the 44 × 44 input overflows the box. Not MUI's
+ * FormControlLabel, whose rows overlap the targets and whose -11px margin pulls the box out of its
+ * place (the README, Checkbox). Controlled with `checked`, or not with `defaultChecked`. The app
+ * must load `@bwp-web/styles/tokens.css`.
  */
 
 import { useSolarProps } from './internal/theme.js';

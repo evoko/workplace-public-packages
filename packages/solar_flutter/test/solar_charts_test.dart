@@ -32,6 +32,28 @@ void main() {
       },
     );
 
+    testWidgets('takes a List<double> or a List<int>, not only a List<num>', (
+      tester,
+    ) async {
+      // Typed lists, as a caller's data are: a List<double> reduced by math.min threw.
+      final doubles = <double>[1.5, 2.5, 0.5];
+      final ints = <int>[3, 1, 4];
+      expect(sparklinePoints(doubles, const Size(80, 24)), const [
+        Offset(0, 12),
+        Offset(40, 0),
+        Offset(80, 24),
+      ]);
+      expect(sparklinePoints(ints, const Size(80, 24)), const [
+        Offset(0, 8),
+        Offset(40, 24),
+        Offset(80, 0),
+      ]);
+      await pump(tester, SolarSparkline(data: doubles));
+      expect(tester.takeException(), isNull);
+      await pump(tester, SolarSparkline(data: ints));
+      expect(tester.takeException(), isNull);
+    });
+
     test('takes its trend from its data', () {
       expect(sparklineTrendOf([1, 2, 3]), SolarSparklineTrend.up);
       expect(sparklineTrendOf([3, 1]), SolarSparklineTrend.down);

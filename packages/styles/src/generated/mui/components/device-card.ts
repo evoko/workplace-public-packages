@@ -60,11 +60,11 @@ export const solarDeviceCardStyles = {
       inset: '0',
       borderRadius: 'inherit',
     },
-    '& .SolarDeviceCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarDeviceCard-press)':
+    '& .SolarDeviceCard-box :is(a, button, input, select, textarea, [tabindex]):not(.SolarDeviceCard-press, [aria-hidden="true"])':
       {
         position: 'relative',
       },
-    '& .SolarDeviceCard-name': {
+    '& .SolarDeviceCard-visuallyHidden': {
       position: 'absolute',
       width: '1px',
       height: '1px',

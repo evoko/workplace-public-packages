@@ -5,7 +5,7 @@
 
 import { pascal } from '../../util/naming.mjs';
 import { drawnResets } from './drawn.mjs';
-import { targetArea } from './target.mjs';
+import { BUTTON_RESET, targetArea } from './target.mjs';
 
 /** Where MUI draws each layer: every layer drawn by the shell, the action a bare <button>. */
 export function alertMui(name) {
@@ -13,17 +13,10 @@ export function alertMui(name) {
   return {
     slots: 'drawn',
     resets: drawnResets(name, {
-      [`& button.${P}-action`]: {
-        appearance: 'none',
-        border: '0',
-        padding: '0',
-        margin: '0',
-        background: 'none',
-        cursor: 'pointer',
-        textAlign: 'start',
-      },
-      // A 44 × 44 target around the action (target.mjs).
-      ...targetArea(`& button.${P}-action`),
+      // A 44 × 44 target around the action (target.mjs), the button none of the browser's look.
+      ...targetArea(`& button.${P}-action`, {
+        rules: { ...BUTTON_RESET, textAlign: 'start' },
+      }),
     }),
   };
 }
