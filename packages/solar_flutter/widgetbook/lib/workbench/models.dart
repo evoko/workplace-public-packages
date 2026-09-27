@@ -52,6 +52,7 @@ class WorkbenchPending {
     : component = j['component'] as String,
       key = j['key'] as String,
       value = (j['value'] as Map).cast<String, Object?>(),
+      was = j['was'] as String?,
       deletes = j['deletes'] as bool,
       previousReason = j['previousReason'] as String?,
       failing = (j['failing'] as List?)
@@ -61,6 +62,9 @@ class WorkbenchPending {
 
   final String component, key;
   final Map<String, Object?> value;
+
+  /// What the variant in view drew before the edit (the entry as explain reads it), or null.
+  final String? was;
   final bool deletes;
   final String? previousReason;
   final List<WorkbenchFailure>? failing;
@@ -72,6 +76,11 @@ class WorkbenchPending {
   /// The value set: a token's name, a keyword, or `none`.
   String get valueText =>
       '${value['token'] ?? value['keyword'] ?? (value['none'] == true ? 'none' : '')}';
+
+  /// The edit in one line: its key, what it drew before where the service says, and what it sets
+  /// (Figma's value where it deletes the rule).
+  String get text =>
+      'Pending: $key${was == null || deletes ? '' : ': $was'} → ${deletes ? "Figma's value (the rule is removed)" : valueText}';
 }
 
 /// What a component may do, from its circles on both platforms.
@@ -110,16 +119,40 @@ class WorkbenchStatus {
   final Map<String, ComponentStatus> components;
 }
 
-/// One cell of a layer in a variant: its entry, the looks a rule may be keyed on, and what it may
-/// be set to.
+/// A scope a set may be keyed on: its plain words (`every md`, `primary · at rest`), its key, how
+/// many variants a set there would change (of those that draw the layer), the recipe position of
+/// the entry that overrides it in the variant in view and that entry's scope in plain words (or
+/// null), and whether the entry in view is set here now.
+typedef WorkbenchScope = ({
+  String label,
+  String key,
+  int count,
+  String? wins,
+  String? winsLabel,
+  bool current,
+});
+
+/// One cell of a layer in a variant: its entry and value, where it comes from, the looks a rule may
+/// be keyed on, and what it may be set to.
 class WorkbenchCell {
   WorkbenchCell.fromJson(Map<String, dynamic> j)
     : cell = j['cell'] as String,
       entry = j['entry'] as String,
+      value = j['value'] as String,
+      total = j['total'] as int,
       at = j['at'] as String?,
+      origin = j['origin'] as String,
+      reason = j['reason'] as String?,
       scopes = [
         for (final s in j['scopes'] as List)
-          (label: (s as Map)['label'] as String, key: s['key'] as String),
+          (
+            label: (s as Map)['label'] as String,
+            key: s['key'] as String,
+            count: s['count'] as int,
+            wins: s['wins'] as String?,
+            winsLabel: s['winsLabel'] as String?,
+            current: s['current'] as bool,
+          ),
       ],
       choices = [
         for (final c in j['choices'] as List)
@@ -130,8 +163,20 @@ class WorkbenchCell {
       note = j['note'] as String?;
 
   final String cell, entry;
+
+  /// The entry as a person reads it: a token's value, a literal, a keyword, `none`.
+  final String value;
+
+  /// How many variants the component has: what a scope's count is out of.
+  final int total;
   final String? at;
-  final List<({String label, String key})> scopes;
+
+  /// Where the entry comes from: `figma`, `rule` or `defaults`.
+  final String origin;
+
+  /// The rule's or the default's reason, where one sets the entry.
+  final String? reason;
+  final List<WorkbenchScope> scopes;
   final List<({String name, String value})> choices;
   final List<String> keywords;
   final bool none;
@@ -144,6 +189,7 @@ class WorkbenchCell {
 class WorkbenchLayer {
   WorkbenchLayer.fromJson(Map<String, dynamic> j)
     : name = j['name'] as String,
+      parent = j['parent'] as String?,
       hidden = j['hidden'] as bool,
       cells = [
         for (final c in j['cells'] as List)
@@ -151,18 +197,39 @@ class WorkbenchLayer {
       ];
 
   final String name;
+
+  /// The nearest layer the variant draws that this one sits in; null for the root.
+  final String? parent;
   final bool hidden;
   final List<WorkbenchCell> cells;
 }
+
+/// One variant of the component: its oracle index, Figma's name, and its value on each axis.
+typedef WorkbenchVariant = ({
+  int index,
+  String name,
+  Map<String, String> parts,
+});
 
 class WorkbenchInspection {
   WorkbenchInspection.fromJson(Map<String, dynamic> j)
     : component = j['component'] as String,
       revision = j['revision'] as String,
       variant = j['variant'] as int,
+      axes = [
+        for (final a in j['axes'] as List)
+          (
+            name: (a as Map)['name'] as String,
+            values: (a['values'] as List).cast<String>(),
+          ),
+      ],
       variants = [
         for (final v in j['variants'] as List)
-          (index: (v as Map)['index'] as int, name: v['name'] as String),
+          (
+            index: (v as Map)['index'] as int,
+            name: v['name'] as String,
+            parts: (v['parts'] as Map).cast<String, String>(),
+          ),
       ],
       layers = [
         for (final l in j['layers'] as List)
@@ -171,8 +238,15 @@ class WorkbenchInspection {
 
   final String component, revision;
   final int variant;
-  final List<({int index, String name})> variants;
+
+  /// Each variant axis in Figma's spelling, and its values in the order the variants draw them.
+  final List<({String name, List<String> values})> axes;
+  final List<WorkbenchVariant> variants;
   final List<WorkbenchLayer> layers;
+
+  /// The variant in view, where the inspection lists it.
+  WorkbenchVariant? get current =>
+      variants.where((v) => v.index == variant).firstOrNull;
 }
 
 /// Keep's and Approve's answer: done, or the checks that failed.

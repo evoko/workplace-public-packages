@@ -258,6 +258,22 @@ describe('the session', () => {
     });
   });
 
+  it('records what the variant in view drew before the edit, as was', async () => {
+    await s.set(setBody(s));
+    expect((await s.status()).pending.was).toBe(
+      'color.action.primary.bg.default',
+    );
+    expect(JSON.parse(w.files.get(PENDING)).was).toBe(
+      'color.action.primary.bg.default',
+    );
+  });
+
+  it('records a rule the edit replaces as was', async () => {
+    w.files.set(OVERLAY, overlay(RULE));
+    await s.set(setBody(s));
+    expect((await s.status()).pending.was).toBe('color.text.secondary');
+  });
+
   it('saves the pending edit before it writes the overlay', async () => {
     await s.set(setBody(s));
     expect(w.writes.indexOf(PENDING)).toBeGreaterThanOrEqual(0);

@@ -11,6 +11,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
+import { STATE_SELECTORS } from '../../../codegen/src/emit/mui-component.mjs';
 import { playgroundData } from '../../../codegen/src/playground/controls.mjs';
 import { WORKSPACE_SOURCES } from '../../../codegen/src/util/workspace-sources.mjs';
 
@@ -65,8 +66,12 @@ export default async function setup() {
   await page('playground-page.tsx', 'playground.html', {
     __PLAYGROUND__: JSON.stringify(playgroundData()),
   });
+  // How each component's states are marked, as Storybook's virtual:solar serves them as STATES, for
+  // the variant the Inspect dialog draws (stories/variant-stage.tsx).
+  const states = { __STATES__: JSON.stringify(STATE_SELECTORS) };
   // The workbench bar over a fake service (workbench.spec.mjs).
-  await page('workbench-page.tsx', 'workbench.html');
-  // The workbench bar over HTTP, for the shared scenarios (workbench-scenarios.spec.mjs).
-  await page('workbench-scenario-page.tsx', 'workbench-scenario.html');
+  await page('workbench-page.tsx', 'workbench.html', states);
+  // The workbench bar over HTTP, for the shared scenarios and the dialog's own checks
+  // (workbench-scenarios.spec.mjs, workbench-dialog.spec.mjs).
+  await page('workbench-scenario-page.tsx', 'workbench-scenario.html', states);
 }

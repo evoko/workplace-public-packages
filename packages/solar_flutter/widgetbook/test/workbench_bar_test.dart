@@ -1,8 +1,9 @@
 // The workbench bar (lib/workbench/bar.dart) against a fake service: what it offers by the
-// component's circle on Flutter, the set a chosen token sends, Approve and Undo approval through
-// their Confirmation Dialogs, the pending edit's Keep and Undo (failing checks included), one action
-// at a time, a refusal shown once, a service still starting, and no bar where no service answers.
-// As the web's (packages/components/test/visual/workbench.spec.mjs).
+// component's circle on Flutter, Approve and Undo approval through their Confirmation Dialogs, the
+// pending edit's Keep and Undo (failing checks included), one action at a time, a refusal shown
+// once, a service still starting, and no bar where no service answers. As the web's
+// (packages/components/test/visual/workbench.spec.mjs); Inspect's dialog is the shared scenarios'
+// (workbench_scenarios_test.dart).
 
 import 'dart:async';
 
@@ -75,7 +76,6 @@ class FakeClient implements WorkbenchClient {
 
   final calls = <List<Object?>>[];
   var statusCalls = 0;
-  var inspectCalls = 0;
   var closed = false;
 
   Map<String, dynamic> get _status => {
@@ -124,101 +124,15 @@ class FakeClient implements WorkbenchClient {
     return WorkbenchStatus.fromJson(_status);
   }
 
+  /// No test here opens Inspect's dialog (the shared scenarios do): an inspection only fails.
   @override
-  Future<WorkbenchInspection> inspect(String component, int variant) async {
-    inspectCalls++;
-    if (inspectError != null) {
-      throw WorkbenchException(inspectError!, status: 500);
-    }
-    return WorkbenchInspection.fromJson({
-      'component': 'Button',
-      'revision': 'r1',
-      'variant': variant,
-      'variants': [
-        {
-          'index': 0,
-          'name': 'size=md, prio=primary, state=default, danger=false',
-        },
-        {
-          'index': 1,
-          'name': 'size=sm, prio=primary, state=default, danger=false',
-        },
-      ],
-      'layers': [
-        {
-          'name': 'root',
-          'className': 'SolarButton-root',
-          'hidden': false,
-          'cells': [
-            {
-              'cell': 'radius',
-              'entry': 'radius.control',
-              'at': 'base',
-              'scopes': [
-                {'label': 'every variant', 'key': 'root.base.radius'},
-                {'label': 'prio=primary', 'key': 'root.prio.primary.radius'},
-              ],
-              'choices': [
-                {'name': 'radius.pill', 'value': '9999px'},
-              ],
-              'keywords': <String>[],
-              'none': true,
-            },
-            {
-              'cell': 'width',
-              'entry': '120',
-              'at': 'base',
-              'scopes': <Object>[],
-              'choices': <Object>[],
-              'keywords': <String>[],
-              'none': false,
-              'note': 'a raw value the overlay allows',
-            },
-            {
-              'cell': 'opacity',
-              'entry': '1',
-              'at': 'size.md',
-              'scopes': <Object>[],
-              'choices': <Object>[],
-              'keywords': <String>[],
-              'none': false,
-            },
-            {
-              'cell': 'gap',
-              'entry': '0',
-              'at': null,
-              'scopes': <Object>[],
-              'choices': <Object>[],
-              'keywords': <String>[],
-              'none': false,
-            },
-          ],
-        },
-        {
-          'name': 'label',
-          'className': 'SolarButton-label',
-          'hidden': false,
-          'cells': [
-            {
-              'cell': 'radius',
-              'entry': 'radius.control',
-              'at': 'base',
-              'scopes': [
-                {'label': 'every variant', 'key': 'label.base.radius'},
-                {'label': 'prio=primary', 'key': 'label.prio.primary.radius'},
-              ],
-              'choices': [
-                {'name': 'radius.pill', 'value': '9999px'},
-              ],
-              'keywords': <String>[],
-              'none': true,
-            },
-          ],
-        },
-      ],
-    });
-  }
+  Future<WorkbenchInspection> inspect(String component, int variant) async =>
+      throw WorkbenchException(
+        inspectError ?? 'no inspection in these tests',
+        status: 500,
+      );
 
+  /// Set is the dialog's, which these tests never open.
   @override
   Future<WorkbenchStatus> set({
     required String component,
@@ -228,11 +142,7 @@ class FakeClient implements WorkbenchClient {
     required String scope,
     required Map<String, Object?> value,
     required String revision,
-  }) async {
-    calls.add(['set', component, variant, layer, cell, scope, value, revision]);
-    pending = {..._pendingOn('Button'), 'key': scope, 'value': value};
-    return status();
-  }
+  }) => throw UnimplementedError('set is the Inspect dialog\'s');
 
   @override
   Future<WorkbenchOutcome> keep(String component, String reason) async {
@@ -357,141 +267,6 @@ void main() {
     await tester.pumpAndSettle();
     return client;
   }
-
-  testWidgets(
-    'a 🟡 component offers Inspect and Approve; choosing a token sends the set',
-    (tester) async {
-      final client = await pump(tester, FakeClient('yellow'));
-      expect(find.text('🟡 Workbench'), findsOneWidget);
-      expect(find.bySemanticsLabel(RegExp('^Workbench')), findsOneWidget);
-      expect(_button('Approve'), findsOneWidget);
-      // The inspection is read while Inspect is open alone.
-      expect(client.inspectCalls, 0);
-      await tester.tap(find.text('Inspect'));
-      await tester.pumpAndSettle();
-      expect(client.inspectCalls, 1);
-      // A cell with a note says why it offers nothing; one with nothing offered says so.
-      expect(
-        find.text('width: 120 (a raw value the overlay allows)'),
-        findsOneWidget,
-      );
-      expect(
-        find.text('opacity: 1 [size.md] (not editable here: use Report)'),
-        findsOneWidget,
-      );
-      expect(
-        find.text('gap: 0 (not editable here: use Report)'),
-        findsOneWidget,
-      );
-      expect(find.text('radius: radius.control [base]'), findsOneWidget);
-      await tester.tap(find.text('Choose'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.textContaining('radius.pill').last);
-      await tester.pumpAndSettle();
-      // The narrowest scope, until another is chosen; the inspection's own variant.
-      expect(client.calls.single, [
-        'set',
-        'Button',
-        0,
-        'root',
-        'radius',
-        'root.prio.primary.radius',
-        {'token': 'radius.pill'},
-        'r1',
-      ]);
-      // The pending edit: the panel gives way to it, and Approve waits for it.
-      expect(
-        find.text('Pending: root.prio.primary.radius → radius.pill'),
-        findsOneWidget,
-      );
-      expect(find.text('Choose'), findsNothing);
-      expect(_onPressed(tester, 'Approve'), isNull);
-      await tester.enterText(find.byType(EditableText), 'Figma draws a pill');
-      await tester.tap(find.text('Keep'));
-      await tester.pumpAndSettle();
-      expect(client.calls.last, ['keep', 'Button', 'Figma draws a pill']);
-      expect(find.textContaining('Pending:'), findsNothing);
-      expect(find.text('Choose'), findsOneWidget);
-    },
-  );
-
-  testWidgets(
-    'a chosen scope holds until the variant or layer changes, an edit is pending, or Inspect closes',
-    (tester) async {
-      final client = await pump(tester, FakeClient('yellow'));
-      await tester.tap(find.text('Inspect'));
-      await tester.pumpAndSettle();
-
-      /// Chooses `every variant` for the radius in view.
-      Future<void> widest() async {
-        await tester.tap(find.text('prio=primary'));
-        await tester.pumpAndSettle();
-        await tester.tap(find.text('every variant').last);
-        await tester.pumpAndSettle();
-        expect(find.text('every variant'), findsOneWidget);
-      }
-
-      Future<void> choose(String select, String option) async {
-        await tester.tap(find.text(select));
-        await tester.pumpAndSettle();
-        await tester.tap(find.text(option).last);
-        await tester.pumpAndSettle();
-      }
-
-      void narrowest() => expect(find.text('prio=primary'), findsOneWidget);
-
-      // Inspect closed and opened again.
-      await widest();
-      await tester.tap(find.text('Inspect'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Inspect'));
-      await tester.pumpAndSettle();
-      narrowest();
-      // Another variant.
-      await widest();
-      await choose(
-        'size=md, prio=primary, state=default, danger=false',
-        'size=sm, prio=primary, state=default, danger=false',
-      );
-      narrowest();
-      // Another layer, and back.
-      await widest();
-      await choose('root', 'label');
-      narrowest();
-      await choose('label', 'root');
-      narrowest();
-      // Kept while nothing changes: the set is keyed on it.
-      await widest();
-      await choose('Choose', 'radius.pill · 9999px');
-      expect(client.calls.last[5], 'root.base.radius');
-      // A pending edit appeared: undone, the row is at the narrowest again.
-      await tester.tap(find.text('Undo'));
-      await tester.pumpAndSettle();
-      narrowest();
-    },
-  );
-
-  testWidgets('another variant is inspected, and set, as chosen', (
-    tester,
-  ) async {
-    final client = await pump(tester, FakeClient('yellow'));
-    await tester.tap(find.text('Inspect'));
-    await tester.pumpAndSettle();
-    await tester.tap(
-      find.text('size=md, prio=primary, state=default, danger=false'),
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(
-      find.text('size=sm, prio=primary, state=default, danger=false').last,
-    );
-    await tester.pumpAndSettle();
-    expect(client.inspectCalls, 2);
-    await tester.tap(find.text('Choose'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.textContaining('radius.pill').last);
-    await tester.pumpAndSettle();
-    expect(client.calls.single[2], 1);
-  });
 
   testWidgets(
     'a pending edit shows the reason it replaces and the rules sharing it',
@@ -662,24 +437,19 @@ void main() {
     );
   });
 
-  testWidgets(
-    "another component's pending edit hides Inspect's panel and holds Approve",
-    (tester) async {
-      await pump(tester, FakeClient('yellow', pending: _pendingOn('Tag')));
-      expect(_onPressed(tester, 'Approve'), isNull);
-      expect(
-        find.text(
-          'Tag has a pending edit: keep or undo it in its Playground first.',
-        ),
-        findsOneWidget,
-      );
-      await tester.tap(find.text('Inspect'));
-      await tester.pumpAndSettle();
-      expect(find.text('Variant'), findsNothing);
-      expect(find.text('Choose'), findsNothing);
-      expect(find.textContaining('Pending:'), findsNothing);
-    },
-  );
+  testWidgets("another component's pending edit is named, and holds Approve", (
+    tester,
+  ) async {
+    await pump(tester, FakeClient('yellow', pending: _pendingOn('Tag')));
+    expect(_onPressed(tester, 'Approve'), isNull);
+    expect(
+      find.text(
+        'Tag has a pending edit: keep or undo it in its Playground first.',
+      ),
+      findsOneWidget,
+    );
+    expect(find.textContaining('Pending:'), findsNothing);
+  });
 
   testWidgets(
     'a 🟢 component offers Undo approval alone, naming what it withdraws',
@@ -746,36 +516,6 @@ void main() {
   });
 
   testWidgets(
-    'Inspect closes when the component is locked meanwhile, until asked again',
-    (tester) async {
-      final client = await pump(tester, FakeClient('yellow'));
-      await tester.tap(find.text('Inspect'));
-      await tester.pumpAndSettle();
-      expect(find.text('Variant'), findsOneWidget);
-      client
-        ..webGreen = true
-        ..fire('changed');
-      await tester.pumpAndSettle();
-      expect(find.text('Inspect'), findsNothing);
-      expect(find.text('Variant'), findsNothing);
-      expect(
-        find.textContaining('Inspect and Report are locked'),
-        findsOneWidget,
-      );
-      client
-        ..webGreen = false
-        ..fire('changed');
-      await tester.pumpAndSettle();
-      expect(find.text('Inspect'), findsOneWidget);
-      expect(find.text('Variant'), findsNothing);
-      expect(
-        tester.widget<SolarButton>(_button('Inspect')).prio,
-        SolarButtonPrio.tertiary,
-      );
-    },
-  );
-
-  testWidgets(
     'the header is announced, and takes the focus after Approve and Undo approval',
     (tester) async {
       await pump(tester, FakeClient('yellow'));
@@ -806,55 +546,6 @@ void main() {
         FocusManager.instance.primaryFocus?.debugLabel,
         'Workbench header',
       );
-    },
-  );
-
-  testWidgets(
-    'Variant and Layer wait while an action runs; Undo clears the reason',
-    (tester) async {
-      final gate = Completer<void>();
-      final client = await pump(tester, FakeClient('yellow', keepGate: gate));
-      await tester.tap(find.text('Inspect'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Choose'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.textContaining('radius.pill').last);
-      await tester.pumpAndSettle();
-      await tester.enterText(find.byType(EditableText), 'Figma draws a pill');
-      await tester.tap(find.text('Undo'));
-      await tester.pumpAndSettle();
-      expect(client.calls.last, ['undo', 'Button']);
-      // Chosen again: the reason field starts empty.
-      await tester.tap(find.text('Choose'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.textContaining('radius.pill').last);
-      await tester.pumpAndSettle();
-      expect(
-        tester.widget<EditableText>(find.byType(EditableText)).controller.text,
-        '',
-      );
-      // Keep in flight: the panel comes back only after it; meanwhile nothing starts another.
-      await tester.enterText(find.byType(EditableText), 'Figma draws a pill');
-      await tester.tap(find.text('Keep'));
-      await tester.pump();
-      client.pending = null;
-      client.fire('changed');
-      await tester.pump();
-      await tester.pump();
-      for (final label in ['Variant', 'Layer']) {
-        final select = find.ancestor(
-          of: find.text(label),
-          matching: find.byWidgetPredicate((w) => w is SolarSelect),
-        );
-        expect(tester.widget<SolarSelect<Object?>>(select).enabled, isFalse);
-      }
-      gate.complete();
-      await tester.pumpAndSettle();
-      final variant = find.ancestor(
-        of: find.text('Variant'),
-        matching: find.byWidgetPredicate((w) => w is SolarSelect),
-      );
-      expect(tester.widget<SolarSelect<Object?>>(variant).enabled, isTrue);
     },
   );
 

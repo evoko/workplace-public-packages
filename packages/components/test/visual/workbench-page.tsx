@@ -11,16 +11,16 @@
  *
  * Every action is recorded on `window.calls` and every read on `window.reads`, for the test to
  * read; `window.emit(type)` sends an event, and `window.setWeb(colour)` changes Button's circle on
- * the web as an approval would. The component in the box is a stand-in, to point at. The bar is
- * drawn here alone: never on the visual checks' pages, nor in a static Storybook
+ * the web as an approval would. Inspect is not read here (its dialog is the shared scenarios' and
+ * workbench-dialog.spec.mjs's): the fake refuses it. The bar is drawn here alone: never on the visual checks' pages, nor in a static Storybook
  * (stories/playground/adapter.tsx).
  */
 
 import '@bwp-web/styles/tokens.css';
 import '@bwp-web/styles/fonts.css';
-import { useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { SolarProvider } from '../../src/SolarProvider.js';
+import { DrawnVariant } from '../../stories/variant-stage.js';
 import { WorkbenchBar } from '../../stories/workbench/Bar.js';
 import {
   WorkbenchRefusal,
@@ -47,6 +47,7 @@ const pendingOn = (component: string, over: Partial<Pending> = {}) => ({
   component,
   key: 'root.base.radius',
   value: { token: 'radius.full' },
+  was: null,
   deletes: false,
   previousReason: 'Figma rounds it fully',
   failing: null,
@@ -152,80 +153,7 @@ const client: WorkbenchClient = {
   },
   inspect: async (_, variant) => {
     reads.push(['inspect', variant]);
-    return {
-      component: 'Button',
-      revision: 'r1',
-      variant,
-      variants: [
-        {
-          index: 0,
-          name: 'size=md, prio=primary, state=default, danger=false',
-        },
-        {
-          index: 1,
-          name: 'size=sm, prio=primary, state=default, danger=false',
-        },
-      ],
-      layers: [
-        {
-          name: 'root',
-          className: null,
-          hidden: false,
-          cells: [
-            {
-              cell: 'radius',
-              entry: 'radius.control',
-              at: 'base',
-              scopes: [
-                { label: 'every variant', key: 'root.base.radius' },
-                {
-                  label: variant ? 'size=sm' : 'size=md',
-                  key: variant ? 'root.size=sm.radius' : 'root.size=md.radius',
-                },
-              ],
-              choices: [{ name: 'radius.full', value: '9999px' }],
-              keywords: [],
-              none: true,
-            },
-            {
-              cell: 'width',
-              entry: '120px',
-              at: 'base',
-              scopes: [{ label: 'every variant', key: 'root.base.width' }],
-              choices: [],
-              keywords: [],
-              none: false,
-              note: 'a raw value the overlay allows',
-            },
-            {
-              cell: 'gap',
-              entry: 'inset.xs',
-              at: null,
-              scopes: [],
-              choices: [{ name: 'inset.sm', value: '8px' }],
-              keywords: [],
-              none: false,
-            },
-          ],
-        },
-        {
-          name: 'label',
-          className: 'SolarButton-label',
-          hidden: false,
-          cells: [
-            {
-              cell: 'color',
-              entry: 'color.text.inverse',
-              at: 'prio=primary',
-              scopes: [{ label: 'every variant', key: 'label.base.color' }],
-              choices: [{ name: 'color.text.primary', value: '#000000' }],
-              keywords: [],
-              none: false,
-            },
-          ],
-        },
-      ],
-    };
+    throw new WorkbenchRefusal(404, 'Inspect is not read on this page');
   },
   set: async (b) => {
     calls.push(['set', b]);
@@ -273,25 +201,25 @@ const client: WorkbenchClient = {
     }),
 };
 
-function Page() {
-  const box = useRef<HTMLDivElement>(null);
-  return (
-    <SolarProvider>
-      <WorkbenchBar
-        component="Button"
-        platform="web"
-        controls={{ label: 'Label' }}
-        client={client}
-        box={box}
-      />
-      <div ref={box} data-box="">
-        <div className="MuiButton-root">
-          Stand-in <span className="SolarButton-label">Label</span>
-        </div>
-      </div>
-      <p id="ready">ready</p>
-    </SolarProvider>
-  );
-}
+/** How each component's states are marked, as Storybook's virtual:solar serves STATES (build.mjs). */
+declare const __STATES__: Record<string, Record<string, string | null>>;
 
-createRoot(document.getElementById('root')!).render(<Page />);
+createRoot(document.getElementById('root')!).render(
+  <SolarProvider>
+    <WorkbenchBar
+      component="Button"
+      platform="web"
+      controls={{ label: 'Label' }}
+      client={client}
+      drawVariant={(index, stage) => (
+        <DrawnVariant
+          component="Button"
+          index={index}
+          states={__STATES__.Button}
+          {...stage}
+        />
+      )}
+    />
+    <p id="ready">ready</p>
+  </SolarProvider>,
+);

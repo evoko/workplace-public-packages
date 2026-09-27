@@ -4,7 +4,8 @@
  * Figma's spelling, since `rename` applies after `set` (spec/overlay/README.md, `rename`), and a
  * state in the IR's, since `states.rename` applies before the recipe (`states`). Only a key the
  * build takes is offered: one whose entries the IR has, or may be given (`setMayAdd`). The IR path
- * beside each key is where the recipe lookup reads the entry (explain/index.mjs).
+ * beside each key is where the recipe lookup reads the entry (explain/index.mjs), and the label
+ * says the same look in plain words (`plainLabel`).
  */
 
 import { statePrecedence } from '../emit/flutter-component.mjs';
@@ -22,6 +23,35 @@ export function stateOf(spec, variant) {
     if (holds) return state;
   }
   return 'default';
+}
+
+/**
+ * A look (`prio=primary, danger=false`) in plain words: an axis that is false left out, one that
+ * is true by its name, any other by its value alone (`primary`); empty where nothing is left.
+ */
+export function plainLook(look) {
+  if (!look || look === 'default') return '';
+  return look
+    .split(', ')
+    .map((pair) => pair.split('='))
+    .filter(([, value]) => value !== 'false')
+    .map(([axis, value]) => (value === 'true' ? axis : value))
+    .join(', ');
+}
+
+/** A state in plain words: the resting look `at rest`, any other by its name. */
+const plainState = (state) => (state === 'default' ? 'at rest' : state);
+
+/**
+ * A recipe position (an IR path, as `lookupOrder` and `scopesFor` give it) in plain words: `every
+ * variant`, `every md`, `primary · at rest`, `md · primary, danger · hover`.
+ */
+export function plainLabel([section, ...keys]) {
+  if (section === 'base') return 'every variant';
+  if (section === 'size') return `every ${keys[0]}`;
+  const [size, look, state] =
+    section === 'combined' ? keys : [null, keys[0], keys[1]];
+  return [size, plainLook(look), plainState(state)].filter(Boolean).join(' · ');
 }
 
 /** One IR axis name and value in Figma's spelling, by the overlay's `rename`. */
@@ -91,26 +121,23 @@ export function scopesFor(spec, doc, layer, cell, variant) {
   const state = stateOf(spec, variant);
   const figmaSize = size && figmaPair(doc, 'size', size)[1];
   const figmaLook = figmaSpelling(doc, look);
-  const out = [
-    { label: 'every variant', key: `${layer}.base.${cell}`, path: ['base'] },
-  ];
+  const out = [{ key: `${layer}.base.${cell}`, path: ['base'] }];
   if (size)
     out.push({
-      label: `size ${size}`,
       key: `${layer}.size.${figmaSize}.${cell}`,
       path: ['size', size],
     });
   if (axes.length || state !== 'default')
     out.push({
-      label: `${look} · ${state}`,
       key: `${layer}.appearance.${figmaLook}.${state}.${cell}`,
       path: ['appearance', look, state],
     });
   if (size && axes.length)
     out.push({
-      label: `${size} · ${look} · ${state}`,
       key: `${layer}.combined.${figmaSize}.${figmaLook}.${state}.${cell}`,
       path: ['combined', size, look, state],
     });
-  return out.filter((scope) => accepted(spec, layer, scope.path));
+  return out
+    .filter((scope) => accepted(spec, layer, scope.path))
+    .map((scope) => ({ label: plainLabel(scope.path), ...scope }));
 }

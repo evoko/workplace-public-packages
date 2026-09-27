@@ -158,12 +158,14 @@ final _views = <String, GlobalKey>{};
 
 /// The Playground use case for [component]: registers a knob per control on [context] (the use
 /// case's), then draws the workbench bar (served with the workbench alone), Reset, the builder's
-/// component in the width box, and the event log.
+/// component in the width box, and the event log. [oracle], the component's (spec/verify/), is
+/// what the bar's Inspect dialog draws a variant from, as the Variants use case does.
 Widget solarPlayground(
   BuildContext context,
   String component,
-  SolarPlaygroundBuilder builder,
-) {
+  SolarPlaygroundBuilder builder, {
+  Map<String, dynamic>? oracle,
+}) {
   final controls = controlsOf(component);
   return _PlaygroundView(
     key: _views.putIfAbsent(component, GlobalKey.new),
@@ -172,6 +174,7 @@ Widget solarPlayground(
     controls: controls,
     values: {for (final c in controls) c.name: c.knob(context)},
     state: WidgetbookState.of(context),
+    oracle: oracle,
   );
 }
 
@@ -183,6 +186,7 @@ class _PlaygroundView extends StatefulWidget {
     required this.controls,
     required this.values,
     required this.state,
+    this.oracle,
   });
 
   final String component;
@@ -190,6 +194,7 @@ class _PlaygroundView extends StatefulWidget {
   final List<PlaygroundControl> controls;
   final Map<String, Object?> values;
   final WidgetbookState state;
+  final Map<String, dynamic>? oracle;
 
   @override
   State<_PlaygroundView> createState() => _PlaygroundViewState();
@@ -267,6 +272,7 @@ class _PlaygroundViewState extends State<_PlaygroundView> {
                   e.key: _jsonValue(e.value),
               },
               client: _workbench,
+              oracle: widget.oracle,
             ),
           SolarButton(
             prio: SolarButtonPrio.tertiary,

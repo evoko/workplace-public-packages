@@ -24,6 +24,7 @@ describe('lookupCell', () => {
     const focus = variant(ctx, 'size=sm, state=pressed');
     expect(lookupCell(ctx.spec, 'field', 'borderColor', focus)).toEqual({
       at: 'appearance default · focus',
+      path: ['appearance', 'default', 'focus'],
       entry: expect.objectContaining({
         token: 'color.border.feedback.focus.strong',
       }),
@@ -39,6 +40,7 @@ describe('lookupCell', () => {
     const v = variant(ctx, 'size=md, prio=tertiary, state=focus, danger=false');
     expect(lookupCell(ctx.spec, 'root', 'shadow', v)).toEqual({
       at: 'combined md · prio=tertiary, danger=false · focus',
+      path: ['combined', 'md', 'prio=tertiary, danger=false', 'focus'],
       entry: expect.objectContaining({ token: 'shadow.focus.default' }),
     });
   });

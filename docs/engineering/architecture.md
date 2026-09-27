@@ -454,10 +454,25 @@ Light and Dark, as the failures the bar lists. Which commands, and what a failur
 - `Status`: `{ busy: string | null, pending: Pending | null, components: { [name]: { web: Colour | null, flutter: Colour | null, waitsOn: { web: string[], flutter: string[] }, editable: boolean, locked: string | null } } }`,
   `Colour` one of `"green"`, `"yellow"`, `"red"`; `busy` is null in a POST's answer, since the
   operation has finished; `locked` says why the component may not change.
-- `Pending`: `{ component, key, value, deletes: boolean, previousReason: string | null, borrowers: string[], failing: Failure[] | null }`;
+- `Pending`: `{ component, key, value, was: string | null, deletes: boolean, previousReason: string | null, borrowers: string[], failing: Failure[] | null }`;
+  `was` is the entry the variant in view drew before the edit (as `solar:explain` names it);
   `borrowers` are the rules that borrow the entry's reason, which therefore changes too.
-- `Inspection`: `{ component, revision, variants: [{ index, name }], variant, layers: [{ name, className: string | null, hidden: boolean, cells: [{ cell, entry, at: string | null, scopes: [{ label, key }], choices: [{ name, value }], keywords: string[], none: boolean, note? }] }] }`;
-  `note` says why a cell offers nothing (a raw value the overlay allows).
+- `Inspection`: `{ component, revision, axes: [{ name, values: string[] }], variants: [{ index, name, parts: { [axis]: value } }], variant, layers: [{ name, className: string | null, selector: string | null, parent: string | null, hidden: boolean, cells: [{ cell, total, entry, value, at: string | null, origin: "figma" | "rule" | "defaults", reason: string | null, scopes: [{ label, key, count, wins: string | null, winsLabel: string | null, current: boolean }], choices: [{ name, value }], keywords: string[], none: boolean, note? }] }] }`;
+  `axes` are Figma's, values in the order the variants draw them; `selector` is where the web
+  draws the layer, as the MUI recipe's slot table has it (`&` the component's root element, which a
+  text MUI draws in the root shares; else a selector under it, `& .MuiButton-startIcon`), null only
+  for a component with no slot table (none is built), and where several layers share one (Button
+  Group's `& > *`) each its own `& > :nth-child(<n>)` in the order the case draws them (null for
+  one not drawn); `parent` is the nearest layer
+  the variant draws that the layer sits in (null for the root); a cell's `value` is its entry as a
+  person reads it (a token's value, a raw value, a keyword, `none`) and `reason` the rule's or the
+  default's; `total` is how many variants draw the layer; a scope's `label` says its look in plain
+  words (`every variant`, `every md`, `primary · at rest`, `md · primary, danger · hover`: a false
+  axis left out, a true one by its name, another by its value), `count` how many variants that
+  draw the layer a set there would change, `wins` the position of the entry that overrides it in
+  the variant in view, or null, and `winsLabel` that position in the same plain words; `current`
+  marks the scope holding the entry the variant draws now; `note`
+  says why a cell offers nothing (a raw value the overlay allows).
 - `value`: `{ token }`, `{ keyword }` (`FILL` or `HUG`) or `{ none: true }`, one the inspection
   offers for the cell.
 - `Failure`: `{ platform: "web" | "flutter" | "parity", variant?, layer?, property?, message?, figma?, drawn? }`,

@@ -13,7 +13,14 @@ const file = readScenarios();
 const { vocabulary } = file;
 const kinds = (o) => Object.keys(o);
 const ACTIONS = new Set(vocabulary.actions);
-const SELECTS = new Set(['Set to', 'Scope', 'Variant', 'Layer']);
+/** The words of vocabulary.named: an action is one of them, a space and a name. */
+const NAMED = Object.keys(vocabulary.named).filter((k) => k !== 'about');
+const namedOf = (name) =>
+  NAMED.find((w) => new RegExp(`^${w} \\S+$`).test(name ?? ''));
+const isAction = (name) => ACTIONS.has(name) || Boolean(namedOf(name));
+/** The controls `choose` opens: the editor's Selects and each axis. */
+const isSelect = (name) =>
+  ['Change to', 'Apply to'].includes(name) || namedOf(name) === 'Axis';
 const EVENTS = new Set(vocabulary.events);
 const GETS = new Set(['status', 'component']);
 const POSTS = new Set([
@@ -31,10 +38,12 @@ const FIELD_ACTIONS = {
   reason: 'Reason',
   note: 'Note',
   agentNote: 'Agent note',
+  filter: 'Filter tokens',
 };
 const FIELDS = new Set(Object.keys(FIELD_ACTIONS));
-/** The actions that are text fields or Selects: what `press` cannot name. */
-const NOT_BUTTONS = new Set([...SELECTS, ...Object.values(FIELD_ACTIONS)]);
+/** The actions that are text fields: with the Selects, what `press` cannot name. */
+const NOT_BUTTONS = new Set(Object.values(FIELD_ACTIONS));
+const isButton = (name) => !NOT_BUTTONS.has(name) && !isSelect(name);
 const READS = new Set(['health', 'status', 'component']);
 
 /** What is wrong with one scenario (resolved), as sentences; none where it is well written. */
@@ -46,12 +55,32 @@ function problems(s) {
     for (const k of Object.keys(o))
       if (!allowed.includes(k)) out.push(`${what} has an unknown kind: ${k}`);
   };
-  const strings = (what, v, allowed) => {
+  const strings = (what, v, actions) => {
     if (!Array.isArray(v) || v.some((x) => typeof x !== 'string' || !x))
       return out.push(`${what} is no list of words`);
-    if (allowed)
+    if (actions)
       for (const x of v)
-        if (!allowed.has(x)) out.push(`${what} names no action: ${x}`);
+        if (!isAction(x)) out.push(`${what} names no action: ${x}`);
+  };
+  /** An option named: a fact, or a list of facts its words all contain. */
+  const option = (x) =>
+    (typeof x === 'string' && x) ||
+    (Array.isArray(x) &&
+      x.length > 0 &&
+      x.every((y) => typeof y === 'string' && y));
+  const options = (what, v) => {
+    if (v === null || typeof v !== 'object' || Array.isArray(v))
+      return out.push(`${what} is no object`);
+    for (const [name, o] of Object.entries(v)) {
+      const at = `${what}.${name}`;
+      if (!isSelect(name)) out.push(`${at} names no Select`);
+      only(at, o, ['enabled', 'disabled', 'chosen']);
+      for (const k of ['enabled', 'disabled'])
+        if (k in (o ?? {}) && !(Array.isArray(o[k]) && o[k].every(option)))
+          out.push(`${at}.${k} is no list of options`);
+      if ('chosen' in (o ?? {}) && (typeof o.chosen !== 'string' || !o.chosen))
+        out.push(`${at}.chosen is no fact`);
+    }
   };
   const event = (what, e) => {
     only(what, e, ['type', 'message']);
@@ -82,8 +111,16 @@ function problems(s) {
             )
               out.push(`${at} has an unknown entry: ${JSON.stringify(c)}`);
       } else if (['enabled', 'disabled', 'absent'].includes(k))
-        strings(at, v, ACTIONS);
+        strings(at, v, true);
       else if (k === 'shows' || k === 'hides') strings(at, v);
+      else if (k === 'options') options(at, v);
+      else if (
+        (k === 'outlined' || k === 'editorUnder') &&
+        (typeof v !== 'string' || !v)
+      )
+        out.push(`${at} is no ${k === 'outlined' ? 'layer' : 'cell'}`);
+      else if (k === 'filter' && typeof v !== 'string')
+        out.push(`${at} is no text`);
       else if (k === 'noBar' || k === 'noError') {
         if (v !== true) out.push(`${at} is not true`);
       } else if (k === 'oneError' && (typeof v !== 'string' || !v))
@@ -103,6 +140,24 @@ function problems(s) {
     !(Number.isInteger(fake.startingTimes) && fake.startingTimes >= 0)
   )
     out.push('fake.startingTimes is no count');
+  if (
+    'component' in fake &&
+    (typeof fake.component !== 'string' || !fake.component)
+  )
+    out.push('fake.component is no name');
+  const byVariant = fake.inspectionFor ?? {};
+  if (
+    byVariant === null ||
+    typeof byVariant !== 'object' ||
+    Array.isArray(byVariant) ||
+    Object.keys(byVariant).some((k) => !/^\d+$/.test(k)) ||
+    Object.values(byVariant).some(
+      (o) => o === null || typeof o !== 'object' || Array.isArray(o),
+    )
+  )
+    out.push('fake.inspectionFor is no object of variants');
+  else if (Object.keys(byVariant).length && !fake.inspection)
+    out.push('fake.inspectionFor has no inspection to go over');
   if (fake.health === false) {
     // Nothing answers: no status to give.
   } else if (!fake.status?.components) out.push('fake.status is no Status');
@@ -151,14 +206,17 @@ function problems(s) {
       out.push(`${at} has an unknown kind: ${k}`);
       continue;
     }
-    if (k === 'press' && !ACTIONS.has(v)) out.push(`${at} names no action`);
-    else if (k === 'press' && NOT_BUTTONS.has(v))
+    if (k === 'press' && !isAction(v)) out.push(`${at} names no action`);
+    else if (k === 'press' && !isButton(v))
       out.push(`${at} presses what is no button: ${v}`);
+    if (k === 'point' && (typeof v !== 'string' || !v))
+      out.push(`${at} points at no layer`);
+    if (k === 'escape' && !FIELDS.has(v)) out.push(`${at} escapes no field`);
     if (k === 'release' && !fake.answers?.[v]?.hold)
       out.push(`${at} releases no answer held`);
     if (k === 'choose') {
       only(`${at}.choose`, v, ['select', 'option']);
-      if (!SELECTS.has(v.select) || typeof v.option !== 'string')
+      if (!isSelect(v.select) || typeof v.option !== 'string')
         out.push(`${at} needs a Select and an option`);
     }
     if ((k === 'confirm' || k === 'cancel') && v !== true)
@@ -207,6 +265,8 @@ describe("the workbench bar's scenarios", () => {
     const note = (prefix, keys) => {
       for (const k of keys) used.add(`${prefix}.${k}`);
     };
+    /** An action used, a named one by its word. */
+    const use = (a) => used.add(`action.${namedOf(a) ?? a}`);
     for (const s of scenarios) {
       note('fake', Object.keys(s.fake ?? {}));
       for (const a of Object.values(s.fake?.answers ?? {}))
@@ -216,14 +276,15 @@ describe("the workbench bar's scenarios", () => {
         note('step', Object.keys(st));
         if (st.expect) expects.push(st.expect);
         if (st.event) used.add(`event.${st.event.type}`);
-        if (st.press) used.add(`action.${st.press}`);
-        if (st.choose) used.add(`action.${st.choose.select}`);
-        if (st.type) used.add(`action.${FIELD_ACTIONS[st.type.field]}`);
+        if (st.press) use(st.press);
+        if (st.choose) use(st.choose.select);
+        if (st.type) use(FIELD_ACTIONS[st.type.field]);
       }
       for (const e of expects) {
         note('expect', Object.keys(e));
         for (const k of ['enabled', 'disabled', 'absent'])
-          note('action', e[k] ?? []);
+          for (const a of e[k] ?? []) use(a);
+        for (const a of Object.keys(e.options ?? {})) use(a);
       }
     }
     const named = [
@@ -231,6 +292,7 @@ describe("the workbench bar's scenarios", () => {
       ...kinds(vocabulary.steps).map((k) => `step.${k}`),
       ...kinds(vocabulary.expect).map((k) => `expect.${k}`),
       ...vocabulary.actions.map((k) => `action.${k}`),
+      ...NAMED.map((k) => `action.${k}`),
       ...vocabulary.events.map((k) => `event.${k}`),
     ];
     expect(named.filter((n) => !used.has(n))).toEqual([]);
@@ -240,7 +302,7 @@ describe("the workbench bar's scenarios", () => {
     expect(vocabulary.serial.routes.filter((r) => !POSTS.has(r))).toEqual([]);
     for (const [p, names] of Object.entries(vocabulary.platformActions)) {
       expect(['web', 'flutter']).toContain(p);
-      expect(names.filter((n) => ACTIONS.has(n))).toEqual([]);
+      expect(names.filter((n) => isAction(n))).toEqual([]);
     }
   });
 
@@ -262,9 +324,21 @@ describe("the workbench bar's scenarios", () => {
           { pres: 'Inspect' },
           { press: 'Inpsect' },
           { type: { field: 'why', text: 'x' } },
-          { press: 'Set to' },
+          { press: 'Change to' },
+          { press: 'Axis state' },
+          { choose: { select: 'Layer label', option: 'x' } },
+          { point: '' },
+          { escape: 'why' },
           { release: 'keep' },
           { expect: { enabled: ['Keep'], absent: ['Keep'] } },
+          {
+            expect: {
+              options: { Scope: {}, 'Apply to': { enabled: [[]], chosen: 1 } },
+              outlined: 3,
+              editorUnder: '',
+              filter: 1,
+            },
+          },
         ],
         expect: { shown: ['x'], shows: ['y'], hides: ['y'] },
       }),
@@ -275,9 +349,19 @@ describe("the workbench bar's scenarios", () => {
       'steps[0] has an unknown kind: pres',
       'steps[1] names no action',
       'steps[2] types in no field',
-      'steps[3] presses what is no button: Set to',
-      'steps[4] releases no answer held',
-      'steps[5].expect has Keep both enabled and absent',
+      'steps[3] presses what is no button: Change to',
+      'steps[4] presses what is no button: Axis state',
+      'steps[5] needs a Select and an option',
+      'steps[6] points at no layer',
+      'steps[7] escapes no field',
+      'steps[8] releases no answer held',
+      'steps[9].expect has Keep both enabled and absent',
+      'steps[10].expect.options.Scope names no Select',
+      'steps[10].expect.options.Apply to.enabled is no list of options',
+      'steps[10].expect.options.Apply to.chosen is no fact',
+      'steps[10].expect.outlined is no layer',
+      'steps[10].expect.editorUnder is no cell',
+      'steps[10].expect.filter is no text',
       'expect has an unknown kind: shown',
       'expect both shows and hides y',
       'it acts, and its last expectation names no calls',
@@ -288,6 +372,7 @@ describe("the workbench bar's scenarios", () => {
         fake: {
           health: 'no',
           startingTimes: -1,
+          component: '',
           status: { components: {} },
           answers: {
             keep: { answer: {}, status: {}, events: {}, hold: 1 },
@@ -299,6 +384,7 @@ describe("the workbench bar's scenarios", () => {
     ).toEqual([
       'fake.health is no boolean',
       'fake.startingTimes is no count',
+      'fake.component is no name',
       'fake.answers.keep.status is no Status',
       'fake.answers.keep.events is no list',
       'fake.answers.keep.hold is no boolean on a POST route',

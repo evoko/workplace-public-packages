@@ -15,6 +15,7 @@ import 'package:solar_flutter_variants/solar_flutter_variants.dart';
 import 'playground/adapter.dart';
 import 'playground/playground.dart';
 import 'playground/registry.dart';
+import 'variant_stage.dart';
 
 /// Every oracle the app was built with, by component: spec/verify/, copied in as assets/verify/.
 Future<Map<String, Map<String, dynamic>>> loadOracles() async {
@@ -96,8 +97,14 @@ class SolarWidgetbook extends StatelessWidget {
                   // The two-way Playground, from the component's builder (playground/).
                   WidgetbookUseCase(
                     name: 'Playground',
-                    builder: (context) =>
-                        solarPlayground(context, name, playgroundOf(name)),
+                    // The oracle goes with it, for the workbench's Inspect dialog to draw a
+                    // variant as the Variants use case does.
+                    builder: (context) => solarPlayground(
+                      context,
+                      name,
+                      playgroundOf(name),
+                      oracle: oracles[name],
+                    ),
                   ),
                   WidgetbookUseCase(
                     name: 'Variants',
@@ -200,19 +207,6 @@ final chartSamples = <(String, Widget)>[
   ),
 ];
 
-List<Map<String, dynamic>> variantsOf(Map<String, dynamic> oracle) =>
-    (oracle['variants'] as List).cast<Map<String, dynamic>>();
-
-VariantBuilder builderOf(String component) {
-  final b = builders[component];
-  if (b == null) {
-    throw StateError(
-      '$component has an oracle and no builder in test/visual/builders/',
-    );
-  }
-  return b;
-}
-
 /// A component's Playground builder, from the generated registry (every component has one).
 SolarPlaygroundBuilder playgroundOf(String component) {
   final b = playgroundBuilders[component];
@@ -243,7 +237,7 @@ class Variants extends StatelessWidget {
         spacing: SolarInset.md,
         runSpacing: SolarInset.md,
         children: [
-          for (final v in variantsOf(oracle))
+          for (final (i, v) in variantsOf(oracle).indexed)
             SizedBox(
               width: 220,
               child: DecoratedBox(
@@ -265,11 +259,10 @@ class Variants extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             alignment: Alignment.centerLeft,
-                            child: _Tile(
-                              key: ValueKey(v['figma']),
-                              build: builderOf(component),
-                              variant: v,
+                            child: VariantStage(
+                              component: component,
                               oracle: oracle,
+                              index: i,
                             ),
                           ),
                         ),
@@ -364,38 +357,4 @@ class _Excuses extends StatelessWidget {
       ),
     );
   }
-}
-
-/// One widget in one variant, with a states controller of its own holding the variant's platform
-/// state (a pressed one hovered too).
-class _Tile extends StatefulWidget {
-  const _Tile({
-    super.key,
-    required this.build,
-    required this.variant,
-    required this.oracle,
-  });
-
-  final VariantBuilder build;
-  final Map<String, dynamic> variant;
-  final Map<String, dynamic> oracle;
-
-  @override
-  State<_Tile> createState() => _TileState();
-}
-
-class _TileState extends State<_Tile> {
-  late final states = WidgetStatesController(
-    statesFor(widget.variant['state'] as String?),
-  );
-
-  @override
-  void dispose() {
-    states.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) =>
-      widget.build(widget.variant, states, widget.oracle);
 }

@@ -9,7 +9,7 @@
 
 import Typography from '@mui/material/Typography';
 import type { ArgTypes, Args } from '@storybook/react-vite';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/preview-api';
 import { PLAYGROUND } from 'virtual:solar';
@@ -17,6 +17,7 @@ import { Button } from '../../src/Button.js';
 import { SolarProvider } from '../../src/SolarProvider.js';
 import { WorkbenchBar } from '../workbench/Bar.js';
 import { httpClient } from '../workbench/client.js';
+import type { DrawVariant } from '../workbench/preview.js';
 import {
   BuilderHost,
   WidthBox,
@@ -64,11 +65,14 @@ export function PlaygroundView({
   builder,
   args,
   updateArgs,
+  drawVariant,
 }: {
   component: string;
   builder: PlaygroundBuilder;
   args: Args;
   updateArgs: (args: Args) => void;
+  /** Draws one oracle variant, for the workbench's Inspect preview (solar.tsx `VariantStage`). */
+  drawVariant: DrawVariant;
 }) {
   const controls = controlsOf(PLAYGROUND, component);
   const [log, setLog] = useState<string[]>([]);
@@ -104,8 +108,7 @@ export function PlaygroundView({
     },
   });
 
-  // The workbench bar's service, in dev alone, and the box it points into.
-  const box = useRef<HTMLDivElement>(null);
+  // The workbench bar's service, in dev alone.
   const client = useMemo(() => (DEV ? httpClient() : null), []);
 
   const reset = () => {
@@ -124,13 +127,13 @@ export function PlaygroundView({
             platform="web"
             controls={local}
             client={client}
-            box={box}
+            drawVariant={drawVariant}
           />
         )}
         <Button prio="tertiary" size="sm" onClick={reset}>
           Reset
         </Button>
-        <WidthBox width={local.width} boxRef={box}>
+        <WidthBox width={local.width}>
           <BuilderHost key={component} builder={builder} p={playground} />
         </WidthBox>
         <Typography
@@ -156,6 +159,7 @@ export function PlaygroundView({
 export function playgroundRender(
   component: string,
   builder: PlaygroundBuilder,
+  drawVariant: DrawVariant,
 ) {
   return function PlaygroundStory() {
     const [args, updateArgs] = useArgs();
@@ -165,6 +169,7 @@ export function playgroundRender(
         builder={builder}
         args={args}
         updateArgs={updateArgs}
+        drawVariant={drawVariant}
       />
     );
   };

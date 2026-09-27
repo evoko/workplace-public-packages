@@ -1,8 +1,7 @@
 /**
  * The workbench bar (stories/workbench/Bar.tsx) end to end, over a fake service
  * (workbench-page.tsx): what it offers by the component's circle, what it sends, and how it follows
- * the service's events. That a token chosen here reaches the component is the batch's smoke run
- * against the real service.
+ * the service's events. Inspect's dialog is the shared scenarios' (workbench-scenarios.spec.mjs).
  */
 
 import { expect, test } from '@playwright/test';
@@ -28,89 +27,6 @@ const open = async (page, mode) => {
 const calls = (page) => page.evaluate(() => window.calls);
 const reads = (page) => page.evaluate(() => window.reads);
 const bar = (page) => page.getByLabel('Workbench');
-const combo = (page, name) =>
-  page.getByRole('combobox', { name: new RegExp(`^${name}`) });
-
-/** Chooses an option in a SOLAR Select: opens it, then clicks the option. */
-async function choose(page, name, option) {
-  await combo(page, name).click();
-  await page.getByRole('option', { name: option }).click();
-  await expect(page.getByRole('listbox')).toHaveCount(0);
-}
-
-test('a 🟡 component offers Inspect and Approve; choosing a token sends the set, at the narrowest scope', async ({
-  page,
-}) => {
-  await open(page, 'yellow');
-  await page.getByRole('button', { name: 'Inspect' }).click();
-  await choose(page, 'Set to', /radius\.full/);
-  await expect
-    .poll(() => calls(page))
-    .toEqual([
-      [
-        'set',
-        {
-          component: 'Button',
-          variant: 0,
-          layer: 'root',
-          cell: 'radius',
-          scope: 'root.size=md.radius',
-          value: { token: 'radius.full' },
-          revision: 'r1',
-        },
-      ],
-    ]);
-});
-
-test('a scope chosen is the one the set is keyed on', async ({ page }) => {
-  await open(page, 'yellow');
-  await page.getByRole('button', { name: 'Inspect' }).click();
-  await choose(page, 'Scope', 'every variant');
-  await choose(page, 'Set to', 'none');
-  await expect
-    .poll(async () => (await calls(page))[0]?.[1])
-    .toMatchObject({ scope: 'root.base.radius', value: { none: true } });
-});
-
-test('a cell with a note, or with nothing to offer, says so and offers nothing', async ({
-  page,
-}) => {
-  await open(page, 'yellow');
-  await page.getByRole('button', { name: 'Inspect' }).click();
-  await expect(bar(page)).toContainText(
-    'width: 120px (a raw value the overlay allows)',
-  );
-  await expect(bar(page)).toContainText(
-    'gap: inset.xs (not editable here: use Report)',
-  );
-  await expect(combo(page, 'Set to')).toHaveCount(1);
-});
-
-test('choosing a variant reads it, and the set names it', async ({ page }) => {
-  await open(page, 'yellow');
-  await page.getByRole('button', { name: 'Inspect' }).click();
-  await choose(page, 'Variant', /size=sm/);
-  await expect.poll(() => reads(page)).toContainEqual(['inspect', 1]);
-  await choose(page, 'Set to', /radius\.full/);
-  await expect
-    .poll(async () => (await calls(page))[0]?.[1])
-    .toMatchObject({ variant: 1, scope: 'root.size=sm.radius' });
-});
-
-test('pointing at the component selects the layer under the click', async ({
-  page,
-}) => {
-  await open(page, 'yellow');
-  await page.getByRole('button', { name: 'Inspect' }).click();
-  await page.getByRole('button', { name: 'Point' }).click();
-  await page.locator('.SolarButton-label').click();
-  await expect(combo(page, 'Layer')).toHaveText(/label/);
-  await expect(bar(page)).toContainText(
-    'color: color.text.inverse [prio=primary]',
-  );
-  // Disarmed once it has chosen.
-  await expect(bar(page)).not.toContainText('Click a part of the component');
-});
 
 test('Approve asks first, approves on confirming, and the focus goes to the bar', async ({
   page,
@@ -159,25 +75,6 @@ test('an event refetches: a component approved elsewhere shows 🟢', async ({
     page.getByRole('button', { name: 'Undo approval' }),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Approve' })).toHaveCount(0);
-});
-
-test('Inspect closes when the component is approved meanwhile, and stays closed', async ({
-  page,
-}) => {
-  await open(page, 'yellow');
-  await page.getByRole('button', { name: 'Inspect' }).click();
-  await expect(combo(page, 'Set to')).toHaveCount(1);
-  await page.evaluate(() => {
-    window.setWeb('green');
-    window.emit('changed');
-  });
-  await expect(combo(page, 'Set to')).toHaveCount(0);
-  await page.evaluate(() => {
-    window.setWeb('yellow');
-    window.emit('changed');
-  });
-  await expect(page.getByRole('button', { name: 'Inspect' })).toBeVisible();
-  await expect(combo(page, 'Set to')).toHaveCount(0);
 });
 
 test('a pending edit asks for a reason, names the rules that borrow it, and holds Approve', async ({

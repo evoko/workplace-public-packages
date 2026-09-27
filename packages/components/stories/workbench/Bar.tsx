@@ -1,10 +1,12 @@
 /**
  * The workbench bar above a component's Playground (docs/engineering/workflows.md, Fix a component
  * in the viewer): its circle on this platform, and by it Inspect, Report
- * and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect and Report are sections,
- * one open at a time; Report's note is its own, so it may be saved beside a pending edit. Where
- * checks fail (a Keep's or an Approve's) and the component may change, Send to agent writes a note
- * carrying them.
+ * and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect opens a full-screen
+ * dialog (InspectDialog.tsx), Report a note below the bar, one of the two open at a time; Report's
+ * note is its own, so it may be saved beside a pending edit, and it names the layer and variant
+ * last chosen in Inspect. Where checks fail (a Keep's or an Approve's) and the component may
+ * change, Send to agent writes a note carrying them. A pending edit shows in the bar, and in the
+ * dialog's strip while it is open (pending.tsx, one set of blocks for both).
  * Everything it changes goes through the workbench service (client.ts); it renders nothing where no
  * service answers. Drawn with SOLAR's own components. It behaves as Widgetbook's bar
  * (widgetbook/lib/workbench/bar.dart) does, which the scenarios in
@@ -15,21 +17,12 @@
  */
 
 import Typography from '@mui/material/Typography';
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type RefObject,
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '../../src/Button.js';
 import { ConfirmationDialog } from '../../src/ConfirmationDialog.js';
-import { DropdownItem } from '../../src/DropdownItem.js';
-import { Select } from '../../src/Select.js';
 import { TextArea } from '../../src/TextArea.js';
 import {
   isStarting,
-  type Cell,
   type ComponentStatus,
   type Failure,
   type Inspection,
@@ -38,7 +31,19 @@ import {
   type Status,
   type WorkbenchClient,
 } from './client.js';
-import { layerAt } from './pick.js';
+import { InspectDialog, pendingSummary } from './InspectDialog.js';
+import {
+  FailureList,
+  KEPT,
+  PendingEdit,
+  SendToAgent,
+  alert,
+  column,
+  primary,
+  row,
+  secondary,
+} from './pending.js';
+import type { DrawVariant } from './preview.js';
 
 const CIRCLE = { green: '🟢', yellow: '🟡', red: '🔴' } as const;
 
@@ -48,7 +53,7 @@ const wait = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
 
 type Dialog = null | 'approve' | 'unapprove';
 
-/** The section open below the bar's buttons: none, Inspect's panel, or Report's note. */
+/** What is open beside the bar's buttons: nothing, Inspect's dialog, or Report's note below. */
 type Section = 'none' | 'inspect' | 'report';
 
 /** A set value as the Select writes it: a token's name, `FILL`, `HUG` or `none`. */
@@ -59,9 +64,6 @@ const valueOf = (choice: string): SetValue =>
       ? { keyword: choice }
       : { token: choice };
 
-const valueText = (v: SetValue) =>
-  'token' in v ? v.token : 'keyword' in v ? v.keyword : 'none';
-
 const platformTitle = (platform: Platform) =>
   platform === 'web' ? 'the web' : 'Flutter';
 
@@ -71,23 +73,6 @@ const platformTitle = (platform: Platform) =>
  */
 const inspectable = (mine: ComponentStatus | undefined, platform: Platform) =>
   mine?.[platform] === 'yellow' && mine.editable;
-
-/**
- * A failing check in words: its message, else `<platform>: <variant> <layer>.<property>: Figma
- * <figma>, drawn <drawn>`, each part left out where the failure has none.
- */
-const failureText = (f: Failure) => {
-  if (f.message) return f.message;
-  const at = [f.layer, f.property].filter(Boolean).join('.');
-  const where = [f.variant, at].filter(Boolean).join(' ');
-  const seen = [
-    f.figma === undefined ? null : `Figma ${JSON.stringify(f.figma)}`,
-    f.drawn === undefined ? null : `drawn ${JSON.stringify(f.drawn)}`,
-  ]
-    .filter(Boolean)
-    .join(', ');
-  return [f.platform, where, seen].filter(Boolean).join(': ');
-};
 
 /**
  * What a 🔴 component waits on, in the same words as Widgetbook's bar: the 🟡 components among
@@ -102,79 +87,20 @@ const waitsText = (status: Status, waitsOn: string[], platform: Platform) => {
     : `It is in a cycle with: ${waitsOn.join(', ')}.`;
 };
 
-/** What sending a failing Keep's checks does to the checks. */
-const KEPT =
-  "its checks, and CI's, fail until /solar-feedback settles the note.";
-
-/**
- * Send to agent, beside the failing checks it carries: an optional note, and the button. Offered
- * only where the component may change (the agent works on no other).
- */
-function SendToAgent({
-  note,
-  onNote,
-  disabled,
-  onSend,
-  fromKeep,
-}: {
-  note: string;
-  onNote: (note: string) => void;
-  disabled: boolean;
-  onSend: () => void;
-  /** Whether the checks are a failing Keep's, whose edit sending keeps. */
-  fromKeep: boolean;
-}) {
-  return (
-    <>
-      <TextArea
-        size="sm"
-        label="Agent note (optional)"
-        helper={
-          fromKeep
-            ? `Why the component is right as it is, or what to fix. Sending keeps the edit with its reason (Undo goes); ${KEPT}`
-            : 'Why the component is right as it is, or what to fix. The failing checks go with it.'
-        }
-        value={note}
-        onChange={(event) => onNote(event.target.value)}
-      />
-      <div style={row}>
-        <Button size="sm" prio="primary" disabled={disabled} onClick={onSend}>
-          Send to agent
-        </Button>
-      </div>
-    </>
-  );
-}
-
-function FailureList({ failures }: { failures: Failure[] }) {
-  return (
-    <Typography
-      component="ul"
-      variant="bodyXsRegular"
-      aria-label="Failing checks"
-      style={list}
-    >
-      {failures.map((f, i) => (
-        <li key={i}>{failureText(f)}</li>
-      ))}
-    </Typography>
-  );
-}
-
 export function WorkbenchBar({
   component,
   platform,
   controls,
   client,
-  box,
+  drawVariant,
 }: {
   component: string;
   platform: Platform;
   /** The Playground's values, by control: what a Report note records. */
   controls: Record<string, unknown>;
   client: WorkbenchClient;
-  /** The Playground's width box, for pointing at a layer. */
-  box?: RefObject<HTMLElement | null>;
+  /** Draws one of the component's oracle variants: Inspect's preview (solar.tsx `VariantStage`). */
+  drawVariant: DrawVariant;
 }) {
   const [alive, setAlive] = useState(false);
   const [status, setStatus] = useState<Status | null>(null);
@@ -198,8 +124,9 @@ export function WorkbenchBar({
   const [dialog, setDialog] = useState<Dialog>(null);
   // Kept while the Undo approval dialog closes, so its words stay until it has gone.
   const [withdraws, setWithdraws] = useState<string[]>([]);
-  const [pointing, setPointing] = useState(false);
   const [working, setWorking] = useState(false);
+  // How many times Inspect has been pressed: each press reads the inspection again.
+  const [opens, setOpens] = useState(0);
   const seq = useRef(0);
   // The variant last chosen: an inspection read for another is dropped.
   const chosen = useRef(0);
@@ -211,14 +138,9 @@ export function WorkbenchBar({
   const colour = mine ? mine[platform] : null;
   const canInspect = inspectable(mine, platform);
   const inspecting = section === 'inspect';
-  const panelShown = Boolean(
-    canInspect && inspecting && inspection && !status?.pending,
-  );
   // The component locked or approved meanwhile: Inspect or Report closes, and opens again only when
   // asked.
   if (status && section !== 'none' && !canInspect) setSection('none');
-  // Pointing holds only while the panel it points for shows.
-  if (pointing && !panelShown) setPointing(false);
 
   // What the bar shows, read again: the circles, and while Inspect is open, the inspection.
   const refresh = useCallback(async () => {
@@ -278,7 +200,7 @@ export function WorkbenchBar({
     return () => {
       live = false;
     };
-  }, [alive, inspecting, canInspect, client, component, variant]);
+  }, [alive, inspecting, canInspect, client, component, variant, opens]);
 
   // Long-poll the service's events; each change (or failure) refetches, each busy the status. The
   // poll waiting is ended when the bar goes.
@@ -310,23 +232,6 @@ export function WorkbenchBar({
     };
   }, [alive, client]);
 
-  // Pointing: the next click in the box selects the layer under it.
-  useEffect(() => {
-    const el = box?.current;
-    if (!pointing || !panelShown || !el || !inspection) return undefined;
-    const classes = Object.fromEntries(
-      inspection.layers.map((l) => [l.name, l.className]),
-    );
-    const onClick = (event: MouseEvent) => {
-      event.preventDefault();
-      event.stopPropagation();
-      setLayer(layerAt(event.target as HTMLElement, el, classes));
-      setPointing(false);
-    };
-    el.addEventListener('click', onClick, true);
-    return () => el.removeEventListener('click', onClick, true);
-  }, [box, pointing, panelShown, inspection]);
-
   // After Approve or Undo approval has ended: the focus, lost with the button that went, or left on
   // the page, goes to the bar's header.
   useEffect(() => {
@@ -354,7 +259,6 @@ export function WorkbenchBar({
     setFailures(null);
     setSaved(null);
     setSent(null);
-    setPointing(false);
     setWorking(true);
     try {
       await fn();
@@ -366,7 +270,6 @@ export function WorkbenchBar({
       setWorking(false);
     }
   };
-  const cells = inspection?.layers.find((l) => l.name === layer)?.cells ?? [];
   /** Opens a section, or closes it where it is the one open. */
   const toggle = (which: Section) => {
     setSection(section === which ? 'none' : which);
@@ -374,6 +277,12 @@ export function WorkbenchBar({
   };
   // Report names the layer and variant chosen in Inspect, where this component has been inspected.
   const inspected = inspection?.component === component ? inspection : null;
+  // The dialog, once the inspection it shows has been read; it holds the pending edit, the failures
+  // and the errors while it is open.
+  const dialogShown = Boolean(canInspect && inspecting && inspected);
+  // A variant that does not draw the layer in view: the root, which Change to and Report then name.
+  if (inspected && !inspected.layers.some((l) => l.name === layer))
+    setLayer('root');
   const saveNote = () =>
     act(async () => {
       const { file } = await client.report({
@@ -413,6 +322,35 @@ export function WorkbenchBar({
       }
     });
 
+  /** The pending edit's block, as the bar and the dialog's strip both show it. */
+  const pendingProps = (edit: NonNullable<typeof pending>) => ({
+    pending: edit,
+    reason,
+    onReason: setReason,
+    agentNote,
+    onAgentNote: setAgentNote,
+    working,
+    canSend: canInspect,
+    onKeep: () =>
+      void act(async () => {
+        // Failing checks are the pending edit's, which the status then carries.
+        const r = await client.keep(component, reason);
+        if (r.ok) setReason('');
+      }),
+    onUndo: () =>
+      void act(async () => {
+        await client.undo(component);
+        setReason('');
+      }),
+    onSend: (shown: Failure[]) => void sendToAgent(shown),
+  });
+  const sentNotice = sent && (
+    <Typography variant="bodyXsRegular" aria-live="polite" style={secondary}>
+      Saved: {sent.file}
+      {sent.fromKeep && `. The edit is kept; ${KEPT}`}
+    </Typography>
+  );
+
   return (
     <div style={bar} role="region" aria-label="Workbench">
       <div style={row}>
@@ -430,7 +368,13 @@ export function WorkbenchBar({
           <Button
             size="sm"
             prio={inspecting ? 'secondary' : 'tertiary'}
-            onClick={() => toggle('inspect')}
+            onClick={() => {
+              // Opens the dialog, reading the inspection again (also after a read was refused).
+              setSection('inspect');
+              setOpens((n) => n + 1);
+              setSaved(null);
+              setError(null);
+            }}
           >
             Inspect
           </Button>
@@ -490,78 +434,6 @@ export function WorkbenchBar({
         </Typography>
       )}
 
-      {panelShown && inspection && (
-        <div style={column}>
-          <div style={row}>
-            <Select
-              size="sm"
-              label="Variant"
-              value={String(variant)}
-              disabled={working}
-              onChange={(_, v) => {
-                chosen.current = Number(v);
-                setVariant(Number(v));
-              }}
-            >
-              {inspection.variants.map((v) => (
-                <DropdownItem key={v.index} value={String(v.index)}>
-                  {v.name}
-                </DropdownItem>
-              ))}
-            </Select>
-            <Select
-              size="sm"
-              label="Layer"
-              value={layer}
-              disabled={working}
-              onChange={(_, v) => setLayer(v)}
-            >
-              {inspection.layers.map((l) => (
-                <DropdownItem key={l.name} value={l.name}>
-                  {l.hidden ? `${l.name} (hidden here)` : l.name}
-                </DropdownItem>
-              ))}
-            </Select>
-            {box && (
-              <Button
-                size="sm"
-                prio={pointing ? 'secondary' : 'tertiary'}
-                disabled={working}
-                onClick={() => setPointing(!pointing)}
-              >
-                Point
-              </Button>
-            )}
-          </div>
-          {pointing && (
-            <Typography variant="bodyXsRegular" style={secondary}>
-              Click a part of the component to choose its layer.
-            </Typography>
-          )}
-          {cells.map((c) => (
-            <CellRow
-              // A new variant or layer offers other scopes: the row starts again, at the narrowest.
-              key={`${inspection.variant}:${layer}.${c.cell}`}
-              cell={c}
-              disabled={working}
-              onSet={(scope, choice) =>
-                act(() =>
-                  client.set({
-                    component,
-                    variant: inspection.variant,
-                    layer,
-                    cell: c.cell,
-                    scope,
-                    value: valueOf(choice),
-                    revision: inspection.revision,
-                  }),
-                )
-              }
-            />
-          ))}
-        </div>
-      )}
-
       {canInspect && section === 'report' && (
         <div style={column}>
           <TextArea
@@ -593,77 +465,13 @@ export function WorkbenchBar({
         </div>
       )}
 
-      {pending && (
+      {!dialogShown && pending && (
         <div style={column}>
-          <Typography variant="bodyXsRegular" style={secondary}>
-            Pending: {pending.key} →{' '}
-            {pending.deletes
-              ? "Figma's value (the rule is removed)"
-              : valueText(pending.value)}
-          </Typography>
-          {!pending.deletes && (
-            <TextArea
-              size="sm"
-              label="Why (a reviewer must be able to check it)"
-              helper={
-                pending.previousReason
-                  ? `Was: ${pending.previousReason}`
-                  : undefined
-              }
-              value={reason}
-              onChange={(event) => setReason(event.target.value)}
-            />
-          )}
-          {!pending.deletes && pending.borrowers.length > 0 && (
-            <Typography variant="bodyXsRegular" style={secondary}>
-              Also the reason of: {pending.borrowers.join(', ')}
-            </Typography>
-          )}
-          {pending.failing && <FailureList failures={pending.failing} />}
-          {pending.failing && canInspect && (
-            <SendToAgent
-              note={agentNote}
-              onNote={setAgentNote}
-              disabled={working}
-              onSend={() => void sendToAgent(pending.failing ?? [])}
-              fromKeep
-            />
-          )}
-          <div style={row}>
-            <Button
-              size="sm"
-              // Where the checks failed, Send to agent is the step the bar leads with.
-              prio={pending.failing && canInspect ? 'secondary' : 'primary'}
-              disabled={working}
-              onClick={() =>
-                act(async () => {
-                  // Failing checks are the pending edit's, which the status then carries.
-                  const r = await client.keep(component, reason);
-                  if (r.ok) setReason('');
-                })
-              }
-            >
-              Keep
-            </Button>
-            <Button
-              size="sm"
-              prio="tertiary"
-              disabled={working}
-              onClick={() =>
-                act(async () => {
-                  await client.undo(component);
-                  setReason('');
-                })
-              }
-            >
-              Undo
-            </Button>
-          </div>
+          <PendingEdit {...pendingProps(pending)} />
         </div>
       )}
-
-      {failures && <FailureList failures={failures} />}
-      {failures && canInspect && (
+      {!dialogShown && failures && <FailureList failures={failures} />}
+      {!dialogShown && failures && canInspect && (
         <SendToAgent
           note={agentNote}
           onNote={setAgentNote}
@@ -672,20 +480,58 @@ export function WorkbenchBar({
           fromKeep={false}
         />
       )}
-      {sent && (
-        <Typography
-          variant="bodyXsRegular"
-          aria-live="polite"
-          style={secondary}
-        >
-          Saved: {sent.file}
-          {sent.fromKeep && `. The edit is kept; ${KEPT}`}
-        </Typography>
-      )}
-      {error && (
+      {!dialogShown && sentNotice}
+      {!dialogShown && error && (
         <Typography variant="bodyXsRegular" role="alert" style={alert}>
           {error}
         </Typography>
+      )}
+
+      {dialogShown && inspected && (
+        <InspectDialog
+          component={component}
+          inspection={inspected}
+          layer={layer}
+          editable={!anyPending && !working}
+          working={working}
+          busy={status.busy}
+          pending={pending}
+          otherPending={anyPending && !pending ? anyPending.component : null}
+          error={error}
+          notice={sentNotice}
+          strip={
+            pending && (
+              <PendingEdit
+                {...pendingProps(pending)}
+                summary={pendingSummary(pending, inspected)}
+              />
+            )
+          }
+          drawVariant={drawVariant}
+          onLayer={setLayer}
+          onVariant={(index) => {
+            chosen.current = index;
+            setVariant(index);
+          }}
+          onSet={(cell, scope, choice) =>
+            void act(() =>
+              client.set({
+                component,
+                variant: inspected.variant,
+                layer,
+                cell,
+                scope,
+                value: valueOf(choice),
+                revision: inspected.revision,
+              }),
+            )
+          }
+          onReport={() => {
+            setSection('report');
+            setSaved(null);
+          }}
+          onClose={() => setSection('none')}
+        />
       )}
 
       <ConfirmationDialog
@@ -722,77 +568,6 @@ export function WorkbenchBar({
   );
 }
 
-/** One cell: its entry and where it sits, then a scope and the value to set it to. */
-function CellRow({
-  cell,
-  disabled,
-  onSet,
-}: {
-  cell: Cell;
-  disabled: boolean;
-  onSet: (scope: string, choice: string) => void;
-}) {
-  // The narrowest look first: the variant in view (the scopes run from every variant to it).
-  const [scope, setScope] = useState(cell.scopes.at(-1)?.key ?? '');
-  const options = [
-    ...cell.choices.map((c) => ({
-      key: c.name,
-      label: `${c.name} · ${c.value}`,
-    })),
-    ...cell.keywords.map((k) => ({ key: k, label: k })),
-    ...(cell.none ? [{ key: 'none', label: 'none' }] : []),
-  ];
-  const where = cell.at ? ` [${cell.at}]` : '';
-  if (cell.note)
-    return (
-      <Typography variant="bodyXsRegular" style={secondary}>
-        {`${cell.cell}: ${cell.entry} (${cell.note})`}
-      </Typography>
-    );
-  if (!options.length || !cell.scopes.length)
-    return (
-      <Typography variant="bodyXsRegular" style={secondary}>
-        {`${cell.cell}: ${cell.entry}${where} (not editable here: use Report)`}
-      </Typography>
-    );
-  return (
-    <div style={column}>
-      <Typography variant="bodyXsRegular" style={secondary}>
-        {`${cell.cell}: ${cell.entry}${where}`}
-      </Typography>
-      <div style={row}>
-        <Select
-          size="sm"
-          label="Scope"
-          value={scope}
-          disabled={disabled}
-          onChange={(_, v) => setScope(v)}
-        >
-          {cell.scopes.map((s) => (
-            <DropdownItem key={s.key} value={s.key}>
-              {s.label}
-            </DropdownItem>
-          ))}
-        </Select>
-        <Select
-          size="sm"
-          label="Set to"
-          value=""
-          placeholder="Choose"
-          disabled={disabled}
-          onChange={(_, v) => onSet(scope, v)}
-        >
-          {options.map((o) => (
-            <DropdownItem key={o.key} value={o.key}>
-              {o.label}
-            </DropdownItem>
-          ))}
-        </Select>
-      </div>
-    </div>
-  );
-}
-
 const bar = {
   display: 'flex',
   flexDirection: 'column' as const,
@@ -802,18 +577,3 @@ const bar = {
   border: 'var(--solar-border-default) solid var(--solar-color-border-subtle)',
   borderRadius: 'var(--solar-radius-control)',
 };
-const row = {
-  display: 'flex',
-  flexWrap: 'wrap' as const,
-  alignItems: 'center',
-  gap: 'var(--solar-inset-xs)',
-};
-const column = {
-  display: 'flex',
-  flexDirection: 'column' as const,
-  gap: 'var(--solar-stack-sm)',
-};
-const primary = { color: 'var(--solar-color-text-primary)' };
-const secondary = { color: 'var(--solar-color-text-secondary)' };
-const list = { ...secondary, margin: 0, paddingLeft: 'var(--solar-inset-md)' };
-const alert = { color: 'var(--solar-color-text-feedback-danger)' };

@@ -9,7 +9,7 @@
 import * as assets from '@bwp-web/assets';
 import { IconPlus, type IconProps } from '@bwp-web/assets';
 import type { ArgTypes } from '@storybook/react-vite';
-import type { ComponentType, ReactNode, Ref } from 'react';
+import type { ComponentType, ReactNode } from 'react';
 import type {
   ControlKind,
   ControlValue,
@@ -339,18 +339,14 @@ export const columnStyle = {
  */
 export function WidthBox({
   width,
-  boxRef,
   children,
 }: {
   width: unknown;
-  /** The box's element, for the workbench bar's pointing (stories/workbench/Bar.tsx). */
-  boxRef?: Ref<HTMLDivElement>;
   children: ReactNode;
 }) {
   const picked = typeof width === 'string' && width !== 'auto';
   return (
     <div
-      ref={boxRef}
       data-width-box=""
       style={{ alignSelf: 'stretch', width: picked ? `${width}px` : undefined }}
     >

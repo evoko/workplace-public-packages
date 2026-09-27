@@ -24,6 +24,8 @@ export interface Pending {
   component: string;
   key: string;
   value: SetValue;
+  /** What the variant in view drew before the edit, as `solar:explain` names it. */
+  was: string | null;
   deletes: boolean;
   previousReason: string | null;
   failing: Failure[] | null;
@@ -45,11 +47,36 @@ export interface Status {
   components: Record<string, ComponentStatus>;
 }
 
+/** Where a cell's entry comes from: Figma's variant, an overlay rule, or the shared defaults. */
+export type Origin = 'figma' | 'rule' | 'defaults';
+
+/**
+ * A scope a rule may be keyed on: its plain words (`every md`, `primary · at rest`), its key, how
+ * many variants that draw the layer a set there would change (`count`), the recipe position of the
+ * entry that overrides it in the variant in view (`wins`) and that entry's scope in plain words
+ * (`winsLabel`), or null, and whether today's value is set at it (`current`).
+ */
+export interface Scope {
+  label: string;
+  key: string;
+  count: number;
+  wins: string | null;
+  winsLabel: string | null;
+  current: boolean;
+}
+
 export interface Cell {
   cell: string;
+  /** How many variants the component draws, which a scope's count is out of. */
+  total: number;
   entry: string;
+  /** The entry as a person reads it: a token's value, a literal, a keyword, `none`. */
+  value: string;
   at: string | null;
-  scopes: { label: string; key: string }[];
+  origin: Origin;
+  /** The rule's or the defaults' reason, where one sets it. */
+  reason: string | null;
+  scopes: Scope[];
   choices: { name: string; value: string }[];
   keywords: string[];
   none: boolean;
@@ -60,11 +87,20 @@ export interface Cell {
 export interface Inspection {
   component: string;
   revision: string;
-  variants: { index: number; name: string }[];
+  /** Each variant axis in Figma's spelling, its values in the order the variants draw them. */
+  axes: { name: string; values: string[] }[];
+  variants: { index: number; name: string; parts: Record<string, string> }[];
   variant: number;
   layers: {
     name: string;
     className: string | null;
+    /**
+     * Where the web draws it, as the recipe's slot table has it: `&` the component's root element
+     * (which a text MUI draws in the root shares), else a selector under it (`& .MuiButton-startIcon`).
+     */
+    selector: string | null;
+    /** The nearest layer the variant draws that it sits in; null for the root. */
+    parent: string | null;
     hidden: boolean;
     cells: Cell[];
   }[];

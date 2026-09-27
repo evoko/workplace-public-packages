@@ -228,6 +228,7 @@ export function createSession(deps) {
         component: pending.component,
         key: pending.key,
         value: pending.value,
+        was: pending.was ?? null,
         deletes: pending.deletes,
         previousReason: pending.previousReason,
         borrowers: pending.borrowers ?? [],
@@ -408,6 +409,8 @@ export function createSession(deps) {
           refuse(error.message);
         }
         const held = heldIn(coloured);
+        // What the variant in view draws before the edit, as explain reads it: the strip's "was".
+        const was = entryText(lookupCell(spec, layer, cell, variant)?.entry);
 
         // Saved before the file is written, so a placeholder is never on disk without the record
         // that undoes it, whatever happens next.
@@ -415,6 +418,7 @@ export function createSession(deps) {
           component: name,
           key: scope,
           value,
+          was,
           deletes,
           before,
           placeholder: text,

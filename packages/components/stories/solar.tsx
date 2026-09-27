@@ -6,7 +6,6 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useLayoutEffect, useRef } from 'react';
 import { FAILURES, STATES } from 'virtual:solar';
 import { CASES } from '../test/visual/cases/index.js';
 import type { Excuse, OracleVariant } from '../test/visual/cases/types.js';
@@ -16,6 +15,8 @@ import {
   playgroundRender,
 } from './playground/adapter.js';
 import { PLAYGROUND_BUILDERS } from './playground/registry.generated.js';
+import { DrawnVariant, type StageProps } from './variant-stage.js';
+import type { DrawVariant } from './workbench/preview.js';
 
 type Mode = 'light' | 'dark';
 
@@ -37,36 +38,42 @@ function excusesIn(v: OracleVariant, mode: Mode) {
 }
 
 /**
- * How the Variants grid forces a platform state: a pseudo-class through the pseudo-states addon,
- * which rewrites `:hover` into a class a wrapper can set, or the class MUI sets for the state
- * (Button's focus is `Mui-focusVisible`), put on the control. A pressed control is hovered too, as
- * a pointer pressing it is.
+ * One oracle variant drawn, its state forced, as the Variants page draws it in each tile: what the
+ * workbench's Inspect dialog draws large (its Preview), so the two cannot differ.
  */
-function forcing(component: string, state: string) {
-  const selector = STATES[component]?.[state] ?? '';
-  const pseudo = /^&:(hover|active|focus-visible|focus)\b/.exec(selector)?.[1];
-  const cls = /^&\.([\w-]+)/.exec(selector)?.[1];
-  const wrapper = [
-    ...(state === 'pressed' ? ['pseudo-hover-all'] : []),
-    ...(pseudo ? [`pseudo-${pseudo}-all`] : []),
-  ].join(' ');
-  return { wrapper, cls };
+export function VariantStage({
+  component,
+  index,
+  ...stage
+}: StageProps & { component: string; index: number }) {
+  return (
+    <DrawnVariant
+      component={component}
+      index={index}
+      states={STATES[component]}
+      {...stage}
+    />
+  );
+}
+
+/** The one-variant renderer the Playground's workbench bar draws its Inspect preview with. */
+function drawVariantOf(component: string): DrawVariant {
+  return function drawVariant(index, stage) {
+    return <VariantStage component={component} index={index} {...stage} />;
+  };
 }
 
 function Tile({
   component,
+  index,
   v,
   mode,
 }: {
   component: string;
+  index: number;
   v: OracleVariant;
   mode: Mode;
 }) {
-  const { wrapper, cls } = forcing(component, v.state);
-  const at = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
-    if (cls) at.current?.firstElementChild?.classList.add(cls);
-  });
   const layers = (v as OracleVariant & { layers?: unknown }).layers;
   const excused = excusesIn(v, mode);
   const open = excused.filter((e) => !e.decision);
@@ -75,9 +82,7 @@ function Tile({
   );
   return (
     <figure style={tile}>
-      <div ref={at} className={wrapper} style={stage}>
-        {CASES[component].render(v)}
-      </div>
+      <VariantStage component={component} index={index} style={stage} />
       <figcaption style={caption}>{v.figma}</figcaption>
       {failed.length > 0 && (
         <p style={{ ...badge, ...failing }}>
@@ -121,8 +126,8 @@ function Tile({
 function Variants({ component, mode }: { component: string; mode: Mode }) {
   return (
     <div style={grid}>
-      {CASES[component].oracle.variants.map((v) => (
-        <Tile key={v.figma} component={component} v={v} mode={mode} />
+      {CASES[component].oracle.variants.map((v, i) => (
+        <Tile key={v.figma} component={component} index={i} v={v} mode={mode} />
       ))}
     </div>
   );
@@ -149,7 +154,11 @@ export function meta(component: string): Meta {
   return {
     args: argsFor(component),
     argTypes: argTypesFor(component),
-    render: playgroundRender(component, builderOf(component)),
+    render: playgroundRender(
+      component,
+      builderOf(component),
+      drawVariantOf(component),
+    ),
   } satisfies Meta;
 }
 

@@ -49,15 +49,14 @@ export function appearanceAxes(spec) {
 }
 
 /**
- * The recipe entry for one cell of one layer in one variant, and where it sits, by the recipe's
+ * The recipe positions the lookup reads for one variant, the winning one first, by the recipe's
  * precedence: a state that holds beats the resting value, the per-size-and-appearance entry beats
  * the per-appearance one, and the resting value falls back through appearance, size and base.
+ * Each position with its IR path under a layer's style (`['combined', 'md', look, 'hover']`).
  *
- * @returns {{at: string, entry: object} | null}
+ * @returns {{at: string, path: string[]}[]}
  */
-export function lookupCell(spec, layer, cell, variant) {
-  const st = spec.style[layer];
-  if (!st) return null;
+export function lookupOrder(spec, variant) {
   const props = recipeProps(spec, variant);
   const combo =
     appearanceAxes(spec)
@@ -68,32 +67,38 @@ export function lookupCell(spec, layer, cell, variant) {
     spec.states.includes(state)
       ? variant.state === state
       : props[state] === true;
-  const at = (path, entry) => (entry ? { at: path, entry } : null);
-  for (const state of statePrecedence(spec.component)) {
-    if (!holds(state)) continue;
-    const hit =
-      at(
-        `combined ${size} · ${combo} · ${state}`,
-        st.combined?.[size]?.[combo]?.[state]?.[cell],
-      ) ??
-      at(
-        `appearance ${combo} · ${state}`,
-        st.appearance?.[combo]?.[state]?.[cell],
-      );
-    if (hit) return hit;
+  const looks = (state) => [
+    {
+      at: `combined ${size} · ${combo} · ${state}`,
+      path: ['combined', size, combo, state],
+    },
+    {
+      at: `appearance ${combo} · ${state}`,
+      path: ['appearance', combo, state],
+    },
+  ];
+  return [
+    ...statePrecedence(spec.component).filter(holds).flatMap(looks),
+    ...looks('default'),
+    { at: `size ${size}`, path: ['size', size] },
+    { at: 'base', path: ['base'] },
+  ];
+}
+
+/**
+ * The recipe entry for one cell of one layer in one variant, and where it sits: the first position
+ * of `lookupOrder` that has one, with its IR path.
+ *
+ * @returns {{at: string, path: string[], entry: object} | null}
+ */
+export function lookupCell(spec, layer, cell, variant) {
+  const st = spec.style[layer];
+  if (!st) return null;
+  for (const { at, path } of lookupOrder(spec, variant)) {
+    const entry = path.reduce((node, key) => node?.[key], st)?.[cell];
+    if (entry) return { at, path, entry };
   }
-  return (
-    at(
-      `combined ${size} · ${combo} · default`,
-      st.combined?.[size]?.[combo]?.default?.[cell],
-    ) ??
-    at(
-      `appearance ${combo} · default`,
-      st.appearance?.[combo]?.default?.[cell],
-    ) ??
-    at(`size ${size}`, st.size?.[size]?.[cell]) ??
-    at('base', st.base?.[cell])
-  );
+  return null;
 }
 
 /** Two values as the checks compare them: numbers by value, the rest as strings. */

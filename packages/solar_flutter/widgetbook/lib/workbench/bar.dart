@@ -1,11 +1,12 @@
 // The workbench bar above a component's Playground: its circle on this platform, and by it Inspect,
-// Report and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect and Report are
-// sections, one open at a time; Report's note is its own, so it may be saved beside a pending edit.
-// Where checks fail (a Keep's or an Approve's) and the component may change, Send to agent writes a
-// note carrying them.
+// Report and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect opens the Inspect
+// dialog (inspect_dialog.dart), a full-screen route; Report opens a note under the bar. One of the
+// two is open at a time; Report's note is its own, so it may be saved beside a pending edit. Where
+// checks fail (a Keep's or an Approve's) and the component may change, Send to agent writes a note
+// carrying them.
 // Everything it changes goes through the workbench service (client.dart); it draws nothing where no
-// service answers. Drawn with SOLAR's own widgets; no pointing at a layer (the web's alone). It
-// behaves as the web's bar (stories/workbench/Bar.tsx) does, which the scenarios in
+// service answers. Drawn with SOLAR's own widgets. It behaves as the web's bar
+// (stories/workbench/Bar.tsx) does, which the scenarios in
 // packages/codegen/src/workbench/bar-scenarios.json, run by both bars' tests, enforce.
 //
 // A refusal is shown once, as the action's own answer: the service also tells every viewer it
@@ -16,17 +17,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
+import 'blocks.dart';
 import 'client.dart';
+import 'inspect_dialog.dart';
 import 'models.dart';
 
 const _circle = {'green': '🟢', 'yellow': '🟡', 'red': '🔴'};
 
-/// The section open below the bar's buttons: none, Inspect's panel, or Report's note.
+/// What is open: nothing, the Inspect dialog, or Report's note below the bar's buttons.
 enum _Section { none, inspect, report }
-
-/// What sending a failing Keep's checks does to the checks, as the web's bar says it.
-const _kept =
-    "its checks, and CI's, fail until /solar-feedback settles the note.";
 
 /// How long the bar waits before asking a service that is still starting, or whose poll failed.
 const _retry = Duration(seconds: 1);
@@ -38,6 +37,7 @@ class WorkbenchBar extends StatefulWidget {
     required this.platform,
     required this.client,
     this.controls = const {},
+    this.oracle,
   });
 
   /// The component's name, as the service and the oracles name it (`Button`, `ConfirmationDialog`).
@@ -50,8 +50,12 @@ class WorkbenchBar extends StatefulWidget {
   /// The Playground's values, by control, as JSON-safe values: what a Report note records.
   final Map<String, Object?> controls;
 
-  /// The key of the error the bar shows (a refusal, or a service that failed), for the tests to
-  /// find it by.
+  /// The component's oracle (spec/verify/), which the Inspect dialog draws the variant in view
+  /// from, as the Variants use case does; null draws no preview.
+  final Map<String, dynamic>? oracle;
+
+  /// The key of the error the bar shows (a refusal, or a service that failed), and the Inspect
+  /// dialog while it is open, for the tests to find it by.
   static const errorKey = Key('WorkbenchBar.error');
 
   @override
@@ -65,8 +69,20 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   WorkbenchInspection? _inspection;
   int _variant = 0;
   String _layer = 'root';
+
+  /// The cell chosen in the dialog, whose editor it shows, and the scope chosen for it: null, the
+  /// narrowest. The cell is forgotten when the layer changes or the dialog closes; the scope also
+  /// when the variant or the cell changes, or a pending edit comes or goes.
+  String? _cell;
+  String? _scope;
   _Section _section = _Section.none;
   bool get _inspecting => _section == _Section.inspect;
+
+  /// The Inspect dialog's route, while it is open.
+  ModalRoute<void>? _dialog;
+
+  /// Told of every change to the bar's state: the dialog is a route of its own, rebuilt on it.
+  final _changes = ValueNotifier(0);
 
   /// Whether an action is running: every button and Select that starts another waits for it.
   bool _working = false;
@@ -77,6 +93,9 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
 
   /// Send to agent's note, its own: Report's may be open beside it.
   final _agentNote = TextEditingController();
+
+  /// Filter tokens' text in the dialog's editor.
+  final _filter = TextEditingController();
 
   /// The file the last note was saved in, until the next action or Report closes.
   String? _saved;
@@ -92,10 +111,9 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     skipTraversal: true,
   );
 
-  /// The scope chosen for each cell, by `<variant>:<layer>.<cell>`; the narrowest (the last, the
-  /// variant in view) until one is chosen. Forgotten, as the web's rows forget theirs, when the
-  /// variant or the layer changes, a pending edit appears, or Inspect closes.
-  final _scopes = <String, String>{};
+  /// Inspect, which the focus goes back to when the dialog closes.
+  final _inspectButton = FocusNode(debugLabel: 'Inspect');
+
   int _seq = 0;
 
   @override
@@ -104,13 +122,38 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     unawaited(_start());
   }
 
+  /// Every change also reaches the dialog; and the dialog goes where Inspect has closed.
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
+    _changes.value++;
+    if (!_inspecting && _dialog != null) _removeDialog();
+  }
+
   @override
   void dispose() {
     _live = false;
-    _reason.dispose();
-    _note.dispose();
-    _agentNote.dispose();
+    final dialog = _dialog;
+    _dialog = null;
+    void release() {
+      _reason.dispose();
+      _note.dispose();
+      _agentNote.dispose();
+      _filter.dispose();
+      _changes.dispose();
+    }
+
+    // The dialog draws from what the bar holds: it goes first, after this frame.
+    if (dialog != null && dialog.isActive) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (dialog.isActive) dialog.navigator?.removeRoute(dialog);
+        release();
+      });
+    } else {
+      release();
+    }
     _header.dispose();
+    _inspectButton.dispose();
     super.dispose();
   }
 
@@ -147,13 +190,78 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   /// The status, in a setState: where the component was locked or approved meanwhile, Inspect or
   /// Report closes, and opens again only when asked.
   void _setStatus(WorkbenchStatus status) {
-    // A pending edit appearing: every row starts again at the narrowest, as the web's rows do.
-    if (status.pending != null && _status?.pending == null) _scopes.clear();
+    // A pending edit coming or going: Apply to starts again at the narrowest.
+    if ((status.pending == null) != (_status?.pending == null)) _scope = null;
     _status = status;
     if (_section != _Section.none && !_canInspect(status)) {
       _section = _Section.none;
-      _scopes.clear();
     }
+  }
+
+  /// The dialog, gone: Close or Escape popped it, or the bar removed it. Its cell and scope go
+  /// with it; the layer and variant stay, for a note saved after it.
+  void _dialogGone() {
+    _cell = null;
+    _scope = null;
+    if (_inspecting) _section = _Section.none;
+  }
+
+  /// Takes the dialog away (Report pressed in it, the component no longer inspectable), after the
+  /// state change that closed Inspect.
+  void _removeDialog() {
+    final dialog = _dialog;
+    _dialog = null;
+    _cell = null;
+    _scope = null;
+    if (dialog != null && dialog.isActive) {
+      dialog.navigator?.removeRoute(dialog);
+    }
+  }
+
+  /// Opens the dialog, over the page, once the inspection is read; a refused read opens none, and
+  /// is shown in the bar.
+  Future<void> _openInspect() async {
+    setState(() {
+      _section = _Section.inspect;
+      _saved = null;
+    });
+    try {
+      await _inspect();
+    } catch (e) {
+      if (mounted && _inspecting) {
+        setState(() {
+          _section = _Section.none;
+          _error = '$e';
+        });
+      }
+      return;
+    }
+    if (!mounted || !_inspecting || _inspection == null || _dialog != null) {
+      return;
+    }
+    final route = inspectDialogRoute(
+      context: context,
+      builder: (context) => ListenableBuilder(
+        listenable: _changes,
+        builder: (context, _) =>
+            _dialog == null ? const SizedBox.shrink() : _dialogView(),
+      ),
+    );
+    _dialog = route;
+    unawaited(
+      inspectNavigator(context).push(route).then((_) {
+        // Popped by Close or Escape; one the bar removed is already forgotten.
+        if (!mounted || _dialog != route) return;
+        _dialog = null;
+        setState(_dialogGone);
+        // Back where it was opened from, once the page takes input again.
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted && _inspectButton.context != null) {
+            _inspectButton.requestFocus();
+          }
+        });
+      }),
+    );
   }
 
   /// After Approve or Undo approval has ended: the focus, lost with the button that went (the
@@ -181,14 +289,41 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     if (mounted) setState(() => _error = '$e');
   }
 
-  /// The inspection of the variant in view; an answer for another variant (one chosen since) is
-  /// dropped.
-  Future<void> _inspect() async {
+  /// The inspection of the variant in view, while Inspect is open; an answer for another variant
+  /// (one chosen since) is dropped.
+  /// A variant that does not draw the layer in view selects the root (and the cell goes); where
+  /// [refilter], Filter tokens starts again at the chosen cell's family in it.
+  Future<void> _inspect({bool refilter = false}) async {
     final variant = _variant;
     final inspection = await widget.client.inspect(widget.component, variant);
     if (mounted && _inspecting && inspection.variant == _variant) {
-      setState(() => _inspection = inspection);
+      setState(() {
+        _inspection = inspection;
+        if (!inspection.layers.any((l) => l.name == _layer)) {
+          _layer = _rootOf(inspection);
+          _cell = null;
+          _scope = null;
+        }
+        if (refilter) _refilter();
+      });
     }
+  }
+
+  /// The inspection's root layer: the one in no other.
+  String _rootOf(WorkbenchInspection inspection) =>
+      (inspection.layers.where((l) => l.parent == null).firstOrNull ??
+              inspection.layers.first)
+          .name;
+
+  /// Filter tokens, back at the chosen cell's family (vocabulary.dialog."Filter tokens").
+  void _refilter() {
+    final cell = _inspection?.layers
+        .where((l) => l.name == _layer)
+        .firstOrNull
+        ?.cells
+        .where((c) => c.cell == _cell)
+        .firstOrNull;
+    _filter.text = cell == null ? '' : startFilter(cell);
   }
 
   /// What the bar shows, read again: the circles, and while Inspect is open, the inspection.
@@ -274,7 +409,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
 
   String get _where => widget.platform == 'web' ? 'the web' : 'Flutter';
 
-  /// A set value as the Select writes it: a token's name, `FILL`, `HUG` or `none`.
+  /// A set value as Change to writes it: a token's name, `FILL`, `HUG` or `none`.
   Map<String, Object?> _valueOf(String choice) => choice == 'none'
       ? {'none': true}
       : choice == 'FILL' || choice == 'HUG'
@@ -285,22 +420,42 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     String label,
     VoidCallback? onPressed, {
     SolarButtonPrio prio = SolarButtonPrio.tertiary,
-  }) => SolarButton(
-    prio: prio,
-    size: SolarButtonSize.sm,
-    onPressed: onPressed,
-    child: Text(label),
-  );
+    FocusNode? focusNode,
+  }) => workbenchButton(label, onPressed, prio: prio, focusNode: focusNode);
 
-  /// Opens a section, or closes it where it is the one open; the scopes chosen go with Inspect.
-  void _toggle(_Section which) {
-    setState(() {
-      _section = _section == which ? _Section.none : which;
-      if (!_inspecting) _scopes.clear();
-      _saved = null;
-    });
-    if (_inspecting) unawaited(_inspect().catchError(_show));
+  /// Report: opens its note, or closes it where it is open. From the dialog, the dialog closes and
+  /// the note opens with the layer and variant it had in view.
+  void _toggleReport() => setState(() {
+    _section = _section == _Section.report ? _Section.none : _Section.report;
+    _saved = null;
+  });
+
+  /// Change to in the dialog: the value set at [scope] on the cell chosen, in the variant in view.
+  void _change(String choice, String scope) {
+    final inspection = _inspection;
+    final cell = _cell;
+    if (inspection == null || cell == null) return;
+    unawaited(
+      _act(() async {
+        await widget.client.set(
+          component: widget.component,
+          variant: inspection.variant,
+          layer: _layerIn(inspection),
+          cell: cell,
+          scope: scope,
+          value: _valueOf(choice),
+          revision: inspection.revision,
+        );
+        if (mounted) _refilter();
+      }),
+    );
   }
+
+  /// The layer chosen, where [inspection] has it; else its root.
+  String _layerIn(WorkbenchInspection inspection) =>
+      inspection.layers.any((l) => l.name == _layer)
+      ? _layer
+      : _rootOf(inspection);
 
   /// Save note: the note with the Playground's values and, where this component has been
   /// inspected, the layer and variant chosen there; then the file it was saved in, and an empty
@@ -315,7 +470,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
           component: widget.component,
           platform: widget.platform,
           controls: widget.controls,
-          layer: inspected == null ? null : _layer,
+          layer: inspected == null ? null : _layerIn(inspected),
           variant: inspected?.variants
               .where((v) => v.index == inspected.variant)
               .firstOrNull
@@ -406,26 +561,110 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
         }),
       );
 
-  /// Send to agent, beside the failing checks it carries: an optional note, and the button. Offered
-  /// only where the component may change (the agent works on no other).
-  List<Widget> _sendBlock(
-    List<WorkbenchFailure> shown, {
-    required bool fromKeep,
-  }) => [
-    SolarTextArea(
-      size: SolarTextAreaSize.sm,
-      label: 'Agent note (optional)',
-      helper: fromKeep
-          ? 'Why the component is right as it is, or what to fix. Sending keeps the edit with its reason (Undo goes); $_kept'
-          : 'Why the component is right as it is, or what to fix. The failing checks go with it.',
-      controller: _agentNote,
+  /// This component's pending edit, as the bar and the dialog's strip draw it ([wide]).
+  Widget _pendingBlock(
+    WorkbenchPending pending, {
+    bool wide = false,
+    String? title,
+  }) {
+    final idle = !_working;
+    return WorkbenchPendingBlock(
+      pending: pending,
+      reason: _reason,
+      agentNote: _agentNote,
+      canSend: _status != null && _canInspect(_status!),
+      onKeep: idle ? _keep : null,
+      onUndo: idle ? _undo : null,
+      onSend: idle && pending.failing != null
+          ? () => _sendToAgent(pending.failing!, fromKeep: true)
+          : null,
+      wide: wide,
+      title: title,
+    );
+  }
+
+  /// What Send to agent saved, and what it did to a failing Keep's edit.
+  Widget _sentText(
+    ({String file, bool fromKeep}) sent,
+    TextStyle small,
+  ) => Semantics(
+    liveRegion: true,
+    child: Text(
+      'Saved: ${sent.file}${sent.fromKeep ? '. The edit is kept; $sentKeepsNote' : ''}',
+      style: small,
     ),
-    _button(
-      'Send to agent',
-      _working ? null : () => _sendToAgent(shown, fromKeep: fromKeep),
-      prio: SolarButtonPrio.primary,
-    ),
-  ];
+  );
+
+  /// The Inspect dialog as the bar's state has it now.
+  Widget _dialogView() {
+    final status = _status!;
+    final inspection = _inspection!;
+    final anyPending = status.pending;
+    final pending = anyPending?.component == widget.component
+        ? anyPending
+        : null;
+    final layer = _layerIn(inspection);
+    final t = SolarTheme.of(context);
+    return InspectDialog(
+      component: widget.component,
+      inspection: inspection,
+      oracle: widget.oracle,
+      layer: layer,
+      cell: _cell,
+      scope: _scope,
+      editable: anyPending == null && !_working,
+      busy: status.busy,
+      readOnly: anyPending == null
+          ? null
+          : pending != null
+          ? 'One edit at a time: Keep or Undo the pending edit below first.'
+          : "One edit at a time: Keep or Undo the pending edit in ${anyPending.component}'s Playground first.",
+      regenerating: _working || status.busy != null,
+      filter: _filter,
+      onFilter: () => setState(() {}),
+      strip: pending == null
+          ? null
+          : _pendingBlock(
+              pending,
+              wide: true,
+              title: pendingText(inspection, pending),
+            ),
+      foot: [if (_sent case final sent?) _sentText(sent, workbenchSmall(t))],
+      error: _error,
+      errorKey: WorkbenchBar.errorKey,
+      onAxis: (index) {
+        setState(() {
+          _variant = index;
+          _scope = null;
+          _refilter();
+        });
+        unawaited(_inspect(refilter: true).catchError(_show));
+      },
+      onLayer: (name) => setState(() {
+        if (name != _layer) {
+          _cell = null;
+          _scope = null;
+        }
+        _layer = name;
+      }),
+      onCell: (name) => setState(() {
+        if (name != _cell) {
+          _scope = null;
+          _cell = name;
+          _refilter();
+        }
+      }),
+      onScope: (key) => setState(() => _scope = key),
+      onChange: _change,
+      onReport: _toggleReport,
+      onClose: () {
+        final dialog = _dialog;
+        if (dialog != null && dialog.isCurrent) {
+          dialog.navigator?.pop();
+        }
+      },
+    );
+  }
 
   void _undo() => unawaited(
     _act(() async {
@@ -447,57 +686,31 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
         : 'It is in a cycle with: ${waitsOn.join(', ')}.';
   }
 
-  Widget _failureList(List<WorkbenchFailure> failures, TextStyle small) =>
-      Semantics(
-        container: true,
-        label: 'Failing checks',
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(start: SolarInset.md),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (final f in failures) Text('• ${f.text}', style: small),
-            ],
-          ),
-        ),
-      );
-
-  Widget _alert(String text, SolarTheme t) => Semantics(
-    liveRegion: true,
-    child: Text(
-      text,
-      key: WorkbenchBar.errorKey,
-      style: t.typography.bodyXsRegular.copyWith(
-        color: t.colors.textFeedbackDanger,
-      ),
-    ),
-  );
+  Widget _alert(String text) =>
+      WorkbenchAlert(text, textKey: WorkbenchBar.errorKey);
 
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context).extension<SolarTheme>()!;
     final error = _error;
     if (!_alive) {
-      return error == null ? const SizedBox.shrink() : _alert(error, t);
+      return error == null ? const SizedBox.shrink() : _alert(error);
     }
     final status = _status;
     final mine = status?.components[widget.component];
     if (status == null || mine == null) return const SizedBox.shrink();
-    final small = t.typography.bodyXsRegular.copyWith(
-      color: t.colors.textSecondary,
-    );
+    final small = workbenchSmall(t);
     final colour = mine.colourOn(widget.platform);
     final anyPending = status.pending;
     final pending = anyPending?.component == widget.component
         ? anyPending
         : null;
-    final inspection = _inspection;
-    final cells =
-        inspection?.layers.where((l) => l.name == _layer).firstOrNull?.cells ??
-        const <WorkbenchCell>[];
     final failures = _failures;
     final idle = !_working;
     final canInspect = colour == 'yellow' && mine.editable;
+    // While the dialog is open it holds the pending edit, its failures and the error, and the bar
+    // behind it none: one reason field, one agent note.
+    final open = _dialog != null;
 
     return Semantics(
       container: true,
@@ -535,18 +748,16 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
                       ),
                     ),
                   ),
-                  if (colour == 'yellow' && mine.editable)
+                  if (canInspect)
                     _button(
                       'Inspect',
-                      () => _toggle(_Section.inspect),
-                      prio: _inspecting
-                          ? SolarButtonPrio.secondary
-                          : SolarButtonPrio.tertiary,
+                      () => unawaited(_openInspect()),
+                      focusNode: _inspectButton,
                     ),
-                  if (colour == 'yellow' && mine.editable)
+                  if (canInspect)
                     _button(
                       'Report',
-                      () => _toggle(_Section.report),
+                      _toggleReport,
                       prio: _section == _Section.report
                           ? SolarButtonPrio.secondary
                           : SolarButtonPrio.tertiary,
@@ -580,71 +791,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
                   '${anyPending.component} has a pending edit: keep or undo it in its Playground first.',
                   style: small,
                 ),
-              if (colour == 'yellow' &&
-                  mine.editable &&
-                  _inspecting &&
-                  inspection != null &&
-                  anyPending == null) ...[
-                Row(
-                  spacing: SolarInset.xs,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: SolarSelect<int>(
-                        size: SolarSelectSize.sm,
-                        enabled: idle,
-                        label: 'Variant',
-                        value: _variant,
-                        options: [
-                          for (final v in inspection.variants)
-                            SolarSelectOption(value: v.index, label: v.name),
-                        ],
-                        onChanged: idle
-                            ? (v) {
-                                setState(() {
-                                  _variant = v;
-                                  _scopes.clear();
-                                });
-                                unawaited(_inspect().catchError(_show));
-                              }
-                            : null,
-                      ),
-                    ),
-                    Expanded(
-                      child: SolarSelect<String>(
-                        size: SolarSelectSize.sm,
-                        enabled: idle,
-                        label: 'Layer',
-                        value: _layer,
-                        options: [
-                          for (final l in inspection.layers)
-                            SolarSelectOption(
-                              value: l.name,
-                              label: l.hidden
-                                  ? '${l.name} (hidden here)'
-                                  : l.name,
-                            ),
-                        ],
-                        onChanged: idle
-                            ? (v) => setState(() {
-                                _layer = v;
-                                _scopes.clear();
-                              })
-                            : null,
-                      ),
-                    ),
-                  ],
-                ),
-                for (final c in cells)
-                  // A new variant or layer offers other scopes: the row starts again.
-                  KeyedSubtree(
-                    key: ValueKey('${inspection.variant}:$_layer:${c.cell}'),
-                    child: _cellRow(c, inspection, small),
-                  ),
-              ],
-              if (colour == 'yellow' &&
-                  mine.editable &&
-                  _section == _Section.report) ...[
+              if (canInspect && _section == _Section.report) ...[
                 SolarTextArea(
                   size: SolarTextAreaSize.sm,
                   label: 'Note for the agent',
@@ -663,143 +810,24 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
                     child: Text('Saved: $file', style: small),
                   ),
               ],
-              if (pending != null) ...[
-                Text(
-                  'Pending: ${pending.key} → ${pending.deletes ? "Figma's value (the rule is removed)" : pending.valueText}',
-                  style: small,
-                ),
-                if (!pending.deletes)
-                  SolarTextArea(
-                    size: SolarTextAreaSize.sm,
-                    label: 'Why (a reviewer must be able to check it)',
-                    helper: pending.previousReason == null
-                        ? null
-                        : 'Was: ${pending.previousReason}',
-                    controller: _reason,
+              if (pending != null && !open) _pendingBlock(pending),
+              if (failures != null && !open) ...[
+                WorkbenchFailureList(failures),
+                if (canInspect)
+                  WorkbenchSendBlock(
+                    note: _agentNote,
+                    fromKeep: false,
+                    onSend: idle
+                        ? () => _sendToAgent(failures, fromKeep: false)
+                        : null,
                   ),
-                if (!pending.deletes && pending.borrowers.isNotEmpty)
-                  Text(
-                    'Also the reason of: ${pending.borrowers.join(', ')}',
-                    style: small,
-                  ),
-                if (pending.failing case final failing?) ...[
-                  _failureList(failing, small),
-                  if (canInspect) ..._sendBlock(failing, fromKeep: true),
-                ],
-                Wrap(
-                  spacing: SolarInset.xs,
-                  runSpacing: SolarInset.xs,
-                  children: [
-                    _button(
-                      'Keep',
-                      idle ? _keep : null,
-                      // Where the checks failed, Send to agent is the step the bar leads with.
-                      prio: pending.failing != null && canInspect
-                          ? SolarButtonPrio.secondary
-                          : SolarButtonPrio.primary,
-                    ),
-                    _button('Undo', idle ? _undo : null),
-                  ],
-                ),
               ],
-              if (failures != null) ...[
-                _failureList(failures, small),
-                if (canInspect) ..._sendBlock(failures, fromKeep: false),
-              ],
-              if (_sent case final sent?)
-                Semantics(
-                  liveRegion: true,
-                  child: Text(
-                    'Saved: ${sent.file}${sent.fromKeep ? '. The edit is kept; $_kept' : ''}',
-                    style: small,
-                  ),
-                ),
-              if (error != null) _alert(error, t),
+              if (_sent case final sent? when !open) _sentText(sent, small),
+              if (error != null && !open) _alert(error),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  /// One cell: its entry and the look that decides it, a scope, and the value to set it to; or, where
-  /// it offers nothing, why.
-  Widget _cellRow(
-    WorkbenchCell c,
-    WorkbenchInspection inspection,
-    TextStyle small,
-  ) {
-    final options = [
-      for (final ch in c.choices)
-        SolarSelectOption(value: ch.name, label: '${ch.name} · ${ch.value}'),
-      for (final k in c.keywords) SolarSelectOption(value: k, label: k),
-      if (c.none) const SolarSelectOption(value: 'none', label: 'none'),
-    ];
-    final where = c.at == null ? '' : ' [${c.at}]';
-    if (c.note != null) {
-      return Text('${c.cell}: ${c.entry} (${c.note})', style: small);
-    }
-    if (options.isEmpty || c.scopes.isEmpty) {
-      return Text(
-        '${c.cell}: ${c.entry}$where (not editable here: use Report)',
-        style: small,
-      );
-    }
-    final id = '${inspection.variant}:$_layer.${c.cell}';
-    final chosen = _scopes[id];
-    final scope = c.scopes.any((s) => s.key == chosen)
-        ? chosen!
-        : c.scopes.last.key;
-    final idle = !_working;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: SolarStack.sm,
-      children: [
-        Text('${c.cell}: ${c.entry}$where', style: small),
-        Row(
-          spacing: SolarInset.xs,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: SolarSelect<String>(
-                size: SolarSelectSize.sm,
-                enabled: idle,
-                label: 'Scope',
-                value: scope,
-                options: [
-                  for (final s in c.scopes)
-                    SolarSelectOption(value: s.key, label: s.label),
-                ],
-                onChanged: idle ? (v) => setState(() => _scopes[id] = v) : null,
-              ),
-            ),
-            Expanded(
-              child: SolarSelect<String>(
-                size: SolarSelectSize.sm,
-                enabled: idle,
-                label: 'Set to',
-                placeholder: 'Choose',
-                options: options,
-                onChanged: idle
-                    ? (v) => unawaited(
-                        _act(() async {
-                          await widget.client.set(
-                            component: widget.component,
-                            variant: inspection.variant,
-                            layer: _layer,
-                            cell: c.cell,
-                            scope: scope,
-                            value: _valueOf(v),
-                            revision: inspection.revision,
-                          );
-                        }),
-                      )
-                    : null,
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
