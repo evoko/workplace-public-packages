@@ -8,16 +8,18 @@ description: Work through the notes the viewers' workbench saved in spec/feedbac
 A person writes each note in Storybook or Widgetbook, with the workbench's **Report** or **Send to
 agent**; the service saves it as `spec/feedback/<component-slug>-<n>.yaml`. Its fields:
 
-| Field       | Holds                                                                                                                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `component` | the component's Figma name (`Text Input`)                                                                                                                                                                        |
-| `platform`  | `web` or `flutter`: the viewer the note came from                                                                                                                                                                |
-| `on`        | the date, `YYYY-MM-DD`                                                                                                                                                                                           |
-| `note`      | the person's words: what to resolve                                                                                                                                                                              |
-| `layer`     | optional, present only once the component was inspected: the layer chosen in Inspect                                                                                                                             |
-| `variant`   | optional, present only once the component was inspected: Figma's name for the variant chosen in Inspect (not necessarily what `controls` draw); pass it to `--variant` as is                                     |
-| `controls`  | the Playground's values when the note was written; a Flutter colour arrives as `#rrggbb`, or `#aarrggbb` (alpha first) when not opaque, not CSS `#rrggbbaa`; the web sends what Storybook's colour control holds |
-| `failures`  | optional (Send to agent): the checks that failed, each `{ platform, variant?, layer?, property?, figma?, drawn?, message? }`                                                                                     |
+| Field       | Holds                                                                                                                                                                                                                                                     |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `component` | the component's name in code, as `npm run solar:status` lists it (`Text Input`); it differs from Figma's for Calendar Day Cell, Date Picker Day Cell and Tree Indent                                                                                      |
+| `platform`  | `web` or `flutter`: the viewer the note came from                                                                                                                                                                                                         |
+| `on`        | the date, `YYYY-MM-DD`                                                                                                                                                                                                                                    |
+| `note`      | the person's words: what to resolve                                                                                                                                                                                                                       |
+| `layer`     | optional, present only once the component was inspected: the layer chosen in Inspect                                                                                                                                                                      |
+| `variant`   | optional, present only once the component was inspected: Figma's name for the variant chosen in Inspect (not necessarily what `controls` draw); pass it to `--variant` as is                                                                              |
+| `controls`  | empty in a Send to agent note; otherwise the Playground's values when the note was written; a Flutter colour arrives as `#rrggbb`, or `#aarrggbb` (alpha first) when not opaque, not CSS `#rrggbbaa`; the web sends what Storybook's colour control holds |
+| `rule`      | optional (Send to agent after a failing Keep): the overlay rule the person kept, its `set` key                                                                                                                                                            |
+| `value`     | optional (Send to agent after a failing Keep): that rule's value (`{ token }`, `{ keyword }` or `{ none: true }`), or null where the person removed the rule for Figma's own value                                                                        |
+| `failures`  | optional (Send to agent): the checks that failed, each `{ platform, variant?, layer?, property?, figma?, drawn?, message? }`; a variant from a Dark report ends in ` (Dark)`; past 199, the last one counts the rest                                      |
 
 [CLAUDE.md](../../../CLAUDE.md) holds throughout; these steps add to it.
 
@@ -47,9 +49,9 @@ yours only if its component is 🟡 on both platforms, or 🟡 on one and absent
 ## 2. Resolve each note
 
 1. See what draws the cell and why:
-   `npm run solar:explain -- "<component>"`, adding `--variant "<variant>"`,
-   `--layer <layer>` and `--property <property>` (a failure's `property`) where the note or a
-   failure names them
+   `npm run solar:explain -- "<component>"`, adding `--variant "<variant>"` (a failure's variant
+   without its ` (Dark)`), `--layer <layer>` and `--property <property>` (a failure's `property`)
+   where the note or a failure names them
    ([Fix a failing visual check](../../../docs/engineering/workflows.md#fix-a-failing-visual-check)
    explains the output).
 2. Decide where the change goes with
@@ -69,6 +71,10 @@ yours only if its component is 🟡 on both platforms, or 🟡 on one and absent
      `SOLAR_VISUAL_ONLY="<component>" npx playwright test components.spec.mjs -g "in every variant"`
    - Flutter, in `packages/solar_flutter`:
      `flutter test test/visual/components_visual_test.dart --name "^<component> draws what Figma draws"`
+
+   A component a chart library draws has no visual check (`SOLAR_VISUAL_ONLY` refuses it): run the
+   parity suite and, in `packages/codegen`, `npx vitest run test/charts.test.mjs` instead.
+
 5. Run `npm run solar:status -- --check`. A change that cancels an approval is undone by hand (never
    `git checkout`; CLAUDE.md) and listed for the owner, with the approvals it would cancel
    ([Approve a component](../../../docs/engineering/workflows.md#approve-a-component)).

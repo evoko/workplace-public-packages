@@ -26,9 +26,15 @@ const POSTS = new Set([
   'report',
   'send',
 ]);
-const FIELDS = new Set(['reason', 'note']);
+/** The text fields `type` may name, and the action each is. */
+const FIELD_ACTIONS = {
+  reason: 'Reason',
+  note: 'Note',
+  agentNote: 'Agent note',
+};
+const FIELDS = new Set(Object.keys(FIELD_ACTIONS));
 /** The actions that are text fields or Selects: what `press` cannot name. */
-const NOT_BUTTONS = new Set([...SELECTS, 'Reason', 'Note']);
+const NOT_BUTTONS = new Set([...SELECTS, ...Object.values(FIELD_ACTIONS)]);
 const READS = new Set(['health', 'status', 'component']);
 
 /** What is wrong with one scenario (resolved), as sentences; none where it is well written. */
@@ -212,8 +218,7 @@ describe("the workbench bar's scenarios", () => {
         if (st.event) used.add(`event.${st.event.type}`);
         if (st.press) used.add(`action.${st.press}`);
         if (st.choose) used.add(`action.${st.choose.select}`);
-        if (st.type)
-          used.add(`action.${st.type.field === 'note' ? 'Note' : 'Reason'}`);
+        if (st.type) used.add(`action.${FIELD_ACTIONS[st.type.field]}`);
       }
       for (const e of expects) {
         note('expect', Object.keys(e));

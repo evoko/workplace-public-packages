@@ -21,7 +21,14 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { createServer } from 'node:http';
-import { basename, dirname, join, relative, resolve } from 'node:path';
+import {
+  basename,
+  delimiter,
+  dirname,
+  join,
+  relative,
+  resolve,
+} from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const WORKBENCH_PORT = 6011;
@@ -53,10 +60,7 @@ const reply = (res, status, headers, data) => {
     .end(text);
 };
 
-/**
- * Each route: the session method that answers it, and its arguments from the body and the query.
- * `send` comes with Batch 4; until the session has it, it answers 501.
- */
+/** Each route: the session method that answers it, and its arguments from the body and the query. */
 const ROUTES = {
   'GET /status': ['status', () => []],
   'GET /component': [
@@ -199,8 +203,6 @@ export function serve({
     const [method, argsOf] = route;
     const s = server.session;
     if (!s) return send(503, { error: 'the workbench is still starting' });
-    if (typeof s[method] !== 'function')
-      return send(501, { error: `${where} is not yet part of the workbench` });
     answering += 1;
     try {
       const body = req.method === 'POST' ? await bodyOf(req) : {};
@@ -282,6 +284,64 @@ export function writeWhole(path, text) {
   }
 }
 
+/** How long a command may run before it is stopped: a check that hangs would hold every job. */
+const RUN_LIMIT_MS = 15 * 60_000;
+
+/**
+ * Runs a command to its end: whether it passed, and all it printed. It never rejects: a command
+ * that cannot start is `{ ok: false, output: <why> }`, and one still running after `timeoutMs` is
+ * stopped, with its process group (the test runners' own children too), and fails saying so. This
+ * Node's directory leads PATH, so `npx` and the test runners it starts run on the Node the service
+ * runs on (.nvmrc).
+ * @param {string} cmd
+ * @param {string[]} args
+ * @param {{cwd?: string, env?: object, timeoutMs?: number}} [opts]
+ * @returns {Promise<{ok: boolean, output: string}>}
+ */
+export function runCommand(
+  cmd,
+  args,
+  { cwd, env = {}, timeoutMs = RUN_LIMIT_MS } = {},
+) {
+  return new Promise((ok) => {
+    let output = '';
+    let done = false;
+    const finish = (result) => {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      ok(result);
+    };
+    const child = spawn(cmd, args, {
+      cwd,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      // Its own process group, so a stop reaches what it started.
+      detached: true,
+      env: {
+        ...process.env,
+        PATH: `${dirname(process.execPath)}${delimiter}${process.env.PATH ?? ''}`,
+        ...env,
+      },
+    });
+    const timer = setTimeout(() => {
+      try {
+        process.kill(-child.pid, 'SIGTERM');
+      } catch {
+        // It ended as it was stopped.
+      }
+      const limit =
+        timeoutMs >= 60_000
+          ? `${Math.round(timeoutMs / 60_000)} minutes`
+          : `${Math.round(timeoutMs / 1000)} seconds`;
+      finish({ ok: false, output: `${output}\n… stopped after ${limit}` });
+    }, timeoutMs);
+    child.stdout.on('data', (d) => (output += d));
+    child.stderr.on('data', (d) => (output += d));
+    child.on('error', (error) => finish({ ok: false, output: error.message }));
+    child.on('close', (code) => finish({ ok: code === 0, output }));
+  });
+}
+
 /**
  * Tells Widgetbook's `flutter run` to hot-reload (SIGUSR1), by the pid scripts/widgetbook.mjs writes
  * to `pidFile`. Nothing where there is no such file, it holds no pid, or the pid is not a flutter's
@@ -327,21 +387,11 @@ async function realSession(publish) {
   const { createSession, WorkbenchError } = await import(
     codegen('workbench/session.mjs')
   );
+  const { runChecks } = await import(codegen('workbench/checks.mjs'));
   const abs = (p) => join(repoRoot, p);
-  /** Runs a command in the repository, to its end: whether it passed, and all it printed. */
+  /** Runs a command, in the repository unless told where (runCommand). */
   const run = (cmd, args, opts = {}) =>
-    new Promise((ok) => {
-      const child = spawn(cmd, args, {
-        cwd: repoRoot,
-        ...opts,
-        env: { ...process.env, ...opts.env },
-      });
-      let output = '';
-      child.stdout.on('data', (d) => (output += d));
-      child.stderr.on('data', (d) => (output += d));
-      child.on('error', (error) => ok({ ok: false, output: error.message }));
-      child.on('close', (code) => ok({ ok: code === 0, output }));
-    });
+    runCommand(cmd, args, { cwd: repoRoot, ...opts });
   const pidFile = abs('.workbench/widgetbook.pid');
   return createSession({
     files: {
@@ -383,8 +433,14 @@ async function realSession(publish) {
         approvals,
       };
     },
-    // A component's own checks come with Batch 4 (workbench/checks.mjs).
-    checks: async () => ({ ok: true, failures: [] }),
+    // A component's own checks, one after another: its web and Flutter visual checks and the
+    // parity suite (workbench/checks.mjs). Their reports are git-ignored build output.
+    checks: (component) =>
+      runChecks(component, {
+        run,
+        read: (p) => (existsSync(p) ? readFileSync(p, 'utf8') : null),
+        remove: (p) => rmSync(p, { force: true }),
+      }),
     reload: () => reloadWidgetbook(pidFile),
     // Null where git has no name: the session then refuses to approve.
     userName: () => gitUserName({ cwd: repoRoot }),

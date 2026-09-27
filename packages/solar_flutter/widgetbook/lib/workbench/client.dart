@@ -44,6 +44,16 @@ abstract class WorkbenchClient {
     required String note,
   });
 
+  /// Send to agent: a note carrying the failing checks shown (a failing Keep's, or a refused
+  /// Approve's), with the person's [note], even none, in spec/feedback/: the file written. After a
+  /// Keep, the edit is then no longer pending.
+  Future<String> send({
+    required String component,
+    required String platform,
+    required String note,
+    required List<WorkbenchFailure> failures,
+  });
+
   /// The events after [after], within 25 seconds: the last seq, and each event's type.
   Future<({int seq, List<String> types})> events(int after);
 
@@ -194,6 +204,21 @@ class HttpWorkbenchClient implements WorkbenchClient {
             'layer': ?layer,
             'variant': ?variant,
             'note': note,
+          }))['file']
+          as String;
+
+  @override
+  Future<String> send({
+    required String component,
+    required String platform,
+    required String note,
+    required List<WorkbenchFailure> failures,
+  }) async =>
+      (await _call('/send', {
+            'component': component,
+            'platform': platform,
+            'note': note,
+            'failures': [for (final f in failures) f.json],
           }))['file']
           as String;
 

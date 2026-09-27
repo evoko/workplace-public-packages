@@ -283,6 +283,23 @@ class FakeClient implements WorkbenchClient {
     return 'spec/feedback/button-1.yaml';
   }
 
+  @override
+  Future<String> send({
+    required String component,
+    required String platform,
+    required String note,
+    required List<WorkbenchFailure> failures,
+  }) async {
+    calls.add([
+      'send',
+      component,
+      platform,
+      note,
+      [for (final f in failures) f.json],
+    ]);
+    return 'spec/feedback/button-2.yaml';
+  }
+
   final _polls = <Completer<({int seq, List<String> types})>>[];
   var _seq = 0;
 
@@ -534,7 +551,8 @@ void main() {
         find.text('Pending: root.base.radius → radius.pill'),
         findsOneWidget,
       );
-      expect(find.byType(SolarTextArea), findsOneWidget);
+      // The reason, and beside the failing checks, Send to agent's note.
+      expect(find.byType(SolarTextArea), findsNWidgets(2));
       expect(find.bySemanticsLabel(RegExp('^Failing checks')), findsOneWidget);
       expect(
         find.text('• flutter: size=md label.x: Figma 12, drawn 14'),

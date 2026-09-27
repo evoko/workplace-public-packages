@@ -27,10 +27,14 @@ const _file = '../../codegen/src/workbench/bar-scenarios.json';
 const _platform = 'flutter';
 const _selects = {'Set to', 'Scope', 'Variant', 'Layer'};
 
-/// The text fields, by action, and the start of each one's label: the pending edit's reason, and
-/// Report's note.
-const _fields = {'Reason': 'Why', 'Note': 'Note'};
-const _fieldActions = {'reason': 'Reason', 'note': 'Note'};
+/// The text fields, by action, and the start of each one's label: the pending edit's reason,
+/// Report's note, and Send to agent's.
+const _fields = {'Reason': 'Why', 'Note': 'Note', 'Agent note': 'Agent note'};
+const _fieldActions = {
+  'reason': 'Reason',
+  'note': 'Note',
+  'agentNote': 'Agent note',
+};
 
 /// The file's vocabulary: its actions, the controls this bar may draw beyond them, the routes the
 /// service runs one at a time, and the fake's keys.

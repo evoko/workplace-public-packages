@@ -26,7 +26,10 @@ const HEADER =
   '# A note for /solar-feedback (docs/engineering/workflows.md, Fix a component in the viewer),\n' +
   '# written by the workbench. The agent resolves it and deletes this file.\n';
 
-/** The note as YAML: what, where, the person's words, the controls set, and any failing check. */
+/**
+ * The note as YAML: what, where, the person's words, the controls set, the rule a failing Keep kept
+ * (its key and value, null where it removed the rule), and any failing check.
+ */
 export function noteText({
   component,
   platform,
@@ -34,6 +37,8 @@ export function noteText({
   layer,
   variant,
   note,
+  rule,
+  value,
   failures,
   on,
 }) {
@@ -45,6 +50,7 @@ export function noteText({
     ...(layer && { layer }),
     ...(variant && { variant }),
     controls: controls ?? {},
+    ...(rule && { rule, value: value ?? null }),
     ...(failures?.length && { failures }),
   };
   return HEADER + stringify(data, { lineWidth: 100 });

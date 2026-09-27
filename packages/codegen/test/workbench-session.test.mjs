@@ -12,7 +12,9 @@ import {
 } from '../src/normalize/overlay.mjs';
 import { tokenNames } from '../src/normalize/recipe.mjs';
 import { loadContract } from '../src/normalize/tokens.mjs';
+import { parse } from 'yaml';
 import * as stage from '../src/stages/components.mjs';
+import { MAX_FAILURES } from '../src/workbench/checks.mjs';
 import { createSession, WorkbenchError } from '../src/workbench/session.mjs';
 
 const OVERLAY = 'spec/overlay/button.yaml';
@@ -83,7 +85,10 @@ function world({
         files.set(p, t);
       },
       remove: (p) => files.delete(p),
-      list: () => [],
+      list: (dir) =>
+        [...files.keys()]
+          .filter((k) => k.startsWith(`${dir}/`))
+          .map((k) => k.slice(dir.length + 1)),
     },
     overlayPath: (name) => `spec/overlay/${name.toLowerCase()}.yaml`,
     approvalsPath: 'spec/approvals.yaml',
@@ -194,6 +199,7 @@ describe('the session', () => {
       'inspect',
       'keep',
       'report',
+      'send',
       'set',
       'status',
       'unapprove',
@@ -598,6 +604,96 @@ describe('the session', () => {
     // Keep's own write is the edit's now, so Undo does not take it for someone else's.
     await createSession(w.deps).undo({ component: 'Button' });
     untouched(w);
+  });
+
+  it('sends a failing Keep to the agent: the edit stays as kept, a note carries the failures', async () => {
+    const failures = [
+      {
+        platform: 'web',
+        layer: 'root',
+        property: 'height',
+        figma: 40,
+        drawn: 44,
+      },
+    ];
+    w.deps.checks = async () => ({ ok: false, failures });
+    s = createSession(w.deps);
+    await s.set(setBody(s));
+    expect((await s.keep({ component: 'Button', reason: 'Why.' })).ok).toBe(
+      false,
+    );
+    const kept = w.files.get(OVERLAY);
+    const regenerated = w.calls.filter((c) => c[0] === 'codegen').length;
+    // The failures the viewer holds are the same; the pending edit's are the ones sent.
+    const { file } = await s.send({
+      component: 'Button',
+      platform: 'web',
+      note: '  Looks right to me. ',
+      failures: [{ platform: 'web', message: 'not these' }],
+    });
+    expect(file).toBe('spec/feedback/button-1.yaml');
+    expect(parse(w.files.get(file))).toEqual({
+      component: 'Button',
+      platform: 'web',
+      on: '2026-09-27',
+      note: 'Looks right to me.',
+      layer: 'root',
+      controls: {},
+      rule: 'root.base.background',
+      value: { token: 'color.text.primary' },
+      failures,
+    });
+    expect((await s.status()).pending).toBeNull();
+    expect(w.files.has(PENDING)).toBe(false);
+    expect(w.files.get(OVERLAY)).toBe(kept);
+    expect(kept).toContain('reason: Why.');
+    // Nothing to regenerate: Keep already built the edit as it stays.
+    expect(w.calls.filter((c) => c[0] === 'codegen')).toHaveLength(regenerated);
+    // Kept, it is no longer pending: a second Send has nothing to carry.
+    const again = await refusal(
+      s.send({ component: 'Button', platform: 'web', note: 'x' }),
+    );
+    expect(again.status).toBe(400);
+    expect(again.message).toBe('Button has no failing checks to send');
+  });
+
+  it('caps a failing Keep’s failures, so its status and a Send of them stay within the limit', async () => {
+    w.deps.checks = async () => ({
+      ok: false,
+      failures: Array.from({ length: 450 }, (_, i) => ({
+        platform: 'web',
+        variant: `v${i}`,
+        layer: 'root',
+        property: 'borderDash',
+        figma: [2, 4],
+        drawn: [3, 3],
+      })),
+    });
+    s = createSession(w.deps);
+    await s.set(setBody(s));
+    const r = await s.keep({ component: 'Button', reason: 'Why.' });
+    expect(r.failures).toHaveLength(MAX_FAILURES);
+    expect((await s.status()).pending.failing).toEqual(r.failures);
+    const { file } = await s.send({
+      component: 'Button',
+      platform: 'web',
+      note: '',
+      failures: r.failures,
+    });
+    expect(parse(w.files.get(file)).failures).toEqual(r.failures);
+    expect((await s.status()).pending).toBeNull();
+  });
+
+  it('refuses to send a pending edit whose checks have not failed', async () => {
+    await s.set(setBody(s));
+    const e = await refusal(
+      s.send({ component: 'Button', platform: 'web', note: 'x' }),
+    );
+    expect(e.status).toBe(400);
+    expect((await s.status()).pending).not.toBeNull();
+    expect(
+      [...w.files.keys()].some((k) => k.startsWith('spec/feedback/')),
+    ).toBe(false);
   });
 
   it('keeps the edit pending where the plain build fails, saying it can be undone', async () => {

@@ -22,9 +22,13 @@ const SERIAL = new Set(vocabulary.serial.routes);
 const FAKE_KEYS = new Set(Object.keys(vocabulary.fake));
 const ANSWER_KEYS = new Set(['answer', 'status', 'refuse', 'events', 'hold']);
 const SELECTS = new Set(['Set to', 'Scope', 'Variant', 'Layer']);
-/** The text fields, by action: the pending edit's reason, and Report's note. */
-const FIELDS = { Reason: /^Why/, Note: /^Note/ };
-const FIELD_ACTIONS = { reason: 'Reason', note: 'Note' };
+/** The text fields, by action: the pending edit's reason, Report's note, and Send to agent's. */
+const FIELDS = { Reason: /^Why/, Note: /^Note/, 'Agent note': /^Agent note/ };
+const FIELD_ACTIONS = {
+  reason: 'Reason',
+  note: 'Note',
+  agentNote: 'Agent note',
+};
 
 const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const sleep = (ms) => new Promise((ok) => setTimeout(ok, ms));

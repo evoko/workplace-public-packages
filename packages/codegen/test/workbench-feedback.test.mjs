@@ -1,8 +1,13 @@
-// A Report note (workbench/feedback.mjs) and the session's `report`, on files in memory.
+// A note (workbench/feedback.mjs) and the session's `report` and `send`, on files in memory.
 import { describe, expect, it } from 'vitest';
 import { parse } from 'yaml';
 import { noteFile, noteText } from '../src/workbench/feedback.mjs';
-import { createSession, WorkbenchError } from '../src/workbench/session.mjs';
+import { MAX_FAILURES } from '../src/workbench/checks.mjs';
+import {
+  createSession,
+  MAX_NOTE,
+  WorkbenchError,
+} from '../src/workbench/session.mjs';
 
 describe('a Report note', () => {
   it('is named after the component, numbered after the notes already there', () => {
@@ -89,6 +94,33 @@ describe('a Report note', () => {
     });
     const failures = [{ platform: 'web', layer: 'root', property: 'height' }];
     expect(parse(noteText({ ...base, failures })).failures).toEqual(failures);
+  });
+
+  it('names the rule a failing Keep kept, and its value, null where the edit removed it', () => {
+    const base = {
+      component: 'Button',
+      platform: 'web',
+      note: 'x',
+      on: '2026-09-27',
+    };
+    expect(
+      parse(
+        noteText({
+          ...base,
+          rule: 'root.base.radius',
+          value: { token: 'radius.full' },
+        }),
+      ),
+    ).toEqual({
+      ...base,
+      controls: {},
+      rule: 'root.base.radius',
+      value: { token: 'radius.full' },
+    });
+    expect(
+      parse(noteText({ ...base, rule: 'root.base.radius', value: null })).value,
+    ).toBeNull();
+    expect(parse(noteText(base))).not.toHaveProperty('rule');
   });
 });
 
@@ -283,6 +315,243 @@ describe('reporting from a viewer', () => {
       const w = world(colours);
       const e = await refusal(createSession(w.deps).report(reportBody()));
       expect(e.status).toBe(409);
+      expect(e.message).toMatch(words);
+      expect(notes(w)).toEqual([]);
+    }
+  });
+});
+
+describe('sending to the agent from a viewer', () => {
+  const failures = [{ platform: 'flutter', message: 'boom' }];
+  const sendBody = (extra = {}) => ({
+    component: 'Button',
+    platform: 'web',
+    note: 'Approve refused.',
+    failures,
+    ...extra,
+  });
+
+  it('writes a refused Approve’s failures in a note, the component left unapproved', async () => {
+    const w = world();
+    w.deps.checks = async () => ({ ok: false, failures });
+    const s = createSession(w.deps);
+    const r = await s.approve({ component: 'Button', platform: 'web' });
+    expect(r).toEqual({ ok: false, failures });
+    const { file } = await s.send(sendBody({ failures: r.failures }));
+    expect(file).toBe('spec/feedback/button-1.yaml');
+    expect(parse(w.files.get(file))).toEqual({
+      component: 'Button',
+      platform: 'web',
+      on: '2026-09-27',
+      note: 'Approve refused.',
+      controls: {},
+      failures,
+    });
+    expect(w.files.has('spec/approvals.yaml')).toBe(false);
+    expect(w.events.map((e) => e.type).slice(-2)).toEqual(['busy', 'changed']);
+  });
+
+  it('names the rule kept from a failing Keep saved before a restart, null where the edit removed it', async () => {
+    const w = world();
+    const kept = [{ platform: 'web', layer: 'root', property: 'height' }];
+    w.files.set(
+      '.workbench/pending.json',
+      JSON.stringify({
+        component: 'Button',
+        key: 'root.size=md.radius',
+        value: { token: 'radius.control' },
+        deletes: true,
+        before: 'component: Button\n',
+        placeholder: 'x',
+        after: 'x',
+        failing: kept,
+      }),
+    );
+    const s = createSession(w.deps);
+    const { file } = await s.send(sendBody({ failures: undefined, note: '' }));
+    expect(parse(w.files.get(file))).toMatchObject({
+      layer: 'root',
+      rule: 'root.size=md.radius',
+      value: null,
+      failures: kept,
+    });
+    expect(w.files.has('.workbench/pending.json')).toBe(false);
+    expect((await s.status()).pending).toBeNull();
+  });
+
+  it('refuses failures that are not the contract’s, too many of them, and a note too long', async () => {
+    const w = world();
+    const s = createSession(w.deps);
+    for (const bad of [
+      [{ message: 'no platform' }],
+      [{ platform: 'ios', message: 'x' }],
+      [{ platform: 'web', colour: 'red' }],
+      [{ platform: 'web', layer: 3 }],
+      [{ platform: 'web', figma: { x: 1 } }],
+      [{ platform: 'web', drawn: [{ x: 1 }] }],
+      [{ platform: 'web', drawn: [[1]] }],
+      [{ platform: 'web', figma: [null] }],
+      [{ platform: 'web', drawn: Number.NaN }],
+    ]) {
+      const e = await refusal(s.send(sendBody({ failures: bad })));
+      expect(e.status).toBe(400);
+      expect(e.message).toMatch(/list of failing checks/);
+    }
+    const many = Array.from({ length: MAX_FAILURES + 1 }, () => ({
+      platform: 'web',
+      message: 'x',
+    }));
+    const e = await refusal(s.send(sendBody({ failures: many })));
+    expect(e.status).toBe(400);
+    expect(e.message).toMatch(`at most ${MAX_FAILURES} failing checks`);
+    for (const body of [
+      sendBody({ note: 'x'.repeat(MAX_NOTE + 1) }),
+      reportBody({ note: 'x'.repeat(MAX_NOTE + 1) }),
+    ]) {
+      const long = await refusal(
+        'failures' in body ? s.send(body) : s.report(body),
+      );
+      expect(long.status).toBe(400);
+      expect(long.message).toMatch(`over ${MAX_NOTE} characters`);
+    }
+    expect(notes(w)).toEqual([]);
+    // At the limits, and every kind of value Figma or the drawing may be: taken.
+    const edge = [
+      ...Array.from({ length: MAX_FAILURES - 1 }, () => ({
+        platform: 'web',
+        message: 'x',
+      })),
+      {
+        platform: 'parity',
+        variant: 'size=md',
+        layer: 'root',
+        property: 'height',
+        figma: 40,
+        drawn: null,
+      },
+    ];
+    await s.send(sendBody({ failures: edge, note: 'x'.repeat(MAX_NOTE) }));
+    await s.send(
+      sendBody({
+        failures: [{ platform: 'flutter', figma: 'a', drawn: true }],
+      }),
+    );
+    await s.report(reportBody({ note: 'x'.repeat(MAX_NOTE) }));
+    expect(notes(w)).toHaveLength(3);
+  });
+
+  // A dashed border's pattern is a list of numbers, and fills and strokes lists of words.
+  const dash = {
+    platform: 'web',
+    variant: 'state=default',
+    layer: 'root',
+    property: 'borderDash',
+    figma: [2, 4],
+    drawn: [3, 3],
+  };
+  const fills = {
+    platform: 'flutter',
+    property: 'fill',
+    figma: ['#fff'],
+    drawn: [],
+  };
+
+  it('sends a refused Approve’s dash pattern and fills, lists as the checks measure them', async () => {
+    const w = world();
+    w.deps.checks = async () => ({ ok: false, failures: [dash, fills] });
+    const s = createSession(w.deps);
+    const r = await s.approve({ component: 'Button', platform: 'web' });
+    const { file } = await s.send(sendBody({ failures: r.failures }));
+    expect(parse(w.files.get(file)).failures).toEqual([dash, fills]);
+  });
+
+  it('sends a failing Keep’s own dash pattern, and never reads the body’s failures then', async () => {
+    const w = world();
+    w.files.set(
+      '.workbench/pending.json',
+      JSON.stringify({
+        component: 'Button',
+        key: 'root.base.borderStyle',
+        value: { keyword: 'dashed' },
+        deletes: false,
+        before: 'component: Button\n',
+        placeholder: 'x',
+        after: 'x',
+        failing: [dash],
+      }),
+    );
+    const s = createSession(w.deps);
+    const { file } = await s.send(
+      sendBody({ failures: [{ platform: 'nowhere', figma: { x: 1 } }] }),
+    );
+    expect(parse(w.files.get(file)).failures).toEqual([dash]);
+  });
+
+  it('caps a refused Approve’s failures, so all of them can be sent', async () => {
+    const w = world();
+    const each = Array.from({ length: 450 }, (_, i) => ({
+      platform: 'web',
+      variant: `v${i}`,
+      layer: 'root',
+      property: 'height',
+      figma: 40,
+      drawn: 44,
+    }));
+    w.deps.checks = async () => ({ ok: false, failures: each });
+    const s = createSession(w.deps);
+    const r = await s.approve({ component: 'Button', platform: 'web' });
+    expect(r.failures).toHaveLength(MAX_FAILURES);
+    expect(r.failures.at(-1).message).toMatch(/and 251 more failing checks/);
+    const { file } = await s.send(sendBody({ failures: r.failures }));
+    expect(parse(w.files.get(file)).failures).toHaveLength(MAX_FAILURES);
+  });
+
+  it('says what the person judged where they write no note', async () => {
+    const w = world();
+    const s = createSession(w.deps);
+    for (const note of [undefined, '', '  \n ']) {
+      const { file } = await s.send(sendBody({ note }));
+      expect(parse(w.files.get(file)).note).toBe(
+        'The checks failed where the person judged the component right.',
+      );
+    }
+  });
+
+  it('refuses a note with no failing checks, failures that are not a list of them, a note that is not words, or a platform other than the two', async () => {
+    const w = world();
+    const s = createSession(w.deps);
+    for (const [extra, words] of [
+      [{ failures: undefined }, /no failing checks to send/],
+      [{ failures: [] }, /no failing checks to send/],
+      [{ failures: 'boom' }, /list of failing checks/],
+      [{ failures: [1] }, /list of failing checks/],
+      [{ failures: [null] }, /list of failing checks/],
+      [{ note: 42 }, /note/],
+      [{ platform: 'ios' }, /web or flutter/],
+      [{ platform: undefined }, /web or flutter/],
+    ]) {
+      const e = await refusal(s.send(sendBody(extra)));
+      expect(e.status).toBe(400);
+      expect(e.message).toMatch(words);
+    }
+    expect(notes(w)).toEqual([]);
+  });
+
+  it('refuses where Report does: a component locked, absent, or not on that platform', async () => {
+    for (const [colours, body, status, words] of [
+      [{ web: 'yellow', flutter: 'green' }, {}, 409, /approved on Flutter/],
+      [{ web: 'yellow', flutter: 'red' }, {}, 409, /waits on Icon on Flutter/],
+      [
+        { web: 'yellow' },
+        { platform: 'flutter' },
+        400,
+        /Flutter has no Button/,
+      ],
+      [{}, { component: 'Nothing' }, 400, /Nothing is not a component/],
+    ]) {
+      const w = world(colours);
+      const e = await refusal(createSession(w.deps).send(sendBody(body)));
+      expect(e.status).toBe(status);
       expect(e.message).toMatch(words);
       expect(notes(w)).toEqual([]);
     }

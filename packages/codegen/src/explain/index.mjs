@@ -135,7 +135,7 @@ function originOf(entry) {
 }
 
 /** The report file names each check writes, by component name in code. */
-const reportFiles = (name) => ({
+export const reportFiles = (name) => ({
   web: join(
     packagesDir,
     'components',

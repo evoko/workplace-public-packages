@@ -14,12 +14,16 @@ class WorkbenchFailure {
       drawn = j['drawn'],
       _hasFigma = j.containsKey('figma'),
       _hasDrawn = j.containsKey('drawn'),
-      message = j['message'] as String?;
+      message = j['message'] as String?,
+      json = Map.unmodifiable(j);
 
   final String platform;
   final String? variant, layer, property, message;
   final Object? figma, drawn;
   final bool _hasFigma, _hasDrawn;
+
+  /// The failure as the service gave it: what Send to agent sends back.
+  final Map<String, dynamic> json;
 
   /// The failure in one line, as the web's list writes it: its message, else
   /// `<platform>: <variant> <layer>.<property>: Figma <figma>, drawn <drawn>`, each part left out

@@ -546,7 +546,21 @@ const report = (component, gaps) =>
     `${JSON.stringify(gaps, null, 2)}\n`,
   );
 
-for (const component of NAMES)
+// One component alone, Light and Dark, for the workbench's checks behind Keep and Approve
+// (packages/codegen/src/workbench/checks.mjs) and the /solar-feedback skill. Unset in CI and the
+// Verify block: every component.
+const only = process.env.SOLAR_VISUAL_ONLY;
+if (only && !NAMES.includes(only))
+  throw new Error(
+    ALL.includes(only)
+      ? `SOLAR_VISUAL_ONLY: ${only} is drawn by a chart library and has no visual check of its own`
+      : `SOLAR_VISUAL_ONLY: no component "${only}" (its name in code, as solar:status lists it: "Icon Button")`,
+  );
+if (only)
+  // eslint-disable-next-line no-console -- says plainly that the run is narrowed
+  console.warn(`SOLAR_VISUAL_ONLY=${only}: checking one component only`);
+
+for (const component of only ? [only] : NAMES)
   for (const dark of [false, true])
     test(`${component} draws what Figma draws${dark ? ' in Dark' : ''}, in every variant`, async ({
       page,

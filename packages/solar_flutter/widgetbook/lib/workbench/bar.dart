@@ -1,6 +1,8 @@
 // The workbench bar above a component's Playground: its circle on this platform, and by it Inspect,
 // Report and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect and Report are
 // sections, one open at a time; Report's note is its own, so it may be saved beside a pending edit.
+// Where checks fail (a Keep's or an Approve's) and the component may change, Send to agent writes a
+// note carrying them.
 // Everything it changes goes through the workbench service (client.dart); it draws nothing where no
 // service answers. Drawn with SOLAR's own widgets; no pointing at a layer (the web's alone). It
 // behaves as the web's bar (stories/workbench/Bar.tsx) does, which the scenarios in
@@ -21,6 +23,10 @@ const _circle = {'green': '🟢', 'yellow': '🟡', 'red': '🔴'};
 
 /// The section open below the bar's buttons: none, Inspect's panel, or Report's note.
 enum _Section { none, inspect, report }
+
+/// What sending a failing Keep's checks does to the checks, as the web's bar says it.
+const _kept =
+    "its checks, and CI's, fail until /solar-feedback settles the note.";
 
 /// How long the bar waits before asking a service that is still starting, or whose poll failed.
 const _retry = Duration(seconds: 1);
@@ -69,8 +75,15 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   final _reason = TextEditingController();
   final _note = TextEditingController();
 
+  /// Send to agent's note, its own: Report's may be open beside it.
+  final _agentNote = TextEditingController();
+
   /// The file the last note was saved in, until the next action or Report closes.
   String? _saved;
+
+  /// The file the last Send to agent wrote, and whether it kept a failing Keep's edit, until the
+  /// next action.
+  ({String file, bool fromKeep})? _sent;
 
   /// The header, which the focus goes to after Approve or Undo approval: focusable, though not in
   /// the traversal order (the web's `tabIndex={-1}`).
@@ -96,6 +109,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     _live = false;
     _reason.dispose();
     _note.dispose();
+    _agentNote.dispose();
     _header.dispose();
     super.dispose();
   }
@@ -214,6 +228,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
       _error = null;
       _failures = null;
       _saved = null;
+      _sent = null;
       _working = true;
     });
     try {
@@ -367,6 +382,51 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     }),
   );
 
+  /// Send to agent: the failing checks shown, a Keep's (whose edit is then no longer pending) or an
+  /// Approve's, with the note, even none. Refused, the checks stay shown, to send again.
+  void _sendToAgent(List<WorkbenchFailure> shown, {required bool fromKeep}) =>
+      unawaited(
+        _act(() async {
+          try {
+            final file = await widget.client.send(
+              component: widget.component,
+              platform: widget.platform,
+              note: _agentNote.text,
+              failures: shown,
+            );
+            _agentNote.clear();
+            _reason.clear();
+            if (mounted) {
+              setState(() => _sent = (file: file, fromKeep: fromKeep));
+            }
+          } catch (_) {
+            if (!fromKeep && mounted) setState(() => _failures = shown);
+            rethrow;
+          }
+        }),
+      );
+
+  /// Send to agent, beside the failing checks it carries: an optional note, and the button. Offered
+  /// only where the component may change (the agent works on no other).
+  List<Widget> _sendBlock(
+    List<WorkbenchFailure> shown, {
+    required bool fromKeep,
+  }) => [
+    SolarTextArea(
+      size: SolarTextAreaSize.sm,
+      label: 'Agent note (optional)',
+      helper: fromKeep
+          ? 'Why the component is right as it is, or what to fix. Sending keeps the edit with its reason (Undo goes); $_kept'
+          : 'Why the component is right as it is, or what to fix. The failing checks go with it.',
+      controller: _agentNote,
+    ),
+    _button(
+      'Send to agent',
+      _working ? null : () => _sendToAgent(shown, fromKeep: fromKeep),
+      prio: SolarButtonPrio.primary,
+    ),
+  ];
+
   void _undo() => unawaited(
     _act(() async {
       await widget.client.undo(widget.component);
@@ -437,6 +497,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
         const <WorkbenchCell>[];
     final failures = _failures;
     final idle = !_working;
+    final canInspect = colour == 'yellow' && mine.editable;
 
     return Semantics(
       container: true,
@@ -621,8 +682,10 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
                     'Also the reason of: ${pending.borrowers.join(', ')}',
                     style: small,
                   ),
-                if (pending.failing case final failing?)
+                if (pending.failing case final failing?) ...[
                   _failureList(failing, small),
+                  if (canInspect) ..._sendBlock(failing, fromKeep: true),
+                ],
                 Wrap(
                   spacing: SolarInset.xs,
                   runSpacing: SolarInset.xs,
@@ -630,13 +693,27 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
                     _button(
                       'Keep',
                       idle ? _keep : null,
-                      prio: SolarButtonPrio.primary,
+                      // Where the checks failed, Send to agent is the step the bar leads with.
+                      prio: pending.failing != null && canInspect
+                          ? SolarButtonPrio.secondary
+                          : SolarButtonPrio.primary,
                     ),
                     _button('Undo', idle ? _undo : null),
                   ],
                 ),
               ],
-              if (failures != null) _failureList(failures, small),
+              if (failures != null) ...[
+                _failureList(failures, small),
+                if (canInspect) ..._sendBlock(failures, fromKeep: false),
+              ],
+              if (_sent case final sent?)
+                Semantics(
+                  liveRegion: true,
+                  child: Text(
+                    'Saved: ${sent.file}${sent.fromKeep ? '. The edit is kept; $_kept' : ''}',
+                    style: small,
+                  ),
+                ),
               if (error != null) _alert(error, t),
             ],
           ),

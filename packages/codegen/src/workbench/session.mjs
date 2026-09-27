@@ -22,6 +22,7 @@ import {
   withdrawnBy,
   withoutApprovals,
 } from './approvals-edit.mjs';
+import { capFailures, MAX_FAILURES } from './checks.mjs';
 import { noteFile, noteText } from './feedback.mjs';
 import { builtOf, inspect as inspectOf, revisionOf } from './inspect.mjs';
 import { borrowersOf, readSetEntry, writeSetEntry } from './overlay-edit.mjs';
@@ -63,6 +64,35 @@ const plainValue = (value) =>
       ? { keyword: value.keyword }
       : { none: true };
 
+/** The longest note a person may write, in characters. */
+export const MAX_NOTE = 10_000;
+
+const FAILURE_TEXT = ['variant', 'layer', 'property', 'message'];
+const FAILURE_SEEN = ['figma', 'drawn'];
+
+/** A small JSON value a check measured: a scalar, or a list of them (a dash pattern, the fills). */
+const isScalar = (v) =>
+  v === null ||
+  typeof v === 'string' ||
+  typeof v === 'boolean' ||
+  (typeof v === 'number' && Number.isFinite(v));
+const isSeen = (v) =>
+  isScalar(v) ||
+  (Array.isArray(v) && v.every((x) => x !== null && isScalar(x)));
+
+/** Whether `f` is a Failure of the HTTP contract, with no key it lacks. */
+const isFailure = (f) =>
+  f !== null &&
+  typeof f === 'object' &&
+  !Array.isArray(f) &&
+  ['web', 'flutter', 'parity'].includes(f.platform) &&
+  Object.entries(f).every(
+    ([k, v]) =>
+      k === 'platform' ||
+      (FAILURE_TEXT.includes(k) && typeof v === 'string') ||
+      (FAILURE_SEEN.includes(k) && isSeen(v)),
+  );
+
 /** The last lines of a command's output, as one line. */
 const tail = (output) =>
   String(output ?? '')
@@ -79,7 +109,7 @@ const tail = (output) =>
  * @param {(name: string) => string} deps.overlayPath a component's overlay file
  * @param {string} deps.approvalsPath spec/approvals.yaml
  * @param {string} deps.pendingPath where the pending edit is saved
- * @param {string} deps.feedbackDir spec/feedback, where a Report note is written
+ * @param {string} deps.feedbackDir spec/feedback, where a Report or Send to agent note is written
  * @param {() => {built: object[], tokens: object}} deps.build `stage.build()` as the files are now
  * @param {(o: {pending: boolean}) => Promise<{ok: boolean, output: string}>} deps.codegen
  *   `solar:codegen`, with `--pending` while an edit is pending
@@ -487,9 +517,11 @@ export function createSession(deps) {
         }
         const result = await deps.checks(name);
         if (!result.ok) {
-          savePending({ ...pending, failing: result.failures });
+          // Capped, so the status and a Send of them stay within the contract's limit.
+          const failing = capFailures(result.failures, name);
+          savePending({ ...pending, failing });
           deps.reload();
-          return { ok: false, failures: result.failures };
+          return { ok: false, failures: failing };
         }
         savePending(null);
         deps.reload();
@@ -524,6 +556,8 @@ export function createSession(deps) {
             refuse(`the ${field} is a name`, 400);
         const words = typeof note === 'string' ? note.trim() : '';
         if (!words) refuse('write the note', 400);
+        if (words.length > MAX_NOTE)
+          refuse(`the note is over ${MAX_NOTE} characters`, 400);
         const coloured = await mustEdit(name);
         if (!coloured[platform]?.some((c) => c.name === name))
           refuse(
@@ -544,6 +578,70 @@ export function createSession(deps) {
             on: deps.today(),
           }),
         );
+        return { file };
+      }),
+
+    /**
+     * Send to agent: a note carrying the failing checks where the person judged the component
+     * right. From a failing Keep, the checks are the pending edit's, and the edit is then kept as
+     * Keep wrote it, its reason and all; from a refused Approve, they are the failures the viewer
+     * was given. On the same terms as Report: the agent works on components that may change.
+     */
+    send: ({ component: name, platform, note, failures }) =>
+      serial('Saving the note…', async () => {
+        mustBePlatform(platform);
+        if (note !== undefined && note !== null && typeof note !== 'string')
+          refuse('the note is words', 400);
+        const words = (note ?? '').trim();
+        if (words.length > MAX_NOTE)
+          refuse(`the note is over ${MAX_NOTE} characters`, 400);
+        // After a failing Keep, the pending edit's own are sent, and the body's are not read.
+        const fromKeep = Boolean(
+          pending?.component === name && pending.failing?.length,
+        );
+        if (
+          !fromKeep &&
+          failures !== undefined &&
+          failures !== null &&
+          !(Array.isArray(failures) && failures.every(isFailure))
+        )
+          refuse(
+            'the failures are a list of failing checks: each a platform (web, flutter or parity), and at most a variant, layer, property and message as words, and what Figma draws and what was drawn',
+            400,
+          );
+        if (!fromKeep && failures?.length > MAX_FAILURES)
+          refuse(`a note carries at most ${MAX_FAILURES} failing checks`, 400);
+        const carried = fromKeep ? pending.failing : failures;
+        if (!carried?.length)
+          refuse(`${name} has no failing checks to send`, 400);
+        const coloured = await mustEdit(name);
+        if (!coloured[platform]?.some((c) => c.name === name))
+          refuse(
+            `${platform === 'web' ? 'Web' : 'Flutter'} has no ${name}`,
+            400,
+          );
+        const dir = deps.feedbackDir;
+        const file = `${dir}/${noteFile(files.list(dir), name)}`;
+        files.write(
+          file,
+          noteText({
+            component: name,
+            platform,
+            controls: {},
+            // The rule the person kept, as Keep wrote it (none where the edit removed it).
+            ...(fromKeep && {
+              layer: pending.key.split('.')[0],
+              rule: pending.key,
+              value: pending.deletes ? null : pending.value,
+            }),
+            note:
+              words ||
+              'The checks failed where the person judged the component right.',
+            failures: carried,
+            on: deps.today(),
+          }),
+        );
+        if (fromKeep) savePending(null);
         return { file };
       }),
 
@@ -568,7 +666,8 @@ export function createSession(deps) {
             `${name} waits on ${c.waitsOn.join(', ')}: approve those first`,
           );
         const result = await deps.checks(name);
-        if (!result.ok) return { ok: false, failures: result.failures };
+        if (!result.ok)
+          return { ok: false, failures: capFailures(result.failures, name) };
         // The checks write nothing the fingerprint reads; it is read again after them regardless.
         const again = (await deps.status()).coloured[platform]?.find(
           (x) => x.name === name,

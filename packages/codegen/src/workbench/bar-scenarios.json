@@ -11,14 +11,14 @@
       "status": "the Status GET /status answers, until an answer or a setStatus step changes it.",
       "inspection": "the Inspection GET /component answers, its variant set to the one asked.",
       "controls": "the Playground's values the bar is given, by control (what Report sends as controls). Default {}.",
-      "answers": "by route (status, component, set, keep, undo, approve, unapprove/preview, unapprove, report): { answer, status, events, hold } or { refuse: { status, error }, events, hold }. The route's events are delivered first; where hold is true, the answer then waits for a release step; then status (where given) becomes what GET /status answers, and the answer is sent: answer, the body (omitted, the Status now), or the refusal. A GET route takes refuse alone. A POST route not listed fails the scenario; a key not named here fails it too."
+      "answers": "by route (status, component, set, keep, undo, approve, unapprove/preview, unapprove, report, send): { answer, status, events, hold } or { refuse: { status, error }, events, hold }. The route's events are delivered first; where hold is true, the answer then waits for a release step; then status (where given) becomes what GET /status answers, and the answer is sent: answer, the body (omitted, the Status now), or the refusal. A GET route takes refuse alone. A POST route not listed fails the scenario; a key not named here fails it too."
     },
     "steps": {
       "press": "presses the bar's button of this name, which must be enabled.",
       "choose": "{ select, option }: opens the Select labelled select and chooses the one option whose words contain option.",
       "confirm": "true: confirms the dialog open.",
       "cancel": "true: cancels the dialog open.",
-      "type": "{ field, text }: types text in a field: \"reason\", the pending edit's reason, or \"note\", Report's note.",
+      "type": "{ field, text }: types text in a field: \"reason\", the pending edit's reason; \"note\", Report's note; or \"agentNote\", the note Send to agent carries with the failing checks.",
       "event": "{ type, message? }: the service sends this event (busy, changed or failed); the step ends once the bar has asked for the events after it.",
       "setStatus": "a Status: what GET /status answers from now on.",
       "release": "a route: the answer held there (hold) is sent.",
@@ -49,7 +49,9 @@
       "Set to",
       "Scope",
       "Variant",
-      "Layer"
+      "Layer",
+      "Agent note",
+      "Send to agent"
     ],
     "events": ["busy", "changed", "failed"],
     "serial": {
@@ -391,7 +393,9 @@
           "Reason",
           "Set to",
           "Note",
-          "Save note"
+          "Save note",
+          "Agent note",
+          "Send to agent"
         ],
         "noError": true,
         "calls": [],
@@ -558,7 +562,7 @@
       }
     },
     {
-      "name": "an Approve whose checks fail lists them",
+      "name": "an Approve whose checks fail lists them, and offers Send to agent",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -605,7 +609,13 @@
         ],
         "shows": ["size=md root.radius", "9999", "the label's colour differs"],
         "noError": true,
-        "enabled": ["Approve", "Inspect", "Report"]
+        "enabled": [
+          "Agent note",
+          "Approve",
+          "Inspect",
+          "Report",
+          "Send to agent"
+        ]
       }
     },
     {
@@ -1800,7 +1810,7 @@
       }
     },
     {
-      "name": "a Keep whose checks fail keeps the edit, and lists its failures",
+      "name": "a Keep whose checks fail keeps the edit, lists its failures, and offers Send to agent",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -1857,7 +1867,15 @@
         ],
         "shows": ["the label overflows", "radius.pill"],
         "noError": true,
-        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "enabled": [
+          "Agent note",
+          "Inspect",
+          "Keep",
+          "Reason",
+          "Report",
+          "Send to agent",
+          "Undo"
+        ],
         "disabled": ["Approve"]
       }
     },
@@ -2101,7 +2119,7 @@
       }
     },
     {
-      "name": "a pending edit whose checks fail lists them, and still offers Keep and Undo",
+      "name": "a pending edit whose checks fail lists them, and offers Send to agent beside Keep and Undo",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -2127,7 +2145,15 @@
       "expect": {
         "shows": ["size=md root.radius", "9999", "the label overflows"],
         "noError": true,
-        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "enabled": [
+          "Agent note",
+          "Inspect",
+          "Keep",
+          "Reason",
+          "Report",
+          "Send to agent",
+          "Undo"
+        ],
         "disabled": ["Approve"]
       }
     },
@@ -3055,6 +3081,514 @@
         "absent": ["Set to"],
         "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
         "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "Send to agent after a failing Keep sends the note and the failures, shows the file, and the edit is no longer pending",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "failing": [
+              {
+                "platform": "web",
+                "variant": "size=md",
+                "layer": "label",
+                "property": "x",
+                "figma": 16,
+                "drawn": 20
+              }
+            ]
+          }
+        },
+        "answers": {
+          "send": {
+            "answer": {
+              "file": "spec/feedback/button-3.yaml"
+            },
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "expect": {
+            "shows": ["size=md label.x", "radius.pill", "/solar-feedback"]
+          }
+        },
+        {
+          "type": {
+            "field": "agentNote",
+            "text": "The pill is right; the label may move."
+          }
+        },
+        {
+          "press": "Send to agent"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "send",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "note": "The pill is right; the label may move.",
+              "failures": [
+                {
+                  "platform": "web",
+                  "variant": "size=md",
+                  "layer": "label",
+                  "property": "x",
+                  "figma": 16,
+                  "drawn": 20
+                }
+              ]
+            }
+          ]
+        ],
+        "shows": ["spec/feedback/button-3.yaml", "/solar-feedback"],
+        "hides": ["size=md label.x", "radius.pill"],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "Send to agent after a refused Approve sends the failures shown, with the note even empty, shows the file, and the failures go",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "approve": {
+            "answer": {
+              "ok": false,
+              "failures": [
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          },
+          "send": {
+            "answer": {
+              "file": "spec/feedback/button-1.yaml"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        },
+        {
+          "expect": {
+            "shows": ["the label's colour differs"],
+            "enabled": [
+              "Agent note",
+              "Approve",
+              "Inspect",
+              "Report",
+              "Send to agent"
+            ]
+          }
+        },
+        {
+          "press": "Send to agent"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ],
+          [
+            "send",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "note": "",
+              "failures": [
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          ]
+        ],
+        "shows": ["spec/feedback/button-1.yaml"],
+        "hides": ["the label's colour differs"],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a Send to agent refused is shown once, and the failures stay",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "approve": {
+            "answer": {
+              "ok": false,
+              "failures": [
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          },
+          "send": {
+            "refuse": {
+              "status": 409,
+              "error": "Button: approved on the other viewer: undo its approval there to change it"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        },
+        {
+          "type": {
+            "field": "agentNote",
+            "text": "The colour is right."
+          }
+        },
+        {
+          "press": "Send to agent"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ],
+          [
+            "send",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "note": "The colour is right.",
+              "failures": [
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          ]
+        ],
+        "oneError": "undo its approval there",
+        "shows": ["the label's colour differs"],
+        "hides": ["spec/feedback"],
+        "enabled": [
+          "Agent note",
+          "Approve",
+          "Inspect",
+          "Report",
+          "Send to agent"
+        ]
+      }
+    },
+    {
+      "name": "an Approve whose checks fail on a locked component lists them, and offers no Send to agent",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": null,
+          "components": {
+            "Button": {
+              "$platform": "yellow",
+              "$other": "green",
+              "waitsOn": {
+                "web": [],
+                "flutter": []
+              },
+              "editable": false,
+              "locked": "approved on the other viewer: undo its approval there to change it"
+            }
+          }
+        },
+        "answers": {
+          "approve": {
+            "answer": {
+              "ok": false,
+              "failures": [
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "shows": ["the label's colour differs"],
+        "absent": ["Send to agent", "Agent note"],
+        "noError": true,
+        "enabled": ["Approve"]
+      }
+    },
+    {
+      "name": "Keep again after its checks failed runs them again, and a pass ends the pending edit",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "failing": [
+              {
+                "platform": "web",
+                "variant": "size=md",
+                "layer": "label",
+                "property": "x",
+                "figma": 16,
+                "drawn": 20
+              }
+            ]
+          }
+        },
+        "answers": {
+          "keep": {
+            "answer": {
+              "ok": true
+            },
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "hides": ["size=md label.x"],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a Send to agent refused after a failing Keep is shown once, and the edit and its failures stay",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "failing": [
+              {
+                "platform": "web",
+                "variant": "size=md",
+                "layer": "label",
+                "property": "x",
+                "figma": 16,
+                "drawn": 20
+              }
+            ]
+          }
+        },
+        "answers": {
+          "send": {
+            "refuse": {
+              "status": 400,
+              "error": "Button has no failing checks to send"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": {
+            "field": "agentNote",
+            "text": "The pill is right."
+          }
+        },
+        {
+          "press": "Send to agent"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "send",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "note": "The pill is right.",
+              "failures": [
+                {
+                  "platform": "web",
+                  "variant": "size=md",
+                  "layer": "label",
+                  "property": "x",
+                  "figma": 16,
+                  "drawn": 20
+                }
+              ]
+            }
+          ]
+        ],
+        "oneError": "no failing checks to send",
+        "shows": ["size=md label.x", "radius.pill"],
+        "hides": ["spec/feedback"],
+        "enabled": [
+          "Agent note",
+          "Inspect",
+          "Keep",
+          "Reason",
+          "Report",
+          "Send to agent",
+          "Undo"
+        ],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "the file Send to agent saved clears on the next action",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "approve": {
+            "answer": {
+              "ok": false,
+              "failures": [
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          },
+          "send": {
+            "answer": {
+              "file": "spec/feedback/button-1.yaml"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        },
+        {
+          "press": "Send to agent"
+        },
+        {
+          "expect": {
+            "shows": ["spec/feedback/button-1.yaml"]
+          }
+        },
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ],
+          [
+            "send",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "note": "",
+              "failures": [
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          ],
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "hides": ["spec/feedback/button-1.yaml"],
+        "shows": ["the label's colour differs"],
+        "noError": true,
+        "enabled": [
+          "Agent note",
+          "Approve",
+          "Inspect",
+          "Report",
+          "Send to agent"
+        ]
       }
     }
   ]

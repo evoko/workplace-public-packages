@@ -2,7 +2,9 @@
  * The workbench bar above a component's Playground (docs/superpowers/specs/
  * 2026-09-27-viewer-workbench-design.md): its circle on this platform, and by it Inspect, Report
  * and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect and Report are sections,
- * one open at a time; Report's note is its own, so it may be saved beside a pending edit.
+ * one open at a time; Report's note is its own, so it may be saved beside a pending edit. Where
+ * checks fail (a Keep's or an Approve's) and the component may change, Send to agent writes a note
+ * carrying them.
  * Everything it changes goes through the workbench service (client.ts); it renders nothing where no
  * service answers. Drawn with SOLAR's own components. It behaves as Widgetbook's bar
  * (widgetbook/lib/workbench/bar.dart) does, which the scenarios in
@@ -100,6 +102,50 @@ const waitsText = (status: Status, waitsOn: string[], platform: Platform) => {
     : `It is in a cycle with: ${waitsOn.join(', ')}.`;
 };
 
+/** What sending a failing Keep's checks does to the checks. */
+const KEPT =
+  "its checks, and CI's, fail until /solar-feedback settles the note.";
+
+/**
+ * Send to agent, beside the failing checks it carries: an optional note, and the button. Offered
+ * only where the component may change (the agent works on no other).
+ */
+function SendToAgent({
+  note,
+  onNote,
+  disabled,
+  onSend,
+  fromKeep,
+}: {
+  note: string;
+  onNote: (note: string) => void;
+  disabled: boolean;
+  onSend: () => void;
+  /** Whether the checks are a failing Keep's, whose edit sending keeps. */
+  fromKeep: boolean;
+}) {
+  return (
+    <>
+      <TextArea
+        size="sm"
+        label="Agent note (optional)"
+        helper={
+          fromKeep
+            ? `Why the component is right as it is, or what to fix. Sending keeps the edit with its reason (Undo goes); ${KEPT}`
+            : 'Why the component is right as it is, or what to fix. The failing checks go with it.'
+        }
+        value={note}
+        onChange={(event) => onNote(event.target.value)}
+      />
+      <div style={row}>
+        <Button size="sm" prio="primary" disabled={disabled} onClick={onSend}>
+          Send to agent
+        </Button>
+      </div>
+    </>
+  );
+}
+
 function FailureList({ failures }: { failures: Failure[] }) {
   return (
     <Typography
@@ -138,8 +184,15 @@ export function WorkbenchBar({
   const [section, setSection] = useState<Section>('none');
   const [reason, setReason] = useState('');
   const [note, setNote] = useState('');
+  // Send to agent's note, its own: Report's may be open beside it.
+  const [agentNote, setAgentNote] = useState('');
   // The file the last note was saved in, until the next action or Report closes.
   const [saved, setSaved] = useState<string | null>(null);
+  // The file the last Send to agent wrote, and whether it kept a failing Keep's edit, until the next
+  // action.
+  const [sent, setSent] = useState<{ file: string; fromKeep: boolean } | null>(
+    null,
+  );
   const [error, setError] = useState<string | null>(null);
   const [failures, setFailures] = useState<Failure[] | null>(null);
   const [dialog, setDialog] = useState<Dialog>(null);
@@ -300,6 +353,7 @@ export function WorkbenchBar({
     setError(null);
     setFailures(null);
     setSaved(null);
+    setSent(null);
     setPointing(false);
     setWorking(true);
     try {
@@ -335,6 +389,28 @@ export function WorkbenchBar({
       });
       setNote('');
       setSaved(file);
+    });
+
+  /**
+   * Send to agent: the failing checks shown, a Keep's (whose edit is then no longer pending) or an
+   * Approve's, with the note, even none. Refused, the checks stay shown, to send again.
+   */
+  const sendToAgent = (shown: Failure[]) =>
+    act(async () => {
+      try {
+        const { file } = await client.send({
+          component,
+          platform,
+          note: agentNote,
+          failures: shown,
+        });
+        setAgentNote('');
+        setReason('');
+        setSent({ file, fromKeep: Boolean(pending) });
+      } catch (e) {
+        if (!pending) setFailures(shown);
+        throw e;
+      }
     });
 
   return (
@@ -544,10 +620,20 @@ export function WorkbenchBar({
             </Typography>
           )}
           {pending.failing && <FailureList failures={pending.failing} />}
+          {pending.failing && canInspect && (
+            <SendToAgent
+              note={agentNote}
+              onNote={setAgentNote}
+              disabled={working}
+              onSend={() => void sendToAgent(pending.failing ?? [])}
+              fromKeep
+            />
+          )}
           <div style={row}>
             <Button
               size="sm"
-              prio="primary"
+              // Where the checks failed, Send to agent is the step the bar leads with.
+              prio={pending.failing && canInspect ? 'secondary' : 'primary'}
               disabled={working}
               onClick={() =>
                 act(async () => {
@@ -577,6 +663,25 @@ export function WorkbenchBar({
       )}
 
       {failures && <FailureList failures={failures} />}
+      {failures && canInspect && (
+        <SendToAgent
+          note={agentNote}
+          onNote={setAgentNote}
+          disabled={working}
+          onSend={() => void sendToAgent(failures)}
+          fromKeep={false}
+        />
+      )}
+      {sent && (
+        <Typography
+          variant="bodyXsRegular"
+          aria-live="polite"
+          style={secondary}
+        >
+          Saved: {sent.file}
+          {sent.fromKeep && `. The edit is kept; ${KEPT}`}
+        </Typography>
+      )}
       {error && (
         <Typography variant="bodyXsRegular" role="alert" style={alert}>
           {error}

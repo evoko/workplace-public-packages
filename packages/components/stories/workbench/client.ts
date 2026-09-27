@@ -88,6 +88,14 @@ export interface ReportBody {
   note: string;
 }
 
+/** A Send to agent note: the person's words, even none, and the failing checks shown. */
+export interface SendBody {
+  component: string;
+  platform: Platform;
+  note: string;
+  failures: Failure[];
+}
+
 export interface WorkbenchClient {
   health(): Promise<boolean>;
   status(): Promise<Status>;
@@ -108,6 +116,12 @@ export interface WorkbenchClient {
   unapprove(component: string, platform: Platform): Promise<string[]>;
   /** Saves a note for an agent in spec/feedback/: the file written. */
   report(body: ReportBody): Promise<{ file: string }>;
+  /**
+   * Send to agent: a note carrying the failing checks shown (a failing Keep's, or a refused
+   * Approve's), in spec/feedback/: the file written. After a Keep, the edit is then no longer
+   * pending.
+   */
+  send(body: SendBody): Promise<{ file: string }>;
   /** The events after `after`, within 25 s; `signal` ends the wait (the bar unmounted). */
   events(
     after: number,
@@ -191,6 +205,7 @@ export function httpClient(base = WORKBENCH_URL): WorkbenchClient {
         })
       ).withdraws,
     report: (body) => call('/report', body),
+    send: (body) => call('/send', body),
     events: (after, signal) =>
       call(`/events?after=${after}`, undefined, signal),
   };

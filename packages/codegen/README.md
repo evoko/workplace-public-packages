@@ -481,7 +481,8 @@ src/playground/            the viewers' Playground: each component's controls fr
                            (controls), the extras and sample words tables (extras), and the
                            fixed values both adapters use (values)
 src/workbench/             the viewers' workbench service's logic, and bar-scenarios.json: what
-                           both viewers' bars must do, which each one's tests run
+                           both viewers' bars must do, which each one's tests run; checks.mjs
+                           runs a component's own checks behind Keep and Approve, one at a time
 src/util/                  paths, the docs/ write guard and pruning, formatting, sorting,
                            naming, digests, SVG markup scanning, and the workspace sources the
                            tests, the visual check and Storybook resolve the packages to

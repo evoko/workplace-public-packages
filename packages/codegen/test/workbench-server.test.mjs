@@ -22,7 +22,6 @@ import {
 import { WorkbenchError } from '../src/workbench/session.mjs';
 
 const calls = [];
-// No `send` yet (Batch 4): the server answers it as not done.
 const session = {
   status: async () => ({ busy: null, pending: null, components: {} }),
   inspect: (name, variant) => ({ component: name, variant }),
@@ -39,6 +38,10 @@ const session = {
   report: async (b) => {
     calls.push(['report', b]);
     return { file: 'spec/feedback/button-1.yaml' };
+  },
+  send: async (b) => {
+    calls.push(['send', b]);
+    return { file: 'spec/feedback/button-2.yaml' };
   },
   approve: async (b) => ({ ok: true, b }),
   unapprovePreview: async () => ({ withdraws: ['Button'] }),
@@ -213,13 +216,25 @@ describe('the workbench service', () => {
     }
   });
 
-  it('answers a route it lacks with 404, and one the session lacks with 501', async () => {
+  it('answers a route it lacks with 404', async () => {
     const none = await fetch(`${base}/nothing`);
     expect(none.status).toBe(404);
     expect(await none.json()).toEqual({ error: 'no GET /nothing' });
-    const r = await post(`${base}/send`, '{}');
-    expect(r.status).toBe(501);
-    expect((await r.json()).error).toMatch(/not yet/);
+    const get = await fetch(`${base}/send`);
+    expect(get.status).toBe(404);
+  });
+
+  it('hands a Send to agent to the session, and answers with the note it wrote', async () => {
+    const body = {
+      component: 'Button',
+      platform: 'flutter',
+      note: 'Looks right to me.',
+      failures: [{ platform: 'web', layer: 'root', property: 'height' }],
+    };
+    const r = await post(`${base}/send`, JSON.stringify(body));
+    expect(r.status).toBe(200);
+    expect(await r.json()).toEqual({ file: 'spec/feedback/button-2.yaml' });
+    expect(calls.at(-1)).toEqual(['send', body]);
   });
 
   it('hands a Report to the session, and answers with the note it wrote', async () => {

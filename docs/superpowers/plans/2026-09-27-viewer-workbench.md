@@ -5082,6 +5082,24 @@ Run: `cd packages/codegen && npx vitest run`, `cd packages/components && npx pla
 `npm run typecheck && npm run lint`.
 Expected: PASS.
 
+Done: `send` takes one body in both bars, `{ component, platform, note, failures }`, `failures`
+always the ones the bar shows; after a failing Keep the service carries the pending edit's own
+(`pending.failing`) and ignores the body's, clears the pending edit (the overlay stays as Keep
+wrote it, nothing regenerated), and adds the edit's layer. Refused (400) with no failures to send,
+failures that are no list of objects, a note that is no string, or another platform; gated as
+Report is (a locked, 🔴 or absent component refused), so the bars offer Send only where Report is.
+An empty note is sent as `""`, and the service writes "The checks failed where the person judged
+the component right." As shared scenarios (vocabulary: the `Send to agent` and `Agent note`
+actions, `type`'s `agentNote`, the fake's `send` answer), not per-platform tests: beside the
+failure list, an `Agent note (optional)` TextArea and **Send to agent** (primary; Keep becomes
+secondary beside it), Keep and Undo still offered after a failing Keep (Keep again reruns the
+checks); the saved file shows until the next action; a refusal keeps the failures shown. The
+server's 501 test became a 404 test and one that `/send` reaches the session. After review: a
+Keep-path note also names `rule` (the key) and `value` (null where the edit removed the rule); the
+service takes only the contract's Failure keys, at most 200, and a note (Send's and Report's) of at
+most 10 000 characters; after a failing Keep, the bar says sending keeps the edit (Undo goes) and
+that its checks, and CI's, fail until /solar-feedback settles the note, before and after sending.
+
 ### Task 22: Batch 4 smoke run of the checks, then stop
 
 - [ ] **Step 1: The checks run and pass for Button**
@@ -5192,6 +5210,30 @@ alternative, and why, so the owner can correct them.
 - Repoint code comments that cite this plan or the spec (client.ts, Bar.tsx, models.dart,
   session.mjs, tokens.mjs, bar-scenarios.json `about`) to architecture.md or workflows.md, since both
   are deleted.
+
+- [ ] **Step 7c: What Batch 4 added (from its final review)**
+
+- workflows.md, "Fix a component in the viewer": the checks behind Keep and Approve (web
+  `SOLAR_VISUAL_ONLY`, Flutter `--name`, the whole parity suite, charts' parity plus
+  `charts.test.mjs`; reports removed before each run; one at a time; a 15-minute limit per command);
+  never run `test:visual` or Flutter tests while the workbench checks run; Send to agent after a
+  failing Keep (the edit stays with its reason, no longer pending; its checks and CI's fail until
+  `/solar-feedback` settles it) and after a refused Approve; no Send on a locked component; Keep
+  again reruns the checks. Pitfall: `SOLAR_VISUAL_ONLY` left set in a shell narrows `test:visual`.
+- packages/components/test/visual/README.md: `SOLAR_VISUAL_ONLY` (one component, Light and Dark,
+  the name in code, errors for an unknown or chart name, unset in CI and Verify).
+- architecture.md: the contract table as built (see the Batch 4 final review in this session:
+  `/send`'s body, Failure values incl. lists, limits: 10 000-character notes, 200 failures, 1 MiB
+  bodies, 15-minute commands; statuses 400/403/404/409/413/500/503; CORS localhost only).
+- decisions.md and decisions-to-review.md, besides 1-10 and 7b: a failed plain regeneration at Keep
+  leaves the edit pending; no hot restart (SIGUSR1 reload only; a gap in open-work); no Send on a
+  component locked by the other platform's approval; the parity suite runs whole; a failing Keep
+  keeps the edit pending with its failures; a Send note carries no controls or variant; the limits;
+  the default note sentence; the circle is an emoji.
+- CLAUDE.md: an agent never drives the workbench service at all (any route).
+- docs/README.md: `.workbench/` includes `service.log`; the visual reports are read by the checks.
+- packages/codegen/README.md: `reportFiles` exported for `checks.mjs`.
+- Repoint also `scripts/workbench.mjs` (~line 117, "the workbench plan's 'The HTTP contract'").
 
 - [ ] **Step 8: Format and check**
 

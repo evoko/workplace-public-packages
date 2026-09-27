@@ -261,6 +261,10 @@ const client: WorkbenchClient = {
     calls.push(['report', b]);
     return { file: 'spec/feedback/button-1.yaml' };
   },
+  send: async (b) => {
+    calls.push(['send', b]);
+    return { file: 'spec/feedback/button-2.yaml' };
+  },
   events: (after) =>
     new Promise((ok) => {
       const answer = () =>
