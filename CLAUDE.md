@@ -30,11 +30,17 @@ names `CLAUDE.md` as its agent instruction layer: treat every rule here as hard.
   `stash`, `checkout`, `reset`, and no worktrees. Finishing a task means stopping and reporting.
 - Stop for the owner's review after each batch of related work, before continuing.
 - Ask when the answer changes what gets built; batch questions at the end of a task.
-- **`spec/approvals.yaml` is written by people, never by an agent.** Never edit it, and never
-  work on a component `npm run solar:status` shows 🔴 (one that uses a component not yet
-  approved): work bottom-up, on 🟡 components. A change that cancels an approval fails the check
+- **`spec/approvals.yaml` is written by people, never by an agent**: by hand, or by a person
+  pressing Approve or Undo approval in a viewer's workbench bar. Never edit it. **Never call the
+  workbench service's Keep, Approve, Undo approval, Report or Send** (a person's decisions and
+  words); call Set only in a test or smoke run you undo, leaving no pending edit. Running the
+  viewers and reading from the service are fine. Never work on a component `npm run solar:status`
+  shows 🔴 (one that uses a component not yet approved): work bottom-up, on 🟡 components. A change that cancels an approval fails the check
   until a person approves it again or the change is reverted
   ([workflows.md, Approve a component](docs/engineering/workflows.md#approve-a-component)).
+- Notes a person saves in the workbench go to `spec/feedback/`; `/solar-feedback` works through
+  them (`.claude/skills/solar-feedback/`, the one committed project skill). How:
+  [workflows.md, Fix a component in the viewer](docs/engineering/workflows.md#fix-a-component-in-the-viewer).
 - Use Node 22 (`.nvmrc`; `export PATH=$HOME/.nvm/versions/node/v22.23.2/bin:$PATH`). The codegen
   CLIs refuse an older Node; the other scripts do not check, so check `node -v` first.
 
@@ -48,8 +54,8 @@ names `CLAUDE.md` as its agent instruction layer: treat every rule here as hard.
 - **Never edit a generated file to keep a change.** Fix its source and regenerate; which source,
   for which problem: [workflows.md, Decide where a change goes](docs/engineering/workflows.md#decide-where-a-change-goes).
 - **Every overlay rule needs a `reason`** a reviewer can check. A rule that no longer matches the IR
-  fails the build; `solar:explain --propose` prints a rule with `TODO(reason)`, which the build
-  refuses until a person writes one.
+  fails the build; `solar:explain --propose` prints a rule with `TODO(reason)`, and the workbench's
+  pending edit writes one, which the build refuses until a person writes a reason.
 - **Never loosen a visual check or edit an oracle (`spec/verify/`) to make a check pass.** A
   difference is fixed in the code, or excused by an open finding or an overlay decision.
 - **A shell holds no design value.** Its look is the generated recipe; its layer tree and slots are

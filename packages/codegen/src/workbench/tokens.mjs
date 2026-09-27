@@ -1,6 +1,6 @@
 /**
- * The tokens the workbench offers for a cell (docs/superpowers/specs/2026-09-27-viewer-workbench-design.md,
- * Inspect): the semantic tokens of the kind of the cell's current token, primitives never, each with
+ * The tokens the workbench offers for a cell (docs/engineering/workflows.md, Fix a component in the
+ * viewer): the semantic tokens of the kind of the cell's current token, primitives never, each with
  * its value as a person reads it. Where the cell has no token, the kind its cell names.
  */
 

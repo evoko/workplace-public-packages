@@ -6,7 +6,8 @@ description: Work through the notes the viewers' workbench saved in spec/feedbac
 # Process the workbench's feedback
 
 A person writes each note in Storybook or Widgetbook, with the workbench's **Report** or **Send to
-agent**; the service saves it as `spec/feedback/<component-slug>-<n>.yaml`. Its fields:
+agent** ([workflows.md, Fix a component in the viewer](../../../docs/engineering/workflows.md#fix-a-component-in-the-viewer));
+the service saves it as `spec/feedback/<component-slug>-<n>.yaml`. Its fields:
 
 | Field       | Holds                                                                                                                                                                                                                                                     |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -34,8 +35,8 @@ While you work, nobody presses Set, Keep or Approve in a viewer: ask the owner b
 since the workbench's checks and yours share build directories
 ([Pitfalls](../../../docs/engineering/workflows.md#pitfalls)).
 
-Never drive the workbench service (port 6011) at all: never call `/approve`, `/unapprove`, `/keep`
-or `/undo`, and never write `spec/approvals.yaml`. Make every change in the files.
+Never call the workbench service's Keep, Approve, Undo approval, Report or Send, never Set or Undo
+there, and never write `spec/approvals.yaml` (CLAUDE.md). Make every change in the files.
 
 ## 1. Read the queue
 
@@ -64,16 +65,9 @@ yours only if its component is 🟡 on both platforms, or 🟡 on one and absent
    ([Decide a finding](../../../docs/engineering/workflows.md#decide-a-finding)), or by fixing the
    knock-on in the code. **Never** loosen a check or edit `spec/verify/`.
 4. Make the change, run `npm run solar:codegen` and keep what it writes, then run that component's
-   own checks, the same three the workbench's Keep runs, one at a time (never in parallel:
-   [Pitfalls](../../../docs/engineering/workflows.md#pitfalls)):
-   - parity, in `packages/codegen`: `npx vitest run test/component-parity.test.mjs`
-   - web, in `packages/components`:
-     `SOLAR_VISUAL_ONLY="<component>" npx playwright test components.spec.mjs -g "in every variant"`
-   - Flutter, in `packages/solar_flutter`:
-     `flutter test test/visual/components_visual_test.dart --name "^<component> draws what Figma draws"`
-
-   A component a chart library draws has no visual check (`SOLAR_VISUAL_ONLY` refuses it): run the
-   parity suite and, in `packages/codegen`, `npx vitest run test/charts.test.mjs` instead.
+   own checks, the ones the workbench's Keep runs, one at a time (never in parallel), as
+   [The checks behind Keep and Approve](../../../docs/engineering/workflows.md#the-checks-behind-keep-and-approve)
+   lists them.
 
 5. Run `npm run solar:status -- --check`. A change that cancels an approval is undone by hand (never
    `git checkout`; CLAUDE.md) and listed for the owner, with the approvals it would cancel

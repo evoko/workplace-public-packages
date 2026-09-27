@@ -41,8 +41,8 @@ From the repository root:
 | `npm run solar:codegen`                                | only the code: `spec/` and every generated target                        |
 | `npx vitest run`                                       | the unit and parity suites (codegen, from the root or the package)       |
 | `npm run test:visual`                                  | the web visual check; reports in `packages/components/test/visual/.out/` |
-| `npm run storybook`                                    | the React viewer, http://localhost:6006                                  |
-| `npm run widgetbook`                                   | the Flutter viewer, in Chrome                                            |
+| `npm run storybook`                                    | the React viewer, http://localhost:6006, with the workbench              |
+| `npm run widgetbook`                                   | the Flutter viewer, in Chrome, with the workbench                        |
 | `npm run solar:explain -- "<Name>"`                    | why a component draws what it draws (see below)                          |
 | `npm run solar:triage`                                 | every SOLAR Web component's IR, findings and needs, for planning         |
 | `npm run solar:overlay:audit`                          | decisions the overlays make more than once                               |
@@ -55,7 +55,7 @@ The commands that fetch from Figma or rebuild the docs are in [docs/README.md](.
 In `packages/solar_flutter`: `flutter test` (the widget tests and the Flutter visual check,
 reports in `build/visual/`), `flutter analyze`,
 `dart format lib test variants/lib widgetbook/lib widgetbook/test`; in its `widgetbook/`,
-`flutter test` (the Playground adapter and builders).
+`flutter test` (the Playground adapter and builders, and the workbench bar).
 
 ## Verify before saying a task is done
 
@@ -137,7 +137,9 @@ Never edit `docs/`, a generated file, or an oracle to make something pass. After
 A finding is a disagreement between Figma's variants and the recipe, or a value bound to no
 variable. `npm run solar:explain -- "<Name>" [--variant …] --propose <layer>.<cell>` prints the
 overlay rule that decides it, with `reason: TODO(reason)`, which the build refuses until a person
-writes a real reason. Choose by what the finding is:
+writes a real reason. For a `set`, the other route is the viewer's Inspect, which writes the rule
+and asks for its reason ([Fix a component in the viewer](#fix-a-component-in-the-viewer)). Choose
+by what the finding is:
 
 | Finding                                  | Rule                                                                 |
 | ---------------------------------------- | -------------------------------------------------------------------- |
@@ -219,6 +221,128 @@ In short (every table a descriptor may hold is in the codegen README's
 
 Both viewers then show its variants and its Playground.
 
+## Fix a component in the viewer
+
+`npm run storybook` and `npm run widgetbook` start the workbench service with the viewer, and each
+component's Playground then has the **workbench bar** above it: Storybook's acts for the web,
+Widgetbook's for Flutter. Where no service answers (a static build, the deployed Storybook), there
+is no bar. How the service works: [architecture.md, The workbench](architecture.md#the-workbench).
+
+The bar shows the component's circle on its platform, and offers by it:
+
+| Circle | The bar offers                                                                                         |
+| ------ | ------------------------------------------------------------------------------------------------------ |
+| 🔴     | nothing to change or approve: the components to approve first, or the cycle it is in                   |
+| 🟡     | **Inspect** and **Report**, where the component is 🟡 or absent on the other platform too; **Approve** |
+| 🟢     | **Undo approval**                                                                                      |
+
+A look change reaches both platforms, so Inspect and Report are locked while the component is
+approved on either platform (the bar names the viewer to withdraw it in) or waits on another
+component on either.
+
+### Inspect: change a look by choosing a token
+
+1. Press **Inspect**, and choose a **Variant** (every Figma variant, states included: the
+   Playground shows only the resting state) and a **Layer**. In Storybook, **Point**, then a click
+   on the component, chooses the layer under the pointer.
+2. The bar lists the layer's cells in that variant, each with its entry and where it sits
+   (`background` · `color.action.primary.bg.default` · `base`), as `solar:explain` reads them.
+3. For one cell, choose a **Scope**, the look the rule is keyed on, from every variant down to the
+   one in view (only the scopes the build accepts are offered), and **Set to**: a semantic token
+   of the cell's kind, each with its value, `none`, or `FILL` or `HUG` for a width or a height. A
+   cell whose raw value the overlay allows (`allowLiteral`) offers nothing. A raw value, or any rule
+   but `set`, goes through Report.
+4. The service writes the `set` rule into the component's overlay with the placeholder reason and
+   regenerates with `solar:codegen --pending`, and both viewers reload. What they show is the real
+   regeneration: exactly what would ship. A scope that another entry overrides in the variant in
+   view is refused, as is a value the cell already draws.
+5. **Keep**, with a one-line reason a reviewer can check (none where the edit removes a rule), or
+   **Undo**, which puts the overlay file back byte for byte and regenerates. Where the cell had a
+   rule, its old reason is shown to rewrite, and Keep refuses it unchanged.
+
+Choosing Figma's own value where a rule changed it removes the rule; a rule whose reason others
+borrow (`reason: { as: set … }`) cannot be removed, and replacing one changes their reason too. A
+component with no overlay file cannot be edited: a person adds the file first. **One edit is
+pending in the repository at a time**: until Keep or Undo, no viewer can set another, approve or
+undo an approval, and the edit survives a restart of the service.
+
+Keep regenerates without `--pending`; a regeneration that fails leaves the edit pending, to Undo or
+to fix and Keep again. An edit that would cancel an approval is undone. Then Keep runs the
+component's checks (below): when they pass the edit is kept; when they fail it stays pending, with
+its failures listed, and the person chooses Undo, Keep again (which runs the checks again, after a
+fix) or Send to agent.
+
+### The checks behind Keep and Approve
+
+The component's own checks, one after another, never the whole suite:
+
+- its web visual check alone, Light and Dark: in `packages/components`,
+  `SOLAR_VISUAL_ONLY="<Name>" npx playwright test components.spec.mjs -g "in every variant"`;
+- its Flutter visual check: in `packages/solar_flutter`,
+  `flutter test test/visual/components_visual_test.dart --name "^<Name> draws what Figma draws"`;
+- the whole parity suite, `npx vitest run test/component-parity.test.mjs` in `packages/codegen`,
+  with `test/charts.test.mjs` for a component a chart library draws, which has no visual check.
+
+Each visual check's reports are deleted before it runs, so every failure shown is this run's, and
+each command stops after 15 minutes. The bar lists each failure (the variant, the layer and
+property, what Figma draws and what was drawn, or what the command printed), 200 at most: past
+that, the last one counts the rest and names the `solar:explain` command that shows them all.
+
+A token chosen with Inspect does not fail them by itself: a `set` records the value it replaced,
+and the oracle excuses that cell in the variants the rule reaches. A knock-on can: the checks also
+measure positions and sizes, and one cell's change can move another that no rule names. Do not run
+`npm run test:visual` or the Flutter tests while the workbench's checks run
+([Pitfalls](#pitfalls)).
+
+### Send to agent
+
+Offered beside failing checks, where the component may change (on the terms of Inspect, so never on
+a component approved on the other platform). It writes a note to `spec/feedback/` carrying the
+failures and the person's words (none gives a default sentence):
+
+- after a failing **Keep**, the edit stays in the overlay with its reason and is no longer pending,
+  and the note records the rule and its value; the component's checks, and CI's, fail until
+  `/solar-feedback` settles it;
+- after a refused **Approve**, the note carries the failures shown.
+
+The agent settles it lawfully: by an overlay decision that records the person's judgement, so the
+check excuses the difference, or by fixing the knock-on in the code; never by loosening a check or
+editing an oracle. The person then approves.
+
+### Report
+
+A note for whatever Inspect cannot do: behaviour, a missing callback, a raw value, a layout the
+overlay cannot express. Report is offered with Inspect, on the same terms, and works while an edit
+is pending. **Save note** writes `spec/feedback/<slug>-<n>.yaml`: the component, the platform, the
+date, the note (10 000 characters at most), every Playground control's value, and, once the
+component has been inspected, the layer and variant chosen there. Each field is described in
+[the skill](../../.claude/skills/solar-feedback/SKILL.md).
+
+The notes wait in `spec/feedback/` until a developer runs `/solar-feedback` in Claude Code
+(`.claude/skills/solar-feedback/`, the one committed project skill). It works on 🟡 components
+only, resolves each note where its kind of change belongs, proposes where the new `set` rules
+belong instead, verifies and stops for review; its steps are in the skill.
+
+### Approve and Undo approval
+
+**Approve** (🟡) opens a Confirmation Dialog. Confirming runs the checks above and, when they pass,
+writes the component's line into `spec/approvals.yaml` for this platform, as `solar:status` prints
+it: the fingerprint, `by` from `git config user.name` (refused where it is unset) and `on` today.
+Failing checks refuse it, listed, with Send to agent where the component may change.
+
+**Undo approval** (🟢) opens a Confirmation Dialog listing every approval it withdraws: this one,
+and every approved component on this platform that uses it (withdrawing Button withdraws Dialog),
+since an approval above an unapproved component fails `solar:status --check`. Confirming removes
+those lines.
+
+The bar's circle changes at once; the sidebars' when the viewer next starts.
+
+**An agent never calls the service's Keep, Approve, Undo approval, Report or Send** (a person's
+decisions and words), by any means (a browser, `curl`, a script), and calls Set only in a test or
+smoke run it undoes, leaving no pending edit; it may run the viewers and read from the service. The
+service is a local port and cannot tell a person's click from a request; the rule in CLAUDE.md is
+what holds.
+
 ## Approve a component
 
 A person approves each component, per platform, once they have confirmed it looks and behaves as
@@ -230,7 +354,12 @@ intended. The record, `spec/approvals.yaml`, is written by people, never by an a
 2. Review a 🟡 component in its viewer, and have anything wrong fixed.
 3. Run `npm run solar:status` again and paste the lines it prints for it into
    `spec/approvals.yaml` (under its name, where it is already there for the other platform): fixes
-   change the fingerprint.
+   change the fingerprint. Or press **Approve** in its Playground, which runs its checks first and
+   writes the same line ([Approve and Undo approval](#approve-and-undo-approval)).
+
+To withdraw an approval, delete its line and those of the approved components on that platform
+that use it (an approval above an unapproved component fails the check), or press **Undo
+approval** in the viewer, which withdraws them together. An agent does neither.
 
 Any change to what it ships cancels it and every approval above it;
 `npm run solar:status -- --check`, in CI and the Verify block, then fails until it is approved
@@ -341,6 +470,17 @@ change in the same area.
 
   To reproduce CI locally, move the `dist/` folders (or the copied oracles) aside and run the
   check.
+
+**The workbench** ([Fix a component in the viewer](#fix-a-component-in-the-viewer))
+
+- A pending edit leaves `TODO(reason)` in `spec/overlay/`, so a plain `solar:codegen`, the Verify
+  block and `/solar-feedback` stop on it until a person presses Keep or Undo. The edit survives a
+  restart: start a viewer and press either. Where the service cannot start again, put the overlay
+  file back from the `before` field of `.workbench/pending.json`, then delete that file.
+- `SOLAR_VISUAL_ONLY` left set in a shell narrows `npm run test:visual` to one component (it says
+  so in a warning). Unset it before the Verify block.
+- The workbench's checks run the visual checks and the Flutter tests: do not run either yourself
+  while they do, since they share a server and build directories.
 
 **Reading Figma data** (`packages/codegen/src/normalize/`)
 

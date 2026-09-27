@@ -1,5 +1,5 @@
 // The workbench service's answers, as the web's client types them (stories/workbench/client.ts):
-// the HTTP contract in docs/superpowers/plans/2026-09-27-viewer-workbench.md.
+// the HTTP contract in docs/engineering/architecture.md, The workbench.
 
 import 'dart:convert';
 

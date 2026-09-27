@@ -438,7 +438,8 @@ and `test/charts.test.mjs` checks the theme carries each cell.
   Figma now agrees with. Read-only, never part of the build.
 - **The rule proposer.** `solar:explain … --propose <layer>.<cell>` (`src/explain/propose.mjs`):
   `bind`, `allowLiteral`, `follows` or `accept` from the finding, a `set` where none is open, one
-  patterned rule for numbered siblings; its `TODO(reason)` fails the build until replaced.
+  patterned rule for numbered siblings; its `TODO(reason)` fails the build until replaced. For a
+  `set`, the workbench (below) is the other route.
 - **The Node check.** Every CLI stops in one line on a Node older than `.nvmrc`
   (`src/util/require-node.mjs`), before anything loads.
 - **Nothing written until everything is built.** `deferWrites` and `commitGenerated`
@@ -447,7 +448,20 @@ and `test/charts.test.mjs` checks the theme carries each cell.
   over. Each output is formatted in memory first (Prettier's API; the Dart in one `dart format`
   run on a mirror in the package's `.dart_tool/`, `src/util/format.mjs`) and written only where
   it differs from the file on disk, so an unchanged file keeps its mtime and a watcher sees only
-  what changed.
+  what changed. Only the run's own outputs are formatted, never a hand-written file beside them.
+- **The workbench's logic** (`src/workbench/`), which `scripts/workbench.mjs` serves to the
+  viewers' bars ([architecture.md, The workbench](../../docs/engineering/architecture.md#the-workbench)):
+  `session.mjs` (the state and operations, every effect injected), `inspect.mjs` (a component's
+  layers and cells, as `solar:explain` reads them), `scopes.mjs` (the looks a `set` may be keyed
+  on, only those `setMayAdd` accepts), `tokens.mjs` (the semantic tokens a cell may take),
+  `overlay-edit.mjs` and `approvals-edit.mjs` (one entry spliced into the file's text, every other
+  line kept), `feedback.mjs` (a note in `spec/feedback/`), `checks.mjs` (a component's own checks
+  and the failures their reports hold, through `reportFiles`, which `src/explain/` exports), and
+  `bar-scenarios.mjs`, which reads and resolves `bar-scenarios.json` for Storybook's bar test
+  (Widgetbook's resolves it the same way in Dart). `test/workbench-scenarios.test.mjs` checks every
+  scenario against the file's vocabulary.
+  `solar:codegen --pending` is the workbench's preview: it lets `TODO(reason)` through, and
+  nothing else passes it.
 - **Two class name spaces.** `src/util/classes.mjs`: `Solar<Name>-<slot>` public,
   `Solar<Name>--<layer>` internal; `withLayerClasses` writes a layer named by a helper
   (`${P}-${layer}`) as its own, in the recipes and the shells.
@@ -480,9 +494,11 @@ src/verify/                the oracle, spec/verify/<name>.json
 src/playground/            the viewers' Playground: each component's controls from its IR
                            (controls), the extras and sample words tables (extras), and the
                            fixed values both adapters use (values)
-src/workbench/             the viewers' workbench service's logic, and bar-scenarios.json: what
-                           both viewers' bars must do, which each one's tests run; checks.mjs
-                           runs a component's own checks behind Keep and Approve, one at a time
+src/workbench/             the viewers' workbench service's logic (session, inspect, scopes,
+                           tokens, overlay-edit, approvals-edit, feedback); checks.mjs, a
+                           component's own checks behind Keep and Approve, one at a time; and
+                           bar-scenarios.json, what both viewers' bars must do, which each one's
+                           tests run
 src/util/                  paths, the docs/ write guard and pruning, formatting, sorting,
                            naming, digests, SVG markup scanning, and the workspace sources the
                            tests, the visual check and Storybook resolve the packages to

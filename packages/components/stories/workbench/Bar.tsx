@@ -1,6 +1,6 @@
 /**
- * The workbench bar above a component's Playground (docs/superpowers/specs/
- * 2026-09-27-viewer-workbench-design.md): its circle on this platform, and by it Inspect, Report
+ * The workbench bar above a component's Playground (docs/engineering/workflows.md, Fix a component
+ * in the viewer): its circle on this platform, and by it Inspect, Report
  * and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect and Report are sections,
  * one open at a time; Report's note is its own, so it may be saved beside a pending edit. Where
  * checks fail (a Keep's or an Approve's) and the component may change, Send to agent writes a note

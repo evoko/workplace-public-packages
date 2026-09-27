@@ -169,7 +169,8 @@ child's own size, a stray fill), to a sizing `keyword` (`FILL`, `HUG`), or to a 
 Figma draws but does not record (ConfirmationDialog's 400: Figma records its frame hugging, where
 everything in it fills), which the cell's `allowLiteral` must allow as well, as any raw value. A
 look is named by Figma's axes, before a `rename` (All-Day Bar's `style=solid, span=end`, which the
-IR then calls `variant=solid, span=end`).
+IR then calls `variant=solid, span=end`). The viewers' workbench writes `set` rules in this same
+form ([workflows.md, Fix a component in the viewer](../../docs/engineering/workflows.md#fix-a-component-in-the-viewer)).
 
 A composed child's `variant.*` takes a keyword of the child's own (Toast's Tag: `status`, where
 Figma names a type Tag does not have); the oracle then checks the child in that variant, keeping

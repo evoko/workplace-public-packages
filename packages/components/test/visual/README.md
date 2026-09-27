@@ -86,3 +86,23 @@ the same core as the Storybook adapter (`stories/playground/core.tsx`), its valu
 and records every `set` on `window.__sets`; `build.mjs` bundles it beside `page.tsx`, as its own
 build, into `.out/playground.html`, with the codegen's controls defined in it. That every builder
 renders at its defaults and reads every control is a unit test, `../playground.test.mjs`.
+
+## One component, for the workbench
+
+`SOLAR_VISUAL_ONLY="<Name>"` narrows `components.spec.mjs` to one component, Light and Dark, and
+says so in a warning. The name is the component's name in code, as `npm run solar:status` lists it
+(`Icon Button`); an unknown name fails at once, and so does a chart library's component, which has
+no visual check of its own. The workbench's checks behind Keep and Approve set it
+([workflows.md, The checks behind Keep and Approve](../../../../docs/engineering/workflows.md#the-checks-behind-keep-and-approve)),
+and so does `/solar-feedback`. It is unset in CI and the Verify block, where every component runs.
+
+## The workbench bar
+
+`npm run test:visual` also runs the Storybook workbench bar (`stories/workbench/Bar.tsx`) in
+Chromium, against a fake service, never the real one. `workbench-scenarios.spec.mjs` runs every
+scenario of `packages/codegen/src/workbench/bar-scenarios.json`, which Widgetbook's bar runs too,
+through the bar's real HTTP client, answering its requests as the scenario's fake
+(`workbench-scenario-page.tsx`). `workbench.spec.mjs`, on `workbench-page.tsx`, tests the bar end
+to end by its circles, and what is the web's own: pointing at a layer and the focus. That a token
+chosen in the bar reaches the component is proved by hand against the real service. Why both bars share scenarios:
+[architecture.md, The workbench](../../../../docs/engineering/architecture.md#the-workbench).

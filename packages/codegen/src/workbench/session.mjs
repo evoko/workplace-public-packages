@@ -2,7 +2,7 @@
  * The workbench service's state and operations (scripts/workbench.mjs serves them over HTTP): one
  * at a time, every effect injected, so a test runs it on files in memory. Any component may be
  * inspected; what may be changed, reported and approved follows the circles
- * (docs/superpowers/specs/2026-09-27-viewer-workbench-design.md), and the bar offers Inspect on the
+ * (docs/engineering/architecture.md, The workbench), and the bar offers Inspect on the
  * same terms: a component 🟡 on both platforms (or absent from one) may be changed and reported on;
  * 🟢 on either is locked; 🔴 on either waits on the components it uses.
  *

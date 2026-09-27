@@ -196,14 +196,38 @@ names an IR prop, and let each Playground builder use it in place of its workaro
 **Done when.** Each is a parameter on both platforms, with a test on each, the READMEs say so, and
 the Playground builders that work around them (Tooltip's theme default on the web) no longer do.
 
+## Workbench gaps
+
+**Why.** The viewers' workbench
+([workflows.md, Fix a component in the viewer](workflows.md#fix-a-component-in-the-viewer)) leaves a
+person to work around these:
+
+- **Pointing at a layer is the web's alone.** Widgetbook's bar chooses the layer from the list only.
+- **No hot restart for Widgetbook.** The service hot-reloads it after a regeneration; one a hot
+  reload cannot apply (a changed enum, among others) shows only after `R` in the `flutter run`
+  terminal.
+- **`solar:explain` shows no Dark failures.** `loadReports` reads Light's reports alone, though the
+  workbench's checks and Storybook's Variants read Dark's too; a Dark failure a Keep lists is not in
+  the command its summary line names.
+
+**Check.**
+
+```bash
+grep -n "SIGUSR" scripts/workbench.mjs
+grep -n "reportFiles(name)" -A3 packages/codegen/src/explain/index.mjs
+grep -n "layerAt\|Point" packages/solar_flutter/widgetbook/lib/workbench/bar.dart || echo "no pointing in Widgetbook"
+```
+
+**What to change.** Send `SIGUSR2` (a hot restart) where a reload cannot apply, or after every
+regeneration; read the `-dark` and `_dark` reports in `loadReports` and show them marked Dark;
+pointing in Widgetbook by hit-testing the Playground's render tree against the layer tree.
+
+**Done when.** Each is done or recorded as a decision in [decisions.md](decisions.md), and
+workflows.md says so.
+
 ## Designed, not built
 
-- **The tweak panel**: edit a value in Storybook, save it as an overlay rule with provenance.
-  Today the loop is `solar:explain --propose`, which prints the rule to paste.
 - **`solar:codegen -- --adopt <Name>`**: fold a local edit of a generated file into the overlay.
-- **Recording approvals from the viewers**: an Approve action in Storybook and Widgetbook, in
-  place of pasting the lines `solar:status` prints into `spec/approvals.yaml`
-  ([workflows.md, Approve a component](workflows.md#approve-a-component)).
 
 ## Out of scope today
 

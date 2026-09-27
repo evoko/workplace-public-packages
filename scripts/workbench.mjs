@@ -114,8 +114,8 @@ async function bodyOf(req) {
 }
 
 /**
- * Serves a session over HTTP, on 127.0.0.1 (the contract: the workbench plan's "The HTTP
- * contract"). `server.session` may be set later: until it is, the session's routes answer 503, so
+ * Serves a session over HTTP, on 127.0.0.1 (the contract: docs/engineering/architecture.md, The
+ * workbench). `server.session` may be set later: until it is, the session's routes answer 503, so
  * the port is taken before the session is built. `idleMs: 0` never exits (the tests); otherwise
  * `onIdle` runs once nothing has been asked for `idleMs`, with no poll waiting and no request being
  * answered.

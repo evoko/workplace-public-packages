@@ -1,6 +1,6 @@
 /**
  * The workbench service's client, for the bar (Bar.tsx): the HTTP contract in
- * docs/superpowers/plans/2026-09-27-viewer-workbench.md, as types and one function per route.
+ * docs/engineering/architecture.md, The workbench, as types and one function per route.
  * Dev only: nothing calls it in a static build (adapter.tsx).
  */
 

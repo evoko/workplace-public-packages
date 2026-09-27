@@ -74,7 +74,8 @@ These hold everywhere. The rest of the design follows from them.
    `fileVersion`), never the build date.
 7. **Nothing is written until everything is built.** Every stage builds before any emits, and
    outputs are held (`deferWrites`, `commitGenerated`) until every stage has emitted, so a stage
-   that throws rewrites nothing. Output the run did not write is pruned.
+   that throws rewrites nothing. An output whose text is unchanged is not rewritten, and output the
+   run did not write is pruned.
 
 ## Tokens and icons
 
@@ -116,8 +117,10 @@ control to wrap, renames, a cell that follows more axes than the model says, a r
 the token of the same value, an allowed literal (a governance gap), an accepted finding. Three
 rules make it trustworthy: **every rule has a reason**; **a rule that no longer matches the IR
 fails the build**, so a Figma change cannot leave a stale decision behind; and **order does not
-matter**. `spec/overlay/defaults.yaml` holds the two decisions that hold for every component (an
-unbound zero padding or gap is `inset.none` or `stack.none`); `excluded.yaml` names components
+matter**. The placeholder reason `TODO(reason)`, which `solar:explain --propose` and the
+workbench's pending edit write, fails the build; only `solar:codegen --pending`, the workbench's
+preview, lets it through. `spec/overlay/defaults.yaml` holds the two decisions that hold for
+every component (an unbound zero padding or gap is `inset.none` or `stack.none`); `excluded.yaml` names components
 left out (Cursor); `mui-theme.yaml` names the stock MUI components styled from recipes. Every
 rule kind is in [spec/overlay/README.md](../../spec/overlay/README.md).
 
@@ -251,7 +254,9 @@ Storybook (`npm run storybook`) and Widgetbook (`npm run widgetbook`) show each 
 checks' own cases and oracles and badged with its excused differences. **Playground** is the
 component live, as an app uses it, under controls generated from its IR. They are viewers, not
 checks, and neither changes what the checks measure: the Playground never touches the visual
-cases or the variant builders. What each offers a tester and how it syncs its controls is in its
+cases or the variant builders. Under `npm run storybook` and `npm run widgetbook`, a workbench bar
+above each Playground changes the component through a local service
+([The workbench](#the-workbench)). What each offers a tester and how it syncs its controls is in its
 README ([Storybook](../../packages/components/stories/README.md#playground),
 [Widgetbook](../../packages/solar_flutter/widgetbook/README.md#playground)); what the two share is
 here.
@@ -375,10 +380,120 @@ Not in the Playground: a child's own controls beyond its words (its size, its pr
 Playground's state saved as a shareable preset, and the sidebars grouped by Figma's sections (set
 aside by the owner, 2026-09-26).
 
+### The workbench
+
+The workbench keeps the loop of fixing and approving a component in the viewers: a person changes a
+look by choosing a SOLAR token, which is written as an overlay `set` rule; sends anything else to
+an agent as a note; and approves or withdraws an approval. How to use it:
+[workflows.md, Fix a component in the viewer](workflows.md#fix-a-component-in-the-viewer).
+
+**The service.** `scripts/workbench.mjs`, a Node process on `127.0.0.1:6011`, is the only thing
+that writes for the bars. It is for development alone: `npm run storybook` (`.storybook/main.ts`,
+in `storybook dev` only) and `npm run widgetbook` (`scripts/widgetbook.mjs`, when serving) make
+sure it runs (`scripts/workbench-launch.mjs`), reusing one that answers `GET /health` on the port or
+starting it detached, logging to `.workbench/service.log`. Each launcher asks again every 30
+seconds, which keeps the service alive and starts it again where it has stopped; it exits a minute
+after the last request, with no poll waiting. It answers only a `Host` of `127.0.0.1` or `localhost`
+(a page that rebinds its own name to this machine is refused) and only pages served from
+`localhost` or `127.0.0.1` (CORS). Storybook draws the bar only in `storybook dev` (`import.meta.env.DEV`),
+Widgetbook only where `--dart-define=SOLAR_WORKBENCH` gives the service's URL, so no static build,
+no deployment and no CI job includes the bar or calls the service.
+
+**One job at a time.** The service's logic is `packages/codegen/src/workbench/`, pure modules with
+every effect injected (`session.mjs`), tested by codegen's vitest. Writes, regenerations and checks
+queue; each tells the viewers `busy`, then `failed` (with why) or `changed`, which the bars hear by
+long-polling `GET /events?after=<seq>`, answered at once where there is anything newer and
+otherwise within 25 seconds (plain HTTP, which Dart's `http` runs the same on the VM and the web).
+Every file the service writes (an overlay, the approvals, a note, the pending record) is written
+beside itself and renamed over, whole or not at all. Every command it runs (the regeneration, each
+check) is stopped after 15 minutes. A Set names the revision of the overlay the bar read (a hash of
+its text), so a file changed since is refused; Keep and Undo refuse a file that holds neither text
+the session wrote.
+
+**The lock.** What a component may do follows its circles on both platforms. 🟡 on both, or 🟡 on
+one and absent from the other, it may be inspected, changed and reported on; 🟢 on either it is
+locked, since a look change reaches both platforms and would cancel the approval; 🔴 on either it
+waits on the components it uses. Approve and Undo approval act on the bar's own platform.
+
+**The pending edit.** Inspect's choice becomes one `set` entry, spliced into the overlay's text
+(`overlay-edit.mjs`: the entry's own lines change, and every comment and every other rule stays
+byte for byte), with the reason `TODO(reason)`, and a regeneration with `solar:codegen --pending`,
+the one flag that lets the placeholder through. A plain run, the Verify block and CI refuse it, so
+an edit walked away from cannot ship unnoticed. Before the overlay is written, the edit is saved to
+`.workbench/pending.json` with the file's bytes before it, so Undo survives a restart; one exists
+at a time. Keep writes the reason and regenerates without the flag. The generator writes only the
+files whose formatted text differs from what is on disk, so a regeneration touches the edited
+component's outputs alone: Storybook's dev server reloads them, and the service signals
+Widgetbook's `flutter run` to hot-reload (`SIGUSR1`, to the pid in `.workbench/widgetbook.pid`,
+which `scripts/widgetbook.mjs` writes, and only where that pid is Flutter's or Dart's).
+
+**The checks.** Keep and Approve run the component's own checks, not the whole suite (`checks.mjs`):
+its web visual check alone (`SOLAR_VISUAL_ONLY`), its Flutter visual check (`--name`) and the parity
+suite, one after another; each visual check's reports are deleted before it runs and read after it,
+Light and Dark, as the failures the bar lists. Which commands, and what a failure then offers:
+[workflows.md, The checks behind Keep and Approve](workflows.md#the-checks-behind-keep-and-approve).
+
+**The contract.** Both bars and the service use exactly this. Bodies are JSON; an error is
+`{ "error": "<one sentence>" }` with its status.
+
+| Method, path              | Body or query                                                 | Answer                                                 |
+| ------------------------- | ------------------------------------------------------------- | ------------------------------------------------------ |
+| `GET /health`             |                                                               | `{ service: "solar-workbench" }`                       |
+| `GET /status`             |                                                               | `Status`                                               |
+| `GET /component`          | `?name=Button&variant=0`                                      | `Inspection`                                           |
+| `POST /set`               | `{ component, variant, layer, cell, scope, value, revision }` | `Status`                                               |
+| `POST /keep`              | `{ component, reason }`                                       | `{ ok: true }` or `{ ok: false, failures: Failure[] }` |
+| `POST /undo`              | `{ component }`                                               | `Status`                                               |
+| `POST /report`            | `{ component, platform, controls?, layer?, variant?, note }`  | `{ file }`                                             |
+| `POST /send`              | `{ component, platform, note?, failures? }`                   | `{ file }`                                             |
+| `POST /approve`           | `{ component, platform }`                                     | `{ ok: true }` or `{ ok: false, failures: Failure[] }` |
+| `POST /unapprove/preview` | `{ component, platform }`                                     | `{ withdraws: string[] }`                              |
+| `POST /unapprove`         | `{ component, platform }`                                     | `{ withdraws: string[] }`                              |
+| `GET /events`             | `?after=<seq>`                                                | `{ seq, events: [{ seq, type, message? }] }`           |
+
+- `Status`: `{ busy: string | null, pending: Pending | null, components: { [name]: { web: Colour | null, flutter: Colour | null, waitsOn: { web: string[], flutter: string[] }, editable: boolean, locked: string | null } } }`,
+  `Colour` one of `"green"`, `"yellow"`, `"red"`; `busy` is null in a POST's answer, since the
+  operation has finished; `locked` says why the component may not change.
+- `Pending`: `{ component, key, value, deletes: boolean, previousReason: string | null, borrowers: string[], failing: Failure[] | null }`;
+  `borrowers` are the rules that borrow the entry's reason, which therefore changes too.
+- `Inspection`: `{ component, revision, variants: [{ index, name }], variant, layers: [{ name, className: string | null, hidden: boolean, cells: [{ cell, entry, at: string | null, scopes: [{ label, key }], choices: [{ name, value }], keywords: string[], none: boolean, note? }] }] }`;
+  `note` says why a cell offers nothing (a raw value the overlay allows).
+- `value`: `{ token }`, `{ keyword }` (`FILL` or `HUG`) or `{ none: true }`, one the inspection
+  offers for the cell.
+- `Failure`: `{ platform: "web" | "flutter" | "parity", variant?, layer?, property?, message?, figma?, drawn? }`,
+  the first four words, `figma` and `drawn` each a scalar or a list of scalars (a dash pattern);
+  a Dark report's variant ends in ` (Dark)`.
+- `/send` after a failing Keep carries the pending edit's failures, and ignores the body's; after
+  a refused Approve, the body's.
+- An event's `type` is `busy` (with `message`), `changed` (read the status and the inspection
+  again) or `failed` (with `message`). The service keeps the last 100.
+- Limits: a note of 10 000 characters, 200 failures in an answer or a note (past that, the first
+  199 and one counting the rest), a body of 1 MiB.
+- Statuses: 400 a request that is malformed or that the inspection or the build refuses, 403 a
+  foreign `Host` or `Origin`, 404 no such route, 409 refused by the state (a lock, a pending edit,
+  a file changed on disk, a rule that changes nothing, a Keep that would cancel an approval), 413 a
+  body over 1 MiB, 500 a failure of the service's own (a regeneration that failed after Undo), 503
+  still starting.
+
+**The same behaviour in both bars.** The bars must behave the same; they need not look the same.
+`packages/codegen/src/workbench/bar-scenarios.json` is one list of scenarios in its own
+vocabulary: a fake service's answers, steps (press, choose, type, an event) and expectations (the
+calls sent, the actions offered, the facts shown). Storybook's Playwright suite
+(`test/visual/workbench-scenarios.spec.mjs`) and Widgetbook's widget tests
+(`test/workbench_scenarios_test.dart`) run every scenario against their own bar and its real HTTP
+client, the requests answered as the scenario's fake; `packages/codegen/test/workbench-scenarios.test.mjs`
+checks each scenario against the vocabulary. A step or an expectation a driver lacks fails that
+driver. At each expectation naming actions, and at every scenario's last, the controls a bar offers
+must be exactly those named, so neither bar can grow a control the other lacks: `platformActions`
+lists the few one platform alone has (the web's Point). Words may differ; the facts shown may not.
+Each bar's own details (pointing, focus, spacing) are tested beside it (`workbench.spec.mjs`,
+`workbench_bar_test.dart`).
+
 ## Approvals
 
 The checks prove each platform draws what Figma draws; a person still confirms each component
-before it ships. `spec/approvals.yaml`, written by people, never by an agent, records that
+before it ships. `spec/approvals.yaml`, written by people, never by an agent (by hand, or with the
+viewers' Approve and Undo approval buttons, [The workbench](#the-workbench)), records that
 confirmation per component and platform as the component's **fingerprint**, a SHA-256 of what it
 ships:
 
@@ -425,13 +540,13 @@ here. It pins Flutter (`FLUTTER_VERSION`), because `dart format` output changes 
 and the codegen job diffs the formatted Dart; to upgrade it, see
 [workflows.md, Set up a machine](workflows.md#set-up-a-machine).
 
-| Job                                        | Checks                                                                                                                                                                                                            | Fixing a failure                                                                                                                                                        |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, YAML, spec's Markdown                                                                                                              | Run those two commands locally, and Prettier on a formatting failure; the owner commits the result                                                                      |
-| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs`: credentials, e-mail addresses and phone numbers in every tracked and untracked file, against `scripts/personal-data-baseline.json`                                             | Redact in the extractor, or accept the finding with a written reason ([how](../README.md#personal-data-in-a-public-repository))                                         |
-| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`; `solar:status --check`                                                                                                       | Run `npm run solar:codegen` locally; the owner commits the result; for a cancelled approval, re-approve it or revert ([workflows.md](workflows.md#approve-a-component)) |
-| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test` with the Flutter visual checks, then `flutter test` in `widgetbook` (the Playground adapter and builders); keeps the reports; builds Widgetbook | Run the same in `packages/solar_flutter` and `packages/solar_flutter/widgetbook`; the reports are in `packages/solar_flutter/build/visual/`                             |
-| Web components draw what Figma draws       | `npm run test:visual`, which also runs the Playground builders live (`playground.spec.mjs`); keeps the gap reports; builds Storybook                                                                              | Run `npm run test:visual` locally; the reports are in `packages/components/test/visual/.out/`                                                                           |
+| Job                                        | Checks                                                                                                                                                                                                                                   | Fixing a failure                                                                                                                                                        |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Generated docs and tokens are up to date   | `solar:docs` and `solar:tokens` reproduce the tree; Prettier on docs, scripts, the overlays' YAML, spec's Markdown, the Flutter package's Markdown and the project skill                                                                 | Run those two commands locally, and Prettier on a formatting failure; the owner commits the result                                                                      |
+| No unreviewed personal data or credentials | `scripts/check-personal-data.mjs`: credentials, e-mail addresses and phone numbers in every tracked and untracked file, against `scripts/personal-data-baseline.json`                                                                    | Redact in the extractor, or accept the finding with a written reason ([how](../README.md#personal-data-in-a-public-repository))                                         |
+| Generated code is up to date               | `solar:codegen` writes nothing to `docs/` and reproduces the tree; `npx vitest run`; `solar:status --check`                                                                                                                              | Run `npm run solar:codegen` locally; the owner commits the result; for a cancelled approval, re-approve it or revert ([workflows.md](workflows.md#approve-a-component)) |
+| Dart package analyzes and tests            | `dart format`, `flutter analyze` (three packages), `flutter test` with the Flutter visual checks, then `flutter test` in `widgetbook` (the Playground adapter and builders, and the workbench bar); keeps the reports; builds Widgetbook | Run the same in `packages/solar_flutter` and `packages/solar_flutter/widgetbook`; the reports are in `packages/solar_flutter/build/visual/`                             |
+| Web components draw what Figma draws       | `npm run test:visual`, which also runs the Playground builders live (`playground.spec.mjs`) and the workbench bar; keeps the gap reports; builds Storybook                                                                               | Run `npm run test:visual` locally; the reports are in `packages/components/test/visual/.out/`                                                                           |
 
 `.github/workflows/main.yml` runs lint, typecheck, format, build, `smoke:install` (the packed
 packages installed into a clean React 18 app and rendered on the server) and the tests.

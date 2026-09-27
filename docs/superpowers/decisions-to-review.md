@@ -1,8 +1,9 @@
 # Judgement calls to review
 
-Decisions taken while the owner was away (2026-09-26), for the owner to confirm or correct. Each
-names where it lives, so a correction knows what to change. The lasting ones are also rows in
-`docs/engineering/decisions.md` marked `Taken`. Delete this file once reviewed.
+Decisions taken while the owner was away (2026-09-26, and the workbench's on 2026-09-27), for the
+owner to confirm or correct. Each names where it lives, so a correction knows what to change. The
+lasting ones are also rows in `docs/engineering/decisions.md` marked `Taken`. Delete this file once
+reviewed.
 
 ## Start here: the calls most worth a look
 
@@ -18,6 +19,17 @@ names where it lives, so a correction knows what to change. The lasting ones are
 - **71**: the scope of the bug-fix batch: bugs fixed, missing features recorded in open-work.md.
 - **14, 34**: a `WORDS` table gives starting words to text slots Figma leaves empty.
 - **13**: the Playground width box is a block at `auto` on both viewers.
+- **89, 90**: `solar:codegen` writes only changed files and formats only its own outputs, never a
+  hand-written file beside them, so the Prettier check covers `spec/**/*.md`;
+  `.claude/skills/**/*.md` covers the committed skill.
+- **109**: what an agent may and may not ask of the workbench service.
+- **82**: the two workbench bars' parity is enforced exhaustively: a control one bar has and the
+  shared scenarios do not name fails.
+- **97**: no Send to agent on a component approved on the other platform, even with failing checks.
+- **95**: `/solar-feedback` lists, not makes, a proposal that would cancel an approval or change a
+  🔴 component.
+- **86, 76**: one pending edit in the repository at a time, which holds every Approve and Undo
+  approval.
 
 ## Viewer playgrounds, Batch A hardening and the component fixes
 
@@ -600,3 +612,145 @@ relative`, which also caught MUI Select's hidden native input (absolute under th
     the files (`packages/solar_flutter/**/*`), lets the folders and `*.md` back in, and Dart and YAML
     stay ignored. `fonts/README.md`, never checked before, was reformatted (its table's alignment
     only).
+
+## The viewer workbench (2026-09-27)
+
+Taken while building the workbench; the owner's own decisions for it are rows in
+`docs/engineering/decisions.md` marked `Owner 2026-09-27`. How it works:
+`docs/engineering/architecture.md`, The workbench; how to use it: `docs/engineering/workflows.md`,
+Fix a component in the viewer.
+
+73. **The service's logic lives in `packages/codegen/src/workbench/`**, the process in
+    `scripts/workbench.mjs`, the launcher in `scripts/workbench-launch.mjs`. Alternative: the
+    spec's `scripts/workbench/`. Why: the logic imports the generator's modules and `yaml`, and
+    codegen's vitest runs its tests with the rest.
+74. **The bars hear the service by long-polling** (`GET /events?after=<seq>`, answered within 25 s).
+    Alternative: the spec's server-sent events. Why: Dart's `http` long-polls identically on the VM
+    (widget tests) and the web, with no conditional imports.
+75. **Inspect and Report need the component 🟡 on both platforms**, or 🟡 on one and absent from the
+    other (`session.mjs`, `gateOf`). Alternative: 🟡 on the bar's own platform only. Why: a look
+    edit reaches both platforms, so 🟢 on the other would be cancelled and 🔴 there means it waits
+    on an unapproved component.
+76. **One pending edit in the repository at a time**, persisted with the overlay's bytes before it
+    in `.workbench/pending.json` (git-ignored). Alternative: one per component, or held in memory.
+    Why: each edit regenerates everything, and Undo must survive a restart of the service.
+77. **The sidebars' circles refresh only when the viewer next starts**; the bar shows the live one.
+    Alternative: push the circle to the sidebars. Why: Widgetbook's use-case names carry the
+    circle, so changing it live would change the URL. Listed in open-work.md, Workbench gaps.
+78. **The bar's sections are SOLAR Buttons** (the open one `secondary`, the others `tertiary`), not
+    Tabs, and **the circle is an emoji** beside the bar's title (`🟢 Workbench`), not a SOLAR
+    component. Alternative: the spec's Tabs and a drawn status circle. Why (the plan recorded none):
+    two sections that may both be closed act as toggles, not tabs, and the emoji is the sidebars'
+    own character.
+79. **The web's per-component visual check is chosen with `SOLAR_VISUAL_ONLY=<Name>`**, read by
+    `components.spec.mjs`, which throws for an unknown name or a chart library's component.
+    Alternative: a Playwright grep alone. Why: a grep that matches nothing passes by measuring
+    nothing; unset (CI, Verify), every component runs as before.
+80. **`.gitignore`'s `.claude/skills/` became `.claude/skills/*` plus `!.claude/skills/solar-feedback/`**,
+    so the project skill is committed while personal skills stay ignored. Alternative: commit the
+    skill elsewhere. Why: Claude Code finds project skills only there.
+81. **Each bar's end-to-end tests run against a fake service**; that a chosen token reaches the
+    component was proved by the batch-end smoke runs against the real service. Alternative: an
+    automated test against the real service. Why: a real run regenerates the repository and takes
+    minutes, and no test may write the real overlays or approvals.
+82. **Behaviour parity is enforced exhaustively** (the owner's "behave the same, need not look the
+    same"): at each expectation naming actions, and at every scenario's last, a bar's offered
+    controls must be exactly those named; `platformActions` lists the controls one platform alone
+    has (today only the web's Point). Alternative: check only the actions a scenario names. Why:
+    otherwise one bar could grow a control the other lacks and no test would notice.
+83. **Inspect offers only the scopes the build accepts**, through the overlay reader's own
+    `setMayAdd` (`scopes.mjs`). Alternative: offer every scope from `base` to the combined look.
+    Why: a scope the build refuses would be written, regenerated and undone, seconds lost for an
+    error the bar could have prevented.
+84. **A cell whose raw value the overlay allows (`allowLiteral`) offers nothing**, with a note
+    saying to use Report. Alternative: offer tokens there. Why: a token leaves the `allowLiteral`
+    rule nothing to allow, which fails the build as stale.
+85. **A `set` entry whose reason another rule borrows (`reason: { as: set … }`) cannot be deleted**
+    from the workbench; replacing it is allowed, and the bar names the borrowers whose reason then
+    changes. Alternative: delete it and rewrite the borrowers. Why: rewriting another rule's reason
+    is a person's call, made in the file.
+86. **Approve and Undo approval are refused while any edit is pending**, on any component.
+    Alternative: refuse only for the edited component. Why: the checks and the fingerprint read the
+    generated files, which the pending edit has changed.
+87. **A component with no overlay file cannot be edited.** Alternative: create one. Why: which
+    Figma address names the new file is a person's call.
+88. **Approve needs `git config user.name`**, and is refused where it is unset. Alternative: a
+    default or a name typed in the dialog. Why: an approval records who gave it, and the pasted line
+    `solar:status` prints takes the same name.
+89. **`solar:codegen` writes only the files whose formatted text differs, and formats only its own
+    outputs**, never a hand-written file beside them (`spec/overlay/README.md`). Alternative: run
+    Prettier over `spec/**/*.{json,md}` after writing, which formats those files too. Why: a regeneration after one edit must touch that component's files
+    alone, or Storybook re-indexes everything and Widgetbook reloads for nothing.
+90. **CI's and the Verify block's Prettier check cover `spec/**/*.md`**, since the generator formats
+    only its own outputs, never a hand-written file beside them; **`.claude/skills/**/*.md` covers
+    the committed skill.** Alternative: leave `spec/**/*.md` unchecked. Why: with 89, nothing else
+    formats those files.
+91. **The launchers ping the service every 30 s** (`ensureWorkbench`), which keeps it alive and
+    starts it again where it has stopped. Alternative: the spec's exit a minute after the last
+    viewer disconnects, with nothing to restart it. Why: a developer on a Variants page makes no
+    request for minutes, and the bar should be there when they return.
+92. **Report is offered with Inspect, on the same terms, and works while an edit is pending.**
+    Alternative: Report on any 🟡 component, or held during an edit. Why: a note leads to a change
+    that would cancel an approval, and it touches only `spec/feedback/`, so it cannot collide with
+    the edit.
+93. **A note names a layer and a variant only once the component has been inspected.**
+    Alternative: always name the Playground's. Why: the Playground shows the resting state only, so
+    only Inspect's choice is a variant the person pointed at.
+94. **A Flutter colour in a note is `#rrggbb`, or `#aarrggbb` (alpha first) where not opaque.**
+    Alternative: CSS's `#rrggbbaa`. Why: it is how Flutter writes a `Color`; the skill says so.
+95. **`/solar-feedback` lists, rather than makes, a proposal that would cancel an approval or change
+    a 🔴 component's output.** Alternative: make it and let the check fail. Why: approvals are the
+    owner's, and a 🔴 component is not worked on.
+96. **`/solar-feedback` stops on a pending edit** (or any `TODO(reason)`), and reviews the `set`
+    rules added since the last commit. Alternative: the spec's "since its last run". Why: only a
+    person presses Keep or Undo, and the last commit is the one mark the repository has.
+97. **Send to agent is gated like Report**: never on a component approved on the other platform,
+    even where Approve's checks failed on this one. Alternative: offer it wherever checks fail. Why:
+    the agent works only on components that may change.
+98. **Send to agent has one body** (`{ component, platform, note?, failures? }`). After a failing
+    Keep the service uses the pending edit's own failures, ignoring the body's, records the rule
+    and its value in the note, and ends the pending state with the edit kept. Alternative: separate
+    routes for Keep and Approve. Why: one note shape for the skill, and the Keep path cannot send
+    failures the checks did not report.
+99. **An empty Send to agent note becomes a default sentence** ("The checks failed where the person
+    judged the component right."). Alternative: require words. Why: the failures already say what
+    to settle.
+100.  **The limits**: a note of 10 000 characters, 200 failures per answer or note (the first 199 and
+      one counting the rest, naming the `solar:explain` command), a request body of 1 MiB, 15
+      minutes per command the service runs. Alternative: no limits. Why: one knock-on fails every
+      variant (hundreds), and a hung check would hold every job.
+101.  **The parity suite runs whole** behind Keep and Approve. Alternative: filter it to the
+      component. Why: each of its tests covers every component, so it cannot be filtered to one.
+102.  **A chart library's component runs the parity suite and `charts.test.mjs`**, having no visual
+      check. Alternative: nothing. Why: the chart theme's test is what stands for it.
+103.  **A failed plain regeneration at Keep leaves the edit pending**, to Undo or to fix and Keep
+      again. Alternative: undo it, as a failed Set does. Why: the reason is already written, and the
+      failure may be elsewhere (a Dart SDK missing).
+104.  **Failing checks at Keep keep the edit pending, with its failures; Keep again reruns them.**
+      Alternative: undo on failure. Why: a knock-on may be the person's intent, which Send to agent
+      settles; Undo stays one press away.
+105.  **Widgetbook is hot-reloaded only** (`SIGUSR1`), never hot-restarted. Alternative: the spec's
+      hot restart where a reload cannot apply. Why (the plan recorded none): the service cannot tell
+      when a reload is not enough, and a restart (`SIGUSR2`) loses the Playground's state; listed in
+      open-work.md, Workbench gaps.
+106.  **Each visual check's reports are deleted before it runs.** Alternative: read whatever is
+      there. Why: a check that stops before writing would otherwise be reported by an earlier run.
+107.  **An overlay edit splices the file's text** (`overlay-edit.mjs`): the yaml document finds the
+      entry's lines and renders the one entry. Alternative: the spec's yaml document API re-printing
+      the file. Why: re-printing re-folds every reason, so a save would move lines it did not change.
+108.  **The service answers only a `Host` of `127.0.0.1` or `localhost`, and pages on `localhost` or
+      `127.0.0.1`.**
+      Alternative: the port on 127.0.0.1 alone. Why: a web page can rebind its own name to
+      127.0.0.1; the Host check refuses it.
+109.  **An agent never calls the service's Keep, Approve, Undo approval, Report or Send** (a
+      person's decisions and words), and calls Set only in a test or smoke run it undoes, leaving
+      no pending edit; it may run the viewers and read from the service (the controller's
+      decision, in CLAUDE.md, workflows.md, the skill and a `Taken` row). Alternative: forbid all
+      use. Why: then an agent could not even start a viewer, whose launcher pings `/health`; this
+      keeps every decision a person's while letting agents test the tool.
+
+### For the owner to do
+
+- `spec/approvals.yaml`'s header comment mentions only pasting the lines `solar:status` prints, not
+  the viewers' Approve and Undo approval buttons. An agent may not edit the file; update it if you
+  want the header to name them.

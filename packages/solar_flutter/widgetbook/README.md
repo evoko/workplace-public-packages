@@ -35,6 +35,14 @@ component's name, so it is part of its URL, and a link changes with its colour. 
 one Charts entry) and the components checked as another's state show no circle;
 `npm run solar:status` has their colours.
 
+Under `npm run widgetbook`, the **workbench bar** above each Playground acts for Flutter: Inspect
+sets a look to a SOLAR token as an overlay rule, Report and Send to agent save notes for
+`/solar-feedback`, and Approve and Undo approval write `spec/approvals.yaml` for the person
+pressing them. It is drawn only where the script gives the workbench service's URL
+(`--dart-define=SOLAR_WORKBENCH`), from `lib/workbench/` (`bar.dart`, `client.dart`,
+`models.dart`), and the service hot-reloads the app after each regeneration; how to use it:
+[workflows.md, Fix a component in the viewer](../../../docs/engineering/workflows.md#fix-a-component-in-the-viewer).
+
 It is a web app: Widgetbook's interface is built for it, and nothing here is measured. The native
 widget tests remain the check (`flutter test` in `solar_flutter`).
 
@@ -70,4 +78,8 @@ case drops them. One limitation: a knob's text box in the panel does not visibly
 widget changes its words, though the value and the widget are right; Widgetbook gives no way to
 redraw it.
 
-`flutter test` here tests the adapter and every builder (`test/`).
+`flutter test` here tests the adapter and every builder (`test/`), and the workbench bar: its
+client (`workbench_client_test.dart`), what is Flutter's own (`workbench_bar_test.dart`) and every
+scenario both bars share (`workbench_scenarios_test.dart`, which reads
+`../../codegen/src/workbench/bar-scenarios.json`;
+[architecture.md, The workbench](../../../docs/engineering/architecture.md#the-workbench)).
