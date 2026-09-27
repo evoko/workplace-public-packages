@@ -69,6 +69,13 @@ export const PROPERTIES_OF = {
   ],
 };
 
+/** The IR cell each oracle property belongs to, the other way round: `fontSize` is `typography`'s. */
+export const CELL_OF_PROPERTY = Object.fromEntries(
+  Object.entries(PROPERTIES_OF).flatMap(([cell, props]) =>
+    props.map((p) => [p, cell]),
+  ),
+);
+
 /** `#abc`, `#aabbcc`, `#aabbccdd`, `rgba(…)` or a `#aabbcc a=0.5` literal as lowercase `#rrggbb[aa]`. */
 export function hex(value) {
   const v = String(value).trim().toLowerCase();

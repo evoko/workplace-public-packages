@@ -1,6 +1,7 @@
 import {
   mkdirSync,
   readdirSync,
+  readFileSync,
   renameSync,
   rmdirSync,
   unlinkSync,
@@ -34,15 +35,31 @@ function guard(absolutePath) {
 // The writes a run holds until it commits them, or null where each write goes straight to disk.
 let pending = null;
 
+/** The file's bytes, or null where there is none. */
+function current(absolutePath) {
+  try {
+    return readFileSync(absolutePath);
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'EISDIR') return null;
+    throw error;
+  }
+}
+
 /**
  * One file, whole or not at all: written beside itself and renamed over the old one, so a run
- * stopped mid-write never leaves a file cut short.
+ * stopped mid-write never leaves a file cut short. A file already holding these bytes is left
+ * untouched, its mtime too, so a watcher (Storybook's, beside the workbench) sees only what
+ * changed. Returns whether it wrote.
  */
 function put(absolutePath, contents) {
+  const bytes = Buffer.from(contents);
+  const existing = current(absolutePath);
+  if (existing && existing.equals(bytes)) return false;
   mkdirSync(dirname(absolutePath), { recursive: true });
   const partial = `${absolutePath}.${process.pid}.partial`;
-  writeFileSync(partial, contents);
+  writeFileSync(partial, bytes);
   renameSync(partial, absolutePath);
+  return true;
 }
 
 export function writeGenerated(absolutePath, contents) {
@@ -62,13 +79,26 @@ export function deferWrites() {
   pending = new Map();
 }
 
-/** Writes what `deferWrites` held, each file whole; returns how many. */
-export function commitGenerated() {
+/**
+ * Writes what `deferWrites` held, each file whole, and only where it differs from what is on
+ * disk; returns the repository-relative paths it wrote.
+ *
+ * `format`, when given, takes the held Map (path -> text) and returns, or resolves to, the final
+ * text of the paths it formats (a Map; a path it leaves out is written as held). It runs before
+ * anything is written, so the comparison is with the formatted text the file will hold, and a
+ * formatter that throws rewrites nothing either.
+ */
+export async function commitGenerated(format) {
   if (!pending) throw new Error('commitGenerated: no writes are deferred');
   const held = pending;
   pending = null;
-  for (const [path, contents] of held) put(path, contents);
-  return held.size;
+  const formatted = format ? await format(held) : new Map();
+  const changed = [];
+  for (const [path, contents] of held) {
+    if (put(path, formatted.get(path) ?? contents))
+      changed.push(relative(repoRoot, path));
+  }
+  return changed;
 }
 
 /** Deletes one generated file, under the same guard as a write. */

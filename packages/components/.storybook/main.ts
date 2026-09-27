@@ -71,26 +71,39 @@ const config: StorybookConfig = {
     }
     return `${head ?? ''}<script>window.SOLAR_APPROVALS = ${JSON.stringify(circles)};</script>`;
   },
-  viteFinal: (vite) => ({
-    ...vite,
-    resolve: {
-      ...vite.resolve,
-      // Workspace packages from their sources, as the visual checks and unit tests resolve them
-      // (one table for all three), so the viewer shows what is committed and needs no build
-      // first. Ours come first: Vite takes the first alias that matches.
-      alias: [...exactAliases(), ...aliasList(vite.resolve?.alias)],
-    },
-    // The oracles and the IR live at the repository root, outside this package.
-    server: { ...vite.server, fs: { allow: [here('../../..')] } },
-    plugins: [
-      ...(vite.plugins ?? []),
-      {
-        name: 'solar-data',
-        resolveId: (id) => (id === 'virtual:solar' ? '\0virtual:solar' : null),
-        load: (id) => (id === '\0virtual:solar' ? solarData() : null),
+  viteFinal: async (vite, { configType }) => {
+    // The workbench service, for the bar above each Playground (stories/workbench/): started by
+    // `storybook dev` alone, never by a build.
+    if (configType === 'DEVELOPMENT') {
+      const { ensureWorkbench } =
+        await import('../../../scripts/workbench-launch.mjs');
+      await ensureWorkbench();
+      // It exits a minute after the last request, as while the developer is on another story: a
+      // ping keeps it alive, and starts it again where it has stopped.
+      setInterval(() => void ensureWorkbench(), 30_000).unref();
+    }
+    return {
+      ...vite,
+      resolve: {
+        ...vite.resolve,
+        // Workspace packages from their sources, as the visual checks and unit tests resolve them
+        // (one table for all three), so the viewer shows what is committed and needs no build
+        // first. Ours come first: Vite takes the first alias that matches.
+        alias: [...exactAliases(), ...aliasList(vite.resolve?.alias)],
       },
-    ],
-  }),
+      // The oracles and the IR live at the repository root, outside this package.
+      server: { ...vite.server, fs: { allow: [here('../../..')] } },
+      plugins: [
+        ...(vite.plugins ?? []),
+        {
+          name: 'solar-data',
+          resolveId: (id) =>
+            id === 'virtual:solar' ? '\0virtual:solar' : null,
+          load: (id) => (id === '\0virtual:solar' ? solarData() : null),
+        },
+      ],
+    };
+  },
 };
 
 export default config;

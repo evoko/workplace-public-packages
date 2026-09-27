@@ -1,6 +1,7 @@
 /// The Widgetbook adapter for a Playground builder: the component's controls (playgroundControls,
 /// generated, its extras included) as knobs, synced both ways through the knobs' URL query group,
-/// and around the component a Reset button, the width box and the event log. The only code here
+/// and around the component a Reset button, the width box and the event log, and above them the
+/// workbench bar where scripts/widgetbook.mjs serves with the workbench (../workbench/). The only code here
 /// that knows Widgetbook; everything viewer-free is core.dart, and a builder sees the
 /// SolarPlayground interface alone (playground.dart). It mirrors the Storybook adapter,
 /// packages/components/stories/playground/adapter.tsx.
@@ -10,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 import 'package:widgetbook/widgetbook.dart';
 
+import '../workbench/bar.dart';
+import '../workbench/client.dart';
 import 'core.dart';
 import 'playground.dart';
 
@@ -146,7 +149,8 @@ extension PlaygroundKnob on PlaygroundControl {
 final _views = <String, GlobalKey>{};
 
 /// The Playground use case for [component]: registers a knob per control on [context] (the use
-/// case's), then draws Reset, the builder's component in the width box, and the event log.
+/// case's), then draws the workbench bar (served with the workbench alone), Reset, the builder's
+/// component in the width box, and the event log.
 Widget solarPlayground(
   BuildContext context,
   String component,
@@ -155,6 +159,7 @@ Widget solarPlayground(
   final controls = controlsOf(component);
   return _PlaygroundView(
     key: _views.putIfAbsent(component, GlobalKey.new),
+    component: component,
     builder: builder,
     controls: controls,
     values: {for (final c in controls) c.name: c.knob(context)},
@@ -165,12 +170,14 @@ Widget solarPlayground(
 class _PlaygroundView extends StatefulWidget {
   const _PlaygroundView({
     super.key,
+    required this.component,
     required this.builder,
     required this.controls,
     required this.values,
     required this.state,
   });
 
+  final String component;
   final SolarPlaygroundBuilder builder;
   final List<PlaygroundControl> controls;
   final Map<String, Object?> values;
@@ -182,6 +189,18 @@ class _PlaygroundView extends StatefulWidget {
 
 class _PlaygroundViewState extends State<_PlaygroundView> {
   List<String> _log = const [];
+
+  /// The workbench service's client, where scripts/widgetbook.mjs serves with one: made when the
+  /// bar is first drawn, closed with the view.
+  HttpWorkbenchClient? _workbenchClient;
+  HttpWorkbenchClient get _workbench =>
+      _workbenchClient ??= HttpWorkbenchClient(workbenchUrl);
+
+  @override
+  void dispose() {
+    _workbenchClient?.close();
+    super.dispose();
+  }
 
   /// The builder's Playground: one for the view's life, reading the knobs' values as the latest
   /// build has them, so a builder's state may keep it.
@@ -230,6 +249,13 @@ class _PlaygroundViewState extends State<_PlaygroundView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: SolarStack.md,
         children: [
+          // Never in a build or a test: the URL is given only by `npm run widgetbook`.
+          if (workbenchUrl.isNotEmpty)
+            WorkbenchBar(
+              component: widget.component,
+              platform: 'flutter',
+              client: _workbench,
+            ),
           SolarButton(
             prio: SolarButtonPrio.tertiary,
             size: SolarButtonSize.sm,

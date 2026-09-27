@@ -1,13 +1,13 @@
 /**
  * Playwright's global setup: bundles the pages under test into `.out/` with esbuild: the visual
- * checks' page (`index.html`) and the Playground interaction check's (`playground.html`), each its
- * own build, so neither changes the other's output. Workspace
+ * checks' page (`index.html`), the Playground interaction check's (`playground.html`) and the
+ * workbench bar's (`workbench.html`), each its own build, so none changes another's output. Workspace
  * packages resolve to their sources, as in the unit tests, so the check measures what is committed
  * and needs no build first. The fonts are bundled too, so the text is measured in Inter, not in a
  * fallback that would change every line height.
  */
 
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { playgroundData } from '../../../codegen/src/playground/controls.mjs';
@@ -15,6 +15,27 @@ import { WORKSPACE_SOURCES } from '../../../codegen/src/util/workspace-sources.m
 
 const here = (path) => fileURLToPath(new URL(path, import.meta.url));
 export const outDir = here('.out');
+
+const TYPES = {
+  html: 'text/html',
+  js: 'text/javascript',
+  css: 'text/css',
+  woff2: 'font/woff2',
+  woff: 'font/woff',
+};
+
+/**
+ * Serves the built pages to a Playwright page at `http://solar.test/`: Chromium refuses module
+ * scripts from file:// URLs.
+ */
+export const servePages = (page) =>
+  page.route('http://solar.test/**', (route) => {
+    const path = new URL(route.request().url()).pathname.slice(1);
+    route.fulfill({
+      body: readFileSync(`${outDir}/${path}`),
+      contentType: TYPES[path.split('.').pop()] ?? 'application/octet-stream',
+    });
+  });
 
 /** One page: its entry bundled to `<name>.js` and `.css`, and the HTML that loads them. */
 async function page(entry, html, define = {}) {
@@ -43,4 +64,6 @@ export default async function setup() {
   await page('playground-page.tsx', 'playground.html', {
     __PLAYGROUND__: JSON.stringify(playgroundData()),
   });
+  // The workbench bar over a fake service (workbench.spec.mjs).
+  await page('workbench-page.tsx', 'workbench.html');
 }

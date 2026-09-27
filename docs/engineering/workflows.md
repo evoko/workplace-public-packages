@@ -77,7 +77,8 @@ npm run build-storybook -w @bwp-web/components && npm run widgetbook -- build
 npm run build && npm run smoke:install
 node scripts/check-personal-data.mjs
 npx prettier --check "docs/**/*.md" "docs/**/*.mjs" "docs/**/*.js" "docs/**/*.json" "scripts/**/*.mjs" \
-  "scripts/**/*.json" "spec/overlay/**/*.yaml" "packages/solar_flutter/**/*.md" README.md CLAUDE.md package.json
+  "scripts/**/*.json" "spec/overlay/**/*.yaml" "spec/**/*.md" "packages/solar_flutter/**/*.md" README.md CLAUDE.md \
+  package.json
 ```
 
 Generated output of every component a change does not name must be byte-identical before and
@@ -368,8 +369,8 @@ change in the same area.
   second node and leaves the control unnamed.
 - The web visual check serves its bundle through `page.route('http://solar.test/**')`, because
   Chromium refuses module scripts over `file://`.
-- A codegen Prettier glob that names `.svg` files makes Prettier fail ("No parser could be
-  inferred"); the assets glob is `{ts,tsx,json}` on purpose.
+- `underPrettier` in bin/solar-codegen.mjs must not list `svg`: Prettier has no SVG parser and
+  throws.
 
 **Tests that pin the corpus**
 

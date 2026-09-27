@@ -444,7 +444,10 @@ and `test/charts.test.mjs` checks the theme carries each cell.
 - **Nothing written until everything is built.** `deferWrites` and `commitGenerated`
   (`src/util/write.mjs`) hold every output until every stage has emitted and the report is
   written, so a stage that throws rewrites nothing; each file is written beside itself and renamed
-  over.
+  over. Each output is formatted in memory first (Prettier's API; the Dart in one `dart format`
+  run on a mirror in the package's `.dart_tool/`, `src/util/format.mjs`) and written only where
+  it differs from the file on disk, so an unchanged file keeps its mtime and a watcher sees only
+  what changed.
 - **Two class name spaces.** `src/util/classes.mjs`: `Solar<Name>-<slot>` public,
   `Solar<Name>--<layer>` internal; `withLayerClasses` writes a layer named by a helper
   (`${P}-${layer}`) as its own, in the recipes and the shells.
@@ -477,9 +480,9 @@ src/verify/                the oracle, spec/verify/<name>.json
 src/playground/            the viewers' Playground: each component's controls from its IR
                            (controls), the extras and sample words tables (extras), and the
                            fixed values both adapters use (values)
-src/util/                  paths, the docs/ write guard and pruning, sorting, naming, digests,
-                           SVG markup scanning, and the workspace sources the tests, the visual
-                           check and Storybook resolve the packages to
+src/util/                  paths, the docs/ write guard and pruning, formatting, sorting,
+                           naming, digests, SVG markup scanning, and the workspace sources the
+                           tests, the visual check and Storybook resolve the packages to
 test/                      unit suites per module, token parity across four targets, icon
                            parity across three, component parity across two, and the
                            packaging checks

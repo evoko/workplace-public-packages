@@ -20,6 +20,7 @@ import {
   check,
   circlesFor,
   colour,
+  gitUserName,
   pasteFor,
   readApprovals,
   render,
@@ -189,6 +190,18 @@ const approved = (fingerprints) =>
       { web: { fingerprint: f, by: 'Joon', on: '2026-09-27' } },
     ]),
   );
+
+describe('gitUserName', () => {
+  it('is a trimmed name, or null where git gives none', () => {
+    const name = gitUserName({ cwd: repoRoot });
+    expect(name === null || (name.length > 0 && name === name.trim())).toBe(
+      true,
+    );
+    expect(gitUserName({ cwd: join(tmpdir(), 'no-such-directory-here') })).toBe(
+      null,
+    );
+  });
+});
 
 describe('colours', () => {
   it('is yellow using nothing unapproved, red using something unapproved', () => {

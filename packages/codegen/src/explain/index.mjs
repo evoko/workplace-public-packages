@@ -18,14 +18,7 @@ import { join } from 'node:path';
 import { statePrecedence } from '../emit/flutter-component.mjs';
 import { flattenSpec } from '../spec.mjs';
 import { packagesDir } from '../util/paths.mjs';
-import { cellValue, PROPERTIES_OF } from '../verify/oracle.mjs';
-
-/** The oracle property each IR cell covers, the other way round: `fontSize` is `typography`'s. */
-const CELL_OF = Object.fromEntries(
-  Object.entries(PROPERTIES_OF).flatMap(([cell, props]) =>
-    props.map((p) => [p, cell]),
-  ),
-);
+import { cellValue, CELL_OF_PROPERTY } from '../verify/oracle.mjs';
 
 /** The value a derived axis takes in a variant, from the content the oracle fills it with. */
 function derivedValue(d, content = []) {
@@ -45,7 +38,7 @@ export function recipeProps(spec, variant) {
 }
 
 /** The appearance axes the recipe's keys are made of, in order (`variant=primary, danger=false`). */
-function appearanceAxes(spec) {
+export function appearanceAxes(spec) {
   const first = Object.values(spec.style)
     .flatMap((st) => [
       ...Object.keys(st.appearance ?? {}),
@@ -217,7 +210,7 @@ export function explainVariant(ctx, variant, only = {}) {
     for (const [property, figma] of Object.entries(values)) {
       if (property === 'hidden') continue;
       if (only.property && property !== only.property) continue;
-      const cell = CELL_OF[property];
+      const cell = CELL_OF_PROPERTY[property];
       const hit = cell ? lookupCell(ctx.spec, layer, cell, variant) : null;
       const entry = hit?.entry;
       // A cell the caller's prop fills (Avatar's colour), where the variant gives one: the

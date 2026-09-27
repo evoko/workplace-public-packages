@@ -1,19 +1,22 @@
 /**
  * The Storybook adapter for a Playground builder: the component's controls (PLAYGROUND, from the
  * codegen, extras included) as args and argTypes, synced both ways through `useArgs`, and around
- * the component a Reset button, the width box and the event log. The only code here that knows
- * Storybook; everything viewer-free is core.tsx, and a builder sees the `Playground` interface
- * alone (types.ts).
+ * the component a Reset button, the width box and the event log, with the workbench bar above
+ * them in `storybook dev` (stories/workbench/). The only code here that knows Storybook;
+ * everything viewer-free is core.tsx, and a builder sees the `Playground` interface alone
+ * (types.ts).
  */
 
 import Typography from '@mui/material/Typography';
 import type { ArgTypes, Args } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/preview-api';
 import { PLAYGROUND } from 'virtual:solar';
 import { Button } from '../../src/Button.js';
 import { SolarProvider } from '../../src/SolarProvider.js';
+import { WorkbenchBar } from '../workbench/Bar.js';
+import { httpClient } from '../workbench/client.js';
 import {
   BuilderHost,
   WidthBox,
@@ -29,6 +32,12 @@ import {
   type ArgsSync,
 } from './core.js';
 import type { ControlValue, PlaygroundBuilder } from './types.js';
+
+/**
+ * The workbench, in `storybook dev` alone (Vite's `import.meta.env.DEV`): a static build never
+ * draws or calls it.
+ */
+const DEV = (import.meta as { env?: { DEV?: boolean } }).env?.DEV === true;
 
 /** Storybook controls for a component's Playground. */
 export const argTypesFor = (component: string): ArgTypes =>
@@ -95,6 +104,10 @@ export function PlaygroundView({
     },
   });
 
+  // The workbench bar's service, in dev alone, and the box it points into.
+  const box = useRef<HTMLDivElement>(null);
+  const client = useMemo(() => (DEV ? httpClient() : null), []);
+
   const reset = () => {
     const defaults = argsFor(component);
     setSync((s) => ({ ...s, local: defaults, pending: {} }));
@@ -105,10 +118,18 @@ export function PlaygroundView({
   return (
     <SolarProvider>
       <div style={columnStyle}>
+        {client && (
+          <WorkbenchBar
+            component={component}
+            platform="web"
+            client={client}
+            box={box}
+          />
+        )}
         <Button prio="tertiary" size="sm" onClick={reset}>
           Reset
         </Button>
-        <WidthBox width={local.width}>
+        <WidthBox width={local.width} boxRef={box}>
           <BuilderHost key={component} builder={builder} p={playground} />
         </WidthBox>
         <Typography

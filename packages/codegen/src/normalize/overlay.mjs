@@ -272,6 +272,7 @@ function resolveReasons(doc, fail) {
           rule.reason = sentence(section, at);
         // A rule `solar:explain --propose` wrote, pasted before its reason was.
         if (
+          !placeholders &&
           typeof rule?.reason === 'string' &&
           rule.reason.startsWith(PLACEHOLDER)
         )
@@ -280,6 +281,15 @@ function resolveReasons(doc, fail) {
           );
       }
 }
+
+/**
+ * Whether `TODO(reason)` is let through: only while the workbench previews a pending edit
+ * (`solar:codegen --pending`, scripts/workbench.mjs), never in a plain build, the Verify block or CI.
+ */
+let placeholders = false;
+export const allowPlaceholders = (on) => {
+  placeholders = on;
+};
 
 /** How `solar:explain --propose` marks the reason a person must write (explain/propose.mjs). */
 export const PLACEHOLDER = 'TODO(reason)';
@@ -1043,6 +1053,60 @@ export function sameLayers(resolved, overlay) {
 }
 
 /**
+ * What a `set` may give a layer that the IR has no entry for, at one step of its address: the
+ * acceptance rule of `applyOverlay`'s set loop, which the workbench's scopes (workbench/scopes.mjs)
+ * share, so it offers only a key the build takes. A missing `combined` size or look is never given.
+ *
+ * @param {object} spec the IR as the set finds it
+ * @param {string} section the address's style section
+ * @param {Record<string, {options: string[]}>} axes the recipe's axes, each with the values drawn
+ * @returns {(key: string, i: number, last: boolean) => boolean} whether the key at step `i` (the
+ *   address's last key, a state, when `last`) may be added
+ */
+export function setMayAdd(spec, section, axes) {
+  // A state the IR keeps no entry for, because Figma draws it as at rest (FAB's focus), may be
+  // given one, under an appearance the IR has, for a state the component has. So may focus
+  // where Figma draws none at all (Toggle's): a visible focus is SOLAR's floor, and the state
+  // joins the component's. So may hover, where a description asks for one Figma does not draw
+  // (Row's "Hover renders at runtime as a surface/hover overlay", owner decision 2026-09-25).
+  const states = new Set([
+    'default',
+    'focus',
+    'hover',
+    ...spec.states,
+    ...Object.keys(spec.api).filter((p) => BOOLEAN_STATES.includes(p)),
+  ]);
+  // So may an appearance the layer lacks and another layer of the component has (Slider
+  // Range's root, where only its fill changes at rest: `default`).
+  const looks = new Set(
+    Object.values(spec.style).flatMap((st) => Object.keys(st[section] ?? {})),
+  );
+  // And one no layer has, where every layer draws it as at rest (File Card's file tile, whose
+  // layers change in the create tile alone): a combination of the axes another has, each at a
+  // value Figma draws.
+  const pairsOf = (key) => key.split(', ').map((p) => p.split('='));
+  const axesOf = (key) =>
+    pairsOf(key)
+      .map(([a]) => a)
+      .join(', ');
+  // Where no layer has one (Launch Card's, which no axis restyles), the one look is `default`.
+  const drawnLook = (key) =>
+    (looks.size === 0 && key === 'default') ||
+    ([...looks].some((l) => axesOf(l) === axesOf(key)) &&
+      pairsOf(key).every(([a, v]) => axes[a]?.options.includes(v)));
+  return (key, i, last) =>
+    (i === 0 &&
+      section === 'appearance' &&
+      (looks.has(key) || drawnLook(key))) ||
+    // And a size the layer draws as at rest, where the component has the size (SearchField's
+    // icons, whose sm entry Figma's resting sm variant leaves as md's).
+    (i === 0 &&
+      section === 'size' &&
+      Boolean(spec.api.size?.values?.includes(key))) ||
+    (last && states.has(key));
+}
+
+/**
  * Applies everything but `follows` and `states` to a built IR and its deviations.
  *
  * @returns {{spec: object, deviations: object[]}} new objects; the inputs are not mutated
@@ -1288,59 +1352,17 @@ export function applyOverlay(
       fail(`set ${at}: ${section} is not a style section`);
     let node = s[section];
     const keys = parts.slice(2, 2 + DEPTH[section]);
-    // A state the IR keeps no entry for, because Figma draws it as at rest (FAB's focus), may be
-    // given one, under an appearance the IR has, for a state the component has. So may focus
-    // where Figma draws none at all (Toggle's): a visible focus is SOLAR's floor, and the state
-    // joins the component's. So may hover, where a description asks for one Figma does not draw
-    // (Row's "Hover renders at runtime as a surface/hover overlay", owner decision 2026-09-25).
-    const states = new Set([
-      'default',
-      'focus',
-      'hover',
-      ...spec.states,
-      ...Object.keys(spec.api).filter((p) => BOOLEAN_STATES.includes(p)),
-    ]);
-    // So may an appearance the layer lacks and another layer of the component has (Slider
-    // Range's root, where only its fill changes at rest: `default`).
-    const looks = new Set(
-      Object.values(spec.style).flatMap((st) => Object.keys(st[section] ?? {})),
-    );
-    // And one no layer has, where every layer draws it as at rest (File Card's file tile, whose
-    // layers change in the create tile alone): a combination of the axes another has, each at a
-    // value Figma draws.
-    const pairsOf = (key) => key.split(', ').map((p) => p.split('='));
-    const axesOf = (key) =>
-      pairsOf(key)
-        .map(([a]) => a)
-        .join(', ');
-    // Where no layer has one (Launch Card's, which no axis restyles), the one look is `default`.
-    const drawnLook = (key) =>
-      (looks.size === 0 && key === 'default') ||
-      ([...looks].some((l) => axesOf(l) === axesOf(key)) &&
-        pairsOf(key).every(([a, v]) => axes[a]?.options.includes(v)));
+    const mayAdd = setMayAdd(spec, section, axes);
     keys.forEach((key, i) => {
       const last = i === keys.length - 1 && section !== 'size';
-      if (
-        !node?.[key] &&
-        i === 0 &&
-        section === 'appearance' &&
-        node &&
-        (looks.has(key) || drawnLook(key))
-      )
+      if (!node?.[key] && node && mayAdd(key, i, last)) {
         node[key] = {};
-      // And a size the layer draws as at rest, where the component has the size (SearchField's
-      // icons, whose sm entry Figma's resting sm variant leaves as md's).
-      if (
-        !node?.[key] &&
-        i === 0 &&
-        section === 'size' &&
-        node &&
-        spec.api.size?.values?.includes(key)
-      )
-        node[key] = {};
-      if (!node?.[key] && last && node && states.has(key)) {
-        node[key] = {};
-        if ((key === 'focus' || key === 'hover') && !spec.states.includes(key))
+        // A focus or hover given where Figma draws none joins the component's states.
+        if (
+          last &&
+          (key === 'focus' || key === 'hover') &&
+          !spec.states.includes(key)
+        )
           spec.states.push(key);
       }
       if (!node?.[key]) fail(`set ${at}: the IR has no ${section} ${key}`);

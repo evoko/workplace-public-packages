@@ -30,3 +30,6 @@ packages/components/test/visual/.out/
 packages/components/test-results/
 packages/components/playwright-report/
 packages/components/storybook-static/
+
+# The workbench service's pending edit, log and Widgetbook's pid (scripts/workbench.mjs)
+.workbench/

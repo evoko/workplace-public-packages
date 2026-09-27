@@ -7,10 +7,10 @@
 // Read-only: it writes nothing. spec/approvals.yaml is written by people alone.
 // First, before anything else loads: the Node this needs (.nvmrc).
 import '../src/util/require-node.mjs';
-import { execFileSync } from 'node:child_process';
 import {
   check,
   colour,
+  gitUserName,
   readApprovals,
   render,
   scan,
@@ -33,15 +33,8 @@ if (process.argv.includes('--check')) {
   if (problems.length) process.exit(1);
   process.stdout.write('solar:status: every recorded approval holds.\n');
 } else {
-  let by = 'Your Name';
-  try {
-    by =
-      execFileSync('git', ['config', 'user.name'], {
-        encoding: 'utf8',
-      }).trim() || by;
-  } catch {
-    // No git, or no name: the placeholder stands.
-  }
+  // No git, or no name: a placeholder to fill in by hand.
+  const by = gitUserName() ?? 'Your Name';
   process.stdout.write(
     render(coloured, { by, on: new Date().toISOString().slice(0, 10) }),
   );

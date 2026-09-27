@@ -6,6 +6,7 @@
  * viewers show the circles.
  */
 
+import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
@@ -21,6 +22,24 @@ import {
 } from './graph.mjs';
 
 export const approvalsFile = join(specDir, 'approvals.yaml');
+
+/**
+ * Who approves: `git config user.name` as git reads it in `cwd`, trimmed; null where git or the
+ * name is missing.
+ */
+export function gitUserName({ cwd = repoRoot } = {}) {
+  try {
+    return (
+      execFileSync('git', ['config', 'user.name'], {
+        cwd,
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }).trim() || null
+    );
+  } catch {
+    return null;
+  }
+}
 export const CIRCLES = { green: '🟢', yellow: '🟡', red: '🔴' };
 
 /** The record, `{ <component>: { <platform>: { fingerprint, by, on } } }`; empty where it is. */
@@ -159,10 +178,14 @@ export function check(coloured, approvals) {
 const quote = (text) => `'${String(text).replace(/'/g, "''")}'`;
 
 /** A component's name as a YAML key: bare where YAML reads it back as that name, else quoted. */
-const keyOf = (name) =>
+export const approvalKey = (name) =>
   /^[A-Za-z][A-Za-z0-9 -]*$/.test(name) && !/^(null|true|false)$/i.test(name)
     ? name
     : quote(name);
+
+/** One platform's approval as spec/approvals.yaml writes it, two spaces in under its component. */
+export const approvalLine = (platform, { fingerprint, by, on }) =>
+  `  ${platform}: { fingerprint: '${fingerprint}', by: ${quote(by)}, on: ${on} }`;
 
 /** The lines to paste into spec/approvals.yaml for each 🟡 component, by component. */
 export function pasteFor(coloured, { by, on }) {
@@ -171,16 +194,13 @@ export function pasteFor(coloured, { by, on }) {
     for (const c of components)
       if (c.colour === 'yellow') {
         if (!lines.has(c.name)) lines.set(c.name, []);
-        lines
-          .get(c.name)
-          .push(
-            `  ${platform}: { fingerprint: '${c.fingerprint}', by: ${quote(by)}, on: ${on} }`,
-          );
+        lines.get(c.name).push(approvalLine(platform, { ...c, by, on }));
       }
   return [...lines]
     .sort(([a], [b]) => byCodeUnit(a, b))
     .map(
-      ([name, platformLines]) => `${keyOf(name)}:\n${platformLines.join('\n')}`,
+      ([name, platformLines]) =>
+        `${approvalKey(name)}:\n${platformLines.join('\n')}`,
     )
     .join('\n');
 }

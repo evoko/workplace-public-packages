@@ -1,0 +1,184 @@
+/**
+ * The workbench service's client, for the bar (Bar.tsx): the HTTP contract in
+ * docs/superpowers/plans/2026-09-27-viewer-workbench.md, as types and one function per route.
+ * Dev only: nothing calls it in a static build (adapter.tsx).
+ */
+
+export type Colour = 'green' | 'yellow' | 'red';
+export type Platform = 'web' | 'flutter';
+
+export interface Failure {
+  platform: Platform | 'parity';
+  variant?: string;
+  layer?: string;
+  property?: string;
+  figma?: unknown;
+  drawn?: unknown;
+  message?: string;
+}
+
+export type SetValue =
+  { token: string } | { keyword: 'FILL' | 'HUG' } | { none: true };
+
+export interface Pending {
+  component: string;
+  key: string;
+  value: SetValue;
+  deletes: boolean;
+  previousReason: string | null;
+  failing: Failure[] | null;
+  /** The rules whose reason is borrowed from the entry, whose reason therefore changes too. */
+  borrowers: string[];
+}
+
+export interface ComponentStatus {
+  web: Colour | null;
+  flutter: Colour | null;
+  waitsOn: Record<Platform, string[]>;
+  editable: boolean;
+  locked: string | null;
+}
+
+export interface Status {
+  busy: string | null;
+  pending: Pending | null;
+  components: Record<string, ComponentStatus>;
+}
+
+export interface Cell {
+  cell: string;
+  entry: string;
+  at: string | null;
+  scopes: { label: string; key: string }[];
+  choices: { name: string; value: string }[];
+  keywords: string[];
+  none: boolean;
+  /** Why the cell offers nothing (a raw value the overlay allows). */
+  note?: string;
+}
+
+export interface Inspection {
+  component: string;
+  revision: string;
+  variants: { index: number; name: string }[];
+  variant: number;
+  layers: {
+    name: string;
+    className: string | null;
+    hidden: boolean;
+    cells: Cell[];
+  }[];
+}
+
+export type Outcome = { ok: true } | { ok: false; failures: Failure[] };
+
+export interface WorkbenchEvent {
+  seq: number;
+  type: 'busy' | 'changed' | 'failed';
+  message?: string;
+}
+
+export interface WorkbenchClient {
+  health(): Promise<boolean>;
+  status(): Promise<Status>;
+  inspect(component: string, variant: number): Promise<Inspection>;
+  set(body: {
+    component: string;
+    variant: number;
+    layer: string;
+    cell: string;
+    scope: string;
+    value: SetValue;
+    revision: string;
+  }): Promise<Status>;
+  keep(component: string, reason: string): Promise<Outcome>;
+  undo(component: string): Promise<Status>;
+  approve(component: string, platform: Platform): Promise<Outcome>;
+  unapprovePreview(component: string, platform: Platform): Promise<string[]>;
+  unapprove(component: string, platform: Platform): Promise<string[]>;
+  /** The events after `after`, within 25 s; `signal` ends the wait (the bar unmounted). */
+  events(
+    after: number,
+    signal?: AbortSignal,
+  ): Promise<{ seq: number; events: WorkbenchEvent[] }>;
+}
+
+/** A refusal: the service's sentence, and the HTTP status it came with. */
+export class WorkbenchRefusal extends Error {
+  readonly status: number;
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
+/** Whether an error is the service saying it is still starting (its session not yet built). */
+export const isStarting = (error: unknown) =>
+  error instanceof WorkbenchRefusal && error.status === 503;
+
+export const WORKBENCH_URL = 'http://127.0.0.1:6011';
+
+/** The client over HTTP; a refusal throws its sentence, as a WorkbenchRefusal. */
+export function httpClient(base = WORKBENCH_URL): WorkbenchClient {
+  const call = async <T>(
+    path: string,
+    body?: unknown,
+    signal?: AbortSignal,
+  ): Promise<T> => {
+    const r = await fetch(`${base}${path}`, {
+      signal,
+      method: body === undefined ? 'GET' : 'POST',
+      headers:
+        body === undefined ? undefined : { 'Content-Type': 'application/json' },
+      body: body === undefined ? undefined : JSON.stringify(body),
+    });
+    // An answer that is not JSON, a 2xx one too, is no answer of the service's (as Widgetbook's
+    // client says it).
+    const answered = `the workbench answered ${r.status}`;
+    let data: { error?: string };
+    try {
+      data = (await r.json()) as { error?: string };
+    } catch {
+      throw new WorkbenchRefusal(r.status, answered);
+    }
+    if (!r.ok) throw new WorkbenchRefusal(r.status, data?.error ?? answered);
+    return data as T;
+  };
+  return {
+    health: async () => {
+      try {
+        return (
+          (await call<{ service: string }>('/health')).service ===
+          'solar-workbench'
+        );
+      } catch {
+        return false;
+      }
+    },
+    status: () => call('/status'),
+    inspect: (component, variant) =>
+      call(
+        `/component?name=${encodeURIComponent(component)}&variant=${variant}`,
+      ),
+    set: (body) => call('/set', body),
+    keep: (component, reason) => call('/keep', { component, reason }),
+    undo: (component) => call('/undo', { component }),
+    approve: (component, platform) => call('/approve', { component, platform }),
+    unapprovePreview: async (component, platform) =>
+      (
+        await call<{ withdraws: string[] }>('/unapprove/preview', {
+          component,
+          platform,
+        })
+      ).withdraws,
+    unapprove: async (component, platform) =>
+      (
+        await call<{ withdraws: string[] }>('/unapprove', {
+          component,
+          platform,
+        })
+      ).withdraws,
+    events: (after, signal) =>
+      call(`/events?after=${after}`, undefined, signal),
+  };
+}

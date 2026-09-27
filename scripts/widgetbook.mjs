@@ -2,7 +2,8 @@
 // Runs or builds solar_flutter's Widgetbook, the Flutter review surface. Also writes each
 // component's approval circle beside the oracles, for the sidebar.
 //
-//   npm run widgetbook                       serve it in Chrome, with hot reload
+//   npm run widgetbook                       serve it in Chrome, with hot reload, starting the
+//                                            workbench service for the bar above each Playground
 //   node scripts/widgetbook.mjs build        build it for the web (CI), into widgetbook/build/web
 //
 // The app lays out the oracles, spec/verify/*.json. Flutter cannot bundle an asset from outside
@@ -10,8 +11,15 @@
 // the copies are git-ignored and made fresh each time, so they cannot go stale, and a new
 // component's oracle is picked up with no change to the app. The directory itself stays, kept in
 // git by its .gitkeep: the pubspec declares it, and flutter analyze fails where it is missing.
-import { spawnSync } from 'node:child_process';
-import { copyFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { spawn, spawnSync } from 'node:child_process';
+import {
+  copyFileSync,
+  mkdirSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
+import { constants } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -49,4 +57,47 @@ const flutter = (...args) => {
 };
 flutter('pub', 'get');
 if (process.argv[2] === 'build') flutter('build', 'web');
-else flutter('run', '-d', 'chrome');
+else {
+  // The workbench service, for the bar above each Playground (serving only, never a build): its
+  // URL for the app, and a pid file the service signals to hot-reload after it regenerates
+  // (scripts/workbench.mjs, reloadWidgetbook). The pid file lives exactly as long as `flutter run`,
+  // so a stale pid is never signalled.
+  const { ensureWorkbench, WORKBENCH_URL } =
+    await import('./workbench-launch.mjs');
+  await ensureWorkbench();
+  // It exits a minute after the last request, as while the developer is on a Variants page: a
+  // ping keeps it alive, and starts it again where it has stopped. Cleared when flutter exits.
+  const keepAlive = setInterval(() => void ensureWorkbench(), 30_000);
+  const pidFile = join(repoRoot, '.workbench', 'widgetbook.pid');
+  mkdirSync(dirname(pidFile), { recursive: true });
+  rmSync(pidFile, { force: true });
+  const child = spawn(
+    'flutter',
+    [
+      'run',
+      '-d',
+      'chrome',
+      `--dart-define=SOLAR_WORKBENCH=${WORKBENCH_URL}`,
+      '--pid-file',
+      pidFile,
+    ],
+    { cwd: app, stdio: 'inherit' },
+  );
+  // Ctrl-C reaches flutter too (one process group): this script waits for it to stop, then
+  // removes the pid file; a SIGTERM is passed on.
+  process.on('SIGINT', () => {});
+  process.on('SIGTERM', () => child.kill('SIGTERM'));
+  const code = await new Promise((ok) => {
+    child.once('error', (error) => {
+      console.error(`widgetbook: ${error.message}`);
+      ok(1);
+    });
+    // Stopped by a signal: the shell's code for it, 128 + its number (130 for SIGINT).
+    child.once('exit', (status, signal) =>
+      ok(status ?? 128 + (constants.signals[signal] ?? 0)),
+    );
+  });
+  clearInterval(keepAlive);
+  rmSync(pidFile, { force: true });
+  process.exit(code);
+}
