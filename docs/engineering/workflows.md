@@ -77,8 +77,8 @@ npm run build-storybook -w @bwp-web/components && npm run widgetbook -- build
 npm run build && npm run smoke:install
 node scripts/check-personal-data.mjs
 npx prettier --check "docs/**/*.md" "docs/**/*.mjs" "docs/**/*.js" "docs/**/*.json" "scripts/**/*.mjs" \
-  "scripts/**/*.json" "spec/overlay/**/*.yaml" "spec/**/*.md" "packages/solar_flutter/**/*.md" README.md CLAUDE.md \
-  package.json
+  "scripts/**/*.json" "spec/overlay/**/*.yaml" "spec/**/*.md" "packages/solar_flutter/**/*.md" \
+  ".claude/skills/**/*.md" README.md CLAUDE.md package.json
 ```
 
 Generated output of every component a change does not name must be byte-identical before and

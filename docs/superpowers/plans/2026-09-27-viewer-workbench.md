@@ -61,6 +61,10 @@ components, Playwright, Flutter 3.47.5 with Widgetbook 3.25 and `package:http`.
    so the project skill is committed while personal skills stay ignored.
 9. The end-to-end tests drive each bar against a fake client; a real token change reaching the
    component is proved by the batch-end smoke run against the real service (Tasks 10 and 15).
+10. **The two bars must behave the same; they need not look the same** (owner, 2026-09-27: a
+    developer tool). One shared list of scenarios, `packages/codegen/src/workbench/bar-scenarios.json`,
+    is run by both bars' tests (Task 15a); a scenario either side cannot run fails that side. Words
+    may differ; the facts shown may not.
 
 ## File structure
 
@@ -4318,6 +4322,24 @@ not decide). If a run leaves a pending edit, press Undo, or run
 
 # Batch 3: Report, the feedback queue and `/solar-feedback`
 
+### Task 15a: one list of scenarios both bars' tests run
+
+Added 2026-09-27 at the owner's request, before Report. `packages/codegen/src/workbench/bar-scenarios.json`:
+each scenario names the fake service's answers (status, inspection, each call's answer or refusal,
+events to deliver), the person's steps (open a section, choose in a Select by its label, press a
+button, confirm or cancel a dialog, type a reason), and what must follow: the requests sent (route
+and body), which actions are enabled or disabled, and facts shown (short phrases such as a
+component's name, a key, a failure's property, not whole sentences). Storybook's Playwright suite
+(`test/visual/workbench-scenarios.spec.mjs`) and Widgetbook's widget tests
+(`test/workbench_scenarios_test.dart`, reading the file from disk) each run every scenario against
+their bar through a small per-platform driver; a step or assertion kind a driver lacks fails. The
+existing platform tests stay for what is one platform's own (pointing, focus). Later batches add
+their scenarios here first (Report in Task 17, Send to agent in Task 21). Done: the vocabulary is
+the file's `vocabulary` key, checked by `packages/codegen/test/workbench-scenarios.test.mjs`;
+`src/workbench/bar-scenarios.mjs` resolves its fixtures for the web's driver (Widgetbook's resolves
+them in Dart); both drivers fake the service at the HTTP level, under each bar's real client (the
+web's page is `test/visual/workbench-scenario-page.tsx`).
+
 ### Task 16: notes
 
 **Files:**
@@ -4578,6 +4600,14 @@ same button, section, words and call in `bar.dart`, and `controls: widget.values
 Run the two commands from Step 2, then `npm run typecheck && npm run lint`,
 `dart format lib test && flutter analyze` in the widgetbook.
 Expected: PASS.
+
+Done: as shared scenarios in `bar-scenarios.json` (vocabulary: the `Report` and `Save note`
+actions, the `Note` field and `type`'s `note`, the fake's `controls`), not as per-platform tests;
+the lock and nothing-to-choose lines now name Report. Report and its note show beside a pending edit
+(the service allows it); `layer` and `variant` are sent only once this component has been inspected
+(the ones last chosen there), else left out; Save note waits for words (a blank note sends nothing);
+the saved file shows until the next action or Report closes. Flutter's adapter writes a colour
+knob's value as `#rrggbb` (`#aarrggbb` where not opaque), so the controls are JSON.
 
 ### Task 18: the `/solar-feedback` skill, then stop
 
@@ -5133,6 +5163,35 @@ to workflows.md. `packages/codegen/README.md`: `src/workbench/` in the layout bl
 
 Append this plan's decisions 1–9 as new numbered entries, each with what was chosen, the
 alternative, and why, so the owner can correct them.
+
+- [ ] **Step 7b: What Batches 1-3 added to this list (from their final reviews)**
+
+- workflows.md: the section's exact title is "Fix a component in the viewer" (`feedback.mjs`'s note
+  header names it); it covers Report (offered with Inspect; allowed during a pending edit; what a
+  note holds; layer and variant only after Inspect), `spec/feedback/`, `/solar-feedback`, and "an
+  agent never presses Approve, Undo approval, Keep or Undo"; a Pitfall on the pending `TODO(reason)`;
+  then link SKILL.md to that section.
+- CLAUDE.md: the approvals bullet also says the agent never calls `/approve`, `/unapprove`, `/keep`
+  or `/undo`; the feedback bullet; the one committed project skill.
+- docs/README.md: rows for `spec/feedback/`, the git-ignored `.workbench/`, `bar-scenarios.json`,
+  `.claude/skills/solar-feedback/`; the `spec/approvals.yaml` row names the viewers' buttons.
+- architecture.md, "The viewers": the service, the contract (with `/report`), the shared scenarios as
+  the parity mechanism (one list both drivers run over their real HTTP clients; `platformActions`),
+  atomic writes; codegen writes only changed files (with `--pending`).
+- decisions.md: behaviour-not-look parity (owner); Report gated with Inspect and allowed during a
+  pending edit; layer/variant only after Inspect; Flutter colours as `#rrggbb`/`#aarrggbb`; the skill
+  stops on a pending edit; proposals touching 🔴 or cancelling approvals are listed, not made; the
+  skill reviews rules since the last commit; codegen writes only changed files; `spec/**/*.md` and
+  `.claude/skills/**/*.md` in the Prettier check; update the stale "approvals recorded by editing the
+  file for now" line.
+- open-work.md: remove "The tweak panel" and "Recording approvals from the viewers".
+- packages/components/test/visual/README.md: `workbench.spec.mjs`, `workbench-scenarios.spec.mjs`;
+  packages/solar_flutter/widgetbook/README.md: `workbench_scenarios_test.dart`;
+  packages/codegen/README.md: `bar-scenarios.mjs`, the scenarios test, `--pending`.
+- decisions-to-review.md: decisions 1-10 and the batches' own.
+- Repoint code comments that cite this plan or the spec (client.ts, Bar.tsx, models.dart,
+  session.mjs, tokens.mjs, bar-scenarios.json `about`) to architecture.md or workflows.md, since both
+  are deleted.
 
 - [ ] **Step 8: Format and check**
 

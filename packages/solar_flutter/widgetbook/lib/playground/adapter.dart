@@ -19,6 +19,14 @@ import 'playground.dart';
 /// The query group Widgetbook keeps every knob's value in.
 const _knobsGroup = 'knobs';
 
+/// A knob's value as JSON, for a Report note: a colour as `#rrggbb` (`#aarrggbb` where it is not
+/// opaque), which [colorOf] reads back; a bool, a number, a String or null as it is.
+Object? _jsonValue(Object? value) {
+  if (value is! Color) return value;
+  final argb = value.toARGB32().toRadixString(16).padLeft(8, '0');
+  return argb.startsWith('ff') ? '#${argb.substring(2)}' : '#$argb';
+}
+
 /// A control's knob, and its value in the knob's query text.
 extension PlaygroundKnob on PlaygroundControl {
   /// Whether a number or integer control is drawn as a slider: where it has both bounds, which a
@@ -254,6 +262,10 @@ class _PlaygroundViewState extends State<_PlaygroundView> {
             WorkbenchBar(
               component: widget.component,
               platform: 'flutter',
+              controls: {
+                for (final e in widget.values.entries)
+                  e.key: _jsonValue(e.value),
+              },
               client: _workbench,
             ),
           SolarButton(

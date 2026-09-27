@@ -1,10 +1,11 @@
 /**
  * Playwright's global setup: bundles the pages under test into `.out/` with esbuild: the visual
  * checks' page (`index.html`), the Playground interaction check's (`playground.html`) and the
- * workbench bar's (`workbench.html`), each its own build, so none changes another's output. Workspace
- * packages resolve to their sources, as in the unit tests, so the check measures what is committed
- * and needs no build first. The fonts are bundled too, so the text is measured in Inter, not in a
- * fallback that would change every line height.
+ * workbench bar's (`workbench.html`, and `workbench-scenario.html` for the shared scenarios), each
+ * its own build, so none changes another's output. Workspace packages resolve to their sources, as
+ * in the unit tests, so the check measures what is committed and needs no build first. The fonts
+ * are bundled too, so the text is measured in Inter, not in a fallback that would change every line
+ * height.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -66,4 +67,6 @@ export default async function setup() {
   });
   // The workbench bar over a fake service (workbench.spec.mjs).
   await page('workbench-page.tsx', 'workbench.html');
+  // The workbench bar over HTTP, for the shared scenarios (workbench-scenarios.spec.mjs).
+  await page('workbench-scenario-page.tsx', 'workbench-scenario.html');
 }

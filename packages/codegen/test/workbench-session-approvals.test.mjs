@@ -21,10 +21,12 @@ function world(colours) {
       read: (p) => files.get(p) ?? null,
       write: (p, t) => files.set(p, t),
       remove: (p) => files.delete(p),
+      list: () => [],
     },
     overlayPath: (n) => `spec/overlay/${n}.yaml`,
     approvalsPath: 'spec/approvals.yaml',
     pendingPath: '.workbench/pending.json',
+    feedbackDir: 'spec/feedback',
     build: () => {
       throw new Error('not used');
     },

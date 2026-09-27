@@ -83,10 +83,12 @@ function world({
         files.set(p, t);
       },
       remove: (p) => files.delete(p),
+      list: () => [],
     },
     overlayPath: (name) => `spec/overlay/${name.toLowerCase()}.yaml`,
     approvalsPath: 'spec/approvals.yaml',
     pendingPath: PENDING,
+    feedbackDir: 'spec/feedback',
     build: () => buildOver(files.get(OVERLAY) ?? null),
     codegen: async ({ pending }) => {
       calls.push(['codegen', pending]);
@@ -191,6 +193,7 @@ describe('the session', () => {
       'approve',
       'inspect',
       'keep',
+      'report',
       'set',
       'status',
       'unapprove',

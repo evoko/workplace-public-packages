@@ -1,6 +1,13 @@
 // The workbench service's HTTP layer (scripts/workbench.mjs), over a fake session on a free port:
 // it never starts the real session, and touches no file of the repository.
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { connect } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -10,11 +17,12 @@ import {
   reloadWidgetbook,
   serve,
   WORKBENCH_PORT,
+  writeWhole,
 } from '../../../scripts/workbench.mjs';
 import { WorkbenchError } from '../src/workbench/session.mjs';
 
 const calls = [];
-// No `report` or `send` yet (Batches 3 and 4): the server answers those as not done.
+// No `send` yet (Batch 4): the server answers it as not done.
 const session = {
   status: async () => ({ busy: null, pending: null, components: {} }),
   inspect: (name, variant) => ({ component: name, variant }),
@@ -27,6 +35,10 @@ const session = {
   },
   undo: async () => {
     throw new Error('the disk is full\nat somewhere deep');
+  },
+  report: async (b) => {
+    calls.push(['report', b]);
+    return { file: 'spec/feedback/button-1.yaml' };
   },
   approve: async (b) => ({ ok: true, b }),
   unapprovePreview: async () => ({ withdraws: ['Button'] }),
@@ -205,11 +217,22 @@ describe('the workbench service', () => {
     const none = await fetch(`${base}/nothing`);
     expect(none.status).toBe(404);
     expect(await none.json()).toEqual({ error: 'no GET /nothing' });
-    for (const path of ['/report', '/send']) {
-      const r = await post(`${base}${path}`, '{}');
-      expect(r.status).toBe(501);
-      expect((await r.json()).error).toMatch(/not yet/);
-    }
+    const r = await post(`${base}/send`, '{}');
+    expect(r.status).toBe(501);
+    expect((await r.json()).error).toMatch(/not yet/);
+  });
+
+  it('hands a Report to the session, and answers with the note it wrote', async () => {
+    const body = {
+      component: 'Button',
+      platform: 'web',
+      controls: { label: 'Save', disabled: false, width: 120, icon: null },
+      note: 'Too tight.\nAt 120 wide.',
+    };
+    const r = await post(`${base}/report`, JSON.stringify(body));
+    expect(r.status).toBe(200);
+    expect(await r.json()).toEqual({ file: 'spec/feedback/button-1.yaml' });
+    expect(calls.at(-1)).toEqual(['report', body]);
   });
 
   it('lets a localhost page call it, and no other', async () => {
@@ -472,5 +495,31 @@ describe('reloading Widgetbook', () => {
       ['4242', new Error('no such process')],
     ])
       expect(reload(text, command)).toEqual({ sent: false, killed: [] });
+  });
+});
+
+describe('a file the real session writes', () => {
+  let dir;
+  beforeAll(() => {
+    dir = mkdtempSync(join(tmpdir(), 'workbench-write-'));
+  });
+  afterAll(() => rmSync(dir, { recursive: true, force: true }));
+
+  it('is written whole, beside itself and renamed, into a folder made where there is none', () => {
+    const file = join(dir, 'spec/feedback/button-1.yaml');
+    writeWhole(file, 'first\n');
+    expect(readFileSync(file, 'utf8')).toBe('first\n');
+    writeWhole(file, 'second\n');
+    expect(readFileSync(file, 'utf8')).toBe('second\n');
+    expect(readdirSync(join(dir, 'spec/feedback'))).toEqual(['button-1.yaml']);
+  });
+
+  it('leaves the target as it was, and no partial file, where the write fails', () => {
+    // A folder in the target's place: the rename over it fails.
+    const target = join(dir, 'taken');
+    mkdirSync(join(target, 'inside'), { recursive: true });
+    expect(() => writeWhole(target, 'text')).toThrow();
+    expect(readdirSync(dir).sort()).toEqual(['spec', 'taken']);
+    expect(readdirSync(target)).toEqual(['inside']);
   });
 });

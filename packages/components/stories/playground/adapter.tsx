@@ -122,6 +122,7 @@ export function PlaygroundView({
           <WorkbenchBar
             component={component}
             platform="web"
+            controls={local}
             client={client}
             box={box}
           />

@@ -480,6 +480,8 @@ src/verify/                the oracle, spec/verify/<name>.json
 src/playground/            the viewers' Playground: each component's controls from its IR
                            (controls), the extras and sample words tables (extras), and the
                            fixed values both adapters use (values)
+src/workbench/             the viewers' workbench service's logic, and bar-scenarios.json: what
+                           both viewers' bars must do, which each one's tests run
 src/util/                  paths, the docs/ write guard and pruning, formatting, sorting,
                            naming, digests, SVG markup scanning, and the workspace sources the
                            tests, the visual check and Storybook resolve the packages to

@@ -80,7 +80,9 @@ test('a cell with a note, or with nothing to offer, says so and offers nothing',
   await expect(bar(page)).toContainText(
     'width: 120px (a raw value the overlay allows)',
   );
-  await expect(bar(page)).toContainText('gap: inset.xs (no token to choose)');
+  await expect(bar(page)).toContainText(
+    'gap: inset.xs (not editable here: use Report)',
+  );
   await expect(combo(page, 'Set to')).toHaveCount(1);
 });
 
@@ -229,14 +231,15 @@ test('another component’s pending edit is named, and holds Approve', async ({
   await expect(page.getByRole('button', { name: 'Approve' })).toBeDisabled();
 });
 
-test('a 🟡 component locked by an approval elsewhere says so, and offers no Inspect', async ({
+test('a 🟡 component locked by an approval elsewhere says so, and offers no Inspect or Report', async ({
   page,
 }) => {
   await open(page, 'locked');
   await expect(bar(page)).toContainText(
-    'Inspect is locked: approved on Flutter: undo its approval in Widgetbook to change it.',
+    'Inspect and Report are locked: approved on Flutter: undo its approval in Widgetbook to change it.',
   );
   await expect(page.getByRole('button', { name: 'Inspect' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Report' })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Approve' })).toBeEnabled();
 });
 

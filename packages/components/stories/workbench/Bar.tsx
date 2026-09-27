@@ -1,10 +1,12 @@
 /**
  * The workbench bar above a component's Playground (docs/superpowers/specs/
- * 2026-09-27-viewer-workbench-design.md): its circle on this platform, and by it Inspect and
- * Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Everything it changes goes through the
- * workbench service (client.ts); it renders nothing where no service answers. Drawn with SOLAR's
- * own components, with the same words and behaviour as Widgetbook's bar
- * (widgetbook/lib/workbench/bar.dart).
+ * 2026-09-27-viewer-workbench-design.md): its circle on this platform, and by it Inspect, Report
+ * and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect and Report are sections,
+ * one open at a time; Report's note is its own, so it may be saved beside a pending edit.
+ * Everything it changes goes through the workbench service (client.ts); it renders nothing where no
+ * service answers. Drawn with SOLAR's own components. It behaves as Widgetbook's bar
+ * (widgetbook/lib/workbench/bar.dart) does, which the scenarios in
+ * codegen/src/workbench/bar-scenarios.json, run by both bars' tests, enforce.
  *
  * A refusal is shown once, as the action's own answer: the service also tells every viewer it
  * failed (a `failed` event), on which the bar only refetches. Every action refetches when it ends.
@@ -44,6 +46,9 @@ const wait = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
 
 type Dialog = null | 'approve' | 'unapprove';
 
+/** The section open below the bar's buttons: none, Inspect's panel, or Report's note. */
+type Section = 'none' | 'inspect' | 'report';
+
 /** A set value as the Select writes it: a token's name, `FILL`, `HUG` or `none`. */
 const valueOf = (choice: string): SetValue =>
   choice === 'none'
@@ -58,7 +63,10 @@ const valueText = (v: SetValue) =>
 const platformTitle = (platform: Platform) =>
   platform === 'web' ? 'the web' : 'Flutter';
 
-/** Whether a component may be inspected on this platform: 🟡 here, and locked nowhere. */
+/**
+ * Whether a component may be inspected, and reported on, on this platform: 🟡 here, and locked
+ * nowhere.
+ */
 const inspectable = (mine: ComponentStatus | undefined, platform: Platform) =>
   mine?.[platform] === 'yellow' && mine.editable;
 
@@ -110,11 +118,14 @@ function FailureList({ failures }: { failures: Failure[] }) {
 export function WorkbenchBar({
   component,
   platform,
+  controls,
   client,
   box,
 }: {
   component: string;
   platform: Platform;
+  /** The Playground's values, by control: what a Report note records. */
+  controls: Record<string, unknown>;
   client: WorkbenchClient;
   /** The Playground's width box, for pointing at a layer. */
   box?: RefObject<HTMLElement | null>;
@@ -124,8 +135,11 @@ export function WorkbenchBar({
   const [inspection, setInspection] = useState<Inspection | null>(null);
   const [variant, setVariant] = useState(0);
   const [layer, setLayer] = useState('root');
-  const [inspecting, setInspecting] = useState(false);
+  const [section, setSection] = useState<Section>('none');
   const [reason, setReason] = useState('');
+  const [note, setNote] = useState('');
+  // The file the last note was saved in, until the next action or Report closes.
+  const [saved, setSaved] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [failures, setFailures] = useState<Failure[] | null>(null);
   const [dialog, setDialog] = useState<Dialog>(null);
@@ -143,11 +157,13 @@ export function WorkbenchBar({
   const mine = status?.components[component];
   const colour = mine ? mine[platform] : null;
   const canInspect = inspectable(mine, platform);
+  const inspecting = section === 'inspect';
   const panelShown = Boolean(
     canInspect && inspecting && inspection && !status?.pending,
   );
-  // The component locked or approved meanwhile: Inspect closes, and opens again only when asked.
-  if (status && inspecting && !canInspect) setInspecting(false);
+  // The component locked or approved meanwhile: Inspect or Report closes, and opens again only when
+  // asked.
+  if (status && section !== 'none' && !canInspect) setSection('none');
   // Pointing holds only while the panel it points for shows.
   if (pointing && !panelShown) setPointing(false);
 
@@ -283,6 +299,7 @@ export function WorkbenchBar({
   const act = async (fn: () => Promise<unknown>) => {
     setError(null);
     setFailures(null);
+    setSaved(null);
     setPointing(false);
     setWorking(true);
     try {
@@ -296,6 +313,29 @@ export function WorkbenchBar({
     }
   };
   const cells = inspection?.layers.find((l) => l.name === layer)?.cells ?? [];
+  /** Opens a section, or closes it where it is the one open. */
+  const toggle = (which: Section) => {
+    setSection(section === which ? 'none' : which);
+    setSaved(null);
+  };
+  // Report names the layer and variant chosen in Inspect, where this component has been inspected.
+  const inspected = inspection?.component === component ? inspection : null;
+  const saveNote = () =>
+    act(async () => {
+      const { file } = await client.report({
+        component,
+        platform,
+        controls,
+        ...(inspected && {
+          layer,
+          variant: inspected.variants.find((v) => v.index === inspected.variant)
+            ?.name,
+        }),
+        note,
+      });
+      setNote('');
+      setSaved(file);
+    });
 
   return (
     <div style={bar} role="region" aria-label="Workbench">
@@ -314,9 +354,18 @@ export function WorkbenchBar({
           <Button
             size="sm"
             prio={inspecting ? 'secondary' : 'tertiary'}
-            onClick={() => setInspecting(!inspecting)}
+            onClick={() => toggle('inspect')}
           >
             Inspect
+          </Button>
+        )}
+        {canInspect && (
+          <Button
+            size="sm"
+            prio={section === 'report' ? 'secondary' : 'tertiary'}
+            onClick={() => toggle('report')}
+          >
+            Report
           </Button>
         )}
         {colour === 'yellow' && (
@@ -355,7 +404,7 @@ export function WorkbenchBar({
       )}
       {colour === 'yellow' && !mine.editable && mine.locked && (
         <Typography variant="bodyXsRegular" style={secondary}>
-          Inspect is locked: {mine.locked}.
+          Inspect and Report are locked: {mine.locked}.
         </Typography>
       )}
       {anyPending && !pending && colour !== 'red' && (
@@ -434,6 +483,37 @@ export function WorkbenchBar({
               }
             />
           ))}
+        </div>
+      )}
+
+      {canInspect && section === 'report' && (
+        <div style={column}>
+          <TextArea
+            size="sm"
+            label="Note for the agent"
+            helper="What Inspect cannot change: a behaviour, a raw value, a layout. The Playground's values go with it."
+            value={note}
+            onChange={(event) => setNote(event.target.value)}
+          />
+          <div style={row}>
+            <Button
+              size="sm"
+              prio="primary"
+              disabled={working || !note.trim()}
+              onClick={() => void saveNote()}
+            >
+              Save note
+            </Button>
+          </div>
+          {saved && (
+            <Typography
+              variant="bodyXsRegular"
+              aria-live="polite"
+              style={secondary}
+            >
+              Saved: {saved}
+            </Typography>
+          )}
         </div>
       )}
 
@@ -567,7 +647,7 @@ function CellRow({
   if (!options.length || !cell.scopes.length)
     return (
       <Typography variant="bodyXsRegular" style={secondary}>
-        {`${cell.cell}: ${cell.entry}${where} (no token to choose)`}
+        {`${cell.cell}: ${cell.entry}${where} (not editable here: use Report)`}
       </Typography>
     );
   return (

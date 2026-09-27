@@ -270,6 +270,19 @@ class FakeClient implements WorkbenchClient {
     return ['Button', 'Dialog'];
   }
 
+  @override
+  Future<String> report({
+    required String component,
+    required String platform,
+    required Map<String, Object?> controls,
+    String? layer,
+    String? variant,
+    required String note,
+  }) async {
+    calls.add(['report', component, platform, controls, layer, variant, note]);
+    return 'spec/feedback/button-1.yaml';
+  }
+
   final _polls = <Completer<({int seq, List<String> types})>>[];
   var _seq = 0;
 
@@ -346,10 +359,13 @@ void main() {
         findsOneWidget,
       );
       expect(
-        find.text('opacity: 1 [size.md] (no token to choose)'),
+        find.text('opacity: 1 [size.md] (not editable here: use Report)'),
         findsOneWidget,
       );
-      expect(find.text('gap: 0 (no token to choose)'), findsOneWidget);
+      expect(
+        find.text('gap: 0 (not editable here: use Report)'),
+        findsOneWidget,
+      );
       expect(find.text('radius: radius.control [base]'), findsOneWidget);
       await tester.tap(find.text('Choose'));
       await tester.pumpAndSettle();
@@ -684,19 +700,21 @@ void main() {
     );
   });
 
-  testWidgets('a 🟡 component approved on the web says Inspect is locked', (
-    tester,
-  ) async {
-    await pump(tester, FakeClient('yellow', webGreen: true));
-    expect(find.text('Inspect'), findsNothing);
-    expect(_button('Approve'), findsOneWidget);
-    expect(
-      find.text(
-        'Inspect is locked: approved on web: undo its approval in Storybook to change it.',
-      ),
-      findsOneWidget,
-    );
-  });
+  testWidgets(
+    'a 🟡 component approved on the web says Inspect and Report are locked',
+    (tester) async {
+      await pump(tester, FakeClient('yellow', webGreen: true));
+      expect(find.text('Inspect'), findsNothing);
+      expect(find.text('Report'), findsNothing);
+      expect(_button('Approve'), findsOneWidget);
+      expect(
+        find.text(
+          'Inspect and Report are locked: approved on web: undo its approval in Storybook to change it.',
+        ),
+        findsOneWidget,
+      );
+    },
+  );
 
   testWidgets('a 🔴 component says what it waits on', (tester) async {
     await pump(tester, FakeClient('red', pending: _pendingOn('Tag')));
@@ -724,7 +742,10 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Inspect'), findsNothing);
       expect(find.text('Variant'), findsNothing);
-      expect(find.textContaining('Inspect is locked'), findsOneWidget);
+      expect(
+        find.textContaining('Inspect and Report are locked'),
+        findsOneWidget,
+      );
       client
         ..webGreen = false
         ..fire('changed');

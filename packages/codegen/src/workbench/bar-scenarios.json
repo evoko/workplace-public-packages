@@ -1,0 +1,3061 @@
+{
+  "about": [
+    "What the workbench bar does, once for both viewers: Storybook's Playwright suite (packages/components/test/visual/workbench-scenarios.spec.mjs) and Widgetbook's widget tests (packages/solar_flutter/widgetbook/test/workbench_scenarios_test.dart) run every scenario here against their own bar, each through a small driver over a fake of the HTTP contract (docs/superpowers/plans/2026-09-27-viewer-workbench.md). A step or an expectation a driver lacks fails that driver. Words may differ between the bars; the facts shown may not.",
+    "A value { \"$fixture\": \"<name>\", ... } is a copy of fixtures.<name> with the object's other keys put over it, resolved in turn. The string \"$platform\" is the bar's own platform (web in Storybook, flutter in Widgetbook) and \"$other\" the other one, as a value or as an object's key. packages/codegen/test/workbench-scenarios.test.mjs checks every scenario against the vocabulary below.",
+    "Every control in the bar must be one of vocabulary.actions (or, on one platform alone, vocabulary.platformActions: controls the scenarios never name): at the last expectation, and at any naming enabled, disabled or absent, the actions offered are exactly enabled and disabled together. A scenario that presses, chooses, confirms or cancels names the calls it expects last, even none."
+  ],
+  "vocabulary": {
+    "fake": {
+      "health": "false: nothing answers on the port (GET /health fails). Default true.",
+      "startingTimes": "how many times GET /status answers 503 (still starting) before it answers. Default 0.",
+      "status": "the Status GET /status answers, until an answer or a setStatus step changes it.",
+      "inspection": "the Inspection GET /component answers, its variant set to the one asked.",
+      "controls": "the Playground's values the bar is given, by control (what Report sends as controls). Default {}.",
+      "answers": "by route (status, component, set, keep, undo, approve, unapprove/preview, unapprove, report): { answer, status, events, hold } or { refuse: { status, error }, events, hold }. The route's events are delivered first; where hold is true, the answer then waits for a release step; then status (where given) becomes what GET /status answers, and the answer is sent: answer, the body (omitted, the Status now), or the refusal. A GET route takes refuse alone. A POST route not listed fails the scenario; a key not named here fails it too."
+    },
+    "steps": {
+      "press": "presses the bar's button of this name, which must be enabled.",
+      "choose": "{ select, option }: opens the Select labelled select and chooses the one option whose words contain option.",
+      "confirm": "true: confirms the dialog open.",
+      "cancel": "true: cancels the dialog open.",
+      "type": "{ field, text }: types text in a field: \"reason\", the pending edit's reason, or \"note\", Report's note.",
+      "event": "{ type, message? }: the service sends this event (busy, changed or failed); the step ends once the bar has asked for the events after it.",
+      "setStatus": "a Status: what GET /status answers from now on.",
+      "release": "a route: the answer held there (hold) is sent.",
+      "expect": "an expectation (below), checked here."
+    },
+    "expect": {
+      "calls": "the POSTs sent so far, in order, exactly: [route, body].",
+      "reads": "the reads sent so far other than GET /events, in order, exactly: [\"health\"], [\"status\"], [\"component\", { name, variant }].",
+      "enabled": "actions offered and enabled.",
+      "disabled": "actions offered and disabled.",
+      "absent": "actions not offered (redundant: an expectation naming enabled, disabled or absent, and every scenario's last, also checks that the actions offered are exactly enabled and disabled together).",
+      "shows": "facts shown, in the bar or the dialog open: each a short phrase, not a sentence.",
+      "hides": "facts not shown.",
+      "noBar": "true: no bar is drawn.",
+      "oneError": "exactly one error is shown, and it contains this fact.",
+      "noError": "true: no error is shown."
+    },
+    "actions": [
+      "Inspect",
+      "Report",
+      "Approve",
+      "Undo approval",
+      "Keep",
+      "Undo",
+      "Reason",
+      "Note",
+      "Save note",
+      "Set to",
+      "Scope",
+      "Variant",
+      "Layer"
+    ],
+    "events": ["busy", "changed", "failed"],
+    "serial": {
+      "about": "The routes the service runs one at a time (session.mjs's serial). Unless the scenario gives the route's events itself, the fake sends busy (message \"working: <route>\", which GET /status answers as busy until the route has answered) when the request arrives, then, once the answer is decided, failed (with the refusal's error) where it refuses, and changed, before it answers.",
+      "routes": [
+        "set",
+        "keep",
+        "undo",
+        "approve",
+        "unapprove",
+        "report",
+        "send"
+      ]
+    },
+    "platformActions": {
+      "web": ["Point"],
+      "flutter": []
+    }
+  },
+  "fixtures": {
+    "yellow": {
+      "web": "yellow",
+      "flutter": "yellow",
+      "waitsOn": {
+        "web": [],
+        "flutter": []
+      },
+      "editable": true,
+      "locked": null
+    },
+    "green": {
+      "web": "green",
+      "flutter": "green",
+      "waitsOn": {
+        "web": [],
+        "flutter": []
+      },
+      "editable": false,
+      "locked": "approved on the web and Flutter: undo its approval in Storybook and Widgetbook to change it"
+    },
+    "status": {
+      "busy": null,
+      "pending": null,
+      "components": {
+        "Button": {
+          "$fixture": "yellow"
+        }
+      }
+    },
+    "status-green": {
+      "busy": null,
+      "pending": null,
+      "components": {
+        "Button": {
+          "$fixture": "green"
+        }
+      }
+    },
+    "pending": {
+      "component": "Button",
+      "key": "root.base.radius",
+      "value": {
+        "token": "radius.pill"
+      },
+      "deletes": false,
+      "previousReason": null,
+      "failing": null,
+      "borrowers": []
+    },
+    "radius": {
+      "cell": "radius",
+      "entry": "radius.control",
+      "at": "base",
+      "scopes": [
+        {
+          "label": "every variant",
+          "key": "root.base.radius"
+        },
+        {
+          "label": "size md",
+          "key": "root.size=md.radius"
+        }
+      ],
+      "choices": [
+        {
+          "name": "radius.full",
+          "value": "9999px"
+        }
+      ],
+      "keywords": [],
+      "none": true
+    },
+    "inspection": {
+      "component": "Button",
+      "revision": "r1",
+      "variants": [
+        {
+          "index": 0,
+          "name": "size=md, prio=primary"
+        },
+        {
+          "index": 1,
+          "name": "size=sm, prio=primary"
+        }
+      ],
+      "variant": 0,
+      "layers": [
+        {
+          "name": "root",
+          "className": null,
+          "hidden": false,
+          "cells": [
+            {
+              "$fixture": "radius"
+            }
+          ]
+        },
+        {
+          "name": "label",
+          "className": "SolarButton-label",
+          "hidden": false,
+          "cells": [
+            {
+              "cell": "color",
+              "entry": "color.text.inverse",
+              "at": "prio=primary",
+              "scopes": [
+                {
+                  "label": "every variant",
+                  "key": "label.base.color"
+                }
+              ],
+              "choices": [
+                {
+                  "name": "color.text.primary",
+                  "value": "#000000"
+                }
+              ],
+              "keywords": [],
+              "none": false
+            }
+          ]
+        }
+      ]
+    },
+    "set-pending": {
+      "status": {
+        "$fixture": "status",
+        "pending": {
+          "$fixture": "pending",
+          "key": "root.size=md.radius",
+          "value": {
+            "token": "radius.full"
+          }
+        }
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "name": "with no service there is no bar",
+      "fake": {
+        "health": false
+      },
+      "expect": {
+        "noBar": true,
+        "noError": true,
+        "reads": [["health"]]
+      }
+    },
+    {
+      "name": "a service still starting is asked again, then the bar shows",
+      "fake": {
+        "startingTimes": 2,
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "expect": {
+        "noError": true,
+        "reads": [
+          ["health"],
+          ["status"],
+          ["health"],
+          ["status"],
+          ["health"],
+          ["status"]
+        ],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a service that fails otherwise says so, and draws no bar",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "status": {
+            "refuse": {
+              "status": 500,
+              "error": "the scan failed"
+            }
+          }
+        }
+      },
+      "expect": {
+        "noBar": true,
+        "oneError": "the scan failed",
+        "absent": ["Inspect", "Approve"]
+      }
+    },
+    {
+      "name": "a component the service does not know draws no bar",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": null,
+          "components": {
+            "Counter": {
+              "$fixture": "yellow"
+            }
+          }
+        }
+      },
+      "expect": {
+        "noBar": true,
+        "noError": true
+      }
+    },
+    {
+      "name": "a 🔴 component names the 🟡 ones to approve first, and offers nothing",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": null,
+          "components": {
+            "Button": {
+              "web": "red",
+              "flutter": "red",
+              "waitsOn": {
+                "web": ["Counter"],
+                "flutter": ["Counter"]
+              },
+              "editable": false,
+              "locked": "waits on Counter on the web; waits on Counter on Flutter"
+            },
+            "Counter": {
+              "$fixture": "yellow"
+            }
+          }
+        }
+      },
+      "expect": {
+        "shows": ["🔴", "Counter"],
+        "hides": ["cycle"],
+        "absent": ["Inspect", "Approve", "Undo approval", "Report"]
+      }
+    },
+    {
+      "name": "a 🔴 component waiting on none that is 🟡 is in a cycle",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": null,
+          "components": {
+            "Button": {
+              "web": "red",
+              "flutter": "red",
+              "waitsOn": {
+                "web": ["Dialog"],
+                "flutter": ["Dialog"]
+              },
+              "editable": false,
+              "locked": "waits on Dialog on the web; waits on Dialog on Flutter"
+            },
+            "Dialog": {
+              "web": "red",
+              "flutter": "red",
+              "waitsOn": {
+                "web": ["Button"],
+                "flutter": ["Button"]
+              },
+              "editable": false,
+              "locked": "waits on Button on the web; waits on Button on Flutter"
+            }
+          }
+        }
+      },
+      "expect": {
+        "shows": ["cycle", "Dialog"],
+        "absent": ["Inspect", "Approve", "Undo approval", "Report"]
+      }
+    },
+    {
+      "name": "a 🔴 component does not name another component's pending edit",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": {
+            "$fixture": "pending",
+            "component": "Tag"
+          },
+          "components": {
+            "Button": {
+              "web": "red",
+              "flutter": "red",
+              "waitsOn": {
+                "web": ["Counter"],
+                "flutter": ["Counter"]
+              },
+              "editable": false,
+              "locked": "waits on Counter on the web; waits on Counter on Flutter"
+            },
+            "Counter": {
+              "$fixture": "yellow"
+            }
+          }
+        }
+      },
+      "expect": {
+        "shows": ["Counter"],
+        "hides": ["Tag"]
+      }
+    },
+    {
+      "name": "a 🟡 component offers Inspect, Report and Approve",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "expect": {
+        "shows": ["🟡"],
+        "absent": [
+          "Undo approval",
+          "Keep",
+          "Undo",
+          "Reason",
+          "Set to",
+          "Note",
+          "Save note"
+        ],
+        "noError": true,
+        "calls": [],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a 🟡 component locked by an approval elsewhere says why, and offers Approve alone",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": null,
+          "components": {
+            "Button": {
+              "$platform": "yellow",
+              "$other": "green",
+              "waitsOn": {
+                "web": [],
+                "flutter": []
+              },
+              "editable": false,
+              "locked": "approved on the other viewer: undo its approval there to change it"
+            }
+          }
+        }
+      },
+      "expect": {
+        "shows": ["approved on the other viewer"],
+        "absent": ["Inspect", "Undo approval", "Report"],
+        "enabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a 🟡 component waiting on others on the other platform is locked, and offers Approve alone",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": null,
+          "components": {
+            "Button": {
+              "$platform": "yellow",
+              "$other": "red",
+              "waitsOn": {
+                "$platform": [],
+                "$other": ["Counter"]
+              },
+              "editable": false,
+              "locked": "waits on Counter on the other viewer"
+            }
+          }
+        }
+      },
+      "expect": {
+        "shows": ["waits on Counter on the other viewer"],
+        "absent": ["Inspect", "Report", "Undo approval"],
+        "enabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a 🟡 component the other platform does not have offers Inspect, Report and Approve",
+      "fake": {
+        "status": {
+          "busy": null,
+          "pending": null,
+          "components": {
+            "Button": {
+              "$platform": "yellow",
+              "$other": null,
+              "waitsOn": {
+                "web": [],
+                "flutter": []
+              },
+              "editable": true,
+              "locked": null
+            }
+          }
+        }
+      },
+      "expect": {
+        "hides": ["locked"],
+        "absent": ["Undo approval"],
+        "enabled": ["Inspect", "Report", "Approve"],
+        "noError": true
+      }
+    },
+    {
+      "name": "a 🟢 component offers Undo approval alone",
+      "fake": {
+        "status": {
+          "$fixture": "status-green"
+        }
+      },
+      "expect": {
+        "shows": ["🟢"],
+        "absent": ["Inspect", "Approve", "Keep", "Undo", "Report"],
+        "enabled": ["Undo approval"]
+      }
+    },
+    {
+      "name": "Approve asks first, approves on confirming, and the bar turns 🟢",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "approve": {
+            "answer": {
+              "ok": true
+            },
+            "status": {
+              "$fixture": "status-green"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "expect": {
+            "shows": ["Button"],
+            "calls": []
+          }
+        },
+        {
+          "confirm": true
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "shows": ["🟢"],
+        "absent": ["Approve", "Inspect"],
+        "enabled": ["Undo approval"]
+      }
+    },
+    {
+      "name": "Approve cancelled sends nothing",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "cancel": true
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "shows": ["🟡"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "an Approve whose checks fail lists them",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "approve": {
+            "answer": {
+              "ok": false,
+              "failures": [
+                {
+                  "platform": "web",
+                  "variant": "size=md",
+                  "layer": "root",
+                  "property": "radius",
+                  "figma": 8,
+                  "drawn": 9999
+                },
+                {
+                  "platform": "parity",
+                  "message": "the label's colour differs"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "shows": ["size=md root.radius", "9999", "the label's colour differs"],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a refused Approve is shown once, though the service also sends it as an event",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "approve": {
+            "refuse": {
+              "status": 409,
+              "error": "set your name with `git config user.name` first: an approval records who gave it"
+            },
+            "events": [
+              {
+                "type": "failed",
+                "message": "set your name with `git config user.name` first: an approval records who gave it"
+              },
+              {
+                "type": "changed"
+              }
+            ]
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        },
+        {
+          "expect": {
+            "oneError": "git config user.name"
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        }
+      ],
+      "expect": {
+        "oneError": "git config user.name",
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "Undo approval names what it withdraws, and withdraws it on confirming",
+      "fake": {
+        "status": {
+          "$fixture": "status-green"
+        },
+        "answers": {
+          "unapprove/preview": {
+            "answer": {
+              "withdraws": ["Button", "Dialog"]
+            }
+          },
+          "unapprove": {
+            "answer": {
+              "withdraws": ["Button", "Dialog"]
+            },
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Undo approval"
+        },
+        {
+          "expect": {
+            "shows": ["Dialog"],
+            "calls": [
+              [
+                "unapprove/preview",
+                {
+                  "component": "Button",
+                  "platform": "$platform"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "confirm": true
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "unapprove/preview",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ],
+          [
+            "unapprove",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "shows": ["🟡"],
+        "hides": ["Dialog"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "Undo approval cancelled withdraws nothing",
+      "fake": {
+        "status": {
+          "$fixture": "status-green"
+        },
+        "answers": {
+          "unapprove/preview": {
+            "answer": {
+              "withdraws": ["Button", "Dialog"]
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Undo approval"
+        },
+        {
+          "cancel": true
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "unapprove/preview",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "hides": ["Dialog"],
+        "enabled": ["Undo approval"]
+      }
+    },
+    {
+      "name": "Inspect offers the cells of the root; choosing a token sends the set, at the narrowest scope",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "expect": {
+            "shows": ["radius", "radius.control", "size md"],
+            "enabled": [
+              "Approve",
+              "Inspect",
+              "Layer",
+              "Report",
+              "Scope",
+              "Set to",
+              "Variant"
+            ]
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a set's pending edit takes the panel's place, and holds Approve",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "shows": ["root.size=md.radius", "radius.full"],
+        "absent": ["Set to", "Scope", "Variant", "Layer"],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a scope chosen is the one the set is keyed on",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Scope",
+            "option": "every variant"
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "none"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.base.radius",
+              "value": {
+                "none": true
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a variant chosen is inspected, and the set names it",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Variant",
+            "option": "size=sm"
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 1,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a layer chosen shows its cells, and the set names it",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Layer",
+            "option": "label"
+          }
+        },
+        {
+          "expect": {
+            "shows": ["color.text.inverse", "prio=primary"],
+            "hides": ["radius.control"]
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "color.text.primary"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "label",
+              "cell": "color",
+              "scope": "label.base.color",
+              "value": {
+                "token": "color.text.primary"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a keyword chosen is sent as a keyword",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection",
+          "layers": [
+            {
+              "name": "root",
+              "className": null,
+              "hidden": false,
+              "cells": [
+                {
+                  "cell": "width",
+                  "entry": "HUG",
+                  "at": "base",
+                  "scopes": [
+                    {
+                      "label": "every variant",
+                      "key": "root.base.width"
+                    }
+                  ],
+                  "choices": [],
+                  "keywords": ["FILL", "HUG"],
+                  "none": false
+                }
+              ]
+            }
+          ]
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "FILL"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "width",
+              "scope": "root.base.width",
+              "value": {
+                "keyword": "FILL"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a cell with a note offers nothing, and shows the note",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection",
+          "layers": [
+            {
+              "name": "root",
+              "className": null,
+              "hidden": false,
+              "cells": [
+                {
+                  "cell": "width",
+                  "entry": "120px",
+                  "at": "base",
+                  "scopes": [
+                    {
+                      "label": "every variant",
+                      "key": "root.base.width"
+                    }
+                  ],
+                  "choices": [
+                    {
+                      "name": "size.target.min",
+                      "value": "44px"
+                    }
+                  ],
+                  "keywords": [],
+                  "none": false,
+                  "note": "a raw value the overlay allows"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "shows": ["width", "120px", "a raw value the overlay allows"],
+        "absent": ["Set to", "Scope"],
+        "enabled": ["Approve", "Inspect", "Layer", "Report", "Variant"]
+      }
+    },
+    {
+      "name": "a cell with no token or no scope to choose says to use Report, and offers nothing",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection",
+          "layers": [
+            {
+              "name": "root",
+              "className": null,
+              "hidden": false,
+              "cells": [
+                {
+                  "cell": "gap",
+                  "entry": "inset.xs",
+                  "at": null,
+                  "scopes": [],
+                  "choices": [
+                    {
+                      "name": "inset.sm",
+                      "value": "8px"
+                    }
+                  ],
+                  "keywords": [],
+                  "none": false
+                },
+                {
+                  "cell": "opacity",
+                  "entry": "1",
+                  "at": "size=md",
+                  "scopes": [
+                    {
+                      "label": "every variant",
+                      "key": "root.base.opacity"
+                    }
+                  ],
+                  "choices": [],
+                  "keywords": [],
+                  "none": false
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "shows": ["gap", "inset.xs", "opacity", "use Report"],
+        "absent": ["Set to", "Scope"],
+        "enabled": ["Approve", "Inspect", "Layer", "Report", "Variant"]
+      }
+    },
+    {
+      "name": "a set refused is shown, and the panel stays",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "refuse": {
+              "status": 409,
+              "error": "the inspection is out of date: inspect again"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "oneError": "out of date",
+        "absent": ["Keep"],
+        "enabled": [
+          "Approve",
+          "Inspect",
+          "Layer",
+          "Report",
+          "Scope",
+          "Set to",
+          "Variant"
+        ]
+      }
+    },
+    {
+      "name": "an inspection refused is shown",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "component": {
+            "refuse": {
+              "status": 404,
+              "error": "Button has no variant 0"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "oneError": "no variant 0",
+        "absent": ["Set to", "Variant"],
+        "reads": [
+          ["health"],
+          ["status"],
+          [
+            "component",
+            {
+              "name": "Button",
+              "variant": 0
+            }
+          ]
+        ],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "Inspect closes when the component is approved meanwhile, and stays closed",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "expect": {
+            "enabled": [
+              "Approve",
+              "Inspect",
+              "Layer",
+              "Report",
+              "Scope",
+              "Set to",
+              "Variant"
+            ]
+          }
+        },
+        {
+          "setStatus": {
+            "$fixture": "status-green"
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        },
+        {
+          "expect": {
+            "absent": ["Inspect", "Set to", "Variant"],
+            "enabled": ["Undo approval"]
+          }
+        },
+        {
+          "setStatus": {
+            "$fixture": "status"
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "absent": ["Set to", "Variant"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "Undo approval refused is shown, and no dialog opens",
+      "fake": {
+        "status": {
+          "$fixture": "status-green"
+        },
+        "answers": {
+          "unapprove/preview": {
+            "refuse": {
+              "status": 409,
+              "error": "Counter uses Button: undo Counter's approval first"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Undo approval"
+        }
+      ],
+      "expect": {
+        "oneError": "undo Counter's approval first",
+        "calls": [
+          [
+            "unapprove/preview",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "enabled": ["Undo approval"]
+      }
+    },
+    {
+      "name": "a scope chosen goes back to the narrowest with another variant",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Scope",
+            "option": "every variant"
+          }
+        },
+        {
+          "choose": {
+            "select": "Variant",
+            "option": "size=sm"
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 1,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a scope chosen goes back to the narrowest with another layer",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Scope",
+            "option": "every variant"
+          }
+        },
+        {
+          "choose": {
+            "select": "Layer",
+            "option": "label"
+          }
+        },
+        {
+          "choose": {
+            "select": "Layer",
+            "option": "root"
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a scope chosen goes back to the narrowest when Inspect closes",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Scope",
+            "option": "every variant"
+          }
+        },
+        {
+          "press": "Inspect"
+        },
+        {
+          "expect": {
+            "absent": ["Set to", "Scope"],
+            "enabled": ["Approve", "Inspect", "Report"]
+          }
+        },
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a scope chosen goes back to the narrowest after a pending edit",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending"
+          },
+          "undo": {
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Scope",
+            "option": "every variant"
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        },
+        {
+          "press": "Undo"
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.base.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ],
+          [
+            "undo",
+            {
+              "component": "Button"
+            }
+          ],
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "after Keep the panel comes back, read again",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending",
+            "events": []
+          },
+          "keep": {
+            "answer": {
+              "ok": true
+            },
+            "status": {
+              "$fixture": "status"
+            },
+            "events": []
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ],
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "absent": ["Keep", "Undo"],
+        "reads": [
+          ["health"],
+          ["status"],
+          [
+            "component",
+            {
+              "name": "Button",
+              "variant": 0
+            }
+          ],
+          ["status"],
+          [
+            "component",
+            {
+              "name": "Button",
+              "variant": 0
+            }
+          ],
+          ["status"],
+          [
+            "component",
+            {
+              "name": "Button",
+              "variant": 0
+            }
+          ]
+        ],
+        "enabled": [
+          "Approve",
+          "Inspect",
+          "Layer",
+          "Report",
+          "Scope",
+          "Set to",
+          "Variant"
+        ]
+      }
+    },
+    {
+      "name": "a Keep whose checks fail keeps the edit, and lists its failures",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending"
+          }
+        },
+        "answers": {
+          "keep": {
+            "answer": {
+              "ok": false,
+              "failures": [
+                {
+                  "platform": "flutter",
+                  "message": "the label overflows"
+                }
+              ]
+            },
+            "status": {
+              "$fixture": "status",
+              "pending": {
+                "$fixture": "pending",
+                "failing": [
+                  {
+                    "platform": "flutter",
+                    "message": "the label overflows"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "shows": ["the label overflows", "radius.pill"],
+        "noError": true,
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "an action's refusal is cleared by the next action",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "approve": {
+            "refuse": {
+              "status": 409,
+              "error": "Button's checks are still running"
+            }
+          },
+          "set": {
+            "$fixture": "set-pending"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Approve"
+        },
+        {
+          "confirm": true
+        },
+        {
+          "press": "Inspect"
+        },
+        {
+          "expect": {
+            "oneError": "still running"
+          }
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "approve",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ],
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "noError": true,
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a pending edit shows its key and value; Keep sends the reason typed",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending"
+          }
+        },
+        "answers": {
+          "keep": {
+            "answer": {
+              "ok": true
+            },
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "expect": {
+            "shows": ["root.base.radius", "radius.pill"],
+            "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+            "disabled": ["Approve"]
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "The pill reads as a chip beside the Tag"
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "The pill reads as a chip beside the Tag"
+            }
+          ]
+        ],
+        "absent": ["Keep", "Undo", "Reason"],
+        "hides": ["radius.pill"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a pending edit's Undo sends undo",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending"
+          }
+        },
+        "answers": {
+          "undo": {
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Undo"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "undo",
+            {
+              "component": "Button"
+            }
+          ]
+        ],
+        "absent": ["Keep", "Undo"],
+        "hides": ["radius.pill"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a Keep refused is shown, and the pending edit stays",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending"
+          }
+        },
+        "answers": {
+          "keep": {
+            "refuse": {
+              "status": 409,
+              "error": "the overlay changed on disk since the edit"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "oneError": "changed on disk",
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a pending edit shows the reason it replaces",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "previousReason": "Figma rounds it fully"
+          }
+        }
+      },
+      "expect": {
+        "shows": ["Figma rounds it fully"],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a pending edit names the rules that borrow its reason",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "borrowers": ["root.size=sm.radius", "label.base.radius"]
+          }
+        }
+      },
+      "expect": {
+        "shows": ["root.size=sm.radius", "label.base.radius"],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a pending edit whose checks fail lists them, and still offers Keep and Undo",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "failing": [
+              {
+                "platform": "web",
+                "variant": "size=md",
+                "layer": "root",
+                "property": "radius",
+                "figma": 8,
+                "drawn": 9999
+              },
+              {
+                "platform": "flutter",
+                "message": "the label overflows"
+              }
+            ]
+          }
+        }
+      },
+      "expect": {
+        "shows": ["size=md root.radius", "9999", "the label overflows"],
+        "noError": true,
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a deleting edit names Figma's value, asks no reason, and keeps with none",
+      "fake": {
+        "answers": {
+          "keep": {
+            "answer": {
+              "ok": true
+            },
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        },
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "value": {
+              "token": "radius.control"
+            },
+            "deletes": true,
+            "previousReason": "Figma rounds it fully",
+            "borrowers": ["root.size=sm.radius"]
+          }
+        }
+      },
+      "steps": [
+        {
+          "expect": {
+            "shows": ["root.base.radius", "Figma's value"],
+            "hides": [
+              "radius.control",
+              "Figma rounds it fully",
+              "root.size=sm.radius"
+            ],
+            "absent": ["Reason"],
+            "enabled": ["Inspect", "Keep", "Report", "Undo"],
+            "disabled": ["Approve"]
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": ""
+            }
+          ]
+        ],
+        "absent": ["Keep"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "another component's pending edit is named, hides the panel, and holds Approve, not Report",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "component": "Tag"
+          }
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        }
+      },
+      "steps": [
+        {
+          "expect": {
+            "shows": ["Tag"],
+            "enabled": ["Inspect", "Report"],
+            "disabled": ["Approve"]
+          }
+        },
+        {
+          "press": "Inspect"
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "shows": ["Tag"],
+        "hides": ["radius.pill"],
+        "absent": ["Set to", "Variant", "Keep", "Undo", "Reason"],
+        "enabled": ["Inspect", "Report"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "another component's pending edit holds Undo approval",
+      "fake": {
+        "status": {
+          "$fixture": "status-green",
+          "pending": {
+            "$fixture": "pending",
+            "component": "Tag"
+          }
+        }
+      },
+      "expect": {
+        "shows": ["Tag"],
+        "absent": ["Keep", "Undo"],
+        "disabled": ["Undo approval"]
+      }
+    },
+    {
+      "name": "a change event reads the status again: approved elsewhere, the bar turns 🟢",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "setStatus": {
+            "$fixture": "status-green"
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        }
+      ],
+      "expect": {
+        "shows": ["🟢"],
+        "absent": ["Approve", "Inspect"],
+        "enabled": ["Undo approval"]
+      }
+    },
+    {
+      "name": "a change event reads the status again: another component's edit holds Approve",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "setStatus": {
+            "$fixture": "status",
+            "pending": {
+              "$fixture": "pending",
+              "component": "Tag"
+            }
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        }
+      ],
+      "expect": {
+        "shows": ["Tag"],
+        "enabled": ["Inspect", "Report"],
+        "disabled": ["Approve"]
+      }
+    },
+    {
+      "name": "a busy event shows what the service is doing",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "setStatus": {
+            "$fixture": "status",
+            "busy": "running Button's checks"
+          }
+        },
+        {
+          "event": {
+            "type": "busy",
+            "message": "running Button's checks"
+          }
+        }
+      ],
+      "expect": {
+        "shows": ["running Button's checks"],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a failed event another viewer caused shows no error",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "event": {
+            "type": "failed",
+            "message": "Counter: approved on the web: undo its approval in Storybook to change it"
+          }
+        }
+      ],
+      "expect": {
+        "noError": true,
+        "hides": ["Counter"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "Report opens a note to write, and Save note waits for words",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "press": "Report"
+        },
+        {
+          "expect": {
+            "absent": ["Set to", "Variant"],
+            "enabled": ["Approve", "Inspect", "Note", "Report"],
+            "disabled": ["Save note"]
+          }
+        },
+        {
+          "type": {
+            "field": "note",
+            "text": "   "
+          }
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Note", "Report"],
+        "disabled": ["Save note"]
+      }
+    },
+    {
+      "name": "Save note sends the note with the Playground's values, shows the file, and clears the note",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "controls": {
+          "label": "Label",
+          "disabled": false,
+          "width": "auto"
+        },
+        "answers": {
+          "report": {
+            "answer": {
+              "file": "spec/feedback/button-1.yaml"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Report"
+        },
+        {
+          "type": {
+            "field": "note",
+            "text": "The label wraps too early."
+          }
+        },
+        {
+          "press": "Save note"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "report",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "controls": {
+                "label": "Label",
+                "disabled": false,
+                "width": "auto"
+              },
+              "note": "The label wraps too early."
+            }
+          ]
+        ],
+        "shows": ["spec/feedback/button-1.yaml"],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Note", "Report"],
+        "disabled": ["Save note"]
+      }
+    },
+    {
+      "name": "a note saved after Inspect names the layer and the variant chosen there",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "controls": {
+          "label": "Label"
+        },
+        "answers": {
+          "report": {
+            "answer": {
+              "file": "spec/feedback/button-1.yaml"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Variant",
+            "option": "size=sm"
+          }
+        },
+        {
+          "choose": {
+            "select": "Layer",
+            "option": "label"
+          }
+        },
+        {
+          "press": "Report"
+        },
+        {
+          "type": {
+            "field": "note",
+            "text": "The label is too dim."
+          }
+        },
+        {
+          "press": "Save note"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "report",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "controls": {
+                "label": "Label"
+              },
+              "layer": "label",
+              "variant": "size=sm, prio=primary",
+              "note": "The label is too dim."
+            }
+          ]
+        ],
+        "shows": ["spec/feedback/button-1.yaml"],
+        "enabled": ["Approve", "Inspect", "Note", "Report"],
+        "disabled": ["Save note"]
+      }
+    },
+    {
+      "name": "Report and Inspect close each other, and each closes when pressed again",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "expect": {
+            "absent": ["Note", "Save note"],
+            "enabled": [
+              "Approve",
+              "Inspect",
+              "Layer",
+              "Report",
+              "Scope",
+              "Set to",
+              "Variant"
+            ]
+          }
+        },
+        {
+          "press": "Report"
+        },
+        {
+          "expect": {
+            "absent": ["Set to", "Scope", "Variant", "Layer"],
+            "enabled": ["Approve", "Inspect", "Note", "Report"],
+            "disabled": ["Save note"]
+          }
+        },
+        {
+          "press": "Inspect"
+        },
+        {
+          "expect": {
+            "absent": ["Note", "Save note"],
+            "enabled": [
+              "Approve",
+              "Inspect",
+              "Layer",
+              "Report",
+              "Scope",
+              "Set to",
+              "Variant"
+            ]
+          }
+        },
+        {
+          "press": "Report"
+        },
+        {
+          "press": "Report"
+        }
+      ],
+      "expect": {
+        "absent": ["Note", "Save note", "Set to", "Variant"],
+        "calls": [],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a Report refused is shown once, and the note stays",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "answers": {
+          "report": {
+            "refuse": {
+              "status": 409,
+              "error": "Button: approved on the other viewer: undo its approval there to change it"
+            },
+            "events": [
+              {
+                "type": "failed",
+                "message": "Button: approved on the other viewer: undo its approval there to change it"
+              },
+              {
+                "type": "changed"
+              }
+            ]
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Report"
+        },
+        {
+          "type": {
+            "field": "note",
+            "text": "The label wraps too early."
+          }
+        },
+        {
+          "press": "Save note"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "report",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "controls": {},
+              "note": "The label wraps too early."
+            }
+          ]
+        ],
+        "oneError": "undo its approval there",
+        "hides": ["spec/feedback"],
+        "enabled": ["Approve", "Inspect", "Note", "Report", "Save note"]
+      }
+    },
+    {
+      "name": "Report is offered beside this component's pending edit, and the note is its own",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending"
+          }
+        },
+        "answers": {
+          "report": {
+            "answer": {
+              "file": "spec/feedback/button-2.yaml"
+            }
+          },
+          "keep": {
+            "answer": {
+              "ok": true
+            },
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "expect": {
+            "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+            "disabled": ["Approve"]
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Report"
+        },
+        {
+          "type": {
+            "field": "note",
+            "text": "The pill clips the focus ring."
+          }
+        },
+        {
+          "press": "Save note"
+        },
+        {
+          "expect": {
+            "shows": ["spec/feedback/button-2.yaml", "radius.pill"],
+            "enabled": ["Inspect", "Keep", "Note", "Reason", "Report", "Undo"],
+            "disabled": ["Approve", "Save note"]
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "report",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "controls": {},
+              "note": "The pill clips the focus ring."
+            }
+          ],
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "absent": ["Keep", "Undo"],
+        "enabled": ["Approve", "Inspect", "Note", "Report"],
+        "disabled": ["Save note"]
+      }
+    },
+    {
+      "name": "Report closes when the component is approved meanwhile, and stays closed",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "press": "Report"
+        },
+        {
+          "expect": {
+            "enabled": ["Approve", "Inspect", "Note", "Report"],
+            "disabled": ["Save note"]
+          }
+        },
+        {
+          "setStatus": {
+            "$fixture": "status-green"
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        },
+        {
+          "expect": {
+            "absent": ["Report", "Note", "Save note"],
+            "enabled": ["Undo approval"]
+          }
+        },
+        {
+          "setStatus": {
+            "$fixture": "status"
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "absent": ["Note", "Save note"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a Keep refused because it would cancel an approval is shown, and the edit is gone",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending"
+          }
+        },
+        "answers": {
+          "keep": {
+            "refuse": {
+              "status": 409,
+              "error": "keeping it would cancel Counter's approval on the web: the edit is undone"
+            },
+            "status": {
+              "$fixture": "status"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "oneError": "cancel Counter's approval",
+        "hides": ["radius.pill"],
+        "absent": ["Keep", "Undo", "Reason"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a layer hidden in this variant says so",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection",
+          "layers": [
+            {
+              "name": "root",
+              "className": null,
+              "hidden": false,
+              "cells": [
+                {
+                  "$fixture": "radius"
+                }
+              ]
+            },
+            {
+              "name": "icon",
+              "className": "SolarButton-icon",
+              "hidden": true,
+              "cells": [
+                {
+                  "cell": "color",
+                  "entry": "color.icon.inverse",
+                  "at": "base",
+                  "scopes": [
+                    {
+                      "label": "every variant",
+                      "key": "icon.base.color"
+                    }
+                  ],
+                  "choices": [
+                    {
+                      "name": "color.icon.primary",
+                      "value": "#000000"
+                    }
+                  ],
+                  "keywords": [],
+                  "none": false
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Layer",
+            "option": "icon"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "shows": ["hidden here", "color.icon.inverse"],
+        "enabled": [
+          "Approve",
+          "Inspect",
+          "Layer",
+          "Report",
+          "Scope",
+          "Set to",
+          "Variant"
+        ]
+      }
+    },
+    {
+      "name": "Undo approval refused after confirming is shown",
+      "fake": {
+        "status": {
+          "$fixture": "status-green"
+        },
+        "answers": {
+          "unapprove/preview": {
+            "answer": {
+              "withdraws": ["Button"]
+            }
+          },
+          "unapprove": {
+            "refuse": {
+              "status": 409,
+              "error": "Counter uses Button: undo Counter's approval first"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Undo approval"
+        },
+        {
+          "confirm": true
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "unapprove/preview",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ],
+          [
+            "unapprove",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "oneError": "undo Counter's approval first",
+        "shows": ["🟢"],
+        "enabled": ["Undo approval"]
+      }
+    },
+    {
+      "name": "while Keep runs, the actions that start another wait, and the bar says it is working",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending"
+          }
+        },
+        "answers": {
+          "keep": {
+            "answer": {
+              "ok": true
+            },
+            "status": {
+              "$fixture": "status"
+            },
+            "hold": true
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Keep"
+        },
+        {
+          "expect": {
+            "shows": ["working: keep"],
+            "calls": [
+              [
+                "keep",
+                {
+                  "component": "Button",
+                  "reason": "Figma draws a pill"
+                }
+              ]
+            ],
+            "enabled": ["Inspect", "Reason", "Report"],
+            "disabled": ["Approve", "Keep", "Undo"]
+          }
+        },
+        {
+          "release": "keep"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "hides": ["working: keep", "radius.pill"],
+        "absent": ["Keep", "Undo"],
+        "noError": true,
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "while a set runs, the panel waits",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "set": {
+            "$fixture": "set-pending",
+            "hold": true
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Set to",
+            "option": "radius.full"
+          }
+        },
+        {
+          "expect": {
+            "shows": ["working: set"],
+            "enabled": ["Inspect", "Report"],
+            "disabled": ["Approve", "Layer", "Scope", "Set to", "Variant"]
+          }
+        },
+        {
+          "release": "set"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "set",
+            {
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.size=md.radius",
+              "value": {
+                "token": "radius.full"
+              },
+              "revision": "r1"
+            }
+          ]
+        ],
+        "shows": ["root.size=md.radius"],
+        "hides": ["working: set"],
+        "absent": ["Set to"],
+        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "disabled": ["Approve"]
+      }
+    }
+  ]
+}

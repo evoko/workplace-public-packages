@@ -33,6 +33,17 @@ abstract class WorkbenchClient {
   Future<List<String>> unapprovePreview(String component, String platform);
   Future<List<String>> unapprove(String component, String platform);
 
+  /// Saves a note for an agent in spec/feedback/, with the Playground's [controls] and, where given,
+  /// the [layer] and [variant] chosen in Inspect: the file written.
+  Future<String> report({
+    required String component,
+    required String platform,
+    required Map<String, Object?> controls,
+    String? layer,
+    String? variant,
+    required String note,
+  });
+
   /// The events after [after], within 25 seconds: the last seq, and each event's type.
   Future<({int seq, List<String> types})> events(int after);
 
@@ -166,6 +177,25 @@ class HttpWorkbenchClient implements WorkbenchClient {
               }))['withdraws']
               as List)
           .cast<String>();
+
+  @override
+  Future<String> report({
+    required String component,
+    required String platform,
+    required Map<String, Object?> controls,
+    String? layer,
+    String? variant,
+    required String note,
+  }) async =>
+      (await _call('/report', {
+            'component': component,
+            'platform': platform,
+            'controls': controls,
+            'layer': ?layer,
+            'variant': ?variant,
+            'note': note,
+          }))['file']
+          as String;
 
   @override
   Future<({int seq, List<String> types})> events(int after) async {

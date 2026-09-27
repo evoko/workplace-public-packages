@@ -13,8 +13,10 @@ import { execFileSync, spawn } from 'node:child_process';
 import {
   existsSync,
   mkdirSync,
+  readdirSync,
   readFileSync,
   realpathSync,
+  renameSync,
   rmSync,
   writeFileSync,
 } from 'node:fs';
@@ -53,7 +55,7 @@ const reply = (res, status, headers, data) => {
 
 /**
  * Each route: the session method that answers it, and its arguments from the body and the query.
- * `report` and `send` come with Batches 3 and 4; until the session has them, they answer 501.
+ * `send` comes with Batch 4; until the session has it, it answers 501.
  */
 const ROUTES = {
   'GET /status': ['status', () => []],
@@ -264,6 +266,23 @@ export function serve({
 }
 
 /**
+ * Writes a file whole or not at all (as the generator's util/write.mjs does): beside itself, then
+ * renamed over the target, so a viewer, an agent or the generator never reads a note, an overlay
+ * or the approvals cut short. A write that fails leaves the target as it was, and no partial file.
+ */
+export function writeWhole(path, text) {
+  mkdirSync(dirname(path), { recursive: true });
+  const partial = `${path}.partial-${process.pid}`;
+  try {
+    writeFileSync(partial, text);
+    renameSync(partial, path);
+  } catch (error) {
+    rmSync(partial, { force: true });
+    throw error;
+  }
+}
+
+/**
  * Tells Widgetbook's `flutter run` to hot-reload (SIGUSR1), by the pid scripts/widgetbook.mjs writes
  * to `pidFile`. Nothing where there is no such file, it holds no pid, or the pid is not a flutter's
  * or dart's: a stale pid may be another program's. `commandOf` and `kill` are injected in the test.
@@ -327,11 +346,9 @@ async function realSession(publish) {
   return createSession({
     files: {
       read: (p) => (existsSync(abs(p)) ? readFileSync(abs(p), 'utf8') : null),
-      write: (p, t) => {
-        mkdirSync(dirname(abs(p)), { recursive: true });
-        writeFileSync(abs(p), t);
-      },
+      write: (p, t) => writeWhole(abs(p), t),
       remove: (p) => rmSync(abs(p), { force: true }),
+      list: (dir) => (existsSync(abs(dir)) ? readdirSync(abs(dir)) : []),
     },
     overlayPath: (name) => {
       const i = stage.NAMES.indexOf(name);
@@ -344,6 +361,7 @@ async function realSession(publish) {
     },
     approvalsPath: relative(repoRoot, status.approvalsFile),
     pendingPath: '.workbench/pending.json',
+    feedbackDir: 'spec/feedback',
     // As the files are now, a pending edit's placeholder reason let through.
     build: () => {
       allowPlaceholders(true);

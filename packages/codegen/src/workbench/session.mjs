@@ -22,6 +22,7 @@ import {
   withdrawnBy,
   withoutApprovals,
 } from './approvals-edit.mjs';
+import { noteFile, noteText } from './feedback.mjs';
 import { builtOf, inspect as inspectOf, revisionOf } from './inspect.mjs';
 import { borrowersOf, readSetEntry, writeSetEntry } from './overlay-edit.mjs';
 import { scopesFor } from './scopes.mjs';
@@ -73,10 +74,12 @@ const tail = (output) =>
 /**
  * @param {object} deps every effect the session has:
  * @param {{read: (path: string) => string | null, write: (path: string, text: string) => void,
- *   remove: (path: string) => void}} deps.files the repository's files, by path from its root
+ *   remove: (path: string) => void, list: (dir: string) => string[]}} deps.files the repository's
+ *   files, by path from its root (`list`: the names of a directory's files, none where it is absent)
  * @param {(name: string) => string} deps.overlayPath a component's overlay file
  * @param {string} deps.approvalsPath spec/approvals.yaml
  * @param {string} deps.pendingPath where the pending edit is saved
+ * @param {string} deps.feedbackDir spec/feedback, where a Report note is written
  * @param {() => {built: object[], tokens: object}} deps.build `stage.build()` as the files are now
  * @param {(o: {pending: boolean}) => Promise<{ok: boolean, output: string}>} deps.codegen
  *   `solar:codegen`, with `--pending` while an edit is pending
@@ -499,6 +502,49 @@ export function createSession(deps) {
         await restore(p, [p.placeholder, p.after]);
         savePending(null);
         return { ...(await statusNow()), busy: null };
+      }),
+
+    // A note touches only spec/feedback/, so a pending edit does not hold it up.
+    report: ({ component: name, platform, controls, layer, variant, note }) =>
+      serial('Saving the note…', async () => {
+        mustBePlatform(platform);
+        if (
+          controls !== undefined &&
+          (controls === null ||
+            typeof controls !== 'object' ||
+            Array.isArray(controls))
+        )
+          refuse("the controls are an object of each control's value", 400);
+        for (const [field, value] of Object.entries({ layer, variant }))
+          if (
+            value !== undefined &&
+            value !== null &&
+            typeof value !== 'string'
+          )
+            refuse(`the ${field} is a name`, 400);
+        const words = typeof note === 'string' ? note.trim() : '';
+        if (!words) refuse('write the note', 400);
+        const coloured = await mustEdit(name);
+        if (!coloured[platform]?.some((c) => c.name === name))
+          refuse(
+            `${platform === 'web' ? 'Web' : 'Flutter'} has no ${name}`,
+            400,
+          );
+        const dir = deps.feedbackDir;
+        const file = `${dir}/${noteFile(files.list(dir), name)}`;
+        files.write(
+          file,
+          noteText({
+            component: name,
+            platform,
+            controls,
+            layer,
+            variant,
+            note: words,
+            on: deps.today(),
+          }),
+        );
+        return { file };
       }),
 
     approve: ({ component: name, platform }) =>

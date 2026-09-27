@@ -1,7 +1,10 @@
-// The workbench bar above a component's Playground, as the web's (stories/workbench/Bar.tsx): its
-// circle on this platform, and by it Inspect and Approve (🟡), Undo approval (🟢), or what it waits
-// on (🔴). Everything it changes goes through the workbench service (client.dart); it draws nothing
-// where no service answers. Drawn with SOLAR's own widgets; no pointing at a layer (the web's alone).
+// The workbench bar above a component's Playground: its circle on this platform, and by it Inspect,
+// Report and Approve (🟡), Undo approval (🟢), or what it waits on (🔴). Inspect and Report are
+// sections, one open at a time; Report's note is its own, so it may be saved beside a pending edit.
+// Everything it changes goes through the workbench service (client.dart); it draws nothing where no
+// service answers. Drawn with SOLAR's own widgets; no pointing at a layer (the web's alone). It
+// behaves as the web's bar (stories/workbench/Bar.tsx) does, which the scenarios in
+// packages/codegen/src/workbench/bar-scenarios.json, run by both bars' tests, enforce.
 //
 // A refusal is shown once, as the action's own answer: the service also tells every viewer it
 // failed (a `failed` event), on which the bar only refetches.
@@ -16,6 +19,9 @@ import 'models.dart';
 
 const _circle = {'green': '🟢', 'yellow': '🟡', 'red': '🔴'};
 
+/// The section open below the bar's buttons: none, Inspect's panel, or Report's note.
+enum _Section { none, inspect, report }
+
 /// How long the bar waits before asking a service that is still starting, or whose poll failed.
 const _retry = Duration(seconds: 1);
 
@@ -25,6 +31,7 @@ class WorkbenchBar extends StatefulWidget {
     required this.component,
     required this.platform,
     required this.client,
+    this.controls = const {},
   });
 
   /// The component's name, as the service and the oracles name it (`Button`, `ConfirmationDialog`).
@@ -33,6 +40,13 @@ class WorkbenchBar extends StatefulWidget {
   /// `flutter` in Widgetbook: the platform the bar approves on.
   final String platform;
   final WorkbenchClient client;
+
+  /// The Playground's values, by control, as JSON-safe values: what a Report note records.
+  final Map<String, Object?> controls;
+
+  /// The key of the error the bar shows (a refusal, or a service that failed), for the tests to
+  /// find it by.
+  static const errorKey = Key('WorkbenchBar.error');
 
   @override
   State<WorkbenchBar> createState() => _WorkbenchBarState();
@@ -45,13 +59,18 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   WorkbenchInspection? _inspection;
   int _variant = 0;
   String _layer = 'root';
-  bool _inspecting = false;
+  _Section _section = _Section.none;
+  bool get _inspecting => _section == _Section.inspect;
 
   /// Whether an action is running: every button and Select that starts another waits for it.
   bool _working = false;
   String? _error;
   List<WorkbenchFailure>? _failures;
   final _reason = TextEditingController();
+  final _note = TextEditingController();
+
+  /// The file the last note was saved in, until the next action or Report closes.
+  String? _saved;
 
   /// The header, which the focus goes to after Approve or Undo approval: focusable, though not in
   /// the traversal order (the web's `tabIndex={-1}`).
@@ -76,6 +95,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   void dispose() {
     _live = false;
     _reason.dispose();
+    _note.dispose();
     _header.dispose();
     super.dispose();
   }
@@ -103,20 +123,21 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     }
   }
 
-  /// Whether the component may be inspected in [status]: 🟡 here, and locked nowhere.
+  /// Whether the component may be inspected, and reported on, in [status]: 🟡 here, and locked
+  /// nowhere.
   bool _canInspect(WorkbenchStatus status) {
     final mine = status.components[widget.component];
     return mine?.colourOn(widget.platform) == 'yellow' && mine!.editable;
   }
 
-  /// The status, in a setState: where the component was locked or approved meanwhile, Inspect
-  /// closes, and opens again only when asked.
+  /// The status, in a setState: where the component was locked or approved meanwhile, Inspect or
+  /// Report closes, and opens again only when asked.
   void _setStatus(WorkbenchStatus status) {
     // A pending edit appearing: every row starts again at the narrowest, as the web's rows do.
     if (status.pending != null && _status?.pending == null) _scopes.clear();
     _status = status;
-    if (_inspecting && !_canInspect(status)) {
-      _inspecting = false;
+    if (_section != _Section.none && !_canInspect(status)) {
+      _section = _Section.none;
       _scopes.clear();
     }
   }
@@ -192,6 +213,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     setState(() {
       _error = null;
       _failures = null;
+      _saved = null;
       _working = true;
     });
     try {
@@ -255,12 +277,40 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     child: Text(label),
   );
 
-  void _toggleInspect() {
+  /// Opens a section, or closes it where it is the one open; the scopes chosen go with Inspect.
+  void _toggle(_Section which) {
     setState(() {
-      _inspecting = !_inspecting;
+      _section = _section == which ? _Section.none : which;
       if (!_inspecting) _scopes.clear();
+      _saved = null;
     });
     if (_inspecting) unawaited(_inspect().catchError(_show));
+  }
+
+  /// Save note: the note with the Playground's values and, where this component has been
+  /// inspected, the layer and variant chosen there; then the file it was saved in, and an empty
+  /// note.
+  void _saveNote() {
+    final inspected = _inspection?.component == widget.component
+        ? _inspection
+        : null;
+    unawaited(
+      _act(() async {
+        final file = await widget.client.report(
+          component: widget.component,
+          platform: widget.platform,
+          controls: widget.controls,
+          layer: inspected == null ? null : _layer,
+          variant: inspected?.variants
+              .where((v) => v.index == inspected.variant)
+              .firstOrNull
+              ?.name,
+          note: _note.text,
+        );
+        _note.clear();
+        if (mounted) setState(() => _saved = file);
+      }),
+    );
   }
 
   /// Approve: the dialog first, then the approval, on confirming alone.
@@ -356,6 +406,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     liveRegion: true,
     child: Text(
       text,
+      key: WorkbenchBar.errorKey,
       style: t.typography.bodyXsRegular.copyWith(
         color: t.colors.textFeedbackDanger,
       ),
@@ -426,8 +477,16 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
                   if (colour == 'yellow' && mine.editable)
                     _button(
                       'Inspect',
-                      _toggleInspect,
+                      () => _toggle(_Section.inspect),
                       prio: _inspecting
+                          ? SolarButtonPrio.secondary
+                          : SolarButtonPrio.tertiary,
+                    ),
+                  if (colour == 'yellow' && mine.editable)
+                    _button(
+                      'Report',
+                      () => _toggle(_Section.report),
+                      prio: _section == _Section.report
                           ? SolarButtonPrio.secondary
                           : SolarButtonPrio.tertiary,
                     ),
@@ -451,7 +510,10 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
               ),
               if (colour == 'red') Text(_waitsText(status, mine), style: small),
               if (colour == 'yellow' && !mine.editable && mine.locked != null)
-                Text('Inspect is locked: ${mine.locked}.', style: small),
+                Text(
+                  'Inspect and Report are locked: ${mine.locked}.',
+                  style: small,
+                ),
               if (anyPending != null && pending == null && colour != 'red')
                 Text(
                   '${anyPending.component} has a pending edit: keep or undo it in its Playground first.',
@@ -519,6 +581,27 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
                     child: _cellRow(c, inspection, small),
                   ),
               ],
+              if (colour == 'yellow' &&
+                  mine.editable &&
+                  _section == _Section.report) ...[
+                SolarTextArea(
+                  size: SolarTextAreaSize.sm,
+                  label: 'Note for the agent',
+                  helper: "What Inspect cannot change: a behaviour, a raw value, a layout. The Playground's values go with it.",
+                  controller: _note,
+                  onChanged: (_) => setState(() {}),
+                ),
+                _button(
+                  'Save note',
+                  idle && _note.text.trim().isNotEmpty ? _saveNote : null,
+                  prio: SolarButtonPrio.primary,
+                ),
+                if (_saved case final file?)
+                  Semantics(
+                    liveRegion: true,
+                    child: Text('Saved: $file', style: small),
+                  ),
+              ],
               if (pending != null) ...[
                 Text(
                   'Pending: ${pending.key} → ${pending.deletes ? "Figma's value (the rule is removed)" : pending.valueText}',
@@ -581,7 +664,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     }
     if (options.isEmpty || c.scopes.isEmpty) {
       return Text(
-        '${c.cell}: ${c.entry}$where (no token to choose)',
+        '${c.cell}: ${c.entry}$where (not editable here: use Report)',
         style: small,
       );
     }

@@ -257,6 +257,10 @@ const client: WorkbenchClient = {
     fake.setWeb('yellow');
     return ['Button', 'Dialog'];
   },
+  report: async (b) => {
+    calls.push(['report', b]);
+    return { file: 'spec/feedback/button-1.yaml' };
+  },
   events: (after) =>
     new Promise((ok) => {
       const answer = () =>
@@ -273,6 +277,7 @@ function Page() {
       <WorkbenchBar
         component="Button"
         platform="web"
+        controls={{ label: 'Label' }}
         client={client}
         box={box}
       />

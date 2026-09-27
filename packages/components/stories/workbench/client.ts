@@ -78,6 +78,16 @@ export interface WorkbenchEvent {
   message?: string;
 }
 
+/** A Report note: the Playground's values, the layer and variant chosen in Inspect, if any. */
+export interface ReportBody {
+  component: string;
+  platform: Platform;
+  controls: Record<string, unknown>;
+  layer?: string;
+  variant?: string;
+  note: string;
+}
+
 export interface WorkbenchClient {
   health(): Promise<boolean>;
   status(): Promise<Status>;
@@ -96,6 +106,8 @@ export interface WorkbenchClient {
   approve(component: string, platform: Platform): Promise<Outcome>;
   unapprovePreview(component: string, platform: Platform): Promise<string[]>;
   unapprove(component: string, platform: Platform): Promise<string[]>;
+  /** Saves a note for an agent in spec/feedback/: the file written. */
+  report(body: ReportBody): Promise<{ file: string }>;
   /** The events after `after`, within 25 s; `signal` ends the wait (the bar unmounted). */
   events(
     after: number,
@@ -178,6 +190,7 @@ export function httpClient(base = WORKBENCH_URL): WorkbenchClient {
           platform,
         })
       ).withdraws,
+    report: (body) => call('/report', body),
     events: (after, signal) =>
       call(`/events?after=${after}`, undefined, signal),
   };
