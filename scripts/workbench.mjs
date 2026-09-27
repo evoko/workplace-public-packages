@@ -383,7 +383,6 @@ async function realSession(publish) {
     codegen('normalize/overlay.mjs')
   );
   const status = await import(codegen('approvals/status.mjs'));
-  const { gitUserName } = status;
   const { createSession, WorkbenchError } = await import(
     codegen('workbench/session.mjs')
   );
@@ -442,8 +441,6 @@ async function realSession(publish) {
         remove: (p) => rmSync(p, { force: true }),
       }),
     reload: () => reloadWidgetbook(pidFile),
-    // Null where git has no name: the session then refuses to approve.
-    userName: () => gitUserName({ cwd: repoRoot }),
     today: () => new Date().toISOString().slice(0, 10),
     emit: (event) => publish(event),
   });

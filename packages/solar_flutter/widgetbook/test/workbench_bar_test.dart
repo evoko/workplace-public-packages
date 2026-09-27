@@ -649,7 +649,7 @@ void main() {
       tester,
       FakeClient(
         'yellow',
-        approveRefusal: 'set your name with `git config user.name` first: an approval records who gave it',
+        approveRefusal: 'Button waits on Icon: approve those first',
       ),
     );
     await tester.tap(find.text('Approve'));
@@ -657,9 +657,7 @@ void main() {
     await tester.tap(find.text('Approve').last);
     await tester.pumpAndSettle();
     expect(
-      find.text(
-        'set your name with `git config user.name` first: an approval records who gave it',
-      ),
+      find.text('Button waits on Icon: approve those first'),
       findsOneWidget,
     );
   });

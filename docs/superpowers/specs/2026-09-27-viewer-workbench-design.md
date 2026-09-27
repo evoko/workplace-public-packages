@@ -90,7 +90,7 @@ the overlay cannot express: whatever Inspect cannot do.
 
 **Approve** opens a Confirmation Dialog; confirming runs the component's checks and, when they
 pass, writes the component's line into `spec/approvals.yaml` for that platform: the fingerprint
-`solar:status` prints, `by` from `git config user.name`, `on` today. The circles update at once.
+`solar:status` prints and `on` today (no person: Owner, 2026-09-27). The circles update at once.
 While a check fails, Approve refuses and says why, offering Send to agent.
 
 **Undo approval** opens a Confirmation Dialog listing every approval it withdraws: the component's

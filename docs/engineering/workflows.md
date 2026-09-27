@@ -327,7 +327,8 @@ belong instead, verifies and stops for review; its steps are in the skill.
 
 **Approve** (🟡) opens a Confirmation Dialog. Confirming runs the checks above and, when they pass,
 writes the component's line into `spec/approvals.yaml` for this platform, as `solar:status` prints
-it: the fingerprint, `by` from `git config user.name` (refused where it is unset) and `on` today.
+it: the fingerprint and `on` today. An approval names no person: any developer with write access may
+approve.
 Failing checks refuse it, listed, with Send to agent where the component may change.
 
 **Undo approval** (🟢) opens a Confirmation Dialog listing every approval it withdraws: this one,

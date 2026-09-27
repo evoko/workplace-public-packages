@@ -137,7 +137,7 @@ test('a refusal is shown once, though the service also sends it as an event', as
     .getByRole('alertdialog')
     .getByRole('button', { name: 'Approve' })
     .click();
-  await expect(page.getByRole('alert')).toContainText('git config user.name');
+  await expect(page.getByRole('alert')).toContainText('Button waits on Icon');
   // The `failed` and `changed` events have been heard: the bar read the status again for them.
   const before = (await reads(page)).length;
   await page.evaluate(() => window.emit('changed'));

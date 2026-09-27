@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-// Which SOLAR components a person has approved, per platform, and which can be worked on.
+// Which SOLAR components have been approved, per platform, and which can be worked on.
 //
 //   npm run solar:status              every component's colour, and the lines to paste for each 🟡
 //   npm run solar:status -- --check   fails where a recorded approval no longer holds (CI)
 //
-// Read-only: it writes nothing. spec/approvals.yaml is written by people alone.
+// Read-only: it writes nothing. spec/approvals.yaml is written by people alone; each line records
+// the fingerprint and the date, never a person.
 // First, before anything else loads: the Node this needs (.nvmrc).
 import '../src/util/require-node.mjs';
 import {
   check,
   colour,
-  gitUserName,
   readApprovals,
   render,
   scan,
@@ -33,9 +33,7 @@ if (process.argv.includes('--check')) {
   if (problems.length) process.exit(1);
   process.stdout.write('solar:status: every recorded approval holds.\n');
 } else {
-  // No git, or no name: a placeholder to fill in by hand.
-  const by = gitUserName() ?? 'Your Name';
   process.stdout.write(
-    render(coloured, { by, on: new Date().toISOString().slice(0, 10) }),
+    render(coloured, { on: new Date().toISOString().slice(0, 10) }),
   );
 }

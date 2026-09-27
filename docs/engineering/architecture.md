@@ -494,8 +494,9 @@ Each bar's own details (pointing, focus, spacing) are tested beside it (`workben
 The checks prove each platform draws what Figma draws; a person still confirms each component
 before it ships. `spec/approvals.yaml`, written by people, never by an agent (by hand, or with the
 viewers' Approve and Undo approval buttons, [The workbench](#the-workbench)), records that
-confirmation per component and platform as the component's **fingerprint**, a SHA-256 of what it
-ships:
+confirmation per component and platform as `{ fingerprint, on }`: the date, and the component's
+**fingerprint**, a SHA-256 of what it ships. It records no person; any developer with write access
+may approve (an older line's `by` is ignored). The fingerprint covers:
 
 - **Its files**, each read as its code alone, without comments or layout: its shell, the shells
   of the components it uses, the runtime helpers, its recipe, tree and slots, and on the web its

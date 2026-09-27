@@ -167,7 +167,6 @@ function world(colours = { web: 'yellow', flutter: 'yellow' }) {
     }),
     checks: async () => ({ ok: true, failures: [] }),
     reload: () => {},
-    userName: () => 'A Person',
     today: () => '2026-09-27',
     emit: (e) => events.push(e),
   };

@@ -102,7 +102,6 @@ function world({
     status: async () => ({ coloured, approvals: {} }),
     checks: async () => ({ ok: true, failures: [] }),
     reload: () => calls.push(['reload']),
-    userName: () => 'A Person',
     today: () => '2026-09-27',
     emit: (e) => {
       events.push(e);
@@ -763,7 +762,7 @@ describe('the session', () => {
 
   it('refuses to approve, or withdraw an approval, while any edit is pending; a preview is read-only', async () => {
     const approvals = {
-      Badge: { web: { fingerprint: 'x', by: 'A', on: '2026-09-27' } },
+      Badge: { web: { fingerprint: 'x', on: '2026-09-27' } },
     };
     w = world({
       colours: {

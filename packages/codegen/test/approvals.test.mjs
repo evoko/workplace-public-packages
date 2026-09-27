@@ -20,7 +20,6 @@ import {
   check,
   circlesFor,
   colour,
-  gitUserName,
   pasteFor,
   readApprovals,
   render,
@@ -187,21 +186,9 @@ const approved = (fingerprints) =>
   Object.fromEntries(
     Object.entries(fingerprints).map(([n, f]) => [
       n,
-      { web: { fingerprint: f, by: 'Joon', on: '2026-09-27' } },
+      { web: { fingerprint: f, on: '2026-09-27' } },
     ]),
   );
-
-describe('gitUserName', () => {
-  it('is a trimmed name, or null where git gives none', () => {
-    const name = gitUserName({ cwd: repoRoot });
-    expect(name === null || (name.length > 0 && name === name.trim())).toBe(
-      true,
-    );
-    expect(gitUserName({ cwd: join(tmpdir(), 'no-such-directory-here') })).toBe(
-      null,
-    );
-  });
-});
 
 describe('colours', () => {
   it('is yellow using nothing unapproved, red using something unapproved', () => {
@@ -284,10 +271,25 @@ describe('the check', () => {
     expect(colours(colour(cyclic, {}))).toEqual({ A: 'red', B: 'red' });
   });
 
-  it('prints the lines to paste for each yellow component', () => {
-    expect(pasteFor(colour(base, {}), { by: 'Joon', on: '2026-09-27' })).toBe(
-      "Spinner:\n  web: { fingerprint: 'sha256:s', by: 'Joon', on: 2026-09-27 }",
+  it('prints the lines to paste for each yellow component, naming no one', () => {
+    const paste = pasteFor(colour(base, {}), { on: '2026-09-27' });
+    expect(paste).toBe(
+      "Spinner:\n  web: { fingerprint: 'sha256:s', on: 2026-09-27 }",
     );
+    expect(paste).not.toMatch(/\bby:/);
+  });
+
+  it('holds a line that still carries a legacy by, which it ignores', () => {
+    const a = readApprovals(
+      "Spinner:\n  web: { fingerprint: 'sha256:s', by: 'Someone', on: 2026-09-01 }\n",
+    );
+    expect(colours(colour(base, a)).Spinner).toBe('green');
+    expect(check(colour(base, a), a)).toEqual([]);
+  });
+
+  it('asks for the fingerprint alone', () => {
+    const a = readApprovals("Spinner:\n  web: { fingerprint: 'sha256:s' }\n");
+    expect(check(colour(base, a), a)).toEqual([]);
   });
 
   it('names a record that is not a mapping of component to platforms', () => {
@@ -308,10 +310,10 @@ describe('the check', () => {
     expect(check(colour(base, empty), empty)).toEqual([]);
   });
 
-  it('names an approval that is not { fingerprint, by, on }', () => {
+  it('names an approval that is not { fingerprint, on }', () => {
     const a = readApprovals('Button:\n  web: sha256:b\n');
     expect(check(colour(base, a), a)).toEqual([
-      'Button (web): expected { fingerprint, by, on }.',
+      'Button (web): expected { fingerprint, on }.',
     ]);
   });
 
@@ -321,7 +323,7 @@ describe('the check', () => {
       ['True', [], 'sha256:t'],
       ['Icon Button', [], 'sha256:i'],
     ]);
-    const paste = pasteFor(colour(odd, {}), { by: 'Joon', on: '2026-09-27' });
+    const paste = pasteFor(colour(odd, {}), { on: '2026-09-27' });
     expect(paste).toContain("'A: B':\n");
     expect(paste).toContain("'True':\n");
     expect(paste).toContain('\nIcon Button:\n');
@@ -333,10 +335,7 @@ describe('the check', () => {
 
 describe('render', () => {
   it('names, on a red component, only the yellow components among what it waits on', () => {
-    const lines = render(colour(base, {}), {
-      by: 'Joon',
-      on: '2026-09-27',
-    }).split('\n');
+    const lines = render(colour(base, {}), { on: '2026-09-27' }).split('\n');
     // Dialog waits on Button (red) and Spinner (yellow); only Spinner can be acted on now.
     expect(lines).toContain('  🔴 Button (approve first: Spinner)');
     expect(lines).toContain('  🔴 Dialog (approve first: Spinner)');
@@ -347,10 +346,7 @@ describe('render', () => {
       ['A', ['B'], 'sha256:a'],
       ['B', ['A'], 'sha256:b'],
     ]);
-    const lines = render(colour(cyclic, {}), {
-      by: 'Joon',
-      on: '2026-09-27',
-    }).split('\n');
+    const lines = render(colour(cyclic, {}), { on: '2026-09-27' }).split('\n');
     expect(lines).toContain('  🔴 A (in a cycle)');
     expect(lines).toContain('  🔴 B (in a cycle)');
   });

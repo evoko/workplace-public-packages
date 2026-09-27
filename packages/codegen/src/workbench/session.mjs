@@ -118,7 +118,6 @@ const tail = (output) =>
  * @param {(name: string) => Promise<{ok: boolean, failures: object[]}>} deps.checks a component's
  *   own checks
  * @param {() => void} deps.reload tells the viewers to reload what was regenerated
- * @param {() => string | null} deps.userName who approves (`git config user.name`), null where unset
  * @param {() => string} deps.today the date, `YYYY-MM-DD`
  * @param {(event: {type: string, message?: string}) => void} deps.emit tells the viewers
  */
@@ -651,11 +650,6 @@ export function createSession(deps) {
         // The checks and the fingerprint read the generated files, which a pending edit changes.
         if (pending)
           refuse(`keep or undo the pending edit on ${pending.component} first`);
-        const by = deps.userName();
-        if (!by)
-          refuse(
-            'set your name with `git config user.name` first: an approval records who gave it',
-          );
         const { coloured } = await deps.status();
         const c = coloured[platform]?.find((x) => x.name === name);
         if (!c) refuse(`${TITLES[platform]} has no ${name}`, 400);
@@ -678,7 +672,6 @@ export function createSession(deps) {
           deps.approvalsPath,
           withApproval(files.read(deps.approvalsPath) ?? '', name, platform, {
             fingerprint: again.fingerprint,
-            by,
             on: deps.today(),
           }),
         );

@@ -628,12 +628,12 @@
           "approve": {
             "refuse": {
               "status": 409,
-              "error": "set your name with `git config user.name` first: an approval records who gave it"
+              "error": "Button waits on Icon: approve those first"
             },
             "events": [
               {
                 "type": "failed",
-                "message": "set your name with `git config user.name` first: an approval records who gave it"
+                "message": "Button waits on Icon: approve those first"
               },
               {
                 "type": "changed"
@@ -651,7 +651,7 @@
         },
         {
           "expect": {
-            "oneError": "git config user.name"
+            "oneError": "Button waits on Icon"
           }
         },
         {
@@ -661,7 +661,7 @@
         }
       ],
       "expect": {
-        "oneError": "git config user.name",
+        "oneError": "Button waits on Icon",
         "calls": [
           [
             "approve",

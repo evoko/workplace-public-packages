@@ -37,7 +37,6 @@ function world(colours) {
     }),
     checks: async () => ({ ok: true, failures: [] }),
     reload: () => {},
-    userName: () => 'A Person',
     today: () => '2026-09-27',
     emit: () => {},
   };
@@ -66,10 +65,11 @@ describe('approving from a viewer', () => {
     expect(r).toEqual({ ok: true });
     expect(parse(w.files.get('spec/approvals.yaml'))).toEqual({
       Button: {
-        web: { fingerprint: 'sha256:Button', by: 'A Person', on: '2026-09-27' },
+        web: { fingerprint: 'sha256:Button', on: '2026-09-27' },
       },
     });
     expect(w.files.get('spec/approvals.yaml').startsWith(HEADER)).toBe(true);
+    expect(w.files.get('spec/approvals.yaml')).not.toMatch(/\bby:/);
   });
 
   it('refuses a 🔴 or 🟢 component, naming why', async () => {
@@ -138,25 +138,6 @@ describe('approving from a viewer', () => {
     );
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/changed on web while it was checked/);
-    expect(w.files.get('spec/approvals.yaml')).toBe(HEADER);
-  });
-
-  it('refuses where git names no one, before running any check', async () => {
-    const w = world({ Button: { web: 'yellow' } });
-    let checked = false;
-    w.deps.checks = async () => {
-      checked = true;
-      return { ok: true, failures: [] };
-    };
-    w.deps.userName = () => null;
-    const error = await refusal(
-      createSession(w.deps).approve({ component: 'Button', platform: 'web' }),
-    );
-    expect(error.status).toBe(409);
-    expect(error.message).toBe(
-      'set your name with `git config user.name` first: an approval records who gave it',
-    );
-    expect(checked).toBe(false);
     expect(w.files.get('spec/approvals.yaml')).toBe(HEADER);
   });
 

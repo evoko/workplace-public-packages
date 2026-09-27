@@ -14,7 +14,7 @@ import {
 
 const HEADER =
   '# Which SOLAR components a person has approved.\n#\n# Button:\n#   web: { … }\n';
-const line = { fingerprint: 'sha256:abc', by: 'A Person', on: '2026-09-27' };
+const line = { fingerprint: 'sha256:abc', on: '2026-09-27' };
 
 describe('editing approvals', () => {
   it('adds a line under its component, keeping the header, components in name order', () => {
@@ -56,18 +56,17 @@ describe('editing approvals', () => {
         },
       ],
     };
-    expect(out).toBe(
-      `${pasteFor(coloured, { by: 'A Person', on: '2026-09-27' })}\n`,
-    );
+    expect(out).toBe(`${pasteFor(coloured, { on: '2026-09-27' })}\n`);
+    expect(out).not.toMatch(/\bby:/);
   });
 
-  it('replaces a platform’s line in place, touching no other line', () => {
+  it('replaces a platform’s line in place, touching no other line, a legacy `by` included', () => {
     const text = `${HEADER}\nButton:\n  web: { fingerprint: 'sha256:old', by: 'Someone', on: 2026-09-01 }\n  # checked on a phone too\n  flutter: { fingerprint: 'sha256:abc', by: 'Someone', on: 2026-09-01 }\nDialog:\n  web: { fingerprint: 'sha256:abc', by: 'Someone', on: 2026-09-01 }\n`;
     const out = withApproval(text, 'Button', 'web', line);
     expect(out).toBe(
       text.replace(
         "  web: { fingerprint: 'sha256:old', by: 'Someone', on: 2026-09-01 }",
-        "  web: { fingerprint: 'sha256:abc', by: 'A Person', on: 2026-09-27 }",
+        "  web: { fingerprint: 'sha256:abc', on: 2026-09-27 }",
       ),
     );
     expect(readApprovals(out).Button.web).toEqual(line);
@@ -92,7 +91,7 @@ describe('editing approvals', () => {
     expect(added).toBe(
       text.replace(
         '# Dialog',
-        "Chip:\n  web: { fingerprint: 'sha256:abc', by: 'A Person', on: 2026-09-27 }\n# Dialog",
+        "Chip:\n  web: { fingerprint: 'sha256:abc', on: 2026-09-27 }\n# Dialog",
       ),
     );
     expect(withoutApprovals(added, [{ name: 'Chip', platform: 'web' }])).toBe(

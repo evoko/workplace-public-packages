@@ -674,9 +674,10 @@ Fix a component in the viewer.
     generated files, which the pending edit has changed.
 87. **A component with no overlay file cannot be edited.** Alternative: create one. Why: which
     Figma address names the new file is a person's call.
-88. **Approve needs `git config user.name`**, and is refused where it is unset. Alternative: a
-    default or a name typed in the dialog. Why: an approval records who gave it, and the pasted line
-    `solar:status` prints takes the same name.
+88. **Approve needs `git config user.name`**, and is refused where it is unset. **Owner, 2026-09-27:
+    reversed — approvals record no person.** Any developer with write access may approve; the code
+    now writes `{ fingerprint, on }` (Approve and `solar:status`'s paste lines alike), asks for no
+    git name, and the check ignores a `by` an older line still carries.
 89. **`solar:codegen` writes only the files whose formatted text differs, and formats only its own
     outputs**, never a hand-written file beside them (`spec/overlay/README.md`). Alternative: run
     Prettier over `spec/**/*.{json,md}` after writing, which formats those files too. Why: a regeneration after one edit must touch that component's files
@@ -754,3 +755,5 @@ Fix a component in the viewer.
 - `spec/approvals.yaml`'s header comment mentions only pasting the lines `solar:status` prints, not
   the viewers' Approve and Undo approval buttons. An agent may not edit the file; update it if you
   want the header to name them.
+- `spec/approvals.yaml`'s header comment still shows `by: 'Your Name'` in its example lines. Remove
+  it when you next edit the file (the check ignores `by`).

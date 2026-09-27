@@ -1,12 +1,12 @@
 /**
- * Approvals: which components a person has approved, per platform, against what each ships now.
+ * Approvals: which components have been approved, per platform, against what each ships now.
  * 🟢 approved and every component it uses 🟢; 🟡 not approved and every component it uses 🟢,
  * ready to fix and review; 🔴 some component it uses not 🟢, not to be worked on. Read-only:
- * `spec/approvals.yaml` is written by people alone. `bin/solar-status.mjs` prints this; the
- * viewers show the circles.
+ * `spec/approvals.yaml` is written by people alone. An approval records the fingerprint and the
+ * date, never a person: any developer with write access may approve. `bin/solar-status.mjs`
+ * prints this; the viewers show the circles.
  */
 
-import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
@@ -23,26 +23,12 @@ import {
 
 export const approvalsFile = join(specDir, 'approvals.yaml');
 
-/**
- * Who approves: `git config user.name` as git reads it in `cwd`, trimmed; null where git or the
- * name is missing.
- */
-export function gitUserName({ cwd = repoRoot } = {}) {
-  try {
-    return (
-      execFileSync('git', ['config', 'user.name'], {
-        cwd,
-        encoding: 'utf8',
-        stdio: ['ignore', 'pipe', 'ignore'],
-      }).trim() || null
-    );
-  } catch {
-    return null;
-  }
-}
 export const CIRCLES = { green: '🟢', yellow: '🟡', red: '🔴' };
 
-/** The record, `{ <component>: { <platform>: { fingerprint, by, on } } }`; empty where it is. */
+/**
+ * The record, `{ <component>: { <platform>: { fingerprint, on } } }`; empty where it is. An older
+ * line may also carry `by`, which nothing reads.
+ */
 export function readApprovals(
   text = existsSync(approvalsFile) ? readFileSync(approvalsFile, 'utf8') : '',
 ) {
@@ -134,10 +120,9 @@ export function check(coloured, approvals) {
           );
           continue;
         }
+        // Only the fingerprint is read; `by`, on an older line, is ignored.
         if (!isMapping(approval) || typeof approval.fingerprint !== 'string') {
-          problems.push(
-            `${name} (${platform}): expected { fingerprint, by, on }.`,
-          );
+          problems.push(`${name} (${platform}): expected { fingerprint, on }.`);
           continue;
         }
         // A scan of one platform (a viewer's) has nothing to say about the other.
@@ -184,17 +169,19 @@ export const approvalKey = (name) =>
     : quote(name);
 
 /** One platform's approval as spec/approvals.yaml writes it, two spaces in under its component. */
-export const approvalLine = (platform, { fingerprint, by, on }) =>
-  `  ${platform}: { fingerprint: '${fingerprint}', by: ${quote(by)}, on: ${on} }`;
+export const approvalLine = (platform, { fingerprint, on }) =>
+  `  ${platform}: { fingerprint: '${fingerprint}', on: ${on} }`;
 
 /** The lines to paste into spec/approvals.yaml for each 🟡 component, by component. */
-export function pasteFor(coloured, { by, on }) {
+export function pasteFor(coloured, { on }) {
   const lines = new Map();
   for (const [platform, components] of Object.entries(coloured))
     for (const c of components)
       if (c.colour === 'yellow') {
         if (!lines.has(c.name)) lines.set(c.name, []);
-        lines.get(c.name).push(approvalLine(platform, { ...c, by, on }));
+        lines
+          .get(c.name)
+          .push(approvalLine(platform, { fingerprint: c.fingerprint, on }));
       }
   return [...lines]
     .sort(([a], [b]) => byCodeUnit(a, b))
@@ -206,7 +193,7 @@ export function pasteFor(coloured, { by, on }) {
 }
 
 /** The colours as the CLI prints them, and the lines to paste. */
-export function render(coloured, { by, on }) {
+export function render(coloured, { on }) {
   const titles = { web: 'Web', flutter: 'Flutter' };
   const out = [];
   for (const [platform, components] of Object.entries(coloured)) {
@@ -229,7 +216,7 @@ export function render(coloured, { by, on }) {
     }
     out.push('');
   }
-  const paste = pasteFor(coloured, { by, on });
+  const paste = pasteFor(coloured, { on });
   if (paste)
     out.push(
       'To approve a 🟡 component once you have confirmed it, add its lines to spec/approvals.yaml',

@@ -47,7 +47,7 @@ const componentStart = (text, components, component) =>
  * @param {string} text the record
  * @param {string} name the component (`Button`)
  * @param {'web' | 'flutter'} platform
- * @param {{fingerprint: string, by: string, on: string}} approval
+ * @param {{fingerprint: string, on: string}} approval
  * @returns {string} the new text
  */
 export function withApproval(text, name, platform, approval) {

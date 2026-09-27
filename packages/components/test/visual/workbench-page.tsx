@@ -242,8 +242,7 @@ const client: WorkbenchClient = {
   approve: async (c, p) => {
     calls.push(['approve', c, p]);
     if (mode === 'refused') {
-      const why =
-        'set your name with `git config user.name` first: an approval records who gave it';
+      const why = 'Button waits on Icon: approve those first';
       fake.emit('failed', why);
       fake.emit('changed');
       throw new WorkbenchRefusal(409, why);
