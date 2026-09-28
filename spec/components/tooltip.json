@@ -578,7 +578,7 @@
     "pageId": "2163:3685",
     "figmaNode": "3377:34",
     "defaultVariant": "size=sm, position=top",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/tooltip.yaml",

@@ -50,7 +50,7 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
     - ~~**CTA**~~ (hidden by default) · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 182×32  
       itemSpacing `inset.xs` · prop visible←hasCTA
       - **Button** · instance of **Button** (size=md, prio=secondary, state=default, danger=false) · row gap 8 pad 0/12/0/12 HUG/FIXED · 80×40  
-        fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasSecondaryCTA
+        stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasSecondaryCTA
       - **Button** · instance of **Button** (size=md, prio=primary, state=default, danger=false) · row gap 8 pad 0/12/0/12 HUG/FIXED · 80×40  
         fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasPrimaryCTA
   - **Tabs** · instance of **Tabs** (size=md) · row gap 0 pad 0/0/0/0 FILL/HUG · 1320×40  
@@ -60,7 +60,7 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
 
 | Role            | Tokens                                                                                                                                                                         |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Fills           | `color.action.primary.bg.default`, `color.action.secondary.bg.default`, `color.surface.feedback.success.subtle`                                                                |
+| Fills           | `color.action.primary.bg.default`, `color.surface.feedback.success.subtle`                                                                                                     |
 | Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`, `color.border.feedback.success.subtle`, `color.border.subtle`                                  |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
 | Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`                 |

@@ -30,14 +30,10 @@ void main() {
     const cases = {
       (SolarButtonPrio.primary, false): 'actionPrimaryBgDefault',
       (SolarButtonPrio.primary, true): 'actionPrimaryBgDangerDefault',
-      (SolarButtonPrio.secondary, false): 'actionSecondaryBgDefault',
-      (SolarButtonPrio.secondary, true): 'actionSecondaryBgDangerDefault',
     };
     final expected = {
       'actionPrimaryBgDefault': light.actionPrimaryBgDefault,
       'actionPrimaryBgDangerDefault': light.actionPrimaryBgDangerDefault,
-      'actionSecondaryBgDefault': light.actionSecondaryBgDefault,
-      'actionSecondaryBgDangerDefault': light.actionSecondaryBgDangerDefault,
     };
     for (final MapEntry(key: (prio, danger), value: colour) in cases.entries) {
       testWidgets(
@@ -68,6 +64,26 @@ void main() {
       );
       expect(face(tester).color, Colors.transparent);
     });
+
+    // Figma draws secondary at sm and md with no fill since 2026-09-28, danger or not: the
+    // rule is Button's own, though the action/secondary/bg variables are fills again.
+    for (final danger in [false, true]) {
+      testWidgets(
+        'secondary${danger ? ' danger' : ''} has no face, not the variables\' fill',
+        (tester) async {
+          await pump(
+            tester,
+            SolarButton(
+              onPressed: () {},
+              prio: SolarButtonPrio.secondary,
+              danger: danger,
+              child: const Text('Save'),
+            ),
+          );
+          expect(face(tester).color, Colors.transparent);
+        },
+      );
+    }
 
     testWidgets('takes its size from the recipe', (tester) async {
       for (final (size, height) in [

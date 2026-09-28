@@ -36,13 +36,12 @@ Default variant: `in-card=false, trailing=action` · 14 variants · default size
   - **Trailing** · frame · row gap 0 pad 0/0/0/0 HUG/HUG · 80×40  
     prop visible←hasTrailing
     - **Button** · instance of **Button** (size=md, prio=secondary, state=default, danger=false) · row gap 8 pad 0/12/0/12 HUG/FIXED · 80×40  
-      fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
+      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
 
 ### Tokens used
 
 | Role            | Tokens                                                                                                                                                                              |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.secondary.bg.default`                                                                                                                                                 |
 | Strokes         | `color.action.secondary.border.default`                                                                                                                                             |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.info`, `color.text.feedback.neutral`, `color.text.primary`, `color.text.secondary` |
 | Icon color      | `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`                                                                                                 |

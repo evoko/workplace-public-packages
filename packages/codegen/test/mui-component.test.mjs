@@ -38,13 +38,13 @@ describe('renderMuiComponent on Button: the recipe as data', () => {
   it('references tokens as custom properties, never as resolved values', () => {
     expect(styles.root.borderRadius).toBe('var(--solar-radius-control)');
     expect(styles.root.paddingLeft).toBe('var(--solar-inset-sm)');
-    // Primary is the default, so its resting background is the base; the others override it.
+    // Primary is the default, so its resting paint is the base; the others override it.
     expect(styles.root.backgroundColor).toBe(
       'var(--solar-color-action-primary-bg-default)',
     );
-    expect(
-      styles.appearances['prio=secondary, danger=false'].backgroundColor,
-    ).toBe('var(--solar-color-action-secondary-bg-default)');
+    expect(styles.appearances['prio=primary, danger=true'].borderColor).toBe(
+      'var(--solar-color-action-primary-border-danger-default)',
+    );
     expect(ts).not.toMatch(/#[0-9a-f]{6}\b/i);
   });
 
@@ -121,11 +121,11 @@ describe('renderMuiComponent on Button: states', () => {
   const primary = styles.appearances['prio=primary, danger=false'];
 
   it('renders platform states as the selectors MUI styleOverrides expects', () => {
-    expect(primary['&:hover'].backgroundColor).toBe(
-      'var(--solar-color-action-primary-bg-hover)',
+    expect(primary['&:hover'].borderColor).toBe(
+      'var(--solar-color-action-primary-border-hover)',
     );
-    expect(primary['&:active'].backgroundColor).toBe(
-      'var(--solar-color-action-primary-bg-active)',
+    expect(primary['&:active'].borderColor).toBe(
+      'var(--solar-color-action-primary-border-active)',
     );
     // The shadow follows size too (lg is flat), so it sits in the per-size section.
     expect(
@@ -135,9 +135,9 @@ describe('renderMuiComponent on Button: states', () => {
   });
 
   it('renders disabled and loading as the classes MUI sets for those props', () => {
-    expect(
-      primary['&.Mui-disabled:not(.MuiButton-loading)'].backgroundColor,
-    ).toBe('var(--solar-color-action-primary-bg-disabled)');
+    expect(primary['&.Mui-disabled:not(.MuiButton-loading)'].borderColor).toBe(
+      'var(--solar-color-action-primary-border-disabled)',
+    );
     expect(primary).toHaveProperty(['&.MuiButton-loading']);
   });
 
@@ -149,8 +149,9 @@ describe('renderMuiComponent on Button: states', () => {
   });
 
   it('says a missing background is transparent, rather than inheriting primary', () => {
+    // The background follows size too (lg keeps its own fills), so it sits in the per-size section.
     expect(
-      styles.appearances['prio=tertiary, danger=false'].backgroundColor,
+      styles.combined.md['prio=tertiary, danger=false'].backgroundColor,
     ).toBe('transparent');
   });
 

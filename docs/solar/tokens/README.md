@@ -191,9 +191,10 @@ capture cannot run from `solar:sync`; it is a deliberate action:
 3. If it differs, assemble the slices into `figma-variables.json` (keep the `$schema-note` and
    `source.capturedFrom`), run `npm run solar:tokens`, and review the affected chapters.
 
-Last verification: 2026-09-21 against Biamp's original file, file version
-`2397931579128493119`: identical in every primitive, colour, spatial, type variable, text
-style and effect style.
+Last capture: 2026-09-28, file version `2404260420143476316`: the seven
+`action/secondary/bg/*` variables the Changelog names (restored to fills) changed, and every other
+primitive, colour, spatial, type variable, text style and effect style was identical, compared
+entry by entry.
 
 The SOLAR Web `Layout` collection is captured the same way from the Web file (key
 `OGvmMNnywH7JWDyEhOzjcc`, `getLocalVariableCollectionsAsync()`), into

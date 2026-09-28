@@ -1669,7 +1669,7 @@
     "pageId": "2163:3665",
     "figmaNode": "7280:669",
     "defaultVariant": "inline=false, type=single",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/date-picker-open.yaml",

@@ -111,7 +111,6 @@ export const solarButtonStyles = {
   appearances: {
     'prio=primary, danger=false': {
       '&:hover': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
         borderColor: 'var(--solar-color-action-primary-border-hover)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-hover)',
@@ -122,7 +121,6 @@ export const solarButtonStyles = {
         },
       },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-active)',
         borderColor: 'var(--solar-color-action-primary-border-active)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-active)',
@@ -134,7 +132,6 @@ export const solarButtonStyles = {
       },
       '&.MuiButton-loading': {},
       '&.Mui-disabled:not(.MuiButton-loading)': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
         borderColor: 'var(--solar-color-action-primary-border-disabled)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-disabled)',
@@ -146,10 +143,8 @@ export const solarButtonStyles = {
       },
     },
     'prio=primary, danger=true': {
-      backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
       borderColor: 'var(--solar-color-action-primary-border-danger-default)',
       '&:hover': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-hover)',
         borderColor: 'var(--solar-color-action-primary-border-danger-hover)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-hover)',
@@ -160,7 +155,6 @@ export const solarButtonStyles = {
         },
       },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-active)',
         borderColor: 'var(--solar-color-action-primary-border-danger-active)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-active)',
@@ -171,7 +165,6 @@ export const solarButtonStyles = {
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
         borderColor: 'var(--solar-color-action-primary-border-danger-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-default)',
@@ -182,11 +175,9 @@ export const solarButtonStyles = {
         },
       },
       '&.MuiButton-loading': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
         borderColor: 'var(--solar-color-action-primary-border-danger-default)',
       },
       '&.Mui-disabled:not(.MuiButton-loading)': {
-        backgroundColor: 'var(--solar-color-action-primary-bg-danger-disabled)',
         borderColor: 'var(--solar-color-action-primary-border-danger-disabled)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-primary-icon-danger-disabled)',
@@ -205,10 +196,8 @@ export const solarButtonStyles = {
       },
     },
     'prio=secondary, danger=false': {
-      backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
       borderColor: 'var(--solar-color-action-secondary-border-default)',
       '&:hover': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-hover)',
         borderColor: 'var(--solar-color-action-secondary-border-hover)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-hover)',
@@ -219,7 +208,6 @@ export const solarButtonStyles = {
         },
       },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
         borderColor: 'var(--solar-color-action-secondary-border-active)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-active)',
@@ -230,7 +218,6 @@ export const solarButtonStyles = {
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
         borderColor: 'var(--solar-color-action-secondary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-default)',
@@ -241,11 +228,9 @@ export const solarButtonStyles = {
         },
       },
       '&.MuiButton-loading': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
         borderColor: 'var(--solar-color-action-secondary-border-default)',
       },
       '&.Mui-disabled:not(.MuiButton-loading)': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-secondary-border-disabled)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-disabled)',
@@ -264,10 +249,8 @@ export const solarButtonStyles = {
       },
     },
     'prio=secondary, danger=true': {
-      backgroundColor: 'var(--solar-color-action-secondary-bg-danger-default)',
       borderColor: 'var(--solar-color-action-secondary-border-danger-default)',
       '&:hover': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-danger-hover)',
         borderColor: 'var(--solar-color-action-secondary-border-danger-hover)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-hover)',
@@ -278,7 +261,6 @@ export const solarButtonStyles = {
         },
       },
       '&:active': {
-        backgroundColor: 'var(--solar-color-action-secondary-bg-danger-active)',
         borderColor: 'var(--solar-color-action-secondary-border-danger-active)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-secondary-icon-danger-active)',
@@ -289,8 +271,6 @@ export const solarButtonStyles = {
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor:
-          'var(--solar-color-action-secondary-bg-danger-default)',
         borderColor:
           'var(--solar-color-action-secondary-border-danger-default)',
         '& .MuiButton-startIcon': {
@@ -302,13 +282,10 @@ export const solarButtonStyles = {
         },
       },
       '&.MuiButton-loading': {
-        backgroundColor:
-          'var(--solar-color-action-secondary-bg-danger-default)',
         borderColor:
           'var(--solar-color-action-secondary-border-danger-default)',
       },
       '&.Mui-disabled:not(.MuiButton-loading)': {
-        backgroundColor: 'transparent',
         borderColor:
           'var(--solar-color-action-secondary-border-danger-disabled)',
         '& .MuiButton-startIcon': {
@@ -328,10 +305,8 @@ export const solarButtonStyles = {
       },
     },
     'prio=tertiary, danger=false': {
-      backgroundColor: 'transparent',
       borderColor: 'var(--solar-color-action-tertiary-border-default)',
       '&:hover': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-hover)',
@@ -342,7 +317,6 @@ export const solarButtonStyles = {
         },
       },
       '&:active': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-active)',
@@ -353,7 +327,6 @@ export const solarButtonStyles = {
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-default)',
@@ -364,11 +337,9 @@ export const solarButtonStyles = {
         },
       },
       '&.MuiButton-loading': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
       },
       '&.Mui-disabled:not(.MuiButton-loading)': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-disabled)',
@@ -387,10 +358,8 @@ export const solarButtonStyles = {
       },
     },
     'prio=tertiary, danger=true': {
-      backgroundColor: 'transparent',
       borderColor: 'var(--solar-color-action-tertiary-border-default)',
       '&:hover': {
-        backgroundColor: 'var(--solar-color-action-tertiary-bg-danger-hover)',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-hover)',
@@ -401,7 +370,6 @@ export const solarButtonStyles = {
         },
       },
       '&:active': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-active)',
@@ -412,7 +380,6 @@ export const solarButtonStyles = {
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-default)',
@@ -423,11 +390,9 @@ export const solarButtonStyles = {
         },
       },
       '&.MuiButton-loading': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
       },
       '&.Mui-disabled:not(.MuiButton-loading)': {
-        backgroundColor: 'transparent',
         borderColor: 'var(--solar-color-action-tertiary-border-default)',
         '& .MuiButton-startIcon': {
           color: 'var(--solar-color-action-tertiary-icon-danger-disabled)',
@@ -449,10 +414,16 @@ export const solarButtonStyles = {
   combined: {
     md: {
       'prio=primary, danger=false': {
+        '&:hover': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
+        },
+        '&:active': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-active)',
+        },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           borderColor: 'var(--solar-color-action-primary-border-default)',
+          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           '& .MuiButton-startIcon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
@@ -461,25 +432,76 @@ export const solarButtonStyles = {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
         },
+        '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
+        },
       },
       'prio=primary, danger=true': {
+        backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
+        '&:hover': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-hover)',
+        },
+        '&:active': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-active)',
+        },
         '&.Mui-focusVisible': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-default)',
           boxShadow: 'var(--solar-shadow-focus-danger)',
+        },
+        '&.MuiButton-loading': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-default)',
+        },
+        '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-disabled)',
         },
       },
       'prio=secondary, danger=false': {
+        backgroundColor: 'transparent',
+        '&:hover': {
+          backgroundColor: 'transparent',
+        },
+        '&:active': {
+          backgroundColor: 'transparent',
+        },
         '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
           boxShadow: 'var(--solar-shadow-focus-default)',
+        },
+        '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
+        },
+        '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
         },
       },
       'prio=secondary, danger=true': {
+        backgroundColor: 'transparent',
+        '&:hover': {
+          backgroundColor:
+            'var(--solar-color-action-secondary-bg-danger-hover)',
+        },
+        '&:active': {
+          backgroundColor: 'transparent',
+        },
         '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
           boxShadow: 'var(--solar-shadow-focus-danger)',
+        },
+        '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
+        },
+        '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
         },
       },
       'prio=tertiary, danger=false': {
+        backgroundColor: 'transparent',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -489,6 +511,7 @@ export const solarButtonStyles = {
           textDecoration: 'underline',
         },
         '&:active': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -498,6 +521,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
           boxShadow: 'var(--solar-shadow-focus-default)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -507,27 +531,35 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
       },
       'prio=tertiary, danger=true': {
+        backgroundColor: 'transparent',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'var(--solar-color-action-tertiary-bg-danger-hover)',
           boxShadow: 'none',
         },
         '&:active': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
           boxShadow: 'var(--solar-shadow-focus-danger)',
         },
         '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
       },
@@ -535,6 +567,7 @@ export const solarButtonStyles = {
     sm: {
       'prio=primary, danger=false': {
         '&:hover': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -542,13 +575,8 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        fontFamily: 'var(--solar-type-font-family-inter)',
-        fontWeight: 'var(--solar-type-font-weight-500)',
-        fontSize: 'var(--solar-type-size-label-sm)',
-        lineHeight: 'var(--solar-type-line-height-label-sm)',
-        letterSpacing: '-0.02em',
-        textDecoration: 'none',
         '&:active': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-active)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -558,8 +586,8 @@ export const solarButtonStyles = {
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           borderColor: 'var(--solar-color-action-primary-border-default)',
+          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           '& .MuiButton-startIcon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
@@ -575,6 +603,7 @@ export const solarButtonStyles = {
           },
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -582,9 +611,51 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
+        fontFamily: 'var(--solar-type-font-family-inter)',
+        fontWeight: 'var(--solar-type-font-weight-500)',
+        fontSize: 'var(--solar-type-size-label-sm)',
+        lineHeight: 'var(--solar-type-line-height-label-sm)',
+        letterSpacing: '-0.02em',
+        textDecoration: 'none',
       },
       'prio=primary, danger=true': {
+        backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
         '&:hover': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-hover)',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&:active': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-active)',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&.Mui-focusVisible': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-default)',
+          boxShadow: 'var(--solar-shadow-focus-danger)',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&.MuiButton-loading': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-default)',
+        },
+        '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-disabled)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -598,34 +669,11 @@ export const solarButtonStyles = {
         lineHeight: 'var(--solar-type-line-height-label-sm)',
         letterSpacing: '-0.02em',
         textDecoration: 'none',
-        '&:active': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        '&.Mui-focusVisible': {
-          boxShadow: 'var(--solar-shadow-focus-danger)',
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        '&.Mui-disabled:not(.MuiButton-loading)': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
       },
       'prio=secondary, danger=false': {
+        backgroundColor: 'transparent',
         '&:hover': {
+          backgroundColor: 'transparent',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -633,13 +681,8 @@ export const solarButtonStyles = {
           letterSpacing: '-0.02em',
           textDecoration: 'none',
         },
-        fontFamily: 'var(--solar-type-font-family-inter)',
-        fontWeight: 'var(--solar-type-font-weight-500)',
-        fontSize: 'var(--solar-type-size-label-sm)',
-        lineHeight: 'var(--solar-type-line-height-label-sm)',
-        letterSpacing: '-0.02em',
-        textDecoration: 'none',
         '&:active': {
+          backgroundColor: 'transparent',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
           fontSize: 'var(--solar-type-size-label-sm)',
@@ -648,85 +691,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.Mui-focusVisible': {
-          boxShadow: 'var(--solar-shadow-focus-default)',
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        '&.Mui-disabled:not(.MuiButton-loading)': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-      },
-      'prio=secondary, danger=true': {
-        '&:hover': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        fontFamily: 'var(--solar-type-font-family-inter)',
-        fontWeight: 'var(--solar-type-font-weight-500)',
-        fontSize: 'var(--solar-type-size-label-sm)',
-        lineHeight: 'var(--solar-type-line-height-label-sm)',
-        letterSpacing: '-0.02em',
-        textDecoration: 'none',
-        '&:active': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        '&.Mui-focusVisible': {
-          boxShadow: 'var(--solar-shadow-focus-danger)',
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        '&.Mui-disabled:not(.MuiButton-loading)': {
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-      },
-      'prio=tertiary, danger=false': {
-        boxShadow: 'none',
-        '&:hover': {
-          boxShadow: 'none',
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-body-sm)',
-          lineHeight: 'var(--solar-type-line-height-body-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'underline',
-        },
-        '&:active': {
-          boxShadow: 'none',
-          fontFamily: 'var(--solar-type-font-family-inter)',
-          fontWeight: 'var(--solar-type-font-weight-500)',
-          fontSize: 'var(--solar-type-size-label-sm)',
-          lineHeight: 'var(--solar-type-line-height-label-sm)',
-          letterSpacing: '-0.02em',
-          textDecoration: 'none',
-        },
-        '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
           boxShadow: 'var(--solar-shadow-focus-default)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -736,9 +701,113 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
+        },
+        '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        fontFamily: 'var(--solar-type-font-family-inter)',
+        fontWeight: 'var(--solar-type-font-weight-500)',
+        fontSize: 'var(--solar-type-size-label-sm)',
+        lineHeight: 'var(--solar-type-line-height-label-sm)',
+        letterSpacing: '-0.02em',
+        textDecoration: 'none',
+      },
+      'prio=secondary, danger=true': {
+        backgroundColor: 'transparent',
+        '&:hover': {
+          backgroundColor:
+            'var(--solar-color-action-secondary-bg-danger-hover)',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&:active': {
+          backgroundColor: 'transparent',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
+          boxShadow: 'var(--solar-shadow-focus-danger)',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
+        },
+        '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        fontFamily: 'var(--solar-type-font-family-inter)',
+        fontWeight: 'var(--solar-type-font-weight-500)',
+        fontSize: 'var(--solar-type-size-label-sm)',
+        lineHeight: 'var(--solar-type-line-height-label-sm)',
+        letterSpacing: '-0.02em',
+        textDecoration: 'none',
+      },
+      'prio=tertiary, danger=false': {
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        '&:hover': {
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-body-sm)',
+          lineHeight: 'var(--solar-type-line-height-body-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'underline',
+        },
+        '&:active': {
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
+          boxShadow: 'var(--solar-shadow-focus-default)',
+          fontFamily: 'var(--solar-type-font-family-inter)',
+          fontWeight: 'var(--solar-type-font-weight-500)',
+          fontSize: 'var(--solar-type-size-label-sm)',
+          lineHeight: 'var(--solar-type-line-height-label-sm)',
+          letterSpacing: '-0.02em',
+          textDecoration: 'none',
+        },
+        '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -755,8 +824,10 @@ export const solarButtonStyles = {
         textDecoration: 'none',
       },
       'prio=tertiary, danger=true': {
+        backgroundColor: 'transparent',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'var(--solar-color-action-tertiary-bg-danger-hover)',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -766,6 +837,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&:active': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -775,6 +847,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor: 'transparent',
           boxShadow: 'var(--solar-shadow-focus-danger)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -784,9 +857,11 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.MuiButton-loading': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -807,15 +882,17 @@ export const solarButtonStyles = {
       'prio=primary, danger=false': {
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-hover)',
           boxShadow: 'none',
         },
         '&:active': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-active)',
           boxShadow: 'none',
         },
         '&.Mui-focusVisible': {
           boxShadow: 'var(--solar-shadow-focus-default)',
-          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           borderColor: 'var(--solar-color-action-primary-border-default)',
+          backgroundColor: 'var(--solar-color-action-primary-bg-default)',
           '& .MuiButton-startIcon': {
             color: 'var(--solar-color-action-primary-icon-default)',
           },
@@ -828,30 +905,42 @@ export const solarButtonStyles = {
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-disabled)',
           boxShadow: 'none',
         },
       },
       'prio=primary, danger=true': {
+        backgroundColor: 'var(--solar-color-action-primary-bg-danger-default)',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-hover)',
           boxShadow: 'none',
         },
         '&:active': {
+          backgroundColor: 'var(--solar-color-action-primary-bg-danger-active)',
           boxShadow: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-default)',
           boxShadow: 'var(--solar-shadow-focus-danger)',
         },
         '&.MuiButton-loading': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-default)',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor:
+            'var(--solar-color-action-primary-bg-danger-disabled)',
           boxShadow: 'none',
         },
       },
       'prio=secondary, danger=false': {
+        backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -861,6 +950,7 @@ export const solarButtonStyles = {
           textDecoration: 'underline',
         },
         '&:active': {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-active)',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -870,6 +960,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
           boxShadow: 'var(--solar-shadow-focus-default)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -879,33 +970,48 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.MuiButton-loading': {
+          backgroundColor: 'var(--solar-color-action-secondary-bg-default)',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
       },
       'prio=secondary, danger=true': {
+        backgroundColor:
+          'var(--solar-color-action-secondary-bg-danger-default)',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor:
+            'var(--solar-color-action-secondary-bg-danger-hover)',
           boxShadow: 'none',
         },
         '&:active': {
+          backgroundColor:
+            'var(--solar-color-action-secondary-bg-danger-active)',
           boxShadow: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor:
+            'var(--solar-color-action-secondary-bg-danger-default)',
           boxShadow: 'var(--solar-shadow-focus-danger)',
         },
         '&.MuiButton-loading': {
+          backgroundColor:
+            'var(--solar-color-action-secondary-bg-danger-default)',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
       },
       'prio=tertiary, danger=false': {
+        backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -915,6 +1021,7 @@ export const solarButtonStyles = {
           textDecoration: 'underline',
         },
         '&:active': {
+          backgroundColor: 'var(--solar-color-action-tertiary-bg-active)',
           boxShadow: 'none',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -924,6 +1031,7 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
           boxShadow: 'var(--solar-shadow-focus-default)',
           fontFamily: 'var(--solar-type-font-family-inter)',
           fontWeight: 'var(--solar-type-font-weight-500)',
@@ -933,27 +1041,38 @@ export const solarButtonStyles = {
           textDecoration: 'none',
         },
         '&.MuiButton-loading': {
+          backgroundColor: 'var(--solar-color-action-tertiary-bg-default)',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
       },
       'prio=tertiary, danger=true': {
+        backgroundColor: 'var(--solar-color-action-tertiary-bg-danger-default)',
         boxShadow: 'none',
         '&:hover': {
+          backgroundColor: 'var(--solar-color-action-tertiary-bg-danger-hover)',
           boxShadow: 'none',
         },
         '&:active': {
+          backgroundColor:
+            'var(--solar-color-action-tertiary-bg-danger-active)',
           boxShadow: 'none',
         },
         '&.Mui-focusVisible': {
+          backgroundColor:
+            'var(--solar-color-action-tertiary-bg-danger-default)',
           boxShadow: 'var(--solar-shadow-focus-danger)',
         },
         '&.MuiButton-loading': {
+          backgroundColor:
+            'var(--solar-color-action-tertiary-bg-danger-default)',
           boxShadow: 'none',
         },
         '&.Mui-disabled:not(.MuiButton-loading)': {
+          backgroundColor: 'transparent',
           boxShadow: 'none',
         },
       },

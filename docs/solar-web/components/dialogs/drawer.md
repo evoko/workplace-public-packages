@@ -23,7 +23,7 @@ Panel that slides in from the viewport edge for a secondary task that keeps the 
     - **Title** · text `body/lg/medium` "Drawer Title" · FILL/HUG · 268×12  
       fill `color.text.primary` · lineHeight `type.line-height.body.lg` · fontFamily `type.font-family.inter` · fontSize `type.size.body.lg` · fontStyle `type.font-weight.500` · prop characters←title
     - **Icon Button** · instance of **Icon Button** (size=md, shape=square, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-      stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.control`
+      fill `color.action.tertiary.bg.default` · stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.control`
   - **content** · slot · column gap 12 pad 16/20/16/20 FILL/FILL · 348×696  
     itemSpacing `stack.sm` · padding `inset.lg`, `inset.md` · prop slotContentId←content
     - **Body** · text `body/md/regular` "Drawer content goes here. Add forms, lists, or any content." · FILL/HUG · 308×30  
@@ -35,7 +35,7 @@ Panel that slides in from the viewport edge for a secondary task that keeps the 
 
 | Role            | Tokens                                                                                                                                                                     |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.surface.raised`                                                                                                                                                     |
+| Fills           | `color.action.tertiary.bg.default`, `color.surface.raised`                                                                                                                 |
 | Strokes         | `color.action.tertiary.border.default`, `color.border.subtle`, `color.border.surface`                                                                                      |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                                                                                               |
 | Spacing         | `inset.lg`, `inset.md`, `inset.none`, `inset.xs`, `stack.sm`                                                                                                               |

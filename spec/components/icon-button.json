@@ -197,6 +197,12 @@
               "token": "color.action.primary.border.disabled",
               "from": "size=sm, shape=square, prio=primary, state=disabled"
             }
+          },
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "size=sm, shape=square, prio=primary, state=focus"
+            }
           }
         },
         "shape=round, prio=primary": {
@@ -239,12 +245,18 @@
               "token": "color.action.primary.border.disabled",
               "from": "size=sm, shape=round, prio=primary, state=disabled"
             }
+          },
+          "focus": {
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "size=sm, shape=round, prio=primary, state=focus"
+            }
           }
         },
         "shape=square, prio=secondary": {
           "default": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.default",
               "from": "size=sm, shape=square, prio=secondary, state=default"
             },
             "borderColor": {
@@ -264,7 +276,7 @@
           },
           "active": {
             "background": {
-              "token": "color.surface.active",
+              "token": "color.action.secondary.bg.active",
               "from": "size=sm, shape=square, prio=secondary, state=active"
             },
             "borderColor": {
@@ -274,7 +286,7 @@
           },
           "pressed": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.active",
               "from": "size=sm, shape=square, prio=secondary, state=pressed"
             },
             "borderColor": {
@@ -294,17 +306,21 @@
           },
           "focus": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.default",
               "from": "size=sm, shape=square, prio=secondary, state=focus"
             },
             "borderColor": {
               "token": "color.action.secondary.border.default",
               "from": "size=sm, shape=square, prio=secondary, state=focus"
+            },
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "size=sm, shape=square, prio=secondary, state=focus"
             }
           },
           "loading": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.default",
               "from": "size=sm, shape=square, prio=secondary, state=loading"
             },
             "borderColor": {
@@ -316,7 +332,7 @@
         "shape=round, prio=secondary": {
           "default": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.default",
               "from": "size=sm, shape=round, prio=secondary, state=default"
             },
             "borderColor": {
@@ -336,7 +352,7 @@
           },
           "active": {
             "background": {
-              "token": "color.surface.active",
+              "token": "color.action.secondary.bg.active",
               "from": "size=sm, shape=round, prio=secondary, state=active"
             },
             "borderColor": {
@@ -346,7 +362,7 @@
           },
           "pressed": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.active",
               "from": "size=sm, shape=round, prio=secondary, state=pressed"
             },
             "borderColor": {
@@ -366,17 +382,21 @@
           },
           "focus": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.default",
               "from": "size=sm, shape=round, prio=secondary, state=focus"
             },
             "borderColor": {
               "token": "color.action.secondary.border.default",
               "from": "size=sm, shape=round, prio=secondary, state=focus"
+            },
+            "shadow": {
+              "token": "shadow.focus.default",
+              "from": "size=sm, shape=round, prio=secondary, state=focus"
             }
           },
           "loading": {
             "background": {
-              "none": true,
+              "token": "color.action.secondary.bg.default",
               "from": "size=sm, shape=round, prio=secondary, state=loading"
             },
             "borderColor": {
@@ -388,41 +408,57 @@
         "shape=square, prio=tertiary": {
           "default": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.default",
               "from": "size=sm, shape=square, prio=tertiary, state=default"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=square, prio=tertiary, state=default"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=square, prio=tertiary, state=default"
             }
           },
           "hover": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.hover",
               "from": "size=sm, shape=square, prio=tertiary, state=hover"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=square, prio=tertiary, state=hover"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=square, prio=tertiary, state=hover"
             }
           },
           "active": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.active",
               "from": "size=sm, shape=square, prio=tertiary, state=active"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=square, prio=tertiary, state=active"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=square, prio=tertiary, state=active"
             }
           },
           "pressed": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.active",
               "from": "size=sm, shape=square, prio=tertiary, state=pressed"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=square, prio=tertiary, state=pressed"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=square, prio=tertiary, state=pressed"
             }
           },
@@ -434,25 +470,37 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=sm, shape=square, prio=tertiary, state=disabled"
+            },
+            "shadow": {
+              "none": true,
+              "from": "size=sm, shape=square, prio=tertiary, state=disabled"
             }
           },
           "focus": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.default",
               "from": "size=sm, shape=square, prio=tertiary, state=focus"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=square, prio=tertiary, state=focus"
+            },
+            "shadow": {
+              "token": "shadow.focus.default",
               "from": "size=sm, shape=square, prio=tertiary, state=focus"
             }
           },
           "loading": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.default",
               "from": "size=sm, shape=square, prio=tertiary, state=loading"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=square, prio=tertiary, state=loading"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=square, prio=tertiary, state=loading"
             }
           }
@@ -460,41 +508,57 @@
         "shape=round, prio=tertiary": {
           "default": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.default",
               "from": "size=sm, shape=round, prio=tertiary, state=default"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=round, prio=tertiary, state=default"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=round, prio=tertiary, state=default"
             }
           },
           "hover": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.hover",
               "from": "size=sm, shape=round, prio=tertiary, state=hover"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=round, prio=tertiary, state=hover"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=round, prio=tertiary, state=hover"
             }
           },
           "active": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.active",
               "from": "size=sm, shape=round, prio=tertiary, state=active"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=round, prio=tertiary, state=active"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=round, prio=tertiary, state=active"
             }
           },
           "pressed": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.active",
               "from": "size=sm, shape=round, prio=tertiary, state=pressed"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=round, prio=tertiary, state=pressed"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=round, prio=tertiary, state=pressed"
             }
           },
@@ -506,25 +570,37 @@
             "borderColor": {
               "token": "color.action.tertiary.border.default",
               "from": "size=sm, shape=round, prio=tertiary, state=disabled"
+            },
+            "shadow": {
+              "none": true,
+              "from": "size=sm, shape=round, prio=tertiary, state=disabled"
             }
           },
           "focus": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.default",
               "from": "size=sm, shape=round, prio=tertiary, state=focus"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=round, prio=tertiary, state=focus"
+            },
+            "shadow": {
+              "token": "shadow.focus.default",
               "from": "size=sm, shape=round, prio=tertiary, state=focus"
             }
           },
           "loading": {
             "background": {
-              "none": true,
+              "token": "color.action.tertiary.bg.default",
               "from": "size=sm, shape=round, prio=tertiary, state=loading"
             },
             "borderColor": {
               "token": "color.action.tertiary.border.default",
+              "from": "size=sm, shape=round, prio=tertiary, state=loading"
+            },
+            "shadow": {
+              "none": true,
               "from": "size=sm, shape=round, prio=tertiary, state=loading"
             }
           }
@@ -532,415 +608,79 @@
       },
       "combined": {
         "sm": {
-          "shape=square, prio=primary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=sm, shape=square, prio=primary, state=focus"
-              }
-            }
-          },
           "shape=round, prio=primary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=sm, shape=square, prio=primary, state=focus"
-              }
-            },
             "default": {
               "radius": {
                 "token": "radius.pill",
                 "from": "size=sm, shape=round, prio=primary, state=default"
-              }
-            }
-          },
-          "shape=square, prio=secondary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=sm, shape=square, prio=secondary, state=focus"
               }
             }
           },
           "shape=round, prio=secondary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=sm, shape=square, prio=secondary, state=focus"
-              }
-            },
             "default": {
               "radius": {
                 "token": "radius.pill",
                 "from": "size=sm, shape=round, prio=primary, state=default"
-              }
-            }
-          },
-          "shape=square, prio=tertiary": {
-            "default": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=default"
-              }
-            },
-            "hover": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=hover"
-              }
-            },
-            "active": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=active"
-              }
-            },
-            "pressed": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=pressed"
-              }
-            },
-            "disabled": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=disabled"
-              }
-            },
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=sm, shape=square, prio=tertiary, state=focus"
-              }
-            },
-            "loading": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=loading"
               }
             }
           },
           "shape=round, prio=tertiary": {
             "default": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=default"
-              },
               "radius": {
                 "token": "radius.pill",
                 "from": "size=sm, shape=round, prio=primary, state=default"
-              }
-            },
-            "hover": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=hover"
-              }
-            },
-            "active": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=active"
-              }
-            },
-            "pressed": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=pressed"
-              }
-            },
-            "disabled": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=disabled"
-              }
-            },
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=sm, shape=square, prio=tertiary, state=focus"
-              }
-            },
-            "loading": {
-              "shadow": {
-                "none": true,
-                "from": "size=sm, shape=square, prio=tertiary, state=loading"
               }
             }
           }
         },
         "md": {
-          "shape=square, prio=primary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=md, shape=square, prio=primary, state=focus"
-              }
-            }
-          },
           "shape=round, prio=primary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=md, shape=square, prio=primary, state=focus"
-              }
-            },
             "default": {
               "radius": {
                 "token": "radius.pill",
                 "from": "size=md, shape=round, prio=primary, state=default"
-              }
-            }
-          },
-          "shape=square, prio=secondary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=md, shape=square, prio=secondary, state=focus"
               }
             }
           },
           "shape=round, prio=secondary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=md, shape=square, prio=secondary, state=focus"
-              }
-            },
             "default": {
               "radius": {
                 "token": "radius.pill",
                 "from": "size=md, shape=round, prio=primary, state=default"
-              }
-            }
-          },
-          "shape=square, prio=tertiary": {
-            "default": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=default"
-              }
-            },
-            "hover": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=hover"
-              }
-            },
-            "active": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=active"
-              }
-            },
-            "pressed": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=pressed"
-              }
-            },
-            "disabled": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=disabled"
-              }
-            },
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=md, shape=square, prio=tertiary, state=focus"
-              }
-            },
-            "loading": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=loading"
               }
             }
           },
           "shape=round, prio=tertiary": {
             "default": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=default"
-              },
               "radius": {
                 "token": "radius.pill",
                 "from": "size=md, shape=round, prio=primary, state=default"
-              }
-            },
-            "hover": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=hover"
-              }
-            },
-            "active": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=active"
-              }
-            },
-            "pressed": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=pressed"
-              }
-            },
-            "disabled": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=disabled"
-              }
-            },
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=md, shape=square, prio=tertiary, state=focus"
-              }
-            },
-            "loading": {
-              "shadow": {
-                "none": true,
-                "from": "size=md, shape=square, prio=tertiary, state=loading"
               }
             }
           }
         },
         "lg": {
-          "shape=square, prio=primary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=lg, shape=square, prio=primary, state=focus"
-              }
-            }
-          },
           "shape=round, prio=primary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=lg, shape=square, prio=primary, state=focus"
-              }
-            },
             "default": {
               "radius": {
                 "token": "radius.pill",
                 "from": "size=lg, shape=round, prio=primary, state=default"
-              }
-            }
-          },
-          "shape=square, prio=secondary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=lg, shape=square, prio=secondary, state=focus"
               }
             }
           },
           "shape=round, prio=secondary": {
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=lg, shape=square, prio=secondary, state=focus"
-              }
-            },
             "default": {
               "radius": {
                 "token": "radius.pill",
                 "from": "size=lg, shape=round, prio=primary, state=default"
-              }
-            }
-          },
-          "shape=square, prio=tertiary": {
-            "default": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=default"
-              }
-            },
-            "hover": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=hover"
-              }
-            },
-            "active": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=active"
-              }
-            },
-            "pressed": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=pressed"
-              }
-            },
-            "disabled": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=disabled"
-              }
-            },
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=lg, shape=square, prio=tertiary, state=focus"
-              }
-            },
-            "loading": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=loading"
               }
             }
           },
           "shape=round, prio=tertiary": {
             "default": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=default"
-              },
               "radius": {
                 "token": "radius.pill",
                 "from": "size=lg, shape=round, prio=primary, state=default"
-              }
-            },
-            "hover": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=hover"
-              }
-            },
-            "active": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=active"
-              }
-            },
-            "pressed": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=pressed"
-              }
-            },
-            "disabled": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=disabled"
-              }
-            },
-            "focus": {
-              "shadow": {
-                "token": "shadow.focus.default",
-                "from": "size=lg, shape=square, prio=tertiary, state=focus"
-              }
-            },
-            "loading": {
-              "shadow": {
-                "none": true,
-                "from": "size=lg, shape=square, prio=tertiary, state=loading"
               }
             }
           }
@@ -1372,7 +1112,7 @@
     }
   },
   "docs": {
-    "description": "Icon-only action button. 126 variants: size (sm 32px, md 40px, lg 48px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, active, pressed, focus, loading, disabled). Each variant's surface — fill, border, shadow — matches the Button variant of the same size, prio and state, so the two sit side by side; active is the persistent on state of a toggle icon button (e.g. a toolbar option that is switched on) — distinct from pressed, the momentary press; pressed keeps the control shadow, focus alone carries the ring. secondary has no background. Drawn heights are the visible control; pad the hit area to 44×44 (size/target/min) in code. An icon-only control must carry an aria-label.",
+    "description": "Icon-only action button. 126 variants: size (sm 32px, md 40px, lg 48px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, active, pressed, focus, loading, disabled). Border and shadow match the Button variant of the same size, prio and state. Unlike Button, secondary and tertiary Icon Buttons keep a fill (action/{prio}/bg/{state}; none when disabled) so the glyph always sits on a surface. active is the persistent on state of a toggle icon button (e.g. a toolbar option switched on) — distinct from pressed, the momentary press; pressed keeps the control shadow, focus alone carries the ring. Drawn heights are the visible control; pad the hit area to 44×44 (size/target/min) in code. An icon-only control must carry an aria-label.",
     "figmaIssues": ["State axis has both `pressed` and `active`."]
   },
   "provenance": {
@@ -1380,7 +1120,7 @@
     "pageId": "2163:3670",
     "figmaNode": "2995:443",
     "defaultVariant": "size=sm, shape=square, prio=primary, state=default",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/icon-button.yaml",
@@ -1392,18 +1132,8 @@
       },
       {
         "rule": "follows",
-        "at": "root.borderWidth",
-        "reason": "Drawn as Figma draws it. Primary has a 1px border at sm, at rest, in focus and while loading, and none on hover, press or disable, nor at md or lg; secondary has one at sm and md in every state, and tertiary none. So the border depends on priority and state as well as size. Button keeps its border in every state, which is raised with SOLAR."
-      },
-      {
-        "rule": "follows",
         "at": "root.radius",
         "reason": "What the shape axis is for: square takes radius.control and round radius.pill, at every size, priority and state."
-      },
-      {
-        "rule": "follows",
-        "at": "root.shadow",
-        "reason": "As Button (owner decision 2026-09-23 for its lg): drawn as Figma draws it. lg is flat, keeping only the focus ring, so the shadow depends on size as well as on the paint axes. Figma also rings a pressed primary or secondary at sm and md, where Button keeps its control shadow; followed here, and raised with SOLAR."
       },
       {
         "rule": "bind",
@@ -1419,16 +1149,6 @@
         "rule": "allowLiteral",
         "at": "root.width",
         "reason": "An icon button is square, so its width is its height, under the same decision."
-      },
-      {
-        "rule": "accept",
-        "at": "component.icon button.root.background@size=lg",
-        "reason": "Secondary has no background (its description, and the variables since 2026-09-25): Figma leaves the sm fill empty and binds md's and lg's to action.secondary.bg, transparent in both modes. The two draw the same."
-      },
-      {
-        "rule": "accept",
-        "at": "component.icon button.root.background@size=md",
-        "reason": "Secondary has no background (its description, and the variables since 2026-09-25): Figma leaves the sm fill empty and binds md's and lg's to action.secondary.bg, transparent in both modes. The two draw the same."
       },
       {
         "rule": "slots",

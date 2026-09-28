@@ -3,8 +3,8 @@
   "generatedFrom": {
     "figmaFile": "SOLAR Foundations [v1--2026]",
     "fileKey": "Y21OGpk2z6ig9cRMc5cl9L",
-    "capturedFrom": "the file itself, file version 2403083104633531037, through the Figma MCP use_figma tool (Plugin API, read-only)",
-    "exportedOn": "2026-09-25",
+    "capturedFrom": "the file itself, file version 2404260420143476316, through the Figma MCP use_figma tool (Plugin API, read-only)",
+    "exportedOn": "2026-09-28",
     "solarVersion": "1.0",
     "collections": {
       "Primitives": {
@@ -3543,10 +3543,10 @@
       "figma": "action/secondary/bg/default",
       "doc": "color.action.secondary.bg.default",
       "css": "--solar-color-action-secondary-bg-default",
-      "light": "rgba(255, 255, 255, 0)",
-      "dark": "rgba(255, 255, 255, 0)",
-      "lightAlias": "color/alpha/transparent",
-      "darkAlias": "color/alpha/transparent"
+      "light": "#ffffff",
+      "dark": "#111111",
+      "lightAlias": "color/mono/white",
+      "darkAlias": "color/neutral/900"
     },
     {
       "collection": "Color",
@@ -3554,10 +3554,10 @@
       "figma": "action/secondary/bg/hover",
       "doc": "color.action.secondary.bg.hover",
       "css": "--solar-color-action-secondary-bg-hover",
-      "light": "rgba(255, 255, 255, 0)",
-      "dark": "rgba(255, 255, 255, 0)",
-      "lightAlias": "color/alpha/transparent",
-      "darkAlias": "color/alpha/transparent"
+      "light": "#f5f5f5",
+      "dark": "#222222",
+      "lightAlias": "color/neutral/50",
+      "darkAlias": "color/neutral/800"
     },
     {
       "collection": "Color",
@@ -3565,10 +3565,10 @@
       "figma": "action/secondary/bg/active",
       "doc": "color.action.secondary.bg.active",
       "css": "--solar-color-action-secondary-bg-active",
-      "light": "rgba(255, 255, 255, 0)",
-      "dark": "rgba(255, 255, 255, 0)",
-      "lightAlias": "color/alpha/transparent",
-      "darkAlias": "color/alpha/transparent"
+      "light": "#ffffff",
+      "dark": "#111111",
+      "lightAlias": "color/mono/white",
+      "darkAlias": "color/neutral/900"
     },
     {
       "collection": "Color",
@@ -3576,10 +3576,10 @@
       "figma": "action/secondary/bg/disabled",
       "doc": "color.action.secondary.bg.disabled",
       "css": "--solar-color-action-secondary-bg-disabled",
-      "light": "rgba(255, 255, 255, 0)",
-      "dark": "rgba(255, 255, 255, 0)",
-      "lightAlias": "color/alpha/transparent",
-      "darkAlias": "color/alpha/transparent"
+      "light": "#e0e0e0",
+      "dark": "#222222",
+      "lightAlias": "color/neutral/100",
+      "darkAlias": "color/neutral/800"
     },
     {
       "collection": "Color",
@@ -3587,10 +3587,10 @@
       "figma": "action/secondary/bg/danger/default",
       "doc": "color.action.secondary.bg.danger.default",
       "css": "--solar-color-action-secondary-bg-danger-default",
-      "light": "rgba(255, 255, 255, 0)",
-      "dark": "rgba(255, 255, 255, 0)",
-      "lightAlias": "color/alpha/transparent",
-      "darkAlias": "color/alpha/transparent"
+      "light": "#ffffff",
+      "dark": "#111111",
+      "lightAlias": "color/mono/white",
+      "darkAlias": "color/neutral/900"
     },
     {
       "collection": "Color",
@@ -3609,10 +3609,10 @@
       "figma": "action/secondary/bg/danger/active",
       "doc": "color.action.secondary.bg.danger.active",
       "css": "--solar-color-action-secondary-bg-danger-active",
-      "light": "rgba(255, 255, 255, 0)",
-      "dark": "rgba(255, 255, 255, 0)",
-      "lightAlias": "color/alpha/transparent",
-      "darkAlias": "color/alpha/transparent"
+      "light": "#ffffff",
+      "dark": "#111111",
+      "lightAlias": "color/mono/white",
+      "darkAlias": "color/neutral/900"
     },
     {
       "collection": "Color",
@@ -3620,10 +3620,10 @@
       "figma": "action/secondary/bg/danger/disabled",
       "doc": "color.action.secondary.bg.danger.disabled",
       "css": "--solar-color-action-secondary-bg-danger-disabled",
-      "light": "rgba(255, 255, 255, 0)",
-      "dark": "rgba(255, 255, 255, 0)",
-      "lightAlias": "color/alpha/transparent",
-      "darkAlias": "color/alpha/transparent"
+      "light": "#e0e0e0",
+      "dark": "#222222",
+      "lightAlias": "color/neutral/100",
+      "darkAlias": "color/neutral/800"
     },
     {
       "collection": "Color",

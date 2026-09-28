@@ -86,13 +86,13 @@ Default variant: `breakpoint=desktop, filled=True` · 4 variants · default size
     - **Divider** · instance of **Divider** (orientation=horizontal, type=with-label) · row gap 12 pad 0/0/0/0 FILL/FIXED · 368×20  
       itemSpacing `stack.sm`
     - **Button** · instance of **Button** (size=md, prio=secondary, state=default, danger=false) · row gap 8 pad 0/12/0/12 FILL/FIXED · 368×40  
-      fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
+      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
 
 ### Tokens used
 
 | Role         | Tokens                                                         |
 | ------------ | -------------------------------------------------------------- |
-| Fills        | `color.action.secondary.bg.default`, `color.surface.overlay`   |
+| Fills        | `color.surface.overlay`                                        |
 | Strokes      | `color.action.secondary.border.default`, `color.border.subtle` |
 | Spacing      | `inset.md`, `inset.sm`, `inset.xs`, `stack.sm`                 |
 | Radius       | `radius.container`, `radius.control`, `radius.dialog`          |

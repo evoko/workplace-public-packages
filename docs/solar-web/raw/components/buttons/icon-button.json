@@ -5,7 +5,7 @@
     {
       "name": "Icon Button",
       "id": "2995:443",
-      "description": "Icon-only action button. 126 variants: size (sm 32px, md 40px, lg 48px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, active, pressed, focus, loading, disabled). Each variant&#39;s surface — fill, border, shadow — matches the Button variant of the same size, prio and state, so the two sit side by side; active is the persistent on state of a toggle icon button (e.g. a toolbar option that is switched on) — distinct from pressed, the momentary press; pressed keeps the control shadow, focus alone carries the ring. secondary has no background. Drawn heights are the visible control; pad the hit area to 44×44 (size/target/min) in code. An icon-only control must carry an aria-label.",
+      "description": "Icon-only action button. 126 variants: size (sm 32px, md 40px, lg 48px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, active, pressed, focus, loading, disabled). Border and shadow match the Button variant of the same size, prio and state. Unlike Button, secondary and tertiary Icon Buttons keep a fill (action/{prio}/bg/{state}; none when disabled) so the glyph always sits on a surface. active is the persistent on state of a toggle icon button (e.g. a toolbar option switched on) — distinct from pressed, the momentary press; pressed keeps the control shadow, focus alone carries the ring. Drawn heights are the visible control; pad the hit area to 44×44 (size/target/min) in code. An icon-only control must carry an aria-label.",
       "docLinks": [],
       "variantCount": 126,
       "props": {
@@ -2012,6 +2012,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -2022,7 +2025,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ]
@@ -2078,7 +2083,7 @@
             32
           ],
           "fills": [
-            "{Color:surface/active}"
+            "{Color:action/secondary/bg/active}"
           ],
           "strokes": [
             "{Color:action/secondary/border/active}"
@@ -2091,7 +2096,7 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:surface/active}"
+                  "{Color:action/secondary/bg/active}"
                 ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
@@ -2112,6 +2117,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/active}"
           ],
@@ -2122,7 +2130,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
                 ]
@@ -2172,6 +2182,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -2182,7 +2195,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ],
@@ -2203,6 +2218,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -2219,7 +2237,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ]
@@ -2276,6 +2296,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -2286,7 +2309,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ],
@@ -2356,7 +2381,7 @@
             32
           ],
           "fills": [
-            "{Color:surface/active}"
+            "{Color:action/secondary/bg/active}"
           ],
           "strokes": [
             "{Color:action/secondary/border/active}"
@@ -2369,7 +2394,7 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:surface/active}"
+                  "{Color:action/secondary/bg/active}"
                 ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
@@ -2397,6 +2422,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/active}"
           ],
@@ -2407,7 +2435,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
                 ],
@@ -2471,6 +2501,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -2481,7 +2514,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ],
@@ -2509,6 +2544,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -2525,7 +2563,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ],
@@ -2674,7 +2714,7 @@
             40
           ],
           "fills": [
-            "{Color:surface/active}"
+            "{Color:action/secondary/bg/active}"
           ],
           "strokes": [
             "{Color:action/secondary/border/active}"
@@ -2687,7 +2727,7 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:surface/active}"
+                  "{Color:action/secondary/bg/active}"
                 ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
@@ -3021,7 +3061,7 @@
             40
           ],
           "fills": [
-            "{Color:surface/active}"
+            "{Color:action/secondary/bg/active}"
           ],
           "strokes": [
             "{Color:action/secondary/border/active}"
@@ -3034,7 +3074,7 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:surface/active}"
+                  "{Color:action/secondary/bg/active}"
                 ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
@@ -3389,7 +3429,7 @@
             48
           ],
           "fills": [
-            "{Color:surface/active}"
+            "{Color:action/secondary/bg/active}"
           ],
           "strokes": [
             "{Color:action/secondary/border/active}"
@@ -3402,7 +3442,7 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:surface/active}"
+                  "{Color:action/secondary/bg/active}"
                 ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
@@ -3736,7 +3776,7 @@
             48
           ],
           "fills": [
-            "{Color:surface/active}"
+            "{Color:action/secondary/bg/active}"
           ],
           "strokes": [
             "{Color:action/secondary/border/active}"
@@ -3749,7 +3789,7 @@
             "changed": {
               "/": {
                 "fills": [
-                  "{Color:surface/active}"
+                  "{Color:action/secondary/bg/active}"
                 ],
                 "strokes": [
                   "{Color:action/secondary/border/active}"
@@ -4019,6 +4059,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4028,7 +4071,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4049,6 +4094,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4058,7 +4106,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4079,6 +4129,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4088,7 +4141,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4109,6 +4164,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4118,7 +4176,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4169,6 +4229,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4179,7 +4242,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4200,6 +4265,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4215,7 +4283,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4273,6 +4343,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4282,7 +4355,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4310,6 +4385,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4319,7 +4397,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4347,6 +4427,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4356,7 +4439,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4384,6 +4469,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4393,7 +4481,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4458,6 +4548,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4468,7 +4561,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4496,6 +4591,9 @@
             32,
             32
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4511,7 +4609,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4576,6 +4676,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4585,7 +4688,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4613,6 +4718,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4622,7 +4730,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4650,6 +4760,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4659,7 +4772,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4687,6 +4802,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4696,7 +4814,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4761,6 +4881,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4771,7 +4894,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4799,6 +4924,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4814,7 +4942,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4879,6 +5009,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4888,7 +5021,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4923,6 +5058,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4932,7 +5070,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -4967,6 +5107,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -4976,7 +5119,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5011,6 +5156,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5020,7 +5168,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5099,6 +5249,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5109,7 +5262,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5144,6 +5299,9 @@
             40,
             40
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5159,7 +5317,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5231,6 +5391,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5240,7 +5403,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5268,6 +5433,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5277,7 +5445,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5305,6 +5475,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5314,7 +5487,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5342,6 +5517,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5351,7 +5529,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5416,6 +5596,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5426,7 +5609,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5454,6 +5639,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5469,7 +5657,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5534,6 +5724,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5543,7 +5736,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5578,6 +5773,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5587,7 +5785,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5622,6 +5822,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5631,7 +5834,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5666,6 +5871,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5675,7 +5883,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5754,6 +5964,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5764,7 +5977,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],
@@ -5799,6 +6014,9 @@
             48,
             48
           ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
           "strokes": [
             "{Color:action/tertiary/border/default}"
           ],
@@ -5814,7 +6032,9 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": null,
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/tertiary/border/default}"
                 ],

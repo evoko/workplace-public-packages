@@ -88,27 +88,17 @@ describe('the Button oracle', () => {
     expect(oracle.slots).not.toHaveProperty('spinner');
   });
 
-  it('excuses the secondary sm background as an open finding, with Figma’s value', () => {
-    expect(
-      variant('size=sm, prio=secondary, state=default, danger=false').excused,
-    ).toEqual([
-      expect.objectContaining({
-        layer: 'root',
-        property: 'background',
-        figma: 'transparent',
-        finding: 'component.button.root.background@size=sm',
-        decision: null,
-      }),
-    ]);
+  it('keeps Figma’s value for a background the overlay decides, and excuses nothing there', () => {
+    // lg keeps its own fills: a `follows` decides the finding, so the code draws Figma's value.
+    const lg = variant('size=lg, prio=secondary, state=default, danger=false');
+    expect(lg.layers.root.background).toBe('#ffffff');
+    expect(lg).not.toHaveProperty('excused');
   });
 
   it('excuses nothing no finding names, and every excuse names a real one', () => {
-    const findings = new Set(button.deviations.map((d) => d.token));
-    const excused = oracle.variants.flatMap((v) => v.excused ?? []);
-    // The two background axis findings, 8 + 9 variants (lg's disabled label, a third, is gone
-    // since 2026-09-25).
-    expect(excused).toHaveLength(17);
-    for (const e of excused) expect(findings).toContain(e.finding);
+    // Button's findings are all decided since 2026-09-28 (sm's background closed in Figma, lg's
+    // decided by a follows), so its oracle excuses nothing.
+    expect(oracle.variants.flatMap((v) => v.excused ?? [])).toEqual([]);
     expect(
       variant('size=md, prio=primary, state=default, danger=false'),
     ).not.toHaveProperty('excused');

@@ -342,7 +342,7 @@
     "pageId": "5113:7",
     "figmaNode": "7272:24",
     "defaultVariant": "orientation=horizontal, breakpoint=desktop",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/chart-gridlines.yaml",

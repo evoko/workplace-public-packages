@@ -162,7 +162,7 @@
     "pageId": "2163:3712",
     "figmaNode": "2771:588",
     "defaultVariant": "type=link, state=default",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/breadcrumb-item.yaml",

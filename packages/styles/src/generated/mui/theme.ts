@@ -20,8 +20,8 @@ export const solarMuiPalette = {
       contrastText: '#ffffff',
     },
     secondary: {
-      main: 'rgba(255, 255, 255, 0)',
-      dark: 'rgba(255, 255, 255, 0)',
+      main: '#ffffff',
+      dark: '#f5f5f5',
       contrastText: '#111111',
     },
     error: {
@@ -120,15 +120,15 @@ export const solarMuiPalette = {
       },
       secondary: {
         bg: {
-          default: 'rgba(255, 255, 255, 0)',
-          hover: 'rgba(255, 255, 255, 0)',
-          active: 'rgba(255, 255, 255, 0)',
-          disabled: 'rgba(255, 255, 255, 0)',
+          default: '#ffffff',
+          hover: '#f5f5f5',
+          active: '#ffffff',
+          disabled: '#e0e0e0',
           danger: {
-            default: 'rgba(255, 255, 255, 0)',
+            default: '#ffffff',
             hover: '#ffe4df',
-            active: 'rgba(255, 255, 255, 0)',
-            disabled: 'rgba(255, 255, 255, 0)',
+            active: '#ffffff',
+            disabled: '#e0e0e0',
           },
         },
         text: {
@@ -517,8 +517,8 @@ export const solarMuiPalette = {
       contrastText: '#111111',
     },
     secondary: {
-      main: 'rgba(255, 255, 255, 0)',
-      dark: 'rgba(255, 255, 255, 0)',
+      main: '#111111',
+      dark: '#222222',
       contrastText: '#f5f5f5',
     },
     error: {
@@ -617,15 +617,15 @@ export const solarMuiPalette = {
       },
       secondary: {
         bg: {
-          default: 'rgba(255, 255, 255, 0)',
-          hover: 'rgba(255, 255, 255, 0)',
-          active: 'rgba(255, 255, 255, 0)',
-          disabled: 'rgba(255, 255, 255, 0)',
+          default: '#111111',
+          hover: '#222222',
+          active: '#111111',
+          disabled: '#222222',
           danger: {
-            default: 'rgba(255, 255, 255, 0)',
+            default: '#111111',
             hover: '#410001',
-            active: 'rgba(255, 255, 255, 0)',
-            disabled: 'rgba(255, 255, 255, 0)',
+            active: '#111111',
+            disabled: '#222222',
           },
         },
         text: {

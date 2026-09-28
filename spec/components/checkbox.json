@@ -616,7 +616,7 @@
     "pageId": "2163:3699",
     "figmaNode": "2202:1291",
     "defaultVariant": "checked=false, disabled=false, hover=false, mixed=false, focus=false",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/checkbox.yaml",

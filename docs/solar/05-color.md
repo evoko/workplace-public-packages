@@ -1,7 +1,7 @@
 ---
 solar:
-  reviewed: 2026-09-25
-  figmaVersion: '2403083104633531037'
+  reviewed: 2026-09-28
+  figmaVersion: '2404260420143476316'
   sources:
     documentation/color: a369c204923e
     primitives/color: d9f38cc14287
@@ -268,26 +268,27 @@ is the only chromatic intent. The icon follows the label in every state and mode
 | icon     | brand/white (both) | mono/white (both) | mono/white (both) | neutral/300 → neutral/300       |
 | border   | red/600 → red/600  | red/700 → red/700 | red/600 → red/600 | alpha/black-20 → alpha/white-20 |
 
-**Secondary** (outlined, medium emphasis). **No background**: `bg` is
-`alpha/transparent` in every state and both modes, so the button shows the surface it
-sits on. Hover softens the label and raises the border alpha to 40 % instead.
+**Secondary** (outlined, medium emphasis). Its `bg` is an opaque fill, the same as
+tertiary's; hover softens the label and raises the border alpha to 40 %. A component may
+draw it with no fill: Button's sm and md secondary do (the rule is drawn on Button, not in
+the tokens, since 2026-09-28), so they show the surface they sit on; Button lg, Icon
+Button, Split Button and the rest draw the fill.
 
 | Property | default                         | hover                           | active                          | disabled                        |
 | -------- | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| bg       | alpha/transparent               | alpha/transparent               | alpha/transparent               | alpha/transparent               |
+| bg       | mono/white → neutral/900        | neutral/50 → neutral/800        | mono/white → neutral/900        | neutral/100 → neutral/800       |
 | text     | neutral/900 → neutral/50        | neutral/700 → neutral/200       | neutral/900 → neutral/50        | neutral/300 → neutral/500       |
 | icon     | neutral/900 → neutral/50        | neutral/700 → neutral/200       | neutral/900 → neutral/50        | neutral/300 → neutral/500       |
 | border   | alpha/black-20 → alpha/white-20 | alpha/black-40 → alpha/white-40 | alpha/black-30 → alpha/white-30 | alpha/black-10 → alpha/white-10 |
 
-Secondary danger keeps the red tint on hover only: bg `alpha/transparent` except hover
-`red/50 → red/800`; text `red/500 → red/300` (hover `red/600 → red/300`); icon
+Secondary danger: bg as secondary except hover, the red tint `red/50 → red/800`; text `red/500 → red/300` (hover `red/600 → red/300`); icon
 `red/500` (hover `red/600 → red/500`, disabled `alpha/black-10 → alpha/white-10`);
 border `red/100 → red/800` (hover `red/200 → red/700`, disabled
 `alpha/black-10 → alpha/white-10`).
 
 **Tertiary** (text-only, low emphasis: "Cancel", "Learn more"). **All borders are
-`alpha/transparent`** in every state. Unlike secondary, tertiary still carries an opaque
-background, and its hover does not change the label:
+`alpha/transparent`** in every state. Its background is secondary's, and its hover does not
+change the label:
 
 | Property | default                  | hover                    | active                   | disabled                  |
 | -------- | ------------------------ | ------------------------ | ------------------------ | ------------------------- |

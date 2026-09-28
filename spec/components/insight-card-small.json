@@ -749,7 +749,7 @@
     "pageId": "5646:4",
     "figmaNode": "9240:30553",
     "defaultVariant": "severity=success, state=default, ghost=false",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/insight-card-small.yaml",

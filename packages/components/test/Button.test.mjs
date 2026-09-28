@@ -81,8 +81,9 @@ describe('the SOLAR Button shell', () => {
     const { html, css } = render(
       h(Button, { prio: 'secondary', size: 'sm', danger: true }, 'Remove'),
     );
+    // Secondary sm and md draw no fill but danger's hover tint.
     expect(css).toContain(
-      'var(--solar-color-action-secondary-bg-danger-default)',
+      'var(--solar-color-action-secondary-bg-danger-hover)',
     );
     expect(css).toContain('padding-left:var(--solar-inset-xs)');
     expect(html).not.toMatch(/MuiButton-(secondary|sizeSm)/);

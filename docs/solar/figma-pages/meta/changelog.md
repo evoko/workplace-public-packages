@@ -1,6 +1,6 @@
 # Changelog
 
-> Verbatim text of the Figma page `Changelog` (id `120:395`, section meta), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `58839eb14d96`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
+> Verbatim text of the Figma page `Changelog` (id `120:395`, section meta), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `2120e575d5f9`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
 
 ## Changelog
 
@@ -31,9 +31,19 @@ For more information about Semantic Versioning, visit semver.org.
 
 ****MINOR****
 
+**2026-09-28**
+
+**Secondary bg variables restored to fills; no-fill rule moved to Button.**
+
+**Ella Törnquist**
+
+**Color variables**
+
+****MINOR****
+
 **2026-09-25**
 
-**Secondary actions: no background; danger hover keeps the red tint.**
+**Secondary hover steps text and border; danger hover keeps the red tint.**
 
 **Ella Törnquist**
 

@@ -196,7 +196,7 @@
     "pageId": "6622:7",
     "figmaNode": "6643:14",
     "defaultVariant": "emphasis=default, density=comfortable",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/time-axis-label.yaml",

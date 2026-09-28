@@ -98,8 +98,8 @@ describe('resolveVariants on Button', () => {
     ]);
   });
 
-  it('applies a changed fill: secondary carries the secondary background', () => {
-    const v = find({ ...DEFAULT, prio: 'secondary' });
+  it('applies a changed fill: lg secondary carries the secondary background', () => {
+    const v = find({ ...DEFAULT, size: 'lg', prio: 'secondary' });
     expect(v.layers.get('/').fills).toEqual([
       '{Color:action/secondary/bg/default}',
     ]);
@@ -126,22 +126,23 @@ describe('resolveVariants on Button', () => {
   });
 
   it('carries a cleared fill through as absent rather than correcting it', () => {
-    // secondary / default / false has no background at sm while md and lg do. That is a
-    // finding for the recipe stage to report; resolution must not paper over it.
-    const sm = find({
-      size: 'sm',
-      prio: 'secondary',
-      state: 'default',
-      danger: 'false',
-    });
-    expect(sm.layers.get('/')).not.toHaveProperty('fills');
+    // secondary / default / false has no background at md (and sm) while lg does, since
+    // 2026-09-28. That is a finding for the recipe stage to report; resolution must not paper
+    // over it.
     const md = find({
       size: 'md',
       prio: 'secondary',
       state: 'default',
       danger: 'false',
     });
-    expect(md.layers.get('/').fills).toEqual([
+    expect(md.layers.get('/')).not.toHaveProperty('fills');
+    const lg = find({
+      size: 'lg',
+      prio: 'secondary',
+      state: 'default',
+      danger: 'false',
+    });
+    expect(lg.layers.get('/').fills).toEqual([
       '{Color:action/secondary/bg/default}',
     ]);
   });

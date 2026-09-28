@@ -1388,7 +1388,7 @@
     "pageId": "2163:3707",
     "figmaNode": "5762:5846",
     "defaultVariant": "type=with label",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/stepper.yaml",

@@ -4,8 +4,8 @@
     "com.biamp.solar": {
       "source": {
         "catalog": "docs/solar-icons/catalog.json",
-        "fileVersion": "2402400024423705866",
-        "sourceFetchedOn": "2026-09-25",
+        "fileVersion": "2404244340348489810",
+        "sourceFetchedOn": "2026-09-28",
         "iconFill": "Primitives:color/neutral/900",
         "count": 340
       }

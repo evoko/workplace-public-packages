@@ -147,9 +147,6 @@
               "align": "CENTER/CENTER",
               "sizing": "FILL/FIXED"
             },
-            "fills": [
-              "{Color:action/secondary/bg/default}"
-            ],
             "strokes": [
               "{Color:action/secondary/border/default}"
             ],

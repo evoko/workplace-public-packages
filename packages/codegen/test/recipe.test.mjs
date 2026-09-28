@@ -128,8 +128,8 @@ describe('deriveRecipe on Button: the recipe', () => {
     expect(appearance('primary', 'true').default.background).toMatchObject({
       token: 'color.action.primary.bg.danger.default',
     });
-    expect(appearance('secondary').default.background).toMatchObject({
-      token: 'color.action.secondary.bg.default',
+    expect(appearance('secondary', 'true').hover.background).toMatchObject({
+      token: 'color.action.secondary.bg.danger.hover',
     });
   });
 
@@ -186,23 +186,23 @@ describe('deriveRecipe on Button: the recipe', () => {
 });
 
 describe('deriveRecipe on Button: deviations', () => {
-  it('reports the secondary button that loses its background at sm, not silently', () => {
-    const d = deviation('/', 'background', { size: 'sm' });
+  it('reports the secondary button that keeps a background at lg, not silently', () => {
+    const d = deviation('/', 'background', { size: 'lg' });
     expect(d).toBeDefined();
     const names = d.variants.map((v) => v.variant);
     expect(names).toContain(
-      'size=sm, prio=secondary, state=default, danger=false',
+      'size=lg, prio=secondary, state=default, danger=false',
     );
     const one = d.variants.find(
       (v) =>
-        v.variant === 'size=sm, prio=secondary, state=default, danger=false',
+        v.variant === 'size=lg, prio=secondary, state=default, danger=false',
     );
-    expect(one.expected).toMatchObject({
+    expect(one.expected).toEqual({ none: true });
+    expect(one.found).toMatchObject({
       token: 'color.action.secondary.bg.default',
     });
-    expect(one.found).toEqual({ none: true });
-    // The recipe keeps the reference value: sm does not get to override it.
-    expect(recipe.style['/'].size.sm).not.toHaveProperty('background');
+    // The recipe keeps the reference value: lg does not get to override it.
+    expect(recipe.style['/'].size.lg).not.toHaveProperty('background');
   });
 
   it('reports the lg shadow as one systematic finding, not twenty', () => {

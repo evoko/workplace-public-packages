@@ -212,8 +212,8 @@ it as it themes a stock MUI component). A fix to a runtime helper (`components/s
 the question for SOLAR where it is open. Button's show the kinds: most of its unbound values are
 `bind`s to the token of the same value (the icon widths, the zero paddings through the shared
 default, the heights to `size.control.*`), a few are `allowLiteral`s where SOLAR has no token (the
-counter's height, lg's width), and the backgrounds that change at `sm` and `lg` are open, drawn
-as the reference variant draws them and listed in
+counter's height, lg's width), and the background lg keeps where sm and md draw none is a
+`follows`, drawn as Figma draws it, with the question of its hover and disabled in
 [the design review](../../docs/solar-review-for-design.md). Every one of SOLAR Web's components
 derives a recipe and builds an IR, the sets and the standalone components alike, except those
 `spec/overlay/excluded.yaml` leaves out.
@@ -229,7 +229,7 @@ box size where Figma fixes one, resolved to Light and Desktop. It reads the reso
 and uses the IR only for its layer names and API, so a wrong recipe shows as a difference rather
 than agreeing with itself; a test scrambles the recipe and checks the oracle does not move. Where
 the code is known to differ, the entry keeps Figma's value and is marked `excused` with the
-finding and its decision, if any: Button's three open findings excuse 18 entries, and Spinner's
+finding and its decision, if any: Spinner's
 unreadable indicator colour is excused by its overlay `set`. It also lists each component's
 slots, so a check can tell a layer a prop hides from one a state removes. The visual checks
 (`packages/components/test/visual/`, `packages/solar_flutter/test/visual/`) render both platforms

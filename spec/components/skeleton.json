@@ -232,7 +232,7 @@
     "pageId": "2163:3680",
     "figmaNode": "4629:89",
     "defaultVariant": "type=text, size=sm",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/skeleton.yaml",

@@ -1643,7 +1643,7 @@
     "pageId": "10395:4",
     "figmaNode": "10402:922",
     "defaultVariant": "state=default, type=single",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/device-card.yaml",

@@ -720,7 +720,7 @@
     "pageId": "6622:11",
     "figmaNode": "6651:138",
     "defaultVariant": "state=default, density=comfortable",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/agenda-row.yaml",

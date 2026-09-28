@@ -701,7 +701,7 @@
     "pageId": "2163:3683",
     "figmaNode": "6165:13091",
     "defaultVariant": "breakpoint=desktop, expandable=true, selectable=true",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/table.yaml",

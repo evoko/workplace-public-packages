@@ -522,7 +522,7 @@
     "pageId": "7352:2",
     "figmaNode": "7358:6",
     "defaultVariant": "density=default, state=default",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/event-row.yaml",

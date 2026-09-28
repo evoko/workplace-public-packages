@@ -417,7 +417,7 @@
     "pageId": "2163:3665",
     "figmaNode": "3454:18",
     "defaultVariant": "state=default, range-role=none",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/inputs-day-cell.yaml",

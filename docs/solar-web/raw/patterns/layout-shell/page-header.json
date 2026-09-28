@@ -415,9 +415,6 @@
                       "align": "CENTER/CENTER",
                       "sizing": "HUG/FIXED"
                     },
-                    "fills": [
-                      "{Color:action/secondary/bg/default}"
-                    ],
                     "strokes": [
                       "{Color:action/secondary/border/default}"
                     ],
@@ -1381,9 +1378,6 @@
                     "align": "CENTER/CENTER",
                     "sizing": "HUG/FIXED"
                   },
-                  "fills": [
-                    "{Color:action/secondary/bg/default}"
-                  ],
                   "strokes": [
                     "{Color:action/secondary/border/default}"
                   ],

@@ -34,7 +34,7 @@ Default variant: `state=default` · 6 variants · default size 400×107px
     - **FileName** · text `body/md/regular` "Select a file…" · FILL/HUG · 248×10  
       fill `color.text.tertiary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
     - **Button** · instance of **Button** (size=md, prio=secondary, state=default, danger=false) · row gap 8 pad 0/12/0/12 HUG/FIXED · 80×40  
-      fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
+      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
   - **HelperText** · text `helper/sm` "Max 10MB, .jpg .png" · HUG/HUG · 111×9  
     fill `color.text.tertiary` · lineHeight `type.line-height.helper.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.sm` · fontStyle `type.font-weight.400` · prop visible←showHelper, characters←helperText
 
@@ -42,7 +42,7 @@ Default variant: `state=default` · 6 variants · default size 400×107px
 
 | Role            | Tokens                                                                                                                                                                                                                                                                                 |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.secondary.bg.default`, `color.surface.base`                                                                                                                                                                                                                              |
+| Fills           | `color.surface.base`                                                                                                                                                                                                                                                                   |
 | Strokes         | `color.action.secondary.border.default`, `color.border.subtle`                                                                                                                                                                                                                         |
 | Text color      | `color.action.primary.text.default`, `color.action.primary.text.disabled`, `color.action.secondary.text.default`, `color.action.secondary.text.disabled`, `color.text.disabled`, `color.text.feedback.danger`, `color.text.feedback.info`, `color.text.primary`, `color.text.tertiary` |
 | Icon color      | `color.action.secondary.icon.danger.default`, `color.action.secondary.icon.default`, `color.action.secondary.icon.disabled`, `color.icon.disabled`, `color.icon.feedback.danger`, `color.icon.primary`, `color.icon.tertiary`                                                          |

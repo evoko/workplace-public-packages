@@ -42,7 +42,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 280×15
     - **Icon Button** · instance of **Icon Button** (size=sm, shape=square, prio=primary, state=disabled) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
       fill `color.action.primary.bg.disabled` · stroke `color.action.primary.border.disabled` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasCTA
     - **Icon Button** · instance of **Icon Button** (size=sm, shape=square, prio=secondary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
-      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasAttachment
+      fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasAttachment
   - **Footer** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 280×10  
     itemSpacing `inset.md` · prop visible←hasFooter
     - **Helper text** · text `helper/md` "Helper text" · FILL/HUG · 241×10  
@@ -54,7 +54,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 280×15
 
 | Role            | Tokens                                                                                                                                                                                                                            |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.primary.bg.disabled`, `color.surface.base`                                                                                                                                                                          |
+| Fills           | `color.action.primary.bg.disabled`, `color.action.secondary.bg.default`, `color.surface.base`                                                                                                                                     |
 | Strokes         | `color.action.primary.border.disabled`, `color.action.secondary.border.default`, `color.border.subtle`                                                                                                                            |
 | Text color      | `color.text.disabled`, `color.text.feedback.danger`, `color.text.feedback.info`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary`                                                                              |
 | Icon color      | `color.action.primary.icon.default`, `color.action.primary.icon.disabled`, `color.action.secondary.icon.default`, `color.action.secondary.icon.disabled`                                                                          |

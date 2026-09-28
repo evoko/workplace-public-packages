@@ -164,7 +164,7 @@
     "pageId": "2966:593",
     "figmaNode": "4512:104",
     "defaultVariant": "format=relative, size=sm, emphasis=default",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/timestamp.yaml",

@@ -228,7 +228,7 @@
     "pageId": "6622:6",
     "figmaNode": "6642:20",
     "defaultVariant": "state=default, density=comfortable",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/time-slot.yaml",

@@ -2,7 +2,7 @@
 
 **For:** the SOLAR design team
 **From:** the Biamp Workplace web team
-**Date:** 2026-09-25
+**Date:** 2026-09-28
 
 ## What this is
 
@@ -54,17 +54,14 @@ If you take only a few items, take these:
 2. **A shown Segmented Control label draws only its star** — the new `show label` property shows
    its frame, but the words inside stay hidden.
    [Section 2](#the-selection-controls-checkbox-radio-toggle-slider-slider-range-draghandle-and-segmented-control).
-3. **An inverted Counter cannot be seen in a primary Button** — its count is the Button's own fill
-   colour, in every state and both modes.
-   [Section 2](#the-display-primitives).
-4. **Sizes with no variable** — the sizes on no control step. Decision 1.
+3. **Sizes with no variable** — the sizes on no control step. Decision 1.
 
 ## At a glance
 
-| #                                                  | What                                        | Count                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | File      |
-| -------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| [1](#1-control-heights-to-bind--18-components)     | Control heights to bind to `size/control/*` | 18                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | SOLAR Web |
-| [2](#2-the-components-we-build-variant-by-variant) | The components we build, in detail          | Button 2 fixes and 2 questions, Spinner 2, Icon Button 2, Button Group 1, StatusIndicator 1, the display primitives 2 fixes and 2 questions, the selection controls 2 fixes, the tags and messages 2 fixes and 1 question, the text fields 1 fix and 5 questions, the menus and lists 2 questions, the pickers 1 fix and 5 questions, navigation 1 fix and 6 questions, paging and steps 2 fixes and 2 questions, the cards 12 fixes and 7 questions, the tables and properties 4 fixes and 7 questions, the overlays and dialogs 5 fixes and 5 questions, the calendar parts 8 fixes and 4 questions, the charts 3 fixes and 2 questions | SOLAR Web |
+| #                                                  | What                                        | Count                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | File      |
+| -------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| [1](#1-control-heights-to-bind--18-components)     | Control heights to bind to `size/control/*` | 18                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | SOLAR Web |
+| [2](#2-the-components-we-build-variant-by-variant) | The components we build, in detail          | Button 2 fixes and 3 questions, Spinner 2, Icon Button 1, Button Group 1, StatusIndicator 1, the display primitives 1 fix and 2 questions, the selection controls 2 fixes, the tags and messages 2 fixes and 1 question, the text fields 1 fix and 5 questions, the menus and lists 2 questions, the pickers 1 fix and 5 questions, navigation 1 fix and 6 questions, paging and steps 2 fixes and 2 questions, the cards 12 fixes and 7 questions, the tables and properties 4 fixes and 7 questions, the overlays and dialogs 5 fixes and 5 questions, the calendar parts 8 fixes and 4 questions, the charts 3 fixes and 2 questions | SOLAR Web |
 
 ---
 
@@ -106,10 +103,11 @@ with a sibling. Where an item is open, we build it exactly as drawn.
 
 **⚠️ Decide:**
 
-| Question                                                                                                                                                                                                                                                         | What we do meanwhile                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| **Tertiary hover's underline**, which the description names, is not drawn on a danger tertiary button's hover, and lg's _secondary_ hover draws it too (`link/md/default`, where the description says secondary hover changes only the border and label). Which? | We reproduce each variant as drawn. |
-| **lg tertiary alone has a fill**: `action/tertiary/bg/*` (white in Light) at rest, pressed, focus and loading, where sm and md tertiary have none. Meant for the wide menu-style button?                                                                         | We draw it as drawn.                |
+| Question                                                                                                                                                                                                                                                                                                                                                                                                                                 | What we do meanwhile                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **Tertiary hover's underline**, which the description names, is not drawn on a danger tertiary button's hover, and lg's _secondary_ hover draws it too (`link/md/default`, where the description says secondary hover changes only the border and label). Which?                                                                                                                                                                         | We reproduce each variant as drawn. |
+| **lg's fill drops on hover and when disabled.** The description now says lg keeps its own fills, and lg secondary and tertiary draw `action/{prio}/bg/*` (white in Light) at rest, pressed, focus and loading, but none on hover or disabled, though `action/{prio}/bg/hover` and `/disabled` exist. Should hover and disabled keep the fill too?                                                                                        | We draw it as drawn.                |
+| **A secondary SplitButton is filled; a secondary Button is not.** Since the no-fill rule moved from the variables to Button (sm and md), SplitButton's secondary ([4569:200](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4569-200)) still binds `action/secondary/bg/*` and is now filled (white in Light), so the two secondary actions differ when they sit side by side. Should SplitButton drop its fill as Button does? | We draw each as drawn.              |
 
 ### Spinner · [4626:102](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=4626-102)
 
@@ -125,10 +123,9 @@ with a sibling. Where an item is open, we build it exactly as drawn.
 
 **Fix** — tidying:
 
-| What                                                                                                                                                                                               | Variants                                                       |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| The icon binds its width to `icon/xs`, `icon/sm` and `icon/md`, but its height is 12 / 16 / 20 and unbound. Bind it to the same.                                                                   | all                                                            |
-| A consistency nit: at sm the secondary background is left empty, where md and lg bind `action/secondary/bg/*` (transparent). Both draw the same; binding it at sm too keeps the three sizes alike. | `sm / secondary` at rest, pressed, focus, loading and disabled |
+| What                                                                                                                             | Variants |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| The icon binds its width to `icon/xs`, `icon/sm` and `icon/md`, but its height is 12 / 16 / 20 and unbound. Bind it to the same. | all      |
 
 The heights go with Button's (section 1), and the hit area is padded, as for every control.
 
@@ -165,10 +162,9 @@ code fill the space or take the content they are given; nothing needs to change.
 
 **Fix** — these look like accidents:
 
-| Component                                                                                       | What                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Variants               |
-| ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| **Counter** · [2203:3266](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=2203-3266)    | **The inverted Counter cannot be seen in a primary Button**, where the Button places it ([5177:6728](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=5177-6728)) and the description says it belongs ("for dark surfaces and inside primary buttons"). Its count is bound to `action/secondary/text/*` on a transparent fill, the same colour as the primary Button's fill in every state and both modes: #111111 on #111111 at rest in Light, #333333 on #333333 on hover, `neutral/50` on `neutral/50` in Dark. No variable mode is set on it to change that. Bind the count to `action/primary/text/*`, the primary Button's label colour? We draw it as drawn. | `inverted`, all states |
-| **Avatar** · [11066:29966](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=11066-29966) | The **new lg logo avatar is rounded 11**, bound to nothing, where the md and sm logos use `radius/container` (8). We draw it at `radius/container`, as theirs.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `logo / lg`            |
+| Component                                                                                       | What                                                                                                                                                           | Variants    |
+| ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **Avatar** · [11066:29966](https://figma.com/design/OGvmMNnywH7JWDyEhOzjcc?node-id=11066-29966) | The **new lg logo avatar is rounded 11**, bound to nothing, where the md and sm logos use `radius/container` (8). We draw it at `radius/container`, as theirs. | `logo / lg` |
 
 **⚠️ Decide:**
 
@@ -497,7 +493,8 @@ The questions we cannot answer ourselves, most far-reaching first.
 **Components**
 
 2. **Button's tertiary underline and lg fill** — the underline is not drawn on a danger tertiary
-   hover and is drawn on lg's secondary hover; lg tertiary alone is filled. Section 2.
+   hover and is drawn on lg's secondary hover; lg's fill drops on hover and when disabled; a
+   secondary SplitButton is filled where a secondary Button is not. Section 2.
 3. **Drop shadows** — StatusIndicator's marks and Tooltip's arrow carry `shadow/raised`, and
    Popover's frame `shadow/dialog`, each a box shadow where the shape needs a drop shadow: a
    drop-shadow variable, or none? And is Popover's `shadow/dialog` or, as its description says,
@@ -523,8 +520,8 @@ The questions we cannot answer ourselves, most far-reaching first.
 
 ---
 
-_Read from SOLAR Foundations `[v1--2026]` version `2403083104633531037` and SOLAR Web `[v1--2026]`
-version `2403086052040245261`, on 2026-09-25, and SOLAR Icons `[v2--2026]` version
-`2402400024423705866`. Counts are computed from the files, not estimated. We are happy to walk
+_Read from SOLAR Foundations `[v1--2026]` version `2404260420143476316`, SOLAR Web `[v1--2026]`
+version `2404261626473546820` and SOLAR Icons `[v2--2026]` version `2404244340348489810`, on
+2026-09-28. Counts are computed from the files, not estimated. We are happy to walk
 through any of this live — and happy to be wrong on the judgement calls, where we may be missing
 context._

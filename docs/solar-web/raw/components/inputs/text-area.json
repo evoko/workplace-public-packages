@@ -317,6 +317,9 @@
                   "align": "CENTER/CENTER",
                   "sizing": "FIXED/FIXED"
                 },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ],
@@ -889,6 +892,7 @@
                   "prio": "secondary",
                   "state": "disabled"
                 },
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/disabled}"
                 ]
@@ -999,6 +1003,7 @@
                   8,
                   60
                 ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/disabled}"
                 ]

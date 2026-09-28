@@ -174,10 +174,11 @@ describe('the dialog’s fields', () => {
   });
 
   it('says which entry overrides a scope in the variant in view', () => {
+    // Paint that follows the appearance axes alone (Button's background follows size too).
     const i = inspect(build, 'Button', 1, { overlayText: '' });
     const bg = i.layers
       .find((l) => l.name === 'root')
-      .cells.find((c) => c.cell === 'background');
+      .cells.find((c) => c.cell === 'borderColor');
     expect(bg.at).toMatch(/^appearance /);
     expect(bg.scopes[0]).toMatchObject({ label: 'every variant', wins: bg.at });
     expect(bg.scopes.at(-1).wins).toBeNull();
@@ -221,7 +222,7 @@ describe('the dialog’s fields', () => {
       cellOf(
         inspect(build, 'Button', index, { overlayText: '' }),
         'root',
-        'background',
+        'borderColor',
       ).scopes.map(({ label, winsLabel, current }) => [
         label,
         winsLabel,

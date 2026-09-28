@@ -576,7 +576,7 @@
     "pageId": "2163:3671",
     "figmaNode": "2733:1322",
     "defaultVariant": "state=default, expanded=false",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/accordion.yaml",

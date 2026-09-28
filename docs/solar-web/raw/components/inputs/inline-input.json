@@ -171,6 +171,9 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
                   "strokes": [
                     "{Color:action/tertiary/border/default}"
                   ],
@@ -308,6 +311,9 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
                   "strokes": [
                     "{Color:action/tertiary/border/default}"
                   ],
@@ -355,6 +361,9 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
                   "strokes": [
                     "{Color:action/tertiary/border/default}"
                   ],
@@ -492,6 +501,9 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
                   "strokes": [
                     "{Color:action/tertiary/border/default}"
                   ],
@@ -539,6 +551,9 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
                   "strokes": [
                     "{Color:action/tertiary/border/default}"
                   ],
@@ -676,6 +691,9 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
                   "strokes": [
                     "{Color:action/tertiary/border/default}"
                   ],
@@ -723,6 +741,9 @@
                     "align": "CENTER/CENTER",
                     "sizing": "FIXED/FIXED"
                   },
+                  "fills": [
+                    "{Color:action/tertiary/bg/default}"
+                  ],
                   "strokes": [
                     "{Color:action/tertiary/border/default}"
                   ],

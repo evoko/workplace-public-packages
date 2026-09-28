@@ -93,6 +93,8 @@ abstract final class SolarIconButtonRecipe {
         't:color.action.primary.bg.disabled',
     'root.borderColor|appearance|shape=square, prio=primary|disabled':
         't:color.action.primary.border.disabled',
+    'root.shadow|appearance|shape=square, prio=primary|focus':
+        't:shadow.focus.default',
     'root.background|appearance|shape=round, prio=primary|hover':
         't:color.action.primary.bg.hover',
     'root.borderColor|appearance|shape=round, prio=primary|hover':
@@ -109,7 +111,10 @@ abstract final class SolarIconButtonRecipe {
         't:color.action.primary.bg.disabled',
     'root.borderColor|appearance|shape=round, prio=primary|disabled':
         't:color.action.primary.border.disabled',
-    'root.background|appearance|shape=square, prio=secondary|default': 'none',
+    'root.shadow|appearance|shape=round, prio=primary|focus':
+        't:shadow.focus.default',
+    'root.background|appearance|shape=square, prio=secondary|default':
+        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|shape=square, prio=secondary|default':
         't:color.action.secondary.border.default',
     'root.background|appearance|shape=square, prio=secondary|hover':
@@ -117,22 +122,28 @@ abstract final class SolarIconButtonRecipe {
     'root.borderColor|appearance|shape=square, prio=secondary|hover':
         't:color.action.secondary.border.hover',
     'root.background|appearance|shape=square, prio=secondary|active':
-        't:color.surface.active',
+        't:color.action.secondary.bg.active',
     'root.borderColor|appearance|shape=square, prio=secondary|active':
         't:color.action.secondary.border.active',
-    'root.background|appearance|shape=square, prio=secondary|pressed': 'none',
+    'root.background|appearance|shape=square, prio=secondary|pressed':
+        't:color.action.secondary.bg.active',
     'root.borderColor|appearance|shape=square, prio=secondary|pressed':
         't:color.action.secondary.border.active',
     'root.background|appearance|shape=square, prio=secondary|disabled': 'none',
     'root.borderColor|appearance|shape=square, prio=secondary|disabled':
         't:color.action.secondary.border.disabled',
-    'root.background|appearance|shape=square, prio=secondary|focus': 'none',
+    'root.background|appearance|shape=square, prio=secondary|focus':
+        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|shape=square, prio=secondary|focus':
         't:color.action.secondary.border.default',
-    'root.background|appearance|shape=square, prio=secondary|loading': 'none',
+    'root.shadow|appearance|shape=square, prio=secondary|focus':
+        't:shadow.focus.default',
+    'root.background|appearance|shape=square, prio=secondary|loading':
+        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|shape=square, prio=secondary|loading':
         't:color.action.secondary.border.default',
-    'root.background|appearance|shape=round, prio=secondary|default': 'none',
+    'root.background|appearance|shape=round, prio=secondary|default':
+        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|shape=round, prio=secondary|default':
         't:color.action.secondary.border.default',
     'root.background|appearance|shape=round, prio=secondary|hover':
@@ -140,177 +151,138 @@ abstract final class SolarIconButtonRecipe {
     'root.borderColor|appearance|shape=round, prio=secondary|hover':
         't:color.action.secondary.border.hover',
     'root.background|appearance|shape=round, prio=secondary|active':
-        't:color.surface.active',
+        't:color.action.secondary.bg.active',
     'root.borderColor|appearance|shape=round, prio=secondary|active':
         't:color.action.secondary.border.active',
-    'root.background|appearance|shape=round, prio=secondary|pressed': 'none',
+    'root.background|appearance|shape=round, prio=secondary|pressed':
+        't:color.action.secondary.bg.active',
     'root.borderColor|appearance|shape=round, prio=secondary|pressed':
         't:color.action.secondary.border.active',
     'root.background|appearance|shape=round, prio=secondary|disabled': 'none',
     'root.borderColor|appearance|shape=round, prio=secondary|disabled':
         't:color.action.secondary.border.disabled',
-    'root.background|appearance|shape=round, prio=secondary|focus': 'none',
+    'root.background|appearance|shape=round, prio=secondary|focus':
+        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|shape=round, prio=secondary|focus':
         't:color.action.secondary.border.default',
-    'root.background|appearance|shape=round, prio=secondary|loading': 'none',
+    'root.shadow|appearance|shape=round, prio=secondary|focus':
+        't:shadow.focus.default',
+    'root.background|appearance|shape=round, prio=secondary|loading':
+        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|shape=round, prio=secondary|loading':
         't:color.action.secondary.border.default',
-    'root.background|appearance|shape=square, prio=tertiary|default': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|default':
+        't:color.action.tertiary.bg.default',
     'root.borderColor|appearance|shape=square, prio=tertiary|default':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=square, prio=tertiary|hover': 'none',
+    'root.shadow|appearance|shape=square, prio=tertiary|default': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|hover':
+        't:color.action.tertiary.bg.hover',
     'root.borderColor|appearance|shape=square, prio=tertiary|hover':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=square, prio=tertiary|active': 'none',
+    'root.shadow|appearance|shape=square, prio=tertiary|hover': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|active':
+        't:color.action.tertiary.bg.active',
     'root.borderColor|appearance|shape=square, prio=tertiary|active':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=square, prio=tertiary|pressed': 'none',
+    'root.shadow|appearance|shape=square, prio=tertiary|active': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|pressed':
+        't:color.action.tertiary.bg.active',
     'root.borderColor|appearance|shape=square, prio=tertiary|pressed':
         't:color.action.tertiary.border.default',
+    'root.shadow|appearance|shape=square, prio=tertiary|pressed': 'none',
     'root.background|appearance|shape=square, prio=tertiary|disabled': 'none',
     'root.borderColor|appearance|shape=square, prio=tertiary|disabled':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=square, prio=tertiary|focus': 'none',
+    'root.shadow|appearance|shape=square, prio=tertiary|disabled': 'none',
+    'root.background|appearance|shape=square, prio=tertiary|focus':
+        't:color.action.tertiary.bg.default',
     'root.borderColor|appearance|shape=square, prio=tertiary|focus':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=square, prio=tertiary|loading': 'none',
+    'root.shadow|appearance|shape=square, prio=tertiary|focus':
+        't:shadow.focus.default',
+    'root.background|appearance|shape=square, prio=tertiary|loading':
+        't:color.action.tertiary.bg.default',
     'root.borderColor|appearance|shape=square, prio=tertiary|loading':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=round, prio=tertiary|default': 'none',
+    'root.shadow|appearance|shape=square, prio=tertiary|loading': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|default':
+        't:color.action.tertiary.bg.default',
     'root.borderColor|appearance|shape=round, prio=tertiary|default':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=round, prio=tertiary|hover': 'none',
+    'root.shadow|appearance|shape=round, prio=tertiary|default': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|hover':
+        't:color.action.tertiary.bg.hover',
     'root.borderColor|appearance|shape=round, prio=tertiary|hover':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=round, prio=tertiary|active': 'none',
+    'root.shadow|appearance|shape=round, prio=tertiary|hover': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|active':
+        't:color.action.tertiary.bg.active',
     'root.borderColor|appearance|shape=round, prio=tertiary|active':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=round, prio=tertiary|pressed': 'none',
+    'root.shadow|appearance|shape=round, prio=tertiary|active': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|pressed':
+        't:color.action.tertiary.bg.active',
     'root.borderColor|appearance|shape=round, prio=tertiary|pressed':
         't:color.action.tertiary.border.default',
+    'root.shadow|appearance|shape=round, prio=tertiary|pressed': 'none',
     'root.background|appearance|shape=round, prio=tertiary|disabled': 'none',
     'root.borderColor|appearance|shape=round, prio=tertiary|disabled':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=round, prio=tertiary|focus': 'none',
+    'root.shadow|appearance|shape=round, prio=tertiary|disabled': 'none',
+    'root.background|appearance|shape=round, prio=tertiary|focus':
+        't:color.action.tertiary.bg.default',
     'root.borderColor|appearance|shape=round, prio=tertiary|focus':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|shape=round, prio=tertiary|loading': 'none',
+    'root.shadow|appearance|shape=round, prio=tertiary|focus':
+        't:shadow.focus.default',
+    'root.background|appearance|shape=round, prio=tertiary|loading':
+        't:color.action.tertiary.bg.default',
     'root.borderColor|appearance|shape=round, prio=tertiary|loading':
         't:color.action.tertiary.border.default',
-    'root.shadow|combined|sm|shape=square, prio=primary|focus':
-        't:shadow.focus.default',
-    'root.background|combined|sm|shape=square, prio=primary|focus':
-        't:color.action.primary.bg.default',
-    'root.borderColor|combined|sm|shape=square, prio=primary|focus':
-        't:color.action.primary.border.default',
-    'root.shadow|combined|sm|shape=round, prio=primary|focus':
-        't:shadow.focus.default',
+    'root.shadow|appearance|shape=round, prio=tertiary|loading': 'none',
+    'root.radius|combined|sm|shape=round, prio=primary|default':
+        't:radius.pill',
     'root.background|combined|sm|shape=round, prio=primary|focus':
         't:color.action.primary.bg.default',
     'root.borderColor|combined|sm|shape=round, prio=primary|focus':
         't:color.action.primary.border.default',
-    'root.radius|combined|sm|shape=round, prio=primary|default':
-        't:radius.pill',
-    'root.shadow|combined|sm|shape=square, prio=secondary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|sm|shape=round, prio=secondary|focus':
-        't:shadow.focus.default',
     'root.radius|combined|sm|shape=round, prio=secondary|default':
         't:radius.pill',
-    'root.shadow|combined|sm|shape=square, prio=tertiary|default': 'none',
-    'root.shadow|combined|sm|shape=square, prio=tertiary|hover': 'none',
-    'root.shadow|combined|sm|shape=square, prio=tertiary|active': 'none',
-    'root.shadow|combined|sm|shape=square, prio=tertiary|pressed': 'none',
-    'root.shadow|combined|sm|shape=square, prio=tertiary|disabled': 'none',
-    'root.shadow|combined|sm|shape=square, prio=tertiary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|sm|shape=square, prio=tertiary|loading': 'none',
-    'root.shadow|combined|sm|shape=round, prio=tertiary|default': 'none',
     'root.radius|combined|sm|shape=round, prio=tertiary|default':
         't:radius.pill',
-    'root.shadow|combined|sm|shape=round, prio=tertiary|hover': 'none',
-    'root.shadow|combined|sm|shape=round, prio=tertiary|active': 'none',
-    'root.shadow|combined|sm|shape=round, prio=tertiary|pressed': 'none',
-    'root.shadow|combined|sm|shape=round, prio=tertiary|disabled': 'none',
-    'root.shadow|combined|sm|shape=round, prio=tertiary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|sm|shape=round, prio=tertiary|loading': 'none',
-    'root.shadow|combined|md|shape=square, prio=primary|focus':
-        't:shadow.focus.default',
-    'root.background|combined|md|shape=square, prio=primary|focus':
+    'root.background|combined|sm|shape=square, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|md|shape=square, prio=primary|focus':
+    'root.borderColor|combined|sm|shape=square, prio=primary|focus':
         't:color.action.primary.border.default',
-    'root.shadow|combined|md|shape=round, prio=primary|focus':
-        't:shadow.focus.default',
+    'root.radius|combined|md|shape=round, prio=primary|default':
+        't:radius.pill',
     'root.background|combined|md|shape=round, prio=primary|focus':
         't:color.action.primary.bg.default',
     'root.borderColor|combined|md|shape=round, prio=primary|focus':
         't:color.action.primary.border.default',
-    'root.radius|combined|md|shape=round, prio=primary|default':
-        't:radius.pill',
-    'root.shadow|combined|md|shape=square, prio=secondary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|md|shape=round, prio=secondary|focus':
-        't:shadow.focus.default',
     'root.radius|combined|md|shape=round, prio=secondary|default':
         't:radius.pill',
-    'root.shadow|combined|md|shape=square, prio=tertiary|default': 'none',
-    'root.shadow|combined|md|shape=square, prio=tertiary|hover': 'none',
-    'root.shadow|combined|md|shape=square, prio=tertiary|active': 'none',
-    'root.shadow|combined|md|shape=square, prio=tertiary|pressed': 'none',
-    'root.shadow|combined|md|shape=square, prio=tertiary|disabled': 'none',
-    'root.shadow|combined|md|shape=square, prio=tertiary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|md|shape=square, prio=tertiary|loading': 'none',
-    'root.shadow|combined|md|shape=round, prio=tertiary|default': 'none',
     'root.radius|combined|md|shape=round, prio=tertiary|default':
         't:radius.pill',
-    'root.shadow|combined|md|shape=round, prio=tertiary|hover': 'none',
-    'root.shadow|combined|md|shape=round, prio=tertiary|active': 'none',
-    'root.shadow|combined|md|shape=round, prio=tertiary|pressed': 'none',
-    'root.shadow|combined|md|shape=round, prio=tertiary|disabled': 'none',
-    'root.shadow|combined|md|shape=round, prio=tertiary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|md|shape=round, prio=tertiary|loading': 'none',
-    'root.shadow|combined|lg|shape=square, prio=primary|focus':
-        't:shadow.focus.default',
-    'root.background|combined|lg|shape=square, prio=primary|focus':
+    'root.background|combined|md|shape=square, prio=primary|focus':
         't:color.action.primary.bg.default',
-    'root.borderColor|combined|lg|shape=square, prio=primary|focus':
+    'root.borderColor|combined|md|shape=square, prio=primary|focus':
         't:color.action.primary.border.default',
-    'root.shadow|combined|lg|shape=round, prio=primary|focus':
-        't:shadow.focus.default',
+    'root.radius|combined|lg|shape=round, prio=primary|default':
+        't:radius.pill',
     'root.background|combined|lg|shape=round, prio=primary|focus':
         't:color.action.primary.bg.default',
     'root.borderColor|combined|lg|shape=round, prio=primary|focus':
         't:color.action.primary.border.default',
-    'root.radius|combined|lg|shape=round, prio=primary|default':
-        't:radius.pill',
-    'root.shadow|combined|lg|shape=square, prio=secondary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|lg|shape=round, prio=secondary|focus':
-        't:shadow.focus.default',
     'root.radius|combined|lg|shape=round, prio=secondary|default':
         't:radius.pill',
-    'root.shadow|combined|lg|shape=square, prio=tertiary|default': 'none',
-    'root.shadow|combined|lg|shape=square, prio=tertiary|hover': 'none',
-    'root.shadow|combined|lg|shape=square, prio=tertiary|active': 'none',
-    'root.shadow|combined|lg|shape=square, prio=tertiary|pressed': 'none',
-    'root.shadow|combined|lg|shape=square, prio=tertiary|disabled': 'none',
-    'root.shadow|combined|lg|shape=square, prio=tertiary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|lg|shape=square, prio=tertiary|loading': 'none',
-    'root.shadow|combined|lg|shape=round, prio=tertiary|default': 'none',
     'root.radius|combined|lg|shape=round, prio=tertiary|default':
         't:radius.pill',
-    'root.shadow|combined|lg|shape=round, prio=tertiary|hover': 'none',
-    'root.shadow|combined|lg|shape=round, prio=tertiary|active': 'none',
-    'root.shadow|combined|lg|shape=round, prio=tertiary|pressed': 'none',
-    'root.shadow|combined|lg|shape=round, prio=tertiary|disabled': 'none',
-    'root.shadow|combined|lg|shape=round, prio=tertiary|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|lg|shape=round, prio=tertiary|loading': 'none',
+    'root.background|combined|lg|shape=square, prio=primary|focus':
+        't:color.action.primary.bg.default',
+    'root.borderColor|combined|lg|shape=square, prio=primary|focus':
+        't:color.action.primary.border.default',
     'icon.present|base': 'b:true',
     'icon.component|base': 'k:Icon/None',
     'icon.variant.solid|base': 'k:false',
@@ -512,6 +484,8 @@ abstract final class SolarIconButtonRecipe {
       't:color.action.primary.icon.default' => c.actionPrimaryIconDefault,
       't:color.action.primary.icon.disabled' => c.actionPrimaryIconDisabled,
       't:color.action.primary.icon.hover' => c.actionPrimaryIconHover,
+      't:color.action.secondary.bg.active' => c.actionSecondaryBgActive,
+      't:color.action.secondary.bg.default' => c.actionSecondaryBgDefault,
       't:color.action.secondary.bg.hover' => c.actionSecondaryBgHover,
       't:color.action.secondary.border.active' => c.actionSecondaryBorderActive,
       't:color.action.secondary.border.default' =>
@@ -523,12 +497,14 @@ abstract final class SolarIconButtonRecipe {
       't:color.action.secondary.icon.default' => c.actionSecondaryIconDefault,
       't:color.action.secondary.icon.disabled' => c.actionSecondaryIconDisabled,
       't:color.action.secondary.icon.hover' => c.actionSecondaryIconHover,
+      't:color.action.tertiary.bg.active' => c.actionTertiaryBgActive,
+      't:color.action.tertiary.bg.default' => c.actionTertiaryBgDefault,
+      't:color.action.tertiary.bg.hover' => c.actionTertiaryBgHover,
       't:color.action.tertiary.border.default' => c.actionTertiaryBorderDefault,
       't:color.action.tertiary.icon.active' => c.actionTertiaryIconActive,
       't:color.action.tertiary.icon.default' => c.actionTertiaryIconDefault,
       't:color.action.tertiary.icon.disabled' => c.actionTertiaryIconDisabled,
       't:color.action.tertiary.icon.hover' => c.actionTertiaryIconHover,
-      't:color.surface.active' => c.surfaceActive,
       final v => throw StateError('$cell: no colour for $v'),
     };
   }

@@ -25,7 +25,7 @@ Default variant: `orientation=horizontal, type=regular` · 3 variants · default
   - ~~**Button**~~ (hidden by default) · instance of **Button** (size=md, prio=tertiary, state=default, danger=false) · row gap 8 pad 0/12/0/12 FIXED/FIXED · 138×40  
     stroke `color.action.tertiary.border.default` 1px · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←TertiaryCTA
   - **Button** · instance of **Button** (size=md, prio=secondary, state=default, danger=false) · row gap 8 pad 0/12/0/12 FILL/FIXED · 212×40  
-    fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←SecondaryCTA
+    stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←SecondaryCTA
   - **Button** · instance of **Button** (size=md, prio=primary, state=default, danger=false) · row gap 8 pad 0/12/0/12 FILL/FIXED · 212×40  
     fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control`
 
@@ -33,7 +33,7 @@ Default variant: `orientation=horizontal, type=regular` · 3 variants · default
 
 | Role         | Tokens                                                                                                                                        |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills        | `color.action.primary.bg.default`, `color.action.secondary.bg.default`                                                                        |
+| Fills        | `color.action.primary.bg.default`                                                                                                             |
 | Strokes      | `color.action.primary.border.default`, `color.action.secondary.border.default`, `color.action.tertiary.border.default`, `color.border.subtle` |
 | Text color   | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`                              |
 | Icon color   | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`                              |

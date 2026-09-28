@@ -221,10 +221,9 @@ option switched on or off): `true` draws Figma's active state, the persistent on
 announced pressed (`aria-pressed`); left unset, it is an ordinary action. An icon alone is not a name, so the types require an
 `aria-label` or an `aria-labelledby` (and in development it warns without one, for JavaScript
 callers). The icon fills a box the recipe sizes from the icon ladder. While loading, the icon gives
-way to the Spinner Figma picks for the variant; disabled wins over loading. Figma draws some
-variants inconsistently with Button (primary's border, a focus ring on press, disabled borders);
-they are drawn as Figma draws them and listed in [the design review](../../docs/solar-review-for-design.md),
-section 8.
+way to the Spinner Figma picks for the variant; disabled wins over loading. Unlike Button's sm and
+md, its secondary and tertiary keep a fill (`action.<prio>.bg.*`), none when disabled, as Figma
+draws them.
 
 ## Button Group
 

@@ -79,223 +79,318 @@ abstract final class SolarButtonRecipe {
     'root.paddingRight|size|sm': 't:inset.xs',
     'root.paddingLeft|size|sm': 't:inset.xs',
     'root.height|size|sm': 't:size.control.sm',
-    'root.background|appearance|prio=primary, danger=true|default':
-        't:color.action.primary.bg.danger.default',
     'root.borderColor|appearance|prio=primary, danger=true|default':
         't:color.action.primary.border.danger.default',
-    'root.background|appearance|prio=primary, danger=true|hover':
-        't:color.action.primary.bg.danger.hover',
     'root.borderColor|appearance|prio=primary, danger=true|hover':
         't:color.action.primary.border.danger.hover',
-    'root.background|appearance|prio=primary, danger=true|pressed':
-        't:color.action.primary.bg.danger.active',
     'root.borderColor|appearance|prio=primary, danger=true|pressed':
         't:color.action.primary.border.danger.active',
-    'root.background|appearance|prio=primary, danger=true|disabled':
-        't:color.action.primary.bg.danger.disabled',
     'root.borderColor|appearance|prio=primary, danger=true|disabled':
         't:color.action.primary.border.danger.disabled',
-    'root.background|appearance|prio=primary, danger=true|focus':
-        't:color.action.primary.bg.danger.default',
     'root.borderColor|appearance|prio=primary, danger=true|focus':
         't:color.action.primary.border.danger.default',
-    'root.background|appearance|prio=primary, danger=true|loading':
-        't:color.action.primary.bg.danger.default',
     'root.borderColor|appearance|prio=primary, danger=true|loading':
         't:color.action.primary.border.danger.default',
-    'root.background|appearance|prio=secondary, danger=false|default':
-        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|prio=secondary, danger=false|default':
         't:color.action.secondary.border.default',
-    'root.background|appearance|prio=secondary, danger=false|hover':
-        't:color.action.secondary.bg.hover',
     'root.borderColor|appearance|prio=secondary, danger=false|hover':
         't:color.action.secondary.border.hover',
-    'root.background|appearance|prio=secondary, danger=false|pressed':
-        't:color.action.secondary.bg.active',
     'root.borderColor|appearance|prio=secondary, danger=false|pressed':
         't:color.action.secondary.border.active',
-    'root.background|appearance|prio=secondary, danger=false|disabled': 'none',
     'root.borderColor|appearance|prio=secondary, danger=false|disabled':
         't:color.action.secondary.border.disabled',
-    'root.background|appearance|prio=secondary, danger=false|focus':
-        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|prio=secondary, danger=false|focus':
         't:color.action.secondary.border.default',
-    'root.background|appearance|prio=secondary, danger=false|loading':
-        't:color.action.secondary.bg.default',
     'root.borderColor|appearance|prio=secondary, danger=false|loading':
         't:color.action.secondary.border.default',
-    'root.background|appearance|prio=secondary, danger=true|default':
-        't:color.action.secondary.bg.danger.default',
     'root.borderColor|appearance|prio=secondary, danger=true|default':
         't:color.action.secondary.border.danger.default',
-    'root.background|appearance|prio=secondary, danger=true|hover':
-        't:color.action.secondary.bg.danger.hover',
     'root.borderColor|appearance|prio=secondary, danger=true|hover':
         't:color.action.secondary.border.danger.hover',
-    'root.background|appearance|prio=secondary, danger=true|pressed':
-        't:color.action.secondary.bg.danger.active',
     'root.borderColor|appearance|prio=secondary, danger=true|pressed':
         't:color.action.secondary.border.danger.active',
-    'root.background|appearance|prio=secondary, danger=true|disabled': 'none',
     'root.borderColor|appearance|prio=secondary, danger=true|disabled':
         't:color.action.secondary.border.danger.disabled',
-    'root.background|appearance|prio=secondary, danger=true|focus':
-        't:color.action.secondary.bg.danger.default',
     'root.borderColor|appearance|prio=secondary, danger=true|focus':
         't:color.action.secondary.border.danger.default',
-    'root.background|appearance|prio=secondary, danger=true|loading':
-        't:color.action.secondary.bg.danger.default',
     'root.borderColor|appearance|prio=secondary, danger=true|loading':
         't:color.action.secondary.border.danger.default',
-    'root.background|appearance|prio=tertiary, danger=false|default': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=false|default':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=false|hover': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=false|hover':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=false|pressed': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=false|pressed':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=false|disabled': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=false|disabled':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=false|focus': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=false|focus':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=false|loading': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=false|loading':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=true|default': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=true|default':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=true|hover':
-        't:color.action.tertiary.bg.danger.hover',
     'root.borderColor|appearance|prio=tertiary, danger=true|hover':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=true|pressed': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=true|pressed':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=true|disabled': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=true|disabled':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=true|focus': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=true|focus':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=tertiary, danger=true|loading': 'none',
     'root.borderColor|appearance|prio=tertiary, danger=true|loading':
         't:color.action.tertiary.border.default',
-    'root.background|appearance|prio=primary, danger=false|hover':
-        't:color.action.primary.bg.hover',
     'root.borderColor|appearance|prio=primary, danger=false|hover':
         't:color.action.primary.border.hover',
-    'root.background|appearance|prio=primary, danger=false|pressed':
-        't:color.action.primary.bg.active',
     'root.borderColor|appearance|prio=primary, danger=false|pressed':
         't:color.action.primary.border.active',
-    'root.background|appearance|prio=primary, danger=false|disabled':
-        't:color.action.primary.bg.disabled',
     'root.borderColor|appearance|prio=primary, danger=false|disabled':
         't:color.action.primary.border.disabled',
-    'root.shadow|combined|md|prio=tertiary, danger=false|default': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=false|hover': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=false|pressed': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=false|disabled': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=false|focus':
-        't:shadow.focus.default',
-    'root.shadow|combined|md|prio=tertiary, danger=false|loading': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=true|default': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=true|hover': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=true|pressed': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=true|disabled': 'none',
-    'root.shadow|combined|md|prio=tertiary, danger=true|focus':
-        't:shadow.focus.danger',
-    'root.shadow|combined|md|prio=tertiary, danger=true|loading': 'none',
-    'root.shadow|combined|md|prio=primary, danger=false|focus':
-        't:shadow.focus.default',
-    'root.background|combined|md|prio=primary, danger=false|focus':
-        't:color.action.primary.bg.default',
-    'root.borderColor|combined|md|prio=primary, danger=false|focus':
-        't:color.action.primary.border.default',
+    'root.background|combined|md|prio=primary, danger=true|default':
+        't:color.action.primary.bg.danger.default',
+    'root.background|combined|md|prio=primary, danger=true|hover':
+        't:color.action.primary.bg.danger.hover',
+    'root.background|combined|md|prio=primary, danger=true|pressed':
+        't:color.action.primary.bg.danger.active',
+    'root.background|combined|md|prio=primary, danger=true|disabled':
+        't:color.action.primary.bg.danger.disabled',
+    'root.background|combined|md|prio=primary, danger=true|focus':
+        't:color.action.primary.bg.danger.default',
     'root.shadow|combined|md|prio=primary, danger=true|focus':
         't:shadow.focus.danger',
+    'root.background|combined|md|prio=primary, danger=true|loading':
+        't:color.action.primary.bg.danger.default',
+    'root.background|combined|md|prio=secondary, danger=false|default': 'none',
+    'root.background|combined|md|prio=secondary, danger=false|hover': 'none',
+    'root.background|combined|md|prio=secondary, danger=false|pressed': 'none',
+    'root.background|combined|md|prio=secondary, danger=false|disabled': 'none',
+    'root.background|combined|md|prio=secondary, danger=false|focus': 'none',
     'root.shadow|combined|md|prio=secondary, danger=false|focus':
         't:shadow.focus.default',
+    'root.background|combined|md|prio=secondary, danger=false|loading': 'none',
+    'root.background|combined|md|prio=secondary, danger=true|default': 'none',
+    'root.background|combined|md|prio=secondary, danger=true|hover':
+        't:color.action.secondary.bg.danger.hover',
+    'root.background|combined|md|prio=secondary, danger=true|pressed': 'none',
+    'root.background|combined|md|prio=secondary, danger=true|disabled': 'none',
+    'root.background|combined|md|prio=secondary, danger=true|focus': 'none',
     'root.shadow|combined|md|prio=secondary, danger=true|focus':
         't:shadow.focus.danger',
-    'root.shadow|combined|sm|prio=tertiary, danger=false|default': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=false|hover': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=false|pressed': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=false|disabled': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=false|focus':
+    'root.background|combined|md|prio=secondary, danger=true|loading': 'none',
+    'root.background|combined|md|prio=tertiary, danger=false|default': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=false|default': 'none',
+    'root.background|combined|md|prio=tertiary, danger=false|hover': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=false|hover': 'none',
+    'root.background|combined|md|prio=tertiary, danger=false|pressed': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=false|pressed': 'none',
+    'root.background|combined|md|prio=tertiary, danger=false|disabled': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=false|disabled': 'none',
+    'root.background|combined|md|prio=tertiary, danger=false|focus': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=false|focus':
         't:shadow.focus.default',
-    'root.shadow|combined|sm|prio=tertiary, danger=false|loading': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=true|default': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=true|hover': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=true|pressed': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=true|disabled': 'none',
-    'root.shadow|combined|sm|prio=tertiary, danger=true|focus':
+    'root.background|combined|md|prio=tertiary, danger=false|loading': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=false|loading': 'none',
+    'root.background|combined|md|prio=tertiary, danger=true|default': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=true|default': 'none',
+    'root.background|combined|md|prio=tertiary, danger=true|hover':
+        't:color.action.tertiary.bg.danger.hover',
+    'root.shadow|combined|md|prio=tertiary, danger=true|hover': 'none',
+    'root.background|combined|md|prio=tertiary, danger=true|pressed': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=true|pressed': 'none',
+    'root.background|combined|md|prio=tertiary, danger=true|disabled': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=true|disabled': 'none',
+    'root.background|combined|md|prio=tertiary, danger=true|focus': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=true|focus':
         't:shadow.focus.danger',
-    'root.shadow|combined|sm|prio=tertiary, danger=true|loading': 'none',
-    'root.shadow|combined|sm|prio=primary, danger=false|focus':
+    'root.background|combined|md|prio=tertiary, danger=true|loading': 'none',
+    'root.shadow|combined|md|prio=tertiary, danger=true|loading': 'none',
+    'root.background|combined|md|prio=primary, danger=false|hover':
+        't:color.action.primary.bg.hover',
+    'root.background|combined|md|prio=primary, danger=false|pressed':
+        't:color.action.primary.bg.active',
+    'root.background|combined|md|prio=primary, danger=false|disabled':
+        't:color.action.primary.bg.disabled',
+    'root.shadow|combined|md|prio=primary, danger=false|focus':
         't:shadow.focus.default',
-    'root.background|combined|sm|prio=primary, danger=false|focus':
-        't:color.action.primary.bg.default',
-    'root.borderColor|combined|sm|prio=primary, danger=false|focus':
+    'root.borderColor|combined|md|prio=primary, danger=false|focus':
         't:color.action.primary.border.default',
+    'root.background|combined|md|prio=primary, danger=false|focus':
+        't:color.action.primary.bg.default',
+    'root.background|combined|sm|prio=primary, danger=true|default':
+        't:color.action.primary.bg.danger.default',
+    'root.background|combined|sm|prio=primary, danger=true|hover':
+        't:color.action.primary.bg.danger.hover',
+    'root.background|combined|sm|prio=primary, danger=true|pressed':
+        't:color.action.primary.bg.danger.active',
+    'root.background|combined|sm|prio=primary, danger=true|disabled':
+        't:color.action.primary.bg.danger.disabled',
+    'root.background|combined|sm|prio=primary, danger=true|focus':
+        't:color.action.primary.bg.danger.default',
     'root.shadow|combined|sm|prio=primary, danger=true|focus':
         't:shadow.focus.danger',
+    'root.background|combined|sm|prio=primary, danger=true|loading':
+        't:color.action.primary.bg.danger.default',
+    'root.background|combined|sm|prio=secondary, danger=false|default': 'none',
+    'root.background|combined|sm|prio=secondary, danger=false|hover': 'none',
+    'root.background|combined|sm|prio=secondary, danger=false|pressed': 'none',
+    'root.background|combined|sm|prio=secondary, danger=false|disabled': 'none',
+    'root.background|combined|sm|prio=secondary, danger=false|focus': 'none',
     'root.shadow|combined|sm|prio=secondary, danger=false|focus':
         't:shadow.focus.default',
+    'root.background|combined|sm|prio=secondary, danger=false|loading': 'none',
+    'root.background|combined|sm|prio=secondary, danger=true|default': 'none',
+    'root.background|combined|sm|prio=secondary, danger=true|hover':
+        't:color.action.secondary.bg.danger.hover',
+    'root.background|combined|sm|prio=secondary, danger=true|pressed': 'none',
+    'root.background|combined|sm|prio=secondary, danger=true|disabled': 'none',
+    'root.background|combined|sm|prio=secondary, danger=true|focus': 'none',
     'root.shadow|combined|sm|prio=secondary, danger=true|focus':
         't:shadow.focus.danger',
-    'root.shadow|combined|lg|prio=primary, danger=false|default': 'none',
-    'root.shadow|combined|lg|prio=primary, danger=false|hover': 'none',
-    'root.shadow|combined|lg|prio=primary, danger=false|pressed': 'none',
-    'root.shadow|combined|lg|prio=primary, danger=false|disabled': 'none',
-    'root.shadow|combined|lg|prio=primary, danger=false|focus':
+    'root.background|combined|sm|prio=secondary, danger=true|loading': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=false|default': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=false|default': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=false|hover': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=false|hover': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=false|pressed': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=false|pressed': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=false|disabled': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=false|disabled': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=false|focus': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=false|focus':
         't:shadow.focus.default',
-    'root.background|combined|lg|prio=primary, danger=false|focus':
-        't:color.action.primary.bg.default',
-    'root.borderColor|combined|lg|prio=primary, danger=false|focus':
+    'root.background|combined|sm|prio=tertiary, danger=false|loading': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=false|loading': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=true|default': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=true|default': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=true|hover':
+        't:color.action.tertiary.bg.danger.hover',
+    'root.shadow|combined|sm|prio=tertiary, danger=true|hover': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=true|pressed': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=true|pressed': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=true|disabled': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=true|disabled': 'none',
+    'root.background|combined|sm|prio=tertiary, danger=true|focus': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=true|focus':
+        't:shadow.focus.danger',
+    'root.background|combined|sm|prio=tertiary, danger=true|loading': 'none',
+    'root.shadow|combined|sm|prio=tertiary, danger=true|loading': 'none',
+    'root.background|combined|sm|prio=primary, danger=false|hover':
+        't:color.action.primary.bg.hover',
+    'root.background|combined|sm|prio=primary, danger=false|pressed':
+        't:color.action.primary.bg.active',
+    'root.background|combined|sm|prio=primary, danger=false|disabled':
+        't:color.action.primary.bg.disabled',
+    'root.shadow|combined|sm|prio=primary, danger=false|focus':
+        't:shadow.focus.default',
+    'root.borderColor|combined|sm|prio=primary, danger=false|focus':
         't:color.action.primary.border.default',
-    'root.shadow|combined|lg|prio=primary, danger=false|loading': 'none',
+    'root.background|combined|sm|prio=primary, danger=false|focus':
+        't:color.action.primary.bg.default',
+    'root.background|combined|lg|prio=primary, danger=true|default':
+        't:color.action.primary.bg.danger.default',
     'root.shadow|combined|lg|prio=primary, danger=true|default': 'none',
+    'root.background|combined|lg|prio=primary, danger=true|hover':
+        't:color.action.primary.bg.danger.hover',
     'root.shadow|combined|lg|prio=primary, danger=true|hover': 'none',
+    'root.background|combined|lg|prio=primary, danger=true|pressed':
+        't:color.action.primary.bg.danger.active',
     'root.shadow|combined|lg|prio=primary, danger=true|pressed': 'none',
+    'root.background|combined|lg|prio=primary, danger=true|disabled':
+        't:color.action.primary.bg.danger.disabled',
     'root.shadow|combined|lg|prio=primary, danger=true|disabled': 'none',
+    'root.background|combined|lg|prio=primary, danger=true|focus':
+        't:color.action.primary.bg.danger.default',
     'root.shadow|combined|lg|prio=primary, danger=true|focus':
         't:shadow.focus.danger',
+    'root.background|combined|lg|prio=primary, danger=true|loading':
+        't:color.action.primary.bg.danger.default',
     'root.shadow|combined|lg|prio=primary, danger=true|loading': 'none',
+    'root.background|combined|lg|prio=secondary, danger=false|default':
+        't:color.action.secondary.bg.default',
     'root.shadow|combined|lg|prio=secondary, danger=false|default': 'none',
+    'root.background|combined|lg|prio=secondary, danger=false|hover': 'none',
     'root.shadow|combined|lg|prio=secondary, danger=false|hover': 'none',
+    'root.background|combined|lg|prio=secondary, danger=false|pressed':
+        't:color.action.secondary.bg.active',
     'root.shadow|combined|lg|prio=secondary, danger=false|pressed': 'none',
+    'root.background|combined|lg|prio=secondary, danger=false|disabled': 'none',
     'root.shadow|combined|lg|prio=secondary, danger=false|disabled': 'none',
+    'root.background|combined|lg|prio=secondary, danger=false|focus':
+        't:color.action.secondary.bg.default',
     'root.shadow|combined|lg|prio=secondary, danger=false|focus':
         't:shadow.focus.default',
+    'root.background|combined|lg|prio=secondary, danger=false|loading':
+        't:color.action.secondary.bg.default',
     'root.shadow|combined|lg|prio=secondary, danger=false|loading': 'none',
+    'root.background|combined|lg|prio=secondary, danger=true|default':
+        't:color.action.secondary.bg.danger.default',
     'root.shadow|combined|lg|prio=secondary, danger=true|default': 'none',
+    'root.background|combined|lg|prio=secondary, danger=true|hover':
+        't:color.action.secondary.bg.danger.hover',
     'root.shadow|combined|lg|prio=secondary, danger=true|hover': 'none',
+    'root.background|combined|lg|prio=secondary, danger=true|pressed':
+        't:color.action.secondary.bg.danger.active',
     'root.shadow|combined|lg|prio=secondary, danger=true|pressed': 'none',
+    'root.background|combined|lg|prio=secondary, danger=true|disabled': 'none',
     'root.shadow|combined|lg|prio=secondary, danger=true|disabled': 'none',
+    'root.background|combined|lg|prio=secondary, danger=true|focus':
+        't:color.action.secondary.bg.danger.default',
     'root.shadow|combined|lg|prio=secondary, danger=true|focus':
         't:shadow.focus.danger',
+    'root.background|combined|lg|prio=secondary, danger=true|loading':
+        't:color.action.secondary.bg.danger.default',
     'root.shadow|combined|lg|prio=secondary, danger=true|loading': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=false|default':
+        't:color.action.tertiary.bg.default',
     'root.shadow|combined|lg|prio=tertiary, danger=false|default': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=false|hover': 'none',
     'root.shadow|combined|lg|prio=tertiary, danger=false|hover': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=false|pressed':
+        't:color.action.tertiary.bg.active',
     'root.shadow|combined|lg|prio=tertiary, danger=false|pressed': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=false|disabled': 'none',
     'root.shadow|combined|lg|prio=tertiary, danger=false|disabled': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=false|focus':
+        't:color.action.tertiary.bg.default',
     'root.shadow|combined|lg|prio=tertiary, danger=false|focus':
         't:shadow.focus.default',
+    'root.background|combined|lg|prio=tertiary, danger=false|loading':
+        't:color.action.tertiary.bg.default',
     'root.shadow|combined|lg|prio=tertiary, danger=false|loading': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=true|default':
+        't:color.action.tertiary.bg.danger.default',
     'root.shadow|combined|lg|prio=tertiary, danger=true|default': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=true|hover':
+        't:color.action.tertiary.bg.danger.hover',
     'root.shadow|combined|lg|prio=tertiary, danger=true|hover': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=true|pressed':
+        't:color.action.tertiary.bg.danger.active',
     'root.shadow|combined|lg|prio=tertiary, danger=true|pressed': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=true|disabled': 'none',
     'root.shadow|combined|lg|prio=tertiary, danger=true|disabled': 'none',
+    'root.background|combined|lg|prio=tertiary, danger=true|focus':
+        't:color.action.tertiary.bg.danger.default',
     'root.shadow|combined|lg|prio=tertiary, danger=true|focus':
         't:shadow.focus.danger',
+    'root.background|combined|lg|prio=tertiary, danger=true|loading':
+        't:color.action.tertiary.bg.danger.default',
     'root.shadow|combined|lg|prio=tertiary, danger=true|loading': 'none',
+    'root.background|combined|lg|prio=primary, danger=false|hover':
+        't:color.action.primary.bg.hover',
+    'root.shadow|combined|lg|prio=primary, danger=false|hover': 'none',
+    'root.background|combined|lg|prio=primary, danger=false|pressed':
+        't:color.action.primary.bg.active',
+    'root.shadow|combined|lg|prio=primary, danger=false|pressed': 'none',
+    'root.background|combined|lg|prio=primary, danger=false|disabled':
+        't:color.action.primary.bg.disabled',
+    'root.shadow|combined|lg|prio=primary, danger=false|disabled': 'none',
+    'root.shadow|combined|lg|prio=primary, danger=false|default': 'none',
+    'root.shadow|combined|lg|prio=primary, danger=false|focus':
+        't:shadow.focus.default',
+    'root.borderColor|combined|lg|prio=primary, danger=false|focus':
+        't:color.action.primary.border.default',
+    'root.background|combined|lg|prio=primary, danger=false|focus':
+        't:color.action.primary.bg.default',
+    'root.shadow|combined|lg|prio=primary, danger=false|loading': 'none',
     'iconLeading.present|base': 'b:false',
     'iconLeading.component|base': 'k:Icon/None',
     'iconLeading.variant.solid|base': 'k:false',
@@ -792,7 +887,6 @@ abstract final class SolarButtonRecipe {
       't:color.action.secondary.bg.danger.hover' =>
         c.actionSecondaryBgDangerHover,
       't:color.action.secondary.bg.default' => c.actionSecondaryBgDefault,
-      't:color.action.secondary.bg.hover' => c.actionSecondaryBgHover,
       't:color.action.secondary.border.active' => c.actionSecondaryBorderActive,
       't:color.action.secondary.border.danger.active' =>
         c.actionSecondaryBorderDangerActive,
@@ -831,8 +925,14 @@ abstract final class SolarButtonRecipe {
       't:color.action.secondary.text.default' => c.actionSecondaryTextDefault,
       't:color.action.secondary.text.disabled' => c.actionSecondaryTextDisabled,
       't:color.action.secondary.text.hover' => c.actionSecondaryTextHover,
+      't:color.action.tertiary.bg.active' => c.actionTertiaryBgActive,
+      't:color.action.tertiary.bg.danger.active' =>
+        c.actionTertiaryBgDangerActive,
+      't:color.action.tertiary.bg.danger.default' =>
+        c.actionTertiaryBgDangerDefault,
       't:color.action.tertiary.bg.danger.hover' =>
         c.actionTertiaryBgDangerHover,
+      't:color.action.tertiary.bg.default' => c.actionTertiaryBgDefault,
       't:color.action.tertiary.border.default' => c.actionTertiaryBorderDefault,
       't:color.action.tertiary.icon.active' => c.actionTertiaryIconActive,
       't:color.action.tertiary.icon.danger.active' =>

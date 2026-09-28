@@ -126,7 +126,7 @@
     "pageId": "5113:4",
     "figmaNode": "7235:26",
     "defaultVariant": "segments=4, orientation=vertical",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/bar-stack.yaml",

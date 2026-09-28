@@ -1,11 +1,11 @@
 ---
 solar:
-  reviewed: 2026-09-25
-  figmaVersion: '2403083104633531037'
+  reviewed: 2026-09-28
+  figmaVersion: '2404260420143476316'
   sources:
     documentation/governance: 2b399162762f
     meta/lint-plugin: f8b268dcd32d
-    meta/changelog: 58839eb14d96
+    meta/changelog: 2120e575d5f9
 ---
 
 # 16 · Governance & Validation
@@ -105,14 +105,15 @@ may be promoted to system tokens through the normal proposal process.
 - **Changelog** columns: Component (name and link), Change (MAJOR/MINOR/PATCH), Date
   (YYYY-MM-DD), Description, Contributors.
 
-The Changelog page's first entries, all dated 2026-09-25:
+The Changelog page's first entries:
 
-| Component         | Change | Description                                                                 |
-| ----------------- | ------ | --------------------------------------------------------------------------- |
-| Color variables   | MINOR  | Secondary actions: no background; danger hover keeps the red tint           |
-| Color variables   | PATCH  | Dark primary icon hover/pressed follows the label; danger hovers pass 4.5:1 |
-| Spatial variables | MINOR  | Added `size/control/sm`, `md`, `lg` and `size/target/min`                   |
-| Guideline pages   | PATCH  | Action states, data scale and icon checklist corrected to the variables     |
+| Date       | Component         | Change | Description                                                                 |
+| ---------- | ----------------- | ------ | --------------------------------------------------------------------------- |
+| 2026-09-28 | Color variables   | MINOR  | Secondary bg variables restored to fills; no-fill rule moved to Button      |
+| 2026-09-25 | Color variables   | MINOR  | Secondary hover steps text and border; danger hover keeps the red tint      |
+| 2026-09-25 | Color variables   | PATCH  | Dark primary icon hover/pressed follows the label; danger hovers pass 4.5:1 |
+| 2026-09-25 | Spatial variables | MINOR  | Added `size/control/sm`, `md`, `lg` and `size/target/min`                   |
+| 2026-09-25 | Guideline pages   | PATCH  | Action states, data scale and icon checklist corrected to the variables     |
 
 The values are in [05-color.md](05-color.md#action) and
 [18-agent-reference.md](18-agent-reference.md#spatial-system-verified).

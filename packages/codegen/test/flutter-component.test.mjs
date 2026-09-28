@@ -22,8 +22,8 @@ describe('renderFlutterComponent on Button', () => {
       't:color.action.primary.bg.default',
     );
     expect(
-      cells['root.background|appearance|prio=primary, danger=false|hover'],
-    ).toBe('t:color.action.primary.bg.hover');
+      cells['root.borderColor|appearance|prio=primary, danger=false|hover'],
+    ).toBe('t:color.action.primary.border.hover');
   });
 
   it('reaches every colour through the theme’s SolarColors', () => {

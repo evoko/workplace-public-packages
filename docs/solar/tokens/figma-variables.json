@@ -3,8 +3,8 @@
   "source": {
     "figmaFile": "SOLAR Foundations [v1--2026]",
     "fileKey": "Y21OGpk2z6ig9cRMc5cl9L",
-    "capturedFrom": "the file itself, file version 2403083104633531037, through the Figma MCP use_figma tool (Plugin API, read-only)",
-    "exportedOn": "2026-09-25",
+    "capturedFrom": "the file itself, file version 2404260420143476316, through the Figma MCP use_figma tool (Plugin API, read-only)",
+    "exportedOn": "2026-09-28",
     "solarVersion": "1.0",
     "collections": {
       "Primitives": {
@@ -1039,28 +1039,28 @@
       "STROKE_COLOR"
     ],
     "action/secondary/bg/default": [
-      "{color/alpha/transparent}",
-      "{color/alpha/transparent}",
+      "{color/mono/white}",
+      "{color/neutral/900}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/hover": [
-      "{color/alpha/transparent}",
-      "{color/alpha/transparent}",
+      "{color/neutral/50}",
+      "{color/neutral/800}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/active": [
-      "{color/alpha/transparent}",
-      "{color/alpha/transparent}",
+      "{color/mono/white}",
+      "{color/neutral/900}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/disabled": [
-      "{color/alpha/transparent}",
-      "{color/alpha/transparent}",
+      "{color/neutral/100}",
+      "{color/neutral/800}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/default": [
-      "{color/alpha/transparent}",
-      "{color/alpha/transparent}",
+      "{color/mono/white}",
+      "{color/neutral/900}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/hover": [
@@ -1069,13 +1069,13 @@
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/active": [
-      "{color/alpha/transparent}",
-      "{color/alpha/transparent}",
+      "{color/mono/white}",
+      "{color/neutral/900}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/bg/danger/disabled": [
-      "{color/alpha/transparent}",
-      "{color/alpha/transparent}",
+      "{color/neutral/100}",
+      "{color/neutral/800}",
       "FRAME_FILL,SHAPE_FILL"
     ],
     "action/secondary/text/default": [

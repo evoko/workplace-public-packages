@@ -511,7 +511,7 @@
     "pageId": "2163:3707",
     "figmaNode": "5760:5192",
     "defaultVariant": "status=complete, type=round",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/step.yaml",

@@ -254,7 +254,7 @@
     "pageId": "5113:2",
     "figmaNode": "7312:14",
     "defaultVariant": "trend=up, size=sm",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/sparkline.yaml",

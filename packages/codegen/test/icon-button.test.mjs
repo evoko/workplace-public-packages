@@ -53,10 +53,16 @@ describe('the Icon Button IR', () => {
       expect(
         round[size]['shape=round, prio=primary'].default.radius.token,
       ).toBe('radius.pill');
-    // Flat at lg until 2026-09-25; the control shadow at every size since.
-    const lg = spec.style.root.combined.lg['shape=square, prio=primary'];
-    expect(lg.default).toBeUndefined();
-    expect(lg.focus.shadow.token).toBe('shadow.focus.default');
+    // Flat at lg until 2026-09-25; the control shadow at every size since, so the shadow follows
+    // the paint axes alone and lg has no entry of its own: its ring is every size's.
+    expect(
+      spec.style.root.combined.lg['shape=square, prio=primary'],
+    ).toBeUndefined();
+    expect(spec.style.root.base.shadow.token).toBe('shadow.control');
+    expect(
+      spec.style.root.appearance['shape=square, prio=primary'].focus.shadow
+        .token,
+    ).toBe('shadow.focus.default');
   });
 
   it('draws the active state, a toggle’s on state, as the pressed one’s colours', () => {

@@ -29,6 +29,15 @@ follows:
       design (no shadow, square, borderless, fixed width), so the shadow depends on size as well
       as on the paint axes. Raised with SOLAR to confirm.
 
+  root.background:
+    axes: [size, prio, state, danger]
+    reason: >-
+      Owner decision 2026-09-28: drawn as Figma draws it. Button's description says secondary at
+      sm and md has no fill and "lg keeps its own fills": lg's secondary and tertiary draw
+      action.*.bg at rest, pressed, focus and loading, and none on hover or disabled, which the
+      design review asks SOLAR about. So the background depends on size as well as on the paint
+      axes.
+
 bind:
   root.height:
     tokens: { 32: size.control.sm, 40: size.control.md, 48: size.control.lg }

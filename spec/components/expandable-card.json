@@ -531,7 +531,7 @@
     "pageId": "5646:5",
     "figmaNode": "3168:3",
     "defaultVariant": "expanded=false, hover=false",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/expandable-card.yaml",

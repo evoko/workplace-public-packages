@@ -5,7 +5,7 @@
     {
       "name": "Button",
       "id": "2087:2544",
-      "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (108):\n• size — sm (32px) | md (40px, default) | lg (48px, 200px fixed-width variant) — heights are size/control/{sm,md,lg}\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | focus | loading | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nsecondary has no background: hover and disabled change only the border and label; danger turns border and label red, and danger hover adds the red tint (action/secondary/bg/danger/hover). tertiary hover underlines the label. lg is a distinct button: fixed 200px wide with the label centred, square (radius/none), borderless and flat — only focus draws a ring. Use it where a wide menu-style action is needed, not as a bigger md.\n\nfocus carries shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code.\n\nLabels: write as actions — “Save changes” not “OK”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Tertiary should not stand alone as the sole action.",
+      "description": "Triggers an action — submits forms, confirms decisions, performs commands. Not for navigation (use Link), toggling (use Switch), or selecting options (use Checkbox/Radio).\n\nVariants (108):\n• size — sm (32px) | md (40px, default) | lg (48px, 200px fixed-width variant) — heights are size/control/{sm,md,lg}\n• prio — primary | secondary | tertiary\n• state — default | hover | pressed | focus | loading | disabled\n• danger — false | true  (destructive/irreversible actions: delete, remove, revoke)\n\nsecondary (sm, md) has no fill — the rule is drawn on Button itself, not in the tokens: hover and disabled change only the border and label; danger turns border and label red, and danger hover adds the red tint (action/secondary/bg/danger/hover). lg keeps its own fills. tertiary hover underlines the label. lg is a distinct button: fixed 200px wide with the label centred, square (radius/none), borderless and flat — only focus draws a ring. Use it where a wide menu-style action is needed, not as a bigger md.\n\nfocus carries shadow/focus/default (shadow/focus/danger on danger buttons); loading swaps the label for a Spinner and blocks re-submission. Drawn heights are the visible control; the 44×44px hit area (size/target/min) is padded in code.\n\nLabels: write as actions — “Save changes” not “OK”. 1–3 words. Leading icon reinforces; trailing icon indicates direction; icon-only requires aria-label.\n\nRules: one primary per view. Danger is for destructive actions only — never for Cancel or Close. Tertiary should not stand alone as the sole action.",
       "docLinks": [],
       "variantCount": 108,
       "props": {
@@ -363,9 +363,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -380,9 +377,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ]
@@ -428,9 +423,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/danger/default}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/danger/default}"
           ],
@@ -445,9 +437,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/danger/default}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/danger/default}"
                 ]
@@ -1777,9 +1767,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/hover}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/hover}"
           ],
@@ -1794,9 +1781,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/hover}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/hover}"
                 ]
@@ -2195,9 +2180,6 @@
             64,
             32
           ],
-          "fills": [
-            "{Color:action/secondary/bg/hover}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/hover}"
           ],
@@ -2220,9 +2202,7 @@
                     8
                   ]
                 },
-                "fills": [
-                  "{Color:action/secondary/bg/hover}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/hover}"
                 ],
@@ -3290,9 +3270,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/active}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/active}"
           ],
@@ -3307,9 +3284,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/active}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/active}"
                 ]
@@ -3355,9 +3330,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/danger/active}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/danger/active}"
           ],
@@ -3372,9 +3344,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/danger/active}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/danger/active}"
                 ]
@@ -6199,9 +6169,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -6216,9 +6183,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ],
@@ -6265,9 +6230,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/danger/default}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/danger/default}"
           ],
@@ -6282,9 +6244,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/danger/default}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/danger/default}"
                 ],
@@ -7589,9 +7549,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/default}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/default}"
           ],
@@ -7601,9 +7558,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/default}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/default}"
                 ]
@@ -7627,9 +7582,6 @@
             80,
             40
           ],
-          "fills": [
-            "{Color:action/secondary/bg/danger/default}"
-          ],
           "strokes": [
             "{Color:action/secondary/border/danger/default}"
           ],
@@ -7639,9 +7591,7 @@
           "overrides": {
             "changed": {
               "/": {
-                "fills": [
-                  "{Color:action/secondary/bg/danger/default}"
-                ],
+                "fills": null,
                 "strokes": [
                   "{Color:action/secondary/border/danger/default}"
                 ]

@@ -12,7 +12,7 @@
       "x": 0,
       "y": 0,
       "w": 1280,
-      "h": 982,
+      "h": 1054,
       "blocks": [
         {
           "t": "h",
@@ -113,6 +113,67 @@
           "blocks": [
             {
               "t": "p",
+              "text": "2026-09-28",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Secondary bg variables restored to fills; no-fill rule moved to Button.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Ella Törnquist",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Color variables",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MINOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
               "text": "2026-09-25",
               "style": "Body/Body S/Medium"
             }
@@ -124,7 +185,7 @@
           "blocks": [
             {
               "t": "p",
-              "text": "Secondary actions: no background; danger hover keeps the red tint.",
+              "text": "Secondary hover steps text and border; danger hover keeps the red tint.",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -385,6 +446,15 @@
     {
       "layer": ".Version Status",
       "labels": [
+        "MINOR"
+      ],
+      "variableId": "VariableID:34:3320",
+      "hex": "#3e7cff",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
         "PATCH"
       ],
       "variableId": "VariableID:299:2738",
@@ -410,5 +480,5 @@
       "opacity": 1
     }
   ],
-  "blockCount": 27
+  "blockCount": 32
 }

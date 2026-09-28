@@ -31,7 +31,7 @@ Default variant: `cta=full-width` · 2 variants · default size 640×480px
       - **Title** · text `title/sm` "Dialog Title" · FILL/HUG · 548×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
       - **Icon Button** · instance of **Icon Button** (size=md, shape=round, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.pill`
+        fill `color.action.tertiary.bg.default` · stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.pill`
   - **Body** · frame · row gap 0 pad 0/0/0/0 FILL/FILL · 640×376  
     fill `color.surface.base`
     - **left** · slot · column gap 16 pad 20/20/20/20 FILL/FILL · 320×376  
@@ -55,7 +55,7 @@ Default variant: `cta=full-width` · 2 variants · default size 640×480px
 
 | Role            | Tokens                                                                                                                                                                                                                          |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.surface.base`, `color.surface.dialog`                                                                                                                                                                                    |
+| Fills           | `color.action.tertiary.bg.default`, `color.surface.base`, `color.surface.dialog`                                                                                                                                                |
 | Strokes         | `color.action.tertiary.border.default`, `color.border.subtle`                                                                                                                                                                   |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`, `color.text.feedback.info`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary`               |
 | Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.tertiary`, `color.neutral.900`                                                                    |

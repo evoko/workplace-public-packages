@@ -1857,7 +1857,7 @@
     "pageId": "2202:1229",
     "figmaNode": "3886:170",
     "defaultVariant": "size=md, state=default, stepper=inline",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/number-input.yaml",

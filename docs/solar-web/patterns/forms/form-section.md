@@ -27,7 +27,7 @@ Titled group of FormRows: optional section header (title and description), optio
       - **Description** · text `body/md/regular` "Short description goes here." · FILL/HUG · 640×10  
         fill `color.text.secondary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
     - ~~**Button**~~ (hidden by default) · instance of **Button** (size=md, prio=secondary, state=default, danger=false) · row gap 8 pad 0/12/0/12 HUG/FIXED · 80×40  
-      fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasCTA
+      stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasCTA
   - **SectionFields** · slot · column gap 24 pad 0/0/0/0 FILL/HUG · 640×276  
     itemSpacing `inset.xl` · prop slotContentId←SectionFields
     - **FormRow** · instance of **FormRow** (columns=2) · row gap 16 pad 0/0/0/0 FILL/HUG · 640×76  
@@ -41,7 +41,6 @@ Titled group of FormRows: optional section header (title and description), optio
 
 | Role            | Tokens                                                                                                                                                                       |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.secondary.bg.default`                                                                                                                                          |
 | Strokes         | `color.action.secondary.border.default`, `color.border.surface`                                                                                                              |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                                                                                                 |
 | Spacing         | `inset.sm`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`                                                                                                     |

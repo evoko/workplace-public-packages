@@ -87,22 +87,25 @@ const decided = (ctx, token) =>
   ctx.deviations.find((d) => d.token === token)?.decision?.rule;
 
 describe('solar:explain --propose', () => {
-  it('proposes follows for a pattern of variants, which decides both findings', () => {
-    const doc = overlayText('Button');
+  it('proposes follows for a pattern of variants, which decides the finding', () => {
+    // Without its follows, Button's lg background (lg keeps its own fills) is an open finding,
+    // and the proposal is the rule the overlay holds.
+    const doc = overlayText(
+      'Button',
+      (d) => delete d.follows['root.background'],
+    );
     const ctx = build('Button', doc);
     const proposal = proposeRule(ctx, { layer: 'root', cell: 'background' });
     expect(proposal).toMatch(
       /^follows:\n {2}root\.background:\n {4}axes: \[size, prio, state, danger\]/m,
     );
     const after = build('Button', paste(doc, proposal));
-    for (const at of ['lg', 'sm'])
-      expect(
-        after.deviations.some(
-          (d) =>
-            d.token === `component.button.root.background@size=${at}` &&
-            !d.decision,
-        ),
-      ).toBe(false);
+    expect(
+      after.deviations.some(
+        (d) =>
+          d.token === 'component.button.root.background@size=lg' && !d.decision,
+      ),
+    ).toBe(false);
   });
 
   it('proposes accept for a difference no variant draws, which decides it', () => {

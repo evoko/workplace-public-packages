@@ -768,7 +768,7 @@
     "pageId": "6902:3",
     "figmaNode": "6905:61",
     "defaultVariant": "severity=success, state=default, ghost=false",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/insight-row.yaml",

@@ -72,7 +72,7 @@ Base Dialog overlay container. Responsive — adapts to content width. Uses real
       - **Title** · text `title/sm` "Time Range" · FILL/HUG · 732×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
       - **Icon Button** · instance of **Icon Button** (size=md, shape=round, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
-        stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.pill`
+        fill `color.action.tertiary.bg.default` · stroke `color.action.tertiary.border.default` 1px · strokeWeight `border.default` · radius `radius.pill`
   - **Container** · frame · row gap 0 pad 0/0/0/0 HUG/HUG · 824×515
     - **Tree** · frame · column gap 0 pad 12/8/12/8 FIXED/FILL · 200×515  
       fill `color.surface.background` · stroke `color.border.subtle` mixedpx · itemSpacing `inset.none` · padding `inset.xs`, `inset.sm`
@@ -104,17 +104,17 @@ Instance census (tree capped at depth 3): Day Cell ×70, Icon/None ×23, StatusI
 
 ### Tokens used
 
-| Role            | Tokens                                                                                              |
-| --------------- | --------------------------------------------------------------------------------------------------- |
-| Fills           | `color.surface.active`, `color.surface.background`, `color.surface.dialog`                          |
-| Strokes         | `color.action.tertiary.border.default`, `color.border.subtle`                                       |
-| Text color      | `color.text.primary`                                                                                |
-| Spacing         | `inset.2xs`, `inset.md`, `inset.none`, `inset.sm`, `inset.xl`, `inset.xs`, `stack.xs`               |
-| Radius          | `radius.control`, `radius.dialog`, `radius.none`, `radius.pill`                                     |
-| Border width    | `border.default`                                                                                    |
-| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.title.sm`, `type.size.title.sm` |
-| Effects         | `shadow/dialog`                                                                                     |
-| Text styles     | `title/sm`                                                                                          |
+| Role            | Tokens                                                                                                         |
+| --------------- | -------------------------------------------------------------------------------------------------------------- |
+| Fills           | `color.action.tertiary.bg.default`, `color.surface.active`, `color.surface.background`, `color.surface.dialog` |
+| Strokes         | `color.action.tertiary.border.default`, `color.border.subtle`                                                  |
+| Text color      | `color.text.primary`                                                                                           |
+| Spacing         | `inset.2xs`, `inset.md`, `inset.none`, `inset.sm`, `inset.xl`, `inset.xs`, `stack.xs`                          |
+| Radius          | `radius.control`, `radius.dialog`, `radius.none`, `radius.pill`                                                |
+| Border width    | `border.default`                                                                                               |
+| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.title.sm`, `type.size.title.sm`            |
+| Effects         | `shadow/dialog`                                                                                                |
+| Text styles     | `title/sm`                                                                                                     |
 
 ### Composes
 

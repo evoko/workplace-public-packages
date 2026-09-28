@@ -15,7 +15,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 ### Anatomy (default variant)
 
 - **breakpoint=desktop** · component · column gap 16 pad 24/0/24/0 FIXED/FIXED · 1440×800  
-  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · itemSpacing `inset.md` · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
+  fill `color.surface.inverse` · fill `IMAGE` ⚠️ hard-coded · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
   - **App Name** · instance of **App Name** (type=horizontal) · column gap 16 pad 0/0/0/0 HUG/HUG · 85×59  
     itemSpacing `inset.md` · padding `inset.none` · radius `radius.control`
   - **Center Stack** · frame · column gap 20 pad 0/0/0/0 HUG/HUG · 400×388  
@@ -72,6 +72,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.brand.red`, `color.brand.white`.
+- Hard-coded gap `16px` on layer _breakpoint=desktop_
 
 ## Component set: Auth — Sign In / Email + Password
 

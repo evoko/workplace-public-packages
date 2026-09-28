@@ -1278,7 +1278,7 @@
     "pageId": "2163:3662",
     "figmaNode": "3059:214",
     "defaultVariant": "state=default, status=none, loading=false",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/card.yaml",

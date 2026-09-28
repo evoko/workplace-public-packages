@@ -539,7 +539,7 @@
     "pageId": "2163:3659",
     "figmaNode": "2203:3287",
     "defaultVariant": "type=incline, size=md",
-    "fileVersion": "2403086052040245261"
+    "fileVersion": "2404261626473546820"
   },
   "overlay": {
     "file": "spec/overlay/trend-badge.yaml",
